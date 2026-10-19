@@ -1,0 +1,144 @@
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/category_theory/finite_joint_dynamics.rs",
+    "sha256": "764d93103ec4644c2c9982de7d37d7db44d4bd513c2b72d48ec7cf681378ff01",
+    "language": "Rust"
+  },
+  "status": "source_reviewed",
+  "formal_specification": {
+    "profile": "Exact usize identifiers, checked integer accounting, and Option definedness.",
+    "domain": "Admitted nonempty component systems, nonempty unique in-range pairs, and valid local or supplied interaction operations, under the declared checked cost expression.",
+    "behavior": [
+      "Compute checked (states+1)^2*(inputs+1) for an admitted nonempty component. Return None on overflow. This is the declared accounting expression, not a runtime or byte bound.",
+      "Check joint size plus sink, squared pair budget, operation count plus one, and the sum of all three cost expressions. Overflow or cost>max_cells returns WorkLimit before relation or operation checks. Equality succeeds. Return the full ordered-pair budget.",
+      "Build exact pair-to-row IDs, then reject empty, duplicate, or out-of-range component pairs. Preserve supplied row order and reject the relation before checking operations.",
+      "Check each local input index strictly against its component alphabet. An interaction table must have exactly one entry per joint row and every Some index must be in range. None denotes supplied unavailability.",
+      "Left and Right update exactly one coordinate. Interaction returns the supplied row entry. A local None stays None. A defined pair needs a relation lookup; failure returns NotClosed with the original row, operation, and target, rather than unavailability.",
+      "Collect the required owned table in row-major, then operation-major order over borrowed admitted inputs. Stop at the first missing defined target. Every operation has already passed global validation.",
+      "Use actual component all-word quotients and select the two class IDs for each admitted real pair. Preserve pair order. These are behavioral classes, rather than raw report values.",
+      "Assign dense joint readouts by first profile occurrence. Equal profiles receive equal readouts. Use one map and primitive copies.",
+      "Preserve the ordered phases: work, relation, all operations, closure table, component quotients, profiles, readout interning, and actual PartialDynamics admission. Own the resulting immutable data and pair budget. Interactions remain supplied premises.",
+      "Borrow the exact immutable admitted relation in its supplied row order.",
+      "Borrow the exact pair of component behavioral-class IDs for each row.",
+      "Borrow the actual admitted joint PartialDynamics, with readouts encoding profiles and columns in supplied operation order.",
+      "Compute the canonical joint quotient including its unavailable sink. Scan r ascending and l<r ascending for the first equal-profile pair with different final classes. Ask the actual provider for its shortest separating word using the full ordered-pair budget. No collision means profiles preserve joint future answers and availability.",
+      "Recompute analysis on immutable self, propagate its errors, and compare complete refinement and collision. Return CertificateMismatch on disagreement. This verifies analysis results, without authenticating external declaration identity; distinct declarations with identical results can cross-verify."
+    ],
+    "capability": "L3 finite table construction and all-word collision analysis over declared premises."
+  },
+  "operations": {
+    "refinement_cost": {
+      "line": 46,
+      "signature": "fn refinement_cost(m: &PartialDynamics) -> Option<usize>",
+      "obligation": "Compute checked (states+1)^2*(inputs+1) for an admitted nonempty component. Return None on overflow. This is the declared accounting expression, not a runtime or byte bound."
+    },
+    "admit_work": {
+      "line": 52,
+      "signature": "fn admit_work(\n    left: &PartialDynamics,\n    right: &PartialDynamics,\n    pairs: usize,\n    operations: usize,\n    max_cells: usize,\n) -> Result<usize, JointDynamicsError>",
+      "obligation": "Check joint size plus sink, squared pair budget, operation count plus one, and the sum of all three cost expressions. Overflow or cost>max_cells returns WorkLimit before relation or operation checks. Equality succeeds. Return the full ordered-pair budget."
+    },
+    "admit_relation": {
+      "line": 77,
+      "signature": "fn admit_relation(\n    left: &PartialDynamics,\n    right: &PartialDynamics,\n    pairs: &[(usize, usize)],\n) -> Result<BTreeMap<(usize, usize), usize>, JointDynamicsError>",
+      "obligation": "Build exact pair-to-row IDs, then reject empty, duplicate, or out-of-range component pairs. Preserve supplied row order and reject the relation before checking operations."
+    },
+    "valid_operation": {
+      "line": 99,
+      "signature": "fn valid_operation(\n    op: &JointOperation,\n    left: &PartialDynamics,\n    right: &PartialDynamics,\n    rows: usize,\n) -> bool",
+      "obligation": "Check each local input index strictly against its component alphabet. An interaction table must have exactly one entry per joint row and every Some index must be in range. None denotes supplied unavailability."
+    },
+    "cell": {
+      "line": 118,
+      "signature": "fn cell(\n        &self,\n        pair: (usize, usize),\n        op: &JointOperation,\n        row: usize,\n        operation: usize,\n    ) -> Result<Option<usize>, JointDynamicsError>",
+      "obligation": "Left and Right update exactly one coordinate. Interaction returns the supplied row entry. A local None stays None. A defined pair needs a relation lookup; failure returns NotClosed with the original row, operation, and target, rather than unavailability."
+    },
+    "joint_transitions": {
+      "line": 146,
+      "signature": "fn joint_transitions(\n    left: &PartialDynamics,\n    right: &PartialDynamics,\n    pairs: &[(usize, usize)],\n    operations: &[JointOperation],\n    ids: &BTreeMap<(usize, usize), usize>,\n) -> Result<Vec<Vec<Option<usize>>>, JointDynamicsError>",
+      "obligation": "Collect the required owned table in row-major, then operation-major order over borrowed admitted inputs. Stop at the first missing defined target. Every operation has already passed global validation."
+    },
+    "local_profiles": {
+      "line": 167,
+      "signature": "fn local_profiles(\n    left: &PartialDynamics,\n    right: &PartialDynamics,\n    pairs: &[(usize, usize)],\n) -> Vec<(usize, usize)>",
+      "obligation": "Use actual component all-word quotients and select the two class IDs for each admitted real pair. Preserve pair order. These are behavioral classes, rather than raw report values."
+    },
+    "profile_reports": {
+      "line": 177,
+      "signature": "fn profile_reports(local_reports: &[(usize, usize)]) -> Vec<usize>",
+      "obligation": "Assign dense joint readouts by first profile occurrence. Equal profiles receive equal readouts. Use one map and primitive copies."
+    },
+    "new": {
+      "line": 189,
+      "signature": "pub fn new(\n        left: &PartialDynamics,\n        right: &PartialDynamics,\n        pairs: Vec<(usize, usize)>,\n        operations: &[JointOperation],\n        max_cells: usize,\n    ) -> Result<Self, JointDynamicsError>",
+      "obligation": "Preserve the ordered phases: work, relation, all operations, closure table, component quotients, profiles, readout interning, and actual PartialDynamics admission. Own the resulting immutable data and pair budget. Interactions remain supplied premises."
+    },
+    "pairs": {
+      "line": 216,
+      "signature": "pub fn pairs(&self) -> &[(usize, usize)]",
+      "obligation": "Borrow the exact immutable admitted relation in its supplied row order."
+    },
+    "local_reports": {
+      "line": 219,
+      "signature": "pub fn local_reports(&self) -> &[(usize, usize)]",
+      "obligation": "Borrow the exact pair of component behavioral-class IDs for each row."
+    },
+    "dynamics": {
+      "line": 222,
+      "signature": "pub fn dynamics(&self) -> &PartialDynamics",
+      "obligation": "Borrow the actual admitted joint PartialDynamics, with readouts encoding profiles and columns in supplied operation order."
+    },
+    "analyze": {
+      "line": 226,
+      "signature": "pub fn analyze(&self) -> Result<JointDynamicsAnalysis, JointDynamicsError>",
+      "obligation": "Compute the canonical joint quotient including its unavailable sink. Scan r ascending and l<r ascending for the first equal-profile pair with different final classes. Ask the actual provider for its shortest separating word using the full ordered-pair budget. No collision means profiles preserve joint future answers and availability."
+    },
+    "verify": {
+      "line": 250,
+      "signature": "pub fn verify(&self, c: &JointDynamicsAnalysis) -> Result<(), JointDynamicsError>",
+      "obligation": "Recompute analysis on immutable self, propagate its errors, and compare complete refinement and collision. Return CertificateMismatch on disagreement. This verifies analysis results, without authenticating external declaration identity; distinct declarations with identical results can cross-verify."
+    }
+  },
+  "invariants": [
+    "Both PartialDynamics inputs are already admitted, nonempty, and checked for shape and range. Their first transition row exists even when there are zero inputs. Joint pairs must be nonempty, unique, and inside both real carriers; internal unavailable sinks are excluded. Work admission runs first, then relation admission, then validation of every operation, then joint closure in row-major order. A later invalid operation therefore takes priority over an earlier missing pair. The extracted phases preserve the original result and error order.",
+    "The declared accounting expression is B=(p+1)^2 and cost=B*(operation_count+1)+(left_states+1)^2*(left_inputs+1)+(right_states+1)^2*(right_inputs+1). Every addition and product is checked. Overflow or cost greater than max_cells returns WorkLimit before relation construction; equality succeeds. This is an admission accounting rule, rather than a bound on all heap bytes, runtime, or executed operations. Direct private-helper tests cover arithmetic overflow without allocating huge models.",
+    "The pair map assigns each unique admitted pair its supplied row index. Left and Right operations change exactly one coordinate. A local None remains genuinely unavailable. A defined target must occur in the relation; a missing target returns NotClosed with its original row, operation, and target pair. Interaction entries are supplied premises with exactly one valid Option index per row. Borrowed context and Result collection preserve the original row and operation order. On failure only temporary output is dropped. Lean proves the abstract lookup and closure distinction; Rust indexing and error fields remain separate source obligations.",
+    "Local profiles use the actual reviewed component behavioral quotients, including their distinct unavailable sinks. Pair coordinates select only real component states. A profile is the pair of component class IDs, rather than their raw report IDs. First-occurrence interning gives equal joint readouts exactly when profiles agree. Actual PartialDynamics admission checks the complete derived table. Interactions can introduce distinctions within a local profile fiber; they are supplied data, with no inferred independence or commutativity law.",
+    "The actual joint quotient refines the initial profile kernel and preserves every finite-word answer and availability distinction by the reviewed provider argument. Equal profiles with different final classes therefore identify exactly a lost joint-future distinction. Analysis scans right row r in increasing order and left row l<r in increasing order. The provider then returns the shortest lexicographic separating word and exact saved answers. The totalized joint system has p+1 states and at most (p+1)^2 ordered state pairs, so B admits the whole search frontier when allocation succeeds. No collision means joint-future observations factor through the realized profiles. The new Lean fiber lemmas and the existing provider proofs support different parts of this argument.",
+    "JointDynamics owns immutable admitted pairs, profiles, dynamics, and the checked pair budget, with borrowed getters and no Deserialize or Default bypass. Analysis is a raw mutable report. Verification recomputes the complete analysis and compares refinement and collision. It checks the result on self, without authenticating an external declaration or request hash. Distinct relations can have identical analyses: the native constant, zero-input example uses [(0,0)] and [(1,0)] and accepts cross-verification. The documentation now states this ceiling.",
+    "Private helper calls use already admitted ranges and concrete usize values. Budget, relation, operation, transition, and profile phases retain their original order. Output rows, profiles, dense readouts, and owned provider quotients are required results. One pair map and one profile interning map are built outside cell processing. Result collection may allocate output capacity differently from push loops; no allocation-count, heap-totality, or arbitrary-callback guarantee is made. The max_cells expression does not replace the providers own stated cost and trust boundaries."
+  ],
+  "failure_paths": {
+    "refinement_cost": "Compute checked (states+1)^2*(inputs+1) for an admitted nonempty component. Return None on overflow. This is the declared accounting expression, not a runtime or byte bound.",
+    "admit_work": "Check joint size plus sink, squared pair budget, operation count plus one, and the sum of all three cost expressions. Overflow or cost>max_cells returns WorkLimit before relation or operation checks. Equality succeeds. Return the full ordered-pair budget.",
+    "admit_relation": "Build exact pair-to-row IDs, then reject empty, duplicate, or out-of-range component pairs. Preserve supplied row order and reject the relation before checking operations.",
+    "valid_operation": "Check each local input index strictly against its component alphabet. An interaction table must have exactly one entry per joint row and every Some index must be in range. None denotes supplied unavailability.",
+    "cell": "Left and Right update exactly one coordinate. Interaction returns the supplied row entry. A local None stays None. A defined pair needs a relation lookup; failure returns NotClosed with the original row, operation, and target, rather than unavailability.",
+    "joint_transitions": "Collect the required owned table in row-major, then operation-major order over borrowed admitted inputs. Stop at the first missing defined target. Every operation has already passed global validation.",
+    "local_profiles": "Use actual component all-word quotients and select the two class IDs for each admitted real pair. Preserve pair order. These are behavioral classes, rather than raw report values.",
+    "profile_reports": "Assign dense joint readouts by first profile occurrence. Equal profiles receive equal readouts. Use one map and primitive copies.",
+    "new": "Preserve the ordered phases: work, relation, all operations, closure table, component quotients, profiles, readout interning, and actual PartialDynamics admission. Own the resulting immutable data and pair budget. Interactions remain supplied premises.",
+    "pairs": "Borrow the exact immutable admitted relation in its supplied row order.",
+    "local_reports": "Borrow the exact pair of component behavioral-class IDs for each row.",
+    "dynamics": "Borrow the actual admitted joint PartialDynamics, with readouts encoding profiles and columns in supplied operation order.",
+    "analyze": "Compute the canonical joint quotient including its unavailable sink. Scan r ascending and l<r ascending for the first equal-profile pair with different final classes. Ask the actual provider for its shortest separating word using the full ordered-pair budget. No collision means profiles preserve joint future answers and availability.",
+    "verify": "Recompute analysis on immutable self, propagate its errors, and compare complete refinement and collision. Return CertificateMismatch on disagreement. This verifies analysis results, without authenticating external declaration identity; distinct declarations with identical results can cross-verify."
+  },
+  "trust_boundary": "Rust, standard libraries, compiler, prepared Lean/Mathlib, and the reviewed continuation and Moore providers. Supplied relations and interactions are premises. Allocation availability, external identity, authority, MIR and Rust extraction remain outside the claim.",
+  "assurance_limits": [
+    "Contracts pending; AuthorityEffect: None.",
+    "Interaction tables are supplied premises, without inferred commutativity, physical licenses, or independence.",
+    "Verification compares analysis outputs on self; external declaration identity, hashes, and authenticity are outside its scope.",
+    "max_cells is checked admission accounting, not a complete heap, runtime, or executed-work limit.",
+    "The 17 new abstract declarations and 31 reviewed provider declarations do not extract Rust or establish MIR and allocator totality.",
+    "The finite corpus and 23 designated faults provide scoped evidence; no external omega or whole-workspace success is claimed."
+  ],
+  "review_evidence": [
+    {
+      "path": "code/rust/src/category_theory/finite_joint_dynamics.score.yaml",
+      "sha256": "1349ca56eb7e1d6478c1d50cae7be2865c5a7836e826f5186592604f53d5b237"
+    }
+  ],
+  "open_obligations": []
+}

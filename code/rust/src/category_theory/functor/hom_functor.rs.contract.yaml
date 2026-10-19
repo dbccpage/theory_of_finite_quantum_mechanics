@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/category_theory/functor/hom_functor.rs",
+    "sha256": "59ab554b4ff222872b3968c3c7f3b6b159382d04dd93a04c60ce01d67f435e5e",
+    "language": "Rust"
+  },
+  "status": "source_reviewed",
+  "formal_specification": {
+    "domain": "Raw mutable metadata with literal UTF-8 String fields, exactly represented primitive integers/options, and raw notes/flags. Constructors and serde are candidate transport; validation observes without mutation.",
+    "ordered_labels": [
+      "label",
+      "category_ref",
+      "fixed_object",
+      "variance"
+    ],
+    "parameter_rule": "After all four required labels, variance must equal exactly covariant or contravariant. No Hom-set mapping, category law or variance theorem is computed.",
+    "failure": "The first empty required label returns ArithmosError::InvalidShape(empty FIELD); then the stated parameter check returns its exact source-bound diagnostic. No successful mathematical certificate exists in this module.",
+    "profile": "Exact primitive integer comparisons for levels, arity and bounds; literal string matching for tag-only metadata. No arithmetic, rounding, float conversion or normalization."
+  },
+  "operations": {
+    "new": {
+      "signature": "pub fn new(label: impl Into<String>) -> Self",
+      "classification": "Raw constructor or note setter; never mathematical admission"
+    },
+    "covariant": {
+      "signature": "pub fn covariant( label: impl Into<String>, category_ref: impl Into<String>, fixed_object: impl Into<String>, ) -> Self",
+      "classification": "Raw constructor or note setter; never mathematical admission"
+    },
+    "contravariant": {
+      "signature": "pub fn contravariant( label: impl Into<String>, category_ref: impl Into<String>, fixed_object: impl Into<String>, ) -> Self",
+      "classification": "Raw constructor or note setter; never mathematical admission"
+    },
+    "validate_shell": {
+      "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+      "classification": "Ordered literal parameter/tag/label refusal"
+    }
+  },
+  "invariants": [
+    "All public production bodies are mapped above. Constructors move explicit supplied values and store documented defaults; with_note appends only a raw note. They intentionally may construct a candidate that fails validation.",
+    "validate_shell reads required String lengths in the recorded order and then the declared threshold/tag predicate, changing no data. Every failed guard returns the existing typed InvalidShape variant with the original payload; every accepted path returns unit only.",
+    "The ordered-label proof applies to the finite label prefix. ParameterMetadata.variance supplies the threshold/tag result where applicable; the first_error/accepted_prefix lemmas preserve the label-before-parameter refusal order. These are models plus a reviewed source relation, not extracted Rust or a law of the named mathematical concept.",
+    "Signed levels stay i32, unsigned level/arity stay u32, and the optional bound stays usize on the captured 64-bit target. Comparisons with constants do not overflow or divide. String operations/formatting preserve literal bytes, including whitespace, NUL and Unicode. No partial indexing, recursion, mathematical division or unchecked cast exists."
+  ],
+  "failure_paths": {
+    "labels": "First exact typed InvalidShape, no mutation or successful artifact.",
+    "parameters": "After all four required labels, variance must equal exactly covariant or contravariant. No Hom-set mapping, category law or variance theorem is computed.",
+    "construction": "Standard String/&str conversions, derived serde/Clone/Eq and allocator behavior are declared trusted library/runtime contracts; arbitrary caller Into implementations remain external. Validation invokes no caller callback.",
+    "representation": "Primitive integer wire decoding enforces fixed-width ranges; raw candidate serde roundtrips do not certify semantic validity."
+  },
+  "trust_boundary": {
+    "math": "Only literal metadata thresholds and tags; no categorical or HoTT premise is silently imported.",
+    "runtime": "Pinned Rust compiler/std, serde derives and the existing errors::ArithmosError exposed through the canonical crate self-alias. Challenge namespaces import that same actual category crate type. Standard conversion/allocator contracts apply.",
+    "model": "Pinned Lean/Mathlib kernel checks for ordered labels and separate threshold/tag programs. Source predicate/payload correspondence is explicit source review; no MIR equivalence."
+  },
+  "assurance_limits": [
+    "Capability remains L2 raw metadata, not the mathematics suggested by the name.",
+    "Contracts pending. No A+, independent compiler, Rust/MIR refinement, allocator totality, author attestation or whole-workspace pass."
+  ],
+  "review_evidence": [
+    {
+      "path": "code/rust/src/category_theory/functor/hom_functor.score.yaml",
+      "sha256": "4e4590f963043a160995a27fd7140d4f70e2adf17d7ec4e781b5b40648992185"
+    }
+  ],
+  "open_obligations": []
+}

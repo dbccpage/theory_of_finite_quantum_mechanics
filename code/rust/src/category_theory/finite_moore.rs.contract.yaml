@@ -1,0 +1,166 @@
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/category_theory/finite_moore.rs",
+    "sha256": "c4464e2a36d3e788bbdc631cedcfdd39bf016f38add55810b47fc32931718b15",
+    "language": "Rust"
+  },
+  "status": "source_reviewed",
+  "formal_specification": {
+    "profile": "Exact retained:literal usize reports/input/state indices and finite equality partitions,no tolerance or numeric report arithmetic.",
+    "domain": "Immutable admitted nonempty total finite machines;arbitrary submitted raw chains/partitions/maps validated before indexing.",
+    "behavior": [
+      "Private standard iterator of usize signatures in current callsites. Assign first-seen key IDs by ids.len;reuse existing ID,return one label per input in order. IDs dense and bound by input count;generic Ord obligation is not a new public callback API. Initial report iterator replaces Vec copy with same value order.",
+      "Private borrowed slice lookup in owned Vec-key map;existing key returns its exact ID without allocation. Missing key copies exactly one required stored signature and assigns map.len. Vec/slice lexical ordering identical;no transient owned key on repeated signatures.",
+      "Typed guard order:nonempty reports,matching row count/each input length,all targets<report count. Return exact typed error first;success owns exact input labels/rows/input count. No report arithmetic or equivalence normalization here.",
+      "Borrow exact admitted report labels immutably,including usizeMAX.",
+      "Borrow exact admitted total transition matrix immutably.",
+      "Return stored alphabet size admitted against every row.",
+      "Return report vector length,n>0,not quotient block count.",
+      "Normalize original report values in original state order using copied usize iterator. Equal report iff equal label;canonical first-state IDs. No full report clone/input signature Vec.",
+      "Private partition.len==n. One reusable scratch signature:current block followed by all successor blocks in input order. Insert/get borrowed scratch in first-state order;copy only distinct stored signature keys and append exact fresh/current ID to required output vector. Includes prior block,so refinement cannot merge. No indexing by raw class label,only by admitted state/target indices.",
+      "Private valid state indices and partition length. Unrelated classes pass immediately;related classes require equal reports and every same-input successor pair related. Boolean complement exactly old rejection predicate,with same pure usize reads/short circuit.",
+      "Wrong partition length false before indexing. Check every unordered distinct state pair in ascending state/previous order through pair_preserves;diagonal trivial and pair symmetry covers all ordered pairs. Arbitrary sparse/MAX class labels allowed as equality names. Returns congruence predicate,not coarsest partition admission.",
+      "Start nonempty chain at canonical readout kernel. Repeat exact refinement until canonical vector unchanged;push only strict steps. Old-block inclusion ensures each strict change splits/increases class count<=n,so finite. Final map dense;each ID has first-state representative. Build quotient reports/transitions from these representatives and final map. Nonempty/shape/target invariants discharge own last/max/representative unwraps,indexing and constructor expect. Output chain/raw fields mutable;verification remains separate.",
+      "Require exact readout origin. Every adjacent pair:source lengthn,exact refinement result,and strict change. Then require present last with lengthn,fixedpoint,and state_to_block identical to last. Finally compare submitted immutable quotient to actual reconstructed canonical quotient. Guards precede refine indexing;arbitrary submitted labels are compared as usize,never used as indices. Reject empty/missing-step/repeated-step/unstable/overrefined/forged-map/payload cases.",
+      "Ordered shape/range/onto guard then statewise report/transition homomorphism guard. Compute actual minimal map;for each source m assign target slot map[m] its minimal block. Different previous assignment explicitly refuses,otherwise fill once. Surjectivity guarantees every target slot Some before final unwrap;homomorphism kernel lies in future equivalence,so valid fibers share block. Return unique factor making factor(map(m))=minimal(m),not arbitrary map admission by replay alone.",
+      "Short-circuit same alphabet,exact source map length,all target indices in range,then image cardinality equals target cardinality. Since range already admitted,this last condition is surjectivity. Same order as old disjunctive refusal;no map indexing before length/range known.",
+      "Private successful map-shape guard/state<n. Require same report at target image and every labeled update commutes. Known row/map bounds justify direct indices. Equivalent negation of prior statewise mismatch/any-step mismatch.",
+      "Unequal alphabets false. Build disjoint union using source offset for target transitions and exact original labels;canonical greatest relation on union yields common behavior blocks. Compare set of blocks met by each carrier (both inclusion directions),not state-count or multiplicity equality. Nonempty admitted machines preserve union typing;state+offset fits addressable live safe storage,union allocation may fail as std TCB. Reports/input labels are external literal IDs,not arbitrarily renamable."
+    ],
+    "capability": "L3 conservative bounded exact finite algorithm with replayable quotient records;no automatic L5 foundational/physical authority from categorical terminology."
+  },
+  "operations": {
+    "normalize": {
+      "line": 36,
+      "signature": "fn normalize<T: Ord>(signatures: impl IntoIterator<Item = T>) -> Vec<usize>",
+      "obligation": "Private standard iterator of usize signatures in current callsites. Assign first-seen key IDs by ids.len;reuse existing ID,return one label per input in order. IDs dense and bound by input count;generic Ord obligation is not a new public callback API. Initial report iterator replaces Vec copy with same value order."
+    },
+    "intern_signature": {
+      "line": 48,
+      "signature": "fn intern_signature(ids: &mut BTreeMap<Vec<usize>, usize>, signature: &[usize]) -> usize",
+      "obligation": "Private borrowed slice lookup in owned Vec-key map;existing key returns its exact ID without allocation. Missing key copies exactly one required stored signature and assigns map.len. Vec/slice lexical ordering identical;no transient owned key on repeated signatures."
+    },
+    "new": {
+      "line": 58,
+      "signature": "pub fn new(\n        reports: Vec<usize>,\n        transitions: Vec<Vec<usize>>,\n        input_count: usize,\n    ) -> Result<Self, MooreError>",
+      "obligation": "Typed guard order:nonempty reports,matching row count/each input length,all targets<report count. Return exact typed error first;success owns exact input labels/rows/input count. No report arithmetic or equivalence normalization here."
+    },
+    "reports": {
+      "line": 85,
+      "signature": "pub fn reports(&self) -> &[usize]",
+      "obligation": "Borrow exact admitted report labels immutably,including usizeMAX."
+    },
+    "transitions": {
+      "line": 88,
+      "signature": "pub fn transitions(&self) -> &[Vec<usize>]",
+      "obligation": "Borrow exact admitted total transition matrix immutably."
+    },
+    "input_count": {
+      "line": 91,
+      "signature": "pub fn input_count(&self) -> usize",
+      "obligation": "Return stored alphabet size admitted against every row."
+    },
+    "state_count": {
+      "line": 94,
+      "signature": "pub fn state_count(&self) -> usize",
+      "obligation": "Return report vector length,n>0,not quotient block count."
+    },
+    "initial_partition": {
+      "line": 98,
+      "signature": "fn initial_partition(&self) -> Vec<usize>",
+      "obligation": "Normalize original report values in original state order using copied usize iterator. Equal report iff equal label;canonical first-state IDs. No full report clone/input signature Vec."
+    },
+    "refine": {
+      "line": 102,
+      "signature": "fn refine(&self, partition: &[usize]) -> Vec<usize>",
+      "obligation": "Private partition.len==n. One reusable scratch signature:current block followed by all successor blocks in input order. Insert/get borrowed scratch in first-state order;copy only distinct stored signature keys and append exact fresh/current ID to required output vector. Includes prior block,so refinement cannot merge. No indexing by raw class label,only by admitted state/target indices."
+    },
+    "pair_preserves": {
+      "line": 115,
+      "signature": "fn pair_preserves(&self, partition: &[usize], left: usize, right: usize) -> bool",
+      "obligation": "Private valid state indices and partition length. Unrelated classes pass immediately;related classes require equal reports and every same-input successor pair related. Boolean complement exactly old rejection predicate,with same pure usize reads/short circuit."
+    },
+    "is_report_congruence": {
+      "line": 125,
+      "signature": "pub fn is_report_congruence(&self, partition: &[usize]) -> bool",
+      "obligation": "Wrong partition length false before indexing. Check every unordered distinct state pair in ascending state/previous order through pair_preserves;diagonal trivial and pair symmetry covers all ordered pairs. Arbitrary sparse/MAX class labels allowed as equality names. Returns congruence predicate,not coarsest partition admission."
+    },
+    "behavioral_quotient": {
+      "line": 140,
+      "signature": "pub fn behavioral_quotient(&self) -> MooreQuotient",
+      "obligation": "Start nonempty chain at canonical readout kernel. Repeat exact refinement until canonical vector unchanged;push only strict steps. Old-block inclusion ensures each strict change splits/increases class count<=n,so finite. Final map dense;each ID has first-state representative. Build quotient reports/transitions from these representatives and final map. Nonempty/shape/target invariants discharge own last/max/representative unwraps,indexing and constructor expect. Output chain/raw fields mutable;verification remains separate."
+    },
+    "verify_quotient": {
+      "line": 182,
+      "signature": "pub fn verify_quotient(&self, receipt: &MooreQuotient) -> bool",
+      "obligation": "Require exact readout origin. Every adjacent pair:source lengthn,exact refinement result,and strict change. Then require present last with lengthn,fixedpoint,and state_to_block identical to last. Finally compare submitted immutable quotient to actual reconstructed canonical quotient. Guards precede refine indexing;arbitrary submitted labels are compared as usize,never used as indices. Reject empty/missing-step/repeated-step/unstable/overrefined/forged-map/payload cases."
+    },
+    "factor_surjective_quotient": {
+      "line": 212,
+      "signature": "pub fn factor_surjective_quotient(\n        &self,\n        target: &Self,\n        map: &[usize],\n    ) -> Result<Vec<usize>, MooreError>",
+      "obligation": "Ordered shape/range/onto guard then statewise report/transition homomorphism guard. Compute actual minimal map;for each source m assign target slot map[m] its minimal block. Different previous assignment explicitly refuses,otherwise fill once. Surjectivity guarantees every target slot Some before final unwrap;homomorphism kernel lies in future equivalence,so valid fibers share block. Return unique factor making factor(map(m))=minimal(m),not arbitrary map admission by replay alone."
+    },
+    "valid_quotient_map_shape": {
+      "line": 237,
+      "signature": "fn valid_quotient_map_shape(&self, target: &Self, map: &[usize]) -> bool",
+      "obligation": "Short-circuit same alphabet,exact source map length,all target indices in range,then image cardinality equals target cardinality. Since range already admitted,this last condition is surjectivity. Same order as old disjunctive refusal;no map indexing before length/range known."
+    },
+    "preserves_quotient_at": {
+      "line": 244,
+      "signature": "fn preserves_quotient_at(&self, target: &Self, map: &[usize], state: usize) -> bool",
+      "obligation": "Private successful map-shape guard/state<n. Require same report at target image and every labeled update commutes. Known row/map bounds justify direct indices. Equivalent negation of prior statewise mismatch/any-step mismatch."
+    },
+    "same_behavior_set": {
+      "line": 256,
+      "signature": "pub fn same_behavior_set(&self, other: &Self) -> bool",
+      "obligation": "Unequal alphabets false. Build disjoint union using source offset for target transitions and exact original labels;canonical greatest relation on union yields common behavior blocks. Compare set of blocks met by each carrier (both inclusion directions),not state-count or multiplicity equality. Nonempty admitted machines preserve union typing;state+offset fits addressable live safe storage,union allocation may fail as std TCB. Reports/input labels are external literal IDs,not arbitrarily renamable."
+    }
+  },
+  "invariants": [
+    "Immutable admitted nonempty n-state/A-input matrix with valid total target indices. Wrong partition/map lengths rejected before every public path that calls private indexing helpers. Private refine/pair/map predicates rely on these explicit guards;reports/transitions/state count never mutably exposed. Safe Vec ownership/addressability bounds report/ID counters and disjoint-union offsets;std allocation/capacity remains TCB,not guaranteed successful on every finite input.",
+    "Normalization first-seen ID invariant:map has exactly distinct keys seen so far,values0..len-1,and output prefix labels exact equal keys. Initial copied iterator emits same report values as old clone. New refinement scratch at each state exactly matches old materialized signature (prior block followed by all labeled successor blocks);Vec/slice keys have identical lexical equality/order. New intern gets existing key or copies it once on first occurrence,so by state-prefix induction every refined ID exactly equals old batch normalize for every length-valid partition,including arbitrary sparse/MAX labels. No callback or mutable input makes changed evaluation/allocation observable as semantic data.",
+    "Refinement kernel is old relation intersected with all labeled inverse images;it never merges classes. Canonical first-state labels uniquely represent each partition. Therefore a changed canonical vector strictly splits at least one old block,increasing count≤n;initial count≥1,so at mostn-1 strict changes before fixed point. Chain Vec is initialized nonempty and only grows. Canonical class IDs all appear and maxID+1≤n;representative Option slots all Some. Stable quotient independent of representative because reports homogeneous/successors class-stable;all own producer unwraps/expect/indexes follow these invariants.",
+    "Formal stable-depth relation is exactly all-word future equality:future equality is a report congruence and lies inside every finite-depth refinement;any stable depth relation is a report congruence,so implies every-word equality. Conversely every report congruence lies within future equality by word induction. This establishes greatest readout-respecting congruence/minimal behavior quotient semantics;Rust strict finite split/normalization/chain representation refined above,not extracted from Lean.",
+    "Congruence helper uses finite pair symmetry:original rejection iff same block AND (different report OR some different successor block);new pass iff different block OR (same report AND all successor blocks same). Same short-circuit observation order on pure usize data. All unordered distinct pairs suffice;arbitrary equality-class labels valid for predicate,while canonical origin/exact-step verifier disallows arbitrary overrefinement in a certificate.",
+    "Quotient checker origin,step strictness/stabilization,map binding and payload are independent obligations. Each is isolated by controls preserving other fields (including canonical quotient held while forging overrefined origin or unstable last map). Chain length itself may be arbitrary submitted data;finite scan cost reflects it. Public MooreQuotient mutation cannot alter private admitted receiver;malformed vector guards before refine guarantee fail-closed without unchecked indexing.",
+    "Surjective-map guard order and statewise predicate are Boolean complements of old refusal logic and use same finite pure iteration order. Preflight guarantees all direct map/target accesses safe. Report/update preservation lifts to every word (Lean preserving_run),so map-equal source states have equal future observations. Their canonical minimal IDs coincide;hence valid homomorphism fibers give one factor value. Surjectivity fills every factor slot,with explicit mismatch refusal retained defensively. Removing that mathematically unreachable valid-input mismatch branch was not designated as a non-equivalent fault. Lean factor_spec/factor_unique prove mathematical uniqueness on surjective fibers;native first-preimage values bind concrete implementation.",
+    "Disjoint union uses exact labels and offset target states,so future equivalence on each summand and across summands is exactly shared behavior equality. Both carriers meet same set of final classes iff every state on either side has a future-equal state on the other. Multiplicities/state names irrelevant but readout/alphabet labels literal. Actual method body unchanged;new refinement exact-output equivalence propagates to full union classification and all other existing public behavior.",
+    "Active completed direct contexts are continuation,independence,joint_carrier,trace;these own sources unchanged and will receive explicit provider-preservation refresh. Simulation has no quotient/distinguish/Moore use (source search);its only underlying machine construction path is unchanged. Actual459category tests execute current provider/consumer source. Historical own consumer mutation runs remain bound to original provider snapshots,not new-context kills."
+  ],
+  "failure_paths": {
+    "normalize": "Private standard iterator of usize signatures in current callsites. Assign first-seen key IDs by ids.len;reuse existing ID,return one label per input in order. IDs dense and bound by input count;generic Ord obligation is not a new public callback API. Initial report iterator replaces Vec copy with same value order.",
+    "intern_signature": "Private borrowed slice lookup in owned Vec-key map;existing key returns its exact ID without allocation. Missing key copies exactly one required stored signature and assigns map.len. Vec/slice lexical ordering identical;no transient owned key on repeated signatures.",
+    "new": "Typed guard order:nonempty reports,matching row count/each input length,all targets<report count. Return exact typed error first;success owns exact input labels/rows/input count. No report arithmetic or equivalence normalization here.",
+    "reports": "Borrow exact admitted report labels immutably,including usizeMAX.",
+    "transitions": "Borrow exact admitted total transition matrix immutably.",
+    "input_count": "Return stored alphabet size admitted against every row.",
+    "state_count": "Return report vector length,n>0,not quotient block count.",
+    "initial_partition": "Normalize original report values in original state order using copied usize iterator. Equal report iff equal label;canonical first-state IDs. No full report clone/input signature Vec.",
+    "refine": "Private partition.len==n. One reusable scratch signature:current block followed by all successor blocks in input order. Insert/get borrowed scratch in first-state order;copy only distinct stored signature keys and append exact fresh/current ID to required output vector. Includes prior block,so refinement cannot merge. No indexing by raw class label,only by admitted state/target indices.",
+    "pair_preserves": "Private valid state indices and partition length. Unrelated classes pass immediately;related classes require equal reports and every same-input successor pair related. Boolean complement exactly old rejection predicate,with same pure usize reads/short circuit.",
+    "is_report_congruence": "Wrong partition length false before indexing. Check every unordered distinct state pair in ascending state/previous order through pair_preserves;diagonal trivial and pair symmetry covers all ordered pairs. Arbitrary sparse/MAX class labels allowed as equality names. Returns congruence predicate,not coarsest partition admission.",
+    "behavioral_quotient": "Start nonempty chain at canonical readout kernel. Repeat exact refinement until canonical vector unchanged;push only strict steps. Old-block inclusion ensures each strict change splits/increases class count<=n,so finite. Final map dense;each ID has first-state representative. Build quotient reports/transitions from these representatives and final map. Nonempty/shape/target invariants discharge own last/max/representative unwraps,indexing and constructor expect. Output chain/raw fields mutable;verification remains separate.",
+    "verify_quotient": "Require exact readout origin. Every adjacent pair:source lengthn,exact refinement result,and strict change. Then require present last with lengthn,fixedpoint,and state_to_block identical to last. Finally compare submitted immutable quotient to actual reconstructed canonical quotient. Guards precede refine indexing;arbitrary submitted labels are compared as usize,never used as indices. Reject empty/missing-step/repeated-step/unstable/overrefined/forged-map/payload cases.",
+    "factor_surjective_quotient": "Ordered shape/range/onto guard then statewise report/transition homomorphism guard. Compute actual minimal map;for each source m assign target slot map[m] its minimal block. Different previous assignment explicitly refuses,otherwise fill once. Surjectivity guarantees every target slot Some before final unwrap;homomorphism kernel lies in future equivalence,so valid fibers share block. Return unique factor making factor(map(m))=minimal(m),not arbitrary map admission by replay alone.",
+    "valid_quotient_map_shape": "Short-circuit same alphabet,exact source map length,all target indices in range,then image cardinality equals target cardinality. Since range already admitted,this last condition is surjectivity. Same order as old disjunctive refusal;no map indexing before length/range known.",
+    "preserves_quotient_at": "Private successful map-shape guard/state<n. Require same report at target image and every labeled update commutes. Known row/map bounds justify direct indices. Equivalent negation of prior statewise mismatch/any-step mismatch.",
+    "same_behavior_set": "Unequal alphabets false. Build disjoint union using source offset for target transitions and exact original labels;canonical greatest relation on union yields common behavior blocks. Compare set of blocks met by each carrier (both inclusion directions),not state-count or multiplicity equality. Nonempty admitted machines preserve union typing;state+offset fits addressable live safe storage,union allocation may fail as std TCB. Reports/input labels are external literal IDs,not arbitrarily renamable."
+  },
+  "trust_boundary": "Rust compiler/std safe ownership/addressability/allocator,standard Vec/Map/Set and usize equality/order,Lean/Mathlib allowed foundation axioms. No invalid unsafe Vec metadata,extraction/MIR,total byte/runtime bound or physical semantics.",
+  "assurance_limits": [
+    "Contracts pending;AuthorityEffect None.",
+    "Formal all-word greatest-congruence/factor semantics plus separate Rust finite/canonical/refinement/storage/guard induction;no extracted program theorem.",
+    "Canonical replay is tied to this immutable labeled machine,not arbitrary report renaming or whole-workspace certification.",
+    "Finite input/counts do not guarantee allocation/capacity/time availability;submitted chain length drives checking work.",
+    "Small exhaustive domains/designated mutations do not cover every possible fault;consumer old faults remain historical provider snapshots."
+  ],
+  "review_evidence": [
+    {
+      "path": "code/rust/src/category_theory/finite_moore.score.yaml",
+      "sha256": "5e7c782cb94f2d54dd3ae98681e822acf6fbc1b72e513dd35a953abdb79b0ee6"
+    }
+  ],
+  "open_obligations": []
+}

@@ -1,0 +1,90 @@
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/category_theory/adjunction/mod.rs",
+    "sha256": "1ad841979b4764c5af78516a65a11a2566fe34aa578c4fd5a57ece9b9b591fea",
+    "language": "Rust"
+  },
+  "status": "source_reviewed",
+  "formal_specification": {
+    "domain": "Static Rust module and nominal type exports. There is no runtime mathematical input or admission operation in this file.",
+    "exports": {
+      "AdjointFunctorTheoremShell": "adjoint_functor_theorem::AdjointFunctorTheoremShell",
+      "AdjunctionShell": "adjunction::AdjunctionShell",
+      "CoreflectiveSubcategoryShell": "coreflective_subcategory::CoreflectiveSubcategoryShell",
+      "CounitShell": "counit::CounitShell",
+      "GaloisConnectionShell": "galois_connection::GaloisConnectionShell",
+      "MonotonePair": "galois_connection::MonotonePair",
+      "HomSetAdjunctionShell": "hom_set_adjunction::HomSetAdjunctionShell",
+      "ReflectiveSubcategoryShell": "reflective_subcategory::ReflectiveSubcategoryShell",
+      "UnitShell": "unit::UnitShell",
+      "DeclaredFiniteAdjunction": "crate::legacy_adjunction::DeclaredFiniteAdjunction",
+      "DerivedMonad": "crate::legacy_adjunction::DerivedMonad"
+    },
+    "module_exposure": "Every declared public child module is loaded by the canonical category crate from its source file. Exported aliases must identify exactly the separately specified provider types.",
+    "not_claimed": "No child algorithm, mathematical law, theorem, or engineering grade is inherited by reexporting its type."
+  },
+  "operations": {
+    "AdjointFunctorTheoremShell": {
+      "obligation": "Public alias of adjoint_functor_theorem::AdjointFunctorTheoremShell"
+    },
+    "AdjunctionShell": {
+      "obligation": "Public alias of adjunction::AdjunctionShell"
+    },
+    "CoreflectiveSubcategoryShell": {
+      "obligation": "Public alias of coreflective_subcategory::CoreflectiveSubcategoryShell"
+    },
+    "CounitShell": {
+      "obligation": "Public alias of counit::CounitShell"
+    },
+    "GaloisConnectionShell": {
+      "obligation": "Public alias of galois_connection::GaloisConnectionShell"
+    },
+    "MonotonePair": {
+      "obligation": "Public alias of galois_connection::MonotonePair"
+    },
+    "HomSetAdjunctionShell": {
+      "obligation": "Public alias of hom_set_adjunction::HomSetAdjunctionShell"
+    },
+    "ReflectiveSubcategoryShell": {
+      "obligation": "Public alias of reflective_subcategory::ReflectiveSubcategoryShell"
+    },
+    "UnitShell": {
+      "obligation": "Public alias of unit::UnitShell"
+    },
+    "DeclaredFiniteAdjunction": {
+      "obligation": "Public alias of crate::legacy_adjunction::DeclaredFiniteAdjunction"
+    },
+    "DerivedMonad": {
+      "obligation": "Public alias of crate::legacy_adjunction::DerivedMonad"
+    }
+  },
+  "invariants": [
+    "All noncomment source items were inspected and mechanically restricted to public child-module declarations, public use declarations and lint-only module-inception annotations. No initializer, macro-generated item, unsafe block, function or mutable state is present.",
+    "Under the pinned Rust module/type-resolution semantics, a pub use binds the original provider item and does not construct or validate a mathematical object. Canonical controls compare each actual public alias with its explicit original provider type in the real category crate.",
+    "The challenge adapter rebinds child declarations to those same actual canonical modules, splits grouped imports and omits only comments/lint-only attributes. Its normalized positive controls establish the same nominal identities. Each negative module changes one type binding while leaving that provider environment unchanged. No provider algorithm is cloned or reimplemented."
+  ],
+  "failure_paths": {
+    "unresolved_or_private_provider": "The Rust compiler rejects the external canonical control; no successful runtime/API receipt or completed grade follows.",
+    "wrong_valid_binding": "A syntactically valid peer type can compile but violates the declared nominal identity. Every designated peer replacement is detected by its isolated TypeId comparison.",
+    "runtime": "This file has no runtime operation, argument conversion, allocation, indexing, recursion or error recovery. Importing its namespace does not execute the providers functions."
+  },
+  "trust_boundary": {
+    "compiler": "Pinned Rust compiler, linker and standard nominal type identity within this one binary. TypeId values are not serialized, treated as cryptographic attestations or assumed stable across compiler versions.",
+    "providers": "Actual canonical crate child modules and the explicitly pinned source definitions. Their semantics, failure behavior and mathematical claims remain independently graded.",
+    "scope": "This is compiler/API-wiring verification, not a Lean theorem, Rust/MIR refinement, underlying category proof or source-origin attestation."
+  },
+  "assurance_limits": [
+    "Capability remains L1 namespace glue, not L5 mathematics.",
+    "No child mathematical validity or engineering grade is inherited.",
+    "Contracts stay pending. No A+, alternate compiler, MIR/allocator proof, cross-repository attestation or whole-workspace success is claimed."
+  ],
+  "review_evidence": [
+    {
+      "path": "code/rust/src/category_theory/adjunction/mod.score.yaml",
+      "sha256": "95062b0c8aaf1e2f5d839281c28c4d8bbe19f8fe83fa967d93f738a3db7a9f3e"
+    }
+  ],
+  "open_obligations": []
+}

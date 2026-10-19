@@ -1,0 +1,120 @@
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/category_theory/condensation.rs",
+    "sha256": "391ee7089b1c1e98286fd54806b88936402168cbd213941894d3f206dd13ada2",
+    "language": "Rust"
+  },
+  "status": "source_reviewed",
+  "formal_specification": {
+    "profile": "Exact retained:literal raw names,usize levels,defined equality and caller bool flags.",
+    "domain": "Arbitrary raw finite tables/metadata,including max level/duplicates/missing cells;no higher category admission.",
+    "behavior": [
+      "Store exact arbitrary level/description with caller flag false;no semantic verification or numeric increment. Empty,Unicode/NUL and max-level metadata allowed.",
+      "Store exact arbitrary level/description with caller flag true;verified is a historical method name for asserting a flag,not executing a proof.",
+      "Own exact four names,declared level0 and one false level0 descriptive base row. No arrow membership,typing,splitting or coherence checked.",
+      "checked_add(1) before description allocation,Vec mutation or counter assignment. None returns typed CoherenceLevelOverflow with self byte/field value unchanged. Success appends exactly one row(level+1,input flag,input description),retains prefix,then updates declared counter and returns Ok. Does not infer counter from witness levels or require inventory continuity. Public return now Result;actual own callers handle it.",
+      "Maximum level among true caller flags,or0 for none;0 is intentionally ambiguous with a true base flag. Arbitrary duplicate/out-of-order/max usize rows supported;no arithmetic or certification.",
+      "Return conjunction of every supplied flag,including base row;empty list vacuously true. No relation to validation of named equations or truth of descriptions.",
+      "Borrowed defined table(section,retraction) and identity_map[retract]. Both Some and equal pass;defined unequal gives exact values;either missing yields exact undefined diagnostic. No absent-equality pass or object/arrow typing.",
+      "Require borrowed defined composition(retraction,section)=e first;missing emits sr-undefined. Then require defined table(e,e)=e;different or missing emits its exact distinct message. No category membership/endoboundary/homotopy check.",
+      "Observe retraction before idempotence,flatten only successful None. Scan original witness order and append every positive-level false flag diagnostic,including duplicates. Base flags ignored by this function,not by fully_verified. Description/level inventory coherence and declared max counter are unchecked. Shared borrowed table immutable throughout.",
+      "Build one borrowed CompositionLookup of supplied composition map,then invoke same ordered diagnostic helper. Return raw Vec<String>,not a certificate;unchecked carrier/name/flags may pass. All missing data failures accumulate in documented order.",
+      "Build one shared borrowed lookup outside supplied-record loop. For each record in original order,observe same diagnostics;nonempty errors create exact carrier→retract(joined errors) output. Empty output is legacy Complete,including empty input;otherwise Incomplete with ordered duplicates. Unknown variant never produced. No enumeration completeness or actual infinity-Cauchy/higher-cell theorem."
+    ],
+    "capability": "L2 raw structured observations and checked metadata update;no actual infinity-Cauchy certificate."
+  },
+  "operations": {
+    "CoherenceWitness::new": {
+      "line": 30,
+      "signature": "pub fn new(level: usize, description: &str) -> Self",
+      "obligation": "Store exact arbitrary level/description with caller flag false;no semantic verification or numeric increment. Empty,Unicode/NUL and max-level metadata allowed."
+    },
+    "CoherenceWitness::verified": {
+      "line": 38,
+      "signature": "pub fn verified(level: usize, description: &str) -> Self",
+      "obligation": "Store exact arbitrary level/description with caller flag true;verified is a historical method name for asserting a flag,not executing a proof."
+    },
+    "Condensation::new": {
+      "line": 75,
+      "signature": "pub fn new(carrier: &str, retract: &str, section: &str, retraction: &str) -> Self",
+      "obligation": "Own exact four names,declared level0 and one false level0 descriptive base row. No arrow membership,typing,splitting or coherence checked."
+    },
+    "Condensation::add_witness": {
+      "line": 88,
+      "signature": "pub fn add_witness(&mut self, description: &str, verified: bool) -> Result<(), CoherenceLevelOverflow>",
+      "obligation": "checked_add(1) before description allocation,Vec mutation or counter assignment. None returns typed CoherenceLevelOverflow with self byte/field value unchanged. Success appends exactly one row(level+1,input flag,input description),retains prefix,then updates declared counter and returns Ok. Does not infer counter from witness levels or require inventory continuity. Public return now Result;actual own callers handle it."
+    },
+    "Condensation::max_verified_level": {
+      "line": 100,
+      "signature": "pub fn max_verified_level(&self) -> usize",
+      "obligation": "Maximum level among true caller flags,or0 for none;0 is intentionally ambiguous with a true base flag. Arbitrary duplicate/out-of-order/max usize rows supported;no arithmetic or certification."
+    },
+    "Condensation::fully_verified": {
+      "line": 110,
+      "signature": "pub fn fully_verified(&self) -> bool",
+      "obligation": "Return conjunction of every supplied flag,including base row;empty list vacuously true. No relation to validation of named equations or truth of descriptions."
+    },
+    "retraction_diagnostic": {
+      "line": 134,
+      "signature": "fn retraction_diagnostic(cond: &Condensation, table: &CompositionLookup<'_>, identities: &BTreeMap<String, String>) -> Option<String>",
+      "obligation": "Borrowed defined table(section,retraction) and identity_map[retract]. Both Some and equal pass;defined unequal gives exact values;either missing yields exact undefined diagnostic. No absent-equality pass or object/arrow typing."
+    },
+    "idempotence_diagnostic": {
+      "line": 142,
+      "signature": "fn idempotence_diagnostic(cond: &Condensation, table: &CompositionLookup<'_>) -> Option<String>",
+      "obligation": "Require borrowed defined composition(retraction,section)=e first;missing emits sr-undefined. Then require defined table(e,e)=e;different or missing emits its exact distinct message. No category membership/endoboundary/homotopy check."
+    },
+    "validate_with_lookup": {
+      "line": 153,
+      "signature": "fn validate_with_lookup(cond: &Condensation, table: &CompositionLookup<'_>, identity_map: &BTreeMap<String, String>) -> Vec<String>",
+      "obligation": "Observe retraction before idempotence,flatten only successful None. Scan original witness order and append every positive-level false flag diagnostic,including duplicates. Base flags ignored by this function,not by fully_verified. Description/level inventory coherence and declared max counter are unchecked. Shared borrowed table immutable throughout."
+    },
+    "validate_condensation": {
+      "line": 165,
+      "signature": "pub fn validate_condensation(\n    cond: &Condensation,\n    compositions: &BTreeMap<(String, String), String>,\n    identity_map: &BTreeMap<String, String>,\n) -> Vec<String>",
+      "obligation": "Build one borrowed CompositionLookup of supplied composition map,then invoke same ordered diagnostic helper. Return raw Vec<String>,not a certificate;unchecked carrier/name/flags may pass. All missing data failures accumulate in documented order."
+    },
+    "check_infinity_cauchy": {
+      "line": 176,
+      "signature": "pub fn check_infinity_cauchy(\n    condensations: &[Condensation],\n    compositions: &BTreeMap<(String, String), String>,\n    identity_map: &BTreeMap<String, String>,\n) -> InfinityCauchyStatus",
+      "obligation": "Build one shared borrowed lookup outside supplied-record loop. For each record in original order,observe same diagnostics;nonempty errors create exact carrier→retract(joined errors) output. Empty output is legacy Complete,including empty input;otherwise Incomplete with ordered duplicates. Unknown variant never produced. No enumeration completeness or actual infinity-Cauchy/higher-cell theorem."
+    }
+  },
+  "invariants": [
+    "Raw names and descriptions are immutable inputs for checks;String equality only,not interpreted arrows/higher cells. Defined equality requires both sides present. No two missing cells can pass. Borrowed CompositionLookup compares tuple str keys in same lexicographic order as actual BTreeMap and returns original table values;no name normalization.",
+    "Append admission is ordered:checked increment first;overflow returns Err without allocating outputdescription or modifying any field. On success machine increment exactly fits,next level/flag/description row is appended and prior witness list/names preserved. Result signature forces callers to acknowledge refusal. No level-counter/witness-list consistency invariant is assumed because fields remain public;update uses the declared counter intentionally.",
+    "Retraction and idempotence diagnostic phases evaluate both,even when retraction failed. sr missing skips only ee lookup,then witness diagnostics still run. Positive-level false flags are errors,in original list order with duplicate descriptions retained;zero-level false flags and asserted true flags are ignored. fully_verified independently includes all flags,so it may be false while raw diagnostic succeeds. These different predicates are explicit and natively pinned.",
+    "Status aggregates exactly supplied record failures in input order;one borrowed table view reused across all. Empty diagnostic vector means no failure among supplied observations only. Empty inventory Complete,untyped carriers accepted by raw equality and Unknown never returned are documented ceilings,not proof of infinite-category completeness.",
+    "New Lean13 declarations model exact bounded next-level success/refusal,stored row append,ordered positive false flag filter and conjunction/vacuity. Source checked_add refines the Nat≤usize::MAX guard;standard String/borrowed-map equality and the source-phase induction connect diagnostics. Existing Cauchy defined-equality model is supporting literal-equality evidence,not a proof of Rust extraction or infinity-category interpretation."
+  ],
+  "failure_paths": {
+    "CoherenceWitness::new": "Store exact arbitrary level/description with caller flag false;no semantic verification or numeric increment. Empty,Unicode/NUL and max-level metadata allowed.",
+    "CoherenceWitness::verified": "Store exact arbitrary level/description with caller flag true;verified is a historical method name for asserting a flag,not executing a proof.",
+    "Condensation::new": "Own exact four names,declared level0 and one false level0 descriptive base row. No arrow membership,typing,splitting or coherence checked.",
+    "Condensation::add_witness": "checked_add(1) before description allocation,Vec mutation or counter assignment. None returns typed CoherenceLevelOverflow with self byte/field value unchanged. Success appends exactly one row(level+1,input flag,input description),retains prefix,then updates declared counter and returns Ok. Does not infer counter from witness levels or require inventory continuity. Public return now Result;actual own callers handle it.",
+    "Condensation::max_verified_level": "Maximum level among true caller flags,or0 for none;0 is intentionally ambiguous with a true base flag. Arbitrary duplicate/out-of-order/max usize rows supported;no arithmetic or certification.",
+    "Condensation::fully_verified": "Return conjunction of every supplied flag,including base row;empty list vacuously true. No relation to validation of named equations or truth of descriptions.",
+    "retraction_diagnostic": "Borrowed defined table(section,retraction) and identity_map[retract]. Both Some and equal pass;defined unequal gives exact values;either missing yields exact undefined diagnostic. No absent-equality pass or object/arrow typing.",
+    "idempotence_diagnostic": "Require borrowed defined composition(retraction,section)=e first;missing emits sr-undefined. Then require defined table(e,e)=e;different or missing emits its exact distinct message. No category membership/endoboundary/homotopy check.",
+    "validate_with_lookup": "Observe retraction before idempotence,flatten only successful None. Scan original witness order and append every positive-level false flag diagnostic,including duplicates. Base flags ignored by this function,not by fully_verified. Description/level inventory coherence and declared max counter are unchecked. Shared borrowed table immutable throughout.",
+    "validate_condensation": "Build one borrowed CompositionLookup of supplied composition map,then invoke same ordered diagnostic helper. Return raw Vec<String>,not a certificate;unchecked carrier/name/flags may pass. All missing data failures accumulate in documented order.",
+    "check_infinity_cauchy": "Build one shared borrowed lookup outside supplied-record loop. For each record in original order,observe same diagnostics;nonempty errors create exact carrier→retract(joined errors) output. Empty output is legacy Complete,including empty input;otherwise Incomplete with ordered duplicates. Unknown variant never produced. No enumeration completeness or actual infinity-Cauchy/higher-cell theorem."
+  },
+  "trust_boundary": "Rust compiler/std/String/allocator,unchanged actual borrowed CompositionLookup,Mathlib/Lean pinned dependencies and allowed foundation axioms. No Rust extraction,MIR,total allocator or semantic description validation.",
+  "assurance_limits": [
+    "Contracts pending;AuthorityEffect None.",
+    "Caller true flags are assertions;no higher cells/homotopies admitted.",
+    "Complete means no supplied record emitted a diagnostic,not exhaustive mathematical completeness.",
+    "Public fields may be inconsistent;max flag observer and all-flags predicate differ intentionally from base-ignoring validation.",
+    "Only actual category crate tests;no whole-workspace green claim."
+  ],
+  "review_evidence": [
+    {
+      "path": "code/rust/src/category_theory/condensation.score.yaml",
+      "sha256": "25267bb1b58c060bbf50825deb76e493072c934286c04826c719137f693f0279"
+    }
+  ],
+  "open_obligations": []
+}

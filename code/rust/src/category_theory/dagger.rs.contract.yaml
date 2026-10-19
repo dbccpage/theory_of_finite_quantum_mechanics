@@ -1,0 +1,126 @@
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/category_theory/dagger.rs",
+    "sha256": "9ac82f5c6a8537cc9455b789dcdcdd1c726ae6a641c632e1be7e580d291c4f92",
+    "language": "Rust"
+  },
+  "status": "source_reviewed",
+  "formal_specification": {
+    "profile": "Exact retained: finite literal names,total typed arrow reversal,complete category/dagger law enumeration and primitive exact equality;no floats or narrowing.",
+    "domain": "Arbitrary raw finite-category declaration and raw String dagger map subject to pre-budget and complete canonical admission. Successful value owns immutable admitted data.",
+    "behavior": [
+      "Display the exact fixed refusal prefix followed by Debug of the full typed error; no success or silent loss of variant payload. std::error::Error source remains None by default, not a nested causal-chain API. Standard formatter failure propagates fmt::Result.",
+      "Raw category object/morphism counts must be<=64 and raw composition entries<=4096, with Budget refusal before category/map validation. Exact boundaries pass; no multiplication/overflow or allocation here. Bounds constrain cubic category work, not string bytes, allocator behavior or elapsed time.",
+      "After complete category admission, require map cardinality equals morphism cardinality AND every key is a declared morphism; finite subset+equal size ensures exact total key domain. Unknown image values are checked later. Empty category/map valid. First domain mismatch is Domain before any arrow/image check.",
+      "Scan every declared arrow in sorted key order, require own map entry (defensive under exact domain), then require its image is a declared arrow (reachable MissingImage). Check reversed source and target independently as one Boundary failure before involution. Require d(d(f))=f. Return exact first offending source morphism. Immutable maps preserve earlier premises; involution implies bijection, no extra injectivity assumption.",
+      "After complete arrow boundary/involution checks, scan every actual object identity and require its dagger image is that same identity. First failure Identity carries object name. No literal id_ naming or freely selected candidate identity. This phase precedes composition and uses exact admitted identity table.",
+      "After category/domain/arrow/identity admission, build one sorted borrowed CompositionLookup from actual owned category table. For EVERY declared/composable(first,second)->composite require compose(d(second),d(first)) = d(composite), comparing exact Options/labels. Reverse order is essential. Category admits exact composition domain; map has every source key and known images with reversed boundaries, so indexed map entries and both required compositions are defined. First mismatch carries original first/second names. No owned temporary tuple key is constructed in loop.",
+      "Ordered size->complete finite category->exact domain->all arrow image/boundary/involution->identities->all reversed composites admission. Any failure returns typed error and destroys provisional owned inputs; no DaggerStructure is constructed. Success owns unchanged admitted full category and unchanged dagger map privately. No unchecked constructor/mutator/default/deserialize bypass exists; category and map are exposed only by shared lookup. Empty category allowed.",
+      "Return a shared reference to the exact immutable owned ValidatedFiniteCategory, not a raw mutator or clone that changes the certificate. Consumers can clone/consume copies without altering this value.",
+      "Borrow map value for exact requested arrow key, None for unknown names; no fallback, normalization or fresh output string. Every known arrow has an image by admission, and applying twice returns original arrow.",
+      "Unknown arrow returns None at boundary lookup, then missing dagger also None defensively. For known arrow require BOTH d(f) after f = id(source) and f after d(f)=id(target). Complete admitted category/reversed map guarantee both compositions and identities Some, so None==None cannot make a false unitary. Nonunitary known arrows return Some(false); partial one-sided inverse is insufficient. Exact primitive String equality, no approximate relation."
+    ],
+    "provider_refinement": "ValidatedFiniteCategory::try_new runs the canonical full report and stores the entire moved declaration only when every own check passes. Canonical validator checks object/arrow key-name/boundary membership, exact identities, no extra/missing composites, valid output boundaries, left/right units and every associative composable triple. Its Mathlib FiniteCategory model realizes the admitted table as actual Category. Owned private ValidatedFiniteCategory field has no unchecked public constructor; shared declared() exposes no mutation, into_declared consumes an owned value, Clone makes independent owned tables. Dagger can thus use exact complete identity/compose data and known real arrow strings. Source-bound core assessment/proof remains independent. CompositionLookup builds borrowed key/value rows in BTreeMap(String,String) lexicographic order; str pair order is identical, binary search returns same Option<&str> as raw compose without allocating owned tuple keys."
+  },
+  "operations": {
+    "fmt": {
+      "line": 24,
+      "signature": "fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result",
+      "obligation": "Display the exact fixed refusal prefix followed by Debug of the full typed error; no success or silent loss of variant payload. std::error::Error source remains None by default, not a nested causal-chain API. Standard formatter failure propagates fmt::Result."
+    },
+    "admit_dagger_budget": {
+      "line": 36,
+      "signature": "fn admit_dagger_budget(category: &DeclaredFiniteCategory) -> Result<(), DaggerValidationError>",
+      "obligation": "Raw category object/morphism counts must be<=64 and raw composition entries<=4096, with Budget refusal before category/map validation. Exact boundaries pass; no multiplication/overflow or allocation here. Bounds constrain cubic category work, not string bytes, allocator behavior or elapsed time."
+    },
+    "check_dagger_domain": {
+      "line": 46,
+      "signature": "fn check_dagger_domain(\n    category: &DeclaredFiniteCategory,\n    dagger: &BTreeMap<String, String>,\n) -> Result<(), DaggerValidationError>",
+      "obligation": "After complete category admission, require map cardinality equals morphism cardinality AND every key is a declared morphism; finite subset+equal size ensures exact total key domain. Unknown image values are checked later. Empty category/map valid. First domain mismatch is Domain before any arrow/image check."
+    },
+    "check_dagger_arrows": {
+      "line": 58,
+      "signature": "fn check_dagger_arrows(\n    category: &DeclaredFiniteCategory,\n    dagger: &BTreeMap<String, String>,\n) -> Result<(), DaggerValidationError>",
+      "obligation": "Scan every declared arrow in sorted key order, require own map entry (defensive under exact domain), then require its image is a declared arrow (reachable MissingImage). Check reversed source and target independently as one Boundary failure before involution. Require d(d(f))=f. Return exact first offending source morphism. Immutable maps preserve earlier premises; involution implies bijection, no extra injectivity assumption."
+    },
+    "check_dagger_identities": {
+      "line": 80,
+      "signature": "fn check_dagger_identities(\n    category: &DeclaredFiniteCategory,\n    dagger: &BTreeMap<String, String>,\n) -> Result<(), DaggerValidationError>",
+      "obligation": "After complete arrow boundary/involution checks, scan every actual object identity and require its dagger image is that same identity. First failure Identity carries object name. No literal id_ naming or freely selected candidate identity. This phase precedes composition and uses exact admitted identity table."
+    },
+    "check_dagger_compositions": {
+      "line": 92,
+      "signature": "fn check_dagger_compositions(\n    category: &DeclaredFiniteCategory,\n    dagger: &BTreeMap<String, String>,\n) -> Result<(), DaggerValidationError>",
+      "obligation": "After category/domain/arrow/identity admission, build one sorted borrowed CompositionLookup from actual owned category table. For EVERY declared/composable(first,second)->composite require compose(d(second),d(first)) = d(composite), comparing exact Options/labels. Reverse order is essential. Category admits exact composition domain; map has every source key and known images with reversed boundaries, so indexed map entries and both required compositions are defined. First mismatch carries original first/second names. No owned temporary tuple key is constructed in loop."
+    },
+    "try_new": {
+      "line": 111,
+      "signature": "pub fn try_new(\n        category: DeclaredFiniteCategory,\n        dagger: BTreeMap<String, String>,\n    ) -> Result<Self, DaggerValidationError>",
+      "obligation": "Ordered size->complete finite category->exact domain->all arrow image/boundary/involution->identities->all reversed composites admission. Any failure returns typed error and destroys provisional owned inputs; no DaggerStructure is constructed. Success owns unchanged admitted full category and unchanged dagger map privately. No unchecked constructor/mutator/default/deserialize bypass exists; category and map are exposed only by shared lookup. Empty category allowed."
+    },
+    "category": {
+      "line": 125,
+      "signature": "pub fn category(&self) -> &ValidatedFiniteCategory",
+      "obligation": "Return a shared reference to the exact immutable owned ValidatedFiniteCategory, not a raw mutator or clone that changes the certificate. Consumers can clone/consume copies without altering this value."
+    },
+    "dagger": {
+      "line": 128,
+      "signature": "pub fn dagger(&self, morphism: &str) -> Option<&str>",
+      "obligation": "Borrow map value for exact requested arrow key, None for unknown names; no fallback, normalization or fresh output string. Every known arrow has an image by admission, and applying twice returns original arrow."
+    },
+    "is_unitary": {
+      "line": 133,
+      "signature": "pub fn is_unitary(&self, morphism: &str) -> Option<bool>",
+      "obligation": "Unknown arrow returns None at boundary lookup, then missing dagger also None defensively. For known arrow require BOTH d(f) after f = id(source) and f after d(f)=id(target). Complete admitted category/reversed map guarantee both compositions and identities Some, so None==None cannot make a false unitary. Nonunitary known arrows return Some(false); partial one-sided inverse is insufficient. Exact primitive String equality, no approximate relation."
+    }
+  },
+  "invariants": [
+    "Display the exact fixed refusal prefix followed by Debug of the full typed error; no success or silent loss of variant payload. std::error::Error source remains None by default, not a nested causal-chain API. Standard formatter failure propagates fmt::Result.",
+    "Raw category object/morphism counts must be<=64 and raw composition entries<=4096, with Budget refusal before category/map validation. Exact boundaries pass; no multiplication/overflow or allocation here. Bounds constrain cubic category work, not string bytes, allocator behavior or elapsed time.",
+    "After complete category admission, require map cardinality equals morphism cardinality AND every key is a declared morphism; finite subset+equal size ensures exact total key domain. Unknown image values are checked later. Empty category/map valid. First domain mismatch is Domain before any arrow/image check.",
+    "Scan every declared arrow in sorted key order, require own map entry (defensive under exact domain), then require its image is a declared arrow (reachable MissingImage). Check reversed source and target independently as one Boundary failure before involution. Require d(d(f))=f. Return exact first offending source morphism. Immutable maps preserve earlier premises; involution implies bijection, no extra injectivity assumption.",
+    "After complete arrow boundary/involution checks, scan every actual object identity and require its dagger image is that same identity. First failure Identity carries object name. No literal id_ naming or freely selected candidate identity. This phase precedes composition and uses exact admitted identity table.",
+    "After category/domain/arrow/identity admission, build one sorted borrowed CompositionLookup from actual owned category table. For EVERY declared/composable(first,second)->composite require compose(d(second),d(first)) = d(composite), comparing exact Options/labels. Reverse order is essential. Category admits exact composition domain; map has every source key and known images with reversed boundaries, so indexed map entries and both required compositions are defined. First mismatch carries original first/second names. No owned temporary tuple key is constructed in loop.",
+    "Ordered size->complete finite category->exact domain->all arrow image/boundary/involution->identities->all reversed composites admission. Any failure returns typed error and destroys provisional owned inputs; no DaggerStructure is constructed. Success owns unchanged admitted full category and unchanged dagger map privately. No unchecked constructor/mutator/default/deserialize bypass exists; category and map are exposed only by shared lookup. Empty category allowed.",
+    "Return a shared reference to the exact immutable owned ValidatedFiniteCategory, not a raw mutator or clone that changes the certificate. Consumers can clone/consume copies without altering this value.",
+    "Borrow map value for exact requested arrow key, None for unknown names; no fallback, normalization or fresh output string. Every known arrow has an image by admission, and applying twice returns original arrow.",
+    "Unknown arrow returns None at boundary lookup, then missing dagger also None defensively. For known arrow require BOTH d(f) after f = id(source) and f after d(f)=id(target). Complete admitted category/reversed map guarantee both compositions and identities Some, so None==None cannot make a false unitary. Nonunitary known arrows return Some(false); partial one-sided inverse is insufficient. Exact primitive String equality, no approximate relation.",
+    "Exact finite map key domain plus known typed image for each arrow yields a total map Hom(X,Y)->Hom(Y,X). Source validates every arrow and every composite against immutable complete category; no sampling. Involution, identity and reversed composition checks correspond directly to typed FiniteDagger.Data/Laws on actual Mathlib Category. Constructor returns original owned data only after all complete checks, matching Certified with law evidence; this is the delivered L5 capability, not an upgrade for the word dagger alone.",
+    "Domain cardinality+subset makes own dagger.get(f) defensive MissingImage branch unreachable in healthy source. Image lookup MissingImage is reachable. After arrow loop, every fd is a declared arrow and total-domain key, so dagger[second]/[first] for admitted composition keys is safe. No user callback, public mutable interior or raw forged certificate can invalidate between phases.",
+    "For any known f:X->Y, dagger f:Y->X. Both requested round trips are composable and both object identities exist by category admission; every Option in known-arrow unitary comparison is Some. Therefore two inverse equations are genuine and cannot pass by two absent lookups. Empty category has no known arrows and all quantified dagger laws vacuous.",
+    "Standard derived Clone/Eq/Debug preserve owned structure and validity. No external alias to mutable maps exists; source consumes raw arguments and only returns shared accessors/borrowed strings. Category/morphism labels are exact strings, category name/table content retained; no cryptographic identity or physical authority implied."
+  ],
+  "failure_paths": {
+    "fmt": "Display the exact fixed refusal prefix followed by Debug of the full typed error; no success or silent loss of variant payload. std::error::Error source remains None by default, not a nested causal-chain API. Standard formatter failure propagates fmt::Result.",
+    "admit_dagger_budget": "Raw category object/morphism counts must be<=64 and raw composition entries<=4096, with Budget refusal before category/map validation. Exact boundaries pass; no multiplication/overflow or allocation here. Bounds constrain cubic category work, not string bytes, allocator behavior or elapsed time.",
+    "check_dagger_domain": "After complete category admission, require map cardinality equals morphism cardinality AND every key is a declared morphism; finite subset+equal size ensures exact total key domain. Unknown image values are checked later. Empty category/map valid. First domain mismatch is Domain before any arrow/image check.",
+    "check_dagger_arrows": "Scan every declared arrow in sorted key order, require own map entry (defensive under exact domain), then require its image is a declared arrow (reachable MissingImage). Check reversed source and target independently as one Boundary failure before involution. Require d(d(f))=f. Return exact first offending source morphism. Immutable maps preserve earlier premises; involution implies bijection, no extra injectivity assumption.",
+    "check_dagger_identities": "After complete arrow boundary/involution checks, scan every actual object identity and require its dagger image is that same identity. First failure Identity carries object name. No literal id_ naming or freely selected candidate identity. This phase precedes composition and uses exact admitted identity table.",
+    "check_dagger_compositions": "After category/domain/arrow/identity admission, build one sorted borrowed CompositionLookup from actual owned category table. For EVERY declared/composable(first,second)->composite require compose(d(second),d(first)) = d(composite), comparing exact Options/labels. Reverse order is essential. Category admits exact composition domain; map has every source key and known images with reversed boundaries, so indexed map entries and both required compositions are defined. First mismatch carries original first/second names. No owned temporary tuple key is constructed in loop.",
+    "try_new": "Ordered size->complete finite category->exact domain->all arrow image/boundary/involution->identities->all reversed composites admission. Any failure returns typed error and destroys provisional owned inputs; no DaggerStructure is constructed. Success owns unchanged admitted full category and unchanged dagger map privately. No unchecked constructor/mutator/default/deserialize bypass exists; category and map are exposed only by shared lookup. Empty category allowed.",
+    "category": "Return a shared reference to the exact immutable owned ValidatedFiniteCategory, not a raw mutator or clone that changes the certificate. Consumers can clone/consume copies without altering this value.",
+    "dagger": "Borrow map value for exact requested arrow key, None for unknown names; no fallback, normalization or fresh output string. Every known arrow has an image by admission, and applying twice returns original arrow.",
+    "is_unitary": "Unknown arrow returns None at boundary lookup, then missing dagger also None defensively. For known arrow require BOTH d(f) after f = id(source) and f after d(f)=id(target). Complete admitted category/reversed map guarantee both compositions and identities Some, so None==None cannot make a false unitary. Nonunitary known arrows return Some(false); partial one-sided inverse is insufficient. Exact primitive String equality, no approximate relation.",
+    "runtime": "Size refusal before semantic work; full category refusal retains exact report. Domain precedes reachable unknown-image, then boundary precedes involution at each sorted arrow, all arrows before identity before reversed composition. Success object cannot be constructed on any failure. Exact total domain and complete admitted category justify every indexed dagger key; unknown public query returns None before any inverse equation, not Some(false). Owned inputs discarded on failure,borrowed inputs never mutated. Only allocation/formatter/compiler runtime remain outside declared totality; size bound is not string-byte/time admission."
+  },
+  "trust_boundary": {
+    "runtime": "Rust/std concrete maps/strings/equality/format/compiler/allocator,already bound full local finite category validator and borrowed CompositionLookup. No caller predicate or custom callback trusted as a law result.",
+    "formal": "Prepared pinned clean Lean/Mathlib/kernel standard axioms,15 clean FiniteDagger declarations and existing FiniteCategory proof. Typed reversed-arrow data/model admission over actual Category;Rust total domain,boundary,index/ownership refinement separately explicit."
+  },
+  "assurance_limits": [
+    "L5 owned finite certificate architecture,not every category file L5 and not A+ independent toolchain. Finite runtime law admission is separately refined to typed Mathlib category/dagger model; no Rust extraction,expanded MIR or universal physics theorem.",
+    "Bound<=64 objects/arrows and4096 declared compositions; no unchecked larger-category mode. Bounds do not control string bytes,tree overhead or allocator/time behavior. Empty admitted category valid; known nonunitary differs from unknown arrow.",
+    "Raw input category and map are untrusted; only successful private constructor certifies this owned context. No global/shared catalog authority,cryptographic source identity,physical Hilbert-space dagger or automatically supplied inner product/tensor/born interpretation.",
+    "Formal Dagger Data/Laws/Certified are this model over actual Mathlib Category,not a pre-existing Mathlib Dagger typeclass. Pure general categorical theorems are conditional on complete admitted laws. Concrete finite string/domain/boundary/lookup enumeration use source/native evidence. Consumer groupoid grade remains pending;contracts pending.",
+    "Only changed groupoid consumer context refreshed;own source/proof/native/metrics remain original."
+  ],
+  "review_evidence": [
+    {
+      "path": "code/rust/src/category_theory/dagger.score.yaml",
+      "sha256": "44e0927dbf49c3811cf2ee49aa0ff72790d51af807869db076e36d204798dfb8"
+    }
+  ],
+  "open_obligations": []
+}

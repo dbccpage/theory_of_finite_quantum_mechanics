@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/category_theory/morphism.rs",
+    "sha256": "2e8c365b358cc49b2076f2901735400de7af81a20b21a6e85f886149502b0df4",
+    "language": "Rust"
+  },
+  "status": "source_reviewed",
+  "formal_specification": {
+    "domain": "Mutable raw String arrow records. Constructors set the conventional morphism URN and move seven supplied fields. Compose succeeds iff self.codomain_id equals next.domain_id AND literal category tags match. Output uses the conventional URN, formatted f >> g, first domain/category/authority/ceiling, next codomain and formatted description. No contract/authority validity or associative composition is inferred.",
+    "failure": "Only the exact documented Option/static error or ordered missing-label diagnostics. Raw constructors permit unspecified/blank labels and declarations intentionally; their results do not grant category laws, proof, governance authority or actual contracts.",
+    "representation": "Owned safe Rust String/Vec and, where present, arbitrary precision raw BigRational; no floats, narrowing, saturating arithmetic or normalization. Caller Into implementations and memory availability remain explicit runtime preconditions."
+  },
+  "operations": {
+    "MorphismTrait::category_id": {
+      "scope": "Raw record operation or abstract trait signature only; not a mathematical law proof.",
+      "signature": "fn category_id(&self) -> &str"
+    },
+    "MorphismTrait::codomain": {
+      "scope": "Raw record operation or abstract trait signature only; not a mathematical law proof.",
+      "signature": "fn codomain(&self) -> &Cod"
+    },
+    "MorphismTrait::domain": {
+      "scope": "Raw record operation or abstract trait signature only; not a mathematical law proof.",
+      "signature": "fn domain(&self) -> &Dom"
+    },
+    "MorphismTrait::evaluate": {
+      "scope": "Raw record operation or abstract trait signature only; not a mathematical law proof.",
+      "signature": "fn evaluate(&self, input: &Dom) -> Cod"
+    },
+    "MorphismTrait::id": {
+      "scope": "Raw record operation or abstract trait signature only; not a mathematical law proof.",
+      "signature": "fn id(&self) -> &str"
+    },
+    "SkillMorphism::compose": {
+      "scope": "Raw record operation or abstract trait signature only; not a mathematical law proof.",
+      "signature": "pub fn compose(&self, next: &SkillMorphism) -> Option<SkillMorphism>"
+    },
+    "SkillMorphism::new": {
+      "scope": "Raw record operation or abstract trait signature only; not a mathematical law proof.",
+      "signature": "pub fn new( morphism_id: impl Into<String>, domain_id: impl Into<String>, codomain_id: impl Into<String>, category_id: impl Into<String>, governance_authority: impl Into<String>, evidence_ceiling: impl Into<String>, description: impl Into<String>, ) -> Self"
+    }
+  },
+  "invariants": [
+    "Only two String equalities guard Some; a failed boundary or category returns None. Source inputs are borrowed and output Strings owned. The RootRecords conjunction theorem proves the guard and foreign-category refusal, while explicit body mapping establishes every copied/formatted field. Mutable metadata cannot become a lawful category certificate."
+  ],
+  "failure_paths": {
+    "entry_points": "Only two String equalities guard Some; a failed boundary or category returns None. Source inputs are borrowed and output Strings owned. The RootRecords conjunction theorem proves the guard and foreign-category refusal, while explicit body mapping establishes every copied/formatted field. Mutable metadata cannot become a lawful category certificate.",
+    "runtime": "Standard safe Rust ownership, String formatting, clone/conversion, Vec and dependency operations are trusted as documented. Arbitrary caller Into behavior or allocator exhaustion is not a mathematical counterexample or promised recoverable error. No unchecked index, unsafe block, hidden catch-all success or physical authority effect is added."
+  },
+  "trust_boundary": {
+    "formal": "Eight kernel-checked RootRecords guard/report/count/mass lemmas. Source correspondence is reviewed explicitly, not compiler-extracted Rust/MIR; copy-only constructors are justified by their complete field/body maps. No law of categories, HoTT, zeta or density operators follows.",
+    "runtime": "Pinned compiler/std, num-rational/num-bigint/num-traits and actual production peer providers. Derived traits are std/dependency protocols, not evidence admission. Candidate tests execute in actual crate scopes without replacing providers or widening visibility."
+  },
+  "assurance_limits": [
+    "Honest L1 static table or L2 records/interfaces, not foundational category architecture by title.",
+    "No contracts attached, no A+, registry/authority validation, alternate compiler, allocator totality, Rust/MIR equivalence, workspace-wide green, category/functor laws or semantic model certification."
+  ],
+  "review_evidence": [
+    {
+      "path": "code/rust/src/category_theory/morphism.score.yaml",
+      "sha256": "3aac48171c74215a1cf7b8bd72f6529dbfeb445264d0c8595dfeef25718d6bd4"
+    }
+  ],
+  "open_obligations": []
+}

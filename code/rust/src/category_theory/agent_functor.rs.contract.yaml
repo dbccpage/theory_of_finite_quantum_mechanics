@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/category_theory/agent_functor.rs",
+    "sha256": "b84630d81cb2b051f0483fc774c9054180e0dab7053fd380f44b41e16e8910ef",
+    "language": "Rust"
+  },
+  "status": "source_reviewed",
+  "formal_specification": {
+    "domain": "Raw agent configuration sets the conventional functor URN and copies supplied name/source/target/role/council/skills/description without admission. Mapping accepts any raw SkillMorphism: preserves its contract and evidence-ceiling strings, prefixes name to ID and endpoints, chooses configured target and council, and generates the exact descriptive text. No source gate or functor-law promise exists.",
+    "failure": "Only the exact documented Option/static error or ordered missing-label diagnostics. Raw constructors permit unspecified/blank labels and declarations intentionally; their results do not grant category laws, proof, governance authority or actual contracts.",
+    "representation": "Owned safe Rust String/Vec and, where present, arbitrary precision raw BigRational; no floats, narrowing, saturating arithmetic or normalization. Caller Into implementations and memory availability remain explicit runtime preconditions."
+  },
+  "operations": {
+    "AgentFunctor::map_skill_morphism": {
+      "scope": "Raw record operation or abstract trait signature only; not a mathematical law proof.",
+      "signature": "pub fn map_skill_morphism(&self, morphism: &SkillMorphism) -> SkillMorphism"
+    },
+    "AgentFunctor::new": {
+      "scope": "Raw record operation or abstract trait signature only; not a mathematical law proof.",
+      "signature": "pub fn new( name: impl Into<String>, source_category_id: impl Into<String>, target_category_id: impl Into<String>, primary_role: impl Into<String>, council_affiliation: impl Into<String>, supported_skills: Vec<String>, description: impl Into<String>, ) -> Self"
+    },
+    "FunctorTrait::map_morphism": {
+      "scope": "Raw record operation or abstract trait signature only; not a mathematical law proof.",
+      "signature": "fn map_morphism(&self, mor: &MorC) -> MorD"
+    },
+    "FunctorTrait::map_object": {
+      "scope": "Raw record operation or abstract trait signature only; not a mathematical law proof.",
+      "signature": "fn map_object(&self, obj: &ObjC) -> ObjD"
+    },
+    "FunctorTrait::source_category_id": {
+      "scope": "Raw record operation or abstract trait signature only; not a mathematical law proof.",
+      "signature": "fn source_category_id(&self) -> &str"
+    },
+    "FunctorTrait::target_category_id": {
+      "scope": "Raw record operation or abstract trait signature only; not a mathematical law proof.",
+      "signature": "fn target_category_id(&self) -> &str"
+    }
+  },
+  "invariants": [
+    "All constructor fields are moved, not interpreted. Mapping is a pure borrowed input to fresh owned output relation; the explicit field table binds the literal formatting. A trait signature is an interface only; neither trait nor record enforces category laws or governance authority. Source/caller mutation after a mapping cannot change the owned result."
+  ],
+  "failure_paths": {
+    "entry_points": "All constructor fields are moved, not interpreted. Mapping is a pure borrowed input to fresh owned output relation; the explicit field table binds the literal formatting. A trait signature is an interface only; neither trait nor record enforces category laws or governance authority. Source/caller mutation after a mapping cannot change the owned result.",
+    "runtime": "Standard safe Rust ownership, String formatting, clone/conversion, Vec and dependency operations are trusted as documented. Arbitrary caller Into behavior or allocator exhaustion is not a mathematical counterexample or promised recoverable error. No unchecked index, unsafe block, hidden catch-all success or physical authority effect is added."
+  },
+  "trust_boundary": {
+    "formal": "Eight kernel-checked RootRecords guard/report/count/mass lemmas. Source correspondence is reviewed explicitly, not compiler-extracted Rust/MIR; copy-only constructors are justified by their complete field/body maps. No law of categories, HoTT, zeta or density operators follows.",
+    "runtime": "Pinned compiler/std, num-rational/num-bigint/num-traits and actual production peer providers. Derived traits are std/dependency protocols, not evidence admission. Candidate tests execute in actual crate scopes without replacing providers or widening visibility."
+  },
+  "assurance_limits": [
+    "Honest L1 static table or L2 records/interfaces, not foundational category architecture by title.",
+    "No contracts attached, no A+, registry/authority validation, alternate compiler, allocator totality, Rust/MIR equivalence, workspace-wide green, category/functor laws or semantic model certification."
+  ],
+  "review_evidence": [
+    {
+      "path": "code/rust/src/category_theory/agent_functor.score.yaml",
+      "sha256": "036e4ea0b02c0b01b6d716c6fb07ffa15158443b369d671db78ae067fdbbb04f"
+    }
+  ],
+  "open_obligations": []
+}
