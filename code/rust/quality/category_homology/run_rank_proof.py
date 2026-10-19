@@ -18,7 +18,7 @@ from run_audit import ROOT, digest, execute, write_json
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model",choices=("rank","category","metadata","degree","counter","parameters","finite-set","literal-reversal","shape-inventory","root-records","homology-protocols","degree-repair","two-step-complex","simplicial-closure","simplicial-boundary","simplicial-homology","scalar-admission","carrier-dimensions","vector-maps","graph-incidence","validation-inventory","arrow-effects","finite-builder","em-samples","lawvere-inventory","higher-functor-inventory","finite-functor","functor-operations","finite-naturality","natural-composition","joint-carrier","finite-simulation","finite-independence"),default="rank")
+    parser.add_argument("--model",choices=("rank","category","metadata","degree","counter","parameters","finite-set","literal-reversal","shape-inventory","root-records","homology-protocols","degree-repair","two-step-complex","simplicial-closure","simplicial-boundary","simplicial-homology","scalar-admission","carrier-dimensions","vector-maps","graph-incidence","validation-inventory","arrow-effects","finite-builder","em-samples","lawvere-inventory","higher-functor-inventory","finite-functor","functor-operations","finite-naturality","natural-composition","joint-carrier","finite-simulation","finite-independence","finite-trace"),default="rank")
     parser.add_argument("--memory-mb", type=int, default=1024,
         help="Explicit Lean memory limit, from 256 to 2048 MiB; default remains 1024.")
     args = parser.parse_args()
@@ -46,6 +46,10 @@ def main():
         proof_name, import_name, namespace = "DegreeWindow", "Data/Int/Basic", "TFQM.DegreeWindow."
         declarations = ("ordered_span_fits_u32", "same_endpoint_zero", "inverted_span_negative")
         scope = "Exact i32 endpoint difference bounds, zero span and inverted-window refusal premise; no category-law claim."
+    elif model == "finite-trace":
+        proof_name, import_name, namespace = "FiniteTrace", "Data/List/Basic", "TFQM.FiniteTrace."
+        declarations = ("initial_sound", "fresh_sound", "insert_sound", "closed_contains_reachable", "empty_frontier_closed", "complete_component", "existing_self_edge", "adjacent_length", "adjacent_inventory", "charge_success", "charge_refusal", "charge_bounded", "charge_strict", "machine_increment_fits", "replay_complete", "replay_refuses_missing")
+        scope = "Worklist soundness/empty-frontier complete graph component, adjacent word length/inventory, bounded strict checks and full replay. Concrete certified state-relative edges, BFS order and Rust scratch/Rc/storage refinement remain separate."
     elif model == "finite-independence":
         proof_name, import_name, namespace = "FiniteIndependence", "Data/List/Basic", "TFQM.FiniteIndependence."
         declarations = ("future_refl", "future_symm", "future_trans", "witness_refuses_future", "unequal_can_share_futures", "defined_order_has_first_step", "final_orders_enable_singles", "unavailable_never_enabled", "witness_sound", "witness_uses_saved_answers", "endpoint_replay", "endpoint_mismatch", "unavailable_ignores_search", "equivalent_ignores_search", "distinction_requires_success", "resource_refusal_preserved")

@@ -1019,3 +1019,23 @@ visibility replacement, no ABI/type-identity mutation claim.459 original tests
 pass unadapted before/after.20261019T191811Z-score-verification passes154 completed
 records/192 source-score digests in39 groups; cleanup154 has zero owned compiled/
 debug/tmp outputs.38 category files,contracts and full goal remain;PR draft.
+
+
+Checkpoint155: finite trace L3A
+
+Eight meaningful admission/frontier/edge/expansion bodies preserve public APIs
+and canonical BFS output, max CCN7/cognitive5/nesting2 (old17/23/4 archived).
+Queue/seen share immutable discovered word payloads, one reusable scratch per
+expansion replaces per-position copies; required public owned outputs retained.
+32/32 faults detected over19477 bounded check invocations:19440 two-state traces,
+32 longer commuting words,4 five-state mode cases and1 wide-alphabet sink-budget
+case. Full old BFS reference token custody plus independent entire-permutation
+graph/set saturation check closure. Limits still charge equal/ineligible checks;
+no partial class on exhaustion. Sixteen clean Lean declarations cover worklist
+closure from explicit source invariants, word inventory/length,counter and replay.
+Failed reserved-binder proof remains retained without proof success credit.
+One unchanged-own-source independence consumer context retains original receipts.
+All33 own-method alpha prefixes/fixtures reconstructed; actual providers unchanged.
+20261019T192904Z-score-verification passes155 completed records,192 source/score
+digests and40 groups. Cleanup155 has zero owned compiled/debug/tmp outputs.
+37 category files,contracts and full goal remain;PR draft.
