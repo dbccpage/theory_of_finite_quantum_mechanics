@@ -6,6 +6,7 @@ providers. AuthorityEffect: None. No whole-workspace or extracted-proof claim.
 """
 from collections import Counter
 import argparse
+import hashlib
 from datetime import datetime, timezone
 import json
 from pathlib import Path
@@ -38,7 +39,7 @@ def main():
     work = RUST/"target/rr"/stamp[2:15]
     inputs = inventory()
     write_json(output/"source_manifest.json",inputs)
-    for name in (Path(__file__).name,"root_records.py","category_diagnostics.py","functor_certificates.py","natural_transformations.py","archival_inventory.py","joint_carrier.py","simulation.py"):
+    for name in (Path(__file__).name,"root_records.py","category_diagnostics.py","functor_certificates.py","natural_transformations.py","archival_inventory.py","joint_carrier.py","simulation.py","independence.py"):
         shutil.copyfile(Path(__file__).with_name(name),output/name)
     shutil.copyfile(policy,output/policy.name)
     snapshot(work,"category")
@@ -62,7 +63,26 @@ def main():
             index = len(controls)+len(records)
             module = "root_record_replay_"+str(index)
             file = generated/("n"+str(index)+".rs")
-            file.write_text(candidate+challenge(subject),encoding="utf-8")
+            fixture = challenge(subject)
+            alpha = []
+            for method in subject.get("inherent_methods", []):
+                if not re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]*", method):
+                    raise ValueError("Invalid inherent method identifier")
+                renamed = method + "_rr" + str(index)
+                declaration = r"\bfn\s+" + method + r"\b"
+                call = r"\." + method + r"\b"
+                if len(re.findall(declaration, candidate)) != 1:
+                    raise ValueError("Inherent replay needs exactly one own declaration")
+                before = candidate
+                candidate = re.sub(declaration, "fn " + renamed, candidate)
+                candidate, own_calls = re.subn(call, "." + renamed, candidate)
+                fixture, fixture_calls = re.subn(call, "." + renamed, fixture)
+                alpha.append({"method":method,"renamed":renamed,
+                    "own_calls":own_calls,"fixture_calls":fixture_calls,
+                    "before_sha256":hashlib.sha256(before.encode("utf-8")).hexdigest(),
+                    "after_sha256":hashlib.sha256(candidate.encode("utf-8")).hexdigest(),
+                    "scope":"Test-only inherent method alpha renaming prevents duplicate implementations on the SAME actual receiver; provider imports/types/fields and all other method dispatch remain unchanged."})
+            file.write_text(candidate+fixture,encoding="utf-8")
             quoted = json.dumps(file.resolve().as_posix())
             uses = "\n".join("use super::"+name+";" for name in subject.get("parent_aliases",[]))
             declarations.setdefault(subject["family"],[]).append(
@@ -70,6 +90,8 @@ def main():
             record = {"id":"RR-"+str(index)+"-"+tag,"path":subject["path"][len("code/rust/src/"):],
                 "module":module+"::","subject_sha256":subject["sha256"],
                 "candidate_path":file.relative_to(ROOT).as_posix(),"candidate_sha256":digest(file)}
+            if alpha:
+                record["method_alpha_renaming"] = alpha
             if tag == "control":
                 controls.append(record)
             else:

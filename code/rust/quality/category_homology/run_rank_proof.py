@@ -18,7 +18,7 @@ from run_audit import ROOT, digest, execute, write_json
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model",choices=("rank","category","metadata","degree","counter","parameters","finite-set","literal-reversal","shape-inventory","root-records","homology-protocols","degree-repair","two-step-complex","simplicial-closure","simplicial-boundary","simplicial-homology","scalar-admission","carrier-dimensions","vector-maps","graph-incidence","validation-inventory","arrow-effects","finite-builder","em-samples","lawvere-inventory","higher-functor-inventory","finite-functor","functor-operations","finite-naturality","natural-composition","joint-carrier","finite-simulation"),default="rank")
+    parser.add_argument("--model",choices=("rank","category","metadata","degree","counter","parameters","finite-set","literal-reversal","shape-inventory","root-records","homology-protocols","degree-repair","two-step-complex","simplicial-closure","simplicial-boundary","simplicial-homology","scalar-admission","carrier-dimensions","vector-maps","graph-incidence","validation-inventory","arrow-effects","finite-builder","em-samples","lawvere-inventory","higher-functor-inventory","finite-functor","functor-operations","finite-naturality","natural-composition","joint-carrier","finite-simulation","finite-independence"),default="rank")
     parser.add_argument("--memory-mb", type=int, default=1024,
         help="Explicit Lean memory limit, from 256 to 2048 MiB; default remains 1024.")
     args = parser.parse_args()
@@ -46,6 +46,10 @@ def main():
         proof_name, import_name, namespace = "DegreeWindow", "Data/Int/Basic", "TFQM.DegreeWindow."
         declarations = ("ordered_span_fits_u32", "same_endpoint_zero", "inverted_span_negative")
         scope = "Exact i32 endpoint difference bounds, zero span and inverted-window refusal premise; no category-law claim."
+    elif model == "finite-independence":
+        proof_name, import_name, namespace = "FiniteIndependence", "Data/List/Basic", "TFQM.FiniteIndependence."
+        declarations = ("future_refl", "future_symm", "future_trans", "witness_refuses_future", "unequal_can_share_futures", "defined_order_has_first_step", "final_orders_enable_singles", "unavailable_never_enabled", "witness_sound", "witness_uses_saved_answers", "endpoint_replay", "endpoint_mismatch", "unavailable_ignores_search", "equivalent_ignores_search", "distinction_requires_success", "resource_refusal_preserved")
+        scope = "All-word future equivalence, two enabled orders, explicit witness soundness and endpoint binding, with no unavailable/resource refusal interpreted as independence. Finite quotient/search/storage and test-only alpha renaming are separate."
     elif model == "finite-simulation":
         proof_name, import_name, namespace = "FiniteSimulation", "Data/List/Basic", "TFQM.FiniteSimulation."
         declarations = ("run_empty", "run_unavailable", "run_append", "exact_macro_words", "exact_iff", "extension_preserves_defined", "extension_absent", "extension_does_not_drop", "extension_does_not_change", "added_is_allowed", "added_changes_availability", "map_first", "encoding_second", "budget_third", "admission_success", "replay_success")

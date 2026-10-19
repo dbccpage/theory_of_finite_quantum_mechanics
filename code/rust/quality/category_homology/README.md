@@ -999,3 +999,23 @@ failure remains recorded with34 unrun, not successful mutation credit.
 20261019T190759Z-score-verification passes all153 completed records and192 source/
 score digests in38 groups. Cleanup checkpoint153 has no owned compiled/debug/tmp
 outputs.39 category files, contracts and full goal remain; PR draft.
+
+
+Checkpoint154: finite independence L3A
+
+Seven meaningful endpoint/availability/production/verification bodies preserve
+public signatures and typed error order, max CCN7/cognitive4/nesting1. Previously
+verifier23/19/2 remains archived. Both orders must be enabled; unequal endpoints
+can have equal protected futures. Valid distinguishing receipts need not use a
+shortest word, and carry their own start/event tuple. max_pairs bounds search
+after the full quotient, not total memory/time.31/31 faults are detected using
+2592 bounded swaps plus five-state cases and16 clean Lean declarations.
+The initial30/31 guard survivor is retained: a valid future bound to unrelated
+submitted endpoints now isolates the actual swap-endpoint guard. Failed Except
+proof cases/sorryAx are retained and excluded from clean proof support.
+All32 candidate/fixture prefixes are reconstructed with test-only own-method
+alpha renaming on the same actual PartialDynamics receiver; no provider or
+visibility replacement, no ABI/type-identity mutation claim.459 original tests
+pass unadapted before/after.20261019T191811Z-score-verification passes154 completed
+records/192 source-score digests in39 groups; cleanup154 has zero owned compiled/
+debug/tmp outputs.38 category files,contracts and full goal remain;PR draft.

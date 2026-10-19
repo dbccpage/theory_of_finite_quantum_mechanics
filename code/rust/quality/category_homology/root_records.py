@@ -118,6 +118,9 @@ struct Echo; impl StructurePreservingMap for Echo {type Domain=String;type Codom
 
 
 def challenge(subject):
+    if Path(subject['path']).stem == 'finite_independence':
+        from independence import challenge as swap_challenge
+        return swap_challenge(subject)
     if Path(subject['path']).stem == 'finite_simulation':
         from simulation import challenge as simulation_challenge
         return simulation_challenge(subject)
