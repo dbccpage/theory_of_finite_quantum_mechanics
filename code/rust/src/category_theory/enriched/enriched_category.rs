@@ -1,6 +1,7 @@
 //! enriched_category shell for omega_category_theory.
 //! AuthorityEffect: None. Not PROVED / GlobalGreen.
 
+use omega_category_theory::errors::ArithmosError;
 use serde::{Deserialize, Serialize};
 
 /// Hom-object entry: pair of object labels maps to a V-object label.
@@ -68,21 +69,21 @@ impl EnrichedCategory {
         });
     }
 
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
         if self.base_monoidal_v.is_empty() {
-            return Err("empty base_monoidal_v".into());
+            return Err(ArithmosError::InvalidShape("empty base_monoidal_v".into()));
         }
         for (i, o) in self.objects.iter().enumerate() {
             if o.is_empty() {
-                return Err(format!("empty object tag at index {i}"));
+                return Err(ArithmosError::InvalidShape(format!("empty object tag at index {i}")));
             }
         }
         for (i, h) in self.hom_objects.iter().enumerate() {
             if h.domain.is_empty() || h.codomain.is_empty() || h.hom_object.is_empty() {
-                return Err(format!("empty hom_objects entry at index {i}"));
+                return Err(ArithmosError::InvalidShape(format!("empty hom_objects entry at index {i}")));
             }
         }
         Ok(())

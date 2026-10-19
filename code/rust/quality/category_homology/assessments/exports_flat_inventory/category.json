@@ -1,0 +1,197 @@
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/category_theory/category/mod.rs",
+    "language": "Rust",
+    "sha256": "7d3cb801950b7f87ffd197aa4b1c30717b82c3c2d0ddbc1335332ba7e8212673"
+  },
+  "reviewer": "Codex explicit public namespace/source identity review",
+  "evaluation_timestamp": "2026-10-19T02:31:01.706210+00:00",
+  "gates": {
+    "G1": "A",
+    "G2": "A",
+    "G3": "A",
+    "G4": "A",
+    "G5": "A"
+  },
+  "formal_specification": {
+    "domain": "Static Rust module and nominal type exports. There is no runtime mathematical input or admission operation in this file.",
+    "exports": {
+      "ArrowCategoryShell": "arrow_category::ArrowCategoryShell",
+      "FiniteCategoryShell": "category::FiniteCategoryShell",
+      "MorphismTriple": "category::MorphismTriple",
+      "CosliceCategoryShell": "coslice_category::CosliceCategoryShell",
+      "DiscreteCategoryShell": "discrete_category::DiscreteCategoryShell",
+      "DiscreteFibrationShell": "discrete_fibration::DiscreteFibrationShell",
+      "FiberedCategoryShell": "fibered_category::FiberedCategoryShell",
+      "OpfibrationShell": "opfibration::OpfibrationShell",
+      "OppositeCategoryShell": "opposite::OppositeCategoryShell",
+      "ProductCategoryShell": "product_category::ProductCategoryShell",
+      "SliceCategoryShell": "slice_category::SliceCategoryShell",
+      "SmallCategoryShell": "small_category::SmallCategoryShell",
+      "SumCategoryShell": "sum_category::SumCategoryShell",
+      "TerminalCategoryShell": "terminal_category::TerminalCategoryShell"
+    },
+    "module_exposure": "Every declared public child module is loaded by the canonical category crate from its source file. Exported aliases must identify exactly the separately specified provider types.",
+    "not_claimed": "No child algorithm, mathematical law, theorem, or engineering grade is inherited by reexporting its type."
+  },
+  "symbol_map": {
+    "ArrowCategoryShell": "Public alias of arrow_category::ArrowCategoryShell",
+    "FiniteCategoryShell": "Public alias of category::FiniteCategoryShell",
+    "MorphismTriple": "Public alias of category::MorphismTriple",
+    "CosliceCategoryShell": "Public alias of coslice_category::CosliceCategoryShell",
+    "DiscreteCategoryShell": "Public alias of discrete_category::DiscreteCategoryShell",
+    "DiscreteFibrationShell": "Public alias of discrete_fibration::DiscreteFibrationShell",
+    "FiberedCategoryShell": "Public alias of fibered_category::FiberedCategoryShell",
+    "OpfibrationShell": "Public alias of opfibration::OpfibrationShell",
+    "OppositeCategoryShell": "Public alias of opposite::OppositeCategoryShell",
+    "ProductCategoryShell": "Public alias of product_category::ProductCategoryShell",
+    "SliceCategoryShell": "Public alias of slice_category::SliceCategoryShell",
+    "SmallCategoryShell": "Public alias of small_category::SmallCategoryShell",
+    "SumCategoryShell": "Public alias of sum_category::SumCategoryShell",
+    "TerminalCategoryShell": "Public alias of terminal_category::TerminalCategoryShell"
+  },
+  "invariant_argument": [
+    "All noncomment source items were inspected and mechanically restricted to public child-module declarations, public use declarations and lint-only module-inception annotations. No initializer, macro-generated item, unsafe block, function or mutable state is present.",
+    "Under the pinned Rust module/type-resolution semantics, a pub use binds the original provider item and does not construct or validate a mathematical object. Canonical controls compare each actual public alias with its explicit original provider type in the real category crate.",
+    "The challenge adapter rebinds child declarations to those same actual canonical modules, splits grouped imports and omits only comments/lint-only attributes. Its normalized positive controls establish the same nominal identities. Each negative module changes one type binding while leaving that provider environment unchanged. No provider algorithm is cloned or reimplemented."
+  ],
+  "failure_paths": {
+    "unresolved_or_private_provider": "The Rust compiler rejects the external canonical control; no successful runtime/API receipt or completed grade follows.",
+    "wrong_valid_binding": "A syntactically valid peer type can compile but violates the declared nominal identity. Every designated peer replacement is detected by its isolated TypeId comparison.",
+    "runtime": "This file has no runtime operation, argument conversion, allocation, indexing, recursion or error recovery. Importing its namespace does not execute the providers functions."
+  },
+  "trust_boundary": {
+    "compiler": "Pinned Rust compiler, linker and standard nominal type identity within this one binary. TypeId values are not serialized, treated as cryptographic attestations or assumed stable across compiler versions.",
+    "providers": "Actual canonical crate child modules and the explicitly pinned source definitions. Their semantics, failure behavior and mathematical claims remain independently graded.",
+    "scope": "This is compiler/API-wiring verification, not a Lean theorem, Rust/MIR refinement, underlying category proof or source-origin attestation."
+  },
+  "consumer_review": [
+    "The actual category library exposes this hierarchy as a public module. Canonical external controls and the unchanged 459-test category suite validate the current public namespace before and after the challenges.",
+    "Known child types are still raw declarations or separately admitted implementations as their own files specify. A public facade cannot turn pending child score gates into completed ones."
+  ],
+  "basis": {
+    "G1": [
+      "Subject and every immediate provider source are SHA-bound; all public export names map to explicit provider paths. Docs already state shells/AuthorityEffect None. The actual crate and captured offline dependencies/compiler binaries anchor the API receipt.",
+      "Collection-metadata provider delta: code/rust/src/category_theory/category/arrow_category.rs, code/rust/src/category_theory/category/coslice_category.rs, code/rust/src/category_theory/category/discrete_fibration.rs. These validators now return existing typed InvalidShape, preserving collection predicates, first-error order, diagnostics and raw constructor/setter semantics. Public type definitions and alias targets retain nominal identity. Fresh 020037Z external controls and all 107 export faults check that exact provider context; no provider mathematical grade is inherited.",
+      "Flat-inventory provider delta explicitly reviewed: code/rust/src/category_theory/category/fibered_category.rs, code/rust/src/category_theory/category/opfibration.rs, code/rust/src/category_theory/category/opposite.rs, code/rust/src/category_theory/category/product_category.rs, code/rust/src/category_theory/category/slice_category.rs, code/rust/src/category_theory/category/sum_category.rs. These raw validators switch String payloads to existing typed InvalidShape while preserving predicates, order, payload text and data operations. Set documentation clarifies that its count includes repetitions; opposite still swaps only literal boundaries and does not prove an opposite category. Public nominal identities are unchanged. Fresh 022845Z external controls and all 107 valid type-binding faults replay this context, without inheriting provider mathematical grades."
+    ],
+    "G2": [
+      "Canonical and normalized controls agree with the declared nominal identities for every public alias, including the two legacy adjunction exports. There is no semantic arithmetic or unadmitted numeric domain in this file."
+    ],
+    "G3": [
+      "There are no executable production paths or mutable state to violate an invariant. Invalid source/provider visibility is rejected by the trusted compiler; the current external controls compile and execute. All runtime behavior of provider functions remains outside this facade claim."
+    ],
+    "G4": [
+      "All 14 valid single-fault re-export replacements are killed by separate namespace dispatches; no survivor, invalid/equivalent, inconclusive or unrun result. R=1.0 for this file.",
+      "The full campaign detects 107 wrong bindings across nine module files. It separately passes 107 canonical public controls, 107 normalized positive controls and 459 actual category tests before and after. The adapter and exact observation are disclosed; invalid compiler failures are not counted as kills."
+    ],
+    "G5": [
+      "The parsed Rust source contains zero production functions and no item-generating macros. Declared source CCN, cognitive complexity and control nesting are zero because this is a facade, not an unsupported parser result.",
+      "Runtime re-export overhead and allocations are absent. The small explicit module/use lists follow source boundaries; imported provider operational costs are not concealed or awarded this file grade."
+    ]
+  },
+  "open_findings": [],
+  "assurance_limits": [
+    "Capability remains L1 namespace glue, not L5 mathematics.",
+    "No child mathematical validity or engineering grade is inherited.",
+    "Contracts stay pending. No A+, alternate compiler, MIR/allocator proof, cross-repository attestation or whole-workspace success is claimed."
+  ],
+  "evidence": [
+    {
+      "path": "code/rust/quality/category_homology/export_boundaries.json",
+      "sha256": "53abe84f0fc31e39d5de22443abf09f2c573d187fef5f876989a3b38767c4d3d"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T022845Z/summary.json",
+      "sha256": "37c3ac2cbe10e0ef5a5a3ebecef556830733de5fee25f3cc8f12ee4dffc28d6a"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T022845Z/baseline.json",
+      "sha256": "b4a41534369524b020bd2519a5daf57feb6284083d23f5591ad87dd579216458"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T022845Z/restored.json",
+      "sha256": "4430452daf0e1da52154ba8bbd45f2359b0f6ff2f058f2d6cd0ae8a766bc5758"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T022845Z/mutations.json",
+      "sha256": "3daff73962a6a59249c26a62ea39e15224b50f8ed4d281fb01e0f0acd4248c4e"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T022845Z/builds.json",
+      "sha256": "b783ff731e4dbb23dd45b6a999bb3fcc5d43f6e24cb4795cea8bcdb69b5bcda1"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T022845Z/dependency_receipt.json",
+      "sha256": "90a69665a30171e97204f57136c87822182cd6ab899b238bcb6636f3c8b4aba4"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T022845Z/run_export_challenges.py",
+      "sha256": "7b282a18cdd40c3fa51761bc853b67e8821c5c0e5be5349e90fd0542b265cee9"
+    }
+  ],
+  "context_inputs": [
+    {
+      "path": "code/rust/src/category_theory/category/arrow_category.rs",
+      "sha256": "59279011d02e4522b0c30ce503297c6bced165d046077e0edd9b7d1e468f717c"
+    },
+    {
+      "path": "code/rust/src/category_theory/category/category.rs",
+      "sha256": "7af748956b465218bc869617a0a934d32941e98aaa5c8ac32ad6663418e110ea"
+    },
+    {
+      "path": "code/rust/src/category_theory/category/coslice_category.rs",
+      "sha256": "7338cf18a1bc61d218468dc903d6caaf57caf19ddb6644058ce9b61a80f830b4"
+    },
+    {
+      "path": "code/rust/src/category_theory/category/discrete_category.rs",
+      "sha256": "ad9f6e801fca49f99827ac9185653914f05e150c4ab0a47b5bfcd52aab1385b0"
+    },
+    {
+      "path": "code/rust/src/category_theory/category/discrete_fibration.rs",
+      "sha256": "b2b46d91b507be0701a9431f42b84cf8d17732938c3ee927639b30f11212b3c5"
+    },
+    {
+      "path": "code/rust/src/category_theory/category/fibered_category.rs",
+      "sha256": "657ed33b3f1e577da632335c8159a1a1a3aebbb360f565ad117871dc80ad3702"
+    },
+    {
+      "path": "code/rust/src/category_theory/category/opfibration.rs",
+      "sha256": "9a5171388d449f4a80130f5fca2b422940e44fe2774777a34277bfcbc2a04908"
+    },
+    {
+      "path": "code/rust/src/category_theory/category/opposite.rs",
+      "sha256": "400aceaaeb79dbe74162e5a0a8000df4273594b40cffa7db46129bf2029c9a2b"
+    },
+    {
+      "path": "code/rust/src/category_theory/category/product_category.rs",
+      "sha256": "a12169c98355a4fbe39c86e484a926d3f2fd3104455da012779589ac2ecb2a1f"
+    },
+    {
+      "path": "code/rust/src/category_theory/category/slice_category.rs",
+      "sha256": "50b8a6dc701e76f3156e3e26b463553f5840f7d2c5f03536f39de445d79b0bfd"
+    },
+    {
+      "path": "code/rust/src/category_theory/category/small_category.rs",
+      "sha256": "9b7c4e3b50ae2dd327d24e7a5ae70d272329af6117d40cb0cf324f190ada7acc"
+    },
+    {
+      "path": "code/rust/src/category_theory/category/sum_category.rs",
+      "sha256": "47014ea995e0e7ec312774e0dc1b0aef8f6c920e747c84de89eaa8434b9843f9"
+    },
+    {
+      "path": "code/rust/src/category_theory/category/terminal_category.rs",
+      "sha256": "9c0c1e3195dbd195747bca7a5efe6b583e8a8de9bc3dd1c4d1d4b740ce56c737"
+    },
+    {
+      "path": "code/rust/src/category_theory/lib.rs",
+      "sha256": "b1535a921f4a69414e8b6636f85c8393f799bd2bc20da600e855864c2d3e8776"
+    },
+    {
+      "path": "code/rust/src/category_theory/Cargo.toml",
+      "sha256": "42378ba9d23fe5a5c97c844ebab457e9187c96b819c5b6a0fe3f9acaff1579a3"
+    }
+  ]
+}

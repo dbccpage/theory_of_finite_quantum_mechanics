@@ -1,0 +1,34 @@
+
+running 7 tests
+test mutant_16::tests::rejects_empty_map_tag ... ok
+test mutant_16::tests::validate_ok ... ok
+test mutant_16::tests::validate_rejects_empty ... ok
+test mutant_16::parameter_challenge::constructors_preserve_distinct_supplied_parameters ... FAILED
+test mutant_16::tests::with_maps_ok ... FAILED
+test mutant_16::tests::validate_rejects_missing_source ... ok
+test mutant_16::parameter_challenge::independent_schema_cases_and_first_error ... ok
+
+failures:
+
+---- mutant_16::parameter_challenge::constructors_preserve_distinct_supplied_parameters stdout ----
+
+thread 'mutant_16::parameter_challenge::constructors_preserve_distinct_supplied_parameters' (9272) panicked at metadata_challenge_2\mutant_16.rs:143:265:
+assertion `left == right` failed
+  left: []
+ right: [("a", "b")]
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- mutant_16::tests::with_maps_ok stdout ----
+
+thread 'mutant_16::tests::with_maps_ok' (29956) panicked at metadata_challenge_2\mutant_16.rs:110:9:
+assertion `left == right` failed
+  left: 0
+ right: 1
+
+
+failures:
+    mutant_16::parameter_challenge::constructors_preserve_distinct_supplied_parameters
+    mutant_16::tests::with_maps_ok
+
+test result: FAILED. 5 passed; 2 failed; 0 ignored; 0 measured; 340 filtered out; finished in 0.01s
+

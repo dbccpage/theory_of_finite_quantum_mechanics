@@ -3,6 +3,7 @@
 //!
 //! C/c (objects over c): objects are morphisms x → c; morphisms are commuting triangles.
 
+use omega_category_theory::errors::ArithmosError;
 use serde::{Deserialize, Serialize};
 
 /// Best-effort slice category shell C / apex.
@@ -42,19 +43,19 @@ impl SliceCategoryShell {
         }
     }
 
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
         if self.base_label.is_empty() {
-            return Err("empty base_label".into());
+            return Err(ArithmosError::InvalidShape("empty base_label".into()));
         }
         if self.apex.is_empty() {
-            return Err("empty apex".into());
+            return Err(ArithmosError::InvalidShape("empty apex".into()));
         }
         for (i, o) in self.objects.iter().enumerate() {
             if o.is_empty() {
-                return Err(format!("empty object tag at index {i}"));
+                return Err(ArithmosError::InvalidShape(format!("empty object tag at index {i}")));
             }
         }
         Ok(())

@@ -1,0 +1,593 @@
+{
+  "AuthorityEffect": "None",
+  "scope": "Explicit source/representation review for twelve raw inventory modules; no grade inferred solely from this record.",
+  "records": [
+    {
+      "artifact": "code/rust/src/category_theory/category/fibered_category.rs",
+      "sha256": "657ed33b3f1e577da632335c8159a1a1a3aebbb360f565ad117871dc80ad3702",
+      "symbols": {
+        "FiberedCategoryShell::new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), total_label: String::new(), base_label: String::new(), cloven: false, fibers: Vec::new(), notes: Vec::new(), } }",
+          "classification": "Raw constructor, flag default, assignment or append; no mathematical-law admission"
+        },
+        "FiberedCategoryShell::over": {
+          "signature": "pub fn over( label: impl Into<String>, total_label: impl Into<String>, base_label: impl Into<String>, ) -> Self",
+          "body": "{ Self { label: label.into(), total_label: total_label.into(), base_label: base_label.into(), cloven: false, fibers: Vec::new(), notes: Vec::new(), } }",
+          "classification": "Raw constructor, flag default, assignment or append; no mathematical-law admission"
+        },
+        "FiberedCategoryShell::validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.total_label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty total_label\".into())); } if self.base_label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty base_label\".into())); } for (i, (b, f)) in self.fibers.iter().enumerate() { if b.is_empty() || f.is_empty() { return Err(ArithmosError::InvalidShape(format!(\"empty fiber entry at index {i}\"))); } } Ok(()) }",
+          "classification": "Ordered raw label/component refusal"
+        }
+      },
+      "required_fields": [
+        "label",
+        "total_label",
+        "base_label"
+      ],
+      "collections": [
+        {
+          "field": "fibers",
+          "kind": "pairs",
+          "fields": [
+            "b",
+            "f"
+          ],
+          "diagnostic": "empty fiber entry at index {i}",
+          "loop": "for (i, (b, f)) in self.fibers.iter().enumerate()",
+          "source_operands": [
+            "b.is_empty()",
+            "f.is_empty()"
+          ]
+        }
+      ],
+      "invariant": "Flatten required literal labels then each selected collection/component in source order. The first empty String returns its exact typed diagnostic without mutation. Constructors/setters are raw data; no law is admitted.",
+      "cost": "Finite loops, one visit per entry, O(1) String byte-length tests per component and one diagnostic allocation at first refusal. Move-based constructors, finite Vec append/replacement and no recursion or unchecked production indexing. Opposite maps each owned triple once; Set length observes Vec::len exactly."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/category/opfibration.rs",
+      "sha256": "9a5171388d449f4a80130f5fca2b422940e44fe2774777a34277bfcbc2a04908",
+      "symbols": {
+        "OpfibrationShell::new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), total_label: String::new(), base_label: String::new(), cloven: false, cofibers: Vec::new(), notes: Vec::new(), } }",
+          "classification": "Raw constructor, flag default, assignment or append; no mathematical-law admission"
+        },
+        "OpfibrationShell::over": {
+          "signature": "pub fn over( label: impl Into<String>, total_label: impl Into<String>, base_label: impl Into<String>, ) -> Self",
+          "body": "{ Self { label: label.into(), total_label: total_label.into(), base_label: base_label.into(), cloven: false, cofibers: Vec::new(), notes: Vec::new(), } }",
+          "classification": "Raw constructor, flag default, assignment or append; no mathematical-law admission"
+        },
+        "OpfibrationShell::validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.total_label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty total_label\".into())); } if self.base_label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty base_label\".into())); } for (i, (b, c)) in self.cofibers.iter().enumerate() { if b.is_empty() || c.is_empty() { return Err(ArithmosError::InvalidShape(format!(\"empty cofiber entry at index {i}\"))); } } Ok(()) }",
+          "classification": "Ordered raw label/component refusal"
+        }
+      },
+      "required_fields": [
+        "label",
+        "total_label",
+        "base_label"
+      ],
+      "collections": [
+        {
+          "field": "cofibers",
+          "kind": "pairs",
+          "fields": [
+            "b",
+            "c"
+          ],
+          "diagnostic": "empty cofiber entry at index {i}",
+          "loop": "for (i, (b, c)) in self.cofibers.iter().enumerate()",
+          "source_operands": [
+            "b.is_empty()",
+            "c.is_empty()"
+          ]
+        }
+      ],
+      "invariant": "Flatten required literal labels then each selected collection/component in source order. The first empty String returns its exact typed diagnostic without mutation. Constructors/setters are raw data; no law is admitted.",
+      "cost": "Finite loops, one visit per entry, O(1) String byte-length tests per component and one diagnostic allocation at first refusal. Move-based constructors, finite Vec append/replacement and no recursion or unchecked production indexing. Opposite maps each owned triple once; Set length observes Vec::len exactly."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/category/opposite.rs",
+      "sha256": "400aceaaeb79dbe74162e5a0a8000df4273594b40cffa7db46129bf2029c9a2b",
+      "symbols": {
+        "OppositeCategoryShell::new": {
+          "signature": "pub fn new(label: impl Into<String>, base_label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), base_label: base_label.into(), reversed_morphisms: Vec::new(), notes: Vec::new(), } }",
+          "classification": "Raw constructor, flag default, assignment or append; no mathematical-law admission"
+        },
+        "OppositeCategoryShell::reverse_of": {
+          "signature": "pub fn reverse_of( label: impl Into<String>, base_label: impl Into<String>, base_morphisms: Vec<MorphismTriple>, ) -> Self",
+          "body": "{ let reversed_morphisms = base_morphisms .into_iter() .map(|m| MorphismTriple::new(m.target, m.source, m.name)) .collect(); Self { label: label.into(), base_label: base_label.into(), reversed_morphisms, notes: Vec::new(), } }",
+          "classification": "Literal boundary reversal: swap source/target, retain name and list order"
+        },
+        "OppositeCategoryShell::validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.base_label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty base_label\".into())); } for (i, m) in self.reversed_morphisms.iter().enumerate() { if m.source.is_empty() || m.target.is_empty() || m.name.is_empty() { return Err(ArithmosError::InvalidShape(format!(\"empty reversed morphism field at index {i}\"))); } } Ok(()) }",
+          "classification": "Ordered raw label/component refusal"
+        }
+      },
+      "required_fields": [
+        "label",
+        "base_label"
+      ],
+      "collections": [
+        {
+          "field": "reversed_morphisms",
+          "kind": "records",
+          "fields": [
+            "source",
+            "target",
+            "name"
+          ],
+          "diagnostic": "empty reversed morphism field at index {i}",
+          "loop": "for (i, m) in self.reversed_morphisms.iter().enumerate()",
+          "source_operands": [
+            "m.source.is_empty()",
+            "m.target.is_empty()",
+            "m.name.is_empty()"
+          ]
+        }
+      ],
+      "invariant": "Flatten required literal labels then each selected collection/component in source order. The first empty String returns its exact typed diagnostic without mutation. Constructors/setters are raw data; no law is admitted.",
+      "cost": "Finite loops, one visit per entry, O(1) String byte-length tests per component and one diagnostic allocation at first refusal. Move-based constructors, finite Vec append/replacement and no recursion or unchecked production indexing. Opposite maps each owned triple once; Set length observes Vec::len exactly."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/category/product_category.rs",
+      "sha256": "a12169c98355a4fbe39c86e484a926d3f2fd3104455da012779589ac2ecb2a1f",
+      "symbols": {
+        "ProductCategoryShell::new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), left_factor_label: String::new(), right_factor_label: String::new(), object_pairs: Vec::new(), notes: Vec::new(), } }",
+          "classification": "Raw constructor, flag default, assignment or append; no mathematical-law admission"
+        },
+        "ProductCategoryShell::of": {
+          "signature": "pub fn of( label: impl Into<String>, left_factor_label: impl Into<String>, right_factor_label: impl Into<String>, ) -> Self",
+          "body": "{ Self { label: label.into(), left_factor_label: left_factor_label.into(), right_factor_label: right_factor_label.into(), object_pairs: Vec::new(), notes: Vec::new(), } }",
+          "classification": "Raw constructor, flag default, assignment or append; no mathematical-law admission"
+        },
+        "ProductCategoryShell::validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.left_factor_label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty left_factor_label\".into())); } if self.right_factor_label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty right_factor_label\".into())); } for (i, p) in self.object_pairs.iter().enumerate() { if p.is_empty() { return Err(ArithmosError::InvalidShape(format!(\"empty object_pair tag at index {i}\"))); } } Ok(()) }",
+          "classification": "Ordered raw label/component refusal"
+        }
+      },
+      "required_fields": [
+        "label",
+        "left_factor_label",
+        "right_factor_label"
+      ],
+      "collections": [
+        {
+          "field": "object_pairs",
+          "kind": "strings",
+          "fields": [
+            "tag"
+          ],
+          "diagnostic": "empty object_pair tag at index {i}",
+          "loop": "for (i, p) in self.object_pairs.iter().enumerate()",
+          "source_operands": [
+            "p.is_empty()"
+          ]
+        }
+      ],
+      "invariant": "Flatten required literal labels then each selected collection/component in source order. The first empty String returns its exact typed diagnostic without mutation. Constructors/setters are raw data; no law is admitted.",
+      "cost": "Finite loops, one visit per entry, O(1) String byte-length tests per component and one diagnostic allocation at first refusal. Move-based constructors, finite Vec append/replacement and no recursion or unchecked production indexing. Opposite maps each owned triple once; Set length observes Vec::len exactly."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/category/slice_category.rs",
+      "sha256": "50b8a6dc701e76f3156e3e26b463553f5840f7d2c5f03536f39de445d79b0bfd",
+      "symbols": {
+        "SliceCategoryShell::new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), base_label: String::new(), apex: String::new(), objects: Vec::new(), notes: Vec::new(), } }",
+          "classification": "Raw constructor, flag default, assignment or append; no mathematical-law admission"
+        },
+        "SliceCategoryShell::over": {
+          "signature": "pub fn over( label: impl Into<String>, base_label: impl Into<String>, apex: impl Into<String>, ) -> Self",
+          "body": "{ Self { label: label.into(), base_label: base_label.into(), apex: apex.into(), objects: Vec::new(), notes: Vec::new(), } }",
+          "classification": "Raw constructor, flag default, assignment or append; no mathematical-law admission"
+        },
+        "SliceCategoryShell::validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.base_label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty base_label\".into())); } if self.apex.is_empty() { return Err(ArithmosError::InvalidShape(\"empty apex\".into())); } for (i, o) in self.objects.iter().enumerate() { if o.is_empty() { return Err(ArithmosError::InvalidShape(format!(\"empty object tag at index {i}\"))); } } Ok(()) }",
+          "classification": "Ordered raw label/component refusal"
+        }
+      },
+      "required_fields": [
+        "label",
+        "base_label",
+        "apex"
+      ],
+      "collections": [
+        {
+          "field": "objects",
+          "kind": "strings",
+          "fields": [
+            "tag"
+          ],
+          "diagnostic": "empty object tag at index {i}",
+          "loop": "for (i, o) in self.objects.iter().enumerate()",
+          "source_operands": [
+            "o.is_empty()"
+          ]
+        }
+      ],
+      "invariant": "Flatten required literal labels then each selected collection/component in source order. The first empty String returns its exact typed diagnostic without mutation. Constructors/setters are raw data; no law is admitted.",
+      "cost": "Finite loops, one visit per entry, O(1) String byte-length tests per component and one diagnostic allocation at first refusal. Move-based constructors, finite Vec append/replacement and no recursion or unchecked production indexing. Opposite maps each owned triple once; Set length observes Vec::len exactly."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/category/sum_category.rs",
+      "sha256": "47014ea995e0e7ec312774e0dc1b0aef8f6c920e747c84de89eaa8434b9843f9",
+      "symbols": {
+        "SumCategoryShell::new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), left_summand_label: String::new(), right_summand_label: String::new(), left_objects: Vec::new(), right_objects: Vec::new(), notes: Vec::new(), } }",
+          "classification": "Raw constructor, flag default, assignment or append; no mathematical-law admission"
+        },
+        "SumCategoryShell::of": {
+          "signature": "pub fn of( label: impl Into<String>, left_summand_label: impl Into<String>, right_summand_label: impl Into<String>, ) -> Self",
+          "body": "{ Self { label: label.into(), left_summand_label: left_summand_label.into(), right_summand_label: right_summand_label.into(), left_objects: Vec::new(), right_objects: Vec::new(), notes: Vec::new(), } }",
+          "classification": "Raw constructor, flag default, assignment or append; no mathematical-law admission"
+        },
+        "SumCategoryShell::validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.left_summand_label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty left_summand_label\".into())); } if self.right_summand_label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty right_summand_label\".into())); } for (i, o) in self.left_objects.iter().enumerate() { if o.is_empty() { return Err(ArithmosError::InvalidShape(format!(\"empty left_objects tag at index {i}\"))); } } for (i, o) in self.right_objects.iter().enumerate() { if o.is_empty() { return Err(ArithmosError::InvalidShape(format!(\"empty right_objects tag at index {i}\"))); } } Ok(()) }",
+          "classification": "Ordered raw label/component refusal"
+        }
+      },
+      "required_fields": [
+        "label",
+        "left_summand_label",
+        "right_summand_label"
+      ],
+      "collections": [
+        {
+          "field": "left_objects",
+          "kind": "strings",
+          "fields": [
+            "tag"
+          ],
+          "diagnostic": "empty left_objects tag at index {i}",
+          "loop": "for (i, o) in self.left_objects.iter().enumerate()",
+          "source_operands": [
+            "o.is_empty()"
+          ]
+        },
+        {
+          "field": "right_objects",
+          "kind": "strings",
+          "fields": [
+            "tag"
+          ],
+          "diagnostic": "empty right_objects tag at index {i}",
+          "loop": "for (i, o) in self.right_objects.iter().enumerate()",
+          "source_operands": [
+            "o.is_empty()"
+          ]
+        }
+      ],
+      "invariant": "Flatten required literal labels then each selected collection/component in source order. The first empty String returns its exact typed diagnostic without mutation. Constructors/setters are raw data; no law is admitted.",
+      "cost": "Finite loops, one visit per entry, O(1) String byte-length tests per component and one diagnostic allocation at first refusal. Move-based constructors, finite Vec append/replacement and no recursion or unchecked production indexing. Opposite maps each owned triple once; Set length observes Vec::len exactly."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/enriched/enriched_category.rs",
+      "sha256": "ae5656704c033bc629f3f6c1d089da9acb72e76fe8b5be686146bf586dce71e1",
+      "symbols": {
+        "EnrichedCategory::new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), base_monoidal_v: String::new(), objects: Vec::new(), hom_objects: Vec::new(), composition_ref: String::new(), identity_ref: String::new(), notes: Vec::new(), } }",
+          "classification": "Raw constructor, flag default, assignment or append; no mathematical-law admission"
+        },
+        "EnrichedCategory::over_v": {
+          "signature": "pub fn over_v(label: impl Into<String>, base_monoidal_v: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), base_monoidal_v: base_monoidal_v.into(), objects: Vec::new(), hom_objects: Vec::new(), composition_ref: String::new(), identity_ref: String::new(), notes: Vec::new(), } }",
+          "classification": "Raw constructor, flag default, assignment or append; no mathematical-law admission"
+        },
+        "EnrichedCategory::with_hom": {
+          "signature": "pub fn with_hom( &mut self, domain: impl Into<String>, codomain: impl Into<String>, hom_object: impl Into<String>, )",
+          "body": "{ self.hom_objects.push(HomObjectEntry { domain: domain.into(), codomain: codomain.into(), hom_object: hom_object.into(), }); }",
+          "classification": "Raw constructor, flag default, assignment or append; no mathematical-law admission"
+        },
+        "EnrichedCategory::validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.base_monoidal_v.is_empty() { return Err(ArithmosError::InvalidShape(\"empty base_monoidal_v\".into())); } for (i, o) in self.objects.iter().enumerate() { if o.is_empty() { return Err(ArithmosError::InvalidShape(format!(\"empty object tag at index {i}\"))); } } for (i, h) in self.hom_objects.iter().enumerate() { if h.domain.is_empty() || h.codomain.is_empty() || h.hom_object.is_empty() { return Err(ArithmosError::InvalidShape(format!(\"empty hom_objects entry at index {i}\"))); } } Ok(()) }",
+          "classification": "Ordered raw label/component refusal"
+        }
+      },
+      "required_fields": [
+        "label",
+        "base_monoidal_v"
+      ],
+      "collections": [
+        {
+          "field": "objects",
+          "kind": "strings",
+          "fields": [
+            "tag"
+          ],
+          "diagnostic": "empty object tag at index {i}",
+          "loop": "for (i, o) in self.objects.iter().enumerate()",
+          "source_operands": [
+            "o.is_empty()"
+          ]
+        },
+        {
+          "field": "hom_objects",
+          "kind": "records",
+          "fields": [
+            "domain",
+            "codomain",
+            "hom_object"
+          ],
+          "diagnostic": "empty hom_objects entry at index {i}",
+          "loop": "for (i, h) in self.hom_objects.iter().enumerate()",
+          "source_operands": [
+            "h.domain.is_empty()",
+            "h.codomain.is_empty()",
+            "h.hom_object.is_empty()"
+          ]
+        }
+      ],
+      "invariant": "Flatten required literal labels then each selected collection/component in source order. The first empty String returns its exact typed diagnostic without mutation. Constructors/setters are raw data; no law is admitted.",
+      "cost": "Finite loops, one visit per entry, O(1) String byte-length tests per component and one diagnostic allocation at first refusal. Move-based constructors, finite Vec append/replacement and no recursion or unchecked production indexing. Opposite maps each owned triple once; Set length observes Vec::len exactly."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/foundations/function.rs",
+      "sha256": "f55806c19bfc6f4669a9bf112cd510fff2353d484e029d0f4e30b2dda0761959",
+      "symbols": {
+        "Function::new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), domain_label: String::new(), codomain_label: String::new(), pairs: Vec::new(), notes: Vec::new(), } }",
+          "classification": "Raw constructor, flag default, assignment or append; no mathematical-law admission"
+        },
+        "Function::between": {
+          "signature": "pub fn between( label: impl Into<String>, domain_label: impl Into<String>, codomain_label: impl Into<String>, ) -> Self",
+          "body": "{ Self { label: label.into(), domain_label: domain_label.into(), codomain_label: codomain_label.into(), pairs: Vec::new(), notes: Vec::new(), } }",
+          "classification": "Raw constructor, flag default, assignment or append; no mathematical-law admission"
+        },
+        "Function::with_pair": {
+          "signature": "pub fn with_pair( &mut self, domain_element: impl Into<String>, codomain_element: impl Into<String>, )",
+          "body": "{ self.pairs.push(MappingPair { domain_element: domain_element.into(), codomain_element: codomain_element.into(), }); }",
+          "classification": "Raw constructor, flag default, assignment or append; no mathematical-law admission"
+        },
+        "Function::validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.domain_label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty domain_label\".into())); } if self.codomain_label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty codomain_label\".into())); } for (i, p) in self.pairs.iter().enumerate() { if p.domain_element.is_empty() || p.codomain_element.is_empty() { return Err(ArithmosError::InvalidShape(format!(\"empty mapping tag at pair index {i}\"))); } } Ok(()) }",
+          "classification": "Ordered raw label/component refusal"
+        }
+      },
+      "required_fields": [
+        "label",
+        "domain_label",
+        "codomain_label"
+      ],
+      "collections": [
+        {
+          "field": "pairs",
+          "kind": "records",
+          "fields": [
+            "domain_element",
+            "codomain_element"
+          ],
+          "diagnostic": "empty mapping tag at pair index {i}",
+          "loop": "for (i, p) in self.pairs.iter().enumerate()",
+          "source_operands": [
+            "p.domain_element.is_empty()",
+            "p.codomain_element.is_empty()"
+          ]
+        }
+      ],
+      "invariant": "Flatten required literal labels then each selected collection/component in source order. The first empty String returns its exact typed diagnostic without mutation. Constructors/setters are raw data; no law is admitted.",
+      "cost": "Finite loops, one visit per entry, O(1) String byte-length tests per component and one diagnostic allocation at first refusal. Move-based constructors, finite Vec append/replacement and no recursion or unchecked production indexing. Opposite maps each owned triple once; Set length observes Vec::len exactly."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/foundations/set.rs",
+      "sha256": "fcc8161fa54f2196c73bf623d653655ac16819fcdd3f19823643762c0182ae92",
+      "symbols": {
+        "Set::new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), elements: Vec::new(), notes: Vec::new(), } }",
+          "classification": "Raw constructor, flag default, assignment or append; no mathematical-law admission"
+        },
+        "Set::with_elements": {
+          "signature": "pub fn with_elements(label: impl Into<String>, elements: Vec<String>) -> Self",
+          "body": "{ Self { label: label.into(), elements, notes: Vec::new(), } }",
+          "classification": "Raw constructor, flag default, assignment or append; no mathematical-law admission"
+        },
+        "Set::cardinality": {
+          "signature": "pub fn cardinality(&self) -> usize",
+          "body": "{ self.elements.len() }",
+          "classification": "Actual inventory length, including repetitions; not distinct-set cardinality"
+        },
+        "Set::validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } for (i, e) in self.elements.iter().enumerate() { if e.is_empty() { return Err(ArithmosError::InvalidShape(format!(\"empty element tag at index {i}\"))); } } Ok(()) }",
+          "classification": "Ordered raw label/component refusal"
+        }
+      },
+      "required_fields": [
+        "label"
+      ],
+      "collections": [
+        {
+          "field": "elements",
+          "kind": "strings",
+          "fields": [
+            "tag"
+          ],
+          "diagnostic": "empty element tag at index {i}",
+          "loop": "for (i, e) in self.elements.iter().enumerate()",
+          "source_operands": [
+            "e.is_empty()"
+          ]
+        }
+      ],
+      "invariant": "Flatten required literal labels then each selected collection/component in source order. The first empty String returns its exact typed diagnostic without mutation. Constructors/setters are raw data; no law is admitted.",
+      "cost": "Finite loops, one visit per entry, O(1) String byte-length tests per component and one diagnostic allocation at first refusal. Move-based constructors, finite Vec append/replacement and no recursion or unchecked production indexing. Opposite maps each owned triple once; Set length observes Vec::len exactly."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/functor/functor.rs",
+      "sha256": "f0910eb6749ba84a342d93b11dbc130e9fe288091d88663c7d7b5d7f59f428fc",
+      "symbols": {
+        "Functor::new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), source_category: String::new(), target_category: String::new(), object_map: Vec::new(), morphism_map: Vec::new(), notes: Vec::new(), } }",
+          "classification": "Raw constructor, flag default, assignment or append; no mathematical-law admission"
+        },
+        "Functor::between": {
+          "signature": "pub fn between( label: impl Into<String>, source_category: impl Into<String>, target_category: impl Into<String>, ) -> Self",
+          "body": "{ Self { label: label.into(), source_category: source_category.into(), target_category: target_category.into(), object_map: Vec::new(), morphism_map: Vec::new(), notes: Vec::new(), } }",
+          "classification": "Raw constructor, flag default, assignment or append; no mathematical-law admission"
+        },
+        "Functor::with_object_map": {
+          "signature": "pub fn with_object_map(mut self, object_map: Vec<(String, String)>) -> Self",
+          "body": "{ self.object_map = object_map; self }",
+          "classification": "Raw constructor, flag default, assignment or append; no mathematical-law admission"
+        },
+        "Functor::with_morphism_map": {
+          "signature": "pub fn with_morphism_map(mut self, morphism_map: Vec<(String, String)>) -> Self",
+          "body": "{ self.morphism_map = morphism_map; self }",
+          "classification": "Raw constructor, flag default, assignment or append; no mathematical-law admission"
+        },
+        "Functor::validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.source_category.is_empty() { return Err(ArithmosError::InvalidShape(\"empty source_category\".into())); } if self.target_category.is_empty() { return Err(ArithmosError::InvalidShape(\"empty target_category\".into())); } for (i, (a, b)) in self.object_map.iter().enumerate() { if a.is_empty() || b.is_empty() { return Err(ArithmosError::InvalidShape(format!(\"empty object_map tag at index {i}\"))); } } for (i, (a, b)) in self.morphism_map.iter().enumerate() { if a.is_empty() || b.is_empty() { return Err(ArithmosError::InvalidShape(format!(\"empty morphism_map tag at index {i}\"))); } } Ok(()) }",
+          "classification": "Ordered raw label/component refusal"
+        }
+      },
+      "required_fields": [
+        "label",
+        "source_category",
+        "target_category"
+      ],
+      "collections": [
+        {
+          "field": "object_map",
+          "kind": "pairs",
+          "fields": [
+            "a",
+            "b"
+          ],
+          "diagnostic": "empty object_map tag at index {i}",
+          "loop": "for (i, (a, b)) in self.object_map.iter().enumerate()",
+          "source_operands": [
+            "a.is_empty()",
+            "b.is_empty()"
+          ]
+        },
+        {
+          "field": "morphism_map",
+          "kind": "pairs",
+          "fields": [
+            "a",
+            "b"
+          ],
+          "diagnostic": "empty morphism_map tag at index {i}",
+          "loop": "for (i, (a, b)) in self.morphism_map.iter().enumerate()",
+          "source_operands": [
+            "a.is_empty()",
+            "b.is_empty()"
+          ]
+        }
+      ],
+      "invariant": "Flatten required literal labels then each selected collection/component in source order. The first empty String returns its exact typed diagnostic without mutation. Constructors/setters are raw data; no law is admitted.",
+      "cost": "Finite loops, one visit per entry, O(1) String byte-length tests per component and one diagnostic allocation at first refusal. Move-based constructors, finite Vec append/replacement and no recursion or unchecked production indexing. Opposite maps each owned triple once; Set length observes Vec::len exactly."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/functor/nat_trans_components.rs",
+      "sha256": "e63b04af716427d1b2cde8771804b505503275c872af296f0090a202e7b49d9a",
+      "symbols": {
+        "NatTransComponents::new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), nat_trans_ref: String::new(), components: Vec::new(), notes: Vec::new(), } }",
+          "classification": "Raw constructor, flag default, assignment or append; no mathematical-law admission"
+        },
+        "NatTransComponents::for_nat_trans": {
+          "signature": "pub fn for_nat_trans( label: impl Into<String>, nat_trans_ref: impl Into<String>, components: Vec<(String, String)>, ) -> Self",
+          "body": "{ Self { label: label.into(), nat_trans_ref: nat_trans_ref.into(), components, notes: Vec::new(), } }",
+          "classification": "Raw constructor, flag default, assignment or append; no mathematical-law admission"
+        },
+        "NatTransComponents::validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.nat_trans_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty nat_trans_ref\".into())); } for (i, (obj, mor)) in self.components.iter().enumerate() { if obj.is_empty() || mor.is_empty() { return Err(ArithmosError::InvalidShape(format!(\"empty component tag at index {i}\"))); } } Ok(()) }",
+          "classification": "Ordered raw label/component refusal"
+        }
+      },
+      "required_fields": [
+        "label",
+        "nat_trans_ref"
+      ],
+      "collections": [
+        {
+          "field": "components",
+          "kind": "pairs",
+          "fields": [
+            "obj",
+            "mor"
+          ],
+          "diagnostic": "empty component tag at index {i}",
+          "loop": "for (i, (obj, mor)) in self.components.iter().enumerate()",
+          "source_operands": [
+            "obj.is_empty()",
+            "mor.is_empty()"
+          ]
+        }
+      ],
+      "invariant": "Flatten required literal labels then each selected collection/component in source order. The first empty String returns its exact typed diagnostic without mutation. Constructors/setters are raw data; no law is admitted.",
+      "cost": "Finite loops, one visit per entry, O(1) String byte-length tests per component and one diagnostic allocation at first refusal. Move-based constructors, finite Vec append/replacement and no recursion or unchecked production indexing. Opposite maps each owned triple once; Set length observes Vec::len exactly."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/functor/natural_transformation.rs",
+      "sha256": "fafce2639115ed1a022180c1b7bbb8b50749e858d2931f1d91a898db5aed643c",
+      "symbols": {
+        "NaturalTransformation::new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), source_functor: String::new(), target_functor: String::new(), components: Vec::new(), notes: Vec::new(), } }",
+          "classification": "Raw constructor, flag default, assignment or append; no mathematical-law admission"
+        },
+        "NaturalTransformation::between": {
+          "signature": "pub fn between( label: impl Into<String>, source_functor: impl Into<String>, target_functor: impl Into<String>, ) -> Self",
+          "body": "{ Self { label: label.into(), source_functor: source_functor.into(), target_functor: target_functor.into(), components: Vec::new(), notes: Vec::new(), } }",
+          "classification": "Raw constructor, flag default, assignment or append; no mathematical-law admission"
+        },
+        "NaturalTransformation::with_components": {
+          "signature": "pub fn with_components(mut self, components: Vec<(String, String)>) -> Self",
+          "body": "{ self.components = components; self }",
+          "classification": "Raw constructor, flag default, assignment or append; no mathematical-law admission"
+        },
+        "NaturalTransformation::validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.source_functor.is_empty() { return Err(ArithmosError::InvalidShape(\"empty source_functor\".into())); } if self.target_functor.is_empty() { return Err(ArithmosError::InvalidShape(\"empty target_functor\".into())); } for (i, (obj, mor)) in self.components.iter().enumerate() { if obj.is_empty() || mor.is_empty() { return Err(ArithmosError::InvalidShape(format!(\"empty component tag at index {i}\"))); } } Ok(()) }",
+          "classification": "Ordered raw label/component refusal"
+        }
+      },
+      "required_fields": [
+        "label",
+        "source_functor",
+        "target_functor"
+      ],
+      "collections": [
+        {
+          "field": "components",
+          "kind": "pairs",
+          "fields": [
+            "obj",
+            "mor"
+          ],
+          "diagnostic": "empty component tag at index {i}",
+          "loop": "for (i, (obj, mor)) in self.components.iter().enumerate()",
+          "source_operands": [
+            "obj.is_empty()",
+            "mor.is_empty()"
+          ]
+        }
+      ],
+      "invariant": "Flatten required literal labels then each selected collection/component in source order. The first empty String returns its exact typed diagnostic without mutation. Constructors/setters are raw data; no law is admitted.",
+      "cost": "Finite loops, one visit per entry, O(1) String byte-length tests per component and one diagnostic allocation at first refusal. Move-based constructors, finite Vec append/replacement and no recursion or unchecked production indexing. Opposite maps each owned triple once; Set length observes Vec::len exactly."
+    }
+  ]
+}

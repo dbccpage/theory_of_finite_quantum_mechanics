@@ -4,6 +4,7 @@
 //! An opfibration (cocartesian fibration) p: E → B has cocartesian lifts
 //! of morphisms out of each object of E.
 
+use omega_category_theory::errors::ArithmosError;
 use serde::{Deserialize, Serialize};
 
 /// Best-effort opfibration shell p: total → base.
@@ -46,19 +47,19 @@ impl OpfibrationShell {
         }
     }
 
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
         if self.total_label.is_empty() {
-            return Err("empty total_label".into());
+            return Err(ArithmosError::InvalidShape("empty total_label".into()));
         }
         if self.base_label.is_empty() {
-            return Err("empty base_label".into());
+            return Err(ArithmosError::InvalidShape("empty base_label".into()));
         }
         for (i, (b, c)) in self.cofibers.iter().enumerate() {
             if b.is_empty() || c.is_empty() {
-                return Err(format!("empty cofiber entry at index {i}"));
+                return Err(ArithmosError::InvalidShape(format!("empty cofiber entry at index {i}")));
             }
         }
         Ok(())

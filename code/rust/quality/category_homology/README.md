@@ -329,3 +329,32 @@ outputs. Current remaining gates stay in `resume-20261019/progress.json`.
 python code/rust/quality/category_homology/run_metadata_challenges.py --policy code/rust/quality/category_homology/finite_set_boundary.json --jobs 1
 python code/rust/quality/category_homology/run_rank_proof.py --model finite-set
 ```
+
+
+The flat-inventory checkpoint has 107 completed A records and 85 incomplete
+records. Twelve more L2A modules retain their raw metadata/shape semantics and
+now return typed InvalidShape failures. Their explicit source review maps all
+42 public production methods. The current campaign passes 1,138 schema cases,
+raw constructor/flag/list-binding checks, 60 namespace controls, 459 category
+tests before/after and all 156 faults. Four affected facade contexts are
+explicitly reviewed and all 107 export faults replay successfully.
+
+The opposite-record helper additionally passes all 125 literal boundary/name
+combinations, original-order checks and double reversal. A checked four-lemma
+model proves literal component/list involution, length and name/order
+preservation; it does not prove an opposite category. The initial failed
+length-map proof remains excluded. Raw Set::cardinality is explicitly an
+inventory count including repetitions, not distinct-set admission.
+
+`20261019T023336Z-score-verification` checks every completed record and all
+192 current source/score digests without drift. Progress/remaining gates stay
+in `resume-20261019/progress.json`; `cleanup-checkpoint-107.json` finds zero
+owned compiled outputs. The inactive shared checkout debug cache had regrown
+to about 6.1 GiB: after native path/Cargo-marker/tracked-file and process checks,
+only that cache was removed. The separate second cleanup receipt records the
+recovered space; all source and dirty work remain untouched.
+
+```powershell
+python code/rust/quality/category_homology/run_metadata_challenges.py --policy code/rust/quality/category_homology/flat_inventory_boundaries.json --jobs 1 --batch-size 4
+python code/rust/quality/category_homology/run_rank_proof.py --model literal-reversal
+```

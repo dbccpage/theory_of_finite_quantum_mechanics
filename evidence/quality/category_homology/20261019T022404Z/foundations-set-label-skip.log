@@ -1,0 +1,29 @@
+
+running 6 tests
+test mutant_1::parameter_challenge::constructors_preserve_distinct_supplied_parameters ... ok
+test mutant_1::tests::rejects_empty_element_tag ... ok
+test mutant_1::tests::validate_ok ... ok
+test mutant_1::tests::with_elements_cardinality ... ok
+test mutant_1::tests::validate_rejects_empty ... FAILED
+test mutant_1::parameter_challenge::independent_schema_cases_and_first_error ... FAILED
+
+failures:
+
+---- mutant_1::tests::validate_rejects_empty stdout ----
+
+thread 'mutant_1::tests::validate_rejects_empty' (15272) panicked at metadata_challenge_2\mutant_1.rs:62:9:
+assertion failed: Set::new("").validate_shell().is_err()
+
+---- mutant_1::parameter_challenge::independent_schema_cases_and_first_error stdout ----
+
+thread 'mutant_1::parameter_challenge::independent_schema_cases_and_first_error' (21616) panicked at metadata_challenge_2\mutant_1.rs:91:37:
+expected Some("empty label"), got Ok(()); raw={"elements":[],"label":"","notes":[]}
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    mutant_1::parameter_challenge::independent_schema_cases_and_first_error
+    mutant_1::tests::validate_rejects_empty
+
+test result: FAILED. 4 passed; 2 failed; 0 ignored; 0 measured; 341 filtered out; finished in 0.00s
+

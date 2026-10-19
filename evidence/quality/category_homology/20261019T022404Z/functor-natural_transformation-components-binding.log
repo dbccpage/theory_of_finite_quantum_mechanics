@@ -1,0 +1,40 @@
+
+running 7 tests
+test mutant_47::tests::validate_rejects_empty ... ok
+test mutant_47::tests::validate_ok ... ok
+test mutant_47::parameter_challenge::constructors_preserve_distinct_supplied_parameters ... FAILED
+test mutant_47::tests::validate_rejects_missing_functors ... ok
+test mutant_47::tests::with_components_ok ... FAILED
+test mutant_47::tests::rejects_empty_component_tag ... FAILED
+test mutant_47::parameter_challenge::independent_schema_cases_and_first_error ... ok
+
+failures:
+
+---- mutant_47::parameter_challenge::constructors_preserve_distinct_supplied_parameters stdout ----
+
+thread 'mutant_47::parameter_challenge::constructors_preserve_distinct_supplied_parameters' (23176) panicked at metadata_challenge_2\mutant_47.rs:129:253:
+assertion `left == right` failed
+  left: []
+ right: [("A", "f"), ("B", "g")]
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- mutant_47::tests::with_components_ok stdout ----
+
+thread 'mutant_47::tests::with_components_ok' (25768) panicked at metadata_challenge_2\mutant_47.rs:96:9:
+assertion `left == right` failed
+  left: 0
+ right: 1
+
+---- mutant_47::tests::rejects_empty_component_tag stdout ----
+
+thread 'mutant_47::tests::rejects_empty_component_tag' (14104) panicked at metadata_challenge_2\mutant_47.rs:104:9:
+assertion failed: n.validate_shell().is_err()
+
+
+failures:
+    mutant_47::parameter_challenge::constructors_preserve_distinct_supplied_parameters
+    mutant_47::tests::rejects_empty_component_tag
+    mutant_47::tests::with_components_ok
+
+test result: FAILED. 4 passed; 3 failed; 0 ignored; 0 measured; 340 filtered out; finished in 0.00s
+

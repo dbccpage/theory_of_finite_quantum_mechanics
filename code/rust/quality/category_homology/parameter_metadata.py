@@ -7,6 +7,8 @@ import json
 
 
 def challenge(record):
+    new_check = record.get("new_label_check",
+        'assert_eq!(TYPE::new("label\\0\\u{03b1}").label,"label\\0\\u{03b1}");')
     cases = []
     required = record["required_fields"]
     for values, parameter_error in record["parameter_cases"]:
@@ -44,11 +46,11 @@ def challenge(record):
         }
     }
     #[test] fn constructors_preserve_distinct_supplied_parameters() {
-        assert_eq!(TYPE::new("label\0\u{03b1}").label,"label\0\u{03b1}");
+NEW_LABEL_CHECK
 CONSTRUCTORS
     }
 }
-'''.replace("CASES", data).replace("TYPE",record["type"]).replace("CONSTRUCTORS",record["constructor_checks"])
+'''.replace("CASES", data).replace("NEW_LABEL_CHECK",new_check).replace("TYPE",record["type"]).replace("CONSTRUCTORS",record["constructor_checks"])
 
 
 def variants(record, source):

@@ -1,0 +1,23 @@
+
+running 4 tests
+test mutant_53::parameter_challenge::constructors_preserve_distinct_supplied_parameters ... FAILED
+test mutant_53::tests::validate_ok ... ok
+test mutant_53::tests::validate_rejects_empty ... ok
+test mutant_53::parameter_challenge::independent_schema_cases_and_first_error ... ok
+
+failures:
+
+---- mutant_53::parameter_challenge::constructors_preserve_distinct_supplied_parameters stdout ----
+
+thread 'mutant_53::parameter_challenge::constructors_preserve_distinct_supplied_parameters' (31348) panicked at metadata_challenge_0\mutant_53.rs:102:1:
+assertion `left == right` failed
+  left: ""
+ right: "label\0α"
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    mutant_53::parameter_challenge::constructors_preserve_distinct_supplied_parameters
+
+test result: FAILED. 3 passed; 1 failed; 0 ignored; 0 measured; 239 filtered out; finished in 0.00s
+
