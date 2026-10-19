@@ -18,7 +18,7 @@ from run_audit import ROOT, digest, execute, write_json
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model",choices=("rank","category","metadata","degree","counter","parameters","finite-set","literal-reversal","shape-inventory","root-records","homology-protocols","degree-repair","two-step-complex","simplicial-closure","simplicial-boundary","simplicial-homology","scalar-admission","carrier-dimensions","vector-maps","graph-incidence","validation-inventory","arrow-effects","finite-builder","em-samples","lawvere-inventory","higher-functor-inventory","finite-functor","functor-operations","finite-naturality","natural-composition","joint-carrier","finite-simulation","finite-independence","finite-trace","finite-dagger","finite-groupoid","cauchy-inventory","tagged-coend","condensation-metadata","root-catalog","finite-profunctor-inventory","finite-continuation","finite-moore","partial-structure","finite-path","family-registry","functional-dependencies","functional-classification"),default="rank")
+    parser.add_argument("--model",choices=("rank","category","metadata","degree","counter","parameters","finite-set","literal-reversal","shape-inventory","root-records","homology-protocols","degree-repair","two-step-complex","simplicial-closure","simplicial-boundary","simplicial-homology","scalar-admission","carrier-dimensions","vector-maps","graph-incidence","validation-inventory","arrow-effects","finite-builder","em-samples","lawvere-inventory","higher-functor-inventory","finite-functor","functor-operations","finite-naturality","natural-composition","joint-carrier","finite-simulation","finite-independence","finite-trace","finite-dagger","finite-groupoid","cauchy-inventory","tagged-coend","condensation-metadata","root-catalog","finite-profunctor-inventory","finite-continuation","finite-moore","partial-structure","finite-path","family-registry","functional-dependencies","functional-classification","finite-relational"),default="rank")
     parser.add_argument("--memory-mb", type=int, default=1024,
         help="Explicit Lean memory limit, from 256 to 2048 MiB; default remains 1024.")
     args = parser.parse_args()
@@ -46,6 +46,10 @@ def main():
         proof_name, import_name, namespace = "DegreeWindow", "Data/Int/Basic", "TFQM.DegreeWindow."
         declarations = ("ordered_span_fits_u32", "same_endpoint_zero", "inverted_span_negative")
         scope = "Exact i32 endpoint difference bounds, zero span and inverted-window refusal premise; no category-law claim."
+    elif model == "finite-relational":
+        proof_name, import_name, namespace = "FiniteRelational", "Data/Set/Lattice", "TFQM.FiniteRelational."
+        declarations = ("equality_bisim", "flip_bisim", "compose_bisim", "contains", "greatest_refl", "greatest_symm", "greatest_trans", "greatest_bisim", "greatest_reports", "bounded_kernel", "bounded_fibers", "factor_spec", "factor_unique", "coverage_iff", "reach_trans", "reach_least", "le_refl", "le_trans", "scc_refl", "scc_symm", "scc_trans", "representative_invariant", "strict_irreflexive", "strict_trans", "distinct_components_strict")
+        scope = "Greatest strong report bisimulation,bounded fibers/factors,behavior class coverage,positive reachability and SCC strict order;finite partition/W arshall/source refinement separate."
     elif model == "functional-classification":
         proof_name, import_name, namespace = "FunctionalClassification", "Data/List/Basic", "TFQM.FunctionalClassification."
         declarations = ("factor_spec", "factor_iff", "injective_fibers", "linked_stable", "functional_necessary", "recognized_injective_iff", "empty_word", "injective_minimal", "inactive_run", "inactive_future", "inactive_minimal", "inactive_bijective", "retention_injective_necessity", "retention_inactive_necessity", "singleton_injective", "singleton_no_tolerance", "singleton_inactive", "singleton_minimal", "twenty_signatures", "implication_countermodel_iff")
