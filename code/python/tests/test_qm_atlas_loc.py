@@ -3,6 +3,8 @@ from __future__ import annotations
 
 from pathlib import Path
 import sys
+import subprocess
+import pytest
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 if str(REPO_ROOT / "code" / "python") not in sys.path:
@@ -24,6 +26,21 @@ from src.qm.textbook_problems import (  # noqa: E402
 )
 from install_qm_atlas_hook import install_pre_commit_hook  # noqa: E402
 from verify_qm_atlas_loc import verify_qm_atlas_loc  # noqa: E402
+
+
+@pytest.fixture(autouse=True)
+def isolate_git_configuration(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    # Hooks export repository-local Git variables. Without clearing them, a
+    # fixture's git-init/commit may target the real repository instead.
+    names = subprocess.check_output(
+        ["git", "rev-parse", "--local-env-vars"], cwd=REPO_ROOT, text=True,
+    ).splitlines()
+    for name in names:
+        monkeypatch.delenv(name, raising=False)
+    config = tmp_path / "empty_git_config"
+    config.write_bytes(b"")
+    monkeypatch.setenv("GIT_CONFIG_GLOBAL", str(config))
+    monkeypatch.setenv("GIT_CONFIG_NOSYSTEM", "1")
 
 
 def test_textbook_problems_q58_to_q65_exact_invariants() -> None:
@@ -102,10 +119,49 @@ def test_qm_atlas_all_65_questions_and_loc_verifier() -> None:
     assert loc_report["forbidden_hits"] == []
 
 
-def test_qm_atlas_pre_commit_hook_installed() -> None:
-    hook_path = install_pre_commit_hook(REPO_ROOT)
+def test_qm_atlas_pre_commit_hook_installed(tmp_path: Path) -> None:
+    repo = tmp_path / "repo"
+    subprocess.run(["git", "init", "--quiet", str(repo)], check=True)
+    hook_path = install_pre_commit_hook(repo)
     assert hook_path.is_file()
     hook_text = hook_path.read_text(encoding="utf-8")
     assert "scripts/verify_qm_atlas_loc.py" in hook_text
     assert "code/python/tests/test_qm_atlas_loc.py" in hook_text
 
+
+
+def test_qm_atlas_hook_resolves_linked_worktree(tmp_path: Path) -> None:
+    repo = tmp_path / "repo"
+    worktree = tmp_path / "worktree"
+    empty_hooks = tmp_path / "empty_hooks"
+    empty_hooks.mkdir()
+    subprocess.run(["git", "init", "--quiet", str(repo)], check=True)
+    subprocess.run([
+        "git", "-C", str(repo), "-c", "user.name=Atlas fixture", "-c",
+        "user.email=atlas-fixture@example.invalid", "-c", "core.hooksPath=" + str(empty_hooks),
+        "commit", "--allow-empty", "-m", "Fixture for linked worktree path resolution",
+    ], check=True, capture_output=True)
+    subprocess.run(["git", "-C", str(repo), "worktree", "add", "--detach", str(worktree)],
+                   check=True, capture_output=True)
+    assert (worktree / ".git").is_file()
+    hook = install_pre_commit_hook(worktree)
+    expected = subprocess.check_output(
+        ["git", "rev-parse", "--git-path", "hooks/pre-commit"], cwd=worktree, text=True,
+    ).strip()
+    expected_path = Path(expected)
+    if not expected_path.is_absolute():
+        expected_path = worktree / expected_path
+    assert hook == expected_path.resolve()
+    assert install_pre_commit_hook(worktree) == hook
+    assert "scripts/verify_qm_atlas_loc.py" in hook.read_text(encoding="utf-8")
+
+
+def test_qm_atlas_hook_preserves_unmanaged_hook(tmp_path: Path) -> None:
+    repo = tmp_path / "repo"
+    subprocess.run(["git", "init", "--quiet", str(repo)], check=True)
+    hook = repo / ".git" / "hooks" / "pre-commit"
+    original = b"#!/bin/sh\necho user-owned-hook\n"
+    hook.write_bytes(original)
+    with pytest.raises(ValueError, match="unmanaged"):
+        install_pre_commit_hook(repo)
+    assert hook.read_bytes() == original

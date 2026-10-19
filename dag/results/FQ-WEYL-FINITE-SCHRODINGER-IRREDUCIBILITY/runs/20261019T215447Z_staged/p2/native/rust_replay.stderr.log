@@ -1,0 +1,17 @@
+   Compiling tfqm_finite_probability v0.1.0 (C:\Users\a343o\.codex\worktrees\bell-joint-extension\theory_of_finite_quantum_mechanics\code\rust\src\finite_probability)
+error: this file contains an unclosed delimiter
+   --> src\finite_probability\genesis_impl_exact.rs:100:3
+    |
+ 48 | fn normal(which:usize)->Vec<Q>{
+    |                               - unclosed delimiter
+ 49 |  let choices=[(3,vec![(0,1),(1,2),(2,0)]),(3,vec![(0,1),(1,2)]),(4,vec![(0,1),(1,2),(2,0)]),(4,vec![(0,1),(1,2),(2,3),(3,0),(0,2)])...
+ 50 |  let mut normals=Vec::new();let mut sizes=Vec::new();for s in 0..1_i64<<e.len(){let mut gauge=vec![None;nv];for &r in &roots{gauge[...
+    |                                                                                - this delimiter might not be properly closed...
+ 51 |  let forms:BTreeSet<_>=normals.iter().copied().collect();let beta=e.len()+roots.len()-nv;let mut out=vec![nv as i64,e.len()as i64,r...
+ 52 | }
+    | - ...as it matches this but it has different indentation
+...
+100 | }
+    |  ^
+
+error: could not compile `tfqm_finite_probability` (lib) due to 1 previous error

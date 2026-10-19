@@ -1,0 +1,902 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: PG-GEN-SUPPLY-ERASURE
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: 'Genesis supply erasure: removing supply events from a history leaves the replayed
+    regime unchanged (SupplyErasure.replayE_filter_supply).'
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: []
+  source_bottleneck: Scoped to Genesis supply events on the core regime projection; full history provenance
+    tags remain distinct from core regime equality.
+  source_refs:
+  - external:prompts/fable_theorems_2026-10-17/03_genesis_supply_erasure.md
+  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Erasure.lean:79-138
+  - omega_engine_education/documentation/001_oegen/primitives/lean4/SupplyErasure.lean
+  - omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml
+  paper_refs:
+  - dag/derivations/02_genesis/tfq_0386_supply_erasure_on_replay.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  historical_paper_refs:
+  - papers/derivations/02_genesis/tfq_0386_supply_erasure_on_replay.md
+  paper_relocations:
+  - from: papers/derivations/02_genesis/tfq_0386_supply_erasure_on_replay.md
+    to: dag/derivations/02_genesis/tfq_0386_supply_erasure_on_replay.md
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/02_genesis/tfq_0386_supply_erasure_on_replay.md
+    sha256: b2940e9239538d0c221c70179e1002dd7b9f6f9b7b10faa563183b47c6d74007
+source_provenance:
+  repository: this_repository
+  commit: 642f5b95a116da6df805adbd745a4826c6739c2b
+  path: dag/prompts/genesis_pg_gen_supply_erasure_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: structure
+  name: Regime
+  line: 30
+  signature_excerpt: structure Regime
+  source: omega_engine_education/documentation/001_oegen/primitives/lean4/SupplyErasure.lean
+  repository: the_symbol_game
+  source_sha256: cdc8d4cea4febffc6c3cb9be455c0b51c476383dc537577199021328d5ef0682
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: Inst
+  line: 25
+  signature_excerpt: abbrev Inst
+  source: omega_engine_education/documentation/001_oegen/primitives/lean4/SupplyErasure.lean
+  repository: the_symbol_game
+  source_sha256: cdc8d4cea4febffc6c3cb9be455c0b51c476383dc537577199021328d5ef0682
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: replayE
+  line: 67
+  signature_excerpt: 'def replayE (h : List Event) (base : Regime) : Option Regime'
+  source: omega_engine_education/documentation/001_oegen/primitives/lean4/SupplyErasure.lean
+  repository: the_symbol_game
+  source_sha256: cdc8d4cea4febffc6c3cb9be455c0b51c476383dc537577199021328d5ef0682
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: Event
+  line: 38
+  signature_excerpt: inductive Event
+  source: omega_engine_education/documentation/001_oegen/primitives/lean4/SupplyErasure.lean
+  repository: the_symbol_game
+  source_sha256: cdc8d4cea4febffc6c3cb9be455c0b51c476383dc537577199021328d5ef0682
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: stepE
+  line: 47
+  signature_excerpt: 'def stepE (r : Regime) : Event → Option Regime'
+  source: omega_engine_education/documentation/001_oegen/primitives/lean4/SupplyErasure.lean
+  repository: the_symbol_game
+  source_sha256: cdc8d4cea4febffc6c3cb9be455c0b51c476383dc537577199021328d5ef0682
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: insertNew
+  line: 27
+  signature_excerpt: 'def insertNew {α : Type} [DecidableEq α] (l : List α) (a : α) : List α'
+  source: omega_engine_education/documentation/001_oegen/primitives/lean4/SupplyErasure.lean
+  repository: the_symbol_game
+  source_sha256: cdc8d4cea4febffc6c3cb9be455c0b51c476383dc537577199021328d5ef0682
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: notSupply
+  line: 84
+  signature_excerpt: 'def notSupply (e : Event) : Bool'
+  source: omega_engine_education/documentation/001_oegen/primitives/lean4/SupplyErasure.lean
+  repository: the_symbol_game
+  source_sha256: cdc8d4cea4febffc6c3cb9be455c0b51c476383dc537577199021328d5ef0682
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: isSupply
+  line: 79
+  signature_excerpt: 'def isSupply : Event → Bool'
+  source: omega_engine_education/documentation/001_oegen/primitives/lean4/SupplyErasure.lean
+  repository: the_symbol_game
+  source_sha256: cdc8d4cea4febffc6c3cb9be455c0b51c476383dc537577199021328d5ef0682
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: replayE_filter_supply
+  line: 115
+  signature_excerpt: "theorem replayE_filter_supply (h : List Event) (base : Regime) :\n    replayE (h.filter\
+    \ notSupply) base = replayE h base"
+  source: omega_engine_education/documentation/001_oegen/primitives/lean4/SupplyErasure.lean
+  repository: the_symbol_game
+  source_sha256: cdc8d4cea4febffc6c3cb9be455c0b51c476383dc537577199021328d5ef0682
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: replayE_supply_only
+  line: 133
+  signature_excerpt: "theorem replayE_supply_only (ts : List Nat) (base : Regime) :\n    replayE (ts.map\
+    \ Event.supply) base = some base"
+  source: omega_engine_education/documentation/001_oegen/primitives/lean4/SupplyErasure.lean
+  repository: the_symbol_game
+  source_sha256: cdc8d4cea4febffc6c3cb9be455c0b51c476383dc537577199021328d5ef0682
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: omega_engine_education/documentation/001_oegen/primitives/lean4/SupplyErasure.lean::GenesisPrimitives.SupplyErasure.replayE_filter_supply
+  availability: external
+  symbol: GenesisPrimitives.SupplyErasure.replayE_filter_supply
+  path: omega_engine_education/documentation/001_oegen/primitives/lean4/SupplyErasure.lean
+  repository: the_symbol_game
+  sha256: cdc8d4cea4febffc6c3cb9be455c0b51c476383dc537577199021328d5ef0682
+  declaration_status: declaration_found_not_proof_checked
+  line: 115
+  role: source_lead_only
+- original_ref: omega_engine_education/documentation/001_oegen/primitives/lean4/SupplyErasure.lean::GenesisPrimitives.SupplyErasure.replayE_supply_only
+  availability: external
+  symbol: GenesisPrimitives.SupplyErasure.replayE_supply_only
+  path: omega_engine_education/documentation/001_oegen/primitives/lean4/SupplyErasure.lean
+  repository: the_symbol_game
+  sha256: cdc8d4cea4febffc6c3cb9be455c0b51c476383dc537577199021328d5ef0682
+  declaration_status: declaration_found_not_proof_checked
+  line: 133
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_genesis_supply_erasure_witness
+  availability: external
+  symbol: verify_genesis_supply_erasure_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 91
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness
+  availability: external
+  symbol: verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 1280
+  role: source_lead_only
+presentation:
+  status: scoped_stage_result_reviewed
+  scope: Full guarded replay states agree after supply erasure on the retained histories; generic erasure/filterMap
+    and supply-prefix identities are kernel checked.
+  colours:
+  - id: AdmissionHistoryWithOriginalPositions
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: BoundedHistoryWithSupplies
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: ErasureEqualityWitness
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: GuardedFinalRegimeAndFailure
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  generators:
+  - id: remove_supply_events
+    ordered_inputs:
+    - BoundedHistoryWithSupplies
+    output: AdmissionHistoryWithOriginalPositions
+    arity: 1
+    carrier: Declared BoundedHistoryWithSupplies
+    coefficient_ring: Exact rational/Gaussian/cubic-cyclotomic coordinates, finite sets and bounded natural
+      event fields
+    hypotheses:
+    - Supplies are presentation only and original event indices are carried through filtering.
+    semantic_predicate: Filter presentation-only supplies.
+    source_pins:
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/inputs/this_repository/dag/prompts/genesis_pg_gen_supply_erasure_proved_lean.yaml
+      sha256: c03ba6ad01a1284f1099f6274abd6aa7d837928280c3dbbaf78b1ca85781dbf5
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/inputs/this_repository/dag/operads/pg_gen_supply_erasure.yaml
+      sha256: ba127a1629605cc8e5b58ccad30a047f5d4f7c3fa2f42405bbe9e6b88e943002
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_education/documentation/001_oegen/primitives/lean4/SupplyErasure.lean
+      sha256: cdc8d4cea4febffc6c3cb9be455c0b51c476383dc537577199021328d5ef0682
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/inputs/this_repository/dag/derivations/02_genesis/tfq_0386_supply_erasure_on_replay.md
+      sha256: 177ddbe518707e496190d09e40cacef558db69494982647b88dbd354fb41d65d
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p0/operation_sources/code/python/src/qm/genesis_impl_exact.py
+      sha256: c089e168b2fdf95035234b3c790033a7c26faeeb560caba3702316b67a83de08
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p0/operation_sources/code/python/tests/test_genesis_impl_exact.py
+      sha256: 83bb286035e4bf51798b48bfcbb41e42e367a1735439733ddc2df93874bd4bba
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p0/operation_sources/code/rust/src/finite_probability/genesis_impl_exact.rs
+      sha256: 69ec2e18c3114e5087881dc7dc58f5ccd27af0dc64d8b673afd7a4c59646405c
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/genesis_impl_exact_replay.rs
+      sha256: 6f62d62b19601a4c57bab60bc683a8f65e7a38ecb47cb8291746c6e44fedfe43
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/genesis_impl_checker.py
+      sha256: aaee07218bf3ce39df57837cecb0df3da420cec6311b0c8389bec96dba42f286
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p0/operation_sources/dag/results/batches/20261019T215447Z_prompts_92_111/tools/prepare.py
+      sha256: 7aacd1e0ac730a596635ea0c1faac5113bb58cfac79f80cbc3d92636a75cb5b8
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p0/operation_sources/dag/results/batches/20261019T215447Z_prompts_92_111/tools/specs.py
+      sha256: c8db59e0e612c454d9ec6a012326d016a0a7f74c09642531d4f5a8f5df2ce76b
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/check_candidate.py
+      sha256: dda7d341b3147994d04df15fc91fbb79a2bfc04f638819ca4c13d48eb9a32925
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/format_certificate.py
+      sha256: 0cd6fb9e85ba5192443e91fefbfb5561a8b5a870f796dbf2592efcfc73fe61cc
+    evidence_status: Reviewed exact finite native controls. Kernel signatures are separately scoped. Full
+      refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p2/host_check.json
+  - id: replay_remaining_admissions
+    ordered_inputs:
+    - AdmissionHistoryWithOriginalPositions
+    output: GuardedFinalRegimeAndFailure
+    arity: 1
+    carrier: Declared AdmissionHistoryWithOriginalPositions
+    coefficient_ring: Exact rational/Gaussian/cubic-cyclotomic coordinates, finite sets and bounded natural
+      event fields
+    hypotheses:
+    - Supplies are presentation only and original event indices are carried through filtering.
+    semantic_predicate: Replay the same admitted events and guards.
+    source_pins:
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/inputs/this_repository/dag/prompts/genesis_pg_gen_supply_erasure_proved_lean.yaml
+      sha256: c03ba6ad01a1284f1099f6274abd6aa7d837928280c3dbbaf78b1ca85781dbf5
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/inputs/this_repository/dag/operads/pg_gen_supply_erasure.yaml
+      sha256: ba127a1629605cc8e5b58ccad30a047f5d4f7c3fa2f42405bbe9e6b88e943002
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_education/documentation/001_oegen/primitives/lean4/SupplyErasure.lean
+      sha256: cdc8d4cea4febffc6c3cb9be455c0b51c476383dc537577199021328d5ef0682
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/inputs/this_repository/dag/derivations/02_genesis/tfq_0386_supply_erasure_on_replay.md
+      sha256: 177ddbe518707e496190d09e40cacef558db69494982647b88dbd354fb41d65d
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p0/operation_sources/code/python/src/qm/genesis_impl_exact.py
+      sha256: c089e168b2fdf95035234b3c790033a7c26faeeb560caba3702316b67a83de08
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p0/operation_sources/code/python/tests/test_genesis_impl_exact.py
+      sha256: 83bb286035e4bf51798b48bfcbb41e42e367a1735439733ddc2df93874bd4bba
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p0/operation_sources/code/rust/src/finite_probability/genesis_impl_exact.rs
+      sha256: 69ec2e18c3114e5087881dc7dc58f5ccd27af0dc64d8b673afd7a4c59646405c
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/genesis_impl_exact_replay.rs
+      sha256: 6f62d62b19601a4c57bab60bc683a8f65e7a38ecb47cb8291746c6e44fedfe43
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/genesis_impl_checker.py
+      sha256: aaee07218bf3ce39df57837cecb0df3da420cec6311b0c8389bec96dba42f286
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p0/operation_sources/dag/results/batches/20261019T215447Z_prompts_92_111/tools/prepare.py
+      sha256: 7aacd1e0ac730a596635ea0c1faac5113bb58cfac79f80cbc3d92636a75cb5b8
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p0/operation_sources/dag/results/batches/20261019T215447Z_prompts_92_111/tools/specs.py
+      sha256: c8db59e0e612c454d9ec6a012326d016a0a7f74c09642531d4f5a8f5df2ce76b
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/check_candidate.py
+      sha256: dda7d341b3147994d04df15fc91fbb79a2bfc04f638819ca4c13d48eb9a32925
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/format_certificate.py
+      sha256: 0cd6fb9e85ba5192443e91fefbfb5561a8b5a870f796dbf2592efcfc73fe61cc
+    evidence_status: Reviewed exact finite native controls. Kernel signatures are separately scoped. Full
+      refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p2/host_check.json
+  - id: compare_final_regimes
+    ordered_inputs:
+    - GuardedFinalRegimeAndFailure
+    output: ErasureEqualityWitness
+    arity: 1
+    carrier: Declared GuardedFinalRegimeAndFailure
+    coefficient_ring: Exact rational/Gaussian/cubic-cyclotomic coordinates, finite sets and bounded natural
+      event fields
+    hypotheses:
+    - Supplies are presentation only and original event indices are carried through filtering.
+    semantic_predicate: Compare the complete final state and original failure location.
+    source_pins:
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/inputs/this_repository/dag/prompts/genesis_pg_gen_supply_erasure_proved_lean.yaml
+      sha256: c03ba6ad01a1284f1099f6274abd6aa7d837928280c3dbbaf78b1ca85781dbf5
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/inputs/this_repository/dag/operads/pg_gen_supply_erasure.yaml
+      sha256: ba127a1629605cc8e5b58ccad30a047f5d4f7c3fa2f42405bbe9e6b88e943002
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_education/documentation/001_oegen/primitives/lean4/SupplyErasure.lean
+      sha256: cdc8d4cea4febffc6c3cb9be455c0b51c476383dc537577199021328d5ef0682
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/inputs/this_repository/dag/derivations/02_genesis/tfq_0386_supply_erasure_on_replay.md
+      sha256: 177ddbe518707e496190d09e40cacef558db69494982647b88dbd354fb41d65d
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p0/operation_sources/code/python/src/qm/genesis_impl_exact.py
+      sha256: c089e168b2fdf95035234b3c790033a7c26faeeb560caba3702316b67a83de08
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p0/operation_sources/code/python/tests/test_genesis_impl_exact.py
+      sha256: 83bb286035e4bf51798b48bfcbb41e42e367a1735439733ddc2df93874bd4bba
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p0/operation_sources/code/rust/src/finite_probability/genesis_impl_exact.rs
+      sha256: 69ec2e18c3114e5087881dc7dc58f5ccd27af0dc64d8b673afd7a4c59646405c
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/genesis_impl_exact_replay.rs
+      sha256: 6f62d62b19601a4c57bab60bc683a8f65e7a38ecb47cb8291746c6e44fedfe43
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/genesis_impl_checker.py
+      sha256: aaee07218bf3ce39df57837cecb0df3da420cec6311b0c8389bec96dba42f286
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p0/operation_sources/dag/results/batches/20261019T215447Z_prompts_92_111/tools/prepare.py
+      sha256: 7aacd1e0ac730a596635ea0c1faac5113bb58cfac79f80cbc3d92636a75cb5b8
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p0/operation_sources/dag/results/batches/20261019T215447Z_prompts_92_111/tools/specs.py
+      sha256: c8db59e0e612c454d9ec6a012326d016a0a7f74c09642531d4f5a8f5df2ce76b
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/check_candidate.py
+      sha256: dda7d341b3147994d04df15fc91fbb79a2bfc04f638819ca4c13d48eb9a32925
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/format_certificate.py
+      sha256: 0cd6fb9e85ba5192443e91fefbfb5561a8b5a870f796dbf2592efcfc73fe61cc
+    evidence_status: Reviewed exact finite native controls. Kernel signatures are separately scoped. Full
+      refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p2/host_check.json
+  relations:
+  - id: erasure_relation_0
+    equation_or_predicate: Deleting no-op supplies preserves replay; an actual failed admission remains
+      a failure.
+    typing_conditions: Literal declared operation domains; Prove the partial Option/failure and five-field
+      Regime representation bridge for every source history. Erasure does not erase guard failures, actual
+      admissions or external custody requirements.
+    evidence_status: Accepted actual P2 and P4 controls; only the literal named Lean signatures are kernel
+      theorems. Native array-to-signature and physical transports remain as stated.
+    scope: Full guarded replay states agree after supply erasure on the retained histories; generic erasure/filterMap
+      and supply-prefix identities are kernel checked.
+    source_pins:
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/inputs/this_repository/dag/prompts/genesis_pg_gen_supply_erasure_proved_lean.yaml
+      sha256: c03ba6ad01a1284f1099f6274abd6aa7d837928280c3dbbaf78b1ca85781dbf5
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/inputs/this_repository/dag/operads/pg_gen_supply_erasure.yaml
+      sha256: ba127a1629605cc8e5b58ccad30a047f5d4f7c3fa2f42405bbe9e6b88e943002
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_education/documentation/001_oegen/primitives/lean4/SupplyErasure.lean
+      sha256: cdc8d4cea4febffc6c3cb9be455c0b51c476383dc537577199021328d5ef0682
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/inputs/this_repository/dag/derivations/02_genesis/tfq_0386_supply_erasure_on_replay.md
+      sha256: 177ddbe518707e496190d09e40cacef558db69494982647b88dbd354fb41d65d
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p0/operation_sources/code/python/src/qm/genesis_impl_exact.py
+      sha256: c089e168b2fdf95035234b3c790033a7c26faeeb560caba3702316b67a83de08
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p0/operation_sources/code/python/tests/test_genesis_impl_exact.py
+      sha256: 83bb286035e4bf51798b48bfcbb41e42e367a1735439733ddc2df93874bd4bba
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p0/operation_sources/code/rust/src/finite_probability/genesis_impl_exact.rs
+      sha256: 69ec2e18c3114e5087881dc7dc58f5ccd27af0dc64d8b673afd7a4c59646405c
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/genesis_impl_exact_replay.rs
+      sha256: 6f62d62b19601a4c57bab60bc683a8f65e7a38ecb47cb8291746c6e44fedfe43
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/genesis_impl_checker.py
+      sha256: aaee07218bf3ce39df57837cecb0df3da420cec6311b0c8389bec96dba42f286
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p0/operation_sources/dag/results/batches/20261019T215447Z_prompts_92_111/tools/prepare.py
+      sha256: 7aacd1e0ac730a596635ea0c1faac5113bb58cfac79f80cbc3d92636a75cb5b8
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p0/operation_sources/dag/results/batches/20261019T215447Z_prompts_92_111/tools/specs.py
+      sha256: c8db59e0e612c454d9ec6a012326d016a0a7f74c09642531d4f5a8f5df2ce76b
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/check_candidate.py
+      sha256: dda7d341b3147994d04df15fc91fbb79a2bfc04f638819ca4c13d48eb9a32925
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/format_certificate.py
+      sha256: 0cd6fb9e85ba5192443e91fefbfb5561a8b5a870f796dbf2592efcfc73fe61cc
+    latest_host_check: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p2/host_check.json
+    historical_evidence_annotation: P1 candidate; independent native and named kernel gates remain required.
+    named_Lean_scope:
+    - QuantumMechanics.PromptGenesisImplementation.erasure_filter
+    - QuantumMechanics.PromptGenesisImplementation.erasure_supply_prefix
+  compositions: &id001
+  - outer_operation: replay_remaining_admissions
+    input_slot: 0
+    inner_operation: remove_supply_events
+    colour_match: AdmissionHistoryWithOriginalPositions -> AdmissionHistoryWithOriginalPositions
+    hypothesis_match: Same declared coordinates, coefficients and context; all operation hypotheses must
+      be carried into the graft. Fixed matrices, signs, gauge unit, original comparison table, row order,
+      sector and pairing (where relevant) must agree across both operations. Formal universal refined-carrier
+      closure is unpaid.
+    licensing_relations:
+    - erasure_relation_0
+    evidence_status: Semantic substitution supported by the retained finite operation traces and separately
+      scoped named kernel statements. A complete refined-carrier operad is not asserted.
+  - outer_operation: compare_final_regimes
+    input_slot: 0
+    inner_operation: replay_remaining_admissions
+    colour_match: GuardedFinalRegimeAndFailure -> GuardedFinalRegimeAndFailure
+    hypothesis_match: Same declared coordinates, coefficients and context; all operation hypotheses must
+      be carried into the graft. Fixed matrices, signs, gauge unit, original comparison table, row order,
+      sector and pairing (where relevant) must agree across both operations. Formal universal refined-carrier
+      closure is unpaid.
+    licensing_relations:
+    - erasure_relation_0
+    evidence_status: Semantic substitution supported by the retained finite operation traces and separately
+      scoped named kernel statements. A complete refined-carrier operad is not asserted.
+  identities:
+  - colour: AdmissionHistoryWithOriginalPositions
+    proposed_operation: id_AdmissionHistoryWithOriginalPositions
+    signature: AdmissionHistoryWithOriginalPositions -> AdmissionHistoryWithOriginalPositions
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: BoundedHistoryWithSupplies
+    proposed_operation: id_BoundedHistoryWithSupplies
+    signature: BoundedHistoryWithSupplies -> BoundedHistoryWithSupplies
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: ErasureEqualityWitness
+    proposed_operation: id_ErasureEqualityWitness
+    signature: ErasureEqualityWitness -> ErasureEqualityWitness
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: GuardedFinalRegimeAndFailure
+    proposed_operation: id_GuardedFinalRegimeAndFailure
+    signature: GuardedFinalRegimeAndFailure -> GuardedFinalRegimeAndFailure
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  symmetric_actions: []
+  coherence_obligations: &id002
+  - Prove the partial Option/failure and five-field Regime representation bridge for every source history.
+    Erasure does not erase guard failures, actual admissions or external custody requirements.
+  - Prove the full refined-carrier operad identity, substitution, symmetry and coherence laws; mere colour
+    matches do not instantiate that formal structure.
+  - A source provider PASS/hash, route index, census label or Boolean flag is not mathematical evidence
+    for the original target. No historical provider receipt is newly authenticated.
+  failed_compositions:
+  - proposal: Promote the selected step to the unrestricted original target
+    reason: Prove the partial Option/failure and five-field Regime representation bridge for every source
+      history. Erasure does not erase guard failures, actual admissions or external custody requirements.
+  counterexamples:
+  - id: retained_actual_domain_controls
+    records:
+    - input:
+      - '0'
+      - '99'
+      - '0'
+      - '1'
+      - '0'
+      - '0'
+      - '1'
+      - '0'
+      - '0'
+      - '2'
+      - '1'
+      - '0'
+      - '3'
+      - '0'
+      - '1'
+      - '3'
+      - '0'
+      - '1'
+      - '4'
+      - '0'
+      - '0'
+      - '5'
+      - '0'
+      - '1'
+      - '6'
+      - '0'
+      - '0'
+      - '6'
+      - '0'
+      - '0'
+      output:
+      - '30'
+      - '13'
+      - '0'
+      - '0'
+      - '1'
+      - '1'
+      - '0'
+      - '1'
+      - '2'
+      - '0'
+      - '1'
+      - '3'
+      - '0'
+      - '1'
+      - '4'
+      - '0'
+      - '1'
+      - '4'
+      - '0'
+      - '1'
+      - '5'
+      - '0'
+      - '1'
+      - '6'
+      - '0'
+      - '1'
+      - '6'
+      - '1'
+      - '1'
+      - '6'
+      - '0'
+      - '1'
+      - '-1'
+      - '2'
+      - '1'
+      - '1'
+      - '1'
+      - '1'
+      - '0'
+      - '1'
+      - '0'
+      - '1'
+      - '0'
+      - '0'
+      - '1'
+      - '27'
+      - '13'
+      - '1'
+      - '0'
+      - '1'
+      - '2'
+      - '0'
+      - '1'
+      - '3'
+      - '0'
+      - '1'
+      - '4'
+      - '0'
+      - '1'
+      - '4'
+      - '0'
+      - '1'
+      - '5'
+      - '0'
+      - '1'
+      - '6'
+      - '0'
+      - '1'
+      - '6'
+      - '1'
+      - '1'
+      - '6'
+      - '0'
+      - '1'
+      - '-1'
+      - '2'
+      - '1'
+      - '1'
+      - '1'
+      - '1'
+      - '0'
+      - '1'
+      - '0'
+      - '1'
+      - '0'
+      - '0'
+      - '1'
+    - input:
+      - '0'
+      - '1'
+      - '0'
+      - '0'
+      - '2'
+      - '0'
+      output:
+      - '6'
+      - '7'
+      - '0'
+      - '0'
+      - '1'
+      - '0'
+      - '0'
+      - '1'
+      - '-1'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '7'
+      - '-1'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+    - input:
+      - '0'
+      - '9'
+      - '0'
+      - '3'
+      - '0'
+      - '0'
+      output:
+      - '6'
+      - '7'
+      - '0'
+      - '0'
+      - '1'
+      - '0'
+      - '0'
+      - '0'
+      - '1'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '3'
+      - '7'
+      - '0'
+      - '0'
+      - '0'
+      - '1'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+    scope: Computed values, with the source/kernel/native distinctions retained in claim_boundary.
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: FILLED
+    carrier: Literal per-operation finite or admitted scalar carriers
+    coefficient_ring: Exact Z, Q, Gaussian rational pairs and supplied Boolean fields
+    source_pins:
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/inputs/this_repository/dag/prompts/genesis_pg_gen_supply_erasure_proved_lean.yaml
+      sha256: c03ba6ad01a1284f1099f6274abd6aa7d837928280c3dbbaf78b1ca85781dbf5
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/inputs/this_repository/dag/operads/pg_gen_supply_erasure.yaml
+      sha256: ba127a1629605cc8e5b58ccad30a047f5d4f7c3fa2f42405bbe9e6b88e943002
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_education/documentation/001_oegen/primitives/lean4/SupplyErasure.lean
+      sha256: cdc8d4cea4febffc6c3cb9be455c0b51c476383dc537577199021328d5ef0682
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/inputs/this_repository/dag/derivations/02_genesis/tfq_0386_supply_erasure_on_replay.md
+      sha256: 177ddbe518707e496190d09e40cacef558db69494982647b88dbd354fb41d65d
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p0/operation_sources/code/python/src/qm/genesis_impl_exact.py
+      sha256: c089e168b2fdf95035234b3c790033a7c26faeeb560caba3702316b67a83de08
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p0/operation_sources/code/python/tests/test_genesis_impl_exact.py
+      sha256: 83bb286035e4bf51798b48bfcbb41e42e367a1735439733ddc2df93874bd4bba
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p0/operation_sources/code/rust/src/finite_probability/genesis_impl_exact.rs
+      sha256: 69ec2e18c3114e5087881dc7dc58f5ccd27af0dc64d8b673afd7a4c59646405c
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/genesis_impl_exact_replay.rs
+      sha256: 6f62d62b19601a4c57bab60bc683a8f65e7a38ecb47cb8291746c6e44fedfe43
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/genesis_impl_checker.py
+      sha256: aaee07218bf3ce39df57837cecb0df3da420cec6311b0c8389bec96dba42f286
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p0/operation_sources/dag/results/batches/20261019T215447Z_prompts_92_111/tools/prepare.py
+      sha256: 7aacd1e0ac730a596635ea0c1faac5113bb58cfac79f80cbc3d92636a75cb5b8
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p0/operation_sources/dag/results/batches/20261019T215447Z_prompts_92_111/tools/specs.py
+      sha256: c8db59e0e612c454d9ec6a012326d016a0a7f74c09642531d4f5a8f5df2ce76b
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/check_candidate.py
+      sha256: dda7d341b3147994d04df15fc91fbb79a2bfc04f638819ca4c13d48eb9a32925
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/format_certificate.py
+      sha256: 0cd6fb9e85ba5192443e91fefbfb5561a8b5a870f796dbf2592efcfc73fe61cc
+    public_input:
+      kind: erasure
+      cases:
+      - - '0'
+        - '99'
+        - '0'
+        - '1'
+        - '0'
+        - '0'
+        - '1'
+        - '0'
+        - '0'
+        - '2'
+        - '1'
+        - '0'
+        - '3'
+        - '0'
+        - '1'
+        - '3'
+        - '0'
+        - '1'
+        - '4'
+        - '0'
+        - '0'
+        - '5'
+        - '0'
+        - '1'
+        - '6'
+        - '0'
+        - '0'
+        - '6'
+        - '0'
+        - '0'
+      - - '0'
+        - '1'
+        - '0'
+        - '0'
+        - '2'
+        - '0'
+      - - '0'
+        - '9'
+        - '0'
+        - '3'
+        - '0'
+        - '0'
+      scope: Full guarded replay states agree after supply erasure on the retained histories; generic
+        erasure/filterMap and supply-prefix identities are kernel checked.
+      unpaid_target: Prove the partial Option/failure and five-field Regime representation bridge for
+        every source history. Erasure does not erase guard failures, actual admissions or external custody
+        requirements.
+    original_target: 'Genesis supply erasure: removing supply events from a history leaves the replayed
+      regime unchanged (SupplyErasure.replayE_filter_supply).'
+    source_scope_review: SupplyErasure proves supply removal for the source replay. This selected interpreter
+      checks complete guarded final states and failures before and after supply removal, preserving original-history
+      failure indices. Lean separately proves the generic Option-event erasure identity for arbitrary
+      total admission transitions; lifting this to the entire partial source interpreter remains explicit.
+    admitted_assumptions:
+    - Supplies are presentation only and original event indices are carried through filtering.
+    historical_source_assumptions: []
+    work_unit_admitted_hypotheses:
+    - Supplies are presentation only and original event indices are carried through filtering.
+  slot_m2_layer1_forward_morphisms:
+    mining_status: FILLED
+    operations:
+    - catalog_id: remove_supply_events
+      inputs:
+      - BoundedHistoryWithSupplies
+      output: AdmissionHistoryWithOriginalPositions
+      semantic_predicate: Filter presentation-only supplies.
+    - catalog_id: replay_remaining_admissions
+      inputs:
+      - AdmissionHistoryWithOriginalPositions
+      output: GuardedFinalRegimeAndFailure
+      semantic_predicate: Replay the same admitted events and guards.
+    - catalog_id: compare_final_regimes
+      inputs:
+      - GuardedFinalRegimeAndFailure
+      output: ErasureEqualityWitness
+      semantic_predicate: Compare the complete final state and original failure location.
+    composition_plan: *id001
+    tree:
+    - Deleting no-op supplies preserves replay; an actual failed admission remains a failure.
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: FILLED
+    algebraic_relations:
+    - id: erasure_relation_0
+      equation_or_predicate: Deleting no-op supplies preserves replay; an actual failed admission remains
+        a failure.
+      typing_conditions: Literal declared operation domains; Prove the partial Option/failure and five-field
+        Regime representation bridge for every source history. Erasure does not erase guard failures,
+        actual admissions or external custody requirements.
+      evidence_status: P1 candidate; independent native and named kernel gates remain required.
+      scope: Full guarded replay states agree after supply erasure on the retained histories; generic
+        erasure/filterMap and supply-prefix identities are kernel checked.
+      source_pins:
+      - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/inputs/this_repository/dag/prompts/genesis_pg_gen_supply_erasure_proved_lean.yaml
+        sha256: c03ba6ad01a1284f1099f6274abd6aa7d837928280c3dbbaf78b1ca85781dbf5
+      - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/inputs/this_repository/dag/operads/pg_gen_supply_erasure.yaml
+        sha256: ba127a1629605cc8e5b58ccad30a047f5d4f7c3fa2f42405bbe9e6b88e943002
+      - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_education/documentation/001_oegen/primitives/lean4/SupplyErasure.lean
+        sha256: cdc8d4cea4febffc6c3cb9be455c0b51c476383dc537577199021328d5ef0682
+      - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/inputs/this_repository/dag/derivations/02_genesis/tfq_0386_supply_erasure_on_replay.md
+        sha256: 177ddbe518707e496190d09e40cacef558db69494982647b88dbd354fb41d65d
+      - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p0/operation_sources/code/python/src/qm/genesis_impl_exact.py
+        sha256: c089e168b2fdf95035234b3c790033a7c26faeeb560caba3702316b67a83de08
+      - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p0/operation_sources/code/python/tests/test_genesis_impl_exact.py
+        sha256: 83bb286035e4bf51798b48bfcbb41e42e367a1735439733ddc2df93874bd4bba
+      - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p0/operation_sources/code/rust/src/finite_probability/genesis_impl_exact.rs
+        sha256: 69ec2e18c3114e5087881dc7dc58f5ccd27af0dc64d8b673afd7a4c59646405c
+      - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/genesis_impl_exact_replay.rs
+        sha256: 6f62d62b19601a4c57bab60bc683a8f65e7a38ecb47cb8291746c6e44fedfe43
+      - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/genesis_impl_checker.py
+        sha256: aaee07218bf3ce39df57837cecb0df3da420cec6311b0c8389bec96dba42f286
+      - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+        sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+      - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p0/operation_sources/dag/results/batches/20261019T215447Z_prompts_92_111/tools/prepare.py
+        sha256: 7aacd1e0ac730a596635ea0c1faac5113bb58cfac79f80cbc3d92636a75cb5b8
+      - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p0/operation_sources/dag/results/batches/20261019T215447Z_prompts_92_111/tools/specs.py
+        sha256: c8db59e0e612c454d9ec6a012326d016a0a7f74c09642531d4f5a8f5df2ce76b
+      - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/custody.py
+        sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+      - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+        sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+      - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/check_candidate.py
+        sha256: dda7d341b3147994d04df15fc91fbb79a2bfc04f638819ca4c13d48eb9a32925
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/format_certificate.py
+        sha256: 0cd6fb9e85ba5192443e91fefbfb5561a8b5a870f796dbf2592efcfc73fe61cc
+    rejection_predicates:
+    - Independent domain equations and actual matrix/graph/quotient arrays recompute every output.
+    - Exact public input, canonical rational primitive types, complete source pins and exact sealed request
+      bytes.
+    - Full native cross-language output equality and actual named Lean axiom reports; no label-based target
+      promotion.
+    negative_control_plan: Alter every output coordinate, input identity, primitive types, source set
+      and sealed request.
+  slot_m4_tri_language_witness_anchors:
+    mining_status: FILLED
+    certificate_predicates:
+    - Independent domain equations and actual matrix/graph/quotient arrays recompute every output.
+    - Exact public input, canonical rational primitive types, complete source pins and exact sealed request
+      bytes.
+    - Full native cross-language output equality and actual named Lean axiom reports; no label-based target
+      promotion.
+    anchors:
+    - code/python/src/qm/genesis_impl_exact.py
+    - code/python/tests/test_genesis_impl_exact.py
+    - code/rust/src/finite_probability/genesis_impl_exact.rs
+    - code/rust/src/finite_probability/examples/genesis_impl_exact_replay.rs
+    - dag/pfp/genesis_impl_checker.py
+    - dag/pfp/exact_json.py
+    - dag/pfp/review_exact_json.py
+    - lean4/WeylCommutant.lean
+    - lean4/LggrFiniteResults.lean
+    - lean4/PromptGenesisImplementation.lean
+    - dag/results/batches/20261019T215447Z_prompts_92_111/tools/prepare.py
+    - dag/results/batches/20261019T215447Z_prompts_92_111/tools/specs.py
+    - dag/pfp/custody.py
+    - dag/pfp/filename_custody.json
+    - QuantumMechanics.PromptGenesisImplementation.erasure_filter
+    - QuantumMechanics.PromptGenesisImplementation.erasure_supply_prefix
+    unpaid_imports:
+    - Prove the partial Option/failure and five-field Regime representation bridge for every source history.
+      Erasure does not erase guard failures, actual admissions or external custody requirements.
+    - Prove the full refined-carrier operad identity, substitution, symmetry and coherence laws; mere
+      colour matches do not instantiate that formal structure.
+    anchor_status: New Lean anchors are candidate declarations until the retained P2 compiler runs; compiled
+      source leads retain their literal scope.
+stage_history:
+- stage: P0_MINE_OPERAD
+  attempt: p0
+  run: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged
+  operad_delta: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p0/operad_delta.yaml
+  host_check: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p0/host_check.json
+- stage: P1_DERIVE
+  attempt: p1
+  run: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged
+  operad_delta: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p1/operad_delta.yaml
+  host_check: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p1/host_check.json
+- stage: P2_VERIFY
+  attempt: p2
+  run: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged
+  operad_delta: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p2/operad_delta.yaml
+  host_check: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p2/host_check.json
+- stage: P4_CHALLENGE
+  attempt: p4
+  run: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged
+  operad_delta: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p4/operad_delta.yaml
+  host_check: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p4/host_check.json
+- stage: P5_RECORD
+  attempt: p5
+  run: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged
+  operad_delta: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p5/operad_delta.yaml
+  host_check: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p5/host_check.json
+open_obligations: *id002
+excluded_relation_leads: []
+operad_slots_scope:
+  work_unit: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p0/reviewed_missions.json
+  scope: FILLED means reviewed prerequisites for this selected step; original target and unpaid imports
+    retained.
+  review_refinement: dag/results/PG-GEN-SUPPLY-ERASURE/reviews/20261019_genesis_impl_audit/scope_review.json
+latest_run:
+  path: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged
+  stage: P5_RECORD
+  status: scoped_result_or_obstruction_reviewed
+scope_notes:
+- SupplyErasure proves supply removal for the source replay. This selected interpreter checks complete
+  guarded final states and failures before and after supply removal, preserving original-history failure
+  indices. Lean separately proves the generic Option-event erasure identity for arbitrary total admission
+  transitions; lifting this to the entire partial source interpreter remains explicit.
+latest_review:
+  path: dag/results/PG-GEN-SUPPLY-ERASURE/reviews/20261019_genesis_impl_audit
+  status: reviewed_with_targeted_native_integration
+  operad_delta: dag/results/PG-GEN-SUPPLY-ERASURE/reviews/20261019_genesis_impl_audit/operad_delta.yaml
+  final_integration: dag/results/batches/20261019T215447Z_prompts_92_111/review/final_integration_after_source_review/result.json
+  accepted_construction_candidate: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p1/candidate.json
+  accepted_native_host: dag/results/PG-GEN-SUPPLY-ERASURE/runs/20261019T215447Z_staged/p2/host_check.json

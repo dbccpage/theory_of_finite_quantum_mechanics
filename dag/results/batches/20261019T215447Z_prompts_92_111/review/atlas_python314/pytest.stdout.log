@@ -1,0 +1,46 @@
+..F                                                                      [100%]
+================================== FAILURES ===================================
+___________________ test_qm_atlas_pre_commit_hook_installed ___________________
+
+self = WindowsPath('C:/Users/a343o/.codex/worktrees/bell-joint-extension/theory_of_finite_quantum_mechanics/.git/hooks')
+mode = 511, parents = True, exist_ok = True
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] The system cannot find the path specified: 'C:\\Users\\a343o\\.codex\\worktrees\\bell-joint-extension\\theory_of_finite_quantum_mechanics\\.git\\hooks'
+
+..\..\..\..\AppData\Local\Python\pythoncore-3.14-64\Lib\pathlib\__init__.py:1011: FileNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+    def test_qm_atlas_pre_commit_hook_installed() -> None:
+>       hook_path = install_pre_commit_hook(REPO_ROOT)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+code\python\tests\test_qm_atlas_loc.py:106: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+scripts\install_qm_atlas_hook.py:28: in install_pre_commit_hook
+    hook_path.parent.mkdir(parents=True, exist_ok=True)
+..\..\..\..\AppData\Local\Python\pythoncore-3.14-64\Lib\pathlib\__init__.py:1015: in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/a343o/.codex/worktrees/bell-joint-extension/theory_of_finite_quantum_mechanics/.git')
+mode = 511, parents = True, exist_ok = True
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileExistsError: [WinError 183] Cannot create a file when that file already exists: 'C:\\Users\\a343o\\.codex\\worktrees\\bell-joint-extension\\theory_of_finite_quantum_mechanics\\.git'
+
+..\..\..\..\AppData\Local\Python\pythoncore-3.14-64\Lib\pathlib\__init__.py:1011: FileExistsError
+=========================== short test summary info ===========================
+FAILED code/python/tests/test_qm_atlas_loc.py::test_qm_atlas_pre_commit_hook_installed
+1 failed, 2 passed in 1.53s
