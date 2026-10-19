@@ -118,6 +118,9 @@ struct Echo; impl StructurePreservingMap for Echo {type Domain=String;type Codom
 
 
 def challenge(subject):
+    if Path(subject['path']).stem == 'finite_partial_structure':
+        from partial_structure_challenges import challenge as partial_structure_challenge
+        return partial_structure_challenge(subject)
     if Path(subject['path']).stem == 'finite_moore':
         from moore_challenges import challenge as moore_challenge
         return moore_challenge(subject)

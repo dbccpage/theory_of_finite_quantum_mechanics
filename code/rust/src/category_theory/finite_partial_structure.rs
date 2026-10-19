@@ -104,85 +104,58 @@ impl SortQuotient {
         image
     }
 }
-/// Necessary and sufficient descent, including reflection of undefinedness.
+// Distinguish an unseen fiber from a seen operation value that is itself None.
+fn insert_fiber<T: Copy + Eq>(
+    rows: &mut [Option<(usize, T)>], image_row: usize, source_row: usize, value: T,
+    conflict: impl FnOnce(usize, T) -> DescentError,
+) -> Result<(), DescentError> {
+    match rows[image_row] {
+        Some((left, previous)) if previous != value => Err(conflict(left, previous)),
+        None => { rows[image_row] = Some((source_row, value)); Ok(()) }
+        _ => Ok(()),
+    }
+}
+
+fn finish_fibers<T>(rows: Vec<Option<(usize, T)>>) -> Result<Vec<T>, DescentError> {
+    rows.into_iter().map(|row| row.map(|(_, value)| value).ok_or(DescentError::InvalidSortMap)).collect()
+}
+
+fn descend_operation(source: &FinitePartialStructure, quotient: &SortQuotient, id: usize, operation: &PartialOperation) -> Result<PartialOperation, DescentError> {
+    let count = cardinality(&quotient.target_sizes, &operation.inputs)?;
+    let mut rows = vec![None; count];
+    for (row, value) in operation.values.iter().enumerate() {
+        let image_row = quotient.tuple_image(&source.sizes, &operation.inputs, row);
+        let image = value.map(|value| quotient.maps[operation.output][value]);
+        insert_fiber(&mut rows, image_row, row, image, |left, old| DescentError::OperationConflict {
+            operation: id, left, right: row, left_image: old, right_image: image,
+        })?;
+    }
+    Ok(PartialOperation { inputs: operation.inputs.clone(), output: operation.output, values: finish_fibers(rows)? })
+}
+
+fn descend_predicate(source: &FinitePartialStructure, quotient: &SortQuotient, id: usize, predicate: &Predicate) -> Result<Predicate, DescentError> {
+    let count = cardinality(&quotient.target_sizes, &predicate.inputs)?;
+    let mut rows = vec![None; count];
+    for (row, &value) in predicate.values.iter().enumerate() {
+        let image_row = quotient.tuple_image(&source.sizes, &predicate.inputs, row);
+        insert_fiber(&mut rows, image_row, row, value, |left, _| DescentError::PredicateConflict {
+            predicate: id, left, right: row,
+        })?;
+    }
+    Ok(Predicate { inputs: predicate.inputs.clone(), values: finish_fibers(rows)? })
+}
+
+/// Necessary and sufficient descent,including reflection of undefinedness.
 /// Surjectivity makes every target row determined and hence the result unique.
-pub fn descend(
-    source: &FinitePartialStructure,
-    quotient: &SortQuotient,
-) -> Result<FinitePartialStructure, DescentError> {
+/// Cardinalities use checked left-to-right prefixes;overflow is a typed refusal.
+pub fn descend(source: &FinitePartialStructure, quotient: &SortQuotient) -> Result<FinitePartialStructure, DescentError> {
     source.validate()?;
     quotient.validate(source)?;
-    let mut operations = Vec::new();
-    for (operation_id, operation) in source.operations.iter().enumerate() {
-        let count = cardinality(&quotient.target_sizes, &operation.inputs)?;
-        let mut rows: Vec<Option<(usize, Option<usize>)>> = vec![None; count];
-        for (row, value) in operation.values.iter().enumerate() {
-            let image_row = quotient.tuple_image(&source.sizes, &operation.inputs, row);
-            let image = value.map(|value| quotient.maps[operation.output][value]);
-            if let Some((left, old)) = rows[image_row] {
-                if old != image {
-                    return Err(DescentError::OperationConflict {
-                        operation: operation_id,
-                        left,
-                        right: row,
-                        left_image: old,
-                        right_image: image,
-                    });
-                }
-            } else {
-                rows[image_row] = Some((row, image));
-            }
-        }
-        let values = rows
-            .into_iter()
-            .map(|row| {
-                row.map(|(_, value)| value)
-                    .ok_or(DescentError::InvalidSortMap)
-            })
-            .collect::<Result<_, _>>()?;
-        operations.push(PartialOperation {
-            inputs: operation.inputs.clone(),
-            output: operation.output,
-            values,
-        });
-    }
-    let mut predicates = Vec::new();
-    for (predicate_id, predicate) in source.predicates.iter().enumerate() {
-        let count = cardinality(&quotient.target_sizes, &predicate.inputs)?;
-        let mut rows: Vec<Option<(usize, bool)>> = vec![None; count];
-        for (row, &value) in predicate.values.iter().enumerate() {
-            let image_row = quotient.tuple_image(&source.sizes, &predicate.inputs, row);
-            if let Some((left, old)) = rows[image_row] {
-                if old != value {
-                    return Err(DescentError::PredicateConflict {
-                        predicate: predicate_id,
-                        left,
-                        right: row,
-                    });
-                }
-            } else {
-                rows[image_row] = Some((row, value));
-            }
-        }
-        let values = rows
-            .into_iter()
-            .map(|row| {
-                row.map(|(_, value)| value)
-                    .ok_or(DescentError::InvalidSortMap)
-            })
-            .collect::<Result<_, _>>()?;
-        predicates.push(Predicate {
-            inputs: predicate.inputs.clone(),
-            values,
-        });
-    }
-    Ok(FinitePartialStructure {
-        sizes: quotient.target_sizes.clone(),
-        operations,
-        predicates,
-    })
+    let operations = source.operations.iter().enumerate().map(|(id, operation)| descend_operation(source, quotient, id, operation)).collect::<Result<_, _>>()?;
+    let predicates = source.predicates.iter().enumerate().map(|(id, predicate)| descend_predicate(source, quotient, id, predicate)).collect::<Result<_, _>>()?;
+    Ok(FinitePartialStructure { sizes: quotient.target_sizes.clone(), operations, predicates })
 }
-/// Independently regenerate all rows; a proposed target cannot erase a field.
+
 pub fn verify(
     source: &FinitePartialStructure,
     quotient: &SortQuotient,
