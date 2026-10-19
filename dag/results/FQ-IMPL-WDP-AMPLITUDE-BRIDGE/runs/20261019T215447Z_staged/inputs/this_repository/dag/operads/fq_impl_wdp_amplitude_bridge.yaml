@@ -1,0 +1,193 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: FQ-IMPL-WDP-AMPLITUDE-BRIDGE
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: 'omega_wdp amplitude_bridge.rs is the only artifact for WDP-CH19-P11/P12: with unit phase
+    u=(3+4i)/5, integer edge cochains give transports u^{a_e}; adding a coboundary conjugates transports and leaves
+    cycle holonomy unchanged; both readouts N(z1+z2) and N(z1+z2)^2 are common-phase invariant and left free;
+    no homomorphism (Q,+) -> U(1)(Q(i)) sends 1 to u, and u^n != 1 for every n >= 1 (certified via (3+4i)^n mod
+    5).'
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: &id001
+  - unit phase u=(3+4i)/5 over Q(i) (assumption)
+  - oriented graph and integer cochains (assumption)
+  source_bottleneck: Concerns this u only; which readout, if any, is privileged is open (WDP-CH19-O03). No Lean
+    mirror found.
+  source_refs:
+  - omega_engine/crates_rs/omega_wdp/src/amplitude_bridge.rs:1
+  paper_refs:
+  - dag/derivations/22_implementation_sibling/tfq_0175_keep_integer_coboundary_holonomy_distinct_from_exact_matrix_gauge_holonomy.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports before
+    reusing a result.
+  historical_paper_refs:
+  - papers/derivations/22_implementation_sibling/tfq_0175_keep_integer_coboundary_holonomy_distinct_from_exact_matrix_gauge_holonomy.md
+  paper_relocations:
+  - from: papers/derivations/22_implementation_sibling/tfq_0175_keep_integer_coboundary_holonomy_distinct_from_exact_matrix_gauge_holonomy.md
+    to: dag/derivations/22_implementation_sibling/tfq_0175_keep_integer_coboundary_holonomy_distinct_from_exact_matrix_gauge_holonomy.md
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/22_implementation_sibling/tfq_0175_keep_integer_coboundary_holonomy_distinct_from_exact_matrix_gauge_holonomy.md
+    sha256: 73cb23a8b7cf5bd69905c3dfe4c9b78748043e655e71116edca183957ca04453
+source_provenance:
+  repository: this_repository
+  commit: 642f5b95a116da6df805adbd745a4826c6739c2b
+  path: dag/prompts/implementation_fq_impl_wdp_amplitude_bridge_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: Mat2Int.mul
+  line: 184
+  signature_excerpt: 'def Mat2Int.mul (A B : Mat2Int) : Mat2Int'
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: Mat2Int
+  line: 177
+  signature_excerpt: structure Mat2Int
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: fq_impl_amplitude_realification_and_pairing_bridges
+  line: 397
+  signature_excerpt: "theorem fq_impl_amplitude_realification_and_pairing_bridges :\n    (3 ^ 2 + 4 ^ 2 = 5 ^\
+    \ 2) ∧\n    (Mat2Int.mul ⟨0, -1, 1, 0⟩ ⟨0, -1, 1, 0⟩ = ⟨-1, 0, 0, -1⟩) ∧\n    ((3 ^ 2 + 4 ^ 2) ^ 2 = 625 ∧\
+    \ 3 ^ 4 + 4 ^ 4 = 337 ∧ 625 ≠ 337)"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+- kind: theorem
+  name: fq_impl_wdp_amplitude_realification_pairing_and_gauss_matrix_algebra
+  line: 1209
+  signature_excerpt: "theorem fq_impl_wdp_amplitude_realification_pairing_and_gauss_matrix_algebra\n    (p q :\
+    \ Int) :\n    ((3 * 3 + 4 * 4 = 25) ∧ ((-7 : Int) * (-7 : Int) + 24 * 24 = 625) ∧ (25 * 25 = 625)) ∧\n   \
+    \ ((p * p - (-q) * q = p * p + q * q) ∧ (p + p = 2 * p)) ∧\n    ((3 + 4 ≠ 5) ∧ (3 * 3 + 4 * 4 = 5 * 5) ∧ (27\
+    \ + 64 ≠ 125)) ∧\n    ((2 * 2 = 4 ∧ 2 * 4 = 8) ∧ (3 * 3 = 9 ∧ 2 * 9 = 18))"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+source_bindings:
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_impl_amplitude_realification_and_pairing_bridges
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.fq_impl_amplitude_realification_and_pairing_bridges
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 397
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_impl_wdp_amplitude_realification_pairing_and_gauss_matrix_algebra
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.fq_impl_wdp_amplitude_realification_pairing_and_gauss_matrix_algebra
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 1209
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_wdp/src/amplitude_bridge.rs::same_up_to_common_phase
+  availability: local
+  symbol: same_up_to_common_phase
+  path: code/rust/src/wdp/amplitude_bridge.rs
+  repository: this_repository
+  sha256: d580c2ecf1b895e222a55c9903c55fcfbd1e842cf8bdfde955164213721d36df
+  declaration_status: declaration_found_not_executed
+  line: 324
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_wdp/src/amplitude_bridge.rs::readout_quadratic
+  availability: local
+  symbol: readout_quadratic
+  path: code/rust/src/wdp/amplitude_bridge.rs
+  repository: this_repository
+  sha256: d580c2ecf1b895e222a55c9903c55fcfbd1e842cf8bdfde955164213721d36df
+  declaration_status: declaration_found_not_executed
+  line: 345
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_wdp/src/amplitude_bridge.rs::readout_quartic
+  availability: local
+  symbol: readout_quartic
+  path: code/rust/src/wdp/amplitude_bridge.rs
+  repository: this_repository
+  sha256: d580c2ecf1b895e222a55c9903c55fcfbd1e842cf8bdfde955164213721d36df
+  declaration_status: declaration_found_not_executed
+  line: 349
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_wdp/src/amplitude_bridge.rs::u_power_is_never_one
+  availability: local
+  symbol: u_power_is_never_one
+  path: code/rust/src/wdp/amplitude_bridge.rs
+  repository: this_repository
+  sha256: d580c2ecf1b895e222a55c9903c55fcfbd1e842cf8bdfde955164213721d36df
+  declaration_status: declaration_found_not_executed
+  line: 423
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness
+  availability: external
+  symbol: verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 1280
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_fq_core_and_k23_duality_witness
+  availability: external
+  symbol: verify_fq_core_and_k23_duality_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 338
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: *id001
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: *id001
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

@@ -288,11 +288,10 @@ end PachnerPartitionFunction
 #print axioms PachnerPartitionFunction.finite_partition_sum_inadmissible_invariant
 #print axioms PachnerPartitionFunction.pachner_partition_function_finite
 
-end FableHilbertWalk20260819.H027
-
-
 theorem falsification_degenerate_carrier : ¬ (1 = 0) := by
   decide
+
+end FableHilbertWalk20260819.H027
 
 private def l5aProvenance : String :=
   "Origin: lean4/H027PachnerMasterConstraintFiniteness.lean Claim: pachner_2tet_vacuum_admissible AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

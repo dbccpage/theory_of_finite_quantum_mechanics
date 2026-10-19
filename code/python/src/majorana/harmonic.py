@@ -6,176 +6,289 @@ AuthorityEffect: None.
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Optional, Sequence
+from typing import List, Optional, Sequence, Tuple
 
 from .gf2_terminalizer import GF2Matrix, Gf2CocycleClassifier
 
 DEFAULT_BUDGET: int = 1 << 22
+_U64_MAX: int = (1 << 64) - 1
+
+
+def _high_bit(mask: int) -> Optional[int]:
+    if mask <= 0:
+        return None
+    return mask.bit_length() - 1
+
+
+def _slice_to_mask(values: Sequence[int]) -> int:
+    mask = 0
+    for idx, val in enumerate(values):
+        if val % 2 == 1:
+            mask |= 1 << idx
+    return mask
+
+
+class _Span:
+    def __init__(self, width: int) -> None:
+        self.pivots: List[Optional[Tuple[int, int]]] = [None] * max(width, 1)
+
+    def reduce(self, mask: int) -> Tuple[int, int]:
+        residue = mask
+        tag = 0
+        while True:
+            high = _high_bit(residue)
+            if high is None or high >= len(self.pivots):
+                break
+            slot = self.pivots[high]
+            if slot is None:
+                break
+            pivot_mask, pivot_tag = slot
+            residue ^= pivot_mask
+            tag ^= pivot_tag
+        return residue, tag
+
+    def insert(self, mask: int, tag: int) -> bool:
+        residue, accumulated = self.reduce(mask)
+        independent = residue != 0
+        high = _high_bit(residue)
+        if high is not None:
+            combined = tag ^ accumulated
+            self.pivots[high] = (residue, combined)
+        return independent
+
+
+def _image_basis(d0: GF2Matrix) -> List[Tuple[int, int]]:
+    span = _Span(max(d0.rows, 1))
+    basis: List[Tuple[int, int]] = []
+    for col in range(d0.cols):
+        mask = 0
+        for row in range(d0.rows):
+            if d0.data[row][col] % 2 == 1:
+                mask |= 1 << row
+        residue, accumulated = span.reduce(mask)
+        high = _high_bit(residue)
+        if high is not None:
+            alpha = (1 << col) ^ accumulated
+            span.pivots[high] = (residue, alpha)
+            basis.append((residue, alpha))
+    return basis
+
+
+def _kernel_basis(d1: GF2Matrix, num_channels: int) -> List[List[int]]:
+    if d1.rows == 0:
+        out = []
+        for idx in range(num_channels):
+            v = [0] * num_channels
+            v[idx] = 1
+            out.append(v)
+        return out
+    reduced, _, _ = d1.row_reduce()
+    pivot_of_row: List[Tuple[int, int]] = []
+    pivot_columns: List[int] = []
+    for row in range(reduced.rows):
+        col_found = None
+        for c in range(reduced.cols):
+            if reduced.data[row][c] == 1:
+                col_found = c
+                break
+        if col_found is not None:
+            pivot_of_row.append((row, col_found))
+            pivot_columns.append(col_found)
+    pivot_set = set(pivot_columns)
+    basis: List[List[int]] = []
+    for free in range(num_channels):
+        if free in pivot_set:
+            continue
+        vec = [0] * num_channels
+        vec[free] = 1
+        for r, c in pivot_of_row:
+            vec[c] = reduced.data[r][free]
+        basis.append(vec)
+    return basis
 
 
 @dataclass
 class H1Basis:
-    dim_h1: int
-    generators: list[list[int]]  # each of length num_edges
-    d0_rank: int
-    d1_rank: int
-    im_d0_basis: list[list[int]]  # basis vectors for image d0
+    dim: int
+    generators: List[List[int]]
+    num_channels: int
+    _span: _Span
+
+    @property
+    def dim_h1(self) -> int:
+        return self.dim
+
+    def class_coordinates(self, residual: Sequence[int]) -> Optional[List[int]]:
+        if len(residual) != self.num_channels:
+            return None
+        remainder, tag = self._span.reduce(_slice_to_mask(residual))
+        if remainder != 0:
+            return None
+        return [(tag >> idx) & 1 for idx in range(self.dim)]
+
+    def class_representative(self, coordinates: Sequence[int]) -> List[int]:
+        vec = [0] * self.num_channels
+        for idx in range(min(len(coordinates), self.dim)):
+            if coordinates[idx] % 2 == 1:
+                gen = self.generators[idx]
+                for slot in range(self.num_channels):
+                    vec[slot] ^= gen[slot]
+        return vec
+
+    @staticmethod
+    def class_id(coordinates: Sequence[int]) -> str:
+        bits = "".join("1" if (b % 2 == 1) else "0" for b in coordinates)
+        return f"h1:{bits}"
+
+
+def h1_basis(d0: GF2Matrix, d1: GF2Matrix) -> H1Basis:
+    num_channels = d0.rows
+    span = _Span(max(num_channels, 1))
+    generators: List[List[int]] = []
+
+    for channel_mask, _alpha in _image_basis(d0):
+        span.insert(channel_mask, 0)
+
+    for vector in _kernel_basis(d1, num_channels):
+        mask = _slice_to_mask(vector)
+        tag = 1 << len(generators)
+        if span.insert(mask, tag):
+            generators.append(vector)
+
+    return H1Basis(
+        dim=len(generators),
+        generators=generators,
+        num_channels=num_channels,
+        _span=span,
+    )
 
 
 @dataclass
 class L1HarmonicProjection:
-    class_id: int
-    class_coordinates: list[int]
-    phi1_min_weight: int
-    representative: list[int]
-    exact_within_budget: bool
-    coset_elements_evaluated: int
+    weight: int
+    representative: List[int]
+    alpha: List[int]
+    exact: bool
+    searched: int
+    coset_size: int
+    authority_effect: str = "None"
+
+    @property
+    def phi1_min_weight(self) -> int:
+        return self.weight
+
+    @property
+    def exact_within_budget(self) -> bool:
+        return self.exact
+
+    @property
+    def coset_elements_evaluated(self) -> int:
+        return self.searched
 
 
-def _nullspace(m: GF2Matrix) -> list[list[int]]:
-    """Find a basis for the nullspace ker(M) = { x : M x = 0 mod 2 }."""
-    # Augmented matrix [M^T | I]
-    # M has shape (rows, cols)
-    # M x = 0 <=> x in ker(M)
-    # Using Gaussian elimination on M
-    red, pivots, rank = m.row_reduce()
-    free_cols = [c for c in range(m.cols) if c not in pivots]
-    basis = []
-    for f in free_cols:
-        v = [0] * m.cols
-        v[f] = 1
-        for r, p in enumerate(pivots):
-            if red.data[r][f] == 1:
-                v[p] = 1
-        basis.append(v)
-    return basis
+def _binary_coset_projection(
+    d0: GF2Matrix, residual: Sequence[int], budget: int
+) -> L1HarmonicProjection:
+    if budget <= 0:
+        raise ValueError("budget must be >= 1")
+    rows = d0.data
+    columns = d0.cols
+    if len(rows) != len(residual) or any(len(r) != columns for r in rows):
+        raise ValueError("binary coset dimensions differ")
 
+    pivots: List[Optional[Tuple[List[int], List[int]]]] = [None] * len(rows)
+    basis: List[Tuple[List[int], List[int]]] = []
+    for col in range(columns):
+        image = [row[col] % 2 for row in rows]
+        source = [0] * columns
+        source[col] = 1
+        for high in range(len(rows) - 1, -1, -1):
+            if image[high] == 0:
+                continue
+            slot = pivots[high]
+            if slot is not None:
+                pivot, witness = slot
+                for idx in range(len(image)):
+                    image[idx] ^= pivot[idx]
+                for idx in range(columns):
+                    source[idx] ^= witness[idx]
+            else:
+                pivots[high] = (list(image), list(source))
+                basis.append((image, source))
+                break
 
-def h1_basis(d0: GF2Matrix, d1: GF2Matrix) -> H1Basis:
-    if not Gf2CocycleClassifier.verify_boundary(d0, d1):
-        raise ValueError("Invalid boundary d1 * d0 != 0")
-    num_edges = d0.rows
-    # 1. Basis for im(d0) (column space of d0)
-    # Pivot columns of d0 give a basis for col(d0)
-    _, d0_pivots, d0_rank = d0.row_reduce()
-    im_d0_basis = []
-    for p in d0_pivots:
-        im_d0_basis.append([d0.data[r][p] for r in range(num_edges)])
+    rank = len(basis)
+    coset_size = (1 << rank) if rank < 64 else _U64_MAX
+    limit = min(coset_size, budget)
 
-    # 2. Basis for ker(d1)
-    ker_d1 = _nullspace(d1)
-    d1_rank = d1.rank()
+    current = [x % 2 for x in residual]
+    alpha = [0] * columns
+    best = list(current)
+    best_alpha = list(alpha)
+    best_weight = sum(1 for x in best if x != 0)
 
-    # 3. Find vectors in ker(d1) linearly independent mod im(d0)
-    # We build a matrix with rows from im_d0_basis, and greedily add from ker_d1
-    current_space = [list(r) for r in im_d0_basis]
-    generators: list[list[int]] = []
+    for step in range(1, limit):
+        tz = (step & -step).bit_length() - 1
+        image, source = basis[tz]
+        for idx in range(len(current)):
+            current[idx] ^= image[idx]
+        for idx in range(columns):
+            alpha[idx] ^= source[idx]
+        weight = sum(1 for x in current if x != 0)
+        if weight < best_weight or (weight == best_weight and current[::-1] < best[::-1]):
+            best_weight = weight
+            best = list(current)
+            best_alpha = list(alpha)
 
-    for v in ker_d1:
-        test_mat = GF2Matrix.from_data(current_space + [v])
-        if test_mat.rank() > len(current_space):
-            generators.append(v)
-            current_space.append(v)
-
-    dim_h1 = len(generators)
-    return H1Basis(
-        dim_h1=dim_h1,
-        generators=generators,
-        d0_rank=d0_rank,
-        d1_rank=d1_rank,
-        im_d0_basis=im_d0_basis,
+    return L1HarmonicProjection(
+        weight=best_weight,
+        representative=best,
+        alpha=best_alpha,
+        exact=(rank < 64 and coset_size <= budget),
+        searched=limit,
+        coset_size=coset_size,
+        authority_effect="None",
     )
 
 
 def l1_harmonic_projection(
     d0: GF2Matrix,
-    d1: GF2Matrix,
-    basis: H1Basis,
-    residual: Sequence[int],
+    residual_or_d1: Sequence[int] | GF2Matrix,
+    budget_or_basis: int | H1Basis = DEFAULT_BUDGET,
+    residual: Optional[Sequence[int]] = None,
     budget: int = DEFAULT_BUDGET,
 ) -> L1HarmonicProjection:
-    syndrome = d1.multiply_vector(residual)
-    if any(s != 0 for s in syndrome):
-        raise ValueError("Residual is not closed (d1 r != 0); has no cohomology class")
-
-    num_edges = d0.rows
-    # 1. Determine class coordinates c_1, ..., c_k
-    # We need to solve: residual + sum c_i g_i in im(d0)
-    # System: [im_d0_basis | generators]^T * x = residual
-    coord_mat_cols = basis.im_d0_basis + basis.generators
-    if not coord_mat_cols:
-        class_coords = []
-        class_id = 0
-    else:
-        # Solve A * x = residual mod 2 where cols of A are coord_mat_cols
-        A_data = [[col[r] for col in coord_mat_cols] for r in range(num_edges)]
-        A = GF2Matrix.from_data(A_data)
-        sol = Gf2CocycleClassifier.solve_coboundary(A, residual)
-        if sol is None:
-            raise ValueError("Failed to resolve residual in cohomology basis")
-        gen_start = len(basis.im_d0_basis)
-        class_coords = sol[gen_start:]
-        class_id = sum(bit * (1 << i) for i, bit in enumerate(class_coords))
-
-    # 2. Minimize Hamming weight over r + im(d0)
-    # Coset search over 2^(len(im_d0_basis))
-    k = len(basis.im_d0_basis)
-    total_elements = 1 << k
-    evaluated = 0
-    exact = True
-
-    best_rep = list(residual)
-    min_wt = sum(b % 2 for b in best_rep)
-
-    if total_elements > budget:
-        exact = False
-        limit = budget
-    else:
-        limit = total_elements
-
-    # Fast gray-code or binary iteration over im_d0_basis
-    curr = list(residual)
-    for mask in range(1, limit):
-        # bit flipped:
-        diff = mask ^ (mask - 1)
-        flipped_bit = (diff.bit_length() - 1)
-        if flipped_bit < k:
-            basis_vec = basis.im_d0_basis[flipped_bit]
-            for i in range(num_edges):
-                curr[i] ^= basis_vec[i]
-            wt = sum(curr)
-            if wt < min_wt:
-                min_wt = wt
-                best_rep = list(curr)
-        evaluated += 1
-
-    return L1HarmonicProjection(
-        class_id=class_id,
-        class_coordinates=class_coords,
-        phi1_min_weight=min_wt,
-        representative=best_rep,
-        exact_within_budget=exact,
-        coset_elements_evaluated=max(evaluated, 1),
-    )
+    if isinstance(residual_or_d1, GF2Matrix):
+        if residual is None:
+            raise ValueError("residual is required when calling 5-argument l1_harmonic_projection")
+        return _binary_coset_projection(d0, residual, int(budget))
+    return _binary_coset_projection(d0, residual_or_d1, int(budget_or_basis))  # type: ignore[arg-type]
 
 
 def code_distance(
-    d0: GF2Matrix, d1: GF2Matrix, basis: H1Basis, budget: int = DEFAULT_BUDGET
-) -> Optional[int]:
-    if basis.dim_h1 == 0:
-        return None
-    min_dist: Optional[int] = None
-    num_classes = 1 << basis.dim_h1
-    for class_idx in range(1, num_classes):
-        # Construct representative for class_idx
-        rep = [0] * d0.rows
-        for i in range(basis.dim_h1):
-            if (class_idx >> i) & 1:
-                for r in range(d0.rows):
-                    rep[r] ^= basis.generators[i][r]
-        proj = l1_harmonic_projection(d0, d1, basis, rep, budget)
-        if min_dist is None or proj.phi1_min_weight < min_dist:
-            min_dist = proj.phi1_min_weight
-            if min_dist == 1:
-                break
-    return min_dist
+    d0: GF2Matrix,
+    d1: GF2Matrix,
+    budget_or_basis: int | H1Basis = DEFAULT_BUDGET,
+    budget: int = DEFAULT_BUDGET,
+) -> Tuple[Optional[int], bool]:
+    if isinstance(budget_or_basis, H1Basis):
+        basis = budget_or_basis
+        eff_budget = budget
+    else:
+        basis = h1_basis(d0, d1)
+        eff_budget = int(budget_or_basis)
+
+    if basis.dim == 0:
+        return None, True
+    if basis.dim >= 64:
+        raise ValueError("code distance refused: dim H^1 >= 64 does not fit an exact class enumeration")
+
+    best: Optional[int] = None
+    all_exact = True
+    for code in range(1, 1 << basis.dim):
+        coordinates = [(code >> idx) & 1 for idx in range(basis.dim)]
+        rep = basis.class_representative(coordinates)
+        proj = _binary_coset_projection(d0, rep, eff_budget)
+        all_exact = all_exact and proj.exact
+        best = proj.weight if best is None else min(best, proj.weight)
+    return best, all_exact

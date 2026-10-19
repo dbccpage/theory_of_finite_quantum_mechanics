@@ -27,12 +27,12 @@ def sealed(tmp_path):
 def reseal(root):
     entries = {}
     for p in root.rglob("*"):
-        if p.is_file() and p.name not in {"MANIFEST.sha256", "SHA256SUMS"}:
+        if p.is_file() and p.name not in {"manifest.sha256", "sha256sums"}:
             entries[p.relative_to(root).as_posix()] = hashlib.sha256(p.read_bytes()).hexdigest()
-    manifest = root / "MANIFEST.sha256"
+    manifest = root / "manifest.sha256"
     manifest.write_text("".join(f"{digest}  {name}\n" for name, digest in sorted(entries.items())), encoding="utf-8")
-    entries["MANIFEST.sha256"] = hashlib.sha256(manifest.read_bytes()).hexdigest()
-    (root / "SHA256SUMS").write_text("".join(f"{digest}  {name}\n" for name, digest in sorted(entries.items())), encoding="utf-8")
+    entries["manifest.sha256"] = hashlib.sha256(manifest.read_bytes()).hexdigest()
+    (root / "sha256sums").write_text("".join(f"{digest}  {name}\n" for name, digest in sorted(entries.items())), encoding="utf-8")
 
 
 def test_sealed_preprint_and_archive(sealed):
@@ -48,18 +48,18 @@ def test_outer_envelope_seals_nested_manifests(tmp_path, monkeypatch):
     outer_spec.loader.exec_module(outer)
     nested = tmp_path / "nested"
     nested.mkdir()
-    (nested / "MANIFEST.sha256").write_text("nested manifest bytes")
-    (nested / "SHA256SUMS").write_text("nested sums bytes")
-    manifest = tmp_path / "MANIFEST.sha256"
+    (nested / "manifest.sha256").write_text("nested manifest bytes")
+    (nested / "sha256sums").write_text("nested sums bytes")
+    manifest = tmp_path / "manifest.sha256"
     manifest.write_text(regen.render(tmp_path), encoding="utf-8")
-    (tmp_path / "SHA256SUMS").write_text(regen.render_sums(tmp_path, manifest), encoding="utf-8")
+    (tmp_path / "sha256sums").write_text(regen.render_sums(tmp_path, manifest), encoding="utf-8")
     monkeypatch.setattr(outer, "ROOT", tmp_path)
     monkeypatch.setattr(outer, "REQUIRED_PATTERNS", ())
-    assert outer.check_manifest(tmp_path / "SHA256SUMS") == []
-    assert "nested/MANIFEST.sha256" in manifest.read_text(encoding="utf-8")
-    assert "nested/SHA256SUMS" in manifest.read_text(encoding="utf-8")
-    (nested / "SHA256SUMS").write_text("mutated nested sums")
-    assert "Hash mismatch: nested/SHA256SUMS" in outer.check_manifest(tmp_path / "SHA256SUMS")
+    assert outer.check_manifest(tmp_path / "sha256sums") == []
+    assert "nested/manifest.sha256" in manifest.read_text(encoding="utf-8")
+    assert "nested/sha256sums" in manifest.read_text(encoding="utf-8")
+    (nested / "sha256sums").write_text("mutated nested sums")
+    assert "Hash mismatch: nested/sha256sums" in outer.check_manifest(tmp_path / "sha256sums")
 
 
 def test_unmanifested_file_refused(sealed):
@@ -147,7 +147,7 @@ def test_directory_traversal_errors_are_fatal(tmp_path, monkeypatch):
         deposit_paths.walk_files(tmp_path, set(), set(), set())
 
 
-@pytest.mark.parametrize("control", ["MANIFEST.sha256", "SHA256SUMS", "archive", "sidecar"])
+@pytest.mark.parametrize("control", ["manifest.sha256", "sha256sums", "archive", "sidecar"])
 def test_same_byte_control_symlinks_refused(sealed, tmp_path, control):
     archive = tmp_path / "mub6_publication.zip"
     shutil.copy2(ROOT / archive.name, archive)

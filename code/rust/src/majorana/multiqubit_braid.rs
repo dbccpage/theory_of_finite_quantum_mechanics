@@ -1,5 +1,6 @@
 
 use crate::braid_action::{BraidActionError, MajoranaBraidAction, MAX_BRAID_MODES};
+use serde::{Deserialize, Serialize};
 
 pub const DEFAULT_MAX_COMPILED_STEPS: usize = 65_536;
 
@@ -163,6 +164,58 @@ pub fn compile_multiqubit_braid_with_limit(
     })
 }
 
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+pub struct MultiQubitBraidScalingRow {
+    pub num_qubits: usize,
+    pub mode_count: usize,
+    pub cnot_steps: usize,
+    pub determinant_sign: i8,
+    pub inverse_restores_identity: bool,
+}
+
+/// Serialize `MultiQubitBraidScalingRow` slice to canonical 2-space pretty JSON with LF line endings.
+pub fn multiqubit_braid_scaling_to_canonical_json(
+    rows: &[MultiQubitBraidScalingRow],
+) -> Result<String, String> {
+    serde_json::to_string_pretty(rows).map_err(|e| e.to_string())
+}
+
+/// Deserialize `MultiQubitBraidScalingRow` vector from canonical JSON string.
+pub fn multiqubit_braid_scaling_from_canonical_json(
+    json_str: &str,
+) -> Result<Vec<MultiQubitBraidScalingRow>, String> {
+    serde_json::from_str(json_str).map_err(|e| e.to_string())
+}
+
+/// Finite register scaling benchmark for multi-qubit Majorana braid compilation across
+/// declared qubit counts `N_q` (`4 * N_q` Majorana modes, up to 16 qubits / 64 modes).
+pub fn benchmark_multiqubit_braid_scaling(
+    qubit_counts: &[usize],
+) -> Result<Vec<MultiQubitBraidScalingRow>, MultiQubitBraidError> {
+    let mut rows = Vec::with_capacity(qubit_counts.len());
+    for &nq in qubit_counts {
+        if nq < 2 {
+            return Err(MultiQubitBraidError::InvalidQubitCount);
+        }
+        let ops = [MultiQubitOperation::Cnot {
+            control: 1,
+            target: nq,
+        }];
+        let compiled = compile_multiqubit_braid(nq, &ops)?;
+        let inv = compiled.action.inverse()?;
+        let prod = compiled.action.compose(&inv)?;
+        let id = MajoranaBraidAction::identity(4 * nq)?;
+        rows.push(MultiQubitBraidScalingRow {
+            num_qubits: nq,
+            mode_count: 4 * nq,
+            cnot_steps: compiled.steps.len(),
+            determinant_sign: compiled.action.determinant_sign(),
+            inverse_restores_identity: prod == id,
+        });
+    }
+    Ok(rows)
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -322,5 +375,35 @@ mod tests {
                 count: 8
             }))
         ));
+    }
+
+    #[test]
+    fn multiqubit_braid_scaling_up_to_16_qubits_64_modes() {
+        let counts = [2usize, 4, 8, 12, 16];
+        let rows = benchmark_multiqubit_braid_scaling(&counts).unwrap();
+        assert_eq!(rows.len(), counts.len());
+        for (&nq, row) in counts.iter().zip(rows.iter()) {
+            assert_eq!(row.num_qubits, nq);
+            assert_eq!(row.mode_count, 4 * nq);
+            // Each block swap takes 16 steps; routing + unrouting across (nq - 2) swaps + 1 bridge
+            assert_eq!(row.cnot_steps, 32 * (nq - 2) + 1);
+            assert!(row.inverse_restores_identity);
+        }
+    }
+
+    #[test]
+    fn multiqubit_braid_scaling_matches_cross_language_json_fixture_bit_for_bit() {
+        let counts = [2usize, 4, 8, 12, 16];
+        let rows = benchmark_multiqubit_braid_scaling(&counts).unwrap();
+        let serialized = multiqubit_braid_scaling_to_canonical_json(&rows).unwrap();
+        let fixture =
+            include_str!("fixtures/multiqubit_braid_scaling.json").replace("\r\n", "\n");
+        assert_eq!(
+            serialized.as_bytes(),
+            fixture.as_bytes(),
+            "Rust benchmark_multiqubit_braid_scaling JSON output drifted from cross-language fixture"
+        );
+        let round_trip = multiqubit_braid_scaling_from_canonical_json(&fixture).unwrap();
+        assert_eq!(round_trip, rows);
     }
 }

@@ -7,7 +7,7 @@ Status: Completed
 Construct repository-wide Claim Hygiene-compliant Tri-Language Traceability Matrix (`TRACEABILITY_MATRIX.md`) mapping every claim, theorem, and derivation across Python, Rust, and Lean 4 for MUB(6), FSP, and Majorana.
 
 ## Task Checklist
-- [x] Initialized workspace and reviewed DISPATCH.md, BRIEFING.md, ORIGINAL_REQUEST.md, PROJECT.md
+- [x] Initialized workspace and reviewed dispatch.md, briefing.md, original_request.md, PROJECT.md
 - [x] Inspect MUB(6) claim ledger (`papers/core/mub6/mub6_claim_ledger.yaml`), theory paper, Python, Rust, and Lean 4 files
 - [x] Inspect FSP claim ledger (`papers/core/fsp/claim_ledger.yaml`), theory paper, Python, Rust, and Lean 4 files
 - [x] Inspect Majorana claim ledger (`papers/core/majorana/claim_ledger.yaml`), theory paper, Python, Rust, and Lean 4 files

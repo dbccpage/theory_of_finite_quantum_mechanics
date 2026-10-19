@@ -8,7 +8,11 @@ from pathlib import Path
 from typing import Any, Dict
 import sys
 import yaml
-from bqnf_sign_evaluator import BQNFSignEvaluator, CochainComplex
+try:
+    from .bqnf_sign_evaluator import BQNFSignEvaluator, CochainComplex
+except (ImportError, ValueError):
+    from bqnf_sign_evaluator import BQNFSignEvaluator, CochainComplex
+
 
 
 class NormalFormEvaluator:

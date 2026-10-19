@@ -1,0 +1,342 @@
+task_id: FQ-BELL-CLASSICAL-JOINT-EXTENSION
+review: separator_claim_audit
+add_or_refine_generators:
+- id: pair_marginalize
+  ordered_inputs:
+  - JointLaw
+  output: CompatiblePairData
+  arity: 1
+  carrier: binary 2x2 pair scenario on A0,A1,B0,B1
+  coefficient_ring: Q natively; common-scale Int numerator model in Lean
+  hypotheses:
+  - nonnegative normalized 16-state joint law
+  - fixed A0,A1,B0,B1 mask convention shared by all projections
+  source_pins:
+  - path: code/python/src/qm/bell_separator_extension.py
+    sha256: c9fb01de9c4cc0ce5cff62f539ef6727b5ad7c603dc37d697721ca990c1ffb3d
+  - path: code/rust/src/finite_probability/bell_separator_extension.rs
+    sha256: 1d9f2cb809fa83d2178e162ac20711711938f8b845f76f321a3fd7b8f25cdb42
+  - path: lean4/BellSeparatorExtension.lean
+    sha256: c21ccd3a22ff1db8f1c4fac76c2097bf86b1c5ab295c1ca0e8e861bedf60eef6
+  semantic_predicate: Project one 16-state law to the four observed pair tables.
+  evidence_status: exact native composition checked on retained inputs; probability-subtype operad interpretation
+    remains a scoped semantic wrapper
+  implementation_note: Context-retaining mathematical wrapper; construct_extension retains pair data in
+    its local environment. No new formal Lean probability-subtype operad instance is claimed.
+  language_evidence:
+    Python: project_joint
+    Rust: project_joint
+    Lean: No general Lean probability-table projection theorem in this module.
+  audit_scope: Finite native chain checked on retained inputs; ambient function identities do not supply
+    missing probability-table or subtype theorems.
+- id: separator_intervals
+  ordered_inputs:
+  - FeasiblePairData
+  output: FeasibleSeparatorProblem
+  arity: 1
+  carrier: binary 2x2 pair scenario on A0,A1,B0,B1
+  coefficient_ring: Q natively; common-scale Int numerator model in Lean
+  hypotheses:
+  - same retained compatible pair data
+  - nonempty common separator interval
+  source_pins:
+  - path: code/python/src/qm/bell_separator_extension.py
+    sha256: c9fb01de9c4cc0ce5cff62f539ef6727b5ad7c603dc37d697721ca990c1ffb3d
+  - path: code/rust/src/finite_probability/bell_separator_extension.rs
+    sha256: 1d9f2cb809fa83d2178e162ac20711711938f8b845f76f321a3fd7b8f25cdb42
+  - path: lean4/BellSeparatorExtension.lean
+    sha256: c21ccd3a22ff1db8f1c4fac76c2097bf86b1c5ab295c1ca0e8e861bedf60eef6
+  semantic_predicate: Retain input pairs and both setting Frechet intervals, with a nonempty intersection.
+  evidence_status: exact native composition checked on retained inputs; probability-subtype operad interpretation
+    remains a scoped semantic wrapper
+  implementation_note: Context-retaining mathematical wrapper; construct_extension retains pair data in
+    its local environment. No new formal Lean probability-subtype operad instance is claimed.
+  language_evidence:
+    Python: separator_intervals
+    Rust: separator_intervals
+    Lean: lower, upper, overlap_iff_chsh on common-scale Int PairCounts.
+  audit_scope: Finite native chain checked on retained inputs; ambient function identities do not supply
+    missing probability-table or subtype theorems.
+- id: select_separator
+  ordered_inputs:
+  - FeasibleSeparatorProblem
+  output: SeparatorChoice
+  arity: 1
+  carrier: binary 2x2 pair scenario on A0,A1,B0,B1
+  coefficient_ring: Q natively; common-scale Int numerator model in Lean
+  hypotheses:
+  - same retained compatible pair data
+  - nonempty common separator interval
+  source_pins:
+  - path: code/python/src/qm/bell_separator_extension.py
+    sha256: c9fb01de9c4cc0ce5cff62f539ef6727b5ad7c603dc37d697721ca990c1ffb3d
+  - path: code/rust/src/finite_probability/bell_separator_extension.rs
+    sha256: 1d9f2cb809fa83d2178e162ac20711711938f8b845f76f321a3fd7b8f25cdb42
+  - path: lean4/BellSeparatorExtension.lean
+    sha256: c21ccd3a22ff1db8f1c4fac76c2097bf86b1c5ab295c1ca0e8e861bedf60eef6
+  semantic_predicate: Retain input pairs and any r in the common interval; native constructor selects
+    the lower endpoint.
+  evidence_status: exact native composition checked on retained inputs; probability-subtype operad interpretation
+    remains a scoped semantic wrapper
+  implementation_note: Context-retaining mathematical wrapper; construct_extension retains pair data in
+    its local environment. No new formal Lean probability-subtype operad instance is claimed.
+  language_evidence:
+    Python: construct_extension (local lower-endpoint selection)
+    Rust: construct_extension (local lower-endpoint selection)
+    Lean: HasSeparator existence witness; not a serialized probability typestate API.
+  audit_scope: Finite native chain checked on retained inputs; ambient function identities do not supply
+    missing probability-table or subtype theorems.
+- id: split_triples
+  ordered_inputs:
+  - SeparatorChoice
+  output: CompatibleTriplePair
+  arity: 1
+  carrier: binary 2x2 pair scenario on A0,A1,B0,B1
+  coefficient_ring: Q natively; common-scale Int numerator model in Lean
+  hypotheses:
+  - same retained compatible pair data
+  - one r in both setting intervals
+  source_pins:
+  - path: code/python/src/qm/bell_separator_extension.py
+    sha256: c9fb01de9c4cc0ce5cff62f539ef6727b5ad7c603dc37d697721ca990c1ffb3d
+  - path: code/rust/src/finite_probability/bell_separator_extension.rs
+    sha256: 1d9f2cb809fa83d2178e162ac20711711938f8b845f76f321a3fd7b8f25cdb42
+  - path: lean4/BellSeparatorExtension.lean
+    sha256: c21ccd3a22ff1db8f1c4fac76c2097bf86b1c5ab295c1ca0e8e861bedf60eef6
+  semantic_predicate: Construct both triple laws from the same r with observed pair marginals and equal
+    separator law.
+  evidence_status: exact native composition checked on retained inputs; probability-subtype operad interpretation
+    remains a scoped semantic wrapper
+  implementation_note: Context-retaining mathematical wrapper; construct_extension retains pair data in
+    its local environment. No new formal Lean probability-subtype operad instance is claimed.
+  language_evidence:
+    Python: split_triple (called at each B setting)
+    Rust: split_triple (called at each B setting)
+    Lean: chsh_has_two_triples proves only the displayed Int positivity systems; normalized table-array
+      identities remain open.
+  audit_scope: Finite native chain checked on retained inputs; ambient function identities do not supply
+    missing probability-table or subtype theorems.
+- id: conditional_glue
+  ordered_inputs:
+  - CompatibleTriplePair
+  output: JointLaw
+  arity: 1
+  carrier: binary 2x2 pair scenario on A0,A1,B0,B1
+  coefficient_ring: Q natively; common-scale Int numerator model in Lean
+  hypotheses:
+  - two nonnegative normalized triple laws
+  - exactly equal separator marginals
+  - zero separator slices forced to zero by nonnegativity
+  source_pins:
+  - path: code/python/src/qm/bell_separator_extension.py
+    sha256: c9fb01de9c4cc0ce5cff62f539ef6727b5ad7c603dc37d697721ca990c1ffb3d
+  - path: code/rust/src/finite_probability/bell_separator_extension.rs
+    sha256: 1d9f2cb809fa83d2178e162ac20711711938f8b845f76f321a3fd7b8f25cdb42
+  - path: lean4/BellSeparatorExtension.lean
+    sha256: c21ccd3a22ff1db8f1c4fac76c2097bf86b1c5ab295c1ca0e8e861bedf60eef6
+  semantic_predicate: Zero-safe conditional product of two compatible triples; unary on the compatible-pair
+    wrapper, despite two native arguments.
+  evidence_status: exact native composition checked on retained inputs; probability-subtype operad interpretation
+    remains a scoped semantic wrapper
+  implementation_note: Context-retaining mathematical wrapper; construct_extension retains pair data in
+    its local environment. No new formal Lean probability-subtype operad instance is claimed.
+  language_evidence:
+    Python: conditional_glue
+    Rust: conditional_glue
+    Lean: No general Lean rational gluing/marginal/unit-mass theorem yet.
+  audit_scope: Finite native chain checked on retained inputs; ambient function identities do not supply
+    missing probability-table or subtype theorems.
+- id: chsh_family
+  ordered_inputs:
+  - CompatiblePairData
+  output: FacetValues8
+  arity: 1
+  carrier: binary 2x2 pair scenario on A0,A1,B0,B1
+  coefficient_ring: Q natively; common-scale Int numerator model in Lean
+  hypotheses:
+  - four nonnegative normalized pair tables
+  - matching one-party marginals
+  - ordered odd-negative sign masks
+  source_pins:
+  - path: code/python/src/qm/bell_separator_extension.py
+    sha256: c9fb01de9c4cc0ce5cff62f539ef6727b5ad7c603dc37d697721ca990c1ffb3d
+  - path: code/rust/src/finite_probability/bell_separator_extension.rs
+    sha256: 1d9f2cb809fa83d2178e162ac20711711938f8b845f76f321a3fd7b8f25cdb42
+  - path: lean4/BellSeparatorExtension.lean
+    sha256: c21ccd3a22ff1db8f1c4fac76c2097bf86b1c5ab295c1ca0e8e861bedf60eef6
+  semantic_predicate: All odd-negative-sign CHSH sums in masks 1,2,4,7,8,11,13,14.
+  evidence_status: exact native composition checked on retained inputs; probability-subtype operad interpretation
+    remains a scoped semantic wrapper
+  implementation_note: Context-retaining mathematical wrapper; construct_extension retains pair data in
+    its local environment. No new formal Lean probability-subtype operad instance is claimed.
+  language_evidence:
+    Python: chsh_facets
+    Rust: chsh_facets
+    Lean: CHSHFamily and full_family_joint_necessity on arbitrary Nat-weighted assignment lists.
+  audit_scope: Finite native chain checked on retained inputs; ambient function identities do not supply
+    missing probability-table or subtype theorems.
+add_or_refine_relations:
+- id: interval_chsh_equivalence
+  equation_or_predicate: At common positive integer scale, interval overlap iff the complete eight-facet
+    CHSH family holds.
+  typing_conditions: CompatiblePositive PairCounts
+  source_pins:
+  - path: code/python/src/qm/bell_separator_extension.py
+    sha256: c9fb01de9c4cc0ce5cff62f539ef6727b5ad7c603dc37d697721ca990c1ffb3d
+  - path: code/rust/src/finite_probability/bell_separator_extension.rs
+    sha256: 1d9f2cb809fa83d2178e162ac20711711938f8b845f76f321a3fd7b8f25cdb42
+  - path: lean4/BellSeparatorExtension.lean
+    sha256: c21ccd3a22ff1db8f1c4fac76c2097bf86b1c5ab295c1ca0e8e861bedf60eef6
+  evidence_status: Lean separator_iff_chsh at integer scale; explicit rational input transport remains
+    open
+  scope: This work unit only; no symmetric action or complete syntactic operad presentation.
+  audit: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/reviews/20261018_separator_audit/README.md
+- id: triple_slice_feasibility
+  equation_or_predicate: Given the stated PairPositive and separator interval hypotheses, there exists
+    Int t satisfying TripleCellsPositive. Both B settings admit t0,t1 with the same r.
+  typing_conditions: same source PairCounts and shared r
+  source_pins:
+  - path: code/python/src/qm/bell_separator_extension.py
+    sha256: c9fb01de9c4cc0ce5cff62f539ef6727b5ad7c603dc37d697721ca990c1ffb3d
+  - path: code/rust/src/finite_probability/bell_separator_extension.rs
+    sha256: 1d9f2cb809fa83d2178e162ac20711711938f8b845f76f321a3fd7b8f25cdb42
+  - path: lean4/BellSeparatorExtension.lean
+    sha256: c21ccd3a22ff1db8f1c4fac76c2097bf86b1c5ab295c1ca0e8e861bedf60eef6
+  evidence_status: Lean existence of r,t0,t1 satisfying the explicit eight-cell positivity systems; normalized
+    Q-array projection additionally checked natively, not yet a general Lean table theorem
+  scope: Kernel theorem is the explicit Int inequality system. Normalized rational arrays and their projections
+    are checked on finite native certificates only.
+  audit: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/reviews/20261018_separator_audit/README.md
+- id: conditional_glue_projection
+  equation_or_predicate: Project(glue(split(select(intervals(p)))))=p.
+  typing_conditions: Same retained compatible pair input p; triples from split(select(intervals(p))),
+    exactly matching separator; nonnegative normalized arrays; zero slices handled without division.
+  source_pins:
+  - path: code/python/src/qm/bell_separator_extension.py
+    sha256: c9fb01de9c4cc0ce5cff62f539ef6727b5ad7c603dc37d697721ca990c1ffb3d
+  - path: code/rust/src/finite_probability/bell_separator_extension.rs
+    sha256: 1d9f2cb809fa83d2178e162ac20711711938f8b845f76f321a3fd7b8f25cdb42
+  - path: lean4/BellSeparatorExtension.lean
+    sha256: c21ccd3a22ff1db8f1c4fac76c2097bf86b1c5ab295c1ca0e8e861bedf60eef6
+  evidence_status: all retained extension witnesses checked by actual exact pair/triple projection and
+    cross-product equations; general Lean Q gluing remains open
+  scope: This work unit only; no symmetric action or complete syntactic operad presentation.
+  relation_kind: exact checked predicate on retained certificates; general Lean rational operator identity
+    remains an obligation
+  audit: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/reviews/20261018_separator_audit/README.md
+- id: full_facet_necessity
+  equation_or_predicate: For every List (Nat x Assignment), each of the four one-minus facet numerators
+    lies in [-2*mass,2*mass], including zero total mass.
+  typing_conditions: Actual binary response products, common Nat weights, scaled Int conclusion. Rational
+    table transport remains separate.
+  source_pins:
+  - path: code/python/src/qm/bell_separator_extension.py
+    sha256: c9fb01de9c4cc0ce5cff62f539ef6727b5ad7c603dc37d697721ca990c1ffb3d
+  - path: code/rust/src/finite_probability/bell_separator_extension.rs
+    sha256: 1d9f2cb809fa83d2178e162ac20711711938f8b845f76f321a3fd7b8f25cdb42
+  - path: lean4/BellSeparatorExtension.lean
+    sha256: c21ccd3a22ff1db8f1c4fac76c2097bf86b1c5ab295c1ca0e8e861bedf60eef6
+  evidence_status: Lean full_family_joint_necessity for four one-minus faces with both signs, arbitrary
+    Nat-weighted assignment lists
+  scope: This work unit only; no symmetric action or complete syntactic operad presentation.
+  audit: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/reviews/20261018_separator_audit/README.md
+checked_compositions:
+- outer_operation: select_separator
+  input_slot: 0
+  inner_operation: separator_intervals
+  colour_match: FeasibleSeparatorProblem -> FeasibleSeparatorProblem
+  hypothesis_match: Both operations refer to the same retained p and r. Refinements checked on each accepted
+    extension certificate; no universal Lean Q-subtype composition theorem claimed.
+  licensing_relations:
+  - interval_chsh_equivalence
+  evidence_status: Typed semantic wrapper plan and finite exact chain verification; general probability-subtype
+    operad instance remains open.
+- outer_operation: split_triples
+  input_slot: 0
+  inner_operation: select_separator
+  colour_match: SeparatorChoice -> SeparatorChoice
+  hypothesis_match: Both operations refer to the same retained p and r. Refinements checked on each accepted
+    extension certificate; no universal Lean Q-subtype composition theorem claimed.
+  licensing_relations:
+  - triple_slice_feasibility
+  evidence_status: Typed semantic wrapper plan and finite exact chain verification; general probability-subtype
+    operad instance remains open.
+- outer_operation: conditional_glue
+  input_slot: 0
+  inner_operation: split_triples
+  colour_match: CompatibleTriplePair -> CompatibleTriplePair
+  hypothesis_match: Both operations refer to the same retained p and r. Refinements checked on each accepted
+    extension certificate; no universal Lean Q-subtype composition theorem claimed.
+  licensing_relations:
+  - conditional_glue_projection
+  evidence_status: Typed semantic wrapper plan and finite exact chain verification; general probability-subtype
+    operad instance remains open.
+- outer_operation: pair_marginalize
+  input_slot: 0
+  inner_operation: conditional_glue
+  colour_match: JointLaw -> JointLaw
+  hypothesis_match: Both operations refer to the same retained p and r. Refinements checked on each accepted
+    extension certificate; no universal Lean Q-subtype composition theorem claimed.
+  licensing_relations:
+  - conditional_glue_projection
+  evidence_status: Typed semantic wrapper plan and finite exact chain verification; general probability-subtype
+    operad instance remains open.
+identity_scope:
+- colour: CompatiblePairData
+  proposed_operation: id_CompatiblePairData
+  signature: CompatiblePairData -> CompatiblePairData
+  status: Semantic identity function; generic BellOperad function-substitution units apply to interpreted
+    carriers. These probability refinements have no formal Lean subtype instantiation yet.
+- colour: FeasiblePairData
+  proposed_operation: id_FeasiblePairData
+  signature: FeasiblePairData -> FeasiblePairData
+  status: Semantic identity function; generic BellOperad function-substitution units apply to interpreted
+    carriers. These probability refinements have no formal Lean subtype instantiation yet.
+- colour: FeasibleSeparatorProblem
+  proposed_operation: id_FeasibleSeparatorProblem
+  signature: FeasibleSeparatorProblem -> FeasibleSeparatorProblem
+  status: Semantic identity function; generic BellOperad function-substitution units apply to interpreted
+    carriers. These probability refinements have no formal Lean subtype instantiation yet.
+- colour: SeparatorChoice
+  proposed_operation: id_SeparatorChoice
+  signature: SeparatorChoice -> SeparatorChoice
+  status: Semantic identity function; generic BellOperad function-substitution units apply to interpreted
+    carriers. These probability refinements have no formal Lean subtype instantiation yet.
+- colour: CompatibleTriplePair
+  proposed_operation: id_CompatibleTriplePair
+  signature: CompatibleTriplePair -> CompatibleTriplePair
+  status: Semantic identity function; generic BellOperad function-substitution units apply to interpreted
+    carriers. These probability refinements have no formal Lean subtype instantiation yet.
+- colour: FacetValues8
+  proposed_operation: id_FacetValues8
+  signature: FacetValues8 -> FacetValues8
+  status: Semantic identity function; generic BellOperad function-substitution units apply to interpreted
+    carriers. These probability refinements have no formal Lean subtype instantiation yet.
+failed_compositions:
+- outer_operation: conditional_glue
+  input_slot: 0
+  inner_operation: unrestricted_triple_pair
+  colour_match: 'fails: arbitrary triple pair is not CompatibleTriplePair'
+  hypothesis_match: common separator equality is missing
+  licensing_relations: []
+  evidence_status: native guard refused two positive normalized triples with differing separator marginals
+counterexamples:
+- id: string_facet_array
+  failure: Original checker iterated a string as eight rational entries; successor requires JSON arrays
+    of exact lengths.
+- id: relabeled_task_and_stage
+  failure: Original checker compared response labels only to request labels; successor binds the Bell
+    task, derivation/repair stages and reviewed work identity.
+open_obligations:
+- 'Full formal rational Fine converse remains open: prove zero-safe rational conditional-gluing marginal
+  preservation and unit mass for arbitrary compatible triples.'
+- Formalize transport from arbitrary rational observed pair arrays to positive common-integer-scale PairCounts
+  and back.
+- Connect the Lean TripleCellsPositive parameter systems to normalized table arrays and their explicit
+  projection identities.
+- Instantiate the context-retaining probability-subtype operations as a formal operad if that stronger
+  claim is desired; current generators are scoped semantic wrappers around native primitives.
+- General Q response-table transport, score-partition/slack formalization, symmetric actions and syntactic
+  quotient completeness from prior work remain open.
+- Physical locality and setting independence remain additional assumptions, not consequences of this finite
+  algebra.

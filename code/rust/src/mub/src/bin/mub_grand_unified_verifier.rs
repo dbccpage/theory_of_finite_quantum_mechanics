@@ -13,27 +13,27 @@ use std::{
 
 pub const CANONICAL_ARTIFACTS: &[(&str, &str)] = &[
     (
-        "dita_seed_F6_0_8_neigh_delta_1_1000_gauge_fixed_5_torus_presplit6_merged_complete.json",
+        "dita_seed_f6_0_8_neigh_delta_1_1000_gauge_fixed_5_torus_presplit6_merged_complete.json",
         "c19a88e198f9fb0b13bd710a9d2476f4f602113590a17f4d93e7c7459a7a5500",
     ),
     (
-        "dita_seed_F6_8_0_neigh_delta_1_1000_gauge_fixed_5_torus_presplit6_merged_complete.json",
+        "dita_seed_f6_8_0_neigh_delta_1_1000_gauge_fixed_5_torus_presplit6_merged_complete.json",
         "3365d33601e382602d5eab15e8d77b1c42abfe9120a229149f2b9302de5feaea",
     ),
     (
-        "dita_seed_F6_16_16_neigh_delta_1_1000_gauge_fixed_5_torus_presplit6_merged_complete.json",
+        "dita_seed_f6_16_16_neigh_delta_1_1000_gauge_fixed_5_torus_presplit6_merged_complete.json",
         "bd7d0b07e5738ca1b7f890aa2308e7ef97fb4f7bdc70a0e96e7627cb4ffc08da",
     ),
     (
-        "dita_seed_F6_0_16_neigh_delta_1_1000_gauge_fixed_5_torus_presplit6_merged_complete.json",
+        "dita_seed_f6_0_16_neigh_delta_1_1000_gauge_fixed_5_torus_presplit6_merged_complete.json",
         "88f1ee39d38dbc2bc1b38c52e3e7be43ed254900ffebf68a65b4e68e69406d04",
     ),
     (
-        "dita_seed_F6_8_8_neigh_delta_1_1000_gauge_fixed_5_torus_presplit6_merged_complete.json",
+        "dita_seed_f6_8_8_neigh_delta_1_1000_gauge_fixed_5_torus_presplit6_merged_complete.json",
         "72a84db365a57b5a4c6113d946c20e4291deb27e61616896ae8d29b1df18f42c",
     ),
     (
-        "dita_seed_F6_16_0_neigh_delta_1_1000_gauge_fixed_5_torus_presplit6_merged_complete.json",
+        "dita_seed_f6_16_0_neigh_delta_1_1000_gauge_fixed_5_torus_presplit6_merged_complete.json",
         "5d5eeaa3e601f0be0867989cdb783dfdbd43241a6955cecd2f8159fdd2db2fad",
     ),
     (

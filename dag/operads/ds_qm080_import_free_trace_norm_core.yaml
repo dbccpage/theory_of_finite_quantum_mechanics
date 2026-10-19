@@ -1,0 +1,805 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: DS-QM080-IMPORT-FREE-TRACE-NORM-CORE
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: Quotient invariance of the trace-distance defect (Thm 4), finite convex duality (Thm
+    5) and existence of bounded dual witnesses (Thm 6) hold over any finite-dimensional normed space;
+    identifying the dual with the trace-zero ball and the matrix lift need the spectral theorem (imported).
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions:
+  - spectral theorem for the matrix lift (assumption)
+  source_bottleneck: Overlaps FQ trace-norm nodes in the other fragment.
+  source_refs:
+  - omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/080_cptp_trace_norm_geometry_and_quantum_dual_witnesses/qm_080_cptp_trace_norm_geometry_and_quantum_dual_witnesses_claim_ledger.md#C9
+  - omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/080_cptp_trace_norm_geometry_and_quantum_dual_witnesses/qm_080_cptp_trace_norm_geometry_and_quantum_dual_witnesses_claim_ledger.md#C10
+  - omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/080_cptp_trace_norm_geometry_and_quantum_dual_witnesses/qm_080_cptp_trace_norm_geometry_and_quantum_dual_witnesses_claim_ledger.md#C12
+  paper_refs:
+  - dag/derivations/21_implementation_core/tfq_0132_trace_norm_certificates.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  historical_paper_refs:
+  - papers/derivations/21_implementation_core/tfq_0132_trace_norm_certificates.md
+  paper_relocations:
+  - from: papers/derivations/21_implementation_core/tfq_0132_trace_norm_certificates.md
+    to: dag/derivations/21_implementation_core/tfq_0132_trace_norm_certificates.md
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/21_implementation_core/tfq_0132_trace_norm_certificates.md
+    sha256: ce10c7b9a510051b80d3153bd68cd0f903acc7fcb7d13e2b3921d0d19155f36f
+source_provenance:
+  repository: this_repository
+  commit: 642f5b95a116da6df805adbd745a4826c6739c2b
+  path: dag/prompts/finite_qm_structure_ds_qm080_import_free_trace_norm_core_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: pairing
+  line: 41
+  signature_excerpt: 'def pairing (L : Eig2) (x : TraceZeroVec2) : Int'
+  source: lean4/TraceZeroDuality.lean
+  repository: this_repository
+  source_sha256: faafda639fbe1ea89ef890d9fe55577695627a4062e33127a749aee1cb0ce091
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: TraceZeroVec2
+  line: 28
+  signature_excerpt: structure TraceZeroVec2
+  source: lean4/TraceZeroDuality.lean
+  repository: this_repository
+  source_sha256: faafda639fbe1ea89ef890d9fe55577695627a4062e33127a749aee1cb0ce091
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: iabs
+  line: 8
+  signature_excerpt: 'def iabs (x : Int) : Int'
+  source: lean4/TraceZeroDuality.lean
+  repository: this_repository
+  source_sha256: faafda639fbe1ea89ef890d9fe55577695627a4062e33127a749aee1cb0ce091
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: Eig2
+  line: 17
+  signature_excerpt: structure Eig2
+  source: lean4/TraceZeroDuality.lean
+  repository: this_repository
+  source_sha256: faafda639fbe1ea89ef890d9fe55577695627a4062e33127a749aee1cb0ce091
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: optimalVec2
+  line: 56
+  signature_excerpt: 'def optimalVec2 (L : Eig2) : TraceZeroVec2'
+  source: lean4/TraceZeroDuality.lean
+  repository: this_repository
+  source_sha256: faafda639fbe1ea89ef890d9fe55577695627a4062e33127a749aee1cb0ce091
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: optimalShift
+  line: 70
+  signature_excerpt: 'def optimalShift (L : Eig2) : Int'
+  source: lean4/TraceZeroDuality.lean
+  repository: this_repository
+  source_sha256: faafda639fbe1ea89ef890d9fe55577695627a4062e33127a749aee1cb0ce091
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: opNorm
+  line: 67
+  signature_excerpt: 'def opNorm (L : Eig2) (c : Int) : Int'
+  source: lean4/TraceZeroDuality.lean
+  repository: this_repository
+  source_sha256: faafda639fbe1ea89ef890d9fe55577695627a4062e33127a749aee1cb0ce091
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: max2
+  line: 11
+  signature_excerpt: 'def max2 (a b : Int) : Int'
+  source: lean4/TraceZeroDuality.lean
+  repository: this_repository
+  source_sha256: faafda639fbe1ea89ef890d9fe55577695627a4062e33127a749aee1cb0ce091
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: dual_pairing
+  line: 18
+  signature_excerpt: 'def dual_pairing (w : DiscreteWitness) (d : StateDifference) : Int'
+  source: lean4/DualWitness.lean
+  repository: this_repository
+  source_sha256: b69a5a5b0f7e69541787915ccd48e7b29b687e04a54d838b556936e034e7f7f7
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: StateDifference
+  line: 11
+  signature_excerpt: structure StateDifference
+  source: lean4/DualWitness.lean
+  repository: this_repository
+  source_sha256: b69a5a5b0f7e69541787915ccd48e7b29b687e04a54d838b556936e034e7f7f7
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: DiscreteWitness
+  line: 5
+  signature_excerpt: structure DiscreteWitness
+  source: lean4/DualWitness.lean
+  repository: this_repository
+  source_sha256: b69a5a5b0f7e69541787915ccd48e7b29b687e04a54d838b556936e034e7f7f7
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: trace_norm
+  line: 15
+  signature_excerpt: 'def trace_norm (d : StateDifference) : Nat'
+  source: lean4/DualWitness.lean
+  repository: this_repository
+  source_sha256: b69a5a5b0f7e69541787915ccd48e7b29b687e04a54d838b556936e034e7f7f7
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: traceZeroDetNeg
+  line: 247
+  signature_excerpt: 'def traceZeroDetNeg (a b : Int) : Int'
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: trace_zero_duality_gap_zero
+  line: 83
+  signature_excerpt: "theorem trace_zero_duality_gap_zero (L : Eig2) :\n    pairing L (optimalVec2 L)\
+    \ = opNorm L (optimalShift L)"
+  source: lean4/TraceZeroDuality.lean
+  repository: this_repository
+  source_sha256: faafda639fbe1ea89ef890d9fe55577695627a4062e33127a749aee1cb0ce091
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: dual_witness_certifies_trace_distance
+  line: 21
+  signature_excerpt: "theorem dual_witness_certifies_trace_distance (w : DiscreteWitness) (d : StateDifference)\
+    \ :\n    (dual_pairing w d).natAbs ≤ trace_norm d"
+  source: lean4/DualWitness.lean
+  repository: this_repository
+  source_sha256: b69a5a5b0f7e69541787915ccd48e7b29b687e04a54d838b556936e034e7f7f7
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: trace_zero_pinching_contraction
+  line: 249
+  signature_excerpt: "theorem trace_zero_pinching_contraction (a b : Int) :\n    traceZeroDetNeg a 0 ≤\
+    \ traceZeroDetNeg a b ∧\n    (traceZeroDetNeg a 0 = traceZeroDetNeg a b ↔ b = 0)"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/quantum_mechanics/TraceZeroDuality.lean::trace_zero_duality_gap_zero
+  availability: local
+  symbol: trace_zero_duality_gap_zero
+  path: lean4/TraceZeroDuality.lean
+  repository: this_repository
+  sha256: faafda639fbe1ea89ef890d9fe55577695627a4062e33127a749aee1cb0ce091
+  declaration_status: declaration_found_not_proof_checked
+  line: 83
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/DualWitness.lean::dual_witness_certifies_trace_distance
+  availability: local
+  symbol: dual_witness_certifies_trace_distance
+  path: lean4/DualWitness.lean
+  repository: this_repository
+  sha256: b69a5a5b0f7e69541787915ccd48e7b29b687e04a54d838b556936e034e7f7f7
+  declaration_status: declaration_found_not_proof_checked
+  line: 21
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.trace_zero_pinching_contraction
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.trace_zero_pinching_contraction
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 249
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_ds_qm_dynamics_structure_and_majorana_witness
+  availability: external
+  symbol: verify_ds_qm_dynamics_structure_and_majorana_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 402
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche13_ds_qm_final_16_second_witness_closure_witness
+  availability: external
+  symbol: verify_tranche13_ds_qm_final_16_second_witness_closure_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 1343
+  role: source_lead_only
+presentation:
+  status: scoped_stage_result_reviewed
+  scope: Two-coordinate quotient shift invariance, dual upper bound and existence of a bounded attaining
+    rational witness are kernel checked with exact controls.
+  colours:
+  - id: NonnegativeDualMagnitude
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: RationalDualEvaluation
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: RationalPairingTerms2
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: SuppliedBoundedRationalCovector2
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  generators:
+  - id: bounded_covector
+    ordered_inputs:
+    - SuppliedBoundedRationalCovector2
+    output: RationalPairingTerms2
+    arity: 1
+    carrier: Declared SuppliedBoundedRationalCovector2
+    coefficient_ring: Exact Q (Gaussian pairs where stated), integers and literal Boolean fields only
+    hypotheses:
+    - Common-shift invariance concerns evaluation only; shifting need not preserve the chosen infinity-unit-ball
+      representative.
+    semantic_predicate: Retain supplied s,t with |s|,|t|≤1 and fixed trace-zero vector (r,-r).
+    source_pins:
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_ds_qm080_import_free_trace_norm_core_proved_lean.yaml
+      sha256: 11f3351e821dce15f23d874657987f2b1255c50bd982eba61e80efe87e73c672
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/inputs/this_repository/dag/operads/ds_qm080_import_free_trace_norm_core.yaml
+      sha256: 992c335d9d5bd7092b3bd629eaaca27bbce0321f8c3d9a9f828591dc35bcde2c
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/inputs/this_repository/lean4/TraceZeroDuality.lean
+      sha256: faafda639fbe1ea89ef890d9fe55577695627a4062e33127a749aee1cb0ce091
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/inputs/this_repository/lean4/DualWitness.lean
+      sha256: b69a5a5b0f7e69541787915ccd48e7b29b687e04a54d838b556936e034e7f7f7
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/inputs/this_repository/dag/derivations/21_implementation_core/tfq_0132_trace_norm_certificates.md
+      sha256: ab9d432180d347291cb3af3bda1396dc970408e5697ea904a6599e95465fe0cb
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p0/operation_sources/code/python/src/qm/resources_exact.py
+      sha256: 11ef2d70fa824b51335b881564ab0bc87227c1b43f1fea26ebb87c283c81349f
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p0/operation_sources/code/python/tests/test_resources_exact.py
+      sha256: 9e299e3dff3f975f3a770e3a940ad8f6969ab02b72545ac5d583c5738ddc9fe7
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/resources_exact.rs
+      sha256: 74c77661e2030c2b37634dd449b164e696ebb7fb318019291719d56436cac1cc
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/resources_exact_replay.rs
+      sha256: 3a2f999edc029ff914fd12dbe3516510ae3aaa9b9104b46a3f2168d9820092c9
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/resources_checker.py
+      sha256: 0c9fcef66b088ab515dc5b1998a8bdad39f7ef2e230552245fccbb184cbac01c
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/prepare.py
+      sha256: 7a8161d3b86651ba01b76e4bf6d940ca18597301b2bd99e0c75235bb9376fbc7
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/specs.py
+      sha256: 56bea147f8ccf6b6c0e919dba2489878517b5e722a9284ffab51216119d6d4cb
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/check_candidate.py
+      sha256: 37ed0b7693f9399f7e594a3f725b4c13c243e17e7effa824a48fe42cc01ce510
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/format_certificate.py
+      sha256: c042ce643bacffc620979626be79977032c2b1d826af57cde9c447ff2c511497
+    evidence_status: Reviewed exact finite native controls. Kernel signatures are separately scoped. Full
+      refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p2/host_check.json
+  - id: trace_zero_pairing
+    ordered_inputs:
+    - RationalPairingTerms2
+    output: RationalDualEvaluation
+    arity: 1
+    carrier: Declared RationalPairingTerms2
+    coefficient_ring: Exact Q (Gaussian pairs where stated), integers and literal Boolean fields only
+    hypotheses:
+    - Common-shift invariance concerns evaluation only; shifting need not preserve the chosen infinity-unit-ball
+      representative.
+    semantic_predicate: Compute rs-rt.
+    source_pins:
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_ds_qm080_import_free_trace_norm_core_proved_lean.yaml
+      sha256: 11f3351e821dce15f23d874657987f2b1255c50bd982eba61e80efe87e73c672
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/inputs/this_repository/dag/operads/ds_qm080_import_free_trace_norm_core.yaml
+      sha256: 992c335d9d5bd7092b3bd629eaaca27bbce0321f8c3d9a9f828591dc35bcde2c
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/inputs/this_repository/lean4/TraceZeroDuality.lean
+      sha256: faafda639fbe1ea89ef890d9fe55577695627a4062e33127a749aee1cb0ce091
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/inputs/this_repository/lean4/DualWitness.lean
+      sha256: b69a5a5b0f7e69541787915ccd48e7b29b687e04a54d838b556936e034e7f7f7
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/inputs/this_repository/dag/derivations/21_implementation_core/tfq_0132_trace_norm_certificates.md
+      sha256: ab9d432180d347291cb3af3bda1396dc970408e5697ea904a6599e95465fe0cb
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p0/operation_sources/code/python/src/qm/resources_exact.py
+      sha256: 11ef2d70fa824b51335b881564ab0bc87227c1b43f1fea26ebb87c283c81349f
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p0/operation_sources/code/python/tests/test_resources_exact.py
+      sha256: 9e299e3dff3f975f3a770e3a940ad8f6969ab02b72545ac5d583c5738ddc9fe7
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/resources_exact.rs
+      sha256: 74c77661e2030c2b37634dd449b164e696ebb7fb318019291719d56436cac1cc
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/resources_exact_replay.rs
+      sha256: 3a2f999edc029ff914fd12dbe3516510ae3aaa9b9104b46a3f2168d9820092c9
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/resources_checker.py
+      sha256: 0c9fcef66b088ab515dc5b1998a8bdad39f7ef2e230552245fccbb184cbac01c
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/prepare.py
+      sha256: 7a8161d3b86651ba01b76e4bf6d940ca18597301b2bd99e0c75235bb9376fbc7
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/specs.py
+      sha256: 56bea147f8ccf6b6c0e919dba2489878517b5e722a9284ffab51216119d6d4cb
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/check_candidate.py
+      sha256: 37ed0b7693f9399f7e594a3f725b4c13c243e17e7effa824a48fe42cc01ce510
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/format_certificate.py
+      sha256: c042ce643bacffc620979626be79977032c2b1d826af57cde9c447ff2c511497
+    evidence_status: Reviewed exact finite native controls. Kernel signatures are separately scoped. Full
+      refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p2/host_check.json
+  - id: absolute_value
+    ordered_inputs:
+    - RationalDualEvaluation
+    output: NonnegativeDualMagnitude
+    arity: 1
+    carrier: Declared RationalDualEvaluation
+    coefficient_ring: Exact Q (Gaussian pairs where stated), integers and literal Boolean fields only
+    hypotheses:
+    - Common-shift invariance concerns evaluation only; shifting need not preserve the chosen infinity-unit-ball
+      representative.
+    semantic_predicate: Take absolute value.
+    source_pins:
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_ds_qm080_import_free_trace_norm_core_proved_lean.yaml
+      sha256: 11f3351e821dce15f23d874657987f2b1255c50bd982eba61e80efe87e73c672
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/inputs/this_repository/dag/operads/ds_qm080_import_free_trace_norm_core.yaml
+      sha256: 992c335d9d5bd7092b3bd629eaaca27bbce0321f8c3d9a9f828591dc35bcde2c
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/inputs/this_repository/lean4/TraceZeroDuality.lean
+      sha256: faafda639fbe1ea89ef890d9fe55577695627a4062e33127a749aee1cb0ce091
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/inputs/this_repository/lean4/DualWitness.lean
+      sha256: b69a5a5b0f7e69541787915ccd48e7b29b687e04a54d838b556936e034e7f7f7
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/inputs/this_repository/dag/derivations/21_implementation_core/tfq_0132_trace_norm_certificates.md
+      sha256: ab9d432180d347291cb3af3bda1396dc970408e5697ea904a6599e95465fe0cb
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p0/operation_sources/code/python/src/qm/resources_exact.py
+      sha256: 11ef2d70fa824b51335b881564ab0bc87227c1b43f1fea26ebb87c283c81349f
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p0/operation_sources/code/python/tests/test_resources_exact.py
+      sha256: 9e299e3dff3f975f3a770e3a940ad8f6969ab02b72545ac5d583c5738ddc9fe7
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/resources_exact.rs
+      sha256: 74c77661e2030c2b37634dd449b164e696ebb7fb318019291719d56436cac1cc
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/resources_exact_replay.rs
+      sha256: 3a2f999edc029ff914fd12dbe3516510ae3aaa9b9104b46a3f2168d9820092c9
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/resources_checker.py
+      sha256: 0c9fcef66b088ab515dc5b1998a8bdad39f7ef2e230552245fccbb184cbac01c
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/prepare.py
+      sha256: 7a8161d3b86651ba01b76e4bf6d940ca18597301b2bd99e0c75235bb9376fbc7
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/specs.py
+      sha256: 56bea147f8ccf6b6c0e919dba2489878517b5e722a9284ffab51216119d6d4cb
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/check_candidate.py
+      sha256: 37ed0b7693f9399f7e594a3f725b4c13c243e17e7effa824a48fe42cc01ce510
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/format_certificate.py
+      sha256: c042ce643bacffc620979626be79977032c2b1d826af57cde9c447ff2c511497
+    evidence_status: Reviewed exact finite native controls. Kernel signatures are separately scoped. Full
+      refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p2/host_check.json
+  relations:
+  - id: dual_relation_0
+    equation_or_predicate: Adding k to both covector coordinates preserves pairing; the bounded supremum
+      is 2|r| with sign witnesses.
+    typing_conditions: Literal declared operation domains; Prove arbitrary finite-dimensional normed-space
+      duality and the matrix/spectral lift separately. This coordinate result is not the original general
+      theorem.
+    evidence_status: Accepted actual P2 and P4 controls; only the literal named Lean signatures are kernel
+      theorems. Native array-to-signature and physical transports remain as stated.
+    scope: Two-coordinate quotient shift invariance, dual upper bound and existence of a bounded attaining
+      rational witness are kernel checked with exact controls.
+    source_pins:
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_ds_qm080_import_free_trace_norm_core_proved_lean.yaml
+      sha256: 11f3351e821dce15f23d874657987f2b1255c50bd982eba61e80efe87e73c672
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/inputs/this_repository/dag/operads/ds_qm080_import_free_trace_norm_core.yaml
+      sha256: 992c335d9d5bd7092b3bd629eaaca27bbce0321f8c3d9a9f828591dc35bcde2c
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/inputs/this_repository/lean4/TraceZeroDuality.lean
+      sha256: faafda639fbe1ea89ef890d9fe55577695627a4062e33127a749aee1cb0ce091
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/inputs/this_repository/lean4/DualWitness.lean
+      sha256: b69a5a5b0f7e69541787915ccd48e7b29b687e04a54d838b556936e034e7f7f7
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/inputs/this_repository/dag/derivations/21_implementation_core/tfq_0132_trace_norm_certificates.md
+      sha256: ab9d432180d347291cb3af3bda1396dc970408e5697ea904a6599e95465fe0cb
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p0/operation_sources/code/python/src/qm/resources_exact.py
+      sha256: 11ef2d70fa824b51335b881564ab0bc87227c1b43f1fea26ebb87c283c81349f
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p0/operation_sources/code/python/tests/test_resources_exact.py
+      sha256: 9e299e3dff3f975f3a770e3a940ad8f6969ab02b72545ac5d583c5738ddc9fe7
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/resources_exact.rs
+      sha256: 74c77661e2030c2b37634dd449b164e696ebb7fb318019291719d56436cac1cc
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/resources_exact_replay.rs
+      sha256: 3a2f999edc029ff914fd12dbe3516510ae3aaa9b9104b46a3f2168d9820092c9
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/resources_checker.py
+      sha256: 0c9fcef66b088ab515dc5b1998a8bdad39f7ef2e230552245fccbb184cbac01c
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/prepare.py
+      sha256: 7a8161d3b86651ba01b76e4bf6d940ca18597301b2bd99e0c75235bb9376fbc7
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/specs.py
+      sha256: 56bea147f8ccf6b6c0e919dba2489878517b5e722a9284ffab51216119d6d4cb
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/check_candidate.py
+      sha256: 37ed0b7693f9399f7e594a3f725b4c13c243e17e7effa824a48fe42cc01ce510
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/format_certificate.py
+      sha256: c042ce643bacffc620979626be79977032c2b1d826af57cde9c447ff2c511497
+    latest_host_check: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p2/host_check.json
+    historical_evidence_annotation: P1 candidate; independent native and named kernel gates remain required.
+    named_Lean_scope:
+    - QuantumMechanics.PromptResources.dual_shift
+    - QuantumMechanics.PromptResources.dual_bound
+    - QuantumMechanics.PromptResources.dual_attained
+  compositions: &id001
+  - outer_operation: trace_zero_pairing
+    input_slot: 0
+    inner_operation: bounded_covector
+    colour_match: RationalPairingTerms2 -> RationalPairingTerms2
+    hypothesis_match: Same declared coordinates, coefficients and context; all operation hypotheses must
+      be carried into the graft. Fixed matrices, signs, gauge unit, original comparison table, row order,
+      sector and pairing (where relevant) must agree across both operations. Formal universal refined-carrier
+      closure is unpaid.
+    licensing_relations:
+    - dual_relation_0
+    evidence_status: Semantic substitution supported by the retained finite operation traces and separately
+      scoped named kernel statements. A complete refined-carrier operad is not asserted.
+  - outer_operation: absolute_value
+    input_slot: 0
+    inner_operation: trace_zero_pairing
+    colour_match: RationalDualEvaluation -> RationalDualEvaluation
+    hypothesis_match: Same declared coordinates, coefficients and context; all operation hypotheses must
+      be carried into the graft. Fixed matrices, signs, gauge unit, original comparison table, row order,
+      sector and pairing (where relevant) must agree across both operations. Formal universal refined-carrier
+      closure is unpaid.
+    licensing_relations:
+    - dual_relation_0
+    evidence_status: Semantic substitution supported by the retained finite operation traces and separately
+      scoped named kernel statements. A complete refined-carrier operad is not asserted.
+  identities:
+  - colour: NonnegativeDualMagnitude
+    proposed_operation: id_NonnegativeDualMagnitude
+    signature: NonnegativeDualMagnitude -> NonnegativeDualMagnitude
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: RationalDualEvaluation
+    proposed_operation: id_RationalDualEvaluation
+    signature: RationalDualEvaluation -> RationalDualEvaluation
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: RationalPairingTerms2
+    proposed_operation: id_RationalPairingTerms2
+    signature: RationalPairingTerms2 -> RationalPairingTerms2
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: SuppliedBoundedRationalCovector2
+    proposed_operation: id_SuppliedBoundedRationalCovector2
+    signature: SuppliedBoundedRationalCovector2 -> SuppliedBoundedRationalCovector2
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  symmetric_actions: []
+  coherence_obligations: &id002
+  - Prove arbitrary finite-dimensional normed-space duality and the matrix/spectral lift separately. This
+    coordinate result is not the original general theorem.
+  - Prove the full refined-carrier operad identity, substitution, symmetry and coherence laws; mere colour
+    matches do not instantiate that formal structure.
+  - A source provider PASS/hash, route index, census label or Boolean flag is not mathematical evidence
+    for the original target. No historical provider receipt is newly authenticated.
+  failed_compositions:
+  - proposal: Promote the selected step to the unrestricted original target
+    reason: Prove arbitrary finite-dimensional normed-space duality and the matrix/spectral lift separately.
+      This coordinate result is not the original general theorem.
+  counterexamples:
+  - id: retained_actual_domain_controls
+    records:
+    - input:
+      - '2'
+      - '1'
+      - '-1'
+      - '5'
+      output:
+      - '4'
+      - '4'
+      - '4'
+      - '4'
+      - '1'
+      - '-1'
+      - '2'
+    - input:
+      - '-3'
+      - 1/2
+      - -1/3
+      - '2'
+      output:
+      - -5/2
+      - -5/2
+      - '6'
+      - '6'
+      - '-1'
+      - '1'
+      - '3'
+    - input:
+      - '0'
+      - '0'
+      - '0'
+      - '1'
+      output:
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '1'
+      - '-1'
+      - '0'
+    scope: Computed values, with the source/kernel/native distinctions retained in claim_boundary.
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: FILLED
+    carrier: Literal per-operation finite or admitted scalar carriers
+    coefficient_ring: Exact Z, Q, Gaussian rational pairs and supplied Boolean fields
+    source_pins:
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_ds_qm080_import_free_trace_norm_core_proved_lean.yaml
+      sha256: 11f3351e821dce15f23d874657987f2b1255c50bd982eba61e80efe87e73c672
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/inputs/this_repository/dag/operads/ds_qm080_import_free_trace_norm_core.yaml
+      sha256: 992c335d9d5bd7092b3bd629eaaca27bbce0321f8c3d9a9f828591dc35bcde2c
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/inputs/this_repository/lean4/TraceZeroDuality.lean
+      sha256: faafda639fbe1ea89ef890d9fe55577695627a4062e33127a749aee1cb0ce091
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/inputs/this_repository/lean4/DualWitness.lean
+      sha256: b69a5a5b0f7e69541787915ccd48e7b29b687e04a54d838b556936e034e7f7f7
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/inputs/this_repository/dag/derivations/21_implementation_core/tfq_0132_trace_norm_certificates.md
+      sha256: ab9d432180d347291cb3af3bda1396dc970408e5697ea904a6599e95465fe0cb
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p0/operation_sources/code/python/src/qm/resources_exact.py
+      sha256: 11ef2d70fa824b51335b881564ab0bc87227c1b43f1fea26ebb87c283c81349f
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p0/operation_sources/code/python/tests/test_resources_exact.py
+      sha256: 9e299e3dff3f975f3a770e3a940ad8f6969ab02b72545ac5d583c5738ddc9fe7
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/resources_exact.rs
+      sha256: 74c77661e2030c2b37634dd449b164e696ebb7fb318019291719d56436cac1cc
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/resources_exact_replay.rs
+      sha256: 3a2f999edc029ff914fd12dbe3516510ae3aaa9b9104b46a3f2168d9820092c9
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/resources_checker.py
+      sha256: 0c9fcef66b088ab515dc5b1998a8bdad39f7ef2e230552245fccbb184cbac01c
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/prepare.py
+      sha256: 7a8161d3b86651ba01b76e4bf6d940ca18597301b2bd99e0c75235bb9376fbc7
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/specs.py
+      sha256: 56bea147f8ccf6b6c0e919dba2489878517b5e722a9284ffab51216119d6d4cb
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/check_candidate.py
+      sha256: 37ed0b7693f9399f7e594a3f725b4c13c243e17e7effa824a48fe42cc01ce510
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/format_certificate.py
+      sha256: c042ce643bacffc620979626be79977032c2b1d826af57cde9c447ff2c511497
+    public_input:
+      kind: dual
+      cases:
+      - - '2'
+        - '1'
+        - '-1'
+        - '5'
+      - - '-3'
+        - 1/2
+        - -1/3
+        - '2'
+      - - '0'
+        - '0'
+        - '0'
+        - '1'
+      scope: Two-coordinate quotient shift invariance, dual upper bound and existence of a bounded attaining
+        rational witness are kernel checked with exact controls.
+      unpaid_target: Prove arbitrary finite-dimensional normed-space duality and the matrix/spectral lift
+        separately. This coordinate result is not the original general theorem.
+    original_target: Quotient invariance of the trace-distance defect (Thm 4), finite convex duality (Thm
+      5) and existence of bounded dual witnesses (Thm 6) hold over any finite-dimensional normed space;
+      identifying the dual with the trace-zero ball and the matrix lift need the spectral theorem (imported).
+    source_scope_review: 'The source spread theorem/alias does not prove arbitrary finite normed-space
+      convex duality. This step instead proves exact duality in the declared two-coordinate trace-zero
+      rational space: shift by a common constant is invisible, |r(s-t)|≤2|r| for |s|,|t|≤1, and the sign
+      witness attains it. No spectral theorem is used for this coordinate statement.'
+    admitted_assumptions:
+    - spectral theorem for the matrix lift (assumption)
+  slot_m2_layer1_forward_morphisms:
+    mining_status: FILLED
+    operations:
+    - catalog_id: bounded_covector
+      inputs:
+      - SuppliedBoundedRationalCovector2
+      output: RationalPairingTerms2
+      semantic_predicate: Retain supplied s,t with |s|,|t|≤1 and fixed trace-zero vector (r,-r).
+    - catalog_id: trace_zero_pairing
+      inputs:
+      - RationalPairingTerms2
+      output: RationalDualEvaluation
+      semantic_predicate: Compute rs-rt.
+    - catalog_id: absolute_value
+      inputs:
+      - RationalDualEvaluation
+      output: NonnegativeDualMagnitude
+      semantic_predicate: Take absolute value.
+    composition_plan: *id001
+    tree:
+    - Adding k to both covector coordinates preserves pairing; the bounded supremum is 2|r| with sign
+      witnesses.
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: FILLED
+    algebraic_relations:
+    - id: dual_relation_0
+      equation_or_predicate: Adding k to both covector coordinates preserves pairing; the bounded supremum
+        is 2|r| with sign witnesses.
+      typing_conditions: Literal declared operation domains; Prove arbitrary finite-dimensional normed-space
+        duality and the matrix/spectral lift separately. This coordinate result is not the original general
+        theorem.
+      evidence_status: P1 candidate; independent native and named kernel gates remain required.
+      scope: Two-coordinate quotient shift invariance, dual upper bound and existence of a bounded attaining
+        rational witness are kernel checked with exact controls.
+      source_pins:
+      - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_ds_qm080_import_free_trace_norm_core_proved_lean.yaml
+        sha256: 11f3351e821dce15f23d874657987f2b1255c50bd982eba61e80efe87e73c672
+      - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/inputs/this_repository/dag/operads/ds_qm080_import_free_trace_norm_core.yaml
+        sha256: 992c335d9d5bd7092b3bd629eaaca27bbce0321f8c3d9a9f828591dc35bcde2c
+      - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/inputs/this_repository/lean4/TraceZeroDuality.lean
+        sha256: faafda639fbe1ea89ef890d9fe55577695627a4062e33127a749aee1cb0ce091
+      - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/inputs/this_repository/lean4/DualWitness.lean
+        sha256: b69a5a5b0f7e69541787915ccd48e7b29b687e04a54d838b556936e034e7f7f7
+      - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+        sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+      - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/inputs/this_repository/dag/derivations/21_implementation_core/tfq_0132_trace_norm_certificates.md
+        sha256: ab9d432180d347291cb3af3bda1396dc970408e5697ea904a6599e95465fe0cb
+      - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p0/operation_sources/code/python/src/qm/resources_exact.py
+        sha256: 11ef2d70fa824b51335b881564ab0bc87227c1b43f1fea26ebb87c283c81349f
+      - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p0/operation_sources/code/python/tests/test_resources_exact.py
+        sha256: 9e299e3dff3f975f3a770e3a940ad8f6969ab02b72545ac5d583c5738ddc9fe7
+      - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/resources_exact.rs
+        sha256: 74c77661e2030c2b37634dd449b164e696ebb7fb318019291719d56436cac1cc
+      - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/resources_exact_replay.rs
+        sha256: 3a2f999edc029ff914fd12dbe3516510ae3aaa9b9104b46a3f2168d9820092c9
+      - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/resources_checker.py
+        sha256: 0c9fcef66b088ab515dc5b1998a8bdad39f7ef2e230552245fccbb184cbac01c
+      - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+        sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+      - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/prepare.py
+        sha256: 7a8161d3b86651ba01b76e4bf6d940ca18597301b2bd99e0c75235bb9376fbc7
+      - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/specs.py
+        sha256: 56bea147f8ccf6b6c0e919dba2489878517b5e722a9284ffab51216119d6d4cb
+      - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/custody.py
+        sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+      - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+        sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+      - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/check_candidate.py
+        sha256: 37ed0b7693f9399f7e594a3f725b4c13c243e17e7effa824a48fe42cc01ce510
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/format_certificate.py
+        sha256: c042ce643bacffc620979626be79977032c2b1d826af57cde9c447ff2c511497
+    rejection_predicates:
+    - Independent domain equations and actual matrix/graph/quotient arrays recompute every output.
+    - Exact public input, canonical rational primitive types, complete source pins and exact sealed request
+      bytes.
+    - Full native cross-language output equality and actual named Lean axiom reports; no label-based target
+      promotion.
+    negative_control_plan: Alter every output coordinate, input identity, primitive types, source set
+      and sealed request.
+  slot_m4_tri_language_witness_anchors:
+    mining_status: FILLED
+    certificate_predicates:
+    - Independent domain equations and actual matrix/graph/quotient arrays recompute every output.
+    - Exact public input, canonical rational primitive types, complete source pins and exact sealed request
+      bytes.
+    - Full native cross-language output equality and actual named Lean axiom reports; no label-based target
+      promotion.
+    anchors:
+    - code/python/src/qm/resources_exact.py
+    - code/python/tests/test_resources_exact.py
+    - code/rust/src/finite_probability/resources_exact.rs
+    - code/rust/src/finite_probability/examples/resources_exact_replay.rs
+    - dag/pfp/resources_checker.py
+    - dag/pfp/exact_json.py
+    - dag/pfp/review_exact_json.py
+    - lean4/BuildabilitySetS.lean
+    - lean4/PromptResources.lean
+    - dag/results/batches/20261019T184100Z_prompts_52_71/tools/prepare.py
+    - dag/results/batches/20261019T184100Z_prompts_52_71/tools/specs.py
+    - dag/pfp/custody.py
+    - dag/pfp/filename_custody.json
+    - QuantumMechanics.PromptResources.dual_shift
+    - QuantumMechanics.PromptResources.dual_bound
+    - QuantumMechanics.PromptResources.dual_attained
+    unpaid_imports:
+    - Prove arbitrary finite-dimensional normed-space duality and the matrix/spectral lift separately.
+      This coordinate result is not the original general theorem.
+    - Prove the full refined-carrier operad identity, substitution, symmetry and coherence laws; mere
+      colour matches do not instantiate that formal structure.
+    anchor_status: New Lean anchors are candidate declarations until the retained P2 compiler runs; compiled
+      source leads retain their literal scope.
+stage_history:
+- stage: P0_MINE_OPERAD
+  attempt: p0
+  run: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged
+  operad_delta: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p0/operad_delta.yaml
+  host_check: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p0/host_check.json
+- stage: P1_DERIVE
+  attempt: p1
+  run: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged
+  operad_delta: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p1/operad_delta.yaml
+  host_check: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p1/host_check.json
+- stage: P2_VERIFY
+  attempt: p2
+  run: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged
+  operad_delta: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p2/operad_delta.yaml
+  host_check: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p2/host_check.json
+- stage: P4_CHALLENGE
+  attempt: p4
+  run: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged
+  operad_delta: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p4/operad_delta.yaml
+  host_check: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p4/host_check.json
+- stage: P5_RECORD
+  attempt: p5
+  run: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged
+  operad_delta: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p5/operad_delta.yaml
+  host_check: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p5/host_check.json
+open_obligations: *id002
+excluded_relation_leads: []
+operad_slots_scope:
+  work_unit: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged/p0/reviewed_missions.json
+  scope: FILLED means reviewed prerequisites for this selected step; original target and unpaid imports
+    retained.
+  review_refinement: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/reviews/20261019_resources_audit/scope_review.json
+latest_run:
+  path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/runs/20261019T184100Z_staged
+  stage: P5_RECORD
+  status: scoped_result_or_obstruction_reviewed
+scope_notes:
+- 'The source spread theorem/alias does not prove arbitrary finite normed-space convex duality. This step
+  instead proves exact duality in the declared two-coordinate trace-zero rational space: shift by a common
+  constant is invisible, |r(s-t)|≤2|r| for |s|,|t|≤1, and the sign witness attains it. No spectral theorem
+  is used for this coordinate statement.'
+latest_review:
+  path: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/reviews/20261019_resources_audit
+  status: reviewed_with_targeted_native_integration
+  operad_delta: dag/results/DS-QM080-IMPORT-FREE-TRACE-NORM-CORE/reviews/20261019_resources_audit/operad_delta.yaml

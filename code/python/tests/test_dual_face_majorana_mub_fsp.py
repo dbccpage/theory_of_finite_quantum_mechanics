@@ -283,3 +283,74 @@ def test_fsp_witness_and_refusal():
 
     with pytest.raises(ValueError):
         fsp_refuse_foreign_fixture(36864)
+
+
+def test_dual_face_lattice_scaling_benchmarks():
+    """Verify Fock, Hubbard, Tetron, MultiQubitBraid, SparseKitaev, ClassifyResidual, and PauliNoise finite scaling benchmarks in Python match Rust."""
+    from src.fsp import (
+        benchmark_fock_lattice_scaling,
+        benchmark_hubbard_lattice_scaling,
+        fock_scaling_from_canonical_json,
+        fock_scaling_to_canonical_json,
+        hubbard_scaling_from_canonical_json,
+        hubbard_scaling_to_canonical_json,
+    )
+    from src.majorana import (
+        MAX_WIRE_SITES,
+        benchmark_classify_residual,
+        benchmark_multiqubit_braid_scaling,
+        benchmark_pauli_noise_scaling,
+        benchmark_sparse_kitaev_scaling,
+        benchmark_tetron_lattice_scaling,
+        classify_residual_from_canonical_json,
+        classify_residual_to_canonical_json,
+        multiqubit_braid_scaling_from_canonical_json,
+        multiqubit_braid_scaling_to_canonical_json,
+        pauli_noise_scaling_from_canonical_json,
+        pauli_noise_scaling_to_canonical_json,
+        sparse_kitaev_scaling_from_canonical_json,
+        sparse_kitaev_scaling_to_canonical_json,
+        tetron_scaling_from_canonical_json,
+        tetron_scaling_to_canonical_json,
+    )
+
+    fock_rows = benchmark_fock_lattice_scaling(Fraction(2), 3)
+    assert len(fock_rows) == 9
+    assert fock_scaling_from_canonical_json(fock_scaling_to_canonical_json(fock_rows)) == fock_rows
+
+    hubbard_rows = benchmark_hubbard_lattice_scaling()
+    assert len(hubbard_rows) == 8
+    assert hubbard_scaling_from_canonical_json(hubbard_scaling_to_canonical_json(hubbard_rows)) == hubbard_rows
+
+    tetron_rows = benchmark_tetron_lattice_scaling(
+        [(2, 2), (3, 3), (4, 4), (5, 5), (6, 6), (6, 8), (8, 8)],
+        [Topology.Disk, Topology.Cylinder, Topology.Torus],
+    )
+    assert len(tetron_rows) == 21
+    assert tetron_scaling_from_canonical_json(tetron_scaling_to_canonical_json(tetron_rows)) == tetron_rows
+
+    braid_rows = benchmark_multiqubit_braid_scaling([2, 4, 8, 12, 16])
+    assert len(braid_rows) == 5
+    assert multiqubit_braid_scaling_from_canonical_json(
+        multiqubit_braid_scaling_to_canonical_json(braid_rows)
+    ) == braid_rows
+
+    kitaev_rows = benchmark_sparse_kitaev_scaling([16, 64, 256, 1024, 4096, 16384, MAX_WIRE_SITES])
+    assert len(kitaev_rows) == 7
+    assert sparse_kitaev_scaling_from_canonical_json(
+        sparse_kitaev_scaling_to_canonical_json(kitaev_rows)
+    ) == kitaev_rows
+
+    classify_rows = benchmark_classify_residual()
+    assert len(classify_rows) == 14
+    assert classify_residual_from_canonical_json(
+        classify_residual_to_canonical_json(classify_rows)
+    ) == classify_rows
+
+    pauli_rows = benchmark_pauli_noise_scaling([2, 4, 8, 12, 16])
+    assert len(pauli_rows) == 5
+    assert pauli_noise_scaling_from_canonical_json(
+        pauli_noise_scaling_to_canonical_json(pauli_rows)
+    ) == pauli_rows
+
+

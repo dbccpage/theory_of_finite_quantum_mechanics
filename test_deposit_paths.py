@@ -73,7 +73,7 @@ def test_walk_and_manifest_roundtrip(tmp_path: Path) -> None:
     relative = [item.relative_to(tmp_path).as_posix() for item in found]
     assert relative == ["sources/original_papers/packet/one.md"]
     digest = paths.sha256_of(found[0])
-    manifest = tmp_path / "SHA256SUMS"
+    manifest = tmp_path / "sha256sums"
     manifest.write_text(f"{digest.upper()}  sources/original_papers/packet/one.md\n", encoding="utf-8")
     entries = paths.read_manifest(tmp_path, manifest)
     assert entries == [("sources/original_papers/packet/one.md", digest)]
@@ -82,7 +82,7 @@ def test_walk_and_manifest_roundtrip(tmp_path: Path) -> None:
 def test_manifest_negative_lines(tmp_path: Path) -> None:
     target = tmp_path / "note.txt"
     target.write_text("body", encoding="utf-8")
-    manifest = tmp_path / "SHA256SUMS"
+    manifest = tmp_path / "sha256sums"
     manifest.write_text("not-a-digest\n", encoding="utf-8")
     with pytest.raises(ValueError, match="malformed manifest line"):
         paths.read_manifest(tmp_path, manifest)
@@ -206,7 +206,7 @@ def _digest_kept_case(module: ModuleType, tmp_path: Path) -> bool:
     digest: object = module.sha256_of(target)
     if not isinstance(digest, str):
         return False
-    manifest = tmp_path / "SHA256SUMS"
+    manifest = tmp_path / "sha256sums"
     manifest.write_text(f"{digest.upper()}  note.txt\n", encoding="utf-8")
     entries: object = module.read_manifest(tmp_path, manifest)
     if not isinstance(entries, list) or not entries:

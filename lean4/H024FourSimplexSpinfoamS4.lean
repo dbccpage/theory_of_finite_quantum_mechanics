@@ -165,11 +165,10 @@ end S4PartitionFunction
 #print axioms S4PartitionFunction.s4_inadmissible_sector_vanishes
 #print axioms S4PartitionFunction.s4_truncation_bound
 
-end FableHilbertWalk20260819.H024
-
-
 theorem falsification_degenerate_carrier : ¬ (1 = 0) := by
   decide
+
+end FableHilbertWalk20260819.H024
 
 private def l5aProvenance : String :=
   "Origin: lean4/H024FourSimplexSpinfoamS4.lean Claim: simplex4_vacuum_admissible AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

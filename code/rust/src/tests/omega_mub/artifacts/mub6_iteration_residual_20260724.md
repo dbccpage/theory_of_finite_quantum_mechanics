@@ -14,9 +14,9 @@ Branch / worktree: `grok/mub6-f6-external-b3`.
 
 Merged artifacts:
 
-* `artifacts/dita_seed_F6_0_16_gauge_fixed_5_torus_presplit6_merged_complete.json`
-* `artifacts/dita_seed_F6_8_8_gauge_fixed_5_torus_presplit6_merged_complete.json`
-* `artifacts/dita_seed_F6_16_0_gauge_fixed_5_torus_presplit6_merged_complete.json`
+* `artifacts/dita_seed_f6_0_16_gauge_fixed_5_torus_presplit6_merged_complete.json`
+* `artifacts/dita_seed_f6_8_8_gauge_fixed_5_torus_presplit6_merged_complete.json`
+* `artifacts/dita_seed_f6_16_0_gauge_fixed_5_torus_presplit6_merged_complete.json`
 
 **Dual-orbit cover parity (on disk):** all six genuine Dita seeds
 `{Y2⊗Q1: (0,8),(8,0),(16,16)} ∪ {Y2⊗Q2: (0,16),(8,8),(16,0)}` share identical

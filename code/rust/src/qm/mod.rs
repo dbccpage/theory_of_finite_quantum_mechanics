@@ -97,6 +97,7 @@ pub mod packet_protocol;
 pub mod report_fiber;
 pub mod simplicial_grav;
 pub mod suites;
+pub mod textbook_problems;
 pub mod tower_walk;
 
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]

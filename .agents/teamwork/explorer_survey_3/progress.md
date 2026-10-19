@@ -6,8 +6,8 @@
 - **Last visited:** 2026-10-18T17:36:00Z
 
 ## Current Tasks
-- [x] Received dispatch and recorded in DISPATCH.md
-- [x] Read ORIGINAL_REQUEST.md
+- [x] Received dispatch and recorded in dispatch.md
+- [x] Read original_request.md
 - [x] Inspect `papers/core/majorana/` (`the_majorana_problem.md`, `claim_ledger.yaml`, `verify_deposit.py`, `lean4/`, `code/`, `contracts/`)
 - [x] Inspect Python areas (`code/python/src/`, `code/python/tests/`, `pyproject.toml`)
 - [x] Inspect Rust areas (`code/rust/Cargo.toml`, `code/rust/src/lib.rs`, `code/rust/src/majorana/`)

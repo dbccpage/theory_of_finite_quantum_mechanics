@@ -1,0 +1,602 @@
+{
+  "task_id": "FQ-BELL-RATIONAL-VIOLATION-14-5",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "p0",
+  "input_sha256": "1f0e0334b1c3c098c1c43e2f2d235ad79ceb620ae3f02b98258c84ac27e0c54b",
+  "candidate_sha256": "0f09df71c41afba49b328a142923e74c9abc1f2bac2817aa7035dc9ce744d580",
+  "status": "reviewed_for_next_step",
+  "reviewed_sha256": "4ecc157be6c552a0590eb8fd46c91c211cf7f1e3e97314f0b7102a89407033b8",
+  "predicate_results": {
+    "sources_available_and_pins_match": true,
+    "semantic_scope_review": "Classical scale theorem is separate from the new density/observable Born witness.",
+    "checker_available": [
+      {
+        "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/check_candidate.py",
+        "sha256": "c51cd0f4906f707a1d543a28553246d4294803447080b1fa87fa41f9f70727af"
+      },
+      {
+        "path": "dag/pfp/exact_json.py",
+        "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+      }
+    ]
+  },
+  "bounded_failure_codes": [],
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "spectral_projectors",
+        "ordered_inputs": [
+          "BinaryObservable2"
+        ],
+        "output": "ProjectorPair2",
+        "arity": 1,
+        "carrier": "Declared real rational two-qubit tensor/Born scenario",
+        "coefficient_ring": "Q",
+        "hypotheses": [
+          "density is a nonnegative rational Gram sum of trace one",
+          "observables are real symmetric involutions",
+          "fixed basis, setting and outcome order"
+        ],
+        "source_pins": [
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/pfp_exact.py",
+            "sha256": "33a78864b07a7924bff59226cbef4e276665671ebd9ea1d7860afbda273398be"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/rational_bell.py",
+            "sha256": "14d7f60d5eb2514f00141728e78def57a82a7cb9f71d216c24666b45d45489db"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/bell_separator_extension.py",
+            "sha256": "c9fb01de9c4cc0ce5cff62f539ef6727b5ad7c603dc37d697721ca990c1ffb3d"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_exact.rs",
+            "sha256": "bc3366a3fe6702306136b112a49a8d6df5e5679306d2c03131eef33b909b5404"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/rational_bell.rs",
+            "sha256": "f138c7881191cedcc1316acb4f89b3965ec6ff922b9d2d4fd915ebb97b69a18e"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/rational_bell_replay.rs",
+            "sha256": "1fc2487ce4b3cf038cc22e98ab2eda23308a35d26afd061d45d8c71867e8d940"
+          }
+        ],
+        "semantic_predicate": "(I-A)/2,(I+A)/2 on a real symmetric involution",
+        "evidence_status": "Definitions and typed intended interpretation reviewed in P0; candidate kernel anchors and finite native execution are separate P2 gates."
+      },
+      {
+        "id": "tensor_effect",
+        "ordered_inputs": [
+          "Projector2",
+          "Projector2"
+        ],
+        "output": "JointEffect4",
+        "arity": 2,
+        "carrier": "Declared real rational two-qubit tensor/Born scenario",
+        "coefficient_ring": "Q",
+        "hypotheses": [
+          "density is a nonnegative rational Gram sum of trace one",
+          "observables are real symmetric involutions",
+          "fixed basis, setting and outcome order"
+        ],
+        "source_pins": [
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/pfp_exact.py",
+            "sha256": "33a78864b07a7924bff59226cbef4e276665671ebd9ea1d7860afbda273398be"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/rational_bell.py",
+            "sha256": "14d7f60d5eb2514f00141728e78def57a82a7cb9f71d216c24666b45d45489db"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/bell_separator_extension.py",
+            "sha256": "c9fb01de9c4cc0ce5cff62f539ef6727b5ad7c603dc37d697721ca990c1ffb3d"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_exact.rs",
+            "sha256": "bc3366a3fe6702306136b112a49a8d6df5e5679306d2c03131eef33b909b5404"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/rational_bell.rs",
+            "sha256": "f138c7881191cedcc1316acb4f89b3965ec6ff922b9d2d4fd915ebb97b69a18e"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/rational_bell_replay.rs",
+            "sha256": "1fc2487ce4b3cf038cc22e98ab2eda23308a35d26afd061d45d8c71867e8d940"
+          }
+        ],
+        "semantic_predicate": "Kronecker product on the fixed 00,01,10,11 basis",
+        "evidence_status": "Definitions and typed intended interpretation reviewed in P0; candidate kernel anchors and finite native execution are separate P2 gates."
+      },
+      {
+        "id": "born_trace",
+        "ordered_inputs": [
+          "Density4",
+          "JointEffect4"
+        ],
+        "output": "ProbabilityQ",
+        "arity": 2,
+        "carrier": "Declared real rational two-qubit tensor/Born scenario",
+        "coefficient_ring": "Q",
+        "hypotheses": [
+          "density is a nonnegative rational Gram sum of trace one",
+          "observables are real symmetric involutions",
+          "fixed basis, setting and outcome order"
+        ],
+        "source_pins": [
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/pfp_exact.py",
+            "sha256": "33a78864b07a7924bff59226cbef4e276665671ebd9ea1d7860afbda273398be"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/rational_bell.py",
+            "sha256": "14d7f60d5eb2514f00141728e78def57a82a7cb9f71d216c24666b45d45489db"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/bell_separator_extension.py",
+            "sha256": "c9fb01de9c4cc0ce5cff62f539ef6727b5ad7c603dc37d697721ca990c1ffb3d"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_exact.rs",
+            "sha256": "bc3366a3fe6702306136b112a49a8d6df5e5679306d2c03131eef33b909b5404"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/rational_bell.rs",
+            "sha256": "f138c7881191cedcc1316acb4f89b3965ec6ff922b9d2d4fd915ebb97b69a18e"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/rational_bell_replay.rs",
+            "sha256": "1fc2487ce4b3cf038cc22e98ab2eda23308a35d26afd061d45d8c71867e8d940"
+          }
+        ],
+        "semantic_predicate": "Tr(rho E) using supplied density and trace pairing",
+        "evidence_status": "Definitions and typed intended interpretation reviewed in P0; candidate kernel anchors and finite native execution are separate P2 gates."
+      },
+      {
+        "id": "born_pair_tables",
+        "ordered_inputs": [
+          "BellQuantumInputs"
+        ],
+        "output": "CompatiblePairData",
+        "arity": 1,
+        "carrier": "Declared real rational two-qubit tensor/Born scenario",
+        "coefficient_ring": "Q",
+        "hypotheses": [
+          "density is a nonnegative rational Gram sum of trace one",
+          "observables are real symmetric involutions",
+          "fixed basis, setting and outcome order"
+        ],
+        "source_pins": [
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/pfp_exact.py",
+            "sha256": "33a78864b07a7924bff59226cbef4e276665671ebd9ea1d7860afbda273398be"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/rational_bell.py",
+            "sha256": "14d7f60d5eb2514f00141728e78def57a82a7cb9f71d216c24666b45d45489db"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/bell_separator_extension.py",
+            "sha256": "c9fb01de9c4cc0ce5cff62f539ef6727b5ad7c603dc37d697721ca990c1ffb3d"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_exact.rs",
+            "sha256": "bc3366a3fe6702306136b112a49a8d6df5e5679306d2c03131eef33b909b5404"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/rational_bell.rs",
+            "sha256": "f138c7881191cedcc1316acb4f89b3965ec6ff922b9d2d4fd915ebb97b69a18e"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/rational_bell_replay.rs",
+            "sha256": "1fc2487ce4b3cf038cc22e98ab2eda23308a35d26afd061d45d8c71867e8d940"
+          }
+        ],
+        "semantic_predicate": "Collect the 16 actual traces with fixed settings/outcome order",
+        "evidence_status": "Definitions and typed intended interpretation reviewed in P0; candidate kernel anchors and finite native execution are separate P2 gates."
+      },
+      {
+        "id": "signed_chsh",
+        "ordered_inputs": [
+          "CompatiblePairData"
+        ],
+        "output": "FacetValues8",
+        "arity": 1,
+        "carrier": "Declared real rational two-qubit tensor/Born scenario",
+        "coefficient_ring": "Q",
+        "hypotheses": [
+          "density is a nonnegative rational Gram sum of trace one",
+          "observables are real symmetric involutions",
+          "fixed basis, setting and outcome order"
+        ],
+        "source_pins": [
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/pfp_exact.py",
+            "sha256": "33a78864b07a7924bff59226cbef4e276665671ebd9ea1d7860afbda273398be"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/rational_bell.py",
+            "sha256": "14d7f60d5eb2514f00141728e78def57a82a7cb9f71d216c24666b45d45489db"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/bell_separator_extension.py",
+            "sha256": "c9fb01de9c4cc0ce5cff62f539ef6727b5ad7c603dc37d697721ca990c1ffb3d"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_exact.rs",
+            "sha256": "bc3366a3fe6702306136b112a49a8d6df5e5679306d2c03131eef33b909b5404"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/rational_bell.rs",
+            "sha256": "f138c7881191cedcc1316acb4f89b3965ec6ff922b9d2d4fd915ebb97b69a18e"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/rational_bell_replay.rs",
+            "sha256": "1fc2487ce4b3cf038cc22e98ab2eda23308a35d26afd061d45d8c71867e8d940"
+          }
+        ],
+        "semantic_predicate": "All odd-minus signed CHSH forms; standard expression uses mask 8",
+        "evidence_status": "Definitions and typed intended interpretation reviewed in P0; candidate kernel anchors and finite native execution are separate P2 gates."
+      },
+      {
+        "id": "support_assignments",
+        "ordered_inputs": [
+          "CompatiblePairData"
+        ],
+        "output": "SupportSet16",
+        "arity": 1,
+        "carrier": "Declared real rational two-qubit tensor/Born scenario",
+        "coefficient_ring": "Q",
+        "hypotheses": [
+          "density is a nonnegative rational Gram sum of trace one",
+          "observables are real symmetric involutions",
+          "fixed basis, setting and outcome order"
+        ],
+        "source_pins": [
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/pfp_exact.py",
+            "sha256": "33a78864b07a7924bff59226cbef4e276665671ebd9ea1d7860afbda273398be"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/rational_bell.py",
+            "sha256": "14d7f60d5eb2514f00141728e78def57a82a7cb9f71d216c24666b45d45489db"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/bell_separator_extension.py",
+            "sha256": "c9fb01de9c4cc0ce5cff62f539ef6727b5ad7c603dc37d697721ca990c1ffb3d"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_exact.rs",
+            "sha256": "bc3366a3fe6702306136b112a49a8d6df5e5679306d2c03131eef33b909b5404"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/rational_bell.rs",
+            "sha256": "f138c7881191cedcc1316acb4f89b3965ec6ff922b9d2d4fd915ebb97b69a18e"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/rational_bell_replay.rs",
+            "sha256": "1fc2487ce4b3cf038cc22e98ab2eda23308a35d26afd061d45d8c71867e8d940"
+          }
+        ],
+        "semantic_predicate": "Assignments whose four observed restrictions have positive probability; no positive-joint inference",
+        "evidence_status": "Definitions and typed intended interpretation reviewed in P0; candidate kernel anchors and finite native execution are separate P2 gates."
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "binary_spectral_partition",
+        "equation_or_predicate": "P-+P+=I, P_s^2=P_s",
+        "typing_conditions": "A=A^T and A^2=I",
+        "source_pins": [
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/pfp_exact.py",
+            "sha256": "33a78864b07a7924bff59226cbef4e276665671ebd9ea1d7860afbda273398be"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/rational_bell.py",
+            "sha256": "14d7f60d5eb2514f00141728e78def57a82a7cb9f71d216c24666b45d45489db"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/bell_separator_extension.py",
+            "sha256": "c9fb01de9c4cc0ce5cff62f539ef6727b5ad7c603dc37d697721ca990c1ffb3d"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_exact.rs",
+            "sha256": "bc3366a3fe6702306136b112a49a8d6df5e5679306d2c03131eef33b909b5404"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/rational_bell.rs",
+            "sha256": "f138c7881191cedcc1316acb4f89b3965ec6ff922b9d2d4fd915ebb97b69a18e"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/rational_bell_replay.rs",
+            "sha256": "1fc2487ce4b3cf038cc22e98ab2eda23308a35d26afd061d45d8c71867e8d940"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-BELL-RATIONAL-VIOLATION-14-5__PROVED_LEAN.yaml",
+            "sha256": "5a2cbd39e3b488a6893984fc48c5b496c960fa2b3630d25e2f8ee7d37fce436d"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-BELL-RATIONAL-VIOLATION-14-5.yaml",
+            "sha256": "9f39e3789d194c1e1b16a519c6a386a1b9943763d8caa0200cca59f3c2014a09"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/inputs/this_repository/lean4/H053EverettForkingTree.lean",
+            "sha256": "8730f0cdd32665b8aa902d31fe2bc2b99a5dcde35cf3ccb8f99019c952698b59"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/inputs/this_repository/lean4/QuantumCorrelation.lean",
+            "sha256": "1efde024ea6004e14e564be78cc1e9c5238919f28f2ddc1a1fbf6b58f6fa00bd"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/finite_chsh_correlations.rs",
+            "sha256": "3e82ca7f262b19a5a311e1953f1331e10129bb7a8fa1400cc6ba4e2ba04d1db1"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/finite_bell_extension.rs",
+            "sha256": "ead6bc113ed0fe37ea9102858e8e2addecfe3ccf8153b4c4e697849daab02a81"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/TFQ-0260_bell_theorem_not_derived_from_the_finite_tables.md",
+            "sha256": "d5346fac4f73bc9ed1bc316f49221daf281962b25e826a2001232c37382239c8"
+          }
+        ],
+        "evidence_status": "Source algebra reviewed; fixed concrete matrix predicates and candidate Lean witnesses will be checked at P2.",
+        "scope": "No derivation of tensor composition, Born pairing, locality or setting independence."
+      },
+      {
+        "id": "tensor_born_evaluation",
+        "equation_or_predicate": "p(a,b|x,y)=Tr(rho(P_a^x tensor P_b^y))",
+        "typing_conditions": "same supplied rho and basis for every context",
+        "source_pins": [
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/pfp_exact.py",
+            "sha256": "33a78864b07a7924bff59226cbef4e276665671ebd9ea1d7860afbda273398be"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/rational_bell.py",
+            "sha256": "14d7f60d5eb2514f00141728e78def57a82a7cb9f71d216c24666b45d45489db"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/bell_separator_extension.py",
+            "sha256": "c9fb01de9c4cc0ce5cff62f539ef6727b5ad7c603dc37d697721ca990c1ffb3d"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_exact.rs",
+            "sha256": "bc3366a3fe6702306136b112a49a8d6df5e5679306d2c03131eef33b909b5404"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/rational_bell.rs",
+            "sha256": "f138c7881191cedcc1316acb4f89b3965ec6ff922b9d2d4fd915ebb97b69a18e"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/rational_bell_replay.rs",
+            "sha256": "1fc2487ce4b3cf038cc22e98ab2eda23308a35d26afd061d45d8c71867e8d940"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-BELL-RATIONAL-VIOLATION-14-5__PROVED_LEAN.yaml",
+            "sha256": "5a2cbd39e3b488a6893984fc48c5b496c960fa2b3630d25e2f8ee7d37fce436d"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-BELL-RATIONAL-VIOLATION-14-5.yaml",
+            "sha256": "9f39e3789d194c1e1b16a519c6a386a1b9943763d8caa0200cca59f3c2014a09"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/inputs/this_repository/lean4/H053EverettForkingTree.lean",
+            "sha256": "8730f0cdd32665b8aa902d31fe2bc2b99a5dcde35cf3ccb8f99019c952698b59"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/inputs/this_repository/lean4/QuantumCorrelation.lean",
+            "sha256": "1efde024ea6004e14e564be78cc1e9c5238919f28f2ddc1a1fbf6b58f6fa00bd"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/finite_chsh_correlations.rs",
+            "sha256": "3e82ca7f262b19a5a311e1953f1331e10129bb7a8fa1400cc6ba4e2ba04d1db1"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/finite_bell_extension.rs",
+            "sha256": "ead6bc113ed0fe37ea9102858e8e2addecfe3ccf8153b4c4e697849daab02a81"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/TFQ-0260_bell_theorem_not_derived_from_the_finite_tables.md",
+            "sha256": "d5346fac4f73bc9ed1bc316f49221daf281962b25e826a2001232c37382239c8"
+          }
+        ],
+        "evidence_status": "Source algebra reviewed; fixed concrete matrix predicates and candidate Lean witnesses will be checked at P2.",
+        "scope": "No derivation of tensor composition, Born pairing, locality or setting independence."
+      },
+      {
+        "id": "joint_chsh_necessity",
+        "equation_or_predicate": "Every nonnegative common assignment law satisfies each CHSH facet",
+        "typing_conditions": "same four assignments and one normalized positive law",
+        "source_pins": [
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/pfp_exact.py",
+            "sha256": "33a78864b07a7924bff59226cbef4e276665671ebd9ea1d7860afbda273398be"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/rational_bell.py",
+            "sha256": "14d7f60d5eb2514f00141728e78def57a82a7cb9f71d216c24666b45d45489db"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/bell_separator_extension.py",
+            "sha256": "c9fb01de9c4cc0ce5cff62f539ef6727b5ad7c603dc37d697721ca990c1ffb3d"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_exact.rs",
+            "sha256": "bc3366a3fe6702306136b112a49a8d6df5e5679306d2c03131eef33b909b5404"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/rational_bell.rs",
+            "sha256": "f138c7881191cedcc1316acb4f89b3965ec6ff922b9d2d4fd915ebb97b69a18e"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/rational_bell_replay.rs",
+            "sha256": "1fc2487ce4b3cf038cc22e98ab2eda23308a35d26afd061d45d8c71867e8d940"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-BELL-RATIONAL-VIOLATION-14-5__PROVED_LEAN.yaml",
+            "sha256": "5a2cbd39e3b488a6893984fc48c5b496c960fa2b3630d25e2f8ee7d37fce436d"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-BELL-RATIONAL-VIOLATION-14-5.yaml",
+            "sha256": "9f39e3789d194c1e1b16a519c6a386a1b9943763d8caa0200cca59f3c2014a09"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/inputs/this_repository/lean4/H053EverettForkingTree.lean",
+            "sha256": "8730f0cdd32665b8aa902d31fe2bc2b99a5dcde35cf3ccb8f99019c952698b59"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/inputs/this_repository/lean4/QuantumCorrelation.lean",
+            "sha256": "1efde024ea6004e14e564be78cc1e9c5238919f28f2ddc1a1fbf6b58f6fa00bd"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/finite_chsh_correlations.rs",
+            "sha256": "3e82ca7f262b19a5a311e1953f1331e10129bb7a8fa1400cc6ba4e2ba04d1db1"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/finite_bell_extension.rs",
+            "sha256": "ead6bc113ed0fe37ea9102858e8e2addecfe3ccf8153b4c4e697849daab02a81"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/TFQ-0260_bell_theorem_not_derived_from_the_finite_tables.md",
+            "sha256": "d5346fac4f73bc9ed1bc316f49221daf281962b25e826a2001232c37382239c8"
+          }
+        ],
+        "evidence_status": "Source algebra reviewed; fixed concrete matrix predicates and candidate Lean witnesses will be checked at P2.",
+        "scope": "No derivation of tensor composition, Born pairing, locality or setting independence."
+      },
+      {
+        "id": "support_is_not_positive_extension",
+        "equation_or_predicate": "Equal full support does not determine convex joint-law feasibility",
+        "typing_conditions": "Compare computed Born tables and actual signed facet values, not support labels",
+        "source_pins": [
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/pfp_exact.py",
+            "sha256": "33a78864b07a7924bff59226cbef4e276665671ebd9ea1d7860afbda273398be"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/rational_bell.py",
+            "sha256": "14d7f60d5eb2514f00141728e78def57a82a7cb9f71d216c24666b45d45489db"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/bell_separator_extension.py",
+            "sha256": "c9fb01de9c4cc0ce5cff62f539ef6727b5ad7c603dc37d697721ca990c1ffb3d"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_exact.rs",
+            "sha256": "bc3366a3fe6702306136b112a49a8d6df5e5679306d2c03131eef33b909b5404"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/rational_bell.rs",
+            "sha256": "f138c7881191cedcc1316acb4f89b3965ec6ff922b9d2d4fd915ebb97b69a18e"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/rational_bell_replay.rs",
+            "sha256": "1fc2487ce4b3cf038cc22e98ab2eda23308a35d26afd061d45d8c71867e8d940"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-BELL-RATIONAL-VIOLATION-14-5__PROVED_LEAN.yaml",
+            "sha256": "5a2cbd39e3b488a6893984fc48c5b496c960fa2b3630d25e2f8ee7d37fce436d"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-BELL-RATIONAL-VIOLATION-14-5.yaml",
+            "sha256": "9f39e3789d194c1e1b16a519c6a386a1b9943763d8caa0200cca59f3c2014a09"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/inputs/this_repository/lean4/H053EverettForkingTree.lean",
+            "sha256": "8730f0cdd32665b8aa902d31fe2bc2b99a5dcde35cf3ccb8f99019c952698b59"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/inputs/this_repository/lean4/QuantumCorrelation.lean",
+            "sha256": "1efde024ea6004e14e564be78cc1e9c5238919f28f2ddc1a1fbf6b58f6fa00bd"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/finite_chsh_correlations.rs",
+            "sha256": "3e82ca7f262b19a5a311e1953f1331e10129bb7a8fa1400cc6ba4e2ba04d1db1"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/finite_bell_extension.rs",
+            "sha256": "ead6bc113ed0fe37ea9102858e8e2addecfe3ccf8153b4c4e697849daab02a81"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/FQ-BELL-RATIONAL-VIOLATION-14-5/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/TFQ-0260_bell_theorem_not_derived_from_the_finite_tables.md",
+            "sha256": "d5346fac4f73bc9ed1bc316f49221daf281962b25e826a2001232c37382239c8"
+          }
+        ],
+        "evidence_status": "Source algebra reviewed; fixed concrete matrix predicates and candidate Lean witnesses will be checked at P2.",
+        "scope": "No derivation of tensor composition, Born pairing, locality or setting independence."
+      }
+    ],
+    "checked_compositions": [
+      {
+        "outer_operation": "born_trace",
+        "input_slot": 1,
+        "inner_operation": "tensor_effect",
+        "colour_match": "JointEffect4 -> JointEffect4",
+        "hypothesis_match": "One common supplied density, basis and exactly the selected local effects",
+        "licensing_relations": [
+          "tensor_born_evaluation"
+        ],
+        "evidence_status": "Typed semantic insertion; fixed input computations pending P2."
+      }
+    ],
+    "failed_compositions": [
+      {
+        "outer_operation": "infer_positive_joint",
+        "input_slot": 0,
+        "inner_operation": "support_assignments",
+        "colour_match": "Fails: SupportSet16 does not supply a JointLaw",
+        "hypothesis_match": "No convex weights or marginal equation witness supplied",
+        "licensing_relations": [],
+        "evidence_status": "Rejected as an inference rule; a matching full-support control will be checked at P4."
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "Formal transport from arbitrary rational normalized joint arrays to the Nat-weighted assignment theorem remains explicit work.",
+      "General positivity-preserving probability-subtype operad instance, unit/associativity transport and symmetric action are not proved by this fixed witness.",
+      "Tensor composition, density positivity, Born trace pairing, locality and setting independence are admitted structures or physical assumptions, not derived here."
+    ]
+  },
+  "claim_boundary": {
+    "supports": "Reviewed typed construction and independent checking contract for an admitted rational quantum Bell witness.",
+    "does_not_support": "Completed kernel proof before P2, full formal rational transport, or physical assumptions.",
+    "narrowest_claim": "A fixed exact tensor/Born computation and signed joint-law obstruction are the selected checkable obligation within the full original target.",
+    "next_test": "Construct complete certificates and run the independent trace/Gram checker, both native implementations and literal Lean anchors."
+  }
+}

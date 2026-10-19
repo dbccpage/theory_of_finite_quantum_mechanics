@@ -1,0 +1,143 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: L1-DENSITY-LIFT-SIGNED-SQRT-PUB009
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: For an l1 residual v with mass M(v) > 0, psi(v)_i = sgn(v_i) sqrt(|v_i| / M(v)) gives the
+    rank-one real projector rho(v) = psi psi^T, a real L2 lift. The alignment statistic Xi = (1/2) ||rho(h*) -
+    rho(phi*)||_tr is strictly below 1 by complementary slackness. Xi depends on coordinate order and is undefined
+    at zero residual. It does not derive QM.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: &id001
+  - 'real square roots (real field): lift'
+  - 'trace norm on real symmetric matrices: lift'
+  source_bottleneck: Prose proofs of the strict bound are not in Lean. Rust xi.rs uses f64 (XiResult::value returns
+    f64), so it is numeric evidence only. Lean symbols in Xi.lean not individually grepped.
+  source_refs:
+  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/009_conditional_density_lift_and_dual_witness_xi_functional/density_lift.md
+  paper_refs:
+  - dag/derivations/07_l1_emergence/tfq_0355_stop_at_the_open_residual_to_weight_gap_and_do_not_import_a_hilbert.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports before
+    reusing a result.
+  historical_paper_refs:
+  - papers/derivations/07_l1_emergence/tfq_0355_stop_at_the_open_residual_to_weight_gap_and_do_not_import_a_hilbert.md
+  paper_relocations:
+  - from: papers/derivations/07_l1_emergence/tfq_0355_stop_at_the_open_residual_to_weight_gap_and_do_not_import_a_hilbert.md
+    to: dag/derivations/07_l1_emergence/tfq_0355_stop_at_the_open_residual_to_weight_gap_and_do_not_import_a_hilbert.md
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/07_l1_emergence/tfq_0355_stop_at_the_open_residual_to_weight_gap_and_do_not_import_a_hilbert.md
+    sha256: 6e8be9ed443adc413522a72d0d5101f43d5bcbe2ef9e02af208fc87a5d05cf80
+source_provenance:
+  repository: this_repository
+  commit: 642f5b95a116da6df805adbd745a4826c6739c2b
+  path: dag/prompts/l1_to_l2_l1_density_lift_signed_sqrt_pub009_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: sqDiffSum3
+  line: 131
+  signature_excerpt: 'def sqDiffSum3 (w0 w1 w2 : Int) : Int'
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: signed_sqrt_density_lift_cauchy_schwarz
+  line: 134
+  signature_excerpt: "theorem signed_sqrt_density_lift_cauchy_schwarz (w0 w1 w2 : Int) :\n    0 ≤ sqDiffSum3 w0\
+    \ w1 w2 ∧ sqDiffSum3 w0 w0 w0 = 0"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+source_bindings:
+- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/009_conditional_density_lift_and_dual_witness_xi_functional/lean4/Xi.lean
+  availability: external
+  symbol: null
+  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/009_conditional_density_lift_and_dual_witness_xi_functional/lean4/Xi.lean
+  repository: the_symbol_game
+  sha256: 857916859b96f8198f723ea349ff576a33c14a38abfcfafed050830138a58322
+  declaration_status: file_only_no_symbol
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.signed_sqrt_density_lift_cauchy_schwarz
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.signed_sqrt_density_lift_cauchy_schwarz
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 134
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_functional/src/xi.rs::DensityLift
+  availability: local
+  symbol: DensityLift
+  path: code/rust/src/functional/xi.rs
+  repository: this_repository
+  sha256: 7a063c53a75411ec7ec5e4946e88409e283daed9a9c27a19adbf456a7878c8ac
+  declaration_status: declaration_found_not_executed
+  line: 8
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_functional/src/xi.rs::XiResult
+  availability: local
+  symbol: XiResult
+  path: code/rust/src/functional/xi.rs
+  repository: this_repository
+  sha256: 7a063c53a75411ec7ec5e4946e88409e283daed9a9c27a19adbf456a7878c8ac
+  declaration_status: declaration_found_not_executed
+  line: 24
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_l1_sector_weights_and_density_lift_witness
+  availability: external
+  symbol: verify_l1_sector_weights_and_density_lift_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 259
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: *id001
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: *id001
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

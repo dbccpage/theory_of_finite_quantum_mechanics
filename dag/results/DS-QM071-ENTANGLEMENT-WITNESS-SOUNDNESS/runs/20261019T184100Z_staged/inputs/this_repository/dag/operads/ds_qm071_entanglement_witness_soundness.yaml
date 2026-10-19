@@ -1,0 +1,235 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: DS-QM071-ENTANGLEMENT-WITNESS-SOUNDNESS
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: Relative to a declared finite family of product points, a separating functional (phi(P_k)>=t,
+    phi(w)<t) shows w is not in the convex hull. Soundness only; every entangled state having a witness is not
+    claimed; general separability is not addressed.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: &id001
+  - declared product-point family (assumption)
+  - coherence coordinates in the carrier (assumption)
+  source_bottleneck: Completeness converse (finite LP duality) is an upgrade target.
+  source_refs:
+  - omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/071_entanglement_as_a_separability_obstruction/qm_071_entanglement_as_a_separability_obstruction_claim_ledger.md#QM-071-C5
+  - omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/071_entanglement_as_a_separability_obstruction/qm_071_entanglement_as_a_separability_obstruction_claim_ledger.md#QM-071-C9
+  - omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/071_entanglement_as_a_separability_obstruction/qm_071_entanglement_as_a_separability_obstruction_claim_ledger.md#QM-071-C10
+  paper_refs:
+  - dag/derivations/12_finite_qm_structure/tfq_0257_separability_witness_relative_to_a_declared_family.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports before
+    reusing a result.
+  historical_paper_refs:
+  - papers/derivations/12_finite_qm_structure/tfq_0257_separability_witness_relative_to_a_declared_family.md
+  paper_relocations:
+  - from: papers/derivations/12_finite_qm_structure/tfq_0257_separability_witness_relative_to_a_declared_family.md
+    to: dag/derivations/12_finite_qm_structure/tfq_0257_separability_witness_relative_to_a_declared_family.md
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/12_finite_qm_structure/tfq_0257_separability_witness_relative_to_a_declared_family.md
+    sha256: c3fc9e4f345336ce6f68fb71a0540d8e2c44edf94935ae53b9e6a38e121cc526
+source_provenance:
+  repository: this_repository
+  commit: 642f5b95a116da6df805adbd745a4826c6739c2b
+  path: dag/prompts/finite_qm_structure_ds_qm071_entanglement_witness_soundness_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: dual_pairing
+  line: 18
+  signature_excerpt: 'def dual_pairing (w : DiscreteWitness) (d : StateDifference) : Int'
+  source: lean4/DualWitness.lean
+  repository: this_repository
+  source_sha256: b69a5a5b0f7e69541787915ccd48e7b29b687e04a54d838b556936e034e7f7f7
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: StateDifference
+  line: 11
+  signature_excerpt: structure StateDifference
+  source: lean4/DualWitness.lean
+  repository: this_repository
+  source_sha256: b69a5a5b0f7e69541787915ccd48e7b29b687e04a54d838b556936e034e7f7f7
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: DiscreteWitness
+  line: 5
+  signature_excerpt: structure DiscreteWitness
+  source: lean4/DualWitness.lean
+  repository: this_repository
+  source_sha256: b69a5a5b0f7e69541787915ccd48e7b29b687e04a54d838b556936e034e7f7f7
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: trace_norm
+  line: 15
+  signature_excerpt: 'def trace_norm (d : StateDifference) : Nat'
+  source: lean4/DualWitness.lean
+  repository: this_repository
+  source_sha256: b69a5a5b0f7e69541787915ccd48e7b29b687e04a54d838b556936e034e7f7f7
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: bell_phi_plus
+  line: 33
+  signature_excerpt: 'def bell_phi_plus : BipartiteState2'
+  source: lean4/Entanglement.lean
+  repository: this_repository
+  source_sha256: bccd871b9f8db03c35b564c1a3e41d10d51095a936f2ff4c8980a4bc1195f79d
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: BipartiteState2
+  line: 5
+  signature_excerpt: structure BipartiteState2
+  source: lean4/Entanglement.lean
+  repository: this_repository
+  source_sha256: bccd871b9f8db03c35b564c1a3e41d10d51095a936f2ff4c8980a4bc1195f79d
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: is_product_state
+  line: 11
+  signature_excerpt: 'def is_product_state (ψ : BipartiteState2) : Prop'
+  source: lean4/Entanglement.lean
+  repository: this_repository
+  source_sha256: bccd871b9f8db03c35b564c1a3e41d10d51095a936f2ff4c8980a4bc1195f79d
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: schmidt_minor
+  line: 18
+  signature_excerpt: 'def schmidt_minor (ψ : BipartiteState2) : Int'
+  source: lean4/Entanglement.lean
+  repository: this_repository
+  source_sha256: bccd871b9f8db03c35b564c1a3e41d10d51095a936f2ff4c8980a4bc1195f79d
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: mat2Det
+  line: 531
+  signature_excerpt: 'def mat2Det (A : Mat2Int) : Int'
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: Mat2Int
+  line: 177
+  signature_excerpt: structure Mat2Int
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: dual_witness_certifies_trace_distance
+  line: 21
+  signature_excerpt: "theorem dual_witness_certifies_trace_distance (w : DiscreteWitness) (d : StateDifference)\
+    \ :\n    (dual_pairing w d).natAbs ≤ trace_norm d"
+  source: lean4/DualWitness.lean
+  repository: this_repository
+  source_sha256: b69a5a5b0f7e69541787915ccd48e7b29b687e04a54d838b556936e034e7f7f7
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+- kind: theorem
+  name: bell_state_is_entangled
+  line: 40
+  signature_excerpt: "theorem bell_state_is_entangled :\n    ¬ is_product_state bell_phi_plus"
+  source: lean4/Entanglement.lean
+  repository: this_repository
+  source_sha256: bccd871b9f8db03c35b564c1a3e41d10d51095a936f2ff4c8980a4bc1195f79d
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+- kind: theorem
+  name: ds_qm070_071_product_nonfactorization_and_entanglement_witness
+  line: 533
+  signature_excerpt: "theorem ds_qm070_071_product_nonfactorization_and_entanglement_witness (a0 a1 b0 b1 : Int)\
+    \ :\n    mat2Det ⟨a0 * b0, a0 * b1, a1 * b0, a1 * b1⟩ = 0 ∧\n    mat2Det ⟨1, 0, 0, 1⟩ = 1 ∧\n    ⟨a0 * b0,\
+    \ a0 * b1, a1 * b0, a1 * b1⟩ ≠ (⟨1, 0, 0, 1⟩ : Mat2Int)"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+source_bindings:
+- original_ref: lean4/quantum_mechanics/DualWitness.lean::dual_witness_certifies_trace_distance
+  availability: local
+  symbol: dual_witness_certifies_trace_distance
+  path: lean4/DualWitness.lean
+  repository: this_repository
+  sha256: b69a5a5b0f7e69541787915ccd48e7b29b687e04a54d838b556936e034e7f7f7
+  declaration_status: declaration_found_not_proof_checked
+  line: 21
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/Entanglement.lean::bell_state_is_entangled
+  availability: local
+  symbol: bell_state_is_entangled
+  path: lean4/Entanglement.lean
+  repository: this_repository
+  sha256: bccd871b9f8db03c35b564c1a3e41d10d51095a936f2ff4c8980a4bc1195f79d
+  declaration_status: declaration_found_not_proof_checked
+  line: 40
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm070_071_product_nonfactorization_and_entanglement_witness
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.ds_qm070_071_product_nonfactorization_and_entanglement_witness
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 533
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_quantum_physics/src/entanglement.rs::entanglement
+  availability: external
+  symbol: entanglement
+  path: omega_engine/crates_rs/omega_quantum_physics/src/entanglement.rs
+  repository: the_symbol_game
+  sha256: 0b648ec2d4fa7c1c414461af6ee28f8d579a7285c23808588241f53ddad5ced5
+  declaration_status: symbol_not_found
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche2_row_sparsity_bell_torsion_and_structure_witness
+  availability: external
+  symbol: verify_tranche2_row_sparsity_bell_torsion_and_structure_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 518
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: *id001
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: *id001
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

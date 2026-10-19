@@ -2,7 +2,7 @@
 
 ## 1. Observation
 - **Authoritative Directives**:
-  - `ORIGINAL_REQUEST.md`: Requires tri-paper verification across MUB6, FSP, and Majorana.
+  - `original_request.md`: Requires tri-paper verification across MUB6, FSP, and Majorana.
   - `PROJECT.md`: Specifies E2E test features F24–F29 across 4 tiers.
   - Dispatch: Assigned exclusive file ownership of `tests/e2e/`, `TEST_INFRA.md`, and `TEST_READY.md`.
 - **Existing Codebase Interfaces**:

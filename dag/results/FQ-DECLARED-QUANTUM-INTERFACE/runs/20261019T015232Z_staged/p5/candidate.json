@@ -1,0 +1,971 @@
+{
+  "task_id": "FQ-DECLARED-QUANTUM-INTERFACE",
+  "stage_id": "P5_RECORD",
+  "attempt_id": "p5",
+  "input_sha256": "ca02863f8c1bc3da1ae121f755ce628e1946a37520f49687c26a4fb9cd6d103f",
+  "result_or_obstruction": "The admitted interface is explicit and exercised; the quantum-selection and independence obligations remain open.",
+  "attempt_refs": [
+    "p0",
+    "p1",
+    "p2",
+    "p4"
+  ],
+  "source_bindings": [
+    {
+      "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p1/construction/code/python/src/qm/declared_interface.py",
+      "sha256": "8a162f144a9cf7ca53843816dc1a43b6448ecb2832cb21bddafa5dc1b2511a38"
+    },
+    {
+      "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p1/construction/code/python/tests/test_declared_interface.py",
+      "sha256": "9264a778f457a4d6eaca8e51f89397ed7285af2a6593249411f2bdf74676fc92"
+    },
+    {
+      "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p1/construction/code/rust/src/finite_probability/declared_interface.rs",
+      "sha256": "6a50778285a49c8634a6c8216094ff1705e540f2326d6794a726a680675f7c4c"
+    },
+    {
+      "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p1/construction/code/rust/src/finite_probability/examples/declared_interface_replay.rs",
+      "sha256": "8a11aae6f8c56ba9ddcf7ef0324fae5a7ab30ce656cd7cda906bc9eca306d93e"
+    },
+    {
+      "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p1/construction/lean4/PromptDeclaredInterface.lean",
+      "sha256": "6540401a3a7e73e33130e51ad5693328774505ddbc706eb22ae80758f6243cf3"
+    },
+    {
+      "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p1/construction/code/python/src/qm/pfp_exact.py",
+      "sha256": "33a78864b07a7924bff59226cbef4e276665671ebd9ea1d7860afbda273398be"
+    },
+    {
+      "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p1/construction/code/rust/src/finite_probability/pfp_exact.rs",
+      "sha256": "bc3366a3fe6702306136b112a49a8d6df5e5679306d2c03131eef33b909b5404"
+    },
+    {
+      "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p1/construction/code/rust/src/finite_probability/lib.rs",
+      "sha256": "33bd03f49acd643a4ced50dd8c9ae850ed1e9f15f37ab389fa72b4b2dd1ea0d0"
+    },
+    {
+      "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p1/construction/code/rust/src/finite_probability/Cargo.toml",
+      "sha256": "5d0f58ff83c8e4b387de5df3ff870f91a7a7b566098764b5b4c24da899d19a65"
+    },
+    {
+      "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p1/construction/code/rust/Cargo.lock",
+      "sha256": "b30901c3b27d2417071d5c1d626f91085558d7a81f2de3abf059bd96f2f76ef6"
+    },
+    {
+      "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p1/construction/lean4/lakefile.lean",
+      "sha256": "ef7cf1206306aa1e59499d77e1134ccd4571489711cf3b197d6aa03f0077de8b"
+    },
+    {
+      "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p1/construction/lean4/lean-toolchain",
+      "sha256": "a0ada3782cd088719516bbfdf37b9e7032230e211bf424b85d952ee650c51091"
+    },
+    {
+      "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p1/construction/lean4/lake-manifest.json",
+      "sha256": "7420c413da283f6b7aa102fd1a4be076a5c3ba1fbf3227bfeced44c7afcc61d2"
+    }
+  ],
+  "remaining_obligations": [
+    "Derive or explicitly continue to admit complex scalar, Hilbert, positive-cone, Born, tensor, channel, time and observer structures.",
+    "Selected real-rational examples do not establish all complex-system or dimension-uniform laws.",
+    "Missing-slot API checks do not establish logical independence, necessity or uniqueness of quantum mechanics.",
+    "The general refined probability/state/effect operad and its symmetry/coherence remain formal obligations."
+  ],
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "Born_pair",
+        "ordered_inputs": [
+          "AdmittedDensity2",
+          "AdmittedEffect2"
+        ],
+        "output": "ProbabilityQ",
+        "arity": 2,
+        "carrier": "Admitted finite complex state/effect interface, exercised on exact real-rational two-state matrices",
+        "coefficient_ring": "Q real subfield of admitted Q(i)",
+        "hypotheses": [
+          "PSD trace-one state; effect in [0,I]; Born rule is supplied"
+        ],
+        "semantic_predicate": "Evaluate trace(rho E) on the same admitted carrier.",
+        "source_pins": [
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-DECLARED-QUANTUM-INTERFACE__IMPORTED_ASSUMPTION.yaml",
+            "sha256": "6e7bd6b801cf3dac60f314215edec891f4160d2a78ace2132228c702713db875"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-DECLARED-QUANTUM-INTERFACE.yaml",
+            "sha256": "f83d824ab39b62105e41835c3a8d8ad94b6247ae666414d04bf8d3432de1d6b4"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/hilbert_space.rs",
+            "sha256": "8946cd8e6ab60085062ab11639080d6413fd1d2e61ec55471be32e74021a3eab"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/operational_axiom_selection.rs",
+            "sha256": "dd227bedb7a8bc7f550ff0cbe797801f79e1fb1beb6553c006be19406710e805"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/10_finite_qm_core/TFQ-0007_finite_quantum_mechanics_core_on_an_admitted_carrier.md",
+            "sha256": "a267860ffcd249c07fa4c18624850ee66ad19195c20c9031e76cfdfa91cb18b2"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/TFQ-0273_finite_descent_of_an_imported_quantum_interface.md",
+            "sha256": "c1f5ab8e59c737b286b24f731a096fbc9cbefc65d2f03ebcb31c3e3d891ddc8c"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/declared_interface.py",
+            "sha256": "8a162f144a9cf7ca53843816dc1a43b6448ecb2832cb21bddafa5dc1b2511a38"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p0/operation_sources/code/python/tests/test_declared_interface.py",
+            "sha256": "9264a778f457a4d6eaca8e51f89397ed7285af2a6593249411f2bdf74676fc92"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/declared_interface.rs",
+            "sha256": "6a50778285a49c8634a6c8216094ff1705e540f2326d6794a726a680675f7c4c"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/declared_interface_replay.rs",
+            "sha256": "8a11aae6f8c56ba9ddcf7ef0324fae5a7ab30ce656cd7cda906bc9eca306d93e"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/pfp_exact.py",
+            "sha256": "33a78864b07a7924bff59226cbef4e276665671ebd9ea1d7860afbda273398be"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_exact.rs",
+            "sha256": "bc3366a3fe6702306136b112a49a8d6df5e5679306d2c03131eef33b909b5404"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/check_candidate.py",
+            "sha256": "526781ad5b76ddcca9de7a315b12ca43d529f4b1d41b63612b29e3f46a9a97d4"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/format_certificate.py",
+            "sha256": "0a5d4058ef9508b0ece44a7596e51ebd661cc33b58c487cf7bb1192381ee9dcb"
+          }
+        ],
+        "evidence_status": "Target-specific native predicates checked on retained inputs; relation-specific kernel scope is separate. General refined-carrier operad instantiation remains open.",
+        "latest_host_check": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p2/host_check.json"
+      },
+      {
+        "id": "Kraus_action",
+        "ordered_inputs": [
+          "AdmittedDensity2",
+          "CompleteKrausFamily2"
+        ],
+        "output": "AdmittedDensity2",
+        "arity": 2,
+        "carrier": "Admitted finite complex state/effect interface, exercised on exact real-rational two-state matrices",
+        "coefficient_ring": "Q real subfield of admitted Q(i)",
+        "hypotheses": [
+          "Exact sum K^T K = I and the supplied Kraus channel rule"
+        ],
+        "semantic_predicate": "Compute sum K rho K^T on the selected rational-real subcase.",
+        "source_pins": [
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-DECLARED-QUANTUM-INTERFACE__IMPORTED_ASSUMPTION.yaml",
+            "sha256": "6e7bd6b801cf3dac60f314215edec891f4160d2a78ace2132228c702713db875"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-DECLARED-QUANTUM-INTERFACE.yaml",
+            "sha256": "f83d824ab39b62105e41835c3a8d8ad94b6247ae666414d04bf8d3432de1d6b4"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/hilbert_space.rs",
+            "sha256": "8946cd8e6ab60085062ab11639080d6413fd1d2e61ec55471be32e74021a3eab"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/operational_axiom_selection.rs",
+            "sha256": "dd227bedb7a8bc7f550ff0cbe797801f79e1fb1beb6553c006be19406710e805"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/10_finite_qm_core/TFQ-0007_finite_quantum_mechanics_core_on_an_admitted_carrier.md",
+            "sha256": "a267860ffcd249c07fa4c18624850ee66ad19195c20c9031e76cfdfa91cb18b2"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/TFQ-0273_finite_descent_of_an_imported_quantum_interface.md",
+            "sha256": "c1f5ab8e59c737b286b24f731a096fbc9cbefc65d2f03ebcb31c3e3d891ddc8c"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/declared_interface.py",
+            "sha256": "8a162f144a9cf7ca53843816dc1a43b6448ecb2832cb21bddafa5dc1b2511a38"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p0/operation_sources/code/python/tests/test_declared_interface.py",
+            "sha256": "9264a778f457a4d6eaca8e51f89397ed7285af2a6593249411f2bdf74676fc92"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/declared_interface.rs",
+            "sha256": "6a50778285a49c8634a6c8216094ff1705e540f2326d6794a726a680675f7c4c"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/declared_interface_replay.rs",
+            "sha256": "8a11aae6f8c56ba9ddcf7ef0324fae5a7ab30ce656cd7cda906bc9eca306d93e"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/pfp_exact.py",
+            "sha256": "33a78864b07a7924bff59226cbef4e276665671ebd9ea1d7860afbda273398be"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_exact.rs",
+            "sha256": "bc3366a3fe6702306136b112a49a8d6df5e5679306d2c03131eef33b909b5404"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/check_candidate.py",
+            "sha256": "526781ad5b76ddcca9de7a315b12ca43d529f4b1d41b63612b29e3f46a9a97d4"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/format_certificate.py",
+            "sha256": "0a5d4058ef9508b0ece44a7596e51ebd661cc33b58c487cf7bb1192381ee9dcb"
+          }
+        ],
+        "evidence_status": "Target-specific native predicates checked on retained inputs; relation-specific kernel scope is separate. General refined-carrier operad instantiation remains open.",
+        "latest_host_check": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p2/host_check.json"
+      },
+      {
+        "id": "tensor_density",
+        "ordered_inputs": [
+          "AdmittedDensity2",
+          "AdmittedDensity2"
+        ],
+        "output": "AdmittedDensity4",
+        "arity": 2,
+        "carrier": "Admitted finite complex state/effect interface, exercised on exact real-rational two-state matrices",
+        "coefficient_ring": "Q real subfield of admitted Q(i)",
+        "hypotheses": [
+          "The Kronecker tensor rule is supplied"
+        ],
+        "semantic_predicate": "Construct actual 4x4 tensor entries and trace.",
+        "source_pins": [
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-DECLARED-QUANTUM-INTERFACE__IMPORTED_ASSUMPTION.yaml",
+            "sha256": "6e7bd6b801cf3dac60f314215edec891f4160d2a78ace2132228c702713db875"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-DECLARED-QUANTUM-INTERFACE.yaml",
+            "sha256": "f83d824ab39b62105e41835c3a8d8ad94b6247ae666414d04bf8d3432de1d6b4"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/hilbert_space.rs",
+            "sha256": "8946cd8e6ab60085062ab11639080d6413fd1d2e61ec55471be32e74021a3eab"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/operational_axiom_selection.rs",
+            "sha256": "dd227bedb7a8bc7f550ff0cbe797801f79e1fb1beb6553c006be19406710e805"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/10_finite_qm_core/TFQ-0007_finite_quantum_mechanics_core_on_an_admitted_carrier.md",
+            "sha256": "a267860ffcd249c07fa4c18624850ee66ad19195c20c9031e76cfdfa91cb18b2"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/TFQ-0273_finite_descent_of_an_imported_quantum_interface.md",
+            "sha256": "c1f5ab8e59c737b286b24f731a096fbc9cbefc65d2f03ebcb31c3e3d891ddc8c"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/declared_interface.py",
+            "sha256": "8a162f144a9cf7ca53843816dc1a43b6448ecb2832cb21bddafa5dc1b2511a38"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p0/operation_sources/code/python/tests/test_declared_interface.py",
+            "sha256": "9264a778f457a4d6eaca8e51f89397ed7285af2a6593249411f2bdf74676fc92"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/declared_interface.rs",
+            "sha256": "6a50778285a49c8634a6c8216094ff1705e540f2326d6794a726a680675f7c4c"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/declared_interface_replay.rs",
+            "sha256": "8a11aae6f8c56ba9ddcf7ef0324fae5a7ab30ce656cd7cda906bc9eca306d93e"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/pfp_exact.py",
+            "sha256": "33a78864b07a7924bff59226cbef4e276665671ebd9ea1d7860afbda273398be"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_exact.rs",
+            "sha256": "bc3366a3fe6702306136b112a49a8d6df5e5679306d2c03131eef33b909b5404"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/check_candidate.py",
+            "sha256": "526781ad5b76ddcca9de7a315b12ca43d529f4b1d41b63612b29e3f46a9a97d4"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/format_certificate.py",
+            "sha256": "0a5d4058ef9508b0ece44a7596e51ebd661cc33b58c487cf7bb1192381ee9dcb"
+          }
+        ],
+        "evidence_status": "Target-specific native predicates checked on retained inputs; relation-specific kernel scope is separate. General refined-carrier operad instantiation remains open.",
+        "latest_host_check": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p2/host_check.json"
+      },
+      {
+        "id": "unitary_action",
+        "ordered_inputs": [
+          "AdmittedDensity2",
+          "SuppliedOrthogonal2"
+        ],
+        "output": "AdmittedDensity2",
+        "arity": 2,
+        "carrier": "Admitted finite complex state/effect interface, exercised on exact real-rational two-state matrices",
+        "coefficient_ring": "Q real subfield of admitted Q(i)",
+        "hypotheses": [
+          "The step is supplied; U^T U=I is checked exactly"
+        ],
+        "semantic_predicate": "Apply U rho U^T without deriving dynamics or time.",
+        "source_pins": [
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-DECLARED-QUANTUM-INTERFACE__IMPORTED_ASSUMPTION.yaml",
+            "sha256": "6e7bd6b801cf3dac60f314215edec891f4160d2a78ace2132228c702713db875"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-DECLARED-QUANTUM-INTERFACE.yaml",
+            "sha256": "f83d824ab39b62105e41835c3a8d8ad94b6247ae666414d04bf8d3432de1d6b4"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/hilbert_space.rs",
+            "sha256": "8946cd8e6ab60085062ab11639080d6413fd1d2e61ec55471be32e74021a3eab"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/operational_axiom_selection.rs",
+            "sha256": "dd227bedb7a8bc7f550ff0cbe797801f79e1fb1beb6553c006be19406710e805"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/10_finite_qm_core/TFQ-0007_finite_quantum_mechanics_core_on_an_admitted_carrier.md",
+            "sha256": "a267860ffcd249c07fa4c18624850ee66ad19195c20c9031e76cfdfa91cb18b2"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/TFQ-0273_finite_descent_of_an_imported_quantum_interface.md",
+            "sha256": "c1f5ab8e59c737b286b24f731a096fbc9cbefc65d2f03ebcb31c3e3d891ddc8c"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/declared_interface.py",
+            "sha256": "8a162f144a9cf7ca53843816dc1a43b6448ecb2832cb21bddafa5dc1b2511a38"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p0/operation_sources/code/python/tests/test_declared_interface.py",
+            "sha256": "9264a778f457a4d6eaca8e51f89397ed7285af2a6593249411f2bdf74676fc92"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/declared_interface.rs",
+            "sha256": "6a50778285a49c8634a6c8216094ff1705e540f2326d6794a726a680675f7c4c"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/declared_interface_replay.rs",
+            "sha256": "8a11aae6f8c56ba9ddcf7ef0324fae5a7ab30ce656cd7cda906bc9eca306d93e"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/pfp_exact.py",
+            "sha256": "33a78864b07a7924bff59226cbef4e276665671ebd9ea1d7860afbda273398be"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_exact.rs",
+            "sha256": "bc3366a3fe6702306136b112a49a8d6df5e5679306d2c03131eef33b909b5404"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/check_candidate.py",
+            "sha256": "526781ad5b76ddcca9de7a315b12ca43d529f4b1d41b63612b29e3f46a9a97d4"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/format_certificate.py",
+            "sha256": "0a5d4058ef9508b0ece44a7596e51ebd661cc33b58c487cf7bb1192381ee9dcb"
+          }
+        ],
+        "evidence_status": "Target-specific native predicates checked on retained inputs; relation-specific kernel scope is separate. General refined-carrier operad instantiation remains open.",
+        "latest_host_check": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p2/host_check.json"
+      },
+      {
+        "id": "interface_normalization",
+        "ordered_inputs": [
+          "AdmittedDensity2"
+        ],
+        "output": "ProbabilityQ",
+        "arity": 1,
+        "carrier": "Admitted finite complex state/effect interface, exercised on exact real-rational two-state matrices",
+        "coefficient_ring": "Q real subfield of admitted Q(i)",
+        "hypotheses": [
+          "Supplied unit effect and normalization law"
+        ],
+        "semantic_predicate": "Consume the admitted normalization law; it is not a reconstruction theorem.",
+        "source_pins": [
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-DECLARED-QUANTUM-INTERFACE__IMPORTED_ASSUMPTION.yaml",
+            "sha256": "6e7bd6b801cf3dac60f314215edec891f4160d2a78ace2132228c702713db875"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-DECLARED-QUANTUM-INTERFACE.yaml",
+            "sha256": "f83d824ab39b62105e41835c3a8d8ad94b6247ae666414d04bf8d3432de1d6b4"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/hilbert_space.rs",
+            "sha256": "8946cd8e6ab60085062ab11639080d6413fd1d2e61ec55471be32e74021a3eab"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/operational_axiom_selection.rs",
+            "sha256": "dd227bedb7a8bc7f550ff0cbe797801f79e1fb1beb6553c006be19406710e805"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/10_finite_qm_core/TFQ-0007_finite_quantum_mechanics_core_on_an_admitted_carrier.md",
+            "sha256": "a267860ffcd249c07fa4c18624850ee66ad19195c20c9031e76cfdfa91cb18b2"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/TFQ-0273_finite_descent_of_an_imported_quantum_interface.md",
+            "sha256": "c1f5ab8e59c737b286b24f731a096fbc9cbefc65d2f03ebcb31c3e3d891ddc8c"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/declared_interface.py",
+            "sha256": "8a162f144a9cf7ca53843816dc1a43b6448ecb2832cb21bddafa5dc1b2511a38"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p0/operation_sources/code/python/tests/test_declared_interface.py",
+            "sha256": "9264a778f457a4d6eaca8e51f89397ed7285af2a6593249411f2bdf74676fc92"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/declared_interface.rs",
+            "sha256": "6a50778285a49c8634a6c8216094ff1705e540f2326d6794a726a680675f7c4c"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/declared_interface_replay.rs",
+            "sha256": "8a11aae6f8c56ba9ddcf7ef0324fae5a7ab30ce656cd7cda906bc9eca306d93e"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/pfp_exact.py",
+            "sha256": "33a78864b07a7924bff59226cbef4e276665671ebd9ea1d7860afbda273398be"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_exact.rs",
+            "sha256": "bc3366a3fe6702306136b112a49a8d6df5e5679306d2c03131eef33b909b5404"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/check_candidate.py",
+            "sha256": "526781ad5b76ddcca9de7a315b12ca43d529f4b1d41b63612b29e3f46a9a97d4"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/format_certificate.py",
+            "sha256": "0a5d4058ef9508b0ece44a7596e51ebd661cc33b58c487cf7bb1192381ee9dcb"
+          }
+        ],
+        "evidence_status": "Target-specific native predicates checked on retained inputs; relation-specific kernel scope is separate. General refined-carrier operad instantiation remains open.",
+        "latest_host_check": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p2/host_check.json"
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "Born_fixed_example",
+        "equation_or_predicate": "trace(rho P0)=9/25 for the 3-4-5 state",
+        "typing_conditions": "Actual rational density and P0",
+        "evidence_status": "Direct-index checker, two native implementations and fixed rational kernel equality.",
+        "scope": "One explicit example plus retained controls.",
+        "source_pins": [
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-DECLARED-QUANTUM-INTERFACE__IMPORTED_ASSUMPTION.yaml",
+            "sha256": "6e7bd6b801cf3dac60f314215edec891f4160d2a78ace2132228c702713db875"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-DECLARED-QUANTUM-INTERFACE.yaml",
+            "sha256": "f83d824ab39b62105e41835c3a8d8ad94b6247ae666414d04bf8d3432de1d6b4"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/hilbert_space.rs",
+            "sha256": "8946cd8e6ab60085062ab11639080d6413fd1d2e61ec55471be32e74021a3eab"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/operational_axiom_selection.rs",
+            "sha256": "dd227bedb7a8bc7f550ff0cbe797801f79e1fb1beb6553c006be19406710e805"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/10_finite_qm_core/TFQ-0007_finite_quantum_mechanics_core_on_an_admitted_carrier.md",
+            "sha256": "a267860ffcd249c07fa4c18624850ee66ad19195c20c9031e76cfdfa91cb18b2"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/TFQ-0273_finite_descent_of_an_imported_quantum_interface.md",
+            "sha256": "c1f5ab8e59c737b286b24f731a096fbc9cbefc65d2f03ebcb31c3e3d891ddc8c"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/declared_interface.py",
+            "sha256": "8a162f144a9cf7ca53843816dc1a43b6448ecb2832cb21bddafa5dc1b2511a38"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p0/operation_sources/code/python/tests/test_declared_interface.py",
+            "sha256": "9264a778f457a4d6eaca8e51f89397ed7285af2a6593249411f2bdf74676fc92"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/declared_interface.rs",
+            "sha256": "6a50778285a49c8634a6c8216094ff1705e540f2326d6794a726a680675f7c4c"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/declared_interface_replay.rs",
+            "sha256": "8a11aae6f8c56ba9ddcf7ef0324fae5a7ab30ce656cd7cda906bc9eca306d93e"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/pfp_exact.py",
+            "sha256": "33a78864b07a7924bff59226cbef4e276665671ebd9ea1d7860afbda273398be"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_exact.rs",
+            "sha256": "bc3366a3fe6702306136b112a49a8d6df5e5679306d2c03131eef33b909b5404"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/check_candidate.py",
+            "sha256": "526781ad5b76ddcca9de7a315b12ca43d529f4b1d41b63612b29e3f46a9a97d4"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/format_certificate.py",
+            "sha256": "0a5d4058ef9508b0ece44a7596e51ebd661cc33b58c487cf7bb1192381ee9dcb"
+          }
+        ],
+        "latest_host_check": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p2/host_check.json"
+      },
+      {
+        "id": "channel_trace",
+        "equation_or_predicate": "trace(sum K rho K^T)=1 on selected inputs",
+        "typing_conditions": "Complete supplied Kraus family",
+        "evidence_status": "Actual full matrices and trace, plus generic conditional channel composition kernel theorem.",
+        "scope": "No derivation of complete positivity from primitive difference.",
+        "source_pins": [
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-DECLARED-QUANTUM-INTERFACE__IMPORTED_ASSUMPTION.yaml",
+            "sha256": "6e7bd6b801cf3dac60f314215edec891f4160d2a78ace2132228c702713db875"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-DECLARED-QUANTUM-INTERFACE.yaml",
+            "sha256": "f83d824ab39b62105e41835c3a8d8ad94b6247ae666414d04bf8d3432de1d6b4"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/hilbert_space.rs",
+            "sha256": "8946cd8e6ab60085062ab11639080d6413fd1d2e61ec55471be32e74021a3eab"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/operational_axiom_selection.rs",
+            "sha256": "dd227bedb7a8bc7f550ff0cbe797801f79e1fb1beb6553c006be19406710e805"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/10_finite_qm_core/TFQ-0007_finite_quantum_mechanics_core_on_an_admitted_carrier.md",
+            "sha256": "a267860ffcd249c07fa4c18624850ee66ad19195c20c9031e76cfdfa91cb18b2"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/TFQ-0273_finite_descent_of_an_imported_quantum_interface.md",
+            "sha256": "c1f5ab8e59c737b286b24f731a096fbc9cbefc65d2f03ebcb31c3e3d891ddc8c"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/declared_interface.py",
+            "sha256": "8a162f144a9cf7ca53843816dc1a43b6448ecb2832cb21bddafa5dc1b2511a38"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p0/operation_sources/code/python/tests/test_declared_interface.py",
+            "sha256": "9264a778f457a4d6eaca8e51f89397ed7285af2a6593249411f2bdf74676fc92"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/declared_interface.rs",
+            "sha256": "6a50778285a49c8634a6c8216094ff1705e540f2326d6794a726a680675f7c4c"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/declared_interface_replay.rs",
+            "sha256": "8a11aae6f8c56ba9ddcf7ef0324fae5a7ab30ce656cd7cda906bc9eca306d93e"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/pfp_exact.py",
+            "sha256": "33a78864b07a7924bff59226cbef4e276665671ebd9ea1d7860afbda273398be"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_exact.rs",
+            "sha256": "bc3366a3fe6702306136b112a49a8d6df5e5679306d2c03131eef33b909b5404"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/check_candidate.py",
+            "sha256": "526781ad5b76ddcca9de7a315b12ca43d529f4b1d41b63612b29e3f46a9a97d4"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/format_certificate.py",
+            "sha256": "0a5d4058ef9508b0ece44a7596e51ebd661cc33b58c487cf7bb1192381ee9dcb"
+          }
+        ],
+        "latest_host_check": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p2/host_check.json"
+      },
+      {
+        "id": "tensor_trace",
+        "equation_or_predicate": "trace(rho tensor rho)=1 on selected inputs",
+        "typing_conditions": "Admitted tensor and normalized input",
+        "evidence_status": "Exact 4x4 entries checked independently.",
+        "scope": "Selected real-rational examples, no new tensor reconstruction.",
+        "source_pins": [
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-DECLARED-QUANTUM-INTERFACE__IMPORTED_ASSUMPTION.yaml",
+            "sha256": "6e7bd6b801cf3dac60f314215edec891f4160d2a78ace2132228c702713db875"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-DECLARED-QUANTUM-INTERFACE.yaml",
+            "sha256": "f83d824ab39b62105e41835c3a8d8ad94b6247ae666414d04bf8d3432de1d6b4"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/hilbert_space.rs",
+            "sha256": "8946cd8e6ab60085062ab11639080d6413fd1d2e61ec55471be32e74021a3eab"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/operational_axiom_selection.rs",
+            "sha256": "dd227bedb7a8bc7f550ff0cbe797801f79e1fb1beb6553c006be19406710e805"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/10_finite_qm_core/TFQ-0007_finite_quantum_mechanics_core_on_an_admitted_carrier.md",
+            "sha256": "a267860ffcd249c07fa4c18624850ee66ad19195c20c9031e76cfdfa91cb18b2"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/TFQ-0273_finite_descent_of_an_imported_quantum_interface.md",
+            "sha256": "c1f5ab8e59c737b286b24f731a096fbc9cbefc65d2f03ebcb31c3e3d891ddc8c"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/declared_interface.py",
+            "sha256": "8a162f144a9cf7ca53843816dc1a43b6448ecb2832cb21bddafa5dc1b2511a38"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p0/operation_sources/code/python/tests/test_declared_interface.py",
+            "sha256": "9264a778f457a4d6eaca8e51f89397ed7285af2a6593249411f2bdf74676fc92"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/declared_interface.rs",
+            "sha256": "6a50778285a49c8634a6c8216094ff1705e540f2326d6794a726a680675f7c4c"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/declared_interface_replay.rs",
+            "sha256": "8a11aae6f8c56ba9ddcf7ef0324fae5a7ab30ce656cd7cda906bc9eca306d93e"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/pfp_exact.py",
+            "sha256": "33a78864b07a7924bff59226cbef4e276665671ebd9ea1d7860afbda273398be"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_exact.rs",
+            "sha256": "bc3366a3fe6702306136b112a49a8d6df5e5679306d2c03131eef33b909b5404"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/check_candidate.py",
+            "sha256": "526781ad5b76ddcca9de7a315b12ca43d529f4b1d41b63612b29e3f46a9a97d4"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/format_certificate.py",
+            "sha256": "0a5d4058ef9508b0ece44a7596e51ebd661cc33b58c487cf7bb1192381ee9dcb"
+          }
+        ],
+        "latest_host_check": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p2/host_check.json"
+      },
+      {
+        "id": "unitary_step",
+        "equation_or_predicate": "U^T U=I and trace(U rho U^T)=1",
+        "typing_conditions": "Supplied rational orthogonal U",
+        "evidence_status": "Actual matrix replay and concrete kernel orthogonality equality.",
+        "scope": "No derived time, Hamiltonian or continuous dynamics.",
+        "source_pins": [
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-DECLARED-QUANTUM-INTERFACE__IMPORTED_ASSUMPTION.yaml",
+            "sha256": "6e7bd6b801cf3dac60f314215edec891f4160d2a78ace2132228c702713db875"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-DECLARED-QUANTUM-INTERFACE.yaml",
+            "sha256": "f83d824ab39b62105e41835c3a8d8ad94b6247ae666414d04bf8d3432de1d6b4"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/hilbert_space.rs",
+            "sha256": "8946cd8e6ab60085062ab11639080d6413fd1d2e61ec55471be32e74021a3eab"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/operational_axiom_selection.rs",
+            "sha256": "dd227bedb7a8bc7f550ff0cbe797801f79e1fb1beb6553c006be19406710e805"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/10_finite_qm_core/TFQ-0007_finite_quantum_mechanics_core_on_an_admitted_carrier.md",
+            "sha256": "a267860ffcd249c07fa4c18624850ee66ad19195c20c9031e76cfdfa91cb18b2"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/TFQ-0273_finite_descent_of_an_imported_quantum_interface.md",
+            "sha256": "c1f5ab8e59c737b286b24f731a096fbc9cbefc65d2f03ebcb31c3e3d891ddc8c"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/declared_interface.py",
+            "sha256": "8a162f144a9cf7ca53843816dc1a43b6448ecb2832cb21bddafa5dc1b2511a38"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p0/operation_sources/code/python/tests/test_declared_interface.py",
+            "sha256": "9264a778f457a4d6eaca8e51f89397ed7285af2a6593249411f2bdf74676fc92"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/declared_interface.rs",
+            "sha256": "6a50778285a49c8634a6c8216094ff1705e540f2326d6794a726a680675f7c4c"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/declared_interface_replay.rs",
+            "sha256": "8a11aae6f8c56ba9ddcf7ef0324fae5a7ab30ce656cd7cda906bc9eca306d93e"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/pfp_exact.py",
+            "sha256": "33a78864b07a7924bff59226cbef4e276665671ebd9ea1d7860afbda273398be"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_exact.rs",
+            "sha256": "bc3366a3fe6702306136b112a49a8d6df5e5679306d2c03131eef33b909b5404"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/check_candidate.py",
+            "sha256": "526781ad5b76ddcca9de7a315b12ca43d529f4b1d41b63612b29e3f46a9a97d4"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/format_certificate.py",
+            "sha256": "0a5d4058ef9508b0ece44a7596e51ebd661cc33b58c487cf7bb1192381ee9dcb"
+          }
+        ],
+        "latest_host_check": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p2/host_check.json"
+      },
+      {
+        "id": "import_boundary",
+        "equation_or_predicate": "Every named interface slot stays ADMITTED",
+        "typing_conditions": "Typed contract supplied by the caller",
+        "evidence_status": "Literal kernel Inputs structure and conditional law projections; source status flags are not independence proofs.",
+        "scope": "Missing-slot API refusal is not mathematical necessity.",
+        "source_pins": [
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-DECLARED-QUANTUM-INTERFACE__IMPORTED_ASSUMPTION.yaml",
+            "sha256": "6e7bd6b801cf3dac60f314215edec891f4160d2a78ace2132228c702713db875"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-DECLARED-QUANTUM-INTERFACE.yaml",
+            "sha256": "f83d824ab39b62105e41835c3a8d8ad94b6247ae666414d04bf8d3432de1d6b4"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/hilbert_space.rs",
+            "sha256": "8946cd8e6ab60085062ab11639080d6413fd1d2e61ec55471be32e74021a3eab"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/operational_axiom_selection.rs",
+            "sha256": "dd227bedb7a8bc7f550ff0cbe797801f79e1fb1beb6553c006be19406710e805"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/10_finite_qm_core/TFQ-0007_finite_quantum_mechanics_core_on_an_admitted_carrier.md",
+            "sha256": "a267860ffcd249c07fa4c18624850ee66ad19195c20c9031e76cfdfa91cb18b2"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/TFQ-0273_finite_descent_of_an_imported_quantum_interface.md",
+            "sha256": "c1f5ab8e59c737b286b24f731a096fbc9cbefc65d2f03ebcb31c3e3d891ddc8c"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/declared_interface.py",
+            "sha256": "8a162f144a9cf7ca53843816dc1a43b6448ecb2832cb21bddafa5dc1b2511a38"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p0/operation_sources/code/python/tests/test_declared_interface.py",
+            "sha256": "9264a778f457a4d6eaca8e51f89397ed7285af2a6593249411f2bdf74676fc92"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/declared_interface.rs",
+            "sha256": "6a50778285a49c8634a6c8216094ff1705e540f2326d6794a726a680675f7c4c"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/declared_interface_replay.rs",
+            "sha256": "8a11aae6f8c56ba9ddcf7ef0324fae5a7ab30ce656cd7cda906bc9eca306d93e"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/pfp_exact.py",
+            "sha256": "33a78864b07a7924bff59226cbef4e276665671ebd9ea1d7860afbda273398be"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_exact.rs",
+            "sha256": "bc3366a3fe6702306136b112a49a8d6df5e5679306d2c03131eef33b909b5404"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/check_candidate.py",
+            "sha256": "526781ad5b76ddcca9de7a315b12ca43d529f4b1d41b63612b29e3f46a9a97d4"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/format_certificate.py",
+            "sha256": "0a5d4058ef9508b0ece44a7596e51ebd661cc33b58c487cf7bb1192381ee9dcb"
+          }
+        ],
+        "latest_host_check": "dag/results/FQ-DECLARED-QUANTUM-INTERFACE/runs/20261019T015232Z_staged/p2/host_check.json"
+      }
+    ],
+    "checked_compositions": [
+      {
+        "outer_operation": "Born_pair",
+        "input_slot": 0,
+        "inner_operation": "Kraus_action",
+        "colour_match": "AdmittedDensity2 -> AdmittedDensity2",
+        "hypothesis_match": "Same admitted carrier and exact complete Kraus family; selected output remains positive trace-one.",
+        "licensing_relations": [
+          "channel_trace",
+          "Born_fixed_example"
+        ],
+        "evidence_status": "Full actual channel matrix and subsequent pairing checked; generic refined-carrier operad not instantiated."
+      },
+      {
+        "outer_operation": "Kraus_action",
+        "input_slot": 0,
+        "inner_operation": "unitary_action",
+        "colour_match": "AdmittedDensity2 -> AdmittedDensity2",
+        "hypothesis_match": "Both operations consume the same supplied interface; general positivity laws are inputs.",
+        "licensing_relations": [
+          "channel_trace",
+          "unitary_step"
+        ],
+        "evidence_status": "Semantic typed composition; kernel conditional channel composition and selected step calculations have their literal separate scope."
+      }
+    ],
+    "failed_compositions": [
+      {
+        "outer_operation": "derive_quantum_interface",
+        "input_slot": 0,
+        "inner_operation": "primitive_difference",
+        "colour_match": "No proved map from primitive difference to these admitted structures.",
+        "hypothesis_match": "Scalar field, Hilbert carrier, Born rule, tensor, channels, dynamics and records are supplied assumptions.",
+        "licensing_relations": [],
+        "evidence_status": "No quantum-selection or drop-one independence proof is claimed."
+      }
+    ],
+    "counterexamples": [
+      {
+        "id": "mixed_admitted_control",
+        "evidence": "The actual mixed-control matrices and traces pass the independent checker and both native outputs.",
+        "scope": "An inhabited admitted interface example, not a derivation or necessity theorem."
+      },
+      {
+        "id": "incomplete_Kraus_refusal",
+        "evidence": "Retained native tests reject the incomplete supplied P0-only family.",
+        "scope": "Refusal of a trace-preservation hypothesis, not derivation of the Kraus rule."
+      }
+    ],
+    "open_obligations": [
+      "Derive or explicitly continue to admit complex scalar, Hilbert, positive-cone, Born, tensor, channel, time and observer structures.",
+      "Selected real-rational examples do not establish all complex-system or dimension-uniform laws.",
+      "Missing-slot API checks do not establish logical independence, necessity or uniqueness of quantum mechanics.",
+      "The general refined probability/state/effect operad and its symmetry/coherence remain formal obligations."
+    ]
+  },
+  "next_mathematical_step": "Any reconstruction request must supply an inhabited predecessor theory and prove the required transport instead of relabelling interface fields.",
+  "claim_boundary": {
+    "supports": "Exact finite examples exercising supplied quantum operations, and literal conditional interface normalization/channel theorems.",
+    "does_not_support": "Derivation, necessity or independence of the quantum interface from primitive difference, or a derived time/dynamics.",
+    "narrowest_claim": "Three exact rational-real examples on an admitted finite quantum carrier with explicit source and import boundaries.",
+    "next_test": "Audit declarations and actual matrices; do not promote API refusal or component counts to theorems."
+  },
+  "status": "recorded_pending_batch_review",
+  "execution_accounting": {
+    "external_provider_calls": 0,
+    "chat_cost": "unmeasured",
+    "researcher": "one local Codex researcher, independent native predicates, no independent human/model reviewer"
+  }
+}

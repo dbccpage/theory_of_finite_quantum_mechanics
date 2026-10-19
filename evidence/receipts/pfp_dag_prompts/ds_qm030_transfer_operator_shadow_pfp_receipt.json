@@ -1,0 +1,108 @@
+{
+  "schema": "omega.pfp.finite_qm.dag_prompt_execution_receipt.v1",
+  "authority_effect": "None",
+  "policy_id": "SPK-001",
+  "timestamp_utc": "2026-10-18T07:51:42.472044+00:00",
+  "prompt_file": "dag/prompts/finite_qm_dynamics_ds_qm030_transfer_operator_shadow_proved_lean.yaml",
+  "node_id": "DS-QM030-TRANSFER-OPERATOR-SHADOW",
+  "stage": "FINITE_QM_DYNAMICS",
+  "dag_status": "PROVED_LEAN",
+  "operad_family_id": "OP-FINITE_QM_DYNAMICS-DS-QM030-TRANSFER-OPERATOR-SHADOW",
+  "operad_mining_missions_completed": [
+    "M1_CARRIER_AND_NORMAL_FORM_MINING",
+    "M2_OPERAD_MORPHISMS_AND_GRAFTING_TREE_MINING",
+    "M3_CONGRUENCE_IDEALS_AND_DECOY_ANTIBODIES_MINING",
+    "M4_TRI_LANGUAGE_EXACT_WITNESS_MINING"
+  ],
+  "winning_model": "deepseek/deepseek-v4.1-flash",
+  "prompt_tokens": 1146,
+  "completion_tokens": 817,
+  "elapsed_ms": 25250.0,
+  "attempts": [
+    {
+      "attempt_id": "ab_withm3_136_ds-qm030-transfer-_a1",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "state": "settled",
+      "prompt_tokens": 1146,
+      "completion_tokens": 817,
+      "cost_usd": 0.0001919088,
+      "generation_id": "gen-1792309877-bJKeBeiGn9MGJtaDFYsR",
+      "elapsed_ms": 25250.0,
+      "raw_preview": "{\"p_star_tree_potentials\":[1360,-2720,2040],\"p_star_chord_potential\":2040,\"p_star_holonomy_gamma2\":2720,\"cochain_d1_d0_exact_zero\":true,\"finite_shadow_witness_int\":576,\"countermodel_witness_int\":154,\"unpaid_import_count\":1,\"unconditional_promotion_refused\":true,\"derived_under_policy\":\"SPK-001\",\"auth",
+      "gate_status": "PASS",
+      "gate_failures": []
+    }
+  ],
+  "m3_ablation_comparison": {
+    "without_m3_attempt1": {
+      "model": "deepseek/deepseek-v4.1-flash",
+      "status": "FAIL",
+      "all_gates_passed": false,
+      "failures": [
+        "G4_COUNTERMODEL_MISMATCH:got=163,exp=154"
+      ],
+      "emitted_countermodel_int": 163,
+      "emitted_unconditional_promotion_refused": true,
+      "prompt_tokens": 1091,
+      "completion_tokens": 852,
+      "elapsed_ms": 30204.0
+    },
+    "with_m3_attempt1": {
+      "model": "deepseek/deepseek-v4.1-flash",
+      "status": "PASS",
+      "all_gates_passed": true,
+      "failures": [],
+      "emitted_countermodel_int": 154,
+      "emitted_unconditional_promotion_refused": true,
+      "prompt_tokens": 1146,
+      "completion_tokens": 817,
+      "elapsed_ms": 25250.0
+    }
+  },
+  "typed_model_response": {
+    "p_star_tree_potentials": [
+      1360,
+      -2720,
+      2040
+    ],
+    "p_star_chord_potential": 2040,
+    "p_star_holonomy_gamma2": 2720,
+    "cochain_d1_d0_exact_zero": true,
+    "finite_shadow_witness_int": 576,
+    "countermodel_witness_int": 154,
+    "unpaid_import_count": 1,
+    "unconditional_promotion_refused": true,
+    "derived_under_policy": "SPK-001",
+    "authority_effect": "None",
+    "firewall_status": "stated region only; mints no authority.",
+    "node_id": "DS-QM030-TRANSFER-OPERATOR-SHADOW",
+    "stage": "FINITE_QM_DYNAMICS",
+    "dag_status": "PROVED_LEAN",
+    "operad_family_id": "OP-FINITE_QM_DYNAMICS-DS-QM030-TRANSFER-OPERATOR-SHADOW",
+    "lean4_theorem_anchor": "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm030_032_graded_pathsum_overcount_transfer_and_feynman_shadow",
+    "rust_witness_anchor": "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche13_ds_qm_final_16_second_witness_closure_witness",
+    "should_continue": false
+  },
+  "gate_receipt": {
+    "schema": "omega.pfp.finite_qm.gate_receipt.v1",
+    "authority_effect": "None",
+    "work_id": "DS-QM030-TRANSFER-OPERATOR-SHADOW",
+    "status": "PASS",
+    "all_gates_passed": true,
+    "gate_results": {
+      "G0_STRICT_TYPED_JSON_SCHEMA": true,
+      "G1_COCHAIN_EXACT_SEQUENCE_D1D0": true,
+      "G2_P_STAR_TREE_CHORD_SYNDROME_DECODE": true,
+      "G3_FINITE_SHADOW_EXACT_WITNESS": true,
+      "G4_COUNTERMODEL_SEPARATION_WITNESS": true,
+      "G5_IMPORT_BOUNDARY_AND_FIREWALL_HONESTY": true,
+      "G6_TRI_LANGUAGE_ANCHOR_BINDING": true
+    },
+    "failures": [],
+    "elapsed_ms": 0.019,
+    "receipt_sha256": "d1516dc59af64f84726a6728311e8a810dfe9b0fe917c10885cc53ca12f2b15d"
+  },
+  "updated_papers": [
+    "papers/derivations/11_finite_qm_dynamics/tfq_0239_finite_path_sum_on_a_unique_intermediate_cut.md"
+  ]
+}

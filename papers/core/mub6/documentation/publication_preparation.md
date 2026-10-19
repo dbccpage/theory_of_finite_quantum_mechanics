@@ -23,7 +23,7 @@ exports remain outside this curated preprint. The research checkout retains them
 `mub6_publication.zip` SHA-256:
 `0d88612c02e574c425bfa7c94fa366b3c105b4472e972764210042aa259ba338`.
 The `.zip.sha256` sidecar binds the archive; the extracted root has both
-`MANIFEST.sha256` and `SHA256SUMS` with exact membership and digest checks.
+`manifest.sha256` and `sha256sums` with exact membership and digest checks.
 
 ## Validation performed
 
@@ -49,7 +49,7 @@ checks. This repairs the former requirement that an archived gap registry equal
 its newer working copy. No historical member or digest was rewritten.
 
 The outer research-envelope walker and verifier now exclude only their own root
-manifests from circular checks. Nested `MANIFEST.sha256` and `SHA256SUMS` files
+manifests from circular checks. Nested `manifest.sha256` and `sha256sums` files
 are included as payload. A regression test changes a nested manifest and confirms
 that the outer verification rejects the altered bytes.
 

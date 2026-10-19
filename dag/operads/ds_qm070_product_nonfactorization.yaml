@@ -1,0 +1,794 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: DS-QM070-PRODUCT-NONFACTORIZATION
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: For a finite nonnegative joint table w on A x B with W>0, the product defect Phi(w)
+    vanishes iff w factors through its marginals. Phi is basis-relative and does not see entanglement
+    (Bell state and the classical mixture share the (1/2,0,0,1/2) table).
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions:
+  - bipartite product structure A x B on a joint table (assumption)
+  source_bottleneck: Lean file for Phi_zero_iff_factors not verified; the tensor-product rule itself is
+    not derived (H014 lists it as open).
+  source_refs:
+  - omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/070_product_non_factorization_as_a_bipartite_obstruction/qm_070_product_non_factorization_as_a_bipartite_obstruction_claim_ledger.md#QM-070-C5
+  - omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/070_product_non_factorization_as_a_bipartite_obstruction/qm_070_product_non_factorization_as_a_bipartite_obstruction_claim_ledger.md#QM-070-C7
+  - omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/070_product_non_factorization_as_a_bipartite_obstruction/qm_070_product_non_factorization_as_a_bipartite_obstruction_claim_ledger.md#QM-070-C9
+  paper_refs:
+  - dag/derivations/12_finite_qm_structure/tfq_0256_product_defect_on_a_bipartite_weight_table.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  historical_paper_refs:
+  - papers/derivations/12_finite_qm_structure/tfq_0256_product_defect_on_a_bipartite_weight_table.md
+  paper_relocations:
+  - from: papers/derivations/12_finite_qm_structure/tfq_0256_product_defect_on_a_bipartite_weight_table.md
+    to: dag/derivations/12_finite_qm_structure/tfq_0256_product_defect_on_a_bipartite_weight_table.md
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/12_finite_qm_structure/tfq_0256_product_defect_on_a_bipartite_weight_table.md
+    sha256: 46895ff97eb57f2038d3dd7606750286c98f5c7dad43d09b35129dbd0ec3e589
+source_provenance:
+  repository: this_repository
+  commit: 642f5b95a116da6df805adbd745a4826c6739c2b
+  path: dag/prompts/finite_qm_structure_ds_qm070_product_nonfactorization_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: tensorNonForcing
+  line: 55
+  signature_excerpt: 'def tensorNonForcing : NonForcingPack'
+  source: lean4/H014TensorCompositionBoundary.lean
+  repository: this_repository
+  source_sha256: 0754fd419711de9caf9e47d901c467db8f95dd38bfd570fefb305d0e9ad9386a
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: NonForcingPack
+  line: 51
+  signature_excerpt: structure NonForcingPack
+  source: lean4/H014TensorCompositionBoundary.lean
+  repository: this_repository
+  source_sha256: 0754fd419711de9caf9e47d901c467db8f95dd38bfd570fefb305d0e9ad9386a
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: NonForcingDischarged
+  line: 59
+  signature_excerpt: 'def NonForcingDischarged (P : NonForcingPack) : Bool'
+  source: lean4/H014TensorCompositionBoundary.lean
+  repository: this_repository
+  source_sha256: 0754fd419711de9caf9e47d901c467db8f95dd38bfd570fefb305d0e9ad9386a
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: mat2Det
+  line: 531
+  signature_excerpt: 'def mat2Det (A : Mat2Int) : Int'
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: Mat2Int
+  line: 177
+  signature_excerpt: structure Mat2Int
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: tensor_not_forced_open
+  line: 62
+  signature_excerpt: "theorem tensor_not_forced_open :\n    NonForcingDischarged tensorNonForcing = false"
+  source: lean4/H014TensorCompositionBoundary.lean
+  repository: this_repository
+  source_sha256: 0754fd419711de9caf9e47d901c467db8f95dd38bfd570fefb305d0e9ad9386a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: ds_qm070_071_product_nonfactorization_and_entanglement_witness
+  line: 533
+  signature_excerpt: "theorem ds_qm070_071_product_nonfactorization_and_entanglement_witness (a0 a1 b0\
+    \ b1 : Int) :\n    mat2Det ⟨a0 * b0, a0 * b1, a1 * b0, a1 * b1⟩ = 0 ∧\n    mat2Det ⟨1, 0, 0, 1⟩ =\
+    \ 1 ∧\n    ⟨a0 * b0, a0 * b1, a1 * b0, a1 * b1⟩ ≠ (⟨1, 0, 0, 1⟩ : Mat2Int)"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/quantum_mechanics/H014TensorCompositionBoundary.lean::tensor_not_forced_open
+  availability: local
+  symbol: tensor_not_forced_open
+  path: lean4/H014TensorCompositionBoundary.lean
+  repository: this_repository
+  sha256: 0754fd419711de9caf9e47d901c467db8f95dd38bfd570fefb305d0e9ad9386a
+  declaration_status: declaration_found_not_proof_checked
+  line: 62
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm070_071_product_nonfactorization_and_entanglement_witness
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.ds_qm070_071_product_nonfactorization_and_entanglement_witness
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 533
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_quantum_physics/src/entanglement.rs::entanglement
+  availability: external
+  symbol: entanglement
+  path: omega_engine/crates_rs/omega_quantum_physics/src/entanglement.rs
+  repository: the_symbol_game
+  sha256: 0b648ec2d4fa7c1c414461af6ee28f8d579a7285c23808588241f53ddad5ced5
+  declaration_status: symbol_not_found
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche2_row_sparsity_bell_torsion_and_structure_witness
+  availability: external
+  symbol: verify_tranche2_row_sparsity_bell_torsion_and_structure_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 518
+  role: source_lead_only
+presentation:
+  status: scoped_stage_result_reviewed
+  scope: Actual marginals, normalized product reconstruction, signed residuals and Phi are checked; residual
+    and zero-defect polynomials are universal over Q in Lean.
+  colours:
+  - id: NonnegativeJointTable2WithPositiveMass
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: ProductProbabilityTable2
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: RationalFactorizationResidual2
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: RowColumnMarginalsAndMass
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  generators:
+  - id: joint_marginals
+    ordered_inputs:
+    - NonnegativeJointTable2WithPositiveMass
+    output: RowColumnMarginalsAndMass
+    arity: 1
+    carrier: Declared NonnegativeJointTable2WithPositiveMass
+    coefficient_ring: Exact Q (Gaussian pairs where stated), integers and literal Boolean fields only
+    hypotheses:
+    - Nonnegative finite table, W>0, same table at comparison, fixed product coordinates.
+    semantic_predicate: Sum rows, columns and total.
+    source_pins:
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_ds_qm070_product_nonfactorization_proved_lean.yaml
+      sha256: 9c96a3864a45e14f0779c31123d958e1807c10db771d926b69cb9e944230c378
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/inputs/this_repository/dag/operads/ds_qm070_product_nonfactorization.yaml
+      sha256: 0843c31c0bcc040292863dd73ff412c1a299d1257a38ce8e2abaa1d5cd19c061
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/inputs/this_repository/lean4/H014TensorCompositionBoundary.lean
+      sha256: 0754fd419711de9caf9e47d901c467db8f95dd38bfd570fefb305d0e9ad9386a
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/entanglement.rs
+      sha256: 0b648ec2d4fa7c1c414461af6ee28f8d579a7285c23808588241f53ddad5ced5
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/tfq_0256_product_defect_on_a_bipartite_weight_table.md
+      sha256: a8b8186f85a093a61bdcc4104959393ada8fa99ca487b667229e7f3d35694789
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/code/python/src/qm/resources_exact.py
+      sha256: 11ef2d70fa824b51335b881564ab0bc87227c1b43f1fea26ebb87c283c81349f
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/code/python/tests/test_resources_exact.py
+      sha256: 9e299e3dff3f975f3a770e3a940ad8f6969ab02b72545ac5d583c5738ddc9fe7
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/resources_exact.rs
+      sha256: 74c77661e2030c2b37634dd449b164e696ebb7fb318019291719d56436cac1cc
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/resources_exact_replay.rs
+      sha256: 3a2f999edc029ff914fd12dbe3516510ae3aaa9b9104b46a3f2168d9820092c9
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/resources_checker.py
+      sha256: 0c9fcef66b088ab515dc5b1998a8bdad39f7ef2e230552245fccbb184cbac01c
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/prepare.py
+      sha256: 7a8161d3b86651ba01b76e4bf6d940ca18597301b2bd99e0c75235bb9376fbc7
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/specs.py
+      sha256: 56bea147f8ccf6b6c0e919dba2489878517b5e722a9284ffab51216119d6d4cb
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/check_candidate.py
+      sha256: 84787d4ac683d5e4a00d3e1cffc151d2db70d81453d7b4ed7933d8f7fbb92ac4
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/format_certificate.py
+      sha256: d9d2a250970b3a53968b7787465ed297d85569c2d7d83a4f650ca283fa7af9c1
+    evidence_status: Reviewed exact finite native controls. Kernel signatures are separately scoped. Full
+      refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p2/host_check.json
+  - id: outer_marginal_product
+    ordered_inputs:
+    - RowColumnMarginalsAndMass
+    output: ProductProbabilityTable2
+    arity: 1
+    carrier: Declared RowColumnMarginalsAndMass
+    coefficient_ring: Exact Q (Gaussian pairs where stated), integers and literal Boolean fields only
+    hypotheses:
+    - Nonnegative finite table, W>0, same table at comparison, fixed product coordinates.
+    semantic_predicate: Divide the marginal outer product by W².
+    source_pins:
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_ds_qm070_product_nonfactorization_proved_lean.yaml
+      sha256: 9c96a3864a45e14f0779c31123d958e1807c10db771d926b69cb9e944230c378
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/inputs/this_repository/dag/operads/ds_qm070_product_nonfactorization.yaml
+      sha256: 0843c31c0bcc040292863dd73ff412c1a299d1257a38ce8e2abaa1d5cd19c061
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/inputs/this_repository/lean4/H014TensorCompositionBoundary.lean
+      sha256: 0754fd419711de9caf9e47d901c467db8f95dd38bfd570fefb305d0e9ad9386a
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/entanglement.rs
+      sha256: 0b648ec2d4fa7c1c414461af6ee28f8d579a7285c23808588241f53ddad5ced5
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/tfq_0256_product_defect_on_a_bipartite_weight_table.md
+      sha256: a8b8186f85a093a61bdcc4104959393ada8fa99ca487b667229e7f3d35694789
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/code/python/src/qm/resources_exact.py
+      sha256: 11ef2d70fa824b51335b881564ab0bc87227c1b43f1fea26ebb87c283c81349f
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/code/python/tests/test_resources_exact.py
+      sha256: 9e299e3dff3f975f3a770e3a940ad8f6969ab02b72545ac5d583c5738ddc9fe7
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/resources_exact.rs
+      sha256: 74c77661e2030c2b37634dd449b164e696ebb7fb318019291719d56436cac1cc
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/resources_exact_replay.rs
+      sha256: 3a2f999edc029ff914fd12dbe3516510ae3aaa9b9104b46a3f2168d9820092c9
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/resources_checker.py
+      sha256: 0c9fcef66b088ab515dc5b1998a8bdad39f7ef2e230552245fccbb184cbac01c
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/prepare.py
+      sha256: 7a8161d3b86651ba01b76e4bf6d940ca18597301b2bd99e0c75235bb9376fbc7
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/specs.py
+      sha256: 56bea147f8ccf6b6c0e919dba2489878517b5e722a9284ffab51216119d6d4cb
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/check_candidate.py
+      sha256: 84787d4ac683d5e4a00d3e1cffc151d2db70d81453d7b4ed7933d8f7fbb92ac4
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/format_certificate.py
+      sha256: d9d2a250970b3a53968b7787465ed297d85569c2d7d83a4f650ca283fa7af9c1
+    evidence_status: Reviewed exact finite native controls. Kernel signatures are separately scoped. Full
+      refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p2/host_check.json
+  - id: compare_joint_probability
+    ordered_inputs:
+    - ProductProbabilityTable2
+    output: RationalFactorizationResidual2
+    arity: 1
+    carrier: Declared ProductProbabilityTable2
+    coefficient_ring: Exact Q (Gaussian pairs where stated), integers and literal Boolean fields only
+    hypotheses:
+    - Nonnegative finite table, W>0, same table at comparison, fixed product coordinates.
+    semantic_predicate: Subtract the fixed joint probabilities w/W.
+    source_pins:
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_ds_qm070_product_nonfactorization_proved_lean.yaml
+      sha256: 9c96a3864a45e14f0779c31123d958e1807c10db771d926b69cb9e944230c378
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/inputs/this_repository/dag/operads/ds_qm070_product_nonfactorization.yaml
+      sha256: 0843c31c0bcc040292863dd73ff412c1a299d1257a38ce8e2abaa1d5cd19c061
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/inputs/this_repository/lean4/H014TensorCompositionBoundary.lean
+      sha256: 0754fd419711de9caf9e47d901c467db8f95dd38bfd570fefb305d0e9ad9386a
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/entanglement.rs
+      sha256: 0b648ec2d4fa7c1c414461af6ee28f8d579a7285c23808588241f53ddad5ced5
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/tfq_0256_product_defect_on_a_bipartite_weight_table.md
+      sha256: a8b8186f85a093a61bdcc4104959393ada8fa99ca487b667229e7f3d35694789
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/code/python/src/qm/resources_exact.py
+      sha256: 11ef2d70fa824b51335b881564ab0bc87227c1b43f1fea26ebb87c283c81349f
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/code/python/tests/test_resources_exact.py
+      sha256: 9e299e3dff3f975f3a770e3a940ad8f6969ab02b72545ac5d583c5738ddc9fe7
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/resources_exact.rs
+      sha256: 74c77661e2030c2b37634dd449b164e696ebb7fb318019291719d56436cac1cc
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/resources_exact_replay.rs
+      sha256: 3a2f999edc029ff914fd12dbe3516510ae3aaa9b9104b46a3f2168d9820092c9
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/resources_checker.py
+      sha256: 0c9fcef66b088ab515dc5b1998a8bdad39f7ef2e230552245fccbb184cbac01c
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/prepare.py
+      sha256: 7a8161d3b86651ba01b76e4bf6d940ca18597301b2bd99e0c75235bb9376fbc7
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/specs.py
+      sha256: 56bea147f8ccf6b6c0e919dba2489878517b5e722a9284ffab51216119d6d4cb
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/check_candidate.py
+      sha256: 84787d4ac683d5e4a00d3e1cffc151d2db70d81453d7b4ed7933d8f7fbb92ac4
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/format_certificate.py
+      sha256: d9d2a250970b3a53968b7787465ed297d85569c2d7d83a4f650ca283fa7af9c1
+    evidence_status: Reviewed exact finite native controls. Kernel signatures are separately scoped. Full
+      refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p2/host_check.json
+  relations:
+  - id: product_relation_0
+    equation_or_predicate: Scaled residuals are (det,-det,-det,det); Phi=4det² vanishes iff det=0.
+    typing_conditions: Literal declared operation domains; Formalize arbitrary finite table reconstruction
+      and justify any tensor/basis/quantum coherence lift; a product defect of diagonals does not test
+      entanglement.
+    evidence_status: Accepted actual P2 and P4 controls; only the literal named Lean signatures are kernel
+      theorems. Native array-to-signature and physical transports remain as stated.
+    scope: Actual marginals, normalized product reconstruction, signed residuals and Phi are checked;
+      residual and zero-defect polynomials are universal over Q in Lean.
+    source_pins:
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_ds_qm070_product_nonfactorization_proved_lean.yaml
+      sha256: 9c96a3864a45e14f0779c31123d958e1807c10db771d926b69cb9e944230c378
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/inputs/this_repository/dag/operads/ds_qm070_product_nonfactorization.yaml
+      sha256: 0843c31c0bcc040292863dd73ff412c1a299d1257a38ce8e2abaa1d5cd19c061
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/inputs/this_repository/lean4/H014TensorCompositionBoundary.lean
+      sha256: 0754fd419711de9caf9e47d901c467db8f95dd38bfd570fefb305d0e9ad9386a
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/entanglement.rs
+      sha256: 0b648ec2d4fa7c1c414461af6ee28f8d579a7285c23808588241f53ddad5ced5
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/tfq_0256_product_defect_on_a_bipartite_weight_table.md
+      sha256: a8b8186f85a093a61bdcc4104959393ada8fa99ca487b667229e7f3d35694789
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/code/python/src/qm/resources_exact.py
+      sha256: 11ef2d70fa824b51335b881564ab0bc87227c1b43f1fea26ebb87c283c81349f
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/code/python/tests/test_resources_exact.py
+      sha256: 9e299e3dff3f975f3a770e3a940ad8f6969ab02b72545ac5d583c5738ddc9fe7
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/resources_exact.rs
+      sha256: 74c77661e2030c2b37634dd449b164e696ebb7fb318019291719d56436cac1cc
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/resources_exact_replay.rs
+      sha256: 3a2f999edc029ff914fd12dbe3516510ae3aaa9b9104b46a3f2168d9820092c9
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/resources_checker.py
+      sha256: 0c9fcef66b088ab515dc5b1998a8bdad39f7ef2e230552245fccbb184cbac01c
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/prepare.py
+      sha256: 7a8161d3b86651ba01b76e4bf6d940ca18597301b2bd99e0c75235bb9376fbc7
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/specs.py
+      sha256: 56bea147f8ccf6b6c0e919dba2489878517b5e722a9284ffab51216119d6d4cb
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/check_candidate.py
+      sha256: 84787d4ac683d5e4a00d3e1cffc151d2db70d81453d7b4ed7933d8f7fbb92ac4
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/format_certificate.py
+      sha256: d9d2a250970b3a53968b7787465ed297d85569c2d7d83a4f650ca283fa7af9c1
+    latest_host_check: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p2/host_check.json
+    historical_evidence_annotation: P1 candidate; independent native and named kernel gates remain required.
+    named_Lean_scope:
+    - QuantumMechanics.PromptResources.product_residuals
+    - QuantumMechanics.PromptResources.product_defect_zero
+  compositions: &id001
+  - outer_operation: outer_marginal_product
+    input_slot: 0
+    inner_operation: joint_marginals
+    colour_match: RowColumnMarginalsAndMass -> RowColumnMarginalsAndMass
+    hypothesis_match: Same declared coordinates, coefficients and context; all operation hypotheses must
+      be carried into the graft. Fixed matrices, signs, gauge unit, original comparison table, row order,
+      sector and pairing (where relevant) must agree across both operations. Formal universal refined-carrier
+      closure is unpaid.
+    licensing_relations:
+    - product_relation_0
+    evidence_status: Semantic substitution supported by the retained finite operation traces and separately
+      scoped named kernel statements. A complete refined-carrier operad is not asserted.
+  - outer_operation: compare_joint_probability
+    input_slot: 0
+    inner_operation: outer_marginal_product
+    colour_match: ProductProbabilityTable2 -> ProductProbabilityTable2
+    hypothesis_match: Same declared coordinates, coefficients and context; all operation hypotheses must
+      be carried into the graft. Fixed matrices, signs, gauge unit, original comparison table, row order,
+      sector and pairing (where relevant) must agree across both operations. Formal universal refined-carrier
+      closure is unpaid.
+    licensing_relations:
+    - product_relation_0
+    evidence_status: Semantic substitution supported by the retained finite operation traces and separately
+      scoped named kernel statements. A complete refined-carrier operad is not asserted.
+  identities:
+  - colour: NonnegativeJointTable2WithPositiveMass
+    proposed_operation: id_NonnegativeJointTable2WithPositiveMass
+    signature: NonnegativeJointTable2WithPositiveMass -> NonnegativeJointTable2WithPositiveMass
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: ProductProbabilityTable2
+    proposed_operation: id_ProductProbabilityTable2
+    signature: ProductProbabilityTable2 -> ProductProbabilityTable2
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: RationalFactorizationResidual2
+    proposed_operation: id_RationalFactorizationResidual2
+    signature: RationalFactorizationResidual2 -> RationalFactorizationResidual2
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: RowColumnMarginalsAndMass
+    proposed_operation: id_RowColumnMarginalsAndMass
+    signature: RowColumnMarginalsAndMass -> RowColumnMarginalsAndMass
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  symmetric_actions: []
+  coherence_obligations: &id002
+  - Formalize arbitrary finite table reconstruction and justify any tensor/basis/quantum coherence lift;
+    a product defect of diagonals does not test entanglement.
+  - Prove the full refined-carrier operad identity, substitution, symmetry and coherence laws; mere colour
+    matches do not instantiate that formal structure.
+  - A source provider PASS/hash, route index, census label or Boolean flag is not mathematical evidence
+    for the original target. No historical provider receipt is newly authenticated.
+  failed_compositions:
+  - proposal: Promote the selected step to the unrestricted original target
+    reason: Formalize arbitrary finite table reconstruction and justify any tensor/basis/quantum coherence
+      lift; a product defect of diagonals does not test entanglement.
+  counterexamples:
+  - id: retained_actual_domain_controls
+    records:
+    - input:
+      - '1'
+      - '0'
+      - '0'
+      - '1'
+      output:
+      - '2'
+      - '1'
+      - '1'
+      - '1'
+      - '1'
+      - 1/2
+      - 1/2
+      - 1/2
+      - 1/2
+      - 1/4
+      - 1/4
+      - 1/4
+      - 1/4
+      - 1/2
+      - '0'
+      - '0'
+      - 1/2
+      - '1'
+      - '-1'
+      - '-1'
+      - '1'
+      - '4'
+      - '1'
+    - input:
+      - '1'
+      - '2'
+      - '2'
+      - '4'
+      output:
+      - '9'
+      - '3'
+      - '6'
+      - '3'
+      - '6'
+      - 1/3
+      - 2/3
+      - 1/3
+      - 2/3
+      - 1/9
+      - 2/9
+      - 2/9
+      - 4/9
+      - 1/9
+      - 2/9
+      - 2/9
+      - 4/9
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+    - input:
+      - '0'
+      - '1'
+      - '0'
+      - '0'
+      output:
+      - '1'
+      - '1'
+      - '0'
+      - '0'
+      - '1'
+      - '1'
+      - '0'
+      - '0'
+      - '1'
+      - '0'
+      - '1'
+      - '0'
+      - '0'
+      - '0'
+      - '1'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+    - input:
+      - 1/2
+      - 1/3
+      - 1/4
+      - 1/5
+      output:
+      - 77/60
+      - 5/6
+      - 9/20
+      - 3/4
+      - 8/15
+      - 50/77
+      - 27/77
+      - 45/77
+      - 32/77
+      - 2250/5929
+      - 1600/5929
+      - 1215/5929
+      - 864/5929
+      - 30/77
+      - 20/77
+      - 15/77
+      - 12/77
+      - 1/60
+      - -1/60
+      - -1/60
+      - 1/60
+      - 1/900
+      - 1/60
+    scope: Computed values, with the source/kernel/native distinctions retained in claim_boundary.
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: FILLED
+    carrier: Literal per-operation finite or admitted scalar carriers
+    coefficient_ring: Exact Z, Q, Gaussian rational pairs and supplied Boolean fields
+    source_pins:
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_ds_qm070_product_nonfactorization_proved_lean.yaml
+      sha256: 9c96a3864a45e14f0779c31123d958e1807c10db771d926b69cb9e944230c378
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/inputs/this_repository/dag/operads/ds_qm070_product_nonfactorization.yaml
+      sha256: 0843c31c0bcc040292863dd73ff412c1a299d1257a38ce8e2abaa1d5cd19c061
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/inputs/this_repository/lean4/H014TensorCompositionBoundary.lean
+      sha256: 0754fd419711de9caf9e47d901c467db8f95dd38bfd570fefb305d0e9ad9386a
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/entanglement.rs
+      sha256: 0b648ec2d4fa7c1c414461af6ee28f8d579a7285c23808588241f53ddad5ced5
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/tfq_0256_product_defect_on_a_bipartite_weight_table.md
+      sha256: a8b8186f85a093a61bdcc4104959393ada8fa99ca487b667229e7f3d35694789
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/code/python/src/qm/resources_exact.py
+      sha256: 11ef2d70fa824b51335b881564ab0bc87227c1b43f1fea26ebb87c283c81349f
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/code/python/tests/test_resources_exact.py
+      sha256: 9e299e3dff3f975f3a770e3a940ad8f6969ab02b72545ac5d583c5738ddc9fe7
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/resources_exact.rs
+      sha256: 74c77661e2030c2b37634dd449b164e696ebb7fb318019291719d56436cac1cc
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/resources_exact_replay.rs
+      sha256: 3a2f999edc029ff914fd12dbe3516510ae3aaa9b9104b46a3f2168d9820092c9
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/resources_checker.py
+      sha256: 0c9fcef66b088ab515dc5b1998a8bdad39f7ef2e230552245fccbb184cbac01c
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/prepare.py
+      sha256: 7a8161d3b86651ba01b76e4bf6d940ca18597301b2bd99e0c75235bb9376fbc7
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/specs.py
+      sha256: 56bea147f8ccf6b6c0e919dba2489878517b5e722a9284ffab51216119d6d4cb
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/check_candidate.py
+      sha256: 84787d4ac683d5e4a00d3e1cffc151d2db70d81453d7b4ed7933d8f7fbb92ac4
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/format_certificate.py
+      sha256: d9d2a250970b3a53968b7787465ed297d85569c2d7d83a4f650ca283fa7af9c1
+    public_input:
+      kind: product
+      cases:
+      - - '1'
+        - '0'
+        - '0'
+        - '1'
+      - - '1'
+        - '2'
+        - '2'
+        - '4'
+      - - '0'
+        - '1'
+        - '0'
+        - '0'
+      - - 1/2
+        - 1/3
+        - 1/4
+        - 1/5
+      scope: Actual marginals, normalized product reconstruction, signed residuals and Phi are checked;
+        residual and zero-defect polynomials are universal over Q in Lean.
+      unpaid_target: Formalize arbitrary finite table reconstruction and justify any tensor/basis/quantum
+        coherence lift; a product defect of diagonals does not test entanglement.
+    original_target: For a finite nonnegative joint table w on A x B with W>0, the product defect Phi(w)
+      vanishes iff w factors through its marginals. Phi is basis-relative and does not see entanglement
+      (Bell state and the classical mixture share the (1/2,0,0,1/2) table).
+    source_scope_review: 'For a nonnegative 2x2 table with positive total W, every scaled marginal residual
+      equals ±det(w). Phi=sum residual²=4det². Division by W² gives the actual product probabilities.
+      This is classical basis-relative product factorization, not entanglement: both the Bell density
+      and its dephased mixture share the same correlated diagonal.'
+    admitted_assumptions:
+    - bipartite product structure A x B on a joint table (assumption)
+  slot_m2_layer1_forward_morphisms:
+    mining_status: FILLED
+    operations:
+    - catalog_id: joint_marginals
+      inputs:
+      - NonnegativeJointTable2WithPositiveMass
+      output: RowColumnMarginalsAndMass
+      semantic_predicate: Sum rows, columns and total.
+    - catalog_id: outer_marginal_product
+      inputs:
+      - RowColumnMarginalsAndMass
+      output: ProductProbabilityTable2
+      semantic_predicate: Divide the marginal outer product by W².
+    - catalog_id: compare_joint_probability
+      inputs:
+      - ProductProbabilityTable2
+      output: RationalFactorizationResidual2
+      semantic_predicate: Subtract the fixed joint probabilities w/W.
+    composition_plan: *id001
+    tree:
+    - Scaled residuals are (det,-det,-det,det); Phi=4det² vanishes iff det=0.
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: FILLED
+    algebraic_relations:
+    - id: product_relation_0
+      equation_or_predicate: Scaled residuals are (det,-det,-det,det); Phi=4det² vanishes iff det=0.
+      typing_conditions: Literal declared operation domains; Formalize arbitrary finite table reconstruction
+        and justify any tensor/basis/quantum coherence lift; a product defect of diagonals does not test
+        entanglement.
+      evidence_status: P1 candidate; independent native and named kernel gates remain required.
+      scope: Actual marginals, normalized product reconstruction, signed residuals and Phi are checked;
+        residual and zero-defect polynomials are universal over Q in Lean.
+      source_pins:
+      - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_ds_qm070_product_nonfactorization_proved_lean.yaml
+        sha256: 9c96a3864a45e14f0779c31123d958e1807c10db771d926b69cb9e944230c378
+      - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/inputs/this_repository/dag/operads/ds_qm070_product_nonfactorization.yaml
+        sha256: 0843c31c0bcc040292863dd73ff412c1a299d1257a38ce8e2abaa1d5cd19c061
+      - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/inputs/this_repository/lean4/H014TensorCompositionBoundary.lean
+        sha256: 0754fd419711de9caf9e47d901c467db8f95dd38bfd570fefb305d0e9ad9386a
+      - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+        sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+      - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/entanglement.rs
+        sha256: 0b648ec2d4fa7c1c414461af6ee28f8d579a7285c23808588241f53ddad5ced5
+      - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/tfq_0256_product_defect_on_a_bipartite_weight_table.md
+        sha256: a8b8186f85a093a61bdcc4104959393ada8fa99ca487b667229e7f3d35694789
+      - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/code/python/src/qm/resources_exact.py
+        sha256: 11ef2d70fa824b51335b881564ab0bc87227c1b43f1fea26ebb87c283c81349f
+      - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/code/python/tests/test_resources_exact.py
+        sha256: 9e299e3dff3f975f3a770e3a940ad8f6969ab02b72545ac5d583c5738ddc9fe7
+      - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/resources_exact.rs
+        sha256: 74c77661e2030c2b37634dd449b164e696ebb7fb318019291719d56436cac1cc
+      - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/resources_exact_replay.rs
+        sha256: 3a2f999edc029ff914fd12dbe3516510ae3aaa9b9104b46a3f2168d9820092c9
+      - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/resources_checker.py
+        sha256: 0c9fcef66b088ab515dc5b1998a8bdad39f7ef2e230552245fccbb184cbac01c
+      - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+        sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+      - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/prepare.py
+        sha256: 7a8161d3b86651ba01b76e4bf6d940ca18597301b2bd99e0c75235bb9376fbc7
+      - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/specs.py
+        sha256: 56bea147f8ccf6b6c0e919dba2489878517b5e722a9284ffab51216119d6d4cb
+      - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/custody.py
+        sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+      - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+        sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+      - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/check_candidate.py
+        sha256: 84787d4ac683d5e4a00d3e1cffc151d2db70d81453d7b4ed7933d8f7fbb92ac4
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/format_certificate.py
+        sha256: d9d2a250970b3a53968b7787465ed297d85569c2d7d83a4f650ca283fa7af9c1
+    rejection_predicates:
+    - Independent domain equations and actual matrix/graph/quotient arrays recompute every output.
+    - Exact public input, canonical rational primitive types, complete source pins and exact sealed request
+      bytes.
+    - Full native cross-language output equality and actual named Lean axiom reports; no label-based target
+      promotion.
+    negative_control_plan: Alter every output coordinate, input identity, primitive types, source set
+      and sealed request.
+  slot_m4_tri_language_witness_anchors:
+    mining_status: FILLED
+    certificate_predicates:
+    - Independent domain equations and actual matrix/graph/quotient arrays recompute every output.
+    - Exact public input, canonical rational primitive types, complete source pins and exact sealed request
+      bytes.
+    - Full native cross-language output equality and actual named Lean axiom reports; no label-based target
+      promotion.
+    anchors:
+    - code/python/src/qm/resources_exact.py
+    - code/python/tests/test_resources_exact.py
+    - code/rust/src/finite_probability/resources_exact.rs
+    - code/rust/src/finite_probability/examples/resources_exact_replay.rs
+    - dag/pfp/resources_checker.py
+    - dag/pfp/exact_json.py
+    - dag/pfp/review_exact_json.py
+    - lean4/BuildabilitySetS.lean
+    - lean4/PromptResources.lean
+    - dag/results/batches/20261019T184100Z_prompts_52_71/tools/prepare.py
+    - dag/results/batches/20261019T184100Z_prompts_52_71/tools/specs.py
+    - dag/pfp/custody.py
+    - dag/pfp/filename_custody.json
+    - QuantumMechanics.PromptResources.product_residuals
+    - QuantumMechanics.PromptResources.product_defect_zero
+    unpaid_imports:
+    - Formalize arbitrary finite table reconstruction and justify any tensor/basis/quantum coherence lift;
+      a product defect of diagonals does not test entanglement.
+    - Prove the full refined-carrier operad identity, substitution, symmetry and coherence laws; mere
+      colour matches do not instantiate that formal structure.
+    anchor_status: New Lean anchors are candidate declarations until the retained P2 compiler runs; compiled
+      source leads retain their literal scope.
+stage_history:
+- stage: P0_MINE_OPERAD
+  attempt: p0
+  run: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged
+  operad_delta: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operad_delta.yaml
+  host_check: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/host_check.json
+- stage: P1_DERIVE
+  attempt: p1
+  run: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged
+  operad_delta: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p1/operad_delta.yaml
+  host_check: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p1/host_check.json
+- stage: P2_VERIFY
+  attempt: p2
+  run: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged
+  operad_delta: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p2/operad_delta.yaml
+  host_check: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p2/host_check.json
+- stage: P4_CHALLENGE
+  attempt: p4
+  run: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged
+  operad_delta: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p4/operad_delta.yaml
+  host_check: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p4/host_check.json
+- stage: P5_RECORD
+  attempt: p5
+  run: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged
+  operad_delta: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p5/operad_delta.yaml
+  host_check: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p5/host_check.json
+open_obligations: *id002
+excluded_relation_leads: []
+operad_slots_scope:
+  work_unit: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/reviewed_missions.json
+  scope: FILLED means reviewed prerequisites for this selected step; original target and unpaid imports
+    retained.
+  review_refinement: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/reviews/20261019_resources_audit/scope_review.json
+latest_run:
+  path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged
+  stage: P5_RECORD
+  status: scoped_result_or_obstruction_reviewed
+scope_notes:
+- 'For a nonnegative 2x2 table with positive total W, every scaled marginal residual equals ±det(w). Phi=sum
+  residual²=4det². Division by W² gives the actual product probabilities. This is classical basis-relative
+  product factorization, not entanglement: both the Bell density and its dephased mixture share the same
+  correlated diagonal.'
+latest_review:
+  path: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/reviews/20261019_resources_audit
+  status: reviewed_with_targeted_native_integration
+  operad_delta: dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/reviews/20261019_resources_audit/operad_delta.yaml

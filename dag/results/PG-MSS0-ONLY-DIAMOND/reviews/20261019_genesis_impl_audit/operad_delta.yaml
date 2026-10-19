@@ -1,0 +1,330 @@
+add_or_refine_generators:
+- id: declared_stage_node_tags
+  ordered_inputs:
+  - DeclaredStageAndNodeTags
+  output: ProfileEligibilityFields
+  arity: 1
+  carrier: Declared DeclaredStageAndNodeTags
+  coefficient_ring: Exact rational/Gaussian/cubic-cyclotomic coordinates, finite sets and bounded natural
+    event fields
+  hypotheses:
+  - Tag convention is supplied; higher-stage eligibility alone is also structural.
+  semantic_predicate: Interpret node0 as the declared inscription tag.
+  source_pins:
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/inputs/this_repository/dag/prompts/genesis_pg_mss0_only_diamond_definition.yaml
+    sha256: ebbe6e5249439cd0ff9002ee39ba3dccac9066b2cfceaceed84f691a5bcd2f35
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/inputs/this_repository/dag/operads/pg_mss0_only_diamond.yaml
+    sha256: 8555e2298ff6bb2d58957ac9fedafc54b38dd32b580f0bc85811fc0d2a47caa2
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/inputs/this_repository/code/rust/src/wdp/genesis_construction.rs
+    sha256: 0a8d3f217d67ee6368786e96bc929454b1c7bc87e62f99d6723bdf859e201111
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/inputs/this_repository/dag/derivations/02_genesis/tfq_0377_mss0_only_inscription.md
+    sha256: 8564b7e593adaebe2309645580e778f9980141052d1cba432d2c5491a5d634cc
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/inputs_additional/the_symbol_game/omega_engine_pfp/domain/tower/profile.py
+    sha256: 101e8427c1ba1531e0570879a9bc1c4d6e04f629d2220d1c34c6e64fc5587c1d
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/inputs_additional/the_symbol_game/omega_engine_pfp/domain/tower/grammar.py
+    sha256: 34279e8dc4f4e66499314d53844653e95d79c4047471ad6fbbdb40ea0c17b50a
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/inputs_additional/the_symbol_game/omega_engine_pfp/domain/tower/registry.py
+    sha256: ec2e18d9dcdc90e75a34d9f44cd120d6cbff61406caca62d771776710b8b656b
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/inputs_additional/the_symbol_game/omega_engine_pfp/domain/tower/wire.py
+    sha256: 96fd1206e0783a0addaabc48ecefb6b773f84d3ff49f65fe410ac0f0df96a210
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/p0/operation_sources/code/python/src/qm/genesis_impl_exact.py
+    sha256: c089e168b2fdf95035234b3c790033a7c26faeeb560caba3702316b67a83de08
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/p0/operation_sources/code/python/tests/test_genesis_impl_exact.py
+    sha256: 83bb286035e4bf51798b48bfcbb41e42e367a1735439733ddc2df93874bd4bba
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/p0/operation_sources/code/rust/src/finite_probability/genesis_impl_exact.rs
+    sha256: 69ec2e18c3114e5087881dc7dc58f5ccd27af0dc64d8b673afd7a4c59646405c
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/genesis_impl_exact_replay.rs
+    sha256: 6f62d62b19601a4c57bab60bc683a8f65e7a38ecb47cb8291746c6e44fedfe43
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/genesis_impl_checker.py
+    sha256: aaee07218bf3ce39df57837cecb0df3da420cec6311b0c8389bec96dba42f286
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+    sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/p0/operation_sources/dag/results/batches/20261019T215447Z_prompts_92_111/tools/prepare.py
+    sha256: 7aacd1e0ac730a596635ea0c1faac5113bb58cfac79f80cbc3d92636a75cb5b8
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/p0/operation_sources/dag/results/batches/20261019T215447Z_prompts_92_111/tools/specs.py
+    sha256: c8db59e0e612c454d9ec6a012326d016a0a7f74c09642531d4f5a8f5df2ce76b
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/custody.py
+    sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+    sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/check_candidate.py
+    sha256: 812d325d94d2f9ae842b69769ba4c0f3e1bda381240cc5fe4a739d1a0c5cf389
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/format_certificate.py
+    sha256: 4f43786250bc1be563a9745924e1ffc047bc0b06c469ccd97e537c6b9712acd1
+  evidence_status: Reviewed exact finite native controls. Kernel signatures are separately scoped. Full
+    refined-carrier operad instantiation remains open.
+  latest_host_check: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/p2/host_check.json
+- id: stage_zero_eligibility
+  ordered_inputs:
+  - ProfileEligibilityFields
+  output: StructuralEligibilityBoolean
+  arity: 1
+  carrier: Declared ProfileEligibilityFields
+  coefficient_ring: Exact rational/Gaussian/cubic-cyclotomic coordinates, finite sets and bounded natural
+    event fields
+  hypotheses:
+  - Tag convention is supplied; higher-stage eligibility alone is also structural.
+  semantic_predicate: At stage0 require node0.
+  source_pins:
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/inputs/this_repository/dag/prompts/genesis_pg_mss0_only_diamond_definition.yaml
+    sha256: ebbe6e5249439cd0ff9002ee39ba3dccac9066b2cfceaceed84f691a5bcd2f35
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/inputs/this_repository/dag/operads/pg_mss0_only_diamond.yaml
+    sha256: 8555e2298ff6bb2d58957ac9fedafc54b38dd32b580f0bc85811fc0d2a47caa2
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/inputs/this_repository/code/rust/src/wdp/genesis_construction.rs
+    sha256: 0a8d3f217d67ee6368786e96bc929454b1c7bc87e62f99d6723bdf859e201111
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/inputs/this_repository/dag/derivations/02_genesis/tfq_0377_mss0_only_inscription.md
+    sha256: 8564b7e593adaebe2309645580e778f9980141052d1cba432d2c5491a5d634cc
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/inputs_additional/the_symbol_game/omega_engine_pfp/domain/tower/profile.py
+    sha256: 101e8427c1ba1531e0570879a9bc1c4d6e04f629d2220d1c34c6e64fc5587c1d
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/inputs_additional/the_symbol_game/omega_engine_pfp/domain/tower/grammar.py
+    sha256: 34279e8dc4f4e66499314d53844653e95d79c4047471ad6fbbdb40ea0c17b50a
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/inputs_additional/the_symbol_game/omega_engine_pfp/domain/tower/registry.py
+    sha256: ec2e18d9dcdc90e75a34d9f44cd120d6cbff61406caca62d771776710b8b656b
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/inputs_additional/the_symbol_game/omega_engine_pfp/domain/tower/wire.py
+    sha256: 96fd1206e0783a0addaabc48ecefb6b773f84d3ff49f65fe410ac0f0df96a210
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/p0/operation_sources/code/python/src/qm/genesis_impl_exact.py
+    sha256: c089e168b2fdf95035234b3c790033a7c26faeeb560caba3702316b67a83de08
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/p0/operation_sources/code/python/tests/test_genesis_impl_exact.py
+    sha256: 83bb286035e4bf51798b48bfcbb41e42e367a1735439733ddc2df93874bd4bba
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/p0/operation_sources/code/rust/src/finite_probability/genesis_impl_exact.rs
+    sha256: 69ec2e18c3114e5087881dc7dc58f5ccd27af0dc64d8b673afd7a4c59646405c
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/genesis_impl_exact_replay.rs
+    sha256: 6f62d62b19601a4c57bab60bc683a8f65e7a38ecb47cb8291746c6e44fedfe43
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/genesis_impl_checker.py
+    sha256: aaee07218bf3ce39df57837cecb0df3da420cec6311b0c8389bec96dba42f286
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+    sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/p0/operation_sources/dag/results/batches/20261019T215447Z_prompts_92_111/tools/prepare.py
+    sha256: 7aacd1e0ac730a596635ea0c1faac5113bb58cfac79f80cbc3d92636a75cb5b8
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/p0/operation_sources/dag/results/batches/20261019T215447Z_prompts_92_111/tools/specs.py
+    sha256: c8db59e0e612c454d9ec6a012326d016a0a7f74c09642531d4f5a8f5df2ce76b
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/custody.py
+    sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+    sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/check_candidate.py
+    sha256: 812d325d94d2f9ae842b69769ba4c0f3e1bda381240cc5fe4a739d1a0c5cf389
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/format_certificate.py
+    sha256: 4f43786250bc1be563a9745924e1ffc047bc0b06c469ccd97e537c6b9712acd1
+  evidence_status: Reviewed exact finite native controls. Kernel signatures are separately scoped. Full
+    refined-carrier operad instantiation remains open.
+  latest_host_check: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/p2/host_check.json
+- id: structural_ceiling
+  ordered_inputs:
+  - StructuralEligibilityBoolean
+  output: NoMathematicalOrEmpiricalAuthority
+  arity: 1
+  carrier: Declared StructuralEligibilityBoolean
+  coefficient_ring: Exact rational/Gaussian/cubic-cyclotomic coordinates, finite sets and bounded natural
+    event fields
+  hypotheses:
+  - Tag convention is supplied; higher-stage eligibility alone is also structural.
+  semantic_predicate: Return mathematical and empirical authorization as false.
+  source_pins:
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/inputs/this_repository/dag/prompts/genesis_pg_mss0_only_diamond_definition.yaml
+    sha256: ebbe6e5249439cd0ff9002ee39ba3dccac9066b2cfceaceed84f691a5bcd2f35
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/inputs/this_repository/dag/operads/pg_mss0_only_diamond.yaml
+    sha256: 8555e2298ff6bb2d58957ac9fedafc54b38dd32b580f0bc85811fc0d2a47caa2
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/inputs/this_repository/code/rust/src/wdp/genesis_construction.rs
+    sha256: 0a8d3f217d67ee6368786e96bc929454b1c7bc87e62f99d6723bdf859e201111
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/inputs/this_repository/dag/derivations/02_genesis/tfq_0377_mss0_only_inscription.md
+    sha256: 8564b7e593adaebe2309645580e778f9980141052d1cba432d2c5491a5d634cc
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/inputs_additional/the_symbol_game/omega_engine_pfp/domain/tower/profile.py
+    sha256: 101e8427c1ba1531e0570879a9bc1c4d6e04f629d2220d1c34c6e64fc5587c1d
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/inputs_additional/the_symbol_game/omega_engine_pfp/domain/tower/grammar.py
+    sha256: 34279e8dc4f4e66499314d53844653e95d79c4047471ad6fbbdb40ea0c17b50a
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/inputs_additional/the_symbol_game/omega_engine_pfp/domain/tower/registry.py
+    sha256: ec2e18d9dcdc90e75a34d9f44cd120d6cbff61406caca62d771776710b8b656b
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/inputs_additional/the_symbol_game/omega_engine_pfp/domain/tower/wire.py
+    sha256: 96fd1206e0783a0addaabc48ecefb6b773f84d3ff49f65fe410ac0f0df96a210
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/p0/operation_sources/code/python/src/qm/genesis_impl_exact.py
+    sha256: c089e168b2fdf95035234b3c790033a7c26faeeb560caba3702316b67a83de08
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/p0/operation_sources/code/python/tests/test_genesis_impl_exact.py
+    sha256: 83bb286035e4bf51798b48bfcbb41e42e367a1735439733ddc2df93874bd4bba
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/p0/operation_sources/code/rust/src/finite_probability/genesis_impl_exact.rs
+    sha256: 69ec2e18c3114e5087881dc7dc58f5ccd27af0dc64d8b673afd7a4c59646405c
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/genesis_impl_exact_replay.rs
+    sha256: 6f62d62b19601a4c57bab60bc683a8f65e7a38ecb47cb8291746c6e44fedfe43
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/genesis_impl_checker.py
+    sha256: aaee07218bf3ce39df57837cecb0df3da420cec6311b0c8389bec96dba42f286
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+    sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/p0/operation_sources/dag/results/batches/20261019T215447Z_prompts_92_111/tools/prepare.py
+    sha256: 7aacd1e0ac730a596635ea0c1faac5113bb58cfac79f80cbc3d92636a75cb5b8
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/p0/operation_sources/dag/results/batches/20261019T215447Z_prompts_92_111/tools/specs.py
+    sha256: c8db59e0e612c454d9ec6a012326d016a0a7f74c09642531d4f5a8f5df2ce76b
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/custody.py
+    sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+    sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/check_candidate.py
+    sha256: 812d325d94d2f9ae842b69769ba4c0f3e1bda381240cc5fe4a739d1a0c5cf389
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/format_certificate.py
+    sha256: 4f43786250bc1be563a9745924e1ffc047bc0b06c469ccd97e537c6b9712acd1
+  evidence_status: Reviewed exact finite native controls. Kernel signatures are separately scoped. Full
+    refined-carrier operad instantiation remains open.
+  latest_host_check: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/p2/host_check.json
+add_or_refine_relations:
+- id: mss0_relation_0
+  equation_or_predicate: Stage0 admits only node0; structural eligibility never authorizes mathematical
+    or empirical claims.
+  typing_conditions: Literal declared operation domains; Connect these tags to the actual profile registry
+    and separate real mathematical/empirical validation. This structural rule supplies no physical, proof
+    or authority certificate.
+  evidence_status: Accepted actual P2 and P4 controls; only the literal named Lean signatures are kernel
+    theorems. Native array-to-signature and physical transports remain as stated.
+  scope: Exact declared stage-zero/node eligibility controls and an explicit structural-only authority
+    ceiling are kernel/native checked.
+  source_pins:
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/inputs/this_repository/dag/prompts/genesis_pg_mss0_only_diamond_definition.yaml
+    sha256: ebbe6e5249439cd0ff9002ee39ba3dccac9066b2cfceaceed84f691a5bcd2f35
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/inputs/this_repository/dag/operads/pg_mss0_only_diamond.yaml
+    sha256: 8555e2298ff6bb2d58957ac9fedafc54b38dd32b580f0bc85811fc0d2a47caa2
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/inputs/this_repository/code/rust/src/wdp/genesis_construction.rs
+    sha256: 0a8d3f217d67ee6368786e96bc929454b1c7bc87e62f99d6723bdf859e201111
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/inputs/this_repository/dag/derivations/02_genesis/tfq_0377_mss0_only_inscription.md
+    sha256: 8564b7e593adaebe2309645580e778f9980141052d1cba432d2c5491a5d634cc
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/inputs_additional/the_symbol_game/omega_engine_pfp/domain/tower/profile.py
+    sha256: 101e8427c1ba1531e0570879a9bc1c4d6e04f629d2220d1c34c6e64fc5587c1d
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/inputs_additional/the_symbol_game/omega_engine_pfp/domain/tower/grammar.py
+    sha256: 34279e8dc4f4e66499314d53844653e95d79c4047471ad6fbbdb40ea0c17b50a
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/inputs_additional/the_symbol_game/omega_engine_pfp/domain/tower/registry.py
+    sha256: ec2e18d9dcdc90e75a34d9f44cd120d6cbff61406caca62d771776710b8b656b
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/inputs_additional/the_symbol_game/omega_engine_pfp/domain/tower/wire.py
+    sha256: 96fd1206e0783a0addaabc48ecefb6b773f84d3ff49f65fe410ac0f0df96a210
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/p0/operation_sources/code/python/src/qm/genesis_impl_exact.py
+    sha256: c089e168b2fdf95035234b3c790033a7c26faeeb560caba3702316b67a83de08
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/p0/operation_sources/code/python/tests/test_genesis_impl_exact.py
+    sha256: 83bb286035e4bf51798b48bfcbb41e42e367a1735439733ddc2df93874bd4bba
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/p0/operation_sources/code/rust/src/finite_probability/genesis_impl_exact.rs
+    sha256: 69ec2e18c3114e5087881dc7dc58f5ccd27af0dc64d8b673afd7a4c59646405c
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/genesis_impl_exact_replay.rs
+    sha256: 6f62d62b19601a4c57bab60bc683a8f65e7a38ecb47cb8291746c6e44fedfe43
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/genesis_impl_checker.py
+    sha256: aaee07218bf3ce39df57837cecb0df3da420cec6311b0c8389bec96dba42f286
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+    sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/p0/operation_sources/dag/results/batches/20261019T215447Z_prompts_92_111/tools/prepare.py
+    sha256: 7aacd1e0ac730a596635ea0c1faac5113bb58cfac79f80cbc3d92636a75cb5b8
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/p0/operation_sources/dag/results/batches/20261019T215447Z_prompts_92_111/tools/specs.py
+    sha256: c8db59e0e612c454d9ec6a012326d016a0a7f74c09642531d4f5a8f5df2ce76b
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/custody.py
+    sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+    sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/check_candidate.py
+    sha256: 812d325d94d2f9ae842b69769ba4c0f3e1bda381240cc5fe4a739d1a0c5cf389
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/format_certificate.py
+    sha256: 4f43786250bc1be563a9745924e1ffc047bc0b06c469ccd97e537c6b9712acd1
+  latest_host_check: dag/results/PG-MSS0-ONLY-DIAMOND/runs/20261019T215447Z_staged/p2/host_check.json
+  historical_evidence_annotation: P1 candidate; independent native and named kernel gates remain required.
+  named_Lean_scope:
+  - QuantumMechanics.PromptGenesisImplementation.mss0_only_inscription
+  - QuantumMechanics.PromptGenesisImplementation.mss0_structural_ceiling
+checked_compositions:
+- outer_operation: stage_zero_eligibility
+  input_slot: 0
+  inner_operation: declared_stage_node_tags
+  colour_match: ProfileEligibilityFields -> ProfileEligibilityFields
+  hypothesis_match: Same declared coordinates, coefficients and context; all operation hypotheses must
+    be carried into the graft. Fixed matrices, signs, gauge unit, original comparison table, row order,
+    sector and pairing (where relevant) must agree across both operations. Formal universal refined-carrier
+    closure is unpaid.
+  licensing_relations:
+  - mss0_relation_0
+  evidence_status: Semantic substitution supported by the retained finite operation traces and separately
+    scoped named kernel statements. A complete refined-carrier operad is not asserted.
+- outer_operation: structural_ceiling
+  input_slot: 0
+  inner_operation: stage_zero_eligibility
+  colour_match: StructuralEligibilityBoolean -> StructuralEligibilityBoolean
+  hypothesis_match: Same declared coordinates, coefficients and context; all operation hypotheses must
+    be carried into the graft. Fixed matrices, signs, gauge unit, original comparison table, row order,
+    sector and pairing (where relevant) must agree across both operations. Formal universal refined-carrier
+    closure is unpaid.
+  licensing_relations:
+  - mss0_relation_0
+  evidence_status: Semantic substitution supported by the retained finite operation traces and separately
+    scoped named kernel statements. A complete refined-carrier operad is not asserted.
+failed_compositions:
+- proposal: Promote the selected step to the unrestricted original target
+  reason: Connect these tags to the actual profile registry and separate real mathematical/empirical validation.
+    This structural rule supplies no physical, proof or authority certificate.
+counterexamples:
+- id: retained_actual_domain_controls
+  records:
+  - input:
+    - '0'
+    - '0'
+    output:
+    - '1'
+    - '0'
+    - '0'
+  - input:
+    - '0'
+    - '1'
+    output:
+    - '0'
+    - '0'
+    - '0'
+  - input:
+    - '1'
+    - '1'
+    output:
+    - '1'
+    - '0'
+    - '0'
+  scope: Computed values, with the source/kernel/native distinctions retained in claim_boundary.
+open_obligations:
+- Connect these tags to the actual profile registry and separate real mathematical/empirical validation.
+  This structural rule supplies no physical, proof or authority certificate.
+- Prove the full refined-carrier operad identity, substitution, symmetry and coherence laws; mere colour
+  matches do not instantiate that formal structure.
+- Higher-stage actual profile validation requires the inspected registry/opcode/Atom/constructor guards.
+  This finite tag model establishes only the MSS0 floor condition.
+- A source provider PASS/hash, route index, census label or Boolean flag is not mathematical evidence
+  for the original target. No historical provider receipt is newly authenticated.
+review_scope_clarifications:
+  stage_floor_only: At stages above zero the Boolean field is only the necessary MSS0 stage-floor condition.
+    It does not establish full registry, opcode, Atom or constructor-shape acceptance in the actual inspected
+    profile.
+  policy_field_only: The two zero authority fields are the declared local structural policy, not a theorem
+    about a production authorization engine.
+scope_refinements:
+  historical_source_assumptions_are_not_the_full_work_unit_contract: true
+  work_unit_admitted_hypotheses:
+  - Tag convention is supplied; higher-stage eligibility alone is also structural.
+  boundary: Finite carriers, declared operations/readouts and actual native bounds are supplied assumptions,
+    even when the historical source assumption list is empty.

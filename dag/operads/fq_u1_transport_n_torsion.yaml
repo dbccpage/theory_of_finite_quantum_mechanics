@@ -1,0 +1,1102 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: FQ-U1-TRANSPORT-N-TORSION
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: 'N-torsion edge 1-cochain tau with values in mu_N in Q(zeta_N)^x: gauge classes Hom(H_1(G,Z),
+    mu_N) have size N^{beta_1(G)}; relative report phase equals path holonomy tau(p1)tau(p2)^-1. Sign
+    group {+1,-1} fails connectedness under "not exponent two"; Gaussian units and three-cycle meet it.'
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions:
+  - non-triviality and order N of the edge phase cochain (assumption)
+  - finite oriented graph (assumption)
+  source_bottleneck: Finite N-torsion gauge invariance and sign-group separation are mechanized; completion
+    to R/Z remains in FQ-GAP-U1-CIRCLE.
+  source_refs:
+  - omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md:380
+  - omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/claims/gap_register.yaml:243
+  paper_refs:
+  - dag/derivations/12_finite_qm_structure/tfq_0254_holonomy_structured_coherent_intensity.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  historical_paper_refs:
+  - papers/derivations/12_finite_qm_structure/tfq_0254_holonomy_structured_coherent_intensity.md
+  paper_relocations:
+  - from: papers/derivations/12_finite_qm_structure/tfq_0254_holonomy_structured_coherent_intensity.md
+    to: dag/derivations/12_finite_qm_structure/tfq_0254_holonomy_structured_coherent_intensity.md
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/12_finite_qm_structure/tfq_0254_holonomy_structured_coherent_intensity.md
+    sha256: 34ce71c353cf69416ea0d2af542618972ee59f1531017a224d276c014258f620
+source_provenance:
+  repository: this_repository
+  commit: 642f5b95a116da6df805adbd745a4826c6739c2b
+  path: dag/prompts/finite_qm_structure_fq_u1_transport_n_torsion_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: signCarrier
+  line: 44
+  signature_excerpt: 'def signCarrier : PhaseCarrier Int'
+  source: lean4/H011Circle.lean
+  repository: this_repository
+  source_sha256: 6934713287756fd23f2f44a6bab2ed6ee50fbb128f99db492f926c839ff86d9b
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: isSign
+  line: 25
+  signature_excerpt: 'def isSign (a : Int) : Prop'
+  source: lean4/H011Circle.lean
+  repository: this_repository
+  source_sha256: 6934713287756fd23f2f44a6bab2ed6ee50fbb128f99db492f926c839ff86d9b
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: PhaseCarrier
+  line: 14
+  signature_excerpt: 'structure PhaseCarrier (G : Type)'
+  source: lean4/H011Circle.lean
+  repository: this_repository
+  source_sha256: 6934713287756fd23f2f44a6bab2ed6ee50fbb128f99db492f926c839ff86d9b
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: ConnectednessShadow
+  line: 21
+  signature_excerpt: 'def ConnectednessShadow {G : Type} (P : PhaseCarrier G) : Prop'
+  source: lean4/H011Circle.lean
+  repository: this_repository
+  source_sha256: 6934713287756fd23f2f44a6bab2ed6ee50fbb128f99db492f926c839ff86d9b
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: SelectorDischarged
+  line: 22
+  signature_excerpt: 'def SelectorDischarged (S : SelectorPack) : Bool'
+  source: lean4/H011U1SelectorBoundary.lean
+  repository: this_repository
+  source_sha256: 214f187afdfc0ee196021aa3ce2ab96875b1c13de9b3a560ef1eaf0359622912
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: SelectorPack
+  line: 16
+  signature_excerpt: structure SelectorPack
+  source: lean4/H011U1SelectorBoundary.lean
+  repository: this_repository
+  source_sha256: 214f187afdfc0ee196021aa3ce2ab96875b1c13de9b3a560ef1eaf0359622912
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: qm062Route
+  line: 26
+  signature_excerpt: 'def qm062Route : SelectorPack'
+  source: lean4/H011U1SelectorBoundary.lean
+  repository: this_repository
+  source_sha256: 214f187afdfc0ee196021aa3ce2ab96875b1c13de9b3a560ef1eaf0359622912
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: sign_fails_connectedness_shadow
+  line: 51
+  signature_excerpt: "theorem sign_fails_connectedness_shadow :\n    ¬ ConnectednessShadow signCarrier"
+  source: lean4/H011Circle.lean
+  repository: this_repository
+  source_sha256: 6934713287756fd23f2f44a6bab2ed6ee50fbb128f99db492f926c839ff86d9b
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: u1_selector_boundary
+  line: 47
+  signature_excerpt: "theorem u1_selector_boundary :\n    SelectorDischarged qm062Route = false ∧\n  \
+    \    ¬(∀ q : Bool, iReadout iPsi1 q = iReadout iPsi2 q)"
+  source: lean4/H011U1SelectorBoundary.lean
+  repository: this_repository
+  source_sha256: 214f187afdfc0ee196021aa3ce2ab96875b1c13de9b3a560ef1eaf0359622912
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: fq_u1_transport_n_torsion_and_sign_separation
+  line: 503
+  signature_excerpt: "theorem fq_u1_transport_n_torsion_and_sign_separation (w01 w12 w20 f0 f1 f2 N :\
+    \ Int) :\n    ((w01 + (f1 - f0)) + (w12 + (f2 - f1)) + (w20 + (f0 - f2))) % N =\n      (w01 + w12\
+    \ + w20) % N ∧\n    (∀ x : Fin 2, (x.val + x.val) % 2 = 0) ∧\n    ((1 + 1) % 3 = 2 ∧ (1 + 1) % 4 =\
+    \ 2)"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+source_bindings:
+- original_ref: lean4/quantum_mechanics/H011Circle.lean::sign_fails_connectedness_shadow
+  availability: local
+  symbol: sign_fails_connectedness_shadow
+  path: lean4/H011Circle.lean
+  repository: this_repository
+  sha256: 6934713287756fd23f2f44a6bab2ed6ee50fbb128f99db492f926c839ff86d9b
+  declaration_status: declaration_found_not_proof_checked
+  line: 51
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/H011U1SelectorBoundary.lean::u1_selector_boundary
+  availability: local
+  symbol: u1_selector_boundary
+  path: lean4/H011U1SelectorBoundary.lean
+  repository: this_repository
+  sha256: 214f187afdfc0ee196021aa3ce2ab96875b1c13de9b3a560ef1eaf0359622912
+  declaration_status: declaration_found_not_proof_checked
+  line: 47
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_u1_transport_n_torsion_and_sign_separation
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.fq_u1_transport_n_torsion_and_sign_separation
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 503
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_quantum_physics/src/u1_graph_connection.rs::U1Connection
+  availability: external
+  symbol: U1Connection
+  path: omega_engine/crates_rs/omega_quantum_physics/src/u1_graph_connection.rs
+  repository: the_symbol_game
+  sha256: ce4367d137a7a1766311383cde41b92a75af0943646cb6df66dbb2a299a15285
+  declaration_status: declaration_found_not_executed
+  line: 217
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps.rs::evaluate_qm207_holonomy_bridge
+  availability: external
+  symbol: evaluate_qm207_holonomy_bridge
+  path: omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps.rs
+  repository: the_symbol_game
+  sha256: 452c669e48556690b9b8558cb8c8c600f9f629cd4ae6bbc40d5ff526d8a4d9ce
+  declaration_status: declaration_found_not_executed
+  line: 370
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_quantum_physics/src/holonomy_interference.rs::gauge_equivalence
+  availability: external
+  symbol: gauge_equivalence
+  path: omega_engine/crates_rs/omega_quantum_physics/src/holonomy_interference.rs
+  repository: the_symbol_game
+  sha256: 92bab74604b100267dfec5aec2e6d54456a990454c09e073e22154a4fcc4a23d
+  declaration_status: declaration_found_not_executed
+  line: 191
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche2_row_sparsity_bell_torsion_and_structure_witness
+  availability: external
+  symbol: verify_tranche2_row_sparsity_bell_torsion_and_structure_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 518
+  role: source_lead_only
+presentation:
+  status: scoped_stage_result_reviewed
+  scope: Actual finite graph gauge normal forms, relative path phase and N² orbit-invariant counts are
+    exact; cycle identities over ZMod n and pair-cardinality arithmetic are kernel checked.
+  colours:
+  - id: GaugeRepairedEdgeLabels
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: TreeNormalizedEdgeLabels
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: TwoChordHolonomyLabels
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: ZmodNEdgeLabelsAndVertexRepair
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  generators:
+  - id: vertex_gauge_repair
+    ordered_inputs:
+    - ZmodNEdgeLabelsAndVertexRepair
+    output: GaugeRepairedEdgeLabels
+    arity: 1
+    carrier: Declared ZmodNEdgeLabelsAndVertexRepair
+    coefficient_ring: Exact rational scalars, Gaussian Hermitian coordinates, natural/Boolean fields or
+      the explicitly finite group
+    hypotheses:
+    - Fixed graph/orientation/tree; native N<=5. Root gauge fixed and the same coefficient group carried
+      through composition.
+    semantic_predicate: Add g_target-g_source on each oriented edge.
+    source_pins:
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_fq_u1_transport_n_torsion_proved_lean.yaml
+      sha256: f12cd805376b46451dba0d6948c66e32439d0b3f38c9e79a30da1af87360148b
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/this_repository/dag/operads/fq_u1_transport_n_torsion.yaml
+      sha256: dcc3579d341c61c872a119d43ad6d98bff990566496151551cbb7f1bd33a86f7
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/this_repository/lean4/H011Circle.lean
+      sha256: 6934713287756fd23f2f44a6bab2ed6ee50fbb128f99db492f926c839ff86d9b
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/this_repository/lean4/H011U1SelectorBoundary.lean
+      sha256: 214f187afdfc0ee196021aa3ce2ab96875b1c13de9b3a560ef1eaf0359622912
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/u1_graph_connection.rs
+      sha256: ce4367d137a7a1766311383cde41b92a75af0943646cb6df66dbb2a299a15285
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps.rs
+      sha256: 452c669e48556690b9b8558cb8c8c600f9f629cd4ae6bbc40d5ff526d8a4d9ce
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/holonomy_interference.rs
+      sha256: 92bab74604b100267dfec5aec2e6d54456a990454c09e073e22154a4fcc4a23d
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/tfq_0254_holonomy_structured_coherent_intensity.md
+      sha256: de650e72bb0e5b52cd654778e381b6e0118ba16b275c3464603dc8ec910b00f9
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/code/python/src/qm/boundaries_exact.py
+      sha256: 41f6505663ecf8257b7cce1b36f6e5d9081862754a5514313e8ef6d4a88d4235
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/code/python/tests/test_boundaries_exact.py
+      sha256: 81a98a49cd2ee6190d60a2ca64899301ff01cae5ee5daab81aebdf7761fe6da4
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/code/rust/src/finite_probability/boundaries_exact.rs
+      sha256: 38c3fb9513098a832f3471fd6833968310294ddffe136e630bccd89c60f46050
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/boundaries_exact_replay.rs
+      sha256: 1c212fce1ed975acc90fdbb7a22b1cc3a65d4588c193e276a7a329b440719395
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/boundaries_checker.py
+      sha256: 71ec9241b94d311710a25f669912ca163006b6b3f56e0a18739c6dd4e9e8b8dd
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/dag/results/batches/20261019T201403Z_prompts_72_91/tools/prepare.py
+      sha256: 63d4e890ceae99ea497d49db98875c71ccc17f1d41e2a5df749d03f1692f4ffb
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/dag/results/batches/20261019T201403Z_prompts_72_91/tools/specs.py
+      sha256: 04ae08a56fac87673251fbf423b4611481366be5c9ac78e09e9b4d6713861e2a
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/check_candidate.py
+      sha256: d0096e994270cea8d1b88d06d47190a6f34f275883e2c0f8c39d6223aa845df5
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/format_certificate.py
+      sha256: 92dcf4eba71bf97e0a4911f41bcdceac442303fe5db2ef4e113d0f0822b5a30f
+    evidence_status: Reviewed exact finite native controls. Kernel signatures are separately scoped. Full
+      refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p2/host_check.json
+  - id: spanning_tree_normalize
+    ordered_inputs:
+    - GaugeRepairedEdgeLabels
+    output: TreeNormalizedEdgeLabels
+    arity: 1
+    carrier: Declared GaugeRepairedEdgeLabels
+    coefficient_ring: Exact rational scalars, Gaussian Hermitian coordinates, natural/Boolean fields or
+      the explicitly finite group
+    hypotheses:
+    - Fixed graph/orientation/tree; native N<=5. Root gauge fixed and the same coefficient group carried
+      through composition.
+    semantic_predicate: Use the declared rooted spanning tree to zero its three edges.
+    source_pins:
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_fq_u1_transport_n_torsion_proved_lean.yaml
+      sha256: f12cd805376b46451dba0d6948c66e32439d0b3f38c9e79a30da1af87360148b
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/this_repository/dag/operads/fq_u1_transport_n_torsion.yaml
+      sha256: dcc3579d341c61c872a119d43ad6d98bff990566496151551cbb7f1bd33a86f7
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/this_repository/lean4/H011Circle.lean
+      sha256: 6934713287756fd23f2f44a6bab2ed6ee50fbb128f99db492f926c839ff86d9b
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/this_repository/lean4/H011U1SelectorBoundary.lean
+      sha256: 214f187afdfc0ee196021aa3ce2ab96875b1c13de9b3a560ef1eaf0359622912
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/u1_graph_connection.rs
+      sha256: ce4367d137a7a1766311383cde41b92a75af0943646cb6df66dbb2a299a15285
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps.rs
+      sha256: 452c669e48556690b9b8558cb8c8c600f9f629cd4ae6bbc40d5ff526d8a4d9ce
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/holonomy_interference.rs
+      sha256: 92bab74604b100267dfec5aec2e6d54456a990454c09e073e22154a4fcc4a23d
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/tfq_0254_holonomy_structured_coherent_intensity.md
+      sha256: de650e72bb0e5b52cd654778e381b6e0118ba16b275c3464603dc8ec910b00f9
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/code/python/src/qm/boundaries_exact.py
+      sha256: 41f6505663ecf8257b7cce1b36f6e5d9081862754a5514313e8ef6d4a88d4235
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/code/python/tests/test_boundaries_exact.py
+      sha256: 81a98a49cd2ee6190d60a2ca64899301ff01cae5ee5daab81aebdf7761fe6da4
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/code/rust/src/finite_probability/boundaries_exact.rs
+      sha256: 38c3fb9513098a832f3471fd6833968310294ddffe136e630bccd89c60f46050
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/boundaries_exact_replay.rs
+      sha256: 1c212fce1ed975acc90fdbb7a22b1cc3a65d4588c193e276a7a329b440719395
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/boundaries_checker.py
+      sha256: 71ec9241b94d311710a25f669912ca163006b6b3f56e0a18739c6dd4e9e8b8dd
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/dag/results/batches/20261019T201403Z_prompts_72_91/tools/prepare.py
+      sha256: 63d4e890ceae99ea497d49db98875c71ccc17f1d41e2a5df749d03f1692f4ffb
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/dag/results/batches/20261019T201403Z_prompts_72_91/tools/specs.py
+      sha256: 04ae08a56fac87673251fbf423b4611481366be5c9ac78e09e9b4d6713861e2a
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/check_candidate.py
+      sha256: d0096e994270cea8d1b88d06d47190a6f34f275883e2c0f8c39d6223aa845df5
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/format_certificate.py
+      sha256: 92dcf4eba71bf97e0a4911f41bcdceac442303fe5db2ef4e113d0f0822b5a30f
+    evidence_status: Reviewed exact finite native controls. Kernel signatures are separately scoped. Full
+      refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p2/host_check.json
+  - id: chord_holonomy_read
+    ordered_inputs:
+    - TreeNormalizedEdgeLabels
+    output: TwoChordHolonomyLabels
+    arity: 1
+    carrier: Declared TreeNormalizedEdgeLabels
+    coefficient_ring: Exact rational scalars, Gaussian Hermitian coordinates, natural/Boolean fields or
+      the explicitly finite group
+    hypotheses:
+    - Fixed graph/orientation/tree; native N<=5. Root gauge fixed and the same coefficient group carried
+      through composition.
+    semantic_predicate: Read the two remaining chord phases.
+    source_pins:
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_fq_u1_transport_n_torsion_proved_lean.yaml
+      sha256: f12cd805376b46451dba0d6948c66e32439d0b3f38c9e79a30da1af87360148b
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/this_repository/dag/operads/fq_u1_transport_n_torsion.yaml
+      sha256: dcc3579d341c61c872a119d43ad6d98bff990566496151551cbb7f1bd33a86f7
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/this_repository/lean4/H011Circle.lean
+      sha256: 6934713287756fd23f2f44a6bab2ed6ee50fbb128f99db492f926c839ff86d9b
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/this_repository/lean4/H011U1SelectorBoundary.lean
+      sha256: 214f187afdfc0ee196021aa3ce2ab96875b1c13de9b3a560ef1eaf0359622912
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/u1_graph_connection.rs
+      sha256: ce4367d137a7a1766311383cde41b92a75af0943646cb6df66dbb2a299a15285
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps.rs
+      sha256: 452c669e48556690b9b8558cb8c8c600f9f629cd4ae6bbc40d5ff526d8a4d9ce
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/holonomy_interference.rs
+      sha256: 92bab74604b100267dfec5aec2e6d54456a990454c09e073e22154a4fcc4a23d
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/tfq_0254_holonomy_structured_coherent_intensity.md
+      sha256: de650e72bb0e5b52cd654778e381b6e0118ba16b275c3464603dc8ec910b00f9
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/code/python/src/qm/boundaries_exact.py
+      sha256: 41f6505663ecf8257b7cce1b36f6e5d9081862754a5514313e8ef6d4a88d4235
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/code/python/tests/test_boundaries_exact.py
+      sha256: 81a98a49cd2ee6190d60a2ca64899301ff01cae5ee5daab81aebdf7761fe6da4
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/code/rust/src/finite_probability/boundaries_exact.rs
+      sha256: 38c3fb9513098a832f3471fd6833968310294ddffe136e630bccd89c60f46050
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/boundaries_exact_replay.rs
+      sha256: 1c212fce1ed975acc90fdbb7a22b1cc3a65d4588c193e276a7a329b440719395
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/boundaries_checker.py
+      sha256: 71ec9241b94d311710a25f669912ca163006b6b3f56e0a18739c6dd4e9e8b8dd
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/dag/results/batches/20261019T201403Z_prompts_72_91/tools/prepare.py
+      sha256: 63d4e890ceae99ea497d49db98875c71ccc17f1d41e2a5df749d03f1692f4ffb
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/dag/results/batches/20261019T201403Z_prompts_72_91/tools/specs.py
+      sha256: 04ae08a56fac87673251fbf423b4611481366be5c9ac78e09e9b4d6713861e2a
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/check_candidate.py
+      sha256: d0096e994270cea8d1b88d06d47190a6f34f275883e2c0f8c39d6223aa845df5
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/format_certificate.py
+      sha256: 92dcf4eba71bf97e0a4911f41bcdceac442303fe5db2ef4e113d0f0822b5a30f
+    evidence_status: Reviewed exact finite native controls. Kernel signatures are separately scoped. Full
+      refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p2/host_check.json
+  relations:
+  - id: torsion_relation_0
+    equation_or_predicate: Two loop invariants survive gauge repair; the representative pair space has
+      cardinality N².
+    typing_conditions: Literal declared operation domains; Prove full graph gauge-orbit classification
+      and the cyclotomic mu_N embedding/order hypotheses for arbitrary graphs/N; no continuous circle
+      or topological connectedness is derived.
+    evidence_status: Accepted actual P2 and P4 controls; only the literal named Lean signatures are kernel
+      theorems. Native array-to-signature and physical transports remain as stated.
+    scope: Actual finite graph gauge normal forms, relative path phase and N² orbit-invariant counts are
+      exact; cycle identities over ZMod n and pair-cardinality arithmetic are kernel checked.
+    source_pins:
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_fq_u1_transport_n_torsion_proved_lean.yaml
+      sha256: f12cd805376b46451dba0d6948c66e32439d0b3f38c9e79a30da1af87360148b
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/this_repository/dag/operads/fq_u1_transport_n_torsion.yaml
+      sha256: dcc3579d341c61c872a119d43ad6d98bff990566496151551cbb7f1bd33a86f7
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/this_repository/lean4/H011Circle.lean
+      sha256: 6934713287756fd23f2f44a6bab2ed6ee50fbb128f99db492f926c839ff86d9b
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/this_repository/lean4/H011U1SelectorBoundary.lean
+      sha256: 214f187afdfc0ee196021aa3ce2ab96875b1c13de9b3a560ef1eaf0359622912
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/u1_graph_connection.rs
+      sha256: ce4367d137a7a1766311383cde41b92a75af0943646cb6df66dbb2a299a15285
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps.rs
+      sha256: 452c669e48556690b9b8558cb8c8c600f9f629cd4ae6bbc40d5ff526d8a4d9ce
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/holonomy_interference.rs
+      sha256: 92bab74604b100267dfec5aec2e6d54456a990454c09e073e22154a4fcc4a23d
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/tfq_0254_holonomy_structured_coherent_intensity.md
+      sha256: de650e72bb0e5b52cd654778e381b6e0118ba16b275c3464603dc8ec910b00f9
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/code/python/src/qm/boundaries_exact.py
+      sha256: 41f6505663ecf8257b7cce1b36f6e5d9081862754a5514313e8ef6d4a88d4235
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/code/python/tests/test_boundaries_exact.py
+      sha256: 81a98a49cd2ee6190d60a2ca64899301ff01cae5ee5daab81aebdf7761fe6da4
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/code/rust/src/finite_probability/boundaries_exact.rs
+      sha256: 38c3fb9513098a832f3471fd6833968310294ddffe136e630bccd89c60f46050
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/boundaries_exact_replay.rs
+      sha256: 1c212fce1ed975acc90fdbb7a22b1cc3a65d4588c193e276a7a329b440719395
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/boundaries_checker.py
+      sha256: 71ec9241b94d311710a25f669912ca163006b6b3f56e0a18739c6dd4e9e8b8dd
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/dag/results/batches/20261019T201403Z_prompts_72_91/tools/prepare.py
+      sha256: 63d4e890ceae99ea497d49db98875c71ccc17f1d41e2a5df749d03f1692f4ffb
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/dag/results/batches/20261019T201403Z_prompts_72_91/tools/specs.py
+      sha256: 04ae08a56fac87673251fbf423b4611481366be5c9ac78e09e9b4d6713861e2a
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/check_candidate.py
+      sha256: d0096e994270cea8d1b88d06d47190a6f34f275883e2c0f8c39d6223aa845df5
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/format_certificate.py
+      sha256: 92dcf4eba71bf97e0a4911f41bcdceac442303fe5db2ef4e113d0f0822b5a30f
+    latest_host_check: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p2/host_check.json
+    historical_evidence_annotation: P1 candidate; independent native and named kernel gates remain required.
+    named_Lean_scope: &id001
+    - QuantumMechanics.PromptBoundaries.torsion_gauge_cycles
+    - QuantumMechanics.PromptBoundaries.torsion_pair_card
+    - QuantumMechanics.PromptBoundaries.torsion_shadow_is_finite_algebra
+  - id: torsion_relation_1
+    equation_or_predicate: Not-exponent-two is a finite algebraic test, not topological connectedness.
+    typing_conditions: Literal declared operation domains; Prove full graph gauge-orbit classification
+      and the cyclotomic mu_N embedding/order hypotheses for arbitrary graphs/N; no continuous circle
+      or topological connectedness is derived.
+    evidence_status: Accepted actual P2 and P4 controls; only the literal named Lean signatures are kernel
+      theorems. Native array-to-signature and physical transports remain as stated.
+    scope: Actual finite graph gauge normal forms, relative path phase and N² orbit-invariant counts are
+      exact; cycle identities over ZMod n and pair-cardinality arithmetic are kernel checked.
+    source_pins:
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_fq_u1_transport_n_torsion_proved_lean.yaml
+      sha256: f12cd805376b46451dba0d6948c66e32439d0b3f38c9e79a30da1af87360148b
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/this_repository/dag/operads/fq_u1_transport_n_torsion.yaml
+      sha256: dcc3579d341c61c872a119d43ad6d98bff990566496151551cbb7f1bd33a86f7
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/this_repository/lean4/H011Circle.lean
+      sha256: 6934713287756fd23f2f44a6bab2ed6ee50fbb128f99db492f926c839ff86d9b
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/this_repository/lean4/H011U1SelectorBoundary.lean
+      sha256: 214f187afdfc0ee196021aa3ce2ab96875b1c13de9b3a560ef1eaf0359622912
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/u1_graph_connection.rs
+      sha256: ce4367d137a7a1766311383cde41b92a75af0943646cb6df66dbb2a299a15285
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps.rs
+      sha256: 452c669e48556690b9b8558cb8c8c600f9f629cd4ae6bbc40d5ff526d8a4d9ce
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/holonomy_interference.rs
+      sha256: 92bab74604b100267dfec5aec2e6d54456a990454c09e073e22154a4fcc4a23d
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/tfq_0254_holonomy_structured_coherent_intensity.md
+      sha256: de650e72bb0e5b52cd654778e381b6e0118ba16b275c3464603dc8ec910b00f9
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/code/python/src/qm/boundaries_exact.py
+      sha256: 41f6505663ecf8257b7cce1b36f6e5d9081862754a5514313e8ef6d4a88d4235
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/code/python/tests/test_boundaries_exact.py
+      sha256: 81a98a49cd2ee6190d60a2ca64899301ff01cae5ee5daab81aebdf7761fe6da4
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/code/rust/src/finite_probability/boundaries_exact.rs
+      sha256: 38c3fb9513098a832f3471fd6833968310294ddffe136e630bccd89c60f46050
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/boundaries_exact_replay.rs
+      sha256: 1c212fce1ed975acc90fdbb7a22b1cc3a65d4588c193e276a7a329b440719395
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/boundaries_checker.py
+      sha256: 71ec9241b94d311710a25f669912ca163006b6b3f56e0a18739c6dd4e9e8b8dd
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/dag/results/batches/20261019T201403Z_prompts_72_91/tools/prepare.py
+      sha256: 63d4e890ceae99ea497d49db98875c71ccc17f1d41e2a5df749d03f1692f4ffb
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/dag/results/batches/20261019T201403Z_prompts_72_91/tools/specs.py
+      sha256: 04ae08a56fac87673251fbf423b4611481366be5c9ac78e09e9b4d6713861e2a
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/check_candidate.py
+      sha256: d0096e994270cea8d1b88d06d47190a6f34f275883e2c0f8c39d6223aa845df5
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/format_certificate.py
+      sha256: 92dcf4eba71bf97e0a4911f41bcdceac442303fe5db2ef4e113d0f0822b5a30f
+    latest_host_check: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p2/host_check.json
+    historical_evidence_annotation: P1 candidate; independent native and named kernel gates remain required.
+    named_Lean_scope: *id001
+  compositions: &id002
+  - outer_operation: spanning_tree_normalize
+    input_slot: 0
+    inner_operation: vertex_gauge_repair
+    colour_match: GaugeRepairedEdgeLabels -> GaugeRepairedEdgeLabels
+    hypothesis_match: Same declared coordinates, coefficients and context; all operation hypotheses must
+      be carried into the graft. Fixed matrices, signs, gauge unit, original comparison table, row order,
+      sector and pairing (where relevant) must agree across both operations. Formal universal refined-carrier
+      closure is unpaid.
+    licensing_relations:
+    - torsion_relation_0
+    - torsion_relation_1
+    evidence_status: Semantic substitution supported by the retained finite operation traces and separately
+      scoped named kernel statements. A complete refined-carrier operad is not asserted.
+  - outer_operation: chord_holonomy_read
+    input_slot: 0
+    inner_operation: spanning_tree_normalize
+    colour_match: TreeNormalizedEdgeLabels -> TreeNormalizedEdgeLabels
+    hypothesis_match: Same declared coordinates, coefficients and context; all operation hypotheses must
+      be carried into the graft. Fixed matrices, signs, gauge unit, original comparison table, row order,
+      sector and pairing (where relevant) must agree across both operations. Formal universal refined-carrier
+      closure is unpaid.
+    licensing_relations:
+    - torsion_relation_0
+    - torsion_relation_1
+    evidence_status: Semantic substitution supported by the retained finite operation traces and separately
+      scoped named kernel statements. A complete refined-carrier operad is not asserted.
+  identities:
+  - colour: GaugeRepairedEdgeLabels
+    proposed_operation: id_GaugeRepairedEdgeLabels
+    signature: GaugeRepairedEdgeLabels -> GaugeRepairedEdgeLabels
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: TreeNormalizedEdgeLabels
+    proposed_operation: id_TreeNormalizedEdgeLabels
+    signature: TreeNormalizedEdgeLabels -> TreeNormalizedEdgeLabels
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: TwoChordHolonomyLabels
+    proposed_operation: id_TwoChordHolonomyLabels
+    signature: TwoChordHolonomyLabels -> TwoChordHolonomyLabels
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: ZmodNEdgeLabelsAndVertexRepair
+    proposed_operation: id_ZmodNEdgeLabelsAndVertexRepair
+    signature: ZmodNEdgeLabelsAndVertexRepair -> ZmodNEdgeLabelsAndVertexRepair
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  symmetric_actions: []
+  coherence_obligations: &id003
+  - Prove full graph gauge-orbit classification and the cyclotomic mu_N embedding/order hypotheses for
+    arbitrary graphs/N; no continuous circle or topological connectedness is derived.
+  - Prove the full refined-carrier operad identity, substitution, symmetry and coherence laws; mere colour
+    matches do not instantiate that formal structure.
+  - A source provider PASS/hash, route index, census label or Boolean flag is not mathematical evidence
+    for the original target. No historical provider receipt is newly authenticated.
+  failed_compositions:
+  - proposal: Promote the selected step to the unrestricted original target
+    reason: Prove full graph gauge-orbit classification and the cyclotomic mu_N embedding/order hypotheses
+      for arbitrary graphs/N; no continuous circle or topological connectedness is derived.
+  counterexamples:
+  - id: retained_actual_domain_controls
+    records:
+    - input:
+      - '1'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      output:
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '1'
+      - '1'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+    - input:
+      - '2'
+      - '1'
+      - '0'
+      - '1'
+      - '0'
+      - '1'
+      - '0'
+      - '1'
+      - '0'
+      - '1'
+      output:
+      - '0'
+      - '1'
+      - '0'
+      - '1'
+      - '1'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '4'
+      - '4'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '1'
+      - '1'
+      - '0'
+      - '1'
+      - '1'
+    - input:
+      - '3'
+      - '1'
+      - '2'
+      - '0'
+      - '1'
+      - '2'
+      - '0'
+      - '1'
+      - '2'
+      - '0'
+      output:
+      - '2'
+      - '0'
+      - '1'
+      - '1'
+      - '1'
+      - '1'
+      - '2'
+      - '1'
+      - '2'
+      - '9'
+      - '9'
+      - '1'
+      - '1'
+      - '1'
+      - '0'
+      - '0'
+      - '0'
+      - '1'
+      - '0'
+      - '2'
+      - '1'
+      - '0'
+      - '1'
+      - '1'
+      - '1'
+      - '2'
+      - '2'
+      - '0'
+      - '2'
+      - '1'
+      - '2'
+      - '2'
+    - input:
+      - '4'
+      - '1'
+      - '2'
+      - '3'
+      - '0'
+      - '1'
+      - '3'
+      - '2'
+      - '1'
+      - '0'
+      output:
+      - '0'
+      - '1'
+      - '2'
+      - '3'
+      - '3'
+      - '2'
+      - '2'
+      - '2'
+      - '2'
+      - '16'
+      - '16'
+      - '2'
+      - '2'
+      - '1'
+      - '0'
+      - '0'
+      - '0'
+      - '1'
+      - '0'
+      - '2'
+      - '0'
+      - '3'
+      - '1'
+      - '0'
+      - '1'
+      - '1'
+      - '1'
+      - '2'
+      - '1'
+      - '3'
+      - '2'
+      - '0'
+      - '2'
+      - '1'
+      - '2'
+      - '2'
+      - '2'
+      - '3'
+      - '3'
+      - '0'
+      - '3'
+      - '1'
+      - '3'
+      - '2'
+      - '3'
+      - '3'
+    scope: Computed values, with the source/kernel/native distinctions retained in claim_boundary.
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: FILLED
+    carrier: Literal per-operation finite or admitted scalar carriers
+    coefficient_ring: Exact Z, Q, Gaussian rational pairs and supplied Boolean fields
+    source_pins:
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_fq_u1_transport_n_torsion_proved_lean.yaml
+      sha256: f12cd805376b46451dba0d6948c66e32439d0b3f38c9e79a30da1af87360148b
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/this_repository/dag/operads/fq_u1_transport_n_torsion.yaml
+      sha256: dcc3579d341c61c872a119d43ad6d98bff990566496151551cbb7f1bd33a86f7
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/this_repository/lean4/H011Circle.lean
+      sha256: 6934713287756fd23f2f44a6bab2ed6ee50fbb128f99db492f926c839ff86d9b
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/this_repository/lean4/H011U1SelectorBoundary.lean
+      sha256: 214f187afdfc0ee196021aa3ce2ab96875b1c13de9b3a560ef1eaf0359622912
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/u1_graph_connection.rs
+      sha256: ce4367d137a7a1766311383cde41b92a75af0943646cb6df66dbb2a299a15285
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps.rs
+      sha256: 452c669e48556690b9b8558cb8c8c600f9f629cd4ae6bbc40d5ff526d8a4d9ce
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/holonomy_interference.rs
+      sha256: 92bab74604b100267dfec5aec2e6d54456a990454c09e073e22154a4fcc4a23d
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/tfq_0254_holonomy_structured_coherent_intensity.md
+      sha256: de650e72bb0e5b52cd654778e381b6e0118ba16b275c3464603dc8ec910b00f9
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/code/python/src/qm/boundaries_exact.py
+      sha256: 41f6505663ecf8257b7cce1b36f6e5d9081862754a5514313e8ef6d4a88d4235
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/code/python/tests/test_boundaries_exact.py
+      sha256: 81a98a49cd2ee6190d60a2ca64899301ff01cae5ee5daab81aebdf7761fe6da4
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/code/rust/src/finite_probability/boundaries_exact.rs
+      sha256: 38c3fb9513098a832f3471fd6833968310294ddffe136e630bccd89c60f46050
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/boundaries_exact_replay.rs
+      sha256: 1c212fce1ed975acc90fdbb7a22b1cc3a65d4588c193e276a7a329b440719395
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/boundaries_checker.py
+      sha256: 71ec9241b94d311710a25f669912ca163006b6b3f56e0a18739c6dd4e9e8b8dd
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/dag/results/batches/20261019T201403Z_prompts_72_91/tools/prepare.py
+      sha256: 63d4e890ceae99ea497d49db98875c71ccc17f1d41e2a5df749d03f1692f4ffb
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/dag/results/batches/20261019T201403Z_prompts_72_91/tools/specs.py
+      sha256: 04ae08a56fac87673251fbf423b4611481366be5c9ac78e09e9b4d6713861e2a
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/check_candidate.py
+      sha256: d0096e994270cea8d1b88d06d47190a6f34f275883e2c0f8c39d6223aa845df5
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/format_certificate.py
+      sha256: 92dcf4eba71bf97e0a4911f41bcdceac442303fe5db2ef4e113d0f0822b5a30f
+    public_input:
+      kind: torsion
+      cases:
+      - - '1'
+        - '0'
+        - '0'
+        - '0'
+        - '0'
+        - '0'
+        - '0'
+        - '0'
+        - '0'
+        - '0'
+      - - '2'
+        - '1'
+        - '0'
+        - '1'
+        - '0'
+        - '1'
+        - '0'
+        - '1'
+        - '0'
+        - '1'
+      - - '3'
+        - '1'
+        - '2'
+        - '0'
+        - '1'
+        - '2'
+        - '0'
+        - '1'
+        - '2'
+        - '0'
+      - - '4'
+        - '1'
+        - '2'
+        - '3'
+        - '0'
+        - '1'
+        - '3'
+        - '2'
+        - '1'
+        - '0'
+      scope: Actual finite graph gauge normal forms, relative path phase and N² orbit-invariant counts
+        are exact; cycle identities over ZMod n and pair-cardinality arithmetic are kernel checked.
+      unpaid_target: Prove full graph gauge-orbit classification and the cyclotomic mu_N embedding/order
+        hypotheses for arbitrary graphs/N; no continuous circle or topological connectedness is derived.
+    original_target: 'N-torsion edge 1-cochain tau with values in mu_N in Q(zeta_N)^x: gauge classes Hom(H_1(G,Z),
+      mu_N) have size N^{beta_1(G)}; relative report phase equals path holonomy tau(p1)tau(p2)^-1. Sign
+      group {+1,-1} fails connectedness under "not exponent two"; Gaussian units and three-cycle meet
+      it.'
+    source_scope_review: 'On one fixed graph with four vertices and five oriented edges (cycle rank2),
+      enumerate all Z/N edge labels, remove the declared spanning-tree gauge and retain both chord invariants.
+      Arbitrary vertex repairs preserve them; all N² invariant pairs occur for retained N<=4. The source
+      ConnectednessShadow only means not exponent two: finite C3/C4 pass it. It is not topological connectedness
+      or selection of U(1).'
+    admitted_assumptions:
+    - non-triviality and order N of the edge phase cochain (assumption)
+    - finite oriented graph (assumption)
+    - Fixed graph/orientation/tree; native N<=5. Root gauge fixed and the same coefficient group carried
+      through composition.
+    historical_source_assumptions:
+    - non-triviality and order N of the edge phase cochain (assumption)
+    - finite oriented graph (assumption)
+    work_unit_admitted_hypotheses:
+    - Fixed graph/orientation/tree; native N<=5. Root gauge fixed and the same coefficient group carried
+      through composition.
+  slot_m2_layer1_forward_morphisms:
+    mining_status: FILLED
+    operations:
+    - catalog_id: vertex_gauge_repair
+      inputs:
+      - ZmodNEdgeLabelsAndVertexRepair
+      output: GaugeRepairedEdgeLabels
+      semantic_predicate: Add g_target-g_source on each oriented edge.
+    - catalog_id: spanning_tree_normalize
+      inputs:
+      - GaugeRepairedEdgeLabels
+      output: TreeNormalizedEdgeLabels
+      semantic_predicate: Use the declared rooted spanning tree to zero its three edges.
+    - catalog_id: chord_holonomy_read
+      inputs:
+      - TreeNormalizedEdgeLabels
+      output: TwoChordHolonomyLabels
+      semantic_predicate: Read the two remaining chord phases.
+    composition_plan: *id002
+    tree:
+    - Two loop invariants survive gauge repair; the representative pair space has cardinality N².
+    - Not-exponent-two is a finite algebraic test, not topological connectedness.
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: FILLED
+    algebraic_relations:
+    - id: torsion_relation_0
+      equation_or_predicate: Two loop invariants survive gauge repair; the representative pair space has
+        cardinality N².
+      typing_conditions: Literal declared operation domains; Prove full graph gauge-orbit classification
+        and the cyclotomic mu_N embedding/order hypotheses for arbitrary graphs/N; no continuous circle
+        or topological connectedness is derived.
+      evidence_status: P1 candidate; independent native and named kernel gates remain required.
+      scope: Actual finite graph gauge normal forms, relative path phase and N² orbit-invariant counts
+        are exact; cycle identities over ZMod n and pair-cardinality arithmetic are kernel checked.
+      source_pins:
+      - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_fq_u1_transport_n_torsion_proved_lean.yaml
+        sha256: f12cd805376b46451dba0d6948c66e32439d0b3f38c9e79a30da1af87360148b
+      - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/this_repository/dag/operads/fq_u1_transport_n_torsion.yaml
+        sha256: dcc3579d341c61c872a119d43ad6d98bff990566496151551cbb7f1bd33a86f7
+      - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/this_repository/lean4/H011Circle.lean
+        sha256: 6934713287756fd23f2f44a6bab2ed6ee50fbb128f99db492f926c839ff86d9b
+      - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/this_repository/lean4/H011U1SelectorBoundary.lean
+        sha256: 214f187afdfc0ee196021aa3ce2ab96875b1c13de9b3a560ef1eaf0359622912
+      - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+        sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+      - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/u1_graph_connection.rs
+        sha256: ce4367d137a7a1766311383cde41b92a75af0943646cb6df66dbb2a299a15285
+      - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps.rs
+        sha256: 452c669e48556690b9b8558cb8c8c600f9f629cd4ae6bbc40d5ff526d8a4d9ce
+      - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/holonomy_interference.rs
+        sha256: 92bab74604b100267dfec5aec2e6d54456a990454c09e073e22154a4fcc4a23d
+      - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/tfq_0254_holonomy_structured_coherent_intensity.md
+        sha256: de650e72bb0e5b52cd654778e381b6e0118ba16b275c3464603dc8ec910b00f9
+      - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/code/python/src/qm/boundaries_exact.py
+        sha256: 41f6505663ecf8257b7cce1b36f6e5d9081862754a5514313e8ef6d4a88d4235
+      - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/code/python/tests/test_boundaries_exact.py
+        sha256: 81a98a49cd2ee6190d60a2ca64899301ff01cae5ee5daab81aebdf7761fe6da4
+      - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/code/rust/src/finite_probability/boundaries_exact.rs
+        sha256: 38c3fb9513098a832f3471fd6833968310294ddffe136e630bccd89c60f46050
+      - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/boundaries_exact_replay.rs
+        sha256: 1c212fce1ed975acc90fdbb7a22b1cc3a65d4588c193e276a7a329b440719395
+      - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/boundaries_checker.py
+        sha256: 71ec9241b94d311710a25f669912ca163006b6b3f56e0a18739c6dd4e9e8b8dd
+      - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+        sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+      - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/dag/results/batches/20261019T201403Z_prompts_72_91/tools/prepare.py
+        sha256: 63d4e890ceae99ea497d49db98875c71ccc17f1d41e2a5df749d03f1692f4ffb
+      - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/dag/results/batches/20261019T201403Z_prompts_72_91/tools/specs.py
+        sha256: 04ae08a56fac87673251fbf423b4611481366be5c9ac78e09e9b4d6713861e2a
+      - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/custody.py
+        sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+      - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+        sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+      - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/check_candidate.py
+        sha256: d0096e994270cea8d1b88d06d47190a6f34f275883e2c0f8c39d6223aa845df5
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/format_certificate.py
+        sha256: 92dcf4eba71bf97e0a4911f41bcdceac442303fe5db2ef4e113d0f0822b5a30f
+    - id: torsion_relation_1
+      equation_or_predicate: Not-exponent-two is a finite algebraic test, not topological connectedness.
+      typing_conditions: Literal declared operation domains; Prove full graph gauge-orbit classification
+        and the cyclotomic mu_N embedding/order hypotheses for arbitrary graphs/N; no continuous circle
+        or topological connectedness is derived.
+      evidence_status: P1 candidate; independent native and named kernel gates remain required.
+      scope: Actual finite graph gauge normal forms, relative path phase and N² orbit-invariant counts
+        are exact; cycle identities over ZMod n and pair-cardinality arithmetic are kernel checked.
+      source_pins:
+      - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_fq_u1_transport_n_torsion_proved_lean.yaml
+        sha256: f12cd805376b46451dba0d6948c66e32439d0b3f38c9e79a30da1af87360148b
+      - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/this_repository/dag/operads/fq_u1_transport_n_torsion.yaml
+        sha256: dcc3579d341c61c872a119d43ad6d98bff990566496151551cbb7f1bd33a86f7
+      - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/this_repository/lean4/H011Circle.lean
+        sha256: 6934713287756fd23f2f44a6bab2ed6ee50fbb128f99db492f926c839ff86d9b
+      - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/this_repository/lean4/H011U1SelectorBoundary.lean
+        sha256: 214f187afdfc0ee196021aa3ce2ab96875b1c13de9b3a560ef1eaf0359622912
+      - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+        sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+      - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/u1_graph_connection.rs
+        sha256: ce4367d137a7a1766311383cde41b92a75af0943646cb6df66dbb2a299a15285
+      - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps.rs
+        sha256: 452c669e48556690b9b8558cb8c8c600f9f629cd4ae6bbc40d5ff526d8a4d9ce
+      - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/holonomy_interference.rs
+        sha256: 92bab74604b100267dfec5aec2e6d54456a990454c09e073e22154a4fcc4a23d
+      - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/tfq_0254_holonomy_structured_coherent_intensity.md
+        sha256: de650e72bb0e5b52cd654778e381b6e0118ba16b275c3464603dc8ec910b00f9
+      - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/code/python/src/qm/boundaries_exact.py
+        sha256: 41f6505663ecf8257b7cce1b36f6e5d9081862754a5514313e8ef6d4a88d4235
+      - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/code/python/tests/test_boundaries_exact.py
+        sha256: 81a98a49cd2ee6190d60a2ca64899301ff01cae5ee5daab81aebdf7761fe6da4
+      - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/code/rust/src/finite_probability/boundaries_exact.rs
+        sha256: 38c3fb9513098a832f3471fd6833968310294ddffe136e630bccd89c60f46050
+      - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/boundaries_exact_replay.rs
+        sha256: 1c212fce1ed975acc90fdbb7a22b1cc3a65d4588c193e276a7a329b440719395
+      - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/boundaries_checker.py
+        sha256: 71ec9241b94d311710a25f669912ca163006b6b3f56e0a18739c6dd4e9e8b8dd
+      - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+        sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+      - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/dag/results/batches/20261019T201403Z_prompts_72_91/tools/prepare.py
+        sha256: 63d4e890ceae99ea497d49db98875c71ccc17f1d41e2a5df749d03f1692f4ffb
+      - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/dag/results/batches/20261019T201403Z_prompts_72_91/tools/specs.py
+        sha256: 04ae08a56fac87673251fbf423b4611481366be5c9ac78e09e9b4d6713861e2a
+      - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/custody.py
+        sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+      - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+        sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+      - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/check_candidate.py
+        sha256: d0096e994270cea8d1b88d06d47190a6f34f275883e2c0f8c39d6223aa845df5
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/format_certificate.py
+        sha256: 92dcf4eba71bf97e0a4911f41bcdceac442303fe5db2ef4e113d0f0822b5a30f
+    rejection_predicates:
+    - Independent domain equations and actual matrix/graph/quotient arrays recompute every output.
+    - Exact public input, canonical rational primitive types, complete source pins and exact sealed request
+      bytes.
+    - Full native cross-language output equality and actual named Lean axiom reports; no label-based target
+      promotion.
+    negative_control_plan: Alter every output coordinate, input identity, primitive types, source set
+      and sealed request.
+  slot_m4_tri_language_witness_anchors:
+    mining_status: FILLED
+    certificate_predicates:
+    - Independent domain equations and actual matrix/graph/quotient arrays recompute every output.
+    - Exact public input, canonical rational primitive types, complete source pins and exact sealed request
+      bytes.
+    - Full native cross-language output equality and actual named Lean axiom reports; no label-based target
+      promotion.
+    anchors:
+    - code/python/src/qm/boundaries_exact.py
+    - code/python/tests/test_boundaries_exact.py
+    - code/rust/src/finite_probability/boundaries_exact.rs
+    - code/rust/src/finite_probability/examples/boundaries_exact_replay.rs
+    - dag/pfp/boundaries_checker.py
+    - dag/pfp/exact_json.py
+    - dag/pfp/review_exact_json.py
+    - lean4/PromptBoundaries.lean
+    - dag/results/batches/20261019T201403Z_prompts_72_91/tools/prepare.py
+    - dag/results/batches/20261019T201403Z_prompts_72_91/tools/specs.py
+    - dag/pfp/custody.py
+    - dag/pfp/filename_custody.json
+    - QuantumMechanics.PromptBoundaries.torsion_gauge_cycles
+    - QuantumMechanics.PromptBoundaries.torsion_pair_card
+    - QuantumMechanics.PromptBoundaries.torsion_shadow_is_finite_algebra
+    unpaid_imports:
+    - Prove full graph gauge-orbit classification and the cyclotomic mu_N embedding/order hypotheses for
+      arbitrary graphs/N; no continuous circle or topological connectedness is derived.
+    - Prove the full refined-carrier operad identity, substitution, symmetry and coherence laws; mere
+      colour matches do not instantiate that formal structure.
+    anchor_status: New Lean anchors are candidate declarations until the retained P2 compiler runs; compiled
+      source leads retain their literal scope.
+stage_history:
+- stage: P0_MINE_OPERAD
+  attempt: p0
+  run: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged
+  operad_delta: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/operad_delta.yaml
+  host_check: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/host_check.json
+- stage: P1_DERIVE
+  attempt: p1
+  run: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged
+  operad_delta: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p1/operad_delta.yaml
+  host_check: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p1/host_check.json
+- stage: P2_VERIFY
+  attempt: p2
+  run: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged
+  operad_delta: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p2/operad_delta.yaml
+  host_check: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p2/host_check.json
+- stage: P4_CHALLENGE
+  attempt: p4
+  run: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged
+  operad_delta: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p4/operad_delta.yaml
+  host_check: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p4/host_check.json
+- stage: P5_RECORD
+  attempt: p5
+  run: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged
+  operad_delta: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p5/operad_delta.yaml
+  host_check: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p5/host_check.json
+open_obligations: *id003
+excluded_relation_leads: []
+operad_slots_scope:
+  work_unit: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged/p0/reviewed_missions.json
+  scope: FILLED means reviewed prerequisites for this selected step; original target and unpaid imports
+    retained.
+  review_refinement: dag/results/FQ-U1-TRANSPORT-N-TORSION/reviews/20261019_boundaries_audit/scope_review.json
+latest_run:
+  path: dag/results/FQ-U1-TRANSPORT-N-TORSION/runs/20261019T201403Z_staged
+  stage: P5_RECORD
+  status: scoped_result_or_obstruction_reviewed
+scope_notes:
+- 'On one fixed graph with four vertices and five oriented edges (cycle rank2), enumerate all Z/N edge
+  labels, remove the declared spanning-tree gauge and retain both chord invariants. Arbitrary vertex repairs
+  preserve them; all N² invariant pairs occur for retained N<=4. The source ConnectednessShadow only means
+  not exponent two: finite C3/C4 pass it. It is not topological connectedness or selection of U(1).'
+latest_review:
+  path: dag/results/FQ-U1-TRANSPORT-N-TORSION/reviews/20261019_boundaries_audit
+  status: reviewed_with_targeted_native_integration
+  operad_delta: dag/results/FQ-U1-TRANSPORT-N-TORSION/reviews/20261019_boundaries_audit/operad_delta.yaml
+  final_integration: dag/results/batches/20261019T201403Z_prompts_72_91/review/final_integration/result.json

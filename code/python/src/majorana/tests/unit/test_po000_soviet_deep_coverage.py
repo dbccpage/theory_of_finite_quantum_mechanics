@@ -566,7 +566,7 @@ def test_verify_certificate_deep_coverage():
         "paper_id": "PO-000",
         "authority_effect": "None",
         "mechanization_date": "2026-08-01",
-        "sha256sums_relative_path": "SHA256SUMS",
+        "sha256sums_relative_path": "sha256sums",
         "source_hashes": {},
         "evidence_hashes": {},
         "results": [

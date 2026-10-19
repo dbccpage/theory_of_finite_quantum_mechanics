@@ -1,0 +1,39 @@
+test_all_177_have_consistent_source_collections_and_no_old_contract (protocol_probe.StagedPromptTests) ... FAIL
+test_bell_collected_compositions_are_typed_and_near_miss_is_refused (protocol_probe.StagedPromptTests) ... ok
+test_challenge_requires_host_accepted_candidate_bytes (protocol_probe.StagedPromptTests) ... ok
+test_every_prompt_prepares_p0_with_target_specific_collection (protocol_probe.StagedPromptTests) ... ok
+test_every_prompt_refuses_derivation_without_reviewed_missions (protocol_probe.StagedPromptTests) ... ok
+test_expected_answers_and_float_values_cannot_enter_public_missions (protocol_probe.StagedPromptTests) ... ok
+test_fixed_answer_schemas_are_refused_but_exact_witness_shapes_are_allowed (protocol_probe.StagedPromptTests) ... ok
+test_host_verify_and_record_are_not_model_dispatches (protocol_probe.StagedPromptTests) ... ok
+test_repair_uses_bounded_failure_classes_and_preserves_original_target (protocol_probe.StagedPromptTests) ... ok
+test_reviewed_next_step_can_be_prepared_without_self_acceptance (protocol_probe.StagedPromptTests) ... ok
+test_stale_review_and_mismatched_task_are_refused (protocol_probe.StagedPromptTests) ... ok
+test_useful_math_values_remain_in_the_research_targets (protocol_probe.StagedPromptTests) ... ERROR
+
+======================================================================
+ERROR: test_useful_math_values_remain_in_the_research_targets (protocol_probe.StagedPromptTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\a343o\.codex\worktrees\bell-joint-extension\theory_of_finite_quantum_mechanics\dag\pfp\test_staged_prompts.py", line 82, in test_useful_math_values_remain_in_the_research_targets
+    bell=next(p for p in PROMPTS if 'FQ-BELL-RATIONAL-VIOLATION-14-5' in p.name)
+StopIteration
+
+======================================================================
+FAIL: test_all_177_have_consistent_source_collections_and_no_old_contract (protocol_probe.StagedPromptTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\a343o\.codex\worktrees\bell-joint-extension\theory_of_finite_quantum_mechanics\dag\pfp\test_staged_prompts.py", line 39, in test_all_177_have_consistent_source_collections_and_no_old_contract
+    self.assertEqual(audit.validate()['errors'],[])
+AssertionError: Lists differ: ['FQ-BELL-CLASSICAL-JOINT-EXTENSION: local[44243 chars]tch'] != []
+
+First list contains 398 additional elements.
+First extra element 0:
+'FQ-BELL-CLASSICAL-JOINT-EXTENSION: local paper source pin changed dag/derivations/12_finite_qm_structure/tfq_0256_product_defect_on_a_bipartite_weight_table.md'
+
+Diff is 46845 characters long. Set self.maxDiff to None to see it.
+
+----------------------------------------------------------------------
+Ran 12 tests in 37.797s
+
+FAILED (failures=1, errors=1)

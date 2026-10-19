@@ -1,0 +1,710 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: DS-QM103-SHOW-THE-PACKET-PROTOCOL
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: 'A scalable physical-QC claim is terminalized only when it exposes the declared finite
+    evidence packet fields; refusal terminals include NoHumanSignificantScale and ClaimOverreach. Open:
+    lambda vs mu growth, decoder throughput, leakage tails, p_pair -> 0, overhead (QM-101-C10 as labelled
+    in the 103 ledger).'
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: []
+  source_bottleneck: Rotated-surface-code packet is an illustrative placeholder (no measured numbers).
+  source_refs:
+  - omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/103_show_the_packet_protocol/qm_103_show_the_packet_protocol_claim_ledger.md#QM-101-C4
+  - omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/103_show_the_packet_protocol/qm_103_show_the_packet_protocol_claim_ledger.md#QM-101-C10
+  paper_refs:
+  - dag/derivations/13_finite_qm_information/tfq_0271_show_the_packet_protocol_for_a_finite_computation.md
+  source_claim_label: DEFINITION
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  historical_paper_refs:
+  - papers/derivations/13_finite_qm_information/tfq_0271_show_the_packet_protocol_for_a_finite_computation.md
+  paper_relocations:
+  - from: papers/derivations/13_finite_qm_information/tfq_0271_show_the_packet_protocol_for_a_finite_computation.md
+    to: dag/derivations/13_finite_qm_information/tfq_0271_show_the_packet_protocol_for_a_finite_computation.md
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/13_finite_qm_information/tfq_0271_show_the_packet_protocol_for_a_finite_computation.md
+    sha256: 578cca1763d2b23e6b0113344e7eb81b507e49bc97703bd1778e224b82369298
+source_provenance:
+  repository: this_repository
+  commit: 642f5b95a116da6df805adbd745a4826c6739c2b
+  path: dag/prompts/finite_qm_structure_ds_qm103_show_the_packet_protocol_definition.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: structure
+  name: CertifierReceipt
+  line: 359
+  signature_excerpt: structure CertifierReceipt
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: authorizeFromReceipt
+  line: 364
+  signature_excerpt: 'def authorizeFromReceipt (r : CertifierReceipt) : Bool'
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: qm090_authority_firewall_zero_defect_iff
+  line: 367
+  signature_excerpt: "theorem qm090_authority_firewall_zero_defect_iff (r : CertifierReceipt) :\n    authorizeFromReceipt\
+    \ r = true ↔ r.defect = 0"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.qm090_authority_firewall_zero_defect_iff
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.qm090_authority_firewall_zero_defect_iff
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 367
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_and_fq_cptp_partial_transpose_born_lp_and_f64_diagnostic_firewall
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.ds_and_fq_cptp_partial_transpose_born_lp_and_f64_diagnostic_firewall
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 1147
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_ds_qm_dynamics_structure_and_majorana_witness
+  availability: external
+  symbol: verify_ds_qm_dynamics_structure_and_majorana_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 402
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche11_admitted_primitives_definitions_and_imported_assumptions_witness
+  availability: external
+  symbol: verify_tranche11_admitted_primitives_definitions_and_imported_assumptions_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 1207
+  role: source_lead_only
+presentation:
+  status: scoped_stage_result_reviewed
+  scope: Exact field-completeness/scale/refusal controls are checked; presence of fields is not logical
+    validation of their contents.
+  colours:
+  - id: AuditEligibilityOrRefusal
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: FourPresenceFlagsAndDeclaredScale
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: MissingFieldCountAndScale
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: PacketAuditPrerequisites
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  generators:
+  - id: field_presence_audit
+    ordered_inputs:
+    - FourPresenceFlagsAndDeclaredScale
+    output: MissingFieldCountAndScale
+    arity: 1
+    carrier: Declared FourPresenceFlagsAndDeclaredScale
+    coefficient_ring: Exact rational scalars, Gaussian Hermitian coordinates, natural/Boolean fields or
+      the explicitly finite group
+    hypotheses:
+    - All numbers and field-presence flags are declared toy schema inputs, not measured device evidence.
+    semantic_predicate: Count missing named packet fields.
+    source_pins:
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_ds_qm103_show_the_packet_protocol_definition.yaml
+      sha256: 0b1b471fbfc79f869683da2718fe130ba33f26bdddd782d7845ac12415327cec
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/inputs/this_repository/dag/operads/ds_qm103_show_the_packet_protocol.yaml
+      sha256: fddc5faf43f0286996228ad6e02d651b0a226cbcde861762a59a1ee67f72158c
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/inputs/this_repository/dag/derivations/13_finite_qm_information/tfq_0271_show_the_packet_protocol_for_a_finite_computation.md
+      sha256: 6825eba11bad81327a12c685a56130cad70a5ec743ea5e249dd6593541e3e918
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p0/operation_sources/code/python/src/qm/boundaries_exact.py
+      sha256: 41f6505663ecf8257b7cce1b36f6e5d9081862754a5514313e8ef6d4a88d4235
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p0/operation_sources/code/python/tests/test_boundaries_exact.py
+      sha256: 81a98a49cd2ee6190d60a2ca64899301ff01cae5ee5daab81aebdf7761fe6da4
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p0/operation_sources/code/rust/src/finite_probability/boundaries_exact.rs
+      sha256: f9488a7ec057ad3245770b0f78720050eefe3829b97c22ae8505980fd17f6f1b
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/boundaries_exact_replay.rs
+      sha256: 1c212fce1ed975acc90fdbb7a22b1cc3a65d4588c193e276a7a329b440719395
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/boundaries_checker.py
+      sha256: 71ec9241b94d311710a25f669912ca163006b6b3f56e0a18739c6dd4e9e8b8dd
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p0/operation_sources/dag/results/batches/20261019T201403Z_prompts_72_91/tools/prepare.py
+      sha256: 63d4e890ceae99ea497d49db98875c71ccc17f1d41e2a5df749d03f1692f4ffb
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p0/operation_sources/dag/results/batches/20261019T201403Z_prompts_72_91/tools/specs.py
+      sha256: 04ae08a56fac87673251fbf423b4611481366be5c9ac78e09e9b4d6713861e2a
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/check_candidate.py
+      sha256: 210f9ade99fbeb800b442a613c0086091440a89a761e17c52da9c39f7a58b3de
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/format_certificate.py
+      sha256: f4decaccf2cceb1ef97fe6c8d00c2d6e08f1555ef51eb3754d5290dacec3959c
+    evidence_status: Reviewed exact finite native controls. Kernel signatures are separately scoped. Full
+      refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p2/host_check.json
+  - id: declared_scale_comparison
+    ordered_inputs:
+    - MissingFieldCountAndScale
+    output: PacketAuditPrerequisites
+    arity: 1
+    carrier: Declared MissingFieldCountAndScale
+    coefficient_ring: Exact rational scalars, Gaussian Hermitian coordinates, natural/Boolean fields or
+      the explicitly finite group
+    hypotheses:
+    - All numbers and field-presence flags are declared toy schema inputs, not measured device evidence.
+    semantic_predicate: Compare declared workload with its declared target.
+    source_pins:
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_ds_qm103_show_the_packet_protocol_definition.yaml
+      sha256: 0b1b471fbfc79f869683da2718fe130ba33f26bdddd782d7845ac12415327cec
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/inputs/this_repository/dag/operads/ds_qm103_show_the_packet_protocol.yaml
+      sha256: fddc5faf43f0286996228ad6e02d651b0a226cbcde861762a59a1ee67f72158c
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/inputs/this_repository/dag/derivations/13_finite_qm_information/tfq_0271_show_the_packet_protocol_for_a_finite_computation.md
+      sha256: 6825eba11bad81327a12c685a56130cad70a5ec743ea5e249dd6593541e3e918
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p0/operation_sources/code/python/src/qm/boundaries_exact.py
+      sha256: 41f6505663ecf8257b7cce1b36f6e5d9081862754a5514313e8ef6d4a88d4235
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p0/operation_sources/code/python/tests/test_boundaries_exact.py
+      sha256: 81a98a49cd2ee6190d60a2ca64899301ff01cae5ee5daab81aebdf7761fe6da4
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p0/operation_sources/code/rust/src/finite_probability/boundaries_exact.rs
+      sha256: f9488a7ec057ad3245770b0f78720050eefe3829b97c22ae8505980fd17f6f1b
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/boundaries_exact_replay.rs
+      sha256: 1c212fce1ed975acc90fdbb7a22b1cc3a65d4588c193e276a7a329b440719395
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/boundaries_checker.py
+      sha256: 71ec9241b94d311710a25f669912ca163006b6b3f56e0a18739c6dd4e9e8b8dd
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p0/operation_sources/dag/results/batches/20261019T201403Z_prompts_72_91/tools/prepare.py
+      sha256: 63d4e890ceae99ea497d49db98875c71ccc17f1d41e2a5df749d03f1692f4ffb
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p0/operation_sources/dag/results/batches/20261019T201403Z_prompts_72_91/tools/specs.py
+      sha256: 04ae08a56fac87673251fbf423b4611481366be5c9ac78e09e9b4d6713861e2a
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/check_candidate.py
+      sha256: 210f9ade99fbeb800b442a613c0086091440a89a761e17c52da9c39f7a58b3de
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/format_certificate.py
+      sha256: f4decaccf2cceb1ef97fe6c8d00c2d6e08f1555ef51eb3754d5290dacec3959c
+    evidence_status: Reviewed exact finite native controls. Kernel signatures are separately scoped. Full
+      refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p2/host_check.json
+  - id: audit_eligibility
+    ordered_inputs:
+    - PacketAuditPrerequisites
+    output: AuditEligibilityOrRefusal
+    arity: 1
+    carrier: Declared PacketAuditPrerequisites
+    coefficient_ring: Exact rational scalars, Gaussian Hermitian coordinates, natural/Boolean fields or
+      the explicitly finite group
+    hypotheses:
+    - All numbers and field-presence flags are declared toy schema inputs, not measured device evidence.
+    semantic_predicate: Return missing/underscale/eligible/overreach code.
+    source_pins:
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_ds_qm103_show_the_packet_protocol_definition.yaml
+      sha256: 0b1b471fbfc79f869683da2718fe130ba33f26bdddd782d7845ac12415327cec
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/inputs/this_repository/dag/operads/ds_qm103_show_the_packet_protocol.yaml
+      sha256: fddc5faf43f0286996228ad6e02d651b0a226cbcde861762a59a1ee67f72158c
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/inputs/this_repository/dag/derivations/13_finite_qm_information/tfq_0271_show_the_packet_protocol_for_a_finite_computation.md
+      sha256: 6825eba11bad81327a12c685a56130cad70a5ec743ea5e249dd6593541e3e918
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p0/operation_sources/code/python/src/qm/boundaries_exact.py
+      sha256: 41f6505663ecf8257b7cce1b36f6e5d9081862754a5514313e8ef6d4a88d4235
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p0/operation_sources/code/python/tests/test_boundaries_exact.py
+      sha256: 81a98a49cd2ee6190d60a2ca64899301ff01cae5ee5daab81aebdf7761fe6da4
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p0/operation_sources/code/rust/src/finite_probability/boundaries_exact.rs
+      sha256: f9488a7ec057ad3245770b0f78720050eefe3829b97c22ae8505980fd17f6f1b
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/boundaries_exact_replay.rs
+      sha256: 1c212fce1ed975acc90fdbb7a22b1cc3a65d4588c193e276a7a329b440719395
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/boundaries_checker.py
+      sha256: 71ec9241b94d311710a25f669912ca163006b6b3f56e0a18739c6dd4e9e8b8dd
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p0/operation_sources/dag/results/batches/20261019T201403Z_prompts_72_91/tools/prepare.py
+      sha256: 63d4e890ceae99ea497d49db98875c71ccc17f1d41e2a5df749d03f1692f4ffb
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p0/operation_sources/dag/results/batches/20261019T201403Z_prompts_72_91/tools/specs.py
+      sha256: 04ae08a56fac87673251fbf423b4611481366be5c9ac78e09e9b4d6713861e2a
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/check_candidate.py
+      sha256: 210f9ade99fbeb800b442a613c0086091440a89a761e17c52da9c39f7a58b3de
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/format_certificate.py
+      sha256: f4decaccf2cceb1ef97fe6c8d00c2d6e08f1555ef51eb3754d5290dacec3959c
+    evidence_status: Reviewed exact finite native controls. Kernel signatures are separately scoped. Full
+      refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p2/host_check.json
+  relations:
+  - id: packet_relation_0
+    equation_or_predicate: Zero missing count iff all four presence fields are true; present does not
+      imply valid.
+    typing_conditions: Literal declared operation domains; Provide substantive verified packet contents
+      and meaningful scale/noise/throughput/leakage/overhead evidence. Eligibility for audit is not a
+      physical or authority terminal.
+    evidence_status: Accepted actual P2 and P4 controls; only the literal named Lean signatures are kernel
+      theorems. Native array-to-signature and physical transports remain as stated.
+    scope: Exact field-completeness/scale/refusal controls are checked; presence of fields is not logical
+      validation of their contents.
+    source_pins:
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_ds_qm103_show_the_packet_protocol_definition.yaml
+      sha256: 0b1b471fbfc79f869683da2718fe130ba33f26bdddd782d7845ac12415327cec
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/inputs/this_repository/dag/operads/ds_qm103_show_the_packet_protocol.yaml
+      sha256: fddc5faf43f0286996228ad6e02d651b0a226cbcde861762a59a1ee67f72158c
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/inputs/this_repository/dag/derivations/13_finite_qm_information/tfq_0271_show_the_packet_protocol_for_a_finite_computation.md
+      sha256: 6825eba11bad81327a12c685a56130cad70a5ec743ea5e249dd6593541e3e918
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p0/operation_sources/code/python/src/qm/boundaries_exact.py
+      sha256: 41f6505663ecf8257b7cce1b36f6e5d9081862754a5514313e8ef6d4a88d4235
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p0/operation_sources/code/python/tests/test_boundaries_exact.py
+      sha256: 81a98a49cd2ee6190d60a2ca64899301ff01cae5ee5daab81aebdf7761fe6da4
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p0/operation_sources/code/rust/src/finite_probability/boundaries_exact.rs
+      sha256: f9488a7ec057ad3245770b0f78720050eefe3829b97c22ae8505980fd17f6f1b
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/boundaries_exact_replay.rs
+      sha256: 1c212fce1ed975acc90fdbb7a22b1cc3a65d4588c193e276a7a329b440719395
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/boundaries_checker.py
+      sha256: 71ec9241b94d311710a25f669912ca163006b6b3f56e0a18739c6dd4e9e8b8dd
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p0/operation_sources/dag/results/batches/20261019T201403Z_prompts_72_91/tools/prepare.py
+      sha256: 63d4e890ceae99ea497d49db98875c71ccc17f1d41e2a5df749d03f1692f4ffb
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p0/operation_sources/dag/results/batches/20261019T201403Z_prompts_72_91/tools/specs.py
+      sha256: 04ae08a56fac87673251fbf423b4611481366be5c9ac78e09e9b4d6713861e2a
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/check_candidate.py
+      sha256: 210f9ade99fbeb800b442a613c0086091440a89a761e17c52da9c39f7a58b3de
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/format_certificate.py
+      sha256: f4decaccf2cceb1ef97fe6c8d00c2d6e08f1555ef51eb3754d5290dacec3959c
+    latest_host_check: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p2/host_check.json
+    historical_evidence_annotation: P1 candidate; independent native and named kernel gates remain required.
+    named_Lean_scope:
+    - QuantumMechanics.PromptBoundaries.packet_fields_are_not_validation
+    - QuantumMechanics.PromptBoundaries.packet_zero_missing
+  compositions: &id001
+  - outer_operation: declared_scale_comparison
+    input_slot: 0
+    inner_operation: field_presence_audit
+    colour_match: MissingFieldCountAndScale -> MissingFieldCountAndScale
+    hypothesis_match: Same declared coordinates, coefficients and context; all operation hypotheses must
+      be carried into the graft. Fixed matrices, signs, gauge unit, original comparison table, row order,
+      sector and pairing (where relevant) must agree across both operations. Formal universal refined-carrier
+      closure is unpaid.
+    licensing_relations:
+    - packet_relation_0
+    evidence_status: Semantic substitution supported by the retained finite operation traces and separately
+      scoped named kernel statements. A complete refined-carrier operad is not asserted.
+  - outer_operation: audit_eligibility
+    input_slot: 0
+    inner_operation: declared_scale_comparison
+    colour_match: PacketAuditPrerequisites -> PacketAuditPrerequisites
+    hypothesis_match: Same declared coordinates, coefficients and context; all operation hypotheses must
+      be carried into the graft. Fixed matrices, signs, gauge unit, original comparison table, row order,
+      sector and pairing (where relevant) must agree across both operations. Formal universal refined-carrier
+      closure is unpaid.
+    licensing_relations:
+    - packet_relation_0
+    evidence_status: Semantic substitution supported by the retained finite operation traces and separately
+      scoped named kernel statements. A complete refined-carrier operad is not asserted.
+  identities:
+  - colour: AuditEligibilityOrRefusal
+    proposed_operation: id_AuditEligibilityOrRefusal
+    signature: AuditEligibilityOrRefusal -> AuditEligibilityOrRefusal
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: FourPresenceFlagsAndDeclaredScale
+    proposed_operation: id_FourPresenceFlagsAndDeclaredScale
+    signature: FourPresenceFlagsAndDeclaredScale -> FourPresenceFlagsAndDeclaredScale
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: MissingFieldCountAndScale
+    proposed_operation: id_MissingFieldCountAndScale
+    signature: MissingFieldCountAndScale -> MissingFieldCountAndScale
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: PacketAuditPrerequisites
+    proposed_operation: id_PacketAuditPrerequisites
+    signature: PacketAuditPrerequisites -> PacketAuditPrerequisites
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  symmetric_actions: []
+  coherence_obligations: &id002
+  - Provide substantive verified packet contents and meaningful scale/noise/throughput/leakage/overhead
+    evidence. Eligibility for audit is not a physical or authority terminal.
+  - Prove the full refined-carrier operad identity, substitution, symmetry and coherence laws; mere colour
+    matches do not instantiate that formal structure.
+  - A source provider PASS/hash, route index, census label or Boolean flag is not mathematical evidence
+    for the original target. No historical provider receipt is newly authenticated.
+  failed_compositions:
+  - proposal: Promote the selected step to the unrestricted original target
+    reason: Provide substantive verified packet contents and meaningful scale/noise/throughput/leakage/overhead
+      evidence. Eligibility for audit is not a physical or authority terminal.
+  counterexamples:
+  - id: retained_actual_domain_controls
+    records:
+    - input:
+      - '1'
+      - '1'
+      - '1'
+      - '1'
+      - '100'
+      - '100'
+      - '0'
+      output:
+      - '1'
+      - '1'
+      - '1'
+      - '1'
+      - '0'
+      - '1'
+      - '1'
+      - '2'
+    - input:
+      - '1'
+      - '1'
+      - '0'
+      - '1'
+      - '100'
+      - '100'
+      - '1'
+      output:
+      - '1'
+      - '1'
+      - '0'
+      - '1'
+      - '1'
+      - '1'
+      - '0'
+      - '3'
+    - input:
+      - '1'
+      - '1'
+      - '1'
+      - '1'
+      - '99'
+      - '100'
+      - '1'
+      output:
+      - '1'
+      - '1'
+      - '1'
+      - '1'
+      - '0'
+      - '0'
+      - '0'
+      - '3'
+    - input:
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '1'
+      - '0'
+      output:
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '4'
+      - '0'
+      - '0'
+      - '0'
+    scope: Computed values, with the source/kernel/native distinctions retained in claim_boundary.
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: FILLED
+    carrier: Literal per-operation finite or admitted scalar carriers
+    coefficient_ring: Exact Z, Q, Gaussian rational pairs and supplied Boolean fields
+    source_pins:
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_ds_qm103_show_the_packet_protocol_definition.yaml
+      sha256: 0b1b471fbfc79f869683da2718fe130ba33f26bdddd782d7845ac12415327cec
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/inputs/this_repository/dag/operads/ds_qm103_show_the_packet_protocol.yaml
+      sha256: fddc5faf43f0286996228ad6e02d651b0a226cbcde861762a59a1ee67f72158c
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/inputs/this_repository/dag/derivations/13_finite_qm_information/tfq_0271_show_the_packet_protocol_for_a_finite_computation.md
+      sha256: 6825eba11bad81327a12c685a56130cad70a5ec743ea5e249dd6593541e3e918
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p0/operation_sources/code/python/src/qm/boundaries_exact.py
+      sha256: 41f6505663ecf8257b7cce1b36f6e5d9081862754a5514313e8ef6d4a88d4235
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p0/operation_sources/code/python/tests/test_boundaries_exact.py
+      sha256: 81a98a49cd2ee6190d60a2ca64899301ff01cae5ee5daab81aebdf7761fe6da4
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p0/operation_sources/code/rust/src/finite_probability/boundaries_exact.rs
+      sha256: f9488a7ec057ad3245770b0f78720050eefe3829b97c22ae8505980fd17f6f1b
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/boundaries_exact_replay.rs
+      sha256: 1c212fce1ed975acc90fdbb7a22b1cc3a65d4588c193e276a7a329b440719395
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/boundaries_checker.py
+      sha256: 71ec9241b94d311710a25f669912ca163006b6b3f56e0a18739c6dd4e9e8b8dd
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p0/operation_sources/dag/results/batches/20261019T201403Z_prompts_72_91/tools/prepare.py
+      sha256: 63d4e890ceae99ea497d49db98875c71ccc17f1d41e2a5df749d03f1692f4ffb
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p0/operation_sources/dag/results/batches/20261019T201403Z_prompts_72_91/tools/specs.py
+      sha256: 04ae08a56fac87673251fbf423b4611481366be5c9ac78e09e9b4d6713861e2a
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/check_candidate.py
+      sha256: 210f9ade99fbeb800b442a613c0086091440a89a761e17c52da9c39f7a58b3de
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/format_certificate.py
+      sha256: f4decaccf2cceb1ef97fe6c8d00c2d6e08f1555ef51eb3754d5290dacec3959c
+    public_input:
+      kind: packet
+      cases:
+      - - '1'
+        - '1'
+        - '1'
+        - '1'
+        - '100'
+        - '100'
+        - '0'
+      - - '1'
+        - '1'
+        - '0'
+        - '1'
+        - '100'
+        - '100'
+        - '1'
+      - - '1'
+        - '1'
+        - '1'
+        - '1'
+        - '99'
+        - '100'
+        - '1'
+      - - '0'
+        - '0'
+        - '0'
+        - '0'
+        - '0'
+        - '1'
+        - '0'
+      scope: Exact field-completeness/scale/refusal controls are checked; presence of fields is not logical
+        validation of their contents.
+      unpaid_target: Provide substantive verified packet contents and meaningful scale/noise/throughput/leakage/overhead
+        evidence. Eligibility for audit is not a physical or authority terminal.
+    original_target: 'A scalable physical-QC claim is terminalized only when it exposes the declared finite
+      evidence packet fields; refusal terminals include NoHumanSignificantScale and ClaimOverreach. Open:
+      lambda vs mu growth, decoder throughput, leakage tails, p_pair -> 0, overhead (QM-101-C10 as labelled
+      in the 103 ledger).'
+    source_scope_review: 'The source protocol explicitly calls the rotated-surface-code packet illustrative
+      and unmeasured. This new local schema control uses four named source fields: code family, noise
+      hypothesis, repair capacity and residual quotient; field presence, declared scale and requested
+      promotion determine audit eligibility/refusal only. Toy workloads and targets have no measured units.'
+    admitted_assumptions:
+    - All numbers and field-presence flags are declared toy schema inputs, not measured device evidence.
+    historical_source_assumptions: []
+    work_unit_admitted_hypotheses:
+    - All numbers and field-presence flags are declared toy schema inputs, not measured device evidence.
+  slot_m2_layer1_forward_morphisms:
+    mining_status: FILLED
+    operations:
+    - catalog_id: field_presence_audit
+      inputs:
+      - FourPresenceFlagsAndDeclaredScale
+      output: MissingFieldCountAndScale
+      semantic_predicate: Count missing named packet fields.
+    - catalog_id: declared_scale_comparison
+      inputs:
+      - MissingFieldCountAndScale
+      output: PacketAuditPrerequisites
+      semantic_predicate: Compare declared workload with its declared target.
+    - catalog_id: audit_eligibility
+      inputs:
+      - PacketAuditPrerequisites
+      output: AuditEligibilityOrRefusal
+      semantic_predicate: Return missing/underscale/eligible/overreach code.
+    composition_plan: *id001
+    tree:
+    - Zero missing count iff all four presence fields are true; present does not imply valid.
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: FILLED
+    algebraic_relations:
+    - id: packet_relation_0
+      equation_or_predicate: Zero missing count iff all four presence fields are true; present does not
+        imply valid.
+      typing_conditions: Literal declared operation domains; Provide substantive verified packet contents
+        and meaningful scale/noise/throughput/leakage/overhead evidence. Eligibility for audit is not
+        a physical or authority terminal.
+      evidence_status: P1 candidate; independent native and named kernel gates remain required.
+      scope: Exact field-completeness/scale/refusal controls are checked; presence of fields is not logical
+        validation of their contents.
+      source_pins:
+      - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_ds_qm103_show_the_packet_protocol_definition.yaml
+        sha256: 0b1b471fbfc79f869683da2718fe130ba33f26bdddd782d7845ac12415327cec
+      - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/inputs/this_repository/dag/operads/ds_qm103_show_the_packet_protocol.yaml
+        sha256: fddc5faf43f0286996228ad6e02d651b0a226cbcde861762a59a1ee67f72158c
+      - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+        sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+      - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/inputs/this_repository/dag/derivations/13_finite_qm_information/tfq_0271_show_the_packet_protocol_for_a_finite_computation.md
+        sha256: 6825eba11bad81327a12c685a56130cad70a5ec743ea5e249dd6593541e3e918
+      - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p0/operation_sources/code/python/src/qm/boundaries_exact.py
+        sha256: 41f6505663ecf8257b7cce1b36f6e5d9081862754a5514313e8ef6d4a88d4235
+      - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p0/operation_sources/code/python/tests/test_boundaries_exact.py
+        sha256: 81a98a49cd2ee6190d60a2ca64899301ff01cae5ee5daab81aebdf7761fe6da4
+      - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p0/operation_sources/code/rust/src/finite_probability/boundaries_exact.rs
+        sha256: f9488a7ec057ad3245770b0f78720050eefe3829b97c22ae8505980fd17f6f1b
+      - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/boundaries_exact_replay.rs
+        sha256: 1c212fce1ed975acc90fdbb7a22b1cc3a65d4588c193e276a7a329b440719395
+      - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/boundaries_checker.py
+        sha256: 71ec9241b94d311710a25f669912ca163006b6b3f56e0a18739c6dd4e9e8b8dd
+      - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+        sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+      - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p0/operation_sources/dag/results/batches/20261019T201403Z_prompts_72_91/tools/prepare.py
+        sha256: 63d4e890ceae99ea497d49db98875c71ccc17f1d41e2a5df749d03f1692f4ffb
+      - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p0/operation_sources/dag/results/batches/20261019T201403Z_prompts_72_91/tools/specs.py
+        sha256: 04ae08a56fac87673251fbf423b4611481366be5c9ac78e09e9b4d6713861e2a
+      - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/custody.py
+        sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+      - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+        sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+      - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/check_candidate.py
+        sha256: 210f9ade99fbeb800b442a613c0086091440a89a761e17c52da9c39f7a58b3de
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/format_certificate.py
+        sha256: f4decaccf2cceb1ef97fe6c8d00c2d6e08f1555ef51eb3754d5290dacec3959c
+    rejection_predicates:
+    - Independent domain equations and actual matrix/graph/quotient arrays recompute every output.
+    - Exact public input, canonical rational primitive types, complete source pins and exact sealed request
+      bytes.
+    - Full native cross-language output equality and actual named Lean axiom reports; no label-based target
+      promotion.
+    negative_control_plan: Alter every output coordinate, input identity, primitive types, source set
+      and sealed request.
+  slot_m4_tri_language_witness_anchors:
+    mining_status: FILLED
+    certificate_predicates:
+    - Independent domain equations and actual matrix/graph/quotient arrays recompute every output.
+    - Exact public input, canonical rational primitive types, complete source pins and exact sealed request
+      bytes.
+    - Full native cross-language output equality and actual named Lean axiom reports; no label-based target
+      promotion.
+    anchors:
+    - code/python/src/qm/boundaries_exact.py
+    - code/python/tests/test_boundaries_exact.py
+    - code/rust/src/finite_probability/boundaries_exact.rs
+    - code/rust/src/finite_probability/examples/boundaries_exact_replay.rs
+    - dag/pfp/boundaries_checker.py
+    - dag/pfp/exact_json.py
+    - dag/pfp/review_exact_json.py
+    - lean4/PromptBoundaries.lean
+    - dag/results/batches/20261019T201403Z_prompts_72_91/tools/prepare.py
+    - dag/results/batches/20261019T201403Z_prompts_72_91/tools/specs.py
+    - dag/pfp/custody.py
+    - dag/pfp/filename_custody.json
+    - QuantumMechanics.PromptBoundaries.packet_fields_are_not_validation
+    - QuantumMechanics.PromptBoundaries.packet_zero_missing
+    unpaid_imports:
+    - Provide substantive verified packet contents and meaningful scale/noise/throughput/leakage/overhead
+      evidence. Eligibility for audit is not a physical or authority terminal.
+    - Prove the full refined-carrier operad identity, substitution, symmetry and coherence laws; mere
+      colour matches do not instantiate that formal structure.
+    anchor_status: New Lean anchors are candidate declarations until the retained P2 compiler runs; compiled
+      source leads retain their literal scope.
+stage_history:
+- stage: P0_MINE_OPERAD
+  attempt: p0
+  run: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged
+  operad_delta: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p0/operad_delta.yaml
+  host_check: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p0/host_check.json
+- stage: P1_DERIVE
+  attempt: p1
+  run: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged
+  operad_delta: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p1/operad_delta.yaml
+  host_check: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p1/host_check.json
+- stage: P2_VERIFY
+  attempt: p2
+  run: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged
+  operad_delta: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p2/operad_delta.yaml
+  host_check: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p2/host_check.json
+- stage: P4_CHALLENGE
+  attempt: p4
+  run: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged
+  operad_delta: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p4/operad_delta.yaml
+  host_check: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p4/host_check.json
+- stage: P5_RECORD
+  attempt: p5
+  run: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged
+  operad_delta: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p5/operad_delta.yaml
+  host_check: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p5/host_check.json
+open_obligations: *id002
+excluded_relation_leads:
+- source: lean4/DerivationDagQMClosure.lean
+  name: ds_and_fq_cptp_partial_transpose_born_lp_and_f64_diagnostic_firewall
+  reason: aggregate_or_proxy_scope_requires_projection_not_a_task_relation
+operad_slots_scope:
+  work_unit: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged/p0/reviewed_missions.json
+  scope: FILLED means reviewed prerequisites for this selected step; original target and unpaid imports
+    retained.
+  review_refinement: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/reviews/20261019_boundaries_audit/scope_review.json
+latest_run:
+  path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/runs/20261019T201403Z_staged
+  stage: P5_RECORD
+  status: scoped_result_or_obstruction_reviewed
+scope_notes:
+- 'The source protocol explicitly calls the rotated-surface-code packet illustrative and unmeasured. This
+  new local schema control uses four named source fields: code family, noise hypothesis, repair capacity
+  and residual quotient; field presence, declared scale and requested promotion determine audit eligibility/refusal
+  only. Toy workloads and targets have no measured units.'
+latest_review:
+  path: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/reviews/20261019_boundaries_audit
+  status: reviewed_with_targeted_native_integration
+  operad_delta: dag/results/DS-QM103-SHOW-THE-PACKET-PROTOCOL/reviews/20261019_boundaries_audit/operad_delta.yaml
+  final_integration: dag/results/batches/20261019T201403Z_prompts_72_91/review/final_integration/result.json

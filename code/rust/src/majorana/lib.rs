@@ -26,14 +26,41 @@ pub use majorana_fock_algebra::{
 };
 
 pub use classify::{
-    classify, classify_default, classify_with_diagnostics, ClassifiedReceipt, Terminal,
+    benchmark_classify_residual, classify, classify_default, classify_residual,
+    classify_residual_from_canonical_json, classify_residual_to_canonical_json,
+    classify_with_diagnostics, ClassifiedReceipt, ResidualPacketWallReceipt, Terminal,
     CLASSIFIED_RECEIPT_TAG,
 };
 pub use harmonic::{
     code_distance, h1_basis, l1_harmonic_projection, H1Basis, L1HarmonicProjection,
     DEFAULT_BUDGET as HARMONIC_DEFAULT_BUDGET,
 };
-pub use tetron::{build_tetron_array, logical_class_representative, Axis, TetronReport, Topology};
+pub use multiqubit_braid::{
+    benchmark_multiqubit_braid_scaling, compile_multiqubit_braid,
+    compile_multiqubit_braid_with_limit, multiqubit_braid_scaling_from_canonical_json,
+    multiqubit_braid_scaling_to_canonical_json, CompiledMultiQubitBraid, MultiQubitBraidError,
+    MultiQubitBraidScalingRow, MultiQubitOperation,
+};
+pub use noise_mc::{
+    noise_mc_planar_grid, noise_mc_size_sweep, noise_mc_torus_grid, noise_mc_torus_size_sweep,
+    NoiseMcReceipt, NOISE_MC_RECEIPT_TAG,
+};
+pub use pauli_noise::{
+    benchmark_pauli_noise_scaling, correlated_cluster_couplings, evaluate_noise,
+    pauli_noise_scaling_from_canonical_json, pauli_noise_scaling_to_canonical_json,
+    DeterministicRationalNoiseGenerator, LocalMajoranaNoise, NoiseError, NoiseEvaluation,
+    PauliNoiseScalingRow, MAX_NOISE_MODES,
+};
+pub use sparse_kitaev::{
+    benchmark_sparse_kitaev_scaling, sparse_kitaev_scaling_from_canonical_json,
+    sparse_kitaev_scaling_to_canonical_json, BoundaryIsolation, KitaevWire, KitaevWireError,
+    KitaevWireScalingReceipt, MajoranaBilinear, MAX_WIRE_SITES,
+};
+pub use tetron::{
+    benchmark_tetron_lattice_scaling, build_tetron_array, logical_class_representative,
+    tetron_scaling_from_canonical_json, tetron_scaling_to_canonical_json, Axis, TetronReport,
+    TetronScalingRow, Topology,
+};
 
 pub use complexes::{
     closed_residual_syndrome_example, exact_syndrome_example, open_syndrome_example, plaquette,

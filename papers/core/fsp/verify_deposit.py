@@ -4,7 +4,7 @@ Zenodo Pre-Print Deposit Verification Gate for Paper PO-023 (The Problem of the 
 
 Verifies:
 1. All required package files exist.
-2. SHA256 cryptographic checksums match SHA256SUMS manifest.
+2. SHA256 cryptographic checksums match sha256sums manifest.
 3. .zenodo.json metadata is checked for required fields.
 4. claim_ledger.yaml is parsed and checked for matching claim IDs in claim_ledger.md.
 5. Manuscript conforms to Claim Hygiene rules (AuthorityEffect: None, no unhedged claims).
@@ -27,7 +27,7 @@ import argparse
 REQUIRED_FILES = [
     '.zenodo.json',
     'README.md',
-    'SHA256SUMS',
+    'sha256sums',
     'claim_ledger.yaml',
     'the_problem_of_the_fermion_sign.md',
     'the_problem_of_the_fermion_sign_change_log.md',
@@ -63,9 +63,9 @@ REQUIRED_FILES = [
     'lean4/Cobordism5dAnomaly.lean',
     'lean4/InstantonDyonGas.lean',
     'lean4/FoliatedFracton2Gauge.lean',
-    'lean4/AXIOM_REPORT.txt',
+    'lean4/axiom_report.txt',
     'lean4/README.md',
-    'lean4/PROVENANCE.md'
+    'lean4/provenance.md'
 ]
 
 FORBIDDEN_WORDS = [
@@ -109,9 +109,9 @@ def check_files_exist(root: Path) -> list:
     return errors
 
 def check_checksums(root: Path) -> list:
-    manifest = root / "SHA256SUMS"
+    manifest = root / "sha256sums"
     if not manifest.exists():
-        return ["SHA256SUMS file not found"]
+        return ["sha256sums file not found"]
     errors = []
     seen = set()
     with open(manifest, "r", encoding="utf-8") as f:
@@ -126,7 +126,7 @@ def check_checksums(root: Path) -> list:
             if rel_path.startswith("./"):
                 rel_path = rel_path[2:]
             rel_path = rel_path.replace("/", os.sep).replace("\\", os.sep)
-            if rel_path == "SHA256SUMS":
+            if rel_path == "sha256sums":
                 continue
             fp = root / rel_path
             if not fp.resolve().is_relative_to(root.resolve()):
@@ -311,7 +311,7 @@ def main():
     if errs:
         all_errors.extend(errs)
     else:
-        print("  -> SHA256SUMS verified.")
+        print("  -> sha256sums verified.")
 
     print("[3/7] Checking .zenodo.json...")
     errs = check_zenodo_json(root)

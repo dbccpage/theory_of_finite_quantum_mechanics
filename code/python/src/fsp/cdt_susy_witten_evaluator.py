@@ -429,7 +429,7 @@ class CdtSusyWittenEvaluator:
     ) -> Dict[str, Any]:
         r"""Evaluates the topological Witten index across varying temperatures \beta.
 
-        Proves \Delta_Witten(\beta) is strictly independent of \beta because all excited states
+        Shows in this model that \Delta_Witten(\beta) is strictly independent of \beta because all excited states
         E > 0 cancel pairwise: Tr((-1)^F e^{-\beta E}) = 0 identically.
         """
         spec = self.build_supersymmetric_spectrum(

@@ -79,8 +79,11 @@ class StagedPromptTests(unittest.TestCase):
         prepare.witness_schema({'type':'object','properties':{'numerator':{'type':'integer'},'denominator':{'type':'integer','minimum':1}}})
 
     def test_useful_math_values_remain_in_the_research_targets(self):
-        bell=next(p for p in PROMPTS if 'FQ-BELL-RATIONAL-VIOLATION-14-5' in p.name)
+        index=json.loads((ROOT/'dag/operads/index.json').read_bytes())
+        row=next(n for n in index['nodes'] if n['node_id']=='FQ-BELL-RATIONAL-VIOLATION-14-5')
+        bell=ROOT/row['prompt']
         p=prepare.load(bell)
+        self.assertEqual(p['node_id'],row['node_id'])
         self.assertIn('14/5',p['user_prompt'])
         self.assertNotIn('which equals',p['user_prompt'])
 
@@ -112,7 +115,7 @@ class StagedPromptTests(unittest.TestCase):
                 prepare.build_packet(PROMPTS[0],'P4_CHALLENGE',attempt_id='challenge',reviewed_path=reviewed,review_path=review,candidate_path=candidate,host_check_path=check)
 
     def test_bell_collected_compositions_are_typed_and_near_miss_is_refused(self):
-        record=prepare.load(ROOT/'dag/operads/FQ-BELL-CLASSICAL-JOINT-EXTENSION.yaml')
+        record=prepare.load(ROOT/'dag/operads/fq_bell_classical_joint_extension.yaml')
         presentation=record['presentation']
         self.assertEqual(audit.check_presentation(presentation),[])
         broken=copy.deepcopy(presentation)

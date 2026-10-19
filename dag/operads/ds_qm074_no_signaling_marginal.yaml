@@ -1,0 +1,1014 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: DS-QM074-NO-SIGNALING-MARGINAL
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: In a bipartite joint distribution rho(a,b|x,y), the no-signaling marginal condition
+    holds under an admitted composition rule, and local marginals do not force product factorization.
+    The statement is about admitted tables, not about relativistic causality (that is Q-held).
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions:
+  - admitted composition rule for subsystems (assumption)
+  - input independence of remote setting (assumption)
+  source_bottleneck: None (NoSignalling.lean, Entanglement.lean, and DerivationDagQMClosure.ds_qm073_074_chsh_pr_box_and_no_signaling_marginal
+    build under QmCarrierTests).
+  source_refs:
+  - omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/074_no_signaling_finite_shadow/qm_074_no_signaling_finite_shadow_claim_ledger.md#QM_074-C1
+  - omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/074_no_signaling_finite_shadow/qm_074_no_signaling_finite_shadow_claim_ledger.md#QM_074-C3
+  paper_refs:
+  - dag/derivations/12_finite_qm_structure/tfq_0261_no_signalling_marginals_under_an_admitted_composition.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  historical_paper_refs:
+  - papers/derivations/12_finite_qm_structure/tfq_0261_no_signalling_marginals_under_an_admitted_composition.md
+  paper_relocations:
+  - from: papers/derivations/12_finite_qm_structure/tfq_0261_no_signalling_marginals_under_an_admitted_composition.md
+    to: dag/derivations/12_finite_qm_structure/tfq_0261_no_signalling_marginals_under_an_admitted_composition.md
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/12_finite_qm_structure/tfq_0261_no_signalling_marginals_under_an_admitted_composition.md
+    sha256: 733c7bb7095304f0b8943062453cb9c3d506bff0de59212fc59418e1111aa185
+source_provenance:
+  repository: this_repository
+  commit: 642f5b95a116da6df805adbd745a4826c6739c2b
+  path: dag/prompts/finite_qm_structure_ds_qm074_no_signaling_marginal_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: id2
+  line: 13
+  signature_excerpt: 'def id2 (i j : Coord2) : Int'
+  source: lean4/NoSignalling.lean
+  repository: this_repository
+  source_sha256: 8ed77c83d7025f24c76b0e38bd24d7eaa86f5a6569ef414a0321bad6efb182b2
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: Coord2
+  line: 5
+  signature_excerpt: inductive Coord2
+  source: lean4/NoSignalling.lean
+  repository: this_repository
+  source_sha256: 8ed77c83d7025f24c76b0e38bd24d7eaa86f5a6569ef414a0321bad6efb182b2
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: mul4
+  line: 28
+  signature_excerpt: 'def mul4 (A B : Matrix4) : Matrix4'
+  source: lean4/NoSignalling.lean
+  repository: this_repository
+  source_sha256: 8ed77c83d7025f24c76b0e38bd24d7eaa86f5a6569ef414a0321bad6efb182b2
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: Matrix4
+  line: 11
+  signature_excerpt: abbrev Matrix4
+  source: lean4/NoSignalling.lean
+  repository: this_repository
+  source_sha256: 8ed77c83d7025f24c76b0e38bd24d7eaa86f5a6569ef414a0321bad6efb182b2
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: aliceLocalOp
+  line: 98
+  signature_excerpt: 'def aliceLocalOp (comp : Matrix2 → Matrix2 → Matrix4) (U U_dag : Matrix2) (ρ : Matrix4)
+    : Matrix4'
+  source: lean4/NoSignalling.lean
+  repository: this_repository
+  source_sha256: 8ed77c83d7025f24c76b0e38bd24d7eaa86f5a6569ef414a0321bad6efb182b2
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: Matrix2
+  line: 10
+  signature_excerpt: abbrev Matrix2
+  source: lean4/NoSignalling.lean
+  repository: this_repository
+  source_sha256: 8ed77c83d7025f24c76b0e38bd24d7eaa86f5a6569ef414a0321bad6efb182b2
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: IsAdmittedTensorComp
+  line: 94
+  signature_excerpt: 'def IsAdmittedTensorComp (comp : Matrix2 → Matrix2 → Matrix4) : Prop'
+  source: lean4/NoSignalling.lean
+  repository: this_repository
+  source_sha256: 8ed77c83d7025f24c76b0e38bd24d7eaa86f5a6569ef414a0321bad6efb182b2
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: tensorComp
+  line: 19
+  signature_excerpt: 'def tensorComp (A B : Matrix2) : Matrix4'
+  source: lean4/NoSignalling.lean
+  repository: this_repository
+  source_sha256: 8ed77c83d7025f24c76b0e38bd24d7eaa86f5a6569ef414a0321bad6efb182b2
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: mul2
+  line: 22
+  signature_excerpt: 'def mul2 (A B : Matrix2) : Matrix2'
+  source: lean4/NoSignalling.lean
+  repository: this_repository
+  source_sha256: 8ed77c83d7025f24c76b0e38bd24d7eaa86f5a6569ef414a0321bad6efb182b2
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: partialTraceA
+  line: 44
+  signature_excerpt: 'def partialTraceA (ρ : Matrix4) : Matrix2'
+  source: lean4/NoSignalling.lean
+  repository: this_repository
+  source_sha256: 8ed77c83d7025f24c76b0e38bd24d7eaa86f5a6569ef414a0321bad6efb182b2
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: local_flip_b
+  line: 51
+  signature_excerpt: 'def local_flip_b (ψ : BipartiteState2) : BipartiteState2'
+  source: lean4/Entanglement.lean
+  repository: this_repository
+  source_sha256: bccd871b9f8db03c35b564c1a3e41d10d51095a936f2ff4c8980a4bc1195f79d
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: BipartiteState2
+  line: 5
+  signature_excerpt: structure BipartiteState2
+  source: lean4/Entanglement.lean
+  repository: this_repository
+  source_sha256: bccd871b9f8db03c35b564c1a3e41d10d51095a936f2ff4c8980a4bc1195f79d
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: reduced_marginal_a
+  line: 48
+  signature_excerpt: 'def reduced_marginal_a (ψ : BipartiteState2) : Int × Int'
+  source: lean4/Entanglement.lean
+  repository: this_repository
+  source_sha256: bccd871b9f8db03c35b564c1a3e41d10d51095a936f2ff4c8980a4bc1195f79d
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: no_signalling_under_admitted_composition
+  line: 102
+  signature_excerpt: "theorem no_signalling_under_admitted_composition\n    (comp : Matrix2 → Matrix2\
+    \ → Matrix4)\n    (h_comp : IsAdmittedTensorComp comp)\n    (U : Matrix2)\n    (U_dag : Matrix2)\n\
+    \    (h_unitary : mul2 U_dag U = id2)\n    (ρ : Matrix4) :\n    partialTraceA (aliceLocalOp comp U\
+    \ U_dag ρ) = partialTraceA ρ"
+  source: lean4/NoSignalling.lean
+  repository: this_repository
+  source_sha256: 8ed77c83d7025f24c76b0e38bd24d7eaa86f5a6569ef414a0321bad6efb182b2
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: non_signaling_under_local_b_flip
+  line: 54
+  signature_excerpt: "theorem non_signaling_under_local_b_flip (ψ : BipartiteState2) :\n    reduced_marginal_a\
+    \ (local_flip_b ψ) = reduced_marginal_a ψ"
+  source: lean4/Entanglement.lean
+  repository: this_repository
+  source_sha256: bccd871b9f8db03c35b564c1a3e41d10d51095a936f2ff4c8980a4bc1195f79d
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: ds_qm073_074_chsh_pr_box_and_no_signaling_marginal
+  line: 726
+  signature_excerpt: "theorem ds_qm073_074_chsh_pr_box_and_no_signaling_marginal :\n    (∀ a0 a1 b0 b1\
+    \ : Bool,\n      let sa0 : Int"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/quantum_mechanics/NoSignalling.lean::no_signalling_under_admitted_composition
+  availability: local
+  symbol: no_signalling_under_admitted_composition
+  path: lean4/NoSignalling.lean
+  repository: this_repository
+  sha256: 8ed77c83d7025f24c76b0e38bd24d7eaa86f5a6569ef414a0321bad6efb182b2
+  declaration_status: declaration_found_not_proof_checked
+  line: 102
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/Entanglement.lean::non_signaling_under_local_b_flip
+  availability: local
+  symbol: non_signaling_under_local_b_flip
+  path: lean4/Entanglement.lean
+  repository: this_repository
+  sha256: bccd871b9f8db03c35b564c1a3e41d10d51095a936f2ff4c8980a4bc1195f79d
+  declaration_status: declaration_found_not_proof_checked
+  line: 54
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm073_074_chsh_pr_box_and_no_signaling_marginal
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.ds_qm073_074_chsh_pr_box_and_no_signaling_marginal
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 726
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_quantum_physics/src/no_signalling.rs::no_signalling
+  availability: external
+  symbol: no_signalling
+  path: omega_engine/crates_rs/omega_quantum_physics/src/no_signalling.rs
+  repository: the_symbol_game
+  sha256: c9d5519431331f07e021293ef50722adcb1b01e054029a3739589592eb576976
+  declaration_status: declaration_found_not_executed
+  line: 68
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche4_edgewise_l1_u1_holonomy_chsh_and_cayley_witness
+  availability: external
+  symbol: verify_tranche4_edgewise_l1_u1_holonomy_chsh_and_cayley_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 696
+  role: source_lead_only
+presentation:
+  status: scoped_stage_result_reviewed
+  scope: Exact contextual marginals distinguish nonsignaling correlated tables from the signaling control;
+    scalar PR-family marginal and nonproduct controls are kernel checked.
+  colours:
+  - id: AllLocalMarginals
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: EightRationalMarginalDiscrepancies
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: MarginalEqualityVerdict
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: NormalizedContextualTable2222
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  generators:
+  - id: contextual_marginalize
+    ordered_inputs:
+    - NormalizedContextualTable2222
+    output: AllLocalMarginals
+    arity: 1
+    carrier: Declared NormalizedContextualTable2222
+    coefficient_ring: Exact Q (Gaussian pairs where stated), integers and literal Boolean fields only
+    hypotheses:
+    - Normalized nonnegative contextual tables; no-signaling is tested, not required of every control
+      input.
+    semantic_predicate: Sum out the remote outcome.
+    source_pins:
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_ds_qm074_no_signaling_marginal_proved_lean.yaml
+      sha256: 52956e9edaa02005bcad2d66c378d3f268de824cb5c7ef03c3988eb8ba69b0c6
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/inputs/this_repository/dag/operads/ds_qm074_no_signaling_marginal.yaml
+      sha256: 85523627e4de46d8957d4020b714052b4d8ac2ba5afb7bedd913238f514569d7
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/inputs/this_repository/lean4/NoSignalling.lean
+      sha256: 8ed77c83d7025f24c76b0e38bd24d7eaa86f5a6569ef414a0321bad6efb182b2
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/inputs/this_repository/lean4/Entanglement.lean
+      sha256: bccd871b9f8db03c35b564c1a3e41d10d51095a936f2ff4c8980a4bc1195f79d
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/no_signalling.rs
+      sha256: c9d5519431331f07e021293ef50722adcb1b01e054029a3739589592eb576976
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/tfq_0261_no_signalling_marginals_under_an_admitted_composition.md
+      sha256: 9711db6e414bdb26e12927b2fe00e63c56a498a6641e835efe841e9b23f3cfc3
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p0/operation_sources/code/python/src/qm/resources_exact.py
+      sha256: 11ef2d70fa824b51335b881564ab0bc87227c1b43f1fea26ebb87c283c81349f
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p0/operation_sources/code/python/tests/test_resources_exact.py
+      sha256: 9e299e3dff3f975f3a770e3a940ad8f6969ab02b72545ac5d583c5738ddc9fe7
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/resources_exact.rs
+      sha256: 74c77661e2030c2b37634dd449b164e696ebb7fb318019291719d56436cac1cc
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/resources_exact_replay.rs
+      sha256: 3a2f999edc029ff914fd12dbe3516510ae3aaa9b9104b46a3f2168d9820092c9
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/resources_checker.py
+      sha256: 0c9fcef66b088ab515dc5b1998a8bdad39f7ef2e230552245fccbb184cbac01c
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/prepare.py
+      sha256: 7a8161d3b86651ba01b76e4bf6d940ca18597301b2bd99e0c75235bb9376fbc7
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/specs.py
+      sha256: 56bea147f8ccf6b6c0e919dba2489878517b5e722a9284ffab51216119d6d4cb
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/check_candidate.py
+      sha256: adbf3b523a09baf85d7ea135c22749def69b57dd24680135fecc7fecd0c685f8
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/format_certificate.py
+      sha256: 6e20117a2fb587248296b5451786c038d83d9de9b2bbf04d7f10fb0a457f4420
+    evidence_status: Reviewed exact finite native controls. Kernel signatures are separately scoped. Full
+      refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p2/host_check.json
+  - id: remote_setting_difference
+    ordered_inputs:
+    - AllLocalMarginals
+    output: EightRationalMarginalDiscrepancies
+    arity: 1
+    carrier: Declared AllLocalMarginals
+    coefficient_ring: Exact Q (Gaussian pairs where stated), integers and literal Boolean fields only
+    hypotheses:
+    - Normalized nonnegative contextual tables; no-signaling is tested, not required of every control
+      input.
+    semantic_predicate: Subtract marginals at the two remote settings.
+    source_pins:
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_ds_qm074_no_signaling_marginal_proved_lean.yaml
+      sha256: 52956e9edaa02005bcad2d66c378d3f268de824cb5c7ef03c3988eb8ba69b0c6
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/inputs/this_repository/dag/operads/ds_qm074_no_signaling_marginal.yaml
+      sha256: 85523627e4de46d8957d4020b714052b4d8ac2ba5afb7bedd913238f514569d7
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/inputs/this_repository/lean4/NoSignalling.lean
+      sha256: 8ed77c83d7025f24c76b0e38bd24d7eaa86f5a6569ef414a0321bad6efb182b2
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/inputs/this_repository/lean4/Entanglement.lean
+      sha256: bccd871b9f8db03c35b564c1a3e41d10d51095a936f2ff4c8980a4bc1195f79d
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/no_signalling.rs
+      sha256: c9d5519431331f07e021293ef50722adcb1b01e054029a3739589592eb576976
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/tfq_0261_no_signalling_marginals_under_an_admitted_composition.md
+      sha256: 9711db6e414bdb26e12927b2fe00e63c56a498a6641e835efe841e9b23f3cfc3
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p0/operation_sources/code/python/src/qm/resources_exact.py
+      sha256: 11ef2d70fa824b51335b881564ab0bc87227c1b43f1fea26ebb87c283c81349f
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p0/operation_sources/code/python/tests/test_resources_exact.py
+      sha256: 9e299e3dff3f975f3a770e3a940ad8f6969ab02b72545ac5d583c5738ddc9fe7
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/resources_exact.rs
+      sha256: 74c77661e2030c2b37634dd449b164e696ebb7fb318019291719d56436cac1cc
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/resources_exact_replay.rs
+      sha256: 3a2f999edc029ff914fd12dbe3516510ae3aaa9b9104b46a3f2168d9820092c9
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/resources_checker.py
+      sha256: 0c9fcef66b088ab515dc5b1998a8bdad39f7ef2e230552245fccbb184cbac01c
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/prepare.py
+      sha256: 7a8161d3b86651ba01b76e4bf6d940ca18597301b2bd99e0c75235bb9376fbc7
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/specs.py
+      sha256: 56bea147f8ccf6b6c0e919dba2489878517b5e722a9284ffab51216119d6d4cb
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/check_candidate.py
+      sha256: adbf3b523a09baf85d7ea135c22749def69b57dd24680135fecc7fecd0c685f8
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/format_certificate.py
+      sha256: 6e20117a2fb587248296b5451786c038d83d9de9b2bbf04d7f10fb0a457f4420
+    evidence_status: Reviewed exact finite native controls. Kernel signatures are separately scoped. Full
+      refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p2/host_check.json
+  - id: zero_syndrome_test
+    ordered_inputs:
+    - EightRationalMarginalDiscrepancies
+    output: MarginalEqualityVerdict
+    arity: 1
+    carrier: Declared EightRationalMarginalDiscrepancies
+    coefficient_ring: Exact Q (Gaussian pairs where stated), integers and literal Boolean fields only
+    hypotheses:
+    - Normalized nonnegative contextual tables; no-signaling is tested, not required of every control
+      input.
+    semantic_predicate: Test all eight discrepancies for exact zero.
+    source_pins:
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_ds_qm074_no_signaling_marginal_proved_lean.yaml
+      sha256: 52956e9edaa02005bcad2d66c378d3f268de824cb5c7ef03c3988eb8ba69b0c6
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/inputs/this_repository/dag/operads/ds_qm074_no_signaling_marginal.yaml
+      sha256: 85523627e4de46d8957d4020b714052b4d8ac2ba5afb7bedd913238f514569d7
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/inputs/this_repository/lean4/NoSignalling.lean
+      sha256: 8ed77c83d7025f24c76b0e38bd24d7eaa86f5a6569ef414a0321bad6efb182b2
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/inputs/this_repository/lean4/Entanglement.lean
+      sha256: bccd871b9f8db03c35b564c1a3e41d10d51095a936f2ff4c8980a4bc1195f79d
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/no_signalling.rs
+      sha256: c9d5519431331f07e021293ef50722adcb1b01e054029a3739589592eb576976
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/tfq_0261_no_signalling_marginals_under_an_admitted_composition.md
+      sha256: 9711db6e414bdb26e12927b2fe00e63c56a498a6641e835efe841e9b23f3cfc3
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p0/operation_sources/code/python/src/qm/resources_exact.py
+      sha256: 11ef2d70fa824b51335b881564ab0bc87227c1b43f1fea26ebb87c283c81349f
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p0/operation_sources/code/python/tests/test_resources_exact.py
+      sha256: 9e299e3dff3f975f3a770e3a940ad8f6969ab02b72545ac5d583c5738ddc9fe7
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/resources_exact.rs
+      sha256: 74c77661e2030c2b37634dd449b164e696ebb7fb318019291719d56436cac1cc
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/resources_exact_replay.rs
+      sha256: 3a2f999edc029ff914fd12dbe3516510ae3aaa9b9104b46a3f2168d9820092c9
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/resources_checker.py
+      sha256: 0c9fcef66b088ab515dc5b1998a8bdad39f7ef2e230552245fccbb184cbac01c
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/prepare.py
+      sha256: 7a8161d3b86651ba01b76e4bf6d940ca18597301b2bd99e0c75235bb9376fbc7
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/specs.py
+      sha256: 56bea147f8ccf6b6c0e919dba2489878517b5e722a9284ffab51216119d6d4cb
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/check_candidate.py
+      sha256: adbf3b523a09baf85d7ea135c22749def69b57dd24680135fecc7fecd0c685f8
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/format_certificate.py
+      sha256: 6e20117a2fb587248296b5451786c038d83d9de9b2bbf04d7f10fb0a457f4420
+    evidence_status: Reviewed exact finite native controls. Kernel signatures are separately scoped. Full
+      refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p2/host_check.json
+  relations:
+  - id: nosignal_relation_0
+    equation_or_predicate: Zero marginal syndrome is the table condition; PR has zero syndrome and nonzero
+      product defects.
+    typing_conditions: Literal declared operation domains; Prove full admitted-composition/channel-to-table
+      transport and justify physical subsystem/setting independence; no causality law is derived.
+    evidence_status: Accepted actual P2 and P4 controls; only the literal named Lean signatures are kernel
+      theorems. Native array-to-signature and physical transports remain as stated.
+    scope: Exact contextual marginals distinguish nonsignaling correlated tables from the signaling control;
+      scalar PR-family marginal and nonproduct controls are kernel checked.
+    source_pins:
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_ds_qm074_no_signaling_marginal_proved_lean.yaml
+      sha256: 52956e9edaa02005bcad2d66c378d3f268de824cb5c7ef03c3988eb8ba69b0c6
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/inputs/this_repository/dag/operads/ds_qm074_no_signaling_marginal.yaml
+      sha256: 85523627e4de46d8957d4020b714052b4d8ac2ba5afb7bedd913238f514569d7
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/inputs/this_repository/lean4/NoSignalling.lean
+      sha256: 8ed77c83d7025f24c76b0e38bd24d7eaa86f5a6569ef414a0321bad6efb182b2
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/inputs/this_repository/lean4/Entanglement.lean
+      sha256: bccd871b9f8db03c35b564c1a3e41d10d51095a936f2ff4c8980a4bc1195f79d
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/no_signalling.rs
+      sha256: c9d5519431331f07e021293ef50722adcb1b01e054029a3739589592eb576976
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/tfq_0261_no_signalling_marginals_under_an_admitted_composition.md
+      sha256: 9711db6e414bdb26e12927b2fe00e63c56a498a6641e835efe841e9b23f3cfc3
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p0/operation_sources/code/python/src/qm/resources_exact.py
+      sha256: 11ef2d70fa824b51335b881564ab0bc87227c1b43f1fea26ebb87c283c81349f
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p0/operation_sources/code/python/tests/test_resources_exact.py
+      sha256: 9e299e3dff3f975f3a770e3a940ad8f6969ab02b72545ac5d583c5738ddc9fe7
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/resources_exact.rs
+      sha256: 74c77661e2030c2b37634dd449b164e696ebb7fb318019291719d56436cac1cc
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/resources_exact_replay.rs
+      sha256: 3a2f999edc029ff914fd12dbe3516510ae3aaa9b9104b46a3f2168d9820092c9
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/resources_checker.py
+      sha256: 0c9fcef66b088ab515dc5b1998a8bdad39f7ef2e230552245fccbb184cbac01c
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/prepare.py
+      sha256: 7a8161d3b86651ba01b76e4bf6d940ca18597301b2bd99e0c75235bb9376fbc7
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/specs.py
+      sha256: 56bea147f8ccf6b6c0e919dba2489878517b5e722a9284ffab51216119d6d4cb
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/check_candidate.py
+      sha256: adbf3b523a09baf85d7ea135c22749def69b57dd24680135fecc7fecd0c685f8
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/format_certificate.py
+      sha256: 6e20117a2fb587248296b5451786c038d83d9de9b2bbf04d7f10fb0a457f4420
+    latest_host_check: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p2/host_check.json
+    historical_evidence_annotation: P1 candidate; independent native and named kernel gates remain required.
+    named_Lean_scope:
+    - QuantumMechanics.PromptResources.nosignal_family
+    - QuantumMechanics.PromptResources.nosignal_not_product
+  compositions: &id001
+  - outer_operation: remote_setting_difference
+    input_slot: 0
+    inner_operation: contextual_marginalize
+    colour_match: AllLocalMarginals -> AllLocalMarginals
+    hypothesis_match: Same declared coordinates, coefficients and context; all operation hypotheses must
+      be carried into the graft. Fixed matrices, signs, gauge unit, original comparison table, row order,
+      sector and pairing (where relevant) must agree across both operations. Formal universal refined-carrier
+      closure is unpaid.
+    licensing_relations:
+    - nosignal_relation_0
+    evidence_status: Semantic substitution supported by the retained finite operation traces and separately
+      scoped named kernel statements. A complete refined-carrier operad is not asserted.
+  - outer_operation: zero_syndrome_test
+    input_slot: 0
+    inner_operation: remote_setting_difference
+    colour_match: EightRationalMarginalDiscrepancies -> EightRationalMarginalDiscrepancies
+    hypothesis_match: Same declared coordinates, coefficients and context; all operation hypotheses must
+      be carried into the graft. Fixed matrices, signs, gauge unit, original comparison table, row order,
+      sector and pairing (where relevant) must agree across both operations. Formal universal refined-carrier
+      closure is unpaid.
+    licensing_relations:
+    - nosignal_relation_0
+    evidence_status: Semantic substitution supported by the retained finite operation traces and separately
+      scoped named kernel statements. A complete refined-carrier operad is not asserted.
+  identities:
+  - colour: AllLocalMarginals
+    proposed_operation: id_AllLocalMarginals
+    signature: AllLocalMarginals -> AllLocalMarginals
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: EightRationalMarginalDiscrepancies
+    proposed_operation: id_EightRationalMarginalDiscrepancies
+    signature: EightRationalMarginalDiscrepancies -> EightRationalMarginalDiscrepancies
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: MarginalEqualityVerdict
+    proposed_operation: id_MarginalEqualityVerdict
+    signature: MarginalEqualityVerdict -> MarginalEqualityVerdict
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: NormalizedContextualTable2222
+    proposed_operation: id_NormalizedContextualTable2222
+    signature: NormalizedContextualTable2222 -> NormalizedContextualTable2222
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  symmetric_actions: []
+  coherence_obligations: &id002
+  - Prove full admitted-composition/channel-to-table transport and justify physical subsystem/setting
+    independence; no causality law is derived.
+  - Prove the full refined-carrier operad identity, substitution, symmetry and coherence laws; mere colour
+    matches do not instantiate that formal structure.
+  - A source provider PASS/hash, route index, census label or Boolean flag is not mathematical evidence
+    for the original target. No historical provider receipt is newly authenticated.
+  failed_compositions:
+  - proposal: Promote the selected step to the unrestricted original target
+    reason: Prove full admitted-composition/channel-to-table transport and justify physical subsystem/setting
+      independence; no causality law is derived.
+  counterexamples:
+  - id: retained_actual_domain_controls
+    records:
+    - input:
+      - 1/2
+      - '0'
+      - '0'
+      - 1/2
+      - 1/2
+      - '0'
+      - '0'
+      - 1/2
+      - 1/2
+      - '0'
+      - '0'
+      - 1/2
+      - '0'
+      - 1/2
+      - 1/2
+      - '0'
+      output:
+      - '1'
+      - '1'
+      - '1'
+      - '1'
+      - 1/2
+      - 1/2
+      - 1/2
+      - 1/2
+      - 1/2
+      - 1/2
+      - 1/2
+      - 1/2
+      - 1/2
+      - 1/2
+      - 1/2
+      - 1/2
+      - 1/2
+      - 1/2
+      - 1/2
+      - 1/2
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '1'
+      - '1'
+      - '1'
+      - '-1'
+      - '4'
+      - 1/4
+      - -1/4
+      - -1/4
+      - 1/4
+      - 1/4
+      - -1/4
+      - -1/4
+      - 1/4
+      - 1/4
+      - -1/4
+      - -1/4
+      - 1/4
+      - -1/4
+      - 1/4
+      - 1/4
+      - -1/4
+    - input:
+      - 1/4
+      - 1/4
+      - 1/4
+      - 1/4
+      - 1/4
+      - 1/4
+      - 1/4
+      - 1/4
+      - 1/4
+      - 1/4
+      - 1/4
+      - 1/4
+      - 1/4
+      - 1/4
+      - 1/4
+      - 1/4
+      output:
+      - '1'
+      - '1'
+      - '1'
+      - '1'
+      - 1/2
+      - 1/2
+      - 1/2
+      - 1/2
+      - 1/2
+      - 1/2
+      - 1/2
+      - 1/2
+      - 1/2
+      - 1/2
+      - 1/2
+      - 1/2
+      - 1/2
+      - 1/2
+      - 1/2
+      - 1/2
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+    - input:
+      - '1'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '1'
+      - '0'
+      - '1'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '1'
+      - '0'
+      output:
+      - '1'
+      - '1'
+      - '1'
+      - '1'
+      - '1'
+      - '0'
+      - '0'
+      - '1'
+      - '1'
+      - '0'
+      - '0'
+      - '1'
+      - '1'
+      - '0'
+      - '1'
+      - '0'
+      - '1'
+      - '0'
+      - '1'
+      - '0'
+      - '1'
+      - '-1'
+      - '1'
+      - '-1'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '1'
+      - '-1'
+      - '1'
+      - '-1'
+      - '2'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+    scope: Computed values, with the source/kernel/native distinctions retained in claim_boundary.
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: FILLED
+    carrier: Literal per-operation finite or admitted scalar carriers
+    coefficient_ring: Exact Z, Q, Gaussian rational pairs and supplied Boolean fields
+    source_pins:
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_ds_qm074_no_signaling_marginal_proved_lean.yaml
+      sha256: 52956e9edaa02005bcad2d66c378d3f268de824cb5c7ef03c3988eb8ba69b0c6
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/inputs/this_repository/dag/operads/ds_qm074_no_signaling_marginal.yaml
+      sha256: 85523627e4de46d8957d4020b714052b4d8ac2ba5afb7bedd913238f514569d7
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/inputs/this_repository/lean4/NoSignalling.lean
+      sha256: 8ed77c83d7025f24c76b0e38bd24d7eaa86f5a6569ef414a0321bad6efb182b2
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/inputs/this_repository/lean4/Entanglement.lean
+      sha256: bccd871b9f8db03c35b564c1a3e41d10d51095a936f2ff4c8980a4bc1195f79d
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/no_signalling.rs
+      sha256: c9d5519431331f07e021293ef50722adcb1b01e054029a3739589592eb576976
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/tfq_0261_no_signalling_marginals_under_an_admitted_composition.md
+      sha256: 9711db6e414bdb26e12927b2fe00e63c56a498a6641e835efe841e9b23f3cfc3
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p0/operation_sources/code/python/src/qm/resources_exact.py
+      sha256: 11ef2d70fa824b51335b881564ab0bc87227c1b43f1fea26ebb87c283c81349f
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p0/operation_sources/code/python/tests/test_resources_exact.py
+      sha256: 9e299e3dff3f975f3a770e3a940ad8f6969ab02b72545ac5d583c5738ddc9fe7
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/resources_exact.rs
+      sha256: 74c77661e2030c2b37634dd449b164e696ebb7fb318019291719d56436cac1cc
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/resources_exact_replay.rs
+      sha256: 3a2f999edc029ff914fd12dbe3516510ae3aaa9b9104b46a3f2168d9820092c9
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/resources_checker.py
+      sha256: 0c9fcef66b088ab515dc5b1998a8bdad39f7ef2e230552245fccbb184cbac01c
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/prepare.py
+      sha256: 7a8161d3b86651ba01b76e4bf6d940ca18597301b2bd99e0c75235bb9376fbc7
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/specs.py
+      sha256: 56bea147f8ccf6b6c0e919dba2489878517b5e722a9284ffab51216119d6d4cb
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/check_candidate.py
+      sha256: adbf3b523a09baf85d7ea135c22749def69b57dd24680135fecc7fecd0c685f8
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/format_certificate.py
+      sha256: 6e20117a2fb587248296b5451786c038d83d9de9b2bbf04d7f10fb0a457f4420
+    public_input:
+      kind: nosignal
+      cases:
+      - - 1/2
+        - '0'
+        - '0'
+        - 1/2
+        - 1/2
+        - '0'
+        - '0'
+        - 1/2
+        - 1/2
+        - '0'
+        - '0'
+        - 1/2
+        - '0'
+        - 1/2
+        - 1/2
+        - '0'
+      - - 1/4
+        - 1/4
+        - 1/4
+        - 1/4
+        - 1/4
+        - 1/4
+        - 1/4
+        - 1/4
+        - 1/4
+        - 1/4
+        - 1/4
+        - 1/4
+        - 1/4
+        - 1/4
+        - 1/4
+        - 1/4
+      - - '1'
+        - '0'
+        - '0'
+        - '0'
+        - '0'
+        - '0'
+        - '1'
+        - '0'
+        - '1'
+        - '0'
+        - '0'
+        - '0'
+        - '0'
+        - '0'
+        - '1'
+        - '0'
+      scope: Exact contextual marginals distinguish nonsignaling correlated tables from the signaling
+        control; scalar PR-family marginal and nonproduct controls are kernel checked.
+      unpaid_target: Prove full admitted-composition/channel-to-table transport and justify physical subsystem/setting
+        independence; no causality law is derived.
+    original_target: In a bipartite joint distribution rho(a,b|x,y), the no-signaling marginal condition
+      holds under an admitted composition rule, and local marginals do not force product factorization.
+      The statement is about admitted tables, not about relativistic causality (that is Q-held).
+    source_scope_review: Native records include PR, uniform noise and an explicit signaling negative control.
+      All context normalizations, both local marginals, every remote-setting discrepancy and product defect
+      are retained. No-signaling is a table equality, not a relativistic causality theorem, and PR has
+      non-product contexts.
+    admitted_assumptions:
+    - admitted composition rule for subsystems (assumption)
+    - input independence of remote setting (assumption)
+  slot_m2_layer1_forward_morphisms:
+    mining_status: FILLED
+    operations:
+    - catalog_id: contextual_marginalize
+      inputs:
+      - NormalizedContextualTable2222
+      output: AllLocalMarginals
+      semantic_predicate: Sum out the remote outcome.
+    - catalog_id: remote_setting_difference
+      inputs:
+      - AllLocalMarginals
+      output: EightRationalMarginalDiscrepancies
+      semantic_predicate: Subtract marginals at the two remote settings.
+    - catalog_id: zero_syndrome_test
+      inputs:
+      - EightRationalMarginalDiscrepancies
+      output: MarginalEqualityVerdict
+      semantic_predicate: Test all eight discrepancies for exact zero.
+    composition_plan: *id001
+    tree:
+    - Zero marginal syndrome is the table condition; PR has zero syndrome and nonzero product defects.
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: FILLED
+    algebraic_relations:
+    - id: nosignal_relation_0
+      equation_or_predicate: Zero marginal syndrome is the table condition; PR has zero syndrome and nonzero
+        product defects.
+      typing_conditions: Literal declared operation domains; Prove full admitted-composition/channel-to-table
+        transport and justify physical subsystem/setting independence; no causality law is derived.
+      evidence_status: P1 candidate; independent native and named kernel gates remain required.
+      scope: Exact contextual marginals distinguish nonsignaling correlated tables from the signaling
+        control; scalar PR-family marginal and nonproduct controls are kernel checked.
+      source_pins:
+      - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_ds_qm074_no_signaling_marginal_proved_lean.yaml
+        sha256: 52956e9edaa02005bcad2d66c378d3f268de824cb5c7ef03c3988eb8ba69b0c6
+      - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/inputs/this_repository/dag/operads/ds_qm074_no_signaling_marginal.yaml
+        sha256: 85523627e4de46d8957d4020b714052b4d8ac2ba5afb7bedd913238f514569d7
+      - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/inputs/this_repository/lean4/NoSignalling.lean
+        sha256: 8ed77c83d7025f24c76b0e38bd24d7eaa86f5a6569ef414a0321bad6efb182b2
+      - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/inputs/this_repository/lean4/Entanglement.lean
+        sha256: bccd871b9f8db03c35b564c1a3e41d10d51095a936f2ff4c8980a4bc1195f79d
+      - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+        sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+      - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/no_signalling.rs
+        sha256: c9d5519431331f07e021293ef50722adcb1b01e054029a3739589592eb576976
+      - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/tfq_0261_no_signalling_marginals_under_an_admitted_composition.md
+        sha256: 9711db6e414bdb26e12927b2fe00e63c56a498a6641e835efe841e9b23f3cfc3
+      - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p0/operation_sources/code/python/src/qm/resources_exact.py
+        sha256: 11ef2d70fa824b51335b881564ab0bc87227c1b43f1fea26ebb87c283c81349f
+      - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p0/operation_sources/code/python/tests/test_resources_exact.py
+        sha256: 9e299e3dff3f975f3a770e3a940ad8f6969ab02b72545ac5d583c5738ddc9fe7
+      - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/resources_exact.rs
+        sha256: 74c77661e2030c2b37634dd449b164e696ebb7fb318019291719d56436cac1cc
+      - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/resources_exact_replay.rs
+        sha256: 3a2f999edc029ff914fd12dbe3516510ae3aaa9b9104b46a3f2168d9820092c9
+      - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/resources_checker.py
+        sha256: 0c9fcef66b088ab515dc5b1998a8bdad39f7ef2e230552245fccbb184cbac01c
+      - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+        sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+      - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/prepare.py
+        sha256: 7a8161d3b86651ba01b76e4bf6d940ca18597301b2bd99e0c75235bb9376fbc7
+      - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/specs.py
+        sha256: 56bea147f8ccf6b6c0e919dba2489878517b5e722a9284ffab51216119d6d4cb
+      - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/custody.py
+        sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+      - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+        sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+      - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/check_candidate.py
+        sha256: adbf3b523a09baf85d7ea135c22749def69b57dd24680135fecc7fecd0c685f8
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/format_certificate.py
+        sha256: 6e20117a2fb587248296b5451786c038d83d9de9b2bbf04d7f10fb0a457f4420
+    rejection_predicates:
+    - Independent domain equations and actual matrix/graph/quotient arrays recompute every output.
+    - Exact public input, canonical rational primitive types, complete source pins and exact sealed request
+      bytes.
+    - Full native cross-language output equality and actual named Lean axiom reports; no label-based target
+      promotion.
+    negative_control_plan: Alter every output coordinate, input identity, primitive types, source set
+      and sealed request.
+  slot_m4_tri_language_witness_anchors:
+    mining_status: FILLED
+    certificate_predicates:
+    - Independent domain equations and actual matrix/graph/quotient arrays recompute every output.
+    - Exact public input, canonical rational primitive types, complete source pins and exact sealed request
+      bytes.
+    - Full native cross-language output equality and actual named Lean axiom reports; no label-based target
+      promotion.
+    anchors:
+    - code/python/src/qm/resources_exact.py
+    - code/python/tests/test_resources_exact.py
+    - code/rust/src/finite_probability/resources_exact.rs
+    - code/rust/src/finite_probability/examples/resources_exact_replay.rs
+    - dag/pfp/resources_checker.py
+    - dag/pfp/exact_json.py
+    - dag/pfp/review_exact_json.py
+    - lean4/BuildabilitySetS.lean
+    - lean4/PromptResources.lean
+    - dag/results/batches/20261019T184100Z_prompts_52_71/tools/prepare.py
+    - dag/results/batches/20261019T184100Z_prompts_52_71/tools/specs.py
+    - dag/pfp/custody.py
+    - dag/pfp/filename_custody.json
+    - QuantumMechanics.PromptResources.nosignal_family
+    - QuantumMechanics.PromptResources.nosignal_not_product
+    unpaid_imports:
+    - Prove full admitted-composition/channel-to-table transport and justify physical subsystem/setting
+      independence; no causality law is derived.
+    - Prove the full refined-carrier operad identity, substitution, symmetry and coherence laws; mere
+      colour matches do not instantiate that formal structure.
+    anchor_status: New Lean anchors are candidate declarations until the retained P2 compiler runs; compiled
+      source leads retain their literal scope.
+stage_history:
+- stage: P0_MINE_OPERAD
+  attempt: p0
+  run: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged
+  operad_delta: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p0/operad_delta.yaml
+  host_check: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p0/host_check.json
+- stage: P1_DERIVE
+  attempt: p1
+  run: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged
+  operad_delta: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p1/operad_delta.yaml
+  host_check: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p1/host_check.json
+- stage: P2_VERIFY
+  attempt: p2
+  run: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged
+  operad_delta: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p2/operad_delta.yaml
+  host_check: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p2/host_check.json
+- stage: P4_CHALLENGE
+  attempt: p4
+  run: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged
+  operad_delta: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p4/operad_delta.yaml
+  host_check: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p4/host_check.json
+- stage: P5_RECORD
+  attempt: p5
+  run: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged
+  operad_delta: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p5/operad_delta.yaml
+  host_check: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p5/host_check.json
+open_obligations: *id002
+excluded_relation_leads: []
+operad_slots_scope:
+  work_unit: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged/p0/reviewed_missions.json
+  scope: FILLED means reviewed prerequisites for this selected step; original target and unpaid imports
+    retained.
+  review_refinement: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/reviews/20261019_resources_audit/scope_review.json
+latest_run:
+  path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/runs/20261019T184100Z_staged
+  stage: P5_RECORD
+  status: scoped_result_or_obstruction_reviewed
+scope_notes:
+- Native records include PR, uniform noise and an explicit signaling negative control. All context normalizations,
+  both local marginals, every remote-setting discrepancy and product defect are retained. No-signaling
+  is a table equality, not a relativistic causality theorem, and PR has non-product contexts.
+latest_review:
+  path: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/reviews/20261019_resources_audit
+  status: reviewed_with_targeted_native_integration
+  operad_delta: dag/results/DS-QM074-NO-SIGNALING-MARGINAL/reviews/20261019_resources_audit/operad_delta.yaml

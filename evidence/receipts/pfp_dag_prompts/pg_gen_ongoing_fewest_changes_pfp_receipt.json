@@ -1,0 +1,109 @@
+{
+  "schema": "omega.pfp.finite_qm.dag_prompt_execution_receipt.v1",
+  "authority_effect": "None",
+  "policy_id": "SPK-001",
+  "timestamp_utc": "2026-10-18T07:43:50.157934+00:00",
+  "prompt_file": "dag/prompts/genesis_pg_gen_ongoing_fewest_changes_proved_lean.yaml",
+  "node_id": "PG-GEN-ONGOING-FEWEST-CHANGES",
+  "stage": "GENESIS",
+  "dag_status": "PROVED_LEAN",
+  "operad_family_id": "OP-GENESIS-PG-GEN-ONGOING-FEWEST-CHANGES",
+  "operad_mining_missions_completed": [
+    "M1_CARRIER_AND_NORMAL_FORM_MINING",
+    "M2_OPERAD_MORPHISMS_AND_GRAFTING_TREE_MINING",
+    "M3_CONGRUENCE_IDEALS_AND_DECOY_ANTIBODIES_MINING",
+    "M4_TRI_LANGUAGE_EXACT_WITNESS_MINING"
+  ],
+  "winning_model": "deepseek/deepseek-v4.1-flash",
+  "prompt_tokens": 1097,
+  "completion_tokens": 702,
+  "elapsed_ms": 22234.0,
+  "attempts": [
+    {
+      "attempt_id": "ab_withm3_058_pg-gen-ongoing-few_a1",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "state": "settled",
+      "prompt_tokens": 1097,
+      "completion_tokens": 702,
+      "cost_usd": 0.0001721736,
+      "generation_id": "gen-1792309408-4Nv9Z42L8WQXqmit5wDr",
+      "elapsed_ms": 22234.0,
+      "raw_preview": "{\"p_star_tree_potentials\": [580, -1160, 870], \"p_star_chord_potential\": 870, \"p_star_holonomy_gamma2\": 1160, \"cochain_d1_d0_exact_zero\": true, \"finite_shadow_witness_int\": 242, \"countermodel_witness_int\": 62, \"unpaid_import_count\": 0, \"unconditional_promotion_refused\": true, \"derived_under_policy\": ",
+      "gate_status": "PASS",
+      "gate_failures": []
+    }
+  ],
+  "m3_ablation_comparison": {
+    "without_m3_attempt1": {
+      "model": "deepseek/deepseek-v4.1-flash",
+      "status": "FAIL",
+      "all_gates_passed": false,
+      "failures": [
+        "G4_COUNTERMODEL_MISMATCH:got=64,exp=62",
+        "G5_IMPORT_BOUNDARY_OR_FIREWALL_VIOLATION"
+      ],
+      "emitted_countermodel_int": 64,
+      "emitted_unconditional_promotion_refused": false,
+      "prompt_tokens": 1035,
+      "completion_tokens": 970,
+      "elapsed_ms": 35031.0
+    },
+    "with_m3_attempt1": {
+      "model": "deepseek/deepseek-v4.1-flash",
+      "status": "PASS",
+      "all_gates_passed": true,
+      "failures": [],
+      "emitted_countermodel_int": 62,
+      "emitted_unconditional_promotion_refused": true,
+      "prompt_tokens": 1097,
+      "completion_tokens": 702,
+      "elapsed_ms": 22234.0
+    }
+  },
+  "typed_model_response": {
+    "p_star_tree_potentials": [
+      580,
+      -1160,
+      870
+    ],
+    "p_star_chord_potential": 870,
+    "p_star_holonomy_gamma2": 1160,
+    "cochain_d1_d0_exact_zero": true,
+    "finite_shadow_witness_int": 242,
+    "countermodel_witness_int": 62,
+    "unpaid_import_count": 0,
+    "unconditional_promotion_refused": true,
+    "derived_under_policy": "SPK-001",
+    "authority_effect": "None",
+    "firewall_status": "stated region only; mints no authority.",
+    "node_id": "PG-GEN-ONGOING-FEWEST-CHANGES",
+    "stage": "GENESIS",
+    "dag_status": "PROVED_LEAN",
+    "operad_family_id": "OP-GENESIS-PG-GEN-ONGOING-FEWEST-CHANGES",
+    "lean4_theorem_anchor": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/H3V7N5QF/Cost.lean::Reach.names_stay_merged",
+    "rust_witness_anchor": "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness",
+    "should_continue": false
+  },
+  "gate_receipt": {
+    "schema": "omega.pfp.finite_qm.gate_receipt.v1",
+    "authority_effect": "None",
+    "work_id": "PG-GEN-ONGOING-FEWEST-CHANGES",
+    "status": "PASS",
+    "all_gates_passed": true,
+    "gate_results": {
+      "G0_STRICT_TYPED_JSON_SCHEMA": true,
+      "G1_COCHAIN_EXACT_SEQUENCE_D1D0": true,
+      "G2_P_STAR_TREE_CHORD_SYNDROME_DECODE": true,
+      "G3_FINITE_SHADOW_EXACT_WITNESS": true,
+      "G4_COUNTERMODEL_SEPARATION_WITNESS": true,
+      "G5_IMPORT_BOUNDARY_AND_FIREWALL_HONESTY": true,
+      "G6_TRI_LANGUAGE_ANCHOR_BINDING": true
+    },
+    "failures": [],
+    "elapsed_ms": 0.0403,
+    "receipt_sha256": "98ba09eb426f5b0399ff6c862616dda4d4fa9e05f632223fd60edcabfe5f5b44"
+  },
+  "updated_papers": [
+    "papers/derivations/02_genesis/tfq_0389_fewest_changes_formula.md"
+  ]
+}

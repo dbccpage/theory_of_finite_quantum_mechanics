@@ -1,0 +1,857 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: FQ-COMMUTATOR-TRACE-OBSTRUCTION
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: 'In nonzero finite dimension, trace cyclicity gives tr[A,B] = 0 while tr(lambda I)
+    = n lambda, so [A,B] = lambda I forces lambda = 0: canonical [X,P] = i hbar I has no finite-dimensional
+    representation. Lean covers 2x2 integer matrices; Rust covers d=3 over Q(zeta_24).'
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions:
+  - finite dimension (assumption)
+  source_bottleneck: General n is prose; Lean is 2x2 (integer/rational entries).
+  source_refs:
+  - omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/claims/gap_register.yaml:159
+  - omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md:1332
+  paper_refs:
+  - dag/derivations/20_continuum_interface/tfq_0122_filename_continuum_rs_does_not_discharge_the_continuum_limit_or_the_einstein_equation.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  historical_paper_refs:
+  - papers/derivations/20_continuum_interface/tfq_0122_filename_continuum_rs_does_not_discharge_the_continuum_limit_or_the_einstein_equation.md
+  paper_relocations:
+  - from: papers/derivations/20_continuum_interface/tfq_0122_filename_continuum_rs_does_not_discharge_the_continuum_limit_or_the_einstein_equation.md
+    to: dag/derivations/20_continuum_interface/tfq_0122_filename_continuum_rs_does_not_discharge_the_continuum_limit_or_the_einstein_equation.md
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/20_continuum_interface/tfq_0122_filename_continuum_rs_does_not_discharge_the_continuum_limit_or_the_einstein_equation.md
+    sha256: cc8079cf41f7110a054a29c83dd597e000e5b34358a96ad4e83f582f983fa4d6
+source_provenance:
+  repository: this_repository
+  commit: 642f5b95a116da6df805adbd745a4826c6739c2b
+  path: dag/prompts/finite_qm_dynamics_fq_commutator_trace_obstruction_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: structure
+  name: Mat2Rat
+  line: 151
+  signature_excerpt: '@[ext]
+
+    structure Mat2Rat'
+  source: lean4/FiniteQM.lean
+  repository: this_repository
+  source_sha256: 3c6fc7be1d9e59d8164539387be851fef52ef4c8becfcedd5b0b24253a445cfa
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: comm
+  line: 187
+  signature_excerpt: 'abbrev comm (A B : Mat2Rat) : Mat2Rat'
+  source: lean4/FiniteQM.lean
+  repository: this_repository
+  source_sha256: 3c6fc7be1d9e59d8164539387be851fef52ef4c8becfcedd5b0b24253a445cfa
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: Mat2Z
+  line: 5
+  signature_excerpt: structure Mat2Z
+  source: lean4/H056ContinuumLiftBoundary.lean
+  repository: this_repository
+  source_sha256: a8d242b75d4eed947a529ffde1af7d22c90db879d3acfcd452bf4f53794990e1
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: comm2
+  line: 28
+  signature_excerpt: 'def comm2 (A B : Mat2) : Mat2'
+  source: lean4/H068WeylCcrResidual.lean
+  repository: this_repository
+  source_sha256: 1bd6a7c35371c625f88f9600cc1f7e9b76c0ffcaf5089bc24d5eee4014e416d9
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: sub2
+  line: 21
+  signature_excerpt: 'def sub2 (A B : Mat2) : Mat2'
+  source: lean4/H068WeylCcrResidual.lean
+  repository: this_repository
+  source_sha256: 1bd6a7c35371c625f88f9600cc1f7e9b76c0ffcaf5089bc24d5eee4014e416d9
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: Mat2
+  line: 6
+  signature_excerpt: structure Mat2
+  source: lean4/H068WeylCcrResidual.lean
+  repository: this_repository
+  source_sha256: 1bd6a7c35371c625f88f9600cc1f7e9b76c0ffcaf5089bc24d5eee4014e416d9
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: mul2
+  line: 15
+  signature_excerpt: 'def mul2 (A B : Mat2) : Mat2'
+  source: lean4/H068WeylCcrResidual.lean
+  repository: this_repository
+  source_sha256: 1bd6a7c35371c625f88f9600cc1f7e9b76c0ffcaf5089bc24d5eee4014e416d9
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: tr2
+  line: 13
+  signature_excerpt: 'def tr2 (A : Mat2) : Int'
+  source: lean4/H068WeylCcrResidual.lean
+  repository: this_repository
+  source_sha256: 1bd6a7c35371c625f88f9600cc1f7e9b76c0ffcaf5089bc24d5eee4014e416d9
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: weyl_heisenberg_finite_trace_obstruction
+  line: 861
+  signature_excerpt: "theorem weyl_heisenberg_finite_trace_obstruction (x p : Mat2Rat) :\n    let comm"
+  source: lean4/FiniteQM.lean
+  repository: this_repository
+  source_sha256: 3c6fc7be1d9e59d8164539387be851fef52ef4c8becfcedd5b0b24253a445cfa
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: wintner_wielandt_dim2_obstruction
+  line: 54
+  signature_excerpt: "theorem wintner_wielandt_dim2_obstruction (A B : Mat2Z) (k : Int)\n    (h : Mat2Z.sub\
+    \ (Mat2Z.mul A B) (Mat2Z.mul B A) = Mat2Z.smul k Mat2Z.one) :\n    k = 0"
+  source: lean4/H056ContinuumLiftBoundary.lean
+  repository: this_repository
+  source_sha256: a8d242b75d4eed947a529ffde1af7d22c90db879d3acfcd452bf4f53794990e1
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: tr_comm2_vanishes
+  line: 40
+  signature_excerpt: 'theorem tr_comm2_vanishes (Q P : Mat2) : tr2 (comm2 Q P) = 0'
+  source: lean4/H068WeylCcrResidual.lean
+  repository: this_repository
+  source_sha256: 1bd6a7c35371c625f88f9600cc1f7e9b76c0ffcaf5089bc24d5eee4014e416d9
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/quantum_mechanics/FiniteQM.lean::weyl_heisenberg_finite_trace_obstruction
+  availability: local
+  symbol: weyl_heisenberg_finite_trace_obstruction
+  path: lean4/FiniteQM.lean
+  repository: this_repository
+  sha256: 94cde0a3e760e5f17f309b950f2a02cfa40c895c8523a3986ab93123d7bd2759
+  declaration_status: declaration_found_not_proof_checked
+  line: 861
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/H056ContinuumLiftBoundary.lean::wintner_wielandt_dim2_obstruction
+  availability: local
+  symbol: wintner_wielandt_dim2_obstruction
+  path: lean4/H056ContinuumLiftBoundary.lean
+  repository: this_repository
+  sha256: a8d242b75d4eed947a529ffde1af7d22c90db879d3acfcd452bf4f53794990e1
+  declaration_status: declaration_found_not_proof_checked
+  line: 54
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/H068WeylCcrResidual.lean::tr_comm2_vanishes
+  availability: local
+  symbol: tr_comm2_vanishes
+  path: lean4/H068WeylCcrResidual.lean
+  repository: this_repository
+  sha256: 1bd6a7c35371c625f88f9600cc1f7e9b76c0ffcaf5089bc24d5eee4014e416d9
+  declaration_status: declaration_found_not_proof_checked
+  line: 40
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_quantum_physics/src/commutator.rs::verify_trace_cyclicity_d3
+  availability: external
+  symbol: verify_trace_cyclicity_d3
+  path: omega_engine/crates_rs/omega_quantum_physics/src/commutator.rs
+  repository: the_symbol_game
+  sha256: f5c4f79511c0a7e163728022617995c33a55f163e762fd451a315cedee0f415d
+  declaration_status: declaration_found_not_executed
+  line: 52
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_quantum_physics/src/continuum.rs::canonical_commutator_obstruction
+  availability: external
+  symbol: canonical_commutator_obstruction
+  path: omega_engine/crates_rs/omega_quantum_physics/src/continuum.rs
+  repository: the_symbol_game
+  sha256: 66e89fd359b23abd638b35a802a158523b21508d2198cad7a35a5316813304e6
+  declaration_status: declaration_found_not_executed
+  line: 15
+  role: source_lead_only
+presentation:
+  status: scoped_stage_result_reviewed
+  scope: The exact finite-dimensional scalar commutator obstruction is kernel checked for arbitrary n>0
+    over Q.
+  colours:
+  - id: OrderedRationalMatrixPairN
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: RationalMatrixN
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: RationalScalar
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: TwoRationalMatrixProductsN
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  generators:
+  - id: ordered_products
+    ordered_inputs:
+    - OrderedRationalMatrixPairN
+    output: TwoRationalMatrixProductsN
+    arity: 1
+    carrier: Declared OrderedRationalMatrixPairN
+    coefficient_ring: Exact Q, Q(i), or Q(sqrt5) as declared; real embedding only in the named Lean conditional
+    hypotheses:
+    - Native dimension 1..3; formal theorem all positive finite n over Q.
+    semantic_predicate: Compute AB and BA.
+    source_pins:
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_DYNAMICS__FQ-COMMUTATOR-TRACE-OBSTRUCTION__PROVED_LEAN.yaml
+      sha256: 3f16033e96ca30bb0b02f95129b4a0fce9b6e545bef481cc3659b069730e4acc
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/inputs/this_repository/dag/operads/FQ-COMMUTATOR-TRACE-OBSTRUCTION.yaml
+      sha256: 183575f279e90344cf1e0448cf645d594becb1c2ea89c4e36eec79084442a84a
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/inputs/this_repository/lean4/FiniteQM.lean
+      sha256: 3c6fc7be1d9e59d8164539387be851fef52ef4c8becfcedd5b0b24253a445cfa
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/inputs/this_repository/lean4/H056ContinuumLiftBoundary.lean
+      sha256: a8d242b75d4eed947a529ffde1af7d22c90db879d3acfcd452bf4f53794990e1
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/inputs/this_repository/lean4/H068WeylCcrResidual.lean
+      sha256: 1bd6a7c35371c625f88f9600cc1f7e9b76c0ffcaf5089bc24d5eee4014e416d9
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/commutator.rs
+      sha256: f5c4f79511c0a7e163728022617995c33a55f163e762fd451a315cedee0f415d
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/continuum.rs
+      sha256: 66e89fd359b23abd638b35a802a158523b21508d2198cad7a35a5316813304e6
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/inputs/this_repository/dag/derivations/20_continuum_interface/TFQ-0122_filename_continuum_rs_does_not_discharge_the_continuum_limit_or_the_einstein_equation.md
+      sha256: cc8079cf41f7110a054a29c83dd597e000e5b34358a96ad4e83f582f983fa4d6
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/dynamics_exact.py
+      sha256: 972d81f099b957e0ab23329750bb35d0aaac05cc439abd8b418dde6e4841143f
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/code/python/tests/test_dynamics_exact.py
+      sha256: a1d63f1d0bcbfed2c4e62e2b99b87ee0b92a3c864b92cb311583175d9e8c241b
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/dynamics_exact.rs
+      sha256: 309d04e2a142468c66c2294ae926cf736de7420d265e0645aa78f81e06289232
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/dynamics_exact_replay.rs
+      sha256: ae9f6b1d81b9477f0ccf844d243f58f4e58e1245814780c5381d5cef1d9d16f6
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/dynamics_checker.py
+      sha256: 40f56c58f205899bb19b42204c55f0290befa655349aad80228f0250fe8242c9
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/prepare.py
+      sha256: 0705bc29d8320b12190e2a54ef38909796b2033703ce098894a492e45996d6ce
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/structure_exact.py
+      sha256: 0a35a5782b47e06167fc768320ee7fbf90c99fbdf336cbfaf2d2e1b93f9ca89d
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/structure_exact.rs
+      sha256: 9c714e91517144cf0fa614c8195bcf2f56fc32c0b4959750a4515f75fd5b6d28
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/structure_checker.py
+      sha256: 554c0811b794c03ce8badba12075ccb8b12165f6837acff805af0ceba3b3fea7
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/specs.py
+      sha256: 5587e78cec43d2c37dd52fd6fdbfede93420211b879a5be97997fb4b9403f6cc
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/check_candidate.py
+      sha256: 504b6027f1445c19a6ef792251b44086e2f6033a0a00bee6a0c812f90bf82358
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/format_certificate.py
+      sha256: 511558313fed963b960231d7a8e3c0e939d4974d65670e8430d0326fe6a08533
+    evidence_status: Reviewed exact finite native records; literal named kernel statements supply only
+      their own universal scopes. Full refined-carrier operad/coherence remains open.
+    latest_host_check: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p2/host_check.json
+  - id: commutator_difference
+    ordered_inputs:
+    - TwoRationalMatrixProductsN
+    output: RationalMatrixN
+    arity: 1
+    carrier: Declared TwoRationalMatrixProductsN
+    coefficient_ring: Exact Q, Q(i), or Q(sqrt5) as declared; real embedding only in the named Lean conditional
+    hypotheses:
+    - Native dimension 1..3; formal theorem all positive finite n over Q.
+    semantic_predicate: Subtract in the stated order.
+    source_pins:
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_DYNAMICS__FQ-COMMUTATOR-TRACE-OBSTRUCTION__PROVED_LEAN.yaml
+      sha256: 3f16033e96ca30bb0b02f95129b4a0fce9b6e545bef481cc3659b069730e4acc
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/inputs/this_repository/dag/operads/FQ-COMMUTATOR-TRACE-OBSTRUCTION.yaml
+      sha256: 183575f279e90344cf1e0448cf645d594becb1c2ea89c4e36eec79084442a84a
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/inputs/this_repository/lean4/FiniteQM.lean
+      sha256: 3c6fc7be1d9e59d8164539387be851fef52ef4c8becfcedd5b0b24253a445cfa
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/inputs/this_repository/lean4/H056ContinuumLiftBoundary.lean
+      sha256: a8d242b75d4eed947a529ffde1af7d22c90db879d3acfcd452bf4f53794990e1
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/inputs/this_repository/lean4/H068WeylCcrResidual.lean
+      sha256: 1bd6a7c35371c625f88f9600cc1f7e9b76c0ffcaf5089bc24d5eee4014e416d9
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/commutator.rs
+      sha256: f5c4f79511c0a7e163728022617995c33a55f163e762fd451a315cedee0f415d
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/continuum.rs
+      sha256: 66e89fd359b23abd638b35a802a158523b21508d2198cad7a35a5316813304e6
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/inputs/this_repository/dag/derivations/20_continuum_interface/TFQ-0122_filename_continuum_rs_does_not_discharge_the_continuum_limit_or_the_einstein_equation.md
+      sha256: cc8079cf41f7110a054a29c83dd597e000e5b34358a96ad4e83f582f983fa4d6
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/dynamics_exact.py
+      sha256: 972d81f099b957e0ab23329750bb35d0aaac05cc439abd8b418dde6e4841143f
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/code/python/tests/test_dynamics_exact.py
+      sha256: a1d63f1d0bcbfed2c4e62e2b99b87ee0b92a3c864b92cb311583175d9e8c241b
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/dynamics_exact.rs
+      sha256: 309d04e2a142468c66c2294ae926cf736de7420d265e0645aa78f81e06289232
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/dynamics_exact_replay.rs
+      sha256: ae9f6b1d81b9477f0ccf844d243f58f4e58e1245814780c5381d5cef1d9d16f6
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/dynamics_checker.py
+      sha256: 40f56c58f205899bb19b42204c55f0290befa655349aad80228f0250fe8242c9
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/prepare.py
+      sha256: 0705bc29d8320b12190e2a54ef38909796b2033703ce098894a492e45996d6ce
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/structure_exact.py
+      sha256: 0a35a5782b47e06167fc768320ee7fbf90c99fbdf336cbfaf2d2e1b93f9ca89d
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/structure_exact.rs
+      sha256: 9c714e91517144cf0fa614c8195bcf2f56fc32c0b4959750a4515f75fd5b6d28
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/structure_checker.py
+      sha256: 554c0811b794c03ce8badba12075ccb8b12165f6837acff805af0ceba3b3fea7
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/specs.py
+      sha256: 5587e78cec43d2c37dd52fd6fdbfede93420211b879a5be97997fb4b9403f6cc
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/check_candidate.py
+      sha256: 504b6027f1445c19a6ef792251b44086e2f6033a0a00bee6a0c812f90bf82358
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/format_certificate.py
+      sha256: 511558313fed963b960231d7a8e3c0e939d4974d65670e8430d0326fe6a08533
+    evidence_status: Reviewed exact finite native records; literal named kernel statements supply only
+      their own universal scopes. Full refined-carrier operad/coherence remains open.
+    latest_host_check: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p2/host_check.json
+  - id: cyclic_trace
+    ordered_inputs:
+    - RationalMatrixN
+    output: RationalScalar
+    arity: 1
+    carrier: Declared RationalMatrixN
+    coefficient_ring: Exact Q, Q(i), or Q(sqrt5) as declared; real embedding only in the named Lean conditional
+    hypotheses:
+    - Native dimension 1..3; formal theorem all positive finite n over Q.
+    semantic_predicate: Sum all diagonal entries.
+    source_pins:
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_DYNAMICS__FQ-COMMUTATOR-TRACE-OBSTRUCTION__PROVED_LEAN.yaml
+      sha256: 3f16033e96ca30bb0b02f95129b4a0fce9b6e545bef481cc3659b069730e4acc
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/inputs/this_repository/dag/operads/FQ-COMMUTATOR-TRACE-OBSTRUCTION.yaml
+      sha256: 183575f279e90344cf1e0448cf645d594becb1c2ea89c4e36eec79084442a84a
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/inputs/this_repository/lean4/FiniteQM.lean
+      sha256: 3c6fc7be1d9e59d8164539387be851fef52ef4c8becfcedd5b0b24253a445cfa
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/inputs/this_repository/lean4/H056ContinuumLiftBoundary.lean
+      sha256: a8d242b75d4eed947a529ffde1af7d22c90db879d3acfcd452bf4f53794990e1
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/inputs/this_repository/lean4/H068WeylCcrResidual.lean
+      sha256: 1bd6a7c35371c625f88f9600cc1f7e9b76c0ffcaf5089bc24d5eee4014e416d9
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/commutator.rs
+      sha256: f5c4f79511c0a7e163728022617995c33a55f163e762fd451a315cedee0f415d
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/continuum.rs
+      sha256: 66e89fd359b23abd638b35a802a158523b21508d2198cad7a35a5316813304e6
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/inputs/this_repository/dag/derivations/20_continuum_interface/TFQ-0122_filename_continuum_rs_does_not_discharge_the_continuum_limit_or_the_einstein_equation.md
+      sha256: cc8079cf41f7110a054a29c83dd597e000e5b34358a96ad4e83f582f983fa4d6
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/dynamics_exact.py
+      sha256: 972d81f099b957e0ab23329750bb35d0aaac05cc439abd8b418dde6e4841143f
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/code/python/tests/test_dynamics_exact.py
+      sha256: a1d63f1d0bcbfed2c4e62e2b99b87ee0b92a3c864b92cb311583175d9e8c241b
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/dynamics_exact.rs
+      sha256: 309d04e2a142468c66c2294ae926cf736de7420d265e0645aa78f81e06289232
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/dynamics_exact_replay.rs
+      sha256: ae9f6b1d81b9477f0ccf844d243f58f4e58e1245814780c5381d5cef1d9d16f6
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/dynamics_checker.py
+      sha256: 40f56c58f205899bb19b42204c55f0290befa655349aad80228f0250fe8242c9
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/prepare.py
+      sha256: 0705bc29d8320b12190e2a54ef38909796b2033703ce098894a492e45996d6ce
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/structure_exact.py
+      sha256: 0a35a5782b47e06167fc768320ee7fbf90c99fbdf336cbfaf2d2e1b93f9ca89d
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/structure_exact.rs
+      sha256: 9c714e91517144cf0fa614c8195bcf2f56fc32c0b4959750a4515f75fd5b6d28
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/structure_checker.py
+      sha256: 554c0811b794c03ce8badba12075ccb8b12165f6837acff805af0ceba3b3fea7
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/specs.py
+      sha256: 5587e78cec43d2c37dd52fd6fdbfede93420211b879a5be97997fb4b9403f6cc
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/check_candidate.py
+      sha256: 504b6027f1445c19a6ef792251b44086e2f6033a0a00bee6a0c812f90bf82358
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/format_certificate.py
+      sha256: 511558313fed963b960231d7a8e3c0e939d4974d65670e8430d0326fe6a08533
+    evidence_status: Reviewed exact finite native records; literal named kernel statements supply only
+      their own universal scopes. Full refined-carrier operad/coherence remains open.
+    latest_host_check: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p2/host_check.json
+  relations:
+  - id: ccr_relation_0
+    equation_or_predicate: Tr(AB-BA)=0; equality to lambda I in positive dimension forces lambda=0.
+    typing_conditions: Literal declared operation domains; Transport to other coefficient fields and domain/unbounded-operator
+      settings with their actual hypotheses. The supplied finite matrix carrier is an assumption.
+    evidence_status: Accepted P2 plus executed P4; consult literal named Lean signatures and retained
+      matrix/coordinate transport obligations rather than treating the whole relation prose as a theorem.
+    scope: The exact finite-dimensional scalar commutator obstruction is kernel checked for arbitrary
+      n>0 over Q.
+    source_pins:
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_DYNAMICS__FQ-COMMUTATOR-TRACE-OBSTRUCTION__PROVED_LEAN.yaml
+      sha256: 3f16033e96ca30bb0b02f95129b4a0fce9b6e545bef481cc3659b069730e4acc
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/inputs/this_repository/dag/operads/FQ-COMMUTATOR-TRACE-OBSTRUCTION.yaml
+      sha256: 183575f279e90344cf1e0448cf645d594becb1c2ea89c4e36eec79084442a84a
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/inputs/this_repository/lean4/FiniteQM.lean
+      sha256: 3c6fc7be1d9e59d8164539387be851fef52ef4c8becfcedd5b0b24253a445cfa
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/inputs/this_repository/lean4/H056ContinuumLiftBoundary.lean
+      sha256: a8d242b75d4eed947a529ffde1af7d22c90db879d3acfcd452bf4f53794990e1
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/inputs/this_repository/lean4/H068WeylCcrResidual.lean
+      sha256: 1bd6a7c35371c625f88f9600cc1f7e9b76c0ffcaf5089bc24d5eee4014e416d9
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/commutator.rs
+      sha256: f5c4f79511c0a7e163728022617995c33a55f163e762fd451a315cedee0f415d
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/continuum.rs
+      sha256: 66e89fd359b23abd638b35a802a158523b21508d2198cad7a35a5316813304e6
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/inputs/this_repository/dag/derivations/20_continuum_interface/TFQ-0122_filename_continuum_rs_does_not_discharge_the_continuum_limit_or_the_einstein_equation.md
+      sha256: cc8079cf41f7110a054a29c83dd597e000e5b34358a96ad4e83f582f983fa4d6
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/dynamics_exact.py
+      sha256: 972d81f099b957e0ab23329750bb35d0aaac05cc439abd8b418dde6e4841143f
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/code/python/tests/test_dynamics_exact.py
+      sha256: a1d63f1d0bcbfed2c4e62e2b99b87ee0b92a3c864b92cb311583175d9e8c241b
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/dynamics_exact.rs
+      sha256: 309d04e2a142468c66c2294ae926cf736de7420d265e0645aa78f81e06289232
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/dynamics_exact_replay.rs
+      sha256: ae9f6b1d81b9477f0ccf844d243f58f4e58e1245814780c5381d5cef1d9d16f6
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/dynamics_checker.py
+      sha256: 40f56c58f205899bb19b42204c55f0290befa655349aad80228f0250fe8242c9
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/prepare.py
+      sha256: 0705bc29d8320b12190e2a54ef38909796b2033703ce098894a492e45996d6ce
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/structure_exact.py
+      sha256: 0a35a5782b47e06167fc768320ee7fbf90c99fbdf336cbfaf2d2e1b93f9ca89d
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/structure_exact.rs
+      sha256: 9c714e91517144cf0fa614c8195bcf2f56fc32c0b4959750a4515f75fd5b6d28
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/structure_checker.py
+      sha256: 554c0811b794c03ce8badba12075ccb8b12165f6837acff805af0ceba3b3fea7
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/specs.py
+      sha256: 5587e78cec43d2c37dd52fd6fdbfede93420211b879a5be97997fb4b9403f6cc
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/check_candidate.py
+      sha256: 504b6027f1445c19a6ef792251b44086e2f6033a0a00bee6a0c812f90bf82358
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/format_certificate.py
+      sha256: 511558313fed963b960231d7a8e3c0e939d4974d65670e8430d0326fe6a08533
+    latest_host_check: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p2/host_check.json
+    historical_evidence_annotation: P1 candidate; independent native and named kernel gates remain required.
+  compositions: &id001
+  - outer_operation: commutator_difference
+    input_slot: 0
+    inner_operation: ordered_products
+    colour_match: TwoRationalMatrixProductsN -> TwoRationalMatrixProductsN
+    hypothesis_match: Same declared coordinates, coefficients and context; all operation hypotheses must
+      be carried into the graft.
+    licensing_relations:
+    - ccr_relation_0
+    evidence_status: Semantic substitution supported by the retained finite operation traces and separately
+      scoped named kernel statements. A complete refined-carrier operad is not asserted.
+  - outer_operation: cyclic_trace
+    input_slot: 0
+    inner_operation: commutator_difference
+    colour_match: RationalMatrixN -> RationalMatrixN
+    hypothesis_match: Same declared coordinates, coefficients and context; all operation hypotheses must
+      be carried into the graft.
+    licensing_relations:
+    - ccr_relation_0
+    evidence_status: Semantic substitution supported by the retained finite operation traces and separately
+      scoped named kernel statements. A complete refined-carrier operad is not asserted.
+  identities:
+  - colour: OrderedRationalMatrixPairN
+    proposed_operation: id_OrderedRationalMatrixPairN
+    signature: OrderedRationalMatrixPairN -> OrderedRationalMatrixPairN
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: RationalMatrixN
+    proposed_operation: id_RationalMatrixN
+    signature: RationalMatrixN -> RationalMatrixN
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: RationalScalar
+    proposed_operation: id_RationalScalar
+    signature: RationalScalar -> RationalScalar
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: TwoRationalMatrixProductsN
+    proposed_operation: id_TwoRationalMatrixProductsN
+    signature: TwoRationalMatrixProductsN -> TwoRationalMatrixProductsN
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  symmetric_actions: []
+  coherence_obligations: &id002
+  - Transport to other coefficient fields and domain/unbounded-operator settings with their actual hypotheses.
+    The supplied finite matrix carrier is an assumption.
+  - Prove the full refined-carrier operad identity, substitution, symmetry and coherence laws; mere colour
+    matches do not instantiate that formal structure.
+  - No inference from a source flag, declared census label, finite sample, quotient carrier or coordinate
+    name to a stronger mathematical/physical authority claim.
+  failed_compositions:
+  - proposal: Promote the selected step to the unrestricted original target
+    reason: Transport to other coefficient fields and domain/unbounded-operator settings with their actual
+      hypotheses. The supplied finite matrix carrier is an assumption.
+  counterexamples:
+  - id: retained_actual_domain_controls
+    records:
+    - input:
+      - '2'
+      - '0'
+      - '1'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '1'
+      - '0'
+      - '1'
+      output:
+      - '1'
+      - '0'
+      - '0'
+      - '-1'
+      - '0'
+      - '2'
+      - '2'
+    - input:
+      - '1'
+      - '2'
+      - '3'
+      - '0'
+      output:
+      - '0'
+      - '0'
+      - '0'
+      - '1'
+    - input:
+      - '3'
+      - '1'
+      - '2'
+      - '0'
+      - '0'
+      - '1'
+      - '1'
+      - '0'
+      - '0'
+      - '1'
+      - '0'
+      - '1'
+      - '0'
+      - '0'
+      - '0'
+      - '1'
+      - '1'
+      - '0'
+      - '0'
+      - '2'
+      output:
+      - '0'
+      - '0'
+      - '1'
+      - '1'
+      - '0'
+      - '0'
+      - '0'
+      - '-2'
+      - '0'
+      - '0'
+      - '6'
+      - '3'
+    scope: Computed values, with the source/kernel/native distinctions retained in claim_boundary.
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: FILLED
+    carrier: Literal per-operation finite or admitted scalar carriers
+    coefficient_ring: Exact Z, Q, Q(i), Q(sqrt5); admitted a real root only under the stated Lean hypotheses
+    source_pins:
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_DYNAMICS__FQ-COMMUTATOR-TRACE-OBSTRUCTION__PROVED_LEAN.yaml
+      sha256: 3f16033e96ca30bb0b02f95129b4a0fce9b6e545bef481cc3659b069730e4acc
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/inputs/this_repository/dag/operads/FQ-COMMUTATOR-TRACE-OBSTRUCTION.yaml
+      sha256: 183575f279e90344cf1e0448cf645d594becb1c2ea89c4e36eec79084442a84a
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/inputs/this_repository/lean4/FiniteQM.lean
+      sha256: 3c6fc7be1d9e59d8164539387be851fef52ef4c8becfcedd5b0b24253a445cfa
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/inputs/this_repository/lean4/H056ContinuumLiftBoundary.lean
+      sha256: a8d242b75d4eed947a529ffde1af7d22c90db879d3acfcd452bf4f53794990e1
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/inputs/this_repository/lean4/H068WeylCcrResidual.lean
+      sha256: 1bd6a7c35371c625f88f9600cc1f7e9b76c0ffcaf5089bc24d5eee4014e416d9
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/commutator.rs
+      sha256: f5c4f79511c0a7e163728022617995c33a55f163e762fd451a315cedee0f415d
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/continuum.rs
+      sha256: 66e89fd359b23abd638b35a802a158523b21508d2198cad7a35a5316813304e6
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/inputs/this_repository/dag/derivations/20_continuum_interface/TFQ-0122_filename_continuum_rs_does_not_discharge_the_continuum_limit_or_the_einstein_equation.md
+      sha256: cc8079cf41f7110a054a29c83dd597e000e5b34358a96ad4e83f582f983fa4d6
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/dynamics_exact.py
+      sha256: 972d81f099b957e0ab23329750bb35d0aaac05cc439abd8b418dde6e4841143f
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/code/python/tests/test_dynamics_exact.py
+      sha256: a1d63f1d0bcbfed2c4e62e2b99b87ee0b92a3c864b92cb311583175d9e8c241b
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/dynamics_exact.rs
+      sha256: 309d04e2a142468c66c2294ae926cf736de7420d265e0645aa78f81e06289232
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/dynamics_exact_replay.rs
+      sha256: ae9f6b1d81b9477f0ccf844d243f58f4e58e1245814780c5381d5cef1d9d16f6
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/dynamics_checker.py
+      sha256: 40f56c58f205899bb19b42204c55f0290befa655349aad80228f0250fe8242c9
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/prepare.py
+      sha256: 0705bc29d8320b12190e2a54ef38909796b2033703ce098894a492e45996d6ce
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/structure_exact.py
+      sha256: 0a35a5782b47e06167fc768320ee7fbf90c99fbdf336cbfaf2d2e1b93f9ca89d
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/structure_exact.rs
+      sha256: 9c714e91517144cf0fa614c8195bcf2f56fc32c0b4959750a4515f75fd5b6d28
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/structure_checker.py
+      sha256: 554c0811b794c03ce8badba12075ccb8b12165f6837acff805af0ceba3b3fea7
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/specs.py
+      sha256: 5587e78cec43d2c37dd52fd6fdbfede93420211b879a5be97997fb4b9403f6cc
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/check_candidate.py
+      sha256: 504b6027f1445c19a6ef792251b44086e2f6033a0a00bee6a0c812f90bf82358
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/format_certificate.py
+      sha256: 511558313fed963b960231d7a8e3c0e939d4974d65670e8430d0326fe6a08533
+    public_input:
+      kind: ccr
+      cases:
+      - - '2'
+        - '0'
+        - '1'
+        - '0'
+        - '0'
+        - '0'
+        - '0'
+        - '1'
+        - '0'
+        - '1'
+      - - '1'
+        - '2'
+        - '3'
+        - '0'
+      - - '3'
+        - '1'
+        - '2'
+        - '0'
+        - '0'
+        - '1'
+        - '1'
+        - '0'
+        - '0'
+        - '1'
+        - '0'
+        - '1'
+        - '0'
+        - '0'
+        - '0'
+        - '1'
+        - '1'
+        - '0'
+        - '0'
+        - '2'
+      scope: The exact finite-dimensional scalar commutator obstruction is kernel checked for arbitrary
+        n>0 over Q.
+      unpaid_target: Transport to other coefficient fields and domain/unbounded-operator settings with
+        their actual hypotheses. The supplied finite matrix carrier is an assumption.
+    original_target: 'In nonzero finite dimension, trace cyclicity gives tr[A,B] = 0 while tr(lambda I)
+      = n lambda, so [A,B] = lambda I forces lambda = 0: canonical [X,P] = i hbar I has no finite-dimensional
+      representation. Lean covers 2x2 integer matrices; Rust covers d=3 over Q(zeta_24).'
+    source_scope_review: 'The new Lean theorem covers every positive finite dimension over Q: AB-BA=lambda
+      I forces lambda=0 by cyclic trace. Native tests retain full commutator arrays in dimensions one,
+      two and three. Finite trace obstruction does not forbid all finite quantum models or approximate/bounded
+      CCR.'
+    admitted_assumptions:
+    - finite dimension (assumption)
+  slot_m2_layer1_forward_morphisms:
+    mining_status: FILLED
+    operations:
+    - catalog_id: ordered_products
+      inputs:
+      - OrderedRationalMatrixPairN
+      output: TwoRationalMatrixProductsN
+      semantic_predicate: Compute AB and BA.
+    - catalog_id: commutator_difference
+      inputs:
+      - TwoRationalMatrixProductsN
+      output: RationalMatrixN
+      semantic_predicate: Subtract in the stated order.
+    - catalog_id: cyclic_trace
+      inputs:
+      - RationalMatrixN
+      output: RationalScalar
+      semantic_predicate: Sum all diagonal entries.
+    composition_plan: *id001
+    tree:
+    - Tr(AB-BA)=0; equality to lambda I in positive dimension forces lambda=0.
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: FILLED
+    algebraic_relations:
+    - id: ccr_relation_0
+      equation_or_predicate: Tr(AB-BA)=0; equality to lambda I in positive dimension forces lambda=0.
+      typing_conditions: Literal declared operation domains; Transport to other coefficient fields and
+        domain/unbounded-operator settings with their actual hypotheses. The supplied finite matrix carrier
+        is an assumption.
+      evidence_status: P1 candidate; independent native and named kernel gates remain required.
+      scope: The exact finite-dimensional scalar commutator obstruction is kernel checked for arbitrary
+        n>0 over Q.
+      source_pins:
+      - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_DYNAMICS__FQ-COMMUTATOR-TRACE-OBSTRUCTION__PROVED_LEAN.yaml
+        sha256: 3f16033e96ca30bb0b02f95129b4a0fce9b6e545bef481cc3659b069730e4acc
+      - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/inputs/this_repository/dag/operads/FQ-COMMUTATOR-TRACE-OBSTRUCTION.yaml
+        sha256: 183575f279e90344cf1e0448cf645d594becb1c2ea89c4e36eec79084442a84a
+      - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/inputs/this_repository/lean4/FiniteQM.lean
+        sha256: 3c6fc7be1d9e59d8164539387be851fef52ef4c8becfcedd5b0b24253a445cfa
+      - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/inputs/this_repository/lean4/H056ContinuumLiftBoundary.lean
+        sha256: a8d242b75d4eed947a529ffde1af7d22c90db879d3acfcd452bf4f53794990e1
+      - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/inputs/this_repository/lean4/H068WeylCcrResidual.lean
+        sha256: 1bd6a7c35371c625f88f9600cc1f7e9b76c0ffcaf5089bc24d5eee4014e416d9
+      - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/commutator.rs
+        sha256: f5c4f79511c0a7e163728022617995c33a55f163e762fd451a315cedee0f415d
+      - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/continuum.rs
+        sha256: 66e89fd359b23abd638b35a802a158523b21508d2198cad7a35a5316813304e6
+      - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/inputs/this_repository/dag/derivations/20_continuum_interface/TFQ-0122_filename_continuum_rs_does_not_discharge_the_continuum_limit_or_the_einstein_equation.md
+        sha256: cc8079cf41f7110a054a29c83dd597e000e5b34358a96ad4e83f582f983fa4d6
+      - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/dynamics_exact.py
+        sha256: 972d81f099b957e0ab23329750bb35d0aaac05cc439abd8b418dde6e4841143f
+      - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/code/python/tests/test_dynamics_exact.py
+        sha256: a1d63f1d0bcbfed2c4e62e2b99b87ee0b92a3c864b92cb311583175d9e8c241b
+      - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/dynamics_exact.rs
+        sha256: 309d04e2a142468c66c2294ae926cf736de7420d265e0645aa78f81e06289232
+      - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/dynamics_exact_replay.rs
+        sha256: ae9f6b1d81b9477f0ccf844d243f58f4e58e1245814780c5381d5cef1d9d16f6
+      - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/dynamics_checker.py
+        sha256: 40f56c58f205899bb19b42204c55f0290befa655349aad80228f0250fe8242c9
+      - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+        sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+      - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/prepare.py
+        sha256: 0705bc29d8320b12190e2a54ef38909796b2033703ce098894a492e45996d6ce
+      - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/structure_exact.py
+        sha256: 0a35a5782b47e06167fc768320ee7fbf90c99fbdf336cbfaf2d2e1b93f9ca89d
+      - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/structure_exact.rs
+        sha256: 9c714e91517144cf0fa614c8195bcf2f56fc32c0b4959750a4515f75fd5b6d28
+      - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/structure_checker.py
+        sha256: 554c0811b794c03ce8badba12075ccb8b12165f6837acff805af0ceba3b3fea7
+      - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/specs.py
+        sha256: 5587e78cec43d2c37dd52fd6fdbfede93420211b879a5be97997fb4b9403f6cc
+      - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/check_candidate.py
+        sha256: 504b6027f1445c19a6ef792251b44086e2f6033a0a00bee6a0c812f90bf82358
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/format_certificate.py
+        sha256: 511558313fed963b960231d7a8e3c0e939d4974d65670e8430d0326fe6a08533
+    rejection_predicates:
+    - Independent domain equations and actual matrix/graph/quotient arrays recompute every output.
+    - Exact public input, canonical rational primitive types, complete source pins and exact sealed request
+      bytes.
+    - Full native cross-language output equality and actual named Lean axiom reports; no label-based target
+      promotion.
+    negative_control_plan: Alter every output coordinate, input identity, primitive types, source set
+      and sealed request.
+  slot_m4_tri_language_witness_anchors:
+    mining_status: FILLED
+    certificate_predicates:
+    - Independent domain equations and actual matrix/graph/quotient arrays recompute every output.
+    - Exact public input, canonical rational primitive types, complete source pins and exact sealed request
+      bytes.
+    - Full native cross-language output equality and actual named Lean axiom reports; no label-based target
+      promotion.
+    anchors:
+    - code/python/src/qm/dynamics_exact.py
+    - code/python/tests/test_dynamics_exact.py
+    - code/rust/src/finite_probability/dynamics_exact.rs
+    - code/rust/src/finite_probability/examples/dynamics_exact_replay.rs
+    - dag/pfp/dynamics_checker.py
+    - dag/pfp/exact_json.py
+    - dag/pfp/review_exact_json.py
+    - lean4/PrimitiveDifference.lean
+    - lean4/HWKernel.lean
+    - lean4/H004FreeLinearization.lean
+    - lean4/H005InnerProductAdmission.lean
+    - lean4/H003ReversibilityGate.lean
+    - lean4/H006PermutationUnitary.lean
+    - lean4/H007Complexification.lean
+    - lean4/H017MatrixFiniteRecovery.lean
+    - lean4/H017Fin.lean
+    - lean4/H016ContinuousDynamicsFork.lean
+    - lean4/H008PhaseBlindPresentation.lean
+    - lean4/Core.lean
+    - lean4/H009PhaseFiber.lean
+    - lean4/H010InterferenceNonDescent.lean
+    - lean4/H011U1SelectorBoundary.lean
+    - lean4/H011Circle.lean
+    - lean4/H014TensorCompositionBoundary.lean
+    - lean4/H014BilinearProduct.lean
+    - lean4/H014Interface.lean
+    - lean4/H015IrreversibleFork.lean
+    - lean4/H013BornPairingBoundary.lean
+    - lean4/H013SameContract.lean
+    - lean4/H017Gleason.lean
+    - lean4/H017Extras.lean
+    - lean4/H017ExtrasDropone.lean
+    - lean4/E003_projection_fiber_primitive_difference.lean
+    - lean4/E005_fiber_quotient_equivalence.lean
+    - lean4/H000FinitePresentedCarrier.lean
+    - lean4/H055DiscreteDynamicsStone.lean
+    - lean4/PromptStructure.lean
+    - lean4/H061DynamicsDichotomy.lean
+    - lean4/H059RationalSector.lean
+    - lean4/PromptDynamics.lean
+    - dag/results/batches/20261019T164251Z_prompts_32_51/tools/prepare.py
+    - code/python/src/qm/structure_exact.py
+    - code/rust/src/finite_probability/structure_exact.rs
+    - dag/pfp/structure_checker.py
+    - dag/results/batches/20261019T164251Z_prompts_32_51/tools/specs.py
+    - QuantumMechanics.PromptDynamics.finite_ccr
+    unpaid_imports:
+    - Transport to other coefficient fields and domain/unbounded-operator settings with their actual hypotheses.
+      The supplied finite matrix carrier is an assumption.
+    - Prove the full refined-carrier operad identity, substitution, symmetry and coherence laws; mere
+      colour matches do not instantiate that formal structure.
+    anchor_status: New Lean anchors are candidate declarations until the retained P2 compiler runs; compiled
+      source leads retain their literal scope.
+stage_history:
+- stage: P0_MINE_OPERAD
+  attempt: p0
+  run: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged
+  operad_delta: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/operad_delta.yaml
+  host_check: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/host_check.json
+- stage: P1_DERIVE
+  attempt: p1
+  run: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged
+  operad_delta: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p1/operad_delta.yaml
+  host_check: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p1/host_check.json
+- stage: P2_VERIFY
+  attempt: p2
+  run: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged
+  operad_delta: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p2/operad_delta.yaml
+  host_check: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p2/host_check.json
+- stage: P4_CHALLENGE
+  attempt: p4
+  run: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged
+  operad_delta: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p4/operad_delta.yaml
+  host_check: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p4/host_check.json
+- stage: P5_RECORD
+  attempt: p5
+  run: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged
+  operad_delta: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p5/operad_delta.yaml
+  host_check: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p5/host_check.json
+open_obligations: *id002
+excluded_relation_leads: []
+operad_slots_scope:
+  work_unit: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged/p0/reviewed_missions.json
+  scope: FILLED means reviewed prerequisites for this selected step; original target and unpaid imports
+    retained.
+  review_refinement: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/reviews/20261019_dynamics_audit/scope_review.json
+latest_run:
+  path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/runs/20261019T164251Z_staged
+  stage: P5_RECORD
+  status: scoped_result_or_obstruction_reviewed
+scope_notes:
+- 'The new Lean theorem covers every positive finite dimension over Q: AB-BA=lambda I forces lambda=0
+  by cyclic trace. Native tests retain full commutator arrays in dimensions one, two and three. Finite
+  trace obstruction does not forbid all finite quantum models or approximate/bounded CCR.'
+latest_review:
+  path: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/reviews/20261019_dynamics_audit
+  status: reviewed_with_targeted_native_integration_global_baseline_failures_retained
+  operad_delta: dag/results/FQ-COMMUTATOR-TRACE-OBSTRUCTION/reviews/20261019_dynamics_audit/operad_delta.yaml
+source_pin_successors:
+- path: lean4/FiniteQM.lean
+  historical_sha256: 3c6fc7be1d9e59d8164539387be851fef52ef4c8becfcedd5b0b24253a445cfa
+  current_sha256: 94cde0a3e760e5f17f309b950f2a02cfa40c895c8523a3986ab93123d7bd2759
+  review: dag/results/batches/20261019T215447Z_prompts_92_111/custody/finite_qm_source_successor/receipt.json
+  role: source_lead_only
+  authority_effect: None
+  scope: File-only successor for additive PR86 declarations. Historical candidate pins and all stage results
+    remain unchanged; no new statement is admitted as a proof.

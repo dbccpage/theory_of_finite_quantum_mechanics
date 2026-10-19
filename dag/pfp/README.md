@@ -75,7 +75,7 @@ For example, from the repository root, prepare a mining packet:
 
 ```powershell
 py -3.9 -X utf8 dag/pfp/prepare_stage.py `
-  dag/prompts/FINITE_QM_CORE__FQ-BELL-CLASSICAL-JOINT-EXTENSION__PROVED_LEAN.yaml `
+  dag/prompts/finite_qm_core_fq_bell_classical_joint_extension_proved_lean.yaml `
   --attempt mining-001 `
   --output dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/review-001/mining-001/request.json
 ```

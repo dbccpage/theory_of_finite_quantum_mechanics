@@ -1,0 +1,826 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: DS-QM061-BUILDABILITY-SET-S
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: Inside the declared finite model, UsefulQC iff S (race, floor, reachability, H1 advantage);
+    each S_i independently necessary; S satisfiable. A criterion, not a proof that any device satisfies
+    S; race uses an imported rate.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions:
+  - declared finite device model (assumption)
+  - imported generation rate lambda_gen (assumption)
+  source_bottleneck: No architecture packet discharges S1..S4.
+  source_refs:
+  - omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/061_interference_as_the_non_l1_resource/qm_061_interference_as_the_non_l1_resource_claim_ledger.md#QM-061-C12
+  - omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/061_interference_as_the_non_l1_resource/qm_061_interference_as_the_non_l1_resource_claim_ledger.md#QM-061-C13
+  - omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/061_interference_as_the_non_l1_resource/qm_061_interference_as_the_non_l1_resource_claim_ledger.md#QM-061-C15
+  paper_refs:
+  - dag/derivations/12_finite_qm_structure/tfq_0252_interference_as_a_resource_outside_l1_bookkeeping.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  historical_paper_refs:
+  - papers/derivations/12_finite_qm_structure/tfq_0252_interference_as_a_resource_outside_l1_bookkeeping.md
+  paper_relocations:
+  - from: papers/derivations/12_finite_qm_structure/tfq_0252_interference_as_a_resource_outside_l1_bookkeeping.md
+    to: dag/derivations/12_finite_qm_structure/tfq_0252_interference_as_a_resource_outside_l1_bookkeeping.md
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/12_finite_qm_structure/tfq_0252_interference_as_a_resource_outside_l1_bookkeeping.md
+    sha256: 021a2abdb5c808cc64c4faaeb29b798f4f5fcc15b1a4ce8a995b44581e150b22
+source_provenance:
+  repository: this_repository
+  commit: 642f5b95a116da6df805adbd745a4826c6739c2b
+  path: dag/prompts/finite_qm_structure_ds_qm061_buildability_set_s_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: structure
+  name: DeviceModel
+  line: 4
+  signature_excerpt: structure DeviceModel
+  source: lean4/BuildabilitySetS.lean
+  repository: this_repository
+  source_sha256: d9578faac630fc31ee86e257ee12ffe169c9e321d6f881f5d84a234b00fe54f6
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: satisfies_Set_S
+  line: 11
+  signature_excerpt: 'def satisfies_Set_S (d : DeviceModel) : Bool'
+  source: lean4/BuildabilitySetS.lean
+  repository: this_repository
+  source_sha256: d9578faac630fc31ee86e257ee12ffe169c9e321d6f881f5d84a234b00fe54f6
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: is_useful_quantum_computer
+  line: 14
+  signature_excerpt: 'def is_useful_quantum_computer (d : DeviceModel) : Bool'
+  source: lean4/BuildabilitySetS.lean
+  repository: this_repository
+  source_sha256: d9578faac630fc31ee86e257ee12ffe169c9e321d6f881f5d84a234b00fe54f6
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: canonical_model
+  line: 28
+  signature_excerpt: 'def canonical_model : DeviceModel'
+  source: lean4/BuildabilitySetS.lean
+  repository: this_repository
+  source_sha256: d9578faac630fc31ee86e257ee12ffe169c9e321d6f881f5d84a234b00fe54f6
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: eval_set_s
+  line: 21
+  signature_excerpt: 'def eval_set_s (lambda_gen mu_rep eps_mix p_floor : Int) (in_cone has_non_l1 : Bool)
+    : DeviceModel'
+  source: lean4/BuildabilitySetS.lean
+  repository: this_repository
+  source_sha256: d9578faac630fc31ee86e257ee12ffe169c9e321d6f881f5d84a234b00fe54f6
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: useful_qc_iff_set_S
+  line: 17
+  signature_excerpt: "theorem useful_qc_iff_set_S (d : DeviceModel) :\n    is_useful_quantum_computer\
+    \ d = true ↔ satisfies_Set_S d = true"
+  source: lean4/BuildabilitySetS.lean
+  repository: this_repository
+  source_sha256: d9578faac630fc31ee86e257ee12ffe169c9e321d6f881f5d84a234b00fe54f6
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: setS_satisfiable
+  line: 31
+  signature_excerpt: 'theorem setS_satisfiable : satisfies_Set_S canonical_model = true'
+  source: lean4/BuildabilitySetS.lean
+  repository: this_repository
+  source_sha256: d9578faac630fc31ee86e257ee12ffe169c9e321d6f881f5d84a234b00fe54f6
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: s1_necessary
+  line: 34
+  signature_excerpt: "theorem s1_necessary (d : DeviceModel) (h : d.s1_race = false) :\n    satisfies_Set_S\
+    \ d = false"
+  source: lean4/BuildabilitySetS.lean
+  repository: this_repository
+  source_sha256: d9578faac630fc31ee86e257ee12ffe169c9e321d6f881f5d84a234b00fe54f6
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: ds_gap_measurement_projection_cptp_and_continuous_time_generator_countermodels
+  line: 1304
+  signature_excerpt: "theorem ds_gap_measurement_projection_cptp_and_continuous_time_generator_countermodels\n\
+    \    (p0 d0 d1 : Int) :\n    ((p0, (0 : Int), (0 : Int)) ≠ (p0, (0 : Int), (1 : Int))) ∧\n    (((d0,\
+    \ d1) = (d0, d1)) ∧ (2 * (1 : Int) * (-1 : Int) = -2 ∧ -2 < (0 : Int))) ∧\n    ((1 * 1 + 1 * 1 = 2\
+    \ ∧ 1 < 2) ∧ ((-3 : Int) * (-3 : Int) + 4 * 4 = 5 * 5))"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/quantum_mechanics/BuildabilitySetS.lean::useful_qc_iff_set_S
+  availability: local
+  symbol: useful_qc_iff_set_S
+  path: lean4/BuildabilitySetS.lean
+  repository: this_repository
+  sha256: d9578faac630fc31ee86e257ee12ffe169c9e321d6f881f5d84a234b00fe54f6
+  declaration_status: declaration_found_not_proof_checked
+  line: 17
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/BuildabilitySetS.lean::setS_satisfiable
+  availability: local
+  symbol: setS_satisfiable
+  path: lean4/BuildabilitySetS.lean
+  repository: this_repository
+  sha256: d9578faac630fc31ee86e257ee12ffe169c9e321d6f881f5d84a234b00fe54f6
+  declaration_status: declaration_found_not_proof_checked
+  line: 31
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/BuildabilitySetS.lean::s1_necessary
+  availability: local
+  symbol: s1_necessary
+  path: lean4/BuildabilitySetS.lean
+  repository: this_repository
+  sha256: d9578faac630fc31ee86e257ee12ffe169c9e321d6f881f5d84a234b00fe54f6
+  declaration_status: declaration_found_not_proof_checked
+  line: 34
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_gap_measurement_projection_cptp_and_continuous_time_generator_countermodels
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.ds_gap_measurement_projection_cptp_and_continuous_time_generator_countermodels
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 1304
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_ds_qm_dynamics_structure_and_majorana_witness
+  availability: external
+  symbol: verify_ds_qm_dynamics_structure_and_majorana_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 402
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche13_ds_qm_final_16_second_witness_closure_witness
+  availability: external
+  symbol: verify_tranche13_ds_qm_final_16_second_witness_closure_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 1343
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness
+  availability: external
+  symbol: verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 1489
+  role: source_lead_only
+presentation:
+  status: scoped_stage_result_reviewed
+  scope: The declared rate inequality and all four Boolean conjunction controls are exact; the alias and
+    Boolean characterization are kernel checked.
+  colours:
+  - id: DeclaredSBoolean
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: DeclaredUsefulBoolean
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: FourBooleanRequirements
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: SuppliedDeviceParameters
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  generators:
+  - id: evaluate_fields
+    ordered_inputs:
+    - SuppliedDeviceParameters
+    output: FourBooleanRequirements
+    arity: 1
+    carrier: Declared SuppliedDeviceParameters
+    coefficient_ring: Exact Q (Gaussian pairs where stated), integers and literal Boolean fields only
+    hypotheses:
+    - Nonnegative supplied rates; reachability and advantage are input flags, never independently established
+      facts.
+    semantic_predicate: Evaluate lambda-mu-eps<=0, floor>0 and the supplied two flags.
+    source_pins:
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_ds_qm061_buildability_set_s_proved_lean.yaml
+      sha256: e3f0f4afcbc63d49c9c059cb6ce5e270901d6642540cbf9985da74ed47b6d8be
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/inputs/this_repository/dag/operads/ds_qm061_buildability_set_s.yaml
+      sha256: d86f67f9e8b908fc0bab486c2a79a8ce1d10c800edbdb64ceef2e3320e0a0fee
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/inputs/this_repository/lean4/BuildabilitySetS.lean
+      sha256: d9578faac630fc31ee86e257ee12ffe169c9e321d6f881f5d84a234b00fe54f6
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/tfq_0252_interference_as_a_resource_outside_l1_bookkeeping.md
+      sha256: 97f3fbb9777b27f143ba1ce853c88170987c15d90a4a9e59f9a310a89ff96995
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p0/operation_sources/code/python/src/qm/resources_exact.py
+      sha256: 11ef2d70fa824b51335b881564ab0bc87227c1b43f1fea26ebb87c283c81349f
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p0/operation_sources/code/python/tests/test_resources_exact.py
+      sha256: 9e299e3dff3f975f3a770e3a940ad8f6969ab02b72545ac5d583c5738ddc9fe7
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/resources_exact.rs
+      sha256: 74c77661e2030c2b37634dd449b164e696ebb7fb318019291719d56436cac1cc
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/resources_exact_replay.rs
+      sha256: 3a2f999edc029ff914fd12dbe3516510ae3aaa9b9104b46a3f2168d9820092c9
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/resources_checker.py
+      sha256: 0c9fcef66b088ab515dc5b1998a8bdad39f7ef2e230552245fccbb184cbac01c
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/prepare.py
+      sha256: 7a8161d3b86651ba01b76e4bf6d940ca18597301b2bd99e0c75235bb9376fbc7
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/specs.py
+      sha256: 56bea147f8ccf6b6c0e919dba2489878517b5e722a9284ffab51216119d6d4cb
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/check_candidate.py
+      sha256: cf5dba219723f8773fc0d196e0d29c51a6d45ee7073c6db699aa60b01684ef8f
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/format_certificate.py
+      sha256: 2ad38b16a81415ebc63a48371ef904afb79d62d937f564837d160bd2b6a639e5
+    evidence_status: Reviewed exact finite native controls. Kernel signatures are separately scoped. Full
+      refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p2/host_check.json
+  - id: conjoin_requirements
+    ordered_inputs:
+    - FourBooleanRequirements
+    output: DeclaredSBoolean
+    arity: 1
+    carrier: Declared FourBooleanRequirements
+    coefficient_ring: Exact Q (Gaussian pairs where stated), integers and literal Boolean fields only
+    hypotheses:
+    - Nonnegative supplied rates; reachability and advantage are input flags, never independently established
+      facts.
+    semantic_predicate: Conjoin all four fields.
+    source_pins:
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_ds_qm061_buildability_set_s_proved_lean.yaml
+      sha256: e3f0f4afcbc63d49c9c059cb6ce5e270901d6642540cbf9985da74ed47b6d8be
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/inputs/this_repository/dag/operads/ds_qm061_buildability_set_s.yaml
+      sha256: d86f67f9e8b908fc0bab486c2a79a8ce1d10c800edbdb64ceef2e3320e0a0fee
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/inputs/this_repository/lean4/BuildabilitySetS.lean
+      sha256: d9578faac630fc31ee86e257ee12ffe169c9e321d6f881f5d84a234b00fe54f6
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/tfq_0252_interference_as_a_resource_outside_l1_bookkeeping.md
+      sha256: 97f3fbb9777b27f143ba1ce853c88170987c15d90a4a9e59f9a310a89ff96995
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p0/operation_sources/code/python/src/qm/resources_exact.py
+      sha256: 11ef2d70fa824b51335b881564ab0bc87227c1b43f1fea26ebb87c283c81349f
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p0/operation_sources/code/python/tests/test_resources_exact.py
+      sha256: 9e299e3dff3f975f3a770e3a940ad8f6969ab02b72545ac5d583c5738ddc9fe7
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/resources_exact.rs
+      sha256: 74c77661e2030c2b37634dd449b164e696ebb7fb318019291719d56436cac1cc
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/resources_exact_replay.rs
+      sha256: 3a2f999edc029ff914fd12dbe3516510ae3aaa9b9104b46a3f2168d9820092c9
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/resources_checker.py
+      sha256: 0c9fcef66b088ab515dc5b1998a8bdad39f7ef2e230552245fccbb184cbac01c
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/prepare.py
+      sha256: 7a8161d3b86651ba01b76e4bf6d940ca18597301b2bd99e0c75235bb9376fbc7
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/specs.py
+      sha256: 56bea147f8ccf6b6c0e919dba2489878517b5e722a9284ffab51216119d6d4cb
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/check_candidate.py
+      sha256: cf5dba219723f8773fc0d196e0d29c51a6d45ee7073c6db699aa60b01684ef8f
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/format_certificate.py
+      sha256: 2ad38b16a81415ebc63a48371ef904afb79d62d937f564837d160bd2b6a639e5
+    evidence_status: Reviewed exact finite native controls. Kernel signatures are separately scoped. Full
+      refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p2/host_check.json
+  - id: read_declared_criterion
+    ordered_inputs:
+    - DeclaredSBoolean
+    output: DeclaredUsefulBoolean
+    arity: 1
+    carrier: Declared DeclaredSBoolean
+    coefficient_ring: Exact Q (Gaussian pairs where stated), integers and literal Boolean fields only
+    hypotheses:
+    - Nonnegative supplied rates; reachability and advantage are input flags, never independently established
+      facts.
+    semantic_predicate: Return the same Boolean under the source definition.
+    source_pins:
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_ds_qm061_buildability_set_s_proved_lean.yaml
+      sha256: e3f0f4afcbc63d49c9c059cb6ce5e270901d6642540cbf9985da74ed47b6d8be
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/inputs/this_repository/dag/operads/ds_qm061_buildability_set_s.yaml
+      sha256: d86f67f9e8b908fc0bab486c2a79a8ce1d10c800edbdb64ceef2e3320e0a0fee
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/inputs/this_repository/lean4/BuildabilitySetS.lean
+      sha256: d9578faac630fc31ee86e257ee12ffe169c9e321d6f881f5d84a234b00fe54f6
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/tfq_0252_interference_as_a_resource_outside_l1_bookkeeping.md
+      sha256: 97f3fbb9777b27f143ba1ce853c88170987c15d90a4a9e59f9a310a89ff96995
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p0/operation_sources/code/python/src/qm/resources_exact.py
+      sha256: 11ef2d70fa824b51335b881564ab0bc87227c1b43f1fea26ebb87c283c81349f
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p0/operation_sources/code/python/tests/test_resources_exact.py
+      sha256: 9e299e3dff3f975f3a770e3a940ad8f6969ab02b72545ac5d583c5738ddc9fe7
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/resources_exact.rs
+      sha256: 74c77661e2030c2b37634dd449b164e696ebb7fb318019291719d56436cac1cc
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/resources_exact_replay.rs
+      sha256: 3a2f999edc029ff914fd12dbe3516510ae3aaa9b9104b46a3f2168d9820092c9
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/resources_checker.py
+      sha256: 0c9fcef66b088ab515dc5b1998a8bdad39f7ef2e230552245fccbb184cbac01c
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/prepare.py
+      sha256: 7a8161d3b86651ba01b76e4bf6d940ca18597301b2bd99e0c75235bb9376fbc7
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/specs.py
+      sha256: 56bea147f8ccf6b6c0e919dba2489878517b5e722a9284ffab51216119d6d4cb
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/check_candidate.py
+      sha256: cf5dba219723f8773fc0d196e0d29c51a6d45ee7073c6db699aa60b01684ef8f
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/format_certificate.py
+      sha256: 2ad38b16a81415ebc63a48371ef904afb79d62d937f564837d160bd2b6a639e5
+    evidence_status: Reviewed exact finite native controls. Kernel signatures are separately scoped. Full
+      refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p2/host_check.json
+  relations:
+  - id: buildability_relation_0
+    equation_or_predicate: UsefulQC=S is a definition; all four fields are required for that conjunction
+      only.
+    typing_conditions: Literal declared operation domains; Provide measured or derived rate/floor/reachability/advantage
+      evidence and a justified device-to-fields bridge before claiming a buildable useful quantum computer.
+    evidence_status: Accepted actual P2 and P4 controls; only the literal named Lean signatures are kernel
+      theorems. Native array-to-signature and physical transports remain as stated.
+    scope: The declared rate inequality and all four Boolean conjunction controls are exact; the alias
+      and Boolean characterization are kernel checked.
+    source_pins:
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_ds_qm061_buildability_set_s_proved_lean.yaml
+      sha256: e3f0f4afcbc63d49c9c059cb6ce5e270901d6642540cbf9985da74ed47b6d8be
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/inputs/this_repository/dag/operads/ds_qm061_buildability_set_s.yaml
+      sha256: d86f67f9e8b908fc0bab486c2a79a8ce1d10c800edbdb64ceef2e3320e0a0fee
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/inputs/this_repository/lean4/BuildabilitySetS.lean
+      sha256: d9578faac630fc31ee86e257ee12ffe169c9e321d6f881f5d84a234b00fe54f6
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/tfq_0252_interference_as_a_resource_outside_l1_bookkeeping.md
+      sha256: 97f3fbb9777b27f143ba1ce853c88170987c15d90a4a9e59f9a310a89ff96995
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p0/operation_sources/code/python/src/qm/resources_exact.py
+      sha256: 11ef2d70fa824b51335b881564ab0bc87227c1b43f1fea26ebb87c283c81349f
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p0/operation_sources/code/python/tests/test_resources_exact.py
+      sha256: 9e299e3dff3f975f3a770e3a940ad8f6969ab02b72545ac5d583c5738ddc9fe7
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/resources_exact.rs
+      sha256: 74c77661e2030c2b37634dd449b164e696ebb7fb318019291719d56436cac1cc
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/resources_exact_replay.rs
+      sha256: 3a2f999edc029ff914fd12dbe3516510ae3aaa9b9104b46a3f2168d9820092c9
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/resources_checker.py
+      sha256: 0c9fcef66b088ab515dc5b1998a8bdad39f7ef2e230552245fccbb184cbac01c
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/prepare.py
+      sha256: 7a8161d3b86651ba01b76e4bf6d940ca18597301b2bd99e0c75235bb9376fbc7
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/specs.py
+      sha256: 56bea147f8ccf6b6c0e919dba2489878517b5e722a9284ffab51216119d6d4cb
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/check_candidate.py
+      sha256: cf5dba219723f8773fc0d196e0d29c51a6d45ee7073c6db699aa60b01684ef8f
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/format_certificate.py
+      sha256: 2ad38b16a81415ebc63a48371ef904afb79d62d937f564837d160bd2b6a639e5
+    latest_host_check: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p2/host_check.json
+    historical_evidence_annotation: P1 candidate; independent native and named kernel gates remain required.
+    named_Lean_scope:
+    - QuantumMechanics.PromptResources.buildability_alias
+    - QuantumMechanics.PromptResources.buildability_conjunction
+  compositions: &id001
+  - outer_operation: conjoin_requirements
+    input_slot: 0
+    inner_operation: evaluate_fields
+    colour_match: FourBooleanRequirements -> FourBooleanRequirements
+    hypothesis_match: Same declared coordinates, coefficients and context; all operation hypotheses must
+      be carried into the graft. Fixed matrices, signs, gauge unit, original comparison table, row order,
+      sector and pairing (where relevant) must agree across both operations. Formal universal refined-carrier
+      closure is unpaid.
+    licensing_relations:
+    - buildability_relation_0
+    evidence_status: Semantic substitution supported by the retained finite operation traces and separately
+      scoped named kernel statements. A complete refined-carrier operad is not asserted.
+  - outer_operation: read_declared_criterion
+    input_slot: 0
+    inner_operation: conjoin_requirements
+    colour_match: DeclaredSBoolean -> DeclaredSBoolean
+    hypothesis_match: Same declared coordinates, coefficients and context; all operation hypotheses must
+      be carried into the graft. Fixed matrices, signs, gauge unit, original comparison table, row order,
+      sector and pairing (where relevant) must agree across both operations. Formal universal refined-carrier
+      closure is unpaid.
+    licensing_relations:
+    - buildability_relation_0
+    evidence_status: Semantic substitution supported by the retained finite operation traces and separately
+      scoped named kernel statements. A complete refined-carrier operad is not asserted.
+  identities:
+  - colour: DeclaredSBoolean
+    proposed_operation: id_DeclaredSBoolean
+    signature: DeclaredSBoolean -> DeclaredSBoolean
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: DeclaredUsefulBoolean
+    proposed_operation: id_DeclaredUsefulBoolean
+    signature: DeclaredUsefulBoolean -> DeclaredUsefulBoolean
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: FourBooleanRequirements
+    proposed_operation: id_FourBooleanRequirements
+    signature: FourBooleanRequirements -> FourBooleanRequirements
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: SuppliedDeviceParameters
+    proposed_operation: id_SuppliedDeviceParameters
+    signature: SuppliedDeviceParameters -> SuppliedDeviceParameters
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  symmetric_actions: []
+  coherence_obligations: &id002
+  - Provide measured or derived rate/floor/reachability/advantage evidence and a justified device-to-fields
+    bridge before claiming a buildable useful quantum computer.
+  - Prove the full refined-carrier operad identity, substitution, symmetry and coherence laws; mere colour
+    matches do not instantiate that formal structure.
+  - A source provider PASS/hash, route index, census label or Boolean flag is not mathematical evidence
+    for the original target. No historical provider receipt is newly authenticated.
+  failed_compositions:
+  - proposal: Promote the selected step to the unrestricted original target
+    reason: Provide measured or derived rate/floor/reachability/advantage evidence and a justified device-to-fields
+      bridge before claiming a buildable useful quantum computer.
+  counterexamples:
+  - id: retained_actual_domain_controls
+    records:
+    - input:
+      - '10'
+      - '15'
+      - '0'
+      - '1'
+      - '1'
+      - '1'
+      output:
+      - '-5'
+      - '1'
+      - '1'
+      - '1'
+      - '1'
+      - '1'
+    - input:
+      - '20'
+      - '10'
+      - '0'
+      - '1'
+      - '1'
+      - '1'
+      output:
+      - '10'
+      - '0'
+      - '1'
+      - '1'
+      - '1'
+      - '0'
+    - input:
+      - '10'
+      - '15'
+      - '0'
+      - '0'
+      - '1'
+      - '1'
+      output:
+      - '-5'
+      - '1'
+      - '0'
+      - '1'
+      - '1'
+      - '0'
+    - input:
+      - '10'
+      - '15'
+      - '0'
+      - '1'
+      - '0'
+      - '1'
+      output:
+      - '-5'
+      - '1'
+      - '1'
+      - '0'
+      - '1'
+      - '0'
+    - input:
+      - '10'
+      - '15'
+      - '0'
+      - '1'
+      - '1'
+      - '0'
+      output:
+      - '-5'
+      - '1'
+      - '1'
+      - '1'
+      - '0'
+      - '0'
+    - input:
+      - '15'
+      - '15'
+      - '0'
+      - '1'
+      - '1'
+      - '1'
+      output:
+      - '0'
+      - '1'
+      - '1'
+      - '1'
+      - '1'
+      - '1'
+    scope: Computed values, with the source/kernel/native distinctions retained in claim_boundary.
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: FILLED
+    carrier: Literal per-operation finite or admitted scalar carriers
+    coefficient_ring: Exact Z, Q, Gaussian rational pairs and supplied Boolean fields
+    source_pins:
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_ds_qm061_buildability_set_s_proved_lean.yaml
+      sha256: e3f0f4afcbc63d49c9c059cb6ce5e270901d6642540cbf9985da74ed47b6d8be
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/inputs/this_repository/dag/operads/ds_qm061_buildability_set_s.yaml
+      sha256: d86f67f9e8b908fc0bab486c2a79a8ce1d10c800edbdb64ceef2e3320e0a0fee
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/inputs/this_repository/lean4/BuildabilitySetS.lean
+      sha256: d9578faac630fc31ee86e257ee12ffe169c9e321d6f881f5d84a234b00fe54f6
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/tfq_0252_interference_as_a_resource_outside_l1_bookkeeping.md
+      sha256: 97f3fbb9777b27f143ba1ce853c88170987c15d90a4a9e59f9a310a89ff96995
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p0/operation_sources/code/python/src/qm/resources_exact.py
+      sha256: 11ef2d70fa824b51335b881564ab0bc87227c1b43f1fea26ebb87c283c81349f
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p0/operation_sources/code/python/tests/test_resources_exact.py
+      sha256: 9e299e3dff3f975f3a770e3a940ad8f6969ab02b72545ac5d583c5738ddc9fe7
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/resources_exact.rs
+      sha256: 74c77661e2030c2b37634dd449b164e696ebb7fb318019291719d56436cac1cc
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/resources_exact_replay.rs
+      sha256: 3a2f999edc029ff914fd12dbe3516510ae3aaa9b9104b46a3f2168d9820092c9
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/resources_checker.py
+      sha256: 0c9fcef66b088ab515dc5b1998a8bdad39f7ef2e230552245fccbb184cbac01c
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/prepare.py
+      sha256: 7a8161d3b86651ba01b76e4bf6d940ca18597301b2bd99e0c75235bb9376fbc7
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/specs.py
+      sha256: 56bea147f8ccf6b6c0e919dba2489878517b5e722a9284ffab51216119d6d4cb
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/check_candidate.py
+      sha256: cf5dba219723f8773fc0d196e0d29c51a6d45ee7073c6db699aa60b01684ef8f
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/format_certificate.py
+      sha256: 2ad38b16a81415ebc63a48371ef904afb79d62d937f564837d160bd2b6a639e5
+    public_input:
+      kind: buildability
+      cases:
+      - - '10'
+        - '15'
+        - '0'
+        - '1'
+        - '1'
+        - '1'
+      - - '20'
+        - '10'
+        - '0'
+        - '1'
+        - '1'
+        - '1'
+      - - '10'
+        - '15'
+        - '0'
+        - '0'
+        - '1'
+        - '1'
+      - - '10'
+        - '15'
+        - '0'
+        - '1'
+        - '0'
+        - '1'
+      - - '10'
+        - '15'
+        - '0'
+        - '1'
+        - '1'
+        - '0'
+      - - '15'
+        - '15'
+        - '0'
+        - '1'
+        - '1'
+        - '1'
+      scope: The declared rate inequality and all four Boolean conjunction controls are exact; the alias
+        and Boolean characterization are kernel checked.
+      unpaid_target: Provide measured or derived rate/floor/reachability/advantage evidence and a justified
+        device-to-fields bridge before claiming a buildable useful quantum computer.
+    original_target: Inside the declared finite model, UsefulQC iff S (race, floor, reachability, H1 advantage);
+      each S_i independently necessary; S satisfiable. A criterion, not a proof that any device satisfies
+      S; race uses an imported rate.
+    source_scope_review: UsefulQC is defined to be satisfies_Set_S in the source. Its iff is reflexive,
+      and individual necessity is necessity for a Boolean conjunction. Here actual supplied rates, floor
+      and flags are evaluated, including the equality boundary and all four one-field failures. No architecture
+      or device satisfies S by this definition alone.
+    admitted_assumptions:
+    - declared finite device model (assumption)
+    - imported generation rate lambda_gen (assumption)
+  slot_m2_layer1_forward_morphisms:
+    mining_status: FILLED
+    operations:
+    - catalog_id: evaluate_fields
+      inputs:
+      - SuppliedDeviceParameters
+      output: FourBooleanRequirements
+      semantic_predicate: Evaluate lambda-mu-eps<=0, floor>0 and the supplied two flags.
+    - catalog_id: conjoin_requirements
+      inputs:
+      - FourBooleanRequirements
+      output: DeclaredSBoolean
+      semantic_predicate: Conjoin all four fields.
+    - catalog_id: read_declared_criterion
+      inputs:
+      - DeclaredSBoolean
+      output: DeclaredUsefulBoolean
+      semantic_predicate: Return the same Boolean under the source definition.
+    composition_plan: *id001
+    tree:
+    - UsefulQC=S is a definition; all four fields are required for that conjunction only.
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: FILLED
+    algebraic_relations:
+    - id: buildability_relation_0
+      equation_or_predicate: UsefulQC=S is a definition; all four fields are required for that conjunction
+        only.
+      typing_conditions: Literal declared operation domains; Provide measured or derived rate/floor/reachability/advantage
+        evidence and a justified device-to-fields bridge before claiming a buildable useful quantum computer.
+      evidence_status: P1 candidate; independent native and named kernel gates remain required.
+      scope: The declared rate inequality and all four Boolean conjunction controls are exact; the alias
+        and Boolean characterization are kernel checked.
+      source_pins:
+      - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_ds_qm061_buildability_set_s_proved_lean.yaml
+        sha256: e3f0f4afcbc63d49c9c059cb6ce5e270901d6642540cbf9985da74ed47b6d8be
+      - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/inputs/this_repository/dag/operads/ds_qm061_buildability_set_s.yaml
+        sha256: d86f67f9e8b908fc0bab486c2a79a8ce1d10c800edbdb64ceef2e3320e0a0fee
+      - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/inputs/this_repository/lean4/BuildabilitySetS.lean
+        sha256: d9578faac630fc31ee86e257ee12ffe169c9e321d6f881f5d84a234b00fe54f6
+      - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+        sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+      - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/tfq_0252_interference_as_a_resource_outside_l1_bookkeeping.md
+        sha256: 97f3fbb9777b27f143ba1ce853c88170987c15d90a4a9e59f9a310a89ff96995
+      - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p0/operation_sources/code/python/src/qm/resources_exact.py
+        sha256: 11ef2d70fa824b51335b881564ab0bc87227c1b43f1fea26ebb87c283c81349f
+      - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p0/operation_sources/code/python/tests/test_resources_exact.py
+        sha256: 9e299e3dff3f975f3a770e3a940ad8f6969ab02b72545ac5d583c5738ddc9fe7
+      - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/resources_exact.rs
+        sha256: 74c77661e2030c2b37634dd449b164e696ebb7fb318019291719d56436cac1cc
+      - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/resources_exact_replay.rs
+        sha256: 3a2f999edc029ff914fd12dbe3516510ae3aaa9b9104b46a3f2168d9820092c9
+      - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/resources_checker.py
+        sha256: 0c9fcef66b088ab515dc5b1998a8bdad39f7ef2e230552245fccbb184cbac01c
+      - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+        sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+      - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/prepare.py
+        sha256: 7a8161d3b86651ba01b76e4bf6d940ca18597301b2bd99e0c75235bb9376fbc7
+      - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/specs.py
+        sha256: 56bea147f8ccf6b6c0e919dba2489878517b5e722a9284ffab51216119d6d4cb
+      - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/custody.py
+        sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+      - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+        sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+      - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/check_candidate.py
+        sha256: cf5dba219723f8773fc0d196e0d29c51a6d45ee7073c6db699aa60b01684ef8f
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/format_certificate.py
+        sha256: 2ad38b16a81415ebc63a48371ef904afb79d62d937f564837d160bd2b6a639e5
+    rejection_predicates:
+    - Independent domain equations and actual matrix/graph/quotient arrays recompute every output.
+    - Exact public input, canonical rational primitive types, complete source pins and exact sealed request
+      bytes.
+    - Full native cross-language output equality and actual named Lean axiom reports; no label-based target
+      promotion.
+    negative_control_plan: Alter every output coordinate, input identity, primitive types, source set
+      and sealed request.
+  slot_m4_tri_language_witness_anchors:
+    mining_status: FILLED
+    certificate_predicates:
+    - Independent domain equations and actual matrix/graph/quotient arrays recompute every output.
+    - Exact public input, canonical rational primitive types, complete source pins and exact sealed request
+      bytes.
+    - Full native cross-language output equality and actual named Lean axiom reports; no label-based target
+      promotion.
+    anchors:
+    - code/python/src/qm/resources_exact.py
+    - code/python/tests/test_resources_exact.py
+    - code/rust/src/finite_probability/resources_exact.rs
+    - code/rust/src/finite_probability/examples/resources_exact_replay.rs
+    - dag/pfp/resources_checker.py
+    - dag/pfp/exact_json.py
+    - dag/pfp/review_exact_json.py
+    - lean4/BuildabilitySetS.lean
+    - lean4/PromptResources.lean
+    - dag/results/batches/20261019T184100Z_prompts_52_71/tools/prepare.py
+    - dag/results/batches/20261019T184100Z_prompts_52_71/tools/specs.py
+    - dag/pfp/custody.py
+    - dag/pfp/filename_custody.json
+    - QuantumMechanics.PromptResources.buildability_alias
+    - QuantumMechanics.PromptResources.buildability_conjunction
+    unpaid_imports:
+    - Provide measured or derived rate/floor/reachability/advantage evidence and a justified device-to-fields
+      bridge before claiming a buildable useful quantum computer.
+    - Prove the full refined-carrier operad identity, substitution, symmetry and coherence laws; mere
+      colour matches do not instantiate that formal structure.
+    anchor_status: New Lean anchors are candidate declarations until the retained P2 compiler runs; compiled
+      source leads retain their literal scope.
+stage_history:
+- stage: P0_MINE_OPERAD
+  attempt: p0
+  run: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged
+  operad_delta: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p0/operad_delta.yaml
+  host_check: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p0/host_check.json
+- stage: P1_DERIVE
+  attempt: p1
+  run: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged
+  operad_delta: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p1/operad_delta.yaml
+  host_check: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p1/host_check.json
+- stage: P2_VERIFY
+  attempt: p2
+  run: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged
+  operad_delta: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p2/operad_delta.yaml
+  host_check: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p2/host_check.json
+- stage: P4_CHALLENGE
+  attempt: p4
+  run: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged
+  operad_delta: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p4/operad_delta.yaml
+  host_check: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p4/host_check.json
+- stage: P5_RECORD
+  attempt: p5
+  run: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged
+  operad_delta: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p5/operad_delta.yaml
+  host_check: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p5/host_check.json
+open_obligations: *id002
+excluded_relation_leads: []
+operad_slots_scope:
+  work_unit: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged/p0/reviewed_missions.json
+  scope: FILLED means reviewed prerequisites for this selected step; original target and unpaid imports
+    retained.
+  review_refinement: dag/results/DS-QM061-BUILDABILITY-SET-S/reviews/20261019_resources_audit/scope_review.json
+latest_run:
+  path: dag/results/DS-QM061-BUILDABILITY-SET-S/runs/20261019T184100Z_staged
+  stage: P5_RECORD
+  status: scoped_result_or_obstruction_reviewed
+scope_notes:
+- UsefulQC is defined to be satisfies_Set_S in the source. Its iff is reflexive, and individual necessity
+  is necessity for a Boolean conjunction. Here actual supplied rates, floor and flags are evaluated, including
+  the equality boundary and all four one-field failures. No architecture or device satisfies S by this
+  definition alone.
+latest_review:
+  path: dag/results/DS-QM061-BUILDABILITY-SET-S/reviews/20261019_resources_audit
+  status: reviewed_with_targeted_native_integration
+  operad_delta: dag/results/DS-QM061-BUILDABILITY-SET-S/reviews/20261019_resources_audit/operad_delta.yaml

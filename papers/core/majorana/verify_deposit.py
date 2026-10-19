@@ -4,7 +4,7 @@ Zenodo Pre-Print Deposit Verification Gate for Paper PO-026 (The Majorana Proble
 
 Verifies:
 1. All required package files exist.
-2. SHA256 cryptographic checksums match SHA256SUMS manifest.
+2. SHA256 cryptographic checksums match sha256sums manifest.
 3. .zenodo.json metadata is checked for required fields.
 4. claim_ledger.yaml is parsed and checked for matching claim IDs in claim_ledger.md.
 5. Manuscript conforms to Claim Hygiene rules (AuthorityEffect: None, no unhedged claims).
@@ -28,7 +28,7 @@ import argparse
 REQUIRED_FILES = [
     '.zenodo.json',
     'README.md',
-    'SHA256SUMS',
+    'sha256sums',
     'claim_ledger.yaml',
     'code/majorana_evaluator.py',
     'code/tests/conftest.py',
@@ -36,10 +36,10 @@ REQUIRED_FILES = [
     'code/tests/integration/test_tetron_surface_codes.py',
     'code/tests/unit/test_gf2_trichotomy.py',
     'code/tests/unit/test_open_system_transfer_bounds.py',
-    'lean4/AXIOM_REPORT.txt',
+    'lean4/axiom_report.txt',
     'lean4/MajoranaCore.lean',
     'lean4/MajoranaGinCore.lean',
-    'lean4/PROVENANCE.md',
+    'lean4/provenance.md',
     'lean4/README.md',
     'lean4/lake-manifest.json',
     'lean4/lakefile.lean',
@@ -60,10 +60,10 @@ def sha256_file(filepath: str) -> str:
 
 
 def update_sha256sums(paper_dir: str):
-    sums_file = os.path.join(paper_dir, "SHA256SUMS")
+    sums_file = os.path.join(paper_dir, "sha256sums")
     lines = []
     for rel_path in sorted(REQUIRED_FILES):
-        if rel_path == "SHA256SUMS":
+        if rel_path == "sha256sums":
             continue
         full_path = os.path.join(paper_dir, rel_path)
         if os.path.exists(full_path):
@@ -71,7 +71,7 @@ def update_sha256sums(paper_dir: str):
             lines.append(f"{digest}  {rel_path}\n")
     with open(sums_file, "w", encoding="utf-8") as f:
         f.writelines(lines)
-    print(f"Updated SHA256SUMS with {len(lines)} files.")
+    print(f"Updated sha256sums with {len(lines)} files.")
 
 
 def check_required_files(paper_dir: str) -> bool:
@@ -93,10 +93,10 @@ def check_required_files(paper_dir: str) -> bool:
 def check_sha256sums(paper_dir) -> bool:
     """Check the entire declared inventory, rejecting empty or malformed manifests."""
     base = Path(paper_dir).resolve()
-    expected = set(REQUIRED_FILES) - {"SHA256SUMS"}
+    expected = set(REQUIRED_FILES) - {"sha256sums"}
     seen = set()
     try:
-        lines = (base / "SHA256SUMS").read_text(encoding="utf-8").splitlines()
+        lines = (base / "sha256sums").read_text(encoding="utf-8").splitlines()
         for line in lines:
             if not line.strip() or line.startswith("#"):
                 continue
@@ -235,7 +235,7 @@ check_lean_build = run_lake
 def main() -> int:
     paper_dir = Path(__file__).resolve().parent
     parser = argparse.ArgumentParser(description="Verify PO-026 deposit")
-    parser.add_argument("--update-sums", action="store_true", help="Update SHA256SUMS manifest")
+    parser.add_argument("--update-sums", action="store_true", help="Update sha256sums manifest")
     args = parser.parse_args()
 
     if args.update_sums:

@@ -1,3 +1,11 @@
+> **Current audited separator evidence:** [Separator claim and operad audit](reviews/20261018_separator_audit/README.md). Use its `verify_review.py --working-sources` for the current checkout. The sealed run remains historical; full formal rational Fine converse remains open.
+
+> **Latest separator stage:** [20261018 separator extension](runs/20261018T233710Z_separator_extension/README.md). Use that run's replay for current source checks. Earlier audit/source pins remain historical. Stopped for review; full formal rational Fine converse remains open.
+
+> **Audited verification:** [Bell claim and checker review](reviews/20261018_claim_audit/README.md). Use the hardened review checker; historical run bytes are preserved.
+
+> **Latest staged run:** [20261018 expectation/operad run](runs/20261018T225117Z_operad_expectation/README.md). P0/P1/P2/P4/P5 completed; stopped for review. Fine converse remains open.
+
 > **Historical pilot; contract superseded.** The old 18-field response and C4 arithmetic are not the staged execution contract. See `pilot_status.yaml` and `../../pfp/README.md`. The native Bell implication remains a scoped reusable result; no Fine-theorem equivalence or completed formal operad is claimed.
 
 # FQ-BELL-CLASSICAL-JOINT-EXTENSION
@@ -96,7 +104,7 @@ scalars as a gauge ideal for CHSH. Their arithmetic is reproduced in
   `QuantumMechanics.BellClassicalJointExtension.normalized_four_correlation_bound` and
   `no_joint_law_above_two`.
 - Existing proof reused: `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_bell_classical_joint_extension_convex_bound`.
-- Existing paper: `dag/derivations/12_finite_qm_structure/TFQ-0259_finite_chsh_ceiling_on_one_global_joint_table.md`.
+- Existing paper: `dag/derivations/12_finite_qm_structure/tfq_0259_finite_chsh_ceiling_on_one_global_joint_table.md`.
 
 The legacy anchor strings are retained verbatim in the requested JSON. Their
 current local paths are `lean4/DerivationDagQMClosure.lean` and

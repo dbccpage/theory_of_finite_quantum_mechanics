@@ -13,8 +13,8 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "code"))
 from deposit_paths import walk_files
 
-MANIFEST_NAME = "MANIFEST.sha256"
-SUMS_NAME = "SHA256SUMS"
+MANIFEST_NAME = "manifest.sha256"
+SUMS_NAME = "sha256sums"
 
 EXCLUDED_DIRS = {
     ".git", ".venv", "venv", "__pycache__", ".pytest_cache",
@@ -60,7 +60,7 @@ def render(root: Path) -> str:
 
 
 def render_sums(root: Path, manifest: Path) -> str:
-    """SHA256SUMS = every deposit file, plus MANIFEST.sha256 itself."""
+    """sha256sums = every deposit file, plus manifest.sha256 itself."""
     lines = [f"{sha256_of(p)}  {p.relative_to(root).as_posix()}" for p in iter_files(root)]
     lines.append(f"{sha256_of(manifest)}  {MANIFEST_NAME}")
     lines.sort(key=lambda s: s.partition("  ")[2])

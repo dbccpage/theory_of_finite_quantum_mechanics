@@ -326,7 +326,7 @@ No claim is promoted.
 - The renderer now retains three-pass build diagnostics and a table of
   contents, refuses missing glyphs and wraps inline identifiers. Paper-only
   file-catalog refresh preserves the historical math-owner inventory and
-  excludes SHA256SUMS to prevent circular checksum dependencies.
+  excludes sha256sums to prevent circular checksum dependencies.
 
 2026-10-12 -- Republication readiness repairs
 --------------------------------------------
@@ -1604,7 +1604,7 @@ now sit flat at `lean4/genx/`, PascalCase, no subdirectories:
 rewritten to root exactly those, and it builds (6 jobs, exit 0).
 
 **Subdirectories that survive hold no Lean.** They keep build receipts,
-`.build.txt` logs, and `_work_review_queue/AXIOM_REPORT.txt` — the receipt QM_122
+`.build.txt` logs, and `_work_review_queue/axiom_report.txt` — the receipt QM_122
 cites, kept because `GAP-FQM-020` turns on it. Deleting evidence to tidy a folder
 would be the wrong trade.
 
@@ -1686,7 +1686,7 @@ no external packages, with a full `#print axioms` sweep. All four succeed with
 | QM_122 | 52 | clean, **1 policy violation** |
 
 **Replaying found what the receipt could not.** QM_122's
-`evidence/AXIOM_REPORT.txt` is dated 2026-08-20 and names **22 of the 52** Lean
+`evidence/axiom_report.txt` is dated 2026-08-20 and names **22 of the 52** Lean
 files now present — H019 through H027 postdate it entirely. And of the 11
 declarations using `Classical.choice`, ten are its disclosed exception (`ratPack`
 plus 9 per-law `Rat` lemmas) while the eleventh, `H019.basisGen8_eval_pos`, is
@@ -1875,7 +1875,7 @@ from 21 to **67**. Still copied, never moved; no source was modified or deleted.
 
 `122_finite_hilbert_boundary_from_primitive_difference` is not scaffolding. It
 carries its **own** `lean4/` — 8,664 lines across 42 files, **430 declarations,
-zero `sorry`, zero `True` stubs** — under `evidence/AXIOM_REPORT.txt`, which names
+zero `sorry`, zero `True` stubs** — under `evidence/axiom_report.txt`, which names
 the build commands (`lake build FableHilbertWalk20260819`), the toolchain
 (`v4.32.2`), a source-manifest hash, and an axiom policy of
 `{propext, Quot.sound}` with disclosed rational-pack exceptions. Its 48 Python
@@ -1893,7 +1893,7 @@ silently skipped** by the previous two passes.
 
 ### The audit nobody propagated
 
-QM_122 also carries `evidence/PAPER_CLAIM_MAP.md`: a 2026-08-19 audit of
+QM_122 also carries `evidence/paper_claim_map.md`: a 2026-08-19 audit of
 seventeen papers, 37 agents, every row adversarially verified by an independent
 agent, with a restricted status vocabulary, an explicit `exists / stub` column,
 and a `repair required` column. New module `code/audit_map.py` ingests it.
@@ -2139,7 +2139,7 @@ Correct the 4x4 PSD test, reject inexact polynomial division and invalid inputs,
 construct the exact Tiles certificate, and remove uncomputed Rust triad counts.
 Rebuild the Lean application and disclose its freshly emitted axiom inventory.
 The precise repairs, bounded verification, and open clauses are recorded in
-`evidence/PR205_REVIEW.md`. No mathematical open clause is closed by this merge.
+`evidence/pr205_review.md`. No mathematical open clause is closed by this merge.
 
 ## 2026-09-29 — One exact implementation per concept
 

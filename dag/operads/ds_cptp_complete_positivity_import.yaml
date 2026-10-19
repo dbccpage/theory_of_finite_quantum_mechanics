@@ -1,0 +1,899 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: DS-CPTP-COMPLETE-POSITIVITY-IMPORT
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: Complete positivity (K tensor I >= 0), Kraus/Choi/Stinespring forms and coherence
+    transport above the classical kernel are imported; a positive map that is not completely positive
+    shares the identity kernel (Rust test). Stinespring requires an extension (H063 header).
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions:
+  - tensor product with identity (assumption)
+  - complete positivity (assumption)
+  - environment extension (assumption)
+  source_bottleneck: 'Open upgrade row: when off-diagonal transport is admissible.'
+  source_refs:
+  - omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/082_channels_as_stochastic_kernels_and_the_cptp_lift/qm_082_channels_as_stochastic_kernels_and_the_cptp_lift_claim_ledger.md#QM-082-C6
+  - omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/083_completely_positive_import_boundary/qm_083_completely_positive_import_boundary_claim_ledger.md#QM_083-C3
+  - omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/082_channels_as_stochastic_kernels_and_the_cptp_lift/qm_082_channels_as_stochastic_kernels_and_the_cptp_lift_claim_ledger.md#QM-082-C8
+  paper_refs:
+  - dag/derivations/12_finite_qm_structure/tfq_0266_no_derivation_from_stochastic_kernels_to_complete_positivity.md
+  - dag/derivations/12_finite_qm_structure/tfq_0267_completely_positive_import_annex.md
+  source_claim_label: IMPORTED_ASSUMPTION
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  historical_paper_refs:
+  - papers/derivations/12_finite_qm_structure/tfq_0266_no_derivation_from_stochastic_kernels_to_complete_positivity.md
+  - papers/derivations/12_finite_qm_structure/tfq_0267_completely_positive_import_annex.md
+  paper_relocations:
+  - from: papers/derivations/12_finite_qm_structure/tfq_0266_no_derivation_from_stochastic_kernels_to_complete_positivity.md
+    to: dag/derivations/12_finite_qm_structure/tfq_0266_no_derivation_from_stochastic_kernels_to_complete_positivity.md
+  - from: papers/derivations/12_finite_qm_structure/tfq_0267_completely_positive_import_annex.md
+    to: dag/derivations/12_finite_qm_structure/tfq_0267_completely_positive_import_annex.md
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/12_finite_qm_structure/tfq_0266_no_derivation_from_stochastic_kernels_to_complete_positivity.md
+    sha256: 4579fae4c2f4f5e0146cb51366aca8adc4b187380a3bf15d4f5df5fbfcd74e1e
+  - path: dag/derivations/12_finite_qm_structure/tfq_0267_completely_positive_import_annex.md
+    sha256: 1458ff4e68a88cbb73b72b57cecb110c9a5799a74e1cbde550b945b9c91a6348
+source_provenance:
+  repository: this_repository
+  commit: 642f5b95a116da6df805adbd745a4826c6739c2b
+  path: dag/prompts/finite_qm_structure_ds_cptp_complete_positivity_import_imported_assumption.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates: []
+relation_candidates:
+- kind: theorem
+  name: stinespring_requires_extension_verified
+  line: 68
+  signature_excerpt: "theorem stinespring_requires_extension_verified :\n    depol_1_3.requires_extension\
+    \ = true ∧ depol_1_7.requires_extension = true"
+  source: lean4/H063CptpChannelsStinespring.lean
+  repository: this_repository
+  source_sha256: b10a105b3d5810e558e75b3f8504b61433032d6aaff821da3b832baf06e890a7
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: ds_gap_measurement_projection_cptp_and_continuous_time_generator_countermodels
+  line: 1304
+  signature_excerpt: "theorem ds_gap_measurement_projection_cptp_and_continuous_time_generator_countermodels\n\
+    \    (p0 d0 d1 : Int) :\n    ((p0, (0 : Int), (0 : Int)) ≠ (p0, (0 : Int), (1 : Int))) ∧\n    (((d0,\
+    \ d1) = (d0, d1)) ∧ (2 * (1 : Int) * (-1 : Int) = -2 ∧ -2 < (0 : Int))) ∧\n    ((1 * 1 + 1 * 1 = 2\
+    \ ∧ 1 < 2) ∧ ((-3 : Int) * (-3 : Int) + 4 * 4 = 5 * 5))"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/quantum_mechanics/H063CptpChannelsStinespring.lean::stinespring_requires_extension_verified
+  availability: local
+  symbol: stinespring_requires_extension_verified
+  path: lean4/H063CptpChannelsStinespring.lean
+  repository: this_repository
+  sha256: b10a105b3d5810e558e75b3f8504b61433032d6aaff821da3b832baf06e890a7
+  declaration_status: declaration_found_not_proof_checked
+  line: 68
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_and_fq_cptp_partial_transpose_born_lp_and_f64_diagnostic_firewall
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.ds_and_fq_cptp_partial_transpose_born_lp_and_f64_diagnostic_firewall
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 1147
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_gap_measurement_projection_cptp_and_continuous_time_generator_countermodels
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.ds_gap_measurement_projection_cptp_and_continuous_time_generator_countermodels
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 1304
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche5_full_dag_177_node_coverage_witness
+  availability: external
+  symbol: verify_tranche5_full_dag_177_node_coverage_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 768
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche11_admitted_primitives_definitions_and_imported_assumptions_witness
+  availability: external
+  symbol: verify_tranche11_admitted_primitives_definitions_and_imported_assumptions_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 1207
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness
+  availability: external
+  symbol: verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 1489
+  role: source_lead_only
+presentation:
+  status: scoped_stage_result_reviewed
+  scope: A genuine Bell-input partial-transpose negative witness is computed entrywise and its positive-input
+    and negative-output scalar forms are kernel checked.
+  colours:
+  - id: NonnegativeRationalScale
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: RationalNonnegativeRankAtMostOneMatrix4
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: RationalScalar
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: RationalSymmetricMatrix4
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  generators:
+  - id: bell_density
+    ordered_inputs:
+    - NonnegativeRationalScale
+    output: RationalNonnegativeRankAtMostOneMatrix4
+    arity: 1
+    carrier: Declared NonnegativeRationalScale
+    coefficient_ring: Exact Q, Q(i), or Q(sqrt5) as declared; real embedding only in the named Lean conditional
+    hypotheses:
+    - Declared ordered 2×2 tensor carrier, t≥0; negativity requires t>0.
+    semantic_predicate: Build t/2 times (1,0,0,1)(1,0,0,1)^T.
+    source_pins:
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_STRUCTURE__DS-CPTP-COMPLETE-POSITIVITY-IMPORT__IMPORTED_ASSUMPTION.yaml
+      sha256: ce7be1decdbcb870afa2ff713758d5e86895521835c1f27e925416e6c6338634
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/inputs/this_repository/dag/operads/DS-CPTP-COMPLETE-POSITIVITY-IMPORT.yaml
+      sha256: 637921bd755e5fe9e5259d5d60d6bae1685176c93077edac4ac54d5302254994
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/inputs/this_repository/lean4/H063CptpChannelsStinespring.lean
+      sha256: b10a105b3d5810e558e75b3f8504b61433032d6aaff821da3b832baf06e890a7
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/TFQ-0266_no_derivation_from_stochastic_kernels_to_complete_positivity.md
+      sha256: 4579fae4c2f4f5e0146cb51366aca8adc4b187380a3bf15d4f5df5fbfcd74e1e
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/TFQ-0267_completely-positive_import_annex.md
+      sha256: 1458ff4e68a88cbb73b72b57cecb110c9a5799a74e1cbde550b945b9c91a6348
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/dynamics_exact.py
+      sha256: 972d81f099b957e0ab23329750bb35d0aaac05cc439abd8b418dde6e4841143f
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/code/python/tests/test_dynamics_exact.py
+      sha256: a1d63f1d0bcbfed2c4e62e2b99b87ee0b92a3c864b92cb311583175d9e8c241b
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/dynamics_exact.rs
+      sha256: 309d04e2a142468c66c2294ae926cf736de7420d265e0645aa78f81e06289232
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/dynamics_exact_replay.rs
+      sha256: ae9f6b1d81b9477f0ccf844d243f58f4e58e1245814780c5381d5cef1d9d16f6
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/dynamics_checker.py
+      sha256: 40f56c58f205899bb19b42204c55f0290befa655349aad80228f0250fe8242c9
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/prepare.py
+      sha256: 0705bc29d8320b12190e2a54ef38909796b2033703ce098894a492e45996d6ce
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/structure_exact.py
+      sha256: 0a35a5782b47e06167fc768320ee7fbf90c99fbdf336cbfaf2d2e1b93f9ca89d
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/structure_exact.rs
+      sha256: 9c714e91517144cf0fa614c8195bcf2f56fc32c0b4959750a4515f75fd5b6d28
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/structure_checker.py
+      sha256: 554c0811b794c03ce8badba12075ccb8b12165f6837acff805af0ceba3b3fea7
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/specs.py
+      sha256: 5587e78cec43d2c37dd52fd6fdbfede93420211b879a5be97997fb4b9403f6cc
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/check_candidate.py
+      sha256: 891a71ced1059e5d507649912e81f66f1806711c0cc569cfb3ce73352cacdef8
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/format_certificate.py
+      sha256: a2b62457feb35696a6ae274ff0bde953fd0a06119f1d6cc658461f0c7b585e50
+    evidence_status: Reviewed exact finite native records; literal named kernel statements supply only
+      their own universal scopes. Full refined-carrier operad/coherence remains open.
+    latest_host_check: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p2/host_check.json
+  - id: second_partial_transpose
+    ordered_inputs:
+    - RationalNonnegativeRankAtMostOneMatrix4
+    output: RationalSymmetricMatrix4
+    arity: 1
+    carrier: Declared RationalNonnegativeRankAtMostOneMatrix4
+    coefficient_ring: Exact Q, Q(i), or Q(sqrt5) as declared; real embedding only in the named Lean conditional
+    hypotheses:
+    - Declared ordered 2×2 tensor carrier, t≥0; negativity requires t>0.
+    semantic_predicate: Transpose the second binary tensor index only.
+    source_pins:
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_STRUCTURE__DS-CPTP-COMPLETE-POSITIVITY-IMPORT__IMPORTED_ASSUMPTION.yaml
+      sha256: ce7be1decdbcb870afa2ff713758d5e86895521835c1f27e925416e6c6338634
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/inputs/this_repository/dag/operads/DS-CPTP-COMPLETE-POSITIVITY-IMPORT.yaml
+      sha256: 637921bd755e5fe9e5259d5d60d6bae1685176c93077edac4ac54d5302254994
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/inputs/this_repository/lean4/H063CptpChannelsStinespring.lean
+      sha256: b10a105b3d5810e558e75b3f8504b61433032d6aaff821da3b832baf06e890a7
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/TFQ-0266_no_derivation_from_stochastic_kernels_to_complete_positivity.md
+      sha256: 4579fae4c2f4f5e0146cb51366aca8adc4b187380a3bf15d4f5df5fbfcd74e1e
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/TFQ-0267_completely-positive_import_annex.md
+      sha256: 1458ff4e68a88cbb73b72b57cecb110c9a5799a74e1cbde550b945b9c91a6348
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/dynamics_exact.py
+      sha256: 972d81f099b957e0ab23329750bb35d0aaac05cc439abd8b418dde6e4841143f
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/code/python/tests/test_dynamics_exact.py
+      sha256: a1d63f1d0bcbfed2c4e62e2b99b87ee0b92a3c864b92cb311583175d9e8c241b
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/dynamics_exact.rs
+      sha256: 309d04e2a142468c66c2294ae926cf736de7420d265e0645aa78f81e06289232
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/dynamics_exact_replay.rs
+      sha256: ae9f6b1d81b9477f0ccf844d243f58f4e58e1245814780c5381d5cef1d9d16f6
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/dynamics_checker.py
+      sha256: 40f56c58f205899bb19b42204c55f0290befa655349aad80228f0250fe8242c9
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/prepare.py
+      sha256: 0705bc29d8320b12190e2a54ef38909796b2033703ce098894a492e45996d6ce
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/structure_exact.py
+      sha256: 0a35a5782b47e06167fc768320ee7fbf90c99fbdf336cbfaf2d2e1b93f9ca89d
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/structure_exact.rs
+      sha256: 9c714e91517144cf0fa614c8195bcf2f56fc32c0b4959750a4515f75fd5b6d28
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/structure_checker.py
+      sha256: 554c0811b794c03ce8badba12075ccb8b12165f6837acff805af0ceba3b3fea7
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/specs.py
+      sha256: 5587e78cec43d2c37dd52fd6fdbfede93420211b879a5be97997fb4b9403f6cc
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/check_candidate.py
+      sha256: 891a71ced1059e5d507649912e81f66f1806711c0cc569cfb3ce73352cacdef8
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/format_certificate.py
+      sha256: a2b62457feb35696a6ae274ff0bde953fd0a06119f1d6cc658461f0c7b585e50
+    evidence_status: Reviewed exact finite native records; literal named kernel statements supply only
+      their own universal scopes. Full refined-carrier operad/coherence remains open.
+    latest_host_check: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p2/host_check.json
+  - id: negative_vector_pairing
+    ordered_inputs:
+    - RationalSymmetricMatrix4
+    output: RationalScalar
+    arity: 1
+    carrier: Declared RationalSymmetricMatrix4
+    coefficient_ring: Exact Q, Q(i), or Q(sqrt5) as declared; real embedding only in the named Lean conditional
+    hypotheses:
+    - Declared ordered 2×2 tensor carrier, t≥0; negativity requires t>0.
+    semantic_predicate: Evaluate on the fixed vector (0,1,-1,0).
+    source_pins:
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_STRUCTURE__DS-CPTP-COMPLETE-POSITIVITY-IMPORT__IMPORTED_ASSUMPTION.yaml
+      sha256: ce7be1decdbcb870afa2ff713758d5e86895521835c1f27e925416e6c6338634
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/inputs/this_repository/dag/operads/DS-CPTP-COMPLETE-POSITIVITY-IMPORT.yaml
+      sha256: 637921bd755e5fe9e5259d5d60d6bae1685176c93077edac4ac54d5302254994
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/inputs/this_repository/lean4/H063CptpChannelsStinespring.lean
+      sha256: b10a105b3d5810e558e75b3f8504b61433032d6aaff821da3b832baf06e890a7
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/TFQ-0266_no_derivation_from_stochastic_kernels_to_complete_positivity.md
+      sha256: 4579fae4c2f4f5e0146cb51366aca8adc4b187380a3bf15d4f5df5fbfcd74e1e
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/TFQ-0267_completely-positive_import_annex.md
+      sha256: 1458ff4e68a88cbb73b72b57cecb110c9a5799a74e1cbde550b945b9c91a6348
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/dynamics_exact.py
+      sha256: 972d81f099b957e0ab23329750bb35d0aaac05cc439abd8b418dde6e4841143f
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/code/python/tests/test_dynamics_exact.py
+      sha256: a1d63f1d0bcbfed2c4e62e2b99b87ee0b92a3c864b92cb311583175d9e8c241b
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/dynamics_exact.rs
+      sha256: 309d04e2a142468c66c2294ae926cf736de7420d265e0645aa78f81e06289232
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/dynamics_exact_replay.rs
+      sha256: ae9f6b1d81b9477f0ccf844d243f58f4e58e1245814780c5381d5cef1d9d16f6
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/dynamics_checker.py
+      sha256: 40f56c58f205899bb19b42204c55f0290befa655349aad80228f0250fe8242c9
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/prepare.py
+      sha256: 0705bc29d8320b12190e2a54ef38909796b2033703ce098894a492e45996d6ce
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/structure_exact.py
+      sha256: 0a35a5782b47e06167fc768320ee7fbf90c99fbdf336cbfaf2d2e1b93f9ca89d
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/structure_exact.rs
+      sha256: 9c714e91517144cf0fa614c8195bcf2f56fc32c0b4959750a4515f75fd5b6d28
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/structure_checker.py
+      sha256: 554c0811b794c03ce8badba12075ccb8b12165f6837acff805af0ceba3b3fea7
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/specs.py
+      sha256: 5587e78cec43d2c37dd52fd6fdbfede93420211b879a5be97997fb4b9403f6cc
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/check_candidate.py
+      sha256: 891a71ced1059e5d507649912e81f66f1806711c0cc569cfb3ce73352cacdef8
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/format_certificate.py
+      sha256: a2b62457feb35696a6ae274ff0bde953fd0a06119f1d6cc658461f0c7b585e50
+    evidence_status: Reviewed exact finite native records; literal named kernel statements supply only
+      their own universal scopes. Full refined-carrier operad/coherence remains open.
+    latest_host_check: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p2/host_check.json
+  relations:
+  - id: cptp_relation_0
+    equation_or_predicate: Input quadratic form is t/2*(x+w)²≥0; output fixed-vector form is -t.
+    typing_conditions: Literal declared operation domains; Prove full transpose positivity, the native
+      tensor-index transport and a full CP/Stinespring theorem. This counterexample does not derive the
+      physical tensor product or channel law.
+    evidence_status: Accepted P2 plus executed P4; consult literal named Lean signatures and retained
+      matrix/coordinate transport obligations rather than treating the whole relation prose as a theorem.
+    scope: A genuine Bell-input partial-transpose negative witness is computed entrywise and its positive-input
+      and negative-output scalar forms are kernel checked.
+    source_pins:
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_STRUCTURE__DS-CPTP-COMPLETE-POSITIVITY-IMPORT__IMPORTED_ASSUMPTION.yaml
+      sha256: ce7be1decdbcb870afa2ff713758d5e86895521835c1f27e925416e6c6338634
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/inputs/this_repository/dag/operads/DS-CPTP-COMPLETE-POSITIVITY-IMPORT.yaml
+      sha256: 637921bd755e5fe9e5259d5d60d6bae1685176c93077edac4ac54d5302254994
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/inputs/this_repository/lean4/H063CptpChannelsStinespring.lean
+      sha256: b10a105b3d5810e558e75b3f8504b61433032d6aaff821da3b832baf06e890a7
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/TFQ-0266_no_derivation_from_stochastic_kernels_to_complete_positivity.md
+      sha256: 4579fae4c2f4f5e0146cb51366aca8adc4b187380a3bf15d4f5df5fbfcd74e1e
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/TFQ-0267_completely-positive_import_annex.md
+      sha256: 1458ff4e68a88cbb73b72b57cecb110c9a5799a74e1cbde550b945b9c91a6348
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/dynamics_exact.py
+      sha256: 972d81f099b957e0ab23329750bb35d0aaac05cc439abd8b418dde6e4841143f
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/code/python/tests/test_dynamics_exact.py
+      sha256: a1d63f1d0bcbfed2c4e62e2b99b87ee0b92a3c864b92cb311583175d9e8c241b
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/dynamics_exact.rs
+      sha256: 309d04e2a142468c66c2294ae926cf736de7420d265e0645aa78f81e06289232
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/dynamics_exact_replay.rs
+      sha256: ae9f6b1d81b9477f0ccf844d243f58f4e58e1245814780c5381d5cef1d9d16f6
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/dynamics_checker.py
+      sha256: 40f56c58f205899bb19b42204c55f0290befa655349aad80228f0250fe8242c9
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/prepare.py
+      sha256: 0705bc29d8320b12190e2a54ef38909796b2033703ce098894a492e45996d6ce
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/structure_exact.py
+      sha256: 0a35a5782b47e06167fc768320ee7fbf90c99fbdf336cbfaf2d2e1b93f9ca89d
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/structure_exact.rs
+      sha256: 9c714e91517144cf0fa614c8195bcf2f56fc32c0b4959750a4515f75fd5b6d28
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/structure_checker.py
+      sha256: 554c0811b794c03ce8badba12075ccb8b12165f6837acff805af0ceba3b3fea7
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/specs.py
+      sha256: 5587e78cec43d2c37dd52fd6fdbfede93420211b879a5be97997fb4b9403f6cc
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/check_candidate.py
+      sha256: 891a71ced1059e5d507649912e81f66f1806711c0cc569cfb3ce73352cacdef8
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/format_certificate.py
+      sha256: a2b62457feb35696a6ae274ff0bde953fd0a06119f1d6cc658461f0c7b585e50
+    latest_host_check: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p2/host_check.json
+    historical_evidence_annotation: P1 candidate; independent native and named kernel gates remain required.
+  compositions:
+  - outer_operation: second_partial_transpose
+    input_slot: 0
+    inner_operation: bell_density
+    colour_match: RationalNonnegativeRankAtMostOneMatrix4 -> RationalNonnegativeRankAtMostOneMatrix4
+    hypothesis_match: Same declared coordinates, coefficients and context; all operation hypotheses must
+      be carried into the graft.
+    licensing_relations:
+    - cptp_relation_0
+    evidence_status: Semantic substitution supported by the retained finite operation traces and separately
+      scoped named kernel statements. A complete refined-carrier operad is not asserted.
+  - outer_operation: negative_vector_pairing
+    input_slot: 0
+    inner_operation: second_partial_transpose
+    colour_match: RationalSymmetricMatrix4 -> RationalSymmetricMatrix4
+    hypothesis_match: Same declared coordinates, coefficients and context; all operation hypotheses must
+      be carried into the graft.
+    licensing_relations:
+    - cptp_relation_0
+    evidence_status: Semantic substitution supported by the retained finite operation traces and separately
+      scoped named kernel statements. A complete refined-carrier operad is not asserted.
+  identities:
+  - colour: NonnegativeRationalScale
+    proposed_operation: id_NonnegativeRationalScale
+    signature: NonnegativeRationalScale -> NonnegativeRationalScale
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: RationalNonnegativeRankAtMostOneMatrix4
+    proposed_operation: id_RationalNonnegativeRankAtMostOneMatrix4
+    signature: RationalNonnegativeRankAtMostOneMatrix4 -> RationalNonnegativeRankAtMostOneMatrix4
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: RationalScalar
+    proposed_operation: id_RationalScalar
+    signature: RationalScalar -> RationalScalar
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: RationalSymmetricMatrix4
+    proposed_operation: id_RationalSymmetricMatrix4
+    signature: RationalSymmetricMatrix4 -> RationalSymmetricMatrix4
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  symmetric_actions: []
+  coherence_obligations:
+  - Prove full transpose positivity, the native tensor-index transport and a full CP/Stinespring theorem.
+    This counterexample does not derive the physical tensor product or channel law.
+  - Prove the full refined-carrier operad identity, substitution, symmetry and coherence laws; mere colour
+    matches do not instantiate that formal structure.
+  - No inference from a source flag, declared census label, finite sample, quotient carrier or coordinate
+    name to a stronger mathematical/physical authority claim.
+  failed_compositions:
+  - proposal: Promote the selected step to the unrestricted original target
+    reason: Prove full transpose positivity, the native tensor-index transport and a full CP/Stinespring
+      theorem. This counterexample does not derive the physical tensor product or channel law.
+  - proposal: Map all nonnegative scales, including zero, into an exactly rank-one carrier
+    reason: The retained t=0 matrix is zero. The corrected carrier is nonnegative and rank at most one.
+  counterexamples:
+  - id: retained_actual_domain_controls
+    records:
+    - input:
+      - '1'
+      output:
+      - 1/2
+      - '0'
+      - '0'
+      - 1/2
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - 1/2
+      - '0'
+      - '0'
+      - 1/2
+      - 1/2
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - 1/2
+      - '0'
+      - '0'
+      - 1/2
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - 1/2
+      - '-1'
+      - '2'
+      - '1'
+      - '1'
+      - '1'
+      - '0'
+      - '0'
+      - '1'
+    - input:
+      - 1/2
+      output:
+      - 1/4
+      - '0'
+      - '0'
+      - 1/4
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - 1/4
+      - '0'
+      - '0'
+      - 1/4
+      - 1/4
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - 1/4
+      - '0'
+      - '0'
+      - 1/4
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - 1/4
+      - -1/2
+      - '2'
+      - 1/2
+      - 1/2
+      - '1'
+      - '0'
+      - '0'
+      - '1'
+    - input:
+      - '0'
+      output:
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '2'
+      - '0'
+      - '0'
+      - '1'
+      - '0'
+      - '0'
+      - '1'
+    scope: Computed values, with the source/kernel/native distinctions retained in claim_boundary.
+  - id: classical_diagonal_basis_action
+    basis:
+    - - - '1'
+        - '0'
+      - - '0'
+        - '0'
+    - - - '0'
+        - '0'
+      - - '0'
+        - '1'
+    transpose_images:
+    - - - '1'
+        - '0'
+      - - '0'
+        - '0'
+    - - - '0'
+        - '0'
+      - - '0'
+        - '1'
+    scope: Actual transpose action on the two diagonal matrix units. The final native kernel entries are
+      fixed declared controls; this computation does not prove transpose positivity or Stinespring.
+  - id: zero_scale_rank_control
+    input:
+    - '0'
+    actual_zero_matrix_entries:
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    finding: At t=0 the Bell matrix has rank zero. The admitted nonnegative-scale carrier must say rank
+      at most one; rank one and a strictly negative witness require t>0.
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: FILLED
+    carrier: Literal per-operation finite or admitted scalar carriers
+    coefficient_ring: Exact Z, Q, Q(i), Q(sqrt5); admitted a real root only under the stated Lean hypotheses
+    source_pins:
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_STRUCTURE__DS-CPTP-COMPLETE-POSITIVITY-IMPORT__IMPORTED_ASSUMPTION.yaml
+      sha256: ce7be1decdbcb870afa2ff713758d5e86895521835c1f27e925416e6c6338634
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/inputs/this_repository/dag/operads/DS-CPTP-COMPLETE-POSITIVITY-IMPORT.yaml
+      sha256: 637921bd755e5fe9e5259d5d60d6bae1685176c93077edac4ac54d5302254994
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/inputs/this_repository/lean4/H063CptpChannelsStinespring.lean
+      sha256: b10a105b3d5810e558e75b3f8504b61433032d6aaff821da3b832baf06e890a7
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/TFQ-0266_no_derivation_from_stochastic_kernels_to_complete_positivity.md
+      sha256: 4579fae4c2f4f5e0146cb51366aca8adc4b187380a3bf15d4f5df5fbfcd74e1e
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/TFQ-0267_completely-positive_import_annex.md
+      sha256: 1458ff4e68a88cbb73b72b57cecb110c9a5799a74e1cbde550b945b9c91a6348
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/dynamics_exact.py
+      sha256: 972d81f099b957e0ab23329750bb35d0aaac05cc439abd8b418dde6e4841143f
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/code/python/tests/test_dynamics_exact.py
+      sha256: a1d63f1d0bcbfed2c4e62e2b99b87ee0b92a3c864b92cb311583175d9e8c241b
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/dynamics_exact.rs
+      sha256: 309d04e2a142468c66c2294ae926cf736de7420d265e0645aa78f81e06289232
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/dynamics_exact_replay.rs
+      sha256: ae9f6b1d81b9477f0ccf844d243f58f4e58e1245814780c5381d5cef1d9d16f6
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/dynamics_checker.py
+      sha256: 40f56c58f205899bb19b42204c55f0290befa655349aad80228f0250fe8242c9
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/prepare.py
+      sha256: 0705bc29d8320b12190e2a54ef38909796b2033703ce098894a492e45996d6ce
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/structure_exact.py
+      sha256: 0a35a5782b47e06167fc768320ee7fbf90c99fbdf336cbfaf2d2e1b93f9ca89d
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/structure_exact.rs
+      sha256: 9c714e91517144cf0fa614c8195bcf2f56fc32c0b4959750a4515f75fd5b6d28
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/structure_checker.py
+      sha256: 554c0811b794c03ce8badba12075ccb8b12165f6837acff805af0ceba3b3fea7
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/specs.py
+      sha256: 5587e78cec43d2c37dd52fd6fdbfede93420211b879a5be97997fb4b9403f6cc
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/check_candidate.py
+      sha256: 891a71ced1059e5d507649912e81f66f1806711c0cc569cfb3ce73352cacdef8
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/format_certificate.py
+      sha256: a2b62457feb35696a6ae274ff0bde953fd0a06119f1d6cc658461f0c7b585e50
+    public_input:
+      kind: cptp
+      cases:
+      - - '1'
+      - - 1/2
+      - - '0'
+      scope: A genuine Bell-input partial-transpose negative witness is computed entrywise and its positive-input
+        and negative-output scalar forms are kernel checked.
+      unpaid_target: Prove full transpose positivity, the native tensor-index transport and a full CP/Stinespring
+        theorem. This counterexample does not derive the physical tensor product or channel law.
+    original_target: Complete positivity (K tensor I >= 0), Kraus/Choi/Stinespring forms and coherence
+      transport above the classical kernel are imported; a positive map that is not completely positive
+      shares the identity kernel (Rust test). Stinespring requires an extension (H063 header).
+    source_scope_review: Complete positivity is an imported interface, not a Boolean requires_extension
+      theorem. The actual normalized Bell rank-one density has nonnegative quadratic form. Partial transpose
+      on the second tensor factor has quadratic value -t on (0,1,-1,0), with norm²2 and eigenvalue -t/2.
+      Transpose and identity agree on classical diagonals, but differ under the admitted tensor extension.
+      The positivity of transpose on all states and a full Stinespring theorem remain separate formal
+      obligations.
+    admitted_assumptions:
+    - tensor product with identity (assumption)
+    - complete positivity (assumption)
+    - environment extension (assumption)
+  slot_m2_layer1_forward_morphisms:
+    mining_status: FILLED
+    operations:
+    - catalog_id: bell_density
+      inputs:
+      - NonnegativeRationalScale
+      output: RationalNonnegativeRankAtMostOneMatrix4
+      semantic_predicate: Build t/2 times (1,0,0,1)(1,0,0,1)^T.
+    - catalog_id: second_partial_transpose
+      inputs:
+      - RationalNonnegativeRankAtMostOneMatrix4
+      output: RationalSymmetricMatrix4
+      semantic_predicate: Transpose the second binary tensor index only.
+    - catalog_id: negative_vector_pairing
+      inputs:
+      - RationalSymmetricMatrix4
+      output: RationalScalar
+      semantic_predicate: Evaluate on the fixed vector (0,1,-1,0).
+    composition_plan:
+    - outer_operation: second_partial_transpose
+      input_slot: 0
+      inner_operation: bell_density
+      colour_match: RationalNonnegativeRankAtMostOneMatrix4 -> RationalNonnegativeRankAtMostOneMatrix4
+      hypothesis_match: Same declared coordinates, coefficients and context; all operation hypotheses
+        must be carried into the graft.
+      licensing_relations:
+      - cptp_relation_0
+      evidence_status: Semantic substitution supported by the retained finite operation traces and separately
+        scoped named kernel statements. A complete refined-carrier operad is not asserted.
+    - outer_operation: negative_vector_pairing
+      input_slot: 0
+      inner_operation: second_partial_transpose
+      colour_match: RationalSymmetricMatrix4 -> RationalSymmetricMatrix4
+      hypothesis_match: Same declared coordinates, coefficients and context; all operation hypotheses
+        must be carried into the graft.
+      licensing_relations:
+      - cptp_relation_0
+      evidence_status: Semantic substitution supported by the retained finite operation traces and separately
+        scoped named kernel statements. A complete refined-carrier operad is not asserted.
+    tree:
+    - Input quadratic form is t/2*(x+w)²≥0; output fixed-vector form is -t.
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: FILLED
+    algebraic_relations:
+    - id: cptp_relation_0
+      equation_or_predicate: Input quadratic form is t/2*(x+w)²≥0; output fixed-vector form is -t.
+      typing_conditions: Literal declared operation domains; Prove full transpose positivity, the native
+        tensor-index transport and a full CP/Stinespring theorem. This counterexample does not derive
+        the physical tensor product or channel law.
+      evidence_status: P1 candidate; independent native and named kernel gates remain required.
+      scope: A genuine Bell-input partial-transpose negative witness is computed entrywise and its positive-input
+        and negative-output scalar forms are kernel checked.
+      source_pins:
+      - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_STRUCTURE__DS-CPTP-COMPLETE-POSITIVITY-IMPORT__IMPORTED_ASSUMPTION.yaml
+        sha256: ce7be1decdbcb870afa2ff713758d5e86895521835c1f27e925416e6c6338634
+      - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/inputs/this_repository/dag/operads/DS-CPTP-COMPLETE-POSITIVITY-IMPORT.yaml
+        sha256: 637921bd755e5fe9e5259d5d60d6bae1685176c93077edac4ac54d5302254994
+      - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/inputs/this_repository/lean4/H063CptpChannelsStinespring.lean
+        sha256: b10a105b3d5810e558e75b3f8504b61433032d6aaff821da3b832baf06e890a7
+      - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+        sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+      - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/TFQ-0266_no_derivation_from_stochastic_kernels_to_complete_positivity.md
+        sha256: 4579fae4c2f4f5e0146cb51366aca8adc4b187380a3bf15d4f5df5fbfcd74e1e
+      - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/TFQ-0267_completely-positive_import_annex.md
+        sha256: 1458ff4e68a88cbb73b72b57cecb110c9a5799a74e1cbde550b945b9c91a6348
+      - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/dynamics_exact.py
+        sha256: 972d81f099b957e0ab23329750bb35d0aaac05cc439abd8b418dde6e4841143f
+      - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/code/python/tests/test_dynamics_exact.py
+        sha256: a1d63f1d0bcbfed2c4e62e2b99b87ee0b92a3c864b92cb311583175d9e8c241b
+      - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/dynamics_exact.rs
+        sha256: 309d04e2a142468c66c2294ae926cf736de7420d265e0645aa78f81e06289232
+      - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/dynamics_exact_replay.rs
+        sha256: ae9f6b1d81b9477f0ccf844d243f58f4e58e1245814780c5381d5cef1d9d16f6
+      - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/dynamics_checker.py
+        sha256: 40f56c58f205899bb19b42204c55f0290befa655349aad80228f0250fe8242c9
+      - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+        sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+      - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/prepare.py
+        sha256: 0705bc29d8320b12190e2a54ef38909796b2033703ce098894a492e45996d6ce
+      - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/structure_exact.py
+        sha256: 0a35a5782b47e06167fc768320ee7fbf90c99fbdf336cbfaf2d2e1b93f9ca89d
+      - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/structure_exact.rs
+        sha256: 9c714e91517144cf0fa614c8195bcf2f56fc32c0b4959750a4515f75fd5b6d28
+      - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/structure_checker.py
+        sha256: 554c0811b794c03ce8badba12075ccb8b12165f6837acff805af0ceba3b3fea7
+      - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/specs.py
+        sha256: 5587e78cec43d2c37dd52fd6fdbfede93420211b879a5be97997fb4b9403f6cc
+      - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/check_candidate.py
+        sha256: 891a71ced1059e5d507649912e81f66f1806711c0cc569cfb3ce73352cacdef8
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/format_certificate.py
+        sha256: a2b62457feb35696a6ae274ff0bde953fd0a06119f1d6cc658461f0c7b585e50
+    rejection_predicates:
+    - Independent domain equations and actual matrix/graph/quotient arrays recompute every output.
+    - Exact public input, canonical rational primitive types, complete source pins and exact sealed request
+      bytes.
+    - Full native cross-language output equality and actual named Lean axiom reports; no label-based target
+      promotion.
+    negative_control_plan: Alter every output coordinate, input identity, primitive types, source set
+      and sealed request.
+  slot_m4_tri_language_witness_anchors:
+    mining_status: FILLED
+    certificate_predicates:
+    - Independent domain equations and actual matrix/graph/quotient arrays recompute every output.
+    - Exact public input, canonical rational primitive types, complete source pins and exact sealed request
+      bytes.
+    - Full native cross-language output equality and actual named Lean axiom reports; no label-based target
+      promotion.
+    anchors:
+    - code/python/src/qm/dynamics_exact.py
+    - code/python/tests/test_dynamics_exact.py
+    - code/rust/src/finite_probability/dynamics_exact.rs
+    - code/rust/src/finite_probability/examples/dynamics_exact_replay.rs
+    - dag/pfp/dynamics_checker.py
+    - dag/pfp/exact_json.py
+    - dag/pfp/review_exact_json.py
+    - lean4/PrimitiveDifference.lean
+    - lean4/HWKernel.lean
+    - lean4/H004FreeLinearization.lean
+    - lean4/H005InnerProductAdmission.lean
+    - lean4/H003ReversibilityGate.lean
+    - lean4/H006PermutationUnitary.lean
+    - lean4/H007Complexification.lean
+    - lean4/H017MatrixFiniteRecovery.lean
+    - lean4/H017Fin.lean
+    - lean4/H016ContinuousDynamicsFork.lean
+    - lean4/H008PhaseBlindPresentation.lean
+    - lean4/Core.lean
+    - lean4/H009PhaseFiber.lean
+    - lean4/H010InterferenceNonDescent.lean
+    - lean4/H011U1SelectorBoundary.lean
+    - lean4/H011Circle.lean
+    - lean4/H014TensorCompositionBoundary.lean
+    - lean4/H014BilinearProduct.lean
+    - lean4/H014Interface.lean
+    - lean4/H015IrreversibleFork.lean
+    - lean4/H013BornPairingBoundary.lean
+    - lean4/H013SameContract.lean
+    - lean4/H017Gleason.lean
+    - lean4/H017Extras.lean
+    - lean4/H017ExtrasDropone.lean
+    - lean4/E003_projection_fiber_primitive_difference.lean
+    - lean4/E005_fiber_quotient_equivalence.lean
+    - lean4/H000FinitePresentedCarrier.lean
+    - lean4/H055DiscreteDynamicsStone.lean
+    - lean4/PromptStructure.lean
+    - lean4/H061DynamicsDichotomy.lean
+    - lean4/H059RationalSector.lean
+    - lean4/PromptDynamics.lean
+    - dag/results/batches/20261019T164251Z_prompts_32_51/tools/prepare.py
+    - code/python/src/qm/structure_exact.py
+    - code/rust/src/finite_probability/structure_exact.rs
+    - dag/pfp/structure_checker.py
+    - dag/results/batches/20261019T164251Z_prompts_32_51/tools/specs.py
+    - QuantumMechanics.PromptDynamics.cptp_bell_positive
+    - QuantumMechanics.PromptDynamics.cptp_partial_transpose_negative
+    unpaid_imports:
+    - Prove full transpose positivity, the native tensor-index transport and a full CP/Stinespring theorem.
+      This counterexample does not derive the physical tensor product or channel law.
+    - Prove the full refined-carrier operad identity, substitution, symmetry and coherence laws; mere
+      colour matches do not instantiate that formal structure.
+    anchor_status: New Lean anchors are candidate declarations until the retained P2 compiler runs; compiled
+      source leads retain their literal scope.
+stage_history:
+- stage: P0_MINE_OPERAD
+  attempt: p0
+  run: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged
+  operad_delta: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/operad_delta.yaml
+  host_check: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/host_check.json
+- stage: P1_DERIVE
+  attempt: p1
+  run: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged
+  operad_delta: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p1/operad_delta.yaml
+  host_check: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p1/host_check.json
+- stage: P2_VERIFY
+  attempt: p2
+  run: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged
+  operad_delta: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p2/operad_delta.yaml
+  host_check: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p2/host_check.json
+- stage: P4_CHALLENGE
+  attempt: p4
+  run: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged
+  operad_delta: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p4/operad_delta.yaml
+  host_check: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p4/host_check.json
+- stage: P5_RECORD
+  attempt: p5
+  run: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged
+  operad_delta: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p5/operad_delta.yaml
+  host_check: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p5/host_check.json
+open_obligations:
+- Prove full transpose positivity, the native tensor-index transport and a full CP/Stinespring theorem.
+  This counterexample does not derive the physical tensor product or channel law.
+- Prove the full refined-carrier operad identity, substitution, symmetry and coherence laws; mere colour
+  matches do not instantiate that formal structure.
+- No inference from a source flag, declared census label, finite sample, quotient carrier or coordinate
+  name to a stronger mathematical/physical authority claim.
+excluded_relation_leads:
+- source: lean4/DerivationDagQMClosure.lean
+  name: ds_and_fq_cptp_partial_transpose_born_lp_and_f64_diagnostic_firewall
+  reason: aggregate_or_proxy_scope_requires_projection_not_a_task_relation
+operad_slots_scope:
+  work_unit: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged/p0/reviewed_missions.json
+  scope: FILLED means reviewed prerequisites for this selected step; original target and unpaid imports
+    retained.
+  review_refinement: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/reviews/20261019_dynamics_audit/scope_review.json
+latest_run:
+  path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/runs/20261019T164251Z_staged
+  stage: P5_RECORD
+  status: scoped_result_or_obstruction_reviewed
+scope_notes:
+- Complete positivity is an imported interface, not a Boolean requires_extension theorem. The actual normalized
+  Bell rank-one density has nonnegative quadratic form. Partial transpose on the second tensor factor
+  has quadratic value -t on (0,1,-1,0), with norm²2 and eigenvalue -t/2. Transpose and identity agree
+  on classical diagonals, but differ under the admitted tensor extension. The positivity of transpose
+  on all states and a full Stinespring theorem remain separate formal obligations.
+latest_review:
+  path: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/reviews/20261019_dynamics_audit
+  status: reviewed_with_targeted_native_integration_global_baseline_failures_retained
+  operad_delta: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/reviews/20261019_dynamics_audit/operad_delta_v2.yaml
+  carrier_refinement: dag/results/DS-CPTP-COMPLETE-POSITIVITY-IMPORT/reviews/20261019_dynamics_audit/scope_review_v2.json

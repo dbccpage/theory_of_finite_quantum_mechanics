@@ -192,6 +192,53 @@ impl FermionicLattice {
     pub fn square_plaquette() -> Self {
         Self::new(4, vec![(0, 1), (1, 2), (2, 3), (3, 0)]).unwrap()
     }
+
+    /// 2D rectangular grid of `rows x cols` sites, optionally with periodic boundary conditions.
+    pub fn rectangular_grid(rows: usize, cols: usize, periodic: bool) -> Result<Self, &'static str> {
+        if rows == 0 || cols == 0 {
+            return Err("grid dimensions must be positive");
+        }
+        let num_sites = rows * cols;
+        let idx = |r: usize, c: usize| r * cols + c;
+        let mut edges = Vec::new();
+        for r in 0..rows {
+            for c in 0..cols {
+                if c + 1 < cols {
+                    edges.push((idx(r, c), idx(r, c + 1)));
+                } else if periodic && cols > 2 {
+                    edges.push((idx(r, c), idx(r, 0)));
+                }
+                if r + 1 < rows {
+                    edges.push((idx(r, c), idx(r + 1, c)));
+                } else if periodic && rows > 2 {
+                    edges.push((idx(r, c), idx(0, c)));
+                }
+            }
+        }
+        Self::new(num_sites, edges)
+    }
+
+    /// 2-leg frustrated triangular ladder with `rungs` rungs (`2 * rungs` sites).
+    pub fn triangular_ladder(rungs: usize) -> Result<Self, &'static str> {
+        if rungs < 2 {
+            return Err("triangular ladder requires at least 2 rungs");
+        }
+        let num_sites = 2 * rungs;
+        let mut edges = Vec::new();
+        for i in 0..rungs {
+            let top = 2 * i;
+            let bot = 2 * i + 1;
+            edges.push((top, bot));
+            if i + 1 < rungs {
+                let next_top = 2 * (i + 1);
+                let next_bot = 2 * (i + 1) + 1;
+                edges.push((top, next_top));
+                edges.push((bot, next_bot));
+                edges.push((top, next_bot));
+            }
+        }
+        Self::new(num_sites, edges)
+    }
 }
 
 /// Exact Discrete Fermionic Hubbard Hamiltonian matrix over Q.
@@ -473,6 +520,148 @@ pub struct EulerPath {
     pub is_cancelling: bool,
 }
 
+pub mod rational_str_serde {
+    use num_rational::BigRational;
+    use serde::{self, Deserialize, Deserializer, Serializer};
+    use std::str::FromStr;
+
+    pub fn serialize<S>(value: &BigRational, serializer: S) -> Result<S::Ok, S::Error>
+    where
+        S: Serializer,
+    {
+        serializer.serialize_str(&value.to_string())
+    }
+
+    pub fn deserialize<'de, D>(deserializer: D) -> Result<BigRational, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        let s = String::deserialize(deserializer)?;
+        BigRational::from_str(&s).map_err(serde::de::Error::custom)
+    }
+}
+
+#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
+pub struct FockLatticeScalingRow {
+    pub label: String,
+    pub num_sites: usize,
+    pub num_edges: usize,
+    pub num_up: usize,
+    pub num_down: usize,
+    pub fock_dim: usize,
+    pub trotter_steps: usize,
+    #[serde(with = "rational_str_serde")]
+    pub z_fermionic: BigRational,
+    #[serde(with = "rational_str_serde")]
+    pub z_bosonic: BigRational,
+    #[serde(with = "rational_str_serde")]
+    pub average_sign: BigRational,
+    pub has_sign_cancellation: bool,
+}
+
+/// Serialize `FockLatticeScalingRow` slice to canonical 2-space pretty JSON with LF line endings.
+pub fn fock_scaling_to_canonical_json(rows: &[FockLatticeScalingRow]) -> Result<String, String> {
+    serde_json::to_string_pretty(rows).map_err(|e| e.to_string())
+}
+
+/// Deserialize `FockLatticeScalingRow` vector from canonical JSON string.
+pub fn fock_scaling_from_canonical_json(
+    json_str: &str,
+) -> Result<Vec<FockLatticeScalingRow>, String> {
+    serde_json::from_str(json_str).map_err(|e| e.to_string())
+}
+
+/// Finite lattice scaling benchmark for exact Fock-space partition functions across
+/// 1D chains/rings, 2D rectangular grids, and frustrated triangular ladders up to N = 8 sites.
+pub fn benchmark_fock_lattice_scaling(
+    beta: &BigRational,
+    trotter_steps: usize,
+) -> Result<Vec<FockLatticeScalingRow>, &'static str> {
+    let specs: Vec<(&str, FermionicLattice, usize, usize, BigRational)> = vec![
+        ("triangle_3", FermionicLattice::triangle(), 2, 0, BigRational::zero()),
+        ("square_4", FermionicLattice::square_plaquette(), 2, 0, BigRational::zero()),
+        (
+            "ring_5_frustrated",
+            FermionicLattice::linear_chain(5, true)?,
+            2,
+            0,
+            BigRational::zero(),
+        ),
+        (
+            "chain_6_open",
+            FermionicLattice::linear_chain(6, false)?,
+            3,
+            0,
+            BigRational::zero(),
+        ),
+        (
+            "ladder_2x3_rect",
+            FermionicLattice::rectangular_grid(2, 3, false)?,
+            2,
+            1,
+            BigRational::from(BigInt::from(2)),
+        ),
+        (
+            "triangular_ladder_6",
+            FermionicLattice::triangular_ladder(3)?,
+            2,
+            0,
+            BigRational::zero(),
+        ),
+        (
+            "ring_7_frustrated",
+            FermionicLattice::linear_chain(7, true)?,
+            2,
+            0,
+            BigRational::zero(),
+        ),
+        (
+            "grid_2x4_rect",
+            FermionicLattice::rectangular_grid(2, 4, false)?,
+            2,
+            0,
+            BigRational::zero(),
+        ),
+        (
+            "triangular_ladder_8",
+            FermionicLattice::triangular_ladder(4)?,
+            2,
+            0,
+            BigRational::zero(),
+        ),
+    ];
+
+    let mut rows = Vec::with_capacity(specs.len());
+    for (label, lattice, num_up, num_down, u_val) in specs {
+        let num_sites = lattice.num_sites;
+        let num_edges = lattice.edges.len();
+        let ham = DiscreteFermionicHamiltonian::new(
+            lattice,
+            BigRational::one(),
+            u_val,
+            BigRational::zero(),
+            num_up,
+            num_down,
+        )?;
+        let receipt = ham.compute_partition_functions(beta, trotter_steps)?;
+        let has_sign_cancellation = receipt.average_sign < BigRational::one();
+        rows.push(FockLatticeScalingRow {
+            label: label.to_string(),
+            num_sites,
+            num_edges,
+            num_up,
+            num_down,
+            fock_dim: receipt.dim,
+            trotter_steps,
+            z_fermionic: receipt.z_fermionic,
+            z_bosonic: receipt.z_bosonic,
+            average_sign: receipt.average_sign,
+            has_sign_cancellation,
+        });
+    }
+    Ok(rows)
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -522,5 +711,54 @@ mod tests {
         assert!(!paths.is_empty());
         let has_cancelling = paths.iter().any(|p| p.is_cancelling);
         assert!(has_cancelling, "triangle geometry exhibits negative signed paths");
+    }
+
+    #[test]
+    fn fock_lattice_scaling_benchmark_up_to_8_sites() {
+        let beta = BigRational::from(BigInt::from(2));
+        let rows = benchmark_fock_lattice_scaling(&beta, 3).unwrap();
+        assert_eq!(rows.len(), 9);
+
+        let expected_dims = [3usize, 6, 10, 20, 90, 15, 21, 28, 28];
+        let expected_sites = [3usize, 4, 5, 6, 6, 6, 7, 8, 8];
+        for (i, row) in rows.iter().enumerate() {
+            assert_eq!(row.num_sites, expected_sites[i], "label={}", row.label);
+            assert_eq!(row.fock_dim, expected_dims[i], "label={}", row.label);
+            assert!(row.z_bosonic > BigRational::zero(), "label={}", row.label);
+        }
+
+        // Bipartite lattices at trotter_steps = 3 have no odd cycles of length 3, so every
+        // 3-step closed walk traverses edges in cancelling pairs and has average_sign == 1.
+        for bipartite in ["square_4", "chain_6_open", "grid_2x4_rect"] {
+            let r = rows.iter().find(|row| row.label == bipartite).unwrap();
+            assert_eq!(r.average_sign, BigRational::one(), "label={bipartite}");
+            assert!(!r.has_sign_cancellation, "label={bipartite}");
+        }
+
+        // Frustrated non-bipartite lattices containing length-3 triangles (triangle_3,
+        // triangular_ladder_6, triangular_ladder_8) exhibit sign cancellation at trotter_steps = 3.
+        for frustrated in ["triangle_3", "triangular_ladder_6", "triangular_ladder_8"] {
+            let r = rows.iter().find(|row| row.label == frustrated).unwrap();
+            assert!(
+                r.has_sign_cancellation,
+                "expected sign cancellation on {frustrated}, got average_sign={}",
+                r.average_sign
+            );
+        }
+    }
+
+    #[test]
+    fn fock_lattice_scaling_matches_cross_language_json_fixture_bit_for_bit() {
+        let beta = BigRational::from(BigInt::from(2));
+        let rows = benchmark_fock_lattice_scaling(&beta, 3).unwrap();
+        let serialized = fock_scaling_to_canonical_json(&rows).unwrap();
+        let fixture = include_str!("fixtures/fock_lattice_scaling.json").replace("\r\n", "\n");
+        assert_eq!(
+            serialized.as_bytes(),
+            fixture.as_bytes(),
+            "Rust benchmark_fock_lattice_scaling JSON output drifted from cross-language fixture"
+        );
+        let round_trip = fock_scaling_from_canonical_json(&fixture).unwrap();
+        assert_eq!(round_trip, rows);
     }
 }

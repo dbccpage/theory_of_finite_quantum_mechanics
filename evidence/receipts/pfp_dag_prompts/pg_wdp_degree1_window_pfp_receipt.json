@@ -1,0 +1,108 @@
+{
+  "schema": "omega.pfp.finite_qm.dag_prompt_execution_receipt.v1",
+  "authority_effect": "None",
+  "policy_id": "SPK-001",
+  "timestamp_utc": "2026-10-18T07:43:43.395234+00:00",
+  "prompt_file": "dag/prompts/wdp_pg_wdp_degree1_window_definition.yaml",
+  "node_id": "PG-WDP-DEGREE1-WINDOW",
+  "stage": "WDP",
+  "dag_status": "DEFINITION",
+  "operad_family_id": "OP-WDP-PG-WDP-DEGREE1-WINDOW",
+  "operad_mining_missions_completed": [
+    "M1_CARRIER_AND_NORMAL_FORM_MINING",
+    "M2_OPERAD_MORPHISMS_AND_GRAFTING_TREE_MINING",
+    "M3_CONGRUENCE_IDEALS_AND_DECOY_ANTIBODIES_MINING",
+    "M4_TRI_LANGUAGE_EXACT_WITNESS_MINING"
+  ],
+  "winning_model": "deepseek/deepseek-v4.1-flash",
+  "prompt_tokens": 1114,
+  "completion_tokens": 813,
+  "elapsed_ms": 22375.0,
+  "attempts": [
+    {
+      "attempt_id": "ab_withm3_064_pg-wdp-degree1-win_a1",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "state": "settled",
+      "prompt_tokens": 1114,
+      "completion_tokens": 813,
+      "cost_usd": 0.0001892592,
+      "generation_id": "gen-1792309401-KOGPZpr9Lg6Rfs5OyKnF",
+      "elapsed_ms": 22375.0,
+      "raw_preview": "{\n  \"p_star_tree_potentials\": [640, -1280, 960],\n  \"p_star_chord_potential\": 960,\n  \"p_star_holonomy_gamma2\": 1280,\n  \"cochain_d1_d0_exact_zero\": true,\n  \"finite_shadow_witness_int\": 272,\n  \"countermodel_witness_int\": 72,\n  \"unpaid_import_count\": 2,\n  \"unconditional_promotion_refused\": true,\n  \"deri",
+      "gate_status": "PASS",
+      "gate_failures": []
+    }
+  ],
+  "m3_ablation_comparison": {
+    "without_m3_attempt1": {
+      "model": "deepseek/deepseek-v4.1-flash",
+      "status": "FAIL",
+      "all_gates_passed": false,
+      "failures": [
+        "G4_COUNTERMODEL_MISMATCH:got=76,exp=72"
+      ],
+      "emitted_countermodel_int": 76,
+      "emitted_unconditional_promotion_refused": true,
+      "prompt_tokens": 1115,
+      "completion_tokens": 735,
+      "elapsed_ms": 21907.0
+    },
+    "with_m3_attempt1": {
+      "model": "deepseek/deepseek-v4.1-flash",
+      "status": "PASS",
+      "all_gates_passed": true,
+      "failures": [],
+      "emitted_countermodel_int": 72,
+      "emitted_unconditional_promotion_refused": true,
+      "prompt_tokens": 1114,
+      "completion_tokens": 813,
+      "elapsed_ms": 22375.0
+    }
+  },
+  "typed_model_response": {
+    "p_star_tree_potentials": [
+      640,
+      -1280,
+      960
+    ],
+    "p_star_chord_potential": 960,
+    "p_star_holonomy_gamma2": 1280,
+    "cochain_d1_d0_exact_zero": true,
+    "finite_shadow_witness_int": 272,
+    "countermodel_witness_int": 72,
+    "unpaid_import_count": 2,
+    "unconditional_promotion_refused": true,
+    "derived_under_policy": "SPK-001",
+    "authority_effect": "None",
+    "firewall_status": "stated region only; mints no authority.",
+    "node_id": "PG-WDP-DEGREE1-WINDOW",
+    "stage": "WDP",
+    "dag_status": "DEFINITION",
+    "operad_family_id": "OP-WDP-PG-WDP-DEGREE1-WINDOW",
+    "lean4_theorem_anchor": "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure",
+    "rust_witness_anchor": "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness",
+    "should_continue": false
+  },
+  "gate_receipt": {
+    "schema": "omega.pfp.finite_qm.gate_receipt.v1",
+    "authority_effect": "None",
+    "work_id": "PG-WDP-DEGREE1-WINDOW",
+    "status": "PASS",
+    "all_gates_passed": true,
+    "gate_results": {
+      "G0_STRICT_TYPED_JSON_SCHEMA": true,
+      "G1_COCHAIN_EXACT_SEQUENCE_D1D0": true,
+      "G2_P_STAR_TREE_CHORD_SYNDROME_DECODE": true,
+      "G3_FINITE_SHADOW_EXACT_WITNESS": true,
+      "G4_COUNTERMODEL_SEPARATION_WITNESS": true,
+      "G5_IMPORT_BOUNDARY_AND_FIREWALL_HONESTY": true,
+      "G6_TRI_LANGUAGE_ANCHOR_BINDING": true
+    },
+    "failures": [],
+    "elapsed_ms": 0.0274,
+    "receipt_sha256": "294b65908bf6f8ef700e364a4e6ff0ef6b5c6b8fb80025c480c4b20985d79a13"
+  },
+  "updated_papers": [
+    "papers/derivations/06_wdp/tfq_0344_do_not_derive_the_degree_1_window_c0_c1_c2_d0_d1_from.md"
+  ]
+}

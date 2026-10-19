@@ -1,0 +1,343 @@
+add_or_refine_generators:
+- id: quadratic_coefficients
+  ordered_inputs:
+  - Qsqrt5CoefficientVector
+  output: Qsqrt5GramCoefficients
+  arity: 1
+  carrier: Declared Qsqrt5CoefficientVector
+  coefficient_ring: Exact Q, Q(i), or Q(sqrt5) as declared; real embedding only in the named Lean conditional
+  hypotheses:
+  - Coefficient algebra and actual root equation are required; no 9/4 substitution.
+  semantic_predicate: Build rank-one Gram coefficients using sqrt5²=5.
+  source_pins:
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_DYNAMICS__FQ-GAP-REAL-EMBEDDING-CHOICE__PROVED_LEAN.yaml
+    sha256: fc42c5dce42bcf848a27a24c84bf299766967a06ffdab81936ea94cef4a0c556
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/inputs/this_repository/dag/operads/FQ-GAP-REAL-EMBEDDING-CHOICE.yaml
+    sha256: 9f4f0281d158c039f4f78ebfdd3989177e824d4a2295696e869c1d1b3ee96039
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/inputs/this_repository/lean4/H060EmbeddingRelativity.lean
+    sha256: 007106d36a4b1e5ff395a6c23d3c7eb970c5f74e0c884361c4655b7b4ffbd666
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/inputs/this_repository/lean4/FiniteQM.lean
+    sha256: 3c6fc7be1d9e59d8164539387be851fef52ef4c8becfcedd5b0b24253a445cfa
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/embedding_relativity.rs
+    sha256: 2b355881b876b0bc2d0c2fb9661e2d2df06bd0fb813837148b0052d453d58c6c
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs
+    sha256: 38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/inputs/this_repository/dag/derivations/11_finite_qm_dynamics/TFQ-0008_finite_dynamics_instruments_and_channels.md
+    sha256: 138a29feb1f368ac28ce2149a44666da2bae9059c8661c59225650e0478c12d7
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/dynamics_exact.py
+    sha256: 972d81f099b957e0ab23329750bb35d0aaac05cc439abd8b418dde6e4841143f
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/p0/operation_sources/code/python/tests/test_dynamics_exact.py
+    sha256: a1d63f1d0bcbfed2c4e62e2b99b87ee0b92a3c864b92cb311583175d9e8c241b
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/dynamics_exact.rs
+    sha256: 309d04e2a142468c66c2294ae926cf736de7420d265e0645aa78f81e06289232
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/dynamics_exact_replay.rs
+    sha256: ae9f6b1d81b9477f0ccf844d243f58f4e58e1245814780c5381d5cef1d9d16f6
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/dynamics_checker.py
+    sha256: 40f56c58f205899bb19b42204c55f0290befa655349aad80228f0250fe8242c9
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+    sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/prepare.py
+    sha256: 0705bc29d8320b12190e2a54ef38909796b2033703ce098894a492e45996d6ce
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/structure_exact.py
+    sha256: 0a35a5782b47e06167fc768320ee7fbf90c99fbdf336cbfaf2d2e1b93f9ca89d
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/structure_exact.rs
+    sha256: 9c714e91517144cf0fa614c8195bcf2f56fc32c0b4959750a4515f75fd5b6d28
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/structure_checker.py
+    sha256: 554c0811b794c03ce8badba12075ccb8b12165f6837acff805af0ceba3b3fea7
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/specs.py
+    sha256: 5587e78cec43d2c37dd52fd6fdbfede93420211b879a5be97997fb4b9403f6cc
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/check_candidate.py
+    sha256: 9a5fe0623863d5f4b1af57967df4d2f21e379f2d6787778963caf3317fb6d2aa
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/format_certificate.py
+    sha256: 5574ffbcf32726e1ae3c6b1dd2935e8e40a7f90d9e8d609bcad64b58e2060e3a
+  evidence_status: Source semantics reviewed; actual native and candidate kernel acceptance remain P2
+    gates.
+- id: conjugate_coefficients
+  ordered_inputs:
+  - Qsqrt5GramCoefficients
+  output: Qsqrt5ConjugateGramCoefficients
+  arity: 1
+  carrier: Declared Qsqrt5GramCoefficients
+  coefficient_ring: Exact Q, Q(i), or Q(sqrt5) as declared; real embedding only in the named Lean conditional
+  hypotheses:
+  - Coefficient algebra and actual root equation are required; no 9/4 substitution.
+  semantic_predicate: Negate each sqrt5 coefficient.
+  source_pins:
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_DYNAMICS__FQ-GAP-REAL-EMBEDDING-CHOICE__PROVED_LEAN.yaml
+    sha256: fc42c5dce42bcf848a27a24c84bf299766967a06ffdab81936ea94cef4a0c556
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/inputs/this_repository/dag/operads/FQ-GAP-REAL-EMBEDDING-CHOICE.yaml
+    sha256: 9f4f0281d158c039f4f78ebfdd3989177e824d4a2295696e869c1d1b3ee96039
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/inputs/this_repository/lean4/H060EmbeddingRelativity.lean
+    sha256: 007106d36a4b1e5ff395a6c23d3c7eb970c5f74e0c884361c4655b7b4ffbd666
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/inputs/this_repository/lean4/FiniteQM.lean
+    sha256: 3c6fc7be1d9e59d8164539387be851fef52ef4c8becfcedd5b0b24253a445cfa
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/embedding_relativity.rs
+    sha256: 2b355881b876b0bc2d0c2fb9661e2d2df06bd0fb813837148b0052d453d58c6c
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs
+    sha256: 38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/inputs/this_repository/dag/derivations/11_finite_qm_dynamics/TFQ-0008_finite_dynamics_instruments_and_channels.md
+    sha256: 138a29feb1f368ac28ce2149a44666da2bae9059c8661c59225650e0478c12d7
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/dynamics_exact.py
+    sha256: 972d81f099b957e0ab23329750bb35d0aaac05cc439abd8b418dde6e4841143f
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/p0/operation_sources/code/python/tests/test_dynamics_exact.py
+    sha256: a1d63f1d0bcbfed2c4e62e2b99b87ee0b92a3c864b92cb311583175d9e8c241b
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/dynamics_exact.rs
+    sha256: 309d04e2a142468c66c2294ae926cf736de7420d265e0645aa78f81e06289232
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/dynamics_exact_replay.rs
+    sha256: ae9f6b1d81b9477f0ccf844d243f58f4e58e1245814780c5381d5cef1d9d16f6
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/dynamics_checker.py
+    sha256: 40f56c58f205899bb19b42204c55f0290befa655349aad80228f0250fe8242c9
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+    sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/prepare.py
+    sha256: 0705bc29d8320b12190e2a54ef38909796b2033703ce098894a492e45996d6ce
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/structure_exact.py
+    sha256: 0a35a5782b47e06167fc768320ee7fbf90c99fbdf336cbfaf2d2e1b93f9ca89d
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/structure_exact.rs
+    sha256: 9c714e91517144cf0fa614c8195bcf2f56fc32c0b4959750a4515f75fd5b6d28
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/structure_checker.py
+    sha256: 554c0811b794c03ce8badba12075ccb8b12165f6837acff805af0ceba3b3fea7
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/specs.py
+    sha256: 5587e78cec43d2c37dd52fd6fdbfede93420211b879a5be97997fb4b9403f6cc
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/check_candidate.py
+    sha256: 9a5fe0623863d5f4b1af57967df4d2f21e379f2d6787778963caf3317fb6d2aa
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/format_certificate.py
+    sha256: 5574ffbcf32726e1ae3c6b1dd2935e8e40a7f90d9e8d609bcad64b58e2060e3a
+  evidence_status: Source semantics reviewed; actual native and candidate kernel acceptance remain P2
+    gates.
+- id: declared_real_evaluation
+  ordered_inputs:
+  - Qsqrt5ConjugateGramCoefficients
+  output: RealGramValues
+  arity: 1
+  carrier: Declared Qsqrt5ConjugateGramCoefficients
+  coefficient_ring: Exact Q, Q(i), or Q(sqrt5) as declared; real embedding only in the named Lean conditional
+  hypotheses:
+  - Coefficient algebra and actual root equation are required; no 9/4 substitution.
+  semantic_predicate: Evaluate at an explicitly admitted positive real root s²=5.
+  source_pins:
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_DYNAMICS__FQ-GAP-REAL-EMBEDDING-CHOICE__PROVED_LEAN.yaml
+    sha256: fc42c5dce42bcf848a27a24c84bf299766967a06ffdab81936ea94cef4a0c556
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/inputs/this_repository/dag/operads/FQ-GAP-REAL-EMBEDDING-CHOICE.yaml
+    sha256: 9f4f0281d158c039f4f78ebfdd3989177e824d4a2295696e869c1d1b3ee96039
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/inputs/this_repository/lean4/H060EmbeddingRelativity.lean
+    sha256: 007106d36a4b1e5ff395a6c23d3c7eb970c5f74e0c884361c4655b7b4ffbd666
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/inputs/this_repository/lean4/FiniteQM.lean
+    sha256: 3c6fc7be1d9e59d8164539387be851fef52ef4c8becfcedd5b0b24253a445cfa
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/embedding_relativity.rs
+    sha256: 2b355881b876b0bc2d0c2fb9661e2d2df06bd0fb813837148b0052d453d58c6c
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs
+    sha256: 38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/inputs/this_repository/dag/derivations/11_finite_qm_dynamics/TFQ-0008_finite_dynamics_instruments_and_channels.md
+    sha256: 138a29feb1f368ac28ce2149a44666da2bae9059c8661c59225650e0478c12d7
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/dynamics_exact.py
+    sha256: 972d81f099b957e0ab23329750bb35d0aaac05cc439abd8b418dde6e4841143f
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/p0/operation_sources/code/python/tests/test_dynamics_exact.py
+    sha256: a1d63f1d0bcbfed2c4e62e2b99b87ee0b92a3c864b92cb311583175d9e8c241b
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/dynamics_exact.rs
+    sha256: 309d04e2a142468c66c2294ae926cf736de7420d265e0645aa78f81e06289232
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/dynamics_exact_replay.rs
+    sha256: ae9f6b1d81b9477f0ccf844d243f58f4e58e1245814780c5381d5cef1d9d16f6
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/dynamics_checker.py
+    sha256: 40f56c58f205899bb19b42204c55f0290befa655349aad80228f0250fe8242c9
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+    sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/prepare.py
+    sha256: 0705bc29d8320b12190e2a54ef38909796b2033703ce098894a492e45996d6ce
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/structure_exact.py
+    sha256: 0a35a5782b47e06167fc768320ee7fbf90c99fbdf336cbfaf2d2e1b93f9ca89d
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/structure_exact.rs
+    sha256: 9c714e91517144cf0fa614c8195bcf2f56fc32c0b4959750a4515f75fd5b6d28
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/structure_checker.py
+    sha256: 554c0811b794c03ce8badba12075ccb8b12165f6837acff805af0ceba3b3fea7
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/specs.py
+    sha256: 5587e78cec43d2c37dd52fd6fdbfede93420211b879a5be97997fb4b9403f6cc
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/check_candidate.py
+    sha256: 9a5fe0623863d5f4b1af57967df4d2f21e379f2d6787778963caf3317fb6d2aa
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/format_certificate.py
+    sha256: 5574ffbcf32726e1ae3c6b1dd2935e8e40a7f90d9e8d609bcad64b58e2060e3a
+  evidence_status: Source semantics reviewed; actual native and candidate kernel acceptance remain P2
+    gates.
+add_or_refine_relations:
+- id: embedding_relation_0
+  equation_or_predicate: At s²=5,s>0, 2<s<3 and the mixed diagonal changes positivity under conjugation.
+  typing_conditions: Literal declared operation domains; Formalize the coefficient-to-real embedding homomorphisms,
+    full Gram PSD and cyclotomic fixed-field degree identification. A declared evaluation is not that
+    embedding.
+  evidence_status: P1 candidate; independent native and named kernel gates remain required.
+  scope: Exact quadratic-field Gram/conjugate coefficients, a mixed signature control and real-root inequalities
+    are checked; the fake 9/4 root is explicitly rejected.
+  source_pins:
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_DYNAMICS__FQ-GAP-REAL-EMBEDDING-CHOICE__PROVED_LEAN.yaml
+    sha256: fc42c5dce42bcf848a27a24c84bf299766967a06ffdab81936ea94cef4a0c556
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/inputs/this_repository/dag/operads/FQ-GAP-REAL-EMBEDDING-CHOICE.yaml
+    sha256: 9f4f0281d158c039f4f78ebfdd3989177e824d4a2295696e869c1d1b3ee96039
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/inputs/this_repository/lean4/H060EmbeddingRelativity.lean
+    sha256: 007106d36a4b1e5ff395a6c23d3c7eb970c5f74e0c884361c4655b7b4ffbd666
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/inputs/this_repository/lean4/FiniteQM.lean
+    sha256: 3c6fc7be1d9e59d8164539387be851fef52ef4c8becfcedd5b0b24253a445cfa
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/embedding_relativity.rs
+    sha256: 2b355881b876b0bc2d0c2fb9661e2d2df06bd0fb813837148b0052d453d58c6c
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs
+    sha256: 38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/inputs/this_repository/dag/derivations/11_finite_qm_dynamics/TFQ-0008_finite_dynamics_instruments_and_channels.md
+    sha256: 138a29feb1f368ac28ce2149a44666da2bae9059c8661c59225650e0478c12d7
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/dynamics_exact.py
+    sha256: 972d81f099b957e0ab23329750bb35d0aaac05cc439abd8b418dde6e4841143f
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/p0/operation_sources/code/python/tests/test_dynamics_exact.py
+    sha256: a1d63f1d0bcbfed2c4e62e2b99b87ee0b92a3c864b92cb311583175d9e8c241b
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/dynamics_exact.rs
+    sha256: 309d04e2a142468c66c2294ae926cf736de7420d265e0645aa78f81e06289232
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/dynamics_exact_replay.rs
+    sha256: ae9f6b1d81b9477f0ccf844d243f58f4e58e1245814780c5381d5cef1d9d16f6
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/dynamics_checker.py
+    sha256: 40f56c58f205899bb19b42204c55f0290befa655349aad80228f0250fe8242c9
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+    sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/prepare.py
+    sha256: 0705bc29d8320b12190e2a54ef38909796b2033703ce098894a492e45996d6ce
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/structure_exact.py
+    sha256: 0a35a5782b47e06167fc768320ee7fbf90c99fbdf336cbfaf2d2e1b93f9ca89d
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/structure_exact.rs
+    sha256: 9c714e91517144cf0fa614c8195bcf2f56fc32c0b4959750a4515f75fd5b6d28
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/structure_checker.py
+    sha256: 554c0811b794c03ce8badba12075ccb8b12165f6837acff805af0ceba3b3fea7
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/specs.py
+    sha256: 5587e78cec43d2c37dd52fd6fdbfede93420211b879a5be97997fb4b9403f6cc
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/check_candidate.py
+    sha256: 9a5fe0623863d5f4b1af57967df4d2f21e379f2d6787778963caf3317fb6d2aa
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/format_certificate.py
+    sha256: 5574ffbcf32726e1ae3c6b1dd2935e8e40a7f90d9e8d609bcad64b58e2060e3a
+- id: embedding_relation_1
+  equation_or_predicate: Pure squares are nonnegative under either real root; phi(120)/2=16 is arithmetic
+    only.
+  typing_conditions: Literal declared operation domains; Formalize the coefficient-to-real embedding homomorphisms,
+    full Gram PSD and cyclotomic fixed-field degree identification. A declared evaluation is not that
+    embedding.
+  evidence_status: P1 candidate; independent native and named kernel gates remain required.
+  scope: Exact quadratic-field Gram/conjugate coefficients, a mixed signature control and real-root inequalities
+    are checked; the fake 9/4 root is explicitly rejected.
+  source_pins:
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_DYNAMICS__FQ-GAP-REAL-EMBEDDING-CHOICE__PROVED_LEAN.yaml
+    sha256: fc42c5dce42bcf848a27a24c84bf299766967a06ffdab81936ea94cef4a0c556
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/inputs/this_repository/dag/operads/FQ-GAP-REAL-EMBEDDING-CHOICE.yaml
+    sha256: 9f4f0281d158c039f4f78ebfdd3989177e824d4a2295696e869c1d1b3ee96039
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/inputs/this_repository/lean4/H060EmbeddingRelativity.lean
+    sha256: 007106d36a4b1e5ff395a6c23d3c7eb970c5f74e0c884361c4655b7b4ffbd666
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/inputs/this_repository/lean4/FiniteQM.lean
+    sha256: 3c6fc7be1d9e59d8164539387be851fef52ef4c8becfcedd5b0b24253a445cfa
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/embedding_relativity.rs
+    sha256: 2b355881b876b0bc2d0c2fb9661e2d2df06bd0fb813837148b0052d453d58c6c
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs
+    sha256: 38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/inputs/this_repository/dag/derivations/11_finite_qm_dynamics/TFQ-0008_finite_dynamics_instruments_and_channels.md
+    sha256: 138a29feb1f368ac28ce2149a44666da2bae9059c8661c59225650e0478c12d7
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/dynamics_exact.py
+    sha256: 972d81f099b957e0ab23329750bb35d0aaac05cc439abd8b418dde6e4841143f
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/p0/operation_sources/code/python/tests/test_dynamics_exact.py
+    sha256: a1d63f1d0bcbfed2c4e62e2b99b87ee0b92a3c864b92cb311583175d9e8c241b
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/dynamics_exact.rs
+    sha256: 309d04e2a142468c66c2294ae926cf736de7420d265e0645aa78f81e06289232
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/dynamics_exact_replay.rs
+    sha256: ae9f6b1d81b9477f0ccf844d243f58f4e58e1245814780c5381d5cef1d9d16f6
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/dynamics_checker.py
+    sha256: 40f56c58f205899bb19b42204c55f0290befa655349aad80228f0250fe8242c9
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+    sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/prepare.py
+    sha256: 0705bc29d8320b12190e2a54ef38909796b2033703ce098894a492e45996d6ce
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/structure_exact.py
+    sha256: 0a35a5782b47e06167fc768320ee7fbf90c99fbdf336cbfaf2d2e1b93f9ca89d
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/structure_exact.rs
+    sha256: 9c714e91517144cf0fa614c8195bcf2f56fc32c0b4959750a4515f75fd5b6d28
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/structure_checker.py
+    sha256: 554c0811b794c03ce8badba12075ccb8b12165f6837acff805af0ceba3b3fea7
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/specs.py
+    sha256: 5587e78cec43d2c37dd52fd6fdbfede93420211b879a5be97997fb4b9403f6cc
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/check_candidate.py
+    sha256: 9a5fe0623863d5f4b1af57967df4d2f21e379f2d6787778963caf3317fb6d2aa
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/FQ-GAP-REAL-EMBEDDING-CHOICE/runs/20261019T164251Z_staged/format_certificate.py
+    sha256: 5574ffbcf32726e1ae3c6b1dd2935e8e40a7f90d9e8d609bcad64b58e2060e3a
+checked_compositions:
+- outer_operation: conjugate_coefficients
+  input_slot: 0
+  inner_operation: quadratic_coefficients
+  colour_match: Qsqrt5GramCoefficients -> Qsqrt5GramCoefficients
+  hypothesis_match: Same declared coordinates, coefficients and context; all operation hypotheses must
+    be carried into the graft.
+  licensing_relations:
+  - embedding_relation_0
+  - embedding_relation_1
+  evidence_status: Semantic substitution supported by the retained finite operation traces and separately
+    scoped named kernel statements. A complete refined-carrier operad is not asserted.
+- outer_operation: declared_real_evaluation
+  input_slot: 0
+  inner_operation: conjugate_coefficients
+  colour_match: Qsqrt5ConjugateGramCoefficients -> Qsqrt5ConjugateGramCoefficients
+  hypothesis_match: Same declared coordinates, coefficients and context; all operation hypotheses must
+    be carried into the graft.
+  licensing_relations:
+  - embedding_relation_0
+  - embedding_relation_1
+  evidence_status: Semantic substitution supported by the retained finite operation traces and separately
+    scoped named kernel statements. A complete refined-carrier operad is not asserted.
+failed_compositions:
+- proposal: Promote the selected step to the unrestricted original target
+  reason: Formalize the coefficient-to-real embedding homomorphisms, full Gram PSD and cyclotomic fixed-field
+    degree identification. A declared evaluation is not that embedding.
+counterexamples: []
+open_obligations:
+- Formalize the coefficient-to-real embedding homomorphisms, full Gram PSD and cyclotomic fixed-field
+  degree identification. A declared evaluation is not that embedding.
+- Prove the full refined-carrier operad identity, substitution, symmetry and coherence laws; mere colour
+  matches do not instantiate that formal structure.

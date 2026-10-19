@@ -47,7 +47,7 @@ current results. The paper and the gap registry replace them.
 ```
 010_mub6/
 ├── README.md                    # This document
-├── AGENTS.md                    # Agent rules for this deposit
+├── agents.md                    # Agent rules for this deposit
 ├── LICENSE                      # CC-BY-4.0 (manuscript and documentation)
 ├── LICENSE-CODE                 # Apache License 2.0 (software)
 ├── mub6_global_proof_atlas.md   # Evidence index with status per surface

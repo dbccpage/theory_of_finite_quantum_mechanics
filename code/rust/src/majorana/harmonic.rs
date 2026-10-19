@@ -515,4 +515,41 @@ mod tests {
             );
         }
     }
+
+    #[test]
+    fn harmonic_code_distance_and_h1_scaling_on_larger_lattices() {
+        use crate::repair_limit::{in_image_d0, is_closed};
+
+        // Exact code distance on 4x4 Torus (V=16, rank(d0)=15, coset_size=32768)
+        let (torus_4x4, _) = build_tetron_array(4, 4, Topology::Torus).unwrap();
+        let (dist_4x4, exact_4x4) =
+            code_distance(&torus_4x4.d0, &torus_4x4.d1, DEFAULT_BUDGET).unwrap();
+        assert!(exact_4x4);
+        assert_eq!(dist_4x4, Some(4));
+
+        // Exact code distance on 3x4 Cylinder (V=16, rank(d0)=15, coset_size=32768)
+        let (cyl_3x4, _) = build_tetron_array(3, 4, Topology::Cylinder).unwrap();
+        let (dist_cyl, exact_cyl) =
+            code_distance(&cyl_3x4.d0, &cyl_3x4.d1, DEFAULT_BUDGET).unwrap();
+        assert!(exact_cyl);
+        assert_eq!(dist_cyl, Some(4));
+
+        // H^1 basis construction and class homomorphism scaling on 5x5, 6x6, and 6x8 Tori
+        for (rows, cols) in [(5usize, 5usize), (6, 6), (6, 8)] {
+            let (complex, report) = build_tetron_array(rows, cols, Topology::Torus).unwrap();
+            let basis = h1_basis(&complex.d0, &complex.d1);
+            assert_eq!(basis.dim, 2, "torus {rows}x{cols}");
+            for gen in &basis.generators {
+                assert!(is_closed(&complex.d1, gen).unwrap());
+                assert!(!in_image_d0(&complex.d0, gen).unwrap());
+            }
+            let col_rep = logical_class_representative(&report, Axis::Column, 0);
+            let row_rep = logical_class_representative(&report, Axis::Row, 0);
+            let c_col = basis.class_coordinates(&col_rep).unwrap();
+            let c_row = basis.class_coordinates(&row_rep).unwrap();
+            assert_ne!(c_col, vec![0, 0]);
+            assert_ne!(c_row, vec![0, 0]);
+            assert_ne!(c_col, c_row);
+        }
+    }
 }

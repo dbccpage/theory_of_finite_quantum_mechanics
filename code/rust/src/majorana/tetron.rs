@@ -1,8 +1,9 @@
 
 use crate::complexes::ChainComplexGf2;
 use crate::gf2_terminalizer::{GF2Matrix, Gf2CocycleClassifier};
+use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 pub enum Topology {
     Disk,
     Cylinder,
@@ -200,6 +201,80 @@ pub fn logical_class_representative(report: &TetronReport, axis: Axis, index: us
     residual
 }
 
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+pub struct TetronScalingRow {
+    pub topology: Topology,
+    pub rows: usize,
+    pub cols: usize,
+    pub num_mzm: usize,
+    pub num_channels: usize,
+    pub num_islands: usize,
+    pub rank_d0: usize,
+    pub rank_d1: usize,
+    pub dim_h1: usize,
+    pub expected_dim_h1: usize,
+    pub boundary_exact: bool,
+    pub euler_agrees: bool,
+    pub generators_closed: bool,
+}
+
+/// Serialize `TetronScalingRow` slice to canonical 2-space pretty JSON with LF line endings.
+pub fn tetron_scaling_to_canonical_json(rows: &[TetronScalingRow]) -> Result<String, String> {
+    serde_json::to_string_pretty(rows).map_err(|e| e.to_string())
+}
+
+/// Deserialize `TetronScalingRow` vector from canonical JSON string.
+pub fn tetron_scaling_from_canonical_json(json_str: &str) -> Result<Vec<TetronScalingRow>, String> {
+    serde_json::from_str(json_str).map_err(|e| e.to_string())
+}
+
+/// Finite lattice scaling benchmark for 2D Tetron cochain complexes across declared
+/// `(rows, cols)` grid dimensions and topologies (`Disk`, `Cylinder`, `Torus`).
+pub fn benchmark_tetron_lattice_scaling(
+    sizes: &[(usize, usize)],
+    topologies: &[Topology],
+) -> Result<Vec<TetronScalingRow>, String> {
+    if sizes.is_empty() || topologies.is_empty() {
+        return Err("sizes and topologies must be non-empty".into());
+    }
+    let mut rows_out = Vec::with_capacity(sizes.len() * topologies.len());
+    for &topology in topologies {
+        for &(rows, cols) in sizes {
+            let (complex, report) = build_tetron_array(rows, cols, topology)?;
+            let boundary_exact = complex.verify_boundary();
+            let closed_surface = topology == Topology::Torus;
+            let predicted_h1 = (if closed_surface { 2 } else { 1 }) - report.euler_characteristic;
+            let euler_agrees = (report.dim_h1 as i64) == predicted_h1;
+
+            let mut generators_closed = true;
+            for axis in [Axis::Column, Axis::Row] {
+                let rep = logical_class_representative(&report, axis, 0);
+                let syn = crate::repair_limit::apply_d1(&complex.d1, &rep)?;
+                if syn.iter().any(|&b| b != 0) {
+                    generators_closed = false;
+                }
+            }
+
+            rows_out.push(TetronScalingRow {
+                topology,
+                rows,
+                cols,
+                num_mzm: report.num_mzm,
+                num_channels: report.num_channels,
+                num_islands: report.num_islands,
+                rank_d0: report.rank_d0,
+                rank_d1: report.rank_d1,
+                dim_h1: report.dim_h1,
+                expected_dim_h1: report.expected_dim_h1,
+                boundary_exact,
+                euler_agrees,
+                generators_closed,
+            });
+        }
+    }
+    Ok(rows_out)
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -313,5 +388,72 @@ mod tests {
                 );
             }
         }
+    }
+
+    #[test]
+    fn tetron_lattice_scaling_benchmark_up_to_8x8() {
+        let sizes = [
+            (2usize, 2usize),
+            (3, 3),
+            (4, 4),
+            (5, 5),
+            (6, 6),
+            (6, 8),
+            (8, 8),
+        ];
+        let rows = benchmark_tetron_lattice_scaling(&sizes, &ALL).unwrap();
+        assert_eq!(rows.len(), sizes.len() * ALL.len());
+
+        for r in &rows {
+            assert!(r.boundary_exact, "{:?} {}x{}", r.topology, r.rows, r.cols);
+            assert!(r.euler_agrees, "{:?} {}x{}", r.topology, r.rows, r.cols);
+            assert!(r.generators_closed, "{:?} {}x{}", r.topology, r.rows, r.cols);
+            assert_eq!(
+                r.dim_h1, r.expected_dim_h1,
+                "{:?} {}x{}",
+                r.topology, r.rows, r.cols
+            );
+            assert_eq!(r.num_islands, r.rows * r.cols);
+        }
+
+        // Verify largest 8x8 torus counts: 64 MZM, 128 channels, 64 islands, rank(d0)=63, rank(d1)=63, dim H^1=2
+        let torus_8x8 = rows
+            .iter()
+            .find(|r| r.topology == Topology::Torus && r.rows == 8 && r.cols == 8)
+            .unwrap();
+        assert_eq!(
+            (
+                torus_8x8.num_mzm,
+                torus_8x8.num_channels,
+                torus_8x8.num_islands,
+                torus_8x8.rank_d0,
+                torus_8x8.rank_d1,
+                torus_8x8.dim_h1
+            ),
+            (64, 128, 64, 63, 63, 2)
+        );
+    }
+
+    #[test]
+    fn tetron_lattice_scaling_matches_cross_language_json_fixture_bit_for_bit() {
+        let sizes = [
+            (2usize, 2usize),
+            (3, 3),
+            (4, 4),
+            (5, 5),
+            (6, 6),
+            (6, 8),
+            (8, 8),
+        ];
+        let rows = benchmark_tetron_lattice_scaling(&sizes, &ALL).unwrap();
+        let serialized = tetron_scaling_to_canonical_json(&rows).unwrap();
+        let fixture = include_str!("fixtures/tetron_lattice_scaling.json").replace("\r\n", "\n");
+        assert_eq!(
+            serialized.as_bytes(),
+            fixture.as_bytes(),
+            "Rust benchmark_tetron_lattice_scaling JSON output drifted from cross-language fixture"
+        );
+        let round_trip = tetron_scaling_from_canonical_json(&fixture).unwrap();
+        assert_eq!(round_trip, rows);
     }
 }

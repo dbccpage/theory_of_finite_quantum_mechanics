@@ -4,8 +4,8 @@ AuthorityEffect: None.
 
 Unit, integration, and negative tests.
 
-Origin: code/python/src/qm/domain/cyclotomic_tower.py
-Claim: CyclotomicElement certificate locked by exact checks in this file
+Origin: code/python/src/qm/campaigns/holonomy_bridge.py
+Claim: evaluate_holonomy_bridge_control certificate locked by exact checks in this file
 Mutation-Kills: 1 non-equivalent
 """
 
@@ -155,12 +155,12 @@ def test_control_refuses_conductor_without_mu12() -> None:
         hbc.evaluate_holonomy_bridge_control(conductor=8)
 
 
-_MODULE_PATH = __import__('pathlib').Path(__file__).resolve().parents[1] / 'src' / 'qm' / 'domain' / 'cyclotomic_tower.py'
+_MODULE_PATH = __import__('pathlib').Path(__file__).resolve().parents[1] / 'src' / 'qm' / 'campaigns' / 'holonomy_bridge.py'
 
 
 def test_integration_origin_locks_the_source_module() -> None:
     source = _MODULE_PATH.read_text(encoding="utf-8")
-    assert 'CyclotomicElement' in source
+    assert 'evaluate_holonomy_bridge_control' in source
     assert _MODULE_PATH.is_file()
 
 

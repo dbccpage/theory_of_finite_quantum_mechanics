@@ -1,0 +1,735 @@
+add_or_refine_generators:
+- id: weyl_basis
+  ordered_inputs:
+  - DeclaredCubicCyclotomicMatrix3
+  output: WeylBasisWithTracePairing3
+  arity: 1
+  carrier: Declared DeclaredCubicCyclotomicMatrix3
+  coefficient_ring: Exact rational/Gaussian/cubic-cyclotomic coordinates, finite sets and bounded natural
+    event fields
+  hypotheses:
+  - Fixed d=3 and quotient polynomial w²+w+1; generic commutant proof separately assumes all clock/shift
+    premises.
+  semantic_predicate: Construct X^a Z^b in fixed column action convention.
+  source_pins:
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_fq_weyl_finite_schrodinger_irreducibility_proved_lean.yaml
+    sha256: 7718684aa98be09810b193a5d8374de55269434f030793969186424936c4a2f3
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/inputs/this_repository/dag/operads/fq_weyl_finite_schrodinger_irreducibility.yaml
+    sha256: 6bbbc1052bcd81567c9e1017c3449cb150412186a00547c457cdf327da355767
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/inputs/this_repository/lean4/WeylCommutant.lean
+    sha256: c83b1a430883d0f0eb2d7c6bc37e0f6cfda80f2aa71fd7901d5a565cbebb4185
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/heisenberg_representation_uniqueness.rs
+    sha256: 0676ab9f455e2a121cd365501da9d98ff25798150b2b56331fd0ff24a0789814
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/mub/odd_prime_weyl.rs
+    sha256: acdbe110bd75160adbebe8e08859967bf2b26a3b3bc09b798776d15e5d566bfb
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/inputs/this_repository/dag/derivations/09_finite_hilbert/tfq_0313_operator_algebra_shadow_slot_is_still_a_stub.md
+    sha256: 113467ffcae5e25de2b9d89ac41bb8238139f2eb193e0b46e5a4999a1ee75add
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/p0/operation_sources/code/python/src/qm/genesis_impl_exact.py
+    sha256: c089e168b2fdf95035234b3c790033a7c26faeeb560caba3702316b67a83de08
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/p0/operation_sources/code/python/tests/test_genesis_impl_exact.py
+    sha256: 83bb286035e4bf51798b48bfcbb41e42e367a1735439733ddc2df93874bd4bba
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/p0/operation_sources/code/rust/src/finite_probability/genesis_impl_exact.rs
+    sha256: 027be9f12df6deb09ffe5db61c91a01617e02ca16630297efae3307fc3eaa865
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/genesis_impl_exact_replay.rs
+    sha256: 490842316375f1fb5513da4a13dff8a402a5fa7ecbffa582c7fb0dc0981b6071
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/genesis_impl_checker.py
+    sha256: aaee07218bf3ce39df57837cecb0df3da420cec6311b0c8389bec96dba42f286
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+    sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/p0/operation_sources/dag/results/batches/20261019T215447Z_prompts_92_111/tools/prepare.py
+    sha256: 7aacd1e0ac730a596635ea0c1faac5113bb58cfac79f80cbc3d92636a75cb5b8
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/p0/operation_sources/dag/results/batches/20261019T215447Z_prompts_92_111/tools/specs.py
+    sha256: c8db59e0e612c454d9ec6a012326d016a0a7f74c09642531d4f5a8f5df2ce76b
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/custody.py
+    sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+    sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/check_candidate.py
+    sha256: 94535c73c31b9f7bc689cd62263806b27666b4c96a696227d94c7f02d7c8f409
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/format_certificate.py
+    sha256: 9cf416f45586f02226f45a0ff673f95e44bd9bf9b509057cba4697e835f0490f
+  evidence_status: Target-specific native predicates checked on retained inputs; relation-specific kernel
+    scope is separate. General refined-carrier operad instantiation remains open.
+  latest_host_check: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/p2_after_p3/host_check.json
+- id: weyl_fourier_coefficients
+  ordered_inputs:
+  - WeylBasisWithTracePairing3
+  output: NineCubicFourierCoefficients
+  arity: 1
+  carrier: Declared WeylBasisWithTracePairing3
+  coefficient_ring: Exact rational/Gaussian/cubic-cyclotomic coordinates, finite sets and bounded natural
+    event fields
+  hypotheses:
+  - Fixed d=3 and quotient polynomial w²+w+1; generic commutant proof separately assumes all clock/shift
+    premises.
+  semantic_predicate: Compute Tr(W* A)/3 in Q(w).
+  source_pins:
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_fq_weyl_finite_schrodinger_irreducibility_proved_lean.yaml
+    sha256: 7718684aa98be09810b193a5d8374de55269434f030793969186424936c4a2f3
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/inputs/this_repository/dag/operads/fq_weyl_finite_schrodinger_irreducibility.yaml
+    sha256: 6bbbc1052bcd81567c9e1017c3449cb150412186a00547c457cdf327da355767
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/inputs/this_repository/lean4/WeylCommutant.lean
+    sha256: c83b1a430883d0f0eb2d7c6bc37e0f6cfda80f2aa71fd7901d5a565cbebb4185
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/heisenberg_representation_uniqueness.rs
+    sha256: 0676ab9f455e2a121cd365501da9d98ff25798150b2b56331fd0ff24a0789814
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/mub/odd_prime_weyl.rs
+    sha256: acdbe110bd75160adbebe8e08859967bf2b26a3b3bc09b798776d15e5d566bfb
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/inputs/this_repository/dag/derivations/09_finite_hilbert/tfq_0313_operator_algebra_shadow_slot_is_still_a_stub.md
+    sha256: 113467ffcae5e25de2b9d89ac41bb8238139f2eb193e0b46e5a4999a1ee75add
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/p0/operation_sources/code/python/src/qm/genesis_impl_exact.py
+    sha256: c089e168b2fdf95035234b3c790033a7c26faeeb560caba3702316b67a83de08
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/p0/operation_sources/code/python/tests/test_genesis_impl_exact.py
+    sha256: 83bb286035e4bf51798b48bfcbb41e42e367a1735439733ddc2df93874bd4bba
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/p0/operation_sources/code/rust/src/finite_probability/genesis_impl_exact.rs
+    sha256: 027be9f12df6deb09ffe5db61c91a01617e02ca16630297efae3307fc3eaa865
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/genesis_impl_exact_replay.rs
+    sha256: 490842316375f1fb5513da4a13dff8a402a5fa7ecbffa582c7fb0dc0981b6071
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/genesis_impl_checker.py
+    sha256: aaee07218bf3ce39df57837cecb0df3da420cec6311b0c8389bec96dba42f286
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+    sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/p0/operation_sources/dag/results/batches/20261019T215447Z_prompts_92_111/tools/prepare.py
+    sha256: 7aacd1e0ac730a596635ea0c1faac5113bb58cfac79f80cbc3d92636a75cb5b8
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/p0/operation_sources/dag/results/batches/20261019T215447Z_prompts_92_111/tools/specs.py
+    sha256: c8db59e0e612c454d9ec6a012326d016a0a7f74c09642531d4f5a8f5df2ce76b
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/custody.py
+    sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+    sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/check_candidate.py
+    sha256: 94535c73c31b9f7bc689cd62263806b27666b4c96a696227d94c7f02d7c8f409
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/format_certificate.py
+    sha256: 9cf416f45586f02226f45a0ff673f95e44bd9bf9b509057cba4697e835f0490f
+  evidence_status: Target-specific native predicates checked on retained inputs; relation-specific kernel
+    scope is separate. General refined-carrier operad instantiation remains open.
+  latest_host_check: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/p2_after_p3/host_check.json
+- id: weyl_reconstruction
+  ordered_inputs:
+  - NineCubicFourierCoefficients
+  output: ReconstructedMatrix3
+  arity: 1
+  carrier: Declared NineCubicFourierCoefficients
+  coefficient_ring: Exact rational/Gaussian/cubic-cyclotomic coordinates, finite sets and bounded natural
+    event fields
+  hypotheses:
+  - Fixed d=3 and quotient polynomial w²+w+1; generic commutant proof separately assumes all clock/shift
+    premises.
+  semantic_predicate: Sum coefficient-weighted basis matrices.
+  source_pins:
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_fq_weyl_finite_schrodinger_irreducibility_proved_lean.yaml
+    sha256: 7718684aa98be09810b193a5d8374de55269434f030793969186424936c4a2f3
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/inputs/this_repository/dag/operads/fq_weyl_finite_schrodinger_irreducibility.yaml
+    sha256: 6bbbc1052bcd81567c9e1017c3449cb150412186a00547c457cdf327da355767
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/inputs/this_repository/lean4/WeylCommutant.lean
+    sha256: c83b1a430883d0f0eb2d7c6bc37e0f6cfda80f2aa71fd7901d5a565cbebb4185
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/heisenberg_representation_uniqueness.rs
+    sha256: 0676ab9f455e2a121cd365501da9d98ff25798150b2b56331fd0ff24a0789814
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/mub/odd_prime_weyl.rs
+    sha256: acdbe110bd75160adbebe8e08859967bf2b26a3b3bc09b798776d15e5d566bfb
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/inputs/this_repository/dag/derivations/09_finite_hilbert/tfq_0313_operator_algebra_shadow_slot_is_still_a_stub.md
+    sha256: 113467ffcae5e25de2b9d89ac41bb8238139f2eb193e0b46e5a4999a1ee75add
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/p0/operation_sources/code/python/src/qm/genesis_impl_exact.py
+    sha256: c089e168b2fdf95035234b3c790033a7c26faeeb560caba3702316b67a83de08
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/p0/operation_sources/code/python/tests/test_genesis_impl_exact.py
+    sha256: 83bb286035e4bf51798b48bfcbb41e42e367a1735439733ddc2df93874bd4bba
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/p0/operation_sources/code/rust/src/finite_probability/genesis_impl_exact.rs
+    sha256: 027be9f12df6deb09ffe5db61c91a01617e02ca16630297efae3307fc3eaa865
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/genesis_impl_exact_replay.rs
+    sha256: 490842316375f1fb5513da4a13dff8a402a5fa7ecbffa582c7fb0dc0981b6071
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/genesis_impl_checker.py
+    sha256: aaee07218bf3ce39df57837cecb0df3da420cec6311b0c8389bec96dba42f286
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+    sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/p0/operation_sources/dag/results/batches/20261019T215447Z_prompts_92_111/tools/prepare.py
+    sha256: 7aacd1e0ac730a596635ea0c1faac5113bb58cfac79f80cbc3d92636a75cb5b8
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/p0/operation_sources/dag/results/batches/20261019T215447Z_prompts_92_111/tools/specs.py
+    sha256: c8db59e0e612c454d9ec6a012326d016a0a7f74c09642531d4f5a8f5df2ce76b
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/custody.py
+    sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+    sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/check_candidate.py
+    sha256: 94535c73c31b9f7bc689cd62263806b27666b4c96a696227d94c7f02d7c8f409
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/format_certificate.py
+    sha256: 9cf416f45586f02226f45a0ff673f95e44bd9bf9b509057cba4697e835f0490f
+  evidence_status: Target-specific native predicates checked on retained inputs; relation-specific kernel
+    scope is separate. General refined-carrier operad instantiation remains open.
+  latest_host_check: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/p2_after_p3/host_check.json
+add_or_refine_relations:
+- id: weyl_relation_0
+  equation_or_predicate: The nine trace Gram entries are 3 delta; reconstruction equals the full submitted
+    matrix; X^a Z^b X^-a Z^-b=w^(-ab) I.
+  typing_conditions: Literal declared operation domains; Transport the array model to field/matrix semantics
+    and prove representation irreducibility for all admitted odd primes. Primitive-root existence, seed
+    selection and infinite-dimensional results are not derived.
+  evidence_status: P3 repair awaiting actual fresh native/kernel acceptance.
+  scope: Exact d=3 Weyl basis reconstruction and commutator controls, plus the generic conditional scalar-commutant
+    theorem and literal cubic-root algebra.
+  source_pins:
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/p3/construction/code/python/src/qm/genesis_impl_exact.py
+    sha256: c089e168b2fdf95035234b3c790033a7c26faeeb560caba3702316b67a83de08
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/p3/construction/code/python/tests/test_genesis_impl_exact.py
+    sha256: 83bb286035e4bf51798b48bfcbb41e42e367a1735439733ddc2df93874bd4bba
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/p3/construction/code/rust/src/finite_probability/genesis_impl_exact.rs
+    sha256: 69ec2e18c3114e5087881dc7dc58f5ccd27af0dc64d8b673afd7a4c59646405c
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/p3/construction/code/rust/src/finite_probability/examples/genesis_impl_exact_replay.rs
+    sha256: 6f62d62b19601a4c57bab60bc683a8f65e7a38ecb47cb8291746c6e44fedfe43
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/p3/construction/dag/pfp/genesis_impl_checker.py
+    sha256: aaee07218bf3ce39df57837cecb0df3da420cec6311b0c8389bec96dba42f286
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/p3/construction/dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/p3/construction/dag/pfp/review_exact_json.py
+    sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/p3/construction/lean4/WeylCommutant.lean
+    sha256: c83b1a430883d0f0eb2d7c6bc37e0f6cfda80f2aa71fd7901d5a565cbebb4185
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/p3/construction/lean4/LggrFiniteResults.lean
+    sha256: ce736b577beb07997dba02bd7f86f83f1ecac7ce7a569e72b6350171179f34de
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/p3/construction/lean4/PromptGenesisImplementation.lean
+    sha256: a8420140095b3c0c6b7ae80d9302584dd8eee298a2970933f8013ca269d1f032
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/p3/construction/dag/results/batches/20261019T215447Z_prompts_92_111/tools/prepare.py
+    sha256: 7aacd1e0ac730a596635ea0c1faac5113bb58cfac79f80cbc3d92636a75cb5b8
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/p3/construction/dag/results/batches/20261019T215447Z_prompts_92_111/tools/specs.py
+    sha256: c8db59e0e612c454d9ec6a012326d016a0a7f74c09642531d4f5a8f5df2ce76b
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/p3/construction/dag/pfp/custody.py
+    sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/p3/construction/dag/pfp/filename_custody.json
+    sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/p3/construction/code/rust/src/finite_probability/lib.rs
+    sha256: c64b1a72feaa3c2c55bcade09a1d68b86634dec86302375291ae357724a9b1c1
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/p3/construction/code/rust/src/finite_probability/Cargo.toml
+    sha256: 7ba639d8a77e36a6accfe516d7859aa63b95ffc0e5b5b0ddded326f51198bf17
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/p3/construction/code/rust/Cargo.lock
+    sha256: f5f4acdac853dc8099f445a50d25ee58979814e1714b762961d312e8d7b17acd
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/p3/construction/lean4/lakefile.lean
+    sha256: c6cbc6205a0eb2bdd38aa79563507a433742b6a77a1dd1aed46e96f5d85636d5
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/p3/construction/lean4/lean-toolchain
+    sha256: a0ada3782cd088719516bbfdf37b9e7032230e211bf424b85d952ee650c51091
+  - path: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/p3/construction/lean4/lake-manifest.json
+    sha256: 7420c413da283f6b7aa102fd1a4be076a5c3ba1fbf3227bfeced44c7afcc61d2
+  latest_host_check: dag/results/FQ-WEYL-FINITE-SCHRODINGER-IRREDUCIBILITY/runs/20261019T215447Z_staged/p2_after_p3/host_check.json
+checked_compositions:
+- outer_operation: weyl_fourier_coefficients
+  input_slot: 0
+  inner_operation: weyl_basis
+  colour_match: WeylBasisWithTracePairing3 -> WeylBasisWithTracePairing3
+  hypothesis_match: Same declared coordinates, coefficients and context; all operation hypotheses must
+    be carried into the graft.
+  licensing_relations:
+  - weyl_relation_0
+  evidence_status: Semantic substitution supported by the retained finite operation traces and separately
+    scoped named kernel statements. A complete refined-carrier operad is not asserted.
+- outer_operation: weyl_reconstruction
+  input_slot: 0
+  inner_operation: weyl_fourier_coefficients
+  colour_match: NineCubicFourierCoefficients -> NineCubicFourierCoefficients
+  hypothesis_match: Same declared coordinates, coefficients and context; all operation hypotheses must
+    be carried into the graft.
+  licensing_relations:
+  - weyl_relation_0
+  evidence_status: Semantic substitution supported by the retained finite operation traces and separately
+    scoped named kernel statements. A complete refined-carrier operad is not asserted.
+failed_compositions:
+- proposal: Promote the selected step to the unrestricted original target
+  reason: Transport the array model to field/matrix semantics and prove representation irreducibility
+    for all admitted odd primes. Primitive-root existence, seed selection and infinite-dimensional results
+    are not derived.
+- proposal: Accept source bytes rejected by the actual compiler gates
+  reason: The actual preceding P2 rejected an unclosed Rust forest-gauge loop and a Lean tuple type annotation.
+    Close the loop and parenthesize the tuple type without changing its intended statement or any candidate
+    numbers; preserve the rejected checkpoint and fresh source snapshots.
+counterexamples:
+- id: retained_actual_domain_controls
+  records:
+  - input:
+    - '1'
+    - '1'
+    - '1'
+    - '2'
+    - '3'
+    - '4'
+    - '5'
+    - '6'
+    - '7'
+    - '8'
+    - '9'
+    output:
+    - '-1'
+    - '-1'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '-1'
+    - '-1'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '-1'
+    - '-1'
+    - '-1'
+    - '-1'
+    - '5'
+    - '0'
+    - -4/3
+    - 4/3
+    - -8/3
+    - -4/3
+    - '5'
+    - '0'
+    - -4/3
+    - -5/3
+    - 1/3
+    - 5/3
+    - '5'
+    - '0'
+    - 5/3
+    - 4/3
+    - 1/3
+    - -4/3
+    - '1'
+    - '0'
+    - '2'
+    - '0'
+    - '3'
+    - '0'
+    - '4'
+    - '0'
+    - '5'
+    - '0'
+    - '6'
+    - '0'
+    - '7'
+    - '0'
+    - '8'
+    - '0'
+    - '9'
+    - '0'
+    - '3'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '3'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '3'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '3'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '3'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '3'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '3'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '3'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '3'
+    - '0'
+  - input:
+    - '2'
+    - '1'
+    - '1'
+    - '0'
+    - '0'
+    - '0'
+    - '1'
+    - '0'
+    - '0'
+    - '0'
+    - '1'
+    output:
+    - '0'
+    - '1'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '1'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '1'
+    - '0'
+    - '1'
+    - '1'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '1'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '1'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '1'
+    - '0'
+    - '3'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '3'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '3'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '3'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '3'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '3'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '3'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '3'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '3'
+    - '0'
+  scope: Computed values, with the source/kernel/native distinctions retained in claim_boundary.
+open_obligations:
+- Transport the array model to field/matrix semantics and prove representation irreducibility for all
+  admitted odd primes. Primitive-root existence, seed selection and infinite-dimensional results are not
+  derived.
+- Prove the full refined-carrier operad identity, substitution, symmetry and coherence laws; mere colour
+  matches do not instantiate that formal structure.

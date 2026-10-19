@@ -151,9 +151,9 @@ def test_qm224_qm225_lean_and_manuscript_cross_layer_constant_parity() -> None:
         lean_file = paper_root / "research" / "lean4" / "FiniteQM.lean"
     lean_text = lean_file.read_text(encoding="utf-8")
 
-    ms_file = paper_root / "finite_quantum_mechanics.md"
+    ms_file = paper_root / "papers" / "core" / "finite_quantum_mechanics.md"
     if not ms_file.exists():
-        ms_file = paper_root / "research" / "finite_quantum_mechanics.md"
+        ms_file = paper_root / "finite_quantum_mechanics.md"
     manuscript_text = ms_file.read_text(encoding="utf-8")
 
     assert "let zeta : Rat := 29 / 16" in lean_text

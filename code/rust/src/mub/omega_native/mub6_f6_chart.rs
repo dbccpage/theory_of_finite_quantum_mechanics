@@ -82,7 +82,7 @@ pub fn declare_f6_chart() -> F6Chart {
         unbiased_to_standard: true,
         charts: "the 2-parameter affine Fourier slice of 6x6 CHMs = MU pairs {I, F6(x,y)/sqrt6}; one CHM factor of an MU triple",
         cover_obligation: "the no-go cover needs a TRIPLE; F6(x,y) is one CHM factor (B2). EXACT finding (f6_family_pair_is_mutually_unbiased): the family is internally NON-mutually-unbiased -- distinct members share their first 3 columns and have vanishing cross-block overlaps -- so NO MU triple lives inside it. A no-go cover requires a third basis B3 mutually unbiased to {I, F6(x,y)} from OUTSIDE the family (or a proof none exists); that external B3 is the gating coordinate before mub6_basis_cover can run over the (x,y) box",
-        firewall: "declares a chart + proves it Hadamard exactly + records the exact self-non-MU finding (the interval cover is not yet runnable: no triple lives inside the family); charts a 2-parameter slice, NOT the whole moduli; stated region only; mints no authority",
+        firewall: "declares a chart + shows in this model it is Hadamard exactly + records the exact self-non-MU finding (the interval cover is not yet runnable: no triple lives inside the family); charts a 2-parameter slice, NOT the whole moduli; stated region only; mints no authority",
     }
 }
 

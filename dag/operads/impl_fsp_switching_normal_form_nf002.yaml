@@ -1,0 +1,1049 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: IMPL-FSP-SWITCHING-NORMAL-FORM-NF002
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: 'FSP switching normal form NF-002: theorems T1 to T3 and T5 and the T4 bijection are
+    attached to the draft PR. The Nat count 2^(|E| - |V| + c) is the one residual, because it needs that
+    functions from the chord set to Bool number 2^numChord and core Lean has no cardinality library.'
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: []
+  source_bottleneck: All NF-002 theorems T1-T5 and the duplicate-free 2^numChord normal-form enumeration
+    are mechanized in core Lean 4 without Classical.choice.
+  source_refs:
+  - omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean
+  - omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml
+  paper_refs:
+  - dag/derivations/23_engine_custody/tfq_0200_three_language_custody_on_the_omega_engine_runtime.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  historical_paper_refs:
+  - papers/derivations/23_engine_custody/tfq_0200_three_language_custody_on_the_omega_engine_runtime.md
+  paper_relocations:
+  - from: papers/derivations/23_engine_custody/tfq_0200_three_language_custody_on_the_omega_engine_runtime.md
+    to: dag/derivations/23_engine_custody/tfq_0200_three_language_custody_on_the_omega_engine_runtime.md
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/23_engine_custody/tfq_0200_three_language_custody_on_the_omega_engine_runtime.md
+    sha256: 6fd5313427e635a58daa0ddba4d98e85ec10f7842170abfeb448bc0aec390524
+source_provenance:
+  repository: this_repository
+  commit: 642f5b95a116da6df805adbd745a4826c6739c2b
+  path: dag/prompts/implementation_impl_fsp_switching_normal_form_nf002_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: structure
+  name: Forest
+  line: 81
+  signature_excerpt: 'structure Forest (G : Graph)'
+  source: omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean
+  repository: the_symbol_game
+  source_sha256: dfb38dc1540c22c8bd805b5e00287b75125b8270ca3384a6251899bcb03e6931
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: Graph
+  line: 27
+  signature_excerpt: structure Graph
+  source: omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean
+  repository: the_symbol_game
+  source_sha256: dfb38dc1540c22c8bd805b5e00287b75125b8270ca3384a6251899bcb03e6931
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: Cochain
+  line: 32
+  signature_excerpt: 'abbrev Cochain (G : Graph)'
+  source: omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean
+  repository: the_symbol_game
+  source_sha256: dfb38dc1540c22c8bd805b5e00287b75125b8270ca3384a6251899bcb03e6931
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: SameClass
+  line: 44
+  signature_excerpt: 'def SameClass (G : Graph) (s t : Cochain G) : Prop'
+  source: omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean
+  repository: the_symbol_game
+  source_sha256: dfb38dc1540c22c8bd805b5e00287b75125b8270ca3384a6251899bcb03e6931
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: Potential
+  line: 33
+  signature_excerpt: 'abbrev Potential (G : Graph)'
+  source: omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean
+  repository: the_symbol_game
+  source_sha256: dfb38dc1540c22c8bd805b5e00287b75125b8270ca3384a6251899bcb03e6931
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: switch
+  line: 40
+  signature_excerpt: 'def switch (G : Graph) (s : Cochain G) (a : Potential G) : Cochain G'
+  source: omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean
+  repository: the_symbol_game
+  source_sha256: dfb38dc1540c22c8bd805b5e00287b75125b8270ca3384a6251899bcb03e6931
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: delta
+  line: 36
+  signature_excerpt: 'def delta (G : Graph) (a : Potential G) (e : Fin G.m) : Bool'
+  source: omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean
+  repository: the_symbol_game
+  source_sha256: dfb38dc1540c22c8bd805b5e00287b75125b8270ca3384a6251899bcb03e6931
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: potential
+  line: 138
+  signature_excerpt: 'def potential (T : Forest G) (s : Cochain G) (v : Fin G.n) : Bool'
+  source: omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean
+  repository: the_symbol_game
+  source_sha256: dfb38dc1540c22c8bd805b5e00287b75125b8270ca3384a6251899bcb03e6931
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: potAux
+  line: 130
+  signature_excerpt: 'def potAux (T : Forest G) (s : Cochain G) : Nat → Fin G.n → Bool'
+  source: omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean
+  repository: the_symbol_game
+  source_sha256: dfb38dc1540c22c8bd805b5e00287b75125b8270ca3384a6251899bcb03e6931
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: parity
+  line: 425
+  signature_excerpt: 'def parity (s : Cochain G) : List (Fin G.m) → Bool'
+  source: omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean
+  repository: the_symbol_game
+  source_sha256: dfb38dc1540c22c8bd805b5e00287b75125b8270ca3384a6251899bcb03e6931
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: root
+  line: 199
+  signature_excerpt: 'def root (T : Forest G) (v : Fin G.n) : Fin G.n'
+  source: omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean
+  repository: the_symbol_game
+  source_sha256: dfb38dc1540c22c8bd805b5e00287b75125b8270ca3384a6251899bcb03e6931
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: rootAux
+  line: 192
+  signature_excerpt: 'def rootAux (T : Forest G) : Nat → Fin G.n → Fin G.n'
+  source: omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean
+  repository: the_symbol_game
+  source_sha256: dfb38dc1540c22c8bd805b5e00287b75125b8270ca3384a6251899bcb03e6931
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: normal
+  line: 278
+  signature_excerpt: 'def normal (T : Forest G) (s : Cochain G) : Cochain G'
+  source: omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean
+  repository: the_symbol_game
+  source_sha256: dfb38dc1540c22c8bd805b5e00287b75125b8270ca3384a6251899bcb03e6931
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: numChord
+  line: 761
+  signature_excerpt: 'def numChord (T : Forest G) : Nat'
+  source: omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean
+  repository: the_symbol_game
+  source_sha256: dfb38dc1540c22c8bd805b5e00287b75125b8270ca3384a6251899bcb03e6931
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: IsForestEdge
+  line: 606
+  signature_excerpt: 'def IsForestEdge (T : Forest G) (e : Fin G.m) : Prop'
+  source: omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean
+  repository: the_symbol_game
+  source_sha256: dfb38dc1540c22c8bd805b5e00287b75125b8270ca3384a6251899bcb03e6931
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: fundamental
+  line: 582
+  signature_excerpt: 'def fundamental (T : Forest G) (e : Fin G.m) : List (Fin G.m)'
+  source: omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean
+  repository: the_symbol_game
+  source_sha256: dfb38dc1540c22c8bd805b5e00287b75125b8270ca3384a6251899bcb03e6931
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: pathTo
+  line: 510
+  signature_excerpt: 'def pathTo (T : Forest G) (v : Fin G.n) : List (Fin G.m)'
+  source: omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean
+  repository: the_symbol_game
+  source_sha256: dfb38dc1540c22c8bd805b5e00287b75125b8270ca3384a6251899bcb03e6931
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: pathAux
+  line: 502
+  signature_excerpt: 'def pathAux (T : Forest G) : Nat → Fin G.n → List (Fin G.m)'
+  source: omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean
+  repository: the_symbol_game
+  source_sha256: dfb38dc1540c22c8bd805b5e00287b75125b8270ca3384a6251899bcb03e6931
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: zero
+  line: 47
+  signature_excerpt: 'def zero (G : Graph) : Cochain G'
+  source: omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean
+  repository: the_symbol_game
+  source_sha256: dfb38dc1540c22c8bd805b5e00287b75125b8270ca3384a6251899bcb03e6931
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: numRoot
+  line: 764
+  signature_excerpt: 'def numRoot (T : Forest G) : Nat'
+  source: omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean
+  repository: the_symbol_game
+  source_sha256: dfb38dc1540c22c8bd805b5e00287b75125b8270ca3384a6251899bcb03e6931
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: normalForms
+  line: 1037
+  signature_excerpt: 'def normalForms (T : Forest G) : List (Cochain G)'
+  source: omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean
+  repository: the_symbol_game
+  source_sha256: dfb38dc1540c22c8bd805b5e00287b75125b8270ca3384a6251899bcb03e6931
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: chordNormalForms
+  line: 914
+  signature_excerpt: 'def chordNormalForms (G : Graph) : List (Fin G.m) → List (Cochain G)'
+  source: omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean
+  repository: the_symbol_game
+  source_sha256: dfb38dc1540c22c8bd805b5e00287b75125b8270ca3384a6251899bcb03e6931
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: setAt
+  line: 906
+  signature_excerpt: 'def setAt (G : Graph) (e : Fin G.m) (b : Bool) (s : Cochain G) : Cochain G'
+  source: omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean
+  repository: the_symbol_game
+  source_sha256: dfb38dc1540c22c8bd805b5e00287b75125b8270ca3384a6251899bcb03e6931
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: chordList
+  line: 1033
+  signature_excerpt: 'def chordList (T : Forest G) : List (Fin G.m)'
+  source: omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean
+  repository: the_symbol_game
+  source_sha256: dfb38dc1540c22c8bd805b5e00287b75125b8270ca3384a6251899bcb03e6931
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: normal_sound
+  line: 309
+  signature_excerpt: 'theorem normal_sound (T : Forest G) (s : Cochain G) : SameClass G s (normal T s)'
+  source: omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean
+  repository: the_symbol_game
+  source_sha256: dfb38dc1540c22c8bd805b5e00287b75125b8270ca3384a6251899bcb03e6931
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: same_class_iff
+  line: 343
+  signature_excerpt: "theorem same_class_iff (T : Forest G) (s t : Cochain G) :\n    SameClass G s t ↔\
+    \ normal T s = normal T t"
+  source: omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean
+  repository: the_symbol_game
+  source_sha256: dfb38dc1540c22c8bd805b5e00287b75125b8270ca3384a6251899bcb03e6931
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: numChord_identity
+  line: 897
+  signature_excerpt: 'theorem numChord_identity (T : Forest G) : numChord T + G.n = G.m + numRoot T'
+  source: omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean
+  repository: the_symbol_game
+  source_sha256: dfb38dc1540c22c8bd805b5e00287b75125b8270ca3384a6251899bcb03e6931
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: normalForms_length
+  line: 1041
+  signature_excerpt: "theorem normalForms_length (T : Forest G) :\n    (normalForms T).length = 2 ^ numChord\
+    \ T"
+  source: omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean
+  repository: the_symbol_game
+  source_sha256: dfb38dc1540c22c8bd805b5e00287b75125b8270ca3384a6251899bcb03e6931
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: normalForms_nodup
+  line: 1047
+  signature_excerpt: "theorem normalForms_nodup (T : Forest G) :\n    (normalForms T).Nodup"
+  source: omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean
+  repository: the_symbol_game
+  source_sha256: dfb38dc1540c22c8bd805b5e00287b75125b8270ca3384a6251899bcb03e6931
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: mem_normalForms_iff
+  line: 1053
+  signature_excerpt: "theorem mem_normalForms_iff (T : Forest G) (c : Cochain G) :\n    c ∈ normalForms\
+    \ T ↔ ∃ s : Cochain G, normal T s = c"
+  source: omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean
+  repository: the_symbol_game
+  source_sha256: dfb38dc1540c22c8bd805b5e00287b75125b8270ca3384a6251899bcb03e6931
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean::SwitchingNormalForm.normal_sound
+  availability: external
+  symbol: SwitchingNormalForm.normal_sound
+  path: omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean
+  repository: the_symbol_game
+  sha256: dfb38dc1540c22c8bd805b5e00287b75125b8270ca3384a6251899bcb03e6931
+  declaration_status: declaration_found_not_proof_checked
+  line: 309
+  role: source_lead_only
+- original_ref: omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean::SwitchingNormalForm.same_class_iff
+  availability: external
+  symbol: SwitchingNormalForm.same_class_iff
+  path: omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean
+  repository: the_symbol_game
+  sha256: dfb38dc1540c22c8bd805b5e00287b75125b8270ca3384a6251899bcb03e6931
+  declaration_status: declaration_found_not_proof_checked
+  line: 343
+  role: source_lead_only
+- original_ref: omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean::SwitchingNormalForm.numChord_identity
+  availability: external
+  symbol: SwitchingNormalForm.numChord_identity
+  path: omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean
+  repository: the_symbol_game
+  sha256: dfb38dc1540c22c8bd805b5e00287b75125b8270ca3384a6251899bcb03e6931
+  declaration_status: declaration_found_not_proof_checked
+  line: 897
+  role: source_lead_only
+- original_ref: omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean::SwitchingNormalForm.normalForms_length
+  availability: external
+  symbol: SwitchingNormalForm.normalForms_length
+  path: omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean
+  repository: the_symbol_game
+  sha256: dfb38dc1540c22c8bd805b5e00287b75125b8270ca3384a6251899bcb03e6931
+  declaration_status: declaration_found_not_proof_checked
+  line: 1041
+  role: source_lead_only
+- original_ref: omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean::SwitchingNormalForm.normalForms_nodup
+  availability: external
+  symbol: SwitchingNormalForm.normalForms_nodup
+  path: omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean
+  repository: the_symbol_game
+  sha256: dfb38dc1540c22c8bd805b5e00287b75125b8270ca3384a6251899bcb03e6931
+  declaration_status: declaration_found_not_proof_checked
+  line: 1047
+  role: source_lead_only
+- original_ref: omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean::SwitchingNormalForm.mem_normalForms_iff
+  availability: external
+  symbol: SwitchingNormalForm.mem_normalForms_iff
+  path: omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean
+  repository: the_symbol_game
+  sha256: dfb38dc1540c22c8bd805b5e00287b75125b8270ca3384a6251899bcb03e6931
+  declaration_status: declaration_found_not_proof_checked
+  line: 1053
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_impl_nf002_thymus_and_lggr_witness
+  availability: external
+  symbol: verify_impl_nf002_thymus_and_lggr_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 467
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche13_ds_qm_final_16_second_witness_closure_witness
+  availability: external
+  symbol: verify_tranche13_ds_qm_final_16_second_witness_closure_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 1343
+  role: source_lead_only
+presentation:
+  status: scoped_stage_result_reviewed
+  scope: All edge signings and vertex-switching orbits for the four declared graphs are exact; cycle XOR
+    invariance and2^b Boolean-function cardinality are kernel checked.
+  colours:
+  - id: CompleteFiniteOrbitPartition
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: DeclaredFiniteGraphAndEdgeSigning
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: ForestGaugeAndSwitchedSigning
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: TreeZeroChordRepresentative
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  generators:
+  - id: spanning_forest_switch
+    ordered_inputs:
+    - DeclaredFiniteGraphAndEdgeSigning
+    output: ForestGaugeAndSwitchedSigning
+    arity: 1
+    carrier: Declared DeclaredFiniteGraphAndEdgeSigning
+    coefficient_ring: Exact rational/Gaussian/cubic-cyclotomic coordinates, finite sets and bounded natural
+      event fields
+    hypotheses:
+    - Four specified finite graphs, edge order and rooted forests; isolated components are counted explicitly.
+    semantic_predicate: Choose the deterministic rooted spanning forest.
+    source_pins:
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/inputs/this_repository/dag/prompts/implementation_impl_fsp_switching_normal_form_nf002_proved_lean.yaml
+      sha256: f3364098e857178921446606e269ea657472840d91d71452a10af00f56502648
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/inputs/this_repository/dag/operads/impl_fsp_switching_normal_form_nf002.yaml
+      sha256: b1fb3300daf4a70d6df002415851042a715d75620f313c533b7795f5d89716da
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean
+      sha256: dfb38dc1540c22c8bd805b5e00287b75125b8270ca3384a6251899bcb03e6931
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/inputs/this_repository/dag/derivations/23_engine_custody/tfq_0200_three_language_custody_on_the_omega_engine_runtime.md
+      sha256: c17449ab2c621818d0bd1cec2d2cfb9dbd1d74419a5da3fa3ea18b7290f6f9cb
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p0/operation_sources/code/python/src/qm/genesis_impl_exact.py
+      sha256: c089e168b2fdf95035234b3c790033a7c26faeeb560caba3702316b67a83de08
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p0/operation_sources/code/python/tests/test_genesis_impl_exact.py
+      sha256: 83bb286035e4bf51798b48bfcbb41e42e367a1735439733ddc2df93874bd4bba
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p0/operation_sources/code/rust/src/finite_probability/genesis_impl_exact.rs
+      sha256: 69ec2e18c3114e5087881dc7dc58f5ccd27af0dc64d8b673afd7a4c59646405c
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/genesis_impl_exact_replay.rs
+      sha256: 6f62d62b19601a4c57bab60bc683a8f65e7a38ecb47cb8291746c6e44fedfe43
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/genesis_impl_checker.py
+      sha256: aaee07218bf3ce39df57837cecb0df3da420cec6311b0c8389bec96dba42f286
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p0/operation_sources/dag/results/batches/20261019T215447Z_prompts_92_111/tools/prepare.py
+      sha256: 7aacd1e0ac730a596635ea0c1faac5113bb58cfac79f80cbc3d92636a75cb5b8
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p0/operation_sources/dag/results/batches/20261019T215447Z_prompts_92_111/tools/specs.py
+      sha256: c8db59e0e612c454d9ec6a012326d016a0a7f74c09642531d4f5a8f5df2ce76b
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/check_candidate.py
+      sha256: 4d4c2d52c229cade69bb7487d586a7c35ef846855210e2da94665e06964fd59e
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/format_certificate.py
+      sha256: ab767111e27fde755e612174d313cc0e0ca5f66614f67b58d969b256d3bfc42a
+    evidence_status: Reviewed exact finite native controls. Kernel signatures are separately scoped. Full
+      refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p2/host_check.json
+  - id: chord_normal_form
+    ordered_inputs:
+    - ForestGaugeAndSwitchedSigning
+    output: TreeZeroChordRepresentative
+    arity: 1
+    carrier: Declared ForestGaugeAndSwitchedSigning
+    coefficient_ring: Exact rational/Gaussian/cubic-cyclotomic coordinates, finite sets and bounded natural
+      event fields
+    hypotheses:
+    - Four specified finite graphs, edge order and rooted forests; isolated components are counted explicitly.
+    semantic_predicate: Gauge every tree edge to zero.
+    source_pins:
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/inputs/this_repository/dag/prompts/implementation_impl_fsp_switching_normal_form_nf002_proved_lean.yaml
+      sha256: f3364098e857178921446606e269ea657472840d91d71452a10af00f56502648
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/inputs/this_repository/dag/operads/impl_fsp_switching_normal_form_nf002.yaml
+      sha256: b1fb3300daf4a70d6df002415851042a715d75620f313c533b7795f5d89716da
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean
+      sha256: dfb38dc1540c22c8bd805b5e00287b75125b8270ca3384a6251899bcb03e6931
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/inputs/this_repository/dag/derivations/23_engine_custody/tfq_0200_three_language_custody_on_the_omega_engine_runtime.md
+      sha256: c17449ab2c621818d0bd1cec2d2cfb9dbd1d74419a5da3fa3ea18b7290f6f9cb
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p0/operation_sources/code/python/src/qm/genesis_impl_exact.py
+      sha256: c089e168b2fdf95035234b3c790033a7c26faeeb560caba3702316b67a83de08
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p0/operation_sources/code/python/tests/test_genesis_impl_exact.py
+      sha256: 83bb286035e4bf51798b48bfcbb41e42e367a1735439733ddc2df93874bd4bba
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p0/operation_sources/code/rust/src/finite_probability/genesis_impl_exact.rs
+      sha256: 69ec2e18c3114e5087881dc7dc58f5ccd27af0dc64d8b673afd7a4c59646405c
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/genesis_impl_exact_replay.rs
+      sha256: 6f62d62b19601a4c57bab60bc683a8f65e7a38ecb47cb8291746c6e44fedfe43
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/genesis_impl_checker.py
+      sha256: aaee07218bf3ce39df57837cecb0df3da420cec6311b0c8389bec96dba42f286
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p0/operation_sources/dag/results/batches/20261019T215447Z_prompts_92_111/tools/prepare.py
+      sha256: 7aacd1e0ac730a596635ea0c1faac5113bb58cfac79f80cbc3d92636a75cb5b8
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p0/operation_sources/dag/results/batches/20261019T215447Z_prompts_92_111/tools/specs.py
+      sha256: c8db59e0e612c454d9ec6a012326d016a0a7f74c09642531d4f5a8f5df2ce76b
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/check_candidate.py
+      sha256: 4d4c2d52c229cade69bb7487d586a7c35ef846855210e2da94665e06964fd59e
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/format_certificate.py
+      sha256: ab767111e27fde755e612174d313cc0e0ca5f66614f67b58d969b256d3bfc42a
+    evidence_status: Reviewed exact finite native controls. Kernel signatures are separately scoped. Full
+      refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p2/host_check.json
+  - id: switching_orbit_enumeration
+    ordered_inputs:
+    - TreeZeroChordRepresentative
+    output: CompleteFiniteOrbitPartition
+    arity: 1
+    carrier: Declared TreeZeroChordRepresentative
+    coefficient_ring: Exact rational/Gaussian/cubic-cyclotomic coordinates, finite sets and bounded natural
+      event fields
+    hypotheses:
+    - Four specified finite graphs, edge order and rooted forests; isolated components are counted explicitly.
+    semantic_predicate: Enumerate orbit equivalence and compare2^(E-V+c) forms.
+    source_pins:
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/inputs/this_repository/dag/prompts/implementation_impl_fsp_switching_normal_form_nf002_proved_lean.yaml
+      sha256: f3364098e857178921446606e269ea657472840d91d71452a10af00f56502648
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/inputs/this_repository/dag/operads/impl_fsp_switching_normal_form_nf002.yaml
+      sha256: b1fb3300daf4a70d6df002415851042a715d75620f313c533b7795f5d89716da
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean
+      sha256: dfb38dc1540c22c8bd805b5e00287b75125b8270ca3384a6251899bcb03e6931
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/inputs/this_repository/dag/derivations/23_engine_custody/tfq_0200_three_language_custody_on_the_omega_engine_runtime.md
+      sha256: c17449ab2c621818d0bd1cec2d2cfb9dbd1d74419a5da3fa3ea18b7290f6f9cb
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p0/operation_sources/code/python/src/qm/genesis_impl_exact.py
+      sha256: c089e168b2fdf95035234b3c790033a7c26faeeb560caba3702316b67a83de08
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p0/operation_sources/code/python/tests/test_genesis_impl_exact.py
+      sha256: 83bb286035e4bf51798b48bfcbb41e42e367a1735439733ddc2df93874bd4bba
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p0/operation_sources/code/rust/src/finite_probability/genesis_impl_exact.rs
+      sha256: 69ec2e18c3114e5087881dc7dc58f5ccd27af0dc64d8b673afd7a4c59646405c
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/genesis_impl_exact_replay.rs
+      sha256: 6f62d62b19601a4c57bab60bc683a8f65e7a38ecb47cb8291746c6e44fedfe43
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/genesis_impl_checker.py
+      sha256: aaee07218bf3ce39df57837cecb0df3da420cec6311b0c8389bec96dba42f286
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p0/operation_sources/dag/results/batches/20261019T215447Z_prompts_92_111/tools/prepare.py
+      sha256: 7aacd1e0ac730a596635ea0c1faac5113bb58cfac79f80cbc3d92636a75cb5b8
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p0/operation_sources/dag/results/batches/20261019T215447Z_prompts_92_111/tools/specs.py
+      sha256: c8db59e0e612c454d9ec6a012326d016a0a7f74c09642531d4f5a8f5df2ce76b
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/check_candidate.py
+      sha256: 4d4c2d52c229cade69bb7487d586a7c35ef846855210e2da94665e06964fd59e
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/format_certificate.py
+      sha256: ab767111e27fde755e612174d313cc0e0ca5f66614f67b58d969b256d3bfc42a
+    evidence_status: Reviewed exact finite native controls. Kernel signatures are separately scoped. Full
+      refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p2/host_check.json
+  relations:
+  - id: normal_relation_0
+    equation_or_predicate: Each switching orbit has one tree-zero representative; chord bits number2^(E-V+c).
+    typing_conditions: Literal declared operation domains; Prove the general graph/forest refinement and
+      freshly compile all source NF002 declarations before claiming its full core-only/no-Classical.choice
+      theorem suite. This finite graph stage is not that suite.
+    evidence_status: Accepted actual P2 and P4 controls; only the literal named Lean signatures are kernel
+      theorems. Native array-to-signature and physical transports remain as stated.
+    scope: All edge signings and vertex-switching orbits for the four declared graphs are exact; cycle
+      XOR invariance and2^b Boolean-function cardinality are kernel checked.
+    source_pins:
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/inputs/this_repository/dag/prompts/implementation_impl_fsp_switching_normal_form_nf002_proved_lean.yaml
+      sha256: f3364098e857178921446606e269ea657472840d91d71452a10af00f56502648
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/inputs/this_repository/dag/operads/impl_fsp_switching_normal_form_nf002.yaml
+      sha256: b1fb3300daf4a70d6df002415851042a715d75620f313c533b7795f5d89716da
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean
+      sha256: dfb38dc1540c22c8bd805b5e00287b75125b8270ca3384a6251899bcb03e6931
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/inputs/this_repository/dag/derivations/23_engine_custody/tfq_0200_three_language_custody_on_the_omega_engine_runtime.md
+      sha256: c17449ab2c621818d0bd1cec2d2cfb9dbd1d74419a5da3fa3ea18b7290f6f9cb
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p0/operation_sources/code/python/src/qm/genesis_impl_exact.py
+      sha256: c089e168b2fdf95035234b3c790033a7c26faeeb560caba3702316b67a83de08
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p0/operation_sources/code/python/tests/test_genesis_impl_exact.py
+      sha256: 83bb286035e4bf51798b48bfcbb41e42e367a1735439733ddc2df93874bd4bba
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p0/operation_sources/code/rust/src/finite_probability/genesis_impl_exact.rs
+      sha256: 69ec2e18c3114e5087881dc7dc58f5ccd27af0dc64d8b673afd7a4c59646405c
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/genesis_impl_exact_replay.rs
+      sha256: 6f62d62b19601a4c57bab60bc683a8f65e7a38ecb47cb8291746c6e44fedfe43
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/genesis_impl_checker.py
+      sha256: aaee07218bf3ce39df57837cecb0df3da420cec6311b0c8389bec96dba42f286
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p0/operation_sources/dag/results/batches/20261019T215447Z_prompts_92_111/tools/prepare.py
+      sha256: 7aacd1e0ac730a596635ea0c1faac5113bb58cfac79f80cbc3d92636a75cb5b8
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p0/operation_sources/dag/results/batches/20261019T215447Z_prompts_92_111/tools/specs.py
+      sha256: c8db59e0e612c454d9ec6a012326d016a0a7f74c09642531d4f5a8f5df2ce76b
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/check_candidate.py
+      sha256: 4d4c2d52c229cade69bb7487d586a7c35ef846855210e2da94665e06964fd59e
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/format_certificate.py
+      sha256: ab767111e27fde755e612174d313cc0e0ca5f66614f67b58d969b256d3bfc42a
+    latest_host_check: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p2/host_check.json
+    historical_evidence_annotation: P1 candidate; independent native and named kernel gates remain required.
+    named_Lean_scope:
+    - QuantumMechanics.PromptGenesisImplementation.normal_cycle_switch
+    - QuantumMechanics.PromptGenesisImplementation.normal_form_count
+  compositions: &id001
+  - outer_operation: chord_normal_form
+    input_slot: 0
+    inner_operation: spanning_forest_switch
+    colour_match: ForestGaugeAndSwitchedSigning -> ForestGaugeAndSwitchedSigning
+    hypothesis_match: Same declared coordinates, coefficients and context; all operation hypotheses must
+      be carried into the graft. Fixed matrices, signs, gauge unit, original comparison table, row order,
+      sector and pairing (where relevant) must agree across both operations. Formal universal refined-carrier
+      closure is unpaid.
+    licensing_relations:
+    - normal_relation_0
+    evidence_status: Semantic substitution supported by the retained finite operation traces and separately
+      scoped named kernel statements. A complete refined-carrier operad is not asserted.
+  - outer_operation: switching_orbit_enumeration
+    input_slot: 0
+    inner_operation: chord_normal_form
+    colour_match: TreeZeroChordRepresentative -> TreeZeroChordRepresentative
+    hypothesis_match: Same declared coordinates, coefficients and context; all operation hypotheses must
+      be carried into the graft. Fixed matrices, signs, gauge unit, original comparison table, row order,
+      sector and pairing (where relevant) must agree across both operations. Formal universal refined-carrier
+      closure is unpaid.
+    licensing_relations:
+    - normal_relation_0
+    evidence_status: Semantic substitution supported by the retained finite operation traces and separately
+      scoped named kernel statements. A complete refined-carrier operad is not asserted.
+  identities:
+  - colour: CompleteFiniteOrbitPartition
+    proposed_operation: id_CompleteFiniteOrbitPartition
+    signature: CompleteFiniteOrbitPartition -> CompleteFiniteOrbitPartition
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: DeclaredFiniteGraphAndEdgeSigning
+    proposed_operation: id_DeclaredFiniteGraphAndEdgeSigning
+    signature: DeclaredFiniteGraphAndEdgeSigning -> DeclaredFiniteGraphAndEdgeSigning
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: ForestGaugeAndSwitchedSigning
+    proposed_operation: id_ForestGaugeAndSwitchedSigning
+    signature: ForestGaugeAndSwitchedSigning -> ForestGaugeAndSwitchedSigning
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: TreeZeroChordRepresentative
+    proposed_operation: id_TreeZeroChordRepresentative
+    signature: TreeZeroChordRepresentative -> TreeZeroChordRepresentative
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  symmetric_actions: []
+  coherence_obligations: &id002
+  - Prove the general graph/forest refinement and freshly compile all source NF002 declarations before
+    claiming its full core-only/no-Classical.choice theorem suite. This finite graph stage is not that
+    suite.
+  - Prove the full refined-carrier operad identity, substitution, symmetry and coherence laws; mere colour
+    matches do not instantiate that formal structure.
+  - A source provider PASS/hash, route index, census label or Boolean flag is not mathematical evidence
+    for the original target. No historical provider receipt is newly authenticated.
+  failed_compositions:
+  - proposal: Promote the selected step to the unrestricted original target
+    reason: Prove the general graph/forest refinement and freshly compile all source NF002 declarations
+      before claiming its full core-only/no-Classical.choice theorem suite. This finite graph stage is
+      not that suite.
+  counterexamples:
+  - id: retained_actual_domain_controls
+    records:
+    - input:
+      - '0'
+      output:
+      - '3'
+      - '3'
+      - '1'
+      - '1'
+      - '2'
+      - '2'
+      - '0'
+      - '2'
+      - '-1'
+      - '0'
+      - '2'
+      - '2'
+      - '0'
+      - '2'
+      - '0'
+      - '0'
+      - '2'
+      - '4'
+      - '4'
+      - '4'
+      - '4'
+      - '4'
+      - '4'
+      - '4'
+      - '4'
+      - '0'
+      - '2'
+    - input:
+      - '1'
+      output:
+      - '3'
+      - '2'
+      - '1'
+      - '0'
+      - '1'
+      - '1'
+      - '0'
+      - '1'
+      - '-1'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '4'
+      - '4'
+      - '4'
+      - '4'
+      - '0'
+    - input:
+      - '2'
+      output:
+      - '4'
+      - '3'
+      - '2'
+      - '1'
+      - '2'
+      - '2'
+      - '0'
+      - '2'
+      - '-1'
+      - '0'
+      - '2'
+      - '2'
+      - '0'
+      - '2'
+      - '0'
+      - '0'
+      - '2'
+      - '4'
+      - '4'
+      - '4'
+      - '4'
+      - '4'
+      - '4'
+      - '4'
+      - '4'
+      - '0'
+      - '2'
+    - input:
+      - '3'
+      output:
+      - '4'
+      - '5'
+      - '1'
+      - '2'
+      - '4'
+      - '4'
+      - '0'
+      - '3'
+      - '4'
+      - '-1'
+      - '0'
+      - '2'
+      - '2'
+      - '0'
+      - '4'
+      - '6'
+      - '6'
+      - '4'
+      - '4'
+      - '6'
+      - '6'
+      - '4'
+      - '0'
+      - '2'
+      - '2'
+      - '0'
+      - '6'
+      - '4'
+      - '4'
+      - '6'
+      - '2'
+      - '0'
+      - '0'
+      - '2'
+      - '2'
+      - '0'
+      - '0'
+      - '2'
+      - '6'
+      - '4'
+      - '4'
+      - '6'
+      - '8'
+      - '8'
+      - '8'
+      - '8'
+      - '8'
+      - '8'
+      - '8'
+      - '8'
+      - '8'
+      - '8'
+      - '8'
+      - '8'
+      - '8'
+      - '8'
+      - '8'
+      - '8'
+      - '8'
+      - '8'
+      - '8'
+      - '8'
+      - '8'
+      - '8'
+      - '8'
+      - '8'
+      - '8'
+      - '8'
+      - '8'
+      - '8'
+      - '8'
+      - '8'
+      - '8'
+      - '8'
+      - '0'
+      - '2'
+      - '4'
+      - '6'
+    scope: Computed values, with the source/kernel/native distinctions retained in claim_boundary.
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: FILLED
+    carrier: Literal per-operation finite or admitted scalar carriers
+    coefficient_ring: Exact Z, Q, Gaussian rational pairs and supplied Boolean fields
+    source_pins:
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/inputs/this_repository/dag/prompts/implementation_impl_fsp_switching_normal_form_nf002_proved_lean.yaml
+      sha256: f3364098e857178921446606e269ea657472840d91d71452a10af00f56502648
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/inputs/this_repository/dag/operads/impl_fsp_switching_normal_form_nf002.yaml
+      sha256: b1fb3300daf4a70d6df002415851042a715d75620f313c533b7795f5d89716da
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean
+      sha256: dfb38dc1540c22c8bd805b5e00287b75125b8270ca3384a6251899bcb03e6931
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/inputs/this_repository/dag/derivations/23_engine_custody/tfq_0200_three_language_custody_on_the_omega_engine_runtime.md
+      sha256: c17449ab2c621818d0bd1cec2d2cfb9dbd1d74419a5da3fa3ea18b7290f6f9cb
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p0/operation_sources/code/python/src/qm/genesis_impl_exact.py
+      sha256: c089e168b2fdf95035234b3c790033a7c26faeeb560caba3702316b67a83de08
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p0/operation_sources/code/python/tests/test_genesis_impl_exact.py
+      sha256: 83bb286035e4bf51798b48bfcbb41e42e367a1735439733ddc2df93874bd4bba
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p0/operation_sources/code/rust/src/finite_probability/genesis_impl_exact.rs
+      sha256: 69ec2e18c3114e5087881dc7dc58f5ccd27af0dc64d8b673afd7a4c59646405c
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/genesis_impl_exact_replay.rs
+      sha256: 6f62d62b19601a4c57bab60bc683a8f65e7a38ecb47cb8291746c6e44fedfe43
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/genesis_impl_checker.py
+      sha256: aaee07218bf3ce39df57837cecb0df3da420cec6311b0c8389bec96dba42f286
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p0/operation_sources/dag/results/batches/20261019T215447Z_prompts_92_111/tools/prepare.py
+      sha256: 7aacd1e0ac730a596635ea0c1faac5113bb58cfac79f80cbc3d92636a75cb5b8
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p0/operation_sources/dag/results/batches/20261019T215447Z_prompts_92_111/tools/specs.py
+      sha256: c8db59e0e612c454d9ec6a012326d016a0a7f74c09642531d4f5a8f5df2ce76b
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/check_candidate.py
+      sha256: 4d4c2d52c229cade69bb7487d586a7c35ef846855210e2da94665e06964fd59e
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/format_certificate.py
+      sha256: ab767111e27fde755e612174d313cc0e0ca5f66614f67b58d969b256d3bfc42a
+    public_input:
+      kind: normal
+      cases:
+      - - '0'
+      - - '1'
+      - - '2'
+      - - '3'
+      scope: All edge signings and vertex-switching orbits for the four declared graphs are exact; cycle
+        XOR invariance and2^b Boolean-function cardinality are kernel checked.
+      unpaid_target: Prove the general graph/forest refinement and freshly compile all source NF002 declarations
+        before claiming its full core-only/no-Classical.choice theorem suite. This finite graph stage
+        is not that suite.
+    original_target: 'FSP switching normal form NF-002: theorems T1 to T3 and T5 and the T4 bijection
+      are attached to the draft PR. The Nat count 2^(|E| - |V| + c) is the one residual, because it needs
+      that functions from the chord set to Bool number 2^numChord and core Lean has no cardinality library.'
+    source_scope_review: The historical target calls the cardinality residual open while the bottleneck
+      reports a later core Lean proof. Neither annotation is accepted by itself. This stage constructs
+      normal forms on four actual graphs, including an isolated vertex and a two-cycle-rank graph; forest
+      normalization is independently compared with every vertex-switching orbit. The Lean cardinality
+      statement uses Mathlib and is not represented as a fresh core-only proof of the external library.
+    admitted_assumptions:
+    - Four specified finite graphs, edge order and rooted forests; isolated components are counted explicitly.
+    historical_source_assumptions: []
+    work_unit_admitted_hypotheses:
+    - Four specified finite graphs, edge order and rooted forests; isolated components are counted explicitly.
+  slot_m2_layer1_forward_morphisms:
+    mining_status: FILLED
+    operations:
+    - catalog_id: spanning_forest_switch
+      inputs:
+      - DeclaredFiniteGraphAndEdgeSigning
+      output: ForestGaugeAndSwitchedSigning
+      semantic_predicate: Choose the deterministic rooted spanning forest.
+    - catalog_id: chord_normal_form
+      inputs:
+      - ForestGaugeAndSwitchedSigning
+      output: TreeZeroChordRepresentative
+      semantic_predicate: Gauge every tree edge to zero.
+    - catalog_id: switching_orbit_enumeration
+      inputs:
+      - TreeZeroChordRepresentative
+      output: CompleteFiniteOrbitPartition
+      semantic_predicate: Enumerate orbit equivalence and compare2^(E-V+c) forms.
+    composition_plan: *id001
+    tree:
+    - Each switching orbit has one tree-zero representative; chord bits number2^(E-V+c).
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: FILLED
+    algebraic_relations:
+    - id: normal_relation_0
+      equation_or_predicate: Each switching orbit has one tree-zero representative; chord bits number2^(E-V+c).
+      typing_conditions: Literal declared operation domains; Prove the general graph/forest refinement
+        and freshly compile all source NF002 declarations before claiming its full core-only/no-Classical.choice
+        theorem suite. This finite graph stage is not that suite.
+      evidence_status: P1 candidate; independent native and named kernel gates remain required.
+      scope: All edge signings and vertex-switching orbits for the four declared graphs are exact; cycle
+        XOR invariance and2^b Boolean-function cardinality are kernel checked.
+      source_pins:
+      - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/inputs/this_repository/dag/prompts/implementation_impl_fsp_switching_normal_form_nf002_proved_lean.yaml
+        sha256: f3364098e857178921446606e269ea657472840d91d71452a10af00f56502648
+      - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/inputs/this_repository/dag/operads/impl_fsp_switching_normal_form_nf002.yaml
+        sha256: b1fb3300daf4a70d6df002415851042a715d75620f313c533b7795f5d89716da
+      - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean
+        sha256: dfb38dc1540c22c8bd805b5e00287b75125b8270ca3384a6251899bcb03e6931
+      - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/inputs/this_repository/dag/derivations/23_engine_custody/tfq_0200_three_language_custody_on_the_omega_engine_runtime.md
+        sha256: c17449ab2c621818d0bd1cec2d2cfb9dbd1d74419a5da3fa3ea18b7290f6f9cb
+      - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p0/operation_sources/code/python/src/qm/genesis_impl_exact.py
+        sha256: c089e168b2fdf95035234b3c790033a7c26faeeb560caba3702316b67a83de08
+      - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p0/operation_sources/code/python/tests/test_genesis_impl_exact.py
+        sha256: 83bb286035e4bf51798b48bfcbb41e42e367a1735439733ddc2df93874bd4bba
+      - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p0/operation_sources/code/rust/src/finite_probability/genesis_impl_exact.rs
+        sha256: 69ec2e18c3114e5087881dc7dc58f5ccd27af0dc64d8b673afd7a4c59646405c
+      - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/genesis_impl_exact_replay.rs
+        sha256: 6f62d62b19601a4c57bab60bc683a8f65e7a38ecb47cb8291746c6e44fedfe43
+      - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/genesis_impl_checker.py
+        sha256: aaee07218bf3ce39df57837cecb0df3da420cec6311b0c8389bec96dba42f286
+      - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+        sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+      - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p0/operation_sources/dag/results/batches/20261019T215447Z_prompts_92_111/tools/prepare.py
+        sha256: 7aacd1e0ac730a596635ea0c1faac5113bb58cfac79f80cbc3d92636a75cb5b8
+      - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p0/operation_sources/dag/results/batches/20261019T215447Z_prompts_92_111/tools/specs.py
+        sha256: c8db59e0e612c454d9ec6a012326d016a0a7f74c09642531d4f5a8f5df2ce76b
+      - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/custody.py
+        sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+      - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+        sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+      - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/check_candidate.py
+        sha256: 4d4c2d52c229cade69bb7487d586a7c35ef846855210e2da94665e06964fd59e
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/format_certificate.py
+        sha256: ab767111e27fde755e612174d313cc0e0ca5f66614f67b58d969b256d3bfc42a
+    rejection_predicates:
+    - Independent domain equations and actual matrix/graph/quotient arrays recompute every output.
+    - Exact public input, canonical rational primitive types, complete source pins and exact sealed request
+      bytes.
+    - Full native cross-language output equality and actual named Lean axiom reports; no label-based target
+      promotion.
+    negative_control_plan: Alter every output coordinate, input identity, primitive types, source set
+      and sealed request.
+  slot_m4_tri_language_witness_anchors:
+    mining_status: FILLED
+    certificate_predicates:
+    - Independent domain equations and actual matrix/graph/quotient arrays recompute every output.
+    - Exact public input, canonical rational primitive types, complete source pins and exact sealed request
+      bytes.
+    - Full native cross-language output equality and actual named Lean axiom reports; no label-based target
+      promotion.
+    anchors:
+    - code/python/src/qm/genesis_impl_exact.py
+    - code/python/tests/test_genesis_impl_exact.py
+    - code/rust/src/finite_probability/genesis_impl_exact.rs
+    - code/rust/src/finite_probability/examples/genesis_impl_exact_replay.rs
+    - dag/pfp/genesis_impl_checker.py
+    - dag/pfp/exact_json.py
+    - dag/pfp/review_exact_json.py
+    - lean4/WeylCommutant.lean
+    - lean4/LggrFiniteResults.lean
+    - lean4/PromptGenesisImplementation.lean
+    - dag/results/batches/20261019T215447Z_prompts_92_111/tools/prepare.py
+    - dag/results/batches/20261019T215447Z_prompts_92_111/tools/specs.py
+    - dag/pfp/custody.py
+    - dag/pfp/filename_custody.json
+    - QuantumMechanics.PromptGenesisImplementation.normal_cycle_switch
+    - QuantumMechanics.PromptGenesisImplementation.normal_form_count
+    unpaid_imports:
+    - Prove the general graph/forest refinement and freshly compile all source NF002 declarations before
+      claiming its full core-only/no-Classical.choice theorem suite. This finite graph stage is not that
+      suite.
+    - Prove the full refined-carrier operad identity, substitution, symmetry and coherence laws; mere
+      colour matches do not instantiate that formal structure.
+    anchor_status: New Lean anchors are candidate declarations until the retained P2 compiler runs; compiled
+      source leads retain their literal scope.
+stage_history:
+- stage: P0_MINE_OPERAD
+  attempt: p0
+  run: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged
+  operad_delta: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p0/operad_delta.yaml
+  host_check: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p0/host_check.json
+- stage: P1_DERIVE
+  attempt: p1
+  run: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged
+  operad_delta: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p1/operad_delta.yaml
+  host_check: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p1/host_check.json
+- stage: P2_VERIFY
+  attempt: p2
+  run: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged
+  operad_delta: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p2/operad_delta.yaml
+  host_check: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p2/host_check.json
+- stage: P4_CHALLENGE
+  attempt: p4
+  run: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged
+  operad_delta: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p4/operad_delta.yaml
+  host_check: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p4/host_check.json
+- stage: P5_RECORD
+  attempt: p5
+  run: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged
+  operad_delta: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p5/operad_delta.yaml
+  host_check: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p5/host_check.json
+open_obligations: *id002
+excluded_relation_leads: []
+operad_slots_scope:
+  work_unit: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p0/reviewed_missions.json
+  scope: FILLED means reviewed prerequisites for this selected step; original target and unpaid imports
+    retained.
+  review_refinement: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/reviews/20261019_genesis_impl_audit/scope_review.json
+latest_run:
+  path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged
+  stage: P5_RECORD
+  status: scoped_result_or_obstruction_reviewed
+scope_notes:
+- The historical target calls the cardinality residual open while the bottleneck reports a later core
+  Lean proof. Neither annotation is accepted by itself. This stage constructs normal forms on four actual
+  graphs, including an isolated vertex and a two-cycle-rank graph; forest normalization is independently
+  compared with every vertex-switching orbit. The Lean cardinality statement uses Mathlib and is not represented
+  as a fresh core-only proof of the external library.
+latest_review:
+  path: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/reviews/20261019_genesis_impl_audit
+  status: reviewed_with_targeted_native_integration
+  operad_delta: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/reviews/20261019_genesis_impl_audit/operad_delta.yaml
+  final_integration: dag/results/batches/20261019T215447Z_prompts_92_111/review/final_delivery_after_hook_environment/result.json
+  accepted_construction_candidate: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p1/candidate.json
+  accepted_native_host: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/runs/20261019T215447Z_staged/p2/host_check.json
+  final_delivery_review_result: dag/results/IMPL-FSP-SWITCHING-NORMAL-FORM-NF002/reviews/20261019_genesis_impl_audit/final_delivery_review_result.json

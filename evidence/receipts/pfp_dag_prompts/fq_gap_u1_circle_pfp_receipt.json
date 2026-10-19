@@ -1,0 +1,83 @@
+{
+  "schema": "omega.pfp.finite_qm.dag_prompt_execution_receipt.v1",
+  "authority_effect": "None",
+  "policy_id": "SPK-001",
+  "timestamp_utc": "2026-10-18T03:43:01.005542+00:00",
+  "prompt_file": "dag/prompts/finite_qm_core_fq_gap_u1_circle_conditional.yaml",
+  "node_id": "FQ-GAP-U1-CIRCLE",
+  "stage": "FINITE_QM_CORE",
+  "dag_status": "CONDITIONAL",
+  "operad_family_id": "OP-FQ-CAYLEY-U1-PUNCTURED-CIRCLE",
+  "operad_mining_missions_completed": [
+    "M1_CARRIER_AND_NORMAL_FORM_MINING",
+    "M2_OPERAD_MORPHISMS_AND_GRAFTING_TREE_MINING",
+    "M3_CONGRUENCE_IDEALS_AND_DECOY_ANTIBODIES_MINING",
+    "M4_TRI_LANGUAGE_EXACT_WITNESS_MINING"
+  ],
+  "winning_model": "deepseek/deepseek-v4.1-flash",
+  "prompt_tokens": 936,
+  "completion_tokens": 877,
+  "elapsed_ms": 28109.0,
+  "attempts": [
+    {
+      "attempt_id": "dag_prompt_fq-gap-u1-circle_a1",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "state": "settled",
+      "prompt_tokens": 936,
+      "completion_tokens": 877,
+      "cost_usd": 0.0001869408,
+      "generation_id": "gen-1792294950-slUcXwUUxsvDNqXanyLn",
+      "elapsed_ms": 28109.0,
+      "raw_preview": "{\"p_star_tree_potentials\":[80,-160,120],\"p_star_chord_potential\":120,\"p_star_holonomy_gamma2\":160,\"cochain_d1_d0_exact_zero\":true,\"finite_shadow_witness_int\":25,\"countermodel_witness_int\":7,\"unpaid_import_count\":2,\"unconditional_promotion_refused\":true,\"derived_under_policy\":\"SPK-001\",\"authority_eff",
+      "gate_status": "PASS",
+      "gate_failures": []
+    }
+  ],
+  "typed_model_response": {
+    "p_star_tree_potentials": [
+      80,
+      -160,
+      120
+    ],
+    "p_star_chord_potential": 120,
+    "p_star_holonomy_gamma2": 160,
+    "cochain_d1_d0_exact_zero": true,
+    "finite_shadow_witness_int": 25,
+    "countermodel_witness_int": 7,
+    "unpaid_import_count": 2,
+    "unconditional_promotion_refused": true,
+    "derived_under_policy": "SPK-001",
+    "authority_effect": "None",
+    "firewall_status": "stated region only; mints no authority.",
+    "node_id": "FQ-GAP-U1-CIRCLE",
+    "stage": "FINITE_QM_CORE",
+    "dag_status": "CONDITIONAL",
+    "operad_family_id": "OP-FQ-CAYLEY-U1-PUNCTURED-CIRCLE",
+    "lean4_theorem_anchor": "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure",
+    "rust_witness_anchor": "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness",
+    "should_continue": false
+  },
+  "gate_receipt": {
+    "schema": "omega.pfp.finite_qm.gate_receipt.v1",
+    "authority_effect": "None",
+    "work_id": "FQ-GAP-U1-CIRCLE",
+    "status": "PASS",
+    "all_gates_passed": true,
+    "gate_results": {
+      "G0_STRICT_TYPED_JSON_SCHEMA": true,
+      "G1_COCHAIN_EXACT_SEQUENCE_D1D0": true,
+      "G2_P_STAR_TREE_CHORD_SYNDROME_DECODE": true,
+      "G3_FINITE_SHADOW_EXACT_WITNESS": true,
+      "G4_COUNTERMODEL_SEPARATION_WITNESS": true,
+      "G5_IMPORT_BOUNDARY_AND_FIREWALL_HONESTY": true,
+      "G6_TRI_LANGUAGE_ANCHOR_BINDING": true
+    },
+    "failures": [],
+    "elapsed_ms": 0.0181,
+    "receipt_sha256": "013e82297478109c69e3bdf8df3e4e441184ffbbc37583e7ea336f23c1c67d8d"
+  },
+  "updated_papers": [
+    "papers/derivations/08_l1_to_l2/tfq_0294_circle_phases_as_an_imported_unit_group.md",
+    "papers/derivations/12_finite_qm_structure/tfq_0253_conditional_complex_carrier_selector.md"
+  ]
+}
