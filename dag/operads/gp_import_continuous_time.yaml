@@ -3,17 +3,17 @@ node_id: GP-IMPORT-CONTINUOUS-TIME
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: Continuous time, topology, a one-parameter unitary group and Stone's theorem. The two-state
-    toggle has no report-level square root; after complex coefficients, interpolants exist at scale 4 and are
-    not unique.
+  source_statement: Continuous time, topology, a one-parameter unitary group and Stone's theorem. The
+    two-state toggle has no report-level square root; after complex coefficients, interpolants exist at
+    scale 4 and are not unique.
   statement_status: source_claim_to_scope_check_not_accepted_result
-  declared_assumptions: &id001
+  declared_assumptions:
   - 'continuous time: assumption'
   - 'topology on the carrier: assumption'
   - 'one-parameter group: assumption'
   - 'Stone''s theorem: import'
-  source_bottleneck: 'Finite substitutes: exact rational Cayley transform in SO(8,Q); hyperoctahedral signed permutations
-    with irreversible monotone residue.'
+  source_bottleneck: 'Finite substitutes: exact rational Cayley transform in SO(8,Q); hyperoctahedral
+    signed permutations with irreversible monotone residue.'
   source_refs:
   - omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics/001_from_primitive_difference_to_quantum_mechanics/claims/gap_register.yaml#GAP-F001-S000-008
   - omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics/001_from_primitive_difference_to_quantum_mechanics/claims/continuum_price_ledger.yaml#PRICE-HD-03
@@ -23,8 +23,8 @@ target:
   - dag/derivations/11_finite_qm_dynamics/tfq_0245_unitary_finite_shadow_slot_still_reserved.md
   - dag/derivations/11_finite_qm_dynamics/tfq_0246_hamiltonian_generator_admission_still_reserved.md
   source_claim_label: IMPORTED_ASSUMPTION
-  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports before
-    reusing a result.
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
   historical_paper_refs:
   - papers/derivations/11_finite_qm_dynamics/tfq_0245_unitary_finite_shadow_slot_still_reserved.md
   - papers/derivations/11_finite_qm_dynamics/tfq_0246_hamiltonian_generator_admission_still_reserved.md
@@ -83,49 +83,631 @@ source_bindings:
   line: 1207
   role: source_lead_only
 presentation:
-  colours: []
-  generators: []
-  relations: []
-  compositions: []
-  identities: []
+  status: scoped_stage_result_reviewed
+  scope: Complete Boolean square-root obstruction and both exact complex unitary square roots of toggle;
+    generic projector-square algebra and Boolean enumeration in Lean.
+  colours:
+  - id: ComplexTwoByTwoRoot
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: FourBooleanMapSquares
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: SquaredRootAndUnitaryProduct
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: ToggleAndBranchSign
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  generators:
+  - id: time_boolean_squares
+    ordered_inputs:
+    - ToggleAndBranchSign
+    output: FourBooleanMapSquares
+    arity: 1
+    carrier: ToggleAndBranchSign
+    coefficient_ring: Exact rational coordinates, finite integer group/map indices and explicit validity
+      tags
+    hypotheses:
+    - s=+1 or-1; complex coefficients explicitly admitted.
+    semantic_predicate: Exhaust all Boolean endomaps.
+    source_pins:
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_gp_import_continuous_time_imported_assumption.yaml
+      sha256: 8b4b82ed996c7831868d50063313a5ce17db7e7c0ec8a27b0603b8b5da6b789e
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/inputs/this_repository/dag/operads/gp_import_continuous_time.yaml
+      sha256: d07cc6393f01a140420d66aa2251a756215f6b4d02c52b2e581c511f519e8e62
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/inputs/this_repository/lean4/H016ContinuousDynamicsFork.lean
+      sha256: 906b145d8626c1887b1075e9b900858ca3f0c16df6fa65a2d8a87aa68b06de85
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/inputs/this_repository/dag/derivations/11_finite_qm_dynamics/tfq_0245_unitary_finite_shadow_slot_still_reserved.md
+      sha256: a70dea94189cb9ca6b93b538a6421895c099576905968fec92f698c6cbfcdbbb
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/inputs/this_repository/dag/derivations/11_finite_qm_dynamics/tfq_0246_hamiltonian_generator_admission_still_reserved.md
+      sha256: 5a5e181911194955dd1390a01fc988265bfba481d61489d270abc7ed4689f568
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/code/python/src/qm/l1_import_exact.py
+      sha256: e5c630d23d44b309bd5ff65724cd0657e3cd410fe9491bded8dcf5b5bc3e91f8
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/code/python/tests/test_l1_import_exact.py
+      sha256: 793275da0b5567525e2ee0eddb7ef277aeec8a01882c0e75bc33edfb6dbc4e68
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/code/rust/src/finite_probability/l1_import_exact.rs
+      sha256: e8e666e241d0e99f407ee66c51ea5d352d432dabe65e846d0621de36609fdda5
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/l1_import_exact_replay.rs
+      sha256: 987beb4cb0782257ed97cfccb73ad59e4695074e1d9a0462c3343f611e493028
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/dag/pfp/l1_import_checker.py
+      sha256: 4c7533f1e852a9fce88be4e4f0cbea907b57f9d147d5fa4f578fbe95ad182d01
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/dag/results/batches/20261019T232430Z_prompts_112_131/tools/prepare.py
+      sha256: caa0ceeba0f421329772c93f803ec7fa16aa7a9cf02932547d6cf2faf8eaeded
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/dag/results/batches/20261019T232430Z_prompts_112_131/tools/witness_cases.json
+      sha256: aab0a50ab4f61ee4fa0cb67feea575acf54b13dbb4e1e1bf9a7f27c0f05144c2
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/dag/results/batches/20261019T232430Z_prompts_112_131/tools/specs.py
+      sha256: 62f38bc643c581d63da9fa5872b0be6d96a54ab699baee0f06656cbdd6131a4b
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/check_candidate.py
+      sha256: e3ed3ebf3f54ed4ed694528096710b1e7988be4a91810c282d6469c016b774ea
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/format_certificate.py
+      sha256: 6641ae39e90c21bdb561c7a1cb7fa8a7ea37faf66304c5a5238bfcbf5435107d
+    evidence_status: Reviewed exact finite native controls. Kernel signatures are separately scoped. Full
+      refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p2/host_check.json
+  - id: time_projector_root
+    ordered_inputs:
+    - FourBooleanMapSquares
+    output: ComplexTwoByTwoRoot
+    arity: 1
+    carrier: FourBooleanMapSquares
+    coefficient_ring: Exact rational coordinates, finite integer group/map indices and explicit validity
+      tags
+    hypotheses:
+    - s=+1 or-1; complex coefficients explicitly admitted.
+    semantic_predicate: Build Pplus+s*i*Pminus.
+    source_pins:
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_gp_import_continuous_time_imported_assumption.yaml
+      sha256: 8b4b82ed996c7831868d50063313a5ce17db7e7c0ec8a27b0603b8b5da6b789e
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/inputs/this_repository/dag/operads/gp_import_continuous_time.yaml
+      sha256: d07cc6393f01a140420d66aa2251a756215f6b4d02c52b2e581c511f519e8e62
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/inputs/this_repository/lean4/H016ContinuousDynamicsFork.lean
+      sha256: 906b145d8626c1887b1075e9b900858ca3f0c16df6fa65a2d8a87aa68b06de85
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/inputs/this_repository/dag/derivations/11_finite_qm_dynamics/tfq_0245_unitary_finite_shadow_slot_still_reserved.md
+      sha256: a70dea94189cb9ca6b93b538a6421895c099576905968fec92f698c6cbfcdbbb
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/inputs/this_repository/dag/derivations/11_finite_qm_dynamics/tfq_0246_hamiltonian_generator_admission_still_reserved.md
+      sha256: 5a5e181911194955dd1390a01fc988265bfba481d61489d270abc7ed4689f568
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/code/python/src/qm/l1_import_exact.py
+      sha256: e5c630d23d44b309bd5ff65724cd0657e3cd410fe9491bded8dcf5b5bc3e91f8
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/code/python/tests/test_l1_import_exact.py
+      sha256: 793275da0b5567525e2ee0eddb7ef277aeec8a01882c0e75bc33edfb6dbc4e68
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/code/rust/src/finite_probability/l1_import_exact.rs
+      sha256: e8e666e241d0e99f407ee66c51ea5d352d432dabe65e846d0621de36609fdda5
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/l1_import_exact_replay.rs
+      sha256: 987beb4cb0782257ed97cfccb73ad59e4695074e1d9a0462c3343f611e493028
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/dag/pfp/l1_import_checker.py
+      sha256: 4c7533f1e852a9fce88be4e4f0cbea907b57f9d147d5fa4f578fbe95ad182d01
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/dag/results/batches/20261019T232430Z_prompts_112_131/tools/prepare.py
+      sha256: caa0ceeba0f421329772c93f803ec7fa16aa7a9cf02932547d6cf2faf8eaeded
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/dag/results/batches/20261019T232430Z_prompts_112_131/tools/witness_cases.json
+      sha256: aab0a50ab4f61ee4fa0cb67feea575acf54b13dbb4e1e1bf9a7f27c0f05144c2
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/dag/results/batches/20261019T232430Z_prompts_112_131/tools/specs.py
+      sha256: 62f38bc643c581d63da9fa5872b0be6d96a54ab699baee0f06656cbdd6131a4b
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/check_candidate.py
+      sha256: e3ed3ebf3f54ed4ed694528096710b1e7988be4a91810c282d6469c016b774ea
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/format_certificate.py
+      sha256: 6641ae39e90c21bdb561c7a1cb7fa8a7ea37faf66304c5a5238bfcbf5435107d
+    evidence_status: Reviewed exact finite native controls. Kernel signatures are separately scoped. Full
+      refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p2/host_check.json
+  - id: time_unitary_root_compare
+    ordered_inputs:
+    - ComplexTwoByTwoRoot
+    output: SquaredRootAndUnitaryProduct
+    arity: 1
+    carrier: ComplexTwoByTwoRoot
+    coefficient_ring: Exact rational coordinates, finite integer group/map indices and explicit validity
+      tags
+    hypotheses:
+    - s=+1 or-1; complex coefficients explicitly admitted.
+    semantic_predicate: Multiply U² and UdaggerU exactly.
+    source_pins:
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_gp_import_continuous_time_imported_assumption.yaml
+      sha256: 8b4b82ed996c7831868d50063313a5ce17db7e7c0ec8a27b0603b8b5da6b789e
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/inputs/this_repository/dag/operads/gp_import_continuous_time.yaml
+      sha256: d07cc6393f01a140420d66aa2251a756215f6b4d02c52b2e581c511f519e8e62
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/inputs/this_repository/lean4/H016ContinuousDynamicsFork.lean
+      sha256: 906b145d8626c1887b1075e9b900858ca3f0c16df6fa65a2d8a87aa68b06de85
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/inputs/this_repository/dag/derivations/11_finite_qm_dynamics/tfq_0245_unitary_finite_shadow_slot_still_reserved.md
+      sha256: a70dea94189cb9ca6b93b538a6421895c099576905968fec92f698c6cbfcdbbb
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/inputs/this_repository/dag/derivations/11_finite_qm_dynamics/tfq_0246_hamiltonian_generator_admission_still_reserved.md
+      sha256: 5a5e181911194955dd1390a01fc988265bfba481d61489d270abc7ed4689f568
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/code/python/src/qm/l1_import_exact.py
+      sha256: e5c630d23d44b309bd5ff65724cd0657e3cd410fe9491bded8dcf5b5bc3e91f8
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/code/python/tests/test_l1_import_exact.py
+      sha256: 793275da0b5567525e2ee0eddb7ef277aeec8a01882c0e75bc33edfb6dbc4e68
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/code/rust/src/finite_probability/l1_import_exact.rs
+      sha256: e8e666e241d0e99f407ee66c51ea5d352d432dabe65e846d0621de36609fdda5
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/l1_import_exact_replay.rs
+      sha256: 987beb4cb0782257ed97cfccb73ad59e4695074e1d9a0462c3343f611e493028
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/dag/pfp/l1_import_checker.py
+      sha256: 4c7533f1e852a9fce88be4e4f0cbea907b57f9d147d5fa4f578fbe95ad182d01
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/dag/results/batches/20261019T232430Z_prompts_112_131/tools/prepare.py
+      sha256: caa0ceeba0f421329772c93f803ec7fa16aa7a9cf02932547d6cf2faf8eaeded
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/dag/results/batches/20261019T232430Z_prompts_112_131/tools/witness_cases.json
+      sha256: aab0a50ab4f61ee4fa0cb67feea575acf54b13dbb4e1e1bf9a7f27c0f05144c2
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/dag/results/batches/20261019T232430Z_prompts_112_131/tools/specs.py
+      sha256: 62f38bc643c581d63da9fa5872b0be6d96a54ab699baee0f06656cbdd6131a4b
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/check_candidate.py
+      sha256: e3ed3ebf3f54ed4ed694528096710b1e7988be4a91810c282d6469c016b774ea
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/format_certificate.py
+      sha256: 6641ae39e90c21bdb561c7a1cb7fa8a7ea37faf66304c5a5238bfcbf5435107d
+    evidence_status: Reviewed exact finite native controls. Kernel signatures are separately scoped. Full
+      refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p2/host_check.json
+  relations:
+  - id: time_relation_0
+    equation_or_predicate: (Pplus+s*i*Pminus)^2=toggle for s²=1, and the two branches differ.
+    typing_conditions: Literal declared operation domains; Supply topology, continuous time and the one-parameter
+      group; invoke Stone only under its hypotheses. Square roots alone do not define continuous dynamics.
+    evidence_status: Accepted actual P2 and P4 controls; only the literal named Lean signatures are kernel
+      theorems. Native array-to-signature and physical transports remain as stated.
+    scope: Complete Boolean square-root obstruction and both exact complex unitary square roots of toggle;
+      generic projector-square algebra and Boolean enumeration in Lean.
+    source_pins:
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_gp_import_continuous_time_imported_assumption.yaml
+      sha256: 8b4b82ed996c7831868d50063313a5ce17db7e7c0ec8a27b0603b8b5da6b789e
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/inputs/this_repository/dag/operads/gp_import_continuous_time.yaml
+      sha256: d07cc6393f01a140420d66aa2251a756215f6b4d02c52b2e581c511f519e8e62
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/inputs/this_repository/lean4/H016ContinuousDynamicsFork.lean
+      sha256: 906b145d8626c1887b1075e9b900858ca3f0c16df6fa65a2d8a87aa68b06de85
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/inputs/this_repository/dag/derivations/11_finite_qm_dynamics/tfq_0245_unitary_finite_shadow_slot_still_reserved.md
+      sha256: a70dea94189cb9ca6b93b538a6421895c099576905968fec92f698c6cbfcdbbb
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/inputs/this_repository/dag/derivations/11_finite_qm_dynamics/tfq_0246_hamiltonian_generator_admission_still_reserved.md
+      sha256: 5a5e181911194955dd1390a01fc988265bfba481d61489d270abc7ed4689f568
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/code/python/src/qm/l1_import_exact.py
+      sha256: e5c630d23d44b309bd5ff65724cd0657e3cd410fe9491bded8dcf5b5bc3e91f8
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/code/python/tests/test_l1_import_exact.py
+      sha256: 793275da0b5567525e2ee0eddb7ef277aeec8a01882c0e75bc33edfb6dbc4e68
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/code/rust/src/finite_probability/l1_import_exact.rs
+      sha256: e8e666e241d0e99f407ee66c51ea5d352d432dabe65e846d0621de36609fdda5
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/l1_import_exact_replay.rs
+      sha256: 987beb4cb0782257ed97cfccb73ad59e4695074e1d9a0462c3343f611e493028
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/dag/pfp/l1_import_checker.py
+      sha256: 4c7533f1e852a9fce88be4e4f0cbea907b57f9d147d5fa4f578fbe95ad182d01
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/dag/results/batches/20261019T232430Z_prompts_112_131/tools/prepare.py
+      sha256: caa0ceeba0f421329772c93f803ec7fa16aa7a9cf02932547d6cf2faf8eaeded
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/dag/results/batches/20261019T232430Z_prompts_112_131/tools/witness_cases.json
+      sha256: aab0a50ab4f61ee4fa0cb67feea575acf54b13dbb4e1e1bf9a7f27c0f05144c2
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/dag/results/batches/20261019T232430Z_prompts_112_131/tools/specs.py
+      sha256: 62f38bc643c581d63da9fa5872b0be6d96a54ab699baee0f06656cbdd6131a4b
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/check_candidate.py
+      sha256: e3ed3ebf3f54ed4ed694528096710b1e7988be4a91810c282d6469c016b774ea
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/format_certificate.py
+      sha256: 6641ae39e90c21bdb561c7a1cb7fa8a7ea37faf66304c5a5238bfcbf5435107d
+    latest_host_check: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p2/host_check.json
+    historical_evidence_annotation: P1 candidate; independent native and named kernel gates remain required.
+    named_Lean_scope:
+    - QuantumMechanics.PromptL1Imports.time_law
+    - QuantumMechanics.PromptL1Imports.time_control
+  compositions: &id001
+  - outer_operation: time_projector_root
+    input_slot: 0
+    inner_operation: time_boolean_squares
+    colour_match: FourBooleanMapSquares -> FourBooleanMapSquares
+    hypothesis_match: Same declared coordinates, coefficients and context; all operation hypotheses must
+      be carried into the graft. Fixed matrices, signs, gauge unit, original comparison table, row order,
+      sector and pairing (where relevant) must agree across both operations. Formal universal refined-carrier
+      closure is unpaid.
+    licensing_relations:
+    - time_relation_0
+    evidence_status: Semantic substitution supported by the retained finite operation traces and separately
+      scoped named kernel statements. A complete refined-carrier operad is not asserted.
+  - outer_operation: time_unitary_root_compare
+    input_slot: 0
+    inner_operation: time_projector_root
+    colour_match: ComplexTwoByTwoRoot -> ComplexTwoByTwoRoot
+    hypothesis_match: Same declared coordinates, coefficients and context; all operation hypotheses must
+      be carried into the graft. Fixed matrices, signs, gauge unit, original comparison table, row order,
+      sector and pairing (where relevant) must agree across both operations. Formal universal refined-carrier
+      closure is unpaid.
+    licensing_relations:
+    - time_relation_0
+    evidence_status: Semantic substitution supported by the retained finite operation traces and separately
+      scoped named kernel statements. A complete refined-carrier operad is not asserted.
+  identities:
+  - colour: ComplexTwoByTwoRoot
+    proposed_operation: id_ComplexTwoByTwoRoot
+    signature: ComplexTwoByTwoRoot -> ComplexTwoByTwoRoot
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: FourBooleanMapSquares
+    proposed_operation: id_FourBooleanMapSquares
+    signature: FourBooleanMapSquares -> FourBooleanMapSquares
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: SquaredRootAndUnitaryProduct
+    proposed_operation: id_SquaredRootAndUnitaryProduct
+    signature: SquaredRootAndUnitaryProduct -> SquaredRootAndUnitaryProduct
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: ToggleAndBranchSign
+    proposed_operation: id_ToggleAndBranchSign
+    signature: ToggleAndBranchSign -> ToggleAndBranchSign
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
   symmetric_actions: []
-  coherence_obligations:
-  - identity_operations
-  - unit_laws
-  - partial_composition_associativity
-  - symmetric_action_if_claimed
-  - relations_stable_under_grafting
+  coherence_obligations: &id002
+  - Supply topology, continuous time and the one-parameter group; invoke Stone only under its hypotheses.
+    Square roots alone do not define continuous dynamics.
+  - Prove the full refined-carrier operad identity, substitution, symmetry and coherence laws; mere colour
+    matches do not instantiate that formal structure.
+  - A source provider PASS/hash, route index, census label or Boolean flag is not mathematical evidence
+    for the original target. No historical provider receipt is newly authenticated.
+  failed_compositions:
+  - proposal: Promote the selected step to the unrestricted original target
+    reason: Supply topology, continuous time and the one-parameter group; invoke Stone only under its
+      hypotheses. Square roots alone do not define continuous dynamics.
+  counterexamples:
+  - id: retained_actual_domain_controls
+    records:
+    - input:
+      - '1'
+      output:
+      - '0'
+      - '0'
+      - '0'
+      - '1'
+      - '0'
+      - '1'
+      - '1'
+      - '1'
+      - '0'
+      - 1/2
+      - 1/2
+      - 1/2
+      - -1/2
+      - 1/2
+      - -1/2
+      - 1/2
+      - 1/2
+      - '0'
+      - '0'
+      - '1'
+      - '0'
+      - '1'
+      - '0'
+      - '0'
+      - '0'
+      - '1'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '1'
+      - '0'
+    - input:
+      - '-1'
+      output:
+      - '0'
+      - '0'
+      - '0'
+      - '1'
+      - '0'
+      - '1'
+      - '1'
+      - '1'
+      - '0'
+      - 1/2
+      - -1/2
+      - 1/2
+      - 1/2
+      - 1/2
+      - 1/2
+      - 1/2
+      - -1/2
+      - '0'
+      - '0'
+      - '1'
+      - '0'
+      - '1'
+      - '0'
+      - '0'
+      - '0'
+      - '1'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '1'
+      - '0'
+    scope: Computed values, with the source/kernel/native distinctions retained in claim_boundary.
 operad_slots:
   slot_m1_layer0_ambient_carrier:
-    mining_status: UNREVIEWED
-    carrier: null
-    coefficient_ring: null
-    assumptions: *id001
-    source_pins: []
-    public_input: {}
+    mining_status: FILLED
+    carrier: Literal per-operation finite or admitted scalar carriers
+    coefficient_ring: Exact Q, finite integer indices and explicit defined/refusal tags
+    source_pins:
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_gp_import_continuous_time_imported_assumption.yaml
+      sha256: 8b4b82ed996c7831868d50063313a5ce17db7e7c0ec8a27b0603b8b5da6b789e
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/inputs/this_repository/dag/operads/gp_import_continuous_time.yaml
+      sha256: d07cc6393f01a140420d66aa2251a756215f6b4d02c52b2e581c511f519e8e62
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/inputs/this_repository/lean4/H016ContinuousDynamicsFork.lean
+      sha256: 906b145d8626c1887b1075e9b900858ca3f0c16df6fa65a2d8a87aa68b06de85
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/inputs/this_repository/dag/derivations/11_finite_qm_dynamics/tfq_0245_unitary_finite_shadow_slot_still_reserved.md
+      sha256: a70dea94189cb9ca6b93b538a6421895c099576905968fec92f698c6cbfcdbbb
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/inputs/this_repository/dag/derivations/11_finite_qm_dynamics/tfq_0246_hamiltonian_generator_admission_still_reserved.md
+      sha256: 5a5e181911194955dd1390a01fc988265bfba481d61489d270abc7ed4689f568
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/code/python/src/qm/l1_import_exact.py
+      sha256: e5c630d23d44b309bd5ff65724cd0657e3cd410fe9491bded8dcf5b5bc3e91f8
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/code/python/tests/test_l1_import_exact.py
+      sha256: 793275da0b5567525e2ee0eddb7ef277aeec8a01882c0e75bc33edfb6dbc4e68
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/code/rust/src/finite_probability/l1_import_exact.rs
+      sha256: e8e666e241d0e99f407ee66c51ea5d352d432dabe65e846d0621de36609fdda5
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/l1_import_exact_replay.rs
+      sha256: 987beb4cb0782257ed97cfccb73ad59e4695074e1d9a0462c3343f611e493028
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/dag/pfp/l1_import_checker.py
+      sha256: 4c7533f1e852a9fce88be4e4f0cbea907b57f9d147d5fa4f578fbe95ad182d01
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/dag/results/batches/20261019T232430Z_prompts_112_131/tools/prepare.py
+      sha256: caa0ceeba0f421329772c93f803ec7fa16aa7a9cf02932547d6cf2faf8eaeded
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/dag/results/batches/20261019T232430Z_prompts_112_131/tools/witness_cases.json
+      sha256: aab0a50ab4f61ee4fa0cb67feea575acf54b13dbb4e1e1bf9a7f27c0f05144c2
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/dag/results/batches/20261019T232430Z_prompts_112_131/tools/specs.py
+      sha256: 62f38bc643c581d63da9fa5872b0be6d96a54ab699baee0f06656cbdd6131a4b
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/check_candidate.py
+      sha256: e3ed3ebf3f54ed4ed694528096710b1e7988be4a91810c282d6469c016b774ea
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/format_certificate.py
+      sha256: 6641ae39e90c21bdb561c7a1cb7fa8a7ea37faf66304c5a5238bfcbf5435107d
+    public_input:
+      kind: time
+      cases:
+      - - '1'
+      - - '-1'
+      scope: Complete Boolean square-root obstruction and both exact complex unitary square roots of toggle;
+        generic projector-square algebra and Boolean enumeration in Lean.
+      unpaid_target: Supply topology, continuous time and the one-parameter group; invoke Stone only under
+        its hypotheses. Square roots alone do not define continuous dynamics.
+    original_target: Continuous time, topology, a one-parameter unitary group and Stone's theorem. The
+      two-state toggle has no report-level square root; after complex coefficients, interpolants exist
+      at scale 4 and are not unique.
+    source_scope_review: 'Enumerate all four maps Bool->Bool and their squares: none squares to toggle.
+      After admitting Gaussian rationals, U=Pplus+s*i*Pminus has U²=toggle and U*U=I for both signs. These
+      distinct square roots are finite interpolant shadows, not a one-parameter group. Output layout:
+      four map squares8;root_count;U8;U²8;UdaggerU8 Gaussian pairs'
+    admitted_assumptions:
+    - 'continuous time: assumption'
+    - 'topology on the carrier: assumption'
+    - 'one-parameter group: assumption'
+    - 'Stone''s theorem: import'
+    - s=+1 or-1; complex coefficients explicitly admitted.
+    historical_source_assumptions:
+    - 'continuous time: assumption'
+    - 'topology on the carrier: assumption'
+    - 'one-parameter group: assumption'
+    - 'Stone''s theorem: import'
+    work_unit_admitted_hypotheses:
+    - s=+1 or-1; complex coefficients explicitly admitted.
   slot_m2_layer1_forward_morphisms:
-    mining_status: UNREVIEWED
-    operations: []
-    composition_plan: []
+    mining_status: FILLED
+    operations:
+    - catalog_id: time_boolean_squares
+      inputs:
+      - ToggleAndBranchSign
+      output: FourBooleanMapSquares
+      semantic_predicate: Exhaust all Boolean endomaps.
+    - catalog_id: time_projector_root
+      inputs:
+      - FourBooleanMapSquares
+      output: ComplexTwoByTwoRoot
+      semantic_predicate: Build Pplus+s*i*Pminus.
+    - catalog_id: time_unitary_root_compare
+      inputs:
+      - ComplexTwoByTwoRoot
+      output: SquaredRootAndUnitaryProduct
+      semantic_predicate: Multiply U² and UdaggerU exactly.
+    composition_plan: *id001
+    tree:
+    - (Pplus+s*i*Pminus)^2=toggle for s²=1, and the two branches differ.
   slot_m3_layer2_ideals_and_annihilators:
-    mining_status: UNREVIEWED
-    algebraic_relations: []
-    rejection_predicates: []
-    negative_control_plan: []
+    mining_status: FILLED
+    algebraic_relations:
+    - id: time_relation_0
+      equation_or_predicate: (Pplus+s*i*Pminus)^2=toggle for s²=1, and the two branches differ.
+      typing_conditions: Literal declared operation domains; Supply topology, continuous time and the
+        one-parameter group; invoke Stone only under its hypotheses. Square roots alone do not define
+        continuous dynamics.
+      evidence_status: P1 candidate; independent native and named kernel gates remain required.
+      scope: Complete Boolean square-root obstruction and both exact complex unitary square roots of toggle;
+        generic projector-square algebra and Boolean enumeration in Lean.
+      source_pins:
+      - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_gp_import_continuous_time_imported_assumption.yaml
+        sha256: 8b4b82ed996c7831868d50063313a5ce17db7e7c0ec8a27b0603b8b5da6b789e
+      - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/inputs/this_repository/dag/operads/gp_import_continuous_time.yaml
+        sha256: d07cc6393f01a140420d66aa2251a756215f6b4d02c52b2e581c511f519e8e62
+      - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/inputs/this_repository/lean4/H016ContinuousDynamicsFork.lean
+        sha256: 906b145d8626c1887b1075e9b900858ca3f0c16df6fa65a2d8a87aa68b06de85
+      - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+        sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+      - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/inputs/this_repository/dag/derivations/11_finite_qm_dynamics/tfq_0245_unitary_finite_shadow_slot_still_reserved.md
+        sha256: a70dea94189cb9ca6b93b538a6421895c099576905968fec92f698c6cbfcdbbb
+      - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/inputs/this_repository/dag/derivations/11_finite_qm_dynamics/tfq_0246_hamiltonian_generator_admission_still_reserved.md
+        sha256: 5a5e181911194955dd1390a01fc988265bfba481d61489d270abc7ed4689f568
+      - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/code/python/src/qm/l1_import_exact.py
+        sha256: e5c630d23d44b309bd5ff65724cd0657e3cd410fe9491bded8dcf5b5bc3e91f8
+      - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/code/python/tests/test_l1_import_exact.py
+        sha256: 793275da0b5567525e2ee0eddb7ef277aeec8a01882c0e75bc33edfb6dbc4e68
+      - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/code/rust/src/finite_probability/l1_import_exact.rs
+        sha256: e8e666e241d0e99f407ee66c51ea5d352d432dabe65e846d0621de36609fdda5
+      - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/l1_import_exact_replay.rs
+        sha256: 987beb4cb0782257ed97cfccb73ad59e4695074e1d9a0462c3343f611e493028
+      - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/dag/pfp/l1_import_checker.py
+        sha256: 4c7533f1e852a9fce88be4e4f0cbea907b57f9d147d5fa4f578fbe95ad182d01
+      - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+        sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+      - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/dag/results/batches/20261019T232430Z_prompts_112_131/tools/prepare.py
+        sha256: caa0ceeba0f421329772c93f803ec7fa16aa7a9cf02932547d6cf2faf8eaeded
+      - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/dag/results/batches/20261019T232430Z_prompts_112_131/tools/witness_cases.json
+        sha256: aab0a50ab4f61ee4fa0cb67feea575acf54b13dbb4e1e1bf9a7f27c0f05144c2
+      - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/dag/results/batches/20261019T232430Z_prompts_112_131/tools/specs.py
+        sha256: 62f38bc643c581d63da9fa5872b0be6d96a54ab699baee0f06656cbdd6131a4b
+      - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/dag/pfp/custody.py
+        sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+      - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+        sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+      - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/check_candidate.py
+        sha256: e3ed3ebf3f54ed4ed694528096710b1e7988be4a91810c282d6469c016b774ea
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/format_certificate.py
+        sha256: 6641ae39e90c21bdb561c7a1cb7fa8a7ea37faf66304c5a5238bfcbf5435107d
+    rejection_predicates:
+    - Independent domain equations and actual matrix/graph/quotient arrays recompute every output.
+    - Exact public input, canonical rational primitive types, complete source pins and exact sealed request
+      bytes.
+    - Full native cross-language output equality and actual named Lean axiom reports; no label-based target
+      promotion.
+    negative_control_plan: Alter every output coordinate, input identity, primitive types, source set
+      and sealed request.
   slot_m4_tri_language_witness_anchors:
-    mining_status: UNREVIEWED
-    certificate_predicates: []
-    anchors: []
-    unpaid_imports: *id001
-stage_history: []
-open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
-- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
-- Select and semantically check the generators needed by one useful next step.
-- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
-- Bind independent certificate predicates and real checker anchors before P1.
+    mining_status: FILLED
+    certificate_predicates:
+    - Independent domain equations and actual matrix/graph/quotient arrays recompute every output.
+    - Exact public input, canonical rational primitive types, complete source pins and exact sealed request
+      bytes.
+    - Full native cross-language output equality and actual named Lean axiom reports; no label-based target
+      promotion.
+    anchors:
+    - code/python/src/qm/l1_import_exact.py
+    - code/python/tests/test_l1_import_exact.py
+    - code/rust/src/finite_probability/l1_import_exact.rs
+    - code/rust/src/finite_probability/examples/l1_import_exact_replay.rs
+    - dag/pfp/l1_import_checker.py
+    - dag/pfp/exact_json.py
+    - dag/pfp/review_exact_json.py
+    - lean4/PromptL1Imports.lean
+    - dag/results/batches/20261019T232430Z_prompts_112_131/tools/prepare.py
+    - dag/results/batches/20261019T232430Z_prompts_112_131/tools/witness_cases.json
+    - dag/results/batches/20261019T232430Z_prompts_112_131/tools/specs.py
+    - dag/pfp/custody.py
+    - dag/pfp/filename_custody.json
+    - QuantumMechanics.PromptL1Imports.time_law
+    - QuantumMechanics.PromptL1Imports.time_control
+    unpaid_imports:
+    - Supply topology, continuous time and the one-parameter group; invoke Stone only under its hypotheses.
+      Square roots alone do not define continuous dynamics.
+    - Prove the full refined-carrier operad identity, substitution, symmetry and coherence laws; mere
+      colour matches do not instantiate that formal structure.
+    anchor_status: New Lean anchors are candidate declarations until the retained P2 compiler runs; compiled
+      source leads retain their literal scope.
+stage_history:
+- stage: P0_MINE_OPERAD
+  attempt: p0
+  run: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged
+  operad_delta: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/operad_delta.yaml
+  host_check: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/host_check.json
+- stage: P1_DERIVE
+  attempt: p1
+  run: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged
+  operad_delta: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p1/operad_delta.yaml
+  host_check: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p1/host_check.json
+- stage: P2_VERIFY
+  attempt: p2
+  run: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged
+  operad_delta: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p2/operad_delta.yaml
+  host_check: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p2/host_check.json
+- stage: P4_CHALLENGE
+  attempt: p4
+  run: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged
+  operad_delta: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p4/operad_delta.yaml
+  host_check: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p4/host_check.json
+- stage: P5_RECORD
+  attempt: p5
+  run: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged
+  operad_delta: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p5/operad_delta.yaml
+  host_check: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p5/host_check.json
+open_obligations: *id002
 excluded_relation_leads:
 - source: lean4/DerivationDagQMClosure.lean
   name: gp_and_l1_imported_field_circle_dilation_and_time_interpolation_boundaries
   reason: aggregate_or_proxy_scope_requires_projection_not_a_task_relation
+operad_slots_scope:
+  work_unit: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged/p0/reviewed_missions.json
+  scope: FILLED means reviewed prerequisites for this selected step; original target and unpaid imports
+    retained.
+  review_refinement: dag/results/GP-IMPORT-CONTINUOUS-TIME/reviews/20261019_l1_import_audit/scope_review.json
+latest_run:
+  path: dag/results/GP-IMPORT-CONTINUOUS-TIME/runs/20261019T232430Z_staged
+  stage: P5_RECORD
+  status: scoped_result_or_obstruction_reviewed
+scope_notes:
+- 'Enumerate all four maps Bool->Bool and their squares: none squares to toggle. After admitting Gaussian
+  rationals, U=Pplus+s*i*Pminus has U²=toggle and U*U=I for both signs. These distinct square roots are
+  finite interpolant shadows, not a one-parameter group. Output layout: four map squares8;root_count;U8;U²8;UdaggerU8
+  Gaussian pairs'
+latest_review:
+  path: dag/results/GP-IMPORT-CONTINUOUS-TIME/reviews/20261019_l1_import_audit
+  status: scoped_result_or_obstruction_reviewed
+  operad_delta: dag/results/GP-IMPORT-CONTINUOUS-TIME/reviews/20261019_l1_import_audit/operad_delta.yaml
+  delivery_result: dag/results/GP-IMPORT-CONTINUOUS-TIME/reviews/20261019_l1_import_audit/delivery_review_result.json

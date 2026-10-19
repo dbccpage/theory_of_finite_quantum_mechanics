@@ -1,0 +1,3 @@
+import PromptL1Imports
+#print axioms QuantumMechanics.PromptL1Imports.circle_law
+#print axioms QuantumMechanics.PromptL1Imports.circle_control

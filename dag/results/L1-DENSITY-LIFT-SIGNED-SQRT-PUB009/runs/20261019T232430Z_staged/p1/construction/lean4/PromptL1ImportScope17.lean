@@ -1,0 +1,3 @@
+import PromptL1Imports
+#print axioms QuantumMechanics.PromptL1Imports.lift_law
+#print axioms QuantumMechanics.PromptL1Imports.lift_control

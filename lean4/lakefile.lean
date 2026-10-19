@@ -453,3 +453,6 @@ lean_lib «FiniteQuantum» where
 
 private def l5aProvenance : String :=
   "Origin: lean4/lakefile.lean Claim: package configuration AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"
+
+lean_lib PromptL1Imports where
+  roots := #[`PromptL1Imports]
