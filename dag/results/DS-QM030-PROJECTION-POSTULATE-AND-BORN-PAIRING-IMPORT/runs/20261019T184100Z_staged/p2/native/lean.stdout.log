@@ -1,0 +1,109 @@
+PromptResources.lean:88:30: error(lean.unknownIdentifier): Unknown constant `Finset.sum_mul`
+PromptResources.lean:88:21: error: unsolved goals
+n : ℕ
+w f : Fin n → ℚ
+t : ℚ
+hw : ∀ (i : Fin n), 0 ≤ w i
+hn : ∑ i, w i = 1
+hf : ∀ (i : Fin n), t ≤ f i
+⊢ t = ∑ i, w i * t
+PromptResources.lean:107:49: error(lean.unknownIdentifier): Unknown identifier `abs_mul`
+PromptResources.lean:106:25: error: unsolved goals
+n : ℕ
+w f : Fin n → ℚ
+B : ℚ
+hw : ∀ (i : Fin n), 0 ≤ w i
+hn : ∑ i, w i = 1
+hf : ∀ (i : Fin n), |f i| ≤ B
+i : Fin n
+a✝ : i ∈ Finset.univ
+⊢ |w i * f i| = w i * |f i|
+PromptResources.lean:109:22: error(lean.unknownIdentifier): Unknown constant `Finset.sum_mul`
+PromptResources.lean:109:13: error: unsolved goals
+n : ℕ
+w f : Fin n → ℚ
+B : ℚ
+hw : ∀ (i : Fin n), 0 ≤ w i
+hn : ∑ i, w i = 1
+hf : ∀ (i : Fin n), |f i| ≤ B
+⊢ ∑ i, w i * B = B
+PromptResources.lean:121:10: error: unexpected token '|*'; expected '|' or '|ₘ'
+PromptResources.lean:118:23: error: unsolved goals
+case calc.step
+r s t : ℚ
+hs : |s| ≤ 1
+ht : |t| ≤ 1
+⊢ |r| ≤ 2 * |r|
+PromptResources.lean:142:49: error(lean.unknownIdentifier): Unknown identifier `abs_mul`
+PromptResources.lean:140:31: error: unsolved goals
+m n : ℕ
+K : Fin m → Fin n → ℚ
+x : Fin n → ℚ
+hK : ∀ (i : Fin m) (j : Fin n), 0 ≤ K i j
+hcol : ∀ (j : Fin n), ∑ i, K i j = 1
+i : Fin m
+a✝¹ : i ∈ Finset.univ
+j : Fin n
+a✝ : j ∈ Finset.univ
+⊢ |K i j * x j| = K i j * |x j|
+PromptResources.lean:146:12: error(lean.unknownIdentifier): Unknown constant `Finset.sum_mul`
+PromptResources.lean:144:21: error: unsolved goals
+m n : ℕ
+K : Fin m → Fin n → ℚ
+x : Fin n → ℚ
+hK : ∀ (i : Fin m) (j : Fin n), 0 ≤ K i j
+hcol : ∀ (j : Fin n), ∑ i, K i j = 1
+j : Fin n
+a✝ : j ∈ Finset.univ
+⊢ ∑ i, K i j * |x j| = |x j|
+PromptResources.lean:150:3: error: unknown tactic
+PromptResources.lean:148:45: error: unsolved goals
+t : ℚ
+h : 1 + t ^ 2 ≠ 0
+⊢ ((1 - t ^ 2) / (1 + t ^ 2)) ^ 2 + (2 * t / (1 + t ^ 2)) ^ 2 = 1
+'QuantumMechanics.PromptResources.projection_scalar' depends on axioms: [propext, Classical.choice, Quot.sound]
+'QuantumMechanics.PromptResources.pairing_ambiguity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'QuantumMechanics.PromptResources.fiber_global_i' depends on axioms: [propext, Classical.choice, Quot.sound]
+'QuantumMechanics.PromptResources.interference_cross' depends on axioms: [propext, Classical.choice, Quot.sound]
+'QuantumMechanics.PromptResources.interference_no_descent' depends on axioms: [propext, Classical.choice, Quot.sound]
+'QuantumMechanics.PromptResources.buildability_alias' does not depend on any axioms
+'QuantumMechanics.PromptResources.buildability_conjunction' does not depend on any axioms
+'QuantumMechanics.PromptResources.torsion_compatible' depends on axioms: [propext]
+'QuantumMechanics.PromptResources.torsion_fourth' depends on axioms: [propext, Classical.choice, Quot.sound]
+'QuantumMechanics.PromptResources.selector_product' depends on axioms: [propext, Classical.choice, Quot.sound]
+'QuantumMechanics.PromptResources.selector_conjugation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'QuantumMechanics.PromptResources.holonomy_gauge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'QuantumMechanics.PromptResources.annex_triangle' depends on axioms: [propext, Classical.choice, Quot.sound]
+'QuantumMechanics.PromptResources.product_residuals' depends on axioms: [propext, Classical.choice, Quot.sound]
+'QuantumMechanics.PromptResources.product_defect_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'QuantumMechanics.PromptResources.product_fidelity_gap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'QuantumMechanics.PromptResources.finite_hull_separator' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'QuantumMechanics.PromptResources.qubit_phase_readout' depends on axioms: [propext, Classical.choice, Quot.sound]
+'QuantumMechanics.PromptResources.qubit_purity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'QuantumMechanics.PromptResources.bell_table_readout' depends on axioms: [propext, Classical.choice, Quot.sound]
+'QuantumMechanics.PromptResources.bell_admission_counterexample' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'QuantumMechanics.PromptResources.chsh_deterministic' depends on axioms: [propext, Classical.choice, Quot.sound]
+'QuantumMechanics.PromptResources.convex_abs_bound' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'QuantumMechanics.PromptResources.nosignal_family' depends on axioms: [propext, Classical.choice, Quot.sound]
+'QuantumMechanics.PromptResources.nosignal_not_product' depends on axioms: [propext, Classical.choice, Quot.sound]
+'QuantumMechanics.PromptResources.trace_diagonal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'QuantumMechanics.PromptResources.dual_shift' depends on axioms: [propext, Classical.choice, Quot.sound]
+'QuantumMechanics.PromptResources.dual_bound' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'QuantumMechanics.PromptResources.dual_attained' depends on axioms: [propext, Classical.choice, Quot.sound]
+'QuantumMechanics.PromptResources.monotone_rescaling' depends on axioms: [propext, Classical.choice, Quot.sound]
+'QuantumMechanics.PromptResources.monotone_distinct' depends on axioms: [propext, Classical.choice, Quot.sound]
+'QuantumMechanics.PromptResources.stochastic_contraction' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'QuantumMechanics.PromptResources.channel_cayley' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'QuantumMechanics.PromptResources.channel_population' depends on axioms: [propext, Classical.choice, Quot.sound]
+'QuantumMechanics.PromptResources.channel_shadow_not_unique' depends on axioms: [propext, Classical.choice, Quot.sound]
+'QuantumMechanics.PromptResources.firewall_gate' depends on axioms: [propext]
+'QuantumMechanics.PromptResources.firewall_nonimplication' does not depend on any axioms
+'QuantumMechanics.PromptResources.unary_graft_assoc' does not depend on any axioms

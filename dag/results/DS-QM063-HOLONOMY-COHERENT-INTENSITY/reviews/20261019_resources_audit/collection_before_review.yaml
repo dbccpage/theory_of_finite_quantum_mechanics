@@ -1,0 +1,929 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: DS-QM063-HOLONOMY-COHERENT-INTENSITY
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: For two paths, coherent intensity equals the L1 sum plus the real part of relative
+    loop holonomy; holonomy and intensity are invariant under vertex gauge repair; U(1) connections on
+    a tree are gauge-trivial; intensity does not factor through L1 weights when holonomy varies. Higher-form
+    holonomy refused; matrix-valued SU(2) trace bound is a CONJECTURE.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: []
+  source_bottleneck: None (derived from parent DS-QM062-U1-RESIDUES-IMPORT via ds_qm063_tree_gauge_triviality_vertex_repair_and_l1_non_factorization
+    and ds_qm063_holonomy_coherent_intensity_and_gauge_invariance).
+  source_refs:
+  - omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/063_holonomy_structured_superposition/qm_063_holonomy_structured_superposition_claim_ledger.md#QCS-C2
+  - omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/063_holonomy_structured_superposition/qm_063_holonomy_structured_superposition_claim_ledger.md#QCS-C4
+  - omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/063_holonomy_structured_superposition/qm_063_holonomy_structured_superposition_claim_ledger.md#QCS-C9
+  - omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/063_holonomy_structured_superposition/qm_063_holonomy_structured_superposition_claim_ledger.md#QCS-C11
+  paper_refs:
+  - dag/derivations/12_finite_qm_structure/tfq_0254_holonomy_structured_coherent_intensity.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  historical_paper_refs:
+  - papers/derivations/12_finite_qm_structure/tfq_0254_holonomy_structured_coherent_intensity.md
+  paper_relocations:
+  - from: papers/derivations/12_finite_qm_structure/tfq_0254_holonomy_structured_coherent_intensity.md
+    to: dag/derivations/12_finite_qm_structure/tfq_0254_holonomy_structured_coherent_intensity.md
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/12_finite_qm_structure/tfq_0254_holonomy_structured_coherent_intensity.md
+    sha256: 34ce71c353cf69416ea0d2af542618972ee59f1531017a224d276c014258f620
+source_provenance:
+  repository: this_repository
+  commit: 642f5b95a116da6df805adbd745a4826c6739c2b
+  path: dag/prompts/finite_qm_structure_ds_qm063_holonomy_coherent_intensity_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: Cochain0
+  line: 13
+  signature_excerpt: def Cochain0
+  source: lean4/CoboundaryHolonomy.lean
+  repository: this_repository
+  source_sha256: 79c60e8ecd695f4e19de55b0502d2a0236c79d8b4d2ce6079a7516bc89e640fe
+  status: source_candidate_requires_semantic_review
+- kind: inductive
+  name: Vertex
+  line: 4
+  signature_excerpt: inductive Vertex
+  source: lean4/CoboundaryHolonomy.lean
+  repository: this_repository
+  source_sha256: 79c60e8ecd695f4e19de55b0502d2a0236c79d8b4d2ce6079a7516bc89e640fe
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: coboundary
+  line: 17
+  signature_excerpt: 'def coboundary (φ : Cochain0) : Cochain1'
+  source: lean4/CoboundaryHolonomy.lean
+  repository: this_repository
+  source_sha256: 79c60e8ecd695f4e19de55b0502d2a0236c79d8b4d2ce6079a7516bc89e640fe
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: Cochain1
+  line: 15
+  signature_excerpt: def Cochain1
+  source: lean4/CoboundaryHolonomy.lean
+  repository: this_repository
+  source_sha256: 79c60e8ecd695f4e19de55b0502d2a0236c79d8b4d2ce6079a7516bc89e640fe
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: vertex_path_holonomy
+  line: 40
+  signature_excerpt: 'def vertex_path_holonomy (A : Cochain1) : List Vertex → Int'
+  source: lean4/CoboundaryHolonomy.lean
+  repository: this_repository
+  source_sha256: 79c60e8ecd695f4e19de55b0502d2a0236c79d8b4d2ce6079a7516bc89e640fe
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: path_holonomy
+  line: 20
+  signature_excerpt: 'def path_holonomy (A : Cochain1) : List (Vertex × Vertex) → Int'
+  source: lean4/CoboundaryHolonomy.lean
+  repository: this_repository
+  source_sha256: 79c60e8ecd695f4e19de55b0502d2a0236c79d8b4d2ce6079a7516bc89e640fe
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: triangle_cycle
+  line: 24
+  signature_excerpt: 'def triangle_cycle (a b c : Vertex) : List (Vertex × Vertex)'
+  source: lean4/CoboundaryHolonomy.lean
+  repository: this_repository
+  source_sha256: 79c60e8ecd695f4e19de55b0502d2a0236c79d8b4d2ce6079a7516bc89e640fe
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: gNormSq
+  line: 703
+  signature_excerpt: 'def gNormSq (z : Int × Int) : Int'
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: gMul
+  line: 701
+  signature_excerpt: 'def gMul (z1 z2 : Int × Int) : Int × Int'
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: gConj
+  line: 700
+  signature_excerpt: 'def gConj (z : Int × Int) : Int × Int'
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: gAdd
+  line: 699
+  signature_excerpt: 'def gAdd (z1 z2 : Int × Int) : Int × Int'
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: coboundary_closed_cycle_zero
+  line: 58
+  signature_excerpt: "theorem coboundary_closed_cycle_zero (φ : Cochain0) (u : Vertex) (vs : List Vertex)\
+    \ :\n    vertex_path_holonomy (coboundary φ) (u :: vs ++ [u]) = 0"
+  source: lean4/CoboundaryHolonomy.lean
+  repository: this_repository
+  source_sha256: 79c60e8ecd695f4e19de55b0502d2a0236c79d8b4d2ce6079a7516bc89e640fe
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: flux_obstructs_coboundary
+  line: 63
+  signature_excerpt: "theorem flux_obstructs_coboundary (A : Cochain1) (a b c : Vertex) :\n    path_holonomy\
+    \ A (triangle_cycle a b c) ≠ 0 → ¬ ∃ φ : Cochain0, A = coboundary φ"
+  source: lean4/CoboundaryHolonomy.lean
+  repository: this_repository
+  source_sha256: 79c60e8ecd695f4e19de55b0502d2a0236c79d8b4d2ce6079a7516bc89e640fe
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: ds_qm063_holonomy_coherent_intensity_and_gauge_invariance
+  line: 705
+  signature_excerpt: "theorem ds_qm063_holonomy_coherent_intensity_and_gauge_invariance (a1 b1 a2 b2 :\
+    \ Int) :\n    let z1 : Int × Int"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: ds_qm063_032_034_destructive_interference_and_cayley_vs_euler_norm
+  line: 992
+  signature_excerpt: "theorem ds_qm063_032_034_destructive_interference_and_cayley_vs_euler_norm\n   \
+    \ (a b : Int) (p1 p2 : Nat) (hp1 : 0 < p1) :\n    (((a + (-a)) * (a + (-a)) + (b + (-b)) * (b + (-b))\
+    \ = 0) ∧\n     ((a + a) * (a + a) + (b + b) * (b + b) = 4 * (a * a + b * b))) ∧\n    (0 < p1 + p2)\
+    \ ∧\n    ((1 + 1 * 1 = (2 : Nat)) ∧ (1 < 2))"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: ds_qm063_tree_gauge_triviality_vertex_repair_and_l1_non_factorization
+  line: 1438
+  signature_excerpt: "theorem ds_qm063_tree_gauge_triviality_vertex_repair_and_l1_non_factorization\n\
+    \    (a1 b1 a2 b2 c1 c2 c3 : Int) :\n    (gNormSq (gAdd (a1, b1) (a2, b2)) =\n      gNormSq (a1, b1)\
+    \ + gNormSq (a2, b2) + 2 * (gMul (gConj (a1, b1)) (a2, b2)).1) ∧\n    (gNormSq (gAdd (-b1, a1) (-b2,\
+    \ a2)) =\n      gNormSq (gAdd (a1, b1) (a2, b2))) ∧\n    (let phi0 : Int"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/quantum_mechanics/CoboundaryHolonomy.lean::coboundary_closed_cycle_zero
+  availability: local
+  symbol: coboundary_closed_cycle_zero
+  path: lean4/CoboundaryHolonomy.lean
+  repository: this_repository
+  sha256: 79c60e8ecd695f4e19de55b0502d2a0236c79d8b4d2ce6079a7516bc89e640fe
+  declaration_status: declaration_found_not_proof_checked
+  line: 58
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/CoboundaryHolonomy.lean::flux_obstructs_coboundary
+  availability: local
+  symbol: flux_obstructs_coboundary
+  path: lean4/CoboundaryHolonomy.lean
+  repository: this_repository
+  sha256: 79c60e8ecd695f4e19de55b0502d2a0236c79d8b4d2ce6079a7516bc89e640fe
+  declaration_status: declaration_found_not_proof_checked
+  line: 63
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm063_holonomy_coherent_intensity_and_gauge_invariance
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.ds_qm063_holonomy_coherent_intensity_and_gauge_invariance
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 705
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm063_032_034_destructive_interference_and_cayley_vs_euler_norm
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.ds_qm063_032_034_destructive_interference_and_cayley_vs_euler_norm
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 992
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm063_tree_gauge_triviality_vertex_repair_and_l1_non_factorization
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.ds_qm063_tree_gauge_triviality_vertex_repair_and_l1_non_factorization
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 1438
+  role: source_lead_only
+- original_ref: omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/lean/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm063_tree_gauge_triviality_vertex_repair_and_l1_non_factorization
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.ds_qm063_tree_gauge_triviality_vertex_repair_and_l1_non_factorization
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 1438
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_quantum_physics/src/holonomy_interference.rs::is_gauge_trivial
+  availability: external
+  symbol: is_gauge_trivial
+  path: omega_engine/crates_rs/omega_quantum_physics/src/holonomy_interference.rs
+  repository: the_symbol_game
+  sha256: 92bab74604b100267dfec5aec2e6d54456a990454c09e073e22154a4fcc4a23d
+  declaration_status: declaration_found_not_executed
+  line: 169
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche4_edgewise_l1_u1_holonomy_chsh_and_cayley_witness
+  availability: external
+  symbol: verify_tranche4_edgewise_l1_u1_holonomy_chsh_and_cayley_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 696
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche9_bloch_gap_cayley_u1_hadamard_coherence_and_destructive_interference_witness
+  availability: external
+  symbol: verify_tranche9_bloch_gap_cayley_u1_hadamard_coherence_and_destructive_interference_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 1060
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche18_ds_qm063_072_073_090_holonomy_bit_shadow_chsh_and_o022_closure_witness
+  availability: external
+  symbol: verify_tranche18_ds_qm063_072_073_090_holonomy_bit_shadow_chsh_and_o022_closure_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 1669
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs::verify_tranche18_ds_qm063_072_073_090_holonomy_bit_shadow_chsh_and_o022_closure_witness
+  availability: external
+  symbol: verify_tranche18_ds_qm063_072_073_090_holonomy_bit_shadow_chsh_and_o022_closure_witness
+  path: omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 1669
+  role: source_lead_only
+- original_ref: omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs::verify_tranche18_ds_qm063_072_073_090_holonomy_bit_shadow_chsh_and_o022_closure_witness
+  availability: external
+  symbol: verify_tranche18_ds_qm063_072_073_090_holonomy_bit_shadow_chsh_and_o022_closure_witness
+  path: omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: 38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a
+  declaration_status: declaration_found_not_executed
+  line: 1669
+  role: source_lead_only
+presentation:
+  status: scoped_stage_result_pending_batch_review
+  scope: Relative Gaussian holonomy and two-path intensity are invariant under the retained common unit
+    phases; the rational unit-phase conditional is universal in Lean.
+  colours:
+  - id: GaugeRepairedGaussianPathPair
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: GaussianPathPair
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: GaussianRelativeHolonomy
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: RationalCrossTerm
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  generators:
+  - id: endpoint_gauge
+    ordered_inputs:
+    - GaussianPathPair
+    output: GaugeRepairedGaussianPathPair
+    arity: 1
+    carrier: Declared GaussianPathPair
+    coefficient_ring: Exact Q (Gaussian pairs where stated), integers and literal Boolean fields only
+    hypotheses:
+    - Same endpoints and same gauge unit; real²+imaginary²=1 is required.
+    semantic_predicate: Multiply both paths by the same supplied Cayley unit.
+    source_pins:
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_ds_qm063_holonomy_coherent_intensity_proved_lean.yaml
+      sha256: ad8a0437b7d47c3d806f2fd6b14602712b35a77e83b8884034069c1f094fba1c
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/inputs/this_repository/dag/operads/ds_qm063_holonomy_coherent_intensity.yaml
+      sha256: ed61cda9afef89d3940f937c8d4894725c6ca4b5fccf897c3c4b89e1ef3e3ced
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/inputs/this_repository/lean4/CoboundaryHolonomy.lean
+      sha256: 79c60e8ecd695f4e19de55b0502d2a0236c79d8b4d2ce6079a7516bc89e640fe
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/holonomy_interference.rs
+      sha256: 92bab74604b100267dfec5aec2e6d54456a990454c09e073e22154a4fcc4a23d
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs
+      sha256: 38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/tfq_0254_holonomy_structured_coherent_intensity.md
+      sha256: de650e72bb0e5b52cd654778e381b6e0118ba16b275c3464603dc8ec910b00f9
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p0/operation_sources/code/python/src/qm/resources_exact.py
+      sha256: 11ef2d70fa824b51335b881564ab0bc87227c1b43f1fea26ebb87c283c81349f
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p0/operation_sources/code/python/tests/test_resources_exact.py
+      sha256: 9e299e3dff3f975f3a770e3a940ad8f6969ab02b72545ac5d583c5738ddc9fe7
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/resources_exact.rs
+      sha256: 74c77661e2030c2b37634dd449b164e696ebb7fb318019291719d56436cac1cc
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/resources_exact_replay.rs
+      sha256: 3a2f999edc029ff914fd12dbe3516510ae3aaa9b9104b46a3f2168d9820092c9
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/resources_checker.py
+      sha256: 0c9fcef66b088ab515dc5b1998a8bdad39f7ef2e230552245fccbb184cbac01c
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/prepare.py
+      sha256: 7a8161d3b86651ba01b76e4bf6d940ca18597301b2bd99e0c75235bb9376fbc7
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/specs.py
+      sha256: 56bea147f8ccf6b6c0e919dba2489878517b5e722a9284ffab51216119d6d4cb
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/check_candidate.py
+      sha256: 04a5f1691c293ec4807dc05c0000d5a5f85eeaeb1cbd35ba75b2183c7f3edb06
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/format_certificate.py
+      sha256: 3129d06acae9bfedc4792dd3cd61bc9a8dbcc7a34567ec39b800d3b17ee04e52
+    evidence_status: Target-specific native predicates checked on retained inputs; relation-specific kernel
+      scope is separate. General refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p2/host_check.json
+  - id: relative_product
+    ordered_inputs:
+    - GaugeRepairedGaussianPathPair
+    output: GaussianRelativeHolonomy
+    arity: 1
+    carrier: Declared GaugeRepairedGaussianPathPair
+    coefficient_ring: Exact Q (Gaussian pairs where stated), integers and literal Boolean fields only
+    hypotheses:
+    - Same endpoints and same gauge unit; real²+imaginary²=1 is required.
+    semantic_predicate: Compute conj(first)*second.
+    source_pins:
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_ds_qm063_holonomy_coherent_intensity_proved_lean.yaml
+      sha256: ad8a0437b7d47c3d806f2fd6b14602712b35a77e83b8884034069c1f094fba1c
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/inputs/this_repository/dag/operads/ds_qm063_holonomy_coherent_intensity.yaml
+      sha256: ed61cda9afef89d3940f937c8d4894725c6ca4b5fccf897c3c4b89e1ef3e3ced
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/inputs/this_repository/lean4/CoboundaryHolonomy.lean
+      sha256: 79c60e8ecd695f4e19de55b0502d2a0236c79d8b4d2ce6079a7516bc89e640fe
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/holonomy_interference.rs
+      sha256: 92bab74604b100267dfec5aec2e6d54456a990454c09e073e22154a4fcc4a23d
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs
+      sha256: 38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/tfq_0254_holonomy_structured_coherent_intensity.md
+      sha256: de650e72bb0e5b52cd654778e381b6e0118ba16b275c3464603dc8ec910b00f9
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p0/operation_sources/code/python/src/qm/resources_exact.py
+      sha256: 11ef2d70fa824b51335b881564ab0bc87227c1b43f1fea26ebb87c283c81349f
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p0/operation_sources/code/python/tests/test_resources_exact.py
+      sha256: 9e299e3dff3f975f3a770e3a940ad8f6969ab02b72545ac5d583c5738ddc9fe7
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/resources_exact.rs
+      sha256: 74c77661e2030c2b37634dd449b164e696ebb7fb318019291719d56436cac1cc
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/resources_exact_replay.rs
+      sha256: 3a2f999edc029ff914fd12dbe3516510ae3aaa9b9104b46a3f2168d9820092c9
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/resources_checker.py
+      sha256: 0c9fcef66b088ab515dc5b1998a8bdad39f7ef2e230552245fccbb184cbac01c
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/prepare.py
+      sha256: 7a8161d3b86651ba01b76e4bf6d940ca18597301b2bd99e0c75235bb9376fbc7
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/specs.py
+      sha256: 56bea147f8ccf6b6c0e919dba2489878517b5e722a9284ffab51216119d6d4cb
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/check_candidate.py
+      sha256: 04a5f1691c293ec4807dc05c0000d5a5f85eeaeb1cbd35ba75b2183c7f3edb06
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/format_certificate.py
+      sha256: 3129d06acae9bfedc4792dd3cd61bc9a8dbcc7a34567ec39b800d3b17ee04e52
+    evidence_status: Target-specific native predicates checked on retained inputs; relation-specific kernel
+      scope is separate. General refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p2/host_check.json
+  - id: real_holonomy_read
+    ordered_inputs:
+    - GaussianRelativeHolonomy
+    output: RationalCrossTerm
+    arity: 1
+    carrier: Declared GaussianRelativeHolonomy
+    coefficient_ring: Exact Q (Gaussian pairs where stated), integers and literal Boolean fields only
+    hypotheses:
+    - Same endpoints and same gauge unit; real²+imaginary²=1 is required.
+    semantic_predicate: Take twice the real part.
+    source_pins:
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_ds_qm063_holonomy_coherent_intensity_proved_lean.yaml
+      sha256: ad8a0437b7d47c3d806f2fd6b14602712b35a77e83b8884034069c1f094fba1c
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/inputs/this_repository/dag/operads/ds_qm063_holonomy_coherent_intensity.yaml
+      sha256: ed61cda9afef89d3940f937c8d4894725c6ca4b5fccf897c3c4b89e1ef3e3ced
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/inputs/this_repository/lean4/CoboundaryHolonomy.lean
+      sha256: 79c60e8ecd695f4e19de55b0502d2a0236c79d8b4d2ce6079a7516bc89e640fe
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/holonomy_interference.rs
+      sha256: 92bab74604b100267dfec5aec2e6d54456a990454c09e073e22154a4fcc4a23d
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs
+      sha256: 38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/tfq_0254_holonomy_structured_coherent_intensity.md
+      sha256: de650e72bb0e5b52cd654778e381b6e0118ba16b275c3464603dc8ec910b00f9
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p0/operation_sources/code/python/src/qm/resources_exact.py
+      sha256: 11ef2d70fa824b51335b881564ab0bc87227c1b43f1fea26ebb87c283c81349f
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p0/operation_sources/code/python/tests/test_resources_exact.py
+      sha256: 9e299e3dff3f975f3a770e3a940ad8f6969ab02b72545ac5d583c5738ddc9fe7
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/resources_exact.rs
+      sha256: 74c77661e2030c2b37634dd449b164e696ebb7fb318019291719d56436cac1cc
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/resources_exact_replay.rs
+      sha256: 3a2f999edc029ff914fd12dbe3516510ae3aaa9b9104b46a3f2168d9820092c9
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/resources_checker.py
+      sha256: 0c9fcef66b088ab515dc5b1998a8bdad39f7ef2e230552245fccbb184cbac01c
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/prepare.py
+      sha256: 7a8161d3b86651ba01b76e4bf6d940ca18597301b2bd99e0c75235bb9376fbc7
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/specs.py
+      sha256: 56bea147f8ccf6b6c0e919dba2489878517b5e722a9284ffab51216119d6d4cb
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/check_candidate.py
+      sha256: 04a5f1691c293ec4807dc05c0000d5a5f85eeaeb1cbd35ba75b2183c7f3edb06
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/format_certificate.py
+      sha256: 3129d06acae9bfedc4792dd3cd61bc9a8dbcc7a34567ec39b800d3b17ee04e52
+    evidence_status: Target-specific native predicates checked on retained inputs; relation-specific kernel
+      scope is separate. General refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p2/host_check.json
+  relations:
+  - id: holonomy_relation_0
+    equation_or_predicate: conj(gz)gw=conj(z)w for |g|²=1; intensity=L1 squared-population sum+2 Re holonomy.
+    typing_conditions: Literal declared operation domains; Prove the full graph connection/tree gauge-trivialization
+      and matrix-valued holonomy transports; no SU(2) trace bound or higher-form result is claimed.
+    evidence_status: P1 candidate; independent native and named kernel gates remain required.
+    scope: Relative Gaussian holonomy and two-path intensity are invariant under the retained common unit
+      phases; the rational unit-phase conditional is universal in Lean.
+    source_pins:
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_ds_qm063_holonomy_coherent_intensity_proved_lean.yaml
+      sha256: ad8a0437b7d47c3d806f2fd6b14602712b35a77e83b8884034069c1f094fba1c
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/inputs/this_repository/dag/operads/ds_qm063_holonomy_coherent_intensity.yaml
+      sha256: ed61cda9afef89d3940f937c8d4894725c6ca4b5fccf897c3c4b89e1ef3e3ced
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/inputs/this_repository/lean4/CoboundaryHolonomy.lean
+      sha256: 79c60e8ecd695f4e19de55b0502d2a0236c79d8b4d2ce6079a7516bc89e640fe
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/holonomy_interference.rs
+      sha256: 92bab74604b100267dfec5aec2e6d54456a990454c09e073e22154a4fcc4a23d
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs
+      sha256: 38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/tfq_0254_holonomy_structured_coherent_intensity.md
+      sha256: de650e72bb0e5b52cd654778e381b6e0118ba16b275c3464603dc8ec910b00f9
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p0/operation_sources/code/python/src/qm/resources_exact.py
+      sha256: 11ef2d70fa824b51335b881564ab0bc87227c1b43f1fea26ebb87c283c81349f
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p0/operation_sources/code/python/tests/test_resources_exact.py
+      sha256: 9e299e3dff3f975f3a770e3a940ad8f6969ab02b72545ac5d583c5738ddc9fe7
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/resources_exact.rs
+      sha256: 74c77661e2030c2b37634dd449b164e696ebb7fb318019291719d56436cac1cc
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/resources_exact_replay.rs
+      sha256: 3a2f999edc029ff914fd12dbe3516510ae3aaa9b9104b46a3f2168d9820092c9
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/resources_checker.py
+      sha256: 0c9fcef66b088ab515dc5b1998a8bdad39f7ef2e230552245fccbb184cbac01c
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/prepare.py
+      sha256: 7a8161d3b86651ba01b76e4bf6d940ca18597301b2bd99e0c75235bb9376fbc7
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/specs.py
+      sha256: 56bea147f8ccf6b6c0e919dba2489878517b5e722a9284ffab51216119d6d4cb
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/check_candidate.py
+      sha256: 04a5f1691c293ec4807dc05c0000d5a5f85eeaeb1cbd35ba75b2183c7f3edb06
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/format_certificate.py
+      sha256: 3129d06acae9bfedc4792dd3cd61bc9a8dbcc7a34567ec39b800d3b17ee04e52
+    latest_host_check: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p2/host_check.json
+  compositions:
+  - outer_operation: relative_product
+    input_slot: 0
+    inner_operation: endpoint_gauge
+    colour_match: GaugeRepairedGaussianPathPair -> GaugeRepairedGaussianPathPair
+    hypothesis_match: Same declared coordinates, coefficients and context; all operation hypotheses must
+      be carried into the graft.
+    licensing_relations:
+    - holonomy_relation_0
+    evidence_status: Semantic substitution supported by the retained finite operation traces and separately
+      scoped named kernel statements. A complete refined-carrier operad is not asserted.
+  - outer_operation: real_holonomy_read
+    input_slot: 0
+    inner_operation: relative_product
+    colour_match: GaussianRelativeHolonomy -> GaussianRelativeHolonomy
+    hypothesis_match: Same declared coordinates, coefficients and context; all operation hypotheses must
+      be carried into the graft.
+    licensing_relations:
+    - holonomy_relation_0
+    evidence_status: Semantic substitution supported by the retained finite operation traces and separately
+      scoped named kernel statements. A complete refined-carrier operad is not asserted.
+  identities:
+  - colour: GaugeRepairedGaussianPathPair
+    proposed_operation: id_GaugeRepairedGaussianPathPair
+    signature: GaugeRepairedGaussianPathPair -> GaugeRepairedGaussianPathPair
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: GaussianPathPair
+    proposed_operation: id_GaussianPathPair
+    signature: GaussianPathPair -> GaussianPathPair
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: GaussianRelativeHolonomy
+    proposed_operation: id_GaussianRelativeHolonomy
+    signature: GaussianRelativeHolonomy -> GaussianRelativeHolonomy
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: RationalCrossTerm
+    proposed_operation: id_RationalCrossTerm
+    signature: RationalCrossTerm -> RationalCrossTerm
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  symmetric_actions: []
+  coherence_obligations: &id001
+  - Prove the full graph connection/tree gauge-trivialization and matrix-valued holonomy transports; no
+    SU(2) trace bound or higher-form result is claimed.
+  - Prove the full refined-carrier operad identity, substitution, symmetry and coherence laws; mere colour
+    matches do not instantiate that formal structure.
+  failed_compositions:
+  - proposal: Promote the selected step to the unrestricted original target
+    reason: Prove the full graph connection/tree gauge-trivialization and matrix-valued holonomy transports;
+      no SU(2) trace bound or higher-form result is claimed.
+  counterexamples:
+  - id: retained_actual_domain_controls
+    records:
+    - input:
+      - '1'
+      - '0'
+      - '1'
+      - '0'
+      - '0'
+      output:
+      - '1'
+      - '0'
+      - '1'
+      - '0'
+      - '1'
+      - '0'
+      - '1'
+      - '0'
+      - '1'
+      - '0'
+      - '1'
+      - '1'
+      - '4'
+      - '4'
+      - '2'
+    - input:
+      - '1'
+      - '0'
+      - '-1'
+      - '0'
+      - 1/2
+      output:
+      - 3/5
+      - 4/5
+      - 3/5
+      - 4/5
+      - -3/5
+      - -4/5
+      - '-1'
+      - '0'
+      - '-1'
+      - '0'
+      - '1'
+      - '1'
+      - '0'
+      - '0'
+      - '-2'
+    - input:
+      - 3/5
+      - 4/5
+      - '0'
+      - '1'
+      - '2'
+      output:
+      - -3/5
+      - 4/5
+      - '-1'
+      - '0'
+      - -4/5
+      - -3/5
+      - 4/5
+      - 3/5
+      - 4/5
+      - 3/5
+      - '1'
+      - '1'
+      - 18/5
+      - 18/5
+      - 8/5
+    scope: Computed values, with the source/kernel/native distinctions retained in claim_boundary.
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: FILLED
+    carrier: Literal per-operation finite or admitted scalar carriers
+    coefficient_ring: Exact Z, Q, Gaussian rational pairs and supplied Boolean fields
+    source_pins:
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_ds_qm063_holonomy_coherent_intensity_proved_lean.yaml
+      sha256: ad8a0437b7d47c3d806f2fd6b14602712b35a77e83b8884034069c1f094fba1c
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/inputs/this_repository/dag/operads/ds_qm063_holonomy_coherent_intensity.yaml
+      sha256: ed61cda9afef89d3940f937c8d4894725c6ca4b5fccf897c3c4b89e1ef3e3ced
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/inputs/this_repository/lean4/CoboundaryHolonomy.lean
+      sha256: 79c60e8ecd695f4e19de55b0502d2a0236c79d8b4d2ce6079a7516bc89e640fe
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/holonomy_interference.rs
+      sha256: 92bab74604b100267dfec5aec2e6d54456a990454c09e073e22154a4fcc4a23d
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs
+      sha256: 38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/tfq_0254_holonomy_structured_coherent_intensity.md
+      sha256: de650e72bb0e5b52cd654778e381b6e0118ba16b275c3464603dc8ec910b00f9
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p0/operation_sources/code/python/src/qm/resources_exact.py
+      sha256: 11ef2d70fa824b51335b881564ab0bc87227c1b43f1fea26ebb87c283c81349f
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p0/operation_sources/code/python/tests/test_resources_exact.py
+      sha256: 9e299e3dff3f975f3a770e3a940ad8f6969ab02b72545ac5d583c5738ddc9fe7
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/resources_exact.rs
+      sha256: 74c77661e2030c2b37634dd449b164e696ebb7fb318019291719d56436cac1cc
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/resources_exact_replay.rs
+      sha256: 3a2f999edc029ff914fd12dbe3516510ae3aaa9b9104b46a3f2168d9820092c9
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/resources_checker.py
+      sha256: 0c9fcef66b088ab515dc5b1998a8bdad39f7ef2e230552245fccbb184cbac01c
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/prepare.py
+      sha256: 7a8161d3b86651ba01b76e4bf6d940ca18597301b2bd99e0c75235bb9376fbc7
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/specs.py
+      sha256: 56bea147f8ccf6b6c0e919dba2489878517b5e722a9284ffab51216119d6d4cb
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/check_candidate.py
+      sha256: 04a5f1691c293ec4807dc05c0000d5a5f85eeaeb1cbd35ba75b2183c7f3edb06
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/format_certificate.py
+      sha256: 3129d06acae9bfedc4792dd3cd61bc9a8dbcc7a34567ec39b800d3b17ee04e52
+    public_input:
+      kind: holonomy
+      cases:
+      - - '1'
+        - '0'
+        - '1'
+        - '0'
+        - '0'
+      - - '1'
+        - '0'
+        - '-1'
+        - '0'
+        - 1/2
+      - - 3/5
+        - 4/5
+        - '0'
+        - '1'
+        - '2'
+      scope: Relative Gaussian holonomy and two-path intensity are invariant under the retained common
+        unit phases; the rational unit-phase conditional is universal in Lean.
+      unpaid_target: Prove the full graph connection/tree gauge-trivialization and matrix-valued holonomy
+        transports; no SU(2) trace bound or higher-form result is claimed.
+    original_target: For two paths, coherent intensity equals the L1 sum plus the real part of relative
+      loop holonomy; holonomy and intensity are invariant under vertex gauge repair; U(1) connections
+      on a tree are gauge-trivial; intensity does not factor through L1 weights when holonomy varies.
+      Higher-form holonomy refused; matrix-valued SU(2) trace bound is a CONJECTURE.
+    source_scope_review: Two paths with common endpoints acquire the same supplied unit phase under an
+      endpoint gauge repair. New rational Cayley unit phases act on actual Gaussian paths, retaining both
+      real and imaginary relative products and coherent intensity. Source additive integer cochains are
+      separate from a full U(1) connection on every tree.
+    admitted_assumptions: []
+  slot_m2_layer1_forward_morphisms:
+    mining_status: FILLED
+    operations:
+    - catalog_id: endpoint_gauge
+      inputs:
+      - GaussianPathPair
+      output: GaugeRepairedGaussianPathPair
+      semantic_predicate: Multiply both paths by the same supplied Cayley unit.
+    - catalog_id: relative_product
+      inputs:
+      - GaugeRepairedGaussianPathPair
+      output: GaussianRelativeHolonomy
+      semantic_predicate: Compute conj(first)*second.
+    - catalog_id: real_holonomy_read
+      inputs:
+      - GaussianRelativeHolonomy
+      output: RationalCrossTerm
+      semantic_predicate: Take twice the real part.
+    composition_plan:
+    - outer_operation: relative_product
+      input_slot: 0
+      inner_operation: endpoint_gauge
+      colour_match: GaugeRepairedGaussianPathPair -> GaugeRepairedGaussianPathPair
+      hypothesis_match: Same declared coordinates, coefficients and context; all operation hypotheses
+        must be carried into the graft.
+      licensing_relations:
+      - holonomy_relation_0
+      evidence_status: Semantic substitution supported by the retained finite operation traces and separately
+        scoped named kernel statements. A complete refined-carrier operad is not asserted.
+    - outer_operation: real_holonomy_read
+      input_slot: 0
+      inner_operation: relative_product
+      colour_match: GaussianRelativeHolonomy -> GaussianRelativeHolonomy
+      hypothesis_match: Same declared coordinates, coefficients and context; all operation hypotheses
+        must be carried into the graft.
+      licensing_relations:
+      - holonomy_relation_0
+      evidence_status: Semantic substitution supported by the retained finite operation traces and separately
+        scoped named kernel statements. A complete refined-carrier operad is not asserted.
+    tree:
+    - conj(gz)gw=conj(z)w for |g|²=1; intensity=L1 squared-population sum+2 Re holonomy.
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: FILLED
+    algebraic_relations:
+    - id: holonomy_relation_0
+      equation_or_predicate: conj(gz)gw=conj(z)w for |g|²=1; intensity=L1 squared-population sum+2 Re
+        holonomy.
+      typing_conditions: Literal declared operation domains; Prove the full graph connection/tree gauge-trivialization
+        and matrix-valued holonomy transports; no SU(2) trace bound or higher-form result is claimed.
+      evidence_status: P1 candidate; independent native and named kernel gates remain required.
+      scope: Relative Gaussian holonomy and two-path intensity are invariant under the retained common
+        unit phases; the rational unit-phase conditional is universal in Lean.
+      source_pins:
+      - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_ds_qm063_holonomy_coherent_intensity_proved_lean.yaml
+        sha256: ad8a0437b7d47c3d806f2fd6b14602712b35a77e83b8884034069c1f094fba1c
+      - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/inputs/this_repository/dag/operads/ds_qm063_holonomy_coherent_intensity.yaml
+        sha256: ed61cda9afef89d3940f937c8d4894725c6ca4b5fccf897c3c4b89e1ef3e3ced
+      - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/inputs/this_repository/lean4/CoboundaryHolonomy.lean
+        sha256: 79c60e8ecd695f4e19de55b0502d2a0236c79d8b4d2ce6079a7516bc89e640fe
+      - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+        sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+      - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/holonomy_interference.rs
+        sha256: 92bab74604b100267dfec5aec2e6d54456a990454c09e073e22154a4fcc4a23d
+      - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs
+        sha256: 38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a
+      - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/tfq_0254_holonomy_structured_coherent_intensity.md
+        sha256: de650e72bb0e5b52cd654778e381b6e0118ba16b275c3464603dc8ec910b00f9
+      - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p0/operation_sources/code/python/src/qm/resources_exact.py
+        sha256: 11ef2d70fa824b51335b881564ab0bc87227c1b43f1fea26ebb87c283c81349f
+      - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p0/operation_sources/code/python/tests/test_resources_exact.py
+        sha256: 9e299e3dff3f975f3a770e3a940ad8f6969ab02b72545ac5d583c5738ddc9fe7
+      - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/resources_exact.rs
+        sha256: 74c77661e2030c2b37634dd449b164e696ebb7fb318019291719d56436cac1cc
+      - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/resources_exact_replay.rs
+        sha256: 3a2f999edc029ff914fd12dbe3516510ae3aaa9b9104b46a3f2168d9820092c9
+      - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/resources_checker.py
+        sha256: 0c9fcef66b088ab515dc5b1998a8bdad39f7ef2e230552245fccbb184cbac01c
+      - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+        sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+      - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/prepare.py
+        sha256: 7a8161d3b86651ba01b76e4bf6d940ca18597301b2bd99e0c75235bb9376fbc7
+      - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/specs.py
+        sha256: 56bea147f8ccf6b6c0e919dba2489878517b5e722a9284ffab51216119d6d4cb
+      - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/custody.py
+        sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+      - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+        sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+      - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/check_candidate.py
+        sha256: 04a5f1691c293ec4807dc05c0000d5a5f85eeaeb1cbd35ba75b2183c7f3edb06
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/format_certificate.py
+        sha256: 3129d06acae9bfedc4792dd3cd61bc9a8dbcc7a34567ec39b800d3b17ee04e52
+    rejection_predicates:
+    - Independent domain equations and actual matrix/graph/quotient arrays recompute every output.
+    - Exact public input, canonical rational primitive types, complete source pins and exact sealed request
+      bytes.
+    - Full native cross-language output equality and actual named Lean axiom reports; no label-based target
+      promotion.
+    negative_control_plan: Alter every output coordinate, input identity, primitive types, source set
+      and sealed request.
+  slot_m4_tri_language_witness_anchors:
+    mining_status: FILLED
+    certificate_predicates:
+    - Independent domain equations and actual matrix/graph/quotient arrays recompute every output.
+    - Exact public input, canonical rational primitive types, complete source pins and exact sealed request
+      bytes.
+    - Full native cross-language output equality and actual named Lean axiom reports; no label-based target
+      promotion.
+    anchors:
+    - code/python/src/qm/resources_exact.py
+    - code/python/tests/test_resources_exact.py
+    - code/rust/src/finite_probability/resources_exact.rs
+    - code/rust/src/finite_probability/examples/resources_exact_replay.rs
+    - dag/pfp/resources_checker.py
+    - dag/pfp/exact_json.py
+    - dag/pfp/review_exact_json.py
+    - lean4/BuildabilitySetS.lean
+    - lean4/PromptResources.lean
+    - dag/results/batches/20261019T184100Z_prompts_52_71/tools/prepare.py
+    - dag/results/batches/20261019T184100Z_prompts_52_71/tools/specs.py
+    - dag/pfp/custody.py
+    - dag/pfp/filename_custody.json
+    - QuantumMechanics.PromptResources.holonomy_gauge
+    - QuantumMechanics.PromptResources.interference_cross
+    unpaid_imports:
+    - Prove the full graph connection/tree gauge-trivialization and matrix-valued holonomy transports;
+      no SU(2) trace bound or higher-form result is claimed.
+    - Prove the full refined-carrier operad identity, substitution, symmetry and coherence laws; mere
+      colour matches do not instantiate that formal structure.
+    anchor_status: New Lean anchors are candidate declarations until the retained P2 compiler runs; compiled
+      source leads retain their literal scope.
+stage_history:
+- stage: P0_MINE_OPERAD
+  attempt: p0
+  run: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged
+  operad_delta: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p0/operad_delta.yaml
+  host_check: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p0/host_check.json
+- stage: P1_DERIVE
+  attempt: p1
+  run: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged
+  operad_delta: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p1/operad_delta.yaml
+  host_check: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p1/host_check.json
+- stage: P2_VERIFY
+  attempt: p2
+  run: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged
+  operad_delta: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p2/operad_delta.yaml
+  host_check: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p2/host_check.json
+- stage: P4_CHALLENGE
+  attempt: p4
+  run: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged
+  operad_delta: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p4/operad_delta.yaml
+  host_check: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p4/host_check.json
+- stage: P5_RECORD
+  attempt: p5
+  run: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged
+  operad_delta: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p5/operad_delta.yaml
+  host_check: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p5/host_check.json
+open_obligations: *id001
+excluded_relation_leads: []
+operad_slots_scope:
+  work_unit: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged/p0/reviewed_missions.json
+  scope: FILLED means reviewed prerequisites for this selected step; original target and unpaid imports
+    retained.
+latest_run:
+  path: dag/results/DS-QM063-HOLONOMY-COHERENT-INTENSITY/runs/20261019T184100Z_staged
+  stage: P5_RECORD
+  status: scoped_result_or_obstruction_pending_batch_review
+scope_notes:
+- Two paths with common endpoints acquire the same supplied unit phase under an endpoint gauge repair.
+  New rational Cayley unit phases act on actual Gaussian paths, retaining both real and imaginary relative
+  products and coherent intensity. Source additive integer cochains are separate from a full U(1) connection
+  on every tree.

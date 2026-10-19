@@ -69,3 +69,5 @@ pub mod phase_scope;
 pub mod structure_exact;
 
 pub mod dynamics_exact;
+
+pub mod resources_exact;

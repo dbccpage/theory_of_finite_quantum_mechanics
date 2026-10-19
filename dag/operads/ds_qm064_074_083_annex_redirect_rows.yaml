@@ -4,10 +4,10 @@ authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
   source_statement: The 064, 074 and 083 annex claims (phase 1-cochain coboundary d1 d0 = 0, gauge invariance
-    of triangle cycle holonomy, no-signaling marginal condition, and L1 contraction of stochastic Markov kernels)
-    are mechanized in DerivationDagQMClosure.lean and NoSignalling.lean.
+    of triangle cycle holonomy, no-signaling marginal condition, and L1 contraction of stochastic Markov
+    kernels) are mechanized in DerivationDagQMClosure.lean and NoSignalling.lean.
   statement_status: source_claim_to_scope_check_not_accepted_result
-  declared_assumptions: &id001 []
+  declared_assumptions: []
   source_bottleneck: Mechanized directly in DerivationDagQMClosure.lean and bound to Rust witness.
   source_refs:
   - omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/064_phase_gauge_residual/qm_064_phase_gauge_residual_claim_ledger.md#QM_064-C1
@@ -17,8 +17,8 @@ target:
   - dag/derivations/12_finite_qm_structure/tfq_0255_phase_gauge_annex_with_no_independent_derivation.md
   - dag/derivations/12_finite_qm_structure/tfq_0267_completely_positive_import_annex.md
   source_claim_label: PROVED_LEAN
-  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports before
-    reusing a result.
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
   historical_paper_refs:
   - papers/derivations/12_finite_qm_structure/tfq_0255_phase_gauge_annex_with_no_independent_derivation.md
   - papers/derivations/12_finite_qm_structure/tfq_0267_completely_positive_import_annex.md
@@ -43,24 +43,27 @@ relation_candidates:
 - kind: theorem
   name: qm064_triangle_holonomy_gauge_invariant
   line: 328
-  signature_excerpt: "theorem qm064_triangle_holonomy_gauge_invariant (w01 w12 w20 f0 f1 f2 : Int) :\n    (w01\
-    \ + (f1 - f0)) + (w12 + (f2 - f1)) + (w20 + (f0 - f2)) = w01 + w12 + w20"
+  signature_excerpt: "theorem qm064_triangle_holonomy_gauge_invariant (w01 w12 w20 f0 f1 f2 : Int) :\n\
+    \    (w01 + (f1 - f0)) + (w12 + (f2 - f1)) + (w20 + (f0 - f2)) = w01 + w12 + w20"
   source: lean4/DerivationDagQMClosure.lean
   repository: this_repository
   source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
   status: source_candidate_requires_semantic_review
-  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 - kind: theorem
   name: qm081_stochastic_l1_contraction
   line: 332
-  signature_excerpt: "theorem qm081_stochastic_l1_contraction (a00 a10 a01 a11 S x y : Int)\n    (ha00 : 0 ≤ a00)\
-    \ (ha10 : 0 ≤ a10) (ha01 : 0 ≤ a01) (ha11 : 0 ≤ a11)\n    (hcol0 : a00 + a10 = S) (hcol1 : a01 + a11 = S)\
-    \ :\n    (a00 * x + a01 * y).natAbs + (a10 * x + a11 * y).natAbs ≤\n      S.natAbs * (x.natAbs + y.natAbs)"
+  signature_excerpt: "theorem qm081_stochastic_l1_contraction (a00 a10 a01 a11 S x y : Int)\n    (ha00\
+    \ : 0 ≤ a00) (ha10 : 0 ≤ a10) (ha01 : 0 ≤ a01) (ha11 : 0 ≤ a11)\n    (hcol0 : a00 + a10 = S) (hcol1\
+    \ : a01 + a11 = S) :\n    (a00 * x + a01 * y).natAbs + (a10 * x + a11 * y).natAbs ≤\n      S.natAbs\
+    \ * (x.natAbs + y.natAbs)"
   source: lean4/DerivationDagQMClosure.lean
   repository: this_repository
   source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
   status: source_candidate_requires_semantic_review
-  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 source_bindings:
 - original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.qm064_triangle_holonomy_gauge_invariant
   availability: local
@@ -99,46 +102,793 @@ source_bindings:
   line: 1343
   role: source_lead_only
 presentation:
-  colours: []
-  generators: []
-  relations: []
-  compositions: []
-  identities: []
+  status: scoped_stage_result_reviewed
+  scope: Triangle identities, retained stochastic outputs and contextual marginal residuals are recomputed
+    exactly; generic finite rational contraction is kernel checked.
+  colours:
+  - id: GaugeShiftedTriangleWeights
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: RationalCycleResidual
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: RationalCycleSum
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: TriangleWeightsWithFixedPotential
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  generators:
+  - id: triangle_gauge_shift
+    ordered_inputs:
+    - TriangleWeightsWithFixedPotential
+    output: GaugeShiftedTriangleWeights
+    arity: 1
+    carrier: Declared TriangleWeightsWithFixedPotential
+    coefficient_ring: Exact Q (Gaussian pairs where stated), integers and literal Boolean fields only
+    hypotheses:
+    - Fixed orientation, potential and original cycle; stochastic and marginal controls are separately
+      typed evidence.
+    semantic_predicate: Add the fixed vertex coboundary to each oriented edge.
+    source_pins:
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_ds_qm064_074_083_annex_redirect_rows_proved_lean.yaml
+      sha256: 71a3fdbc45ff3049571634dcbf5b8f65f7bf5dde6b179dc5955eb09c28bf2e7c
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/inputs/this_repository/dag/operads/ds_qm064_074_083_annex_redirect_rows.yaml
+      sha256: d6323b24e582401a5a293717a13ffc1168cbceafe19d5980f14a9e5d492c83e8
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/tfq_0255_phase_gauge_annex_with_no_independent_derivation.md
+      sha256: d9550d315f9a93fdeacf37fbcf43979ad633bc9c83d8a57913b54d2d6c468d88
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/tfq_0267_completely_positive_import_annex.md
+      sha256: d15381a243e254164c16e1eafedefccb868275f35a792b8564ec7f910f8138f5
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/code/python/src/qm/resources_exact.py
+      sha256: 11ef2d70fa824b51335b881564ab0bc87227c1b43f1fea26ebb87c283c81349f
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/code/python/tests/test_resources_exact.py
+      sha256: 9e299e3dff3f975f3a770e3a940ad8f6969ab02b72545ac5d583c5738ddc9fe7
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/resources_exact.rs
+      sha256: 74c77661e2030c2b37634dd449b164e696ebb7fb318019291719d56436cac1cc
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/resources_exact_replay.rs
+      sha256: 3a2f999edc029ff914fd12dbe3516510ae3aaa9b9104b46a3f2168d9820092c9
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/resources_checker.py
+      sha256: 0c9fcef66b088ab515dc5b1998a8bdad39f7ef2e230552245fccbb184cbac01c
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/prepare.py
+      sha256: 7a8161d3b86651ba01b76e4bf6d940ca18597301b2bd99e0c75235bb9376fbc7
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/specs.py
+      sha256: 56bea147f8ccf6b6c0e919dba2489878517b5e722a9284ffab51216119d6d4cb
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/check_candidate.py
+      sha256: 416e2b140375efcbdbc98ea96762b050e9bb6825f3d08d7aeafe49ac8a33f078
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/format_certificate.py
+      sha256: b4242be8d107be00fe311d66e475ecf05588b60a49097549b0d0902eab4b087a
+    evidence_status: Reviewed exact finite native controls. Kernel signatures are separately scoped. Full
+      refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p2/host_check.json
+  - id: cycle_sum
+    ordered_inputs:
+    - GaugeShiftedTriangleWeights
+    output: RationalCycleSum
+    arity: 1
+    carrier: Declared GaugeShiftedTriangleWeights
+    coefficient_ring: Exact Q (Gaussian pairs where stated), integers and literal Boolean fields only
+    hypotheses:
+    - Fixed orientation, potential and original cycle; stochastic and marginal controls are separately
+      typed evidence.
+    semantic_predicate: Sum the three oriented edges.
+    source_pins:
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_ds_qm064_074_083_annex_redirect_rows_proved_lean.yaml
+      sha256: 71a3fdbc45ff3049571634dcbf5b8f65f7bf5dde6b179dc5955eb09c28bf2e7c
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/inputs/this_repository/dag/operads/ds_qm064_074_083_annex_redirect_rows.yaml
+      sha256: d6323b24e582401a5a293717a13ffc1168cbceafe19d5980f14a9e5d492c83e8
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/tfq_0255_phase_gauge_annex_with_no_independent_derivation.md
+      sha256: d9550d315f9a93fdeacf37fbcf43979ad633bc9c83d8a57913b54d2d6c468d88
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/tfq_0267_completely_positive_import_annex.md
+      sha256: d15381a243e254164c16e1eafedefccb868275f35a792b8564ec7f910f8138f5
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/code/python/src/qm/resources_exact.py
+      sha256: 11ef2d70fa824b51335b881564ab0bc87227c1b43f1fea26ebb87c283c81349f
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/code/python/tests/test_resources_exact.py
+      sha256: 9e299e3dff3f975f3a770e3a940ad8f6969ab02b72545ac5d583c5738ddc9fe7
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/resources_exact.rs
+      sha256: 74c77661e2030c2b37634dd449b164e696ebb7fb318019291719d56436cac1cc
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/resources_exact_replay.rs
+      sha256: 3a2f999edc029ff914fd12dbe3516510ae3aaa9b9104b46a3f2168d9820092c9
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/resources_checker.py
+      sha256: 0c9fcef66b088ab515dc5b1998a8bdad39f7ef2e230552245fccbb184cbac01c
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/prepare.py
+      sha256: 7a8161d3b86651ba01b76e4bf6d940ca18597301b2bd99e0c75235bb9376fbc7
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/specs.py
+      sha256: 56bea147f8ccf6b6c0e919dba2489878517b5e722a9284ffab51216119d6d4cb
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/check_candidate.py
+      sha256: 416e2b140375efcbdbc98ea96762b050e9bb6825f3d08d7aeafe49ac8a33f078
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/format_certificate.py
+      sha256: b4242be8d107be00fe311d66e475ecf05588b60a49097549b0d0902eab4b087a
+    evidence_status: Reviewed exact finite native controls. Kernel signatures are separately scoped. Full
+      refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p2/host_check.json
+  - id: cycle_comparison
+    ordered_inputs:
+    - RationalCycleSum
+    output: RationalCycleResidual
+    arity: 1
+    carrier: Declared RationalCycleSum
+    coefficient_ring: Exact Q (Gaussian pairs where stated), integers and literal Boolean fields only
+    hypotheses:
+    - Fixed orientation, potential and original cycle; stochastic and marginal controls are separately
+      typed evidence.
+    semantic_predicate: Subtract the fixed original cycle sum.
+    source_pins:
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_ds_qm064_074_083_annex_redirect_rows_proved_lean.yaml
+      sha256: 71a3fdbc45ff3049571634dcbf5b8f65f7bf5dde6b179dc5955eb09c28bf2e7c
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/inputs/this_repository/dag/operads/ds_qm064_074_083_annex_redirect_rows.yaml
+      sha256: d6323b24e582401a5a293717a13ffc1168cbceafe19d5980f14a9e5d492c83e8
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/tfq_0255_phase_gauge_annex_with_no_independent_derivation.md
+      sha256: d9550d315f9a93fdeacf37fbcf43979ad633bc9c83d8a57913b54d2d6c468d88
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/tfq_0267_completely_positive_import_annex.md
+      sha256: d15381a243e254164c16e1eafedefccb868275f35a792b8564ec7f910f8138f5
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/code/python/src/qm/resources_exact.py
+      sha256: 11ef2d70fa824b51335b881564ab0bc87227c1b43f1fea26ebb87c283c81349f
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/code/python/tests/test_resources_exact.py
+      sha256: 9e299e3dff3f975f3a770e3a940ad8f6969ab02b72545ac5d583c5738ddc9fe7
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/resources_exact.rs
+      sha256: 74c77661e2030c2b37634dd449b164e696ebb7fb318019291719d56436cac1cc
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/resources_exact_replay.rs
+      sha256: 3a2f999edc029ff914fd12dbe3516510ae3aaa9b9104b46a3f2168d9820092c9
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/resources_checker.py
+      sha256: 0c9fcef66b088ab515dc5b1998a8bdad39f7ef2e230552245fccbb184cbac01c
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/prepare.py
+      sha256: 7a8161d3b86651ba01b76e4bf6d940ca18597301b2bd99e0c75235bb9376fbc7
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/specs.py
+      sha256: 56bea147f8ccf6b6c0e919dba2489878517b5e722a9284ffab51216119d6d4cb
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/check_candidate.py
+      sha256: 416e2b140375efcbdbc98ea96762b050e9bb6825f3d08d7aeafe49ac8a33f078
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/format_certificate.py
+      sha256: b4242be8d107be00fe311d66e475ecf05588b60a49097549b0d0902eab4b087a
+    evidence_status: Reviewed exact finite native controls. Kernel signatures are separately scoped. Full
+      refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p2/host_check.json
+  relations:
+  - id: annex_relation_0
+    equation_or_predicate: d1 d0=0 and cycle sum is gauge invariant.
+    typing_conditions: Literal declared operation domains; Supply graph-to-phase, channel-to-kernel and
+      physical composition/causality transports. The three control families do not by packaging close
+      the annex interpretations.
+    evidence_status: Accepted actual P2 and P4 controls; only the literal named Lean signatures are kernel
+      theorems. Native array-to-signature and physical transports remain as stated.
+    scope: Triangle identities, retained stochastic outputs and contextual marginal residuals are recomputed
+      exactly; generic finite rational contraction is kernel checked.
+    source_pins:
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_ds_qm064_074_083_annex_redirect_rows_proved_lean.yaml
+      sha256: 71a3fdbc45ff3049571634dcbf5b8f65f7bf5dde6b179dc5955eb09c28bf2e7c
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/inputs/this_repository/dag/operads/ds_qm064_074_083_annex_redirect_rows.yaml
+      sha256: d6323b24e582401a5a293717a13ffc1168cbceafe19d5980f14a9e5d492c83e8
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/tfq_0255_phase_gauge_annex_with_no_independent_derivation.md
+      sha256: d9550d315f9a93fdeacf37fbcf43979ad633bc9c83d8a57913b54d2d6c468d88
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/tfq_0267_completely_positive_import_annex.md
+      sha256: d15381a243e254164c16e1eafedefccb868275f35a792b8564ec7f910f8138f5
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/code/python/src/qm/resources_exact.py
+      sha256: 11ef2d70fa824b51335b881564ab0bc87227c1b43f1fea26ebb87c283c81349f
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/code/python/tests/test_resources_exact.py
+      sha256: 9e299e3dff3f975f3a770e3a940ad8f6969ab02b72545ac5d583c5738ddc9fe7
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/resources_exact.rs
+      sha256: 74c77661e2030c2b37634dd449b164e696ebb7fb318019291719d56436cac1cc
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/resources_exact_replay.rs
+      sha256: 3a2f999edc029ff914fd12dbe3516510ae3aaa9b9104b46a3f2168d9820092c9
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/resources_checker.py
+      sha256: 0c9fcef66b088ab515dc5b1998a8bdad39f7ef2e230552245fccbb184cbac01c
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/prepare.py
+      sha256: 7a8161d3b86651ba01b76e4bf6d940ca18597301b2bd99e0c75235bb9376fbc7
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/specs.py
+      sha256: 56bea147f8ccf6b6c0e919dba2489878517b5e722a9284ffab51216119d6d4cb
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/check_candidate.py
+      sha256: 416e2b140375efcbdbc98ea96762b050e9bb6825f3d08d7aeafe49ac8a33f078
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/format_certificate.py
+      sha256: b4242be8d107be00fe311d66e475ecf05588b60a49097549b0d0902eab4b087a
+    latest_host_check: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p2/host_check.json
+    historical_evidence_annotation: P1 candidate; independent native and named kernel gates remain required.
+    named_Lean_scope: &id001
+    - QuantumMechanics.PromptResources.annex_triangle
+    - QuantumMechanics.PromptResources.stochastic_contraction
+    - QuantumMechanics.PromptResources.nosignal_family
+  - id: annex_relation_1
+    equation_or_predicate: Column-stochastic contraction and PR-family marginal equality are separate
+      relations.
+    typing_conditions: Literal declared operation domains; Supply graph-to-phase, channel-to-kernel and
+      physical composition/causality transports. The three control families do not by packaging close
+      the annex interpretations.
+    evidence_status: Accepted actual P2 and P4 controls; only the literal named Lean signatures are kernel
+      theorems. Native array-to-signature and physical transports remain as stated.
+    scope: Triangle identities, retained stochastic outputs and contextual marginal residuals are recomputed
+      exactly; generic finite rational contraction is kernel checked.
+    source_pins:
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_ds_qm064_074_083_annex_redirect_rows_proved_lean.yaml
+      sha256: 71a3fdbc45ff3049571634dcbf5b8f65f7bf5dde6b179dc5955eb09c28bf2e7c
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/inputs/this_repository/dag/operads/ds_qm064_074_083_annex_redirect_rows.yaml
+      sha256: d6323b24e582401a5a293717a13ffc1168cbceafe19d5980f14a9e5d492c83e8
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/tfq_0255_phase_gauge_annex_with_no_independent_derivation.md
+      sha256: d9550d315f9a93fdeacf37fbcf43979ad633bc9c83d8a57913b54d2d6c468d88
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/tfq_0267_completely_positive_import_annex.md
+      sha256: d15381a243e254164c16e1eafedefccb868275f35a792b8564ec7f910f8138f5
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/code/python/src/qm/resources_exact.py
+      sha256: 11ef2d70fa824b51335b881564ab0bc87227c1b43f1fea26ebb87c283c81349f
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/code/python/tests/test_resources_exact.py
+      sha256: 9e299e3dff3f975f3a770e3a940ad8f6969ab02b72545ac5d583c5738ddc9fe7
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/resources_exact.rs
+      sha256: 74c77661e2030c2b37634dd449b164e696ebb7fb318019291719d56436cac1cc
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/resources_exact_replay.rs
+      sha256: 3a2f999edc029ff914fd12dbe3516510ae3aaa9b9104b46a3f2168d9820092c9
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/resources_checker.py
+      sha256: 0c9fcef66b088ab515dc5b1998a8bdad39f7ef2e230552245fccbb184cbac01c
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/prepare.py
+      sha256: 7a8161d3b86651ba01b76e4bf6d940ca18597301b2bd99e0c75235bb9376fbc7
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/specs.py
+      sha256: 56bea147f8ccf6b6c0e919dba2489878517b5e722a9284ffab51216119d6d4cb
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/check_candidate.py
+      sha256: 416e2b140375efcbdbc98ea96762b050e9bb6825f3d08d7aeafe49ac8a33f078
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/format_certificate.py
+      sha256: b4242be8d107be00fe311d66e475ecf05588b60a49097549b0d0902eab4b087a
+    latest_host_check: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p2/host_check.json
+    historical_evidence_annotation: P1 candidate; independent native and named kernel gates remain required.
+    named_Lean_scope: *id001
+  compositions: &id002
+  - outer_operation: cycle_sum
+    input_slot: 0
+    inner_operation: triangle_gauge_shift
+    colour_match: GaugeShiftedTriangleWeights -> GaugeShiftedTriangleWeights
+    hypothesis_match: Same declared coordinates, coefficients and context; all operation hypotheses must
+      be carried into the graft. Fixed matrices, signs, gauge unit, original comparison table, row order,
+      sector and pairing (where relevant) must agree across both operations. Formal universal refined-carrier
+      closure is unpaid.
+    licensing_relations:
+    - annex_relation_0
+    - annex_relation_1
+    evidence_status: Semantic substitution supported by the retained finite operation traces and separately
+      scoped named kernel statements. A complete refined-carrier operad is not asserted.
+  - outer_operation: cycle_comparison
+    input_slot: 0
+    inner_operation: cycle_sum
+    colour_match: RationalCycleSum -> RationalCycleSum
+    hypothesis_match: Same declared coordinates, coefficients and context; all operation hypotheses must
+      be carried into the graft. Fixed matrices, signs, gauge unit, original comparison table, row order,
+      sector and pairing (where relevant) must agree across both operations. Formal universal refined-carrier
+      closure is unpaid.
+    licensing_relations:
+    - annex_relation_0
+    - annex_relation_1
+    evidence_status: Semantic substitution supported by the retained finite operation traces and separately
+      scoped named kernel statements. A complete refined-carrier operad is not asserted.
+  identities:
+  - colour: GaugeShiftedTriangleWeights
+    proposed_operation: id_GaugeShiftedTriangleWeights
+    signature: GaugeShiftedTriangleWeights -> GaugeShiftedTriangleWeights
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: RationalCycleResidual
+    proposed_operation: id_RationalCycleResidual
+    signature: RationalCycleResidual -> RationalCycleResidual
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: RationalCycleSum
+    proposed_operation: id_RationalCycleSum
+    signature: RationalCycleSum -> RationalCycleSum
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: TriangleWeightsWithFixedPotential
+    proposed_operation: id_TriangleWeightsWithFixedPotential
+    signature: TriangleWeightsWithFixedPotential -> TriangleWeightsWithFixedPotential
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
   symmetric_actions: []
-  coherence_obligations:
-  - identity_operations
-  - unit_laws
-  - partial_composition_associativity
-  - symmetric_action_if_claimed
-  - relations_stable_under_grafting
+  coherence_obligations: &id003
+  - Supply graph-to-phase, channel-to-kernel and physical composition/causality transports. The three
+    control families do not by packaging close the annex interpretations.
+  - Prove the full refined-carrier operad identity, substitution, symmetry and coherence laws; mere colour
+    matches do not instantiate that formal structure.
+  - A source provider PASS/hash, route index, census label or Boolean flag is not mathematical evidence
+    for the original target. No historical provider receipt is newly authenticated.
+  failed_compositions:
+  - proposal: Promote the selected step to the unrestricted original target
+    reason: Supply graph-to-phase, channel-to-kernel and physical composition/causality transports. The
+      three control families do not by packaging close the annex interpretations.
+  counterexamples:
+  - id: retained_actual_domain_controls
+    records:
+    - input:
+      - '1'
+      - '2'
+      - '3'
+      - '0'
+      - '2'
+      - '-1'
+      - 1/2
+      - 1/3
+      - '1'
+      - '-1'
+      - '1'
+      output:
+      - '2'
+      - '-3'
+      - '1'
+      - '0'
+      - '6'
+      - '6'
+      - 1/6
+      - -1/6
+      - '2'
+      - 1/3
+      - '1'
+      - '1'
+      - '1'
+      - '1'
+      - 1/2
+      - 1/2
+      - 1/2
+      - 1/2
+      - 1/2
+      - 1/2
+      - 1/2
+      - 1/2
+      - 1/2
+      - 1/2
+      - 1/2
+      - 1/2
+      - 1/2
+      - 1/2
+      - 1/2
+      - 1/2
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '1'
+      - '1'
+      - '1'
+      - '-1'
+      - '4'
+      - 1/4
+      - -1/4
+      - -1/4
+      - 1/4
+      - 1/4
+      - -1/4
+      - -1/4
+      - 1/4
+      - 1/4
+      - -1/4
+      - -1/4
+      - 1/4
+      - -1/4
+      - 1/4
+      - 1/4
+      - -1/4
+    - input:
+      - '-2'
+      - '0'
+      - '3'
+      - '4'
+      - '4'
+      - '4'
+      - '1'
+      - '0'
+      - '2'
+      - '-3'
+      - '0'
+      output:
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '1'
+      - '1'
+      - '2'
+      - '-3'
+      - '5'
+      - '5'
+      - '1'
+      - '1'
+      - '1'
+      - '1'
+      - 1/2
+      - 1/2
+      - 1/2
+      - 1/2
+      - 1/2
+      - 1/2
+      - 1/2
+      - 1/2
+      - 1/2
+      - 1/2
+      - 1/2
+      - 1/2
+      - 1/2
+      - 1/2
+      - 1/2
+      - 1/2
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+    scope: Computed values, with the source/kernel/native distinctions retained in claim_boundary.
 operad_slots:
   slot_m1_layer0_ambient_carrier:
-    mining_status: UNREVIEWED
-    carrier: null
-    coefficient_ring: null
-    assumptions: *id001
-    source_pins: []
-    public_input: {}
+    mining_status: FILLED
+    carrier: Literal per-operation finite or admitted scalar carriers
+    coefficient_ring: Exact Z, Q, Gaussian rational pairs and supplied Boolean fields
+    source_pins:
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_ds_qm064_074_083_annex_redirect_rows_proved_lean.yaml
+      sha256: 71a3fdbc45ff3049571634dcbf5b8f65f7bf5dde6b179dc5955eb09c28bf2e7c
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/inputs/this_repository/dag/operads/ds_qm064_074_083_annex_redirect_rows.yaml
+      sha256: d6323b24e582401a5a293717a13ffc1168cbceafe19d5980f14a9e5d492c83e8
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/tfq_0255_phase_gauge_annex_with_no_independent_derivation.md
+      sha256: d9550d315f9a93fdeacf37fbcf43979ad633bc9c83d8a57913b54d2d6c468d88
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/tfq_0267_completely_positive_import_annex.md
+      sha256: d15381a243e254164c16e1eafedefccb868275f35a792b8564ec7f910f8138f5
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/code/python/src/qm/resources_exact.py
+      sha256: 11ef2d70fa824b51335b881564ab0bc87227c1b43f1fea26ebb87c283c81349f
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/code/python/tests/test_resources_exact.py
+      sha256: 9e299e3dff3f975f3a770e3a940ad8f6969ab02b72545ac5d583c5738ddc9fe7
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/resources_exact.rs
+      sha256: 74c77661e2030c2b37634dd449b164e696ebb7fb318019291719d56436cac1cc
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/resources_exact_replay.rs
+      sha256: 3a2f999edc029ff914fd12dbe3516510ae3aaa9b9104b46a3f2168d9820092c9
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/resources_checker.py
+      sha256: 0c9fcef66b088ab515dc5b1998a8bdad39f7ef2e230552245fccbb184cbac01c
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/prepare.py
+      sha256: 7a8161d3b86651ba01b76e4bf6d940ca18597301b2bd99e0c75235bb9376fbc7
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/specs.py
+      sha256: 56bea147f8ccf6b6c0e919dba2489878517b5e722a9284ffab51216119d6d4cb
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/check_candidate.py
+      sha256: 416e2b140375efcbdbc98ea96762b050e9bb6825f3d08d7aeafe49ac8a33f078
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/format_certificate.py
+      sha256: b4242be8d107be00fe311d66e475ecf05588b60a49097549b0d0902eab4b087a
+    public_input:
+      kind: annex
+      cases:
+      - - '1'
+        - '2'
+        - '3'
+        - '0'
+        - '2'
+        - '-1'
+        - 1/2
+        - 1/3
+        - '1'
+        - '-1'
+        - '1'
+      - - '-2'
+        - '0'
+        - '3'
+        - '4'
+        - '4'
+        - '4'
+        - '1'
+        - '0'
+        - '2'
+        - '-3'
+        - '0'
+      scope: Triangle identities, retained stochastic outputs and contextual marginal residuals are recomputed
+        exactly; generic finite rational contraction is kernel checked.
+      unpaid_target: Supply graph-to-phase, channel-to-kernel and physical composition/causality transports.
+        The three control families do not by packaging close the annex interpretations.
+    original_target: The 064, 074 and 083 annex claims (phase 1-cochain coboundary d1 d0 = 0, gauge invariance
+      of triangle cycle holonomy, no-signaling marginal condition, and L1 contraction of stochastic Markov
+      kernels) are mechanized in DerivationDagQMClosure.lean and NoSignalling.lean.
+    source_scope_review: 'The redirect row packages three separate finite controls, not one new physics
+      theorem: additive triangle coboundary/gauge invariance, a two-state stochastic contraction, and
+      PR/noise tables with exact marginal residuals. The new finite rational contraction theorem and actual
+      contextual arrays replace route-index arithmetic.'
+    admitted_assumptions: []
   slot_m2_layer1_forward_morphisms:
-    mining_status: UNREVIEWED
-    operations: []
-    composition_plan: []
+    mining_status: FILLED
+    operations:
+    - catalog_id: triangle_gauge_shift
+      inputs:
+      - TriangleWeightsWithFixedPotential
+      output: GaugeShiftedTriangleWeights
+      semantic_predicate: Add the fixed vertex coboundary to each oriented edge.
+    - catalog_id: cycle_sum
+      inputs:
+      - GaugeShiftedTriangleWeights
+      output: RationalCycleSum
+      semantic_predicate: Sum the three oriented edges.
+    - catalog_id: cycle_comparison
+      inputs:
+      - RationalCycleSum
+      output: RationalCycleResidual
+      semantic_predicate: Subtract the fixed original cycle sum.
+    composition_plan: *id002
+    tree:
+    - d1 d0=0 and cycle sum is gauge invariant.
+    - Column-stochastic contraction and PR-family marginal equality are separate relations.
   slot_m3_layer2_ideals_and_annihilators:
-    mining_status: UNREVIEWED
-    algebraic_relations: []
-    rejection_predicates: []
-    negative_control_plan: []
+    mining_status: FILLED
+    algebraic_relations:
+    - id: annex_relation_0
+      equation_or_predicate: d1 d0=0 and cycle sum is gauge invariant.
+      typing_conditions: Literal declared operation domains; Supply graph-to-phase, channel-to-kernel
+        and physical composition/causality transports. The three control families do not by packaging
+        close the annex interpretations.
+      evidence_status: P1 candidate; independent native and named kernel gates remain required.
+      scope: Triangle identities, retained stochastic outputs and contextual marginal residuals are recomputed
+        exactly; generic finite rational contraction is kernel checked.
+      source_pins:
+      - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_ds_qm064_074_083_annex_redirect_rows_proved_lean.yaml
+        sha256: 71a3fdbc45ff3049571634dcbf5b8f65f7bf5dde6b179dc5955eb09c28bf2e7c
+      - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/inputs/this_repository/dag/operads/ds_qm064_074_083_annex_redirect_rows.yaml
+        sha256: d6323b24e582401a5a293717a13ffc1168cbceafe19d5980f14a9e5d492c83e8
+      - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+        sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+      - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/tfq_0255_phase_gauge_annex_with_no_independent_derivation.md
+        sha256: d9550d315f9a93fdeacf37fbcf43979ad633bc9c83d8a57913b54d2d6c468d88
+      - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/tfq_0267_completely_positive_import_annex.md
+        sha256: d15381a243e254164c16e1eafedefccb868275f35a792b8564ec7f910f8138f5
+      - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/code/python/src/qm/resources_exact.py
+        sha256: 11ef2d70fa824b51335b881564ab0bc87227c1b43f1fea26ebb87c283c81349f
+      - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/code/python/tests/test_resources_exact.py
+        sha256: 9e299e3dff3f975f3a770e3a940ad8f6969ab02b72545ac5d583c5738ddc9fe7
+      - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/resources_exact.rs
+        sha256: 74c77661e2030c2b37634dd449b164e696ebb7fb318019291719d56436cac1cc
+      - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/resources_exact_replay.rs
+        sha256: 3a2f999edc029ff914fd12dbe3516510ae3aaa9b9104b46a3f2168d9820092c9
+      - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/resources_checker.py
+        sha256: 0c9fcef66b088ab515dc5b1998a8bdad39f7ef2e230552245fccbb184cbac01c
+      - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+        sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+      - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/prepare.py
+        sha256: 7a8161d3b86651ba01b76e4bf6d940ca18597301b2bd99e0c75235bb9376fbc7
+      - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/specs.py
+        sha256: 56bea147f8ccf6b6c0e919dba2489878517b5e722a9284ffab51216119d6d4cb
+      - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/custody.py
+        sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+      - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+        sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+      - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/check_candidate.py
+        sha256: 416e2b140375efcbdbc98ea96762b050e9bb6825f3d08d7aeafe49ac8a33f078
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/format_certificate.py
+        sha256: b4242be8d107be00fe311d66e475ecf05588b60a49097549b0d0902eab4b087a
+    - id: annex_relation_1
+      equation_or_predicate: Column-stochastic contraction and PR-family marginal equality are separate
+        relations.
+      typing_conditions: Literal declared operation domains; Supply graph-to-phase, channel-to-kernel
+        and physical composition/causality transports. The three control families do not by packaging
+        close the annex interpretations.
+      evidence_status: P1 candidate; independent native and named kernel gates remain required.
+      scope: Triangle identities, retained stochastic outputs and contextual marginal residuals are recomputed
+        exactly; generic finite rational contraction is kernel checked.
+      source_pins:
+      - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_ds_qm064_074_083_annex_redirect_rows_proved_lean.yaml
+        sha256: 71a3fdbc45ff3049571634dcbf5b8f65f7bf5dde6b179dc5955eb09c28bf2e7c
+      - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/inputs/this_repository/dag/operads/ds_qm064_074_083_annex_redirect_rows.yaml
+        sha256: d6323b24e582401a5a293717a13ffc1168cbceafe19d5980f14a9e5d492c83e8
+      - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+        sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+      - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/tfq_0255_phase_gauge_annex_with_no_independent_derivation.md
+        sha256: d9550d315f9a93fdeacf37fbcf43979ad633bc9c83d8a57913b54d2d6c468d88
+      - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/tfq_0267_completely_positive_import_annex.md
+        sha256: d15381a243e254164c16e1eafedefccb868275f35a792b8564ec7f910f8138f5
+      - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/code/python/src/qm/resources_exact.py
+        sha256: 11ef2d70fa824b51335b881564ab0bc87227c1b43f1fea26ebb87c283c81349f
+      - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/code/python/tests/test_resources_exact.py
+        sha256: 9e299e3dff3f975f3a770e3a940ad8f6969ab02b72545ac5d583c5738ddc9fe7
+      - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/resources_exact.rs
+        sha256: 74c77661e2030c2b37634dd449b164e696ebb7fb318019291719d56436cac1cc
+      - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/resources_exact_replay.rs
+        sha256: 3a2f999edc029ff914fd12dbe3516510ae3aaa9b9104b46a3f2168d9820092c9
+      - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/resources_checker.py
+        sha256: 0c9fcef66b088ab515dc5b1998a8bdad39f7ef2e230552245fccbb184cbac01c
+      - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+        sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+      - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/prepare.py
+        sha256: 7a8161d3b86651ba01b76e4bf6d940ca18597301b2bd99e0c75235bb9376fbc7
+      - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/specs.py
+        sha256: 56bea147f8ccf6b6c0e919dba2489878517b5e722a9284ffab51216119d6d4cb
+      - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/custody.py
+        sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+      - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+        sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+      - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/check_candidate.py
+        sha256: 416e2b140375efcbdbc98ea96762b050e9bb6825f3d08d7aeafe49ac8a33f078
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/format_certificate.py
+        sha256: b4242be8d107be00fe311d66e475ecf05588b60a49097549b0d0902eab4b087a
+    rejection_predicates:
+    - Independent domain equations and actual matrix/graph/quotient arrays recompute every output.
+    - Exact public input, canonical rational primitive types, complete source pins and exact sealed request
+      bytes.
+    - Full native cross-language output equality and actual named Lean axiom reports; no label-based target
+      promotion.
+    negative_control_plan: Alter every output coordinate, input identity, primitive types, source set
+      and sealed request.
   slot_m4_tri_language_witness_anchors:
-    mining_status: UNREVIEWED
-    certificate_predicates: []
-    anchors: []
-    unpaid_imports: *id001
-stage_history: []
-open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
-- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
-- Select and semantically check the generators needed by one useful next step.
-- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
-- Bind independent certificate predicates and real checker anchors before P1.
+    mining_status: FILLED
+    certificate_predicates:
+    - Independent domain equations and actual matrix/graph/quotient arrays recompute every output.
+    - Exact public input, canonical rational primitive types, complete source pins and exact sealed request
+      bytes.
+    - Full native cross-language output equality and actual named Lean axiom reports; no label-based target
+      promotion.
+    anchors:
+    - code/python/src/qm/resources_exact.py
+    - code/python/tests/test_resources_exact.py
+    - code/rust/src/finite_probability/resources_exact.rs
+    - code/rust/src/finite_probability/examples/resources_exact_replay.rs
+    - dag/pfp/resources_checker.py
+    - dag/pfp/exact_json.py
+    - dag/pfp/review_exact_json.py
+    - lean4/BuildabilitySetS.lean
+    - lean4/PromptResources.lean
+    - dag/results/batches/20261019T184100Z_prompts_52_71/tools/prepare.py
+    - dag/results/batches/20261019T184100Z_prompts_52_71/tools/specs.py
+    - dag/pfp/custody.py
+    - dag/pfp/filename_custody.json
+    - QuantumMechanics.PromptResources.annex_triangle
+    - QuantumMechanics.PromptResources.stochastic_contraction
+    - QuantumMechanics.PromptResources.nosignal_family
+    unpaid_imports:
+    - Supply graph-to-phase, channel-to-kernel and physical composition/causality transports. The three
+      control families do not by packaging close the annex interpretations.
+    - Prove the full refined-carrier operad identity, substitution, symmetry and coherence laws; mere
+      colour matches do not instantiate that formal structure.
+    anchor_status: New Lean anchors are candidate declarations until the retained P2 compiler runs; compiled
+      source leads retain their literal scope.
+stage_history:
+- stage: P0_MINE_OPERAD
+  attempt: p0
+  run: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged
+  operad_delta: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/operad_delta.yaml
+  host_check: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/host_check.json
+- stage: P1_DERIVE
+  attempt: p1
+  run: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged
+  operad_delta: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p1/operad_delta.yaml
+  host_check: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p1/host_check.json
+- stage: P2_VERIFY
+  attempt: p2
+  run: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged
+  operad_delta: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p2/operad_delta.yaml
+  host_check: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p2/host_check.json
+- stage: P4_CHALLENGE
+  attempt: p4
+  run: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged
+  operad_delta: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p4/operad_delta.yaml
+  host_check: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p4/host_check.json
+- stage: P5_RECORD
+  attempt: p5
+  run: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged
+  operad_delta: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p5/operad_delta.yaml
+  host_check: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p5/host_check.json
+open_obligations: *id003
 excluded_relation_leads: []
+operad_slots_scope:
+  work_unit: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged/p0/reviewed_missions.json
+  scope: FILLED means reviewed prerequisites for this selected step; original target and unpaid imports
+    retained.
+  review_refinement: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/reviews/20261019_resources_audit/scope_review.json
+latest_run:
+  path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/runs/20261019T184100Z_staged
+  stage: P5_RECORD
+  status: scoped_result_or_obstruction_reviewed
+scope_notes:
+- 'The redirect row packages three separate finite controls, not one new physics theorem: additive triangle
+  coboundary/gauge invariance, a two-state stochastic contraction, and PR/noise tables with exact marginal
+  residuals. The new finite rational contraction theorem and actual contextual arrays replace route-index
+  arithmetic.'
+latest_review:
+  path: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/reviews/20261019_resources_audit
+  status: reviewed_with_targeted_native_integration
+  operad_delta: dag/results/DS-QM064-074-083-ANNEX-REDIRECT-ROWS/reviews/20261019_resources_audit/operad_delta.yaml
