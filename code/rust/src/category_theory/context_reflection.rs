@@ -8,6 +8,7 @@
 //! unit, initial in (S down-arrow Cong). It can merge previously distinct
 //! profiles. A profile-reflecting unit into Cong cannot repair noncongruence.
 use crate::finite_moore::{FiniteMoore, MooreError};
+use std::collections::BTreeMap;
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum ContextError {
@@ -67,19 +68,22 @@ impl ContextSystem {
     pub fn obstruction(&self) -> Option<ContextWitness> {
         for x in 0..self.state_count() {
             for y in 0..x {
-                for c in 0..self.context_count() {
-                    let witness = ContextWitness {
-                        left: x,
-                        right: y,
-                        context: c,
-                    };
-                    if self.check_witness(&witness) {
-                        return Some(witness);
-                    }
+                if let Some(witness) = self.obstruction_for_pair(x, y) {
+                    return Some(witness);
                 }
             }
         }
         None
+    }
+    fn obstruction_for_pair(&self, x: usize, y: usize) -> Option<ContextWitness> {
+        (0..self.context_count()).find_map(|context| {
+            let witness = ContextWitness {
+                left: x,
+                right: y,
+                context,
+            };
+            self.check_witness(&witness).then_some(witness)
+        })
     }
     pub fn is_congruent(&self) -> bool {
         self.obstruction().is_none()
@@ -162,16 +166,12 @@ pub struct CongruenceReflection {
 }
 
 fn canonicalize(labels: &[usize]) -> Vec<usize> {
-    let mut representatives = Vec::new();
+    let mut representatives = BTreeMap::new();
     labels
         .iter()
         .map(|label| {
-            if let Some(i) = representatives.iter().position(|old| old == label) {
-                i
-            } else {
-                representatives.push(*label);
-                representatives.len() - 1
-            }
+            let fresh = representatives.len();
+            *representatives.entry(*label).or_insert(fresh)
         })
         .collect()
 }
@@ -185,6 +185,26 @@ fn merge(labels: &mut [usize], x: usize, y: usize) {
     }
 }
 
+fn merge_round(source: &ContextSystem, old: &[usize], labels: &mut [usize]) {
+    for x in 0..source.state_count() {
+        for y in 0..x {
+            if old[x] == old[y] {
+                merge_pair(source, x, y, labels);
+            }
+        }
+    }
+}
+
+fn merge_pair(source: &ContextSystem, x: usize, y: usize, labels: &mut [usize]) {
+    for c in 0..source.context_count() {
+        merge(
+            labels,
+            source.transitions()[x][c],
+            source.transitions()[y][c],
+        );
+    }
+}
+
 impl CongruenceReflection {
     /// Least stable equivalence above the given profile equivalence. Every
     /// strict round merges at least two blocks, hence at most n-1 strict rounds.
@@ -193,19 +213,7 @@ impl CongruenceReflection {
         let mut chain = vec![labels.clone()];
         loop {
             let old = labels.clone();
-            for x in 0..source.state_count() {
-                for y in 0..x {
-                    if old[x] == old[y] {
-                        for c in 0..source.context_count() {
-                            merge(
-                                &mut labels,
-                                source.transitions()[x][c],
-                                source.transitions()[y][c],
-                            );
-                        }
-                    }
-                }
-            }
+            merge_round(source, &old, &mut labels);
             labels = canonicalize(&labels);
             if labels == old {
                 break;

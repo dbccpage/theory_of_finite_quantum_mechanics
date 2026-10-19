@@ -18,7 +18,7 @@ from run_audit import ROOT, digest, execute, write_json
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model",choices=("rank","category","metadata","degree","counter","parameters","finite-set","literal-reversal","shape-inventory","root-records","homology-protocols","degree-repair","two-step-complex","simplicial-closure","simplicial-boundary","simplicial-homology","scalar-admission","carrier-dimensions","vector-maps","graph-incidence","validation-inventory","arrow-effects","finite-builder","em-samples","lawvere-inventory","higher-functor-inventory","finite-functor","functor-operations","finite-naturality","natural-composition","joint-carrier","finite-simulation","finite-independence","finite-trace","finite-dagger","finite-groupoid","cauchy-inventory","tagged-coend","condensation-metadata","root-catalog","finite-profunctor-inventory","finite-continuation","finite-moore","partial-structure","finite-path","family-registry","functional-dependencies","functional-classification","finite-relational","joint-dynamics","history-context"),default="rank")
+    parser.add_argument("--model",choices=("rank","category","metadata","degree","counter","parameters","finite-set","literal-reversal","shape-inventory","root-records","homology-protocols","degree-repair","two-step-complex","simplicial-closure","simplicial-boundary","simplicial-homology","scalar-admission","carrier-dimensions","vector-maps","graph-incidence","validation-inventory","arrow-effects","finite-builder","em-samples","lawvere-inventory","higher-functor-inventory","finite-functor","functor-operations","finite-naturality","natural-composition","joint-carrier","finite-simulation","finite-independence","finite-trace","finite-dagger","finite-groupoid","cauchy-inventory","tagged-coend","condensation-metadata","root-catalog","finite-profunctor-inventory","finite-continuation","finite-moore","partial-structure","finite-path","family-registry","functional-dependencies","functional-classification","finite-relational","joint-dynamics","history-context","context-reflection"),default="rank")
     parser.add_argument("--memory-mb", type=int, default=1024,
         help="Explicit Lean memory limit, from 256 to 2048 MiB; default remains 1024.")
     args = parser.parse_args()
@@ -46,6 +46,10 @@ def main():
         proof_name, import_name, namespace = "DegreeWindow", "Data/Int/Basic", "TFQM.DegreeWindow."
         declarations = ("ordered_span_fits_u32", "same_endpoint_zero", "inverted_span_negative")
         scope = "Exact i32 endpoint difference bounds, zero span and inverted-window refusal premise; no category-law claim."
+    elif model == "context-reflection":
+        proof_name, import_name, namespace = "ContextReflection", "CategoryTheory/NatTrans", "TFQM.ContextReflection."
+        declarations = ("arrow_ext", "contextCategory", "composition_map", "identity_map", "reflect_congruent", "saturation_preserved", "unit", "factor", "factor_triangle", "factor_unique", "reflectMap", "reflectFunctor", "unitNatural", "factorEquiv", "factor_natural_left", "factor_natural_right", "saturated_iff_of_congruent", "reflection_idempotent", "reflecting_congruent", "obstruction_no_reflecting", "unit_reflects_iff")
+        scope = "Actual Mathlib contextual category,congruence reflector/natural identity-carrier unit and Hom equivalence,unique comma factor and no reflecting repair;Rust finite admission/canonical merge refinement separate."
     elif model == "history-context":
         proof_name, import_name, namespace = "HistoryContext", "Data/Set/Lattice", "TFQM.HistoryContext."
         declarations = ("run_empty", "run_append", "step_source", "step_control", "step_output", "product_correct", "product_append", "final_correct", "reachable_successor", "closed_covers_all", "factor_spec", "factor_iff", "collision_refuses", "lifted_action", "lift_requires_reachable", "lift_exists")

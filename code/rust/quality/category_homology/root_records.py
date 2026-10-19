@@ -118,6 +118,9 @@ struct Echo; impl StructurePreservingMap for Echo {type Domain=String;type Codom
 
 
 def challenge(subject):
+    if Path(subject['path']).stem == 'context_reflection':
+        from context_reflection_challenges import challenge as cr_challenge
+        return cr_challenge(subject)
     if Path(subject['path']).stem == 'finite_history_context':
         from history_context_challenges import challenge as hc_challenge
         return hc_challenge(subject)

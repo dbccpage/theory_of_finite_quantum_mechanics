@@ -70,6 +70,8 @@ def capability(path, source):
         return "L1", "Archival documentation and a wholly commented-out sketch; no active Rust item, algorithm, type or test implementation is delivered by this file."
     if key == "category_theory/dagger.rs":
         return "L5", "Immutable owned finite dagger certificate admits the complete category and total reversed arrow map, involution, identity and every reversed composite before construction; raw declarations remain separate."
+    if key == "category_theory/context_reflection.rs":
+        return "L5", "Immutable contextual objects and checked law-preserving arrows implement identity/composition, least congruent reflection, typed units, reflector maps and unique comma factors; constructors enforce the categorical boundary and the model proves the universal laws."
     if key == "category_theory/finite_path.rs":
         return "L5", "Complete finite acyclic free-path category owns immutable graph/path/composition data and an admitted category certificate;cycles and truncated enumeration are refused before exposing the construction."
     if key == "category_theory/finite_groupoid.rs":
