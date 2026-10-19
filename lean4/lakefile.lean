@@ -201,6 +201,7 @@ lean_lib «FiniteQuantum» where
     `DerivationDagQMClosure,
     `BellClassicalJointExtension,
     `BellOperad,
+    `BellSeparatorExtension,
     `LggrFiniteResults,
     `CofiberBanachQuotient,
     -- Pre-existing foundational modules

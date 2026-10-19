@@ -1,6 +1,7 @@
 
 extern crate self as omega_finite_probability;
 pub mod bell_joint_extension;
+pub mod bell_separator_extension;
 pub mod classical_instrument;
 pub mod error;
 pub mod finite_set;

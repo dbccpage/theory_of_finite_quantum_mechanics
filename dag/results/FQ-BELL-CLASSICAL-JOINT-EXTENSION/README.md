@@ -1,3 +1,7 @@
+> **Current audited separator evidence:** [Separator claim and operad audit](reviews/20261018_separator_audit/README.md). Use its `verify_review.py --working-sources` for the current checkout. The sealed run remains historical; full formal rational Fine converse remains open.
+
+> **Latest separator stage:** [20261018 separator extension](runs/20261018T233710Z_separator_extension/README.md). Use that run's replay for current source checks. Earlier audit/source pins remain historical. Stopped for review; full formal rational Fine converse remains open.
+
 > **Audited verification:** [Bell claim and checker review](reviews/20261018_claim_audit/README.md). Use the hardened review checker; historical run bytes are preserved.
 
 > **Latest staged run:** [20261018 expectation/operad run](runs/20261018T225117Z_operad_expectation/README.md). P0/P1/P2/P4/P5 completed; stopped for review. Fine converse remains open.
