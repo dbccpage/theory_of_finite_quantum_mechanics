@@ -310,12 +310,12 @@ def higher_order_chart_gauge_instance(
     sample_points: Sequence[MatrixBase] | None = None,
     generator: MatrixBase | None = None,
 ) -> HigherOrderChartGaugeInstance:
-    """Construct exact 1st-order vs higher-order gauge d0 repair matrices and prove Phi monotonicity.
+    """Construct exact 1st-order vs higher-order gauge d0 repair matrices and evaluate Phi monotonicity.
 
     1st-order generators: partial_x = (1, 0), partial_y = (0, 1)
     Higher-order generator added: weighted field X3 = x*partial_x = (x, 0)
 
-    Proves that Phi(d0_higher) <= Phi(d0_1st), absorbing nonlinear curvature defect of normal leakage.
+    Shows in this model that Phi(d0_higher) <= Phi(d0_1st), absorbing nonlinear curvature defect of normal leakage.
     """
     from omega_engine.crates.homology_theory.cochain_presentation import LinearRepairProblem, ObservationMap, ObservationPresentation
 

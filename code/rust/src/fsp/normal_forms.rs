@@ -282,6 +282,62 @@ pub fn normalize_sign_cochain(
     })
 }
 
+#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
+pub struct SignSwitchingGridRow {
+    pub rows: usize,
+    pub cols: usize,
+    pub vertices: usize,
+    pub edges: usize,
+    pub forest_size: usize,
+    pub fundamental_cycles: usize,
+    pub obstruction_cycles_found: usize,
+}
+
+/// Finite lattice scaling benchmark for F2 sign-switching normal form across 2D `rows x cols`
+/// grids with alternating row-parity flux (frustrated plaquettes).
+pub fn benchmark_sign_switching_grid_scaling(
+    grid_sizes: &[(usize, usize)],
+) -> Result<Vec<SignSwitchingGridRow>, &'static str> {
+    if grid_sizes.is_empty() {
+        return Err("grid_sizes must not be empty");
+    }
+    let mut out = Vec::with_capacity(grid_sizes.len());
+    for &(rows, cols) in grid_sizes {
+        if rows < 2 || cols < 2 {
+            return Err("grid dimensions must be at least 2x2");
+        }
+        let vertices = rows * cols;
+        let idx = |r: usize, c: usize| r * cols + c;
+        let mut edges = Vec::new();
+        let mut parities = Vec::new();
+        for r in 0..rows {
+            for c in 0..cols {
+                if c + 1 < cols {
+                    edges.push((idx(r, c), idx(r, c + 1)));
+                    // Odd rows carry parity 1 on horizontal bonds to induce frustrated plaquettes
+                    parities.push((r % 2) as u8);
+                }
+                if r + 1 < rows {
+                    edges.push((idx(r, c), idx(r + 1, c)));
+                    parities.push(0);
+                }
+            }
+        }
+        let nf = normalize_sign_cochain(vertices, &edges, &parities)?;
+        let fundamental_cycles = edges.len() - (vertices - 1);
+        out.push(SignSwitchingGridRow {
+            rows,
+            cols,
+            vertices,
+            edges: edges.len(),
+            forest_size: nf.forest_edges.len(),
+            fundamental_cycles,
+            obstruction_cycles_found: nf.obstruction_cycles.len(),
+        });
+    }
+    Ok(out)
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -320,5 +376,22 @@ mod tests {
         assert_eq!(nf.forest_edges.len(), 2);
         assert_eq!(nf.obstruction_cycles.len(), 1);
         assert_eq!(nf.obstruction_cycles[0], vec![0, 1, 2]);
+    }
+
+    #[test]
+    fn sign_switching_grid_scaling_up_to_8x8() {
+        let sizes = [(2usize, 2usize), (3, 3), (4, 4), (6, 6), (8, 8)];
+        let rows = benchmark_sign_switching_grid_scaling(&sizes).unwrap();
+        assert_eq!(rows.len(), sizes.len());
+        for (&(r, c), row) in sizes.iter().zip(rows.iter()) {
+            assert_eq!(row.vertices, r * c);
+            assert_eq!(row.edges, r * (c - 1) + (r - 1) * c);
+            assert_eq!(row.forest_size, r * c - 1);
+            assert_eq!(row.fundamental_cycles, (r - 1) * (c - 1));
+            assert!(
+                row.obstruction_cycles_found > 0,
+                "expected frustrated cycles on {r}x{c}"
+            );
+        }
     }
 }

@@ -2,6 +2,7 @@ import WallTransport
 import ZeroRelVariety
 import ModuliReduction
 import AlgebraicCornerReconstruction
+import HyperGramianObstruction
 
 /-!
 # Target 5: Candidate Gram Positivity & Regional Dual Obstruction

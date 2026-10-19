@@ -1,0 +1,181 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: PG-PREGEN-CONSTRUCTIVE-SUMMARY
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: 'Constructive (no Classical.choice) Pre-Genesis summary/history theorem for explicitly listed
+    histories: choice-free first-match reconstruction recon satisfies recon_of_fiberConstant and fiberConstant_of_recon
+    in ListedHistorySummary.lean.'
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: &id001 []
+  source_bottleneck: Applies to explicitly listed finite histories; unlisted or infinite populations remain outside
+    this constructive criterion.
+  source_refs:
+  - external:prompts/fable_theorems_2026-10-17/04_pregenesis_constructive_summary.md
+  - omega_engine_education/documentation/000_oepregen/lean4/ListedHistorySummary.lean
+  - omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml
+  paper_refs:
+  - dag/derivations/01_pregenesis/tfq_0366_history_report_fiber_criterion.md
+  - dag/derivations/01_pregenesis/tfq_0367_listed_history_choice_free_summary.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports before
+    reusing a result.
+  historical_paper_refs:
+  - papers/derivations/01_pregenesis/tfq_0366_history_report_fiber_criterion.md
+  - papers/derivations/01_pregenesis/tfq_0367_listed_history_choice_free_summary.md
+  paper_relocations:
+  - from: papers/derivations/01_pregenesis/tfq_0366_history_report_fiber_criterion.md
+    to: dag/derivations/01_pregenesis/tfq_0366_history_report_fiber_criterion.md
+  - from: papers/derivations/01_pregenesis/tfq_0367_listed_history_choice_free_summary.md
+    to: dag/derivations/01_pregenesis/tfq_0367_listed_history_choice_free_summary.md
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/01_pregenesis/tfq_0366_history_report_fiber_criterion.md
+    sha256: ef319e71eac79008649a624aca8e56b81cb4b0d466f4fe53259791b4334d156f
+  - path: dag/derivations/01_pregenesis/tfq_0367_listed_history_choice_free_summary.md
+    sha256: 2745de30b0d8e73ca43c1999c65fb5f2c1411237a4239d5b81fa38e85b0aec88
+source_provenance:
+  repository: this_repository
+  commit: 642f5b95a116da6df805adbd745a4826c6739c2b
+  path: dag/prompts/pregenesis_pg_pregen_constructive_summary_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: recon
+  line: 37
+  signature_excerpt: "def recon [DecidableEq V] (hs : List H) (report : H → V) (answer : H → S)\n    (v : V) :\
+    \ Option S"
+  source: omega_engine_education/documentation/000_oepregen/lean4/ListedHistorySummary.lean
+  repository: the_symbol_game
+  source_sha256: dd07f28f989eee33fbccd3ee213fab1eda3d533df2f96b5089975ae046fb7fcc
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: FiberConstantOn
+  line: 27
+  signature_excerpt: 'def FiberConstantOn (hs : List H) (report : H → V) (answer : H → S) : Prop'
+  source: omega_engine_education/documentation/000_oepregen/lean4/ListedHistorySummary.lean
+  repository: the_symbol_game
+  source_sha256: dd07f28f989eee33fbccd3ee213fab1eda3d533df2f96b5089975ae046fb7fcc
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: listed_history_report_criterion
+  line: 144
+  signature_excerpt: "theorem listed_history_report_criterion [DecidableEq V]\n    (hs : List H) (report : H →\
+    \ V) (answer : H → S) :\n    (∀ h ∈ hs, recon hs report answer (report h) = some (answer h)) ↔\n      FiberConstantOn\
+    \ hs report answer"
+  source: omega_engine_education/documentation/000_oepregen/lean4/ListedHistorySummary.lean
+  repository: the_symbol_game
+  source_sha256: dd07f28f989eee33fbccd3ee213fab1eda3d533df2f96b5089975ae046fb7fcc
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+- kind: theorem
+  name: recon_of_fiberConstant
+  line: 116
+  signature_excerpt: "theorem recon_of_fiberConstant [DecidableEq V]\n    (hs : List H) (report : H → V) (answer\
+    \ : H → S)\n    (hc : FiberConstantOn hs report answer) :\n    ∀ h ∈ hs, recon hs report answer (report h)\
+    \ = some (answer h)"
+  source: omega_engine_education/documentation/000_oepregen/lean4/ListedHistorySummary.lean
+  repository: the_symbol_game
+  source_sha256: dd07f28f989eee33fbccd3ee213fab1eda3d533df2f96b5089975ae046fb7fcc
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+- kind: theorem
+  name: fiberConstant_of_recon
+  line: 132
+  signature_excerpt: "theorem fiberConstant_of_recon [DecidableEq V]\n    (hs : List H) (report : H → V) (answer\
+    \ : H → S)\n    (hr : ∀ h ∈ hs, recon hs report answer (report h) = some (answer h)) :\n    FiberConstantOn\
+    \ hs report answer"
+  source: omega_engine_education/documentation/000_oepregen/lean4/ListedHistorySummary.lean
+  repository: the_symbol_game
+  source_sha256: dd07f28f989eee33fbccd3ee213fab1eda3d533df2f96b5089975ae046fb7fcc
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+source_bindings:
+- original_ref: omega_engine_education/documentation/000_oepregen/lean4/ListedHistorySummary.lean::PreMssnListed.listed_history_report_criterion
+  availability: external
+  symbol: PreMssnListed.listed_history_report_criterion
+  path: omega_engine_education/documentation/000_oepregen/lean4/ListedHistorySummary.lean
+  repository: the_symbol_game
+  sha256: dd07f28f989eee33fbccd3ee213fab1eda3d533df2f96b5089975ae046fb7fcc
+  declaration_status: declaration_found_not_proof_checked
+  line: 144
+  role: source_lead_only
+- original_ref: omega_engine_education/documentation/000_oepregen/lean4/ListedHistorySummary.lean::PreMssnListed.recon_of_fiberConstant
+  availability: external
+  symbol: PreMssnListed.recon_of_fiberConstant
+  path: omega_engine_education/documentation/000_oepregen/lean4/ListedHistorySummary.lean
+  repository: the_symbol_game
+  sha256: dd07f28f989eee33fbccd3ee213fab1eda3d533df2f96b5089975ae046fb7fcc
+  declaration_status: declaration_found_not_proof_checked
+  line: 116
+  role: source_lead_only
+- original_ref: omega_engine_education/documentation/000_oepregen/lean4/ListedHistorySummary.lean::PreMssnListed.fiberConstant_of_recon
+  availability: external
+  symbol: PreMssnListed.fiberConstant_of_recon
+  path: omega_engine_education/documentation/000_oepregen/lean4/ListedHistorySummary.lean
+  repository: the_symbol_game
+  sha256: dd07f28f989eee33fbccd3ee213fab1eda3d533df2f96b5089975ae046fb7fcc
+  declaration_status: declaration_found_not_proof_checked
+  line: 132
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_pregenesis_constructive_summary_witness
+  availability: external
+  symbol: verify_pregenesis_constructive_summary_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 32
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness
+  availability: external
+  symbol: verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 1280
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: *id001
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: *id001
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

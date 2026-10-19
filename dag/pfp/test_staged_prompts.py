@@ -112,7 +112,7 @@ class StagedPromptTests(unittest.TestCase):
                 prepare.build_packet(PROMPTS[0],'P4_CHALLENGE',attempt_id='challenge',reviewed_path=reviewed,review_path=review,candidate_path=candidate,host_check_path=check)
 
     def test_bell_collected_compositions_are_typed_and_near_miss_is_refused(self):
-        record=prepare.load(ROOT/'dag/operads/FQ-BELL-CLASSICAL-JOINT-EXTENSION.yaml')
+        record=prepare.load(ROOT/'dag/operads/fq_bell_classical_joint_extension.yaml')
         presentation=record['presentation']
         self.assertEqual(audit.check_presentation(presentation),[])
         broken=copy.deepcopy(presentation)

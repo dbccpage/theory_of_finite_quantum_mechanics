@@ -137,8 +137,9 @@ class Cyc24:
         ])
 
     def abs_sq(self) -> Cyc24:
-        """Squared modulus |z|^2 = z * conj(z), which is in Q."""
+        """Squared modulus |z|^2 = z * conj(z), which is in the maximal totally real subfield Q(zeta_24 + zeta_24^-1) = Q(sqrt(2), sqrt(3))."""
         return self.mul(self.conj())
+
 
     def inv(self) -> Cyc24:
         """Exact multiplicative inverse in Q(zeta_24)."""

@@ -21,7 +21,7 @@ Direct directory inspection of `c:\Users\a343o\source\repos\theory_of_finite_qua
   - `verification.md` (4,843 bytes): Execution and replay commands.
   - `claim_ledger.yaml` (38,111 bytes, 747 lines): 35 declared claims with scope fences, tests, and Lean 4 references.
   - `verify_deposit.py` (12,846 bytes, 357 lines): Zenodo pre-print deposit verification gate.
-  - `.zenodo.json` (1,007 bytes) & `SHA256SUMS` (20,164 bytes): Package deposit metadata and manifest.
+  - `.zenodo.json` (1,007 bytes) & `sha256sums` (20,164 bytes): Package deposit metadata and manifest.
 
 - **Subpackages:**
   - `000_meron_sign_problem/`: Self-contained package (v0.1.0) with `paper.md`, `paper_claim_ledger.md`, `code/` (exact oracle, 256 breakup graphs, $Z = 912$), `lean4/` (`MeronCharacter.lean`, `MeronClusterInvolution.lean`), and its own `verify_deposit.py`.
@@ -138,7 +138,7 @@ Direct directory inspection of `c:\Users\a343o\source\repos\theory_of_finite_qua
     Build completed successfully (24 jobs).
     ```
   - Independent compilation of standalone files (`ChiralSuperconductorCore.lean`, `KitaevHoneycombCore.lean`, `MajoranaGinCore.lean`, `regge_wdw_core.lean`) via `lean <file>`: all exit with code 0.
-  - `AXIOM_REPORT.txt` confirms:
+  - `axiom_report.txt` confirms:
     - Total Theorems Audited: 75.
     - Zero axioms: 60.
     - Whitelisted `[propext]`: 7.
@@ -181,8 +181,8 @@ Execution of `python verify_deposit.py` inside `papers/core/fsp/` yielded:
 5. **Premise 5 (Lean 4 Disconnection):** `papers/core/fsp/lean4/` has 26 verified `.lean` files with 75 theorems, 0 sorries, and 0 custom axioms, but 0 of these files exist in root `lean4/` and none are registered in `lean4/lakefile.lean`.
    - *Inference:* To satisfy Requirement R3.3, all 26 `.lean` files must be copied to root `lean4/`, and their root modules added to `lean4/lakefile.lean`. Because all proofs are already complete and sorry-free, integration will preserve `lake build` exit code 0.
 
-6. **Premise 6 (Verification Gate Resilience):** `verify_deposit.py` checks both package manifest checksums and local test execution. Removing duplicate code from `papers/core/fsp/code/` and updating imports to `from src.fsp import ...` requires updating `REQUIRED_FILES`, `manifest_sources()`, and `SHA256SUMS` in `papers/core/fsp/`.
-   - *Inference:* The migration plan must include a step to regenerate `SHA256SUMS` and verify that `python papers/core/fsp/verify_deposit.py` exits with 0.
+6. **Premise 6 (Verification Gate Resilience):** `verify_deposit.py` checks both package manifest checksums and local test execution. Removing duplicate code from `papers/core/fsp/code/` and updating imports to `from src.fsp import ...` requires updating `REQUIRED_FILES`, `manifest_sources()`, and `sha256sums` in `papers/core/fsp/`.
+   - *Inference:* The migration plan must include a step to regenerate `sha256sums` and verify that `python papers/core/fsp/verify_deposit.py` exits with 0.
 
 ---
 
@@ -227,7 +227,7 @@ However, it is currently isolated from the sovereign clean architecture trees:
 | **Lean 4** | P0 | Copy all 26 `.lean` files from `papers/core/fsp/lean4/` to root `lean4/`. |
 | **Lean 4** | P1 | Add the 22+ root modules to `lean4/lakefile.lean`. |
 | **Lean 4** | P1 | Run `lake build` in `lean4/` and verify clean build with 0 sorries. |
-| **Deposit** | P2 | Update `papers/core/fsp/verify_deposit.py` and `SHA256SUMS` to account for migrated code and fix the 3 checksum mismatches (including line ending normalization). |
+| **Deposit** | P2 | Update `papers/core/fsp/verify_deposit.py` and `sha256sums` to account for migrated code and fix the 3 checksum mismatches (including line ending normalization). |
 
 ---
 

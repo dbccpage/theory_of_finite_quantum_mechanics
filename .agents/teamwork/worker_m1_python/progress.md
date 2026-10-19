@@ -4,7 +4,7 @@ Last visited: 2026-10-18T20:44:00Z
 Status: Completed
 
 ## Milestones & Tasks
-- [x] 0. Read surveys, PROJECT.md, ORIGINAL_REQUEST.md
+- [x] 0. Read surveys, PROJECT.md, original_request.md
 - [x] 1. MUB6 Python consolidation
 - [x] 2. FSP Python consolidation
 - [x] 3. Majorana Python consolidation

@@ -1,4 +1,23 @@
-import Mathlib
+import Mathlib.Data.Real.Basic
+import Mathlib.Data.Complex.Basic
+import Mathlib.Data.Matrix.Basic
+import Mathlib.Data.Rat.Defs
+import Mathlib.Data.Rat.Lemmas
+import Mathlib.Analysis.Real.Sqrt
+import Mathlib.Analysis.InnerProductSpace.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+import Mathlib.Topology.ContinuousMap.Basic
+import Mathlib.Topology.Compactness.Compact
+import Mathlib.Topology.Order.MonotoneContinuity
+import Mathlib.Topology.MetricSpace.Basic
+import Mathlib.Topology.MetricSpace.ProperSpace
+import Mathlib.LinearAlgebra.UnitaryGroup
+import Mathlib.Algebra.BigOperators.Fin
+import Mathlib.Tactic.Ring
+import Mathlib.Tactic.Linarith
+import Mathlib.Tactic.NormNum
+import Mathlib.Tactic.Positivity
+import Mathlib.Tactic.FinCases
 
 /-!
 # MUB extension curvature obstruction — mechanized cores

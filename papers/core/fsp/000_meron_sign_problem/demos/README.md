@@ -48,10 +48,10 @@ demos/
     ├── symbol_game_ddc_6site_dag.jsonl    # Certified 6-site 6-node DAG trace in JSONL
     ├── symbol_game_pure_wire_dag.jsonl    # Certified pure-wire DAG trace in JSONL
     ├── symbol_game_pure_wire_6site_dag.jsonl # Certified pure-wire 6-site DAG trace in JSONL
-    ├── refined_stealth_space-bunny-alpha_result.json
-    ├── refined_meta-llama_llama-3.3-70b-instruct_result.json
-    ├── refined_meta-llama_llama-3.1-8b-instruct_result.json
-    └── refined_z-ai_glm-5.3-flash_result.json
+    ├── refined_stealth_space_bunny_alpha_result.json
+    ├── refined_meta_llama_llama_3_3_70b_instruct_result.json
+    ├── refined_meta_llama_llama_3_1_8b_instruct_result.json
+    └── refined_z_ai_glm_5_3_flash_result.json
 ```
 
 ---

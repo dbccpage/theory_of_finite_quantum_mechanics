@@ -21,6 +21,7 @@ def verifier(tmp_path, monkeypatch):
         raise RuntimeError(f"cannot load verifier: {source}")
     module = importlib.util.module_from_spec(spec)
     monkeypatch.setitem(sys.modules, spec.name, module)
+    monkeypatch.delitem(sys.modules, "deposit_paths", raising=False)
     spec.loader.exec_module(module)
     monkeypatch.setattr(module, "ROOT", tmp_path)
     (tmp_path / "test_selected.py").write_text("def test_selected(): pass\n", encoding="utf-8")

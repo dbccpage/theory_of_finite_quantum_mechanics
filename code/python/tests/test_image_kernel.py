@@ -180,8 +180,8 @@ def test_negative_boundary_failures() -> None:
 
 def test_integration_cycle_coboundary_matches_cited_nullity() -> None:
     root = Path(__file__).resolve().parents[3]
-    rank_note = (root / "research" / "lean4" / "qm_superposition_h1_rank.md").read_text(encoding="utf-8")
-    cochain = (root / "research" / "lean4" / "qm_superposition_cochain.md").read_text(encoding="utf-8")
+    rank_note = (root / "lean4" / "qm_superposition_h1_rank.md").read_text(encoding="utf-8")
+    cochain = (root / "lean4" / "qm_superposition_cochain.md").read_text(encoding="utf-8")
     assert "theorem finrank_H1_eq_one" in rank_note
     assert "LinearMap.finrank_range_add_finrank_ker" in rank_note
     assert "def d0 [Sub A] (φ : ZMod n → A) : ZMod n → A := fun x => φ (x + 1) - φ x" in cochain
@@ -225,8 +225,8 @@ def test_end_to_end_public_contract() -> None:
 
 def test_origin_resolves_in_repo() -> None:
     root = Path(__file__).resolve().parents[3]
-    rank_note = (root / "research" / "lean4" / "qm_superposition_h1_rank.md").read_text(encoding="utf-8")
-    cochain = (root / "research" / "lean4" / "qm_superposition_cochain.md").read_text(encoding="utf-8")
+    rank_note = (root / "lean4" / "qm_superposition_h1_rank.md").read_text(encoding="utf-8")
+    cochain = (root / "lean4" / "qm_superposition_cochain.md").read_text(encoding="utf-8")
     assert "theorem finrank_H1_eq_one" in rank_note
     assert "def d0 [Sub A]" in cochain
     source = _MODULE_PATH.read_text(encoding="utf-8")

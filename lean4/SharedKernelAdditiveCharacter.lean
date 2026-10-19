@@ -1,5 +1,6 @@
 import Mathlib.Algebra.BigOperators.Field
-import Mathlib.Tactic
+import Mathlib.Data.Fintype.BigOperators
+import Mathlib.Tactic.Ring
 
 /-!
 # SharedKernel — finite additive-character cancellation

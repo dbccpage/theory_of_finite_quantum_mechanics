@@ -15,10 +15,10 @@ same-host combining-systems rival. Prose does not add theorems. Lean file tags s
 `H006` are locators.
 
 Lean root: `lean4/genx/_work_review_queue/fable_hilbert_walk_20260819/`
-Baseline receipt: `evidence/BUILD_RECEIPT.md`
-Frame-additivity delta: `evidence/FRAME_ADDITIVITY_DELTA_RECEIPT.md`
-Carrier-thread delta: `evidence/CARRIER_THREAD_DELTA_RECEIPT.md`
-Same-contract delta: `evidence/SAME_CONTRACT_DELTA_RECEIPT.md`
+Baseline receipt: `evidence/build_receipt.md`
+Frame-additivity delta: `evidence/frame_additivity_delta_receipt.md`
+Carrier-thread delta: `evidence/carrier_thread_delta_receipt.md`
+Same-contract delta: `evidence/same_contract_delta_receipt.md`
 Open list: paper §7
 
 ## Claim index
@@ -37,7 +37,7 @@ Open list: paper §7
 | QM-122-C9 | LEAN4_PROOF | Phase-blind squares: \((1,1)\) and \((1,-1)\) have equal weights. Global phase stays in the fiber; relative phase need not. | proved | `H008`, `H009` |
 | QM-122-C10 | LEAN4_PROOF | Mixing separates that fiber. No function of the phase-blind weights reproduces the mixed readout. The leftover runs over the integers with only plus and minus one. | proved | `H010` |
 | QM-122-C11 | LEAN4_PROOF | The leftover does not select the circle group or the complex numbers. Under the named extra that the phase carrier is not of exponent two, \(\{+1,-1\}\) is excluded. Gaussian units and a three-cycle meet the extra. The circle stays an import. | proved + imported | `H011Circle.sign_fails_connectedness_shadow`, `H011Circle.sign_excluded_circle_still_imported`; paper §7.1 item 3 |
-| QM-122-C12 | LEAN4_PROOF | A bilinear pairing exists. A positive fourth-power readout is not a rescaling of the square. `H013Frame.fourth_power_dies_under_frame_additivity` proves the fourth-power candidate violates the formal scale-2 frame-total constraint. The square agrees (10 and 10) only on the two exhibited frames; global frame additivity is not proved. Gleason’s hypotheses remain imported. | proved + open | `H013`, `H013Frame.fourth_power_dies_under_frame_additivity`, `evidence/FRAME_ADDITIVITY_DELTA_RECEIPT.md`; §7.1 item 2 |
+| QM-122-C12 | LEAN4_PROOF | A bilinear pairing exists. A positive fourth-power readout is not a rescaling of the square. `H013Frame.fourth_power_dies_under_frame_additivity` proves the fourth-power candidate violates the formal scale-2 frame-total constraint. The square agrees (10 and 10) only on the two exhibited frames; global frame additivity is not proved. Gleason’s hypotheses remain imported. | proved + open | `H013`, `H013Frame.fourth_power_dies_under_frame_additivity`, `evidence/frame_additivity_delta_receipt.md`; §7.1 item 2 |
 | QM-122-C13 | LEAN4_PROOF | The product host has a non-product vector. The direct-sum host is exhausted by its parts. On Bool × Bool, a bilinear integer-homogeneous Kronecker-normalized map equals the pointwise product. A weaker same-host combining interface has a rival. Hilbert-tensor uniqueness is not proved. | proved | `H014`, `H014Bilin.embed_eq_tensor`, `H014Interface.two_combinings_share_interface_and_disagree`; paper §7.1 item 4 |
 | QM-122-C14 | LEAN4_PROOF | Collapse has no same-basis isometry. Two reversible dilations can share one reduction. Continuous interpolants after complex coefficients exist at scale 4 and are not unique. The two-state toggle has no report-level square root. | proved | `H015`, `H016` |
 | QM-122-C15 | LEAN4_PROOF | The assembly theorem is the conjunction of the selected witnesses, not one implication about a single carrier. | proved | `H017`; §3.4 |

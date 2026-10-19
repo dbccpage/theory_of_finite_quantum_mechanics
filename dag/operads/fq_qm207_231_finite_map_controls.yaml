@@ -1,0 +1,257 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: FQ-QM207-231-FINITE-MAP-CONTROLS
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: 'Twenty-five finite-map controls QM-207..QM-231 (phase fiber, readout, context parity, frame
+    function, clock tower, Symanzik/BPHZ, Dirac Ward-Takahashi, vacuum polarization, Kravchuk/hydrogen, Page-Wootters/Tsirelson/Wigner,
+    electroweak, QCD beta0, Regge, Conf_2 spin-statistics, Dirac-Coulomb/helium, tree-level QED, PPN, GHZ/Mermin,
+    Chern parity) each compute an exact finite invariant over Q or Q(zeta_N) and name the completion step and
+    residual import in its own row. They are on main (PR #1132 merged, 5c6706eba; QM-226..231 added by bfa800fe2,
+    3c3042143, 0c3532f3b). Each row lists what is NOT derived (e.g. non-triviality of tau, second measurement
+    context, Gleason positivity closure, Stone strong continuity, Feynman-parameter measure, UV subtraction).'
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: &id001
+  - each row s5.2 "Residual import" column (assumption)
+  - completion to R/C, Stone, period integrals (lift)
+  source_bottleneck: All finite rational/integer control theorems for QM-207..231 are mechanized; continuum completions
+    in QM-207..211 remain priced as explicit imports.
+  source_refs:
+  - omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md:380
+  - omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md:1565
+  paper_refs:
+  - dag/derivations/21_implementation_core/tfq_0160_import_finite_maps_qm_207_to_qm_215.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports before
+    reusing a result.
+  historical_paper_refs:
+  - papers/derivations/21_implementation_core/tfq_0160_import_finite_maps_qm_207_to_qm_215.md
+  paper_relocations:
+  - from: papers/derivations/21_implementation_core/tfq_0160_import_finite_maps_qm_207_to_qm_215.md
+    to: dag/derivations/21_implementation_core/tfq_0160_import_finite_maps_qm_207_to_qm_215.md
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/21_implementation_core/tfq_0160_import_finite_maps_qm_207_to_qm_215.md
+    sha256: 33d2e4c82204ee146a1f1e7c9edbd61a99c0470768e5f4d2c81fe7612f416d61
+source_provenance:
+  repository: this_repository
+  commit: 642f5b95a116da6df805adbd745a4826c6739c2b
+  path: dag/prompts/finite_qm_structure_fq_qm207_231_finite_map_controls_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: abbrev
+  name: zeta
+  line: 94
+  signature_excerpt: 'abbrev zeta : QZeta12'
+  source: lean4/FiniteQM.lean
+  repository: this_repository
+  source_sha256: 3c6fc7be1d9e59d8164539387be851fef52ef4c8becfcedd5b0b24253a445cfa
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: QZeta12
+  line: 83
+  signature_excerpt: structure QZeta12
+  source: lean4/FiniteQM.lean
+  repository: this_repository
+  source_sha256: 3c6fc7be1d9e59d8164539387be851fef52ef4c8becfcedd5b0b24253a445cfa
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: knRatio
+  line: 8
+  signature_excerpt: 'abbrev knRatio (x u eta : Rat) : Rat'
+  source: lean4/FiniteQFTAndGravity.lean
+  repository: this_repository
+  source_sha256: 74e9ff5ac26167de3efcf46a7ce29be7c9fac106d6fe3b61a848f75ce28610d1
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: helium_kellner_variational_bound_and_virial_identity
+  line: 1218
+  signature_excerpt: "theorem helium_kellner_variational_bound_and_virial_identity (z_eff : Rat) :\n    let e_unperturbed\
+    \ : Rat"
+  source: lean4/FiniteQM.lean
+  repository: this_repository
+  source_sha256: 3c6fc7be1d9e59d8164539387be851fef52ef4c8becfcedd5b0b24253a445cfa
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+- kind: theorem
+  name: graph_conf2_exchange_betti_and_character_collapse
+  line: 1068
+  signature_excerpt: "theorem graph_conf2_exchange_betti_and_character_collapse (chi : Rat) :\n    let v_conf_p3\
+    \ : Int"
+  source: lean4/FiniteQM.lean
+  repository: this_repository
+  source_sha256: 3c6fc7be1d9e59d8164539387be851fef52ef4c8becfcedd5b0b24253a445cfa
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+- kind: theorem
+  name: kn_forward
+  line: 19
+  signature_excerpt: 'theorem kn_forward (x : Rat) : knRatio x 1 1 = 1'
+  source: lean4/FiniteQFTAndGravity.lean
+  repository: this_repository
+  source_sha256: 74e9ff5ac26167de3efcf46a7ce29be7c9fac106d6fe3b61a848f75ce28610d1
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+- kind: theorem
+  name: fq_qm207_231_finite_map_controls_master_certificate
+  line: 573
+  signature_excerpt: "theorem fq_qm207_231_finite_map_controls_master_certificate :\n    (12 - 6 + 1 = 7 ∧ 3 +\
+    \ 3 = 6) ∧\n    (2 * 27 * 27 = 1458 ∧ 1458 / 2 = 729 ∧ 16 * 16 = 256 ∧ 729 > 2 * 256) ∧\n    (137 * 137 =\
+    \ 18769)"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+source_bindings:
+- original_ref: lean4/quantum_mechanics/FiniteQM.lean::helium_kellner_variational_bound_and_virial_identity
+  availability: local
+  symbol: helium_kellner_variational_bound_and_virial_identity
+  path: lean4/FiniteQM.lean
+  repository: this_repository
+  sha256: 3c6fc7be1d9e59d8164539387be851fef52ef4c8becfcedd5b0b24253a445cfa
+  declaration_status: declaration_found_not_proof_checked
+  line: 1218
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/FiniteQM.lean::graph_conf2_exchange_betti_and_character_collapse
+  availability: local
+  symbol: graph_conf2_exchange_betti_and_character_collapse
+  path: lean4/FiniteQM.lean
+  repository: this_repository
+  sha256: 3c6fc7be1d9e59d8164539387be851fef52ef4c8becfcedd5b0b24253a445cfa
+  declaration_status: declaration_found_not_proof_checked
+  line: 1068
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/FiniteQFTAndGravity.lean::kn_forward
+  availability: local
+  symbol: kn_forward
+  path: lean4/FiniteQFTAndGravity.lean
+  repository: this_repository
+  sha256: 74e9ff5ac26167de3efcf46a7ce29be7c9fac106d6fe3b61a848f75ce28610d1
+  declaration_status: declaration_found_not_proof_checked
+  line: 19
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_qm207_231_finite_map_controls_master_certificate
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.fq_qm207_231_finite_map_controls_master_certificate
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 573
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps.rs::evaluate_qm207_holonomy_bridge
+  availability: external
+  symbol: evaluate_qm207_holonomy_bridge
+  path: omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps.rs
+  repository: the_symbol_game
+  sha256: 452c669e48556690b9b8558cb8c8c600f9f629cd4ae6bbc40d5ff526d8a4d9ce
+  declaration_status: declaration_found_not_executed
+  line: 370
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps.rs::evaluate_qm211_clock_tower
+  availability: external
+  symbol: evaluate_qm211_clock_tower
+  path: omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps.rs
+  repository: the_symbol_game
+  sha256: 452c669e48556690b9b8558cb8c8c600f9f629cd4ae6bbc40d5ff526d8a4d9ce
+  declaration_status: declaration_found_not_executed
+  line: 1180
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps/foundational_derivation_closure.rs::evaluate_qm219_foundational_derivation_closure
+  availability: external
+  symbol: evaluate_qm219_foundational_derivation_closure
+  path: omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps/foundational_derivation_closure.rs
+  repository: the_symbol_game
+  sha256: d685f35947d535ef5af2f763801304f9295cdce43d5bba5858e04722ad2051a4
+  declaration_status: declaration_found_not_executed
+  line: 208
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_quantum_physics/src/atomic_dirac_lamb_hartree_fock.rs::verify_qm224_dirac_coulomb_and_lamb_shift
+  availability: external
+  symbol: verify_qm224_dirac_coulomb_and_lamb_shift
+  path: omega_engine/crates_rs/omega_quantum_physics/src/atomic_dirac_lamb_hartree_fock.rs
+  repository: the_symbol_game
+  sha256: 22d8063664fb1340f515a0cd6cb7846a13aede9676ee5317b043ae28ed640c68
+  declaration_status: declaration_found_not_executed
+  line: 181
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_quantum_physics/src/pauli_spin_statistics_graph.rs::analyze_conf2_graph
+  availability: external
+  symbol: analyze_conf2_graph
+  path: omega_engine/crates_rs/omega_quantum_physics/src/pauli_spin_statistics_graph.rs
+  repository: the_symbol_game
+  sha256: b0032eb1053bcfc8dd4b40e6ee5b6f695ce2b8d455af44afb2ac03a10a006eb8
+  declaration_status: declaration_found_not_executed
+  line: 112
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_quantum_physics/src/qed_weak_hadronic_finite_maps.rs::ln_big_interval
+  availability: external
+  symbol: ln_big_interval
+  path: omega_engine/crates_rs/omega_quantum_physics/src/qed_weak_hadronic_finite_maps.rs
+  repository: the_symbol_game
+  sha256: e88f230a09cd645d4a1fc7733e6d54938eda28aaed95ece8624f1045ff820ca2
+  declaration_status: declaration_found_not_executed
+  line: 84
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_quantum_physics/src/regge_gravity_ghz_chern_finite_maps.rs::ppn_deflection_factor
+  availability: external
+  symbol: ppn_deflection_factor
+  path: omega_engine/crates_rs/omega_quantum_physics/src/regge_gravity_ghz_chern_finite_maps.rs
+  repository: the_symbol_game
+  sha256: 29db7b466cb7fef9fb257a062cf92380fac19255c2f11d575f55f51effab298b
+  declaration_status: declaration_found_not_executed
+  line: 61
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche2_row_sparsity_bell_torsion_and_structure_witness
+  availability: external
+  symbol: verify_tranche2_row_sparsity_bell_torsion_and_structure_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 518
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: *id001
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: *id001
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

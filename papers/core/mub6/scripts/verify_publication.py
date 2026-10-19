@@ -40,15 +40,15 @@ def canonical_archive(root: Path, names: set[str], publication_date: str) -> byt
 
 def verify(root: Path, archive: Path | None = None) -> None:
     root = root.absolute()
-    for name in ("MANIFEST.sha256", "SHA256SUMS"):
+    for name in ("manifest.sha256", "sha256sums"):
         regular_control(root / name)
-    payload = dict(read_manifest(root, root / "MANIFEST.sha256"))
-    sums = dict(read_manifest(root, root / "SHA256SUMS"))
-    if not payload or sums != {**payload, "MANIFEST.sha256": sha(root / "MANIFEST.sha256")}:
+    payload = dict(read_manifest(root, root / "manifest.sha256"))
+    sums = dict(read_manifest(root, root / "sha256sums"))
+    if not payload or sums != {**payload, "manifest.sha256": sha(root / "manifest.sha256")}:
         raise ValueError("Two-tier manifest disagreement or empty payload")
     actual = {p.relative_to(root).as_posix() for p in walk_files(root, {"__pycache__"}, set(), {".pyc"})}
-    if actual != set(sums) | {"SHA256SUMS"}:
-        raise ValueError(f"Manifest/tree disagreement: {sorted(actual ^ (set(sums) | {'SHA256SUMS'}))}")
+    if actual != set(sums) | {"sha256sums"}:
+        raise ValueError(f"Manifest/tree disagreement: {sorted(actual ^ (set(sums) | {'sha256sums'}))}")
     required = {"mub6.md", "mub6.tex", "mub6.pdf", "render_binding.json", "README.md",
                 "LICENSE", "LICENSE-CODE", "zenodo_metadata.json", "release_identity.json",
                 "docs/descriptions.md", "docs/references.md", "docs/keywords.md", "docs/quick_start.md",
@@ -115,7 +115,7 @@ def verify(root: Path, archive: Path | None = None) -> None:
                     raise ValueError(f"Archive member mismatch: {member.filename}")
         if archive.read_bytes() != canonical_archive(root, actual, meta["publication_date"]):
             raise ValueError("Noncanonical complete archive bytes")
-        if dict(read_manifest(root, root / "SHA256SUMS")) != sums or any(
+        if dict(read_manifest(root, root / "sha256sums")) != sums or any(
             sha(safe_path(root, name)) != expected for name, expected in sums.items()
         ):
             raise ValueError("Payload changed during archive verification")

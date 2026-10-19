@@ -1,0 +1,366 @@
+2026-09-22 addition: exact declaration replay, Lean 4.34.0
+AuthorityEffect: None.
+These new declarations were replayed individually with exit code 0.
+This is not a new audit of the historical physical interpretations below.
+
+'MeronCharacter.meron_orbit_cancels' depends on axioms: [propext, Quot.sound]
+'MeronCharacter.zero_meron_orbit_positive' depends on axioms: [propext, Quot.sound]
+'MeronCharacter.compression_preserves_partition' depends on axioms: [propext, Quot.sound]
+'MeronCharacter.unequal_three_term_cancellation' does not depend on any axioms
+'MeronCharacter.observable_doublet_counterexample' does not depend on any axioms
+
+'NormalFormLaws.integral_sound' depends on axioms: [propext, Quot.sound]
+'NormalFormLaws.integral_idempotent' depends on axioms: [propext]
+'NormalFormLaws.integral_complete' depends on axioms: [propext, Quot.sound]
+'NormalFormLaws.triangle_sound' does not depend on any axioms
+'NormalFormLaws.triangle_idempotent' does not depend on any axioms
+'NormalFormLaws.triangle_cycle_invariant' does not depend on any axioms
+'NormalFormLaws.triangle_complete' does not depend on any axioms
+'NormalFormLaws.odd_triangle_cannot_be_switched_positive' does not depend on any axioms
+
+Historical 2026-09-19 report follows; its broad interpretation is superseded by provenance.md.
+
+================================================================================
+LEAN 4 AXIOM AUDIT REPORT — FermionSignAll (PO-023)
+================================================================================
+Date: 2026-09-19
+Package: po023
+Toolchain: leanprover/lean4:v4.34.0
+Lake Version: Lake version 5.0.0-src+293d5d0
+Status: CLEAN (0 sorries, 0 open obligations, 0 synthetic axioms)
+Kernel Axiom Whitelist: {propext, Quot.sound}
+
+SUMMARY:
+--------------------------------------------------------------------------------
+Total Theorems Audited: 75
+Theorems with zero axioms: 60
+Theorems depending on [propext]: 7
+Theorems depending on [propext, Quot.sound]: 8
+Theorems depending on [Classical.choice]: 0
+Theorems with sorry / synthetic axioms: 0
+
+AUDITED THEOREMS BY MODULE:
+--------------------------------------------------------------------------------
+
+[HaltingQuotient.lean]
+1. HaltingQuotient.binary_projection_has_collision
+   Statement: Binary observation projections of 3-class executions have pigeonhole collisions (Claim PO-023-C1, INV-BIN-PROJ).
+   Axioms: [] (none)
+
+2. HaltingQuotient.binary_projection_not_injective
+   Statement: Binary projections cannot be injective on 3-class execution spaces (Claim PO-023-C2).
+   Axioms: [] (none)
+
+3. HaltingQuotient.binary_projection_no_left_inverse
+   Statement: No binary observation admits a faithful reconstruction / left inverse (Claim PO-023-C3).
+   Axioms: [] (none)
+
+4. HaltingQuotient.standard_halting_collapses_outputs
+   Statement: Standard halting projection conflates distinct outputs 0 and 1 (Claim PO-023-C4).
+   Axioms: [] (none)
+
+[MeronClusterInvolution.lean]
+5. MeronClusterInvolution.meron_pair_exact_cancellation
+   Statement: Weighted signs of meron flip involution partners cancel identically (Claim C4, INV-INVOL-CANC).
+   Axioms: [propext]
+
+6. MeronClusterInvolution.fixed_point_contradiction
+   Statement: Parity-reversing involutions have no fixed points on active configurations (Claim C5).
+   Axioms: [] (none)
+
+7. MeronClusterInvolution.opposite_sign_equal_weight_cancels
+   Statement: Opposite-sign equal-weight configurations form exact cancellation doublets (Claim INV-INVOL-CANC).
+   Axioms: [propext]
+
+8. MeronClusterInvolution.weight_asymmetry_obstructs_cancellation
+   Statement: Weight asymmetry obstructs complete sign cancellation (Claim C11).
+   Axioms: [propext, Quot.sound]
+
+[BqnfSignPacket.lean]
+9. BqnfSignPacket.exact_packet_routes_exact_repair
+   Statement: Valid closed packets with zero residual mass route to ExactRepair (Claim C2, INV-ROUTING-5).
+   Axioms: [] (none)
+
+10. BqnfSignPacket.involution_paired_routes_exact_repair
+    Statement: Closed packets equipped with involution pairing route to ExactRepair (Claim C3).
+    Axioms: [] (none)
+
+11. BqnfSignPacket.open_defect_routes_open_obstruction
+    Statement: Packets with non-zero closure defect Γ₂ > 0 route to OpenSignObstruction (Claim C7).
+    Axioms: [propext]
+
+12. BqnfSignPacket.disjoint_supports_routes_split_brain
+    Statement: Packets with disjoint weight spectra route to SplitBrainRefusal (Claim C8).
+    Axioms: [] (none)
+
+13. BqnfSignPacket.invalid_complex_routes_closure_failure
+    Statement: Broken complexes route to ClosureFailure (Claim C9).
+    Axioms: [] (none)
+
+14. BqnfSignPacket.routing_is_exhaustive
+    Statement: Every sign packet routes to one of the 5 canonical outcomes (Claim INV-ROUTING-5).
+    Axioms: [propext]
+
+[FrustratedSpectrumObstruction.lean]
+15. FrustratedSpectrumObstruction.bipartite_pair_exact_cancellation
+    Statement: Bipartite involution partners cancel identically in signed Trotter sum (Claim GIN-C3, INV-GIN-PARITY).
+    Axioms: [propext]
+
+16. FrustratedSpectrumObstruction.disjoint_spectra_obstructs_involution
+    Statement: Disjoint weight spectra on frustrated geometries obstruct any weight-preserving involution (Claim GIN-C4, INV-DISJOINT-SPEC).
+    Axioms: [] (none)
+
+17. FrustratedSpectrumObstruction.disjoint_pair_residual_nonzero
+    Statement: Disjoint weights leave strictly non-zero signed residual mass.
+    Axioms: [propext, Quot.sound]
+
+[NonAbelianGaugeSigns.lean]
+18. NonAbelianGaugeSigns.su2_action_gap_forces_weight_inequality
+    Statement: Magnetic action gap ΔS > 0 in SU(2) at θ = π forces distinct sector weights (Claim GIN-C9, INV-SU2-DISJOINT).
+    Axioms: [propext, Quot.sound]
+
+19. NonAbelianGaugeSigns.su2_disjoint_weights_nonzero_residual
+    Statement: Disjoint sector weights produce strictly non-zero residual mass.
+    Axioms: [propext, Quot.sound]
+
+20. NonAbelianGaugeSigns.meson_cochain_is_closed
+    Statement: 2-quark meson bound states form closed cochains Γ₂ = 0 (Claim GIN-C10).
+    Axioms: [] (none)
+
+21. NonAbelianGaugeSigns.baryon_cochain_is_open
+    Statement: 3-quark baryonic Y-junctions with ℤ₃ triality induce non-zero cochain curvature Γ₂ > 0 (Claim GIN-C10, INV-SU3-TRIALITY-CURVATURE).
+    Axioms: [] (none)
+
+22. NonAbelianGaugeSigns.polyakov_deconfinement_action_gap
+    Statement: Spontaneous center symmetry breaking in deconfined SU(3) lattice gauge induces action gap ΔS = 18 h |P| > 0 (Claim GIN-C11, INV-SU3-POLYAKOV-DECONFINEMENT).
+    Axioms: [] (none)
+
+23. NonAbelianGaugeSigns.polyakov_sector_weights_distinct
+    Statement: Deconfinement center action gap forces center sector weights to remain strictly distinct.
+    Axioms: [propext, Quot.sound]
+
+24. NonAbelianGaugeSigns.adjoint_flux_tube_curvature_vanishes
+    Statement: Adjoint matter has zero N-ality, enabling string breaking that eliminates 2-cochain curvature Γ₂ = 0 (Claim GIN-C12, INV-ADJOINT-ZERO-NALITY).
+    Axioms: [] (none)
+
+25. NonAbelianGaugeSigns.fundamental_flux_tube_curvature_nonzero
+    Statement: Fundamental matter flux tubes retain non-zero cochain curvature Γ₂ > 0.
+    Axioms: [propext, Quot.sound]
+
+[ReggePachnerWdw.lean]
+26. ReggePachnerWdw.flat_vertex_wdw_closure
+    Statement: Flat simplicial geometries satisfy exact Wheeler-DeWitt constraint closure H_WDW = 0 (Claim GIN-C13).
+    Axioms: [] (none)
+
+27. ReggePachnerWdw.curved_pachner_induces_positive_defect
+    Statement: Curved Pachner surgeries (2 → 4, 3 → 3) reallocating non-zero deficit angles induce strictly positive defect mass Φ_WDW > 0 (Claim GIN-C13, INV-PACHNER-WDW-DEFECT).
+    Axioms: [propext, Quot.sound]
+
+28. ReggePachnerWdw.wdw_defect_unscreenable
+    Statement: Pure gauge momentum cannot screen non-vanishing scalar vertex curvature.
+    Axioms: [propext, Quot.sound]
+
+[ChiralAnomalyInflow.lean]
+29. ChiralAnomalyInflow.callan_harvey_cancellation
+    Statement: Callan-Harvey anomaly charge is conserved between bulk and surface: Q_bulk + Q_surf = 0 (Claim GIN-C15).
+    Axioms: [propext]
+
+30. ChiralAnomalyInflow.chiral_symmetric_energy_equality
+    Statement: In the chiral-symmetric limit μ₅ = 0, Fermi levels are equal and cochain curvature vanishes Γ₂ = 0 (ExactRepair).
+    Axioms: [propext, Quot.sound]
+
+31. ChiralAnomalyInflow.chiral_asymmetry_energy_split
+    Statement: Non-zero chiral chemical potential μ₅ > 0 splits Fermi levels and induces non-contractible curvature Γ₂ > 0 (Claim GIN-C15, INV-CHIRAL-ANOMALY-HOLONOMY).
+    Axioms: [propext, Quot.sound]
+
+[FqhLaughlinBraiding.lean]
+32. FqhLaughlinBraiding.monodromy_phase_nontrivial
+    Statement: 2D FQH Laughlin anyon braiding monodromy cycle accumulates non-contractible phase (Claim GIN-C16).
+    Axioms: [] (none)
+
+33. FqhLaughlinBraiding.involution_coprime_to_laughlin_phase
+    Statement: The order of an involution (2) is coprime to the Laughlin topological phase order (3) (Claim GIN-C16, INV-FQH-ANYON-HOLONOMY).
+    Axioms: [] (none)
+
+34. FqhLaughlinBraiding.quasiparticle_weights_unequal
+    Statement: Quasihole-quasielectron Boltzmann gap asymmetry Δ_qe > Δ_qh obstructs weight-preserving involution.
+    Axioms: [propext, Quot.sound]
+
+[FibonacciAnyonBraiding.lean]
+35. FibonacciAnyonBraiding.artin_braid_relation_holds
+    Statement: Fibonacci braid generators satisfy the exact Artin braid relation σ₁ σ₂ σ₁ = σ₂ σ₁ σ₂ (Claim GIN-C17).
+    Axioms: [] (none)
+
+36. FibonacciAnyonBraiding.commutator_nontrivial_of_non_commuting
+    Statement: Braid non-commutativity [σ₁, σ₂] ≠ 0 induces non-contractible commutator holonomy Γ₂ > 0 (Claim GIN-C17).
+    Axioms: [] (none)
+
+37. FibonacciAnyonBraiding.fibonacci_leakage_is_positive
+    Statement: Projecting non-abelian Fibonacci states onto 1D rays incurs strictly positive quantum state leakage L_leak > 0 (Claim INV-FIBONACCI-ANYON-LEAKAGE).
+    Axioms: [] (none)
+
+[IsingMajoranaBraiding.lean]
+38. IsingMajoranaBraiding.stabilizer_sector_wigner_nonnegative
+    Statement: Pure Clifford circuits preserve stabilizer parity and discrete Wigner non-negativity (ExactRepair) (Claim GIN-C18).
+    Axioms: [] (none)
+
+39. IsingMajoranaBraiding.magic_state_punctures_octahedron
+    Statement: Non-Clifford T-gate injection punctures the stabilizer octahedron ||r||₁ > 1 (Claim GIN-C18, INV-ISING-MAJORANA-MAGIC-DEFECT).
+    Axioms: [] (none)
+
+40. IsingMajoranaBraiding.magic_defect_mass_positive
+    Statement: Magic state non-stabilizer cochain curvature and Wigner negativity induce strictly positive defect mass Φ₁ > 0.
+    Axioms: [] (none)
+
+[BfLinkedFluxBraiding.lean]
+41. BfLinkedFluxBraiding.level2_hopf_monodromy_odd
+    Statement: For 3D topological BF level k = 2, Hopf link monodromy produces a strictly real sign factor η = -1 (Claim GIN-C19).
+    Axioms: [] (none)
+
+42. BfLinkedFluxBraiding.level3_involution_order_clash
+    Statement: For level k = 3, topological phase order is coprime to involution parity gcd(2, 3) = 1, obstructing cancellation (Claim INV-BF-LINKED-LOOP-HOLONOMY).
+    Axioms: [] (none)
+
+[NonAbelianBfBraiding.lean]
+43. NonAbelianBfBraiding.abelian_3loop_is_identity
+    Statement: In the abelian limit [B1, B2] = 0, the Wang-Levin 3-loop braiding commutator is identity (Claim GIN-C20).
+    Axioms: [] (none)
+
+44. NonAbelianBfBraiding.quantum_double_trace_nonnegative
+    Statement: Quantum double projection Tr(M ⊗ M†) = |Tr(M)|² ≥ 0 forces positive semi-definite trace, nullifying defect mass Φ₁ = 0 (Claim GIN-C20, INV-BF-NONABELIAN-3LOOP-BRAIDING).
+    Axioms: [propext, Quot.sound]
+
+[Higher2GroupBraiding.lean]
+45. Higher2GroupBraiding.peiffer_identity_holds
+    Statement: Strict crossed module Peiffer identity ∂(g ▷ h) = g ∂(h) g⁻¹ holds identically (Claim GIN-C21).
+    Axioms: [] (none)
+
+46. Higher2GroupBraiding.higher_2double_restores_sign_positivity
+    Statement: Higher 2-double crossed-module projection cancels 2-surface Postnikov 3-cocycle phases (-1)^{[a]} = -1, restoring positive semi-definite trace Tr(M_{2-QD}) = 1 (Claim GIN-C21, INV-2GROUP-POSTNIKOV-BRAIDING).
+    Axioms: [] (none)
+
+[GenesisFspBridge.lean & FermionGinCore.lean]
+47. GenesisFspBridge.discrete_stokes_cancellation
+    Statement: Simplicial discrete Stokes boundary cancellation ∂₁ ∘ ∂₂ = 0 (Genesis Stage 7) (Claim GIN-C14).
+    Axioms: [propext, Quot.sound]
+
+48. GenesisFspBridge.involution_doublet_exact_cancellation
+    Statement: Exact cancellation doublet for equal-weight opposite-sign configurations (Genesis Stage 15) (Claim GIN-C14).
+    Axioms: [propext]
+
+49. FermionGinCore.edge_mode_1_not_in_bulk
+    Statement: 1D Kitaev sweet-spot edge mode γ₁ is strictly disjoint from all bulk pairing bonds (Claim GIN-C7).
+    Axioms: [propext, Quot.sound]
+
+50. FermionGinCore.edge_mode_2L_not_in_bulk
+    Statement: 1D Kitaev sweet-spot edge mode γ_{2L} is strictly disjoint from all bulk pairing bonds (Claim GIN-C7).
+    Axioms: [propext, Quot.sound]
+
+[Cobordism5dAnomaly.lean]
+51. Cobordism5dAnomaly.anomaly_free_holonomy_is_positive
+    Statement: Anomaly-free 5D cobordism sector (ν₅ = 0) yields positive mapping torus holonomy +1 (Claim GIN-C22).
+    Axioms: [] (none)
+
+52. Cobordism5dAnomaly.gravitational_anomaly_holonomy_is_negative
+    Statement: Non-perturbative global gravitational anomaly (ν₅ = 1) yields negative holonomy -1 (Claim GIN-C22).
+    Axioms: [] (none)
+
+53. Cobordism5dAnomaly.anomaly_free_nullifies_defect
+    Statement: Defect mass vanishes identically in the anomaly-free sector (Claim GIN-C22).
+    Axioms: [] (none)
+
+54. Cobordism5dAnomaly.gravitational_anomaly_obstructs_sign_cancellation
+    Statement: Global gravitational anomaly (ν₅ = 1) produces non-zero defect mass 2, obstructing sign elimination (Claim GIN-C22, INV-COBORDISM-5D-ANOMALY).
+    Axioms: [] (none)
+
+55. Cobordism5dAnomaly.anomalous_doubled_trace_is_negative
+    Statement: On an anomalous mapping torus (ν₅ = 1), doubled trace remains negative Tr(M_f) = -1 (Claim GIN-C22).
+    Axioms: [] (none)
+
+[InstantonDyonGas.lean]
+56. InstantonDyonGas.kvbll_fractional_charge_sum
+    Statement: Fractional topological charges of M and L dyons sum to unit instanton D (Claim GIN-C23).
+    Axioms: [] (none)
+
+57. InstantonDyonGas.neutral_dipole_magnetic_charge_is_zero
+    Statement: Neutral dipole (M, M̄) has zero net magnetic charge (Claim GIN-C23).
+    Axioms: [] (none)
+
+58. InstantonDyonGas.neutral_dipole_topological_charge_is_zero
+    Statement: Neutral dipole (M, M̄) has zero net topological charge (Claim GIN-C23).
+    Axioms: [] (none)
+
+59. InstantonDyonGas.neutral_quartet_topological_charge_is_zero
+    Statement: Neutral caloron quartet (M, M̄, L, L̄) has zero net topological charge (Claim GIN-C23).
+    Axioms: [] (none)
+
+60. InstantonDyonGas.unlinked_dirac_phase_is_positive
+    Statement: Unlinked loops (Lk = 0) evaluate to positive Dirac phase +1 (Claim GIN-C23).
+    Axioms: [] (none)
+
+61. InstantonDyonGas.linked_dirac_phase_is_negative
+    Statement: Linked loops (Lk = 1) evaluate to negative Dirac phase -1 (Claim GIN-C23, INV-INSTANTON-DYON-GAS).
+    Axioms: [] (none)
+
+62. InstantonDyonGas.molecular_cluster_nullifies_defect
+    Statement: Molecular cluster regime with positive phase has zero defect mass (ExactRepair) (Claim GIN-C23).
+    Axioms: [] (none)
+
+63. InstantonDyonGas.monopole_braiding_obstructs_sign
+    Statement: Monopole loop braiding with linked phase (-1) has uncancelled defect mass 2 (OpenSignObstruction) (Claim GIN-C23).
+    Axioms: [] (none)
+
+64. InstantonDyonGas.dyonic_involution_pair_cancels_sign
+    Statement: Equal-weight dyonic involution pairing cancels sign contributions (Claim GIN-C23).
+    Axioms: [] (none)
+
+65. InstantonDyonGas.plasma_action_gap_separates_weights
+    Statement: Coulomb action gap ΔS > 0 strictly separates positive and negative weight levels (SplitBrainRefusal) (Claim GIN-C23).
+    Axioms: [] (none)
+
+[FoliatedFracton2Gauge.lean]
+66. FoliatedFracton2Gauge.planon_dipole_neutrality
+    Statement: Neutral planon dipole on a single foliation leaf has zero net leaf charge (Claim GIN-C24).
+    Axioms: [] (none)
+
+67. FoliatedFracton2Gauge.planon_dipole_defect_nullification
+    Statement: Equal-weight planon dipole paths under leaf involution cancel sign exactly (Claim GIN-C24).
+    Axioms: [] (none)
+
+68. FoliatedFracton2Gauge.subsystem_extensive_gap_positive
+    Statement: Multi-leaf fracton separation incurs strictly positive extensive action penalty (Claim GIN-C24, INV-FOLIATED-FRACTON-2GAUGE).
+    Axioms: [] (none)
+
+69. FoliatedFracton2Gauge.extensive_gap_separates_weights
+    Statement: A strictly positive action gap prevents weight overlap between positive and negative paths (SplitBrainRefusal) (Claim GIN-C24).
+    Axioms: [] (none)
+
+70. FoliatedFracton2Gauge.abelian_hinge_trace_positive
+    Statement: Abelian 2-gauge defect sheets yield positive hinge trace (+2) (Claim GIN-C24).
+    Axioms: [] (none)
+
+71. FoliatedFracton2Gauge.nonabelian_hinge_trace_negative
+    Statement: Non-abelian 2-gauge defect sheets yield strictly negative hinge trace (-2) (Claim GIN-C24).
+    Axioms: [] (none)
+
+72. FoliatedFracton2Gauge.abelian_hinge_defect_mass_zero
+    Statement: Abelian intersecting sheets have zero defect mass (ExactRepair) (Claim GIN-C24).
+    Axioms: [] (none)
+
+73. FoliatedFracton2Gauge.nonabelian_hinge_defect_mass_two
+    Statement: Non-abelian intersecting sheets induce uncancelled defect mass Φ₁ = 2 (OpenSignObstruction) (Claim GIN-C24).
+    Axioms: [] (none)
+
+74. FoliatedFracton2Gauge.decoupled_foliated_projection_nonnegative
+    Statement: Foliated quantum double projection on decoupled leaves is positive-semidefinite (Claim GIN-C24).
+    Axioms: [] (none)
+
+75. FoliatedFracton2Gauge.corner_lineon_obstruction_persists
+    Statement: Corner lineon turn obstructs foliated factorization, preserving negative trace and uncancelled defect mass (Claim GIN-C24, INV-FOLIATED-FRACTON-2GAUGE).
+    Axioms: [] (none)
+
+================================================================================
+CONCLUSION:
+Package po023 contains 0 unproved sorry obligations, 0 synthetic axioms,
+and all 75 mechanized theorems strictly adhere to the kernel whitelist {propext, Quot.sound}.
+================================================================================

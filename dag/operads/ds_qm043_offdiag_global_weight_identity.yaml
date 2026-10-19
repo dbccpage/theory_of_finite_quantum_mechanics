@@ -1,0 +1,692 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: For D=(d11,d12,d22) in Z^3, globalWeight(D) - localDiagonalWeight(D) = 2 d12. Phase-class
+    descent to H^1(G;U(1)) for a declared U(1) cocycle (C5) is OPEN.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions:
+  - declared U(1) 1-cocycle (assumption)
+  source_bottleneck: C5 phase-class descent has a Lean obligation only.
+  source_refs:
+  - omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/043_gellmann_hartle_cochain_decoherence/qm_043_gellmann_hartle_cochain_decoherence_claim_ledger.md#QM_043-C3
+  - omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/043_gellmann_hartle_cochain_decoherence/qm_043_gellmann_hartle_cochain_decoherence_claim_ledger.md#QM_043-C5
+  paper_refs:
+  - dag/derivations/11_finite_qm_dynamics/tfq_0242_graded_path_sum_as_finite_transport.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  historical_paper_refs:
+  - papers/derivations/11_finite_qm_dynamics/tfq_0242_graded_path_sum_as_finite_transport.md
+  paper_relocations:
+  - from: papers/derivations/11_finite_qm_dynamics/tfq_0242_graded_path_sum_as_finite_transport.md
+    to: dag/derivations/11_finite_qm_dynamics/tfq_0242_graded_path_sum_as_finite_transport.md
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/11_finite_qm_dynamics/tfq_0242_graded_path_sum_as_finite_transport.md
+    sha256: c29d95ab46e9b8a92a989da5e5f918d62221561a27e7f2bac9f5dba6140e4d73
+source_provenance:
+  repository: this_repository
+  commit: 642f5b95a116da6df805adbd745a4826c6739c2b
+  path: dag/prompts/finite_qm_dynamics_ds_qm043_offdiag_global_weight_identity_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: Mat2Int.trace
+  line: 315
+  signature_excerpt: 'def Mat2Int.trace (A : Mat2Int) : Int'
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: Mat2Int
+  line: 177
+  signature_excerpt: structure Mat2Int
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: Mat2Int.mul
+  line: 184
+  signature_excerpt: 'def Mat2Int.mul (A B : Mat2Int) : Mat2Int'
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: ds_qm030_032_033_041_043_dynamics_and_heisenberg_duality
+  line: 632
+  signature_excerpt: "theorem ds_qm030_032_033_041_043_dynamics_and_heisenberg_duality\n    (A B C : Mat2Int)\
+    \ (e a0 a1 : Int) (he : e ≠ 0) :\n    (Mat2Int.mul (Mat2Int.mul A B) C = Mat2Int.mul A (Mat2Int.mul\
+    \ B C)) ∧\n    (1 < 1 + e * e) ∧\n    (Mat2Int.trace (Mat2Int.mul A B) = Mat2Int.trace (Mat2Int.mul\
+    \ B A)) ∧\n    ((a0 + a1) * (a0 + a1) = (a0 * a0 + a1 * a1) + 2 * (a0 * a1))"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: ds_qm021_040_041_043_commutator_heisenberg_global_weight_and_conditioning
+  line: 1230
+  signature_excerpt: "theorem ds_qm021_040_041_043_commutator_heisenberg_global_weight_and_conditioning\n\
+    \    (r00a r01b r10c r11d d11 d12 d22 w0 w1 : Int) :\n    (((0 + 0 = (0 : Int)) ∧ (1 + (-1 : Int)\
+    \ = 0)) ∧\n      ((1 * (-1 : Int) - 1 * 1 = -2) ∧ (1 * 1 - (-1 : Int) * 1 = 2) ∧ (-2 ≠ (0 : Int))))\
+    \ ∧\n    (r11d + r10c + r01b + r00a = r00a + r01b + r10c + r11d) ∧\n    ((d11 + 2 * d12 + d22) - (d11\
+    \ + d22) = 2 * d12) ∧\n    (((w0, w1, (0 : Int)) = (w0, w1, (0 : Int))) ∧ ((1 + 0, 1) ≠ (1 + 1, 0)))"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm030_032_033_041_043_dynamics_and_heisenberg_duality
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.ds_qm030_032_033_041_043_dynamics_and_heisenberg_duality
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 632
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm021_040_041_043_commutator_heisenberg_global_weight_and_conditioning
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.ds_qm021_040_041_043_commutator_heisenberg_global_weight_and_conditioning
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 1230
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche3_emergence_dynamics_heisenberg_and_qec_witness
+  availability: external
+  symbol: verify_tranche3_emergence_dynamics_heisenberg_and_qec_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 619
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche13_ds_qm_final_16_second_witness_closure_witness
+  availability: external
+  symbol: verify_tranche13_ds_qm_final_16_second_witness_closure_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 1343
+  role: source_lead_only
+presentation:
+  status: scoped_stage_result_reviewed
+  scope: Exact global and diagonal weights differ by twice the off-diagonal coefficient, with a sign-flip
+    control.
+  colours:
+  - id: DiagonalAndOffdiagonalSums
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: RationalGlobalWeight
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: RationalSymmetricCoefficients2
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: RealHistoryMatrix2
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  generators:
+  - id: symmetric_history_table
+    ordered_inputs:
+    - RationalSymmetricCoefficients2
+    output: RealHistoryMatrix2
+    arity: 1
+    carrier: Declared RationalSymmetricCoefficients2
+    coefficient_ring: Exact Q, Q(i), or Q(sqrt5) as declared; real embedding only in the named Lean conditional
+    hypotheses:
+    - Declared real symmetric two-history table; positivity is not assumed for arbitrary inputs.
+    semantic_predicate: Arrange [[a,b],[b,c]].
+    source_pins:
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_DYNAMICS__DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY__PROVED_LEAN.yaml
+      sha256: 8150dfabaa321a54b1bd168e17db559395582997e44a147269aa9dd0fe5c754a
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/inputs/this_repository/dag/operads/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY.yaml
+      sha256: 6f742ba23b32e24e1597c5986b31a428d11c0ca8deea5fb75617b4663dda137b
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/inputs/this_repository/dag/derivations/11_finite_qm_dynamics/TFQ-0242_graded_path_sum_as_finite_transport.md
+      sha256: c29d95ab46e9b8a92a989da5e5f918d62221561a27e7f2bac9f5dba6140e4d73
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/dynamics_exact.py
+      sha256: 972d81f099b957e0ab23329750bb35d0aaac05cc439abd8b418dde6e4841143f
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/code/python/tests/test_dynamics_exact.py
+      sha256: a1d63f1d0bcbfed2c4e62e2b99b87ee0b92a3c864b92cb311583175d9e8c241b
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/dynamics_exact.rs
+      sha256: 309d04e2a142468c66c2294ae926cf736de7420d265e0645aa78f81e06289232
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/dynamics_exact_replay.rs
+      sha256: ae9f6b1d81b9477f0ccf844d243f58f4e58e1245814780c5381d5cef1d9d16f6
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/dynamics_checker.py
+      sha256: 40f56c58f205899bb19b42204c55f0290befa655349aad80228f0250fe8242c9
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/prepare.py
+      sha256: 0705bc29d8320b12190e2a54ef38909796b2033703ce098894a492e45996d6ce
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/structure_exact.py
+      sha256: 0a35a5782b47e06167fc768320ee7fbf90c99fbdf336cbfaf2d2e1b93f9ca89d
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/structure_exact.rs
+      sha256: 9c714e91517144cf0fa614c8195bcf2f56fc32c0b4959750a4515f75fd5b6d28
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/structure_checker.py
+      sha256: 554c0811b794c03ce8badba12075ccb8b12165f6837acff805af0ceba3b3fea7
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/specs.py
+      sha256: 5587e78cec43d2c37dd52fd6fdbfede93420211b879a5be97997fb4b9403f6cc
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/check_candidate.py
+      sha256: d24702724ba42bb9c4dbf1d7105030e29d5c6128c8be2ca503fcb7cb60718608
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/format_certificate.py
+      sha256: 9cfe80d668bcb7b17360f341c53314e7bcd929a107135117b835e39b6cb53030
+    evidence_status: Reviewed exact finite native records; literal named kernel statements supply only
+      their own universal scopes. Full refined-carrier operad/coherence remains open.
+    latest_host_check: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p2/host_check.json
+  - id: diagonal_offdiagonal_split
+    ordered_inputs:
+    - RealHistoryMatrix2
+    output: DiagonalAndOffdiagonalSums
+    arity: 1
+    carrier: Declared RealHistoryMatrix2
+    coefficient_ring: Exact Q, Q(i), or Q(sqrt5) as declared; real embedding only in the named Lean conditional
+    hypotheses:
+    - Declared real symmetric two-history table; positivity is not assumed for arbitrary inputs.
+    semantic_predicate: Retain a+c and 2b separately.
+    source_pins:
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_DYNAMICS__DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY__PROVED_LEAN.yaml
+      sha256: 8150dfabaa321a54b1bd168e17db559395582997e44a147269aa9dd0fe5c754a
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/inputs/this_repository/dag/operads/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY.yaml
+      sha256: 6f742ba23b32e24e1597c5986b31a428d11c0ca8deea5fb75617b4663dda137b
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/inputs/this_repository/dag/derivations/11_finite_qm_dynamics/TFQ-0242_graded_path_sum_as_finite_transport.md
+      sha256: c29d95ab46e9b8a92a989da5e5f918d62221561a27e7f2bac9f5dba6140e4d73
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/dynamics_exact.py
+      sha256: 972d81f099b957e0ab23329750bb35d0aaac05cc439abd8b418dde6e4841143f
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/code/python/tests/test_dynamics_exact.py
+      sha256: a1d63f1d0bcbfed2c4e62e2b99b87ee0b92a3c864b92cb311583175d9e8c241b
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/dynamics_exact.rs
+      sha256: 309d04e2a142468c66c2294ae926cf736de7420d265e0645aa78f81e06289232
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/dynamics_exact_replay.rs
+      sha256: ae9f6b1d81b9477f0ccf844d243f58f4e58e1245814780c5381d5cef1d9d16f6
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/dynamics_checker.py
+      sha256: 40f56c58f205899bb19b42204c55f0290befa655349aad80228f0250fe8242c9
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/prepare.py
+      sha256: 0705bc29d8320b12190e2a54ef38909796b2033703ce098894a492e45996d6ce
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/structure_exact.py
+      sha256: 0a35a5782b47e06167fc768320ee7fbf90c99fbdf336cbfaf2d2e1b93f9ca89d
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/structure_exact.rs
+      sha256: 9c714e91517144cf0fa614c8195bcf2f56fc32c0b4959750a4515f75fd5b6d28
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/structure_checker.py
+      sha256: 554c0811b794c03ce8badba12075ccb8b12165f6837acff805af0ceba3b3fea7
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/specs.py
+      sha256: 5587e78cec43d2c37dd52fd6fdbfede93420211b879a5be97997fb4b9403f6cc
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/check_candidate.py
+      sha256: d24702724ba42bb9c4dbf1d7105030e29d5c6128c8be2ca503fcb7cb60718608
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/format_certificate.py
+      sha256: 9cfe80d668bcb7b17360f341c53314e7bcd929a107135117b835e39b6cb53030
+    evidence_status: Reviewed exact finite native records; literal named kernel statements supply only
+      their own universal scopes. Full refined-carrier operad/coherence remains open.
+    latest_host_check: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p2/host_check.json
+  - id: sum_weights
+    ordered_inputs:
+    - DiagonalAndOffdiagonalSums
+    output: RationalGlobalWeight
+    arity: 1
+    carrier: Declared DiagonalAndOffdiagonalSums
+    coefficient_ring: Exact Q, Q(i), or Q(sqrt5) as declared; real embedding only in the named Lean conditional
+    hypotheses:
+    - Declared real symmetric two-history table; positivity is not assumed for arbitrary inputs.
+    semantic_predicate: Add both contributions.
+    source_pins:
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_DYNAMICS__DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY__PROVED_LEAN.yaml
+      sha256: 8150dfabaa321a54b1bd168e17db559395582997e44a147269aa9dd0fe5c754a
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/inputs/this_repository/dag/operads/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY.yaml
+      sha256: 6f742ba23b32e24e1597c5986b31a428d11c0ca8deea5fb75617b4663dda137b
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/inputs/this_repository/dag/derivations/11_finite_qm_dynamics/TFQ-0242_graded_path_sum_as_finite_transport.md
+      sha256: c29d95ab46e9b8a92a989da5e5f918d62221561a27e7f2bac9f5dba6140e4d73
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/dynamics_exact.py
+      sha256: 972d81f099b957e0ab23329750bb35d0aaac05cc439abd8b418dde6e4841143f
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/code/python/tests/test_dynamics_exact.py
+      sha256: a1d63f1d0bcbfed2c4e62e2b99b87ee0b92a3c864b92cb311583175d9e8c241b
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/dynamics_exact.rs
+      sha256: 309d04e2a142468c66c2294ae926cf736de7420d265e0645aa78f81e06289232
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/dynamics_exact_replay.rs
+      sha256: ae9f6b1d81b9477f0ccf844d243f58f4e58e1245814780c5381d5cef1d9d16f6
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/dynamics_checker.py
+      sha256: 40f56c58f205899bb19b42204c55f0290befa655349aad80228f0250fe8242c9
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/prepare.py
+      sha256: 0705bc29d8320b12190e2a54ef38909796b2033703ce098894a492e45996d6ce
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/structure_exact.py
+      sha256: 0a35a5782b47e06167fc768320ee7fbf90c99fbdf336cbfaf2d2e1b93f9ca89d
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/structure_exact.rs
+      sha256: 9c714e91517144cf0fa614c8195bcf2f56fc32c0b4959750a4515f75fd5b6d28
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/structure_checker.py
+      sha256: 554c0811b794c03ce8badba12075ccb8b12165f6837acff805af0ceba3b3fea7
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/specs.py
+      sha256: 5587e78cec43d2c37dd52fd6fdbfede93420211b879a5be97997fb4b9403f6cc
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/check_candidate.py
+      sha256: d24702724ba42bb9c4dbf1d7105030e29d5c6128c8be2ca503fcb7cb60718608
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/format_certificate.py
+      sha256: 9cfe80d668bcb7b17360f341c53314e7bcd929a107135117b835e39b6cb53030
+    evidence_status: Reviewed exact finite native records; literal named kernel statements supply only
+      their own universal scopes. Full refined-carrier operad/coherence remains open.
+    latest_host_check: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p2/host_check.json
+  relations:
+  - id: global_relation_0
+    equation_or_predicate: G-L=2b; b↦-b preserves L while changing G by 4b.
+    typing_conditions: Literal declared operation domains; Prove the actual phase quotient/H1 descent
+      conditions and state the permitted history and readout maps.
+    evidence_status: Accepted P2 plus executed P4; consult literal named Lean signatures and retained
+      matrix/coordinate transport obligations rather than treating the whole relation prose as a theorem.
+    scope: Exact global and diagonal weights differ by twice the off-diagonal coefficient, with a sign-flip
+      control.
+    source_pins:
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_DYNAMICS__DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY__PROVED_LEAN.yaml
+      sha256: 8150dfabaa321a54b1bd168e17db559395582997e44a147269aa9dd0fe5c754a
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/inputs/this_repository/dag/operads/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY.yaml
+      sha256: 6f742ba23b32e24e1597c5986b31a428d11c0ca8deea5fb75617b4663dda137b
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/inputs/this_repository/dag/derivations/11_finite_qm_dynamics/TFQ-0242_graded_path_sum_as_finite_transport.md
+      sha256: c29d95ab46e9b8a92a989da5e5f918d62221561a27e7f2bac9f5dba6140e4d73
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/dynamics_exact.py
+      sha256: 972d81f099b957e0ab23329750bb35d0aaac05cc439abd8b418dde6e4841143f
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/code/python/tests/test_dynamics_exact.py
+      sha256: a1d63f1d0bcbfed2c4e62e2b99b87ee0b92a3c864b92cb311583175d9e8c241b
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/dynamics_exact.rs
+      sha256: 309d04e2a142468c66c2294ae926cf736de7420d265e0645aa78f81e06289232
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/dynamics_exact_replay.rs
+      sha256: ae9f6b1d81b9477f0ccf844d243f58f4e58e1245814780c5381d5cef1d9d16f6
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/dynamics_checker.py
+      sha256: 40f56c58f205899bb19b42204c55f0290befa655349aad80228f0250fe8242c9
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/prepare.py
+      sha256: 0705bc29d8320b12190e2a54ef38909796b2033703ce098894a492e45996d6ce
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/structure_exact.py
+      sha256: 0a35a5782b47e06167fc768320ee7fbf90c99fbdf336cbfaf2d2e1b93f9ca89d
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/structure_exact.rs
+      sha256: 9c714e91517144cf0fa614c8195bcf2f56fc32c0b4959750a4515f75fd5b6d28
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/structure_checker.py
+      sha256: 554c0811b794c03ce8badba12075ccb8b12165f6837acff805af0ceba3b3fea7
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/specs.py
+      sha256: 5587e78cec43d2c37dd52fd6fdbfede93420211b879a5be97997fb4b9403f6cc
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/check_candidate.py
+      sha256: d24702724ba42bb9c4dbf1d7105030e29d5c6128c8be2ca503fcb7cb60718608
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/format_certificate.py
+      sha256: 9cfe80d668bcb7b17360f341c53314e7bcd929a107135117b835e39b6cb53030
+    latest_host_check: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p2/host_check.json
+    historical_evidence_annotation: P1 candidate; independent native and named kernel gates remain required.
+  compositions: &id001
+  - outer_operation: diagonal_offdiagonal_split
+    input_slot: 0
+    inner_operation: symmetric_history_table
+    colour_match: RealHistoryMatrix2 -> RealHistoryMatrix2
+    hypothesis_match: Same declared coordinates, coefficients and context; all operation hypotheses must
+      be carried into the graft.
+    licensing_relations:
+    - global_relation_0
+    evidence_status: Semantic substitution supported by the retained finite operation traces and separately
+      scoped named kernel statements. A complete refined-carrier operad is not asserted.
+  - outer_operation: sum_weights
+    input_slot: 0
+    inner_operation: diagonal_offdiagonal_split
+    colour_match: DiagonalAndOffdiagonalSums -> DiagonalAndOffdiagonalSums
+    hypothesis_match: Same declared coordinates, coefficients and context; all operation hypotheses must
+      be carried into the graft.
+    licensing_relations:
+    - global_relation_0
+    evidence_status: Semantic substitution supported by the retained finite operation traces and separately
+      scoped named kernel statements. A complete refined-carrier operad is not asserted.
+  identities:
+  - colour: DiagonalAndOffdiagonalSums
+    proposed_operation: id_DiagonalAndOffdiagonalSums
+    signature: DiagonalAndOffdiagonalSums -> DiagonalAndOffdiagonalSums
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: RationalGlobalWeight
+    proposed_operation: id_RationalGlobalWeight
+    signature: RationalGlobalWeight -> RationalGlobalWeight
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: RationalSymmetricCoefficients2
+    proposed_operation: id_RationalSymmetricCoefficients2
+    signature: RationalSymmetricCoefficients2 -> RationalSymmetricCoefficients2
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: RealHistoryMatrix2
+    proposed_operation: id_RealHistoryMatrix2
+    signature: RealHistoryMatrix2 -> RealHistoryMatrix2
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  symmetric_actions: []
+  coherence_obligations: &id002
+  - Prove the actual phase quotient/H1 descent conditions and state the permitted history and readout
+    maps.
+  - Prove the full refined-carrier operad identity, substitution, symmetry and coherence laws; mere colour
+    matches do not instantiate that formal structure.
+  - No inference from a source flag, declared census label, finite sample, quotient carrier or coordinate
+    name to a stronger mathematical/physical authority claim.
+  failed_compositions:
+  - proposal: Promote the selected step to the unrestricted original target
+    reason: Prove the actual phase quotient/H1 descent conditions and state the permitted history and
+      readout maps.
+  counterexamples:
+  - id: retained_actual_domain_controls
+    records:
+    - input:
+      - '1'
+      - '1'
+      - '1'
+      output:
+      - '2'
+      - '4'
+      - '2'
+      - '0'
+    - input:
+      - '1'
+      - '-1'
+      - '1'
+      output:
+      - '2'
+      - '0'
+      - '-2'
+      - '4'
+    - input:
+      - '2'
+      - 1/2
+      - '3'
+      output:
+      - '5'
+      - '6'
+      - '1'
+      - '4'
+    scope: Computed values, with the source/kernel/native distinctions retained in claim_boundary.
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: FILLED
+    carrier: Literal per-operation finite or admitted scalar carriers
+    coefficient_ring: Exact Z, Q, Q(i), Q(sqrt5); admitted a real root only under the stated Lean hypotheses
+    source_pins:
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_DYNAMICS__DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY__PROVED_LEAN.yaml
+      sha256: 8150dfabaa321a54b1bd168e17db559395582997e44a147269aa9dd0fe5c754a
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/inputs/this_repository/dag/operads/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY.yaml
+      sha256: 6f742ba23b32e24e1597c5986b31a428d11c0ca8deea5fb75617b4663dda137b
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/inputs/this_repository/dag/derivations/11_finite_qm_dynamics/TFQ-0242_graded_path_sum_as_finite_transport.md
+      sha256: c29d95ab46e9b8a92a989da5e5f918d62221561a27e7f2bac9f5dba6140e4d73
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/dynamics_exact.py
+      sha256: 972d81f099b957e0ab23329750bb35d0aaac05cc439abd8b418dde6e4841143f
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/code/python/tests/test_dynamics_exact.py
+      sha256: a1d63f1d0bcbfed2c4e62e2b99b87ee0b92a3c864b92cb311583175d9e8c241b
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/dynamics_exact.rs
+      sha256: 309d04e2a142468c66c2294ae926cf736de7420d265e0645aa78f81e06289232
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/dynamics_exact_replay.rs
+      sha256: ae9f6b1d81b9477f0ccf844d243f58f4e58e1245814780c5381d5cef1d9d16f6
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/dynamics_checker.py
+      sha256: 40f56c58f205899bb19b42204c55f0290befa655349aad80228f0250fe8242c9
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/prepare.py
+      sha256: 0705bc29d8320b12190e2a54ef38909796b2033703ce098894a492e45996d6ce
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/structure_exact.py
+      sha256: 0a35a5782b47e06167fc768320ee7fbf90c99fbdf336cbfaf2d2e1b93f9ca89d
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/structure_exact.rs
+      sha256: 9c714e91517144cf0fa614c8195bcf2f56fc32c0b4959750a4515f75fd5b6d28
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/structure_checker.py
+      sha256: 554c0811b794c03ce8badba12075ccb8b12165f6837acff805af0ceba3b3fea7
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/specs.py
+      sha256: 5587e78cec43d2c37dd52fd6fdbfede93420211b879a5be97997fb4b9403f6cc
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/check_candidate.py
+      sha256: d24702724ba42bb9c4dbf1d7105030e29d5c6128c8be2ca503fcb7cb60718608
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/format_certificate.py
+      sha256: 9cfe80d668bcb7b17360f341c53314e7bcd929a107135117b835e39b6cb53030
+    public_input:
+      kind: global
+      cases:
+      - - '1'
+        - '1'
+        - '1'
+      - - '1'
+        - '-1'
+        - '1'
+      - - '2'
+        - 1/2
+        - '3'
+      scope: Exact global and diagonal weights differ by twice the off-diagonal coefficient, with a sign-flip
+        control.
+      unpaid_target: Prove the actual phase quotient/H1 descent conditions and state the permitted history
+        and readout maps.
+    original_target: For D=(d11,d12,d22) in Z^3, globalWeight(D) - localDiagonalWeight(D) = 2 d12. Phase-class
+      descent to H^1(G;U(1)) for a declared U(1) cocycle (C5) is OPEN.
+    source_scope_review: For the supplied real symmetric D, global weight minus diagonal weight is 2b.
+      Off-diagonal sign flips leave the diagonal unchanged and can change global weight. This does not
+      establish phase-class well-definedness or H1 descent.
+    admitted_assumptions:
+    - declared U(1) 1-cocycle (assumption)
+  slot_m2_layer1_forward_morphisms:
+    mining_status: FILLED
+    operations:
+    - catalog_id: symmetric_history_table
+      inputs:
+      - RationalSymmetricCoefficients2
+      output: RealHistoryMatrix2
+      semantic_predicate: Arrange [[a,b],[b,c]].
+    - catalog_id: diagonal_offdiagonal_split
+      inputs:
+      - RealHistoryMatrix2
+      output: DiagonalAndOffdiagonalSums
+      semantic_predicate: Retain a+c and 2b separately.
+    - catalog_id: sum_weights
+      inputs:
+      - DiagonalAndOffdiagonalSums
+      output: RationalGlobalWeight
+      semantic_predicate: Add both contributions.
+    composition_plan: *id001
+    tree:
+    - G-L=2b; b↦-b preserves L while changing G by 4b.
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: FILLED
+    algebraic_relations:
+    - id: global_relation_0
+      equation_or_predicate: G-L=2b; b↦-b preserves L while changing G by 4b.
+      typing_conditions: Literal declared operation domains; Prove the actual phase quotient/H1 descent
+        conditions and state the permitted history and readout maps.
+      evidence_status: P1 candidate; independent native and named kernel gates remain required.
+      scope: Exact global and diagonal weights differ by twice the off-diagonal coefficient, with a sign-flip
+        control.
+      source_pins:
+      - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_DYNAMICS__DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY__PROVED_LEAN.yaml
+        sha256: 8150dfabaa321a54b1bd168e17db559395582997e44a147269aa9dd0fe5c754a
+      - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/inputs/this_repository/dag/operads/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY.yaml
+        sha256: 6f742ba23b32e24e1597c5986b31a428d11c0ca8deea5fb75617b4663dda137b
+      - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+        sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+      - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/inputs/this_repository/dag/derivations/11_finite_qm_dynamics/TFQ-0242_graded_path_sum_as_finite_transport.md
+        sha256: c29d95ab46e9b8a92a989da5e5f918d62221561a27e7f2bac9f5dba6140e4d73
+      - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/dynamics_exact.py
+        sha256: 972d81f099b957e0ab23329750bb35d0aaac05cc439abd8b418dde6e4841143f
+      - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/code/python/tests/test_dynamics_exact.py
+        sha256: a1d63f1d0bcbfed2c4e62e2b99b87ee0b92a3c864b92cb311583175d9e8c241b
+      - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/dynamics_exact.rs
+        sha256: 309d04e2a142468c66c2294ae926cf736de7420d265e0645aa78f81e06289232
+      - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/dynamics_exact_replay.rs
+        sha256: ae9f6b1d81b9477f0ccf844d243f58f4e58e1245814780c5381d5cef1d9d16f6
+      - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/dynamics_checker.py
+        sha256: 40f56c58f205899bb19b42204c55f0290befa655349aad80228f0250fe8242c9
+      - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+        sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+      - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/prepare.py
+        sha256: 0705bc29d8320b12190e2a54ef38909796b2033703ce098894a492e45996d6ce
+      - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/structure_exact.py
+        sha256: 0a35a5782b47e06167fc768320ee7fbf90c99fbdf336cbfaf2d2e1b93f9ca89d
+      - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/structure_exact.rs
+        sha256: 9c714e91517144cf0fa614c8195bcf2f56fc32c0b4959750a4515f75fd5b6d28
+      - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/structure_checker.py
+        sha256: 554c0811b794c03ce8badba12075ccb8b12165f6837acff805af0ceba3b3fea7
+      - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/specs.py
+        sha256: 5587e78cec43d2c37dd52fd6fdbfede93420211b879a5be97997fb4b9403f6cc
+      - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/check_candidate.py
+        sha256: d24702724ba42bb9c4dbf1d7105030e29d5c6128c8be2ca503fcb7cb60718608
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/format_certificate.py
+        sha256: 9cfe80d668bcb7b17360f341c53314e7bcd929a107135117b835e39b6cb53030
+    rejection_predicates:
+    - Independent domain equations and actual matrix/graph/quotient arrays recompute every output.
+    - Exact public input, canonical rational primitive types, complete source pins and exact sealed request
+      bytes.
+    - Full native cross-language output equality and actual named Lean axiom reports; no label-based target
+      promotion.
+    negative_control_plan: Alter every output coordinate, input identity, primitive types, source set
+      and sealed request.
+  slot_m4_tri_language_witness_anchors:
+    mining_status: FILLED
+    certificate_predicates:
+    - Independent domain equations and actual matrix/graph/quotient arrays recompute every output.
+    - Exact public input, canonical rational primitive types, complete source pins and exact sealed request
+      bytes.
+    - Full native cross-language output equality and actual named Lean axiom reports; no label-based target
+      promotion.
+    anchors:
+    - code/python/src/qm/dynamics_exact.py
+    - code/python/tests/test_dynamics_exact.py
+    - code/rust/src/finite_probability/dynamics_exact.rs
+    - code/rust/src/finite_probability/examples/dynamics_exact_replay.rs
+    - dag/pfp/dynamics_checker.py
+    - dag/pfp/exact_json.py
+    - dag/pfp/review_exact_json.py
+    - lean4/PrimitiveDifference.lean
+    - lean4/HWKernel.lean
+    - lean4/H004FreeLinearization.lean
+    - lean4/H005InnerProductAdmission.lean
+    - lean4/H003ReversibilityGate.lean
+    - lean4/H006PermutationUnitary.lean
+    - lean4/H007Complexification.lean
+    - lean4/H017MatrixFiniteRecovery.lean
+    - lean4/H017Fin.lean
+    - lean4/H016ContinuousDynamicsFork.lean
+    - lean4/H008PhaseBlindPresentation.lean
+    - lean4/Core.lean
+    - lean4/H009PhaseFiber.lean
+    - lean4/H010InterferenceNonDescent.lean
+    - lean4/H011U1SelectorBoundary.lean
+    - lean4/H011Circle.lean
+    - lean4/H014TensorCompositionBoundary.lean
+    - lean4/H014BilinearProduct.lean
+    - lean4/H014Interface.lean
+    - lean4/H015IrreversibleFork.lean
+    - lean4/H013BornPairingBoundary.lean
+    - lean4/H013SameContract.lean
+    - lean4/H017Gleason.lean
+    - lean4/H017Extras.lean
+    - lean4/H017ExtrasDropone.lean
+    - lean4/E003_projection_fiber_primitive_difference.lean
+    - lean4/E005_fiber_quotient_equivalence.lean
+    - lean4/H000FinitePresentedCarrier.lean
+    - lean4/H055DiscreteDynamicsStone.lean
+    - lean4/PromptStructure.lean
+    - lean4/H061DynamicsDichotomy.lean
+    - lean4/H059RationalSector.lean
+    - lean4/PromptDynamics.lean
+    - dag/results/batches/20261019T164251Z_prompts_32_51/tools/prepare.py
+    - code/python/src/qm/structure_exact.py
+    - code/rust/src/finite_probability/structure_exact.rs
+    - dag/pfp/structure_checker.py
+    - dag/results/batches/20261019T164251Z_prompts_32_51/tools/specs.py
+    - QuantumMechanics.PromptDynamics.global_offdiagonal
+    unpaid_imports:
+    - Prove the actual phase quotient/H1 descent conditions and state the permitted history and readout
+      maps.
+    - Prove the full refined-carrier operad identity, substitution, symmetry and coherence laws; mere
+      colour matches do not instantiate that formal structure.
+    anchor_status: New Lean anchors are candidate declarations until the retained P2 compiler runs; compiled
+      source leads retain their literal scope.
+stage_history:
+- stage: P0_MINE_OPERAD
+  attempt: p0
+  run: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged
+  operad_delta: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/operad_delta.yaml
+  host_check: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/host_check.json
+- stage: P1_DERIVE
+  attempt: p1
+  run: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged
+  operad_delta: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p1/operad_delta.yaml
+  host_check: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p1/host_check.json
+- stage: P2_VERIFY
+  attempt: p2
+  run: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged
+  operad_delta: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p2/operad_delta.yaml
+  host_check: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p2/host_check.json
+- stage: P4_CHALLENGE
+  attempt: p4
+  run: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged
+  operad_delta: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p4/operad_delta.yaml
+  host_check: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p4/host_check.json
+- stage: P5_RECORD
+  attempt: p5
+  run: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged
+  operad_delta: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p5/operad_delta.yaml
+  host_check: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p5/host_check.json
+open_obligations: *id002
+excluded_relation_leads: []
+operad_slots_scope:
+  work_unit: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged/p0/reviewed_missions.json
+  scope: FILLED means reviewed prerequisites for this selected step; original target and unpaid imports
+    retained.
+  review_refinement: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/reviews/20261019_dynamics_audit/scope_review.json
+latest_run:
+  path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/runs/20261019T164251Z_staged
+  stage: P5_RECORD
+  status: scoped_result_or_obstruction_reviewed
+scope_notes:
+- For the supplied real symmetric D, global weight minus diagonal weight is 2b. Off-diagonal sign flips
+  leave the diagonal unchanged and can change global weight. This does not establish phase-class well-definedness
+  or H1 descent.
+latest_review:
+  path: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/reviews/20261019_dynamics_audit
+  status: scope_reviewed_pending_final_integration
+  operad_delta: dag/results/DS-QM043-OFFDIAG-GLOBAL-WEIGHT-IDENTITY/reviews/20261019_dynamics_audit/operad_delta.yaml

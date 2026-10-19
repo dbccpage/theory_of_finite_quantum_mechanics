@@ -151,7 +151,7 @@ def publication_hashes(package_root: Path = PACKAGE_ROOT) -> dict[str, str]:
         "000_projection_obstruction.tex",
         "PO000_ENVIRONMENT_RECEIPT.json",
         "PO000_REPRODUCTION_REQUIREMENTS.txt",
-        "PO000_LEAN_AXIOM_REPORT.txt",
+        "PO000_LEAN_axiom_report.txt",
         "PO000_LICENSE.md",
         "PO000_RELEASE_NOTES.md",
         "PO000_RELEASE_README.md",

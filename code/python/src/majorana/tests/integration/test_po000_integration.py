@@ -38,7 +38,7 @@ def test_full_pipeline_integration():
     with tempfile.TemporaryDirectory() as tmpdir:
         tmp_path = Path(tmpdir)
         cert_file = tmp_path / "cert.json"
-        man_file = tmp_path / "SHA256SUMS"
+        man_file = tmp_path / "sha256sums"
 
         artifact_bundle.write_artifact_bundle(cert_file, man_file)
         assert cert_file.exists()

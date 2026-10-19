@@ -293,7 +293,7 @@ def test_artifact_bundle_and_replay():
         tmp_path = Path(tmpdir)
         cert, man = artifact_bundle.write_artifact_bundle(
             tmp_path / "cert.json",
-            tmp_path / "SHA256SUMS",
+            tmp_path / "sha256sums",
         )
         assert cert.exists()
         assert man.exists()

@@ -133,6 +133,88 @@ pub fn noise_mc_size_sweep(
     Ok(out)
 }
 
+pub fn noise_mc_torus_grid(
+    m: usize,
+    p: f64,
+    trials: usize,
+    seed: u64,
+) -> Result<NoiseMcReceipt, String> {
+    if m < 2 {
+        return Err("torus grid requires m >= 2".into());
+    }
+    if trials == 0 {
+        return Err("trials >= 1".into());
+    }
+    let complex = surface_grid(m, m, true);
+    let mut rng = Lcg::new(seed);
+    let mut count_exact = 0usize;
+    let mut count_closed = 0usize;
+    let mut count_open = 0usize;
+    let mut weight_sum = 0usize;
+
+    for _ in 0..trials {
+        let mut omega = vec![0u8; complex.num_edges];
+        let mut w = 0usize;
+        for e in 0..complex.num_edges {
+            if rng.bernoulli(p) {
+                omega[e] = 1;
+                w += 1;
+            }
+        }
+        weight_sum += w;
+        let cert = Gf2CocycleClassifier::classify(&complex.d0, &complex.d1, &omega)?;
+        match cert.status {
+            GF2ScheduleStatus::Exact => count_exact += 1,
+            GF2ScheduleStatus::ClosedResidual => count_closed += 1,
+            GF2ScheduleStatus::OpenObstruction => count_open += 1,
+        }
+    }
+
+    let t = trials as f64;
+    Ok(NoiseMcReceipt {
+        certificate_tag: NOISE_MC_RECEIPT_TAG.into(),
+        grid_m: m,
+        num_edges: complex.num_edges,
+        num_faces: complex.num_faces,
+        p,
+        trials,
+        seed,
+        count_exact,
+        count_closed_residual: count_closed,
+        count_open,
+        frac_exact: count_exact as f64 / t,
+        frac_closed_residual: count_closed as f64 / t,
+        frac_open: count_open as f64 / t,
+        mean_error_weight: weight_sum as f64 / t,
+        authority_effect: "None".into(),
+        notes: format!(
+            "IID Bernoulli(p) edge flips on periodic torus {m}x{m} plaquette grid; \
+             classes via face-syndrome classifier. Not a physical threshold. Auth=None."
+        ),
+    })
+}
+
+pub fn noise_mc_torus_size_sweep(
+    max_m: usize,
+    p: f64,
+    trials: usize,
+    seed: u64,
+) -> Result<Vec<NoiseMcReceipt>, String> {
+    if max_m < 2 {
+        return Err("torus size sweep requires max_m >= 2".into());
+    }
+    let mut out = Vec::new();
+    for m in 2..=max_m {
+        out.push(noise_mc_torus_grid(
+            m,
+            p,
+            trials,
+            seed.wrapping_add(m as u64),
+        )?);
+    }
+    Ok(out)
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -203,5 +285,28 @@ mod tests {
         assert_eq!(r.count_exact, 5);
         assert_eq!(r.count_open, 0);
         assert_eq!(r.count_closed_residual, 0);
+    }
+
+    #[test]
+    fn planar_and_torus_size_sweeps_up_to_8x8() {
+        let planar_rows = noise_mc_size_sweep(8, 0.15, 16, 1000).unwrap();
+        assert_eq!(planar_rows.len(), 8);
+        for (idx, r) in planar_rows.iter().enumerate() {
+            let m = idx + 1;
+            assert_eq!(r.grid_m, m);
+            assert_eq!(r.num_faces, m * m);
+            assert_eq!(r.num_edges, 2 * m * (m + 1));
+            assert_eq!(r.count_exact + r.count_closed_residual + r.count_open, 16);
+        }
+
+        let torus_rows = noise_mc_torus_size_sweep(8, 0.15, 16, 2000).unwrap();
+        assert_eq!(torus_rows.len(), 7); // m = 2..=8
+        for (idx, r) in torus_rows.iter().enumerate() {
+            let m = idx + 2;
+            assert_eq!(r.grid_m, m);
+            assert_eq!(r.num_faces, m * m);
+            assert_eq!(r.num_edges, 2 * m * m);
+            assert_eq!(r.count_exact + r.count_closed_residual + r.count_open, 16);
+        }
     }
 }

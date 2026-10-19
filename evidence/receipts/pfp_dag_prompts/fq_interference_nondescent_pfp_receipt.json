@@ -1,0 +1,108 @@
+{
+  "schema": "omega.pfp.finite_qm.dag_prompt_execution_receipt.v1",
+  "authority_effect": "None",
+  "policy_id": "SPK-001",
+  "timestamp_utc": "2026-10-18T07:47:35.491832+00:00",
+  "prompt_file": "dag/prompts/finite_qm_core_fq_interference_nondescent_proved_lean.yaml",
+  "node_id": "FQ-INTERFERENCE-NONDESCENT",
+  "stage": "FINITE_QM_CORE",
+  "dag_status": "PROVED_LEAN",
+  "operad_family_id": "OP-FINITE_QM_CORE-FQ-INTERFERENCE-NONDESCENT",
+  "operad_mining_missions_completed": [
+    "M1_CARRIER_AND_NORMAL_FORM_MINING",
+    "M2_OPERAD_MORPHISMS_AND_GRAFTING_TREE_MINING",
+    "M3_CONGRUENCE_IDEALS_AND_DECOY_ANTIBODIES_MINING",
+    "M4_TRI_LANGUAGE_EXACT_WITNESS_MINING"
+  ],
+  "winning_model": "deepseek/deepseek-v4.1-flash",
+  "prompt_tokens": 1062,
+  "completion_tokens": 528,
+  "elapsed_ms": 16265.0,
+  "attempts": [
+    {
+      "attempt_id": "ab_withm3_102_fq-interference-no_a1",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "state": "settled",
+      "prompt_tokens": 1062,
+      "completion_tokens": 528,
+      "cost_usd": 0.0001448496,
+      "generation_id": "gen-1792309639-n0SqaZxtZznjgLdz4PoR",
+      "elapsed_ms": 16265.0,
+      "raw_preview": "{\"p_star_tree_potentials\":[1020,-2040,1530],\"p_star_chord_potential\":1530,\"p_star_holonomy_gamma2\":2040,\"cochain_d1_d0_exact_zero\":true,\"finite_shadow_witness_int\":431,\"countermodel_witness_int\":116,\"unpaid_import_count\":1,\"unconditional_promotion_refused\":true,\"derived_under_policy\":\"SPK-001\",\"auth",
+      "gate_status": "PASS",
+      "gate_failures": []
+    }
+  ],
+  "m3_ablation_comparison": {
+    "without_m3_attempt1": {
+      "model": "deepseek/deepseek-v4.1-flash",
+      "status": "FAIL",
+      "all_gates_passed": false,
+      "failures": [
+        "G4_COUNTERMODEL_MISMATCH:got=123,exp=116"
+      ],
+      "emitted_countermodel_int": 123,
+      "emitted_unconditional_promotion_refused": true,
+      "prompt_tokens": 1016,
+      "completion_tokens": 922,
+      "elapsed_ms": 28484.0
+    },
+    "with_m3_attempt1": {
+      "model": "deepseek/deepseek-v4.1-flash",
+      "status": "PASS",
+      "all_gates_passed": true,
+      "failures": [],
+      "emitted_countermodel_int": 116,
+      "emitted_unconditional_promotion_refused": true,
+      "prompt_tokens": 1062,
+      "completion_tokens": 528,
+      "elapsed_ms": 16265.0
+    }
+  },
+  "typed_model_response": {
+    "p_star_tree_potentials": [
+      1020,
+      -2040,
+      1530
+    ],
+    "p_star_chord_potential": 1530,
+    "p_star_holonomy_gamma2": 2040,
+    "cochain_d1_d0_exact_zero": true,
+    "finite_shadow_witness_int": 431,
+    "countermodel_witness_int": 116,
+    "unpaid_import_count": 1,
+    "unconditional_promotion_refused": true,
+    "derived_under_policy": "SPK-001",
+    "authority_effect": "None",
+    "firewall_status": "stated region only; mints no authority.",
+    "node_id": "FQ-INTERFERENCE-NONDESCENT",
+    "stage": "FINITE_QM_CORE",
+    "dag_status": "PROVED_LEAN",
+    "operad_family_id": "OP-FINITE_QM_CORE-FQ-INTERFERENCE-NONDESCENT",
+    "lean4_theorem_anchor": "lean4/quantum_mechanics/H010InterferenceNonDescent.lean::mix_separates",
+    "rust_witness_anchor": "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness",
+    "should_continue": false
+  },
+  "gate_receipt": {
+    "schema": "omega.pfp.finite_qm.gate_receipt.v1",
+    "authority_effect": "None",
+    "work_id": "FQ-INTERFERENCE-NONDESCENT",
+    "status": "PASS",
+    "all_gates_passed": true,
+    "gate_results": {
+      "G0_STRICT_TYPED_JSON_SCHEMA": true,
+      "G1_COCHAIN_EXACT_SEQUENCE_D1D0": true,
+      "G2_P_STAR_TREE_CHORD_SYNDROME_DECODE": true,
+      "G3_FINITE_SHADOW_EXACT_WITNESS": true,
+      "G4_COUNTERMODEL_SEPARATION_WITNESS": true,
+      "G5_IMPORT_BOUNDARY_AND_FIREWALL_HONESTY": true,
+      "G6_TRI_LANGUAGE_ANCHOR_BINDING": true
+    },
+    "failures": [],
+    "elapsed_ms": 0.019,
+    "receipt_sha256": "db089d1b2acae5e8dd8734e7bac78f2a7e7c3ace7fa97a0c434da783cc8f5c13"
+  },
+  "updated_papers": [
+    "papers/derivations/10_finite_qm_core/tfq_0234_supplied_hilbert_carrier_after_the_conditional_lift.md"
+  ]
+}

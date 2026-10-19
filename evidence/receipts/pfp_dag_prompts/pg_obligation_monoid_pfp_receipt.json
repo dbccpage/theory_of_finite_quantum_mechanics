@@ -1,0 +1,108 @@
+{
+  "schema": "omega.pfp.finite_qm.dag_prompt_execution_receipt.v1",
+  "authority_effect": "None",
+  "policy_id": "SPK-001",
+  "timestamp_utc": "2026-10-18T07:43:42.036243+00:00",
+  "prompt_file": "dag/prompts/mssn_sn_pg_obligation_monoid_proved_lean.yaml",
+  "node_id": "PG-OBLIGATION-MONOID",
+  "stage": "MSSN_SN",
+  "dag_status": "PROVED_LEAN",
+  "operad_family_id": "OP-MSSN_SN-PG-OBLIGATION-MONOID",
+  "operad_mining_missions_completed": [
+    "M1_CARRIER_AND_NORMAL_FORM_MINING",
+    "M2_OPERAD_MORPHISMS_AND_GRAFTING_TREE_MINING",
+    "M3_CONGRUENCE_IDEALS_AND_DECOY_ANTIBODIES_MINING",
+    "M4_TRI_LANGUAGE_EXACT_WITNESS_MINING"
+  ],
+  "winning_model": "deepseek/deepseek-v4.1-flash",
+  "prompt_tokens": 1032,
+  "completion_tokens": 610,
+  "elapsed_ms": 15875.0,
+  "attempts": [
+    {
+      "attempt_id": "ab_withm3_062_pg-obligation-mono_a1",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "state": "settled",
+      "prompt_tokens": 1032,
+      "completion_tokens": 610,
+      "cost_usd": 0.0001547136,
+      "generation_id": "gen-1792309406-mUvdS8wdW2JLwKFJVfo3",
+      "elapsed_ms": 15875.0,
+      "raw_preview": "{\"p_star_tree_potentials\":[620,-1240,930],\"p_star_chord_potential\":930,\"p_star_holonomy_gamma2\":1240,\"cochain_d1_d0_exact_zero\":true,\"finite_shadow_witness_int\":260,\"countermodel_witness_int\":68,\"unpaid_import_count\":0,\"unconditional_promotion_refused\":true,\"derived_under_policy\":\"SPK-001\",\"authorit",
+      "gate_status": "PASS",
+      "gate_failures": []
+    }
+  ],
+  "m3_ablation_comparison": {
+    "without_m3_attempt1": {
+      "model": "deepseek/deepseek-v4.1-flash",
+      "status": "FAIL",
+      "all_gates_passed": false,
+      "failures": [
+        "G4_COUNTERMODEL_MISMATCH:got=71,exp=68"
+      ],
+      "emitted_countermodel_int": 71,
+      "emitted_unconditional_promotion_refused": true,
+      "prompt_tokens": 972,
+      "completion_tokens": 584,
+      "elapsed_ms": 28016.0
+    },
+    "with_m3_attempt1": {
+      "model": "deepseek/deepseek-v4.1-flash",
+      "status": "PASS",
+      "all_gates_passed": true,
+      "failures": [],
+      "emitted_countermodel_int": 68,
+      "emitted_unconditional_promotion_refused": true,
+      "prompt_tokens": 1032,
+      "completion_tokens": 610,
+      "elapsed_ms": 15875.0
+    }
+  },
+  "typed_model_response": {
+    "p_star_tree_potentials": [
+      620,
+      -1240,
+      930
+    ],
+    "p_star_chord_potential": 930,
+    "p_star_holonomy_gamma2": 1240,
+    "cochain_d1_d0_exact_zero": true,
+    "finite_shadow_witness_int": 260,
+    "countermodel_witness_int": 68,
+    "unpaid_import_count": 0,
+    "unconditional_promotion_refused": true,
+    "derived_under_policy": "SPK-001",
+    "authority_effect": "None",
+    "firewall_status": "stated region only; mints no authority.",
+    "node_id": "PG-OBLIGATION-MONOID",
+    "stage": "MSSN_SN",
+    "dag_status": "PROVED_LEAN",
+    "operad_family_id": "OP-MSSN_SN-PG-OBLIGATION-MONOID",
+    "lean4_theorem_anchor": "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.declare_then_assert_cost_floor",
+    "rust_witness_anchor": "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_wdp_obligations_and_growth_witness",
+    "should_continue": false
+  },
+  "gate_receipt": {
+    "schema": "omega.pfp.finite_qm.gate_receipt.v1",
+    "authority_effect": "None",
+    "work_id": "PG-OBLIGATION-MONOID",
+    "status": "PASS",
+    "all_gates_passed": true,
+    "gate_results": {
+      "G0_STRICT_TYPED_JSON_SCHEMA": true,
+      "G1_COCHAIN_EXACT_SEQUENCE_D1D0": true,
+      "G2_P_STAR_TREE_CHORD_SYNDROME_DECODE": true,
+      "G3_FINITE_SHADOW_EXACT_WITNESS": true,
+      "G4_COUNTERMODEL_SEPARATION_WITNESS": true,
+      "G5_IMPORT_BOUNDARY_AND_FIREWALL_HONESTY": true,
+      "G6_TRI_LANGUAGE_ANCHOR_BINDING": true
+    },
+    "failures": [],
+    "elapsed_ms": 0.0359,
+    "receipt_sha256": "990f297c03f5d1205a2f0cc8559f2246724a9957f9c75f6fad041735c77f3f67"
+  },
+  "updated_papers": [
+    "papers/derivations/05_mssn_sn/tfq_0342_do_not_treat_genesis_events_or_s_n_maps_as_obligation_monoid_morphisms_until.md"
+  ]
+}

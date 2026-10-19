@@ -125,7 +125,7 @@ impl PartialDynamics {
             .collect()
     }
 
-    /// BFS on ordered state pairs. A completed empty result proves equivalence
+    /// BFS on ordered state pairs. A completed empty result shows in this model equivalence
     /// in THIS finite machine; exceeding `max_pairs` is a resource refusal.
     pub fn distinguish(
         &self,

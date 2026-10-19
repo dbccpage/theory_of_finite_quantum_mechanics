@@ -1,0 +1,380 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: 'Sectors are residual sectors with declared finite nonnegative masses mu(s), total M > 0.
+    The carrier is the weight vector w. No derivation of w from the Phi1 / Gamma2 residual is given in the sources
+    read: w is an input to QM_003, QM_012 and QM_020.'
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: &id001 []
+  source_bottleneck: None (4-cycle minimizer non-uniqueness without selector, C_4 symmetry-orbit canonicalization,
+    and sector-weight trace conservation mechanized in l1_residual_sector_weights_minimizer_nonuniqueness_and_dihedral_selector,
+    l1_even_cycle_symmetry_orbit_canonical_sector_weights, and sector_weights_sum_to_phi1).
+  source_refs:
+  - omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/020_born_normalization_and_conditional_hilbert_lift/born_normalization_and_conditional_hilbert_lift.md:103
+  - omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/003_residual_density_calculus_l1_l2_boundary/qm_003_residual_density_calculus_l1_l2_boundary_claim_ledger.md#RDB-1
+  - omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/012_density_matrices_as_diagonal_residual_weights/qm_012_density_matrices_as_diagonal_residual_weights_claim_ledger.md#C1
+  - omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml
+  - lean4/quantum_mechanics/DerivationDagQMClosure.lean
+  paper_refs:
+  - dag/derivations/07_l1_emergence/tfq_0354_do_not_derive_declared_l1_sector_weights_from_the_phi1_and_gamma2.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports before
+    reusing a result.
+  historical_paper_refs:
+  - papers/derivations/07_l1_emergence/tfq_0354_do_not_derive_declared_l1_sector_weights_from_the_phi1_and_gamma2.md
+  paper_relocations:
+  - from: papers/derivations/07_l1_emergence/tfq_0354_do_not_derive_declared_l1_sector_weights_from_the_phi1_and_gamma2.md
+    to: dag/derivations/07_l1_emergence/tfq_0354_do_not_derive_declared_l1_sector_weights_from_the_phi1_and_gamma2.md
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/07_l1_emergence/tfq_0354_do_not_derive_declared_l1_sector_weights_from_the_phi1_and_gamma2.md
+    sha256: c86bb1c56986acc666cf0fd7212567d2eb1f82f42fd1d2d58a2bbd46392e35e4
+source_provenance:
+  repository: this_repository
+  commit: 642f5b95a116da6df805adbd745a4826c6739c2b
+  path: dag/prompts/l1_to_l2_l1_residual_sector_weights_declared_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: normalize
+  line: 43
+  signature_excerpt: 'def normalize (w : List Rat) : List Rat'
+  source: lean4/BornRedundancy.lean
+  repository: this_repository
+  source_sha256: 8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: smul
+  line: 12
+  signature_excerpt: 'def smul (c : Rat) : List Rat → List Rat'
+  source: lean4/BornRedundancy.lean
+  repository: this_repository
+  source_sha256: 8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: listSum
+  line: 8
+  signature_excerpt: 'def listSum : List Rat → Rat'
+  source: lean4/BornRedundancy.lean
+  repository: this_repository
+  source_sha256: 8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: edgeResidualL1
+  line: 74
+  signature_excerpt: 'def edgeResidualL1 : List Nat → Nat'
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: c4MinimizerTwo
+  line: 112
+  signature_excerpt: 'def c4MinimizerTwo : Fin 4 → Nat'
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: c4MinimizerOne
+  line: 106
+  signature_excerpt: 'def c4MinimizerOne : Fin 4 → Nat'
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: c4Shift
+  line: 870
+  signature_excerpt: 'def c4Shift (v : Nat × Nat × Nat × Nat) : Nat × Nat × Nat × Nat'
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: c4Rep2
+  line: 868
+  signature_excerpt: 'def c4Rep2 : Nat × Nat × Nat × Nat'
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: c4OrbitSum
+  line: 869
+  signature_excerpt: 'def c4OrbitSum : Nat × Nat × Nat × Nat'
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: c4Rep1
+  line: 867
+  signature_excerpt: 'def c4Rep1 : Nat × Nat × Nat × Nat'
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: sector_weights_sum_to_phi1
+  line: 98
+  signature_excerpt: "theorem sector_weights_sum_to_phi1 (sectorA sectorB : List Nat) :\n    edgeResidualL1 (sectorA\
+    \ ++ sectorB) = edgeResidualL1 sectorA + edgeResidualL1 sectorB"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+- kind: theorem
+  name: even_cycle_sector_weights_require_selector
+  line: 118
+  signature_excerpt: "theorem even_cycle_sector_weights_require_selector :\n    (c4MinimizerOne ⟨0, by decide⟩\
+    \ + c4MinimizerOne ⟨1, by decide⟩ +\n     c4MinimizerOne ⟨2, by decide⟩ + c4MinimizerOne ⟨3, by decide⟩ =\
+    \ 1) ∧\n    (c4MinimizerTwo ⟨0, by decide⟩ + c4MinimizerTwo ⟨1, by decide⟩ +\n     c4MinimizerTwo ⟨2, by decide⟩\
+    \ + c4MinimizerTwo ⟨3, by decide⟩ = 1) ∧\n    (c4MinimizerOne ⟨0, by decide⟩ ≠ c4MinimizerTwo ⟨0, by decide⟩)"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+- kind: theorem
+  name: l1_even_cycle_symmetry_orbit_canonical_sector_weights
+  line: 874
+  signature_excerpt: "theorem l1_even_cycle_symmetry_orbit_canonical_sector_weights :\n    c4Rep1 ≠ c4Rep2 ∧\n\
+    \    c4OrbitSum = (1, 1, 1, 1) ∧\n    c4Shift c4OrbitSum = c4OrbitSum ∧\n    (1 + 1 + 1 + 1 = 2 * (1 + 0 +\
+    \ 1 + 0))"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+- kind: theorem
+  name: l1_qm020_c10_branch_pinching_and_residual_sector_orbit_closure
+  line: 1428
+  signature_excerpt: "theorem l1_qm020_c10_branch_pinching_and_residual_sector_orbit_closure\n    (d0 d1 b c :\
+    \ Int) (w0 w1 w2 w3 m : Nat) :\n    ((d0 + d0 = 2 * d0 ∧ b + (-b) = 0 ∧ c + (-c) = 0 ∧ d1 + d1 = 2 * d1) ∧\n\
+    \     ((1 + 1 : Int) = 2 ∧ (1 + (-1) : Int) = 0 ∧ (-1 + 1 : Int) = 0) ∧\n     ((1 + 1 : Int) = 2 ∧ (-1 + (-1)\
+    \ : Int) = -2 ∧ (2 : Int) ≠ -2)) ∧\n    (((w0 + w1 + w2 + w3 = 4 * m ∧ w0 = w1 ∧ w1 = w2 ∧ w2 = w3) → w0 =\
+    \ m) ∧\n     (4 * m + 0 + 0 + 0 = 4 * m))"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+- kind: theorem
+  name: l1_residual_sector_weights_minimizer_nonuniqueness_and_dihedral_selector
+  line: 1648
+  signature_excerpt: "theorem l1_residual_sector_weights_minimizer_nonuniqueness_and_dihedral_selector\n    (w0\
+    \ w1 : Nat) :\n    (let rA : Nat × Nat × Nat × Nat"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+source_bindings:
+- original_ref: lean4/quantum_mechanics/BornRedundancy.lean::normalize
+  availability: local
+  symbol: normalize
+  path: lean4/BornRedundancy.lean
+  repository: this_repository
+  sha256: 8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b
+  declaration_status: declaration_found_not_proof_checked
+  line: 43
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.sector_weights_sum_to_phi1
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.sector_weights_sum_to_phi1
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 98
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.even_cycle_sector_weights_require_selector
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.even_cycle_sector_weights_require_selector
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 118
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_even_cycle_symmetry_orbit_canonical_sector_weights
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.l1_even_cycle_symmetry_orbit_canonical_sector_weights
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 874
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_qm020_c10_branch_pinching_and_residual_sector_orbit_closure
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.l1_qm020_c10_branch_pinching_and_residual_sector_orbit_closure
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 1428
+  role: source_lead_only
+- original_ref: omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/lean/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_qm020_c10_branch_pinching_and_residual_sector_orbit_closure
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.l1_qm020_c10_branch_pinching_and_residual_sector_orbit_closure
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 1428
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_residual_sector_weights_minimizer_nonuniqueness_and_dihedral_selector
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.l1_residual_sector_weights_minimizer_nonuniqueness_and_dihedral_selector
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 1648
+  role: source_lead_only
+- original_ref: omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/lean/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_residual_sector_weights_minimizer_nonuniqueness_and_dihedral_selector
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.l1_residual_sector_weights_minimizer_nonuniqueness_and_dihedral_selector
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 1648
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_finite_probability/src/simplex.rs::try_from_weights
+  availability: local
+  symbol: try_from_weights
+  path: code/rust/src/finite_probability/simplex.rs
+  repository: this_repository
+  sha256: f806fa8ae31e1d13be6cfe1ba131d1ae33c5778f7448c58601e5f2ed6eb7791f
+  declaration_status: declaration_found_not_executed
+  line: 91
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_quantum_physics/src/residual_density_calculus.rs
+  availability: external
+  symbol: null
+  path: omega_engine/crates_rs/omega_quantum_physics/src/residual_density_calculus.rs
+  repository: the_symbol_game
+  sha256: 4f106f3ad0cfdbafd54a2c277495d629945bb46901578b15c048d9ceae42c164
+  declaration_status: file_only_no_symbol
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_l1_sector_weights_and_density_lift_witness
+  availability: external
+  symbol: verify_l1_sector_weights_and_density_lift_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 259
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche7_wdp_bridge_o03_o05_sector_orbit_and_gleason_rival_witness
+  availability: external
+  symbol: verify_tranche7_wdp_bridge_o03_o05_sector_orbit_and_gleason_rival_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 917
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche17_l1_emergence_gs000_gs001_replica_and_c10_branch_closure_witness
+  availability: external
+  symbol: verify_tranche17_l1_emergence_gs000_gs001_replica_and_c10_branch_closure_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 1613
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs::verify_tranche17_l1_emergence_gs000_gs001_replica_and_c10_branch_closure_witness
+  availability: external
+  symbol: verify_tranche17_l1_emergence_gs000_gs001_replica_and_c10_branch_closure_witness
+  path: omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 1613
+  role: source_lead_only
+- original_ref: omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs::verify_tranche17_l1_emergence_gs000_gs001_replica_and_c10_branch_closure_witness
+  availability: external
+  symbol: verify_tranche17_l1_emergence_gs000_gs001_replica_and_c10_branch_closure_witness
+  path: omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: 38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a
+  declaration_status: declaration_found_not_executed
+  line: 1613
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche21_pg_wdp_bridge_sector_weights_qm122_finish_embedding_and_baker_witness
+  availability: external
+  symbol: verify_tranche21_pg_wdp_bridge_sector_weights_qm122_finish_embedding_and_baker_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 1899
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs::verify_tranche21_pg_wdp_bridge_sector_weights_qm122_finish_embedding_and_baker_witness
+  availability: external
+  symbol: verify_tranche21_pg_wdp_bridge_sector_weights_qm122_finish_embedding_and_baker_witness
+  path: omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 1899
+  role: source_lead_only
+- original_ref: omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs::verify_tranche21_pg_wdp_bridge_sector_weights_qm122_finish_embedding_and_baker_witness
+  availability: external
+  symbol: verify_tranche21_pg_wdp_bridge_sector_weights_qm122_finish_embedding_and_baker_witness
+  path: omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: 38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a
+  declaration_status: declaration_found_not_executed
+  line: 1899
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: *id001
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: *id001
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

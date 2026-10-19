@@ -193,7 +193,7 @@ DEFAULT_EXCLUDED_DIRS: set[str] = {
     "reconstruction_v1",
 }
 DEFAULT_EXCLUDED_NAMES: set[str] = {
-    "SHA256SUMS",
+    "sha256sums",
     ".coverage",
     ".env",
     "DEPOSIT_CHECKLIST.md",

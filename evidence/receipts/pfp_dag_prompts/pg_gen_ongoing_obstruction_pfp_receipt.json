@@ -1,0 +1,125 @@
+{
+  "schema": "omega.pfp.finite_qm.dag_prompt_execution_receipt.v1",
+  "authority_effect": "None",
+  "policy_id": "SPK-001",
+  "timestamp_utc": "2026-10-18T07:44:42.355566+00:00",
+  "prompt_file": "dag/prompts/genesis_pg_gen_ongoing_obstruction_proved_lean.yaml",
+  "node_id": "PG-GEN-ONGOING-OBSTRUCTION",
+  "stage": "GENESIS",
+  "dag_status": "PROVED_LEAN",
+  "operad_family_id": "OP-GENESIS-PG-GEN-ONGOING-OBSTRUCTION",
+  "operad_mining_missions_completed": [
+    "M1_CARRIER_AND_NORMAL_FORM_MINING",
+    "M2_OPERAD_MORPHISMS_AND_GRAFTING_TREE_MINING",
+    "M3_CONGRUENCE_IDEALS_AND_DECOY_ANTIBODIES_MINING",
+    "M4_TRI_LANGUAGE_EXACT_WITNESS_MINING"
+  ],
+  "winning_model": "deepseek/deepseek-v4-flash",
+  "prompt_tokens": 1116,
+  "completion_tokens": 1250,
+  "elapsed_ms": 71907.0,
+  "attempts": [
+    {
+      "attempt_id": "ab_withm3_057_pg-gen-ongoing-obs_a1",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "state": "settled",
+      "prompt_tokens": 1077,
+      "completion_tokens": 487,
+      "cost_usd": 0.0001399176,
+      "generation_id": "gen-1792309396-uvvwd0bpxVmZe0xjJ6TK",
+      "elapsed_ms": 14328.0,
+      "raw_preview": "{\"p_star_tree_potentials\":[570,-1140,855],\"p_star_chord_potential\":855,\"p_star_holonomy_gamma2\":1140,\"cochain_d1_d0_exact_zero\":true,\"finite_shadow_witness_int\":237,\"countermodel_witness_int\":61,\"unpaid_import_count\":0,\"unconditional_promotion_refused\":true,\"derived_under_policy\":\"SPK-001\",\"authorit",
+      "gate_status": "FAIL",
+      "gate_failures": [
+        "G6_TRI_LANGUAGE_ANCHOR_MISMATCH"
+      ]
+    },
+    {
+      "attempt_id": "ab_withm3_057_pg-gen-ongoing-obs_a2",
+      "model": "deepseek/deepseek-v4-flash",
+      "state": "settled",
+      "prompt_tokens": 1116,
+      "completion_tokens": 1250,
+      "cost_usd": 4.263776e-05,
+      "generation_id": "gen-1792309410-l5PH0nTcFBE6yoLcEkKt",
+      "elapsed_ms": 71907.0,
+      "raw_preview": "{\"p_star_tree_potentials\":[570,-1140,855],\"p_star_chord_potential\":855,\"p_star_holonomy_gamma2\":1140,\"cochain_d1_d0_exact_zero\":true,\"finite_shadow_witness_int\":237,\"countermodel_witness_int\":61,\"unpaid_import_count\":0,\"unconditional_promotion_refused\":true,\"derived_under_policy\":\"SPK-001\",\"authorit",
+      "gate_status": "PASS",
+      "gate_failures": []
+    }
+  ],
+  "m3_ablation_comparison": {
+    "without_m3_attempt1": {
+      "model": "deepseek/deepseek-v4.1-flash",
+      "status": "FAIL",
+      "all_gates_passed": false,
+      "failures": [
+        "G4_COUNTERMODEL_MISMATCH:got=63,exp=61"
+      ],
+      "emitted_countermodel_int": 63,
+      "emitted_unconditional_promotion_refused": true,
+      "prompt_tokens": 1008,
+      "completion_tokens": 696,
+      "elapsed_ms": 24546.0
+    },
+    "with_m3_attempt1": {
+      "model": "deepseek/deepseek-v4.1-flash",
+      "status": "FAIL",
+      "all_gates_passed": false,
+      "failures": [
+        "G6_TRI_LANGUAGE_ANCHOR_MISMATCH"
+      ],
+      "emitted_countermodel_int": null,
+      "emitted_unconditional_promotion_refused": null,
+      "prompt_tokens": 1077,
+      "completion_tokens": 487,
+      "elapsed_ms": 14328.0
+    }
+  },
+  "typed_model_response": {
+    "p_star_tree_potentials": [
+      570,
+      -1140,
+      855
+    ],
+    "p_star_chord_potential": 855,
+    "p_star_holonomy_gamma2": 1140,
+    "cochain_d1_d0_exact_zero": true,
+    "finite_shadow_witness_int": 237,
+    "countermodel_witness_int": 61,
+    "unpaid_import_count": 0,
+    "unconditional_promotion_refused": true,
+    "derived_under_policy": "SPK-001",
+    "authority_effect": "None",
+    "firewall_status": "stated region only; mints no authority.",
+    "node_id": "PG-GEN-ONGOING-OBSTRUCTION",
+    "stage": "GENESIS",
+    "dag_status": "PROVED_LEAN",
+    "operad_family_id": "OP-GENESIS-PG-GEN-ONGOING-OBSTRUCTION",
+    "lean4_theorem_anchor": "omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/H3V7N5QF/Answers.lean::remove_obstruction_first_or_last",
+    "rust_witness_anchor": "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness",
+    "should_continue": false
+  },
+  "gate_receipt": {
+    "schema": "omega.pfp.finite_qm.gate_receipt.v1",
+    "authority_effect": "None",
+    "work_id": "PG-GEN-ONGOING-OBSTRUCTION",
+    "status": "PASS",
+    "all_gates_passed": true,
+    "gate_results": {
+      "G0_STRICT_TYPED_JSON_SCHEMA": true,
+      "G1_COCHAIN_EXACT_SEQUENCE_D1D0": true,
+      "G2_P_STAR_TREE_CHORD_SYNDROME_DECODE": true,
+      "G3_FINITE_SHADOW_EXACT_WITNESS": true,
+      "G4_COUNTERMODEL_SEPARATION_WITNESS": true,
+      "G5_IMPORT_BOUNDARY_AND_FIREWALL_HONESTY": true,
+      "G6_TRI_LANGUAGE_ANCHOR_BINDING": true
+    },
+    "failures": [],
+    "elapsed_ms": 0.0166,
+    "receipt_sha256": "1b0bf55e0dd333b1334b2ba7eb7241b8fc04e76360790441a46bcfa7caa06180"
+  },
+  "updated_papers": [
+    "papers/derivations/02_genesis/tfq_0388_ongoing_obstruction_answers.md"
+  ]
+}

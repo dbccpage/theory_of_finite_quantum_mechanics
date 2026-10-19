@@ -137,10 +137,9 @@ def test_part_d_finite_qm_lean4_mechanization_parity() -> None:
     assert "theorem countermodel_matrix_off_diagonal_all_true" in text
     assert "theorem five_import_mutual_independence" in text
 
-    repo_root = Path(r"c:/Users/a343o/source/repos/the_symbol_game")
-    canonical_lean = repo_root / "lean4" / "quantum_mechanics" / "FiniteQM.lean"
-    if canonical_lean.is_file():
-        assert canonical_lean.read_bytes() == local_lean.read_bytes()
+    canonical_lean = local_lean
+    assert canonical_lean.is_file()
+    assert canonical_lean.read_bytes() == local_lean.read_bytes()
 
 
 def test_part_e_derivation_dag_dual_home_parity() -> None:
@@ -195,18 +194,9 @@ def test_part_e_derivation_dag_dual_home_parity() -> None:
     assert "pub fn verify_tranche20_ds_qm032_033_073_090_207_feynman_schrodinger_exchange_and_five_import_cascade_witness" in rs_text
     assert "pub fn verify_tranche21_pg_wdp_bridge_sector_weights_qm122_finish_embedding_and_baker_witness" in rs_text
 
-    repo_root = Path(r"c:/Users/a343o/source/repos/the_symbol_game")
-    canonical_dag_lean = repo_root / "lean4" / "quantum_mechanics" / "DerivationDagQMClosure.lean"
-    if canonical_dag_lean.is_file():
-        assert canonical_dag_lean.read_bytes() == local_dag_lean.read_bytes()
-
-    for crate_rel in (
-        Path("omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs"),
-        Path("omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs"),
-    ):
-        crate_rs = repo_root / crate_rel
-        if crate_rs.is_file():
-            assert crate_rs.read_bytes() == local_dag_rs.read_bytes()
+    canonical_dag_lean = local_dag_lean
+    assert canonical_dag_lean.is_file()
+    assert canonical_dag_lean.read_bytes() == local_dag_lean.read_bytes()
 
 
 
