@@ -118,6 +118,9 @@ struct Echo; impl StructurePreservingMap for Echo {type Domain=String;type Codom
 
 
 def challenge(subject):
+    if Path(subject['path']).stem == 'finite_continuation':
+        from continuation_challenges import challenge as continuation_challenge
+        return continuation_challenge(subject)
     if Path(subject['path']).stem == 'finite_profunctor':
         from finite_profunctor_challenges import challenge as profunctor_challenge
         return profunctor_challenge(subject)

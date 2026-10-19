@@ -18,7 +18,7 @@ from run_audit import ROOT, digest, execute, write_json
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model",choices=("rank","category","metadata","degree","counter","parameters","finite-set","literal-reversal","shape-inventory","root-records","homology-protocols","degree-repair","two-step-complex","simplicial-closure","simplicial-boundary","simplicial-homology","scalar-admission","carrier-dimensions","vector-maps","graph-incidence","validation-inventory","arrow-effects","finite-builder","em-samples","lawvere-inventory","higher-functor-inventory","finite-functor","functor-operations","finite-naturality","natural-composition","joint-carrier","finite-simulation","finite-independence","finite-trace","finite-dagger","finite-groupoid","cauchy-inventory","tagged-coend","condensation-metadata","root-catalog","finite-profunctor-inventory"),default="rank")
+    parser.add_argument("--model",choices=("rank","category","metadata","degree","counter","parameters","finite-set","literal-reversal","shape-inventory","root-records","homology-protocols","degree-repair","two-step-complex","simplicial-closure","simplicial-boundary","simplicial-homology","scalar-admission","carrier-dimensions","vector-maps","graph-incidence","validation-inventory","arrow-effects","finite-builder","em-samples","lawvere-inventory","higher-functor-inventory","finite-functor","functor-operations","finite-naturality","natural-composition","joint-carrier","finite-simulation","finite-independence","finite-trace","finite-dagger","finite-groupoid","cauchy-inventory","tagged-coend","condensation-metadata","root-catalog","finite-profunctor-inventory","finite-continuation"),default="rank")
     parser.add_argument("--memory-mb", type=int, default=1024,
         help="Explicit Lean memory limit, from 256 to 2048 MiB; default remains 1024.")
     args = parser.parse_args()
@@ -46,6 +46,10 @@ def main():
         proof_name, import_name, namespace = "DegreeWindow", "Data/Int/Basic", "TFQM.DegreeWindow."
         declarations = ("ordered_span_fits_u32", "same_endpoint_zero", "inverted_span_negative")
         scope = "Exact i32 endpoint difference bounds, zero span and inverted-window refusal premise; no category-law claim."
+    elif model == "finite-continuation":
+        proof_name, import_name, namespace = "FiniteContinuation", "Data/List/Basic", "TFQM.FiniteContinuation."
+        declarations = ("run_empty", "next_unavailable", "run_unavailable", "run_append", "sink_observably_distinct", "future_refl", "future_symm", "future_trans", "closed_pairs_no_distinction", "replay_distinguishes", "replay_saved_answers", "predecessor_length", "charge_success", "charge_refused", "charge_bounded")
+        scope = "All-word partial execution/observable absorbing sink,future equivalence,closed pair-search completeness,replay and bounded charge. Rust FIFO shortest/lexicographic order,Moore refinement,constructor/bounds and predecessor storage refined separately."
     elif model == "finite-profunctor-inventory":
         proof_name, import_name, namespace = "FiniteProfunctorInventory", "Data/List/Basic", "TFQM.FiniteProfunctorInventory."
         declarations = ("product_empty_left", "product_empty_right", "product_append", "product_length", "product_member", "middle_empty", "middle_append", "middle_duplicate", "weight_iff", "zero_denominator", "negative_numerator", "zero_weight")

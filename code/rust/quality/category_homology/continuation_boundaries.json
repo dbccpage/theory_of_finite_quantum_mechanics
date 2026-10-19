@@ -1,0 +1,171 @@
+{
+  "AuthorityEffect": "None",
+  "scope": "Actual partial dynamics constructor,all-word availability/report quotient and shortest BFS resource refusal with predecessor reconstruction. Replay binds self-described endpoints/answers,not external request/minimality.",
+  "mutation_names": [
+    "queue-lifo",
+    "no-enqueue",
+    "one-extra-pair",
+    "refuse-visited",
+    "wrong-edge-label",
+    "reverse-word",
+    "drop-last-label",
+    "skip-last-input",
+    "diagonal-successor",
+    "wrong-output-test",
+    "swapped-saved-left",
+    "swapped-saved-right",
+    "no-witness-word",
+    "wrong-witness-endpoint",
+    "accept-forged-quotient",
+    "invalid-carrier-accepted",
+    "invalid-word-ignored",
+    "unavailability-identity",
+    "allow-root-budget-zero",
+    "wrong-input-count",
+    "none-alias-real-max",
+    "missing-to-real-zero",
+    "sink-not-absorbing",
+    "empty-shape-wrong-error",
+    "outside-target-accepted",
+    "wrong-run-state",
+    "saved-left-not-checked",
+    "saved-right-not-checked",
+    "equal-answer-accepted",
+    "quotient-none-as-some",
+    "quotient-drops-real-last"
+  ],
+  "records": [
+    {
+      "family": "",
+      "path": "code/rust/src/category_theory/finite_continuation.rs",
+      "sha256": "36627eb42814646b76b3b898fbd374b164fd613b47677d83184bee6ec747c7e3",
+      "parent_aliases": [],
+      "faults": [
+        [
+          "frontier.queue.pop_front()",
+          "frontier.queue.pop_back()"
+        ],
+        [
+          "self.queue.push_back(next);",
+          "let _ = next;"
+        ],
+        [
+          "self.parents.len() >= maximum",
+          "self.parents.len() > maximum"
+        ],
+        [
+          "if self.parents.contains_key(&next) {\n            return Ok(());",
+          "if self.parents.contains_key(&next) {\n            return Err(ContinuationError::WorkLimit);"
+        ],
+        [
+          "self.parents.insert(next, Some((parent, input)));",
+          "self.parents.insert(next, Some((parent, 0)));"
+        ],
+        [
+          "        reversed.reverse();",
+          "        // reversed.reverse();"
+        ],
+        [
+          "reversed.push(*input);",
+          "if *input != 1 {reversed.push(*input);}"
+        ],
+        [
+          "for input in 0..self.machine.input_count() {",
+          "for input in 0..self.machine.input_count().saturating_sub(1) {"
+        ],
+        [
+          "self.machine.transitions()[parent.1][input]",
+          "self.machine.transitions()[parent.0][input]"
+        ],
+        [
+          "if self.machine.reports()[l] == self.machine.reports()[r] {",
+          "if self.machine.reports()[l] != self.machine.reports()[r] {"
+        ],
+        [
+          "left_answer: self.reports.get(l).copied(),",
+          "left_answer: self.reports.get(r).copied(),"
+        ],
+        [
+          "right_answer: self.reports.get(r).copied(),",
+          "right_answer: self.reports.get(l).copied(),"
+        ],
+        [
+          "word: frontier.word((l, r))",
+          "word: Vec::new()"
+        ],
+        [
+          "left, right, word: frontier.word((l, r)),",
+          "left: right, right, word: frontier.word((l, r)),"
+        ],
+        [
+          "self.machine.verify_quotient(q)",
+          "true"
+        ],
+        [
+          "if start >= self.reports.len() {",
+          "if start > self.reports.len() {"
+        ],
+        [
+          "if word.iter().any(|&a| a >= self.machine.input_count()) {",
+          "if false && word.iter().any(|&a| a >= self.machine.input_count()) {"
+        ],
+        [
+          "state = state.and_then(|s| self.transitions[s][a]);",
+          "state = state.and_then(|s| self.transitions[s][a].or(Some(s)));"
+        ],
+        [
+          "if max_pairs == 0 {",
+          "if false && max_pairs == 0 {"
+        ],
+        [
+          "FiniteMoore::new(outputs, total, inputs)",
+          "FiniteMoore::new(outputs, total, inputs.saturating_add(1))"
+        ],
+        [
+          ".map(Some)",
+          ".map(|x| if x == usize::MAX {None} else {Some(x)})"
+        ],
+        [
+          "t.unwrap_or(dead)",
+          "t.unwrap_or(0)"
+        ],
+        [
+          "total.push(vec![dead; inputs]);",
+          "total.push(vec![0; inputs]);"
+        ],
+        [
+          "return Err(ContinuationError::Machine(MooreError::EmptyCarrier));",
+          "return Err(ContinuationError::Machine(MooreError::TransitionShape));"
+        ],
+        [
+          ".any(|&t| t >= reports.len())",
+          ".any(|&t| t > reports.len())"
+        ],
+        [
+          "let mut state = Some(start);",
+          "let mut state = Some(0);"
+        ],
+        [
+          "if l == r || l != c.left_answer || r != c.right_answer {",
+          "if l == r || r != c.right_answer {"
+        ],
+        [
+          "if l == r || l != c.left_answer || r != c.right_answer {",
+          "if l == r || l != c.left_answer {"
+        ],
+        [
+          "if l == r || l != c.left_answer || r != c.right_answer {",
+          "if l != c.left_answer || r != c.right_answer {"
+        ],
+        [
+          "if t == dead { None } else { Some(t) }",
+          "if t == dead { Some(t) } else { Some(t) }"
+        ],
+        [
+          "q.quotient.transitions()[..dead]",
+          "q.quotient.transitions()[..dead.saturating_sub(1)]"
+        ]
+      ]
+    }
+  ]
+}
