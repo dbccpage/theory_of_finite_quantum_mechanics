@@ -39,7 +39,7 @@ def main():
     work = RUST/"target/rr"/stamp[2:15]
     inputs = inventory()
     write_json(output/"source_manifest.json",inputs)
-    for name in (Path(__file__).name,"root_records.py","category_diagnostics.py","functor_certificates.py","natural_transformations.py","archival_inventory.py","joint_carrier.py","simulation.py","independence.py","finite_trace_challenges.py","finite_dagger_challenges.py","finite_groupoid_challenges.py","finite_cauchy_challenges.py","finite_coend_challenges.py","finite_condensation_challenges.py","root_catalog_challenges.py","finite_profunctor_challenges.py","continuation_challenges.py","moore_challenges.py","partial_structure_challenges.py","path_challenges.py","family_challenges.py"):
+    for name in (Path(__file__).name,"root_records.py","category_diagnostics.py","functor_certificates.py","natural_transformations.py","archival_inventory.py","joint_carrier.py","simulation.py","independence.py","finite_trace_challenges.py","finite_dagger_challenges.py","finite_groupoid_challenges.py","finite_cauchy_challenges.py","finite_coend_challenges.py","finite_condensation_challenges.py","root_catalog_challenges.py","finite_profunctor_challenges.py","continuation_challenges.py","moore_challenges.py","partial_structure_challenges.py","path_challenges.py","family_challenges.py","functional_dependencies_challenges.py"):
         shutil.copyfile(Path(__file__).with_name(name),output/name)
     shutil.copyfile(policy,output/policy.name)
     snapshot(work,"category")

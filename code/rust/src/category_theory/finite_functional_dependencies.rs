@@ -1,5 +1,7 @@
 //! Finite heading/FD decisions, separate from instance checks and authorization.
 //! Exact equality and set relations only; no NULL, bag, MVD or join-dependency theory.
+//! Reports are raw observations, not admitted schema certificates. Deserialization
+//! does not validate witnesses. Generic values require lawful Ord/Eq and value-preserving Clone.
 
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeSet;
@@ -209,25 +211,7 @@ impl FdSchema {
         // The projected cover can exceed the input cover's size. This is internal,
         // bounded by 2*(2^8); close it directly without the public input-cover cap.
         let projected = p0.iter().chain(&p1).collect::<Vec<_>>();
-        let mut lost_dependencies = Vec::new();
-        for fd in &self.dependencies {
-            let mut closure = fd.determinant;
-            loop {
-                let before = closure;
-                for local in &projected {
-                    work.spend()?;
-                    if local.determinant & !closure == 0 {
-                        closure |= local.dependent;
-                    }
-                }
-                if closure == before {
-                    break;
-                }
-            }
-            if fd.dependent & !closure != 0 {
-                lost_dependencies.push(fd.clone());
-            }
-        }
+        let lost_dependencies = self.lost_dependencies(&projected, &mut work)?;
         Ok(BinaryDecompositionReport {
             intersection_closure,
             determined_component,
@@ -239,6 +223,21 @@ impl FdSchema {
         })
     }
 
+    fn lost_dependencies(
+        &self,
+        projected: &[&FunctionalDependency],
+        work: &mut Work,
+    ) -> Result<Vec<FunctionalDependency>, FdRefusal> {
+        let mut lost = Vec::new();
+        for fd in &self.dependencies {
+            let closure = close_projected(fd.determinant, projected, work)?;
+            if fd.dependent & !closure != 0 {
+                lost.push(fd.clone());
+            }
+        }
+        Ok(lost)
+    }
+
     pub fn check_instance<T: Ord>(&self, rows: &[Vec<T>]) -> Result<(), FdRefusal> {
         self.heading()?;
         if rows.len() > 128 || rows.iter().any(|r| r.len() != self.arity) {
@@ -248,20 +247,12 @@ impl FdSchema {
             return Err(FdRefusal::DuplicateTuple);
         }
         for (dependency, fd) in self.dependencies.iter().enumerate() {
-            for first in 0..rows.len() {
-                for second in 0..first {
-                    let agree = |mask: u16| {
-                        (0..self.arity)
-                            .all(|i| mask & (1 << i) == 0 || rows[first][i] == rows[second][i])
-                    };
-                    if agree(fd.determinant) && !agree(fd.dependent) {
-                        return Err(FdRefusal::InstanceDependencyViolation {
-                            dependency,
-                            first,
-                            second,
-                        });
-                    }
-                }
+            if let Some((first, second)) = first_violation(rows, fd) {
+                return Err(FdRefusal::InstanceDependencyViolation {
+                    dependency,
+                    first,
+                    second,
+                });
             }
         }
         Ok(())
@@ -293,52 +284,131 @@ pub fn project<T: Ord + Clone>(
         .collect())
 }
 
-/// Exact natural join in original heading order. Quadratic bounded instance work.
+// Internal covers may exceed the public input-cover limit. Every examined FD,
+// including the final stable scan, consumes exactly one unit of work.
+fn close_projected(
+    input: u16,
+    projected: &[&FunctionalDependency],
+    work: &mut Work,
+) -> Result<u16, FdRefusal> {
+    let mut closure = input;
+    loop {
+        let before = closure;
+        for local in projected {
+            work.spend()?;
+            if local.determinant & !closure == 0 {
+                closure |= local.dependent;
+            }
+        }
+        if closure == before {
+            return Ok(closure);
+        }
+    }
+}
+
+fn rows_agree<T: Eq>(first: &[T], second: &[T], mask: u16) -> bool {
+    (0..first.len()).all(|i| mask & (1 << i) == 0 || first[i] == second[i])
+}
+
+fn first_violation<T: Eq>(rows: &[Vec<T>], fd: &FunctionalDependency) -> Option<(usize, usize)> {
+    for first in 0..rows.len() {
+        for second in 0..first {
+            if rows_agree(&rows[first], &rows[second], fd.determinant)
+                && !rows_agree(&rows[first], &rows[second], fd.dependent)
+            {
+                return Some((first, second));
+            }
+        }
+    }
+    None
+}
+
+enum JoinColumn {
+    Left(usize),
+    Right(usize),
+}
+
+struct JoinLayout {
+    widths: [usize; 2],
+    shared: Vec<(usize, usize)>,
+    output: Vec<JoinColumn>,
+}
+
+impl JoinLayout {
+    fn new(arity: usize, components: [u16; 2], counts: [usize; 2]) -> Result<Self, FdRefusal> {
+        if arity == 0
+            || arity > 8
+            || components.iter().any(|&c| c == 0 || c >> arity != 0)
+            || components[0] | components[1] != (1 << arity) - 1
+            || counts.iter().any(|&count| count > 128)
+        {
+            return Err(FdRefusal::InvalidDecomposition);
+        }
+        let indices = components.map(|c| {
+            (0..arity)
+                .filter(|&i| c & (1 << i) != 0)
+                .collect::<Vec<_>>()
+        });
+        let shared = indices[0]
+            .iter()
+            .enumerate()
+            .filter_map(|(j, i)| indices[1].iter().position(|k| k == i).map(|k| (j, k)))
+            .collect();
+        let output = (0..arity)
+            .map(|i| Self::column(i, &indices))
+            .collect::<Result<_, _>>()?;
+        Ok(Self {
+            widths: indices.each_ref().map(Vec::len),
+            shared,
+            output,
+        })
+    }
+
+    fn column(attribute: usize, indices: &[Vec<usize>; 2]) -> Result<JoinColumn, FdRefusal> {
+        if let Some(j) = indices[0].iter().position(|&k| k == attribute) {
+            return Ok(JoinColumn::Left(j));
+        }
+        indices[1]
+            .iter()
+            .position(|&k| k == attribute)
+            .map(JoinColumn::Right)
+            .ok_or(FdRefusal::InvalidDecomposition)
+    }
+
+    fn matches<T: Eq>(&self, left: &[T], right: &[T]) -> bool {
+        self.shared.iter().all(|&(j, k)| left[j] == right[k])
+    }
+
+    fn row<T: Clone>(&self, left: &[T], right: &[T]) -> Vec<T> {
+        self.output
+            .iter()
+            .map(|column| match *column {
+                JoinColumn::Left(j) => left[j].clone(),
+                JoinColumn::Right(k) => right[k].clone(),
+            })
+            .collect()
+    }
+}
+
+/// Exact natural join in original heading order. At most 128*128 row pairs;
+/// column layout is computed once, and only matching output rows clone values.
 pub fn natural_join<T: Ord + Clone>(
     left: &BTreeSet<Vec<T>>,
     right: &BTreeSet<Vec<T>>,
     arity: usize,
     components: [u16; 2],
 ) -> Result<BTreeSet<Vec<T>>, FdRefusal> {
-    if arity == 0
-        || arity > 8
-        || components.iter().any(|&c| c == 0 || c >> arity != 0)
-        || components[0] | components[1] != (1 << arity) - 1
-        || left.len() > 128
-        || right.len() > 128
-    {
-        return Err(FdRefusal::InvalidDecomposition);
-    }
-    let indices = components.map(|c| {
-        (0..arity)
-            .filter(|&i| c & (1 << i) != 0)
-            .collect::<Vec<_>>()
-    });
-    if left.iter().any(|r| r.len() != indices[0].len())
-        || right.iter().any(|r| r.len() != indices[1].len())
+    let layout = JoinLayout::new(arity, components, [left.len(), right.len()])?;
+    if left.iter().any(|r| r.len() != layout.widths[0])
+        || right.iter().any(|r| r.len() != layout.widths[1])
     {
         return Err(FdRefusal::InstanceShape);
     }
     let mut joined = BTreeSet::new();
     for a in left {
         for b in right {
-            if indices[0].iter().enumerate().all(|(j, i)| {
-                indices[1]
-                    .iter()
-                    .position(|k| k == i)
-                    .is_none_or(|k| a[j] == b[k])
-            }) {
-                joined.insert(
-                    (0..arity)
-                        .map(|i| {
-                            if let Some(j) = indices[0].iter().position(|&k| k == i) {
-                                a[j].clone()
-                            } else {
-                                b[indices[1].iter().position(|&k| k == i).unwrap()].clone()
-                            }
-                        })
-                        .collect(),
-                );
+            if layout.matches(a, b) {
+                joined.insert(layout.row(a, b));
             }
         }
     }

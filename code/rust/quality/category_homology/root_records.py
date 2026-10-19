@@ -118,6 +118,9 @@ struct Echo; impl StructurePreservingMap for Echo {type Domain=String;type Codom
 
 
 def challenge(subject):
+    if Path(subject['path']).stem == 'finite_functional_dependencies':
+        from functional_dependencies_challenges import challenge as fd_challenge
+        return fd_challenge(subject)
     if Path(subject['path']).stem == 'family_category':
         from family_challenges import challenge as family_challenge
         return family_challenge(subject)
