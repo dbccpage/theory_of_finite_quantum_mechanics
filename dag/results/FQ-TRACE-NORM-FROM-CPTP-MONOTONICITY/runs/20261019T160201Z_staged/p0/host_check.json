@@ -1,0 +1,408 @@
+{
+  "task_id": "FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "p0",
+  "input_sha256": "55494883424b0eb73e2a467bbf5b8d36d3719c8f55af6971ed01c5773ccd09c1",
+  "candidate_sha256": "939b0afee8611ef34939e0d58e8db97e5fbad9973a4bea942526f93624ea236d",
+  "status": "reviewed_for_next_step",
+  "predicate_results": {
+    "source_scope_review": "The source pinching theorem compares a² and a²+b², not every CPTP map or uniqueness of a norm family. Native code treats the explicit real symmetric trace-zero X=[[a,b],[b,-a]] and the admitted diagonal pinching channel. Squared trace norms avoid approximate square roots. The fresh universal contraction inequality and positive rescaling implication do not prove uniqueness-up-to-scale on all Herm_0(n,C).",
+    "reviewed_sha256": "cb260ef0e62f5c0d20d4f3112dbcd4b019fb2e811e22777051847742aa51b794"
+  },
+  "bounded_failure_codes": [],
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "tracezero_matrix",
+        "ordered_inputs": [
+          "RationalPair"
+        ],
+        "output": "TraceZeroHermitian2",
+        "arity": 1,
+        "carrier": "Literal named finite or admitted scalar carrier",
+        "coefficient_ring": "Z, Q, Q(i), or Q(sqrt2) exactly as stated",
+        "hypotheses": [
+          "Fixed real symmetric subfamily, admitted complex-matrix interpretation."
+        ],
+        "semantic_predicate": "Build [[a,b],[b,-a]].",
+        "source_pins": [
+          {
+            "path": "dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY__PROVED_LEAN.yaml",
+            "sha256": "761eccf3f94bc8bbb0de1ff53172fa5a8af4068f14eeeddd8f94d8dbe8d890ef"
+          },
+          {
+            "path": "dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/inputs/this_repository/dag/operads/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY.yaml",
+            "sha256": "198cfa9925e3f15c801578769163caaaae77002ac88c57100b21ef5f55c7a5f1"
+          },
+          {
+            "path": "dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/inputs/this_repository/lean4/TraceZeroDuality.lean",
+            "sha256": "faafda639fbe1ea89ef890d9fe55577695627a4062e33127a749aee1cb0ce091"
+          },
+          {
+            "path": "dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/trace_norm_certificate.rs",
+            "sha256": "5e4b1765b7914b98dfd7237710c59730253bb7ae6ba9ecc1c3c8104dc50104b1"
+          },
+          {
+            "path": "dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/TFQ-0263_trace_norm_under_a_supplied_cptp_family.md",
+            "sha256": "0e8dfb0fb3571b6de9ca9073ed9bbcba654962b3885db445df20bd3695402fa5"
+          },
+          {
+            "path": "dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/code/python/src/qm/structure_exact.py",
+            "sha256": "0a35a5782b47e06167fc768320ee7fbf90c99fbdf336cbfaf2d2e1b93f9ca89d"
+          },
+          {
+            "path": "dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/code/python/tests/test_structure_exact.py",
+            "sha256": "e1a2398a963432c3b6e9dede60a6dc888b22469f5cf297d7262a866da7e44677"
+          },
+          {
+            "path": "dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/code/rust/src/finite_probability/structure_exact.rs",
+            "sha256": "9c714e91517144cf0fa614c8195bcf2f56fc32c0b4959750a4515f75fd5b6d28"
+          },
+          {
+            "path": "dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/structure_exact_replay.rs",
+            "sha256": "4a042c6534fddd7c9ddaae932edac12ef4be2c708175b08a14a64b4b8c49f702"
+          },
+          {
+            "path": "dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/dag/pfp/structure_checker.py",
+            "sha256": "554c0811b794c03ce8badba12075ccb8b12165f6837acff805af0ceba3b3fea7"
+          },
+          {
+            "path": "dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py",
+            "sha256": "c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f"
+          },
+          {
+            "path": "dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/dag/results/batches/20261019T160201Z_prompts_22_31/tools/prepare.py",
+            "sha256": "d9c366929fc4752c08b97e32aa888c028b6ef081caf2f71cff5a596d6952e3da"
+          },
+          {
+            "path": "dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/check_candidate.py",
+            "sha256": "f3fd12b9280c4b4c9af34eba242d0bce988f8a18bd3893ace4051e41f7838937"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/format_certificate.py",
+            "sha256": "f6ee1fb7d5274f758c205ab64ffa8872732fdba9452c57c18a8d2f640b885aa6"
+          }
+        ],
+        "evidence_status": "Source semantics reviewed; actual native and candidate kernel acceptance remain P2 gates."
+      },
+      {
+        "id": "pinch_diagonal",
+        "ordered_inputs": [
+          "TraceZeroHermitian2"
+        ],
+        "output": "TraceZeroHermitian2",
+        "arity": 1,
+        "carrier": "Literal named finite or admitted scalar carrier",
+        "coefficient_ring": "Z, Q, Q(i), or Q(sqrt2) exactly as stated",
+        "hypotheses": [
+          "Declared two diagonal Kraus projectors; CPTP domain is an import."
+        ],
+        "semantic_predicate": "Remove off-diagonal entries.",
+        "source_pins": [
+          {
+            "path": "dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY__PROVED_LEAN.yaml",
+            "sha256": "761eccf3f94bc8bbb0de1ff53172fa5a8af4068f14eeeddd8f94d8dbe8d890ef"
+          },
+          {
+            "path": "dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/inputs/this_repository/dag/operads/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY.yaml",
+            "sha256": "198cfa9925e3f15c801578769163caaaae77002ac88c57100b21ef5f55c7a5f1"
+          },
+          {
+            "path": "dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/inputs/this_repository/lean4/TraceZeroDuality.lean",
+            "sha256": "faafda639fbe1ea89ef890d9fe55577695627a4062e33127a749aee1cb0ce091"
+          },
+          {
+            "path": "dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/trace_norm_certificate.rs",
+            "sha256": "5e4b1765b7914b98dfd7237710c59730253bb7ae6ba9ecc1c3c8104dc50104b1"
+          },
+          {
+            "path": "dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/TFQ-0263_trace_norm_under_a_supplied_cptp_family.md",
+            "sha256": "0e8dfb0fb3571b6de9ca9073ed9bbcba654962b3885db445df20bd3695402fa5"
+          },
+          {
+            "path": "dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/code/python/src/qm/structure_exact.py",
+            "sha256": "0a35a5782b47e06167fc768320ee7fbf90c99fbdf336cbfaf2d2e1b93f9ca89d"
+          },
+          {
+            "path": "dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/code/python/tests/test_structure_exact.py",
+            "sha256": "e1a2398a963432c3b6e9dede60a6dc888b22469f5cf297d7262a866da7e44677"
+          },
+          {
+            "path": "dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/code/rust/src/finite_probability/structure_exact.rs",
+            "sha256": "9c714e91517144cf0fa614c8195bcf2f56fc32c0b4959750a4515f75fd5b6d28"
+          },
+          {
+            "path": "dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/structure_exact_replay.rs",
+            "sha256": "4a042c6534fddd7c9ddaae932edac12ef4be2c708175b08a14a64b4b8c49f702"
+          },
+          {
+            "path": "dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/dag/pfp/structure_checker.py",
+            "sha256": "554c0811b794c03ce8badba12075ccb8b12165f6837acff805af0ceba3b3fea7"
+          },
+          {
+            "path": "dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py",
+            "sha256": "c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f"
+          },
+          {
+            "path": "dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/dag/results/batches/20261019T160201Z_prompts_22_31/tools/prepare.py",
+            "sha256": "d9c366929fc4752c08b97e32aa888c028b6ef081caf2f71cff5a596d6952e3da"
+          },
+          {
+            "path": "dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/check_candidate.py",
+            "sha256": "f3fd12b9280c4b4c9af34eba242d0bce988f8a18bd3893ace4051e41f7838937"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/format_certificate.py",
+            "sha256": "f6ee1fb7d5274f758c205ab64ffa8872732fdba9452c57c18a8d2f640b885aa6"
+          }
+        ],
+        "evidence_status": "Source semantics reviewed; actual native and candidate kernel acceptance remain P2 gates."
+      },
+      {
+        "id": "trace_norm_squared",
+        "ordered_inputs": [
+          "TraceZeroHermitian2"
+        ],
+        "output": "NonnegativeRationalScalar",
+        "arity": 1,
+        "carrier": "Literal named finite or admitted scalar carrier",
+        "coefficient_ring": "Z, Q, Q(i), or Q(sqrt2) exactly as stated",
+        "hypotheses": [
+          "Exact squared norm, not an approximation to an arbitrary spectrum."
+        ],
+        "semantic_predicate": "4(a²+b²) on this family.",
+        "source_pins": [
+          {
+            "path": "dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY__PROVED_LEAN.yaml",
+            "sha256": "761eccf3f94bc8bbb0de1ff53172fa5a8af4068f14eeeddd8f94d8dbe8d890ef"
+          },
+          {
+            "path": "dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/inputs/this_repository/dag/operads/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY.yaml",
+            "sha256": "198cfa9925e3f15c801578769163caaaae77002ac88c57100b21ef5f55c7a5f1"
+          },
+          {
+            "path": "dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/inputs/this_repository/lean4/TraceZeroDuality.lean",
+            "sha256": "faafda639fbe1ea89ef890d9fe55577695627a4062e33127a749aee1cb0ce091"
+          },
+          {
+            "path": "dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/trace_norm_certificate.rs",
+            "sha256": "5e4b1765b7914b98dfd7237710c59730253bb7ae6ba9ecc1c3c8104dc50104b1"
+          },
+          {
+            "path": "dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/TFQ-0263_trace_norm_under_a_supplied_cptp_family.md",
+            "sha256": "0e8dfb0fb3571b6de9ca9073ed9bbcba654962b3885db445df20bd3695402fa5"
+          },
+          {
+            "path": "dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/code/python/src/qm/structure_exact.py",
+            "sha256": "0a35a5782b47e06167fc768320ee7fbf90c99fbdf336cbfaf2d2e1b93f9ca89d"
+          },
+          {
+            "path": "dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/code/python/tests/test_structure_exact.py",
+            "sha256": "e1a2398a963432c3b6e9dede60a6dc888b22469f5cf297d7262a866da7e44677"
+          },
+          {
+            "path": "dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/code/rust/src/finite_probability/structure_exact.rs",
+            "sha256": "9c714e91517144cf0fa614c8195bcf2f56fc32c0b4959750a4515f75fd5b6d28"
+          },
+          {
+            "path": "dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/structure_exact_replay.rs",
+            "sha256": "4a042c6534fddd7c9ddaae932edac12ef4be2c708175b08a14a64b4b8c49f702"
+          },
+          {
+            "path": "dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/dag/pfp/structure_checker.py",
+            "sha256": "554c0811b794c03ce8badba12075ccb8b12165f6837acff805af0ceba3b3fea7"
+          },
+          {
+            "path": "dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py",
+            "sha256": "c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f"
+          },
+          {
+            "path": "dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/dag/results/batches/20261019T160201Z_prompts_22_31/tools/prepare.py",
+            "sha256": "d9c366929fc4752c08b97e32aa888c028b6ef081caf2f71cff5a596d6952e3da"
+          },
+          {
+            "path": "dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/check_candidate.py",
+            "sha256": "f3fd12b9280c4b4c9af34eba242d0bce988f8a18bd3893ace4051e41f7838937"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/format_certificate.py",
+            "sha256": "f6ee1fb7d5274f758c205ab64ffa8872732fdba9452c57c18a8d2f640b885aa6"
+          }
+        ],
+        "evidence_status": "Source semantics reviewed; actual native and candidate kernel acceptance remain P2 gates."
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "pinching_relation_0",
+        "equation_or_predicate": "4a²≤4(a²+b²); positive rescaling preserves an admitted contraction, without selecting its scale.",
+        "typing_conditions": "Literal declared operation domains; Prove the norm-family uniqueness theorem over all dimensions and the full CPTP class. Diagonal pinching and a scale family are necessary controls, not that theorem.",
+        "evidence_status": "P1 candidate; independent native and named kernel gates remain required.",
+        "scope": "Exact squared trace norms for the stated 2x2 trace-zero Hermitian family contract under the admitted diagonal pinching; the scalar inequality and positive rescaling implication are kernel checked.",
+        "source_pins": [
+          {
+            "path": "dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY__PROVED_LEAN.yaml",
+            "sha256": "761eccf3f94bc8bbb0de1ff53172fa5a8af4068f14eeeddd8f94d8dbe8d890ef"
+          },
+          {
+            "path": "dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/inputs/this_repository/dag/operads/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY.yaml",
+            "sha256": "198cfa9925e3f15c801578769163caaaae77002ac88c57100b21ef5f55c7a5f1"
+          },
+          {
+            "path": "dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/inputs/this_repository/lean4/TraceZeroDuality.lean",
+            "sha256": "faafda639fbe1ea89ef890d9fe55577695627a4062e33127a749aee1cb0ce091"
+          },
+          {
+            "path": "dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/trace_norm_certificate.rs",
+            "sha256": "5e4b1765b7914b98dfd7237710c59730253bb7ae6ba9ecc1c3c8104dc50104b1"
+          },
+          {
+            "path": "dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/TFQ-0263_trace_norm_under_a_supplied_cptp_family.md",
+            "sha256": "0e8dfb0fb3571b6de9ca9073ed9bbcba654962b3885db445df20bd3695402fa5"
+          },
+          {
+            "path": "dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/code/python/src/qm/structure_exact.py",
+            "sha256": "0a35a5782b47e06167fc768320ee7fbf90c99fbdf336cbfaf2d2e1b93f9ca89d"
+          },
+          {
+            "path": "dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/code/python/tests/test_structure_exact.py",
+            "sha256": "e1a2398a963432c3b6e9dede60a6dc888b22469f5cf297d7262a866da7e44677"
+          },
+          {
+            "path": "dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/code/rust/src/finite_probability/structure_exact.rs",
+            "sha256": "9c714e91517144cf0fa614c8195bcf2f56fc32c0b4959750a4515f75fd5b6d28"
+          },
+          {
+            "path": "dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/structure_exact_replay.rs",
+            "sha256": "4a042c6534fddd7c9ddaae932edac12ef4be2c708175b08a14a64b4b8c49f702"
+          },
+          {
+            "path": "dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/dag/pfp/structure_checker.py",
+            "sha256": "554c0811b794c03ce8badba12075ccb8b12165f6837acff805af0ceba3b3fea7"
+          },
+          {
+            "path": "dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py",
+            "sha256": "c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f"
+          },
+          {
+            "path": "dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/dag/results/batches/20261019T160201Z_prompts_22_31/tools/prepare.py",
+            "sha256": "d9c366929fc4752c08b97e32aa888c028b6ef081caf2f71cff5a596d6952e3da"
+          },
+          {
+            "path": "dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/check_candidate.py",
+            "sha256": "f3fd12b9280c4b4c9af34eba242d0bce988f8a18bd3893ace4051e41f7838937"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/format_certificate.py",
+            "sha256": "f6ee1fb7d5274f758c205ab64ffa8872732fdba9452c57c18a8d2f640b885aa6"
+          }
+        ]
+      }
+    ],
+    "checked_compositions": [
+      {
+        "outer_operation": "trace_norm_squared",
+        "input_slot": 0,
+        "inner_operation": "pinch_diagonal",
+        "colour_match": "TraceZeroHermitian2 -> TraceZeroHermitian2",
+        "hypothesis_match": "Same declared coordinates, coefficients and context; all operation hypotheses must be carried into the graft.",
+        "licensing_relations": [
+          "pinching_relation_0"
+        ],
+        "evidence_status": "Semantic substitution supported by the retained finite operation traces and separately scoped named kernel statements. A complete refined-carrier operad is not asserted."
+      },
+      {
+        "outer_operation": "pinch_diagonal",
+        "input_slot": 0,
+        "inner_operation": "tracezero_matrix",
+        "colour_match": "TraceZeroHermitian2 -> TraceZeroHermitian2",
+        "hypothesis_match": "Same declared coordinates, coefficients and context; all operation hypotheses must be carried into the graft.",
+        "licensing_relations": [
+          "pinching_relation_0"
+        ],
+        "evidence_status": "Semantic substitution supported by the retained finite operation traces and separately scoped named kernel statements. A complete refined-carrier operad is not asserted."
+      }
+    ],
+    "failed_compositions": [
+      {
+        "proposal": "Promote the selected step to the unrestricted original target",
+        "reason": "Prove the norm-family uniqueness theorem over all dimensions and the full CPTP class. Diagonal pinching and a scale family are necessary controls, not that theorem."
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "Prove the norm-family uniqueness theorem over all dimensions and the full CPTP class. Diagonal pinching and a scale family are necessary controls, not that theorem.",
+      "Prove the full refined-carrier operad identity, substitution, symmetry and coherence laws; mere colour matches do not instantiate that formal structure."
+    ]
+  },
+  "claim_boundary": {
+    "supports": "Exact squared trace norms for the stated 2x2 trace-zero Hermitian family contract under the admitted diagonal pinching; the scalar inequality and positive rescaling implication are kernel checked.",
+    "does_not_support": "Prove the norm-family uniqueness theorem over all dimensions and the full CPTP class. Diagonal pinching and a scale family are necessary controls, not that theorem.",
+    "narrowest_claim": "Exact squared trace norms for the stated 2x2 trace-zero Hermitian family contract under the admitted diagonal pinching; the scalar inequality and positive rescaling implication are kernel checked.",
+    "next_test": "Challenge every output coordinate and strict custody/type boundary, then address the explicit unpaid mathematical bridge."
+  }
+}
