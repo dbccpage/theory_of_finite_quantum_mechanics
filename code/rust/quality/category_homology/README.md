@@ -1104,3 +1104,5 @@ digests and43 groups;cleanup158 has no owned compiled/debug/tmp outputs.
 34 category files,contracts and full goal remain;PR draft.
 
 Checkpoint159:Coend L3A repairs class_of root IDs outside returned classes. Final32/32 faults,459 original category and8 subject tests,19 clean tagged-relation quotient declarations,12 A structural bodies. Failed common build32unrun,prior31/32 survivor and refused proof retained. All-score audit159A/33incomplete;no owned debug/tmp/copied binaries. Raw graph quotient and local-label diagnostics do not admit a category/bifunctor or universal coend.
+
+Checkpoint160:Condensation L2A records caller flags and literal named equations,no higher-cell verification. Checked Result append refuses max-level overflow before mutation.31/31faults,459category+8subject tests,13clean metadata declarations,11A-metric bodies. OldG2/G3E and failed31unrun replay retained. All-score160A/32incomplete,owned build outputs absent.

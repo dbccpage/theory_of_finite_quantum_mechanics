@@ -58,6 +58,8 @@ def capability(path, source):
         return "L3", "Concrete Maybe transport and typed finite observations; generic Monad/marker records do not certify universal algebra or category laws."
     if key == "category_theory/lawvere.rs":
         return "L3", "Exact slot admission and finite raw-table diagnostics with borrowed lookup indexing; no admitted Lawvere theory or mathematical Cauchy-completeness certificate."
+    if key == "category_theory/condensation.rs":
+        return "L2", "Raw named splitting-equation observations and caller-supplied coherence flags with checked metadata updates; no verified higher cells or infinity-Cauchy certificate."
     if key == "category_theory/higher_functor.rs":
         return "L2", "Raw 2-functor map records, signature contracts and supplied boundary/name-membership diagnostics; no admitted higher functor or inverse/coherence certificate."
     if key == "category_theory/functor_composition.rs":
