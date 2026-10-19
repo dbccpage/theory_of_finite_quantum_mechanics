@@ -31,6 +31,8 @@ rules:
         rationale: "Lean toolchain pin file mandated by elan."
       - pattern: "lake-manifest.json"
         rationale: "Lean Lake manifest mandated by Lake package manager."
+      - pattern: "docs/QM_PROBLEM_AND_PROOF_ATLAS.md"
+        rationale: "Canonical 65-question QM Problem and Proof Traceability Atlas."
 
   - id: "rule_2"
     name: "Code File Companion Triad"
@@ -45,3 +47,16 @@ rules:
       - suffix: ".doc.yaml"
         naming: "<file_name>.doc.yaml"
         purpose: "Structured architectural explanation of the file's purpose, design rationale, and operational context to prevent in-source LLM comment bloat."
+
+  - id: "rule_3"
+    name: "QM Atlas Line-of-Code & Symbol Synchronization Gate"
+    description: "Run scripts/verify_qm_atlas_loc.py and code/python/tests/test_qm_atlas_loc.py whenever Lean, Rust, Python, or manuscript files are edited so line ranges and symbol bindings remain synchronized."
+    watched_globs:
+      - "lean4/*.lean"
+      - "code/rust/**/*.rs"
+      - "code/python/**/*.py"
+      - "papers/**/*.md"
+      - "docs/**/*.md"
+    verification_commands:
+      - "python scripts/verify_qm_atlas_loc.py"
+      - "python -m pytest code/python/tests/test_qm_atlas_loc.py"
