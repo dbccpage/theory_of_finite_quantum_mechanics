@@ -3,7 +3,7 @@ schema_version: "2.0.0"
 artifact:
   path: "code/rust/src/category_theory/finite_category_validation.rs"
   language: "Rust"
-  sha256: "3ea0e696b41cb5ab361541206ab5f03b257f2040b387fb3ea06bb224170e891d"
+  sha256: "7f2500dd70aa415eebcb9b30b0cf8f5817443d0357b8395569c6df74cbef963d"
 profile: "Exact"
 level: "L3"
 level_basis: "Conservative bounded-domain classification; no upgrade based solely on terminology or module size."
@@ -19,7 +19,7 @@ composite_grade: "A"
 score_token: "L3A"
 is_complete: true
 grade_ceiling: "A"
-evaluation_timestamp: "2026-10-19T16:32:06.342043+00:00"
+evaluation_timestamp: "2026-10-19T17:35:50.233878+00:00"
 AuthorityEffect: "None"
 claim:
   urn: "urn:tfqm:rust:category_theory:finite_category_validation"
@@ -30,29 +30,34 @@ contract:
   path: null
   note: "Reserved for a later user-requested contract; none created or asserted here."
 evidence:
-  - {"path": "evidence/quality/category_homology/20261018T211047Z/baseline.json", "sha256": "02e9abb5e3fdb94f76fa238407e064031a97ac5e9436c082a0f23ddaa0e2e290", "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."}
-  - {"path": "evidence/quality/category_homology/20261018T211047Z/summary.json", "sha256": "748a82c496c586f11554c4e3c89070f0dc61793bde926d7776163451875c9155", "scope": "Source snapshot binding and complete six-outcome accounting."}
-  - {"path": "evidence/quality/category_homology/20261018T211047Z/mutations.json", "sha256": "2588f75197213ba80b0e18532a2f847946a3a9d19564a986c3391835fd6e58fa", "scope": "Designated critical faults only; outcomes for this file are enumerated below."}
-  - {"path": "evidence/quality/category_homology/20261018T211112Z-metrics/receipt.json", "sha256": "cc0505b71484b2f5c17349b1dbbc6e17c92105b8a5671e770f985df663d25aaf", "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."}
-  - {"path": "evidence/quality/category_homology/20261018T211047Z/dependency_receipt.json", "sha256": "394a42fdbe864d8e2e823425cb28d4d234fc18aeac77f358d795e5e4900e886f", "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred."}
-  - {"path": "code/rust/quality/category_homology/assessments/builder_provider_refresh/finite_category_validation.json", "sha256": "5b556817457d32fbd0e900eaa5b0157119d048ee1a83463ced23a43a5f1d269d", "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping."}
+  - {"path": "evidence/quality/category_homology/20261019T173227Z/baseline.json", "sha256": "c8c098ac2a5d41f455e4e1dc1bbf255c6d7571e468e1c7c4b9ce9cff5bfa2ea5", "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."}
+  - {"path": "evidence/quality/category_homology/20261019T173227Z/summary.json", "sha256": "2755b3036106ad45a8cff16adf64eb9857d76b4b2ee07224bd9a94c2de61b6b2", "scope": "Source snapshot binding and complete six-outcome accounting."}
+  - {"path": "evidence/quality/category_homology/20261019T173227Z/mutations.json", "sha256": "8ea8095ba6c457704659976837f63f4f0af7c6ab7ed44879dad3c9ae9deadba5", "scope": "Designated critical faults only; outcomes for this file are enumerated below."}
+  - {"path": "evidence/quality/category_homology/20261019T173501Z-metrics/receipt.json", "sha256": "44dd8af7ab9354eb6ad86f27a4fc8474d1df23d3a1683f4918170d73e88d59c1", "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."}
+  - {"path": "evidence/quality/category_homology/20261019T173227Z/dependency_receipt.json", "sha256": "416749ea84b5f31308abe284b901ea09633556395d0c8089e413b48106f33158", "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred."}
+  - {"path": "code/rust/quality/category_homology/assessments/finite_category_validation_shared_lookup.json", "sha256": "69549fad6e845c301669a28f2ef3e3cc65db0693a25afd86d1a6026a7ec05d1d", "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping."}
 verification:
   baseline_ok: true
   source_snapshot_unchanged: true
-  compiled_scope: "shared scoped crate build"
+  compiled_scope: "Actual category crate and one-fault copies inside their real parent scopes; no visibility widening or provider replacement"
   local_mutant_ids:
-    - "FC01-names"
-    - "FC02-object-domain"
-    - "FC03-identities"
-    - "FC04-unit-laws"
-    - "FC05-totality-report"
-    - "FC06-closure"
-    - "FC07-boundaries"
-    - "FC08-associativity"
-    - "FC13-table-view"
+    - "RR-43-0"
+    - "RR-44-1"
+    - "RR-45-2"
+    - "RR-46-3"
+    - "RR-47-4"
+    - "RR-48-5"
+    - "RR-49-6"
+    - "RR-50-7"
+    - "RR-51-8"
+    - "RR-52-9"
+    - "RR-53-10"
+    - "RR-54-11"
+    - "RR-55-12"
+    - "RR-56-13"
   dependency_contents_stable: true
 mutation_accounting:
-  killed: 9
+  killed: 14
   survived: 0
   demonstrably_equivalent: 0
   invalid: 0
@@ -63,8 +68,8 @@ structure:
   tool: "syn 3.0.9 source AST"
   source_ast_parsed: true
   expanded_ast: false
-  physical_lines: 569
-  parsed_production_functions: 15
+  physical_lines: 542
+  parsed_production_functions: 13
   max_production_ccn: 8
   cognitive_complexity_upper_bound: 12
   control_nesting: 3

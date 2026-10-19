@@ -5,38 +5,11 @@
 //! closure, boundary compatibility, and associativity.
 
 use super::finite_category::DeclaredFiniteCategory;
+use super::cat_functor::CompositionLookup;
 use super::validation::{
     FiniteCategoryValidation, ValidationLocation, ValidationReport, ValidationSeverity,
     ValidationUnit, ValidationViolation,
 };
-
-/// Sorted borrowed table view. Building a view costs O(c) references once per
-/// checking phase; repeated pair lookups do not allocate temporary Strings.
-struct CompositionLookup<'a> {
-    rows: Vec<((&'a str, &'a str), &'a str)>,
-}
-
-impl<'a> CompositionLookup<'a> {
-    fn new(category: &'a DeclaredFiniteCategory) -> Self {
-        Self {
-            rows: category
-                .compositions
-                .iter()
-                .map(|((first, second), composite)| {
-                    ((first.as_str(), second.as_str()), composite.as_str())
-                })
-                .collect(),
-        }
-    }
-
-    fn compose(&self, first: &str, second: &str) -> Option<&'a str> {
-        let index = self
-            .rows
-            .binary_search_by_key(&(first, second), |(key, _)| *key)
-            .ok()?;
-        self.rows.get(index).map(|(_, composite)| *composite)
-    }
-}
 
 fn violation(
     unit: FiniteCategoryValidation,
@@ -195,7 +168,7 @@ pub fn check_identity_totality(category: &DeclaredFiniteCategory) -> Vec<Validat
 
 pub fn check_identity_laws(category: &DeclaredFiniteCategory) -> Vec<ValidationViolation> {
     let mut violations = Vec::new();
-    let lookup = CompositionLookup::new(category);
+    let lookup = CompositionLookup::new(&category.compositions);
 
     for morphism in category.morphisms.values() {
         let Some(source_identity) = category.identities.get(&morphism.source) else {
@@ -243,7 +216,7 @@ fn identity_composition_violation(
 
 pub fn check_composition_totality(category: &DeclaredFiniteCategory) -> Vec<ValidationViolation> {
     let mut violations = Vec::new();
-    let lookup = CompositionLookup::new(category);
+    let lookup = CompositionLookup::new(&category.compositions);
 
     for first in category.morphisms.values() {
         for second in category.morphisms.values() {
@@ -365,7 +338,7 @@ pub fn check_composition_boundaries(category: &DeclaredFiniteCategory) -> Vec<Va
 /// Exhaustive associativity, O(c + m^3 log(c+1)) work and O(c + violations) storage.
 pub fn check_associativity(category: &DeclaredFiniteCategory) -> Vec<ValidationViolation> {
     let mut violations = Vec::new();
-    let lookup = CompositionLookup::new(category);
+    let lookup = CompositionLookup::new(&category.compositions);
     for first in category.morphisms.values() {
         let seconds = category
             .morphisms
@@ -467,7 +440,7 @@ mod tests {
                 }
             }
         }
-        let lookup = CompositionLookup::new(&category);
+        let lookup = CompositionLookup::new(&category.compositions);
         for first in names.iter().chain(["outside"].iter()) {
             for second in names.iter().chain(["outside"].iter()) {
                 assert_eq!(

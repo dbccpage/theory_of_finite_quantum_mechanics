@@ -801,3 +801,46 @@ that operational finding remains visible separately from metric ceilings.
 source/score digests across 31 groups. Cleanup checkpoint 146 finds no owned
 debug/tmp/compiled outputs; small exact snapshots remain. Contracts and full goal
 remain unfinished; PR draft.
+
+Functor admission checkpoint: 147 completed A assessments and 45 incomplete.
+The immutable owned finite-functor certificate is L5A. Admission requires a
+nonblank correctly bound declaration, exact map domains/known images, preserved
+boundaries, actual identity bindings and every admitted source composite.
+Generic CatFunctor/Category interfaces remain caller contracts; legacy diagnostics
+inspect supplied names/cases and id_ identity naming only. Empty raw domains are
+vacuous. The stale canonical-interface path is corrected to local nominal identity.
+
+The prior G5 B finding is repaired by moving the existing borrowed composition
+view from the category validator to one crate-visible shared helper with private
+fields. Repeated functor and category queries now share exact borrowed ordered
+keys without per-query String copies. All 13 remaining validator signatures/bodies
+match their archived forms except three constructor arguments selecting the same
+underlying table. Nineteen old functor bodies remain unchanged; two composition
+bodies use the view, and a flattened legacy identity diagnostic defers unused
+target-name allocation until a source identity mapping exists. All error values,
+order and category/admission handoffs are preserved. Costs retain string lengths,
+source-table rows, cubic endpoint validation and standard allocator/runtime trust.
+
+Final native 20261019T173227Z detects all 55 designated faults: 41 functor/shared
+lookup and 14 validator. Original 459 category tests, ten functor and nine validator
+controls pass before/after. Oracles cover all eight cyclic C3->C2 maps, exact typed
+admission failures/precedence, immutable ownership, empty endpoints, asymmetric
+Unicode/blank/missing lookup pairs, raw overwrite rules, 32 supplied composition
+presence/result and 64 boundary presence/mismatch cases. All 81 unital three-arrow
+raw tables are compared to independent numeric associativity equations; malformed
+reference/name/unit/closure/boundary/report metadata paths are checked directly.
+Earlier 55/55 source/prose snapshots remain archival. No outcome exclusions.
+
+FiniteFunctor checks ten clean declarations and constructs a real Mathlib Functor
+after typed total-map identity/composition admission. Finite-category/report proofs
+retain their exact claims; Rust normalization/storage/library/compiler refinement
+is explicit source/native evidence, not mechanized extraction or A+.
+All 24 functor and 13 validator bodies fit fresh A metrics. Four unchanged-own-source
+core/builder/arrow/report records retain their own original primary/metrics with
+explicit provider refinement. The validator has a fresh own-source assessment;
+previous own-source/receipt-preservation claims are marked historical.
+
+20261019T173738Z-score-verification passes all 147 completed assessments,
+all 192 source/score digests and 32 groups. Cleanup checkpoint 147 finds no owned
+debug/tmp/compiled outputs; small exact source snapshots remain. Contracts and the
+full goal remain unfinished; the PR remains draft.
