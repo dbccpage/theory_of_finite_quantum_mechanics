@@ -700,3 +700,33 @@ report-model/composition evidence. 20261019T161510Z-score-verification passes
 all 142 completed assessments, all source/score digests and 27 receipt groups.
 Cleanup checkpoint 142 finds no owned debug/tmp/compiled outputs. Small exact
 source snapshots remain. Contracts and the full goal remain unfinished; PR draft.
+
+Builder checkpoint: 143 completed A assessments and 49 incomplete. The fluent
+finite-category builder is L2A; full category-law admission delegates to the
+separately assessed L5 certificate core. Raw edits may overwrite names/bindings;
+generated id_ names are not freshness guarantees and identity_checked enforces
+only the existing-loop boundary. No free-category claim follows from the recipe.
+
+The pinned prior G5 allocation finding is repaired: disjoint map borrowing
+replaces the temporary cloned three-string morphism vector and identity-name
+copies. Source-before-target directives, sorted morphism order and logical
+last-write values are preserved, including stale raw identity collisions.
+Owned tuple-String entry keys remain part of the existing public storage and
+logarithmic access; existing value storage may be reused through clone_from.
+No zero-allocation, allocation-capacity/layout compatibility or benchmark claim.
+Eleven method bodies and all twelve public signatures are unchanged.
+
+Native 20261019T162627Z detects all twenty designated valid faults with no
+unresolved outcomes. Original category tests pass before/after plus independent
+controls: 27 existing-loop boundary combinations, all 64 two-node edge/identity
+subsets, partial tables, unrelated/wrong entries, idempotent completion, observable
+raw collision order, exact walking-arrow table and full-admission/context checks.
+FiniteBuilder checks eleven raw overwrite/optional-boundary/ordered-completion
+statements; existing category/report proofs keep their exact claims. All twelve
+functions fit current A metric ceilings. Two unchanged-own-source category
+records retain original primary/metrics with explicit builder-provider refinement.
+
+20261019T163208Z-score-verification passes all 143 completed assessments,
+all source/score digests and 28 receipt groups. Cleanup checkpoint 143 finds no
+owned debug/tmp/compiled outputs. Historical source snapshots/finding remain.
+Contracts and the full goal remain unfinished; the PR remains draft.

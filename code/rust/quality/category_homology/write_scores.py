@@ -52,6 +52,8 @@ def capability(path, source):
     }
     if key == "category_theory/category_contract_alignment.rs":
         return "L1", "Local static contract-label table and its owned copies; no registry or mechanization checking."
+    if key == "category_theory/finite_category_builder.rs":
+        return "L2", "Fluent raw declarations and a loop-boundary guard; complete law admission delegates to the canonical category certificate constructor."
     if key in foundational:
         return "L5", foundational[key]
     if "#![cfg(any())]" in source:

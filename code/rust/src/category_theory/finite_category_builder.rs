@@ -1,4 +1,8 @@
-//! Ergonomic builder for declared finite categories.
+//! Fluent raw finite-category declarations. AuthorityEffect: None.
+//!
+//! Mutators may overwrite existing names and table entries. Generated `id_`
+//! names are a recipe, not fresh-name guarantees. `identity_checked` checks
+//! only a loop boundary; `build_validated` separately performs full admission.
 
 use super::finite_category::{DeclaredFiniteCategory, ValidatedFiniteCategory};
 use super::validation::ValidationReport;
@@ -76,29 +80,25 @@ impl DeclaredFiniteCategoryBuilder {
     /// Adds the identity compositions forced by the currently declared
     /// identities and morphism boundaries.
     pub fn identity_compositions(mut self) -> Self {
-        let morphisms = self
-            .category
-            .morphisms
-            .values()
-            .cloned()
-            .collect::<Vec<_>>();
-
-        for morphism in morphisms {
-            if let Some(source_id) = self
-                .category
-                .identity_of(&morphism.source)
-                .map(|identity| identity.to_string())
-            {
-                self.category
-                    .set_composition(&source_id, &morphism.name, &morphism.name);
+        let DeclaredFiniteCategory {
+            morphisms,
+            identities,
+            compositions,
+            ..
+        } = &mut self.category;
+        // Borrow separate maps; only owned table keys/new values need copies.
+        for morphism in morphisms.values() {
+            if let Some(source_id) = identities.get(&morphism.source) {
+                compositions
+                    .entry((source_id.clone(), morphism.name.clone()))
+                    .and_modify(|value| value.clone_from(&morphism.name))
+                    .or_insert_with(|| morphism.name.clone());
             }
-            if let Some(target_id) = self
-                .category
-                .identity_of(&morphism.target)
-                .map(|identity| identity.to_string())
-            {
-                self.category
-                    .set_composition(&morphism.name, &target_id, &morphism.name);
+            if let Some(target_id) = identities.get(&morphism.target) {
+                compositions
+                    .entry((morphism.name.clone(), target_id.clone()))
+                    .and_modify(|value| value.clone_from(&morphism.name))
+                    .or_insert_with(|| morphism.name.clone());
             }
         }
 

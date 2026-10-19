@@ -1,0 +1,542 @@
+[
+  {
+    "candidate_path": "code/rust/target/rr/261019T162627/src/category_theory/q/n1.rs",
+    "candidate_sha256": "0fb7f898150417d6e2993b38551e75c67a9c63cdfffedbf24eb48dbecfff2b4c",
+    "id": "RR-1-0",
+    "module": "root_record_replay_1::",
+    "needle": "    pub fn new(name: &str) -> Self {\n        Self {\n            category: DeclaredFiniteCategory::new(name),\n        }\n    }\n",
+    "outcome": "killed",
+    "path": "category_theory/finite_category_builder.rs",
+    "replacement": "    pub fn new(name: &str) -> Self {\n        Self {\n            category: DeclaredFiniteCategory::new(\"lost\"),\n        }\n    }\n",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T162627\\root-record-tests.exe",
+        "root_record_replay_1::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T162627",
+      "elapsed_seconds": 0.062,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T162627Z\\fault-0.log",
+      "log_sha256": "24dbf70d3b61c0e6d70a5ec6cb0482bc4fab3204add21f93630d38ab5e3ba89a",
+      "timed_out": false
+    },
+    "subject_sha256": "258b538e53a8e7c8cb5b4330b56346b6417832fc3ac8e080b5ef7f4cecc8fe04"
+  },
+  {
+    "candidate_path": "code/rust/target/rr/261019T162627/src/category_theory/q/n2.rs",
+    "candidate_sha256": "12df67ead37e4d7ef514ddbd45e7fd9cca274b3073b3aa08dc2777e7b14884be",
+    "id": "RR-2-1",
+    "module": "root_record_replay_2::",
+    "needle": "    pub fn walking_arrow(name: &str, source: &str, target: &str, arrow: &str) -> Self {\n        Self::new(name)\n            .identity_object(source)\n            .identity_object(target)\n            .morphism(arrow, source, target)\n            .identity_compositions()\n    }\n",
+    "outcome": "killed",
+    "path": "category_theory/finite_category_builder.rs",
+    "replacement": "    pub fn walking_arrow(name: &str, source: &str, target: &str, arrow: &str) -> Self {\n        Self::new(name)\n            .identity_object(target)\n            .identity_object(target)\n            .morphism(arrow, source, target)\n            .identity_compositions()\n    }\n",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T162627\\root-record-tests.exe",
+        "root_record_replay_2::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T162627",
+      "elapsed_seconds": 0.016,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T162627Z\\fault-1.log",
+      "log_sha256": "7b940a910ea0306159e2d8d0174c073683b3006d9daa846570c0a17051c1c294",
+      "timed_out": false
+    },
+    "subject_sha256": "258b538e53a8e7c8cb5b4330b56346b6417832fc3ac8e080b5ef7f4cecc8fe04"
+  },
+  {
+    "candidate_path": "code/rust/target/rr/261019T162627/src/category_theory/q/n3.rs",
+    "candidate_sha256": "65b2f4847fd81bed3c1322b6e83d64d404cb79ec8162f5e349e337c5e0ced246",
+    "id": "RR-3-2",
+    "module": "root_record_replay_3::",
+    "needle": "    pub fn object(mut self, object: &str) -> Self {\n        self.category.add_object(object);\n        self\n    }\n",
+    "outcome": "killed",
+    "path": "category_theory/finite_category_builder.rs",
+    "replacement": "    pub fn object(mut self, object: &str) -> Self {\n        \n        self\n    }\n",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T162627\\root-record-tests.exe",
+        "root_record_replay_3::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T162627",
+      "elapsed_seconds": 0.047,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T162627Z\\fault-2.log",
+      "log_sha256": "d32447758dcacdab06517aaa806b1e22102afaebfc9b7c2a21468bb7e9e4b184",
+      "timed_out": false
+    },
+    "subject_sha256": "258b538e53a8e7c8cb5b4330b56346b6417832fc3ac8e080b5ef7f4cecc8fe04"
+  },
+  {
+    "candidate_path": "code/rust/target/rr/261019T162627/src/category_theory/q/n4.rs",
+    "candidate_sha256": "1830f393394034fc98a6a280f127da4fa6fe861df74cc21d5e8d315e51a946cf",
+    "id": "RR-4-3",
+    "module": "root_record_replay_4::",
+    "needle": "    pub fn morphism(mut self, name: &str, source: &str, target: &str) -> Self {\n        self.category.add_morphism(name, source, target);\n        self\n    }\n",
+    "outcome": "killed",
+    "path": "category_theory/finite_category_builder.rs",
+    "replacement": "    pub fn morphism(mut self, name: &str, source: &str, target: &str) -> Self {\n        self.category.add_morphism(name, target, source);\n        self\n    }\n",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T162627\\root-record-tests.exe",
+        "root_record_replay_4::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T162627",
+      "elapsed_seconds": 0.062,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T162627Z\\fault-3.log",
+      "log_sha256": "562c930841e9a016ad0ee2131eb44ca97c3d389bb7ac42243e30546c19071947",
+      "timed_out": false
+    },
+    "subject_sha256": "258b538e53a8e7c8cb5b4330b56346b6417832fc3ac8e080b5ef7f4cecc8fe04"
+  },
+  {
+    "candidate_path": "code/rust/target/rr/261019T162627/src/category_theory/q/n5.rs",
+    "candidate_sha256": "2a1610141ac606ba16a02ca5ab08b49f5e7c02cc85f764624b9f604a5b1d6402",
+    "id": "RR-5-4",
+    "module": "root_record_replay_5::",
+    "needle": "    pub fn identity(mut self, object: &str, morphism: &str) -> Self {\n        self.category.add_identity(object, morphism);\n        self\n    }\n",
+    "outcome": "killed",
+    "path": "category_theory/finite_category_builder.rs",
+    "replacement": "    pub fn identity(mut self, object: &str, morphism: &str) -> Self {\n        self.category.add_identity(morphism, object);\n        self\n    }\n",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T162627\\root-record-tests.exe",
+        "root_record_replay_5::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T162627",
+      "elapsed_seconds": 0.032,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T162627Z\\fault-4.log",
+      "log_sha256": "d507ed3bef3c422b944708894846e6dc986730ae6a104eab3da1dba11054b0a0",
+      "timed_out": false
+    },
+    "subject_sha256": "258b538e53a8e7c8cb5b4330b56346b6417832fc3ac8e080b5ef7f4cecc8fe04"
+  },
+  {
+    "candidate_path": "code/rust/target/rr/261019T162627/src/category_theory/q/n6.rs",
+    "candidate_sha256": "24e0afbbae1d93853f03a9f7fc912b2b4d99c89cb11344b5d52942258738182c",
+    "id": "RR-6-5",
+    "module": "root_record_replay_6::",
+    "needle": "    pub fn identity_checked(mut self, object: &str, morphism: &str) -> Result<Self, String> {\n        if let Some((src, tgt)) = self.category.boundary_of(morphism) {\n            if src != object || tgt != object {\n                return Err(format!(\n                    \"Cannot set {} as identity of {}: boundary is {} \u2192 {}\",\n                    morphism, object, src, tgt\n                ));\n            }\n        } else {\n            self.category.add_morphism(morphism, object, object);\n        }\n\n        self.category.set_identity(object, morphism);\n        Ok(self)\n    }\n",
+    "outcome": "killed",
+    "path": "category_theory/finite_category_builder.rs",
+    "replacement": "    pub fn identity_checked(mut self, object: &str, morphism: &str) -> Result<Self, String> {\n        if let Some((src, tgt)) = self.category.boundary_of(morphism) {\n            if src != object && tgt != object {\n                return Err(format!(\n                    \"Cannot set {} as identity of {}: boundary is {} \u2192 {}\",\n                    morphism, object, src, tgt\n                ));\n            }\n        } else {\n            self.category.add_morphism(morphism, object, object);\n        }\n\n        self.category.set_identity(object, morphism);\n        Ok(self)\n    }\n",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T162627\\root-record-tests.exe",
+        "root_record_replay_6::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T162627",
+      "elapsed_seconds": 0.015,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T162627Z\\fault-5.log",
+      "log_sha256": "ee5f06efd14b4aa602bfe299b895ad33a5c78d63bf5ce79cef7a8a8e4e651d1b",
+      "timed_out": false
+    },
+    "subject_sha256": "258b538e53a8e7c8cb5b4330b56346b6417832fc3ac8e080b5ef7f4cecc8fe04"
+  },
+  {
+    "candidate_path": "code/rust/target/rr/261019T162627/src/category_theory/q/n7.rs",
+    "candidate_sha256": "3cebae0158412fbf2277c45b04cbbc27d89dd079982c0ab4b0982bf5b14421fa",
+    "id": "RR-7-6",
+    "module": "root_record_replay_7::",
+    "needle": "    pub fn identity_checked(mut self, object: &str, morphism: &str) -> Result<Self, String> {\n        if let Some((src, tgt)) = self.category.boundary_of(morphism) {\n            if src != object || tgt != object {\n                return Err(format!(\n                    \"Cannot set {} as identity of {}: boundary is {} \u2192 {}\",\n                    morphism, object, src, tgt\n                ));\n            }\n        } else {\n            self.category.add_morphism(morphism, object, object);\n        }\n\n        self.category.set_identity(object, morphism);\n        Ok(self)\n    }\n",
+    "outcome": "killed",
+    "path": "category_theory/finite_category_builder.rs",
+    "replacement": "    pub fn identity_checked(mut self, object: &str, morphism: &str) -> Result<Self, String> {\n        if let Some((src, tgt)) = self.category.boundary_of(morphism) {\n            if false {\n                return Err(format!(\n                    \"Cannot set {} as identity of {}: boundary is {} \u2192 {}\",\n                    morphism, object, src, tgt\n                ));\n            }\n        } else {\n            self.category.add_morphism(morphism, object, object);\n        }\n\n        self.category.set_identity(object, morphism);\n        Ok(self)\n    }\n",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T162627\\root-record-tests.exe",
+        "root_record_replay_7::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T162627",
+      "elapsed_seconds": 0.031,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T162627Z\\fault-6.log",
+      "log_sha256": "b02a91b67e40831280013a68f120f9f93e1b304b4eb0eebc47a12a8d5f596c3d",
+      "timed_out": false
+    },
+    "subject_sha256": "258b538e53a8e7c8cb5b4330b56346b6417832fc3ac8e080b5ef7f4cecc8fe04"
+  },
+  {
+    "candidate_path": "code/rust/target/rr/261019T162627/src/category_theory/q/n8.rs",
+    "candidate_sha256": "1b0178f09e89cdf7102effa3bc5802315370b0b833e0287d9e6882a30ab65085",
+    "id": "RR-8-7",
+    "module": "root_record_replay_8::",
+    "needle": "    pub fn identity_checked(mut self, object: &str, morphism: &str) -> Result<Self, String> {\n        if let Some((src, tgt)) = self.category.boundary_of(morphism) {\n            if src != object || tgt != object {\n                return Err(format!(\n                    \"Cannot set {} as identity of {}: boundary is {} \u2192 {}\",\n                    morphism, object, src, tgt\n                ));\n            }\n        } else {\n            self.category.add_morphism(morphism, object, object);\n        }\n\n        self.category.set_identity(object, morphism);\n        Ok(self)\n    }\n",
+    "outcome": "killed",
+    "path": "category_theory/finite_category_builder.rs",
+    "replacement": "    pub fn identity_checked(mut self, object: &str, morphism: &str) -> Result<Self, String> {\n        if let Some((src, tgt)) = self.category.boundary_of(morphism) {\n            if src != object || tgt != object {\n                return Err(format!(\n                    \"Cannot set {} as identity of {}: boundary is {} \u2192 {}\",\n                    morphism, object, src, tgt\n                ));\n            }\n        } else {\n            self.category.add_morphism(morphism, object, morphism);\n        }\n\n        self.category.set_identity(object, morphism);\n        Ok(self)\n    }\n",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T162627\\root-record-tests.exe",
+        "root_record_replay_8::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T162627",
+      "elapsed_seconds": 0.016,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T162627Z\\fault-7.log",
+      "log_sha256": "a3c488c5f5cb8cfbd76274dbd8baa2217c6f42f839af6a1b24445f074d5f171d",
+      "timed_out": false
+    },
+    "subject_sha256": "258b538e53a8e7c8cb5b4330b56346b6417832fc3ac8e080b5ef7f4cecc8fe04"
+  },
+  {
+    "candidate_path": "code/rust/target/rr/261019T162627/src/category_theory/q/n9.rs",
+    "candidate_sha256": "5755f9c16c3fe43f733a6967ab2ddb623d3f5f13089d1e6fbb2851ad31299048",
+    "id": "RR-9-8",
+    "module": "root_record_replay_9::",
+    "needle": "    pub fn identity_checked(mut self, object: &str, morphism: &str) -> Result<Self, String> {\n        if let Some((src, tgt)) = self.category.boundary_of(morphism) {\n            if src != object || tgt != object {\n                return Err(format!(\n                    \"Cannot set {} as identity of {}: boundary is {} \u2192 {}\",\n                    morphism, object, src, tgt\n                ));\n            }\n        } else {\n            self.category.add_morphism(morphism, object, object);\n        }\n\n        self.category.set_identity(object, morphism);\n        Ok(self)\n    }\n",
+    "outcome": "killed",
+    "path": "category_theory/finite_category_builder.rs",
+    "replacement": "    pub fn identity_checked(mut self, object: &str, morphism: &str) -> Result<Self, String> {\n        if let Some((src, tgt)) = self.category.boundary_of(morphism) {\n            if src != object || tgt != object {\n                return Err(format!(\n                    \"Cannot set {} as identity of {}: boundary is {} \u2192 {}\",\n                    morphism, object, src, tgt\n                ));\n            }\n        } else {\n            self.category.add_morphism(morphism, object, object);\n        }\n\n        self.category.set_identity(morphism, object);\n        Ok(self)\n    }\n",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T162627\\root-record-tests.exe",
+        "root_record_replay_9::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T162627",
+      "elapsed_seconds": 0.016,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T162627Z\\fault-8.log",
+      "log_sha256": "d7989fc8bf19adfa72a65d1e437d5e00d1c9df13cf84d90d68b6edcfafcc345a",
+      "timed_out": false
+    },
+    "subject_sha256": "258b538e53a8e7c8cb5b4330b56346b6417832fc3ac8e080b5ef7f4cecc8fe04"
+  },
+  {
+    "candidate_path": "code/rust/target/rr/261019T162627/src/category_theory/q/n10.rs",
+    "candidate_sha256": "92afd3a0b36f884ca94e751b44e3af22ac447152a340cf7e866a41927329538e",
+    "id": "RR-10-9",
+    "module": "root_record_replay_10::",
+    "needle": "    pub fn identity_object(mut self, object: &str) -> Self {\n        let id = format!(\"id_{}\", object);\n        self.category.add_morphism(&id, object, object);\n        self.category.set_identity(object, &id);\n        self\n    }\n\n    /// Adds composition second \u2218 first = composite.",
+    "outcome": "killed",
+    "path": "category_theory/finite_category_builder.rs",
+    "replacement": "    pub fn identity_object(mut self, object: &str) -> Self {\n        let id = format!(\"{}\", object);\n        self.category.add_morphism(&id, object, object);\n        self.category.set_identity(object, &id);\n        self\n    }\n\n    /// Adds composition second \u2218 first = composite.",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T162627\\root-record-tests.exe",
+        "root_record_replay_10::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T162627",
+      "elapsed_seconds": 0.015,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T162627Z\\fault-9.log",
+      "log_sha256": "b06d9a0195ceacdb9fad93aeab3adda38bf48fc3fb0ad63129d3a12e8294c2a3",
+      "timed_out": false
+    },
+    "subject_sha256": "258b538e53a8e7c8cb5b4330b56346b6417832fc3ac8e080b5ef7f4cecc8fe04"
+  },
+  {
+    "candidate_path": "code/rust/target/rr/261019T162627/src/category_theory/q/n11.rs",
+    "candidate_sha256": "de2c031816fd3d88286abfef03ec6a04d9fa9f835006069c465af23c9789d177",
+    "id": "RR-11-10",
+    "module": "root_record_replay_11::",
+    "needle": "    pub fn composition(mut self, first: &str, second: &str, composite: &str) -> Self {\n        self.category.set_composition(first, second, composite);\n        self\n    }\n\n    /// Alias for `composition`, emphasizing that `(f, g)` means `g` after `f`.",
+    "outcome": "killed",
+    "path": "category_theory/finite_category_builder.rs",
+    "replacement": "    pub fn composition(mut self, first: &str, second: &str, composite: &str) -> Self {\n        self.category.set_composition(second, first, composite);\n        self\n    }\n\n    /// Alias for `composition`, emphasizing that `(f, g)` means `g` after `f`.",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T162627\\root-record-tests.exe",
+        "root_record_replay_11::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T162627",
+      "elapsed_seconds": 0.016,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T162627Z\\fault-10.log",
+      "log_sha256": "a5a423639bf59ca4eb6a7f266541149b36a9562a17d3cd805d33fef7b034fd7f",
+      "timed_out": false
+    },
+    "subject_sha256": "258b538e53a8e7c8cb5b4330b56346b6417832fc3ac8e080b5ef7f4cecc8fe04"
+  },
+  {
+    "candidate_path": "code/rust/target/rr/261019T162627/src/category_theory/q/n12.rs",
+    "candidate_sha256": "e9327b68493faa28ad9fe5cd7a3afdfa038ea282086c67fc9e5af4296cc4d143",
+    "id": "RR-12-11",
+    "module": "root_record_replay_12::",
+    "needle": "    pub fn path_composition(mut self, f: &str, g: &str, composite: &str) -> Self {\n        self.category.set_composition(f, g, composite);\n        self\n    }\n\n    /// Adds the identity compositions forced by the currently declared\n    /// identities and morphism boundaries.",
+    "outcome": "killed",
+    "path": "category_theory/finite_category_builder.rs",
+    "replacement": "    pub fn path_composition(mut self, f: &str, g: &str, composite: &str) -> Self {\n        self.category.set_composition(g, f, composite);\n        self\n    }\n\n    /// Adds the identity compositions forced by the currently declared\n    /// identities and morphism boundaries.",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T162627\\root-record-tests.exe",
+        "root_record_replay_12::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T162627",
+      "elapsed_seconds": 0.016,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T162627Z\\fault-11.log",
+      "log_sha256": "2b3f84813edaebb664ec2ce2eec26ef758a3bce6b75ef14b8bada24c0b96d14e",
+      "timed_out": false
+    },
+    "subject_sha256": "258b538e53a8e7c8cb5b4330b56346b6417832fc3ac8e080b5ef7f4cecc8fe04"
+  },
+  {
+    "candidate_path": "code/rust/target/rr/261019T162627/src/category_theory/q/n13.rs",
+    "candidate_sha256": "6fd6279bff6d3d8e73eddb2d38d04e2390a558e7ebd7cb23c3b33a00f3837be9",
+    "id": "RR-13-12",
+    "module": "root_record_replay_13::",
+    "needle": "    pub fn identity_compositions(mut self) -> Self {\n        let DeclaredFiniteCategory {\n            morphisms,\n            identities,\n            compositions,\n            ..\n        } = &mut self.category;\n        // Borrow separate maps; only owned table keys/new values need copies.\n        for morphism in morphisms.values() {\n            if let Some(source_id) = identities.get(&morphism.source) {\n                compositions\n                    .entry((source_id.clone(), morphism.name.clone()))\n                    .and_modify(|value| value.clone_from(&morphism.name))\n                    .or_insert_with(|| morphism.name.clone());\n            }\n            if let Some(target_id) = identities.get(&morphism.target) {\n                compositions\n                    .entry((morphism.name.clone(), target_id.clone()))\n                    .and_modify(|value| value.clone_from(&morphism.name))\n                    .or_insert_with(|| morphism.name.clone());\n            }\n        }\n\n        self\n    }\n",
+    "outcome": "killed",
+    "path": "category_theory/finite_category_builder.rs",
+    "replacement": "    pub fn identity_compositions(mut self) -> Self {\n        let DeclaredFiniteCategory {\n            morphisms,\n            identities,\n            compositions,\n            ..\n        } = &mut self.category;\n        // Borrow separate maps; only owned table keys/new values need copies.\n        for morphism in morphisms.values().rev() {\n            if let Some(source_id) = identities.get(&morphism.source) {\n                compositions\n                    .entry((source_id.clone(), morphism.name.clone()))\n                    .and_modify(|value| value.clone_from(&morphism.name))\n                    .or_insert_with(|| morphism.name.clone());\n            }\n            if let Some(target_id) = identities.get(&morphism.target) {\n                compositions\n                    .entry((morphism.name.clone(), target_id.clone()))\n                    .and_modify(|value| value.clone_from(&morphism.name))\n                    .or_insert_with(|| morphism.name.clone());\n            }\n        }\n\n        self\n    }\n",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T162627\\root-record-tests.exe",
+        "root_record_replay_13::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T162627",
+      "elapsed_seconds": 0.015,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T162627Z\\fault-12.log",
+      "log_sha256": "370aa17912173d4f7d16a0cb69a36b2f157ed28c0b0805f189a95f99da7fec75",
+      "timed_out": false
+    },
+    "subject_sha256": "258b538e53a8e7c8cb5b4330b56346b6417832fc3ac8e080b5ef7f4cecc8fe04"
+  },
+  {
+    "candidate_path": "code/rust/target/rr/261019T162627/src/category_theory/q/n14.rs",
+    "candidate_sha256": "ef41d54fb6684a7616272bd05adc27bc582287d48c425e70ed75bb550d83967a",
+    "id": "RR-14-13",
+    "module": "root_record_replay_14::",
+    "needle": "    pub fn identity_compositions(mut self) -> Self {\n        let DeclaredFiniteCategory {\n            morphisms,\n            identities,\n            compositions,\n            ..\n        } = &mut self.category;\n        // Borrow separate maps; only owned table keys/new values need copies.\n        for morphism in morphisms.values() {\n            if let Some(source_id) = identities.get(&morphism.source) {\n                compositions\n                    .entry((source_id.clone(), morphism.name.clone()))\n                    .and_modify(|value| value.clone_from(&morphism.name))\n                    .or_insert_with(|| morphism.name.clone());\n            }\n            if let Some(target_id) = identities.get(&morphism.target) {\n                compositions\n                    .entry((morphism.name.clone(), target_id.clone()))\n                    .and_modify(|value| value.clone_from(&morphism.name))\n                    .or_insert_with(|| morphism.name.clone());\n            }\n        }\n\n        self\n    }\n",
+    "outcome": "killed",
+    "path": "category_theory/finite_category_builder.rs",
+    "replacement": "    pub fn identity_compositions(mut self) -> Self {\n        let DeclaredFiniteCategory {\n            morphisms,\n            identities,\n            compositions,\n            ..\n        } = &mut self.category;\n        // Borrow separate maps; only owned table keys/new values need copies.\n        for morphism in morphisms.values() {\n            if let Some(source_id) = None::<&String> {\n                compositions\n                    .entry((source_id.clone(), morphism.name.clone()))\n                    .and_modify(|value| value.clone_from(&morphism.name))\n                    .or_insert_with(|| morphism.name.clone());\n            }\n            if let Some(target_id) = identities.get(&morphism.target) {\n                compositions\n                    .entry((morphism.name.clone(), target_id.clone()))\n                    .and_modify(|value| value.clone_from(&morphism.name))\n                    .or_insert_with(|| morphism.name.clone());\n            }\n        }\n\n        self\n    }\n",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T162627\\root-record-tests.exe",
+        "root_record_replay_14::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T162627",
+      "elapsed_seconds": 0.031,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T162627Z\\fault-13.log",
+      "log_sha256": "7bd26d1c9fa5f1333f49c4c5f5f3b59df7ffb67934c3e52c4054f079cc4ba122",
+      "timed_out": false
+    },
+    "subject_sha256": "258b538e53a8e7c8cb5b4330b56346b6417832fc3ac8e080b5ef7f4cecc8fe04"
+  },
+  {
+    "candidate_path": "code/rust/target/rr/261019T162627/src/category_theory/q/n15.rs",
+    "candidate_sha256": "e31b8fe25c95fb414d380bb9f3f766cff2a3dcb24174c525d01b5f96798e0f62",
+    "id": "RR-15-14",
+    "module": "root_record_replay_15::",
+    "needle": "    pub fn identity_compositions(mut self) -> Self {\n        let DeclaredFiniteCategory {\n            morphisms,\n            identities,\n            compositions,\n            ..\n        } = &mut self.category;\n        // Borrow separate maps; only owned table keys/new values need copies.\n        for morphism in morphisms.values() {\n            if let Some(source_id) = identities.get(&morphism.source) {\n                compositions\n                    .entry((source_id.clone(), morphism.name.clone()))\n                    .and_modify(|value| value.clone_from(&morphism.name))\n                    .or_insert_with(|| morphism.name.clone());\n            }\n            if let Some(target_id) = identities.get(&morphism.target) {\n                compositions\n                    .entry((morphism.name.clone(), target_id.clone()))\n                    .and_modify(|value| value.clone_from(&morphism.name))\n                    .or_insert_with(|| morphism.name.clone());\n            }\n        }\n\n        self\n    }\n",
+    "outcome": "killed",
+    "path": "category_theory/finite_category_builder.rs",
+    "replacement": "    pub fn identity_compositions(mut self) -> Self {\n        let DeclaredFiniteCategory {\n            morphisms,\n            identities,\n            compositions,\n            ..\n        } = &mut self.category;\n        // Borrow separate maps; only owned table keys/new values need copies.\n        for morphism in morphisms.values() {\n            if let Some(source_id) = identities.get(&morphism.source) {\n                compositions\n                    .entry((source_id.clone(), morphism.name.clone()))\n                    .and_modify(|value| value.clone_from(&morphism.name))\n                    .or_insert_with(|| morphism.name.clone());\n            }\n            if let Some(target_id) = None::<&String> {\n                compositions\n                    .entry((morphism.name.clone(), target_id.clone()))\n                    .and_modify(|value| value.clone_from(&morphism.name))\n                    .or_insert_with(|| morphism.name.clone());\n            }\n        }\n\n        self\n    }\n",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T162627\\root-record-tests.exe",
+        "root_record_replay_15::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T162627",
+      "elapsed_seconds": 0.016,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T162627Z\\fault-14.log",
+      "log_sha256": "e43dfca21a5e048f0c90a1bfc0c4e0a5478750faf9ecd472c3e1f14dbd7377c8",
+      "timed_out": false
+    },
+    "subject_sha256": "258b538e53a8e7c8cb5b4330b56346b6417832fc3ac8e080b5ef7f4cecc8fe04"
+  },
+  {
+    "candidate_path": "code/rust/target/rr/261019T162627/src/category_theory/q/n16.rs",
+    "candidate_sha256": "b96102d8488e17a56a71ed207d8843547c0a9006332818b0fcea72f39120dcfa",
+    "id": "RR-16-15",
+    "module": "root_record_replay_16::",
+    "needle": "    pub fn identity_compositions(mut self) -> Self {\n        let DeclaredFiniteCategory {\n            morphisms,\n            identities,\n            compositions,\n            ..\n        } = &mut self.category;\n        // Borrow separate maps; only owned table keys/new values need copies.\n        for morphism in morphisms.values() {\n            if let Some(source_id) = identities.get(&morphism.source) {\n                compositions\n                    .entry((source_id.clone(), morphism.name.clone()))\n                    .and_modify(|value| value.clone_from(&morphism.name))\n                    .or_insert_with(|| morphism.name.clone());\n            }\n            if let Some(target_id) = identities.get(&morphism.target) {\n                compositions\n                    .entry((morphism.name.clone(), target_id.clone()))\n                    .and_modify(|value| value.clone_from(&morphism.name))\n                    .or_insert_with(|| morphism.name.clone());\n            }\n        }\n\n        self\n    }\n",
+    "outcome": "killed",
+    "path": "category_theory/finite_category_builder.rs",
+    "replacement": "    pub fn identity_compositions(mut self) -> Self {\n        let DeclaredFiniteCategory {\n            morphisms,\n            identities,\n            compositions,\n            ..\n        } = &mut self.category;\n        // Borrow separate maps; only owned table keys/new values need copies.\n        for morphism in morphisms.values() {\n            if let Some(source_id) = identities.get(&morphism.source) {\n                compositions\n                    .entry((morphism.name.clone(), source_id.clone()))\n                    .and_modify(|value| value.clone_from(&morphism.name))\n                    .or_insert_with(|| morphism.name.clone());\n            }\n            if let Some(target_id) = identities.get(&morphism.target) {\n                compositions\n                    .entry((morphism.name.clone(), target_id.clone()))\n                    .and_modify(|value| value.clone_from(&morphism.name))\n                    .or_insert_with(|| morphism.name.clone());\n            }\n        }\n\n        self\n    }\n",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T162627\\root-record-tests.exe",
+        "root_record_replay_16::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T162627",
+      "elapsed_seconds": 0.016,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T162627Z\\fault-15.log",
+      "log_sha256": "edcf2a6ae7655e276af84c1cf7b436592d12cb870e35ef0d175f2368d7a134b2",
+      "timed_out": false
+    },
+    "subject_sha256": "258b538e53a8e7c8cb5b4330b56346b6417832fc3ac8e080b5ef7f4cecc8fe04"
+  },
+  {
+    "candidate_path": "code/rust/target/rr/261019T162627/src/category_theory/q/n17.rs",
+    "candidate_sha256": "c453e1121b9c4c0d9ac7c1cda368a04fdc1e0567e9256eebb60a231ccdaab0b0",
+    "id": "RR-17-16",
+    "module": "root_record_replay_17::",
+    "needle": "    pub fn identity_compositions(mut self) -> Self {\n        let DeclaredFiniteCategory {\n            morphisms,\n            identities,\n            compositions,\n            ..\n        } = &mut self.category;\n        // Borrow separate maps; only owned table keys/new values need copies.\n        for morphism in morphisms.values() {\n            if let Some(source_id) = identities.get(&morphism.source) {\n                compositions\n                    .entry((source_id.clone(), morphism.name.clone()))\n                    .and_modify(|value| value.clone_from(&morphism.name))\n                    .or_insert_with(|| morphism.name.clone());\n            }\n            if let Some(target_id) = identities.get(&morphism.target) {\n                compositions\n                    .entry((morphism.name.clone(), target_id.clone()))\n                    .and_modify(|value| value.clone_from(&morphism.name))\n                    .or_insert_with(|| morphism.name.clone());\n            }\n        }\n\n        self\n    }\n",
+    "outcome": "killed",
+    "path": "category_theory/finite_category_builder.rs",
+    "replacement": "    pub fn identity_compositions(mut self) -> Self {\n        let DeclaredFiniteCategory {\n            morphisms,\n            identities,\n            compositions,\n            ..\n        } = &mut self.category;\n        // Borrow separate maps; only owned table keys/new values need copies.\n        for morphism in morphisms.values() {\n            if let Some(source_id) = identities.get(&morphism.source) {\n                compositions\n                    .entry((source_id.clone(), morphism.name.clone()))\n                    .and_modify(|value| value.clone_from(&morphism.name))\n                    .or_insert_with(|| morphism.name.clone());\n            }\n            if let Some(target_id) = identities.get(&morphism.target) {\n                compositions\n                    .entry((target_id.clone(), morphism.name.clone()))\n                    .and_modify(|value| value.clone_from(&morphism.name))\n                    .or_insert_with(|| morphism.name.clone());\n            }\n        }\n\n        self\n    }\n",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T162627\\root-record-tests.exe",
+        "root_record_replay_17::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T162627",
+      "elapsed_seconds": 0.015,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T162627Z\\fault-16.log",
+      "log_sha256": "85d2d31d2ee7c6a97108cb3ad7fd2852368653bc97abbcc5fc248aefc57de7a6",
+      "timed_out": false
+    },
+    "subject_sha256": "258b538e53a8e7c8cb5b4330b56346b6417832fc3ac8e080b5ef7f4cecc8fe04"
+  },
+  {
+    "candidate_path": "code/rust/target/rr/261019T162627/src/category_theory/q/n18.rs",
+    "candidate_sha256": "63452639e4fca1bafcd9c4f8ce402c282af4951fd2ff3833d7c35f3b3d6d9152",
+    "id": "RR-18-17",
+    "module": "root_record_replay_18::",
+    "needle": "    pub fn identity_compositions(mut self) -> Self {\n        let DeclaredFiniteCategory {\n            morphisms,\n            identities,\n            compositions,\n            ..\n        } = &mut self.category;\n        // Borrow separate maps; only owned table keys/new values need copies.\n        for morphism in morphisms.values() {\n            if let Some(source_id) = identities.get(&morphism.source) {\n                compositions\n                    .entry((source_id.clone(), morphism.name.clone()))\n                    .and_modify(|value| value.clone_from(&morphism.name))\n                    .or_insert_with(|| morphism.name.clone());\n            }\n            if let Some(target_id) = identities.get(&morphism.target) {\n                compositions\n                    .entry((morphism.name.clone(), target_id.clone()))\n                    .and_modify(|value| value.clone_from(&morphism.name))\n                    .or_insert_with(|| morphism.name.clone());\n            }\n        }\n\n        self\n    }\n",
+    "outcome": "killed",
+    "path": "category_theory/finite_category_builder.rs",
+    "replacement": "    pub fn identity_compositions(mut self) -> Self {\n        let DeclaredFiniteCategory {\n            morphisms,\n            identities,\n            compositions,\n            ..\n        } = &mut self.category;\n        // Borrow separate maps; only owned table keys/new values need copies.\n        for morphism in morphisms.values() {\n            if let Some(source_id) = identities.get(&morphism.source) {\n                compositions\n                    .entry((source_id.clone(), morphism.name.clone()))\n                    .and_modify(|_| ())\n                    .or_insert_with(|| morphism.name.clone());\n            }\n            if let Some(target_id) = identities.get(&morphism.target) {\n                compositions\n                    .entry((morphism.name.clone(), target_id.clone()))\n                    .and_modify(|_| ())\n                    .or_insert_with(|| morphism.name.clone());\n            }\n        }\n\n        self\n    }\n",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T162627\\root-record-tests.exe",
+        "root_record_replay_18::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T162627",
+      "elapsed_seconds": 0.016,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T162627Z\\fault-17.log",
+      "log_sha256": "ff20132645919d747859557d8dde992f25591f4dcd37bd2268e81867b976aaca",
+      "timed_out": false
+    },
+    "subject_sha256": "258b538e53a8e7c8cb5b4330b56346b6417832fc3ac8e080b5ef7f4cecc8fe04"
+  },
+  {
+    "candidate_path": "code/rust/target/rr/261019T162627/src/category_theory/q/n19.rs",
+    "candidate_sha256": "04552b85ab831a6359cce7ed5201c1bce95d58a2b85d8e4efc7306d8e063cdd7",
+    "id": "RR-19-18",
+    "module": "root_record_replay_19::",
+    "needle": "    pub fn build(self) -> DeclaredFiniteCategory {\n        self.category\n    }\n",
+    "outcome": "killed",
+    "path": "category_theory/finite_category_builder.rs",
+    "replacement": "    pub fn build(self) -> DeclaredFiniteCategory {\n        DeclaredFiniteCategory::new(\"erased\")\n    }\n",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T162627\\root-record-tests.exe",
+        "root_record_replay_19::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T162627",
+      "elapsed_seconds": 0.016,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T162627Z\\fault-18.log",
+      "log_sha256": "b6a5434c197accb1e5df8fd0b7096066df83b6bb2b11f7b5d7838487e27ae773",
+      "timed_out": false
+    },
+    "subject_sha256": "258b538e53a8e7c8cb5b4330b56346b6417832fc3ac8e080b5ef7f4cecc8fe04"
+  },
+  {
+    "candidate_path": "code/rust/target/rr/261019T162627/src/category_theory/q/n20.rs",
+    "candidate_sha256": "7b42279381af3953de9b71e6597e15c7754b404badc40e9c4ae547fb8a0deb03",
+    "id": "RR-20-19",
+    "module": "root_record_replay_20::",
+    "needle": "    pub fn build_validated(self) -> Result<ValidatedFiniteCategory, ValidationReport> {\n        ValidatedFiniteCategory::try_new(self.category)\n    }\n}\n",
+    "outcome": "killed",
+    "path": "category_theory/finite_category_builder.rs",
+    "replacement": "    pub fn build_validated(self) -> Result<ValidatedFiniteCategory, ValidationReport> {\n        ValidatedFiniteCategory::try_new(DeclaredFiniteCategory::new(\"erased\"))\n    }\n}\n",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T162627\\root-record-tests.exe",
+        "root_record_replay_20::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T162627",
+      "elapsed_seconds": 0.015,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T162627Z\\fault-19.log",
+      "log_sha256": "c8b36c0bb0fd3b551e2aa71d0823a79f010125e79dd0f7d5cc04c17a93a5a88b",
+      "timed_out": false
+    },
+    "subject_sha256": "258b538e53a8e7c8cb5b4330b56346b6417832fc3ac8e080b5ef7f4cecc8fe04"
+  }
+]

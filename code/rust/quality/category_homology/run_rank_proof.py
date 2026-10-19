@@ -18,7 +18,7 @@ from run_audit import ROOT, digest, execute, write_json
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model",choices=("rank","category","metadata","degree","counter","parameters","finite-set","literal-reversal","shape-inventory","root-records","homology-protocols","degree-repair","two-step-complex","simplicial-closure","simplicial-boundary","simplicial-homology","scalar-admission","carrier-dimensions","vector-maps","graph-incidence","validation-inventory","arrow-effects"),default="rank")
+    parser.add_argument("--model",choices=("rank","category","metadata","degree","counter","parameters","finite-set","literal-reversal","shape-inventory","root-records","homology-protocols","degree-repair","two-step-complex","simplicial-closure","simplicial-boundary","simplicial-homology","scalar-admission","carrier-dimensions","vector-maps","graph-incidence","validation-inventory","arrow-effects","finite-builder"),default="rank")
     parser.add_argument("--memory-mb", type=int, default=1024,
         help="Explicit Lean memory limit, from 256 to 2048 MiB; default remains 1024.")
     args = parser.parse_args()
@@ -46,6 +46,10 @@ def main():
         proof_name, import_name, namespace = "DegreeWindow", "Data/Int/Basic", "TFQM.DegreeWindow."
         declarations = ("ordered_span_fits_u32", "same_endpoint_zero", "inverted_span_negative")
         scope = "Exact i32 endpoint difference bounds, zero span and inverted-window refusal premise; no category-law claim."
+    elif model == "finite-builder":
+        proof_name, import_name, namespace = "FiniteBuilder", "Data/List/Basic", "TFQM.FiniteBuilder."
+        declarations = ("update_self", "update_other", "update_shadow", "checked_missing", "checked_existing_iff", "no_identities", "source_only", "target_only", "both_identities", "complete_empty", "complete_append")
+        scope = "Raw table overwrite, optional loop-boundary guard and ordered source/target identity completion; no fresh-name/free-category or Rust allocation theorem."
     elif model == "validation-inventory":
         proof_name, import_name, namespace = "ValidationInventory", "Data/List/Basic", "TFQM.ValidationInventory."
         declarations = ("empty_passes", "empty_name", "allPassed_iff", "add_preserves", "add_pass_count", "add_fail_count", "violation_projection", "violation_fails", "empty_batch", "nonempty_batch", "nonempty_batch_fails", "violation_count_append", "failure_count_bound")

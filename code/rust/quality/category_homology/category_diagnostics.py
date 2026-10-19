@@ -71,6 +71,42 @@ fn logs(w:&Writer)->Vec<(&str,&str,&str)>{w.iter().map(|v|(v.rule_id.as_str(),v.
 }
 '''
 
+BUILDER=r'''
+#[test]fn raw_fluent_routes_and_checked_identity_boundaries(){
+ for name in ["","x","id_x","\0λ"]{
+  let b=DeclaredFiniteCategoryBuilder::new(name);let c=b.clone().build();assert_eq!(c.name,name);assert!(c.objects.is_empty());assert!(c.morphisms.is_empty());assert!(c.identities.is_empty());assert!(c.compositions.is_empty());
+  let c=b.object("extra").morphism("f","A","B").identity("C","i").composition("f","i","z").path_composition("i","f","w").build();assert!(c.has_object("extra"));assert_eq!(c.boundary_of("f"),Some(("A","B")));assert_eq!(c.boundary_of("i"),Some(("C","C")));assert_eq!(c.identity_of("C"),Some("i"));assert_eq!(c.compose("f","i"),Some("z"));assert_eq!(c.compose("i","f"),Some("w"));assert_eq!(c.name,name);
+ }
+ for object in ["","A","\0λ"]{for src in ["","A","\0λ"]{for tgt in ["","A","\0λ"]{
+  let input=DeclaredFiniteCategoryBuilder::new("N").morphism("e",src,tgt);let result=input.identity_checked(object,"e");
+  if src==object&&tgt==object{let c=result.unwrap().build();assert_eq!(c.boundary_of("e"),Some((src,tgt)));assert_eq!(c.identity_of(object),Some("e"));}else{assert_eq!(result.unwrap_err(),format!("Cannot set e as identity of {}: boundary is {} → {}",object,src,tgt));}
+ }}}
+ let c=DeclaredFiniteCategoryBuilder::new("N").identity_checked("A","fresh").unwrap().build();assert_eq!(c.boundary_of("fresh"),Some(("A","A")));assert_eq!(c.identity_of("A"),Some("fresh"));
+ let c=DeclaredFiniteCategoryBuilder::new("N").identity_object("A").build();assert_eq!(c.boundary_of("id_A"),Some(("A","A")));assert_eq!(c.identity_of("A"),Some("id_A"));
+}
+#[test]fn identity_completion_matches_independent_snapshot_update_rules(){
+ let possible=[("p","A","A"),("q","A","B"),("r","B","A"),("s","B","B")];
+ for bits in 0..16usize{for ids in 0..4usize{
+  let mut b=DeclaredFiniteCategoryBuilder::new("raw").object("A").object("B");if ids&1!=0{b=b.identity("A","iA");}if ids&2!=0{b=b.identity("B","iB");}
+  for (i,(name,src,tgt)) in possible.iter().enumerate(){if bits&(1<<i)!=0{b=b.morphism(name,src,tgt);}}
+  b=b.composition("iA","q","wrong").composition("unrelated","pair","keep");let before=b.clone().build();let mut expected=before.compositions.clone();
+  for m in before.morphisms.values(){for (first,second) in [(before.identities.get(&m.source).map(String::as_str),Some(m.name.as_str())),(Some(m.name.as_str()),before.identities.get(&m.target).map(String::as_str))]{if let(Some(f),Some(g))=(first,second){expected.insert((f.to_string(),g.to_string()),m.name.clone());}}}
+  let completed=b.identity_compositions();let actual=completed.clone().build();assert_eq!(actual.name,before.name);assert_eq!(actual.objects,before.objects);assert_eq!(actual.morphisms,before.morphisms);assert_eq!(actual.identities,before.identities);assert_eq!(actual.compositions,expected);assert_eq!(completed.identity_compositions().build().compositions,expected);
+ }}
+ // Publicly reachable stale identity bindings make last-write ordering observable.
+ let c=DeclaredFiniteCategoryBuilder::new("collision").identity("A","e").identity("B","f").morphism("e","A","B").morphism("f","A","B").identity_compositions().build();assert_eq!(c.compose("e","f"),Some("f"));
+}
+#[test]fn walking_recipe_and_fresh_admission_keep_context(){
+ let raw=DeclaredFiniteCategoryBuilder::walking_arrow("W","A","B","f").build();assert_eq!(raw.name,"W");assert_eq!(raw.objects.len(),2);assert_eq!(raw.morphisms.len(),3);assert_eq!(raw.boundary_of("f"),Some(("A","B")));assert_eq!(raw.identities.get("A").unwrap(),"id_A");assert_eq!(raw.identities.get("B").unwrap(),"id_B");
+ let expected=std::collections::BTreeMap::from([(("id_A".to_string(),"id_A".to_string()),"id_A".to_string()),(("id_B".to_string(),"id_B".to_string()),"id_B".to_string()),(("id_A".to_string(),"f".to_string()),"f".to_string()),(("f".to_string(),"id_B".to_string()),"f".to_string())]);assert_eq!(raw.compositions,expected);
+ let c=DeclaredFiniteCategoryBuilder::walking_arrow("W","A","B","f").build_validated().unwrap();assert_eq!(c.declared().name,"W");assert_eq!(c.declared().compositions,expected);assert_eq!(c.declared().boundary_of("f"),Some(("A","B")));
+ let bad=DeclaredFiniteCategoryBuilder::new("bad").object("A").build_validated().unwrap_err();assert!(!bad.all_passed());assert!(bad.failure_count()>0);
+ let raw_bad=DeclaredFiniteCategoryBuilder::new("raw").morphism("f","A","B").build();assert!(raw_bad.identities.is_empty());assert!(raw_bad.has_morphism("f"));
+ let overwritten=DeclaredFiniteCategoryBuilder::new("raw").identity("A","e").morphism("e","A","B").identity_checked("A","e");assert!(overwritten.is_err());
+}
+'''
+
 def challenge(subject):
-    body=VALIDATION if Path(subject['path']).stem=='validation' else ARROW
+    name=Path(subject['path']).stem
+    body=VALIDATION if name=='validation' else BUILDER if name=='finite_category_builder' else ARROW
     return '\n#[cfg(test)] mod independent_record_tests { use super::*;\n'+body+'\n}\n'
