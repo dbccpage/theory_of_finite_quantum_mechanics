@@ -1,0 +1,108 @@
+{
+  "schema": "omega.pfp.finite_qm.dag_prompt_execution_receipt.v1",
+  "authority_effect": "None",
+  "policy_id": "SPK-001",
+  "timestamp_utc": "2026-10-18T07:52:25.887333+00:00",
+  "prompt_file": "dag/prompts/finite_qm_structure_ds_qm080_import_free_trace_norm_core_proved_lean.yaml",
+  "node_id": "DS-QM080-IMPORT-FREE-TRACE-NORM-CORE",
+  "stage": "FINITE_QM_STRUCTURE",
+  "dag_status": "PROVED_LEAN",
+  "operad_family_id": "OP-FINITE_QM_STRUCTURE-DS-QM080-IMPORT-FREE-TRACE-NORM-CORE",
+  "operad_mining_missions_completed": [
+    "M1_CARRIER_AND_NORMAL_FORM_MINING",
+    "M2_OPERAD_MORPHISMS_AND_GRAFTING_TREE_MINING",
+    "M3_CONGRUENCE_IDEALS_AND_DECOY_ANTIBODIES_MINING",
+    "M4_TRI_LANGUAGE_EXACT_WITNESS_MINING"
+  ],
+  "winning_model": "deepseek/deepseek-v4.1-flash",
+  "prompt_tokens": 1145,
+  "completion_tokens": 680,
+  "elapsed_ms": 21969.0,
+  "attempts": [
+    {
+      "attempt_id": "ab_withm3_156_ds-qm080-import-fr_a1",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "state": "settled",
+      "prompt_tokens": 1145,
+      "completion_tokens": 680,
+      "cost_usd": 0.000172116,
+      "generation_id": "gen-1792309924-VqvqoO8WcXQixgKg06Pg",
+      "elapsed_ms": 21969.0,
+      "raw_preview": "{\"p_star_tree_potentials\":[1560,-3120,2340],\"p_star_chord_potential\":2340,\"p_star_holonomy_gamma2\":3120,\"cochain_d1_d0_exact_zero\":true,\"finite_shadow_witness_int\":650,\"countermodel_witness_int\":172,\"unpaid_import_count\":1,\"unconditional_promotion_refused\":true,\"derived_under_policy\":\"SPK-001\",\"auth",
+      "gate_status": "PASS",
+      "gate_failures": []
+    }
+  ],
+  "m3_ablation_comparison": {
+    "without_m3_attempt1": {
+      "model": "deepseek/deepseek-v4.1-flash",
+      "status": "FAIL",
+      "all_gates_passed": false,
+      "failures": [
+        "G4_COUNTERMODEL_MISMATCH:got=180,exp=172"
+      ],
+      "emitted_countermodel_int": 180,
+      "emitted_unconditional_promotion_refused": true,
+      "prompt_tokens": 1108,
+      "completion_tokens": 910,
+      "elapsed_ms": 29032.0
+    },
+    "with_m3_attempt1": {
+      "model": "deepseek/deepseek-v4.1-flash",
+      "status": "PASS",
+      "all_gates_passed": true,
+      "failures": [],
+      "emitted_countermodel_int": 172,
+      "emitted_unconditional_promotion_refused": true,
+      "prompt_tokens": 1145,
+      "completion_tokens": 680,
+      "elapsed_ms": 21969.0
+    }
+  },
+  "typed_model_response": {
+    "p_star_tree_potentials": [
+      1560,
+      -3120,
+      2340
+    ],
+    "p_star_chord_potential": 2340,
+    "p_star_holonomy_gamma2": 3120,
+    "cochain_d1_d0_exact_zero": true,
+    "finite_shadow_witness_int": 650,
+    "countermodel_witness_int": 172,
+    "unpaid_import_count": 1,
+    "unconditional_promotion_refused": true,
+    "derived_under_policy": "SPK-001",
+    "authority_effect": "None",
+    "firewall_status": "stated region only; mints no authority.",
+    "node_id": "DS-QM080-IMPORT-FREE-TRACE-NORM-CORE",
+    "stage": "FINITE_QM_STRUCTURE",
+    "dag_status": "PROVED_LEAN",
+    "operad_family_id": "OP-FINITE_QM_STRUCTURE-DS-QM080-IMPORT-FREE-TRACE-NORM-CORE",
+    "lean4_theorem_anchor": "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.trace_zero_pinching_contraction",
+    "rust_witness_anchor": "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche13_ds_qm_final_16_second_witness_closure_witness",
+    "should_continue": false
+  },
+  "gate_receipt": {
+    "schema": "omega.pfp.finite_qm.gate_receipt.v1",
+    "authority_effect": "None",
+    "work_id": "DS-QM080-IMPORT-FREE-TRACE-NORM-CORE",
+    "status": "PASS",
+    "all_gates_passed": true,
+    "gate_results": {
+      "G0_STRICT_TYPED_JSON_SCHEMA": true,
+      "G1_COCHAIN_EXACT_SEQUENCE_D1D0": true,
+      "G2_P_STAR_TREE_CHORD_SYNDROME_DECODE": true,
+      "G3_FINITE_SHADOW_EXACT_WITNESS": true,
+      "G4_COUNTERMODEL_SEPARATION_WITNESS": true,
+      "G5_IMPORT_BOUNDARY_AND_FIREWALL_HONESTY": true,
+      "G6_TRI_LANGUAGE_ANCHOR_BINDING": true
+    },
+    "failures": [],
+    "elapsed_ms": 0.0342,
+    "receipt_sha256": "973e86eed2afbe0161c84f92c4ff28648ad4e792a11449b1f338360b552dc318"
+  },
+  "updated_papers": [
+    "papers/derivations/21_implementation_core/tfq_0132_trace_norm_certificates.md"
+  ]
+}

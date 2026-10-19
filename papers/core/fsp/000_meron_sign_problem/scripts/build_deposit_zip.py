@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Build the publishable archive from the pinned set, and nothing else.
 
-The deposit IS the SHA256SUMS-pinned file list.
+The deposit IS the sha256sums-pinned file list.
 """
 
 from __future__ import annotations
@@ -17,7 +17,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "code"))
 from deposit_paths import read_manifest, safe_path
 
 ROOT = Path(__file__).resolve().parent.parent
-MANIFEST = ROOT / "SHA256SUMS"
+MANIFEST = ROOT / "sha256sums"
 # The dated archive name determines its fixed member timestamp.
 
 
@@ -55,7 +55,7 @@ def build_archive(out: Path, entries: list[tuple[str, str]]) -> None:
     zip_date = (day.year, day.month, day.day, 12, 0, 0)
     out.parent.mkdir(parents=True, exist_ok=True)
     prefix = ROOT.name
-    members = sorted(entries + [("SHA256SUMS", "")])
+    members = sorted(entries + [("sha256sums", "")])
     with zipfile.ZipFile(
         out, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=9
     ) as archive:

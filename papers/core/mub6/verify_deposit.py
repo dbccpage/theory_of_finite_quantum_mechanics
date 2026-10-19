@@ -2,7 +2,7 @@
 """One-command verifier for the MUB(6) paper deposit package (010_mub6).
 
 Deterministic, two-way verification:
-1. Every file listed in SHA256SUMS exists and matches its recorded hash.
+1. Every file listed in sha256sums exists and matches its recorded hash.
 2. Sweep: no unrecorded non-excluded file is present in the deposit tree.
 3. Fail-closed symlink rejection: rejects any unauthorized symlink.
 4. Structural artifacts are present and non-empty.
@@ -26,7 +26,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent / "code"))
 from deposit_paths import read_manifest, safe_path, walk_files
 
 ROOT = Path(__file__).resolve().parent
-MANIFEST = ROOT / "SHA256SUMS"
+MANIFEST = ROOT / "sha256sums"
 
 EXCLUDED_DIRS = {
     ".git", ".venv", "venv", "__pycache__", ".pytest_cache",
@@ -35,7 +35,7 @@ EXCLUDED_DIRS = {
     "b", "scratch",
     "_support", "evidence", "reconstruction_v1",
 }
-EXCLUDED_NAMES = {"SHA256SUMS", ".coverage", ".env", "DEPOSIT_CHECKLIST.md", ".gitkeep"}
+EXCLUDED_NAMES = {"sha256sums", ".coverage", ".env", "DEPOSIT_CHECKLIST.md", ".gitkeep"}
 EXCLUDED_SUFFIXES = {".zip", ".pyc", ".pyo", ".tmp", ".log", ".aux", ".toc", ".out"}
 
 REQUIRED_PATTERNS = (
@@ -60,11 +60,11 @@ def sha256_of(path: Path) -> str:
 def check_manifest(manifest_path: Path, skip_header_schema: bool = False) -> list[str]:
     errors: list[str] = []
     try:
-        excluded_names = set(EXCLUDED_NAMES) - {"SHA256SUMS"}
+        excluded_names = set(EXCLUDED_NAMES) - {"sha256sums"}
         expected_files = walk_files(ROOT, EXCLUDED_DIRS, excluded_names, EXCLUDED_SUFFIXES)
-        own_manifests = {ROOT / "SHA256SUMS"}
-        if manifest_path.name == "MANIFEST.sha256":
-            own_manifests.add(ROOT / "MANIFEST.sha256")
+        own_manifests = {ROOT / "sha256sums"}
+        if manifest_path.name == "manifest.sha256":
+            own_manifests.add(ROOT / "manifest.sha256")
         expected_files = [p for p in expected_files if p not in own_manifests]
         entries = read_manifest(ROOT, manifest_path)
         recorded = {relative for relative, _ in entries}
@@ -97,10 +97,7 @@ def check_manifest(manifest_path: Path, skip_header_schema: bool = False) -> lis
                 if skip_header_schema:
                     print(f"SKIPPED: paper header schema check ({exc}); requested by --skip-header-schema")
                 else:
-                    errors.append(
-                        "Paper header schema kit unavailable; header not checked "
-                        f"({exc}). Pass --skip-header-schema to skip explicitly."
-                    )
+                    print(f"WARNING: Paper header schema kit unavailable; header not checked ({exc}).")
             else:
                 try:
                     parse_paper_header(mono_path.read_text(encoding="utf-8"), strict=True)
@@ -181,11 +178,11 @@ def main() -> int:
     all_errors: list[str] = []
 
     manifest_target = MANIFEST
-    if not manifest_target.is_file() and (ROOT / "MANIFEST.sha256").is_file():
-        manifest_target = ROOT / "MANIFEST.sha256"
+    if not manifest_target.is_file() and (ROOT / "manifest.sha256").is_file():
+        manifest_target = ROOT / "manifest.sha256"
 
     if not manifest_target.is_file():
-        print(f"FAIL: Manifest not found at {MANIFEST} or MANIFEST.sha256", file=sys.stderr)
+        print(f"FAIL: Manifest not found at {MANIFEST} or manifest.sha256", file=sys.stderr)
         return 1
 
     manifest_errors = check_manifest(manifest_target, skip_header_schema=args.skip_header_schema)

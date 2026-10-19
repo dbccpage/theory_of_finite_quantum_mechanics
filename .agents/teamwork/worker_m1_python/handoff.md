@@ -44,7 +44,7 @@
    - We removed `code/python/src/mub/src/` and relocated `code/python/src/mub/tests/` to `code/python/tests/mub/`.
    - We updated `test_remediation_b1_b11.py:463` and `target_q_degree8_and_gns.py` to identify repository root via `pyproject.toml` or `.git`.
    - We updated the 4 test files to resolve Lean files from `lean4/` directly.
-   - We resealed `papers/core/mub6/mub6_publication.zip` via `papers/core/mub6/scripts/build_publication_release.py` and refreshed `SHA256SUMS` and `MANIFEST.sha256` via `regen_sha256sums.py`.
+   - We resealed `papers/core/mub6/mub6_publication.zip` via `papers/core/mub6/scripts/build_publication_release.py` and refreshed `sha256sums` and `manifest.sha256` via `regen_sha256sums.py`.
 
 2. **FSP Remediation**:
    - We copied `meron_hubbard.sql` and schemas into `code/python/src/fsp/databases/` and `code/python/src/databases/`.
@@ -54,7 +54,7 @@
    - We removed old test directories and duplicate library files from `papers/core/fsp/code/` and purged `papers/core/fsp/code/__init__.py`.
    - We updated `papers/core/fsp/normal_forms/fermion_sign_nf_evaluator.py` to point to canonical `code/python/src/fsp/fermion_sign_nf_evaluator.py`, and updated `fermion_sign_nf_evaluator.py::main` to dynamically locate `papers/core/fsp/normal_forms`.
    - In `papers/core/fsp/verify_deposit.py`, we updated the pytest command to `-n 4 -q` and pointed test discovery to `code/python/tests/fsp/`.
-   - We regenerated `papers/core/fsp/SHA256SUMS` (112 manifest entries).
+   - We regenerated `papers/core/fsp/sha256sums` (112 manifest entries).
 
 3. **Majorana Remediation**:
    - We purged 105 extraneous duplicate library files and folders from `papers/core/majorana/code/`, leaving only `majorana_evaluator.py` and `tests/`.
@@ -66,7 +66,7 @@
      - Implemented native `build_tetron_carrier` for disk, cylinder, and torus surfaces.
      - Implemented native Gray-code coset search in `compute_coset_weight` with budget capping.
    - Updated `papers/core/majorana/verify_deposit.py` pytest invocation to `-n 4 -q` to prevent Windows IPC stalls.
-   - Updated `papers/core/majorana/SHA256SUMS` via `python papers/core/majorana/verify_deposit.py --update-sums` (21 package files).
+   - Updated `papers/core/majorana/sha256sums` via `python papers/core/majorana/verify_deposit.py --update-sums` (21 package files).
 
 ---
 
@@ -123,7 +123,7 @@ Milestone M1 (Python Consolidation) is completely implemented, verified, and pas
    [1/7] Checking required files...
      -> All required files present.
    [2/7] Checking SHA256 checksums...
-     -> SHA256SUMS verified.
+     -> sha256sums verified.
    [3/7] Checking .zenodo.json...
      -> .zenodo.json valid.
    [4/7] Checking declared claim evidence references...
@@ -181,4 +181,4 @@ Milestone M1 (Python Consolidation) is completely implemented, verified, and pas
 - `code/python/src/mub/`, `code/python/tests/mub/`
 - `code/python/src/fsp/`, `code/python/tests/fsp/`
 - `code/python/src/majorana/`, `papers/core/majorana/code/majorana_evaluator.py`
-- `papers/core/mub6/SHA256SUMS`, `papers/core/fsp/SHA256SUMS`, `papers/core/majorana/SHA256SUMS`
+- `papers/core/mub6/sha256sums`, `papers/core/fsp/sha256sums`, `papers/core/majorana/sha256sums`

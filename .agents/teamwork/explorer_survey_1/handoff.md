@@ -18,7 +18,7 @@ Direct inspection of `papers/core/mub6/` reveals 30 files and 12 subdirectories:
   - `scripts/`: 20 Python/Lua/Node scripts including reflection scripts (`reflect_szollosi_rectangular.py`, `reflect_szollosi_gauged.py`, `reflect_szollosi_native.py`, `reflect_balanced_quadratic.py`, `reflect_quadratic_lift.py`), certificate generators (`compute_r7_singular_segre_sos.py`, `compute_subgap_r6_closure_receipt.py`), and manifest tools (`regen_sha256sums.py`, `verify_publication.py`).
   - `tests/`: 11 test files (`test_36_check_publication_audit.py`, `test_conj2_all_slice_configurations.py`, `test_gauged_reflection_wire.py`, `test_option_b_premises.py`, `test_publication_release.py`, `test_rectangular_reflection_wire.py`, `test_remediation_b1_b11.py`, `test_remediation_m1_m4.py`, `test_route_c_fourier_landing.py`, `test_zenodo_release_archive.py`, `conftest.py`).
   - `artifacts/`, `documentation/`, `prompts/`, `research/`, `scratch/`, `zenodo/`.
-  - Verification & Manifests: `verify_deposit.py` (9,182 bytes), `SHA256SUMS` (104,231 bytes), `MANIFEST.sha256` (104,149 bytes).
+  - Verification & Manifests: `verify_deposit.py` (9,182 bytes), `sha256sums` (104,231 bytes), `manifest.sha256` (104,149 bytes).
 
 ### 1.2 Inspection of Target Python Areas (`code/python/src/` and `code/python/tests/`)
 - Existing `code/python/src/mub/` contains:
@@ -72,8 +72,8 @@ Direct inspection of `papers/core/mub6/` reveals 30 files and 12 subdirectories:
 ### 1.5 Inspection of Deposit Verification (`verify_deposit.py`)
 - Running `python papers/core/mub6/verify_deposit.py --skip-header-schema` fails with 9 issues:
   - 5 Hash mismatches:
-    - `code/conj2_symbolic_verification/PROOF_CONJ2B.md`
-    - `code/conj2_symbolic_verification/SZOLLOSI_2CIRCULANT_PROOF.md`
+    - `code/conj2_symbolic_verification/proof_conj2b.md`
+    - `code/conj2_symbolic_verification/szollosi_2circulant_proof.md`
     - `code/src/main.rs`
     - `research/subgap_r7_adversarial_audit_note.md`
     - `research/subgap_r7_genuine_separation_specification.md`
@@ -82,14 +82,14 @@ Direct inspection of `papers/core/mub6/` reveals 30 files and 12 subdirectories:
     - `research/five_derivations_20261015/generic_replay.json`
     - `theory_of_finite_mub6.jsonl`
     - `theory_of_finite_mub6.md`
-- Script `papers/core/mub6/scripts/regen_sha256sums.py` is present and designed to recompute `MANIFEST.sha256` and `SHA256SUMS` to restore fail-closed integrity after planned migrations.
+- Script `papers/core/mub6/scripts/regen_sha256sums.py` is present and designed to recompute `manifest.sha256` and `sha256sums` to restore fail-closed integrity after planned migrations.
 
 ---
 
 ## 2. Logic Chain
 
 1. **Premise 1 (R1 & R2 Consolidation):** Reusable library code currently residing in `papers/core/mub6/code/` (`mub_verify`, `conj2_symbolic_verification`, `deposit_paths.py`) has already been mirrored into `code/python/src/mub/`, but duplicate copies still exist inside `papers/core/mub6/code/`, and an anomalous test copy exists in `code/python/src/mub/tests/`.
-2. **Premise 2 (R2 Paper Deposit Purity):** To satisfy repository layout rules (`PROJECT.md` and Clean Architecture), `code/python/src/mub/tests/` must be moved to `code/python/tests/` (or consolidated with `papers/core/mub6/tests/`), and `code/python/src/mub/src/` must be purged. `papers/core/mub6/` must import reusable library logic directly from `code/python/src/mub` or via path resolution, and `SHA256SUMS`/`MANIFEST.sha256` must be regenerated via `regen_sha256sums.py`.
+2. **Premise 2 (R2 Paper Deposit Purity):** To satisfy repository layout rules (`PROJECT.md` and Clean Architecture), `code/python/src/mub/tests/` must be moved to `code/python/tests/` (or consolidated with `papers/core/mub6/tests/`), and `code/python/src/mub/src/` must be purged. `papers/core/mub6/` must import reusable library logic directly from `code/python/src/mub` or via path resolution, and `sha256sums`/`manifest.sha256` must be regenerated via `regen_sha256sums.py`.
 3. **Premise 3 (Test Failures Root Cause):** The 6 pytest failures in `papers/core/mub6/tests/` stem directly from:
    - External path assumptions (`repo_root / "lean4" / "research_programs" / "mub6"` instead of local or root `lean4/`).
    - Hardcoded repo-name lookups (`(p / "omega_engine").is_dir()` in `target_q_degree8_and_gns.py:1140`).
@@ -199,7 +199,7 @@ Direct inspection of `papers/core/mub6/` reveals 30 files and 12 subdirectories:
 
 ### 5.3 Lean 4 Formalization Plan (Fulfilling R3.3)
 1. Import the verified, sorry-free MUB(6) Lean formalizations from `C:\Users\a343o\source\repos\the_symbol_game\lean4\research_programs\mub6` into the root `lean4/` directory.
-2. Adhere to the flat layout required by `ORIGINAL_REQUEST.md`.
+2. Adhere to the flat layout required by `original_request.md`.
 3. Register the newly added modules in `lean4/lakefile.lean`.
 4. Run `AuditMub6Axioms.lean` to verify that all theorems depend only on standard Lean logic (`propext`, `Classical.choice`, `Quot.sound`) with 0 `sorry`, 0 `admit`, and 0 custom axioms.
 

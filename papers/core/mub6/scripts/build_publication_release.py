@@ -28,15 +28,15 @@ def digest(data: bytes) -> str:
 def build() -> None:
     payload = {name: (ROOT / name).read_bytes() for name in FILES}
     payload["README.md"] = (ROOT / "docs/preprint_readme.md").read_bytes()
-    expected_stage = set(payload) | {"MANIFEST.sha256", "SHA256SUMS"}
+    expected_stage = set(payload) | {"manifest.sha256", "sha256sums"}
     if STAGE.exists():
         actual = {p.relative_to(STAGE).as_posix() for p in STAGE.rglob("*") if p.is_file() and "__pycache__" not in p.parts}
         if actual - expected_stage:
             raise ValueError(f"Unmanaged staging files: {sorted(actual - expected_stage)}")
     def manifest(items):
         return "".join(f"{digest(data)}  {name}\n" for name, data in sorted(items.items())).encode("utf-8")
-    payload["MANIFEST.sha256"] = manifest(payload)
-    payload["SHA256SUMS"] = manifest(payload)
+    payload["manifest.sha256"] = manifest(payload)
+    payload["sha256sums"] = manifest(payload)
     for name, data in payload.items():
         destination = safe_path(STAGE, name)
         destination.parent.mkdir(parents=True, exist_ok=True)

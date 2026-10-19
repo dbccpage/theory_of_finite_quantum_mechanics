@@ -12,14 +12,14 @@ The Theory of Finite Quantum Mechanics repository maintains exact, computational
 |---|---|---|---|---|
 | F01 | MUB6 Python Library Migration | Remove duplicate library trees in `papers/core/mub6/code/` (`mub_verify`, `conj2_symbolic_verification`); clean up `code/python/src/mub/`. | M1 | Survey E1 |
 | F02 | MUB6 Python Path Normalization | Fix path lookups in `papers/core/mub6/tests/` to eliminate external `omega_engine` and relative Lean path failures. | M1 | Survey E1 |
-| F03 | MUB6 Deposit Checksum Refresh | Update `SHA256SUMS` and `MANIFEST.sha256` via `regen_sha256sums.py` so `verify_deposit.py` passes cleanly. | M1 | Survey E1 |
+| F03 | MUB6 Deposit Checksum Refresh | Update `sha256sums` and `manifest.sha256` via `regen_sha256sums.py` so `verify_deposit.py` passes cleanly. | M1 | Survey E1 |
 | F04 | FSP Python SQL Path Fix | Fix `exact_models.py` database path to load `meron_hubbard.sql` from package resources. | M1 | Survey E2 |
 | F05 | FSP Python Test Relocation | Move 46 test files from `papers/core/fsp/code/tests` and `code/python/src/fsp/tests` into `code/python/tests/fsp/`. | M1 | Survey E2 |
 | F06 | FSP Python Code De-duplication | Purge duplicate library code from `papers/core/fsp/code/` and resolve Python 3.14 `code` package shadowing. | M1 | Survey E2 |
-| F07 | FSP Deposit Checksum Refresh | Update `papers/core/fsp/SHA256SUMS` (including line ending normalization) to ensure `verify_deposit.py` passes cleanly. | M1 | Survey E2 |
+| F07 | FSP Deposit Checksum Refresh | Update `papers/core/fsp/sha256sums` (including line ending normalization) to ensure `verify_deposit.py` passes cleanly. | M1 | Survey E2 |
 | F08 | Majorana Python Library Migration | Purge 103 duplicate library files from `papers/core/majorana/code/`, retaining evaluators/shims importing from `code/python/src/majorana/`. | M1 | Survey E3 |
 | F09 | Majorana Legacy Import Decoupling | Decouple `majorana_evaluator.py` and `gf2_matrix.py` from nonexistent `omega_engine_operating_system` to native `gf2_terminalizer.py`. | M1 | Survey E3 |
-| F10 | Majorana Deposit Checksum Refresh | Refresh `papers/core/majorana/SHA256SUMS` for updated `README.md` and test configs so `verify_deposit.py` passes cleanly. | M1 | Survey E3 |
+| F10 | Majorana Deposit Checksum Refresh | Refresh `papers/core/majorana/sha256sums` for updated `README.md` and test configs so `verify_deposit.py` passes cleanly. | M1 | Survey E3 |
 | F11 | MUB6 Rust Crate Verification | Verify that crate `tfqm_mub` in `code/rust/src/mub/` (109 modules) and 52 tests in `code/rust/tests/omega_mub/` compile and pass. | M2 | Survey E1 |
 | F12 | Majorana Rust Crate Verification | Verify that crate `tfqm_majorana` in `code/rust/src/majorana/` (20 modules) compiles and passes tests under `code/rust/`. | M2 | Survey E3 |
 | F13 | FSP Rust Crate Creation (`tfqm_fsp`) | Implement `code/rust/src/fsp/` subcrate covering Fock space CAR, GIN posting lists, BQNF terminal routing, exact Hubbard determinants, and normal forms. | M2 | Survey E2 |
@@ -46,10 +46,10 @@ The Theory of Finite Quantum Mechanics repository maintains exact, computational
 | # | Name | Scope | Dependencies | Status |
 |---|---|---|---|---|
 | M1 | Python Consolidation & Verification | Migrate library code to `code/python/src/`, fix SQL/Lean paths, relocate tests to `code/python/tests/`, update `verify_deposit.py` and checksums for all 3 papers. | None | DONE (All tests & 3 deposits pass) |
-| M2 | Rust Tri-Paper Derivation Crate Completion | Create `tfqm_fsp` crate, wire `src/fsp` into `code/rust/Cargo.toml` and `code/rust/src/lib.rs`, verify `tfqm_mub` and `tfqm_majorana`, pass `cargo test`. | None | IN_PROGRESS (36adb1c9) |
+| M2 | Rust Tri-Paper Derivation Crate Completion | Create `tfqm_fsp` crate, wire `src/fsp` into `code/rust/Cargo.toml` and `code/rust/src/lib.rs`, verify `tfqm_mub` and `tfqm_majorana`, pass `cargo test`. | None | DONE (`tfqm_fsp` created, `lib.rs` wired, `cargo test` passed) |
 | M3 | Lean 4 Root Project Consolidation | Consolidate MUB6 (184 files), FSP (26 files), and Majorana (2 files) into root `lean4/`, register in `lakefile.lean`, pass `lake build` with zero `sorry`/`admit`. | None | IN_PROGRESS (5385c5b6) |
-| M4 | Tri-Language Traceability Matrix | Generate comprehensive verification report and traceability matrix mapping every claim and derivation across Python, Rust, and Lean 4 under strict claim hygiene. | M1, M2, M3 | PLANNED |
-| E2E | E2E Testing Track | Design and build opaque-box E2E test suite (Tiers 1-4) derived from `ORIGINAL_REQUEST.md` and publish `TEST_READY.md`. | None | DONE (45/45 tests pass, TEST_READY.md) |
+| M4 | Tri-Language Traceability Matrix | Generate comprehensive verification report and traceability matrix mapping every claim and derivation across Python, Rust, and Lean 4 under strict claim hygiene. | M1, M2, M3 | DONE (TRACEABILITY_MATRIX.md created, Claim Hygiene compliant) |
+| E2E | E2E Testing Track | Design and build opaque-box E2E test suite (Tiers 1-4) derived from `original_request.md` and publish `TEST_READY.md`. | None | DONE (45/45 tests pass, TEST_READY.md) |
 | Final | Final Milestone & Adversarial Hardening | Pass 100% of E2E test suite (Tiers 1-4) and complete Tier 5 white-box adversarial hardening with Challengers. | M1, M2, M3, M4, E2E | PLANNED |
 
 ## Interface Contracts

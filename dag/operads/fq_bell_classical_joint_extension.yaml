@@ -1,0 +1,1431 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: FQ-BELL-CLASSICAL-JOINT-EXTENSION
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: If four binary response variables A0,A1,B0,B1 in {-1,+1} share one positive normalized
+    joint law then every deterministic assignment has S in {-2,2} and |S| <= 2 by convexity. By Fine,
+    existence of the common joint law matches satisfaction of the CHSH family under compatibility assumptions;
+    physical conclusions additionally need locality and setting independence.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions:
+  - positive normalized joint law (assumption)
+  - locality and setting independence for physical reading (assumption)
+  source_bottleneck: Both the 16 deterministic assignments in {-2, 2} and the inductive convexity step
+    over arbitrary non-negative weight lists are mechanized in DerivationDagQMClosure.lean.
+  source_refs:
+  - omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md:1332
+  paper_refs:
+  - dag/derivations/12_finite_qm_structure/tfq_0256_product_defect_on_a_bipartite_weight_table.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  historical_paper_refs:
+  - papers/derivations/12_finite_qm_structure/tfq_0256_product_defect_on_a_bipartite_weight_table.md
+  paper_relocations:
+  - from: papers/derivations/12_finite_qm_structure/tfq_0256_product_defect_on_a_bipartite_weight_table.md
+    to: dag/derivations/12_finite_qm_structure/tfq_0256_product_defect_on_a_bipartite_weight_table.md
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/12_finite_qm_structure/tfq_0256_product_defect_on_a_bipartite_weight_table.md
+    sha256: 46895ff97eb57f2038d3dd7606750286c98f5c7dad43d09b35129dbd0ec3e589
+source_provenance:
+  repository: this_repository
+  commit: 642f5b95a116da6df805adbd745a4826c6739c2b
+  path: dag/prompts/finite_qm_core_fq_bell_classical_joint_extension_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: chshVal
+  line: 7
+  signature_excerpt: 'def chshVal (a1 a2 b1 b2 : Int) : Int'
+  source: lean4/QuantumCorrelation.lean
+  repository: this_repository
+  source_sha256: 1efde024ea6004e14e564be78cc1e9c5238919f28f2ddc1a1fbf6b58f6fa00bd
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: chshDet
+  line: 457
+  signature_excerpt: 'def chshDet (a0 a1 b0 b1 : Bool) : Int'
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: totalWeight
+  line: 461
+  signature_excerpt: 'def totalWeight : List (Nat × Int) → Int'
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: weightedChshSum
+  line: 465
+  signature_excerpt: 'def weightedChshSum : List (Nat × Int) → Int'
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: classical_chsh_bound
+  line: 10
+  signature_excerpt: "theorem classical_chsh_bound (a1 a2 b1 b2 : Int)\n    (ha1 : a1 = 1 ∨ a1 = -1)\n\
+    \    (ha2 : a2 = 1 ∨ a2 = -1)\n    (hb1 : b1 = 1 ∨ b1 = -1)\n    (hb2 : b2 = 1 ∨ b2 = -1) :\n    chshVal\
+    \ a1 a2 b1 b2 ≤ 2 ∧ chshVal a1 a2 b1 b2 ≥ -2"
+  source: lean4/QuantumCorrelation.lean
+  repository: this_repository
+  source_sha256: 1efde024ea6004e14e564be78cc1e9c5238919f28f2ddc1a1fbf6b58f6fa00bd
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: chsh_classical_bound
+  line: 63
+  signature_excerpt: "theorem chsh_classical_bound (a0 a1 b0 b1 : Int)\n    (ha0 : a0 = 1 ∨ a0 = -1) (ha1\
+    \ : a1 = 1 ∨ a1 = -1)\n    (hb0 : b0 = 1 ∨ b0 = -1) (hb1 : b1 = 1 ∨ b1 = -1) :\n    let S"
+  source: lean4/H053EverettForkingTree.lean
+  repository: this_repository
+  source_sha256: 8730f0cdd32665b8aa902d31fe2bc2b99a5dcde35cf3ccb8f99019c952698b59
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: fq_bell_classical_joint_extension_convex_bound
+  line: 469
+  signature_excerpt: "theorem fq_bell_classical_joint_extension_convex_bound\n    (ws : List (Nat × Int))\n\
+    \    (h_bounds : ∀ p ∈ ws, -2 ≤ p.2 ∧ p.2 ≤ 2) :\n    (∀ a0 a1 b0 b1 : Bool, -2 ≤ chshDet a0 a1 b0\
+    \ b1 ∧ chshDet a0 a1 b0 b1 ≤ 2) ∧\n    (-2 * totalWeight ws ≤ weightedChshSum ws ∧ weightedChshSum\
+    \ ws ≤ 2 * totalWeight ws)"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/quantum_mechanics/QuantumCorrelation.lean::classical_chsh_bound
+  availability: local
+  symbol: classical_chsh_bound
+  path: lean4/QuantumCorrelation.lean
+  repository: this_repository
+  sha256: 1efde024ea6004e14e564be78cc1e9c5238919f28f2ddc1a1fbf6b58f6fa00bd
+  declaration_status: declaration_found_not_proof_checked
+  line: 10
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/H053EverettForkingTree.lean::chsh_classical_bound
+  availability: local
+  symbol: chsh_classical_bound
+  path: lean4/H053EverettForkingTree.lean
+  repository: this_repository
+  sha256: 8730f0cdd32665b8aa902d31fe2bc2b99a5dcde35cf3ccb8f99019c952698b59
+  declaration_status: declaration_found_not_proof_checked
+  line: 63
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_bell_classical_joint_extension_convex_bound
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.fq_bell_classical_joint_extension_convex_bound
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 469
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_quantum_physics/src/finite_bell_extension.rs::FiniteBellProblem
+  availability: external
+  symbol: FiniteBellProblem
+  path: omega_engine/crates_rs/omega_quantum_physics/src/finite_bell_extension.rs
+  repository: the_symbol_game
+  sha256: ead6bc113ed0fe37ea9102858e8e2addecfe3ccf8153b4c4e697849daab02a81
+  declaration_status: declaration_found_not_executed
+  line: 35
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_quantum_physics/src/finite_chsh_correlations.rs::JointAssignment
+  availability: external
+  symbol: JointAssignment
+  path: omega_engine/crates_rs/omega_quantum_physics/src/finite_chsh_correlations.rs
+  repository: the_symbol_game
+  sha256: 3e82ca7f262b19a5a311e1953f1331e10129bb7a8fa1400cc6ba4e2ba04d1db1
+  declaration_status: declaration_found_not_executed
+  line: 92
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche2_row_sparsity_bell_torsion_and_structure_witness
+  availability: external
+  symbol: verify_tranche2_row_sparsity_bell_torsion_and_structure_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 518
+  role: source_lead_only
+- original_ref: lean4/BellClassicalJointExtension.lean::QuantumMechanics.BellClassicalJointExtension.normalized_four_correlation_bound
+  availability: local
+  path: lean4/BellClassicalJointExtension.lean
+  repository: this_repository
+  symbol: QuantumMechanics.BellClassicalJointExtension.normalized_four_correlation_bound
+  sha256: 28491fd420502713fcf3aaa27389cfc0ad1e4d67b58e62f7fd2d47f84e1a5bfa
+  role: pilot_domain_result
+  declaration_status: checked_in_pilot_see_bound_receipt
+  receipt: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/checks.json
+- original_ref: code/rust/src/finite_probability/bell_joint_extension.rs::certify_joint_law
+  availability: local
+  path: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T225117Z_operad_expectation/inputs/code/rust/src/finite_probability/bell_joint_extension.rs
+  repository: this_repository
+  symbol: certify_joint_law
+  sha256: bf9ddd931a430c5bb58c0b81c48fc55bd003c5374c2f4006e2243e754a51e361
+  role: pilot_domain_result
+  declaration_status: checked_in_pilot_see_bound_receipt
+  receipt: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/checks.json
+  source_path_at_pilot: code/rust/src/finite_probability/bell_joint_extension.rs
+  retention_note: Immutable P0 snapshot of the exact historical pilot source; current implementation has
+    a separate binding.
+- original_ref: code/python/src/qm/bell_joint_extension.py::certify_joint_law
+  availability: local
+  path: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T225117Z_operad_expectation/inputs/code/python/src/qm/bell_joint_extension.py
+  repository: this_repository
+  symbol: certify_joint_law
+  sha256: 4d309219c604e0af26df7d9285400d62cb7655c6e7beacfc52baf0c4e358e362
+  role: pilot_domain_result
+  declaration_status: checked_in_pilot_see_bound_receipt
+  receipt: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/checks.json
+  source_path_at_pilot: code/python/src/qm/bell_joint_extension.py
+  retention_note: Immutable P0 snapshot of the exact historical pilot source; current implementation has
+    a separate binding.
+- original_ref: lean4/BellOperad.lean::QuantumMechanics.BellOperad.bell_bound
+  availability: local
+  path: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T225117Z_operad_expectation/p1/construction/lean4/BellOperad.lean
+  repository: this_repository
+  symbol: QuantumMechanics.BellOperad.bell_bound
+  sha256: 351f796de252eabd5c527d05bb529ec1c4f78a3ed670ca259d59b3122c3a322a
+  role: historical_staged_scoped_result
+  declaration_status: native_checked_in_bound_run
+  receipt: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T225117Z_operad_expectation/p2/host_check.json
+  source_path_at_run: lean4/BellOperad.lean
+- original_ref: code/python/src/qm/bell_joint_extension.py::verify_joint_certificate
+  availability: local
+  path: code/python/src/qm/bell_joint_extension.py
+  repository: this_repository
+  symbol: verify_joint_certificate
+  sha256: a3a258f0711b4ad486fd39d22d39e3bdc8d94fc796144dbcd6d1a8173b2580c8
+  role: staged_scoped_result
+  declaration_status: native_checked_in_bound_run
+  receipt: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T225117Z_operad_expectation/p2/host_check.json
+- original_ref: code/rust/src/finite_probability/bell_joint_extension.rs::verify_joint_certificate
+  availability: local
+  path: code/rust/src/finite_probability/bell_joint_extension.rs
+  repository: this_repository
+  symbol: verify_joint_certificate
+  sha256: 7f39ff980338ff7aac06ac6189d58b4ca02384b99f9e6916a04520dafc245e75
+  role: staged_scoped_result
+  declaration_status: native_checked_in_bound_run
+  receipt: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T225117Z_operad_expectation/p2/host_check.json
+- original_ref: lean4/BellOperad.lean::QuantumMechanics.BellOperad.bell_nullary_graft
+  availability: local
+  path: lean4/BellOperad.lean
+  repository: this_repository
+  symbol: QuantumMechanics.BellOperad.bell_nullary_graft
+  sha256: b116dd9a1ad3661e2ccbee63434951714d902cb526851913f74ee30b648903d4
+  role: reviewed_nullary_composition
+  declaration_status: compiled_in_fresh_bound_review; original theorem scope retained
+  receipt: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/reviews/20261018_claim_audit/validation/lean_receipt.json
+- original_ref: lean4/BellSeparatorExtension.lean::QuantumMechanics.BellSeparatorExtension.separator_iff_chsh
+  availability: local
+  path: lean4/BellSeparatorExtension.lean
+  repository: this_repository
+  symbol: QuantumMechanics.BellSeparatorExtension.separator_iff_chsh
+  sha256: c21ccd3a22ff1db8f1c4fac76c2097bf86b1c5ab295c1ca0e8e861bedf60eef6
+  role: checked_separator_work_unit
+  declaration_status: See fresh audit receipt and literal theorem/native scope; no full formal rational
+    converse.
+  receipt: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/reviews/20261018_separator_audit/validation/lean_receipt.json
+- original_ref: code/python/src/qm/bell_separator_extension.py::construct_extension
+  availability: local
+  path: code/python/src/qm/bell_separator_extension.py
+  repository: this_repository
+  symbol: construct_extension
+  sha256: c9fb01de9c4cc0ce5cff62f539ef6727b5ad7c603dc37d697721ca990c1ffb3d
+  role: checked_separator_work_unit
+  declaration_status: See fresh audit receipt and literal theorem/native scope; no full formal rational
+    converse.
+  receipt: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/reviews/20261018_separator_audit/validation/python_receipt.json
+- original_ref: code/rust/src/finite_probability/bell_separator_extension.rs::construct_extension
+  availability: local
+  path: code/rust/src/finite_probability/bell_separator_extension.rs
+  repository: this_repository
+  symbol: construct_extension
+  sha256: 1d9f2cb809fa83d2178e162ac20711711938f8b845f76f321a3fd7b8f25cdb42
+  role: checked_separator_work_unit
+  declaration_status: See fresh audit receipt and literal theorem/native scope; no full formal rational
+    converse.
+  receipt: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/reviews/20261018_separator_audit/validation/rust_receipt.json
+presentation:
+  status: scoped_integer_separator_reduction_and_exact_native_extension_certificates_checked_full_formal_converse_open
+  scope: Previous Bell function-substitution semantics plus new separator-refined generator interpretations.
+    Integer interval/CHSH equivalence and positive cell systems are kernel checked; rational extensions
+    and projections are independently checked on retained inputs.
+  colours:
+  - id: Omega
+    meaning: Four binary responses (A0,A1,B0,B1).
+  - id: JointLaw
+    meaning: Nonnegative rational weights on Omega with total one.
+  - id: ResponseMap4
+    meaning: Functions Omega -> Q^4 in the ordered product coordinates 00,01,10,11.
+  - id: CorrelatorTuple
+    meaning: Q^4 in the same ordered coordinates.
+  - id: Scalar
+    meaning: Q.
+  - id: ScoreMasses
+    meaning: (Pplus,Pminus) in Q>=0^2 with Pplus+Pminus=1.
+  - id: BoundCertificate
+    meaning: A scalar S and nonnegative lower/upper slacks proving -2 <= S <= 2.
+  - id: CompatiblePairData
+    meaning: Four exact rational binary pair tables with nonnegative unit mass and consistent one-party
+      marginals.
+  - id: FeasiblePairData
+    meaning: CompatiblePairData whose computed common separator interval is nonempty; this is a refined
+      input domain.
+  - id: FeasibleSeparatorProblem
+    meaning: Semantic wrapper retaining the same pair data and the nonempty setting intervals.
+  - id: SeparatorChoice
+    meaning: Semantic wrapper retaining pair data and a separator ++ mass r in both intervals.
+  - id: CompatibleTriplePair
+    meaning: Two nonnegative normalized triple laws with matching A0,A1 separator, retaining their observed
+      pair-data provenance.
+  - id: FacetValues8
+    meaning: Eight rational signed CHSH values in mask order 1,2,4,7,8,11,13,14.
+  generators:
+  - id: response_products
+    ordered_inputs: []
+    output: ResponseMap4
+    arity: 0
+    carrier: Omega={-1,+1}^4
+    coefficient_ring: Q
+    hypotheses:
+    - one shared joint law where used
+    - nonnegative normalized weights where used
+    source_pins:
+    - path: lean4/BellOperad.lean
+      sha256: b116dd9a1ad3661e2ccbee63434951714d902cb526851913f74ee30b648903d4
+    - path: code/python/src/qm/bell_joint_extension.py
+      sha256: a3a258f0711b4ad486fd39d22d39e3bdc8d94fc796144dbcd6d1a8173b2580c8
+    - path: code/rust/src/finite_probability/bell_joint_extension.rs
+      sha256: 7f39ff980338ff7aac06ac6189d58b4ca02384b99f9e6916a04520dafc245e75
+    semantic_predicate: The nullary map omega |-> (a0*b0,a0*b1,a1*b0,a1*b1).
+    evidence_status: native_exact_Q_API_checked_and_Lean_integer_numerator_model_compiled
+    previous_source_pins:
+    - path: lean4/BellClassicalJointExtension.lean
+      sha256: 28491fd420502713fcf3aaa27389cfc0ad1e4d67b58e62f7fd2d47f84e1a5bfa
+    - path: code/python/src/qm/bell_joint_extension.py
+      sha256: 4d309219c604e0af26df7d9285400d62cb7655c6e7beacfc52baf0c4e358e362
+    - path: code/rust/src/finite_probability/bell_joint_extension.rs
+      sha256: bf9ddd931a430c5bb58c0b81c48fc55bd003c5374c2f4006e2243e754a51e361
+    source_pin_history:
+    - - path: code/python/src/qm/bell_joint_extension.py
+        sha256: a3a258f0711b4ad486fd39d22d39e3bdc8d94fc796144dbcd6d1a8173b2580c8
+      - path: code/rust/src/finite_probability/bell_joint_extension.rs
+        sha256: 7f39ff980338ff7aac06ac6189d58b4ca02384b99f9e6916a04520dafc245e75
+      - path: lean4/BellOperad.lean
+        sha256: 351f796de252eabd5c527d05bb529ec1c4f78a3ed670ca259d59b3122c3a322a
+  - id: joint_expectation
+    ordered_inputs:
+    - JointLaw
+    - ResponseMap4
+    output: CorrelatorTuple
+    arity: 2
+    carrier: Omega={-1,+1}^4
+    coefficient_ring: Q
+    hypotheses:
+    - one shared joint law where used
+    - nonnegative normalized weights where used
+    source_pins:
+    - path: lean4/BellOperad.lean
+      sha256: b116dd9a1ad3661e2ccbee63434951714d902cb526851913f74ee30b648903d4
+    - path: code/python/src/qm/bell_joint_extension.py
+      sha256: a3a258f0711b4ad486fd39d22d39e3bdc8d94fc796144dbcd6d1a8173b2580c8
+    - path: code/rust/src/finite_probability/bell_joint_extension.rs
+      sha256: 7f39ff980338ff7aac06ac6189d58b4ca02384b99f9e6916a04520dafc245e75
+    semantic_predicate: Sum p(omega)*f(omega) coordinatewise on the same Omega.
+    evidence_status: native_exact_Q_API_checked_and_Lean_integer_numerator_model_compiled
+    previous_source_pins:
+    - path: lean4/BellClassicalJointExtension.lean
+      sha256: 28491fd420502713fcf3aaa27389cfc0ad1e4d67b58e62f7fd2d47f84e1a5bfa
+    - path: code/python/src/qm/bell_joint_extension.py
+      sha256: 4d309219c604e0af26df7d9285400d62cb7655c6e7beacfc52baf0c4e358e362
+    - path: code/rust/src/finite_probability/bell_joint_extension.rs
+      sha256: bf9ddd931a430c5bb58c0b81c48fc55bd003c5374c2f4006e2243e754a51e361
+    source_pin_history:
+    - - path: code/python/src/qm/bell_joint_extension.py
+        sha256: a3a258f0711b4ad486fd39d22d39e3bdc8d94fc796144dbcd6d1a8173b2580c8
+      - path: code/rust/src/finite_probability/bell_joint_extension.rs
+        sha256: 7f39ff980338ff7aac06ac6189d58b4ca02384b99f9e6916a04520dafc245e75
+      - path: lean4/BellOperad.lean
+        sha256: 351f796de252eabd5c527d05bb529ec1c4f78a3ed670ca259d59b3122c3a322a
+  - id: chsh_linear
+    ordered_inputs:
+    - CorrelatorTuple
+    output: Scalar
+    arity: 1
+    carrier: Omega={-1,+1}^4
+    coefficient_ring: Q
+    hypotheses:
+    - one shared joint law where used
+    - nonnegative normalized weights where used
+    source_pins:
+    - path: lean4/BellOperad.lean
+      sha256: b116dd9a1ad3661e2ccbee63434951714d902cb526851913f74ee30b648903d4
+    - path: code/python/src/qm/bell_joint_extension.py
+      sha256: a3a258f0711b4ad486fd39d22d39e3bdc8d94fc796144dbcd6d1a8173b2580c8
+    - path: code/rust/src/finite_probability/bell_joint_extension.rs
+      sha256: 7f39ff980338ff7aac06ac6189d58b4ca02384b99f9e6916a04520dafc245e75
+    semantic_predicate: (e00,e01,e10,e11) |-> e00+e01+e10-e11.
+    evidence_status: native_exact_Q_API_checked_and_Lean_integer_numerator_model_compiled
+    previous_source_pins:
+    - path: lean4/BellClassicalJointExtension.lean
+      sha256: 28491fd420502713fcf3aaa27389cfc0ad1e4d67b58e62f7fd2d47f84e1a5bfa
+    - path: code/python/src/qm/bell_joint_extension.py
+      sha256: 4d309219c604e0af26df7d9285400d62cb7655c6e7beacfc52baf0c4e358e362
+    - path: code/rust/src/finite_probability/bell_joint_extension.rs
+      sha256: bf9ddd931a430c5bb58c0b81c48fc55bd003c5374c2f4006e2243e754a51e361
+    source_pin_history:
+    - - path: code/python/src/qm/bell_joint_extension.py
+        sha256: a3a258f0711b4ad486fd39d22d39e3bdc8d94fc796144dbcd6d1a8173b2580c8
+      - path: code/rust/src/finite_probability/bell_joint_extension.rs
+        sha256: 7f39ff980338ff7aac06ac6189d58b4ca02384b99f9e6916a04520dafc245e75
+      - path: lean4/BellOperad.lean
+        sha256: 351f796de252eabd5c527d05bb529ec1c4f78a3ed670ca259d59b3122c3a322a
+  - id: score_partition_mass
+    ordered_inputs:
+    - JointLaw
+    output: ScoreMasses
+    arity: 1
+    carrier: Omega={-1,+1}^4
+    coefficient_ring: Q
+    hypotheses:
+    - one shared joint law where used
+    - nonnegative normalized weights where used
+    source_pins:
+    - path: lean4/BellOperad.lean
+      sha256: b116dd9a1ad3661e2ccbee63434951714d902cb526851913f74ee30b648903d4
+    - path: code/python/src/qm/bell_joint_extension.py
+      sha256: a3a258f0711b4ad486fd39d22d39e3bdc8d94fc796144dbcd6d1a8173b2580c8
+    - path: code/rust/src/finite_probability/bell_joint_extension.rs
+      sha256: 7f39ff980338ff7aac06ac6189d58b4ca02384b99f9e6916a04520dafc245e75
+    semantic_predicate: Partition Omega by its deterministic CHSH score into +2 and -2; sum p on each
+      class.
+    evidence_status: native_certificate_partition_route_checked; general_bound_from_pilot; no_separate_Lean_partition_slack_theorem
+    previous_source_pins:
+    - path: lean4/BellClassicalJointExtension.lean
+      sha256: 28491fd420502713fcf3aaa27389cfc0ad1e4d67b58e62f7fd2d47f84e1a5bfa
+    - path: code/python/src/qm/bell_joint_extension.py
+      sha256: 4d309219c604e0af26df7d9285400d62cb7655c6e7beacfc52baf0c4e358e362
+    - path: code/rust/src/finite_probability/bell_joint_extension.rs
+      sha256: bf9ddd931a430c5bb58c0b81c48fc55bd003c5374c2f4006e2243e754a51e361
+    source_pin_history:
+    - - path: code/python/src/qm/bell_joint_extension.py
+        sha256: a3a258f0711b4ad486fd39d22d39e3bdc8d94fc796144dbcd6d1a8173b2580c8
+      - path: code/rust/src/finite_probability/bell_joint_extension.rs
+        sha256: 7f39ff980338ff7aac06ac6189d58b4ca02384b99f9e6916a04520dafc245e75
+      - path: lean4/BellOperad.lean
+        sha256: 351f796de252eabd5c527d05bb529ec1c4f78a3ed670ca259d59b3122c3a322a
+  - id: slack_certificate
+    ordered_inputs:
+    - ScoreMasses
+    output: BoundCertificate
+    arity: 1
+    carrier: Omega={-1,+1}^4
+    coefficient_ring: Q
+    hypotheses:
+    - one shared joint law where used
+    - nonnegative normalized weights where used
+    source_pins:
+    - path: lean4/BellOperad.lean
+      sha256: b116dd9a1ad3661e2ccbee63434951714d902cb526851913f74ee30b648903d4
+    - path: code/python/src/qm/bell_joint_extension.py
+      sha256: a3a258f0711b4ad486fd39d22d39e3bdc8d94fc796144dbcd6d1a8173b2580c8
+    - path: code/rust/src/finite_probability/bell_joint_extension.rs
+      sha256: 7f39ff980338ff7aac06ac6189d58b4ca02384b99f9e6916a04520dafc245e75
+    semantic_predicate: S=2*(Pplus-Pminus), lower_slack=4*Pplus, upper_slack=4*Pminus.
+    evidence_status: native_certificate_partition_route_checked; general_bound_from_pilot; no_separate_Lean_partition_slack_theorem
+    previous_source_pins:
+    - path: lean4/BellClassicalJointExtension.lean
+      sha256: 28491fd420502713fcf3aaa27389cfc0ad1e4d67b58e62f7fd2d47f84e1a5bfa
+    - path: code/python/src/qm/bell_joint_extension.py
+      sha256: 4d309219c604e0af26df7d9285400d62cb7655c6e7beacfc52baf0c4e358e362
+    - path: code/rust/src/finite_probability/bell_joint_extension.rs
+      sha256: bf9ddd931a430c5bb58c0b81c48fc55bd003c5374c2f4006e2243e754a51e361
+    source_pin_history:
+    - - path: code/python/src/qm/bell_joint_extension.py
+        sha256: a3a258f0711b4ad486fd39d22d39e3bdc8d94fc796144dbcd6d1a8173b2580c8
+      - path: code/rust/src/finite_probability/bell_joint_extension.rs
+        sha256: 7f39ff980338ff7aac06ac6189d58b4ca02384b99f9e6916a04520dafc245e75
+      - path: lean4/BellOperad.lean
+        sha256: 351f796de252eabd5c527d05bb529ec1c4f78a3ed670ca259d59b3122c3a322a
+  - id: pair_marginalize
+    ordered_inputs:
+    - JointLaw
+    output: CompatiblePairData
+    arity: 1
+    carrier: binary 2x2 pair scenario on A0,A1,B0,B1
+    coefficient_ring: Q natively; common-scale Int numerator model in Lean
+    hypotheses:
+    - nonnegative normalized 16-state joint law
+    - fixed A0,A1,B0,B1 mask convention shared by all projections
+    source_pins:
+    - path: code/python/src/qm/bell_separator_extension.py
+      sha256: c9fb01de9c4cc0ce5cff62f539ef6727b5ad7c603dc37d697721ca990c1ffb3d
+    - path: code/rust/src/finite_probability/bell_separator_extension.rs
+      sha256: 1d9f2cb809fa83d2178e162ac20711711938f8b845f76f321a3fd7b8f25cdb42
+    - path: lean4/BellSeparatorExtension.lean
+      sha256: c21ccd3a22ff1db8f1c4fac76c2097bf86b1c5ab295c1ca0e8e861bedf60eef6
+    semantic_predicate: Project one 16-state law to the four observed pair tables.
+    evidence_status: exact native composition checked on retained inputs; probability-subtype operad interpretation
+      remains a scoped semantic wrapper
+    implementation_note: Context-retaining mathematical wrapper; construct_extension retains pair data
+      in its local environment. No new formal Lean probability-subtype operad instance is claimed.
+    language_evidence:
+      Python: project_joint
+      Rust: project_joint
+      Lean: No general Lean probability-table projection theorem in this module.
+    audit_scope: Finite native chain checked on retained inputs; ambient function identities do not supply
+      missing probability-table or subtype theorems.
+  - id: separator_intervals
+    ordered_inputs:
+    - FeasiblePairData
+    output: FeasibleSeparatorProblem
+    arity: 1
+    carrier: binary 2x2 pair scenario on A0,A1,B0,B1
+    coefficient_ring: Q natively; common-scale Int numerator model in Lean
+    hypotheses:
+    - same retained compatible pair data
+    - nonempty common separator interval
+    source_pins:
+    - path: code/python/src/qm/bell_separator_extension.py
+      sha256: c9fb01de9c4cc0ce5cff62f539ef6727b5ad7c603dc37d697721ca990c1ffb3d
+    - path: code/rust/src/finite_probability/bell_separator_extension.rs
+      sha256: 1d9f2cb809fa83d2178e162ac20711711938f8b845f76f321a3fd7b8f25cdb42
+    - path: lean4/BellSeparatorExtension.lean
+      sha256: c21ccd3a22ff1db8f1c4fac76c2097bf86b1c5ab295c1ca0e8e861bedf60eef6
+    semantic_predicate: Retain input pairs and both setting Frechet intervals, with a nonempty intersection.
+    evidence_status: exact native composition checked on retained inputs; probability-subtype operad interpretation
+      remains a scoped semantic wrapper
+    implementation_note: Context-retaining mathematical wrapper; construct_extension retains pair data
+      in its local environment. No new formal Lean probability-subtype operad instance is claimed.
+    language_evidence:
+      Python: separator_intervals
+      Rust: separator_intervals
+      Lean: lower, upper, overlap_iff_chsh on common-scale Int PairCounts.
+    audit_scope: Finite native chain checked on retained inputs; ambient function identities do not supply
+      missing probability-table or subtype theorems.
+  - id: select_separator
+    ordered_inputs:
+    - FeasibleSeparatorProblem
+    output: SeparatorChoice
+    arity: 1
+    carrier: binary 2x2 pair scenario on A0,A1,B0,B1
+    coefficient_ring: Q natively; common-scale Int numerator model in Lean
+    hypotheses:
+    - same retained compatible pair data
+    - nonempty common separator interval
+    source_pins:
+    - path: code/python/src/qm/bell_separator_extension.py
+      sha256: c9fb01de9c4cc0ce5cff62f539ef6727b5ad7c603dc37d697721ca990c1ffb3d
+    - path: code/rust/src/finite_probability/bell_separator_extension.rs
+      sha256: 1d9f2cb809fa83d2178e162ac20711711938f8b845f76f321a3fd7b8f25cdb42
+    - path: lean4/BellSeparatorExtension.lean
+      sha256: c21ccd3a22ff1db8f1c4fac76c2097bf86b1c5ab295c1ca0e8e861bedf60eef6
+    semantic_predicate: Retain input pairs and any r in the common interval; native constructor selects
+      the lower endpoint.
+    evidence_status: exact native composition checked on retained inputs; probability-subtype operad interpretation
+      remains a scoped semantic wrapper
+    implementation_note: Context-retaining mathematical wrapper; construct_extension retains pair data
+      in its local environment. No new formal Lean probability-subtype operad instance is claimed.
+    language_evidence:
+      Python: construct_extension (local lower-endpoint selection)
+      Rust: construct_extension (local lower-endpoint selection)
+      Lean: HasSeparator existence witness; not a serialized probability typestate API.
+    audit_scope: Finite native chain checked on retained inputs; ambient function identities do not supply
+      missing probability-table or subtype theorems.
+  - id: split_triples
+    ordered_inputs:
+    - SeparatorChoice
+    output: CompatibleTriplePair
+    arity: 1
+    carrier: binary 2x2 pair scenario on A0,A1,B0,B1
+    coefficient_ring: Q natively; common-scale Int numerator model in Lean
+    hypotheses:
+    - same retained compatible pair data
+    - one r in both setting intervals
+    source_pins:
+    - path: code/python/src/qm/bell_separator_extension.py
+      sha256: c9fb01de9c4cc0ce5cff62f539ef6727b5ad7c603dc37d697721ca990c1ffb3d
+    - path: code/rust/src/finite_probability/bell_separator_extension.rs
+      sha256: 1d9f2cb809fa83d2178e162ac20711711938f8b845f76f321a3fd7b8f25cdb42
+    - path: lean4/BellSeparatorExtension.lean
+      sha256: c21ccd3a22ff1db8f1c4fac76c2097bf86b1c5ab295c1ca0e8e861bedf60eef6
+    semantic_predicate: Construct both triple laws from the same r with observed pair marginals and equal
+      separator law.
+    evidence_status: exact native composition checked on retained inputs; probability-subtype operad interpretation
+      remains a scoped semantic wrapper
+    implementation_note: Context-retaining mathematical wrapper; construct_extension retains pair data
+      in its local environment. No new formal Lean probability-subtype operad instance is claimed.
+    language_evidence:
+      Python: split_triple (called at each B setting)
+      Rust: split_triple (called at each B setting)
+      Lean: chsh_has_two_triples proves only the displayed Int positivity systems; normalized table-array
+        identities remain open.
+    audit_scope: Finite native chain checked on retained inputs; ambient function identities do not supply
+      missing probability-table or subtype theorems.
+  - id: conditional_glue
+    ordered_inputs:
+    - CompatibleTriplePair
+    output: JointLaw
+    arity: 1
+    carrier: binary 2x2 pair scenario on A0,A1,B0,B1
+    coefficient_ring: Q natively; common-scale Int numerator model in Lean
+    hypotheses:
+    - two nonnegative normalized triple laws
+    - exactly equal separator marginals
+    - zero separator slices forced to zero by nonnegativity
+    source_pins:
+    - path: code/python/src/qm/bell_separator_extension.py
+      sha256: c9fb01de9c4cc0ce5cff62f539ef6727b5ad7c603dc37d697721ca990c1ffb3d
+    - path: code/rust/src/finite_probability/bell_separator_extension.rs
+      sha256: 1d9f2cb809fa83d2178e162ac20711711938f8b845f76f321a3fd7b8f25cdb42
+    - path: lean4/BellSeparatorExtension.lean
+      sha256: c21ccd3a22ff1db8f1c4fac76c2097bf86b1c5ab295c1ca0e8e861bedf60eef6
+    semantic_predicate: Zero-safe conditional product of two compatible triples; unary on the compatible-pair
+      wrapper, despite two native arguments.
+    evidence_status: exact native composition checked on retained inputs; probability-subtype operad interpretation
+      remains a scoped semantic wrapper
+    implementation_note: Context-retaining mathematical wrapper; construct_extension retains pair data
+      in its local environment. No new formal Lean probability-subtype operad instance is claimed.
+    language_evidence:
+      Python: conditional_glue
+      Rust: conditional_glue
+      Lean: No general Lean rational gluing/marginal/unit-mass theorem yet.
+    audit_scope: Finite native chain checked on retained inputs; ambient function identities do not supply
+      missing probability-table or subtype theorems.
+  - id: chsh_family
+    ordered_inputs:
+    - CompatiblePairData
+    output: FacetValues8
+    arity: 1
+    carrier: binary 2x2 pair scenario on A0,A1,B0,B1
+    coefficient_ring: Q natively; common-scale Int numerator model in Lean
+    hypotheses:
+    - four nonnegative normalized pair tables
+    - matching one-party marginals
+    - ordered odd-negative sign masks
+    source_pins:
+    - path: code/python/src/qm/bell_separator_extension.py
+      sha256: c9fb01de9c4cc0ce5cff62f539ef6727b5ad7c603dc37d697721ca990c1ffb3d
+    - path: code/rust/src/finite_probability/bell_separator_extension.rs
+      sha256: 1d9f2cb809fa83d2178e162ac20711711938f8b845f76f321a3fd7b8f25cdb42
+    - path: lean4/BellSeparatorExtension.lean
+      sha256: c21ccd3a22ff1db8f1c4fac76c2097bf86b1c5ab295c1ca0e8e861bedf60eef6
+    semantic_predicate: All odd-negative-sign CHSH sums in masks 1,2,4,7,8,11,13,14.
+    evidence_status: exact native composition checked on retained inputs; probability-subtype operad interpretation
+      remains a scoped semantic wrapper
+    implementation_note: Context-retaining mathematical wrapper; construct_extension retains pair data
+      in its local environment. No new formal Lean probability-subtype operad instance is claimed.
+    language_evidence:
+      Python: chsh_facets
+      Rust: chsh_facets
+      Lean: CHSHFamily and full_family_joint_necessity on arbitrary Nat-weighted assignment lists.
+    audit_scope: Finite native chain checked on retained inputs; ambient function identities do not supply
+      missing probability-table or subtype theorems.
+  relations:
+  - id: binary_score_partition
+    equation_or_predicate: a0*(b0+b1)+a1*(b0-b1) is either +2 or -2
+    typing_conditions: All four responses lie in {-1,+1}.
+    source_pins:
+    - path: lean4/BellOperad.lean
+      sha256: b116dd9a1ad3661e2ccbee63434951714d902cb526851913f74ee30b648903d4
+    - path: code/python/src/qm/bell_joint_extension.py
+      sha256: a3a258f0711b4ad486fd39d22d39e3bdc8d94fc796144dbcd6d1a8173b2580c8
+    - path: code/rust/src/finite_probability/bell_joint_extension.rs
+      sha256: 7f39ff980338ff7aac06ac6189d58b4ca02384b99f9e6916a04520dafc245e75
+    evidence_status: checked_in_pilot
+    scope: All 16 deterministic assignments.
+    previous_source_pins:
+    - path: lean4/BellClassicalJointExtension.lean
+      sha256: 28491fd420502713fcf3aaa27389cfc0ad1e4d67b58e62f7fd2d47f84e1a5bfa
+    - path: code/python/src/qm/bell_joint_extension.py
+      sha256: 4d309219c604e0af26df7d9285400d62cb7655c6e7beacfc52baf0c4e358e362
+    - path: code/rust/src/finite_probability/bell_joint_extension.rs
+      sha256: bf9ddd931a430c5bb58c0b81c48fc55bd003c5374c2f4006e2243e754a51e361
+    source_pin_history:
+    - - path: code/python/src/qm/bell_joint_extension.py
+        sha256: a3a258f0711b4ad486fd39d22d39e3bdc8d94fc796144dbcd6d1a8173b2580c8
+      - path: code/rust/src/finite_probability/bell_joint_extension.rs
+        sha256: 7f39ff980338ff7aac06ac6189d58b4ca02384b99f9e6916a04520dafc245e75
+      - path: lean4/BellOperad.lean
+        sha256: 351f796de252eabd5c527d05bb529ec1c4f78a3ed670ca259d59b3122c3a322a
+  - id: expectation_linearity
+    equation_or_predicate: CHSH(sum_omega p(omega)*f(omega)) = sum_omega p(omega)*CHSH(f(omega))
+    typing_conditions: The same finite Omega, rational law and ordered coordinates are used on both sides.
+    source_pins:
+    - path: lean4/BellOperad.lean
+      sha256: b116dd9a1ad3661e2ccbee63434951714d902cb526851913f74ee30b648903d4
+    - path: code/python/src/qm/bell_joint_extension.py
+      sha256: a3a258f0711b4ad486fd39d22d39e3bdc8d94fc796144dbcd6d1a8173b2580c8
+    - path: code/rust/src/finite_probability/bell_joint_extension.rs
+      sha256: 7f39ff980338ff7aac06ac6189d58b4ca02384b99f9e6916a04520dafc245e75
+    evidence_status: generic_integral_table_theorem_BellOperad.expect_chsh_checked; exact_Q_native_tests
+    scope: Arbitrary integral response tables in Lean; exact Q tables in Rust/Python; explicit general
+      Q-to-common-denominator table transport remains open.
+    previous_source_pins:
+    - path: lean4/BellClassicalJointExtension.lean
+      sha256: 28491fd420502713fcf3aaa27389cfc0ad1e4d67b58e62f7fd2d47f84e1a5bfa
+    - path: code/python/src/qm/bell_joint_extension.py
+      sha256: 4d309219c604e0af26df7d9285400d62cb7655c6e7beacfc52baf0c4e358e362
+    - path: code/rust/src/finite_probability/bell_joint_extension.rs
+      sha256: bf9ddd931a430c5bb58c0b81c48fc55bd003c5374c2f4006e2243e754a51e361
+    source_pin_history:
+    - - path: code/python/src/qm/bell_joint_extension.py
+        sha256: a3a258f0711b4ad486fd39d22d39e3bdc8d94fc796144dbcd6d1a8173b2580c8
+      - path: code/rust/src/finite_probability/bell_joint_extension.rs
+        sha256: 7f39ff980338ff7aac06ac6189d58b4ca02384b99f9e6916a04520dafc245e75
+      - path: lean4/BellOperad.lean
+        sha256: 351f796de252eabd5c527d05bb529ec1c4f78a3ed670ca259d59b3122c3a322a
+  - id: positive_slacks
+    equation_or_predicate: Pplus+Pminus=1; S=2*(Pplus-Pminus); 2+S=4*Pplus; 2-S=4*Pminus
+    typing_conditions: Pplus,Pminus are nonnegative rational masses.
+    source_pins:
+    - path: lean4/BellOperad.lean
+      sha256: b116dd9a1ad3661e2ccbee63434951714d902cb526851913f74ee30b648903d4
+    - path: code/python/src/qm/bell_joint_extension.py
+      sha256: a3a258f0711b4ad486fd39d22d39e3bdc8d94fc796144dbcd6d1a8173b2580c8
+    - path: code/rust/src/finite_probability/bell_joint_extension.rs
+      sha256: 7f39ff980338ff7aac06ac6189d58b4ca02384b99f9e6916a04520dafc245e75
+    evidence_status: independent_exact_sample_recomputation_and_native_tests; general_joint_bound_in_Lean;
+      partition_identities_not_separately_formalized
+    scope: A supplied positive normalized joint law.
+    previous_source_pins:
+    - path: lean4/BellClassicalJointExtension.lean
+      sha256: 28491fd420502713fcf3aaa27389cfc0ad1e4d67b58e62f7fd2d47f84e1a5bfa
+    - path: code/python/src/qm/bell_joint_extension.py
+      sha256: 4d309219c604e0af26df7d9285400d62cb7655c6e7beacfc52baf0c4e358e362
+    - path: code/rust/src/finite_probability/bell_joint_extension.rs
+      sha256: bf9ddd931a430c5bb58c0b81c48fc55bd003c5374c2f4006e2243e754a51e361
+    source_pin_history:
+    - - path: code/python/src/qm/bell_joint_extension.py
+        sha256: a3a258f0711b4ad486fd39d22d39e3bdc8d94fc796144dbcd6d1a8173b2580c8
+      - path: code/rust/src/finite_probability/bell_joint_extension.rs
+        sha256: 7f39ff980338ff7aac06ac6189d58b4ca02384b99f9e6916a04520dafc245e75
+      - path: lean4/BellOperad.lean
+        sha256: 351f796de252eabd5c527d05bb529ec1c4f78a3ed670ca259d59b3122c3a322a
+  - id: semantic_substitution_coherence
+    equation_or_predicate: substitute is unital and associative under explicit Sigma reindexing; equality
+      is preserved by substitution
+    typing_conditions: Dependent input/output types match; finite ordered index restriction for the intended
+      nonsymmetric interpretation
+    source_pins:
+    - &id001
+      path: lean4/BellOperad.lean
+      sha256: b116dd9a1ad3661e2ccbee63434951714d902cb526851913f74ee30b648903d4
+    evidence_status: fresh_Lean_4.33.1_compilation_and_named_axiom_reports_retained_in_review
+    scope: Function semantics, not completeness of a finitely presented syntactic quotient.
+  - id: actual_nullary_product_graft
+    equation_or_predicate: CHSH grafted with expectation(identity_law,productsOp()) evaluates to numerator(law)
+    typing_conditions: productsOp has Empty input; law identity has Unit input; common Nat-weighted assignment
+      rows
+    source_pins:
+    - *id001
+    evidence_status: fresh_Lean_4.33.1_compilation_and_named_axiom_reports_retained_in_review
+    scope: Integer-numerator Bell model; rational interpretation uses the separately stated positive common
+      denominator.
+  - id: interval_chsh_equivalence
+    equation_or_predicate: At common positive integer scale, interval overlap iff the complete eight-facet
+      CHSH family holds.
+    typing_conditions: CompatiblePositive PairCounts
+    source_pins:
+    - path: code/python/src/qm/bell_separator_extension.py
+      sha256: c9fb01de9c4cc0ce5cff62f539ef6727b5ad7c603dc37d697721ca990c1ffb3d
+    - path: code/rust/src/finite_probability/bell_separator_extension.rs
+      sha256: 1d9f2cb809fa83d2178e162ac20711711938f8b845f76f321a3fd7b8f25cdb42
+    - path: lean4/BellSeparatorExtension.lean
+      sha256: c21ccd3a22ff1db8f1c4fac76c2097bf86b1c5ab295c1ca0e8e861bedf60eef6
+    evidence_status: Lean separator_iff_chsh at integer scale; explicit rational input transport remains
+      open
+    scope: This work unit only; no symmetric action or complete syntactic operad presentation.
+    audit: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/reviews/20261018_separator_audit/README.md
+  - id: triple_slice_feasibility
+    equation_or_predicate: Given the stated PairPositive and separator interval hypotheses, there exists
+      Int t satisfying TripleCellsPositive. Both B settings admit t0,t1 with the same r.
+    typing_conditions: same source PairCounts and shared r
+    source_pins:
+    - path: code/python/src/qm/bell_separator_extension.py
+      sha256: c9fb01de9c4cc0ce5cff62f539ef6727b5ad7c603dc37d697721ca990c1ffb3d
+    - path: code/rust/src/finite_probability/bell_separator_extension.rs
+      sha256: 1d9f2cb809fa83d2178e162ac20711711938f8b845f76f321a3fd7b8f25cdb42
+    - path: lean4/BellSeparatorExtension.lean
+      sha256: c21ccd3a22ff1db8f1c4fac76c2097bf86b1c5ab295c1ca0e8e861bedf60eef6
+    evidence_status: Lean existence of r,t0,t1 satisfying the explicit eight-cell positivity systems;
+      normalized Q-array projection additionally checked natively, not yet a general Lean table theorem
+    scope: Kernel theorem is the explicit Int inequality system. Normalized rational arrays and their
+      projections are checked on finite native certificates only.
+    audit: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/reviews/20261018_separator_audit/README.md
+  - id: conditional_glue_projection
+    equation_or_predicate: Project(glue(split(select(intervals(p)))))=p.
+    typing_conditions: Same retained compatible pair input p; triples from split(select(intervals(p))),
+      exactly matching separator; nonnegative normalized arrays; zero slices handled without division.
+    source_pins:
+    - path: code/python/src/qm/bell_separator_extension.py
+      sha256: c9fb01de9c4cc0ce5cff62f539ef6727b5ad7c603dc37d697721ca990c1ffb3d
+    - path: code/rust/src/finite_probability/bell_separator_extension.rs
+      sha256: 1d9f2cb809fa83d2178e162ac20711711938f8b845f76f321a3fd7b8f25cdb42
+    - path: lean4/BellSeparatorExtension.lean
+      sha256: c21ccd3a22ff1db8f1c4fac76c2097bf86b1c5ab295c1ca0e8e861bedf60eef6
+    evidence_status: all retained extension witnesses checked by actual exact pair/triple projection and
+      cross-product equations; general Lean Q gluing remains open
+    scope: This work unit only; no symmetric action or complete syntactic operad presentation.
+    relation_kind: exact checked predicate on retained certificates; general Lean rational operator identity
+      remains an obligation
+    audit: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/reviews/20261018_separator_audit/README.md
+  - id: full_facet_necessity
+    equation_or_predicate: For every List (Nat x Assignment), each of the four one-minus facet numerators
+      lies in [-2*mass,2*mass], including zero total mass.
+    typing_conditions: Actual binary response products, common Nat weights, scaled Int conclusion. Rational
+      table transport remains separate.
+    source_pins:
+    - path: code/python/src/qm/bell_separator_extension.py
+      sha256: c9fb01de9c4cc0ce5cff62f539ef6727b5ad7c603dc37d697721ca990c1ffb3d
+    - path: code/rust/src/finite_probability/bell_separator_extension.rs
+      sha256: 1d9f2cb809fa83d2178e162ac20711711938f8b845f76f321a3fd7b8f25cdb42
+    - path: lean4/BellSeparatorExtension.lean
+      sha256: c21ccd3a22ff1db8f1c4fac76c2097bf86b1c5ab295c1ca0e8e861bedf60eef6
+    evidence_status: Lean full_family_joint_necessity for four one-minus faces with both signs, arbitrary
+      Nat-weighted assignment lists
+    scope: This work unit only; no symmetric action or complete syntactic operad presentation.
+    audit: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/reviews/20261018_separator_audit/README.md
+  compositions:
+  - outer_operation: joint_expectation
+    input_slot: 1
+    inner_operation: response_products
+    colour_match: ResponseMap4 -> ResponseMap4
+    hypothesis_match: Same Omega and ordered product coordinates.
+    licensing_relations:
+    - expectation_linearity
+    - actual_nullary_product_graft
+    evidence_status: kernel_checked_BellOperad.bell_nullary_graft; native_exact_table_composition_checks_passed
+  - outer_operation: chsh_linear
+    input_slot: 0
+    inner_operation: joint_expectation
+    colour_match: CorrelatorTuple -> CorrelatorTuple
+    hypothesis_match: One shared JointLaw; four independently normalized pair laws cannot be substituted.
+    licensing_relations:
+    - expectation_linearity
+    - binary_score_partition
+    - actual_nullary_product_graft
+    evidence_status: kernel_checked_BellOperad.bell_nullary_graft; native_exact_table_composition_checks_passed
+  - outer_operation: slack_certificate
+    input_slot: 0
+    inner_operation: score_partition_mass
+    colour_match: ScoreMasses -> ScoreMasses
+    hypothesis_match: Nonnegative total-one masses from the same law.
+    licensing_relations:
+    - binary_score_partition
+    - positive_slacks
+    evidence_status: native_partition_certificate_route_checked
+  - outer_operation: select_separator
+    input_slot: 0
+    inner_operation: separator_intervals
+    colour_match: FeasibleSeparatorProblem -> FeasibleSeparatorProblem
+    hypothesis_match: Both operations refer to the same retained p and r. Refinements checked on each
+      accepted extension certificate; no universal Lean Q-subtype composition theorem claimed.
+    licensing_relations:
+    - interval_chsh_equivalence
+    evidence_status: Typed semantic wrapper plan and finite exact chain verification; general probability-subtype
+      operad instance remains open.
+  - outer_operation: split_triples
+    input_slot: 0
+    inner_operation: select_separator
+    colour_match: SeparatorChoice -> SeparatorChoice
+    hypothesis_match: Both operations refer to the same retained p and r. Refinements checked on each
+      accepted extension certificate; no universal Lean Q-subtype composition theorem claimed.
+    licensing_relations:
+    - triple_slice_feasibility
+    evidence_status: Typed semantic wrapper plan and finite exact chain verification; general probability-subtype
+      operad instance remains open.
+  - outer_operation: conditional_glue
+    input_slot: 0
+    inner_operation: split_triples
+    colour_match: CompatibleTriplePair -> CompatibleTriplePair
+    hypothesis_match: Both operations refer to the same retained p and r. Refinements checked on each
+      accepted extension certificate; no universal Lean Q-subtype composition theorem claimed.
+    licensing_relations:
+    - conditional_glue_projection
+    evidence_status: Typed semantic wrapper plan and finite exact chain verification; general probability-subtype
+      operad instance remains open.
+  - outer_operation: pair_marginalize
+    input_slot: 0
+    inner_operation: conditional_glue
+    colour_match: JointLaw -> JointLaw
+    hypothesis_match: Both operations refer to the same retained p and r. Refinements checked on each
+      accepted extension certificate; no universal Lean Q-subtype composition theorem claimed.
+    licensing_relations:
+    - conditional_glue_projection
+    evidence_status: Typed semantic wrapper plan and finite exact chain verification; general probability-subtype
+      operad instance remains open.
+  identities:
+  - colour: Omega
+    proposed_operation: id_Omega
+    signature: Omega -> Omega
+    status: generic_function_identity_and_simultaneous_substitution_unit_laws_checked; no_mathlib_operad_class_instance
+  - colour: JointLaw
+    proposed_operation: id_JointLaw
+    signature: JointLaw -> JointLaw
+    status: generic_function_identity_and_simultaneous_substitution_unit_laws_checked; no_mathlib_operad_class_instance
+  - colour: ResponseMap4
+    proposed_operation: id_ResponseMap4
+    signature: ResponseMap4 -> ResponseMap4
+    status: generic_function_identity_and_simultaneous_substitution_unit_laws_checked; no_mathlib_operad_class_instance
+  - colour: CorrelatorTuple
+    proposed_operation: id_CorrelatorTuple
+    signature: CorrelatorTuple -> CorrelatorTuple
+    status: generic_function_identity_and_simultaneous_substitution_unit_laws_checked; no_mathlib_operad_class_instance
+  - colour: Scalar
+    proposed_operation: id_Scalar
+    signature: Scalar -> Scalar
+    status: generic_function_identity_and_simultaneous_substitution_unit_laws_checked; no_mathlib_operad_class_instance
+  - colour: ScoreMasses
+    proposed_operation: id_ScoreMasses
+    signature: ScoreMasses -> ScoreMasses
+    status: generic_function_identity_and_simultaneous_substitution_unit_laws_checked; no_mathlib_operad_class_instance
+  - colour: BoundCertificate
+    proposed_operation: id_BoundCertificate
+    signature: BoundCertificate -> BoundCertificate
+    status: generic_function_identity_and_simultaneous_substitution_unit_laws_checked; no_mathlib_operad_class_instance
+  - colour: CompatiblePairData
+    proposed_operation: id_CompatiblePairData
+    signature: CompatiblePairData -> CompatiblePairData
+    status: Semantic identity function; generic BellOperad function-substitution units apply to interpreted
+      carriers. These probability refinements have no formal Lean subtype instantiation yet.
+  - colour: FeasiblePairData
+    proposed_operation: id_FeasiblePairData
+    signature: FeasiblePairData -> FeasiblePairData
+    status: Semantic identity function; generic BellOperad function-substitution units apply to interpreted
+      carriers. These probability refinements have no formal Lean subtype instantiation yet.
+  - colour: FeasibleSeparatorProblem
+    proposed_operation: id_FeasibleSeparatorProblem
+    signature: FeasibleSeparatorProblem -> FeasibleSeparatorProblem
+    status: Semantic identity function; generic BellOperad function-substitution units apply to interpreted
+      carriers. These probability refinements have no formal Lean subtype instantiation yet.
+  - colour: SeparatorChoice
+    proposed_operation: id_SeparatorChoice
+    signature: SeparatorChoice -> SeparatorChoice
+    status: Semantic identity function; generic BellOperad function-substitution units apply to interpreted
+      carriers. These probability refinements have no formal Lean subtype instantiation yet.
+  - colour: CompatibleTriplePair
+    proposed_operation: id_CompatibleTriplePair
+    signature: CompatibleTriplePair -> CompatibleTriplePair
+    status: Semantic identity function; generic BellOperad function-substitution units apply to interpreted
+      carriers. These probability refinements have no formal Lean subtype instantiation yet.
+  - colour: FacetValues8
+    proposed_operation: id_FacetValues8
+    signature: FacetValues8 -> FacetValues8
+    status: Semantic identity function; generic BellOperad function-substitution units apply to interpreted
+      carriers. These probability refinements have no formal Lean subtype instantiation yet.
+  symmetric_actions: []
+  coherence_obligations:
+  - Explicit Q-valued general response-table/common-denominator transport and probability-subtype transport
+    in Lean; current generic theorem uses integral tables.
+  - Formal score-partition mass and exact slack identities for arbitrary laws, beyond the general bound
+    theorem and finite native certificate checks.
+  - Specify and prove symmetric actions if subsequently claimed; this run uses nonsymmetric ordered substitution
+    only.
+  - If a syntactic quotient presentation is claimed, define it and prove its universal/completeness property;
+    semantic congruence alone is not that theorem.
+  - 'Full formal rational Fine converse remains open: prove zero-safe rational conditional-gluing marginal
+    preservation and unit mass for arbitrary compatible triples.'
+  - Formalize transport from arbitrary rational observed pair arrays to positive common-integer-scale
+    PairCounts and back.
+  - Connect the Lean TripleCellsPositive parameter systems to normalized table arrays and their explicit
+    projection identities.
+  - Instantiate the context-retaining probability-subtype operations as a formal operad if that stronger
+    claim is desired; current generators are scoped semantic wrappers around native primitives.
+  composition_plans:
+  - id: joint_law_to_chsh
+    tree:
+      outer: chsh_linear
+      slot: 0
+      inner:
+        outer: joint_expectation
+        slot: 1
+        inner: response_products
+    ordered_inputs:
+    - JointLaw
+    output: Scalar
+    scope: The fixed response-product map on the same four-response carrier.
+  - id: feasible_pair_data_to_extension_projection
+    tree:
+      outer: pair_marginalize
+      slot: 0
+      inner:
+        outer: conditional_glue
+        slot: 0
+        inner:
+          outer: split_triples
+          slot: 0
+          inner:
+            outer: select_separator
+            slot: 0
+            inner: separator_intervals
+    ordered_inputs:
+    - FeasiblePairData
+    output: CompatiblePairData
+    scope: Typed context-retaining semantic plan; exact saved certificates satisfy its projection predicate.
+      No general Lean Q-subtype operad equation is claimed.
+  ambient_operad:
+    model: coloured endomorphism operations; finite ordered input-index restriction of the dependent-function
+      substitution implementation
+    operation_signature: Op I A B = ((i:I)->A(i))->B
+    composition: substitute f g x = f (i |-> g(i) (j |-> x(i,j)))
+    flattening: Sigma input families with explicit index reassociation, supporting empty/nullary and unary
+      families
+    laws:
+      left_unit: BellOperad.substitute_left_unit
+      right_unit: BellOperad.substitute_right_unit
+      associativity: BellOperad.substitute_assoc
+      semantic_congruence: BellOperad.substitute_congr
+    bell_specialization:
+    - productsOp
+    - expectationOp
+    - chshOp
+    - bell_graft
+    - bell_evaluation
+    - bell_bound
+    - bell_nullary_graft
+    source_pins:
+    - *id001
+    boundary: Kernel-checked substitution semantics and Bell specialization; no named Mathlib Operad instance,
+      explicit symmetric action, or completeness theorem for the listed syntactic presentation.
+  model_boundary:
+    Rust_and_Python: Exact Q-valued native APIs with finite regressions and sample recomputation; no general
+      machine proof of these implementations.
+    Lean: Type-indexed substitution semantics and arbitrary integral response-table numerator model; positive
+      denominator bound is conditional on normalization.
+    transport_open: No general formally proved Q-table/probability-subtype transport connecting all advertised
+      native colours to the Lean model.
+    operad_status: Finite ordered endomorphism interpretation of the substitution laws; no named Mathlib
+      Operad instance, symmetric action, or completeness theorem for a syntactic quotient.
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: FILLED
+    carrier: Four binary pair tables with common one-party marginals; no supplied joint law
+    coefficient_ring: Q; positive common integer scaling for Lean
+    assumptions:
+    - four nonnegative unit-mass pair tables
+    - consistent A and B one-party marginals
+    source_pins:
+    - path: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension/inputs/lean4/BellOperad.lean
+      sha256: b116dd9a1ad3661e2ccbee63434951714d902cb526851913f74ee30b648903d4
+      source_path: lean4/BellOperad.lean
+    - path: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension/inputs/lean4/BellClassicalJointExtension.lean
+      sha256: 28491fd420502713fcf3aaa27389cfc0ad1e4d67b58e62f7fd2d47f84e1a5bfa
+      source_path: lean4/BellClassicalJointExtension.lean
+    - path: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension/inputs/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+      source_path: lean4/DerivationDagQMClosure.lean
+    - path: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension/inputs/dag/pfp/stage_contracts.yaml
+      sha256: 9ea72dbf0186103eca0b444bb7985e5aebc3368b2160d269413919532a1466fb
+      source_path: dag/pfp/stage_contracts.yaml
+    - path: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension/inputs/dag/pfp/workflow.yaml
+      sha256: fc6bc4d5117227ff8057485f1e0e87a8d4f618c271f6c801250180606c33c69a
+      source_path: dag/pfp/workflow.yaml
+    - path: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension/inputs/dag/pfp/mode.yaml
+      sha256: 486b7f72f4356335d290ca44875ccf832d829aa6c8da9e6694aae14bd6b7f431
+      source_path: dag/pfp/mode.yaml
+    - path: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension/inputs/dag/pfp/prepare_stage.py
+      sha256: 800e7ca97c4d719f315810aafeb09087c69bc4fc9a8ac68c55d5d573be102168
+      source_path: dag/pfp/prepare_stage.py
+    - path: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension/inputs/dag/operads/FQ-BELL-CLASSICAL-JOINT-EXTENSION.yaml
+      sha256: 4d9007238f85da43b7c5e62c6acda1732c7f1a485e85c67f1a53d516a54dc5f9
+      source_path: dag/operads/FQ-BELL-CLASSICAL-JOINT-EXTENSION.yaml
+    - path: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension/inputs/dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/reviews/20261018_claim_audit/check_certificate.py
+      sha256: ee5712a1c28a62c4d96dd609f2d18e9191c8a10b508d175df1593ff376777f34
+      source_path: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/reviews/20261018_claim_audit/check_certificate.py
+    - path: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension/p0/separator_construction.md
+      sha256: 65498a7c8d6114274b6230ae909b080e112254f323f3bd67f6ebaf70376e1792
+    public_input:
+      scope: Exact separator interval/CHSH-family reduction at integer scale, compatible triple existence,
+        and independently checked rational extension or facet-obstruction certificates on explicit inputs.
+        General rational gluing and input-transport formalization remain open; no full formal Fine converse
+        or physical claim.
+      cases_ref:
+        path: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension/public_cases.json
+        sha256: 6a9d6c6a44a468e680640e649665a071a78e00c8b372cce52e1e331e7a802919
+      recipe_ref:
+        path: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension/cases.py
+        sha256: 8a57c2e161404ee937cca16bb95c7b57ae9f24788f658bdbffef32bc41eb8fec
+      scope_rule: The entrypoint is P0; this record does not auto-admit a later step or close Fine converse.
+  slot_m2_layer1_forward_morphisms:
+    mining_status: FILLED
+    operations:
+    - catalog_id: pair_marginalize
+      inputs:
+      - JointLaw
+      output: CompatiblePairData
+      semantic_predicate: Project one 16-state law to the four observed pair tables.
+    - catalog_id: separator_intervals
+      inputs:
+      - FeasiblePairData
+      output: FeasibleSeparatorProblem
+      semantic_predicate: Retain input pairs and both setting Frechet intervals, with a nonempty intersection.
+    - catalog_id: select_separator
+      inputs:
+      - FeasibleSeparatorProblem
+      output: SeparatorChoice
+      semantic_predicate: Retain input pairs and any r in the common interval; native constructor selects
+        the lower endpoint.
+    - catalog_id: split_triples
+      inputs:
+      - SeparatorChoice
+      output: CompatibleTriplePair
+      semantic_predicate: Construct both triple laws from the same r with observed pair marginals and
+        equal separator law.
+    - catalog_id: conditional_glue
+      inputs:
+      - CompatibleTriplePair
+      output: JointLaw
+      semantic_predicate: Zero-safe conditional product of two compatible triples; unary on the compatible-pair
+        wrapper, despite two native arguments.
+    - catalog_id: chsh_family
+      inputs:
+      - CompatiblePairData
+      output: FacetValues8
+      semantic_predicate: All odd-negative-sign CHSH sums in masks 1,2,4,7,8,11,13,14.
+    composition_plan:
+    - outer_operation: select_separator
+      input_slot: 0
+      inner_operation: separator_intervals
+      colour_match: FeasibleSeparatorProblem -> FeasibleSeparatorProblem
+      hypothesis_match: Same retained pair data and shared separator; input refinements must be discharged.
+      licensing_relations:
+      - interval_chsh_equivalence
+      evidence_status: well-typed plan only; semantic acceptance awaits P2
+    - outer_operation: split_triples
+      input_slot: 0
+      inner_operation: select_separator
+      colour_match: SeparatorChoice -> SeparatorChoice
+      hypothesis_match: Same retained pair data and shared separator; input refinements must be discharged.
+      licensing_relations:
+      - triple_slice_feasibility
+      evidence_status: well-typed plan only; semantic acceptance awaits P2
+    - outer_operation: conditional_glue
+      input_slot: 0
+      inner_operation: split_triples
+      colour_match: CompatibleTriplePair -> CompatibleTriplePair
+      hypothesis_match: Same retained pair data and shared separator; input refinements must be discharged.
+      licensing_relations:
+      - conditional_glue_projection
+      evidence_status: well-typed plan only; semantic acceptance awaits P2
+    - outer_operation: pair_marginalize
+      input_slot: 0
+      inner_operation: conditional_glue
+      colour_match: JointLaw -> JointLaw
+      hypothesis_match: Same retained pair data and shared separator; input refinements must be discharged.
+      licensing_relations:
+      - conditional_glue_projection
+      evidence_status: well-typed plan only; semantic acceptance awaits P2
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: FILLED
+    algebraic_relations:
+    - id: interval_chsh_equivalence
+      equation_or_predicate: At common positive integer scale, interval overlap iff the complete eight-facet
+        CHSH family holds.
+      typing_conditions: CompatiblePositive PairCounts
+      source_pins:
+      - path: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension/inputs/lean4/BellOperad.lean
+        sha256: b116dd9a1ad3661e2ccbee63434951714d902cb526851913f74ee30b648903d4
+        source_path: lean4/BellOperad.lean
+      - path: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension/inputs/lean4/BellClassicalJointExtension.lean
+        sha256: 28491fd420502713fcf3aaa27389cfc0ad1e4d67b58e62f7fd2d47f84e1a5bfa
+        source_path: lean4/BellClassicalJointExtension.lean
+      - path: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension/inputs/lean4/DerivationDagQMClosure.lean
+        sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+        source_path: lean4/DerivationDagQMClosure.lean
+      - path: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension/inputs/dag/pfp/stage_contracts.yaml
+        sha256: 9ea72dbf0186103eca0b444bb7985e5aebc3368b2160d269413919532a1466fb
+        source_path: dag/pfp/stage_contracts.yaml
+      - path: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension/inputs/dag/pfp/workflow.yaml
+        sha256: fc6bc4d5117227ff8057485f1e0e87a8d4f618c271f6c801250180606c33c69a
+        source_path: dag/pfp/workflow.yaml
+      - path: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension/inputs/dag/pfp/mode.yaml
+        sha256: 486b7f72f4356335d290ca44875ccf832d829aa6c8da9e6694aae14bd6b7f431
+        source_path: dag/pfp/mode.yaml
+      - path: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension/inputs/dag/pfp/prepare_stage.py
+        sha256: 800e7ca97c4d719f315810aafeb09087c69bc4fc9a8ac68c55d5d573be102168
+        source_path: dag/pfp/prepare_stage.py
+      - path: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension/inputs/dag/operads/FQ-BELL-CLASSICAL-JOINT-EXTENSION.yaml
+        sha256: 4d9007238f85da43b7c5e62c6acda1732c7f1a485e85c67f1a53d516a54dc5f9
+        source_path: dag/operads/FQ-BELL-CLASSICAL-JOINT-EXTENSION.yaml
+      - path: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension/inputs/dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/reviews/20261018_claim_audit/check_certificate.py
+        sha256: ee5712a1c28a62c4d96dd609f2d18e9191c8a10b508d175df1593ff376777f34
+        source_path: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/reviews/20261018_claim_audit/check_certificate.py
+      - path: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension/p0/separator_construction.md
+        sha256: 65498a7c8d6114274b6230ae909b080e112254f323f3bd67f6ebaf70376e1792
+      evidence_status: selected next theorem, not P0 accepted evidence
+      scope: This work unit only; no symmetric action or complete syntactic operad presentation.
+    - id: triple_slice_feasibility
+      equation_or_predicate: Separator interval membership yields nonnegative triple cells with prescribed
+        two-pair marginals.
+      typing_conditions: same source PairCounts and shared r
+      source_pins:
+      - path: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension/inputs/lean4/BellOperad.lean
+        sha256: b116dd9a1ad3661e2ccbee63434951714d902cb526851913f74ee30b648903d4
+        source_path: lean4/BellOperad.lean
+      - path: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension/inputs/lean4/BellClassicalJointExtension.lean
+        sha256: 28491fd420502713fcf3aaa27389cfc0ad1e4d67b58e62f7fd2d47f84e1a5bfa
+        source_path: lean4/BellClassicalJointExtension.lean
+      - path: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension/inputs/lean4/DerivationDagQMClosure.lean
+        sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+        source_path: lean4/DerivationDagQMClosure.lean
+      - path: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension/inputs/dag/pfp/stage_contracts.yaml
+        sha256: 9ea72dbf0186103eca0b444bb7985e5aebc3368b2160d269413919532a1466fb
+        source_path: dag/pfp/stage_contracts.yaml
+      - path: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension/inputs/dag/pfp/workflow.yaml
+        sha256: fc6bc4d5117227ff8057485f1e0e87a8d4f618c271f6c801250180606c33c69a
+        source_path: dag/pfp/workflow.yaml
+      - path: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension/inputs/dag/pfp/mode.yaml
+        sha256: 486b7f72f4356335d290ca44875ccf832d829aa6c8da9e6694aae14bd6b7f431
+        source_path: dag/pfp/mode.yaml
+      - path: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension/inputs/dag/pfp/prepare_stage.py
+        sha256: 800e7ca97c4d719f315810aafeb09087c69bc4fc9a8ac68c55d5d573be102168
+        source_path: dag/pfp/prepare_stage.py
+      - path: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension/inputs/dag/operads/FQ-BELL-CLASSICAL-JOINT-EXTENSION.yaml
+        sha256: 4d9007238f85da43b7c5e62c6acda1732c7f1a485e85c67f1a53d516a54dc5f9
+        source_path: dag/operads/FQ-BELL-CLASSICAL-JOINT-EXTENSION.yaml
+      - path: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension/inputs/dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/reviews/20261018_claim_audit/check_certificate.py
+        sha256: ee5712a1c28a62c4d96dd609f2d18e9191c8a10b508d175df1593ff376777f34
+        source_path: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/reviews/20261018_claim_audit/check_certificate.py
+      - path: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension/p0/separator_construction.md
+        sha256: 65498a7c8d6114274b6230ae909b080e112254f323f3bd67f6ebaf70376e1792
+      evidence_status: selected next theorem, not P0 accepted evidence
+      scope: This work unit only; no symmetric action or complete syntactic operad presentation.
+    - id: conditional_glue_projection
+      equation_or_predicate: Project(glue(split(select(intervals(p)))))=p.
+      typing_conditions: compatible triple laws with exactly equal separator, nonnegative weights; zero
+        slices handled without division
+      source_pins:
+      - path: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension/inputs/lean4/BellOperad.lean
+        sha256: b116dd9a1ad3661e2ccbee63434951714d902cb526851913f74ee30b648903d4
+        source_path: lean4/BellOperad.lean
+      - path: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension/inputs/lean4/BellClassicalJointExtension.lean
+        sha256: 28491fd420502713fcf3aaa27389cfc0ad1e4d67b58e62f7fd2d47f84e1a5bfa
+        source_path: lean4/BellClassicalJointExtension.lean
+      - path: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension/inputs/lean4/DerivationDagQMClosure.lean
+        sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+        source_path: lean4/DerivationDagQMClosure.lean
+      - path: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension/inputs/dag/pfp/stage_contracts.yaml
+        sha256: 9ea72dbf0186103eca0b444bb7985e5aebc3368b2160d269413919532a1466fb
+        source_path: dag/pfp/stage_contracts.yaml
+      - path: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension/inputs/dag/pfp/workflow.yaml
+        sha256: fc6bc4d5117227ff8057485f1e0e87a8d4f618c271f6c801250180606c33c69a
+        source_path: dag/pfp/workflow.yaml
+      - path: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension/inputs/dag/pfp/mode.yaml
+        sha256: 486b7f72f4356335d290ca44875ccf832d829aa6c8da9e6694aae14bd6b7f431
+        source_path: dag/pfp/mode.yaml
+      - path: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension/inputs/dag/pfp/prepare_stage.py
+        sha256: 800e7ca97c4d719f315810aafeb09087c69bc4fc9a8ac68c55d5d573be102168
+        source_path: dag/pfp/prepare_stage.py
+      - path: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension/inputs/dag/operads/FQ-BELL-CLASSICAL-JOINT-EXTENSION.yaml
+        sha256: 4d9007238f85da43b7c5e62c6acda1732c7f1a485e85c67f1a53d516a54dc5f9
+        source_path: dag/operads/FQ-BELL-CLASSICAL-JOINT-EXTENSION.yaml
+      - path: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension/inputs/dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/reviews/20261018_claim_audit/check_certificate.py
+        sha256: ee5712a1c28a62c4d96dd609f2d18e9191c8a10b508d175df1593ff376777f34
+        source_path: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/reviews/20261018_claim_audit/check_certificate.py
+      - path: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension/p0/separator_construction.md
+        sha256: 65498a7c8d6114274b6230ae909b080e112254f323f3bd67f6ebaf70376e1792
+      evidence_status: native certificate predicate; general Lean rational gluing proof remains open
+      scope: This work unit only; no symmetric action or complete syntactic operad presentation.
+    - id: full_facet_necessity
+      equation_or_predicate: Every common positive joint law satisfies all eight CHSH facets.
+      typing_conditions: binary response products and common positive law
+      source_pins:
+      - path: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension/inputs/lean4/BellOperad.lean
+        sha256: b116dd9a1ad3661e2ccbee63434951714d902cb526851913f74ee30b648903d4
+        source_path: lean4/BellOperad.lean
+      - path: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension/inputs/lean4/BellClassicalJointExtension.lean
+        sha256: 28491fd420502713fcf3aaa27389cfc0ad1e4d67b58e62f7fd2d47f84e1a5bfa
+        source_path: lean4/BellClassicalJointExtension.lean
+      - path: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension/inputs/lean4/DerivationDagQMClosure.lean
+        sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+        source_path: lean4/DerivationDagQMClosure.lean
+      - path: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension/inputs/dag/pfp/stage_contracts.yaml
+        sha256: 9ea72dbf0186103eca0b444bb7985e5aebc3368b2160d269413919532a1466fb
+        source_path: dag/pfp/stage_contracts.yaml
+      - path: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension/inputs/dag/pfp/workflow.yaml
+        sha256: fc6bc4d5117227ff8057485f1e0e87a8d4f618c271f6c801250180606c33c69a
+        source_path: dag/pfp/workflow.yaml
+      - path: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension/inputs/dag/pfp/mode.yaml
+        sha256: 486b7f72f4356335d290ca44875ccf832d829aa6c8da9e6694aae14bd6b7f431
+        source_path: dag/pfp/mode.yaml
+      - path: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension/inputs/dag/pfp/prepare_stage.py
+        sha256: 800e7ca97c4d719f315810aafeb09087c69bc4fc9a8ac68c55d5d573be102168
+        source_path: dag/pfp/prepare_stage.py
+      - path: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension/inputs/dag/operads/FQ-BELL-CLASSICAL-JOINT-EXTENSION.yaml
+        sha256: 4d9007238f85da43b7c5e62c6acda1732c7f1a485e85c67f1a53d516a54dc5f9
+        source_path: dag/operads/FQ-BELL-CLASSICAL-JOINT-EXTENSION.yaml
+      - path: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension/inputs/dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/reviews/20261018_claim_audit/check_certificate.py
+        sha256: ee5712a1c28a62c4d96dd609f2d18e9191c8a10b508d175df1593ff376777f34
+        source_path: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/reviews/20261018_claim_audit/check_certificate.py
+      - path: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension/p0/separator_construction.md
+        sha256: 65498a7c8d6114274b6230ae909b080e112254f323f3bd67f6ebaf70376e1792
+      evidence_status: selected reuse/generalization theorem; must compile
+      scope: This work unit only; no symmetric action or complete syntactic operad presentation.
+    rejection_predicates:
+    - independent actual pair and triple projection
+    - nonnegative unit mass
+    - all eight sign facets
+    - equal separator before division
+    negative_control_plan:
+    - all PR-box relabelings
+    - one facet passes while another violates
+    - incompatible pairs
+    - mismatched triple separator
+    - zero separator slices
+    - false candidate fields and duplicate keys
+  slot_m4_tri_language_witness_anchors:
+    mining_status: FILLED
+    certificate_predicates:
+    - G1 original exact shape, duplicate rejection, all context bindings
+    - G3 actual joint/triple projection and zero-safe cross-product identities
+    - G4 obstruction must be an actual >2 odd-sign CHSH facet of compatible pair data
+    - G5 scope labels alone never accept a theorem; native source pins and kernel compilation separately
+      required
+    anchors:
+    - lean4/BellSeparatorExtension.lean::separator_iff_chsh
+    - lean4/BellSeparatorExtension.lean::chsh_has_two_triples
+    - lean4/BellSeparatorExtension.lean::full_family_joint_necessity
+    - code/python/src/qm/bell_separator_extension.py::construct_extension
+    - code/rust/src/finite_probability/bell_separator_extension.rs::construct_extension
+    unpaid_imports:
+    - General Q conditional-gluing theorem in Lean
+    - Formal transport from arbitrary rational observed tables to integer PairCounts
+    - Probability-subtype and complete operad presentation remain open; no physical inference
+stage_history:
+- kind: reuse_of_existing_pilot_result_during_source_audit
+  result_ref: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/pilot_status.yaml
+  scope: Collected a typed semantic seed; no new derivation or P1 dispatch.
+- stage: P0_MINE_OPERAD
+  attempt: p0
+  run: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T225117Z_operad_expectation
+  operad_delta: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T225117Z_operad_expectation/p0/operad_delta.yaml
+  host_check: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T225117Z_operad_expectation/p0/host_check.json
+- stage: P1_DERIVE
+  attempt: p1
+  run: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T225117Z_operad_expectation
+  operad_delta: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T225117Z_operad_expectation/p1/operad_delta.yaml
+  host_check: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T225117Z_operad_expectation/p1/host_check.json
+- stage: P2_VERIFY
+  attempt: p2
+  run: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T225117Z_operad_expectation
+  operad_delta: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T225117Z_operad_expectation/p2/operad_delta.yaml
+  host_check: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T225117Z_operad_expectation/p2/host_check.json
+- stage: P4_CHALLENGE
+  attempt: p4
+  run: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T225117Z_operad_expectation
+  operad_delta: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T225117Z_operad_expectation/p4/operad_delta.yaml
+  host_check: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T225117Z_operad_expectation/p4/host_check.json
+- stage: P5_RECORD
+  attempt: p5
+  run: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T225117Z_operad_expectation
+  operad_delta: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T225117Z_operad_expectation/p5/operad_delta.yaml
+  host_check: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T225117Z_operad_expectation/p5/host_check.json
+- kind: claim_and_checker_review
+  result_ref: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/reviews/20261018_claim_audit/findings.json
+  operad_delta: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/reviews/20261018_claim_audit/operad_delta.yaml
+  scope: No new PFP provider turn or retroactive P3; preserve original checkpoint bytes.
+- stage: P0_MINE_OPERAD
+  attempt: p0
+  run: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension
+  operad_delta: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension/p0/operad_delta.yaml
+  host_check: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension/p0/host_check.json
+- stage: P1_DERIVE
+  attempt: p1
+  run: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension
+  operad_delta: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension/p1/operad_delta.yaml
+  host_check: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension/p1/host_check.json
+- stage: P2_VERIFY
+  attempt: p2
+  run: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension
+  operad_delta: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension/p2/operad_delta.yaml
+  host_check: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension/p2/host_check.json
+- stage: P3_REPAIR
+  attempt: p3
+  run: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension
+  operad_delta: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension/p3/operad_delta.yaml
+  host_check: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension/p3/host_check.json
+- stage: P2_VERIFY
+  attempt: p2_after_repair
+  run: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension
+  operad_delta: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension/p2_after_repair/operad_delta.yaml
+  host_check: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension/p2_after_repair/host_check.json
+- stage: P4_CHALLENGE
+  attempt: p4
+  run: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension
+  operad_delta: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension/p4/operad_delta.yaml
+  host_check: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension/p4/host_check.json
+- stage: P5_RECORD
+  attempt: p5
+  run: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension
+  operad_delta: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension/p5/operad_delta.yaml
+  host_check: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension/p5/host_check.json
+open_obligations:
+- 'Full formal rational Fine converse remains open: prove zero-safe rational conditional-gluing marginal
+  preservation and unit mass for arbitrary compatible triples.'
+- Formalize transport from arbitrary rational observed pair arrays to positive common-integer-scale PairCounts
+  and back.
+- Connect the Lean TripleCellsPositive parameter systems to normalized table arrays and their explicit
+  projection identities.
+- Instantiate the context-retaining probability-subtype operations as a formal operad if that stronger
+  claim is desired; current generators are scoped semantic wrappers around native primitives.
+- General Q response-table transport, score-partition/slack formalization, symmetric actions and syntactic
+  quotient completeness from prior work remain open.
+- Physical locality and setting independence remain additional assumptions, not consequences of this finite
+  algebra.
+excluded_relation_leads: []
+scope_notes:
+- The pilot establishes the common-positive-joint-law CHSH implication only. Fine-theorem equivalence
+  in the historical statement remains a separate obligation.
+- The prior pilot response values and C4 diagnostic are excluded from the mathematical task contract.
+- The locally checked Bell proof and certifiers are existing-result sources for P0, not a completed formal
+  operad presentation.
+- 20261018 staged run checks reusable expectation/substitution semantics and the existing common-law implication.
+  It does not promote the historical PROVED_LEAN label to Fine equivalence.
+- Separator stage retains a genuine P2 kernel rejection and P3 repair. The general integer reduction is
+  distinct from the 4010 finite native inputs; neither alone is promoted to the full formal rational Fine
+  converse.
+- Separator audit reproduces and repairs malformed vector and task/stage binding acceptance. Historical
+  run remains sealed; stricter successor replay derives control values and checks exact repair input/witness
+  equality.
+operad_slots_scope:
+  work_unit: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension/p0/reviewed_missions.json
+  scope: This selected separator work unit only; FILLED means reviewed prerequisites, not completed full
+    source target.
+  checker:
+    path: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension/check_candidate.py
+    sha256: e7c420be7fb5a9b3489ffa08e75a907e37f4558cb5d9b50b9cb0cd37b1c95501
+  M4_note: Scope-label matching is not theorem acceptance. The failed P2 and accepted repaired kernel
+    gates are retained separately.
+  audit_checker:
+    path: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/reviews/20261018_separator_audit/check_candidate.py
+    sha256: 4faeb3f5b551f987c56450de1f9ddc78c08ec1a685f7a8ac1b290013364c5f4c
+latest_run:
+  path: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension
+  stage: P5_RECORD
+  status: separator_reduction_and_finite_certificates_checked_full_formal_converse_open
+  stop: user_review_requested
+latest_review:
+  path: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/reviews/20261018_separator_audit
+  status: audited_scoped_separator_evidence_see_bound_validation
+  original_run_unchanged: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/runs/20261018T233710Z_separator_extension
+  scope: Certificate/custody hardening and exact operad theorem signatures; full formal rational Fine
+    converse remains open.
+  verification_entry_point: dag/results/FQ-BELL-CLASSICAL-JOINT-EXTENSION/reviews/20261018_separator_audit/verify_review.py
+historical_delta_format_note: P0/P1/P2/P4 deltas contain partial references or prose refinements, not
+  fully populated standalone records. The reviewed cumulative presentation and review operad_delta.yaml
+  contain the explicit typed records. Do not infer full historical per-entry schema conformance.

@@ -92,7 +92,7 @@ def test_integration_symmetric_difference_matches_the_gradient() -> None:
     note = (
         root
         / "papers"
-        / "derivations"
+        / "core"
         / "mub6"
         / "artifacts"
         / "knowledge"
@@ -133,7 +133,7 @@ def test_origin_resolves_in_repo() -> None:
     note = (
         root
         / "papers"
-        / "derivations"
+        / "core"
         / "mub6"
         / "artifacts"
         / "knowledge"

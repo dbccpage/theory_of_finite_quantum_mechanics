@@ -895,7 +895,9 @@ theorem source_rows_split : QuadraticLiftTable.rows = ((QuadraticLiftTable.rows.
 
 theorem rows_match : equations.map (fun e => (equationCode e,equationCoefficients e)) = rows := by
   rw [← substituted_rows, source_rows_split]
-  simp only [List.map_append, rows_0_match, rows_1_match, rows_2_match, rows_3_match, rows_4_match, rows_5_match, rows_6_match, rows_7_match, rows_8_match, rows_9_match, rows_10_match, rows_11_match, rows_12_match, rows_13_match, rows_14_match, rows_15_match, rows_16_match, rows_17_match, rows_18_match, rows_19_match, rows_20_match, rows_21_match, rows_22_match, rows_23_match, rows_24_match, rows_25_match, rows_26_match, rows_27_match, rows_28_match, rows_29_match, rows_30_match, rows_31_match, rows_32_match, rows_33_match, rows_34_match, rows_35_match, rows]
+  repeat rw [List.map_append]
+  rw [rows_0_match, rows_1_match, rows_2_match, rows_3_match, rows_4_match, rows_5_match, rows_6_match, rows_7_match, rows_8_match, rows_9_match, rows_10_match, rows_11_match, rows_12_match, rows_13_match, rows_14_match, rows_15_match, rows_16_match, rows_17_match, rows_18_match, rows_19_match, rows_20_match, rows_21_match, rows_22_match, rows_23_match, rows_24_match, rows_25_match, rows_26_match, rows_27_match, rows_28_match, rows_29_match, rows_30_match, rows_31_match, rows_32_match, rows_33_match, rows_34_match, rows_35_match]
+  rfl
 
 theorem row_ids : rows.map Prod.fst = List.range 648 := by
   rw [← rows_match, List.map_map]

@@ -1,7 +1,7 @@
 """Origin: test_verify_deposit.py
 Claim: deposit manifest and junit gates reject hash, count, boolean, and unexecuted-test failures
 AuthorityEffect: None
-Scope Fence: this file does not claim the live archive matches SHA256SUMS
+Scope Fence: this file does not claim the live archive matches sha256sums
 Level: L5
 MutationKillCount: 4
 """
@@ -89,7 +89,7 @@ def test_hash_mismatch_and_original_count(tmp_path: Path) -> None:
     module = _load(SOURCE, "verify_deposit_hash")
     note = tmp_path / "note.txt"
     note.write_text("abc", encoding="utf-8")
-    manifest = tmp_path / "SHA256SUMS"
+    manifest = tmp_path / "sha256sums"
     manifest.write_text(f"{'0' * 64}  note.txt\n", encoding="utf-8")
     setattr(module, "ROOT", tmp_path)
     errors = _string_list(_call(module, "check_manifest", manifest))
@@ -155,7 +155,7 @@ def _manifest_lines(root: Path) -> None:
             raise RuntimeError("path")
         digest = hashlib.sha256(item.read_bytes()).hexdigest()
         lines.append(f"{digest}  {item.relative_to(root).as_posix()}")
-    _write(root / "SHA256SUMS", "\n".join(lines) + "\n")
+    _write(root / "sha256sums", "\n".join(lines) + "\n")
 
 
 def test_end_to_end_standalone_deposit(tmp_path: Path) -> None:
@@ -206,7 +206,7 @@ def _kill_hash(tmp_path: Path) -> int:
     )
     note = tmp_path / "hash" / "note.txt"
     note.write_text("abc", encoding="utf-8")
-    manifest = tmp_path / "hash" / "SHA256SUMS"
+    manifest = tmp_path / "hash" / "sha256sums"
     manifest.write_text(f"{'0' * 64}  note.txt\n", encoding="utf-8")
     setattr(module, "ROOT", tmp_path / "hash")
     errors = _string_list(_call(module, "check_manifest", manifest))

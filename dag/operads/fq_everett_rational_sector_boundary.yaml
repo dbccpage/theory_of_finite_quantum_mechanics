@@ -1,0 +1,201 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: FQ-EVERETT-RATIONAL-SECTOR-BOUNDARY
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: Equal-weight branch counting in a forking tree reproduces Born weights iff all weights are
+    rational. For Born weights in Q(zeta_n)^+ minus Q (witness conductor 5, weights (5 +- sqrt5)/10) no finite
+    integer fine-graining N = sum m_j gives m_j/N = w_j (witness polynomial 5x^2-5x+1 has no rational root).
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: &id001
+  - Everett forking tree and equal-weight counting (assumption)
+  source_bottleneck: Extension to the irrational sector needs infinite branching; an interface, not derived.
+  source_refs:
+  - omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/claims/gap_register.yaml:387
+  paper_refs:
+  - dag/derivations/13_finite_qm_information/tfq_0276_everettian_relative_state_contact.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports before
+    reusing a result.
+  historical_paper_refs:
+  - papers/derivations/13_finite_qm_information/tfq_0276_everettian_relative_state_contact.md
+  paper_relocations:
+  - from: papers/derivations/13_finite_qm_information/tfq_0276_everettian_relative_state_contact.md
+    to: dag/derivations/13_finite_qm_information/tfq_0276_everettian_relative_state_contact.md
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/13_finite_qm_information/tfq_0276_everettian_relative_state_contact.md
+    sha256: 22aa66a7c8024cd2a6c35dcacd60520221c13b12ee8e032b2b7e67fc525408e4
+source_provenance:
+  repository: this_repository
+  commit: 642f5b95a116da6df805adbd745a4826c6739c2b
+  path: dag/prompts/finite_qm_dynamics_fq_everett_rational_sector_boundary_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: ReproducesPair
+  line: 13
+  signature_excerpt: 'def ReproducesPair (fg : FineGraining2) (p0 p1 D : Nat) : Prop'
+  source: lean4/H059RationalSector.lean
+  repository: this_repository
+  source_sha256: 791eb21024574a4781c85ff937f9807656bbe45386d2b08b384ea9f79fe42f90
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: FineGraining2
+  line: 5
+  signature_excerpt: structure FineGraining2
+  source: lean4/H059RationalSector.lean
+  repository: this_repository
+  source_sha256: 791eb21024574a4781c85ff937f9807656bbe45386d2b08b384ea9f79fe42f90
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: rational_finegraining_exists
+  line: 26
+  signature_excerpt: "theorem rational_finegraining_exists (p0 p1 D : Nat) (hD : D > 0) (hSum : p0 + p1 = D) :\n\
+    \    ∃ fg : FineGraining2, ReproducesPair fg p0 p1 D"
+  source: lean4/H059RationalSector.lean
+  repository: this_repository
+  source_sha256: 791eb21024574a4781c85ff937f9807656bbe45386d2b08b384ea9f79fe42f90
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+- kind: theorem
+  name: witness_poly_has_no_candidate_rational_root
+  line: 73
+  signature_excerpt: "theorem witness_poly_has_no_candidate_rational_root :\n    (5 * (1 : Int) * 1 - 5 * 1 *\
+    \ 1 + 1 * 1 ≠ 0) ∧\n    (5 * (-1 : Int) * (-1) - 5 * (-1) * 1 + 1 * 1 ≠ 0) ∧\n    (5 * (1 : Int) * 1 - 5 *\
+    \ 1 * 5 + 5 * 5 ≠ 0) ∧\n    (5 * (-1 : Int) * (-1) - 5 * (-1) * 5 + 5 * 5 ≠ 0)"
+  source: lean4/H059RationalSector.lean
+  repository: this_repository
+  source_sha256: 791eb21024574a4781c85ff937f9807656bbe45386d2b08b384ea9f79fe42f90
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+- kind: theorem
+  name: conductors_with_real_q_yield_rational_finegraining
+  line: 82
+  signature_excerpt: "theorem conductors_with_real_q_yield_rational_finegraining (b0 b1 : Nat) (hb : b0 + b1 >\
+    \ 0) :\n    ∃ fg : FineGraining2, ReproducesPair fg b0 b1 (b0 + b1)"
+  source: lean4/H059RationalSector.lean
+  repository: this_repository
+  source_sha256: 791eb21024574a4781c85ff937f9807656bbe45386d2b08b384ea9f79fe42f90
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+- kind: theorem
+  name: fq_core_phase_sorkin_gleason_busch_tsirelson_dynamics_route_composition
+  line: 1281
+  signature_excerpt: "theorem fq_core_phase_sorkin_gleason_busch_tsirelson_dynamics_route_composition\n    (a\
+    \ b aa bb cc ab ac bc : Int) :\n    (((a + b) * (a + b) - a * a - b * b = 2 * (a * b)) ∧\n      ((aa + bb\
+    \ + cc + 2 * ab + 2 * ac + 2 * bc) - (aa + bb + 2 * ab) - (aa + cc + 2 * ac) - (bb + cc + 2 * bc) + aa + bb\
+    \ + cc = 0)) ∧\n    ((2 * (3 * 3 + 4 * 4) = 50 ∧ 50 ≠ 0) ∧ (8 * 25 - 14 * 14 = 4 ∧ 4 = 2 * 2 ∧ 0 < 4)) ∧\n\
+    \    (((1 + 0 = 1 ∧ 0 + 1 = 1) ∧ (1 ≠ 0)) ∧ (2 * (3 * 4) = 24 ∧ 24 ≠ 0))"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+source_bindings:
+- original_ref: lean4/quantum_mechanics/H059RationalSector.lean::rational_finegraining_exists
+  availability: local
+  symbol: rational_finegraining_exists
+  path: lean4/H059RationalSector.lean
+  repository: this_repository
+  sha256: 791eb21024574a4781c85ff937f9807656bbe45386d2b08b384ea9f79fe42f90
+  declaration_status: declaration_found_not_proof_checked
+  line: 26
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/H059RationalSector.lean::witness_poly_has_no_candidate_rational_root
+  availability: local
+  symbol: witness_poly_has_no_candidate_rational_root
+  path: lean4/H059RationalSector.lean
+  repository: this_repository
+  sha256: 791eb21024574a4781c85ff937f9807656bbe45386d2b08b384ea9f79fe42f90
+  declaration_status: declaration_found_not_proof_checked
+  line: 73
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/H059RationalSector.lean::conductors_with_real_q_yield_rational_finegraining
+  availability: local
+  symbol: conductors_with_real_q_yield_rational_finegraining
+  path: lean4/H059RationalSector.lean
+  repository: this_repository
+  sha256: 791eb21024574a4781c85ff937f9807656bbe45386d2b08b384ea9f79fe42f90
+  declaration_status: declaration_found_not_proof_checked
+  line: 82
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_core_phase_sorkin_gleason_busch_tsirelson_dynamics_route_composition
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.fq_core_phase_sorkin_gleason_busch_tsirelson_dynamics_route_composition
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 1281
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_quantum_physics/src/branch_finegraining.rs::BranchCounting
+  availability: external
+  symbol: BranchCounting
+  path: omega_engine/crates_rs/omega_quantum_physics/src/branch_finegraining.rs
+  repository: the_symbol_game
+  sha256: 9ec81c78fc2af325ecdfb3ee85eb6a4f867ed2029575bce29e08cb1d0fdb7dae
+  declaration_status: declaration_found_not_executed
+  line: 29
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_quantum_physics/src/everett.rs::EverettForkingNode
+  availability: external
+  symbol: EverettForkingNode
+  path: omega_engine/crates_rs/omega_quantum_physics/src/everett.rs
+  repository: the_symbol_game
+  sha256: b674a186fb7900c8cb68a8a5186f16bd01287fc02a951cde0ef4e39a43d7d4be
+  declaration_status: declaration_found_not_executed
+  line: 20
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche14_cross_stage_route_composition_and_sorkin_hierarchy_witness
+  availability: external
+  symbol: verify_tranche14_cross_stage_route_composition_and_sorkin_hierarchy_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 1415
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: *id001
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: *id001
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

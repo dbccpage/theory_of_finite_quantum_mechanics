@@ -336,7 +336,7 @@ def build_inventory() -> dict:
         receipt = next(
             (
                 r
-                for r in (d / "evidence" / "AXIOM_REPORT.txt", d / "evidence" / "BUILD_RECEIPT.md")
+                for r in (d / "evidence" / "axiom_report.txt", d / "evidence" / "build_receipt.md")
                 if r.is_file()
             ),
             None,
@@ -443,7 +443,7 @@ def receipted_lean_files(d: pathlib.Path) -> set[str]:
     files, home = lean_files_for(d)
     if home != "local" or not files:
         return set()
-    if not any((d / "evidence" / n).is_file() for n in ("AXIOM_REPORT.txt", "BUILD_RECEIPT.md")):
+    if not any((d / "evidence" / n).is_file() for n in ("axiom_report.txt", "build_receipt.md")):
         return set()
     for f in files:
         text = f.read_text(encoding="utf-8")
@@ -489,7 +489,7 @@ def build_claims() -> tuple[list[dict], list[dict], list[dict]]:
                 evidence = (
                     f"`{d.name}/lean4/{named[0]}.lean`"
                     + (f" (+{len(named) - 1} more)" if len(named) > 1 else "")
-                    + f", sorry-free, receipt `{d.name}/evidence/AXIOM_REPORT.txt`"
+                    + f", sorry-free, receipt `{d.name}/evidence/axiom_report.txt`"
                 )
             hit = audited.get(audit_map.normalise_id(cid, key3))
             arec = hit[1] if hit else None

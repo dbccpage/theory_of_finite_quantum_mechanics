@@ -1127,8 +1127,7 @@ theorem singular_segre_guarded_variety_empty (a b c d : ℚ)
     (h_sep : segre_g_sep a b c d ≥ 0) : False := by
   have h_neg := singular_segre_variety_g_sep_negative a b c d h_segre ha hb hc hd
   rw [h_neg] at h_sep
-  revert h_sep
-  decide
+  linarith
 
 #print axioms singular_segre_stengle_identity
 #print axioms singular_segre_variety_g_sep_negative

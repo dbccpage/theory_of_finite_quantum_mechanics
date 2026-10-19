@@ -38,7 +38,7 @@
   - Added dedicated integration tests in `code/tests/integration/test_foliated_fracton_2gauge_defects.py` (8/8 passed; 105/105 integration tests passing across the paper suite with zero regressions).
 - **Formal Verification in Lean 4**:
   - Formalized 19th Lean 4 module `lean4/FoliatedFracton2Gauge.lean` proving 10 theorems under `{propext, Quot.sound}` with 0 `sorry` placeholders.
-  - Updated `lean4/lakefile.lean`, `lean4/FermionSignAll.lean` (22 jobs compiled cleanly), and `lean4/AXIOM_REPORT.txt` (75 total theorems verified under standard kernel axioms).
+  - Updated `lean4/lakefile.lean`, `lean4/FermionSignAll.lean` (22 jobs compiled cleanly), and `lean4/axiom_report.txt` (75 total theorems verified under standard kernel axioms).
 - **Claim Ledger & Monograph Synchronization**:
   - Added Section 9.19 and updated Sections 11 and 12 in `the_problem_of_the_fermion_sign.md`.
   - Registered Claim `GIN-C24` and Invariant `INV-FOLIATED-FRACTON-2GAUGE` in `the_problem_of_the_fermion_sign_claim_ledger.md`.
@@ -61,7 +61,7 @@
   - Added dedicated integration tests in `code/tests/integration/test_instanton_dyon_gas_braiding.py` (8/8 passed; 97/97 integration tests passing across the paper suite).
 - **Formal Verification in Lean 4**:
   - Formalized 18th Lean 4 module `lean4/InstantonDyonGas.lean` proving 10 theorems under `{propext, Quot.sound}` with 0 `sorry` placeholders.
-  - Updated `lean4/lakefile.lean`, `lean4/FermionSignAll.lean`, and `lean4/AXIOM_REPORT.txt` (65 total theorems verified under standard kernel axioms).
+  - Updated `lean4/lakefile.lean`, `lean4/FermionSignAll.lean`, and `lean4/axiom_report.txt` (65 total theorems verified under standard kernel axioms).
 - **Claim Ledger & Monograph Synchronization**:
   - Added Section 9.18 and updated Sections 11 and 12 in `the_problem_of_the_fermion_sign.md`.
   - Registered Claim `GIN-C23` and Invariant `INV-INSTANTON-DYON-GAS` in `the_problem_of_the_fermion_sign_claim_ledger.md`.
@@ -96,9 +96,9 @@
   - Registered `require «po023»` in `lean4/genx/lakefile.lean`, resolving cross-package Lake module disambiguation cleanly.
   - Verified `lake build` succeeds standalone (19 jobs, exit code 0) and under root `genx` (exit code 0).
 - **Axiom Audit**:
-  - Generated `lean4/AXIOM_REPORT.txt`: 50 theorems verified to operate strictly within standard kernel whitelist `{propext, Quot.sound}` or zero axioms (`[]`), with 0 synthetic axioms and 0 unproved `sorry` placeholders.
+  - Generated `lean4/axiom_report.txt`: 50 theorems verified to operate strictly within standard kernel whitelist `{propext, Quot.sound}` or zero axioms (`[]`), with 0 synthetic axioms and 0 unproved `sorry` placeholders.
 - **Deposit Gate & Manifest Synchronization**:
-  - Scaffolding `claim_ledger.yaml`, `verify_deposit.py`, `.zenodo.json`, and `SHA256SUMS` in full accordance with `governance-paper-deposit/SKILL.md`.
+  - Scaffolding `claim_ledger.yaml`, `verify_deposit.py`, `.zenodo.json`, and `sha256sums` in full accordance with `governance-paper-deposit/SKILL.md`.
 
 ## [v2.0.0] — 2026-09-19
 

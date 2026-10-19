@@ -239,6 +239,71 @@ pub fn audit_kitaev_chain_majorana(l: usize) -> Result<MajoranaZeroModeReceipt, 
     })
 }
 
+/// Finite lattice scaling benchmark for 1D Kitaev chain Majorana zero mode isolation
+/// across arbitrary declared chain lengths `L` (`2L` Majorana modes).
+pub fn benchmark_kitaev_chain_mzm_scaling(
+    chain_lengths: &[usize],
+) -> Result<Vec<MajoranaZeroModeReceipt>, &'static str> {
+    if chain_lengths.is_empty() {
+        return Err("chain_lengths must not be empty");
+    }
+    let mut receipts = Vec::with_capacity(chain_lengths.len());
+    for &l in chain_lengths {
+        receipts.push(audit_kitaev_chain_majorana(l)?);
+    }
+    Ok(receipts)
+}
+
+/// Finite lattice scaling benchmark for GIN inverted posting list lookup and involution
+/// doublet cancellation across declared orbital mode counts `M`.
+pub fn benchmark_gin_involution_scaling(
+    mode_counts: &[usize],
+) -> Result<Vec<InvolutionCancellationReceipt>, &'static str> {
+    if mode_counts.is_empty() {
+        return Err("mode_counts must not be empty");
+    }
+    let mut receipts = Vec::with_capacity(mode_counts.len());
+    for &m in mode_counts {
+        if m < 4 || m % 2 != 0 {
+            return Err("each mode count must be an even integer >= 4");
+        }
+        let mut gin = GinIndex::new();
+        let num_pairs = m / 2;
+        let mut flip_modes = BTreeSet::new();
+        flip_modes.insert(1);
+        flip_modes.insert(m);
+
+        let mut pairs = Vec::with_capacity(num_pairs);
+        for p in 0..num_pairs {
+            let id_a = (2 * p + 1) as u64;
+            let id_b = (2 * p + 2) as u64;
+            let mut occ_a = BTreeSet::new();
+            occ_a.insert(1);
+            if p + 2 < m {
+                occ_a.insert(p + 2);
+            }
+            let mut occ_b = occ_a.clone();
+            occ_b.remove(&1);
+            occ_b.insert(m);
+
+            let weight = BigRational::from(num_bigint::BigInt::from((p + 1) as i64));
+            gin.index_configuration(id_a, format!("GIN_Scale_{m}"), occ_a, m, weight.clone(), 1, 1);
+            gin.index_configuration(id_b, format!("GIN_Scale_{m}"), occ_b, m, weight, -1, 1);
+
+            let partner = gin
+                .find_involution_partner(id_a, &flip_modes, m)
+                .ok_or("missing involution partner in GIN scaling benchmark")?;
+            if partner != id_b {
+                return Err("GIN partner mismatch in scaling benchmark");
+            }
+            pairs.push((id_a, id_b));
+        }
+
+        receipts.push(gin.audit_involution_cancellations(&format!("GIN_Scale_{m}"), &pairs));
+    }
+    Ok(receipts)
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -279,5 +344,31 @@ mod tests {
         assert_eq!(receipt.bulk_bonded_modes, vec![2, 3, 4, 5, 6, 7]);
         assert!(receipt.is_boundary_isolated);
         assert_eq!(receipt.mzm_status, "MZM_TOPOLOGICALLY_PROTECTED");
+    }
+
+    #[test]
+    fn kitaev_chain_and_gin_involution_scaling_up_to_1024_modes() {
+        let lengths = [4usize, 8, 16, 32, 64, 128, 256, 512];
+        let mzm_receipts = benchmark_kitaev_chain_mzm_scaling(&lengths).unwrap();
+        assert_eq!(mzm_receipts.len(), lengths.len());
+        for (&l, r) in lengths.iter().zip(mzm_receipts.iter()) {
+            assert_eq!(r.chain_length_l, l);
+            assert_eq!(r.total_modes_audited, 2 * l);
+            assert_eq!(r.unpaired_zero_modes, vec![1, 2 * l]);
+            assert_eq!(r.bulk_bonded_modes.len(), 2 * l - 2);
+            assert!(r.is_boundary_isolated);
+            assert_eq!(r.mzm_status, "MZM_TOPOLOGICALLY_PROTECTED");
+        }
+
+        let mode_counts = [8usize, 16, 32, 64, 128];
+        let gin_receipts = benchmark_gin_involution_scaling(&mode_counts).unwrap();
+        assert_eq!(gin_receipts.len(), mode_counts.len());
+        for (&m, r) in mode_counts.iter().zip(gin_receipts.iter()) {
+            assert_eq!(r.pairs_audited, m / 2);
+            assert!(r.all_exact_cancellations);
+            assert_eq!(r.max_weight_defect, BigRational::zero());
+            assert_eq!(r.total_uncancelled_mass, BigRational::zero());
+            assert_eq!(r.terminal_route, "ExactRepair");
+        }
     }
 }

@@ -1,0 +1,850 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: FQ-POWER-RULE-P2-SELECTION
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: Within the declared positive-power family P_p(i) = |c_i|^p / sum_j |c_j|^p on two
+    rational orthonormal contexts sharing a ray (psi = (1,1,0), (3,4,5) rotation), context-independence
+    holds iff (3/5)^p + (4/5)^p = 1, whose unique positive solution is p = 2. Classifies the power family;
+    not a Gleason theorem. Sorkin I3 does not select p (vanishes at p=1 and p=2).
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions:
+  - power-law family of rules (assumption)
+  - declared real orthonormal contexts (assumption)
+  source_bottleneck: No Lean artifact found by grep for this result (names power/p_eq_two absent in lean4/quantum_mechanics).
+  source_refs:
+  - omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md:686
+  paper_refs:
+  - dag/derivations/09_finite_hilbert/tfq_0317_three_lean_files_stay_on_a_narrow_carrier.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  historical_paper_refs:
+  - papers/derivations/09_finite_hilbert/tfq_0317_three_lean_files_stay_on_a_narrow_carrier.md
+  paper_relocations:
+  - from: papers/derivations/09_finite_hilbert/tfq_0317_three_lean_files_stay_on_a_narrow_carrier.md
+    to: dag/derivations/09_finite_hilbert/tfq_0317_three_lean_files_stay_on_a_narrow_carrier.md
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/09_finite_hilbert/tfq_0317_three_lean_files_stay_on_a_narrow_carrier.md
+    sha256: 434459e1fa65912862b55755e15d52e85becc52852ff8c1a139074547950d864
+source_provenance:
+  repository: this_repository
+  commit: 642f5b95a116da6df805adbd745a4826c6739c2b
+  path: dag/prompts/finite_qm_core_fq_power_rule_p2_selection_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates: []
+relation_candidates:
+- kind: theorem
+  name: power_rule_p2_unique_even_exponent
+  line: 210
+  signature_excerpt: "theorem power_rule_p2_unique_even_exponent (k : Nat) :\n    1 ^ (2 * k) + 1 ^ (2\
+    \ * k) = 2 ^ k ↔ k = 1"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.power_rule_p2_unique_even_exponent
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.power_rule_p2_unique_even_exponent
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 210
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_power_p2_cabello_146_and_weyl_commutant_irreducibility
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.fq_power_p2_cabello_146_and_weyl_commutant_irreducibility
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 1196
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_quantum_physics/src/power_rule_outcomes.rs::PowerRuleError
+  availability: external
+  symbol: PowerRuleError
+  path: omega_engine/crates_rs/omega_quantum_physics/src/power_rule_outcomes.rs
+  repository: the_symbol_game
+  sha256: 82afee027f5f9c9ab2498cb41e837075e832a590b1bfad1be7948a879fc6176c
+  declaration_status: declaration_found_not_executed
+  line: 43
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_fq_core_and_k23_duality_witness
+  availability: external
+  symbol: verify_fq_core_and_k23_duality_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 338
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness
+  availability: external
+  symbol: verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 1280
+  role: source_lead_only
+presentation:
+  status: scoped_stage_result_reviewed
+  scope: The real power equation (3/5)^p+(4/5)^p=1 iff p=2 is kernel checked. Integer p=1..8 reproduce
+    actual shared-ray context weights; mixed-sign p=1 supplies a retained counterexample to unrestricted
+    Sorkin vanishing.
+  colours:
+  - id: AdmittedRealExponent
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: DeclaredContextOverlaps
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: PositiveIntegerPower
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: PositiveRationalMass
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: RationalProbability
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: RealScalar
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  generators:
+  - id: power_normalizer
+    ordered_inputs:
+    - PositiveIntegerPower
+    - DeclaredContextOverlaps
+    output: PositiveRationalMass
+    arity: 2
+    carrier: Literal named finite or admitted scalar carrier
+    coefficient_ring: Z, Q, Q(i), or Q(sqrt2) exactly as stated
+    hypotheses:
+    - Nonzero state; exact orthonormal declared context; integer 1..16.
+    semantic_predicate: Sum absolute overlaps raised to the integer power.
+    source_pins:
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-POWER-RULE-P2-SELECTION__PROVED_LEAN.yaml
+      sha256: 6b7c7c233f194ef969c2c3e31116002645d634ce9bf21765b381fcd66d8452ed
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/inputs/this_repository/dag/operads/FQ-POWER-RULE-P2-SELECTION.yaml
+      sha256: 3f4dd382b1b15ecbab4c23eb76111d1f70cd60fea573a23b14d870d92292587d
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/power_rule_outcomes.rs
+      sha256: 82afee027f5f9c9ab2498cb41e837075e832a590b1bfad1be7948a879fc6176c
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/inputs/this_repository/dag/derivations/09_finite_hilbert/TFQ-0317_three_lean_files_stay_on_a_narrow_carrier.md
+      sha256: 434459e1fa65912862b55755e15d52e85becc52852ff8c1a139074547950d864
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p0/operation_sources/code/python/src/qm/structure_exact.py
+      sha256: 0a35a5782b47e06167fc768320ee7fbf90c99fbdf336cbfaf2d2e1b93f9ca89d
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p0/operation_sources/code/python/tests/test_structure_exact.py
+      sha256: e1a2398a963432c3b6e9dede60a6dc888b22469f5cf297d7262a866da7e44677
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p0/operation_sources/code/rust/src/finite_probability/structure_exact.rs
+      sha256: 9c714e91517144cf0fa614c8195bcf2f56fc32c0b4959750a4515f75fd5b6d28
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/structure_exact_replay.rs
+      sha256: 4a042c6534fddd7c9ddaae932edac12ef4be2c708175b08a14a64b4b8c49f702
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p0/operation_sources/dag/pfp/structure_checker.py
+      sha256: 554c0811b794c03ce8badba12075ccb8b12165f6837acff805af0ceba3b3fea7
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p0/operation_sources/dag/results/batches/20261019T160201Z_prompts_22_31/tools/prepare.py
+      sha256: d9c366929fc4752c08b97e32aa888c028b6ef081caf2f71cff5a596d6952e3da
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/check_candidate.py
+      sha256: 05a2d47fb8049956464bb75aad9cb41f035ff80acbd0c355a8a880f6575cc13c
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/format_certificate.py
+      sha256: 5b55937d9524a24233e9e52e02e359b97fdef8c3b8aa8f2ee34978974d39a9b5
+    evidence_status: Reviewed exact finite native records; literal named kernel statements supply only
+      their own universal scopes. Full refined-carrier operad/coherence remains open.
+    latest_host_check: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p2_after_p3c/host_check.json
+  - id: shared_ray_probability
+    ordered_inputs:
+    - PositiveRationalMass
+    output: RationalProbability
+    arity: 1
+    carrier: Literal named finite or admitted scalar carrier
+    coefficient_ring: Z, Q, Q(i), or Q(sqrt2) exactly as stated
+    hypotheses:
+    - Same preparation, power and shared e1 ray.
+    semantic_predicate: For this shared overlap one, return 1/mass.
+    source_pins:
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-POWER-RULE-P2-SELECTION__PROVED_LEAN.yaml
+      sha256: 6b7c7c233f194ef969c2c3e31116002645d634ce9bf21765b381fcd66d8452ed
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/inputs/this_repository/dag/operads/FQ-POWER-RULE-P2-SELECTION.yaml
+      sha256: 3f4dd382b1b15ecbab4c23eb76111d1f70cd60fea573a23b14d870d92292587d
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/power_rule_outcomes.rs
+      sha256: 82afee027f5f9c9ab2498cb41e837075e832a590b1bfad1be7948a879fc6176c
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/inputs/this_repository/dag/derivations/09_finite_hilbert/TFQ-0317_three_lean_files_stay_on_a_narrow_carrier.md
+      sha256: 434459e1fa65912862b55755e15d52e85becc52852ff8c1a139074547950d864
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p0/operation_sources/code/python/src/qm/structure_exact.py
+      sha256: 0a35a5782b47e06167fc768320ee7fbf90c99fbdf336cbfaf2d2e1b93f9ca89d
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p0/operation_sources/code/python/tests/test_structure_exact.py
+      sha256: e1a2398a963432c3b6e9dede60a6dc888b22469f5cf297d7262a866da7e44677
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p0/operation_sources/code/rust/src/finite_probability/structure_exact.rs
+      sha256: 9c714e91517144cf0fa614c8195bcf2f56fc32c0b4959750a4515f75fd5b6d28
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/structure_exact_replay.rs
+      sha256: 4a042c6534fddd7c9ddaae932edac12ef4be2c708175b08a14a64b4b8c49f702
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p0/operation_sources/dag/pfp/structure_checker.py
+      sha256: 554c0811b794c03ce8badba12075ccb8b12165f6837acff805af0ceba3b3fea7
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p0/operation_sources/dag/results/batches/20261019T160201Z_prompts_22_31/tools/prepare.py
+      sha256: d9c366929fc4752c08b97e32aa888c028b6ef081caf2f71cff5a596d6952e3da
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/check_candidate.py
+      sha256: 05a2d47fb8049956464bb75aad9cb41f035ff80acbd0c355a8a880f6575cc13c
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/format_certificate.py
+      sha256: 5b55937d9524a24233e9e52e02e359b97fdef8c3b8aa8f2ee34978974d39a9b5
+    evidence_status: Reviewed exact finite native records; literal named kernel statements supply only
+      their own universal scopes. Full refined-carrier operad/coherence remains open.
+    latest_host_check: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p2_after_p3c/host_check.json
+  - id: real_power_residual
+    ordered_inputs:
+    - AdmittedRealExponent
+    output: RealScalar
+    arity: 1
+    carrier: Literal named finite or admitted scalar carrier
+    coefficient_ring: Z, Q, Q(i), or Q(sqrt2) exactly as stated
+    hypotheses:
+    - Admitted real exponentiation; kernel uniqueness is an equation on this family.
+    semantic_predicate: (3/5)^p+(4/5)^p-1.
+    source_pins:
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-POWER-RULE-P2-SELECTION__PROVED_LEAN.yaml
+      sha256: 6b7c7c233f194ef969c2c3e31116002645d634ce9bf21765b381fcd66d8452ed
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/inputs/this_repository/dag/operads/FQ-POWER-RULE-P2-SELECTION.yaml
+      sha256: 3f4dd382b1b15ecbab4c23eb76111d1f70cd60fea573a23b14d870d92292587d
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/power_rule_outcomes.rs
+      sha256: 82afee027f5f9c9ab2498cb41e837075e832a590b1bfad1be7948a879fc6176c
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/inputs/this_repository/dag/derivations/09_finite_hilbert/TFQ-0317_three_lean_files_stay_on_a_narrow_carrier.md
+      sha256: 434459e1fa65912862b55755e15d52e85becc52852ff8c1a139074547950d864
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p0/operation_sources/code/python/src/qm/structure_exact.py
+      sha256: 0a35a5782b47e06167fc768320ee7fbf90c99fbdf336cbfaf2d2e1b93f9ca89d
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p0/operation_sources/code/python/tests/test_structure_exact.py
+      sha256: e1a2398a963432c3b6e9dede60a6dc888b22469f5cf297d7262a866da7e44677
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p0/operation_sources/code/rust/src/finite_probability/structure_exact.rs
+      sha256: 9c714e91517144cf0fa614c8195bcf2f56fc32c0b4959750a4515f75fd5b6d28
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/structure_exact_replay.rs
+      sha256: 4a042c6534fddd7c9ddaae932edac12ef4be2c708175b08a14a64b4b8c49f702
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p0/operation_sources/dag/pfp/structure_checker.py
+      sha256: 554c0811b794c03ce8badba12075ccb8b12165f6837acff805af0ceba3b3fea7
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p0/operation_sources/dag/results/batches/20261019T160201Z_prompts_22_31/tools/prepare.py
+      sha256: d9c366929fc4752c08b97e32aa888c028b6ef081caf2f71cff5a596d6952e3da
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/check_candidate.py
+      sha256: 05a2d47fb8049956464bb75aad9cb41f035ff80acbd0c355a8a880f6575cc13c
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/format_certificate.py
+      sha256: 5b55937d9524a24233e9e52e02e359b97fdef8c3b8aa8f2ee34978974d39a9b5
+    evidence_status: Reviewed exact finite native records; literal named kernel statements supply only
+      their own universal scopes. Full refined-carrier operad/coherence remains open.
+    latest_host_check: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p2_after_p3c/host_check.json
+  relations:
+  - id: power_relation_0
+    equation_or_predicate: shared probability is 1/(1+(3/5)^p+(4/5)^p); equality to 1/2 reduces to the
+      power equation.
+    typing_conditions: Literal declared operation domains; The power-law family, real exponentiation and
+      the real orthonormal contexts are admitted; formal transport of the concrete context normalization
+      to the Real.rpow equation remains a separate bridge. No unrestricted readout uniqueness or Gleason
+      theorem follows.
+    evidence_status: Accepted P2 plus executed P4; consult literal named Lean signatures and retained
+      matrix/coordinate transport obligations rather than treating the whole relation prose as a theorem.
+    scope: The real power equation (3/5)^p+(4/5)^p=1 iff p=2 is kernel checked. Integer p=1..8 reproduce
+      actual shared-ray context weights; mixed-sign p=1 supplies a retained counterexample to unrestricted
+      Sorkin vanishing.
+    source_pins: &id001
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p3c/construction/code/python/src/qm/structure_exact.py
+      sha256: 0a35a5782b47e06167fc768320ee7fbf90c99fbdf336cbfaf2d2e1b93f9ca89d
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p3c/construction/code/python/tests/test_structure_exact.py
+      sha256: e1a2398a963432c3b6e9dede60a6dc888b22469f5cf297d7262a866da7e44677
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p3c/construction/code/rust/src/finite_probability/structure_exact.rs
+      sha256: 9c714e91517144cf0fa614c8195bcf2f56fc32c0b4959750a4515f75fd5b6d28
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p3c/construction/code/rust/src/finite_probability/examples/structure_exact_replay.rs
+      sha256: 4a042c6534fddd7c9ddaae932edac12ef4be2c708175b08a14a64b4b8c49f702
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p3c/construction/dag/pfp/structure_checker.py
+      sha256: 554c0811b794c03ce8badba12075ccb8b12165f6837acff805af0ceba3b3fea7
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p3c/construction/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p3c/construction/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p3c/construction/lean4/PrimitiveDifference.lean
+      sha256: 8748733821f0d959e698794f70d4db6595e8fe4a1a00581acd52961f751833a8
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p3c/construction/lean4/HWKernel.lean
+      sha256: 33bef7096101c51bfccb367ad0339a3b161eb08894b6616d71f77bcc0940f7f9
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p3c/construction/lean4/H004FreeLinearization.lean
+      sha256: 1c5ebb4573b213afa3342bf46202fe2e7b27f18988154fdc4b00680bcb172df1
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p3c/construction/lean4/H005InnerProductAdmission.lean
+      sha256: 25072066552c061b7ce2206ed10846ef1fe954edbb7dc5056a34de573929e55c
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p3c/construction/lean4/H003ReversibilityGate.lean
+      sha256: d308e3e3f99b14b807f03d3f762cf91a928a78f3c3fa21cef224717ce0b415f2
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p3c/construction/lean4/H006PermutationUnitary.lean
+      sha256: 84c8c1b6a38f31091aeb711de1f63307e482cf77086ab2f0d23f2b9359519b6f
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p3c/construction/lean4/H007Complexification.lean
+      sha256: 5a26837c8e57820953fe5e97f790b4ba6d04a8b0b6edc4ac5fcb84b0ba2e5242
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p3c/construction/lean4/H017MatrixFiniteRecovery.lean
+      sha256: d869d2c3efb59f9fff49e55d500f0325cd76ddf00be6c04fcc0a182cc544b21f
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p3c/construction/lean4/H017Fin.lean
+      sha256: 2294ae2512eac4a7c5167954b86118c7f02638dafbdb42b4b894fc1fbdc4dea2
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p3c/construction/lean4/H016ContinuousDynamicsFork.lean
+      sha256: 906b145d8626c1887b1075e9b900858ca3f0c16df6fa65a2d8a87aa68b06de85
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p3c/construction/lean4/H008PhaseBlindPresentation.lean
+      sha256: 2ec11e9bfcd5470fd556ee7fe46ecb455c4ab6b5acde7b06213b624e65da439e
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p3c/construction/lean4/Core.lean
+      sha256: 2418e9177f2fb2bcffb4fc98f9a3c599a6151485514c12da7c140d9b96ee1f22
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p3c/construction/lean4/H009PhaseFiber.lean
+      sha256: 0a41e5169888c39cab352ab7b0889bb01fdf0e1ab7410d7386d999c0958fa4b3
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p3c/construction/lean4/H010InterferenceNonDescent.lean
+      sha256: e46f995a5af051ddb72746a7dfb674cccc95a3eb3a499d52a0287e5700f06703
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p3c/construction/lean4/H011U1SelectorBoundary.lean
+      sha256: 214f187afdfc0ee196021aa3ce2ab96875b1c13de9b3a560ef1eaf0359622912
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p3c/construction/lean4/H011Circle.lean
+      sha256: 6934713287756fd23f2f44a6bab2ed6ee50fbb128f99db492f926c839ff86d9b
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p3c/construction/lean4/H014TensorCompositionBoundary.lean
+      sha256: 0754fd419711de9caf9e47d901c467db8f95dd38bfd570fefb305d0e9ad9386a
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p3c/construction/lean4/H014BilinearProduct.lean
+      sha256: fabd54a913240848de949fb629a744d82f0485b3a40aeba32fc1c39e55353cde
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p3c/construction/lean4/H014Interface.lean
+      sha256: 320a143feb167f7665d81508f191954b270d47bfc9a14fab1d51fe6428e0fba0
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p3c/construction/lean4/H015IrreversibleFork.lean
+      sha256: 2a10ba9ab857f6c434f51a947a47073574fb7db92c1bd00bc2cb318f4335f487
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p3c/construction/lean4/H013BornPairingBoundary.lean
+      sha256: debafe0eefb016e289a18fb9a308224f73464282e15c17eef143e5ea5342b642
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p3c/construction/lean4/H013SameContract.lean
+      sha256: 47568af5eaa40e031525b641574866c3044176756fb245b6084c96711e8bcca8
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p3c/construction/lean4/H017Gleason.lean
+      sha256: ceef94bcf70d76a392949b8a9f07a8be3de52fd51f86960f494c3c58bcc95837
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p3c/construction/lean4/H017Extras.lean
+      sha256: 5ca59147d0613750ef3870907d1b4ac0318c22cf6b85f608a2a09fbfb62637bf
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p3c/construction/lean4/H017ExtrasDropone.lean
+      sha256: 919ca08a830f788648e81faf36c5008a51b7a027cd84edd3b2cfca3b63dace7e
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p3c/construction/lean4/H000FinitePresentedCarrier.lean
+      sha256: 789978ed31d30571cffbfe7efa8e8f46f6340649ab09e876289896eb5ca1a5ce
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p3c/construction/lean4/H055DiscreteDynamicsStone.lean
+      sha256: 1b56478a77b4ba84c72494821dcdd0ad7b47228d94bc114fbded0adea7a018c0
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p3c/construction/lean4/PromptStructure.lean
+      sha256: 80cc502102bba0cea78860224d6e1fde363d04e6b065a645c707f1f2691118e9
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p3c/construction/dag/results/batches/20261019T160201Z_prompts_22_31/tools/prepare.py
+      sha256: d9c366929fc4752c08b97e32aa888c028b6ef081caf2f71cff5a596d6952e3da
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p3c/construction/code/rust/src/finite_probability/lib.rs
+      sha256: 2f8d14abc58243f562e5a75437aa867e951ca8c3c08e5c002953d7337d93f5de
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p3c/construction/code/rust/src/finite_probability/Cargo.toml
+      sha256: 5d0f58ff83c8e4b387de5df3ff870f91a7a7b566098764b5b4c24da899d19a65
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p3c/construction/code/rust/Cargo.lock
+      sha256: b30901c3b27d2417071d5c1d626f91085558d7a81f2de3abf059bd96f2f76ef6
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p3c/construction/lean4/lakefile.lean
+      sha256: 1615351db33d32fd264988999122bda1c1848e11c47cc9be165a6b189ce3560c
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p3c/construction/lean4/lean-toolchain
+      sha256: a0ada3782cd088719516bbfdf37b9e7032230e211bf424b85d952ee650c51091
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p3c/construction/lean4/lake-manifest.json
+      sha256: 7420c413da283f6b7aa102fd1a4be076a5c3ba1fbf3227bfeced44c7afcc61d2
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p3c/construction/lean4/E003_projection_fiber_primitive_difference.lean
+      sha256: 18dfa078d917a682ef91ce681afffce225a10ad5eca484f783880eda8565cfd6
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p3c/construction/lean4/E005_fiber_quotient_equivalence.lean
+      sha256: 9a54028112d58c3d91927762439af37016c5a496585e7768639e4dfd45be820d
+    latest_host_check: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p2_after_p3c/host_check.json
+    historical_evidence_annotation: P3 repair awaiting actual fresh native/kernel acceptance.
+  - id: power_relation_1
+    equation_or_predicate: Absolute power1 I3 on (1,1,-1) is 2; vanishing on an aligned triple is not
+      universal.
+    typing_conditions: Literal declared operation domains; The power-law family, real exponentiation and
+      the real orthonormal contexts are admitted; formal transport of the concrete context normalization
+      to the Real.rpow equation remains a separate bridge. No unrestricted readout uniqueness or Gleason
+      theorem follows.
+    evidence_status: Accepted P2 plus executed P4; consult literal named Lean signatures and retained
+      matrix/coordinate transport obligations rather than treating the whole relation prose as a theorem.
+    scope: The real power equation (3/5)^p+(4/5)^p=1 iff p=2 is kernel checked. Integer p=1..8 reproduce
+      actual shared-ray context weights; mixed-sign p=1 supplies a retained counterexample to unrestricted
+      Sorkin vanishing.
+    source_pins: *id001
+    latest_host_check: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p2_after_p3c/host_check.json
+    historical_evidence_annotation: P3 repair awaiting actual fresh native/kernel acceptance.
+  compositions: &id002
+  - outer_operation: shared_ray_probability
+    input_slot: 0
+    inner_operation: power_normalizer
+    colour_match: PositiveRationalMass -> PositiveRationalMass
+    hypothesis_match: Same declared coordinates, coefficients and context; all operation hypotheses must
+      be carried into the graft.
+    licensing_relations:
+    - power_relation_0
+    - power_relation_1
+    evidence_status: Semantic substitution supported by the retained finite operation traces and separately
+      scoped named kernel statements. A complete refined-carrier operad is not asserted.
+  identities:
+  - colour: AdmittedRealExponent
+    proposed_operation: id_AdmittedRealExponent
+    signature: AdmittedRealExponent -> AdmittedRealExponent
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: DeclaredContextOverlaps
+    proposed_operation: id_DeclaredContextOverlaps
+    signature: DeclaredContextOverlaps -> DeclaredContextOverlaps
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: PositiveIntegerPower
+    proposed_operation: id_PositiveIntegerPower
+    signature: PositiveIntegerPower -> PositiveIntegerPower
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: PositiveRationalMass
+    proposed_operation: id_PositiveRationalMass
+    signature: PositiveRationalMass -> PositiveRationalMass
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: RationalProbability
+    proposed_operation: id_RationalProbability
+    signature: RationalProbability -> RationalProbability
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: RealScalar
+    proposed_operation: id_RealScalar
+    signature: RealScalar -> RealScalar
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  symmetric_actions: []
+  coherence_obligations: &id003
+  - The power-law family, real exponentiation and the real orthonormal contexts are admitted; formal transport
+    of the concrete context normalization to the Real.rpow equation remains a separate bridge. No unrestricted
+    readout uniqueness or Gleason theorem follows.
+  - Prove the full refined-carrier operad identity, substitution, symmetry and coherence laws; mere colour
+    matches do not instantiate that formal structure.
+  - No inference from a source flag, declared census label, finite sample, quotient carrier or coordinate
+    name to a stronger mathematical/physical authority claim.
+  failed_compositions:
+  - proposal: Promote the selected step to the unrestricted original target
+    reason: The power-law family, real exponentiation and the real orthonormal contexts are admitted;
+      formal transport of the concrete context normalization to the Real.rpow equation remains a separate
+      bridge. No unrestricted readout uniqueness or Gleason theorem follows.
+  - proposal: Accept the prior uncompiled shared proof submission
+    reason: Fresh P2 found H000 imports E003/E005 without local source or oleans. Add new minimal report-fiber
+      definitions/proofs with explicit provenance; do not pretend they are recovered historical bytes.
+  - proposal: Accept the prior uncompiled shared proof submission
+    reason: Retained compiler diagnostics require the explicit successor proof repair; no original numerical
+      candidate or intended statement is changed.
+  - proposal: Accept the prior uncompiled shared proof submission
+    reason: Retained compiler diagnostics require the explicit successor proof repair; no original numerical
+      candidate or intended statement is changed.
+  counterexamples:
+  - id: retained_actual_domain_controls
+    records:
+    - input:
+      - '1'
+      output:
+      - 12/5
+      - 1/2
+      - 5/12
+      - 1/12
+      - '0'
+      - '2'
+    - input:
+      - '2'
+      output:
+      - '2'
+      - 1/2
+      - 1/2
+      - '0'
+      - '0'
+      - '0'
+    - input:
+      - '3'
+      output:
+      - 216/125
+      - 1/2
+      - 125/216
+      - -17/216
+      - '6'
+      - '-4'
+    - input:
+      - '4'
+      output:
+      - 962/625
+      - 1/2
+      - 625/962
+      - -72/481
+      - '36'
+      - '-12'
+    - input:
+      - '5'
+      output:
+      - 4392/3125
+      - 1/2
+      - 3125/4392
+      - -929/4392
+      - '150'
+      - '-28'
+    - input:
+      - '6'
+      output:
+      - 818/625
+      - 1/2
+      - 625/818
+      - -108/409
+      - '540'
+      - '-60'
+    - input:
+      - '7'
+      output:
+      - 96696/78125
+      - 1/2
+      - 78125/96696
+      - -29777/96696
+      - '1806'
+      - '-124'
+    - input:
+      - '8'
+      output:
+      - 462722/390625
+      - 1/2
+      - 390625/462722
+      - -79632/231361
+      - '5796'
+      - '-252'
+    scope: Computed values, with the source/kernel/native distinctions retained in claim_boundary.
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: FILLED
+    carrier: Literal per-operation finite or admitted scalar carriers
+    coefficient_ring: Exact Z, Q, Q(i), Q(sqrt2); admitted Real.rpow only in the stated Lean equation
+    source_pins:
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-POWER-RULE-P2-SELECTION__PROVED_LEAN.yaml
+      sha256: 6b7c7c233f194ef969c2c3e31116002645d634ce9bf21765b381fcd66d8452ed
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/inputs/this_repository/dag/operads/FQ-POWER-RULE-P2-SELECTION.yaml
+      sha256: 3f4dd382b1b15ecbab4c23eb76111d1f70cd60fea573a23b14d870d92292587d
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/power_rule_outcomes.rs
+      sha256: 82afee027f5f9c9ab2498cb41e837075e832a590b1bfad1be7948a879fc6176c
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/inputs/this_repository/dag/derivations/09_finite_hilbert/TFQ-0317_three_lean_files_stay_on_a_narrow_carrier.md
+      sha256: 434459e1fa65912862b55755e15d52e85becc52852ff8c1a139074547950d864
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p0/operation_sources/code/python/src/qm/structure_exact.py
+      sha256: 0a35a5782b47e06167fc768320ee7fbf90c99fbdf336cbfaf2d2e1b93f9ca89d
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p0/operation_sources/code/python/tests/test_structure_exact.py
+      sha256: e1a2398a963432c3b6e9dede60a6dc888b22469f5cf297d7262a866da7e44677
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p0/operation_sources/code/rust/src/finite_probability/structure_exact.rs
+      sha256: 9c714e91517144cf0fa614c8195bcf2f56fc32c0b4959750a4515f75fd5b6d28
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/structure_exact_replay.rs
+      sha256: 4a042c6534fddd7c9ddaae932edac12ef4be2c708175b08a14a64b4b8c49f702
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p0/operation_sources/dag/pfp/structure_checker.py
+      sha256: 554c0811b794c03ce8badba12075ccb8b12165f6837acff805af0ceba3b3fea7
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p0/operation_sources/dag/results/batches/20261019T160201Z_prompts_22_31/tools/prepare.py
+      sha256: d9c366929fc4752c08b97e32aa888c028b6ef081caf2f71cff5a596d6952e3da
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/check_candidate.py
+      sha256: 05a2d47fb8049956464bb75aad9cb41f035ff80acbd0c355a8a880f6575cc13c
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/format_certificate.py
+      sha256: 5b55937d9524a24233e9e52e02e359b97fdef8c3b8aa8f2ee34978974d39a9b5
+    public_input:
+      kind: power
+      cases:
+      - - '1'
+      - - '2'
+      - - '3'
+      - - '4'
+      - - '5'
+      - - '6'
+      - - '7'
+      - - '8'
+      scope: The real power equation (3/5)^p+(4/5)^p=1 iff p=2 is kernel checked. Integer p=1..8 reproduce
+        actual shared-ray context weights; mixed-sign p=1 supplies a retained counterexample to unrestricted
+        Sorkin vanishing.
+      unpaid_target: The power-law family, real exponentiation and the real orthonormal contexts are admitted;
+        formal transport of the concrete context normalization to the Real.rpow equation remains a separate
+        bridge. No unrestricted readout uniqueness or Gleason theorem follows.
+    original_target: Within the declared positive-power family P_p(i) = |c_i|^p / sum_j |c_j|^p on two
+      rational orthonormal contexts sharing a ray (psi = (1,1,0), (3,4,5) rotation), context-independence
+      holds iff (3/5)^p + (4/5)^p = 1, whose unique positive solution is p = 2. Classifies the power family;
+      not a Gleason theorem. Sorkin I3 does not select p (vanishes at p=1 and p=2).
+    source_scope_review: 'The old even-exponent theorem 2=2^k is not the declared real (3/5,4/5) power
+      equation. A new Real.rpow theorem proves that equation iff p=2 on the admitted real-power domain.
+      Native integer powers use psi=(1,1,0) and bases sharing e1, with the other two basis vectors rotated
+      by the exact (3,4,5) triangle. The original claim about p=1 Sorkin vanishing needs a sign restriction:
+      |t| gives I3(1,1,-1)=2, while I3(1,1,1)=0. No general Gleason theorem or primitive selection is
+      supplied.'
+    admitted_assumptions:
+    - power-law family of rules (assumption)
+    - declared real orthonormal contexts (assumption)
+  slot_m2_layer1_forward_morphisms:
+    mining_status: FILLED
+    operations:
+    - catalog_id: power_normalizer
+      inputs:
+      - PositiveIntegerPower
+      - DeclaredContextOverlaps
+      output: PositiveRationalMass
+      semantic_predicate: Sum absolute overlaps raised to the integer power.
+    - catalog_id: shared_ray_probability
+      inputs:
+      - PositiveRationalMass
+      output: RationalProbability
+      semantic_predicate: For this shared overlap one, return 1/mass.
+    - catalog_id: real_power_residual
+      inputs:
+      - AdmittedRealExponent
+      output: RealScalar
+      semantic_predicate: (3/5)^p+(4/5)^p-1.
+    composition_plan: *id002
+    tree:
+    - shared probability is 1/(1+(3/5)^p+(4/5)^p); equality to 1/2 reduces to the power equation.
+    - Absolute power1 I3 on (1,1,-1) is 2; vanishing on an aligned triple is not universal.
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: FILLED
+    algebraic_relations:
+    - id: power_relation_0
+      equation_or_predicate: shared probability is 1/(1+(3/5)^p+(4/5)^p); equality to 1/2 reduces to the
+        power equation.
+      typing_conditions: Literal declared operation domains; The power-law family, real exponentiation
+        and the real orthonormal contexts are admitted; formal transport of the concrete context normalization
+        to the Real.rpow equation remains a separate bridge. No unrestricted readout uniqueness or Gleason
+        theorem follows.
+      evidence_status: P1 candidate; independent native and named kernel gates remain required.
+      scope: The real power equation (3/5)^p+(4/5)^p=1 iff p=2 is kernel checked. Integer p=1..8 reproduce
+        actual shared-ray context weights; mixed-sign p=1 supplies a retained counterexample to unrestricted
+        Sorkin vanishing.
+      source_pins:
+      - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-POWER-RULE-P2-SELECTION__PROVED_LEAN.yaml
+        sha256: 6b7c7c233f194ef969c2c3e31116002645d634ce9bf21765b381fcd66d8452ed
+      - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/inputs/this_repository/dag/operads/FQ-POWER-RULE-P2-SELECTION.yaml
+        sha256: 3f4dd382b1b15ecbab4c23eb76111d1f70cd60fea573a23b14d870d92292587d
+      - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+        sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+      - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/power_rule_outcomes.rs
+        sha256: 82afee027f5f9c9ab2498cb41e837075e832a590b1bfad1be7948a879fc6176c
+      - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/inputs/this_repository/dag/derivations/09_finite_hilbert/TFQ-0317_three_lean_files_stay_on_a_narrow_carrier.md
+        sha256: 434459e1fa65912862b55755e15d52e85becc52852ff8c1a139074547950d864
+      - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p0/operation_sources/code/python/src/qm/structure_exact.py
+        sha256: 0a35a5782b47e06167fc768320ee7fbf90c99fbdf336cbfaf2d2e1b93f9ca89d
+      - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p0/operation_sources/code/python/tests/test_structure_exact.py
+        sha256: e1a2398a963432c3b6e9dede60a6dc888b22469f5cf297d7262a866da7e44677
+      - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p0/operation_sources/code/rust/src/finite_probability/structure_exact.rs
+        sha256: 9c714e91517144cf0fa614c8195bcf2f56fc32c0b4959750a4515f75fd5b6d28
+      - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/structure_exact_replay.rs
+        sha256: 4a042c6534fddd7c9ddaae932edac12ef4be2c708175b08a14a64b4b8c49f702
+      - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p0/operation_sources/dag/pfp/structure_checker.py
+        sha256: 554c0811b794c03ce8badba12075ccb8b12165f6837acff805af0ceba3b3fea7
+      - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+        sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+      - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p0/operation_sources/dag/results/batches/20261019T160201Z_prompts_22_31/tools/prepare.py
+        sha256: d9c366929fc4752c08b97e32aa888c028b6ef081caf2f71cff5a596d6952e3da
+      - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/check_candidate.py
+        sha256: 05a2d47fb8049956464bb75aad9cb41f035ff80acbd0c355a8a880f6575cc13c
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/format_certificate.py
+        sha256: 5b55937d9524a24233e9e52e02e359b97fdef8c3b8aa8f2ee34978974d39a9b5
+    - id: power_relation_1
+      equation_or_predicate: Absolute power1 I3 on (1,1,-1) is 2; vanishing on an aligned triple is not
+        universal.
+      typing_conditions: Literal declared operation domains; The power-law family, real exponentiation
+        and the real orthonormal contexts are admitted; formal transport of the concrete context normalization
+        to the Real.rpow equation remains a separate bridge. No unrestricted readout uniqueness or Gleason
+        theorem follows.
+      evidence_status: P1 candidate; independent native and named kernel gates remain required.
+      scope: The real power equation (3/5)^p+(4/5)^p=1 iff p=2 is kernel checked. Integer p=1..8 reproduce
+        actual shared-ray context weights; mixed-sign p=1 supplies a retained counterexample to unrestricted
+        Sorkin vanishing.
+      source_pins:
+      - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-POWER-RULE-P2-SELECTION__PROVED_LEAN.yaml
+        sha256: 6b7c7c233f194ef969c2c3e31116002645d634ce9bf21765b381fcd66d8452ed
+      - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/inputs/this_repository/dag/operads/FQ-POWER-RULE-P2-SELECTION.yaml
+        sha256: 3f4dd382b1b15ecbab4c23eb76111d1f70cd60fea573a23b14d870d92292587d
+      - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+        sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+      - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/power_rule_outcomes.rs
+        sha256: 82afee027f5f9c9ab2498cb41e837075e832a590b1bfad1be7948a879fc6176c
+      - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/inputs/this_repository/dag/derivations/09_finite_hilbert/TFQ-0317_three_lean_files_stay_on_a_narrow_carrier.md
+        sha256: 434459e1fa65912862b55755e15d52e85becc52852ff8c1a139074547950d864
+      - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p0/operation_sources/code/python/src/qm/structure_exact.py
+        sha256: 0a35a5782b47e06167fc768320ee7fbf90c99fbdf336cbfaf2d2e1b93f9ca89d
+      - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p0/operation_sources/code/python/tests/test_structure_exact.py
+        sha256: e1a2398a963432c3b6e9dede60a6dc888b22469f5cf297d7262a866da7e44677
+      - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p0/operation_sources/code/rust/src/finite_probability/structure_exact.rs
+        sha256: 9c714e91517144cf0fa614c8195bcf2f56fc32c0b4959750a4515f75fd5b6d28
+      - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/structure_exact_replay.rs
+        sha256: 4a042c6534fddd7c9ddaae932edac12ef4be2c708175b08a14a64b4b8c49f702
+      - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p0/operation_sources/dag/pfp/structure_checker.py
+        sha256: 554c0811b794c03ce8badba12075ccb8b12165f6837acff805af0ceba3b3fea7
+      - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+        sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+      - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p0/operation_sources/dag/results/batches/20261019T160201Z_prompts_22_31/tools/prepare.py
+        sha256: d9c366929fc4752c08b97e32aa888c028b6ef081caf2f71cff5a596d6952e3da
+      - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/check_candidate.py
+        sha256: 05a2d47fb8049956464bb75aad9cb41f035ff80acbd0c355a8a880f6575cc13c
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/format_certificate.py
+        sha256: 5b55937d9524a24233e9e52e02e359b97fdef8c3b8aa8f2ee34978974d39a9b5
+    rejection_predicates:
+    - Independent domain equations and actual matrix/graph/quotient arrays recompute every output.
+    - Exact public input, canonical rational primitive types, complete source pins and exact sealed request
+      bytes.
+    - Full native cross-language output equality and actual named Lean axiom reports; no label-based target
+      promotion.
+    negative_control_plan: Alter every output coordinate, input identity, primitive types, source set
+      and sealed request.
+  slot_m4_tri_language_witness_anchors:
+    mining_status: FILLED
+    certificate_predicates:
+    - Independent domain equations and actual matrix/graph/quotient arrays recompute every output.
+    - Exact public input, canonical rational primitive types, complete source pins and exact sealed request
+      bytes.
+    - Full native cross-language output equality and actual named Lean axiom reports; no label-based target
+      promotion.
+    anchors:
+    - code/python/src/qm/structure_exact.py
+    - code/python/tests/test_structure_exact.py
+    - code/rust/src/finite_probability/structure_exact.rs
+    - code/rust/src/finite_probability/examples/structure_exact_replay.rs
+    - dag/pfp/structure_checker.py
+    - dag/pfp/exact_json.py
+    - dag/pfp/review_exact_json.py
+    - lean4/PrimitiveDifference.lean
+    - lean4/HWKernel.lean
+    - lean4/H004FreeLinearization.lean
+    - lean4/H005InnerProductAdmission.lean
+    - lean4/H003ReversibilityGate.lean
+    - lean4/H006PermutationUnitary.lean
+    - lean4/H007Complexification.lean
+    - lean4/H017MatrixFiniteRecovery.lean
+    - lean4/H017Fin.lean
+    - lean4/H016ContinuousDynamicsFork.lean
+    - lean4/H008PhaseBlindPresentation.lean
+    - lean4/Core.lean
+    - lean4/H009PhaseFiber.lean
+    - lean4/H010InterferenceNonDescent.lean
+    - lean4/H011U1SelectorBoundary.lean
+    - lean4/H011Circle.lean
+    - lean4/H014TensorCompositionBoundary.lean
+    - lean4/H014BilinearProduct.lean
+    - lean4/H014Interface.lean
+    - lean4/H015IrreversibleFork.lean
+    - lean4/H013BornPairingBoundary.lean
+    - lean4/H013SameContract.lean
+    - lean4/H017Gleason.lean
+    - lean4/H017Extras.lean
+    - lean4/H017ExtrasDropone.lean
+    - lean4/H000FinitePresentedCarrier.lean
+    - lean4/H055DiscreteDynamicsStone.lean
+    - lean4/PromptStructure.lean
+    - dag/results/batches/20261019T160201Z_prompts_22_31/tools/prepare.py
+    - QuantumMechanics.PromptStructure.power_real_unique
+    - QuantumMechanics.PromptStructure.power_one_sign_control
+    unpaid_imports:
+    - The power-law family, real exponentiation and the real orthonormal contexts are admitted; formal
+      transport of the concrete context normalization to the Real.rpow equation remains a separate bridge.
+      No unrestricted readout uniqueness or Gleason theorem follows.
+    - Prove the full refined-carrier operad identity, substitution, symmetry and coherence laws; mere
+      colour matches do not instantiate that formal structure.
+    anchor_status: New Lean anchors are candidate declarations until the retained P2 compiler runs; compiled
+      source leads retain their literal scope.
+stage_history:
+- stage: P0_MINE_OPERAD
+  attempt: p0
+  run: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged
+  operad_delta: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p0/operad_delta.yaml
+  host_check: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p0/host_check.json
+- stage: P1_DERIVE
+  attempt: p1
+  run: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged
+  operad_delta: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p1/operad_delta.yaml
+  host_check: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p1/host_check.json
+- stage: P2_VERIFY
+  attempt: p2
+  run: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged
+  operad_delta: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p2/operad_delta.yaml
+  host_check: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p2/host_check.json
+- stage: P3_REPAIR
+  attempt: p3
+  run: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged
+  operad_delta: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p3/operad_delta.yaml
+  host_check: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p3/host_check.json
+- stage: P2_VERIFY
+  attempt: p2_after_p3
+  run: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged
+  operad_delta: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p2_after_p3/operad_delta.yaml
+  host_check: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p2_after_p3/host_check.json
+- stage: P3_REPAIR
+  attempt: p3b
+  run: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged
+  operad_delta: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p3b/operad_delta.yaml
+  host_check: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p3b/host_check.json
+- stage: P2_VERIFY
+  attempt: p2_after_p3b
+  run: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged
+  operad_delta: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p2_after_p3b/operad_delta.yaml
+  host_check: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p2_after_p3b/host_check.json
+- stage: P3_REPAIR
+  attempt: p3c
+  run: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged
+  operad_delta: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p3c/operad_delta.yaml
+  host_check: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p3c/host_check.json
+- stage: P2_VERIFY
+  attempt: p2_after_p3c
+  run: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged
+  operad_delta: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p2_after_p3c/operad_delta.yaml
+  host_check: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p2_after_p3c/host_check.json
+- stage: P4_CHALLENGE
+  attempt: p4
+  run: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged
+  operad_delta: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p4/operad_delta.yaml
+  host_check: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p4/host_check.json
+- stage: P5_RECORD
+  attempt: p5
+  run: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged
+  operad_delta: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p5/operad_delta.yaml
+  host_check: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p5/host_check.json
+open_obligations: *id003
+excluded_relation_leads:
+- source: lean4/DerivationDagQMClosure.lean
+  name: fq_power_p2_cabello_146_and_weyl_commutant_irreducibility
+  reason: aggregate_or_proxy_scope_requires_projection_not_a_task_relation
+operad_slots_scope:
+  work_unit: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged/p0/reviewed_missions.json
+  scope: FILLED means reviewed prerequisites for this selected step; original target and unpaid imports
+    retained.
+  review_refinement: dag/results/FQ-POWER-RULE-P2-SELECTION/reviews/20261019_structure_audit/scope_review.json
+latest_run:
+  path: dag/results/FQ-POWER-RULE-P2-SELECTION/runs/20261019T160201Z_staged
+  stage: P5_RECORD
+  status: scoped_result_or_obstruction_reviewed
+scope_notes:
+- 'The old even-exponent theorem 2=2^k is not the declared real (3/5,4/5) power equation. A new Real.rpow
+  theorem proves that equation iff p=2 on the admitted real-power domain. Native integer powers use psi=(1,1,0)
+  and bases sharing e1, with the other two basis vectors rotated by the exact (3,4,5) triangle. The original
+  claim about p=1 Sorkin vanishing needs a sign restriction: |t| gives I3(1,1,-1)=2, while I3(1,1,1)=0.
+  No general Gleason theorem or primitive selection is supplied.'
+latest_review:
+  path: dag/results/FQ-POWER-RULE-P2-SELECTION/reviews/20261019_structure_audit
+  status: reviewed_with_final_native_integration
+  operad_delta: dag/results/FQ-POWER-RULE-P2-SELECTION/reviews/20261019_structure_audit/operad_delta.yaml

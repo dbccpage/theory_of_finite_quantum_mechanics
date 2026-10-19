@@ -9,7 +9,7 @@ directory is put at the front of ``sys.path``: every other import, including
 already places on the path, so no local copy can shadow a real package.
 
 The one path entry kept is ``code/``, appended last. The four deposited tests
-(pinned in SHA256SUMS) import the top-level module ``majorana_evaluator``, and
+(pinned in sha256sums) import the top-level module ``majorana_evaluator``, and
 verify_deposit.py measures ``--cov=majorana_evaluator``. It runs
 ``python -m pytest`` from ``code/``, which already has ``code/`` on the path; a
 run from the repository root does not, so the entry is added here. Appended, it

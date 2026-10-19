@@ -57,7 +57,7 @@ DEFAULT_EXCLUDED_DIRS: set[str] = {
     "_support", "evidence", "reconstruction_v1",
 }
 DEFAULT_EXCLUDED_NAMES: set[str] = {
-    "SHA256SUMS", ".coverage", ".env", "DEPOSIT_CHECKLIST.md", ".gitkeep",
+    "sha256sums", ".coverage", ".env", "DEPOSIT_CHECKLIST.md", ".gitkeep",
 }
 DEFAULT_EXCLUDED_SUFFIXES: set[str] = {
     ".zip", ".pyc", ".pyo", ".tmp", ".log",

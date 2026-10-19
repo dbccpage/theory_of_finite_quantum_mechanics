@@ -60,7 +60,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument(
         "--manifest",
         type=Path,
-        default=PACKAGE_ROOT / "SHA256SUMS",
+        default=PACKAGE_ROOT / "sha256sums",
     )
     args = parser.parse_args(argv)
     certificate, manifest = write_artifact_bundle(args.certificate, args.manifest)

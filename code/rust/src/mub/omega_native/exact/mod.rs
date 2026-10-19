@@ -87,6 +87,8 @@ pub mod mub6_field;
 pub mod mub6_firewall;
 #[path = "../mub6_flat_extension_certifier.rs"]
 pub mod mub6_flat_extension_certifier;
+#[path = "../mub6_fourier_landing_verifier.rs"]
+pub mod mub6_fourier_landing_verifier;
 #[path = "../mub6_frame_potential.rs"]
 pub mod mub6_frame_potential;
 #[path = "../mub6_g1_variety.rs"]
@@ -139,6 +141,8 @@ pub mod mub6_quadratic_lift;
 pub mod mub6_r1_parametric_cover;
 #[path = "../mub6_r7_positivstellensatz_solver.rs"]
 pub mod mub6_r7_positivstellensatz_solver;
+#[path = "../mub6_rectangular_exclusion_solver.rs"]
+pub mod mub6_rectangular_exclusion_solver;
 #[path = "../mub6_smale_sentry.rs"]
 pub mod mub6_smale_sentry;
 #[path = "../mub6_sporadic_chm_solver.rs"]

@@ -191,7 +191,7 @@ pub fn current_chm_registry() -> ChmRegistryReport {
             replayed_status: ChartStatus::ExactMuTripleDeclared,
             status: ChartStatus::ExactMuTripleDeclared,
             dimension: "point full gauge-fixed 5-torus (δ=0); nbhd DEFERRED",
-            evidence: "artifacts/dita_seed_F6_0_16_gauge_fixed_5_torus_presplit6_merged_complete.json",
+            evidence: "artifacts/dita_seed_f6_0_16_gauge_fixed_5_torus_presplit6_merged_complete.json",
             notes: "genuine-new dual-orbit seed; external B3 = Y2⊗Q2; δ=1/1000 nbhd not farmed",
         },
         ChmLocusRecord {
@@ -201,7 +201,7 @@ pub fn current_chm_registry() -> ChmRegistryReport {
             replayed_status: ChartStatus::ExactMuTripleDeclared,
             status: ChartStatus::ExactMuTripleDeclared,
             dimension: "point full gauge-fixed 5-torus (δ=0); nbhd DEFERRED",
-            evidence: "artifacts/dita_seed_F6_8_8_gauge_fixed_5_torus_presplit6_merged_complete.json",
+            evidence: "artifacts/dita_seed_f6_8_8_gauge_fixed_5_torus_presplit6_merged_complete.json",
             notes: "genuine-new dual-orbit seed; external B3 = Y2⊗Q2; δ=1/1000 nbhd not farmed",
         },
         ChmLocusRecord {
@@ -211,7 +211,7 @@ pub fn current_chm_registry() -> ChmRegistryReport {
             replayed_status: ChartStatus::ExactMuTripleDeclared,
             status: ChartStatus::ExactMuTripleDeclared,
             dimension: "point full gauge-fixed 5-torus (δ=0); nbhd DEFERRED",
-            evidence: "artifacts/dita_seed_F6_16_0_gauge_fixed_5_torus_presplit6_merged_complete.json",
+            evidence: "artifacts/dita_seed_f6_16_0_gauge_fixed_5_torus_presplit6_merged_complete.json",
             notes: "genuine-new dual-orbit seed; external B3 = Y2⊗Q2; δ=1/1000 nbhd not farmed",
         },
         ChmLocusRecord {

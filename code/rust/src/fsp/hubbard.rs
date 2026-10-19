@@ -298,6 +298,127 @@ pub fn evaluate_hubbard_determinants(
     })
 }
 
+#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
+pub struct HubbardLatticeScalingRow {
+    pub label: String,
+    pub sites: usize,
+    pub num_bonds: usize,
+    pub slices: usize,
+    pub attractive: bool,
+    pub evaluated_fields: usize,
+    pub negative_fields_count: usize,
+    pub zero_fields_count: usize,
+    pub average_sign: BigRational,
+    pub attractive_square_root_protected: bool,
+}
+
+/// Construct 2D rectangular grid bonds (`rows x cols` sites) with optional periodic wrapping.
+pub fn hubbard_rectangular_bonds(
+    rows: usize,
+    cols: usize,
+    periodic: bool,
+) -> Result<(usize, Vec<(usize, usize)>), &'static str> {
+    if rows == 0 || cols == 0 {
+        return Err("rows and cols must be positive");
+    }
+    let sites = rows * cols;
+    let idx = |r: usize, c: usize| r * cols + c;
+    let mut bonds = Vec::new();
+    for r in 0..rows {
+        for c in 0..cols {
+            if c + 1 < cols {
+                bonds.push((idx(r, c), idx(r, c + 1)));
+            } else if periodic && cols > 2 {
+                bonds.push((idx(r, c), idx(r, 0)));
+            }
+            if r + 1 < rows {
+                bonds.push((idx(r, c), idx(r + 1, c)));
+            } else if periodic && rows > 2 {
+                bonds.push((idx(r, c), idx(0, c)));
+            }
+        }
+    }
+    Ok((sites, bonds))
+}
+
+/// Finite lattice scaling benchmark for exact rational Hubbard auxiliary-field determinants
+/// across 1D rings and 2D grids up to 3x4 (12 sites) and multiple Trotter slices.
+pub fn benchmark_hubbard_lattice_scaling() -> Result<Vec<HubbardLatticeScalingRow>, &'static str> {
+    let r = BigRational::new(BigInt::from(3), BigInt::from(2));
+    let hs = BigRational::from(BigInt::from(2));
+    let unit_fugacity = BigRational::one();
+    let doped_fugacity = BigRational::new(BigInt::from(3), BigInt::from(5));
+
+    let (_, bonds_2x2) = hubbard_rectangular_bonds(2, 2, false)?;
+    let (_, bonds_2x3) = hubbard_rectangular_bonds(2, 3, false)?;
+    let (_, bonds_2x4) = hubbard_rectangular_bonds(2, 4, false)?;
+    let (_, bonds_3x3) = hubbard_rectangular_bonds(3, 3, false)?;
+    let (_, bonds_3x4) = hubbard_rectangular_bonds(3, 4, false)?;
+    let (_, bonds_1x10) = hubbard_rectangular_bonds(1, 10, true)?;
+
+    // Frustrated 2x3 and 3x3 lattices with next-nearest-neighbor diagonal bonds
+    let mut frust_2x3 = bonds_2x3.clone();
+    frust_2x3.extend([(0, 4), (1, 5)]);
+    let mut frust_3x3 = bonds_3x3.clone();
+    frust_3x3.extend([(0, 4), (4, 8)]);
+
+    // Deterministic diverse field masks spanning low-, mid-, and alternating-bit configurations
+    let sample_masks = |sites: usize, slices: usize| -> Vec<usize> {
+        let total_bits = (sites * slices).min(usize::BITS as usize - 2);
+        let all_ones = (1usize << total_bits) - 1;
+        let alt_a = 0x5555_5555usize & all_ones;
+        let alt_b = 0xAAAA_AAAAusize & all_ones;
+        vec![
+            0,
+            1,
+            (1usize << sites.min(total_bits)) - 1,
+            alt_a,
+            alt_b,
+            all_ones,
+        ]
+    };
+
+    let configs: Vec<(&str, usize, Vec<(usize, usize)>, usize, BigRational, bool)> = vec![
+        ("plaquette_2x2_attractive", 4, bonds_2x2, 2, unit_fugacity.clone(), true),
+        ("grid_2x3_attractive", 6, bonds_2x3, 2, unit_fugacity.clone(), true),
+        ("grid_2x4_attractive", 8, bonds_2x4, 2, unit_fugacity.clone(), true),
+        ("grid_3x3_attractive", 9, bonds_3x3, 1, unit_fugacity.clone(), true),
+        ("ring_10_attractive", 10, bonds_1x10, 1, unit_fugacity.clone(), true),
+        ("grid_3x4_attractive", 12, bonds_3x4, 1, unit_fugacity, true),
+        ("frustrated_2x3_repulsive_doped", 6, frust_2x3, 2, doped_fugacity.clone(), false),
+        ("frustrated_3x3_repulsive_doped", 9, frust_3x3, 1, doped_fugacity, false),
+    ];
+
+    let mut rows = Vec::with_capacity(configs.len());
+    for (label, sites, bonds, slices, fugacity, attractive) in configs {
+        let masks = sample_masks(sites, slices);
+        let summary = evaluate_hubbard_determinants(
+            sites,
+            &bonds,
+            slices,
+            &r,
+            &hs,
+            &fugacity,
+            attractive,
+            &masks,
+        )?;
+        rows.push(HubbardLatticeScalingRow {
+            label: label.to_string(),
+            sites,
+            num_bonds: bonds.len(),
+            slices,
+            attractive,
+            evaluated_fields: summary.total_fields,
+            negative_fields_count: summary.negative_fields_count,
+            zero_fields_count: summary.zero_fields_count,
+            average_sign: summary.average_sign,
+            attractive_square_root_protected: summary.attractive_square_root_protected,
+        });
+    }
+
+    Ok(rows)
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -343,5 +464,42 @@ mod tests {
         assert_eq!(summary.negative_fields_count, 0);
         assert!(summary.attractive_square_root_protected);
         assert_eq!(summary.average_sign, BigRational::one());
+    }
+
+    #[test]
+    fn hubbard_lattice_scaling_up_to_12_sites() {
+        let rows = benchmark_hubbard_lattice_scaling().unwrap();
+        assert_eq!(rows.len(), 8);
+
+        let expected_sites = [4usize, 6, 8, 9, 10, 12, 6, 9];
+        for (i, row) in rows.iter().enumerate() {
+            assert_eq!(row.sites, expected_sites[i], "label={}", row.label);
+            assert_eq!(row.evaluated_fields, 6, "label={}", row.label);
+            if row.attractive {
+                assert_eq!(
+                    row.negative_fields_count, 0,
+                    "attractive model {} had negative fields",
+                    row.label
+                );
+                assert!(
+                    row.attractive_square_root_protected,
+                    "attractive model {} lost square-root protection",
+                    row.label
+                );
+                assert_eq!(
+                    row.average_sign,
+                    BigRational::one(),
+                    "attractive model {} had average_sign != 1",
+                    row.label
+                );
+            } else {
+                assert!(!row.attractive_square_root_protected);
+                assert!(
+                    row.average_sign <= BigRational::one(),
+                    "repulsive model {} had average_sign > 1",
+                    row.label
+                );
+            }
+        }
     }
 }

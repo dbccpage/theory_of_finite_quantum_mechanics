@@ -2,7 +2,7 @@
 """One-command verifier for the Fermi-Hubbard research paper deposit.
 
 Deterministic, two-way verification:
-1. Every file listed in SHA256SUMS exists and matches its recorded hash.
+1. Every file listed in sha256sums exists and matches its recorded hash.
 2. Sweep: no unrecorded non-excluded file is present in the deposit tree.
 3. Fail-closed symlink rejection: rejects any unauthorized symlink.
 4. Structural artifacts are present and non-empty.
@@ -28,7 +28,7 @@ from deposit_paths import (
 )
 
 ROOT = Path(__file__).resolve().parent
-MANIFEST = ROOT / "SHA256SUMS"
+MANIFEST = ROOT / "sha256sums"
 
 EXCLUDED_DIRS = DEFAULT_EXCLUDED_DIRS
 EXCLUDED_NAMES = DEFAULT_EXCLUDED_NAMES
@@ -43,7 +43,7 @@ REQUIRED_FILES = (
     "LICENSE-CODE",
     "pyproject.toml",
     "zenodo_metadata.json",
-    "CITATION.cff",
+    "citation.cff",
     "docs/descriptions.md",
     "docs/references.md",
     "code/deposit_paths.py",
@@ -117,7 +117,7 @@ def regen_manifest(manifest_path: Path) -> None:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--regen", action="store_true", help="Regenerate SHA256SUMS before verification")
+    parser.add_argument("--regen", action="store_true", help="Regenerate sha256sums before verification")
     parser.add_argument("--skip-tests", action="store_true", help="Skip running pytest")
     args = parser.parse_args()
 

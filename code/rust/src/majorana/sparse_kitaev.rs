@@ -217,6 +217,45 @@ impl KitaevWire {
     }
 }
 
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct KitaevWireScalingReceipt {
+    pub sites: usize,
+    pub mode_count: usize,
+    pub bilinear_terms: usize,
+    pub boundary_modes: (usize, usize),
+    pub isolated_count: usize,
+    pub endpoints_isolated: bool,
+    pub is_sweet_spot: bool,
+}
+
+/// Finite lattice scaling benchmark for sparse 1D Kitaev wires across declared site counts
+/// up to `MAX_WIRE_SITES` (65,536 sites = 131,072 Majorana modes).
+pub fn benchmark_sparse_kitaev_scaling(
+    site_counts: &[usize],
+) -> Result<Vec<KitaevWireScalingReceipt>, KitaevWireError> {
+    let one = Rational::from_integer(1.into());
+    let zero = Rational::zero();
+    let mut out = Vec::with_capacity(site_counts.len());
+    for &sites in site_counts {
+        let wire = KitaevWire::new(sites, one.clone(), zero.clone(), one.clone())?;
+        let iso = wire.boundary_isolation()?;
+        let endpoints_isolated = iso.left_isolated()
+            && iso.right_isolated()
+            && iso.isolated_modes.contains(&1)
+            && iso.isolated_modes.contains(&(2 * sites));
+        out.push(KitaevWireScalingReceipt {
+            sites,
+            mode_count: wire.mode_count(),
+            bilinear_terms: wire.terms().len(),
+            boundary_modes: iso.boundary_modes,
+            isolated_count: iso.isolated_modes.len(),
+            endpoints_isolated,
+            is_sweet_spot: iso.is_sweet_spot,
+        });
+    }
+    Ok(out)
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -359,5 +398,21 @@ mod tests {
         let wire = KitaevWire::new(10_000, ri(1), ri(0), ri(1)).unwrap();
         assert_eq!(wire.terms().len(), 9_999);
         assert_eq!(wire.isolated_modes(), BTreeSet::from([1, 20_000]));
+    }
+
+    #[test]
+    fn sparse_kitaev_scaling_benchmark_up_to_max_wire_sites() {
+        let site_counts = [16usize, 64, 256, 1024, 4096, 16384, MAX_WIRE_SITES];
+        let rows = benchmark_sparse_kitaev_scaling(&site_counts).unwrap();
+        assert_eq!(rows.len(), site_counts.len());
+        for (&sites, row) in site_counts.iter().zip(rows.iter()) {
+            assert_eq!(row.sites, sites);
+            assert_eq!(row.mode_count, 2 * sites);
+            assert_eq!(row.bilinear_terms, sites - 1);
+            assert_eq!(row.boundary_modes, (1, 2 * sites));
+            assert_eq!(row.isolated_count, 2);
+            assert!(row.endpoints_isolated);
+            assert!(row.is_sweet_spot);
+        }
     }
 }

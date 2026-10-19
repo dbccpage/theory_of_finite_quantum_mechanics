@@ -17,4 +17,4 @@ AuthorityEffect: None.
 - Test suite `code/tests/test_hubbard_paper_reproducibility.py` validating 100% of mathematical assertions, symmetries, and negative witnesses reported in `paper.md`.
 - Formal claim ledger `paper_claim_ledger.md` mapping claims `CLAIM-HUBBARD-001` through `CLAIM-HUBBARD-012` to automated test proofs.
 - Deposit verification script `verify_deposit.py` enforcing fail-closed path safety, SHA-256 manifest reconciliation, and zero untracked leaks.
-- Package metadata `README.md`, `zenodo_metadata.json`, `CITATION.cff`, `LICENSE` (CC-BY-4.0), and `LICENSE-CODE` (MIT).
+- Package metadata `README.md`, `zenodo_metadata.json`, `citation.cff`, `LICENSE` (CC-BY-4.0), and `LICENSE-CODE` (MIT).

@@ -18,7 +18,7 @@ Direct inspection of `papers/core/majorana/` reveals the following structure:
   - `the_majorana_problem_change_log.md`: Provenance history and audit logs.
   - `README.md`: Package entry point and boundary descriptions.
   - `.zenodo.json`: Zenodo archive metadata schema.
-  - `SHA256SUMS`: Manifest of 21 relative file hashes.
+  - `sha256sums`: Manifest of 21 relative file hashes.
 - **Claim Ledger:**
   - `claim_ledger.yaml`: Machine-readable specification declaring 20 claims (`MAJ-C1` to `MAJ-C20`) with fields: `id`, `name`, `statement`, `claim_type`, `lean4_formalization` (module, theorems, axioms), `code_evidence` (module, functions, tests).
 - **Contracts:**
@@ -27,7 +27,7 @@ Direct inspection of `papers/core/majorana/` reveals the following structure:
   - `MajoranaCore.lean` (392 lines, 15,596 bytes): Formalizes binary field arithmetic over `Bool`, norm equivalence $\ell^1 \equiv \ell^2$ on binary cochains (`f2_weight_l1_l2_coincide`), discrete cochain complexes and coboundary nilpotency (`coboundary_is_cocycle`, `nilpotency_refusal_sound`), residual trichotomy pairwise disjointness (`trichotomy_pairwise_disjoint`, `exact_not_open`, `exact_not_closed_residual`, `closed_residual_not_open`), Kitaev MZM boundary decoupling (`mzm_boundary_decoupling`), Ising anyon quantum dimension relation (`ising_quantum_dim_squared`), detector inadequacy (`detector_inadequate_when_kernel_nontrivial`), continuous-to-discrete transfer bounds (`transfer_defect_lower_bound_pos`, `transfer_pareto_defect_pos`, `transfer_gap_strictly_positive`), non-Markovian memory-kernel bounds (`non_markovian_transfer_defect_pos`, `pareto_denominator_pos`, `non_markovian_pareto_defect_pos`, `sub_ohmic_exponent_shift`), and multi-terminal cross-junction transfer bounds (`multiterminal_transfer_defect_pos`, `multiterminal_crosstalk_channels_pos`, `multiterminal_pareto_defect_pos`, `disorder_gap_degradation_lower_bound`).
   - `MajoranaGinCore.lean` (108 lines, 4,042 bytes): Formalizes Generalized Inverted Index (GIN) cochain sign cancellation (`involution_pair_cancels_sign`), Kitaev bulk bond decoupling for boundary modes $\gamma_1$ and $\gamma_{2L}$ (`edge_mode_1_not_in_bulk`, `edge_mode_2L_not_in_bulk`), and BQNF terminal routing (`exact_gin_cancellation_routes_to_repair`, `residual_sign_routes_to_refusal`, `invalid_gin_routes_to_closure_failure`).
   - `lakefile.lean`: Self-contained Lake package `po026` requiring zero external packages (no mathlib dependency).
-  - `AXIOM_REPORT.txt`: Audited 40 theorems with 0 sorries, 0 admits, 0 synthetic axioms. Standard kernel whitelist `{propext, Quot.sound}` only.
+  - `axiom_report.txt`: Audited 40 theorems with 0 sorries, 0 admits, 0 synthetic axioms. Standard kernel whitelist `{propext, Quot.sound}` only.
 - **Code Directory (`papers/core/majorana/code/`):**
   - Contains 103 Python files in `code/` plus subdirectories `majorana/`, `representation/`, and `tests/`.
   - The driver module cited in `REQUIRED_FILES` is `code/majorana_evaluator.py` (1,145 lines, 43,052 bytes).
@@ -112,7 +112,7 @@ Direct inspection of `papers/core/majorana/` reveals the following structure:
 3. **Premise 3 (Clean Architecture Solution):** `code/python/src/majorana/gf2_terminalizer.py` provides a native, zero-dependency, exact-arithmetic `GF2Matrix` and classification engine. Decoupling `majorana_evaluator.py` to import from canonical `code/python/src/majorana` (or making `majorana_evaluator.py` a thin adapter importing from `code/python/src/majorana`) resolves the import failure and eliminates the legacy host dependency.
 4. **Premise 4 (Formal Verification Gap):** `MajoranaCore.lean` and `MajoranaGinCore.lean` are verified clean (0 sorries, 0 admits, standard axioms) in `papers/core/majorana/lean4/`, but are completely absent from root `lean4/` and omitted from `lean4/lakefile.lean`. Migrating them to root `lean4/` and adding them to `roots` in `lean4/lakefile.lean` directly fulfills R3.3 and acceptance criteria lines 52–54.
 5. **Premise 5 (Rust Exposure Alignment):** While `tfqm_majorana` is implemented in `code/rust/src/majorana/` and re-exported in `code/rust/src/lib.rs`, `fsp` is not exposed as a top-level module in `code/rust/src/lib.rs`. Fulfilling R3.2 requires exposing `fsp` alongside `mub` and `majorana` in `code/rust/src/lib.rs`.
-6. **Premise 6 (Checksum Synchronization):** `papers/core/majorana/SHA256SUMS` has an outdated hash for `README.md`. Once duplicate files are removed from `papers/core/majorana/code/` and tests are updated to import from `code/python/src/`, `SHA256SUMS` must be refreshed via `python verify_deposit.py --update-sums`.
+6. **Premise 6 (Checksum Synchronization):** `papers/core/majorana/sha256sums` has an outdated hash for `README.md`. Once duplicate files are removed from `papers/core/majorana/code/` and tests are updated to import from `code/python/src/`, `sha256sums` must be refreshed via `python verify_deposit.py --update-sums`.
 
 ---
 

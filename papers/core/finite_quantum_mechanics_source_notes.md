@@ -98,7 +98,7 @@ treat general readouts.
 The paper archive contains all sixty-seven current original manuscripts under
 `sources/original_papers/`, and every subsection 11.N of §4 gives the
 corresponding local address. Historical hashes and per-source evidence observations remain
-in repository custody records; the public `SHA256SUMS` binds the exact copies
+in repository custody records; the public `sha256sums` binds the exact copies
 shipped with this paper. The current repository custody tests read all sixty-seven
 manuscripts: fifty-four match their historical hashes and thirteen have
 separately pinned current differences.

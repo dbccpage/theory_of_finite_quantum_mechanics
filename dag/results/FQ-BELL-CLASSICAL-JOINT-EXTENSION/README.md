@@ -104,7 +104,7 @@ scalars as a gauge ideal for CHSH. Their arithmetic is reproduced in
   `QuantumMechanics.BellClassicalJointExtension.normalized_four_correlation_bound` and
   `no_joint_law_above_two`.
 - Existing proof reused: `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_bell_classical_joint_extension_convex_bound`.
-- Existing paper: `dag/derivations/12_finite_qm_structure/TFQ-0259_finite_chsh_ceiling_on_one_global_joint_table.md`.
+- Existing paper: `dag/derivations/12_finite_qm_structure/tfq_0259_finite_chsh_ceiling_on_one_global_joint_table.md`.
 
 The legacy anchor strings are retained verbatim in the requested JSON. Their
 current local paths are `lean4/DerivationDagQMClosure.lean` and

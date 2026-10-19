@@ -57,7 +57,7 @@ DEFAULT_EXCLUDED_DIRS: set[str] = {
     "reconstruction_v1",
 }
 DEFAULT_EXCLUDED_NAMES: set[str] = {
-    "SHA256SUMS", ".coverage", ".env", "DEPOSIT_CHECKLIST.md", ".gitkeep",
+    "sha256sums", ".coverage", ".env", "DEPOSIT_CHECKLIST.md", ".gitkeep",
     "finite_qm_file_manifest.yaml", "finite_qm_guide_map.md",
     "finite_quantum_mechanics_claim_ledger.md",
     "qm_formal_estate_and_crate_census.md",

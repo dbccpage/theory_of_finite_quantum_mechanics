@@ -1,0 +1,106 @@
+{
+  "schema": "omega.pfp.finite_qm.dag_prompt_execution_receipt.v1",
+  "authority_effect": "None",
+  "policy_id": "SPK-001",
+  "timestamp_utc": "2026-10-18T07:53:13.490096+00:00",
+  "prompt_file": "dag/prompts/implementation_impl_fsp_switching_normal_form_nf002_proved_lean.yaml",
+  "node_id": "IMPL-FSP-SWITCHING-NORMAL-FORM-NF002",
+  "stage": "IMPLEMENTATION",
+  "dag_status": "PROVED_LEAN",
+  "operad_family_id": "OP-IMPLEMENTATION-IMPL-FSP-SWITCHING-NORMAL-FORM-NF002",
+  "operad_mining_missions_completed": [
+    "M1_CARRIER_AND_NORMAL_FORM_MINING",
+    "M2_OPERAD_MORPHISMS_AND_GRAFTING_TREE_MINING",
+    "M3_CONGRUENCE_IDEALS_AND_DECOY_ANTIBODIES_MINING",
+    "M4_TRI_LANGUAGE_EXACT_WITNESS_MINING"
+  ],
+  "winning_model": "deepseek/deepseek-v4.1-flash",
+  "prompt_tokens": 1097,
+  "completion_tokens": 499,
+  "elapsed_ms": 14390.0,
+  "attempts": [
+    {
+      "attempt_id": "ab_withm3_175_impl-fsp-switching_a1",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "state": "settled",
+      "prompt_tokens": 1097,
+      "completion_tokens": 499,
+      "cost_usd": 0.0001429416,
+      "generation_id": "gen-1792309979-LxnjyqQ5sdqx52oKkOAG",
+      "elapsed_ms": 14390.0,
+      "raw_preview": "{\"p_star_tree_potentials\":[1750,-3500,2625],\"p_star_chord_potential\":2625,\"p_star_holonomy_gamma2\":3500,\"cochain_d1_d0_exact_zero\":true,\"finite_shadow_witness_int\":732,\"countermodel_witness_int\":195,\"unpaid_import_count\":0,\"unconditional_promotion_refused\":true,\"derived_under_policy\":\"SPK-001\",\"auth",
+      "gate_status": "PASS",
+      "gate_failures": []
+    }
+  ],
+  "m3_ablation_comparison": {
+    "without_m3_attempt1": {
+      "model": "deepseek/deepseek-v4.1-flash",
+      "status": "PASS",
+      "all_gates_passed": true,
+      "failures": [],
+      "emitted_countermodel_int": 195,
+      "emitted_unconditional_promotion_refused": true,
+      "prompt_tokens": 1074,
+      "completion_tokens": 797,
+      "elapsed_ms": 25375.0
+    },
+    "with_m3_attempt1": {
+      "model": "deepseek/deepseek-v4.1-flash",
+      "status": "PASS",
+      "all_gates_passed": true,
+      "failures": [],
+      "emitted_countermodel_int": 195,
+      "emitted_unconditional_promotion_refused": true,
+      "prompt_tokens": 1097,
+      "completion_tokens": 499,
+      "elapsed_ms": 14390.0
+    }
+  },
+  "typed_model_response": {
+    "p_star_tree_potentials": [
+      1750,
+      -3500,
+      2625
+    ],
+    "p_star_chord_potential": 2625,
+    "p_star_holonomy_gamma2": 3500,
+    "cochain_d1_d0_exact_zero": true,
+    "finite_shadow_witness_int": 732,
+    "countermodel_witness_int": 195,
+    "unpaid_import_count": 0,
+    "unconditional_promotion_refused": true,
+    "derived_under_policy": "SPK-001",
+    "authority_effect": "None",
+    "firewall_status": "stated region only; mints no authority.",
+    "node_id": "IMPL-FSP-SWITCHING-NORMAL-FORM-NF002",
+    "stage": "IMPLEMENTATION",
+    "dag_status": "PROVED_LEAN",
+    "operad_family_id": "OP-IMPLEMENTATION-IMPL-FSP-SWITCHING-NORMAL-FORM-NF002",
+    "lean4_theorem_anchor": "omega_engine_atlas/coda_atlas/proposals/008_fsp_switching_normal_form/SwitchingNormalForm.lean::SwitchingNormalForm.mem_normalForms_iff",
+    "rust_witness_anchor": "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche13_ds_qm_final_16_second_witness_closure_witness",
+    "should_continue": false
+  },
+  "gate_receipt": {
+    "schema": "omega.pfp.finite_qm.gate_receipt.v1",
+    "authority_effect": "None",
+    "work_id": "IMPL-FSP-SWITCHING-NORMAL-FORM-NF002",
+    "status": "PASS",
+    "all_gates_passed": true,
+    "gate_results": {
+      "G0_STRICT_TYPED_JSON_SCHEMA": true,
+      "G1_COCHAIN_EXACT_SEQUENCE_D1D0": true,
+      "G2_P_STAR_TREE_CHORD_SYNDROME_DECODE": true,
+      "G3_FINITE_SHADOW_EXACT_WITNESS": true,
+      "G4_COUNTERMODEL_SEPARATION_WITNESS": true,
+      "G5_IMPORT_BOUNDARY_AND_FIREWALL_HONESTY": true,
+      "G6_TRI_LANGUAGE_ANCHOR_BINDING": true
+    },
+    "failures": [],
+    "elapsed_ms": 0.0195,
+    "receipt_sha256": "f54dd813a8c743ee3f8795a66c9e9583d75cd37e9fca468e898e98ba6d25e95d"
+  },
+  "updated_papers": [
+    "papers/derivations/23_engine_custody/tfq_0200_three_language_custody_on_the_omega_engine_runtime.md"
+  ]
+}

@@ -1,4 +1,4 @@
-"""Ingest QM_122's `evidence/PAPER_CLAIM_MAP.md`.
+"""Ingest QM_122's `evidence/paper_claim_map.md`.
 
 That file is the single most useful artifact in the corpus: a 2026-08-19 audit of
 seventeen papers, 37 agents, every row adversarially verified by an independent
@@ -32,7 +32,7 @@ import re
 _ESCAPED_PIPE = "\x00PIPE\x00"
 
 MAP_RELPATH = (
-    "122_finite_hilbert_boundary_from_primitive_difference/evidence/PAPER_CLAIM_MAP.md"
+    "122_finite_hilbert_boundary_from_primitive_difference/evidence/paper_claim_map.md"
 )
 
 # The audit's restricted status vocabulary, mapped onto this application's types.

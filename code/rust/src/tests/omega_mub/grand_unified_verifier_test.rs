@@ -62,7 +62,7 @@ fn corrupt_or_missing_artifact_is_rejected() {
     // The first required artifact is a frozen receipt. A counterfeit must fail
     // before any success receipt is emitted, even in integrity-only mode.
     let first =
-        "dita_seed_F6_0_8_neigh_delta_1_1000_gauge_fixed_5_torus_presplit6_merged_complete.json";
+        "dita_seed_f6_0_8_neigh_delta_1_1000_gauge_fixed_5_torus_presplit6_merged_complete.json";
     fs::write(dir.join(first), b"{}").unwrap();
     let run = || {
         Command::new(env!("CARGO_BIN_EXE_mub_grand_unified_verifier"))

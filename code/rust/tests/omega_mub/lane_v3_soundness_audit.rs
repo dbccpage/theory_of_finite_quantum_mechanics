@@ -348,11 +348,11 @@ fn test_vector_6_confirmed_gap_on_disk_merge_bypasses_chunk_verification() {
     let dir = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR"))
         .join("../tests/omega_mub/artifacts");
     let merged_path =
-        dir.join("dita_seed_F6_0_8_gauge_fixed_5_torus_presplit6_merged_complete.json");
+        dir.join("dita_seed_f6_0_8_gauge_fixed_5_torus_presplit6_merged_complete.json");
 
     assert!(
         merged_path.exists(),
-        "Artifact dita_seed_F6_0_8_gauge_fixed_5_torus_presplit6_merged_complete.json must exist"
+        "Artifact dita_seed_f6_0_8_gauge_fixed_5_torus_presplit6_merged_complete.json must exist"
     );
 
     // Verify that the individual chunk files (e.g. chunk 0) do NOT need to exist for the function to return Ok:

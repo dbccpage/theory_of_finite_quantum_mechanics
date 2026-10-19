@@ -163,6 +163,44 @@ pub fn compile_multiqubit_braid_with_limit(
     })
 }
 
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct MultiQubitBraidScalingRow {
+    pub num_qubits: usize,
+    pub mode_count: usize,
+    pub cnot_steps: usize,
+    pub determinant_sign: i8,
+    pub inverse_restores_identity: bool,
+}
+
+/// Finite register scaling benchmark for multi-qubit Majorana braid compilation across
+/// declared qubit counts `N_q` (`4 * N_q` Majorana modes, up to 16 qubits / 64 modes).
+pub fn benchmark_multiqubit_braid_scaling(
+    qubit_counts: &[usize],
+) -> Result<Vec<MultiQubitBraidScalingRow>, MultiQubitBraidError> {
+    let mut rows = Vec::with_capacity(qubit_counts.len());
+    for &nq in qubit_counts {
+        if nq < 2 {
+            return Err(MultiQubitBraidError::InvalidQubitCount);
+        }
+        let ops = [MultiQubitOperation::Cnot {
+            control: 1,
+            target: nq,
+        }];
+        let compiled = compile_multiqubit_braid(nq, &ops)?;
+        let inv = compiled.action.inverse()?;
+        let prod = compiled.action.compose(&inv)?;
+        let id = MajoranaBraidAction::identity(4 * nq)?;
+        rows.push(MultiQubitBraidScalingRow {
+            num_qubits: nq,
+            mode_count: 4 * nq,
+            cnot_steps: compiled.steps.len(),
+            determinant_sign: compiled.action.determinant_sign(),
+            inverse_restores_identity: prod == id,
+        });
+    }
+    Ok(rows)
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -322,5 +360,19 @@ mod tests {
                 count: 8
             }))
         ));
+    }
+
+    #[test]
+    fn multiqubit_braid_scaling_up_to_16_qubits_64_modes() {
+        let counts = [2usize, 4, 8, 12, 16];
+        let rows = benchmark_multiqubit_braid_scaling(&counts).unwrap();
+        assert_eq!(rows.len(), counts.len());
+        for (&nq, row) in counts.iter().zip(rows.iter()) {
+            assert_eq!(row.num_qubits, nq);
+            assert_eq!(row.mode_count, 4 * nq);
+            // Each block swap takes 16 steps; routing + unrouting across (nq - 2) swaps + 1 bridge
+            assert_eq!(row.cnot_steps, 32 * (nq - 2) + 1);
+            assert!(row.inverse_restores_identity);
+        }
     }
 }
