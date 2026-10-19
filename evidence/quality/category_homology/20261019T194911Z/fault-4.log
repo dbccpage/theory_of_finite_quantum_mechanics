@@ -1,0 +1,30 @@
+
+running 5 tests
+test root_record_replay_5::subject::tests::an_involutive_dagger_need_not_supply_inverses ... FAILED
+test root_record_replay_5::subject::independent_groupoid_tests::both_inverse_guards_and_admission_context ... FAILED
+test root_record_replay_5::subject::tests::empty_groupoid_is_not_connected_thin_and_budget_is_enforced ... ok
+test root_record_replay_5::subject::tests::missing_composition_and_wrong_inverse_are_refused ... ok
+test root_record_replay_5::subject::independent_groupoid_tests::all_coordinates_nonabelian_and_disconnected ... ok
+
+failures:
+
+---- root_record_replay_5::subject::tests::an_involutive_dagger_need_not_supply_inverses stdout ----
+
+thread 'root_record_replay_5::subject::tests::an_involutive_dagger_need_not_supply_inverses' (35212) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\rr\261019T194911\src\category_theory\q\n5.rs:208:9:
+assertion failed: matches!(ValidatedFiniteGroupoid::try_from_dagger(d),
+    Err(GroupoidError::Noninvertible { morphism }) if morphism == "z")
+
+---- root_record_replay_5::subject::independent_groupoid_tests::both_inverse_guards_and_admission_context stdout ----
+
+thread 'root_record_replay_5::subject::independent_groupoid_tests::both_inverse_guards_and_admission_context' (32312) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\rr\261019T194911\src\category_theory\q\n5.rs:309:3:
+assertion failed: matches!(ValidatedFiniteGroupoid::try_from_dagger(dagger),Err(GroupoidError::Noninvertible{morphism})if
+    morphism==expected)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    root_record_replay_5::subject::independent_groupoid_tests::both_inverse_guards_and_admission_context
+    root_record_replay_5::subject::tests::an_involutive_dagger_need_not_supply_inverses
+
+test result: FAILED. 3 passed; 2 failed; 0 ignored; 0 measured; 599 filtered out; finished in 0.02s
+

@@ -1059,3 +1059,25 @@ bound string bytes/time/allocator behavior. One unchanged core consumer context
 retains its own original receipts.20261019T194214Z-score-verification passes156
 completed records,192 source-score digests and41 groups;cleanup156 has zero
 owned compiled/debug/tmp outputs.36 category files,contracts/full goal remain;PR draft.
+
+
+Checkpoint157: finite groupoid L5A
+
+Owned all-inverse admission realizes actual Mathlib Groupoid. Complete components
+retain minimum roots,first connectors and actual root identity override. Chosen
+root coordinates have an inverse and preserve noncommutative composition. One
+borrowed view per phase and copying connectors only on first selection eliminate
+inner-loop owned key/unused-name allocations. All11 bodies max CCN7/cognitive9/
+nesting3;previous component8/15/4 and matrix12/10/3 archived.28/28 valid faults
+detected;459 original category tests and5 subject tests pass before/after.
+Independent63-arrow disjoint union checks every coordinate/decode and1005
+composable pairs;two split-pair orders isolate exact first-nonunitary diagnostics
+when either inverse guard is dropped. Those faults need not change final
+admission set:diagnostic payload difference is the stated contract.
+Eighteen clean proof declarations include actual Groupoid construction and Hom/
+isotropy coordinate equivalence. Warning-refused predecessor retained;no
+suppression. Complex-algebra wording narrowed to delivered connected-thin test.
+Dagger/core own sources and original receipts retained via two consumer refreshes.
+20261019T195657Z-score-verification passes157 completed records,192 source/score
+digests and42 groups;cleanup157 has no owned compiled/debug/tmp outputs.
+35 category files,contracts and full goal remain;PR draft.

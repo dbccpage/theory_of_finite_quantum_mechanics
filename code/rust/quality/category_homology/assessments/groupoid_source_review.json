@@ -1,0 +1,111 @@
+{
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/category_theory/finite_groupoid.rs",
+    "sha256": "37853f4e1260d4e27c9456f395e0665559a85761d6603a1dee76731dbe354cc1"
+  },
+  "production_functions": {
+    "fmt": {
+      "line": 23,
+      "signature": "fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result",
+      "body": "{\n        write!(f, \"finite groupoid refused: {self:?}\")\n    }",
+      "obligation": "Exact fixed finite-groupoid refusal prefix plus full Debug variant data; formatter errors propagate. Default std::error::Error source=None, not a nested cause-chain promise."
+    },
+    "admit_all_inverses": {
+      "line": 52,
+      "signature": "fn admit_all_inverses(dagger: &DaggerStructure) -> Result<(), GroupoidError>",
+      "body": "{\n    let c = dagger.category().declared();\n    let view = CompositionLookup::new(&c.compositions);\n    for (name, arrow) in &c.morphisms {\n        let unitary = dagger.dagger(name).is_some_and(|inverse| {\n            view.compose(name, inverse) == c.identity_of(&arrow.source)\n                && view.compose(inverse, name) == c.identity_of(&arrow.target)\n        });\n        if !unitary {\n            return Err(GroupoidError::Noninvertible { morphism: name.clone() });\n        }\n    }\n    Ok(())\n}",
+      "obligation": "Borrow already admitted immutable dagger context, build one same-category CompositionLookup, scan all morphisms in sorted name order and require both inverse equations with actual source/target identities. A missing image is nonunitary, same as old None!=Some(true); first incompatible arrow yields Noninvertible with exact name. Every known-arrow composition/identity is Some from full category/dagger admission. Empty context passes. No owned tuple keys in this loop."
+    },
+    "component_at": {
+      "line": 67,
+      "signature": "fn component_at(\n    category: &DeclaredFiniteCategory,\n    root: String,\n) -> Result<GroupoidComponent, GroupoidError>",
+      "body": "{\n    let mut connectors = BTreeMap::new();\n    let mut isotropy = BTreeSet::new();\n    for (name, arrow) in &category.morphisms {\n        if arrow.source == root {\n            // Iteration is sorted: copy only the first connector per target.\n            if !connectors.contains_key(&arrow.target) {\n                connectors.insert(arrow.target.clone(), name.clone());\n            }\n            if arrow.target == root {\n                isotropy.insert(name.clone());\n            }\n        }\n    }\n    let identity = category.identity_of(&root).ok_or(GroupoidError::MissingStructure)?;\n    connectors.insert(root.clone(), identity.to_owned());\n    let objects = connectors.keys().cloned().collect();\n    Ok(GroupoidComponent { root, objects, isotropy, connectors })\n}",
+      "obligation": "Private root comes from actual remaining object set of admitted groupoid. Scan every arrow whose source is root; retain lexicographically first connector per target, copy only on first insertion, and all root endomorphisms as isotropy. Then override root connector with actual identity even if an earlier-named nonidentity loop exists. Objects exactly connector targets. Missing identity is typed defensive MissingStructure. This is whole connected component because every zigzag in a groupoid collapses to one arrow."
+    },
+    "coordinate_at": {
+      "line": 90,
+      "signature": "fn coordinate_at(\n    dagger: &DaggerStructure,\n    component: &GroupoidComponent,\n    name: &str,\n    arrow: &DeclaredMorphism,\n    view: &CompositionLookup<'_>,\n) -> Result<GroupoidMatrixCoordinate, GroupoidError>",
+      "body": "{\n    let px = component.connectors.get(&arrow.source).ok_or(GroupoidError::MissingStructure)?;\n    let py = component.connectors.get(&arrow.target).ok_or(GroupoidError::MissingStructure)?;\n    let pyi = dagger.dagger(py).ok_or(GroupoidError::MissingStructure)?;\n    let gpx = view.compose(px, name).ok_or(GroupoidError::MissingStructure)?;\n    let h = view.compose(gpx, pyi).ok_or(GroupoidError::MissingStructure)?;\n    if !component.isotropy.contains(h) {\n        return Err(GroupoidError::MissingStructure);\n    }\n    Ok(GroupoidMatrixCoordinate {\n        component_root: component.root.clone(),\n        row_object: arrow.target.clone(),\n        column_object: arrow.source.clone(),\n        isotropy_arrow: h.to_owned(),\n    })\n}",
+      "obligation": "Private inputs are same admitted groupoid,one canonical produced component and its actual source arrow,with view from same category. Require px(root->source),py(root->target),inverse(py),g after px and inverse(py) after that composite; all missing data is MissingStructure. Require h root endomorphism in complete isotropy set. Return original root,row=target,column=source,isotropy_arrow=h as required owned labels. No name parsing or group multiplication inferred from string syntax."
+    },
+    "try_new": {
+      "line": 114,
+      "signature": "pub fn try_new(\n        category: DeclaredFiniteCategory,\n        inverses: BTreeMap<String, String>,\n    ) -> Result<Self, GroupoidError>",
+      "body": "{\n        Self::try_from_dagger(\n            DaggerStructure::try_new(category, inverses).map_err(GroupoidError::Dagger)?,\n        )\n    }",
+      "obligation": "Delegate actual dagger constructor and retain its typed nested failure via GroupoidError::Dagger; only then strengthen through try_from_dagger. Inherited<=64-arrow/cardinality bounds and complete category/dagger laws, no raw unchecked path."
+    },
+    "try_from_dagger": {
+      "line": 123,
+      "signature": "pub fn try_from_dagger(dagger: DaggerStructure) -> Result<Self, GroupoidError>",
+      "body": "{\n        admit_all_inverses(&dagger)?;\n        Ok(Self { dagger })\n    }",
+      "obligation": "Require every admitted arrow unitary through admit_all_inverses, then move unchanged owned DaggerStructure into private groupoid. Both inverse equations realize actual Mathlib Groupoid; no free inverse adjunction or identification of histories. Immutable certificate has no public mutation/default/deserializer bypass."
+    },
+    "category": {
+      "line": 128,
+      "signature": "pub fn category(&self) -> &ValidatedFiniteCategory",
+      "body": "{\n        self.dagger.category()\n    }",
+      "obligation": "Borrow exact owned validated category through dagger shared accessor; no mutation or replacement of context."
+    },
+    "inverse": {
+      "line": 131,
+      "signature": "pub fn inverse(&self, morphism: &str) -> Option<&str>",
+      "body": "{\n        self.dagger.dagger(morphism)\n    }",
+      "obligation": "Borrow actual owned dagger image for exact supplied arrow key, None for unknown. Complete groupoid admission makes this genuine inverse on every known arrow, with both equations and uniqueness."
+    },
+    "components": {
+      "line": 137,
+      "signature": "pub fn components(&self) -> Result<Vec<GroupoidComponent>, GroupoidError>",
+      "body": "{\n        let c = self.category().declared();\n        let mut remaining = c.objects.clone();\n        let mut result = Vec::new();\n        while let Some(root) = remaining.first().cloned() {\n            // Inverses/composition turn every connected zigzag into one arrow.\n            let component = component_at(c, root)?;\n            for object in &component.objects {\n                if !remaining.remove(object) {\n                    return Err(GroupoidError::MissingStructure);\n                }\n            }\n            result.push(component);\n        }\n        Ok(result)\n    }",
+      "obligation": "Clone object set as finite remaining work, repeatedly choose its lexicographic minimum root, construct complete component_at, remove every component object or fail MissingStructure if already removed, then append canonical component. Valid groupoid relatedness is an equivalence: components disjoint and complete; root identity guarantees at least root removed, so strict progress. Returns components in increasing root order, including isolated object groups; empty returns []."
+    },
+    "matrix_coordinates": {
+      "line": 154,
+      "signature": "pub fn matrix_coordinates(\n        &self,\n    ) -> Result<BTreeMap<String, GroupoidMatrixCoordinate>, GroupoidError>",
+      "body": "{\n        let c = self.category().declared();\n        let view = CompositionLookup::new(&c.compositions);\n        let mut result = BTreeMap::new();\n        for component in self.components()? {\n            for (name, arrow) in &c.morphisms {\n                if !component.objects.contains(&arrow.source) {\n                    continue;\n                }\n                result.insert(\n                    name.clone(),\n                    coordinate_at(&self.dagger, &component, name, arrow, &view)?,\n                );\n            }\n        }\n        if result.len() != c.morphisms.len() {\n            return Err(GroupoidError::MissingStructure);\n        }\n        Ok(result)\n    }",
+      "obligation": "Build one borrowed composition view per call and complete canonical components. For every component scan actual arrows, select those with source in component and normalize via coordinate_at. Source/target necessarily in same component. Store each original name exactly once and require final size equals all morphisms; no omitted arrows/partial success. Coordinate map is a bijection on each Hom to chosen-root isotropy, with inverse inverse(px) after h after py in the declared first-then-second convention; normalized composable pairs multiply in root group."
+    },
+    "is_connected_thin": {
+      "line": 179,
+      "signature": "pub fn is_connected_thin(&self) -> Result<bool, GroupoidError>",
+      "body": "{\n        let components = self.components()?;\n        Ok(components.len() == 1 && components[0].isotropy.len() == 1)\n    }",
+      "obligation": "Compute complete components, return true iff exactly one component AND that component has exactly one root endomorphism. Short-circuit protects index0 on empty. Groupoid coordinate bijections identify this with nonempty connected thinness. No complex-algebra object or simplicity certificate is constructed here."
+    }
+  },
+  "provider_refinement": "DaggerStructure owns complete ValidatedFiniteCategory and exact total reversed involutive map after category/domain/arrow/identity/composition admission. Both private fields are immutable through public API; category/arrow identities and all composable outputs are defined. Known arrow images have reversed boundaries, so both round trips exist. Existing actual-Mathlib FiniteCategory and FiniteDagger proofs plus source-bound provider review support typed total arrows; this strengthens them with all inverse equations, not an arbitrary raw map. CompositionLookup preserves exact tuple-string lexical order as borrowed str rows and binary-search return, with no owned key construction per query. In constructed actual Groupoid, stored inverse equals CategoryTheory.inv by uniqueness/Groupoid.inv_eq_inv, so coordinate proof using Mathlib inv matches native dagger lookup.",
+  "invariant_argument": [
+    "Dagger admission plus all-unitary scan gives a total typed inverse with f;inv(f)=id_source and inv(f);f=id_target for every arrow, realizing groupoidOfLaws over actual Category. The owned private dagger moves unchanged on success, so all original table data and exact inverse context remain stable; any typed failure emits no groupoid.",
+    "Object relation X~Y iff an arrow X->Y exists is reflexive by identities,symmetric by inverse,transitive by composition. Every connected zigzag therefore yields one arrow. component_at(root) scanning all outgoing arrows finds exactly equivalence class,all Hom(root,root) and one real connector to each object. Root identity is present and overrides the canonical minimum loop; unrelated source objects cannot be targets.",
+    "Initially remaining is all objects; after each iteration remove entire equivalence class. Distinct classes disjoint,each class contains its root,so no failed removal in healthy source and cardinality strictly drops. At most object_count iterations produce a partition with canonical least roots. Source all-arrow scan and ordered first-target insert give deterministic connectors; no sampled graph walk or arbitrary component classification.",
+    "For g:X->Y in a component with connectors px:R->X,py:R->Y,normalization is px;g;inv(py):R->R. Reconstruct is inv(px);h;py. Associativity and both inverse equations give both round trips and preservation of composition; coordinateEquiv is actual bijection of Hom to isotropy. Native keys/row/column/root labels encode exactly this data,not a constructed algebra multiplication object.",
+    "Every arrow source belongs to exactly one component and its target to same class; output inserts original distinct name once, then exact length check covers all. All lookups are against owned admitted context and internally produced components. Public raw GroupoidComponent/Coordinate records are outputs,not accepted as execution commands or certificates by these methods. Defensive MissingStructure branches are not claimed reachable through healthy private groupoid."
+  ],
+  "data_trait_derive_macro_review": "Private groupoid owns DaggerStructure,standard Debug/Clone/Eq only;no unchecked/default/deserialization/mutable field path. Public component and coordinate raw records have concrete ordered String sets/maps and field ordering. Three typed GroupoidError variants retain full dagger error or exact offending name;default Error.source None. No unsafe,float,narrowing,custom Eq/callback or name parsing.",
+  "cost_review": [
+    "Let O<=64 objects,M<=64 arrows,C<=4096 compositions,K<=O components and \u2113 relevant name-byte comparison/copy lengths. try_new inherits full category/dagger admission cost and bounds. try_from_dagger builds one O(C)-reference view then scans M arrows with constant borrowed map/identity/compose lookups: O(C+M*(log(M+1)+log(C+1))) comparisons plus string bytes. No per-arrow temporary tuple String keys.",
+    "Components retain O(O) remaining objects and required output connector/object/isotropy labels. For each root scan all M arrows; borrowed contains_key avoids old eager target/name copies on already-filled connector. Only first target connector and each actual isotropy arrow are cloned as required returned output; root identity override is required canonical data. Cost O(K*M*log(O+1)) comparisons plus removals/output bytes,not a hidden BFS or cubic exploration.",
+    "matrix_coordinates computes components once,builds one same-table view and scans K*M arrow memberships. Each selected arrow does two connector lookups,one inverse lookup,two borrowed composition queries and isotropy membership,then copies only required output fields/key. Safe O(C+component_work+K*M*log(O+1)+M*(log(M+1)+log(C+1))) comparisons plus output/name bytes. Storage O(C+O+M) references/records plus owned output/metadata bytes,with no owned temporary tuple keys inside coordinate loops.",
+    "Public category/inverse accessors borrow O(1)/one tree lookup; is_connected_thin pays component computation then constant count/guard. Derived Clone/Eq/Ord/Debug are structural over stored/output strings/maps and cost visited bytes; enum formatter/error clone likewise. Source cardinality bounds do not bound arbitrary name bytes,allocator or elapsed time.",
+    "Fresh source AST11 functions max CCN7,cognitive9,nesting3; original components8/15/4 and matrix12/10/3 retained. Meaningful inverse admission,root component and one-arrow coordinate helpers preserve phase invariants. No MIR,allocator-totality,benchmark or independent-compiler A+ claim."
+  ],
+  "consumer_review": [
+    "Local lib.rs/mod.rs expose groupoid module; no external local Rust symbol callsite found outside subject. Dagger/core completed reviews pin groupoid as a consumer of their private admitted contexts; refresh both while retaining own source/proof/primary/metrics. Groupoid raw output structs remain untrusted ordinary records; no caller-supplied component is used to control these methods.",
+    "All8 original method/error signatures and five unaffected bodies remain identical. All-inverse helper exactly equals old is_unitary(name)==Some(true) for each known admitted arrow,including both actual source/target identity equations and first sorted refusal. component_at preserves first connector/root-identity override; coordinate helper replaces only tuple lookup representation. Complex-algebra wording narrowed to delivered connected-thin predicate.",
+    "Actual local category/dagger provider identities retained,original groupoid canonical source and all459 category tests execute unadapted before/after;copied own nominal groupoid output types are not an ABI/type-identity mutation claim. External omega packages outside scope."
+  ],
+  "source_change": {
+    "before": {
+      "path": "evidence/quality/category_homology/resume-20261019/groupoid-previous/finite_groupoid.rs",
+      "sha256": "12a14ec47773bbc7d4fe8017c04814309d32124401390ffd1fbaaf05a087a8fe"
+    },
+    "before_score": {
+      "path": "evidence/quality/category_homology/resume-20261019/groupoid-previous/finite_groupoid.score.yaml",
+      "sha256": "78bfe8acdb4805fd62f80326b335f928756a6e2ee081b06b342067c22ce0d286"
+    },
+    "all_original_signatures_unchanged": true,
+    "five_unaffected_bodies_unchanged": true,
+    "phase_preservation": "Both-equation inverse admission unchanged;private helper extraction preserves sorted full component and matrix coordinate values. Borrowed views remove transient owned keys,and connector insert clones only selected first arrow. Root override/partition/error coverage retained.",
+    "line_endings": "Original CRLF preserved."
+  },
+  "native_oracle": "Three original+two independent tests. Complete disjoint union with63 arrows:3-object S3 groupoid54,pair C2 groupoid8,and isolated trivial1. Labels force a nonidentity3-cycle as least nonroot connector and identity override at root. All63 coordinates independently use permutation multiplication/inverses,unique coordinates,decode round trip and all1005 composable-pair normalization equations. Separate split pairs in both label orders isolate first offending arrow under either dropped inverse guard;these faults may still reject later but violate exact first-nonunitary name. Empty/connected-thin/nontrivial isotropy,unknown inverse,nested category/budget errors and formatting retained."
+}

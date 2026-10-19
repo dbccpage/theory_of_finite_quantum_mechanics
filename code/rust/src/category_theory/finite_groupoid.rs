@@ -5,8 +5,9 @@
 //! Composition retains the category convention: `compose(f, g)` means g after f.
 //! The inherited bound is 64 arrows. AuthorityEffect: None.
 
+use crate::cat_functor::CompositionLookup;
 use crate::dagger::{DaggerStructure, DaggerValidationError};
-use crate::finite_category::{DeclaredFiniteCategory, ValidatedFiniteCategory};
+use crate::finite_category::{DeclaredFiniteCategory, DeclaredMorphism, ValidatedFiniteCategory};
 use std::collections::{BTreeMap, BTreeSet};
 
 #[derive(Debug, Clone)]
@@ -47,6 +48,68 @@ pub struct GroupoidMatrixCoordinate {
 pub struct ValidatedFiniteGroupoid {
     dagger: DaggerStructure,
 }
+
+fn admit_all_inverses(dagger: &DaggerStructure) -> Result<(), GroupoidError> {
+    let c = dagger.category().declared();
+    let view = CompositionLookup::new(&c.compositions);
+    for (name, arrow) in &c.morphisms {
+        let unitary = dagger.dagger(name).is_some_and(|inverse| {
+            view.compose(name, inverse) == c.identity_of(&arrow.source)
+                && view.compose(inverse, name) == c.identity_of(&arrow.target)
+        });
+        if !unitary {
+            return Err(GroupoidError::Noninvertible { morphism: name.clone() });
+        }
+    }
+    Ok(())
+}
+
+fn component_at(
+    category: &DeclaredFiniteCategory,
+    root: String,
+) -> Result<GroupoidComponent, GroupoidError> {
+    let mut connectors = BTreeMap::new();
+    let mut isotropy = BTreeSet::new();
+    for (name, arrow) in &category.morphisms {
+        if arrow.source == root {
+            // Iteration is sorted: copy only the first connector per target.
+            if !connectors.contains_key(&arrow.target) {
+                connectors.insert(arrow.target.clone(), name.clone());
+            }
+            if arrow.target == root {
+                isotropy.insert(name.clone());
+            }
+        }
+    }
+    let identity = category.identity_of(&root).ok_or(GroupoidError::MissingStructure)?;
+    connectors.insert(root.clone(), identity.to_owned());
+    let objects = connectors.keys().cloned().collect();
+    Ok(GroupoidComponent { root, objects, isotropy, connectors })
+}
+
+fn coordinate_at(
+    dagger: &DaggerStructure,
+    component: &GroupoidComponent,
+    name: &str,
+    arrow: &DeclaredMorphism,
+    view: &CompositionLookup<'_>,
+) -> Result<GroupoidMatrixCoordinate, GroupoidError> {
+    let px = component.connectors.get(&arrow.source).ok_or(GroupoidError::MissingStructure)?;
+    let py = component.connectors.get(&arrow.target).ok_or(GroupoidError::MissingStructure)?;
+    let pyi = dagger.dagger(py).ok_or(GroupoidError::MissingStructure)?;
+    let gpx = view.compose(px, name).ok_or(GroupoidError::MissingStructure)?;
+    let h = view.compose(gpx, pyi).ok_or(GroupoidError::MissingStructure)?;
+    if !component.isotropy.contains(h) {
+        return Err(GroupoidError::MissingStructure);
+    }
+    Ok(GroupoidMatrixCoordinate {
+        component_root: component.root.clone(),
+        row_object: arrow.target.clone(),
+        column_object: arrow.source.clone(),
+        isotropy_arrow: h.to_owned(),
+    })
+}
+
 impl ValidatedFiniteGroupoid {
     pub fn try_new(
         category: DeclaredFiniteCategory,
@@ -58,13 +121,7 @@ impl ValidatedFiniteGroupoid {
     }
 
     pub fn try_from_dagger(dagger: DaggerStructure) -> Result<Self, GroupoidError> {
-        for morphism in dagger.category().declared().morphisms.keys() {
-            if dagger.is_unitary(morphism) != Some(true) {
-                return Err(GroupoidError::Noninvertible {
-                    morphism: morphism.clone(),
-                });
-            }
-        }
+        admit_all_inverses(&dagger)?;
         Ok(Self { dagger })
     }
 
@@ -82,36 +139,14 @@ impl ValidatedFiniteGroupoid {
         let mut remaining = c.objects.clone();
         let mut result = Vec::new();
         while let Some(root) = remaining.first().cloned() {
-            // In a groupoid, composites and inverses turn every zigzag into
-            // a single arrow. All connected objects occur among these targets.
-            let mut connectors = BTreeMap::new();
-            let mut isotropy = BTreeSet::new();
-            for (name, arrow) in &c.morphisms {
-                if arrow.source == root {
-                    connectors
-                        .entry(arrow.target.clone())
-                        .or_insert(name.clone());
-                    if arrow.target == root {
-                        isotropy.insert(name.clone());
-                    }
-                }
-            }
-            let identity = c
-                .identity_of(&root)
-                .ok_or(GroupoidError::MissingStructure)?;
-            connectors.insert(root.clone(), identity.to_owned());
-            let objects: BTreeSet<_> = connectors.keys().cloned().collect();
-            for object in &objects {
+            // Inverses/composition turn every connected zigzag into one arrow.
+            let component = component_at(c, root)?;
+            for object in &component.objects {
                 if !remaining.remove(object) {
                     return Err(GroupoidError::MissingStructure);
                 }
             }
-            result.push(GroupoidComponent {
-                root,
-                objects,
-                isotropy,
-                connectors,
-            });
+            result.push(component);
         }
         Ok(result)
     }
@@ -120,34 +155,16 @@ impl ValidatedFiniteGroupoid {
         &self,
     ) -> Result<BTreeMap<String, GroupoidMatrixCoordinate>, GroupoidError> {
         let c = self.category().declared();
+        let view = CompositionLookup::new(&c.compositions);
         let mut result = BTreeMap::new();
         for component in self.components()? {
             for (name, arrow) in &c.morphisms {
                 if !component.objects.contains(&arrow.source) {
                     continue;
                 }
-                let px = component
-                    .connectors
-                    .get(&arrow.source)
-                    .ok_or(GroupoidError::MissingStructure)?;
-                let py = component
-                    .connectors
-                    .get(&arrow.target)
-                    .ok_or(GroupoidError::MissingStructure)?;
-                let pyi = self.inverse(py).ok_or(GroupoidError::MissingStructure)?;
-                let gpx = c.compose(px, name).ok_or(GroupoidError::MissingStructure)?;
-                let h = c.compose(gpx, pyi).ok_or(GroupoidError::MissingStructure)?;
-                if !component.isotropy.contains(h) {
-                    return Err(GroupoidError::MissingStructure);
-                }
                 result.insert(
                     name.clone(),
-                    GroupoidMatrixCoordinate {
-                        component_root: component.root.clone(),
-                        row_object: arrow.target.clone(),
-                        column_object: arrow.source.clone(),
-                        isotropy_arrow: h.to_owned(),
-                    },
+                    coordinate_at(&self.dagger, &component, name, arrow, &view)?,
                 );
             }
         }
@@ -157,8 +174,8 @@ impl ValidatedFiniteGroupoid {
         Ok(result)
     }
 
-    /// Structural criterion for a nonzero simple COMPLEX groupoid algebra.
-    /// This is not a claim about admitted states, scalars, or physical processes.
+    /// Test nonempty connectedness and trivial isotropy: connected thinness.
+    /// The usual complex-algebra interpretation is outside this implementation.
     pub fn is_connected_thin(&self) -> Result<bool, GroupoidError> {
         let components = self.components()?;
         Ok(components.len() == 1 && components[0].isotropy.len() == 1)

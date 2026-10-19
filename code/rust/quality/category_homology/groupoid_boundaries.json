@@ -1,0 +1,126 @@
+{
+  "AuthorityEffect": "None",
+  "scope": "Owned all-inverse finite groupoid,canonical complete components and matrix/isotropy normalization;typed first-error and original category context.",
+  "records": [
+    {
+      "family": "",
+      "path": "code/rust/src/category_theory/finite_groupoid.rs",
+      "sha256": "37853f4e1260d4e27c9456f395e0665559a85761d6603a1dee76731dbe354cc1",
+      "parent_aliases": [],
+      "faults": [
+        [
+          "view.compose(name, inverse) == c.identity_of(&arrow.source)",
+          "true"
+        ],
+        [
+          "view.compose(inverse, name) == c.identity_of(&arrow.target)",
+          "true"
+        ],
+        [
+          "view.compose(name, inverse) == c.identity_of(&arrow.source)",
+          "view.compose(name, inverse) == c.identity_of(&arrow.target)"
+        ],
+        [
+          "view.compose(inverse, name) == c.identity_of(&arrow.target)",
+          "view.compose(inverse, name) == c.identity_of(&arrow.source)"
+        ],
+        [
+          "morphism: name.clone()",
+          "morphism: \"wrong\".into()"
+        ],
+        [
+          "arrow.source == root",
+          "arrow.source != root"
+        ],
+        [
+          "!connectors.contains_key(&arrow.target)",
+          "true"
+        ],
+        [
+          "connectors.insert(arrow.target.clone(), name.clone());",
+          "connectors.insert(arrow.source.clone(), name.clone());"
+        ],
+        [
+          "arrow.target == root",
+          "arrow.target != root"
+        ],
+        [
+          "    connectors.insert(root.clone(), identity.to_owned());",
+          "    // keep the first root loop instead of its actual identity"
+        ],
+        [
+          "component.connectors.get(&arrow.source)",
+          "component.connectors.get(&arrow.target)"
+        ],
+        [
+          "component.connectors.get(&arrow.target)",
+          "component.connectors.get(&arrow.source)"
+        ],
+        [
+          "dagger.dagger(py).ok_or(GroupoidError::MissingStructure)?",
+          "py.as_str()"
+        ],
+        [
+          "view.compose(px, name)",
+          "view.compose(name, px)"
+        ],
+        [
+          "view.compose(gpx, pyi)",
+          "view.compose(pyi, gpx)"
+        ],
+        [
+          "isotropy_arrow: h.to_owned(),",
+          "isotropy_arrow: name.to_owned(),"
+        ],
+        [
+          "row_object: arrow.target.clone(),",
+          "row_object: arrow.source.clone(),"
+        ],
+        [
+          "column_object: arrow.source.clone(),",
+          "column_object: arrow.target.clone(),"
+        ],
+        [
+          "component_root: component.root.clone(),",
+          "component_root: \"wrong\".into(),"
+        ],
+        [
+          ".map_err(GroupoidError::Dagger)?",
+          ".map_err(|_| GroupoidError::MissingStructure)?"
+        ],
+        [
+          "        admit_all_inverses(&dagger)?;",
+          "        // omit all-inverse admission"
+        ],
+        [
+          "self.dagger.dagger(morphism)",
+          "self.dagger.dagger(\"unknown\")"
+        ],
+        [
+          "remaining.first().cloned()",
+          "remaining.last().cloned()"
+        ],
+        [
+          "if !remaining.remove(object)",
+          "if true"
+        ],
+        [
+          "if !component.objects.contains(&arrow.source)",
+          "if component.objects.contains(&arrow.source)"
+        ],
+        [
+          "components.len() == 1 && components[0].isotropy.len() == 1",
+          "components.len() == 1"
+        ],
+        [
+          "components.len() == 1 && components[0].isotropy.len() == 1",
+          "components.len() == 1 && components[0].isotropy.len() != 1"
+        ],
+        [
+          "\"finite groupoid refused: {self:?}\"",
+          "\"groupoid admitted: {self:?}\""
+        ]
+      ]
+    }
+  ]
+}
