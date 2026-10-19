@@ -6,8 +6,13 @@
 //!
 //!   For all f: A → B in C:
 //!     η_B ∘ F(f) = G(f) ∘ η_A
+//!
+//! Only the immutable owned finite certificate checks complete endpoint functors,
+//! component domains/boundaries and all squares. Generic traits and public raw
+//! records are caller contracts; separate diagnostics inspect supplied tables
+//! and are vacuous on empty supplied domains. AuthorityEffect: None.
 
-use super::cat_functor::{CatFunctor, Category, DeclaredFiniteFunctor};
+use super::cat_functor::{CatFunctor, Category, CompositionLookup, DeclaredFiniteFunctor};
 use super::finite_category::DeclaredFiniteCategory;
 use super::validation::{
     NatTransValidation, ValidationLocation, ValidationReport, ValidationSeverity, ValidationUnit,
@@ -308,6 +313,7 @@ pub fn check_naturality_square(
     g_map: &BTreeMap<String, String>,
     target_compositions: &BTreeMap<(String, String), String>,
 ) -> Vec<String> {
+    let lookup = CompositionLookup::new(target_compositions);
     source_category
         .morphisms
         .iter()
@@ -319,7 +325,7 @@ pub fn check_naturality_square(
                 &mor.target,
                 f_map,
                 g_map,
-                target_compositions,
+                &lookup,
             )
             .err()
         })
@@ -333,7 +339,7 @@ fn check_square_at(
     target: &str,
     f_map: &BTreeMap<String, String>,
     g_map: &BTreeMap<String, String>,
-    table: &BTreeMap<(String, String), String>,
+    table: &CompositionLookup<'_>,
 ) -> Result<(), String> {
     let eta_a = nat
         .component(source)
@@ -344,10 +350,10 @@ fn check_square_at(
     let f_mor = f_map.get(mor).ok_or_else(|| format!("Missing F({mor})"))?;
     let g_mor = g_map.get(mor).ok_or_else(|| format!("Missing G({mor})"))?;
     let left = table
-        .get(&(f_mor.clone(), eta_b.into()))
+        .compose(f_mor, eta_b)
         .ok_or_else(|| format!("Missing eta_{target} after F({mor})"))?;
     let right = table
-        .get(&(eta_a.into(), g_mor.clone()))
+        .compose(eta_a, g_mor)
         .ok_or_else(|| format!("Missing G({mor}) after eta_{source}"))?;
     if left != right {
         return Err(format!(

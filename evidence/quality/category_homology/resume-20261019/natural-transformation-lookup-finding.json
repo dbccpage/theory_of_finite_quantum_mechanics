@@ -1,0 +1,11 @@
+{
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/category_theory/natural_trans.rs",
+    "sha256": "d668e667c7072bfc4de45f0b1f8aeb992d6ae6a7897e925a152e512d9f699700"
+  },
+  "gate": "G5",
+  "ceiling": "B",
+  "status": "known_failure_under_repair",
+  "finding": "check_naturality_square invokes check_square_at for every source morphism; its two table.get calls create four temporary String key values per square. The assessed shared CompositionLookup can be built once per public diagnostic and queried without owned scratch keys. No semantic defect is inferred."
+}

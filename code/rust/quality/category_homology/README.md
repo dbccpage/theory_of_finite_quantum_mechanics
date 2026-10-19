@@ -878,3 +878,39 @@ original own primary/metrics with explicit preservation and current evidence.
 20261019T174953Z-score-verification passes all 148 completed assessments and
 all 192 source/score digests across 33 groups. Cleanup checkpoint 148 finds no owned
 debug/tmp/compiled outputs. Contracts and full goal remain unfinished; PR draft.
+
+Naturality checkpoint: 149 completed A assessments and 43 incomplete.
+The immutable owned finite natural-transformation certificate is L5A. Complete
+endpoint category/F/G laws, exact component domain/boundaries and every square
+gate all owned snapshots. Raw tables and generic/compatibility markers remain
+unchecked, and standalone diagnostics retain partial/vacuous scope. Full F/G
+equality, not shared names, controls duplicate endpoint validation. Typed endpoint
+failure projection is justified by the closed internally produced report phases.
+
+The shared borrowed composition view replaces four temporary key Strings per
+square. All public signatures and 16 bodies are unchanged; one private helper
+accepts the view. Every missing prerequisite, query/diagnostic order and defined
+comparison value is preserved. Native 20261019T175919Z detects all 48 selected
+faults; 459 original category and twelve subject/control tests pass before/after.
+Independent oracles include all eight C2 endofunctor/component choices, 128 square
+presence/result and 64 component-boundary patterns, all typed nat failures, invalid
+endpoints/F/G with same names, sorted first errors, raw overwrite/getters, immutable
+snapshots and forged raw re-admission. FiniteNaturality checks eight clean actual
+Mathlib NatTrans admission/component-preservation statements, alongside existing
+category/functor/report models. All 18 actual bodies fit fresh A metrics. Three
+unchanged-own-source consumers retain original own primary/metrics and explicit
+provider preservation, rather than gaining grades from shared package success.
+
+Failed attempts remain literal: encoding mismatch refused materialization before
+candidate files/build; a subsequent positional-argument mutation syntax error
+caused common build failure with all 48 coarse native outcomes unrun (one known
+malformed candidate identified separately, not all 48 invalid). Corrected final
+policy retains all 48 intended faults. Initial implicit-binder Lean elaboration
+failed and emitted sorryAx for failed declarations; the explicit law structure
+checks cleanly and only final proof is supporting evidence. No failed receipt
+is promoted to a pass. Prior G5 B allocation finding remains source-pinned.
+
+20261019T180343Z-score-verification passes all 149 completed assessments,
+all 192 source/score digests and 34 groups. Cleanup checkpoint 149 finds no owned
+debug/tmp/compiled outputs; small exact snapshots remain. Contracts/full goal
+remain unfinished and the PR remains draft.
