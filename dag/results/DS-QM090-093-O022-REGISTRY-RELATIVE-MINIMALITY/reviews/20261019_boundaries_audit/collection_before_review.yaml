@@ -1,0 +1,784 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: The complex-Hilbert CPTP row meets the declared audit conditions and is minimal within
+    the frozen seven-row O022 registry (six weaker candidates fail or refuse). MinimalInterface(R,F,w)
+    does not imply minimality over all registries; witness [5,7].
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: []
+  source_bottleneck: None (O022 7-row registry-relative minimality and [5, 7] super-registry non-transfer
+    witness mechanized in ds_qm090_093_o022_registry_minimality_and_tier3_pr_box_bridge and ds_qm090_093_o022_seven_row_registry_relative_minimality).
+  source_refs:
+  - omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/090_interpretations_as_authority_shadows/qm_090_interpretations_as_authority_shadows_claim_ledger.md#QM-090-C11
+  - omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/093_from_q_to_gtfoc_finite_descent_of_quantum_structure/qm_093_from_q_to_gtfoc_finite_descent_of_quantum_structure_claim_ledger.md#QM-093-C19
+  - omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/092_qm_typed_authority_boundary_suite/qm_092_qm_typed_authority_boundary_suite_claim_ledger.md#QM-092-C18
+  paper_refs:
+  - dag/derivations/12_finite_qm_structure/tfq_0273_finite_descent_of_an_imported_quantum_interface.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  historical_paper_refs:
+  - papers/derivations/12_finite_qm_structure/tfq_0273_finite_descent_of_an_imported_quantum_interface.md
+  paper_relocations:
+  - from: papers/derivations/12_finite_qm_structure/tfq_0273_finite_descent_of_an_imported_quantum_interface.md
+    to: dag/derivations/12_finite_qm_structure/tfq_0273_finite_descent_of_an_imported_quantum_interface.md
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/12_finite_qm_structure/tfq_0273_finite_descent_of_an_imported_quantum_interface.md
+    sha256: c1f5ab8e59c737b286b24f731a096fbc9cbefc65d2f03ebcb31c3e3d891ddc8c
+source_provenance:
+  repository: this_repository
+  commit: 642f5b95a116da6df805adbd745a4826c6739c2b
+  path: dag/prompts/finite_qm_structure_ds_qm090_093_o022_registry_relative_minimality_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: o022RowAdmits
+  line: 808
+  signature_excerpt: 'def o022RowAdmits (r : Fin 7) : Bool'
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: o022RowCapabilities
+  line: 798
+  signature_excerpt: 'def o022RowCapabilities (r : Fin 7) : Bool × Bool × Bool × Bool'
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: ds_qm080_090_093_094_101_102_206_207_structure_and_qec_bounds
+  line: 659
+  signature_excerpt: "theorem ds_qm080_090_093_094_101_102_206_207_structure_and_qec_bounds\n    (c :\
+    \ Nat) (a b : Int) (pi : Nat → Nat) (h_idem : ∀ x, pi (pi x) = pi x) (P : Nat → Bool) (x : Nat) :\n\
+    \    (c * a.natAbs ≤ c * (a.natAbs + b.natAbs)) ∧\n    (P (pi (pi x)) = P (pi x)) ∧\n    (1 + 3 *\
+    \ 5 = 16 ∧ 2 ^ 4 = 16 ∧ 2 ^ 3 < 1 + 3 * 5)"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: ds_qm090_093_o022_seven_row_registry_relative_minimality
+  line: 812
+  signature_excerpt: "theorem ds_qm090_093_o022_seven_row_registry_relative_minimality :\n    (∀ r : Fin\
+    \ 7, (o022RowAdmits r = true) ↔ r.val = 6) ∧\n    (5 < 7)"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+- kind: theorem
+  name: ds_qm090_093_o022_registry_minimality_and_tier3_pr_box_bridge
+  line: 1496
+  signature_excerpt: "theorem ds_qm090_093_o022_registry_minimality_and_tier3_pr_box_bridge :\n    ((∀\
+    \ r : Fin 7, (o022RowAdmits r = true) ↔ r.val = 6) ∧\n     (5 < 7 ∧ Nat.min 5 7 = 5 ∧ (5 : Nat) ≠\
+    \ 7)) ∧\n    ((16 + 8 = 24) ∧ (2 * 2 = 4 ∧ 2 * 4 = 8 ∧ 4 * 4 = 16 ∧ 4 < 8 ∧ 8 < 16))"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+source_bindings:
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm080_090_093_094_101_102_206_207_structure_and_qec_bounds
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.ds_qm080_090_093_094_101_102_206_207_structure_and_qec_bounds
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 659
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm090_093_o022_seven_row_registry_relative_minimality
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.ds_qm090_093_o022_seven_row_registry_relative_minimality
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 812
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm090_093_o022_registry_minimality_and_tier3_pr_box_bridge
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.ds_qm090_093_o022_registry_minimality_and_tier3_pr_box_bridge
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 1496
+  role: source_lead_only
+- original_ref: omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/lean/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm090_093_o022_registry_minimality_and_tier3_pr_box_bridge
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.ds_qm090_093_o022_registry_minimality_and_tier3_pr_box_bridge
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 1496
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche3_emergence_dynamics_heisenberg_and_qec_witness
+  availability: external
+  symbol: verify_tranche3_emergence_dynamics_heisenberg_and_qec_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 619
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche6_conditional_and_open_boundary_certificates_witness
+  availability: external
+  symbol: verify_tranche6_conditional_and_open_boundary_certificates_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 833
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche18_ds_qm063_072_073_090_holonomy_bit_shadow_chsh_and_o022_closure_witness
+  availability: external
+  symbol: verify_tranche18_ds_qm063_072_073_090_holonomy_bit_shadow_chsh_and_o022_closure_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 1669
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs::verify_tranche18_ds_qm063_072_073_090_holonomy_bit_shadow_chsh_and_o022_closure_witness
+  availability: external
+  symbol: verify_tranche18_ds_qm063_072_073_090_holonomy_bit_shadow_chsh_and_o022_closure_witness
+  path: omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 1669
+  role: source_lead_only
+- original_ref: omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs::verify_tranche18_ds_qm063_072_073_090_holonomy_bit_shadow_chsh_and_o022_closure_witness
+  availability: external
+  symbol: verify_tranche18_ds_qm063_072_073_090_holonomy_bit_shadow_chsh_and_o022_closure_witness
+  path: omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: 38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a
+  declaration_status: declaration_found_not_executed
+  line: 1669
+  role: source_lead_only
+presentation:
+  status: scoped_stage_result_pending_batch_review
+  scope: The frozen row conjunction and failure of rank minimality to transfer to an expanded registry
+    are exact; the limited list/rank and Boolean statements are kernel checked.
+  colours:
+  - id: AdmittedRowsWithSuppliedRanks
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: DeclaredRegistryMasksAndRanks
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: FourBooleanFieldsPerRow
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: RegistryRelativeMinimum
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  generators:
+  - id: decode_registry_fields
+    ordered_inputs:
+    - DeclaredRegistryMasksAndRanks
+    output: FourBooleanFieldsPerRow
+    arity: 1
+    carrier: Declared DeclaredRegistryMasksAndRanks
+    coefficient_ring: Exact rational scalars, Gaussian Hermitian coordinates, natural/Boolean fields or
+      the explicitly finite group
+    hypotheses:
+    - Same frozen registry, declared masks and unitless ranks; flags are not audited capabilities.
+    semantic_predicate: Decode the four fields of each mask.
+    source_pins:
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_ds_qm090_093_o022_registry_relative_minimality_proved_lean.yaml
+      sha256: 038749a99a6645e0ee69999040ecc7ba17234e0cc09ff457b7a81f85a7dc58f3
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/inputs/this_repository/dag/operads/ds_qm090_093_o022_registry_relative_minimality.yaml
+      sha256: e7e1c63b19f65d8b82115da7d39e413e5126f9aebf5e855f01b69e156cf0b95b
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs
+      sha256: 38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/tfq_0273_finite_descent_of_an_imported_quantum_interface.md
+      sha256: 1463ba1ada7b6d51c89a0588d1ffffb7bc50584dcebf8eda5434b97e3fd2f715
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p0/operation_sources/code/python/src/qm/boundaries_exact.py
+      sha256: 41f6505663ecf8257b7cce1b36f6e5d9081862754a5514313e8ef6d4a88d4235
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p0/operation_sources/code/python/tests/test_boundaries_exact.py
+      sha256: 81a98a49cd2ee6190d60a2ca64899301ff01cae5ee5daab81aebdf7761fe6da4
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p0/operation_sources/code/rust/src/finite_probability/boundaries_exact.rs
+      sha256: 52df08ee2cdfecb057cfed2b4399c93720899e80d1b3b9291ff3bc365b2d9f30
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/boundaries_exact_replay.rs
+      sha256: 1c212fce1ed975acc90fdbb7a22b1cc3a65d4588c193e276a7a329b440719395
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/boundaries_checker.py
+      sha256: 71ec9241b94d311710a25f669912ca163006b6b3f56e0a18739c6dd4e9e8b8dd
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p0/operation_sources/dag/results/batches/20261019T201403Z_prompts_72_91/tools/prepare.py
+      sha256: 63d4e890ceae99ea497d49db98875c71ccc17f1d41e2a5df749d03f1692f4ffb
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p0/operation_sources/dag/results/batches/20261019T201403Z_prompts_72_91/tools/specs.py
+      sha256: 04ae08a56fac87673251fbf423b4611481366be5c9ac78e09e9b4d6713861e2a
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/check_candidate.py
+      sha256: 8665474effcf0ebd3f78b8c66eb67693433ab07da9dc166048be27cefc43a42b
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/format_certificate.py
+      sha256: 50332cc9147e2b21a29c8d6147897794ab87c740b857bb6d1dd1f6d460ecb08d
+    evidence_status: Target-specific native predicates checked on retained inputs; relation-specific kernel
+      scope is separate. General refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p2_after_p3_disk_retry/host_check.json
+  - id: conjoin_capabilities
+    ordered_inputs:
+    - FourBooleanFieldsPerRow
+    output: AdmittedRowsWithSuppliedRanks
+    arity: 1
+    carrier: Declared FourBooleanFieldsPerRow
+    coefficient_ring: Exact rational scalars, Gaussian Hermitian coordinates, natural/Boolean fields or
+      the explicitly finite group
+    hypotheses:
+    - Same frozen registry, declared masks and unitless ranks; flags are not audited capabilities.
+    semantic_predicate: Conjoin the declared fields.
+    source_pins:
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_ds_qm090_093_o022_registry_relative_minimality_proved_lean.yaml
+      sha256: 038749a99a6645e0ee69999040ecc7ba17234e0cc09ff457b7a81f85a7dc58f3
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/inputs/this_repository/dag/operads/ds_qm090_093_o022_registry_relative_minimality.yaml
+      sha256: e7e1c63b19f65d8b82115da7d39e413e5126f9aebf5e855f01b69e156cf0b95b
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs
+      sha256: 38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/tfq_0273_finite_descent_of_an_imported_quantum_interface.md
+      sha256: 1463ba1ada7b6d51c89a0588d1ffffb7bc50584dcebf8eda5434b97e3fd2f715
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p0/operation_sources/code/python/src/qm/boundaries_exact.py
+      sha256: 41f6505663ecf8257b7cce1b36f6e5d9081862754a5514313e8ef6d4a88d4235
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p0/operation_sources/code/python/tests/test_boundaries_exact.py
+      sha256: 81a98a49cd2ee6190d60a2ca64899301ff01cae5ee5daab81aebdf7761fe6da4
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p0/operation_sources/code/rust/src/finite_probability/boundaries_exact.rs
+      sha256: 52df08ee2cdfecb057cfed2b4399c93720899e80d1b3b9291ff3bc365b2d9f30
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/boundaries_exact_replay.rs
+      sha256: 1c212fce1ed975acc90fdbb7a22b1cc3a65d4588c193e276a7a329b440719395
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/boundaries_checker.py
+      sha256: 71ec9241b94d311710a25f669912ca163006b6b3f56e0a18739c6dd4e9e8b8dd
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p0/operation_sources/dag/results/batches/20261019T201403Z_prompts_72_91/tools/prepare.py
+      sha256: 63d4e890ceae99ea497d49db98875c71ccc17f1d41e2a5df749d03f1692f4ffb
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p0/operation_sources/dag/results/batches/20261019T201403Z_prompts_72_91/tools/specs.py
+      sha256: 04ae08a56fac87673251fbf423b4611481366be5c9ac78e09e9b4d6713861e2a
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/check_candidate.py
+      sha256: 8665474effcf0ebd3f78b8c66eb67693433ab07da9dc166048be27cefc43a42b
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/format_certificate.py
+      sha256: 50332cc9147e2b21a29c8d6147897794ab87c740b857bb6d1dd1f6d460ecb08d
+    evidence_status: Target-specific native predicates checked on retained inputs; relation-specific kernel
+      scope is separate. General refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p2_after_p3_disk_retry/host_check.json
+  - id: restricted_rank_compare
+    ordered_inputs:
+    - AdmittedRowsWithSuppliedRanks
+    output: RegistryRelativeMinimum
+    arity: 1
+    carrier: Declared AdmittedRowsWithSuppliedRanks
+    coefficient_ring: Exact rational scalars, Gaussian Hermitian coordinates, natural/Boolean fields or
+      the explicitly finite group
+    hypotheses:
+    - Same frozen registry, declared masks and unitless ranks; flags are not audited capabilities.
+    semantic_predicate: Compare the supplied candidate rank with the newly admitted supplied rank.
+    source_pins:
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_ds_qm090_093_o022_registry_relative_minimality_proved_lean.yaml
+      sha256: 038749a99a6645e0ee69999040ecc7ba17234e0cc09ff457b7a81f85a7dc58f3
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/inputs/this_repository/dag/operads/ds_qm090_093_o022_registry_relative_minimality.yaml
+      sha256: e7e1c63b19f65d8b82115da7d39e413e5126f9aebf5e855f01b69e156cf0b95b
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs
+      sha256: 38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/tfq_0273_finite_descent_of_an_imported_quantum_interface.md
+      sha256: 1463ba1ada7b6d51c89a0588d1ffffb7bc50584dcebf8eda5434b97e3fd2f715
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p0/operation_sources/code/python/src/qm/boundaries_exact.py
+      sha256: 41f6505663ecf8257b7cce1b36f6e5d9081862754a5514313e8ef6d4a88d4235
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p0/operation_sources/code/python/tests/test_boundaries_exact.py
+      sha256: 81a98a49cd2ee6190d60a2ca64899301ff01cae5ee5daab81aebdf7761fe6da4
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p0/operation_sources/code/rust/src/finite_probability/boundaries_exact.rs
+      sha256: 52df08ee2cdfecb057cfed2b4399c93720899e80d1b3b9291ff3bc365b2d9f30
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/boundaries_exact_replay.rs
+      sha256: 1c212fce1ed975acc90fdbb7a22b1cc3a65d4588c193e276a7a329b440719395
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/boundaries_checker.py
+      sha256: 71ec9241b94d311710a25f669912ca163006b6b3f56e0a18739c6dd4e9e8b8dd
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p0/operation_sources/dag/results/batches/20261019T201403Z_prompts_72_91/tools/prepare.py
+      sha256: 63d4e890ceae99ea497d49db98875c71ccc17f1d41e2a5df749d03f1692f4ffb
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p0/operation_sources/dag/results/batches/20261019T201403Z_prompts_72_91/tools/specs.py
+      sha256: 04ae08a56fac87673251fbf423b4611481366be5c9ac78e09e9b4d6713861e2a
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/check_candidate.py
+      sha256: 8665474effcf0ebd3f78b8c66eb67693433ab07da9dc166048be27cefc43a42b
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/format_certificate.py
+      sha256: 50332cc9147e2b21a29c8d6147897794ab87c740b857bb6d1dd1f6d460ecb08d
+    evidence_status: Target-specific native predicates checked on retained inputs; relation-specific kernel
+      scope is separate. General refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p2_after_p3_disk_retry/host_check.json
+  relations:
+  - id: registry_relation_0
+    equation_or_predicate: Only the declared row6 satisfies all four fields; a minimum in [7] need not
+      remain minimal in [5,7].
+    typing_conditions: Literal declared operation domains; Establish semantic capability evidence and
+      a justified interface ordering before any physical minimality theorem. No all-registry or unique-QM
+      minimality is proved.
+    evidence_status: P3 repair awaiting actual fresh native/kernel acceptance.
+    scope: The frozen row conjunction and failure of rank minimality to transfer to an expanded registry
+      are exact; the limited list/rank and Boolean statements are kernel checked.
+    source_pins:
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p3/construction/code/python/src/qm/boundaries_exact.py
+      sha256: 41f6505663ecf8257b7cce1b36f6e5d9081862754a5514313e8ef6d4a88d4235
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p3/construction/code/python/tests/test_boundaries_exact.py
+      sha256: 81a98a49cd2ee6190d60a2ca64899301ff01cae5ee5daab81aebdf7761fe6da4
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p3/construction/code/rust/src/finite_probability/boundaries_exact.rs
+      sha256: f9488a7ec057ad3245770b0f78720050eefe3829b97c22ae8505980fd17f6f1b
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p3/construction/code/rust/src/finite_probability/examples/boundaries_exact_replay.rs
+      sha256: 1c212fce1ed975acc90fdbb7a22b1cc3a65d4588c193e276a7a329b440719395
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p3/construction/dag/pfp/boundaries_checker.py
+      sha256: 71ec9241b94d311710a25f669912ca163006b6b3f56e0a18739c6dd4e9e8b8dd
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p3/construction/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p3/construction/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p3/construction/lean4/PromptBoundaries.lean
+      sha256: 6a92b7ccf79730dfbba8fd8f8cc7b02cc47345c45afb945d865caed084a034e8
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p3/construction/dag/results/batches/20261019T201403Z_prompts_72_91/tools/prepare.py
+      sha256: 63d4e890ceae99ea497d49db98875c71ccc17f1d41e2a5df749d03f1692f4ffb
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p3/construction/dag/results/batches/20261019T201403Z_prompts_72_91/tools/specs.py
+      sha256: 04ae08a56fac87673251fbf423b4611481366be5c9ac78e09e9b4d6713861e2a
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p3/construction/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p3/construction/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p3/construction/code/rust/src/finite_probability/lib.rs
+      sha256: 1d16bf1cada9bd1bb7a9c2deb57f3558bfe5d17bddd7ebd77740394262ffd796
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p3/construction/code/rust/src/finite_probability/Cargo.toml
+      sha256: 5d0f58ff83c8e4b387de5df3ff870f91a7a7b566098764b5b4c24da899d19a65
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p3/construction/code/rust/Cargo.lock
+      sha256: f5f4acdac853dc8099f445a50d25ee58979814e1714b762961d312e8d7b17acd
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p3/construction/lean4/lakefile.lean
+      sha256: c808d7e5f5c7a2021c2bfb6dd1d0365d8527602d7484f1244722cdffca34fbe5
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p3/construction/lean4/lean-toolchain
+      sha256: a0ada3782cd088719516bbfdf37b9e7032230e211bf424b85d952ee650c51091
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p3/construction/lean4/lake-manifest.json
+      sha256: 7420c413da283f6b7aa102fd1a4be076a5c3ba1fbf3227bfeced44c7afcc61d2
+    latest_host_check: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p2_after_p3_disk_retry/host_check.json
+  compositions:
+  - outer_operation: conjoin_capabilities
+    input_slot: 0
+    inner_operation: decode_registry_fields
+    colour_match: FourBooleanFieldsPerRow -> FourBooleanFieldsPerRow
+    hypothesis_match: Same declared coordinates, coefficients and context; all operation hypotheses must
+      be carried into the graft.
+    licensing_relations:
+    - registry_relation_0
+    evidence_status: Semantic substitution supported by the retained finite operation traces and separately
+      scoped named kernel statements. A complete refined-carrier operad is not asserted.
+  - outer_operation: restricted_rank_compare
+    input_slot: 0
+    inner_operation: conjoin_capabilities
+    colour_match: AdmittedRowsWithSuppliedRanks -> AdmittedRowsWithSuppliedRanks
+    hypothesis_match: Same declared coordinates, coefficients and context; all operation hypotheses must
+      be carried into the graft.
+    licensing_relations:
+    - registry_relation_0
+    evidence_status: Semantic substitution supported by the retained finite operation traces and separately
+      scoped named kernel statements. A complete refined-carrier operad is not asserted.
+  identities:
+  - colour: AdmittedRowsWithSuppliedRanks
+    proposed_operation: id_AdmittedRowsWithSuppliedRanks
+    signature: AdmittedRowsWithSuppliedRanks -> AdmittedRowsWithSuppliedRanks
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: DeclaredRegistryMasksAndRanks
+    proposed_operation: id_DeclaredRegistryMasksAndRanks
+    signature: DeclaredRegistryMasksAndRanks -> DeclaredRegistryMasksAndRanks
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: FourBooleanFieldsPerRow
+    proposed_operation: id_FourBooleanFieldsPerRow
+    signature: FourBooleanFieldsPerRow -> FourBooleanFieldsPerRow
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: RegistryRelativeMinimum
+    proposed_operation: id_RegistryRelativeMinimum
+    signature: RegistryRelativeMinimum -> RegistryRelativeMinimum
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  symmetric_actions: []
+  coherence_obligations: &id001
+  - Establish semantic capability evidence and a justified interface ordering before any physical minimality
+    theorem. No all-registry or unique-QM minimality is proved.
+  - Prove the full refined-carrier operad identity, substitution, symmetry and coherence laws; mere colour
+    matches do not instantiate that formal structure.
+  failed_compositions:
+  - proposal: Promote the selected step to the unrestricted original target
+    reason: Establish semantic capability evidence and a justified interface ordering before any physical
+      minimality theorem. No all-registry or unique-QM minimality is proved.
+  - proposal: Accept the prior uncompiled shared proof submission
+    reason: Actual preceding P2 diagnostics require an explicit Rust integer type, Lean absolute-value
+      token spacing and kernel-proved rational proxy normalization. Keep the exact original numerical
+      certificate and mathematical statement; do not promote the failed checkpoint.
+  counterexamples:
+  - id: actual_declared_registry_controls
+    records:
+    - input:
+      - '12'
+      - '9'
+      - '11'
+      - '11'
+      - '7'
+      - '10'
+      - '15'
+      - '7'
+      - '5'
+      output:
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '1'
+      - '1'
+      - '7'
+      - '5'
+      - '2'
+    - input:
+      - '12'
+      - '9'
+      - '11'
+      - '11'
+      - '7'
+      - '10'
+      - '15'
+      - '7'
+      - '9'
+      output:
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '1'
+      - '1'
+      - '7'
+      - '7'
+      - '0'
+    scope: Declared finite registry/rank inputs, not audited physical interfaces.
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: FILLED
+    carrier: Literal per-operation finite or admitted scalar carriers
+    coefficient_ring: Exact Z, Q, Gaussian rational pairs and supplied Boolean fields
+    source_pins:
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_ds_qm090_093_o022_registry_relative_minimality_proved_lean.yaml
+      sha256: 038749a99a6645e0ee69999040ecc7ba17234e0cc09ff457b7a81f85a7dc58f3
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/inputs/this_repository/dag/operads/ds_qm090_093_o022_registry_relative_minimality.yaml
+      sha256: e7e1c63b19f65d8b82115da7d39e413e5126f9aebf5e855f01b69e156cf0b95b
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs
+      sha256: 38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/tfq_0273_finite_descent_of_an_imported_quantum_interface.md
+      sha256: 1463ba1ada7b6d51c89a0588d1ffffb7bc50584dcebf8eda5434b97e3fd2f715
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p0/operation_sources/code/python/src/qm/boundaries_exact.py
+      sha256: 41f6505663ecf8257b7cce1b36f6e5d9081862754a5514313e8ef6d4a88d4235
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p0/operation_sources/code/python/tests/test_boundaries_exact.py
+      sha256: 81a98a49cd2ee6190d60a2ca64899301ff01cae5ee5daab81aebdf7761fe6da4
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p0/operation_sources/code/rust/src/finite_probability/boundaries_exact.rs
+      sha256: 52df08ee2cdfecb057cfed2b4399c93720899e80d1b3b9291ff3bc365b2d9f30
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/boundaries_exact_replay.rs
+      sha256: 1c212fce1ed975acc90fdbb7a22b1cc3a65d4588c193e276a7a329b440719395
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/boundaries_checker.py
+      sha256: 71ec9241b94d311710a25f669912ca163006b6b3f56e0a18739c6dd4e9e8b8dd
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p0/operation_sources/dag/results/batches/20261019T201403Z_prompts_72_91/tools/prepare.py
+      sha256: 63d4e890ceae99ea497d49db98875c71ccc17f1d41e2a5df749d03f1692f4ffb
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p0/operation_sources/dag/results/batches/20261019T201403Z_prompts_72_91/tools/specs.py
+      sha256: 04ae08a56fac87673251fbf423b4611481366be5c9ac78e09e9b4d6713861e2a
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/check_candidate.py
+      sha256: 8665474effcf0ebd3f78b8c66eb67693433ab07da9dc166048be27cefc43a42b
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/format_certificate.py
+      sha256: 50332cc9147e2b21a29c8d6147897794ab87c740b857bb6d1dd1f6d460ecb08d
+    public_input:
+      kind: registry
+      cases:
+      - - '12'
+        - '9'
+        - '11'
+        - '11'
+        - '7'
+        - '10'
+        - '15'
+        - '7'
+        - '5'
+      - - '12'
+        - '9'
+        - '11'
+        - '11'
+        - '7'
+        - '10'
+        - '15'
+        - '7'
+        - '9'
+      scope: The frozen row conjunction and failure of rank minimality to transfer to an expanded registry
+        are exact; the limited list/rank and Boolean statements are kernel checked.
+      unpaid_target: Establish semantic capability evidence and a justified interface ordering before
+        any physical minimality theorem. No all-registry or unique-QM minimality is proved.
+    original_target: The complex-Hilbert CPTP row meets the declared audit conditions and is minimal within
+      the frozen seven-row O022 registry (six weaker candidates fail or refuse). MinimalInterface(R,F,w)
+      does not imply minimality over all registries; witness [5,7].
+    source_scope_review: The seven capability rows are declared source data, not established physics.
+      The source theorem checks a Boolean conjunction and has no general order on physical interfaces.
+      We replay its actual four-field masks and the declared unitless comparison ranks 7 and 5, including
+      a non-improving extension control. Those ranks are an illustrative logical witness, not measured
+      costs.
+    admitted_assumptions: []
+  slot_m2_layer1_forward_morphisms:
+    mining_status: FILLED
+    operations:
+    - catalog_id: decode_registry_fields
+      inputs:
+      - DeclaredRegistryMasksAndRanks
+      output: FourBooleanFieldsPerRow
+      semantic_predicate: Decode the four fields of each mask.
+    - catalog_id: conjoin_capabilities
+      inputs:
+      - FourBooleanFieldsPerRow
+      output: AdmittedRowsWithSuppliedRanks
+      semantic_predicate: Conjoin the declared fields.
+    - catalog_id: restricted_rank_compare
+      inputs:
+      - AdmittedRowsWithSuppliedRanks
+      output: RegistryRelativeMinimum
+      semantic_predicate: Compare the supplied candidate rank with the newly admitted supplied rank.
+    composition_plan:
+    - outer_operation: conjoin_capabilities
+      input_slot: 0
+      inner_operation: decode_registry_fields
+      colour_match: FourBooleanFieldsPerRow -> FourBooleanFieldsPerRow
+      hypothesis_match: Same declared coordinates, coefficients and context; all operation hypotheses
+        must be carried into the graft.
+      licensing_relations:
+      - registry_relation_0
+      evidence_status: Semantic substitution supported by the retained finite operation traces and separately
+        scoped named kernel statements. A complete refined-carrier operad is not asserted.
+    - outer_operation: restricted_rank_compare
+      input_slot: 0
+      inner_operation: conjoin_capabilities
+      colour_match: AdmittedRowsWithSuppliedRanks -> AdmittedRowsWithSuppliedRanks
+      hypothesis_match: Same declared coordinates, coefficients and context; all operation hypotheses
+        must be carried into the graft.
+      licensing_relations:
+      - registry_relation_0
+      evidence_status: Semantic substitution supported by the retained finite operation traces and separately
+        scoped named kernel statements. A complete refined-carrier operad is not asserted.
+    tree:
+    - Only the declared row6 satisfies all four fields; a minimum in [7] need not remain minimal in [5,7].
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: FILLED
+    algebraic_relations:
+    - id: registry_relation_0
+      equation_or_predicate: Only the declared row6 satisfies all four fields; a minimum in [7] need not
+        remain minimal in [5,7].
+      typing_conditions: Literal declared operation domains; Establish semantic capability evidence and
+        a justified interface ordering before any physical minimality theorem. No all-registry or unique-QM
+        minimality is proved.
+      evidence_status: P1 candidate; independent native and named kernel gates remain required.
+      scope: The frozen row conjunction and failure of rank minimality to transfer to an expanded registry
+        are exact; the limited list/rank and Boolean statements are kernel checked.
+      source_pins:
+      - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_ds_qm090_093_o022_registry_relative_minimality_proved_lean.yaml
+        sha256: 038749a99a6645e0ee69999040ecc7ba17234e0cc09ff457b7a81f85a7dc58f3
+      - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/inputs/this_repository/dag/operads/ds_qm090_093_o022_registry_relative_minimality.yaml
+        sha256: e7e1c63b19f65d8b82115da7d39e413e5126f9aebf5e855f01b69e156cf0b95b
+      - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+        sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+      - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs
+        sha256: 38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a
+      - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/tfq_0273_finite_descent_of_an_imported_quantum_interface.md
+        sha256: 1463ba1ada7b6d51c89a0588d1ffffb7bc50584dcebf8eda5434b97e3fd2f715
+      - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p0/operation_sources/code/python/src/qm/boundaries_exact.py
+        sha256: 41f6505663ecf8257b7cce1b36f6e5d9081862754a5514313e8ef6d4a88d4235
+      - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p0/operation_sources/code/python/tests/test_boundaries_exact.py
+        sha256: 81a98a49cd2ee6190d60a2ca64899301ff01cae5ee5daab81aebdf7761fe6da4
+      - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p0/operation_sources/code/rust/src/finite_probability/boundaries_exact.rs
+        sha256: 52df08ee2cdfecb057cfed2b4399c93720899e80d1b3b9291ff3bc365b2d9f30
+      - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/boundaries_exact_replay.rs
+        sha256: 1c212fce1ed975acc90fdbb7a22b1cc3a65d4588c193e276a7a329b440719395
+      - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/boundaries_checker.py
+        sha256: 71ec9241b94d311710a25f669912ca163006b6b3f56e0a18739c6dd4e9e8b8dd
+      - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+        sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+      - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p0/operation_sources/dag/results/batches/20261019T201403Z_prompts_72_91/tools/prepare.py
+        sha256: 63d4e890ceae99ea497d49db98875c71ccc17f1d41e2a5df749d03f1692f4ffb
+      - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p0/operation_sources/dag/results/batches/20261019T201403Z_prompts_72_91/tools/specs.py
+        sha256: 04ae08a56fac87673251fbf423b4611481366be5c9ac78e09e9b4d6713861e2a
+      - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/custody.py
+        sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+      - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+        sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+      - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/check_candidate.py
+        sha256: 8665474effcf0ebd3f78b8c66eb67693433ab07da9dc166048be27cefc43a42b
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/format_certificate.py
+        sha256: 50332cc9147e2b21a29c8d6147897794ab87c740b857bb6d1dd1f6d460ecb08d
+    rejection_predicates:
+    - Independent domain equations and actual matrix/graph/quotient arrays recompute every output.
+    - Exact public input, canonical rational primitive types, complete source pins and exact sealed request
+      bytes.
+    - Full native cross-language output equality and actual named Lean axiom reports; no label-based target
+      promotion.
+    negative_control_plan: Alter every output coordinate, input identity, primitive types, source set
+      and sealed request.
+  slot_m4_tri_language_witness_anchors:
+    mining_status: FILLED
+    certificate_predicates:
+    - Independent domain equations and actual matrix/graph/quotient arrays recompute every output.
+    - Exact public input, canonical rational primitive types, complete source pins and exact sealed request
+      bytes.
+    - Full native cross-language output equality and actual named Lean axiom reports; no label-based target
+      promotion.
+    anchors:
+    - code/python/src/qm/boundaries_exact.py
+    - code/python/tests/test_boundaries_exact.py
+    - code/rust/src/finite_probability/boundaries_exact.rs
+    - code/rust/src/finite_probability/examples/boundaries_exact_replay.rs
+    - dag/pfp/boundaries_checker.py
+    - dag/pfp/exact_json.py
+    - dag/pfp/review_exact_json.py
+    - lean4/PromptBoundaries.lean
+    - dag/results/batches/20261019T201403Z_prompts_72_91/tools/prepare.py
+    - dag/results/batches/20261019T201403Z_prompts_72_91/tools/specs.py
+    - dag/pfp/custody.py
+    - dag/pfp/filename_custody.json
+    - QuantumMechanics.PromptBoundaries.registry_scope
+    - QuantumMechanics.PromptBoundaries.registry_conjunction
+    unpaid_imports:
+    - Establish semantic capability evidence and a justified interface ordering before any physical minimality
+      theorem. No all-registry or unique-QM minimality is proved.
+    - Prove the full refined-carrier operad identity, substitution, symmetry and coherence laws; mere
+      colour matches do not instantiate that formal structure.
+    anchor_status: New Lean anchors are candidate declarations until the retained P2 compiler runs; compiled
+      source leads retain their literal scope.
+stage_history:
+- stage: P0_MINE_OPERAD
+  attempt: p0
+  run: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged
+  operad_delta: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p0/operad_delta.yaml
+  host_check: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p0/host_check.json
+- stage: P1_DERIVE
+  attempt: p1
+  run: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged
+  operad_delta: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p1/operad_delta.yaml
+  host_check: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p1/host_check.json
+- stage: P2_VERIFY
+  attempt: p2
+  run: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged
+  operad_delta: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p2/operad_delta.yaml
+  host_check: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p2/host_check.json
+- stage: P3_REPAIR
+  attempt: p3
+  run: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged
+  operad_delta: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p3/operad_delta.yaml
+  host_check: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p3/host_check.json
+- stage: P2_VERIFY
+  attempt: p2_after_p3
+  run: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged
+  operad_delta: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p2_after_p3/operad_delta.yaml
+  host_check: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p2_after_p3/host_check.json
+- stage: P2_VERIFY
+  attempt: p2_after_p3_disk_retry
+  run: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged
+  operad_delta: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p2_after_p3_disk_retry/operad_delta.yaml
+  host_check: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p2_after_p3_disk_retry/host_check.json
+- stage: P4_CHALLENGE
+  attempt: p4
+  run: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged
+  operad_delta: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p4/operad_delta.yaml
+  host_check: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p4/host_check.json
+- stage: P5_RECORD
+  attempt: p5
+  run: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged
+  operad_delta: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p5/operad_delta.yaml
+  host_check: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p5/host_check.json
+open_obligations: *id001
+excluded_relation_leads: []
+operad_slots_scope:
+  work_unit: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged/p0/reviewed_missions.json
+  scope: FILLED means reviewed prerequisites for this selected step; original target and unpaid imports
+    retained.
+latest_run:
+  path: dag/results/DS-QM090-093-O022-REGISTRY-RELATIVE-MINIMALITY/runs/20261019T201403Z_staged
+  stage: P5_RECORD
+  status: scoped_result_or_obstruction_pending_batch_review
+scope_notes:
+- The seven capability rows are declared source data, not established physics. The source theorem checks
+  a Boolean conjunction and has no general order on physical interfaces. We replay its actual four-field
+  masks and the declared unitless comparison ranks 7 and 5, including a non-improving extension control.
+  Those ranks are an illustrative logical witness, not measured costs.

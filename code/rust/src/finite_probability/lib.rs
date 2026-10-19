@@ -71,3 +71,5 @@ pub mod structure_exact;
 pub mod dynamics_exact;
 
 pub mod resources_exact;
+
+pub mod boundaries_exact;

@@ -1,0 +1,4 @@
+from pathlib import Path
+B=Path(r'C:\Users\a343o\.codex\worktrees\bell-joint-extension\theory_of_finite_quantum_mechanics\dag\results\batches\20261019T201403Z_prompts_72_91')
+p=B/'tools/integrate.py';t=p.read_text().replace("result={'targeted_unique_Python_tests':","result={'fresh_final_Rust_replay_runs':len(rows),'repaired_Rust_source_review':'source_repair/anticommutator.json','targeted_unique_Python_tests':");p.write_bytes(t.encode())
+p=B/'tools/finalize.py';t=p.read_text().replace("collection['latest_review']['status']='reviewed_with_targeted_native_integration';","collection['latest_review']['status']='reviewed_with_targeted_native_integration';collection['latest_review']['final_integration']=(B/'review/final_integration/result.json').relative_to(s.ROOT).as_posix();");p.write_bytes(t.encode());(B/'tools/link_final_replay.py').write_bytes(Path(__file__).read_bytes())
