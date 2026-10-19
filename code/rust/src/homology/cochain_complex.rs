@@ -1,4 +1,5 @@
 //! Finite cochain complex C^0 --d0--> C^1 --d1--> C^2 with d1 * d0 = 0.
+//! AuthorityEffect: None. Public construction admits canonical Q coefficients.
 
 use crate::homology::coboundary::CoboundaryMap;
 use crate::homology::errors::HomologicalError;
@@ -9,9 +10,10 @@ use crate::linear_algebra::basic_matrix::BasicMatrix;
 use crate::linear_algebra::scalars::Q;
 use serde::{Deserialize, Serialize};
 
-/// Provenance for a cochain complex construction.
+/// Caller-supplied provenance label associated with a checked complex.
 ///
-/// Records the verification source that justified the coboundary law d^1 * d^0 = 0.
+/// Admission checks only that the label is nonblank. This record does not
+/// resolve the source or verify a theorem, authorship or authority.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(try_from = "String", into = "String")]
 pub struct TheoremProvenance {
@@ -19,7 +21,7 @@ pub struct TheoremProvenance {
 }
 
 impl TheoremProvenance {
-    /// Create a new theorem provenance.
+    /// Store a nonblank provenance label without interpreting it.
     ///
     /// # Errors
     /// Returns `HomologicalError::EmptyVerificationSource` if the source string is empty
@@ -72,7 +74,7 @@ pub struct CochainComplex {
     pub(super) d0: CoboundaryMap,
     /// Coboundary map d1 : C^1 -> C^2 (matrix is c2_dim x c1_dim).
     pub(super) d1: CoboundaryMap,
-    /// Witness proving d1 * d0 = 0.
+    /// Receipt recorded after the coboundary-law check.
     pub(super) witness: CochainComplexWitness,
 }
 
@@ -88,8 +90,9 @@ impl CochainComplex {
     /// * `provenance` - Provenance recording the verification source.
     ///
     /// # Errors
-    /// Returns `HomologicalError::DimensionMismatch` if matrix dimensions do not match
+    /// Returns `HomologicalError::ShapeMismatch` if matrix dimensions do not match
     /// the specified cochain group dimensions.
+    /// Returns `HomologicalError::InvalidRational` for undefined or noncanonical coefficients.
     /// Returns `HomologicalError::CoboundaryLawViolation` if d1 * d0 != 0.
     /// Returns `HomologicalError::MatrixError` if matrix multiplication fails.
     pub fn new(
@@ -152,13 +155,14 @@ impl CochainComplex {
     /// Returns the dimension of the cochain group at the given degree.
     ///
     /// # Errors
-    /// Returns `HomologicalError::InvalidDegree` for degrees outside [0, 2].
+    /// Returns `HomologicalError::InvalidDegree` for indices outside [0, 2]
+    /// that fit i32, or `HomologicalError::InvalidDegreeIndex` otherwise.
     pub fn dim(&self, degree: usize) -> Result<usize, HomologicalError> {
         match degree {
             0 => Ok(self.c0_dim),
             1 => Ok(self.c1_dim),
             2 => Ok(self.c2_dim),
-            _ => Err(HomologicalError::InvalidDegree(degree as i32)),
+            _ => Err(HomologicalError::invalid_degree_index(degree)),
         }
     }
 }

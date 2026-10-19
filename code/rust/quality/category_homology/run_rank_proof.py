@@ -18,7 +18,7 @@ from run_audit import ROOT, digest, execute, write_json
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model",choices=("rank","category","metadata","degree","counter","parameters","finite-set","literal-reversal","shape-inventory","root-records","homology-protocols"),default="rank")
+    parser.add_argument("--model",choices=("rank","category","metadata","degree","counter","parameters","finite-set","literal-reversal","shape-inventory","root-records","homology-protocols","degree-repair","two-step-complex"),default="rank")
     model = parser.parse_args().model
     if model == "rank":
         proof_name, import_name, namespace = "RankCertificate", "LinearAlgebra/Matrix/Rank", "TFQM.RankCertificate."
@@ -41,6 +41,17 @@ def main():
         proof_name, import_name, namespace = "DegreeWindow", "Data/Int/Basic", "TFQM.DegreeWindow."
         declarations = ("ordered_span_fits_u32", "same_endpoint_zero", "inverted_span_negative")
         scope = "Exact i32 endpoint difference bounds, zero span and inverted-window refusal premise; no category-law claim."
+    elif model == "two-step-complex":
+        proof_name, import_name, namespace = "TwoStepComplex", "Data/Matrix/Mul", "TFQM.TwoStepComplex."
+        declarations = ("admission_success_iff", "admission_failure", "admission_preserves", "input_zero_product",
+                        "differential_square_zero", "image_is_cycle", "failed_gate", "passed_gate")
+        scope = "Two-step exact Q matrix admission, owned data preservation, differential square zero, image-as-cycles and typed guard propagation."
+    elif model == "degree-repair":
+        proof_name, import_name, namespace = "DegreeRepair", "Data/Int/Basic", "TFQM.DegreeRepair."
+        declarations = ("payload_exact", "signed_index", "large_index", "dimension_zero", "dimension_one",
+                        "dimension_two", "outside_support", "outside_payload", "scan_append", "scan_parity",
+                        "parity_count", "scan_count", "orientation_sign")
+        scope = "Exact full-index refusal and finite-support dimension payloads, with Boolean inversion parity and sign; no simplicial homology or rank theorem."
     elif model == "homology-protocols":
         proof_name, import_name, namespace = "HomologyProtocols", "Data/Int/Basic", "TFQM.HomologyProtocols."
         declarations = ("numeric_zero", "numeric_success_iff", "numeric_preserves_payload", "predecessor_success_iff",

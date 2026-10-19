@@ -1,9 +1,10 @@
 //! Canonical finite simplicial complex support.
 //!
-//! This module is the single simplicial implementation for `omega_homology`.
-//! It supports simplices in every finite dimension, closes complexes under all
-//! faces, gives deterministic basis order, and builds signed boundary and
-//! coboundary matrices for arbitrary degree.
+//! AuthorityEffect: None. Simplex records admit finite nonempty vertex lists.
+//! Complex admission allows at most 16 vertices per simplex and 65,535 nonempty
+//! faces. Within those bounds it closes under faces, gives deterministic basis
+//! order and builds exact-Q boundary/coboundary matrices. Degree shifts that
+//! exceed their machine representation return a typed refusal.
 
 use crate::homology::errors::HomologicalError;
 use crate::linear_algebra::basic_matrix::BasicMatrix;
@@ -64,9 +65,11 @@ impl Simplex {
     }
 
     /// The i-th codimension-one face, with the canonical boundary sign.
+    /// Singleton simplices have no face in this unaugmented model. Out-of-range
+    /// indices are rejected without narrowing their diagnostic payload.
     pub fn face(&self, removed_index: usize) -> Result<(Self, i8), HomologicalError> {
         if removed_index >= self.vertices.len() {
-            return Err(HomologicalError::InvalidDegree(removed_index as i32));
+            return Err(HomologicalError::invalid_degree_index(removed_index));
         }
         if self.vertices.len() == 1 {
             return Err(HomologicalError::InvalidDegree(0));
@@ -141,6 +144,8 @@ impl OrientedSimplex {
     }
 
     /// Construct from an ordered vertex list, preserving permutation parity.
+    /// Uses quadratic comparisons and retains parity, without summing a
+    /// machine-sized inversion total. This record does not admit a complex.
     pub fn from_ordered(vertices: Vec<usize>) -> Result<Self, HomologicalError> {
         let orientation = permutation_orientation(&vertices)?;
         Ok(Self {
@@ -369,7 +374,7 @@ impl SimplicialComplex {
         let face_indices = self
             .indices_by_dim
             .get(k - 1)
-            .ok_or(HomologicalError::InvalidDegree(k as i32))?;
+            .ok_or_else(|| HomologicalError::invalid_degree_index(k))?;
         let mut matrix = BasicMatrix::<Q>::zero(rows, cols)?;
 
         for (col, simplex) in self.simplices(k).iter().enumerate() {
@@ -408,7 +413,7 @@ impl SimplicialComplex {
     /// vanishes identically: d_{k-1} * d_k = 0 for all k >= 2.
     pub fn boundary_composition(&self, k: usize) -> Result<BasicMatrix<Q>, HomologicalError> {
         if k < 2 {
-            return Err(HomologicalError::InvalidDegree(k as i32));
+            return Err(HomologicalError::invalid_degree_index(k));
         }
         let lower = self.boundary_matrix(k - 1)?;
         let upper = self.boundary_matrix(k)?;
@@ -448,7 +453,7 @@ impl SimplicialComplex {
     /// Composed coboundary matrix d^k * d^{k-1}: C^{k-1} -> C^{k+1}.
     pub fn coboundary_composition(&self, k: usize) -> Result<BasicMatrix<Q>, HomologicalError> {
         if k < 1 {
-            return Err(HomologicalError::InvalidDegree(k as i32));
+            return Err(HomologicalError::invalid_degree_index(k));
         }
         let lower = self.coboundary_matrix(k - 1)?;
         let upper = self.coboundary_matrix(k)?;
@@ -597,19 +602,19 @@ fn permutation_orientation(vertices: &[usize]) -> Result<i8, HomologicalError> {
         }
     }
 
-    let inversions = vertices
+    // Only inversion parity is needed. Keeping the parity avoids overflowing
+    // a machine-sized total on a large standalone ordered simplex.
+    let odd = vertices
         .iter()
         .enumerate()
-        .map(|(i, left)| {
+        .fold(false, |parity, (i, left)| {
             vertices
                 .iter()
                 .skip(i + 1)
-                .filter(|right| left > *right)
-                .count()
-        })
-        .sum::<usize>();
+                .fold(parity, |prior, right| prior ^ (left > right))
+        });
 
-    Ok(if inversions % 2 == 0 { 1 } else { -1 })
+    Ok(if odd { -1 } else { 1 })
 }
 
 #[cfg(test)]

@@ -1,6 +1,7 @@
 {
   "AuthorityEffect": "None",
   "base": "64d2452fe6993463963fd8495f6b6522e7cdb3a2",
+  "ceiling_note": "Known metric ceilings remain visible independently from explicit gate-level counterexamples; incomplete assessments do not emit a completed token.",
   "completed": [
     {
       "grade_ceiling": "A",
@@ -1339,9 +1340,20 @@
       "level": "L1",
       "path": "code/rust/src/homology/chain.rs",
       "record_source_matches": true,
-      "score_sha256": "3a01da4bbb178b281b6d1eb476b455484ff549b0bc5396ad82b9354c8b3a4e96",
+      "score_sha256": "d3e72c5a360f65ccfba67ad007d5539deb08fa6773fd09e0f9d1db21a529d236",
       "score_token": "L1A",
       "source_sha256": "9713e4b716f7dd05f62433ea0dad249ee48b038afe995312bbfd4344e6639c32",
+      "unassessed_gates": []
+    },
+    {
+      "grade_ceiling": "A",
+      "is_complete": true,
+      "level": "L4",
+      "path": "code/rust/src/homology/chain_complex.rs",
+      "record_source_matches": true,
+      "score_sha256": "83f591649a53aae05bd4aca8ff92f994a61586d088e2dd90f2dd0addb9063a40",
+      "score_token": "L4A",
+      "source_sha256": "780680b829a28de0c1cac858f0dc161b8329bf76c595859ea9d268f56806e414",
       "unassessed_gates": []
     },
     {
@@ -1350,9 +1362,20 @@
       "level": "L1",
       "path": "code/rust/src/homology/cochain.rs",
       "record_source_matches": true,
-      "score_sha256": "13ce95b6aeb3115365a9b059a2797dbb33ae5b4ff38fc5bb6394e87256dcfc49",
+      "score_sha256": "8b0ec6a622c42f5f67d22f42da9e5aa16afa1fab8ccd0b3e3c7b6aec813d9545",
       "score_token": "L1A",
       "source_sha256": "e5f39bda3cdb9b229f076d7a41705e4e1d30f33bf28b2d746736e24e8ddf9778",
+      "unassessed_gates": []
+    },
+    {
+      "grade_ceiling": "A",
+      "is_complete": true,
+      "level": "L4",
+      "path": "code/rust/src/homology/cochain_complex.rs",
+      "record_source_matches": true,
+      "score_sha256": "1ee1e332cae06eeb2788342fbbcc46c9977db558cfd017eec434c4fb8a30cc84",
+      "score_token": "L4A",
+      "source_sha256": "a571262b9217927bbd15a19d9f2436fc5c9c7357b289b61247f31d6cb940a1b3",
       "unassessed_gates": []
     },
     {
@@ -1361,9 +1384,9 @@
       "level": "L2",
       "path": "code/rust/src/homology/errors.rs",
       "record_source_matches": true,
-      "score_sha256": "4c97531a0aa384f09a14ed3975e3d2c17395bc557d4d2f9d56fcac7d3c44e83a",
+      "score_sha256": "010959178292527bde20a886d7c1937ee76153cadb98b112826128719165c23a",
       "score_token": "L2A",
-      "source_sha256": "c099cb5ff8a727aca82019d75d4afc5be2bdf53ca080da2c08eb8130b84aa8e6",
+      "source_sha256": "f694edbe3a30a18ba3dacc85f224bcb504992e73d635f110f0185686e29e4f1c",
       "unassessed_gates": []
     },
     {
@@ -1372,7 +1395,7 @@
       "level": "L2",
       "path": "code/rust/src/homology/hashing.rs",
       "record_source_matches": true,
-      "score_sha256": "ffcd9ac054e3e71a394b6fc4769df2c753a9a4f96af8b5fcf7e7ed87532739ff",
+      "score_sha256": "935c87ddbd6aa2a9ae3836c9e44acb830d0e5d5d29a1bdb671381147c41ec7fa",
       "score_token": "L2A",
       "source_sha256": "96249ffaff860033e34b2c95b0932ee5eddd743f991f248010ac03a41389be34",
       "unassessed_gates": []
@@ -1394,20 +1417,26 @@
       "level": "L5",
       "path": "code/rust/src/homology/rank_certificate.rs",
       "record_source_matches": true,
-      "score_sha256": "ac381ee6e6705a1ab4408fcd27d8733ca5ccc2c5ad01b5c821ae9b50d0678e61",
+      "score_sha256": "f294a0870337357d2c046f0e6bdc42676d9d6f351cbdbb81df98d27d5adec06c",
       "score_token": "L5A",
       "source_sha256": "a2145d42c3278ed447eb0b05aae2f20d91c6965634ec68348e79fa16fa52d086",
       "unassessed_gates": []
     }
   ],
-  "completed_A_files": 127,
+  "completed_A_files": 129,
   "goal_complete": false,
-  "incomplete_files": 65,
-  "known_failure_files": [
-    "code/rust/src/category_theory/finite_report_descent.rs",
-    "code/rust/src/homology/chain_complex.rs",
-    "code/rust/src/homology/cochain_complex.rs",
-    "code/rust/src/homology/simplicial.rs"
+  "incomplete_files": 63,
+  "known_E_ceiling_files": [
+    "code/rust/src/category_theory/finite_report_descent.rs"
+  ],
+  "known_failure_files": [],
+  "newly_reviewed_non_A_ceilings": [
+    {
+      "finding": "evidence/quality/category_homology/resume-20261019/simplicial-duplicate-allocation-finding.json",
+      "gate": "G5",
+      "grade": "B",
+      "path": "code/rust/src/homology/simplicial.rs"
+    }
   ],
   "note": "Capabilities remain L1/L2/L3/L5 as delivered; architecture target L5, engineering target A. Incomplete gates never become passes from shared package success. Historical known failures, resource refusals and incomplete runs remain retained. Contracts pending.",
   "remaining": [
@@ -2343,22 +2372,6 @@
       ]
     },
     {
-      "grade_ceiling": "E",
-      "is_complete": false,
-      "level": "L4",
-      "path": "code/rust/src/homology/chain_complex.rs",
-      "record_source_matches": true,
-      "score_sha256": "bb2c3282d9c456fb0c5c2e4526e5d4e1efb1060de16f700b21a121e5e6ce995e",
-      "score_token": null,
-      "source_sha256": "8de8868140dd9fbd98dae63e84239c28f0009b1bce552c3e12574cef465b8d42",
-      "unassessed_gates": [
-        "G1",
-        "G3",
-        "G4",
-        "G5"
-      ]
-    },
-    {
       "grade_ceiling": "A",
       "is_complete": false,
       "level": "L3",
@@ -2370,22 +2383,6 @@
       "unassessed_gates": [
         "G1",
         "G2",
-        "G3",
-        "G4",
-        "G5"
-      ]
-    },
-    {
-      "grade_ceiling": "E",
-      "is_complete": false,
-      "level": "L4",
-      "path": "code/rust/src/homology/cochain_complex.rs",
-      "record_source_matches": true,
-      "score_sha256": "6e1fdb234fc817570aa6d7e55b1ef7a3c90cced2b4c51c4d588d411ccb9de79a",
-      "score_token": null,
-      "source_sha256": "e752e789bd8c3a76cf5adb08070548b459d3e1c735399d7b17f40b66b3a5354a",
-      "unassessed_gates": [
-        "G1",
         "G3",
         "G4",
         "G5"
@@ -2477,19 +2474,18 @@
       ]
     },
     {
-      "grade_ceiling": "E",
+      "grade_ceiling": "B",
       "is_complete": false,
       "level": "L4",
       "path": "code/rust/src/homology/simplicial.rs",
       "record_source_matches": true,
-      "score_sha256": "f4d1428caaa4d862b7a3cb8081e28fac84aba49463c4bac72586db2ef40551ba",
+      "score_sha256": "b380e5dd0016d37a30f75dc552f0d573459aab660eafdc29f9c3aaa8444d922c",
       "score_token": null,
-      "source_sha256": "bcc037d479e319a8aa8e0cffb0b7a7106f0b1738e7b059e1c3136c2852cc1c52",
+      "source_sha256": "c340b9486e1746fcc3d60a66affa61e206e1d4db3abcfd21a07ff690f2d3cdf4",
       "unassessed_gates": [
         "G1",
-        "G3",
-        "G4",
-        "G5"
+        "G2",
+        "G3"
       ]
     },
     {
@@ -2511,9 +2507,9 @@
     }
   ],
   "total_files": 192,
-  "updated_at": "2026-10-19T03:45:55.307111+00:00",
+  "updated_at": "2026-10-19T04:38:06.389427+00:00",
   "verification": {
-    "path": "evidence/quality/category_homology/resume-20261019/degree-index-current-verification.json",
-    "sha256": "f4b9cb7683ef2ecf2a34aa2b9b8ef42d6bcae4ca8aeb273b07cfbf79df22a604"
+    "path": "evidence/quality/category_homology/20261019T043455Z-score-verification/summary.json",
+    "sha256": "3cb767d9f1bc29ca150f7eed6a2ac8d5921426420d5dcaf213a40f4718579a1c"
   }
 }

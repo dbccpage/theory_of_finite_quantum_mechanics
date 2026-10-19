@@ -1,0 +1,14 @@
+{
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/homology/simplicial.rs",
+    "sha256": "c340b9486e1746fcc3d60a66affa61e206e1d4db3abcfd21a07ff690f2d3cdf4"
+  },
+  "ceiling": "B",
+  "expression": "if all.insert(simplex.clone())",
+  "function": "close_faces",
+  "gate": "G5",
+  "reason": "The clone is avoidable on the duplicate path by testing membership by reference and moving an accepted owned key. SCORING A requires zero redundant allocation in inner loops. This is an allocation/cost finding, not a mathematical counterexample.",
+  "scope": "Source and standard derived Vec-clone behavior; no allocator-instrumented performance benchmark or exact allocation count is claimed.",
+  "witness": "Two input edges [0,1] and [0,2] generate vertex [0] twice. Popping the second copy clones its nonempty Vec before BTreeSet::insert rejects it as already present."
+}

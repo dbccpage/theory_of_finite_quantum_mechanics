@@ -422,3 +422,49 @@ is 20261019T034253Z-score-verification; the explicit incremental receipt adds
 only the final incomplete face finding and checks all three partial records.
 All completed source/score bytes remain identical. Cleanup checkpoint 127
 finds zero owned compiled outputs; the concurrent active shared cache is held.
+
+
+Exact-index/differential checkpoint: 129 completed A assessments and 63
+incomplete. A new full-index error preserves rejected usize payloads while
+retaining the old signed variant when representable. Both complex dim methods
+and simplicial index refusals use that helper. All three original narrowing
+findings are resolved on the actual modules, including the exact 4294967296
+input in the separately bound auxiliary native replay. The old E witnesses
+remain historical evidence. Standalone orientation now retains Boolean parity
+instead of summing a potentially overflowing machine-sized inversion total.
+Constructor docs name the actual ShapeMismatch/canonical-Q failures, and
+provenance text is explicitly an unchecked source label after nonblank admission.
+
+Final full native campaign 040851Z kills all 74 designated valid faults, passes
+40 namespace controls and the 99 original homology tests before/after. Initial
+040309Z retains one survived direct-face sign fault; added valid direct-face
+checks close that blind spot. The candidate/harness revisions are separately
+bound, not falsely called identical bytes. Auxiliary 041548Z repeats the exact
+original index case and controls on actual peers. Its primary_eligible=false
+marker is enforced by the score writer, with a no-write refusal test.
+
+Thirteen DegreeRepair lemmas check full-index/dimension preservation and
+Boolean inversion parity; eight TwoStepComplex lemmas check exact-Q admission,
+data preservation, zero differential square, image-as-cycles and typed guard
+propagation. The first two-step run exhausted the Lean memory cap; smaller
+actual imports check cleanly without increasing the cap or altering Mathlib.
+Source/representation/runtime correspondence remains explicitly reviewed,
+not claimed Rust/MIR extraction. Error protocol is L2A; the two finite complex
+files are L4A. Relevant prior rank/hash/alias mutation/model receipts retain
+their original providers, with explicit current code/data deltas and fresh
+canonical native composition evidence.
+
+Simplicial remains incomplete: its current declared challenge is G4 A, but
+close_faces clones a generated face before duplicate detection. A concrete
+overlapping-edge trace establishes an avoidable allocation inside the loop,
+so G5 is B. G1/G2/G3 remain unassessed pending the full mathematical/refusal
+audit; the index/parity models are not a general simplicial/Betti theorem.
+The prior finite_report_descent metric E ceiling also remains visible.
+
+20261019T043455Z-score-verification rechecks all 129 completed assessments
+and every current source/score digest. The partial simplicial record is also
+explicitly rechecked. Cleanup checkpoint 129 finds zero owned debug/tmp or
+compiled outputs. An inactive registered Bell cache was separately verified
+and removed; active shared builds were preserved. Exact small source
+snapshots remain for pinned receipts. Contracts and the all-files goal stay
+unfinished.

@@ -1,4 +1,5 @@
 //! Finite chain complex C_2 --d2--> C_1 --d1--> C_0 with d1 * d2 = 0.
+//! AuthorityEffect: None. Public construction admits canonical Q coefficients.
 
 use crate::homology::boundary::BoundaryMap;
 use crate::homology::errors::HomologicalError;
@@ -24,7 +25,7 @@ pub struct ChainComplex {
     pub(super) boundary_1: BoundaryMap,
     /// Boundary map d2 : C_2 -> C_1 (matrix is c1_dim x c2_dim).
     pub(super) boundary_2: BoundaryMap,
-    /// Witness proving d1 * d2 = 0.
+    /// Receipt recorded after the boundary-law check.
     pub(super) witness: ChainComplexWitness,
     /// The boundary maps as a vector.
     pub(super) boundaries: Vec<BasicMatrix<Q>>,
@@ -41,8 +42,9 @@ impl ChainComplex {
     /// * `d2_matrix` - Boundary map d_2: C_2 -> C_1 as a c1_dim x c2_dim matrix.
     ///
     /// # Errors
-    /// Returns `HomologicalError::DimensionMismatch` if matrix dimensions do not match
+    /// Returns `HomologicalError::ShapeMismatch` if matrix dimensions do not match
     /// the specified chain group dimensions.
+    /// Returns `HomologicalError::InvalidRational` for undefined or noncanonical coefficients.
     /// Returns `HomologicalError::BoundaryLawViolation` if d1 * d2 != 0.
     /// Returns `HomologicalError::MatrixError` if matrix multiplication fails.
     pub fn new(
@@ -110,13 +112,14 @@ impl ChainComplex {
     /// Returns the dimension of the chain group at the given degree.
     ///
     /// # Errors
-    /// Returns `HomologicalError::InvalidDegree` for degrees outside [0, 2].
+    /// Returns `HomologicalError::InvalidDegree` for indices outside [0, 2]
+    /// that fit i32, or `HomologicalError::InvalidDegreeIndex` otherwise.
     pub fn dim(&self, degree: usize) -> Result<usize, HomologicalError> {
         match degree {
             0 => Ok(self.c0_dim),
             1 => Ok(self.c1_dim),
             2 => Ok(self.c2_dim),
-            _ => Err(HomologicalError::InvalidDegree(degree as i32)),
+            _ => Err(HomologicalError::invalid_degree_index(degree)),
         }
     }
 }

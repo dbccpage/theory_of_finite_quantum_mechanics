@@ -271,6 +271,8 @@ def main():
     if args.assessment and args.assessment_map:
         parser.error("Select either --assessment or --assessment-map")
     receipt = args.receipt.resolve()
+    if json.loads((receipt/"summary.json").read_text()).get("primary_eligible", True) is not True:
+        raise SystemExit("Auxiliary replay cannot be a primary grading receipt")
     metric_receipt = args.metrics.resolve()
     metric_summary = json.loads((metric_receipt/"receipt.json").read_text())
     metric_sources = json.loads((metric_receipt/"source_manifest.json").read_text())

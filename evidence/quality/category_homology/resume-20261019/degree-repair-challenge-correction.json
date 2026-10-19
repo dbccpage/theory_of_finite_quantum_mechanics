@@ -1,0 +1,66 @@
+{
+  "AuthorityEffect": "None",
+  "correction": "Valid direct Simplex::face calls were missing from the independent oracle. The final oracle checks each canonical face and sign for all permutations up to six vertices, while constructors/docs were also corrected. The source/harness byte strings differ and are bound separately; no candidate-byte identity or initial kill is claimed.",
+  "final_caught_fault": {
+    "candidate_path": "code/rust/target/dr/261019T040851/src/homology/q/n64.rs",
+    "candidate_sha256": "4286c0b3b6e953e5e56dbe612826475abdfae0aa1807b28a9f413d4de6a2993c",
+    "id": "DR-64-2",
+    "module": "homology::degree_repair_replay_64::",
+    "needle": "removed_index.is_multiple_of(2)",
+    "outcome": "killed",
+    "path": "homology/simplicial.rs",
+    "replacement": "removed_index.is_multiple_of(3)",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T040851\\degree-repair-tests.exe",
+        "homology::degree_repair_replay_64::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T040851",
+      "elapsed_seconds": 0.078,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T040851Z\\fault-60.log",
+      "log_sha256": "268f46dbf9b46eb829491d63cdffcb9f25c65dcf8661cabfbdadbc5a2a586828",
+      "timed_out": false
+    },
+    "subject_sha256": "c340b9486e1746fcc3d60a66affa61e206e1d4db3abcfd21a07ff690f2d3cdf4"
+  },
+  "final_receipt": {
+    "path": "evidence/quality/category_homology/20261019T040851Z/summary.json",
+    "sha256": "f64ede30bf1b3e525b15df9d442c192687d7652c241c7fd75887ceabb459c7c5"
+  },
+  "initial_receipt": {
+    "path": "evidence/quality/category_homology/20261019T040309Z/summary.json",
+    "sha256": "2eeb77b0920d50dc6d1ae95a1b75cc4202e1845e26dabb15bc6a07634f100411"
+  },
+  "initial_survivor": {
+    "candidate_path": "code/rust/target/dr/261019T040309/src/homology/q/n64.rs",
+    "candidate_sha256": "14c176d4adadb9c3c82a52fb305ab62855e69153a012a78dce5e975967a97ef6",
+    "id": "DR-64-2",
+    "module": "homology::degree_repair_replay_64::",
+    "needle": "removed_index.is_multiple_of(2)",
+    "outcome": "survived",
+    "path": "homology/simplicial.rs",
+    "replacement": "removed_index.is_multiple_of(3)",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T040309\\degree-repair-tests.exe",
+        "homology::degree_repair_replay_64::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T040309",
+      "elapsed_seconds": 0.062,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 0,
+      "log": "evidence\\quality\\category_homology\\20261019T040309Z\\fault-60.log",
+      "log_sha256": "eb152e1a570402de954e7baa336afd764d26ff5db5111e36a41c7d5ac908164f",
+      "timed_out": false
+    },
+    "subject_sha256": "2a8a96caadeae4459cb9b1efc326054a05670bc2afa62ca65aa3735f6f3c6293"
+  }
+}

@@ -36,6 +36,10 @@ pub enum HomologicalError {
     #[error("invalid degree: {0}")]
     InvalidDegree(i32),
 
+    /// An invalid finite-support index outside the signed degree representation.
+    #[error("invalid degree: {0}")]
+    InvalidDegreeIndex(usize),
+
     #[error("matrix error: {0}")]
     MatrixError(#[from] MatrixError),
 
@@ -156,6 +160,17 @@ pub enum HomologicalError {
 
     #[error("serialization error: {0}")]
     SerializationError(String),
+}
+
+impl HomologicalError {
+    /// Preserve the full rejected index while retaining the signed error for
+    /// indices that fit its existing representation.
+    pub(super) fn invalid_degree_index(degree: usize) -> Self {
+        match i32::try_from(degree) {
+            Ok(value) => Self::InvalidDegree(value),
+            Err(_) => Self::InvalidDegreeIndex(degree),
+        }
+    }
 }
 
 #[cfg(test)]
