@@ -18,7 +18,7 @@ from run_audit import ROOT, digest, execute, write_json
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model",choices=("rank","category","metadata","degree","counter","parameters"),default="rank")
+    parser.add_argument("--model",choices=("rank","category","metadata","degree","counter","parameters","finite-set"),default="rank")
     model = parser.parse_args().model
     if model == "rank":
         proof_name, import_name, namespace = "RankCertificate", "LinearAlgebra/Matrix/Rank", "TFQM.RankCertificate."
@@ -41,6 +41,11 @@ def main():
         proof_name, import_name, namespace = "DegreeWindow", "Data/Int/Basic", "TFQM.DegreeWindow."
         declarations = ("ordered_span_fits_u32", "same_endpoint_zero", "inverted_span_negative")
         scope = "Exact i32 endpoint difference bounds, zero span and inverted-window refusal premise; no category-law claim."
+    elif model == "finite-set":
+        proof_name, import_name, namespace = "FiniteLiteralSet", "Data/Finset/Basic", "TFQM.FiniteLiteralSet."
+        declarations = ("scan_success_iff", "first_empty", "first_duplicate", "cardinality_success_iff",
+                        "bind_unit_success", "checks_success_iff", "admit_preserves_raw", "admit_invariants")
+        scope = "Finite literal-string-set admission, first entry failures, optional cardinality, raw-data preservation and admitted invariants."
     elif model == "parameters":
         proof_name, import_name, namespace = "ParameterMetadata", "Data/Int/Basic", "TFQM.ParameterMetadata."
         declarations = ("signed_success_iff", "optional_level_success_iff", "positive_bound_success_iff",

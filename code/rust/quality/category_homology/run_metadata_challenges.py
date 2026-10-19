@@ -24,6 +24,9 @@ POLICY = Path(__file__).with_name("metadata_boundaries.json")
 
 def challenge(record):
     """Generate tests from the separately reviewed schema, never its guards."""
+    if record.get("finite_set_schema"):
+        from finite_set_challenges import challenge as finite_set_challenge
+        return finite_set_challenge(record)
     if record.get("collection_schema"):
         from collection_metadata import challenge as collection_challenge
         return collection_challenge(record)
@@ -112,6 +115,9 @@ mod checklist_challenge {
 
 
 def variants(record, source):
+    if record.get("finite_set_schema"):
+        from finite_set_challenges import variants as finite_set_variants
+        return finite_set_variants(record, source)
     if record.get("collection_schema"):
         from collection_metadata import variants as collection_variants
         return collection_variants(record, source)
@@ -181,6 +187,9 @@ def main():
         shutil.copyfile(Path(__file__).with_name("parameter_metadata.py"), output / "parameter_metadata.py")
     if any(record.get("collection_schema") for record in records):
         shutil.copyfile(Path(__file__).with_name("collection_metadata.py"), output / "collection_metadata.py")
+    if any(record.get("finite_set_schema") for record in records):
+        for name in ("finite_set_challenges.py", "finite_set_oracle.rs"):
+            shutil.copyfile(Path(__file__).with_name(name), output / name)
     snapshot(work, "category")
     build = work / "target"
     members, campaigns = [], []

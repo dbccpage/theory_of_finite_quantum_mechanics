@@ -304,3 +304,28 @@ compiled outputs. Replay the inventory checks with:
 ```powershell
 python code/rust/quality/category_homology/run_metadata_challenges.py --policy code/rust/quality/category_homology/collection_boundaries.json --jobs 1 --batch-size 4
 ```
+
+
+The finite-literal-set checkpoint has 95 completed A records and 97 incomplete
+records. FiniteSet remains raw transport; ValidatedFiniteSet owns a checked,
+immutable literal set. The new typed FiniteSetError preserves exact indices,
+declared/actual counts and prior diagnostic text, including serde refusal.
+The L3A assessment binds 16,400 independent prefix/wire cases, 20 valid faults,
+constructor/observer/clone isolation and formatter-error checks. Its eight-lemma
+model proves scan distinctness/nonblank acceptance, optional cardinality,
+first entry refusal, unchanged raw data and admitted invariants. Unicode
+whitespace and BTreeSet representation correspondence remain explicitly
+reviewed library/source boundaries; no normalization or Rust/MIR proof follows.
+
+The invalid initial fault recipe and failed initial proof remain unsuccessful
+evidence. Final namespace controls pass seven tests before/after; the original
+category suite still passes 459 tests. All 107 export faults replay on the new
+provider and the foundation facade context is explicitly reviewed.
+`20261019T021740Z-score-verification` checks all 95 completed records and every
+current source/score digest; `cleanup-checkpoint-95.json` finds zero compiled
+outputs. Current remaining gates stay in `resume-20261019/progress.json`.
+
+```powershell
+python code/rust/quality/category_homology/run_metadata_challenges.py --policy code/rust/quality/category_homology/finite_set_boundary.json --jobs 1
+python code/rust/quality/category_homology/run_rank_proof.py --model finite-set
+```

@@ -1,0 +1,26 @@
+
+running 7 tests
+test mutant_3::finite_literal_set_oracle::exact_error_payloads_display_and_formatter_refusal ... ok
+test mutant_3::tests::rejects_cardinality_mismatch ... ok
+test mutant_3::tests::validate_ok ... ok
+test mutant_3::finite_literal_set_oracle::constructors_ownership_and_literal_identity_are_preserved ... ok
+test mutant_3::tests::validate_rejects_empty ... ok
+test mutant_3::tests::with_elements_ok ... ok
+test mutant_3::finite_literal_set_oracle::all_short_tag_words_match_independent_prefix_and_wire_admission ... FAILED
+
+failures:
+
+---- mutant_3::finite_literal_set_oracle::all_short_tag_words_match_independent_prefix_and_wire_admission stdout ----
+
+thread 'mutant_3::finite_literal_set_oracle::all_short_tag_words_match_independent_prefix_and_wire_admission' (12704) panicked at metadata_challenge_0\mutant_3.rs:205:25:
+assertion `left == right` failed
+  left: Ok(())
+ right: Err(DuplicateElement { index: 1 })
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    mutant_3::finite_literal_set_oracle::all_short_tag_words_match_independent_prefix_and_wire_admission
+
+test result: FAILED. 6 passed; 1 failed; 0 ignored; 0 measured; 140 filtered out; finished in 0.01s
+

@@ -1,0 +1,31 @@
+code/rust/src\category_theory\foundations\finite_set.rs:10:pub enum FiniteSetError {
+code/rust/src\category_theory\foundations\finite_set.rs:17:impl std::fmt::Display for FiniteSetError {
+code/rust/src\category_theory\foundations\finite_set.rs:30:impl std::error::Error for FiniteSetError {}
+code/rust/src\category_theory\foundations\finite_set.rs:34:pub struct FiniteSet {
+code/rust/src\category_theory\foundations\finite_set.rs:43:impl FiniteSet {
+code/rust/src\category_theory\foundations\finite_set.rs:67:    pub fn validate_shell(&self) -> Result<(), FiniteSetError> {
+code/rust/src\category_theory\foundations\finite_set.rs:69:            return Err(FiniteSetError::EmptyLabel);
+code/rust/src\category_theory\foundations\finite_set.rs:74:                return Err(FiniteSetError::EmptyElement { index: i });
+code/rust/src\category_theory\foundations\finite_set.rs:77:                return Err(FiniteSetError::DuplicateElement { index: i });
+code/rust/src\category_theory\foundations\finite_set.rs:82:                return Err(FiniteSetError::CardinalityMismatch {
+code/rust/src\category_theory\foundations\finite_set.rs:97:#[serde(try_from = "FiniteSet", into = "FiniteSet")]
+code/rust/src\category_theory\foundations\finite_set.rs:98:pub struct ValidatedFiniteSet {
+code/rust/src\category_theory\foundations\finite_set.rs:99:    declared: FiniteSet,
+code/rust/src\category_theory\foundations\finite_set.rs:102:impl TryFrom<FiniteSet> for ValidatedFiniteSet {
+code/rust/src\category_theory\foundations\finite_set.rs:103:    type Error = FiniteSetError;
+code/rust/src\category_theory\foundations\finite_set.rs:104:    fn try_from(declared: FiniteSet) -> Result<Self, FiniteSetError> {
+code/rust/src\category_theory\foundations\finite_set.rs:110:impl From<ValidatedFiniteSet> for FiniteSet {
+code/rust/src\category_theory\foundations\finite_set.rs:111:    fn from(value: ValidatedFiniteSet) -> Self {
+code/rust/src\category_theory\foundations\finite_set.rs:116:impl ValidatedFiniteSet {
+code/rust/src\category_theory\foundations\finite_set.rs:117:    pub fn declared(&self) -> &FiniteSet {
+code/rust/src\category_theory\foundations\finite_set.rs:140:        assert!(FiniteSet::new("x").validate_shell().is_ok());
+code/rust/src\category_theory\foundations\finite_set.rs:145:        assert!(FiniteSet::new("").validate_shell().is_err());
+code/rust/src\category_theory\foundations\finite_set.rs:150:        let s = FiniteSet::with_elements("F", vec!["0".into(), "1".into()]);
+code/rust/src\category_theory\foundations\finite_set.rs:157:        let mut s = FiniteSet::with_elements("F", vec!["a".into()]);
+code/rust/src\category_theory\foundations\mod.rs:11:pub use finite_set::FiniteSet;
+code/rust/src\category_theory\l5a_challenges.rs:8:use crate::foundations::finite_set::{FiniteSet, ValidatedFiniteSet};
+code/rust/src\category_theory\l5a_challenges.rs:136:    let duplicate = FiniteSet::with_elements("S", vec!["a".into(), "a".into()]);
+code/rust/src\category_theory\l5a_challenges.rs:137:    assert!(ValidatedFiniteSet::try_from(duplicate).is_err());
+code/rust/src\category_theory\l5a_challenges.rs:139:        ValidatedFiniteSet::try_from(FiniteSet::with_elements("S", vec!["a".into()])).unwrap();
+code/rust/src\category_theory\l5a_challenges.rs:140:    let mut raw = FiniteSet::from(valid.clone());
+code/rust/src\category_theory\l5a_challenges.rs:142:    assert!(ValidatedFiniteSet::try_from(raw).is_err());

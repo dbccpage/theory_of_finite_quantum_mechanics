@@ -1,0 +1,26 @@
+
+running 7 tests
+test mutant_19::tests::rejects_cardinality_mismatch ... ok
+test mutant_19::finite_literal_set_oracle::constructors_ownership_and_literal_identity_are_preserved ... ok
+test mutant_19::tests::validate_ok ... ok
+test mutant_19::finite_literal_set_oracle::exact_error_payloads_display_and_formatter_refusal ... FAILED
+test mutant_19::tests::with_elements_ok ... ok
+test mutant_19::tests::validate_rejects_empty ... ok
+test mutant_19::finite_literal_set_oracle::all_short_tag_words_match_independent_prefix_and_wire_admission ... ok
+
+failures:
+
+---- mutant_19::finite_literal_set_oracle::exact_error_payloads_display_and_formatter_refusal stdout ----
+
+thread 'mutant_19::finite_literal_set_oracle::exact_error_payloads_display_and_formatter_refusal' (13808) panicked at metadata_challenge_0\mutant_19.rs:265:13:
+assertion `left == right` failed
+  left: "wrong cardinality 5 3"
+ right: "declared_cardinality 5 != elements.len() 3"
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    mutant_19::finite_literal_set_oracle::exact_error_payloads_display_and_formatter_refusal
+
+test result: FAILED. 6 passed; 1 failed; 0 ignored; 0 measured; 140 filtered out; finished in 0.15s
+

@@ -1,0 +1,181 @@
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/category_theory/foundations/finite_set.rs",
+    "language": "Rust",
+    "sha256": "6c154362ed87f04513aa3e3f705ca79a7fbda10be3e797fccf805b6b6ac81f5d"
+  },
+  "reviewer": "Codex explicit literal-set, admission, ownership, transport and source refinement review",
+  "evaluation_timestamp": "2026-10-19T02:17:15.713937+00:00",
+  "gates": {
+    "G1": "A",
+    "G2": "A",
+    "G3": "A",
+    "G4": "A",
+    "G5": "A"
+  },
+  "formal_specification": {
+    "domain": "Finite sequences of literal stored UTF-8 String elements. Trimming is solely a non-whitespace-emptiness check and never normalizes element identity. Differently spelled strings, including Unicode compositions or padded names, are distinct elements.",
+    "acceptance": "Label and every element have a nonempty trimmed view; elements are pairwise distinct under exact stored-string equality; optional declared_cardinality is None or exactly elements.len(). Empty element inventory is allowed.",
+    "refusal_order": "EmptyLabel first; then first empty or duplicate element in increasing index order, emptiness before duplication at one entry; then CardinalityMismatch {declared,actual}.",
+    "raw_and_admitted": "FiniteSet constructors/Default/public fields/serde are raw transport. ValidatedFiniteSet owns exactly the checked raw record privately. TryFrom and its serde path re-run all gates, getters expose only shared views, Clone preserves owned checked data, and consuming conversion returns freely mutable raw data.",
+    "errors": "Public FiniteSetError variants carry exact payloads. Display preserves prior diagnostics and propagates formatter failure. Raw cardinality always reports actual inventory length, including rejected raw records.",
+    "authority": "None. This establishes a finite literal-set invariant; no real-world entity equivalence, category law, HoTT principle, normalization theorem or physical claim follows."
+  },
+  "symbol_map": {
+    "FiniteSetError::fmt": "Render the four exact error variants and return the formatter result; all indices/counts are usize.",
+    "FiniteSet::new": "Raw empty inventory with supplied label and Some(0).",
+    "FiniteSet::with_elements": "Move supplied label/elements, store the actual len as Some(n); admission remains separate.",
+    "FiniteSet::cardinality": "Observe actual elements.len(), independently of declared validity.",
+    "FiniteSet::validate_shell": "Trim-emptiness label, per-entry emptiness then BTreeSet duplicate rejection, optional cardinality equality; return unit or exact typed payload without mutation.",
+    "ValidatedFiniteSet::try_from": "Borrow-check the owned candidate before the sole private-field construction.",
+    "FiniteSet::from(ValidatedFiniteSet)": "Consume the admitted wrapper and move out the original raw record.",
+    "ValidatedFiniteSet::declared": "Shared borrow of the checked raw record.",
+    "ValidatedFiniteSet::label": "Shared borrow of unchanged stored label.",
+    "ValidatedFiniteSet::elements": "Shared slice of unchanged stored elements.",
+    "ValidatedFiniteSet::cardinality": "Delegate to the actual inventory length.",
+    "ValidatedFiniteSet::contains": "Exact stored-string membership by finite iteration; no normalization or trimming."
+  },
+  "invariant_argument": [
+    "The BTreeSet loop invariant is seen = the exact set of already visited tags, all prior tags nonblank and distinct. It starts empty; a nonblank fresh tag extends that prefix; a blank or repeated tag returns before the next iteration. Safe String equality and ordering agree on exact stored identity. Entries are borrowed, not cloned or mutated.",
+    "FiniteLiteralSet.scan_success_iff proves finite scan success exactly when all remaining tags satisfy the primitive nonblank predicate, are pairwise distinct, and avoid the initial seen set. Initial seen is empty. The optional cardinality theorem and checks_success_iff add label and actual-list-length binding. admit_preserves_raw and admit_invariants prove data preservation and the full admitted predicate.",
+    "Rust correspondence is explicitly reviewed: Unicode trim emptiness is the declared primitive; BTreeSet membership/insert implements the finite set operation, enumerate supplies successive bounded entry indices, and Vec::len supplies exact usize cardinality. The model uses Nat indices/counts, not narrowed coefficient arithmetic. This is not extracted Rust or mechanized MIR refinement.",
+    "All entries lie in a finite Vec<String>; enumerate cannot overflow an actual allocated sequence. No index operation, addition, subtraction, multiplication or division is used by production validation. Counts are compared in usize without narrowing; diagnostics retain exact indices/counts.",
+    "Only TryFrom constructs the private admitted field, after validation. Derived deserialization calls that TryFrom. There is no admitted Default or public mutable field; shared String/Vec views cannot be mutated in safe Rust. Clone owns checked data, and raw conversion consumes a wrapper, so later raw mutation cannot invalidate a retained admitted clone.",
+    "Each fmt branch uses bounded formatting or direct write_str and propagates fmt::Error. Error values are ordinary diagnostic data; constructing an error or raw record does not construct a valid set."
+  ],
+  "failure_paths": {
+    "label": "EmptyLabel before constructing the seen set or inspecting element data.",
+    "entry": "EmptyElement or DuplicateElement at the first relevant exact index; no partial admitted artifact is returned.",
+    "cardinality": "CardinalityMismatch preserves both the caller declaration and actual len, after every entry passes.",
+    "serde": "Raw FiniteSet serde preserves even rejected candidates. Admitted serde re-runs TryFrom and rejects private wrapper layout; serde type/range errors remain serde errors.",
+    "format": "All four display branches propagate a failing writer result.",
+    "resources": "BTreeSet temporary nodes, String/Vec/serde clones and allocations use pinned safe library/runtime contracts. No global allocator totality or memory reservation theorem is asserted."
+  },
+  "trust_boundary": {
+    "runtime": "Pinned safe Rust/std, String UTF-8 equality/ordering and Unicode-whitespace predicates, BTreeSet insert/membership, Vec ownership/length/iteration, serde derives/json and ordinary allocator/conversion contracts. Arbitrary caller-supplied Into/serializer implementations remain external.",
+    "formal": "Pinned Lean/Mathlib kernel and standard foundational axioms. The nonblank primitive and BTreeSet-to-Finset/source representation relation are explicit reviewed boundaries, not newly proved Unicode/stdlib implementations.",
+    "wire": "Serde JSON candidate transport and admitted rechecking only. No signature, author origin, cross-repository attestation or global theorem authority."
+  },
+  "consumer_review": [
+    "Rust-src call inventory finds foundation re-export, local tests and category l5a_challenges checking duplicate refusal and mutation of a detached raw clone. All 459 actual category tests pass before/after the new typed Error API.",
+    "The foundation facade nominal controls replay against the new provider; its L1 grade covers type identity only. The Result error type deliberately changes from String to FiniteSetError while preserving display payloads. No external or whole-workspace source compatibility pass is claimed."
+  ],
+  "basis": {
+    "G1": [
+      "Current source SHA, all twelve production function mappings, explicit primitive/ownership domain, runtime/dependency pins and formal-model receipts bind the exact claim. Original source, harness correction and failed proof attempt remain retained; AuthorityEffect is None."
+    ],
+    "G2": [
+      "The predicate is an actual finite distinct nonblank String inventory with optional exact cardinality, not a claim about labels external to the program. Unicode variants/padded tags remain distinct under exact identity. The checked scan/cardinality model and independent prefix oracle agree with source predicates; no float, normalization, coefficient narrowing or arithmetic overflow occurs."
+    ],
+    "G3": [
+      "The checked eight-lemma model and complete source/ownership relation cover entry refusal, cardinality binding, data preservation and admitted invariants. Safe collection bounds, immutable private data, mandatory TryFrom serde and explicit formatter-error propagation discharge the declared failure obligations relative to the pinned runtime. No partial or default admitted state exists."
+    ],
+    "G4": [
+      "Final campaign 021234Z executes 16,400 cases over all length-0..3 words on nine blank/ASCII/padded/NUL/Unicode tags, four labels and five cardinality alternatives. Its independent quadratic prefix oracle does not use BTreeSet. Cases compare exact typed errors, raw observation, direct/serde admission, membership, getters and detached conversion. Distinct constructors/clone mutation and private wire layout are checked separately.",
+      "All twenty valid single-fault namespaces compile and are killed; seven namespace controls and 459 actual category tests pass before/after. The initial invalid duplicate-fault recipe caused E0282 and leaves its twenty outcomes unrun, never semantic kills. The corrected recipe and augmented oracle are explicitly distinguished. Failed initial Lean checking is excluded; the final eight-lemma receipt is complete without unfinished obligations."
+    ],
+    "G5": [
+      "Fresh calibrated AST records twelve production functions, max CCN 7, cognitive upper bound 9 and nesting 2, no opaque function macro. Validation is nonrecursive: linear byte trimming plus n BTreeSet insertions (O(n log n) string comparisons, with byte-comparison cost separate), O(n) temporary references, and no cloning inside the loop. Membership is linear; length/getter operations are constant time. Constructors move data; Clone/serde serialization cost is linear in copied data. No benchmark-backed resource or allocator guarantee is claimed."
+    ]
+  },
+  "assurance_limits": [
+    "Capability L3 bounded literal-set domain and immutable admission, not an L5 theorem inferred from naming.",
+    "Contracts pending. No A+, extracted-program/MIR equivalence, Unicode normalization theorem, global allocator totality, external-origin attestation or whole-workspace pass.",
+    "Rust source/representation correspondence is reviewed separately from the checked mathematical model. Namespace compilation is shared; candidate test dispatch/state is separate."
+  ],
+  "open_findings": [],
+  "evidence": [
+    {
+      "path": "evidence/quality/category_homology/20261019T021234Z/summary.json",
+      "sha256": "91db57842c942824668e9a639648c12622dc2a5cd3c47736f7d0aadd2fb49bce"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T021234Z/baseline.json",
+      "sha256": "95ed6dfc9038f1d972ffa97c9c89dd357a0d2f093f2a70688c8a80a8330cc2c8"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T021234Z/restored.json",
+      "sha256": "d40dd9138cac6f712a8769036941d967eda69bde627716daaab34376ffbdf419"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T021234Z/mutations.json",
+      "sha256": "8d603eb159db4b0ddf7ba8e4e66a25604bad9e18e46a5bb1b13663dcbdf0a03d"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T021234Z/builds.json",
+      "sha256": "7a050ea3b92ad60ab76bea11545594ae64b88d0a1d491f5bb5df8e81db925c68"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T021234Z/dependency_receipt.json",
+      "sha256": "85d68cafd074a4ae8a62615f6f20380441fc46c2caf198db7d4577f54cf06c5c"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T021234Z/finite_set_boundary.json",
+      "sha256": "d8fc5a718ae06ff577c64e69e3b298c23eed6be8ff367e1b73f7026ed9321875"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T021234Z/finite_set_challenges.py",
+      "sha256": "c282d9e4e2bf515f532da9cb827554b2ed58a39bb41a0e7aad2b2dcb78bbf74d"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T021234Z/finite_set_oracle.rs",
+      "sha256": "436f76eb4ec907cc55cc375ad9c1cc59aafdc39881eb1b2c438e7e8e2fc2aed3"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T021234Z/run_metadata_challenges.py",
+      "sha256": "ef83b713d3a6819c23ce6b9428229355737846a508be780083c4dbc07c2bfc66"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T021151Z-finite-set-proof/receipt.json",
+      "sha256": "d6357df8ddf1ad6b854b3ca120ff1f5e97d0acd1b41e256525053b281067fe88"
+    },
+    {
+      "path": "evidence/quality/category_homology/resume-20261019/finite-set-harness-correction.json",
+      "sha256": "ccabe88ff9fd640f4a30557b8018f22367c656724be7cb03a64890a33632fb48"
+    },
+    {
+      "path": "evidence/quality/category_homology/resume-20261019/finite-set-original.rs",
+      "sha256": "eb343fa28fd599381d9e1c9196feb856c838415aa178a2cb598ff4a396414f5b"
+    },
+    {
+      "path": "evidence/quality/category_homology/resume-20261019/finite-set-consumers.json",
+      "sha256": "3e27779f40aeee67a0613bb7ca4d73087cbfa16a4270e0a9681c9b09ffe490c3"
+    },
+    {
+      "path": "evidence/quality/category_homology/resume-20261019/finite-set-consumers.log",
+      "sha256": "bd867712d6d92a573d15dd5efd9715728b85dab59a6d58d1f58be0bed3cbce1d"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T021350Z/summary.json",
+      "sha256": "675869aa2efa1431ffe81b58ee21cdc29da2667b6e796602a84aadb5d43d18e4"
+    }
+  ],
+  "proof_receipts": [
+    {
+      "path": "evidence/quality/category_homology/20261019T021151Z-finite-set-proof/receipt.json",
+      "sha256": "d6357df8ddf1ad6b854b3ca120ff1f5e97d0acd1b41e256525053b281067fe88",
+      "proof": "code/rust/quality/category_homology/proofs/FiniteLiteralSet.lean",
+      "mathlib_root": "lean4/.lake/packages/mathlib"
+    }
+  ],
+  "context_inputs": [
+    {
+      "path": "code/rust/src/category_theory/foundations/mod.rs",
+      "sha256": "53151531b361acbff7b00fa2234f74b7d7440fe8b79415a9f6c8b804284c6187"
+    },
+    {
+      "path": "code/rust/src/category_theory/lib.rs",
+      "sha256": "b1535a921f4a69414e8b6636f85c8393f799bd2bc20da600e855864c2d3e8776"
+    },
+    {
+      "path": "code/rust/src/category_theory/Cargo.toml",
+      "sha256": "42378ba9d23fe5a5c97c844ebab457e9187c96b819c5b6a0fe3f9acaff1579a3"
+    },
+    {
+      "path": "code/rust/src/category_theory/l5a_challenges.rs",
+      "sha256": "bc0f92083a961878e8f44e145e7ad554ac5d2db19c565a004dc15fd109432ffd"
+    }
+  ]
+}
