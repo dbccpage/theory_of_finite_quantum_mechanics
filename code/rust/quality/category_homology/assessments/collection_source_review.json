@@ -1,0 +1,448 @@
+{
+  "AuthorityEffect": "None",
+  "scope": "Explicit source review and ordered-refusal relation for eight raw collection modules. No grade is inferred from this record alone.",
+  "records": [
+    {
+      "artifact": "code/rust/src/category_theory/adjunction/adjoint_functor_theorem.rs",
+      "sha256": "65ac99c2b3be58f1e865ecaa77d4e9e87e37d0597ace1cb44cfae76f8b19913c",
+      "symbols": {
+        "AdjointFunctorTheoremShell::new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), functor_ref: String::new(), adjoint_side: String::new(), hypotheses: Vec::new(), solution_set_condition: String::new(), claimed_adjoint: String::new(), notes: Vec::new(), } }",
+          "claim": "Raw constructor, field assignment or append/map update; no mathematical admission"
+        },
+        "AdjointFunctorTheoremShell::for_functor": {
+          "signature": "pub fn for_functor( label: impl Into<String>, functor_ref: impl Into<String>, adjoint_side: impl Into<String>, ) -> Self",
+          "body": "{ Self { label: label.into(), functor_ref: functor_ref.into(), adjoint_side: adjoint_side.into(), hypotheses: Vec::new(), solution_set_condition: String::new(), claimed_adjoint: String::new(), notes: Vec::new(), } }",
+          "claim": "Raw constructor, field assignment or append/map update; no mathematical admission"
+        },
+        "AdjointFunctorTheoremShell::with_hypothesis": {
+          "signature": "pub fn with_hypothesis(mut self, hypothesis: impl Into<String>) -> Self",
+          "body": "{ self.hypotheses.push(hypothesis.into()); self }",
+          "claim": "Raw constructor, field assignment or append/map update; no mathematical admission"
+        },
+        "AdjointFunctorTheoremShell::with_solution_set": {
+          "signature": "pub fn with_solution_set(mut self, condition: impl Into<String>) -> Self",
+          "body": "{ self.solution_set_condition = condition.into(); self }",
+          "claim": "Raw constructor, field assignment or append/map update; no mathematical admission"
+        },
+        "AdjointFunctorTheoremShell::with_claimed_adjoint": {
+          "signature": "pub fn with_claimed_adjoint(mut self, claimed: impl Into<String>) -> Self",
+          "body": "{ self.claimed_adjoint = claimed.into(); self }",
+          "claim": "Raw constructor, field assignment or append/map update; no mathematical admission"
+        },
+        "AdjointFunctorTheoremShell::validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.functor_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty functor_ref\".into())); } if self.adjoint_side.is_empty() { return Err(ArithmosError::InvalidShape(\"empty adjoint_side\".into())); } for (i, h) in self.hypotheses.iter().enumerate() { if h.is_empty() { return Err(ArithmosError::InvalidShape(format!(\"empty hypothesis tag at index {i}\"))); } } Ok(()) }",
+          "claim": "Ordered literal label/inventory validation, no mutation or law certificate"
+        }
+      },
+      "ordered_labels": [
+        "label",
+        "functor_ref",
+        "adjoint_side"
+      ],
+      "ordered_collections": [
+        {
+          "field": "hypotheses",
+          "kind": "strings",
+          "fields": [
+            "tag"
+          ],
+          "diagnostic": "empty hypothesis tag at index {i}",
+          "loop": "for (i, h) in self.hypotheses.iter().enumerate()",
+          "source_operands": [
+            "h.is_empty()"
+          ]
+        }
+      ],
+      "invariant": "Flatten required labels followed by each collection in source iteration order and each entry component. Check String byte nonemptiness with the same diagnostic for every component of one entry. Every inspected prefix is valid; the first invalid predicate returns the corresponding InvalidShape payload. Validating borrows immutably and creates no admitted wrapper.",
+      "cost": "Validation visits each entry at most once and makes only String byte-length reads until one error allocation. No recursion, partial indexing, numeric calculation or nested iteration. Setters move strings; Vec append amortized constant work apart from allocation; BTreeMap insert logarithmic comparisons with string-byte comparison costs and ordinary allocator contracts."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/adjunction/counit.rs",
+      "sha256": "8256c2eced8a80cacdddfb2610772d45794aea07f746960d3f73d252ecae6952",
+      "symbols": {
+        "CounitShell::new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), source_functor: String::new(), target_functor: String::new(), components: BTreeMap::new(), adjunction_ref: String::new(), notes: Vec::new(), } }",
+          "claim": "Raw constructor, field assignment or append/map update; no mathematical admission"
+        },
+        "CounitShell::between": {
+          "signature": "pub fn between( label: impl Into<String>, source_functor: impl Into<String>, target_functor: impl Into<String>, ) -> Self",
+          "body": "{ Self { label: label.into(), source_functor: source_functor.into(), target_functor: target_functor.into(), components: BTreeMap::new(), adjunction_ref: String::new(), notes: Vec::new(), } }",
+          "claim": "Raw constructor, field assignment or append/map update; no mathematical admission"
+        },
+        "CounitShell::with_component": {
+          "signature": "pub fn with_component( mut self, object: impl Into<String>, morphism: impl Into<String>, ) -> Self",
+          "body": "{ self.components.insert(object.into(), morphism.into()); self }",
+          "claim": "Raw constructor, field assignment or append/map update; no mathematical admission"
+        },
+        "CounitShell::set_component": {
+          "signature": "pub fn set_component(&mut self, object: impl Into<String>, morphism: impl Into<String>)",
+          "body": "{ self.components.insert(object.into(), morphism.into()); }",
+          "claim": "Raw constructor, field assignment or append/map update; no mathematical admission"
+        },
+        "CounitShell::with_adjunction_ref": {
+          "signature": "pub fn with_adjunction_ref(mut self, adjunction_ref: impl Into<String>) -> Self",
+          "body": "{ self.adjunction_ref = adjunction_ref.into(); self }",
+          "claim": "Raw constructor, field assignment or append/map update; no mathematical admission"
+        },
+        "CounitShell::validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.source_functor.is_empty() { return Err(ArithmosError::InvalidShape(\"empty source_functor\".into())); } if self.target_functor.is_empty() { return Err(ArithmosError::InvalidShape(\"empty target_functor\".into())); } for (obj, mor) in &self.components { if obj.is_empty() || mor.is_empty() { return Err(ArithmosError::InvalidShape(\"empty counit component key or value\".into())); } } Ok(()) }",
+          "claim": "Ordered literal label/inventory validation, no mutation or law certificate"
+        }
+      },
+      "ordered_labels": [
+        "label",
+        "source_functor",
+        "target_functor"
+      ],
+      "ordered_collections": [
+        {
+          "field": "components",
+          "kind": "map",
+          "fields": [
+            "key",
+            "value"
+          ],
+          "diagnostic": "empty counit component key or value",
+          "loop": "for (obj, mor) in &self.components",
+          "source_operands": [
+            "obj.is_empty()",
+            "mor.is_empty()"
+          ]
+        }
+      ],
+      "invariant": "Flatten required labels followed by each collection in source iteration order and each entry component. Check String byte nonemptiness with the same diagnostic for every component of one entry. Every inspected prefix is valid; the first invalid predicate returns the corresponding InvalidShape payload. Validating borrows immutably and creates no admitted wrapper.",
+      "cost": "Validation visits each entry at most once and makes only String byte-length reads until one error allocation. No recursion, partial indexing, numeric calculation or nested iteration. Setters move strings; Vec append amortized constant work apart from allocation; BTreeMap insert logarithmic comparisons with string-byte comparison costs and ordinary allocator contracts."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/adjunction/galois_connection.rs",
+      "sha256": "733f5d689335c9d4a5ab85c2485c8b384e23c4cd73b2ac5eacafecc02cb5acb8",
+      "symbols": {
+        "MonotonePair::new": {
+          "signature": "pub fn new(domain_element: impl Into<String>, codomain_element: impl Into<String>) -> Self",
+          "body": "{ Self { domain_element: domain_element.into(), codomain_element: codomain_element.into(), } }",
+          "claim": "Raw constructor, field assignment or append/map update; no mathematical admission"
+        },
+        "GaloisConnectionShell::new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), poset_left: String::new(), poset_right: String::new(), lower: Vec::new(), upper: Vec::new(), notes: Vec::new(), } }",
+          "claim": "Raw constructor, field assignment or append/map update; no mathematical admission"
+        },
+        "GaloisConnectionShell::between": {
+          "signature": "pub fn between( label: impl Into<String>, poset_left: impl Into<String>, poset_right: impl Into<String>, ) -> Self",
+          "body": "{ Self { label: label.into(), poset_left: poset_left.into(), poset_right: poset_right.into(), lower: Vec::new(), upper: Vec::new(), notes: Vec::new(), } }",
+          "claim": "Raw constructor, field assignment or append/map update; no mathematical admission"
+        },
+        "GaloisConnectionShell::with_lower_pair": {
+          "signature": "pub fn with_lower_pair( mut self, domain_element: impl Into<String>, codomain_element: impl Into<String>, ) -> Self",
+          "body": "{ self.lower .push(MonotonePair::new(domain_element, codomain_element)); self }",
+          "claim": "Raw constructor, field assignment or append/map update; no mathematical admission"
+        },
+        "GaloisConnectionShell::with_upper_pair": {
+          "signature": "pub fn with_upper_pair( mut self, domain_element: impl Into<String>, codomain_element: impl Into<String>, ) -> Self",
+          "body": "{ self.upper .push(MonotonePair::new(domain_element, codomain_element)); self }",
+          "claim": "Raw constructor, field assignment or append/map update; no mathematical admission"
+        },
+        "GaloisConnectionShell::validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.poset_left.is_empty() { return Err(ArithmosError::InvalidShape(\"empty poset_left\".into())); } if self.poset_right.is_empty() { return Err(ArithmosError::InvalidShape(\"empty poset_right\".into())); } for (i, p) in self.lower.iter().enumerate() { if p.domain_element.is_empty() || p.codomain_element.is_empty() { return Err(ArithmosError::InvalidShape(format!(\"empty lower pair tag at index {i}\"))); } } for (i, p) in self.upper.iter().enumerate() { if p.domain_element.is_empty() || p.codomain_element.is_empty() { return Err(ArithmosError::InvalidShape(format!(\"empty upper pair tag at index {i}\"))); } } Ok(()) }",
+          "claim": "Ordered literal label/inventory validation, no mutation or law certificate"
+        }
+      },
+      "ordered_labels": [
+        "label",
+        "poset_left",
+        "poset_right"
+      ],
+      "ordered_collections": [
+        {
+          "field": "lower",
+          "kind": "records",
+          "fields": [
+            "domain_element",
+            "codomain_element"
+          ],
+          "diagnostic": "empty lower pair tag at index {i}",
+          "loop": "for (i, p) in self.lower.iter().enumerate()",
+          "source_operands": [
+            "p.domain_element.is_empty()",
+            "p.codomain_element.is_empty()"
+          ]
+        },
+        {
+          "field": "upper",
+          "kind": "records",
+          "fields": [
+            "domain_element",
+            "codomain_element"
+          ],
+          "diagnostic": "empty upper pair tag at index {i}",
+          "loop": "for (i, p) in self.upper.iter().enumerate()",
+          "source_operands": [
+            "p.domain_element.is_empty()",
+            "p.codomain_element.is_empty()"
+          ]
+        }
+      ],
+      "invariant": "Flatten required labels followed by each collection in source iteration order and each entry component. Check String byte nonemptiness with the same diagnostic for every component of one entry. Every inspected prefix is valid; the first invalid predicate returns the corresponding InvalidShape payload. Validating borrows immutably and creates no admitted wrapper.",
+      "cost": "Validation visits each entry at most once and makes only String byte-length reads until one error allocation. No recursion, partial indexing, numeric calculation or nested iteration. Setters move strings; Vec append amortized constant work apart from allocation; BTreeMap insert logarithmic comparisons with string-byte comparison costs and ordinary allocator contracts."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/adjunction/hom_set_adjunction.rs",
+      "sha256": "406abdfcb86f136b792f35ed9a69830ebe71ee6b316a2995579bf4a6640abcfa",
+      "symbols": {
+        "MatePair::new": {
+          "signature": "pub fn new( base_object: impl Into<String>, lifted_object: impl Into<String>, left_hom: impl Into<String>, right_hom: impl Into<String>, ) -> Self",
+          "body": "{ Self { base_object: base_object.into(), lifted_object: lifted_object.into(), left_hom: left_hom.into(), right_hom: right_hom.into(), } }",
+          "claim": "Raw constructor, field assignment or append/map update; no mathematical admission"
+        },
+        "HomSetAdjunctionShell::new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), left_functor: String::new(), right_functor: String::new(), adjunction_ref: String::new(), mate_pairs: Vec::new(), notes: Vec::new(), } }",
+          "claim": "Raw constructor, field assignment or append/map update; no mathematical admission"
+        },
+        "HomSetAdjunctionShell::between": {
+          "signature": "pub fn between( label: impl Into<String>, left_functor: impl Into<String>, right_functor: impl Into<String>, ) -> Self",
+          "body": "{ Self { label: label.into(), left_functor: left_functor.into(), right_functor: right_functor.into(), adjunction_ref: String::new(), mate_pairs: Vec::new(), notes: Vec::new(), } }",
+          "claim": "Raw constructor, field assignment or append/map update; no mathematical admission"
+        },
+        "HomSetAdjunctionShell::with_mate": {
+          "signature": "pub fn with_mate(mut self, pair: MatePair) -> Self",
+          "body": "{ self.mate_pairs.push(pair); self }",
+          "claim": "Raw constructor, field assignment or append/map update; no mathematical admission"
+        },
+        "HomSetAdjunctionShell::add_mate": {
+          "signature": "pub fn add_mate(&mut self, pair: MatePair)",
+          "body": "{ self.mate_pairs.push(pair); }",
+          "claim": "Raw constructor, field assignment or append/map update; no mathematical admission"
+        },
+        "HomSetAdjunctionShell::validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.left_functor.is_empty() { return Err(ArithmosError::InvalidShape(\"empty left_functor\".into())); } if self.right_functor.is_empty() { return Err(ArithmosError::InvalidShape(\"empty right_functor\".into())); } for (i, p) in self.mate_pairs.iter().enumerate() { if p.base_object.is_empty() || p.lifted_object.is_empty() || p.left_hom.is_empty() || p.right_hom.is_empty() { return Err(ArithmosError::InvalidShape(format!(\"empty mate pair field at index {i}\"))); } } Ok(()) }",
+          "claim": "Ordered literal label/inventory validation, no mutation or law certificate"
+        }
+      },
+      "ordered_labels": [
+        "label",
+        "left_functor",
+        "right_functor"
+      ],
+      "ordered_collections": [
+        {
+          "field": "mate_pairs",
+          "kind": "records",
+          "fields": [
+            "base_object",
+            "lifted_object",
+            "left_hom",
+            "right_hom"
+          ],
+          "diagnostic": "empty mate pair field at index {i}",
+          "loop": "for (i, p) in self.mate_pairs.iter().enumerate()",
+          "source_operands": [
+            "p.base_object.is_empty()",
+            "p.lifted_object.is_empty()",
+            "p.left_hom.is_empty()",
+            "p.right_hom.is_empty()"
+          ]
+        }
+      ],
+      "invariant": "Flatten required labels followed by each collection in source iteration order and each entry component. Check String byte nonemptiness with the same diagnostic for every component of one entry. Every inspected prefix is valid; the first invalid predicate returns the corresponding InvalidShape payload. Validating borrows immutably and creates no admitted wrapper.",
+      "cost": "Validation visits each entry at most once and makes only String byte-length reads until one error allocation. No recursion, partial indexing, numeric calculation or nested iteration. Setters move strings; Vec append amortized constant work apart from allocation; BTreeMap insert logarithmic comparisons with string-byte comparison costs and ordinary allocator contracts."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/adjunction/unit.rs",
+      "sha256": "57a004a5509c9db9132e60cd87e7349ca8e0aaff544fbbedf11805a77acaa203",
+      "symbols": {
+        "UnitShell::new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), source_functor: String::new(), target_functor: String::new(), components: BTreeMap::new(), adjunction_ref: String::new(), notes: Vec::new(), } }",
+          "claim": "Raw constructor, field assignment or append/map update; no mathematical admission"
+        },
+        "UnitShell::between": {
+          "signature": "pub fn between( label: impl Into<String>, source_functor: impl Into<String>, target_functor: impl Into<String>, ) -> Self",
+          "body": "{ Self { label: label.into(), source_functor: source_functor.into(), target_functor: target_functor.into(), components: BTreeMap::new(), adjunction_ref: String::new(), notes: Vec::new(), } }",
+          "claim": "Raw constructor, field assignment or append/map update; no mathematical admission"
+        },
+        "UnitShell::with_component": {
+          "signature": "pub fn with_component( mut self, object: impl Into<String>, morphism: impl Into<String>, ) -> Self",
+          "body": "{ self.components.insert(object.into(), morphism.into()); self }",
+          "claim": "Raw constructor, field assignment or append/map update; no mathematical admission"
+        },
+        "UnitShell::set_component": {
+          "signature": "pub fn set_component(&mut self, object: impl Into<String>, morphism: impl Into<String>)",
+          "body": "{ self.components.insert(object.into(), morphism.into()); }",
+          "claim": "Raw constructor, field assignment or append/map update; no mathematical admission"
+        },
+        "UnitShell::with_adjunction_ref": {
+          "signature": "pub fn with_adjunction_ref(mut self, adjunction_ref: impl Into<String>) -> Self",
+          "body": "{ self.adjunction_ref = adjunction_ref.into(); self }",
+          "claim": "Raw constructor, field assignment or append/map update; no mathematical admission"
+        },
+        "UnitShell::validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.source_functor.is_empty() { return Err(ArithmosError::InvalidShape(\"empty source_functor\".into())); } if self.target_functor.is_empty() { return Err(ArithmosError::InvalidShape(\"empty target_functor\".into())); } for (obj, mor) in &self.components { if obj.is_empty() || mor.is_empty() { return Err(ArithmosError::InvalidShape(\"empty unit component key or value\".into())); } } Ok(()) }",
+          "claim": "Ordered literal label/inventory validation, no mutation or law certificate"
+        }
+      },
+      "ordered_labels": [
+        "label",
+        "source_functor",
+        "target_functor"
+      ],
+      "ordered_collections": [
+        {
+          "field": "components",
+          "kind": "map",
+          "fields": [
+            "key",
+            "value"
+          ],
+          "diagnostic": "empty unit component key or value",
+          "loop": "for (obj, mor) in &self.components",
+          "source_operands": [
+            "obj.is_empty()",
+            "mor.is_empty()"
+          ]
+        }
+      ],
+      "invariant": "Flatten required labels followed by each collection in source iteration order and each entry component. Check String byte nonemptiness with the same diagnostic for every component of one entry. Every inspected prefix is valid; the first invalid predicate returns the corresponding InvalidShape payload. Validating borrows immutably and creates no admitted wrapper.",
+      "cost": "Validation visits each entry at most once and makes only String byte-length reads until one error allocation. No recursion, partial indexing, numeric calculation or nested iteration. Setters move strings; Vec append amortized constant work apart from allocation; BTreeMap insert logarithmic comparisons with string-byte comparison costs and ordinary allocator contracts."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/category/arrow_category.rs",
+      "sha256": "59279011d02e4522b0c30ce503297c6bced165d046077e0edd9b7d1e468f717c",
+      "symbols": {
+        "ArrowCategoryShell::new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), base_label: String::new(), arrow_objects: Vec::new(), notes: Vec::new(), } }",
+          "claim": "Raw constructor, field assignment or append/map update; no mathematical admission"
+        },
+        "ArrowCategoryShell::of_base": {
+          "signature": "pub fn of_base(label: impl Into<String>, base_label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), base_label: base_label.into(), arrow_objects: Vec::new(), notes: Vec::new(), } }",
+          "claim": "Raw constructor, field assignment or append/map update; no mathematical admission"
+        },
+        "ArrowCategoryShell::validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.base_label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty base_label\".into())); } for (i, m) in self.arrow_objects.iter().enumerate() { if m.source.is_empty() || m.target.is_empty() || m.name.is_empty() { return Err(ArithmosError::InvalidShape(format!(\"empty arrow_object field at index {i}\"))); } } Ok(()) }",
+          "claim": "Ordered literal label/inventory validation, no mutation or law certificate"
+        }
+      },
+      "ordered_labels": [
+        "label",
+        "base_label"
+      ],
+      "ordered_collections": [
+        {
+          "field": "arrow_objects",
+          "kind": "records",
+          "fields": [
+            "source",
+            "target",
+            "name"
+          ],
+          "diagnostic": "empty arrow_object field at index {i}",
+          "loop": "for (i, m) in self.arrow_objects.iter().enumerate()",
+          "source_operands": [
+            "m.source.is_empty()",
+            "m.target.is_empty()",
+            "m.name.is_empty()"
+          ]
+        }
+      ],
+      "invariant": "Flatten required labels followed by each collection in source iteration order and each entry component. Check String byte nonemptiness with the same diagnostic for every component of one entry. Every inspected prefix is valid; the first invalid predicate returns the corresponding InvalidShape payload. Validating borrows immutably and creates no admitted wrapper.",
+      "cost": "Validation visits each entry at most once and makes only String byte-length reads until one error allocation. No recursion, partial indexing, numeric calculation or nested iteration. Setters move strings; Vec append amortized constant work apart from allocation; BTreeMap insert logarithmic comparisons with string-byte comparison costs and ordinary allocator contracts."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/category/coslice_category.rs",
+      "sha256": "7338cf18a1bc61d218468dc903d6caaf57caf19ddb6644058ce9b61a80f830b4",
+      "symbols": {
+        "CosliceCategoryShell::new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), base_label: String::new(), nadir: String::new(), objects: Vec::new(), notes: Vec::new(), } }",
+          "claim": "Raw constructor, field assignment or append/map update; no mathematical admission"
+        },
+        "CosliceCategoryShell::under": {
+          "signature": "pub fn under( label: impl Into<String>, base_label: impl Into<String>, nadir: impl Into<String>, ) -> Self",
+          "body": "{ Self { label: label.into(), base_label: base_label.into(), nadir: nadir.into(), objects: Vec::new(), notes: Vec::new(), } }",
+          "claim": "Raw constructor, field assignment or append/map update; no mathematical admission"
+        },
+        "CosliceCategoryShell::validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.base_label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty base_label\".into())); } if self.nadir.is_empty() { return Err(ArithmosError::InvalidShape(\"empty nadir\".into())); } for (i, o) in self.objects.iter().enumerate() { if o.is_empty() { return Err(ArithmosError::InvalidShape(format!(\"empty object tag at index {i}\"))); } } Ok(()) }",
+          "claim": "Ordered literal label/inventory validation, no mutation or law certificate"
+        }
+      },
+      "ordered_labels": [
+        "label",
+        "base_label",
+        "nadir"
+      ],
+      "ordered_collections": [
+        {
+          "field": "objects",
+          "kind": "strings",
+          "fields": [
+            "tag"
+          ],
+          "diagnostic": "empty object tag at index {i}",
+          "loop": "for (i, o) in self.objects.iter().enumerate()",
+          "source_operands": [
+            "o.is_empty()"
+          ]
+        }
+      ],
+      "invariant": "Flatten required labels followed by each collection in source iteration order and each entry component. Check String byte nonemptiness with the same diagnostic for every component of one entry. Every inspected prefix is valid; the first invalid predicate returns the corresponding InvalidShape payload. Validating borrows immutably and creates no admitted wrapper.",
+      "cost": "Validation visits each entry at most once and makes only String byte-length reads until one error allocation. No recursion, partial indexing, numeric calculation or nested iteration. Setters move strings; Vec append amortized constant work apart from allocation; BTreeMap insert logarithmic comparisons with string-byte comparison costs and ordinary allocator contracts."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/category/discrete_fibration.rs",
+      "sha256": "b2b46d91b507be0701a9431f42b84cf8d17732938c3ee927639b30f11212b3c5",
+      "symbols": {
+        "DiscreteFibrationShell::new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), total_label: String::new(), base_label: String::new(), object_map: Vec::new(), notes: Vec::new(), } }",
+          "claim": "Raw constructor, field assignment or append/map update; no mathematical admission"
+        },
+        "DiscreteFibrationShell::between": {
+          "signature": "pub fn between( label: impl Into<String>, total_label: impl Into<String>, base_label: impl Into<String>, ) -> Self",
+          "body": "{ Self { label: label.into(), total_label: total_label.into(), base_label: base_label.into(), object_map: Vec::new(), notes: Vec::new(), } }",
+          "claim": "Raw constructor, field assignment or append/map update; no mathematical admission"
+        },
+        "DiscreteFibrationShell::validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.total_label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty total_label\".into())); } if self.base_label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty base_label\".into())); } for (i, (t, b)) in self.object_map.iter().enumerate() { if t.is_empty() || b.is_empty() { return Err(ArithmosError::InvalidShape(format!(\"empty object_map entry at index {i}\"))); } } Ok(()) }",
+          "claim": "Ordered literal label/inventory validation, no mutation or law certificate"
+        }
+      },
+      "ordered_labels": [
+        "label",
+        "total_label",
+        "base_label"
+      ],
+      "ordered_collections": [
+        {
+          "field": "object_map",
+          "kind": "pairs",
+          "fields": [
+            "total",
+            "base"
+          ],
+          "diagnostic": "empty object_map entry at index {i}",
+          "loop": "for (i, (t, b)) in self.object_map.iter().enumerate()",
+          "source_operands": [
+            "t.is_empty()",
+            "b.is_empty()"
+          ]
+        }
+      ],
+      "invariant": "Flatten required labels followed by each collection in source iteration order and each entry component. Check String byte nonemptiness with the same diagnostic for every component of one entry. Every inspected prefix is valid; the first invalid predicate returns the corresponding InvalidShape payload. Validating borrows immutably and creates no admitted wrapper.",
+      "cost": "Validation visits each entry at most once and makes only String byte-length reads until one error allocation. No recursion, partial indexing, numeric calculation or nested iteration. Setters move strings; Vec append amortized constant work apart from allocation; BTreeMap insert logarithmic comparisons with string-byte comparison costs and ordinary allocator contracts."
+    }
+  ]
+}

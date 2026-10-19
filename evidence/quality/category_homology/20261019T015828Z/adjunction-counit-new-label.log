@@ -1,0 +1,25 @@
+
+running 6 tests
+test mutant_19::tests::rejects_empty_component_tags ... ok
+test mutant_19::tests::validate_ok ... ok
+test mutant_19::parameter_challenge::constructors_preserve_distinct_supplied_parameters ... FAILED
+test mutant_19::tests::validate_rejects_empty ... ok
+test mutant_19::tests::with_component_ok ... ok
+test mutant_19::parameter_challenge::independent_schema_cases_and_first_error ... ok
+
+failures:
+
+---- mutant_19::parameter_challenge::constructors_preserve_distinct_supplied_parameters stdout ----
+
+thread 'mutant_19::parameter_challenge::constructors_preserve_distinct_supplied_parameters' (24168) panicked at metadata_challenge_0\mutant_19.rs:145:9:
+assertion `left == right` failed
+  left: ""
+ right: "label\0α"
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    mutant_19::parameter_challenge::constructors_preserve_distinct_supplied_parameters
+
+test result: FAILED. 5 passed; 1 failed; 0 ignored; 0 measured; 342 filtered out; finished in 0.00s
+

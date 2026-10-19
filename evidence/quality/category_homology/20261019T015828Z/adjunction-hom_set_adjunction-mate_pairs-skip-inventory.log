@@ -1,0 +1,29 @@
+
+running 6 tests
+test mutant_51::parameter_challenge::constructors_preserve_distinct_supplied_parameters ... ok
+test mutant_51::tests::validate_ok ... ok
+test mutant_51::tests::rejects_empty_mate_field ... FAILED
+test mutant_51::tests::validate_rejects_empty ... ok
+test mutant_51::tests::with_mate_ok ... ok
+test mutant_51::parameter_challenge::independent_schema_cases_and_first_error ... FAILED
+
+failures:
+
+---- mutant_51::tests::rejects_empty_mate_field stdout ----
+
+thread 'mutant_51::tests::rejects_empty_mate_field' (3064) panicked at metadata_challenge_0\mutant_51.rs:128:9:
+assertion failed: h.validate_shell().is_err()
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- mutant_51::parameter_challenge::independent_schema_cases_and_first_error stdout ----
+
+thread 'mutant_51::parameter_challenge::independent_schema_cases_and_first_error' (22032) panicked at metadata_challenge_0\mutant_51.rs:144:37:
+expected Some("empty mate pair field at index 0"), got Ok(()); raw={"adjunction_ref":"","label":"label:α\u0000","left_functor":"left_functor:α\u0000","mate_pairs":[{"base_object":"","left_hom":"left_hom:0","lifted_object":"lifted_object:0","right_hom":"right_hom:0"},{"base_object":"base_object:1","left_hom":"left_hom:1","lifted_object":"lifted_object:1","right_hom":"right_hom:1"},{"base_object":"base_object:2","left_hom":"left_hom:2","lifted_object":"lifted_object:2","right_hom":"right_hom:2"}],"notes":[],"right_functor":"right_functor:α\u0000"}
+
+
+failures:
+    mutant_51::parameter_challenge::independent_schema_cases_and_first_error
+    mutant_51::tests::rejects_empty_mate_field
+
+test result: FAILED. 4 passed; 2 failed; 0 ignored; 0 measured; 342 filtered out; finished in 0.01s
+

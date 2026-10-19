@@ -1,0 +1,219 @@
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/category_theory/adjunction/hom_set_adjunction.rs",
+    "language": "Rust",
+    "sha256": "406abdfcb86f136b792f35ed9a69830ebe71ee6b316a2995579bf4a6640abcfa"
+  },
+  "reviewer": "Codex explicit raw-inventory, source, ordered-failure and consumer review",
+  "evaluation_timestamp": "2026-10-19T02:02:42.121495+00:00",
+  "gates": {
+    "G1": "A",
+    "G2": "A",
+    "G3": "A",
+    "G4": "A",
+    "G5": "A"
+  },
+  "formal_specification": {
+    "domain": "Raw mutable literal metadata. Required fields and every selected inventory component are nonempty byte strings; whitespace/Unicode/NUL and arbitrary nonempty labels are permitted. Empty inventories are permitted. No referential integrity, totality, monotonicity, naturality, adjoint, commutative-square or lifting law is admitted.",
+    "ordered_labels": [
+      "label",
+      "left_functor",
+      "right_functor"
+    ],
+    "ordered_inventories": [
+      {
+        "field": "mate_pairs",
+        "kind": "records",
+        "fields": [
+          "base_object",
+          "lifted_object",
+          "left_hom",
+          "right_hom"
+        ],
+        "diagnostic": "empty mate pair field at index {i}",
+        "loop": "for (i, p) in self.mate_pairs.iter().enumerate()",
+        "source_operands": [
+          "p.base_object.is_empty()",
+          "p.lifted_object.is_empty()",
+          "p.left_hom.is_empty()",
+          "p.right_hom.is_empty()"
+        ]
+      }
+    ],
+    "construction": "Constructors/setters store raw values and may return a rejected candidate. Vec setters append in order; map setters replace the prior value at an equal key. Serde remains raw transport.",
+    "acceptance": "All ordered required fields and all ordered selected entry components satisfy nonemptiness. Other fields remain unconstrained declarations. Success returns unit only.",
+    "failure": "First required-label failure then first invalid collection/entry returns existing typed InvalidShape with its exact specified diagnostic. For maps iteration is BTreeMap key order; the shared entry diagnostic does not claim a numeric insertion index. No validation mutation or partial admitted artifact."
+  },
+  "symbol_map": {
+    "MatePair::new": {
+      "signature": "pub fn new( base_object: impl Into<String>, lifted_object: impl Into<String>, left_hom: impl Into<String>, right_hom: impl Into<String>, ) -> Self",
+      "body": "{ Self { base_object: base_object.into(), lifted_object: lifted_object.into(), left_hom: left_hom.into(), right_hom: right_hom.into(), } }",
+      "claim": "Raw constructor, field assignment or append/map update; no mathematical admission"
+    },
+    "HomSetAdjunctionShell::new": {
+      "signature": "pub fn new(label: impl Into<String>) -> Self",
+      "body": "{ Self { label: label.into(), left_functor: String::new(), right_functor: String::new(), adjunction_ref: String::new(), mate_pairs: Vec::new(), notes: Vec::new(), } }",
+      "claim": "Raw constructor, field assignment or append/map update; no mathematical admission"
+    },
+    "HomSetAdjunctionShell::between": {
+      "signature": "pub fn between( label: impl Into<String>, left_functor: impl Into<String>, right_functor: impl Into<String>, ) -> Self",
+      "body": "{ Self { label: label.into(), left_functor: left_functor.into(), right_functor: right_functor.into(), adjunction_ref: String::new(), mate_pairs: Vec::new(), notes: Vec::new(), } }",
+      "claim": "Raw constructor, field assignment or append/map update; no mathematical admission"
+    },
+    "HomSetAdjunctionShell::with_mate": {
+      "signature": "pub fn with_mate(mut self, pair: MatePair) -> Self",
+      "body": "{ self.mate_pairs.push(pair); self }",
+      "claim": "Raw constructor, field assignment or append/map update; no mathematical admission"
+    },
+    "HomSetAdjunctionShell::add_mate": {
+      "signature": "pub fn add_mate(&mut self, pair: MatePair)",
+      "body": "{ self.mate_pairs.push(pair); }",
+      "claim": "Raw constructor, field assignment or append/map update; no mathematical admission"
+    },
+    "HomSetAdjunctionShell::validate_shell": {
+      "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+      "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.left_functor.is_empty() { return Err(ArithmosError::InvalidShape(\"empty left_functor\".into())); } if self.right_functor.is_empty() { return Err(ArithmosError::InvalidShape(\"empty right_functor\".into())); } for (i, p) in self.mate_pairs.iter().enumerate() { if p.base_object.is_empty() || p.lifted_object.is_empty() || p.left_hom.is_empty() || p.right_hom.is_empty() { return Err(ArithmosError::InvalidShape(format!(\"empty mate pair field at index {i}\"))); } } Ok(()) }",
+      "claim": "Ordered literal label/inventory validation, no mutation or law certificate"
+    }
+  },
+  "invariant_argument": [
+    "Flatten required labels followed by each collection in source iteration order and each entry component. Check String byte nonemptiness with the same diagnostic for every component of one entry. Every inspected prefix is valid; the first invalid predicate returns the corresponding InvalidShape payload. Validating borrows immutably and creates no admitted wrapper.",
+    "Finite String components can be flattened into the ordered-predicate model, using the same error name for every component of one entry. The source OR-of-empty condition is the complement of the conjunction of admitted components. Checked model success_iff and first_error_preserved match this relation for any finite input, including empty lists. This is reviewed source correspondence, not extracted Rust/MIR.",
+    "Rust iter()/enumerate() or borrowed BTreeMap iteration yields each actual entry without unchecked indexing. The prefix invariant is established initially, extends when the entry components are nonempty, and exits on the first violation with the current exact diagnostic. The subject stays immutably borrowed.",
+    "All 39 production methods in this eight-file batch have explicit owner-qualified body maps. Raw constructors, append/map replacement and field moves introduce no mathematical wrapper. Safe standard collection/String operations and caller conversion/allocator contracts are explicit dependencies."
+  ],
+  "failure_paths": {
+    "required_labels": "First literal empty field, exact InvalidShape(empty FIELD).",
+    "inventory": "First invalid component of the first invalid entry, in the stated collection order. Entry components share the policy diagnostic, so no stronger component-name claim is made.",
+    "raw_transport": "Derived serde may construct rejected raw candidates, which must still call validate_shell. No admitted wrapper exists in these modules.",
+    "runtime": "Validation performs no user callback, rational arithmetic, narrowing cast, partial index or mutable operation. Standard String/&str constructor conversions, arbitrary caller Into implementations and allocator behavior remain the ordinary external runtime boundary."
+  },
+  "trust_boundary": {
+    "model": "Unchanged kernel-checked ordered finite String-predicate/refusal model with standard foundational axioms. Dynamic inventory-to-list relation and runtime enumeration are source reviewed.",
+    "runtime": "Pinned safe Rust/std, actual crate errors::ArithmosError via the canonical self-alias, serde derives and standard allocator/conversion contracts.",
+    "adapter": "Only ArrowCategoryShell needs a parent import adapter: it uses the actual canonical category::category module for MorphismTriple. No provider algorithm is cloned or assigned this grade."
+  },
+  "consumer_review": [
+    "The public hierarchy re-exports these raw types. Their typed error change preserves predicates and payload order; current parent export controls and all 459 actual category tests compile and run before/after.",
+    "The retained lexical Rust-src inventory records visible constructor call sites. No external or whole-workspace compatibility pass is claimed, and consumer mathematical invariants are not inferred from raw labels."
+  ],
+  "basis": {
+    "G1": [
+      "Source SHA, complete owner-qualified public-method map, separately specified required fields/entry components/diagnostics, provider/crate pins and Cargo/runtime evidence bind the exact limited claim. AuthorityEffect None remains explicit. Original sources and the typed carrier delta are retained."
+    ],
+    "G2": [
+      "All literal inventory components and first-error ordering match the stated schema. Inputs remain raw strings/collections, without arithmetic conversion or hidden mathematical law admission. The ordered model argument applies to arbitrary finite String data, while adversarial runtime cases independently cover the implemented collection boundaries."
+    ],
+    "G3": [
+      "Checked ordered-predicate invariants plus the explicit iterator/source relation cover every refusal and success path. Each loop has a finite collection bound and borrows its subject without mutation. Typed payloads are preserved and no admitted artifact is returned. Raw setters and standard conversion/allocator contracts are separated from validation."
+    ],
+    "G4": [
+      "395 independent schema cases cross label masks with every entry-component emptiness subset and first/middle/last/multiple-invalid positions. Distinct constructor/setter inputs check append, field binding and map replacement behavior. All 14 faults for this file compile and are killed in their own namespace.",
+      "The final eight-file campaign has 100 kills, zero other outcomes, 43 unmutated local/challenge tests and 459 original category tests before/after. The earlier dependency allocation failure leaves all 100 candidates unrun; a separate SHA-matched resolution ledger ties those exact bytes to the successful --jobs 1 retry. No failed build counts as a kill."
+    ],
+    "G5": [
+      "Validation visits each entry at most once and makes only String byte-length reads until one error allocation. No recursion, partial indexing, numeric calculation or nested iteration. Setters move strings; Vec append amortized constant work apart from allocation; BTreeMap insert logarithmic comparisons with string-byte comparison costs and ordinary allocator contracts.",
+      "Calibrated source AST ceilings are independently enforced; all method bodies and finite control flow are mapped. No opaque production function macro or hidden nested data traversal supplies a cheaper source-only score."
+    ]
+  },
+  "open_findings": [],
+  "assurance_limits": [
+    "Capability L2 raw label/inventory metadata, not the mathematics in the title.",
+    "Contracts pending; no A+, independent compiler, Rust/MIR refinement, allocator-totality theorem, author attestation or whole-workspace pass.",
+    "Each candidate contains one designated fault. Compilation is shared, state and namespace test dispatch are independent."
+  ],
+  "evidence": [
+    {
+      "path": "evidence/quality/category_homology/20261018T233729Z-metadata-proof/receipt.json",
+      "sha256": "71187f438fb571fd2e7339b19be871c3b5882e3b2e34e3a1df0b62e637c6f0ea"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T015828Z/summary.json",
+      "sha256": "a8900e2b0247334b76e4c689076da9b7df5b75e0ab2ca1d7f87c26fdaaef0d39"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T015828Z/baseline.json",
+      "sha256": "ec82e590b5181c065c2efe4ae15442f5c745dc905b4aea381dfa1804eb90265f"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T015828Z/restored.json",
+      "sha256": "674db25d3c3ec8b078162e1c21735f3f55558b28037b87539b7d36da5e265a60"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T015828Z/mutations.json",
+      "sha256": "7917b24da195085968c55cf3314456ffa37bf73aed1368981b69d391e62dc77e"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T015828Z/builds.json",
+      "sha256": "5ed3b7c743fdcc61d3c710495b3ae2f4d30b9379717269fbd16349880bbd47cd"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T015828Z/dependency_receipt.json",
+      "sha256": "0c6364b2c8e6ef7d0bd34628f6bbba3736430e9bd2eee4ac1002d913d6cd4c57"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T015828Z/collection_boundaries.json",
+      "sha256": "e573bf71147cd9eee518da98e31d6dd1d5d65b39a35670c295cb190cb5c17e6b"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T015828Z/collection_metadata.py",
+      "sha256": "8ed777f093844eed9126468f936e58d1e3948960a9b22b9ad1df12880d10a89b"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T015828Z/parameter_metadata.py",
+      "sha256": "6bd819560ea43f441e3bccbbd2a4f437a1d36e0029059b9278a969701583fe89"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T015828Z/run_metadata_challenges.py",
+      "sha256": "86b48ad52ec323e6784078cc2f99dbcddc7335390ba350218914a5e35173e747"
+    },
+    {
+      "path": "code/rust/quality/category_homology/assessments/collection_source_review.json",
+      "sha256": "22ae8ad7f7f8ba2a8065565a0f8beef554165852470e1119899687d8e74b3c42"
+    },
+    {
+      "path": "evidence/quality/category_homology/resume-20261019/collection-resource-replay.json",
+      "sha256": "5b94f882ac9a65580cd8424cd1220413b10e227dbe6307318975e33fd50a37a7"
+    },
+    {
+      "path": "evidence/quality/category_homology/resume-20261019/collection-consumers.json",
+      "sha256": "d732b899459b9074945909055b7bb86c5d6cb678241f2408a905095048cc20d9"
+    },
+    {
+      "path": "evidence/quality/category_homology/resume-20261019/collection-consumers.log",
+      "sha256": "45bac382f9d457b300c1bb782e8a155334076d48230526ece22dbe0498769460"
+    },
+    {
+      "path": "evidence/quality/category_homology/resume-20261019/collection-changes.json",
+      "sha256": "56e822ae84f59e19defe13041c0aac572cba84f37c437b79d209549e68b9cd47"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T020037Z/summary.json",
+      "sha256": "e504c03d087c2b6d8bdbfc52f49c55139f2f1e641f74f75137a84bf1749683ef"
+    }
+  ],
+  "proof_receipts": [
+    {
+      "path": "evidence/quality/category_homology/20261018T233729Z-metadata-proof/receipt.json",
+      "sha256": "71187f438fb571fd2e7339b19be871c3b5882e3b2e34e3a1df0b62e637c6f0ea",
+      "proof": "code/rust/quality/category_homology/proofs/MetadataValidation.lean",
+      "mathlib_root": "lean4/.lake/packages/mathlib"
+    }
+  ],
+  "context_inputs": [
+    {
+      "path": "code/rust/src/category_theory/adjunction/mod.rs",
+      "sha256": "1ad841979b4764c5af78516a65a11a2566fe34aa578c4fd5a57ece9b9b591fea"
+    },
+    {
+      "path": "code/rust/src/category_theory/lib.rs",
+      "sha256": "b1535a921f4a69414e8b6636f85c8393f799bd2bc20da600e855864c2d3e8776"
+    },
+    {
+      "path": "code/rust/src/category_theory/Cargo.toml",
+      "sha256": "42378ba9d23fe5a5c97c844ebab457e9187c96b819c5b6a0fe3f9acaff1579a3"
+    }
+  ]
+}

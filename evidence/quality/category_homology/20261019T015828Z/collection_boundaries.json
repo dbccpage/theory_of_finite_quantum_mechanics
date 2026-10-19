@@ -1,0 +1,264 @@
+{
+  "AuthorityEffect": "None",
+  "review_scope": "Eight explicitly reviewed raw collection inventories; tests cross required-label emptiness, every component subset, first/middle/last and multiple invalid entries. Source guard text is read only to place mutations.",
+  "records": [
+    {
+      "path": "code/rust/src/category_theory/adjunction/adjoint_functor_theorem.rs",
+      "sha256": "65ac99c2b3be58f1e865ecaa77d4e9e87e37d0597ace1cb44cfae76f8b19913c",
+      "type": "AdjointFunctorTheoremShell",
+      "required_fields": [
+        "label",
+        "functor_ref",
+        "adjoint_side"
+      ],
+      "collection_schema": [
+        {
+          "field": "hypotheses",
+          "kind": "strings",
+          "fields": [
+            "tag"
+          ],
+          "diagnostic": "empty hypothesis tag at index {i}",
+          "loop": "for (i, h) in self.hypotheses.iter().enumerate()",
+          "source_operands": [
+            "h.is_empty()"
+          ]
+        }
+      ],
+      "parameter_schema": true,
+      "constructor_checks": "let a=AdjointFunctorTheoremShell::for_functor(\"A\",\"F\",\"arbitrary side\").with_hypothesis(\"H\").with_hypothesis(\"H\").with_solution_set(\"S\").with_claimed_adjoint(\"R\");\n        assert_eq!((&*a.label,&*a.functor_ref,&*a.adjoint_side,&*a.solution_set_condition,&*a.claimed_adjoint),(\"A\",\"F\",\"arbitrary side\",\"S\",\"R\")); assert_eq!(a.hypotheses,vec![\"H\",\"H\"]);",
+      "faults": [],
+      "scope": "Raw finite label inventory; no naturality, existence, order-adjunction, arrow-square, coslice or lifting law is checked."
+    },
+    {
+      "path": "code/rust/src/category_theory/adjunction/counit.rs",
+      "sha256": "8256c2eced8a80cacdddfb2610772d45794aea07f746960d3f73d252ecae6952",
+      "type": "CounitShell",
+      "required_fields": [
+        "label",
+        "source_functor",
+        "target_functor"
+      ],
+      "collection_schema": [
+        {
+          "field": "components",
+          "kind": "map",
+          "fields": [
+            "key",
+            "value"
+          ],
+          "diagnostic": "empty counit component key or value",
+          "loop": "for (obj, mor) in &self.components",
+          "source_operands": [
+            "obj.is_empty()",
+            "mor.is_empty()"
+          ]
+        }
+      ],
+      "parameter_schema": true,
+      "constructor_checks": "let mut c=CounitShell::between(\"c\",\"S\",\"T\").with_component(\"A\",\"f\").with_adjunction_ref(\"Adj\");\n        c.set_component(\"A\",\"g\"); c.set_component(\"B\",\"h\"); assert_eq!((&*c.label,&*c.source_functor,&*c.target_functor,&*c.adjunction_ref),(\"c\",\"S\",\"T\",\"Adj\")); assert_eq!(c.components.len(),2); assert_eq!(c.components.get(\"A\").map(String::as_str),Some(\"g\")); assert_eq!(c.components.get(\"B\").map(String::as_str),Some(\"h\"));",
+      "faults": [],
+      "scope": "Raw finite label inventory; no naturality, existence, order-adjunction, arrow-square, coslice or lifting law is checked."
+    },
+    {
+      "path": "code/rust/src/category_theory/adjunction/galois_connection.rs",
+      "sha256": "733f5d689335c9d4a5ab85c2485c8b384e23c4cd73b2ac5eacafecc02cb5acb8",
+      "type": "GaloisConnectionShell",
+      "required_fields": [
+        "label",
+        "poset_left",
+        "poset_right"
+      ],
+      "collection_schema": [
+        {
+          "field": "lower",
+          "kind": "records",
+          "fields": [
+            "domain_element",
+            "codomain_element"
+          ],
+          "diagnostic": "empty lower pair tag at index {i}",
+          "loop": "for (i, p) in self.lower.iter().enumerate()",
+          "source_operands": [
+            "p.domain_element.is_empty()",
+            "p.codomain_element.is_empty()"
+          ]
+        },
+        {
+          "field": "upper",
+          "kind": "records",
+          "fields": [
+            "domain_element",
+            "codomain_element"
+          ],
+          "diagnostic": "empty upper pair tag at index {i}",
+          "loop": "for (i, p) in self.upper.iter().enumerate()",
+          "source_operands": [
+            "p.domain_element.is_empty()",
+            "p.codomain_element.is_empty()"
+          ]
+        }
+      ],
+      "parameter_schema": true,
+      "constructor_checks": "let c=GaloisConnectionShell::between(\"g\",\"L\",\"R\").with_lower_pair(\"a\",\"b\").with_upper_pair(\"c\",\"d\"); assert_eq!((&*c.label,&*c.poset_left,&*c.poset_right),(\"g\",\"L\",\"R\")); assert_eq!((&*c.lower[0].domain_element,&*c.lower[0].codomain_element,&*c.upper[0].domain_element,&*c.upper[0].codomain_element),(\"a\",\"b\",\"c\",\"d\"));",
+      "faults": [],
+      "scope": "Raw finite label inventory; no naturality, existence, order-adjunction, arrow-square, coslice or lifting law is checked."
+    },
+    {
+      "path": "code/rust/src/category_theory/adjunction/hom_set_adjunction.rs",
+      "sha256": "406abdfcb86f136b792f35ed9a69830ebe71ee6b316a2995579bf4a6640abcfa",
+      "type": "HomSetAdjunctionShell",
+      "required_fields": [
+        "label",
+        "left_functor",
+        "right_functor"
+      ],
+      "collection_schema": [
+        {
+          "field": "mate_pairs",
+          "kind": "records",
+          "fields": [
+            "base_object",
+            "lifted_object",
+            "left_hom",
+            "right_hom"
+          ],
+          "diagnostic": "empty mate pair field at index {i}",
+          "loop": "for (i, p) in self.mate_pairs.iter().enumerate()",
+          "source_operands": [
+            "p.base_object.is_empty()",
+            "p.lifted_object.is_empty()",
+            "p.left_hom.is_empty()",
+            "p.right_hom.is_empty()"
+          ]
+        }
+      ],
+      "parameter_schema": true,
+      "constructor_checks": "let p=MatePair::new(\"A\",\"B\",\"f\",\"g\"); assert_eq!((&*p.base_object,&*p.lifted_object,&*p.left_hom,&*p.right_hom),(\"A\",\"B\",\"f\",\"g\")); let mut h=HomSetAdjunctionShell::between(\"H\",\"L\",\"R\").with_mate(p.clone()); h.add_mate(p.clone()); assert_eq!((&*h.label,&*h.left_functor,&*h.right_functor),(\"H\",\"L\",\"R\")); assert_eq!(h.mate_pairs,vec![p.clone(),p]);",
+      "faults": [],
+      "scope": "Raw finite label inventory; no naturality, existence, order-adjunction, arrow-square, coslice or lifting law is checked."
+    },
+    {
+      "path": "code/rust/src/category_theory/adjunction/unit.rs",
+      "sha256": "57a004a5509c9db9132e60cd87e7349ca8e0aaff544fbbedf11805a77acaa203",
+      "type": "UnitShell",
+      "required_fields": [
+        "label",
+        "source_functor",
+        "target_functor"
+      ],
+      "collection_schema": [
+        {
+          "field": "components",
+          "kind": "map",
+          "fields": [
+            "key",
+            "value"
+          ],
+          "diagnostic": "empty unit component key or value",
+          "loop": "for (obj, mor) in &self.components",
+          "source_operands": [
+            "obj.is_empty()",
+            "mor.is_empty()"
+          ]
+        }
+      ],
+      "parameter_schema": true,
+      "constructor_checks": "let mut c=UnitShell::between(\"u\",\"S\",\"T\").with_component(\"A\",\"f\").with_adjunction_ref(\"Adj\"); c.set_component(\"A\",\"g\"); c.set_component(\"B\",\"h\"); assert_eq!((&*c.label,&*c.source_functor,&*c.target_functor,&*c.adjunction_ref),(\"u\",\"S\",\"T\",\"Adj\")); assert_eq!(c.components.len(),2); assert_eq!(c.components.get(\"A\").map(String::as_str),Some(\"g\")); assert_eq!(c.components.get(\"B\").map(String::as_str),Some(\"h\"));",
+      "faults": [],
+      "scope": "Raw finite label inventory; no naturality, existence, order-adjunction, arrow-square, coslice or lifting law is checked."
+    },
+    {
+      "path": "code/rust/src/category_theory/category/arrow_category.rs",
+      "sha256": "59279011d02e4522b0c30ce503297c6bced165d046077e0edd9b7d1e468f717c",
+      "type": "ArrowCategoryShell",
+      "required_fields": [
+        "label",
+        "base_label"
+      ],
+      "collection_schema": [
+        {
+          "field": "arrow_objects",
+          "kind": "records",
+          "fields": [
+            "source",
+            "target",
+            "name"
+          ],
+          "diagnostic": "empty arrow_object field at index {i}",
+          "loop": "for (i, m) in self.arrow_objects.iter().enumerate()",
+          "source_operands": [
+            "m.source.is_empty()",
+            "m.target.is_empty()",
+            "m.name.is_empty()"
+          ]
+        }
+      ],
+      "parameter_schema": true,
+      "constructor_checks": "let a=ArrowCategoryShell::of_base(\"A\",\"B\"); assert_eq!((&*a.label,&*a.base_label),(\"A\",\"B\")); assert!(a.arrow_objects.is_empty());",
+      "faults": [],
+      "scope": "Raw finite label inventory; no naturality, existence, order-adjunction, arrow-square, coslice or lifting law is checked.",
+      "harness_imports": [
+        "pub use omega_category_theory::category::category;"
+      ]
+    },
+    {
+      "path": "code/rust/src/category_theory/category/coslice_category.rs",
+      "sha256": "7338cf18a1bc61d218468dc903d6caaf57caf19ddb6644058ce9b61a80f830b4",
+      "type": "CosliceCategoryShell",
+      "required_fields": [
+        "label",
+        "base_label",
+        "nadir"
+      ],
+      "collection_schema": [
+        {
+          "field": "objects",
+          "kind": "strings",
+          "fields": [
+            "tag"
+          ],
+          "diagnostic": "empty object tag at index {i}",
+          "loop": "for (i, o) in self.objects.iter().enumerate()",
+          "source_operands": [
+            "o.is_empty()"
+          ]
+        }
+      ],
+      "parameter_schema": true,
+      "constructor_checks": "let c=CosliceCategoryShell::under(\"c\",\"C\",\"N\"); assert_eq!((&*c.label,&*c.base_label,&*c.nadir),(\"c\",\"C\",\"N\")); assert!(c.objects.is_empty());",
+      "faults": [],
+      "scope": "Raw finite label inventory; no naturality, existence, order-adjunction, arrow-square, coslice or lifting law is checked."
+    },
+    {
+      "path": "code/rust/src/category_theory/category/discrete_fibration.rs",
+      "sha256": "b2b46d91b507be0701a9431f42b84cf8d17732938c3ee927639b30f11212b3c5",
+      "type": "DiscreteFibrationShell",
+      "required_fields": [
+        "label",
+        "total_label",
+        "base_label"
+      ],
+      "collection_schema": [
+        {
+          "field": "object_map",
+          "kind": "pairs",
+          "fields": [
+            "total",
+            "base"
+          ],
+          "diagnostic": "empty object_map entry at index {i}",
+          "loop": "for (i, (t, b)) in self.object_map.iter().enumerate()",
+          "source_operands": [
+            "t.is_empty()",
+            "b.is_empty()"
+          ]
+        }
+      ],
+      "parameter_schema": true,
+      "constructor_checks": "let c=DiscreteFibrationShell::between(\"p\",\"E\",\"B\"); assert_eq!((&*c.label,&*c.total_label,&*c.base_label),(\"p\",\"E\",\"B\")); assert!(c.object_map.is_empty());",
+      "faults": [],
+      "scope": "Raw finite label inventory; no naturality, existence, order-adjunction, arrow-square, coslice or lifting law is checked."
+    }
+  ]
+}

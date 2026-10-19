@@ -5,6 +5,7 @@ rebind public child modules to that same crate and change one type re-export.
 This preserves the relevant namespace environment without cloning provider
 algorithms. The source adapter and its narrow observation are explicit.
 """
+import argparse
 from collections import Counter
 from datetime import datetime, timezone
 import json
@@ -57,6 +58,11 @@ def tests(record, selected=None):
 
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--jobs", type=int, default=2)
+    args = parser.parse_args()
+    if args.jobs < 1:
+        parser.error("positive compiler job count required")
     records = json.loads(POLICY.read_text(encoding="utf-8"))["records"]
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     output = ROOT / "evidence/quality/category_homology" / stamp
@@ -108,7 +114,7 @@ def main():
     baseline, restored, builds = [], [], []
     try:
         try:
-            command = ["cargo","test","--offline","--locked","--lib","--no-run","--message-format=json","--target-dir",str(build),"-p","export_challenges","-p","tfqm_category_theory"]
+            command = ["cargo","test","--offline","--locked","--lib","--no-run","--message-format=json","--jobs",str(args.jobs),"--target-dir",str(build),"-p","export_challenges","-p","tfqm_category_theory"]
             run = execute_build(command,work,output / "build.log")
             builds.append(run)
             if run["exit_code"] == 0:

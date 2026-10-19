@@ -276,3 +276,31 @@ Replay the new narrow checks with:
 python code/rust/quality/category_homology/run_metadata_challenges.py --policy code/rust/quality/category_homology/parameter_boundaries.json
 python code/rust/quality/category_homology/run_rank_proof.py --model parameters
 ```
+
+
+The collection checkpoint has 94 completed A records and 98 incomplete records.
+Eight more L2A inventory files preserve their label/component predicates and
+now return typed InvalidShape refusals. The explicit source review maps all
+39 public production methods. Their 1,116 independent cases check component
+subsets, first/middle/last and multiple-invalid positions, label-first refusal,
+raw serde transport and distinct constructor/setter values. The final campaign
+kills all 100 designated faults and passes 43 namespace controls plus all 459
+category tests before/after. No adjunction, order, naturality or lifting theorem
+is inferred from these inventories.
+
+The first collection build failed on a dependency compiler allocation before
+subject tests. Its 100 candidates remain unrun in that receipt. The successful
+retry uses one compiler job and batches of four; the resolution ledger binds
+every retried candidate to the same SHA-256 bytes. Owned outputs are removed
+after both failed and successful builds. Export checks replay all 107 faults
+on the changed signatures and explicitly refresh the two affected facade
+contexts. Metrics/export/metadata runners now accept an explicit --jobs bound.
+
+`20261019T020311Z-score-verification` verifies all 94 completed assessments and
+all 192 unchanged source/score digests. Current remaining gates are in
+`resume-20261019/progress.json`; `cleanup-checkpoint-94.json` finds zero owned
+compiled outputs. Replay the inventory checks with:
+
+```powershell
+python code/rust/quality/category_homology/run_metadata_challenges.py --policy code/rust/quality/category_homology/collection_boundaries.json --jobs 1 --batch-size 4
+```

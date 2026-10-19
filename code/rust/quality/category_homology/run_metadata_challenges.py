@@ -24,6 +24,9 @@ POLICY = Path(__file__).with_name("metadata_boundaries.json")
 
 def challenge(record):
     """Generate tests from the separately reviewed schema, never its guards."""
+    if record.get("collection_schema"):
+        from collection_metadata import challenge as collection_challenge
+        return collection_challenge(record)
     if record.get("parameter_schema"):
         from parameter_metadata import challenge as parameter_challenge
         return parameter_challenge(record)
@@ -109,6 +112,9 @@ mod checklist_challenge {
 
 
 def variants(record, source):
+    if record.get("collection_schema"):
+        from collection_metadata import variants as collection_variants
+        return collection_variants(record, source)
     if record.get("parameter_schema"):
         from parameter_metadata import variants as parameter_variants
         return parameter_variants(record, source)
@@ -154,8 +160,9 @@ def main():
     parser.add_argument("--limit", type=int)
     parser.add_argument("--offset", type=int, default=0)
     parser.add_argument("--batch-size", type=int, default=8)
+    parser.add_argument("--jobs", type=int, default=2)
     args = parser.parse_args()
-    if args.batch_size < 1 or args.offset < 0 or (args.limit is not None and args.limit < 1):
+    if args.batch_size < 1 or args.jobs < 1 or args.offset < 0 or (args.limit is not None and args.limit < 1):
         parser.error("positive batch/limit and nonnegative offset required")
     policy = args.policy.resolve()
     records = json.loads(policy.read_text(encoding="utf-8"))["records"]
@@ -172,6 +179,8 @@ def main():
     shutil.copyfile(policy, output / policy.name)
     if any(record.get("parameter_schema") for record in records):
         shutil.copyfile(Path(__file__).with_name("parameter_metadata.py"), output / "parameter_metadata.py")
+    if any(record.get("collection_schema") for record in records):
+        shutil.copyfile(Path(__file__).with_name("collection_metadata.py"), output / "collection_metadata.py")
     snapshot(work, "category")
     build = work / "target"
     members, campaigns = [], []
@@ -218,7 +227,7 @@ def main():
     category_binary = work / "category-tests.exe"
     try:
         for index, (package, candidates) in enumerate(campaigns):
-            command = ["cargo","test","--offline","--locked","--no-run","--message-format=json",
+            command = ["cargo","test","--offline","--locked","--no-run","--message-format=json","--jobs",str(args.jobs),
                        "--target-dir",str(build),"-p",package]
             if index == 0:
                 command.extend(["-p","tfqm_category_theory"])

@@ -1,0 +1,23 @@
+
+running 6 tests
+test mutant_35::parameter_challenge::constructors_preserve_distinct_supplied_parameters ... ok
+test mutant_35::tests::rejects_empty_pair ... ok
+test mutant_35::tests::validate_rejects_empty ... ok
+test mutant_35::tests::with_maps_ok ... ok
+test mutant_35::tests::validate_ok ... ok
+test mutant_35::parameter_challenge::independent_schema_cases_and_first_error ... FAILED
+
+failures:
+
+---- mutant_35::parameter_challenge::independent_schema_cases_and_first_error stdout ----
+
+thread 'mutant_35::parameter_challenge::independent_schema_cases_and_first_error' (5072) panicked at metadata_challenge_0\mutant_35.rs:159:37:
+expected Some("empty lower pair tag at index 0"), got Ok(()); raw={"label":"label:α\u0000","lower":[{"codomain_element":"","domain_element":"domain_element:0"},{"codomain_element":"codomain_element:1","domain_element":"domain_element:1"},{"codomain_element":"codomain_element:2","domain_element":"domain_element:2"}],"notes":[],"poset_left":"poset_left:α\u0000","poset_right":"poset_right:α\u0000","upper":[{"codomain_element":"codomain_element:0","domain_element":"domain_element:0"},{"codomain_element":"codomain_element:1","domain_element":"domain_element:1"},{"codomain_element":"codomain_element:2","domain_element":"domain_element:2"}]}
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    mutant_35::parameter_challenge::independent_schema_cases_and_first_error
+
+test result: FAILED. 5 passed; 1 failed; 0 ignored; 0 measured; 342 filtered out; finished in 0.00s
+

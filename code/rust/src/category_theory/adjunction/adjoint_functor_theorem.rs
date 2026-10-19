@@ -4,6 +4,7 @@
 //! Records hypothesis/conclusion labels for an AFT-style claim
 //! (e.g. solution-set condition ⇒ right adjoint exists). Shape only.
 
+use omega_category_theory::errors::ArithmosError;
 use serde::{Deserialize, Serialize};
 
 /// Best-effort shell for an adjoint-functor-theorem claim record.
@@ -70,19 +71,19 @@ impl AdjointFunctorTheoremShell {
         self
     }
 
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
         if self.functor_ref.is_empty() {
-            return Err("empty functor_ref".into());
+            return Err(ArithmosError::InvalidShape("empty functor_ref".into()));
         }
         if self.adjoint_side.is_empty() {
-            return Err("empty adjoint_side".into());
+            return Err(ArithmosError::InvalidShape("empty adjoint_side".into()));
         }
         for (i, h) in self.hypotheses.iter().enumerate() {
             if h.is_empty() {
-                return Err(format!("empty hypothesis tag at index {i}"));
+                return Err(ArithmosError::InvalidShape(format!("empty hypothesis tag at index {i}")));
             }
         }
         Ok(())

@@ -1,0 +1,23 @@
+
+running 6 tests
+test mutant_44::tests::rejects_empty_mate_field ... ok
+test mutant_44::parameter_challenge::constructors_preserve_distinct_supplied_parameters ... ok
+test mutant_44::tests::validate_ok ... ok
+test mutant_44::tests::with_mate_ok ... ok
+test mutant_44::tests::validate_rejects_empty ... ok
+test mutant_44::parameter_challenge::independent_schema_cases_and_first_error ... FAILED
+
+failures:
+
+---- mutant_44::parameter_challenge::independent_schema_cases_and_first_error stdout ----
+
+thread 'mutant_44::parameter_challenge::independent_schema_cases_and_first_error' (29568) panicked at metadata_challenge_0\mutant_44.rs:152:37:
+expected Some("empty label"), got Ok(()); raw={"adjunction_ref":"","label":"","left_functor":"left_functor:α\u0000","mate_pairs":[],"notes":[],"right_functor":"right_functor:α\u0000"}
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    mutant_44::parameter_challenge::independent_schema_cases_and_first_error
+
+test result: FAILED. 5 passed; 1 failed; 0 ignored; 0 measured; 342 filtered out; finished in 0.01s
+

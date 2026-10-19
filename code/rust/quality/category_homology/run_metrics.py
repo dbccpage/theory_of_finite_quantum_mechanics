@@ -1,6 +1,7 @@
 """Source-bound Rust AST metric replay, with per-build disposal. Python 3.11+."""
 
 from datetime import datetime, timezone
+import argparse
 import json
 from pathlib import Path
 import shutil
@@ -10,6 +11,11 @@ from run_audit import ROOT, RUST, clear_debug_outputs, digest, execute, execute_
 
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--jobs", type=int, default=2)
+    args = parser.parse_args()
+    if args.jobs < 1:
+        parser.error("positive compiler job count required")
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     receipt = ROOT / "evidence/quality/category_homology" / (stamp + "-metrics")
     receipt.mkdir(parents=True)
@@ -19,7 +25,7 @@ def main():
     tool = Path(__file__).resolve().parent / "rust_metrics"
     sources = inventory()
     write_json(receipt / "source_manifest.json", sources)
-    common = ["--manifest-path", str(tool / "Cargo.toml"), "--target-dir", str(build), "--offline", "--quiet"]
+    common = ["--manifest-path", str(tool / "Cargo.toml"), "--target-dir", str(build), "--offline", "--quiet", "--jobs", str(args.jobs)]
     runs = []
     copied_binary = work / "metrics.exe"
     try:

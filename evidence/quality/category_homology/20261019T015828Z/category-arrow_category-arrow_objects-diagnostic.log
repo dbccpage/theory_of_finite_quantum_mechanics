@@ -1,0 +1,24 @@
+
+running 5 tests
+test mutant_24::parameter_challenge::constructors_preserve_distinct_supplied_parameters ... ok
+test mutant_24::tests::validate_rejects_empty ... ok
+test mutant_24::tests::validate_ok ... ok
+test mutant_24::tests::with_arrow_object_ok ... ok
+test mutant_24::parameter_challenge::independent_schema_cases_and_first_error ... FAILED
+
+failures:
+
+---- mutant_24::parameter_challenge::independent_schema_cases_and_first_error stdout ----
+
+thread 'mutant_24::parameter_challenge::independent_schema_cases_and_first_error' (1616) panicked at metadata_challenge_1\mutant_24.rs:92:77:
+assertion `left == right` failed
+  left: "wrong collection diagnostic"
+ right: "empty arrow_object field at index 0"
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    mutant_24::parameter_challenge::independent_schema_cases_and_first_error
+
+test result: FAILED. 4 passed; 1 failed; 0 ignored; 0 measured; 233 filtered out; finished in 0.00s
+

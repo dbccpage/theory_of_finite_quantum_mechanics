@@ -4,6 +4,7 @@
 //! Hom-set formulation: Hom_D(L(A), B) ≅ Hom_C(A, R(B)).
 //! Diagnostic mate-pair tags only — not a bijection certificate.
 
+use omega_category_theory::errors::ArithmosError;
 use serde::{Deserialize, Serialize};
 
 /// A single mate pair tag: f : L(A)→B  ↔  f̄ : A→R(B).
@@ -82,15 +83,15 @@ impl HomSetAdjunctionShell {
         self.mate_pairs.push(pair);
     }
 
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
         if self.left_functor.is_empty() {
-            return Err("empty left_functor".into());
+            return Err(ArithmosError::InvalidShape("empty left_functor".into()));
         }
         if self.right_functor.is_empty() {
-            return Err("empty right_functor".into());
+            return Err(ArithmosError::InvalidShape("empty right_functor".into()));
         }
         for (i, p) in self.mate_pairs.iter().enumerate() {
             if p.base_object.is_empty()
@@ -98,7 +99,7 @@ impl HomSetAdjunctionShell {
                 || p.left_hom.is_empty()
                 || p.right_hom.is_empty()
             {
-                return Err(format!("empty mate pair field at index {i}"));
+                return Err(ArithmosError::InvalidShape(format!("empty mate pair field at index {i}")));
             }
         }
         Ok(())

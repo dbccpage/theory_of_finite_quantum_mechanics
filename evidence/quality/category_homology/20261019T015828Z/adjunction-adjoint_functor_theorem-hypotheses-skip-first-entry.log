@@ -1,0 +1,29 @@
+
+running 6 tests
+test mutant_11::tests::validate_rejects_empty ... ok
+test mutant_11::parameter_challenge::constructors_preserve_distinct_supplied_parameters ... ok
+test mutant_11::tests::validate_ok ... ok
+test mutant_11::tests::with_hypotheses_ok ... ok
+test mutant_11::tests::rejects_empty_hypothesis ... FAILED
+test mutant_11::parameter_challenge::independent_schema_cases_and_first_error ... FAILED
+
+failures:
+
+---- mutant_11::tests::rejects_empty_hypothesis stdout ----
+
+thread 'mutant_11::tests::rejects_empty_hypothesis' (5448) panicked at metadata_challenge_0\mutant_11.rs:123:9:
+assertion failed: a.validate_shell().is_err()
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- mutant_11::parameter_challenge::independent_schema_cases_and_first_error stdout ----
+
+thread 'mutant_11::parameter_challenge::independent_schema_cases_and_first_error' (24368) panicked at metadata_challenge_0\mutant_11.rs:139:37:
+expected Some("empty hypothesis tag at index 0"), got Ok(()); raw={"adjoint_side":"adjoint_side:α\u0000","claimed_adjoint":"","functor_ref":"functor_ref:α\u0000","hypotheses":["","entry:1:α\u0000","entry:2:α\u0000"],"label":"label:α\u0000","notes":[],"solution_set_condition":""}
+
+
+failures:
+    mutant_11::parameter_challenge::independent_schema_cases_and_first_error
+    mutant_11::tests::rejects_empty_hypothesis
+
+test result: FAILED. 4 passed; 2 failed; 0 ignored; 0 measured; 342 filtered out; finished in 0.00s
+
