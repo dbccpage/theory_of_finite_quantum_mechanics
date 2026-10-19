@@ -1,0 +1,171 @@
+{
+  "AuthorityEffect": "None",
+  "scope": "Exact total finite-word transducers and complete finite-product state/profile descent,first canonical witnesses and reachable-state lifts;arbitrary HistoryContext implementations retain own semantics.",
+  "mutation_names": [
+    "transducer-initial-range",
+    "transducer-next-range",
+    "transducer-output-alphabet",
+    "substitution-images-dropped",
+    "prefix-became-suffix",
+    "suffix-dropped",
+    "predecessor-rooted",
+    "predecessor-input-zero",
+    "word-reconstruction-reversed",
+    "descent-final-emission-dropped",
+    "descent-collision-reversed",
+    "descent-first-image",
+    "descent-second-word",
+    "product-count",
+    "profile-final-emission-dropped",
+    "profile-source-key",
+    "profile-conflict-reversed",
+    "profile-first-witness",
+    "product-initial-control",
+    "product-initial-output",
+    "product-source-update",
+    "product-control-update",
+    "product-step-emission",
+    "verify-descent-reversed",
+    "apply-initial-output",
+    "apply-final-output",
+    "apply-word-range",
+    "run-initial-range",
+    "lift-action-range",
+    "lift-closure-reversed",
+    "lift-wrong-image"
+  ],
+  "records": [
+    {
+      "family": "",
+      "path": "code/rust/src/category_theory/finite_history_context.rs",
+      "sha256": "188f1ce21af8140ee8083a7f00cc9d54be8d8093f0eaf43fa27ac8d0ff3dcb71",
+      "parent_aliases": [],
+      "faults": [
+        [
+          "initial >= n",
+          "initial > n"
+        ],
+        [
+          "row.iter().any(|&x| x >= n)",
+          "row.iter().any(|&x| x > n)"
+        ],
+        [
+          "d >= alphabet_size",
+          "d > alphabet_size"
+        ],
+        [
+          "vec![images]",
+          "vec![vec![vec![]; n]]"
+        ],
+        [
+          "            prefix,\n            vec![vec![]],",
+          "            vec![],\n            vec![prefix],"
+        ],
+        [
+          "            vec![suffix],",
+          "            vec![vec![]],"
+        ],
+        [
+          "parent: Some((parent, input))",
+          "parent: Some((0, input))"
+        ],
+        [
+          "parent: Some((parent, input))",
+          "parent: Some((parent, 0))"
+        ],
+        [
+          "reversed.reverse();",
+          "let _ = &reversed;"
+        ],
+        [
+          "let final_state = run(memory, output, &self.final_outputs[control])?;\n            if let Some(previous)",
+          "let final_state = output;\n            if let Some(previous)"
+        ],
+        [
+          "if previous != final_state {",
+          "if previous == final_state {"
+        ],
+        [
+          "first_image: previous",
+          "first_image: final_state"
+        ],
+        [
+          "second: search.word(id)",
+          "second: search.word(first)"
+        ],
+        [
+          "reachable_product_states: search.vertices.len()",
+          "reachable_product_states: search.vertices.len()-1"
+        ],
+        [
+          "let final_state = run(memory, output, &self.final_outputs[control])?;\n            let source_profile",
+          "let final_state = output;\n            let source_profile"
+        ],
+        [
+          "let source_profile = memory.reports()[source]",
+          "let source_profile = memory.reports()[final_state]"
+        ],
+        [
+          "if previous != target_profile {",
+          "if previous == target_profile {"
+        ],
+        [
+          "search.word(representative), search.word(id)",
+          "search.word(id), search.word(id)"
+        ],
+        [
+          "            self.initial,\n            run(memory",
+          "            0,\n            run(memory"
+        ],
+        [
+          "run(memory, start, &self.initial_output)?",
+          "run(memory, start, &[])?"
+        ],
+        [
+          "memory.transitions()[source][d]",
+          "source"
+        ],
+        [
+          "self.transitions[control][d]",
+          "control"
+        ],
+        [
+          "run(memory, output, &self.outputs[control][d])?",
+          "run(memory, output, &self.final_outputs[control])?"
+        ],
+        [
+          "if *candidate != self.descend(memory, start)? {",
+          "if *candidate == self.descend(memory, start)? {"
+        ],
+        [
+          "let mut output = self.initial_output.clone();",
+          "let mut output = Vec::new();"
+        ],
+        [
+          "output.extend_from_slice(&self.final_outputs[state]);",
+          "let _ = &self.final_outputs;"
+        ],
+        [
+          "d >= self.alphabet_size",
+          "d > self.alphabet_size"
+        ],
+        [
+          "pub fn run(memory: &FiniteMoore, start: usize, word: &[usize]) -> Result<usize, HistoryError> {\n    if start >= memory.state_count()",
+          "pub fn run(memory: &FiniteMoore, start: usize, word: &[usize]) -> Result<usize, HistoryError> {\n    if start > memory.state_count()"
+        ],
+        [
+          "action.iter().any(|&x| x >= n)",
+          "action.iter().any(|&x| x > n)"
+        ],
+        [
+          "representatives[action[x]].is_none()",
+          "representatives[action[x]].is_some()"
+        ],
+        [
+          "self.representatives[self.action[state]]",
+          "self.representatives[state]"
+        ]
+      ]
+    }
+  ]
+}

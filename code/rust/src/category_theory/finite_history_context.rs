@@ -33,6 +33,60 @@ pub struct FiniteWordTransducer {
     final_outputs: Vec<Vec<usize>>,
 }
 
+type ProductState = (usize, usize, usize);
+
+struct ProductVertex {
+    state: ProductState,
+    parent: Option<(usize, usize)>,
+}
+
+struct ProductSearch {
+    vertices: Vec<ProductVertex>,
+    ids: BTreeMap<ProductState, usize>,
+    cursor: usize,
+}
+
+impl ProductSearch {
+    fn new(first: ProductState) -> Self {
+        Self {
+            vertices: vec![ProductVertex {
+                state: first,
+                parent: None,
+            }],
+            ids: BTreeMap::from([(first, 0)]),
+            cursor: 0,
+        }
+    }
+
+    fn pop(&mut self) -> Option<(usize, ProductState)> {
+        let id = self.cursor;
+        let state = self.vertices.get(id)?.state;
+        self.cursor += 1;
+        Some((id, state))
+    }
+
+    fn admit(&mut self, state: ProductState, parent: usize, input: usize) {
+        if let std::collections::btree_map::Entry::Vacant(entry) = self.ids.entry(state) {
+            let id = self.vertices.len();
+            entry.insert(id);
+            self.vertices.push(ProductVertex {
+                state,
+                parent: Some((parent, input)),
+            });
+        }
+    }
+
+    fn word(&self, mut id: usize) -> Vec<usize> {
+        let mut reversed = Vec::new();
+        while let Some((parent, input)) = self.vertices[id].parent {
+            reversed.push(input);
+            id = parent;
+        }
+        reversed.reverse();
+        reversed
+    }
+}
+
 impl FiniteWordTransducer {
     pub fn new(
         alphabet_size: usize,
@@ -109,31 +163,17 @@ impl FiniteWordTransducer {
         memory: &FiniteMoore,
         start: usize,
     ) -> Result<HistoryDescent, HistoryError> {
-        if memory.input_count() != self.alphabet_size {
-            return Err(HistoryError::InvalidAlphabet);
-        }
-        if start >= memory.state_count() {
-            return Err(HistoryError::InvalidInitialState);
-        }
-        let initial = (
-            start,
-            self.initial,
-            run(memory, start, &self.initial_output)?,
-        );
-        let mut histories = BTreeMap::from([(initial, vec![])]);
-        let mut pending = VecDeque::from([initial]);
+        let mut search = self.initial_search(memory, start)?;
         let mut images = vec![None; memory.state_count()];
-        let mut representatives: Vec<Option<Vec<usize>>> = vec![None; memory.state_count()];
-        while let Some((source, control, output)) = pending.pop_front() {
-            let word = histories[&(source, control, output)].clone();
+        let mut representatives = vec![None; memory.state_count()];
+        while let Some((id, (source, control, output))) = search.pop() {
             let final_state = run(memory, output, &self.final_outputs[control])?;
             if let Some(previous) = images[source] {
                 if previous != final_state {
+                    let first = representatives[source].ok_or(HistoryError::InvalidCertificate)?;
                     return Ok(HistoryDescent::Obstructed(HistoryCollision {
-                        first: representatives[source]
-                            .clone()
-                            .ok_or(HistoryError::InvalidCertificate)?,
-                        second: word,
+                        first: search.word(first),
+                        second: search.word(id),
                         source_state: source,
                         first_image: previous,
                         second_image: final_state,
@@ -141,75 +181,77 @@ impl FiniteWordTransducer {
                 }
             } else {
                 images[source] = Some(final_state);
-                representatives[source] = Some(word.clone());
+                representatives[source] = Some(id);
             }
-            for d in 0..self.alphabet_size {
-                let next = (
-                    memory.transitions()[source][d],
-                    self.transitions[control][d],
-                    run(memory, output, &self.outputs[control][d])?,
-                );
-                if let std::collections::btree_map::Entry::Vacant(entry) = histories.entry(next) {
-                    let mut extended = word.clone();
-                    extended.push(d);
-                    entry.insert(extended);
-                    pending.push_back(next);
-                }
-            }
+            self.expand_search(memory, (source, control, output), id, &mut search)?;
         }
         Ok(HistoryDescent::Descends(HistoryStateMap {
             images,
-            reachable_product_states: histories.len(),
+            reachable_product_states: search.vertices.len(),
         }))
     }
-    /// Exact O2 profile-kernel noncongruence witness over all input histories.
+
+    /// Exact O2 profile-kernel noncongruence over all input histories.
     pub fn profile_noncongruence(
         &self,
         memory: &FiniteMoore,
         start: usize,
     ) -> Result<Option<ProfileNoncongruenceWitness>, HistoryError> {
+        let mut search = self.initial_search(memory, start)?;
+        let mut profile_images: BTreeMap<usize, (usize, usize)> = BTreeMap::new();
+        while let Some((id, (source, control, output))) = search.pop() {
+            let final_state = run(memory, output, &self.final_outputs[control])?;
+            let source_profile = memory.reports()[source];
+            let target_profile = memory.reports()[final_state];
+            if let Some(&(previous, representative)) = profile_images.get(&source_profile) {
+                if previous != target_profile {
+                    return Ok(Some((search.word(representative), search.word(id))));
+                }
+            } else {
+                profile_images.insert(source_profile, (target_profile, id));
+            }
+            self.expand_search(memory, (source, control, output), id, &mut search)?;
+        }
+        Ok(None)
+    }
+
+    fn initial_search(
+        &self,
+        memory: &FiniteMoore,
+        start: usize,
+    ) -> Result<ProductSearch, HistoryError> {
         if memory.input_count() != self.alphabet_size {
             return Err(HistoryError::InvalidAlphabet);
         }
         if start >= memory.state_count() {
             return Err(HistoryError::InvalidInitialState);
         }
-        let first = (
+        Ok(ProductSearch::new((
             start,
             self.initial,
             run(memory, start, &self.initial_output)?,
-        );
-        let mut histories = BTreeMap::from([(first, vec![])]);
-        let mut pending = VecDeque::from([first]);
-        let mut profile_images: BTreeMap<usize, (usize, Vec<usize>)> = BTreeMap::new();
-        while let Some((source, control, output)) = pending.pop_front() {
-            let word = histories[&(source, control, output)].clone();
-            let final_state = run(memory, output, &self.final_outputs[control])?;
-            let source_profile = memory.reports()[source];
-            let target_profile = memory.reports()[final_state];
-            if let Some((previous, representative)) = profile_images.get(&source_profile) {
-                if *previous != target_profile {
-                    return Ok(Some((representative.clone(), word)));
-                }
-            } else {
-                profile_images.insert(source_profile, (target_profile, word.clone()));
-            }
-            for d in 0..self.alphabet_size {
-                let next = (
-                    memory.transitions()[source][d],
-                    self.transitions[control][d],
-                    run(memory, output, &self.outputs[control][d])?,
-                );
-                if let std::collections::btree_map::Entry::Vacant(entry) = histories.entry(next) {
-                    let mut next_word = word.clone();
-                    next_word.push(d);
-                    entry.insert(next_word);
-                    pending.push_back(next);
-                }
-            }
-        }
-        Ok(None)
+        )))
     }
+
+    fn expand_search(
+        &self,
+        memory: &FiniteMoore,
+        state: ProductState,
+        parent: usize,
+        search: &mut ProductSearch,
+    ) -> Result<(), HistoryError> {
+        let (source, control, output) = state;
+        for d in 0..self.alphabet_size {
+            let next = (
+                memory.transitions()[source][d],
+                self.transitions[control][d],
+                run(memory, output, &self.outputs[control][d])?,
+            );
+            search.admit(next, parent, d);
+        }
+        Ok(())
+    }
+
     pub fn verify_descent(
         &self,
         memory: &FiniteMoore,
