@@ -118,6 +118,9 @@ struct Echo; impl StructurePreservingMap for Echo {type Domain=String;type Codom
 
 
 def challenge(subject):
+    if Path(subject['path']).stem in ('validation','arrow'):
+        from category_diagnostics import challenge as diagnostics_challenge
+        return diagnostics_challenge(subject)
     return '\n#[cfg(test)] mod independent_record_tests { use super::*;\n'+ORACLES[Path(subject['path']).stem]+'\n}\n'
 
 

@@ -18,7 +18,7 @@ from run_audit import ROOT, digest, execute, write_json
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model",choices=("rank","category","metadata","degree","counter","parameters","finite-set","literal-reversal","shape-inventory","root-records","homology-protocols","degree-repair","two-step-complex","simplicial-closure","simplicial-boundary","simplicial-homology","scalar-admission","carrier-dimensions","vector-maps","graph-incidence"),default="rank")
+    parser.add_argument("--model",choices=("rank","category","metadata","degree","counter","parameters","finite-set","literal-reversal","shape-inventory","root-records","homology-protocols","degree-repair","two-step-complex","simplicial-closure","simplicial-boundary","simplicial-homology","scalar-admission","carrier-dimensions","vector-maps","graph-incidence","validation-inventory","arrow-effects"),default="rank")
     parser.add_argument("--memory-mb", type=int, default=1024,
         help="Explicit Lean memory limit, from 256 to 2048 MiB; default remains 1024.")
     args = parser.parse_args()
@@ -46,6 +46,14 @@ def main():
         proof_name, import_name, namespace = "DegreeWindow", "Data/Int/Basic", "TFQM.DegreeWindow."
         declarations = ("ordered_span_fits_u32", "same_endpoint_zero", "inverted_span_negative")
         scope = "Exact i32 endpoint difference bounds, zero span and inverted-window refusal premise; no category-law claim."
+    elif model == "validation-inventory":
+        proof_name, import_name, namespace = "ValidationInventory", "Data/List/Basic", "TFQM.ValidationInventory."
+        declarations = ("empty_passes", "empty_name", "allPassed_iff", "add_preserves", "add_pass_count", "add_fail_count", "violation_projection", "violation_fails", "empty_batch", "nonempty_batch", "nonempty_batch_fails", "violation_count_append", "failure_count_bound")
+        scope = "Literal caller-supplied report flags and typed diagnostics, append/projection/count behavior; no validation-unit checker or authenticated certificate."
+    elif model == "arrow-effects":
+        proof_name, import_name, namespace = "ArrowEffects", "Data/List/Basic", "TFQM.ArrowEffects."
+        declarations = ("lift_value", "tell_value", "compose_first_error", "compose_second_error", "compose_success", "compose_associative", "fanout_success", "fanout_first_error", "split_success", "split_first_error", "choice_left", "choice_right")
+        scope = "Reader/state/ordered writer/explicit error value semantics for total callbacks with arbitrary Clone function; no Rust callback purity/termination, external-effect rollback or MIR theorem."
     elif model == "graph-incidence":
         proof_name, import_name, namespace = "GraphIncidence", "Data/Matrix/Mul", "TFQM.GraphIncidence."
         declarations = ("incidence_loop_zero", "incidence_reverse", "triangle_cancellation", "distinct_edge_pairs",

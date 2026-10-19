@@ -3,55 +3,77 @@ schema_version: "2.0.0"
 artifact:
   path: "code/rust/src/category_theory/validation.rs"
   language: "Rust"
-  sha256: "847cf46a1c2370a8f09d647d3b27de1f629c11c19243e71a723f3f23c56bb5d5"
-profile: "Exact"
+  sha256: "d5732e24e6c86ae4a9f5e27a39fec0f7d15bd94aa1dfec551d6fa94a585b5d62"
+profile: "Non-Numeric"
 level: "L2"
 level_basis: "Structured data, identifiers, hashes, adapters or declarations; no independent foundational theorem is inferred."
 architecture_target: "L5"
 engineering_target: "A"
 gates:
-  G1: null
-  G2: null
-  G3: null
-  G4: null
-  G5: null
-composite_grade: null
-score_token: null
-is_complete: false
+  G1: "A"
+  G2: "A"
+  G3: "A"
+  G4: "A"
+  G5: "A"
+composite_grade: "A"
+score_token: "L2A"
+is_complete: true
 grade_ceiling: "A"
-evaluation_timestamp: "2026-10-18T18:59:04+00:00"
+evaluation_timestamp: "2026-10-19T16:15:07.789007+00:00"
 AuthorityEffect: "None"
 claim:
   urn: "urn:tfqm:rust:category_theory:validation"
-  description: "Validation \u2014 cross-cutting validation unit declarations.  Maps directly to spec \u00a74 and \u00a710 validation unit lists. Each validation unit is a single-property checker."
+  description: "Diagnostic labels and caller-supplied validation results. AuthorityEffect: None.  Unit names identify obligations; this file does not execute their checkers. Reports preserve supplied flags and diagnostics, including empty reports. Public fields are metadata, not an authenticated mathematical certificate."
   scope: "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified."
 contract:
   status: "pending"
   path: null
   note: "Reserved for a later user-requested contract; none created or asserted here."
 evidence:
-  - {"path": "evidence/quality/category_homology/20261018T185904Z/baseline.json", "sha256": "85191d420cd7e6db714582b74bb35257c4baaaf7a1faa08e4b34fdd32a40c175", "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."}
-  - {"path": "evidence/quality/category_homology/20261018T185904Z/summary.json", "sha256": "8289dbfb4f0900a69f9e37e0b43f673efd182a66c691d97626804d4b0cf67864", "scope": "Source snapshot binding and complete six-outcome accounting."}
-  - {"path": "evidence/quality/category_homology/20261018T185904Z/mutations.json", "sha256": "cdbf19eb38b81d4c1482bcaf6d03e40b86316e6d71e771206da73ac7f4a3dc30", "scope": "Designated critical faults only; outcomes for this file are enumerated below."}
-  - {"path": "evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json", "sha256": "86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1", "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."}
+  - {"path": "evidence/quality/category_homology/20261019T161115Z/baseline.json", "sha256": "9ed886de69f20f5f41f772cf372002a8b7fdc1a2ce80e422c553cd7929411dc1", "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."}
+  - {"path": "evidence/quality/category_homology/20261019T161115Z/summary.json", "sha256": "c092180eb0b06e9ee71ed4b16061fa421fb2b6219ddeb73081c48e39af2e191f", "scope": "Source snapshot binding and complete six-outcome accounting."}
+  - {"path": "evidence/quality/category_homology/20261019T161115Z/mutations.json", "sha256": "90d3fcc97cac077169b25ce555aea1bbf580b6ff4e24c309e6e1fca655387714", "scope": "Designated critical faults only; outcomes for this file are enumerated below."}
+  - {"path": "evidence/quality/category_homology/20261019T161209Z-metrics/receipt.json", "sha256": "5c393b4dca8b141ae0a90a4b18817dff9df34b2c1534f45f1dc241503758f8c8", "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."}
+  - {"path": "evidence/quality/category_homology/20261019T161115Z/dependency_receipt.json", "sha256": "ad118c433c2ea02f18c4c99411b65390319fa578fa515b93eabd03e1194d70ce", "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred."}
+  - {"path": "code/rust/quality/category_homology/assessments/diagnostic_arrow/validation.json", "sha256": "28fa878b259f3ee3afcbf7990478bbde13ba92ce99df73eaccbb6332fdf5433c", "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping."}
 verification:
   baseline_ok: true
   source_snapshot_unchanged: true
-  compiled_scope: "shared scoped crate build"
-  local_mutant_ids: []
+  compiled_scope: "Actual category crate and one-fault copies inside their real parent scopes; no visibility widening or provider replacement"
+  local_mutant_ids:
+    - "RR-1-0"
+    - "RR-2-1"
+    - "RR-3-2"
+    - "RR-4-3"
+    - "RR-5-4"
+    - "RR-6-5"
+    - "RR-7-6"
+    - "RR-8-7"
+    - "RR-9-8"
+    - "RR-10-9"
+    - "RR-11-10"
+    - "RR-12-11"
+    - "RR-13-12"
+    - "RR-14-13"
+    - "RR-15-14"
+    - "RR-16-15"
+    - "RR-17-16"
+    - "RR-18-17"
+    - "RR-19-18"
+  dependency_contents_stable: true
 mutation_accounting:
-  killed: 0
+  killed: 19
   survived: 0
   demonstrably_equivalent: 0
   invalid: 0
   inconclusive: 0
   unrun: 0
-  conservative_ratio: null
+  conservative_ratio: 1.0
 structure:
   tool: "syn 3.0.9 source AST"
   source_ast_parsed: true
   expanded_ast: false
-  physical_lines: 337
+  physical_lines: 338
   parsed_production_functions: 10
   max_production_ccn: 2
   cognitive_complexity_upper_bound: 2
@@ -59,7 +81,8 @@ structure:
   opaque_function_macros: []
   functions_exceeding_A: []
   scope: "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
-open_findings:
-  - "A complete five-gate semantic, failure and consumer audit has not been established for this file."
-  - "Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds."
-  - "External path dependency source contents have not received a separate origin/content attestation."
+open_findings: []
+assurance_limits:
+  - "A is scoped source/model/native evidence, not A+, Rust/MIR extraction, allocator/crash totality or full application replay."
+  - "Finite fixtures do not prove arbitrary callback purity/termination or all mathematical named obligations. Public diagnostics are forgeable caller metadata; fresh concrete checkers and private certificates are separately assessed."
+  - "Two initial common-build refusals remain unrun receipts: collection inference in a removed-use mutant, then ambiguous trace fixture type. Repaired candidate and annotated trace compile in final campaign; no failed attempt is relabeled a pass. Contracts remain pending."

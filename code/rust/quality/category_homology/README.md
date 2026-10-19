@@ -665,3 +665,38 @@ full category/homology goal remain unfinished; the PR remains draft.
 The retained test-body metric views intentionally contain seven-space lines
 where test attributes were blanked. Their exact evidence bytes are preserved;
 whitespace-only diff checks exclude these views as well as execution logs.
+
+Diagnostic/arrow checkpoint: 142 completed A assessments and 50 incomplete.
+Validation inventory is L2A; arrow combinators are L3A. Non-Numeric profiles
+were selected before evaluation. Both source changes are documentation only,
+with every noncomment line preserved. Labels name obligations but execute no
+checkers. Reports store caller-supplied flags and diagnostics; empty reports
+pass vacuously, typed issues of every severity block success, and unrestricted
+public fields do not authenticate a mathematical certificate.
+
+Arrow routing preserves Reader context, sequential state/value flow, ordered
+logs, original callback errors and branch exclusivity. A failed second callback
+returns no state/log value; external effects are not rolled back. Fan-out sends
+Clone::clone to its left callback and the original to its right. A non-lawful
+Clone fixture tests that distinction; Rust Fn/Clone/Into do not imply purity,
+termination or panic freedom. Raw rational context values are opaque transport,
+not admitted scalar arithmetic. No blanket runtime category laws are claimed.
+
+ValidationInventory checks thirteen unrestricted report/count/projection facts;
+ArrowEffects checks twelve pure total callback-value facts, including value-model
+associativity with ordered append and arbitrary Clone. Rust correspondence and
+external callback behavior remain separate reviewed boundaries. Final native
+20261019T161115Z detects all 38 designated valid faults (19 per file), with no
+unresolved outcomes. All 459 original category tests pass before/after, plus
+five diagnostic and four arrow control tests. Two initial common-build type
+refusals remain with all 38 candidates unrun: a removed-use collection inference
+and an ambiguous trace fixture. Those candidate/fixture repairs do not change
+production source or relabel failed receipts. All seventeen production bodies,
+data/derive/macro obligations and costs are reviewed against current metrics.
+
+Two unchanged-own-source category certificate/validator records retain their
+primary/metrics with explicit documentation-provider preservation and current
+report-model/composition evidence. 20261019T161510Z-score-verification passes
+all 142 completed assessments, all source/score digests and 27 receipt groups.
+Cleanup checkpoint 142 finds no owned debug/tmp/compiled outputs. Small exact
+source snapshots remain. Contracts and the full goal remain unfinished; PR draft.

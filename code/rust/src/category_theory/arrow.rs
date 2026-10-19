@@ -1,5 +1,7 @@
 //! Exact Reader/State/Writer arrow combinators. AuthorityEffect: None.
 //! Callback termination and panic behavior remain the caller's trust boundary.
+//! Errors discard returned state/logs; callback side effects are not rolled back.
+//! Fan-out sends `Clone::clone` to the left callback and the original to the right.
 
 use std::sync::Arc;
 
@@ -72,7 +74,7 @@ where
     Arc::new(move |_ctx, st, a| Ok((vec![v.clone()], st, a)))
 }
 
-// Lift a pure function on the **input** side (Reader), leaving state and writer untouched
+// Lift a pure input transformation, as in arr; preserve state and emit no log.
 pub fn map_input<A, B, F>(f: F) -> Arrow<A, B>
 where
     A: 'static + Send + Sync,

@@ -1,0 +1,24 @@
+
+running 5 tests
+test root_record_replay_13::subject::tests::validation_report_all_pass ... ok
+test root_record_replay_13::subject::independent_record_tests::fields_and_report_flags_are_literal ... ok
+test root_record_replay_13::subject::tests::validation_report_with_failure ... ok
+test root_record_replay_13::subject::independent_record_tests::tagged_diagnostics_keep_data_and_distinct_keys ... ok
+test root_record_replay_13::subject::independent_record_tests::typed_projection_preserves_order_and_every_severity ... FAILED
+
+failures:
+
+---- root_record_replay_13::subject::independent_record_tests::typed_projection_preserves_order_and_every_severity stdout ----
+
+thread 'root_record_replay_13::subject::independent_record_tests::typed_projection_preserves_order_and_every_severity' (15816) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\rr\261019T161115\src\category_theory\q\n13.rs:361:319:
+assertion `left == right` failed
+  left: []
+ right: [ValidationViolation { unit: FiniteCategory(IdentityLaw), location: Object("object"), message: "first", severity: Warning }, ValidationViolation { unit: FiniteCategory(IdentityLaw), location: Object("object"), message: "", severity: Info }, ValidationViolation { unit: FiniteCategory(IdentityLaw), location: Object("object"), message: "last", severity: Error }]
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    root_record_replay_13::subject::independent_record_tests::typed_projection_preserves_order_and_every_severity
+
+test result: FAILED. 4 passed; 1 failed; 0 ignored; 0 measured; 634 filtered out; finished in 0.00s
+

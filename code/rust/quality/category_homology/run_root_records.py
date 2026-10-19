@@ -5,6 +5,7 @@ Private helpers are tested without widening production visibility or replacing
 providers. AuthorityEffect: None. No whole-workspace or extracted-proof claim.
 """
 from collections import Counter
+import argparse
 from datetime import datetime, timezone
 import json
 from pathlib import Path
@@ -27,14 +28,19 @@ def test_ok(run):
 
 
 def main():
+    parser=argparse.ArgumentParser()
+    parser.add_argument("--policy",type=Path,default=POLICY)
+    args=parser.parse_args()
+    policy=args.policy.resolve()
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     output = ROOT/"evidence/quality/category_homology"/stamp
     output.mkdir(parents=True)
     work = RUST/"target/rr"/stamp[2:15]
     inputs = inventory()
     write_json(output/"source_manifest.json",inputs)
-    for name in (Path(__file__).name,"root_records.py",POLICY.name):
+    for name in (Path(__file__).name,"root_records.py","category_diagnostics.py"):
         shutil.copyfile(Path(__file__).with_name(name),output/name)
+    shutil.copyfile(policy,output/policy.name)
     snapshot(work,"category")
     package = work/"src/category_theory"
     manifest = package/"Cargo.toml"
@@ -44,7 +50,7 @@ def main():
     manifest.write_text(text+'\n[dev-dependencies]\nserde_json="1.0"\n',encoding="utf-8")
     generated = package/"q"
     generated.mkdir()
-    subjects = json.loads(POLICY.read_text(encoding="utf-8"))["records"]
+    subjects = json.loads(policy.read_text(encoding="utf-8"))["records"]
     declarations, controls, records = {}, [], []
     for subject in subjects:
         path = ROOT/subject["path"]
@@ -126,7 +132,9 @@ def main():
         "generated":len(records),"mutation_accounting":{key:counts[key] for key in ("killed","survived","demonstrably_equivalent","invalid","inconclusive","unrun")},
         "conservative_ratio":counts["killed"]/eligible if eligible else None,"all_files_L5A":False,
         "compiled_subjects":[record["path"] for record in subjects],"compiled_scope":"Actual category crate and one-fault copies inside their real parent scopes; no visibility widening or provider replacement",
-        "build_outputs_removed":not build.exists(),"runner_sha256":digest(Path(__file__)),"policy_sha256":digest(POLICY),
+        "build_outputs_removed":not build.exists(),"runner_sha256":digest(output/Path(__file__).name),"policy_sha256":digest(output/policy.name),
+        "runner_source_unchanged":digest(Path(__file__))==digest(output/Path(__file__).name),
+        "policy_source_unchanged":digest(policy)==digest(output/policy.name),
         "scope":"Canonical category tests plus independently dispatched controls/faults. All copied candidate files reside inside the dependency-bound package. No whole-workspace, independent compiler or Rust/MIR proof."}
     write_json(output/"summary.json",summary)
     print("Receipt:",output,flush=True)

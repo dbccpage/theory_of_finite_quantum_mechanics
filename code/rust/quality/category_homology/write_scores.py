@@ -234,7 +234,7 @@ def make_record(path, receipt, summary, mutations, metrics, metric_receipt):
     return {
         "schema_version":"2.0.0",
         "artifact":{"path":path.relative_to(ROOT).as_posix(),"language":"Rust","sha256":sha(path)},
-        "profile":"Exact" if key in ("category_theory/abelian/chain_complex_category.rs",
+        "profile":"Non-Numeric" if key in ("category_theory/arrow.rs", "category_theory/validation.rs") else "Exact" if key in ("category_theory/abelian/chain_complex_category.rs",
             "category_theory/abelian/exact_category.rs", "category_theory/foundations/hlevel.rs",
             "category_theory/foundations/truncation.rs", "category_theory/foundations/universe.rs",
             "category_theory/functor/diagonal_functor.rs", "category_theory/foundations/finite_set.rs",
