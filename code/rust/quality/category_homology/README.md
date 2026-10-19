@@ -397,3 +397,28 @@ consumer reviews bind the advertised scope. The latest score verifier
 `20261019T032434Z-score-verification` rechecks every completed record and all
 192 unchanged source/score digests; cleanup checkpoint 125 finds no owned
 compiled outputs. Contracts and the broad L5A goal remain unfinished.
+
+
+Homology protocol checkpoint: 127 completed A records and 65 incomplete.
+All fourteen nominal ID types, checked serde/basis admission, 65,540 degree
+values against widened i64 shifts, private display parser cases and all 37
+homology error variants receive explicit source/runtime reviews. Native final
+replay kills all 59 faults, with 12 controls and 99 canonical homology tests
+before/after. The kind checker formerly had CCN 22; cohesive 6/8-kind helpers
+preserve its exact 14-call order and reduce the main CCN to 10. Authored macro
+methods are explicitly mapped; standard serde/thiserror derive protocols are
+trusted runtime dependencies, not falsely measured as zero expanded code.
+Eight degree/nonzero lemmas check cleanly. Initial failed proof and encoding
+attempts remain excluded. Three affected caller context deltas preserve their
+actual earlier primary mathematical/mutation evidence.
+
+Review also establishes three incomplete G2 E records: chain/cochain dim and
+Simplex::face narrow the rejected usize index 4294967296 to InvalidDegree(0).
+Two verbatim dim-method minimal adapters reproduce the error; the face finding
+is a source trace using the same compiled cast behavior, not a claimed whole
+simplicial execution. A whole-module typed repair remains next. These known
+defects stay visible while other gates remain null. The full 127-record check
+is 20261019T034253Z-score-verification; the explicit incremental receipt adds
+only the final incomplete face finding and checks all three partial records.
+All completed source/score bytes remain identical. Cleanup checkpoint 127
+finds zero owned compiled outputs; the concurrent active shared cache is held.

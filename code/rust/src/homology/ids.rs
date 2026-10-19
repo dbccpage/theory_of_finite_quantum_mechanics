@@ -216,22 +216,8 @@ pub fn identifier_kinds_round_trip(id: u64) -> Result<(), IdError> {
     if payload != id {
         return Err(IdError::ZeroId);
     }
-    let prefixes = [
-        ChainId::new(1)?.to_string(),
-        CochainId::new(1)?.to_string(),
-        CycleId::new(1)?.to_string(),
-        CocycleId::new(1)?.to_string(),
-        BoundaryId::new(1)?.to_string(),
-        CoboundaryId::new(1)?.to_string(),
-        ChainComplexId::new(1)?.to_string(),
-        CochainComplexId::new(1)?.to_string(),
-        HomologyClassId::new(1)?.to_string(),
-        CohomologyClassId::new(1)?.to_string(),
-        CarrierId::new(1)?.to_string(),
-        MatrixId::new(1)?.to_string(),
-        ManifestId::new(1)?.to_string(),
-        WitnessId::new(1)?.to_string(),
-    ];
+    let mut prefixes = element_kind_prefixes()?.to_vec();
+    prefixes.extend(structure_kind_prefixes()?);
     for (index, prefix) in prefixes.iter().enumerate() {
         let head = prefix.split('(').next().unwrap_or("");
         if head.is_empty() {
@@ -245,6 +231,30 @@ pub fn identifier_kinds_round_trip(id: u64) -> Result<(), IdError> {
         }
     }
     Ok(())
+}
+
+fn element_kind_prefixes() -> Result<[String; 6], IdError> {
+    Ok([
+        ChainId::new(1)?.to_string(),
+        CochainId::new(1)?.to_string(),
+        CycleId::new(1)?.to_string(),
+        CocycleId::new(1)?.to_string(),
+        BoundaryId::new(1)?.to_string(),
+        CoboundaryId::new(1)?.to_string(),
+    ])
+}
+
+fn structure_kind_prefixes() -> Result<[String; 8], IdError> {
+    Ok([
+        ChainComplexId::new(1)?.to_string(),
+        CochainComplexId::new(1)?.to_string(),
+        HomologyClassId::new(1)?.to_string(),
+        CohomologyClassId::new(1)?.to_string(),
+        CarrierId::new(1)?.to_string(),
+        MatrixId::new(1)?.to_string(),
+        ManifestId::new(1)?.to_string(),
+        WitnessId::new(1)?.to_string(),
+    ])
 }
 
 fn parse_parenthesized(text: &str, kind: &str) -> Result<u64, IdError> {

@@ -18,7 +18,7 @@ from run_audit import ROOT, digest, execute, write_json
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model",choices=("rank","category","metadata","degree","counter","parameters","finite-set","literal-reversal","shape-inventory","root-records"),default="rank")
+    parser.add_argument("--model",choices=("rank","category","metadata","degree","counter","parameters","finite-set","literal-reversal","shape-inventory","root-records","homology-protocols"),default="rank")
     model = parser.parse_args().model
     if model == "rank":
         proof_name, import_name, namespace = "RankCertificate", "LinearAlgebra/Matrix/Rank", "TFQM.RankCertificate."
@@ -41,6 +41,11 @@ def main():
         proof_name, import_name, namespace = "DegreeWindow", "Data/Int/Basic", "TFQM.DegreeWindow."
         declarations = ("ordered_span_fits_u32", "same_endpoint_zero", "inverted_span_negative")
         scope = "Exact i32 endpoint difference bounds, zero span and inverted-window refusal premise; no category-law claim."
+    elif model == "homology-protocols":
+        proof_name, import_name, namespace = "HomologyProtocols", "Data/Int/Basic", "TFQM.HomologyProtocols."
+        declarations = ("numeric_zero", "numeric_success_iff", "numeric_preserves_payload", "predecessor_success_iff",
+                        "successor_success_iff", "predecessor_refusal_iff", "successor_refusal_iff", "degree_drop_inverts")
+        scope = "Nonzero numeric identifier payload preservation and exact bounded i32 predecessor/successor refusal and inverse law."
     elif model == "root-records":
         proof_name, import_name, namespace = "RootRecords", "Data/Int/Basic", "TFQM.RootRecords."
         declarations = ("joinable_iff", "foreign_category_refused", "report_empty", "report_valid_head",

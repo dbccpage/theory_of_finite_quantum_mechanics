@@ -10,16 +10,16 @@ level_basis: "Structured data, identifiers, hashes, adapters or declarations; no
 architecture_target: "L5"
 engineering_target: "A"
 gates:
-  G1: null
-  G2: null
-  G3: null
-  G4: null
-  G5: null
-composite_grade: null
-score_token: null
-is_complete: false
+  G1: "A"
+  G2: "A"
+  G3: "A"
+  G4: "A"
+  G5: "A"
+composite_grade: "A"
+score_token: "L2A"
+is_complete: true
 grade_ceiling: "A"
-evaluation_timestamp: "2026-10-18T20:02:56+00:00"
+evaluation_timestamp: "2026-10-19T03:39:20.410497+00:00"
 AuthorityEffect: "None"
 claim:
   urn: "urn:tfqm:rust:homology:errors"
@@ -30,25 +30,63 @@ contract:
   path: null
   note: "Reserved for a later user-requested contract; none created or asserted here."
 evidence:
-  - {"path": "evidence/quality/category_homology/20261018T200256Z/baseline.json", "sha256": "751b1871d1d2b3d4e621420ea7d4b9c9ac39362a50c0c8785dda94ce63c55261", "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."}
-  - {"path": "evidence/quality/category_homology/20261018T200256Z/summary.json", "sha256": "443696d2aed3064e745e4f2c8bdbab9bb9aa53c32ff0d2f831c32ab115d83148", "scope": "Source snapshot binding and complete six-outcome accounting."}
-  - {"path": "evidence/quality/category_homology/20261018T200256Z/mutations.json", "sha256": "b3beaab36a56cd53dcef03ddeca2137d501f9938580f22702f8789ad58469959", "scope": "Designated critical faults only; outcomes for this file are enumerated below."}
-  - {"path": "evidence/quality/category_homology/20261018T195109Z-metrics/receipt.json", "sha256": "3b93cf640570717a5717bd47598f914a809b309a1daf6877c634417c34b449da", "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."}
-  - {"path": "evidence/quality/category_homology/20261018T200256Z/dependency_receipt.json", "sha256": "d05f4fc6722e2b0b16fe4a46da90122479c8d53b11e8a1421ec9e07edbc131e7", "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred."}
+  - {"path": "evidence/quality/category_homology/20261019T033051Z/baseline.json", "sha256": "843840ab84fc6528912d202a56ab18f064e06cd99d151f28bf29f4e3c517955c", "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."}
+  - {"path": "evidence/quality/category_homology/20261019T033051Z/summary.json", "sha256": "5f95c474a421f178cf3df3dc7f8537ffe6643314c8a43277b50366461fb9f19f", "scope": "Source snapshot binding and complete six-outcome accounting."}
+  - {"path": "evidence/quality/category_homology/20261019T033051Z/mutations.json", "sha256": "8cef4e3d8beb8361824e344ec2734c031025f9102be491c07b99e946c1d03c5a", "scope": "Designated critical faults only; outcomes for this file are enumerated below."}
+  - {"path": "evidence/quality/category_homology/20261019T033632Z-metrics/receipt.json", "sha256": "88fc36b7e4d283dd2d27df21d3e0f9847cd1c5d4edca3eb264708cfbcc1b9cf8", "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."}
+  - {"path": "evidence/quality/category_homology/20261019T033051Z/dependency_receipt.json", "sha256": "81c929bcb35be1d674999ed0c9ea0b4193fc5dd4d5110e44c8914694d560bb1d", "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred."}
+  - {"path": "code/rust/quality/category_homology/assessments/homology_protocols/errors.json", "sha256": "831468daad3cb76f9bdd1ec4367521be1968ae737f2fbb99708089b1b3104a13", "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping."}
 verification:
   baseline_ok: true
   source_snapshot_unchanged: true
-  compiled_scope: "shared scoped crate build"
-  local_mutant_ids: []
+  compiled_scope: "Actual homology namespace and one-fault copies inside their real parent scopes; no visibility widening or provider replacement"
+  local_mutant_ids:
+    - "HP-24-0"
+    - "HP-25-1"
+    - "HP-26-2"
+    - "HP-27-3"
+    - "HP-28-4"
+    - "HP-29-5"
+    - "HP-30-6"
+    - "HP-31-7"
+    - "HP-32-8"
+    - "HP-33-9"
+    - "HP-34-10"
+    - "HP-35-11"
+    - "HP-36-12"
+    - "HP-37-13"
+    - "HP-38-14"
+    - "HP-39-15"
+    - "HP-40-16"
+    - "HP-41-17"
+    - "HP-42-18"
+    - "HP-43-19"
+    - "HP-44-20"
+    - "HP-45-21"
+    - "HP-46-22"
+    - "HP-47-23"
+    - "HP-48-24"
+    - "HP-49-25"
+    - "HP-50-26"
+    - "HP-51-27"
+    - "HP-52-28"
+    - "HP-53-29"
+    - "HP-54-30"
+    - "HP-55-31"
+    - "HP-56-32"
+    - "HP-57-33"
+    - "HP-58-34"
+    - "HP-59-35"
+    - "HP-60-36"
   dependency_contents_stable: true
 mutation_accounting:
-  killed: 0
+  killed: 37
   survived: 0
   demonstrably_equivalent: 0
   invalid: 0
   inconclusive: 0
   unrun: 0
-  conservative_ratio: null
+  conservative_ratio: 1.0
 structure:
   tool: "syn 3.0.9 source AST"
   source_ast_parsed: true
@@ -61,7 +99,7 @@ structure:
   opaque_function_macros: []
   functions_exceeding_A: []
   scope: "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
-open_findings:
-  - "A complete five-gate semantic, failure and consumer audit has not been established for this file."
-  - "Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds."
-  - "External path dependency source contents have not received a separate origin/content attestation."
+open_findings: []
+assurance_limits:
+  - "L2 typed IDs/error data; no foundational mathematics inferred from type names or diagnostic text."
+  - "No global ID generation/uniqueness, attached contracts, A+, expanded compiler/MIR proof, dependency-origin attestation, allocator totality or whole-workspace green."

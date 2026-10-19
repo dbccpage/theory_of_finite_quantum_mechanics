@@ -1,0 +1,36 @@
+{
+  "AuthorityEffect": "None",
+  "artifact": {
+    "language": "Rust",
+    "path": "code/rust/src/homology/simplicial.rs",
+    "sha256": "bcc037d479e319a8aa8e0cffb0b7a7106f0b1738e7b059e1c3136c2852cc1c52"
+  },
+  "assurance_limits": [
+    "Source-derived public-method trace and previously compiled identical cast behavior. No separate execution of Simplex::face or whole simplicial suite is claimed."
+  ],
+  "basis": {
+    "G2": [
+      "Simplex with vertices [1,2] and removed_index=4294967296 takes the first refusal guard, then casts the index to i32 and returns InvalidDegree(0). Source-pinned trace plus the separately compiled identical cast establish exact diagnostic information loss."
+    ]
+  },
+  "evaluation_timestamp": "2026-10-19T03:45:49.151513+00:00",
+  "evidence": [
+    {
+      "path": "evidence/quality/category_homology/resume-20261019/simplicial-face-index-finding.json",
+      "sha256": "f10b8011a157e4bd2fbcb15a72e6370feec62ea5037c567dfa16ff1bc42f7740"
+    },
+    {
+      "path": "evidence/quality/category_homology/resume-20261019/degree-index-narrowing/finding.json",
+      "sha256": "f759cd2fa8bb9e0c10ddc05883c7e60144543380073048c6ac1380c000cfc3b9"
+    }
+  ],
+  "gates": {
+    "G2": "E"
+  },
+  "open_findings": [
+    "Known exact-profile narrowing on the public face-index refusal branch.",
+    "Other semantic, safety, proof, adversarial and cost gates remain unassessed; no completed token."
+  ],
+  "reviewer": "Codex reachable face-index diagnostic counterexample review",
+  "schema_version": "1.0.0"
+}

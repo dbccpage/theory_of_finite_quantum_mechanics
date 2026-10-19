@@ -11,15 +11,15 @@ architecture_target: "L5"
 engineering_target: "A"
 gates:
   G1: null
-  G2: null
+  G2: "E"
   G3: null
   G4: null
   G5: null
 composite_grade: null
 score_token: null
 is_complete: false
-grade_ceiling: "A"
-evaluation_timestamp: "2026-10-18T18:42:03+00:00"
+grade_ceiling: "E"
+evaluation_timestamp: "2026-10-19T03:42:48.308395+00:00"
 AuthorityEffect: "None"
 claim:
   urn: "urn:tfqm:rust:homology:cochain_complex"
@@ -30,24 +30,26 @@ contract:
   path: null
   note: "Reserved for a later user-requested contract; none created or asserted here."
 evidence:
-  - {"path": "evidence/quality/category_homology/20261018T184203Z/baseline.json", "sha256": "e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c", "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."}
-  - {"path": "evidence/quality/category_homology/20261018T184203Z/summary.json", "sha256": "ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67", "scope": "Source snapshot binding and complete six-outcome accounting."}
-  - {"path": "evidence/quality/category_homology/20261018T184203Z/mutations.json", "sha256": "c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5", "scope": "Designated critical faults only; outcomes for this file are enumerated below."}
-  - {"path": "evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json", "sha256": "86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1", "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."}
+  - {"path": "evidence/quality/category_homology/20261019T013620Z/baseline.json", "sha256": "83cf31e8bad88938f47be7d18a7f391f672b24ea7cb3a4b9206fb631d1bfc09e", "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."}
+  - {"path": "evidence/quality/category_homology/20261019T013620Z/summary.json", "sha256": "8514cafbd4388ede5f1e259e4e6d483d07c9e656a56199d3c49ec15dc7cd19e7", "scope": "Source snapshot binding and complete six-outcome accounting."}
+  - {"path": "evidence/quality/category_homology/20261019T013620Z/mutations.json", "sha256": "3f00855cdcd9e7b950db6288a5db150c9a69a8fa7ba7badbb1be9a9f187a1aee", "scope": "Designated critical faults only; outcomes for this file are enumerated below."}
+  - {"path": "evidence/quality/category_homology/20261019T033632Z-metrics/receipt.json", "sha256": "88fc36b7e4d283dd2d27df21d3e0f9847cd1c5d4edca3eb264708cfbcc1b9cf8", "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."}
+  - {"path": "evidence/quality/category_homology/20261019T013620Z/dependency_receipt.json", "sha256": "f56928af34b26b35d65c5712a7ba0d1bdfc936d0cbdb902722746ff7896e1b47", "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred."}
+  - {"path": "code/rust/quality/category_homology/assessments/degree_index_findings/cochain_complex.json", "sha256": "5db979b84b5bd2e9799be2420e72eafdc4750634b3342c2db0871a42c8945be5", "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping."}
 verification:
   baseline_ok: true
   source_snapshot_unchanged: true
   compiled_scope: "shared scoped crate build"
-  local_mutant_ids:
-    - "H07-provenance"
+  local_mutant_ids: []
+  dependency_contents_stable: true
 mutation_accounting:
-  killed: 1
+  killed: 0
   survived: 0
   demonstrably_equivalent: 0
   invalid: 0
   inconclusive: 0
   unrun: 0
-  conservative_ratio: 1.0
+  conservative_ratio: null
 structure:
   tool: "syn 3.0.9 source AST"
   source_ast_parsed: true
@@ -61,6 +63,7 @@ structure:
   functions_exceeding_A: []
   scope: "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
 open_findings:
-  - "A complete five-gate semantic, failure and consumer audit has not been established for this file."
-  - "Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds."
-  - "External path dependency source contents have not received a separate origin/content attestation."
+  - "Rejected degree index 4294967296 is narrowed to InvalidDegree(0) in both finite complex dimension methods. That typed payload identifies a supported degree and loses the original input, violating exact diagnostic preservation."
+  - "Remaining semantic/failure/proof/consumer gates are unassessed; no completed score token. Native whole-module repair replay remains required."
+assurance_limits:
+  - "Verbatim public dim bodies in minimal std-only receiver/error adapters. Source-derived method counterexample, not a whole-package regression test. Final native package repair tests remain required."
