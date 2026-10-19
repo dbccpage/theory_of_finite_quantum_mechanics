@@ -1,0 +1,273 @@
+add_or_refine_generators:
+- id: amplitude_pair
+  ordered_inputs:
+  - SuppliedRationalAmplitudePair
+  output: RationalAmplitudePair
+  arity: 1
+  carrier: Declared SuppliedRationalAmplitudePair
+  coefficient_ring: Exact rational scalars, Gaussian Hermitian coordinates, natural/Boolean fields or
+    the explicitly finite group
+  hypotheses:
+  - Explicit readouts on the same finite carrier; the separate X,Z commutator control is a declared matrix
+    example.
+  semantic_predicate: Retain the supplied amplitudes.
+  source_pins:
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_ds_qm207_211_five_import_cascade_proved_lean.yaml
+    sha256: 9432a5c4497d6c5216cb3659bd659537b343696980c3c2eb23b8f08b063825cd
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/inputs/this_repository/dag/operads/ds_qm207_211_five_import_cascade.yaml
+    sha256: 44e5a60d4b7fa55c43f0575614b67bbbdb546d9e126ea29280000b816ab7fdf7
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/inputs/this_repository/lean4/H012OperatorAlgebraShadow.lean
+    sha256: bee179ccd42c430d04f382bcf88c73976797d938a5162bda1e8c8a24bebba3a3
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/inputs/this_repository/lean4/H013BornPairingBoundary.lean
+    sha256: debafe0eefb016e289a18fb9a308224f73464282e15c17eef143e5ea5342b642
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs
+    sha256: 38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/inputs/this_repository/dag/derivations/09_finite_hilbert/tfq_0314_cochain_lift_still_prices_the_born_law_as_an_import.md
+    sha256: bcd2280fd5581256f26fe9ae962a406f2d93119dee9de3debeaf251930551f7d
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/p0/operation_sources/code/python/src/qm/boundaries_exact.py
+    sha256: 41f6505663ecf8257b7cce1b36f6e5d9081862754a5514313e8ef6d4a88d4235
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/p0/operation_sources/code/python/tests/test_boundaries_exact.py
+    sha256: 81a98a49cd2ee6190d60a2ca64899301ff01cae5ee5daab81aebdf7761fe6da4
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/p0/operation_sources/code/rust/src/finite_probability/boundaries_exact.rs
+    sha256: f9488a7ec057ad3245770b0f78720050eefe3829b97c22ae8505980fd17f6f1b
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/boundaries_exact_replay.rs
+    sha256: 1c212fce1ed975acc90fdbb7a22b1cc3a65d4588c193e276a7a329b440719395
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/boundaries_checker.py
+    sha256: 71ec9241b94d311710a25f669912ca163006b6b3f56e0a18739c6dd4e9e8b8dd
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+    sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/p0/operation_sources/dag/results/batches/20261019T201403Z_prompts_72_91/tools/prepare.py
+    sha256: 63d4e890ceae99ea497d49db98875c71ccc17f1d41e2a5df749d03f1692f4ffb
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/p0/operation_sources/dag/results/batches/20261019T201403Z_prompts_72_91/tools/specs.py
+    sha256: 04ae08a56fac87673251fbf423b4611481366be5c9ac78e09e9b4d6713861e2a
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/custody.py
+    sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+    sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/check_candidate.py
+    sha256: 6a884bf0ea29e648779f708d4547c65b05676f823e6e72ce615d72bdf22e4a2c
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/format_certificate.py
+    sha256: 172b819381ce8ce4958fe94fb986378efaa5069c401484443af968f11a05f7fe
+  evidence_status: Source semantics reviewed; actual native and candidate kernel acceptance remain P2
+    gates.
+- id: quadratic_weights
+  ordered_inputs:
+  - RationalAmplitudePair
+  output: QuadraticCoordinateWeights
+  arity: 1
+  carrier: Declared RationalAmplitudePair
+  coefficient_ring: Exact rational scalars, Gaussian Hermitian coordinates, natural/Boolean fields or
+    the explicitly finite group
+  hypotheses:
+  - Explicit readouts on the same finite carrier; the separate X,Z commutator control is a declared matrix
+    example.
+  semantic_predicate: Square each coordinate.
+  source_pins:
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_ds_qm207_211_five_import_cascade_proved_lean.yaml
+    sha256: 9432a5c4497d6c5216cb3659bd659537b343696980c3c2eb23b8f08b063825cd
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/inputs/this_repository/dag/operads/ds_qm207_211_five_import_cascade.yaml
+    sha256: 44e5a60d4b7fa55c43f0575614b67bbbdb546d9e126ea29280000b816ab7fdf7
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/inputs/this_repository/lean4/H012OperatorAlgebraShadow.lean
+    sha256: bee179ccd42c430d04f382bcf88c73976797d938a5162bda1e8c8a24bebba3a3
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/inputs/this_repository/lean4/H013BornPairingBoundary.lean
+    sha256: debafe0eefb016e289a18fb9a308224f73464282e15c17eef143e5ea5342b642
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs
+    sha256: 38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/inputs/this_repository/dag/derivations/09_finite_hilbert/tfq_0314_cochain_lift_still_prices_the_born_law_as_an_import.md
+    sha256: bcd2280fd5581256f26fe9ae962a406f2d93119dee9de3debeaf251930551f7d
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/p0/operation_sources/code/python/src/qm/boundaries_exact.py
+    sha256: 41f6505663ecf8257b7cce1b36f6e5d9081862754a5514313e8ef6d4a88d4235
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/p0/operation_sources/code/python/tests/test_boundaries_exact.py
+    sha256: 81a98a49cd2ee6190d60a2ca64899301ff01cae5ee5daab81aebdf7761fe6da4
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/p0/operation_sources/code/rust/src/finite_probability/boundaries_exact.rs
+    sha256: f9488a7ec057ad3245770b0f78720050eefe3829b97c22ae8505980fd17f6f1b
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/boundaries_exact_replay.rs
+    sha256: 1c212fce1ed975acc90fdbb7a22b1cc3a65d4588c193e276a7a329b440719395
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/boundaries_checker.py
+    sha256: 71ec9241b94d311710a25f669912ca163006b6b3f56e0a18739c6dd4e9e8b8dd
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+    sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/p0/operation_sources/dag/results/batches/20261019T201403Z_prompts_72_91/tools/prepare.py
+    sha256: 63d4e890ceae99ea497d49db98875c71ccc17f1d41e2a5df749d03f1692f4ffb
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/p0/operation_sources/dag/results/batches/20261019T201403Z_prompts_72_91/tools/specs.py
+    sha256: 04ae08a56fac87673251fbf423b4611481366be5c9ac78e09e9b4d6713861e2a
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/custody.py
+    sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+    sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/check_candidate.py
+    sha256: 6a884bf0ea29e648779f708d4547c65b05676f823e6e72ce615d72bdf22e4a2c
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/format_certificate.py
+    sha256: 172b819381ce8ce4958fe94fb986378efaa5069c401484443af968f11a05f7fe
+  evidence_status: Source semantics reviewed; actual native and candidate kernel acceptance remain P2
+    gates.
+- id: nonlinear_readout_compare
+  ordered_inputs:
+  - QuadraticCoordinateWeights
+  output: QuarticVersusSquaredMassGap
+  arity: 1
+  carrier: Declared QuadraticCoordinateWeights
+  coefficient_ring: Exact rational scalars, Gaussian Hermitian coordinates, natural/Boolean fields or
+    the explicitly finite group
+  hypotheses:
+  - Explicit readouts on the same finite carrier; the separate X,Z commutator control is a declared matrix
+    example.
+  semantic_predicate: Compare squared sum with sum of squared weights.
+  source_pins:
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_ds_qm207_211_five_import_cascade_proved_lean.yaml
+    sha256: 9432a5c4497d6c5216cb3659bd659537b343696980c3c2eb23b8f08b063825cd
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/inputs/this_repository/dag/operads/ds_qm207_211_five_import_cascade.yaml
+    sha256: 44e5a60d4b7fa55c43f0575614b67bbbdb546d9e126ea29280000b816ab7fdf7
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/inputs/this_repository/lean4/H012OperatorAlgebraShadow.lean
+    sha256: bee179ccd42c430d04f382bcf88c73976797d938a5162bda1e8c8a24bebba3a3
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/inputs/this_repository/lean4/H013BornPairingBoundary.lean
+    sha256: debafe0eefb016e289a18fb9a308224f73464282e15c17eef143e5ea5342b642
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs
+    sha256: 38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/inputs/this_repository/dag/derivations/09_finite_hilbert/tfq_0314_cochain_lift_still_prices_the_born_law_as_an_import.md
+    sha256: bcd2280fd5581256f26fe9ae962a406f2d93119dee9de3debeaf251930551f7d
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/p0/operation_sources/code/python/src/qm/boundaries_exact.py
+    sha256: 41f6505663ecf8257b7cce1b36f6e5d9081862754a5514313e8ef6d4a88d4235
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/p0/operation_sources/code/python/tests/test_boundaries_exact.py
+    sha256: 81a98a49cd2ee6190d60a2ca64899301ff01cae5ee5daab81aebdf7761fe6da4
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/p0/operation_sources/code/rust/src/finite_probability/boundaries_exact.rs
+    sha256: f9488a7ec057ad3245770b0f78720050eefe3829b97c22ae8505980fd17f6f1b
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/boundaries_exact_replay.rs
+    sha256: 1c212fce1ed975acc90fdbb7a22b1cc3a65d4588c193e276a7a329b440719395
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/boundaries_checker.py
+    sha256: 71ec9241b94d311710a25f669912ca163006b6b3f56e0a18739c6dd4e9e8b8dd
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+    sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/p0/operation_sources/dag/results/batches/20261019T201403Z_prompts_72_91/tools/prepare.py
+    sha256: 63d4e890ceae99ea497d49db98875c71ccc17f1d41e2a5df749d03f1692f4ffb
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/p0/operation_sources/dag/results/batches/20261019T201403Z_prompts_72_91/tools/specs.py
+    sha256: 04ae08a56fac87673251fbf423b4611481366be5c9ac78e09e9b4d6713861e2a
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/custody.py
+    sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+    sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/check_candidate.py
+    sha256: 6a884bf0ea29e648779f708d4547c65b05676f823e6e72ce615d72bdf22e4a2c
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/format_certificate.py
+    sha256: 172b819381ce8ce4958fe94fb986378efaa5069c401484443af968f11a05f7fe
+  evidence_status: Source semantics reviewed; actual native and candidate kernel acceptance remain P2
+    gates.
+add_or_refine_relations:
+- id: cascade_relation_0
+  equation_or_predicate: Coherent cross term is 2ab; (a²+b²)²-(a⁴+b⁴)=2a²b².
+  typing_conditions: Literal declared operation domains; Prove each correctly specified physical necessity
+    claim and supply phase, quadratic pairing, operator algebra, Born uniqueness and continuous dynamics.
+    These controls do not derive or establish independence of all five imports.
+  evidence_status: P1 candidate; independent native and named kernel gates remain required.
+  scope: Exact phase/readout and noncommutative matrix controls are retained; cross-term and quartic-gap
+    polynomials are universal rational kernel identities.
+  source_pins:
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_ds_qm207_211_five_import_cascade_proved_lean.yaml
+    sha256: 9432a5c4497d6c5216cb3659bd659537b343696980c3c2eb23b8f08b063825cd
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/inputs/this_repository/dag/operads/ds_qm207_211_five_import_cascade.yaml
+    sha256: 44e5a60d4b7fa55c43f0575614b67bbbdb546d9e126ea29280000b816ab7fdf7
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/inputs/this_repository/lean4/H012OperatorAlgebraShadow.lean
+    sha256: bee179ccd42c430d04f382bcf88c73976797d938a5162bda1e8c8a24bebba3a3
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/inputs/this_repository/lean4/H013BornPairingBoundary.lean
+    sha256: debafe0eefb016e289a18fb9a308224f73464282e15c17eef143e5ea5342b642
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs
+    sha256: 38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/inputs/this_repository/dag/derivations/09_finite_hilbert/tfq_0314_cochain_lift_still_prices_the_born_law_as_an_import.md
+    sha256: bcd2280fd5581256f26fe9ae962a406f2d93119dee9de3debeaf251930551f7d
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/p0/operation_sources/code/python/src/qm/boundaries_exact.py
+    sha256: 41f6505663ecf8257b7cce1b36f6e5d9081862754a5514313e8ef6d4a88d4235
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/p0/operation_sources/code/python/tests/test_boundaries_exact.py
+    sha256: 81a98a49cd2ee6190d60a2ca64899301ff01cae5ee5daab81aebdf7761fe6da4
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/p0/operation_sources/code/rust/src/finite_probability/boundaries_exact.rs
+    sha256: f9488a7ec057ad3245770b0f78720050eefe3829b97c22ae8505980fd17f6f1b
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/boundaries_exact_replay.rs
+    sha256: 1c212fce1ed975acc90fdbb7a22b1cc3a65d4588c193e276a7a329b440719395
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/boundaries_checker.py
+    sha256: 71ec9241b94d311710a25f669912ca163006b6b3f56e0a18739c6dd4e9e8b8dd
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+    sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/p0/operation_sources/dag/results/batches/20261019T201403Z_prompts_72_91/tools/prepare.py
+    sha256: 63d4e890ceae99ea497d49db98875c71ccc17f1d41e2a5df749d03f1692f4ffb
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/p0/operation_sources/dag/results/batches/20261019T201403Z_prompts_72_91/tools/specs.py
+    sha256: 04ae08a56fac87673251fbf423b4611481366be5c9ac78e09e9b4d6713861e2a
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/custody.py
+    sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+    sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/check_candidate.py
+    sha256: 6a884bf0ea29e648779f708d4547c65b05676f823e6e72ce615d72bdf22e4a2c
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/DS-QM207-211-FIVE-IMPORT-CASCADE/runs/20261019T201403Z_staged/format_certificate.py
+    sha256: 172b819381ce8ce4958fe94fb986378efaa5069c401484443af968f11a05f7fe
+checked_compositions:
+- outer_operation: quadratic_weights
+  input_slot: 0
+  inner_operation: amplitude_pair
+  colour_match: RationalAmplitudePair -> RationalAmplitudePair
+  hypothesis_match: Same declared coordinates, coefficients and context; all operation hypotheses must
+    be carried into the graft.
+  licensing_relations:
+  - cascade_relation_0
+  evidence_status: Semantic substitution supported by the retained finite operation traces and separately
+    scoped named kernel statements. A complete refined-carrier operad is not asserted.
+- outer_operation: nonlinear_readout_compare
+  input_slot: 0
+  inner_operation: quadratic_weights
+  colour_match: QuadraticCoordinateWeights -> QuadraticCoordinateWeights
+  hypothesis_match: Same declared coordinates, coefficients and context; all operation hypotheses must
+    be carried into the graft.
+  licensing_relations:
+  - cascade_relation_0
+  evidence_status: Semantic substitution supported by the retained finite operation traces and separately
+    scoped named kernel statements. A complete refined-carrier operad is not asserted.
+failed_compositions:
+- proposal: Promote the selected step to the unrestricted original target
+  reason: Prove each correctly specified physical necessity claim and supply phase, quadratic pairing,
+    operator algebra, Born uniqueness and continuous dynamics. These controls do not derive or establish
+    independence of all five imports.
+counterexamples: []
+open_obligations:
+- Prove each correctly specified physical necessity claim and supply phase, quadratic pairing, operator
+  algebra, Born uniqueness and continuous dynamics. These controls do not derive or establish independence
+  of all five imports.
+- Prove the full refined-carrier operad identity, substitution, symmetry and coherence laws; mere colour
+  matches do not instantiate that formal structure.
