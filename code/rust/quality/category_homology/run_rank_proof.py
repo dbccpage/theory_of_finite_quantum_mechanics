@@ -18,7 +18,7 @@ from run_audit import ROOT, digest, execute, write_json
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model",choices=("rank","category","metadata","degree","counter","parameters","finite-set","literal-reversal","shape-inventory","root-records","homology-protocols","degree-repair","two-step-complex","simplicial-closure","simplicial-boundary","simplicial-homology","scalar-admission","carrier-dimensions","vector-maps","graph-incidence","validation-inventory","arrow-effects","finite-builder","em-samples","lawvere-inventory","higher-functor-inventory","finite-functor","functor-operations","finite-naturality","natural-composition","joint-carrier","finite-simulation","finite-independence","finite-trace","finite-dagger","finite-groupoid","cauchy-inventory","tagged-coend","condensation-metadata","root-catalog","finite-profunctor-inventory","finite-continuation","finite-moore","partial-structure"),default="rank")
+    parser.add_argument("--model",choices=("rank","category","metadata","degree","counter","parameters","finite-set","literal-reversal","shape-inventory","root-records","homology-protocols","degree-repair","two-step-complex","simplicial-closure","simplicial-boundary","simplicial-homology","scalar-admission","carrier-dimensions","vector-maps","graph-incidence","validation-inventory","arrow-effects","finite-builder","em-samples","lawvere-inventory","higher-functor-inventory","finite-functor","functor-operations","finite-naturality","natural-composition","joint-carrier","finite-simulation","finite-independence","finite-trace","finite-dagger","finite-groupoid","cauchy-inventory","tagged-coend","condensation-metadata","root-catalog","finite-profunctor-inventory","finite-continuation","finite-moore","partial-structure","finite-path"),default="rank")
     parser.add_argument("--memory-mb", type=int, default=1024,
         help="Explicit Lean memory limit, from 256 to 2048 MiB; default remains 1024.")
     args = parser.parse_args()
@@ -46,6 +46,10 @@ def main():
         proof_name, import_name, namespace = "DegreeWindow", "Data/Int/Basic", "TFQM.DegreeWindow."
         declarations = ("ordered_span_fits_u32", "same_endpoint_zero", "inverted_span_negative")
         scope = "Exact i32 endpoint difference bounds, zero span and inverted-window refusal premise; no category-law claim."
+    elif model == "finite-path":
+        proof_name, import_name, namespace = "FinitePath", "CategoryTheory/PathCategory/Basic", "TFQM.FinitePath."
+        declarations = ("identity_comp", "comp_identity", "comp_associative", "length_identity", "length_composition", "edgeWord", "word_identity", "word_composition", "word_length", "rank_length", "rank_bound", "rank_no_cycle", "lift_identity", "lift_edge", "lift_composition", "lift_unique", "bounded_fresh", "bounded_count")
+        scope = "Actual Mathlib quiver path category/lift universal property,chronological edge-word concatenation/length,strict-rank acyclicity/finite length and count cap. Rust Kahn rank,complete enumeration/lookup/table and owned category-certificate refinement separate;no new Rust lift API."
     elif model == "partial-structure":
         proof_name, import_name, namespace = "PartialStructure", "Data/List/Basic", "TFQM.PartialStructure."
         declarations = ("factor", "factor_spec", "factor_unique", "exists_descent_iff", "conflict_refuses", "none_reflected", "none_some_conflict", "collapsed_defined", "false_true_conflict", "output_map_composition", "descent_composition", "coordinate_bound", "mixed_digit_bound", "mixed_value_fits", "nullary_product", "prefix_refused", "zero_prefix", "overflow_before_zero")

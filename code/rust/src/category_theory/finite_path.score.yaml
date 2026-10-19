@@ -3,23 +3,23 @@ schema_version: "2.0.0"
 artifact:
   path: "code/rust/src/category_theory/finite_path.rs"
   language: "Rust"
-  sha256: "b62e1178e854f4d717be619a3225aebcc7f3f3347868dea88e93833112fd45da"
+  sha256: "5ba9812cd98039414d3fa4338f0d3916c3d04f1472ca6652de3c2173838fb1e9"
 profile: "Exact"
-level: "L3"
-level_basis: "Conservative bounded-domain classification; no upgrade based solely on terminology or module size."
+level: "L5"
+level_basis: "Complete finite acyclic free-path category owns immutable graph/path/composition data and an admitted category certificate;cycles and truncated enumeration are refused before exposing the construction."
 architecture_target: "L5"
 engineering_target: "A"
 gates:
-  G1: null
-  G2: null
-  G3: null
-  G4: null
-  G5: null
-composite_grade: null
-score_token: null
-is_complete: false
-grade_ceiling: "D"
-evaluation_timestamp: "2026-10-18T18:42:03+00:00"
+  G1: "A"
+  G2: "A"
+  G3: "A"
+  G4: "A"
+  G5: "A"
+composite_grade: "A"
+score_token: "L5A"
+is_complete: true
+grade_ceiling: "A"
+evaluation_timestamp: "2026-10-19T21:59:01.477198+00:00"
 AuthorityEffect: "None"
 claim:
   urn: "urn:tfqm:rust:category_theory:finite_path"
@@ -30,38 +30,73 @@ contract:
   path: null
   note: "Reserved for a later user-requested contract; none created or asserted here."
 evidence:
-  - {"path": "evidence/quality/category_homology/20261018T184203Z/baseline.json", "sha256": "e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c", "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."}
-  - {"path": "evidence/quality/category_homology/20261018T184203Z/summary.json", "sha256": "ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67", "scope": "Source snapshot binding and complete six-outcome accounting."}
-  - {"path": "evidence/quality/category_homology/20261018T184203Z/mutations.json", "sha256": "c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5", "scope": "Designated critical faults only; outcomes for this file are enumerated below."}
-  - {"path": "evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json", "sha256": "86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1", "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."}
+  - {"path": "evidence/quality/category_homology/20261019T215259Z/baseline.json", "sha256": "357403842744dfce8037224511302a4e49d0f2f7f79480f394a77ee3292cd8d8", "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."}
+  - {"path": "evidence/quality/category_homology/20261019T215259Z/summary.json", "sha256": "0f7efee779d078411199545535e95ae756d990f9deb19555d8a6f204ee70094b", "scope": "Source snapshot binding and complete six-outcome accounting."}
+  - {"path": "evidence/quality/category_homology/20261019T215259Z/mutations.json", "sha256": "2d1904d3a91bbd8637a108e7e1c504dd69f9f31296670e326fd2202941df4af6", "scope": "Designated critical faults only; outcomes for this file are enumerated below."}
+  - {"path": "evidence/quality/category_homology/20261019T215515Z-metrics/receipt.json", "sha256": "94d2a7542f86acde8d8e47f7c5466ed35e25f71811ec4460b44ea6d6a6d9e5de", "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."}
+  - {"path": "evidence/quality/category_homology/20261019T215259Z/dependency_receipt.json", "sha256": "7090e7468696f59128ce2e2ae27bab4f12090ebb46ad8aaff70b7ee53abebbd2", "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred."}
+  - {"path": "code/rust/quality/category_homology/assessments/finite_path.json", "sha256": "15aff9f7c6af2f4bec58bc0e36a6d464c3195d074fbea5232135e05ff2264a8e", "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping."}
 verification:
   baseline_ok: true
   source_snapshot_unchanged: true
-  compiled_scope: "shared scoped crate build"
-  local_mutant_ids: []
+  compiled_scope: "Actual category crate and one-fault copies inside their real parent scopes; no visibility widening or provider replacement"
+  local_mutant_ids:
+    - "RR-1-0"
+    - "RR-2-1"
+    - "RR-3-2"
+    - "RR-4-3"
+    - "RR-5-4"
+    - "RR-6-5"
+    - "RR-7-6"
+    - "RR-8-7"
+    - "RR-9-8"
+    - "RR-10-9"
+    - "RR-11-10"
+    - "RR-12-11"
+    - "RR-13-12"
+    - "RR-14-13"
+    - "RR-15-14"
+    - "RR-16-15"
+    - "RR-17-16"
+    - "RR-18-17"
+    - "RR-19-18"
+    - "RR-20-19"
+    - "RR-21-20"
+    - "RR-22-21"
+    - "RR-23-22"
+    - "RR-24-23"
+    - "RR-25-24"
+    - "RR-26-25"
+    - "RR-27-26"
+    - "RR-28-27"
+    - "RR-29-28"
+    - "RR-30-29"
+    - "RR-31-30"
+  dependency_contents_stable: true
 mutation_accounting:
-  killed: 0
+  killed: 31
   survived: 0
   demonstrably_equivalent: 0
   invalid: 0
   inconclusive: 0
   unrun: 0
-  conservative_ratio: null
+  conservative_ratio: 1.0
 structure:
   tool: "syn 3.0.9 source AST"
   source_ast_parsed: true
   expanded_ast: false
-  physical_lines: 205
-  parsed_production_functions: 13
-  max_production_ccn: 22
-  cognitive_complexity_upper_bound: 30
+  physical_lines: 204
+  parsed_production_functions: 20
+  max_production_ccn: 8
+  cognitive_complexity_upper_bound: 7
   control_nesting: 3
   opaque_function_macros: []
-  functions_exceeding_A:
-    - {"ccn": 22, "cognitive_upper_bound": 30, "control_nesting": 3, "line": 62, "name": "new", "opaque_macros": []}
+  functions_exceeding_A: []
   scope: "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
-open_findings:
-  - "A complete five-gate semantic, failure and consumer audit has not been established for this file."
-  - "Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds."
-  - "External path dependency source contents have not received a separate origin/content attestation."
-  - "Declared source metrics impose a conservative D ceiling; exceeding functions are listed in structure. Cognitive values are upper bounds, not counterexamples to semantic correctness."
+open_findings: []
+assurance_limits:
+  - "Contractspending;AuthorityEffectNone."
+  - "Onlyboundednonemptyacyclicgraphs;cycles/resourceexcessrefused,nottruncatedsuccess."
+  - "Formalactualpathcategory/lift/rank/wordlawsplusseparateRustKahn/completeenumeration/table/certificaterefinement;noextractedRusttheorem."
+  - "No new RustliftAPI;mathematicaluniversalpropertydoesnotinventone."
+  - "Nativefinitecorpus/designatedfaultsnotallpossibleRustfaults;nopackageGlobalGreen/allocatororlatencyguarantee."

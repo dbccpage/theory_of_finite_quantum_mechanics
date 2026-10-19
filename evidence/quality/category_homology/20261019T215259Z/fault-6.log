@@ -1,0 +1,34 @@
+
+running 3 tests
+test root_record_replay_7::subject::independent_path_tests::borrowed_lookup_and_category_composition_are_not_just_counters ... FAILED
+test root_record_replay_7::subject::independent_path_tests::complete_four_vertex_dags_parallel_names_and_refusals ... FAILED
+test root_record_replay_7::subject::independent_path_tests::all_three_vertex_multigraphs_and_path_budget_boundaries ... FAILED
+
+failures:
+
+---- root_record_replay_7::subject::independent_path_tests::borrowed_lookup_and_category_composition_are_not_just_counters stdout ----
+
+thread 'root_record_replay_7::subject::independent_path_tests::borrowed_lookup_and_category_composition_are_not_just_counters' (20140) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\rr\261019T215259\src\category_theory\q\n7.rs:320:275:
+called `Result::unwrap()` on an `Err` value: Cycle
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- root_record_replay_7::subject::independent_path_tests::complete_four_vertex_dags_parallel_names_and_refusals stdout ----
+
+thread 'root_record_replay_7::subject::independent_path_tests::complete_four_vertex_dags_parallel_names_and_refusals' (8140) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\rr\261019T215259\src\category_theory\q\n7.rs:320:275:
+called `Result::unwrap()` on an `Err` value: Cycle
+
+---- root_record_replay_7::subject::independent_path_tests::all_three_vertex_multigraphs_and_path_budget_boundaries stdout ----
+
+thread 'root_record_replay_7::subject::independent_path_tests::all_three_vertex_multigraphs_and_path_budget_boundaries' (3520) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\rr\261019T215259\src\category_theory\q\n7.rs:320:206:
+assertion `left == right` failed
+  left: Err(Cycle)
+ right: Err(PathBudget)
+
+
+failures:
+    root_record_replay_7::subject::independent_path_tests::all_three_vertex_multigraphs_and_path_budget_boundaries
+    root_record_replay_7::subject::independent_path_tests::borrowed_lookup_and_category_composition_are_not_just_counters
+    root_record_replay_7::subject::independent_path_tests::complete_four_vertex_dags_parallel_names_and_refusals
+
+test result: FAILED. 0 passed; 3 failed; 0 ignored; 0 measured; 552 filtered out; finished in 0.00s
+

@@ -2,7 +2,7 @@
 //! Parallel edges are distinct generators. Cycles and resource excess are
 //! refused; enumeration never turns a truncated frontier into a category.
 use crate::finite_category::{DeclaredFiniteCategory, ValidatedFiniteCategory};
-use std::collections::{BTreeMap, BTreeSet};
+use std::collections::BTreeSet;
 
 /// Explicit execution bound, not a mathematical finiteness theorem.
 pub const MAX_PATHS: usize = 64;
@@ -58,101 +58,100 @@ pub struct FinitePathCategory {
     composition: Vec<Vec<Option<usize>>>,
     category: ValidatedFiniteCategory,
 }
+fn checked_outgoing(vertices: usize, edges: &[PathEdge]) -> Result<Vec<Vec<usize>>, PathError> {
+    if vertices == 0 { return Err(PathError::EmptyGraph); }
+    if vertices > MAX_PATHS || edges.len() > MAX_PATHS { return Err(PathError::GraphBudget); }
+    if edges.iter().any(|e| e.source >= vertices || e.target >= vertices) { return Err(PathError::InvalidVertex); }
+    let mut outgoing = vec![Vec::new(); vertices];
+    let mut indegree = vec![0usize; vertices];
+    for (i, edge) in edges.iter().enumerate() {
+        outgoing[edge.source].push(i);
+        indegree[edge.target] += 1;
+    }
+    ensure_acyclic(edges, &outgoing, indegree)?;
+    Ok(outgoing)
+}
+
+fn ensure_acyclic(edges: &[PathEdge], outgoing: &[Vec<usize>], mut indegree: Vec<usize>) -> Result<(), PathError> {
+    let mut ready: BTreeSet<_> = (0..outgoing.len()).filter(|&v| indegree[v] == 0).collect();
+    let mut visited = 0;
+    while let Some(vertex) = ready.pop_first() {
+        visited += 1;
+        for &edge in &outgoing[vertex] {
+            let target = edges[edge].target;
+            indegree[target] -= 1;
+            if indegree[target] == 0 { ready.insert(target); }
+        }
+    }
+    if visited != outgoing.len() { return Err(PathError::Cycle); }
+    Ok(())
+}
+
+fn enumerate_paths(vertices: usize, edges: &[PathEdge], outgoing: &[Vec<usize>], budget: usize) -> Result<Vec<FinitePath>, PathError> {
+    if vertices > budget { return Err(PathError::PathBudget); }
+    let mut paths: Vec<_> = (0..vertices).map(|vertex| FinitePath {source:vertex,target:vertex,edges:Vec::new()}).collect();
+    let mut cursor = 0;
+    while cursor < paths.len() {
+        for &edge in &outgoing[paths[cursor].target] {
+            if paths.len() == budget { return Err(PathError::PathBudget); }
+            let mut word = paths[cursor].edges.clone();
+            word.push(edge);
+            paths.push(FinitePath {source:paths[cursor].source,target:edges[edge].target,edges:word});
+        }
+        cursor += 1;
+    }
+    Ok(paths)
+}
+
+fn declared_path_category(vertices: usize, paths: &[FinitePath]) -> (DeclaredFiniteCategory, Vec<String>) {
+    let objects: Vec<_> = (0..vertices).map(|vertex| format!("v{vertex}")).collect();
+    let names: Vec<_> = (0..paths.len()).map(|path| format!("p{path}")).collect();
+    let mut category = DeclaredFiniteCategory::new("complete finite acyclic free path category");
+    for vertex in 0..vertices { category.add_identity(&objects[vertex], &names[vertex]); }
+    for (i, path) in paths.iter().enumerate().skip(vertices) {
+        category.add_morphism(&names[i], &objects[path.source], &objects[path.target]);
+    }
+    (category, names)
+}
+
+struct PathLookup<'a> { rows: Vec<((usize, &'a [usize]), usize)> }
+impl<'a> PathLookup<'a> {
+    fn new(paths: &'a [FinitePath]) -> Self {
+        let mut rows: Vec<_> = paths.iter().enumerate().map(|(i, path)| ((path.source,path.edges.as_slice()),i)).collect();
+        rows.sort_unstable_by(|left, right| left.0.cmp(&right.0));
+        Self { rows }
+    }
+
+    fn find(&self, source: usize, word: &[usize]) -> Result<usize, PathError> {
+        let index = self.rows.binary_search_by_key(&(source, word), |(key, _)| *key).map_err(|_| PathError::MissingComposite)?;
+        self.rows.get(index).map(|(_, path)| *path).ok_or(PathError::MissingComposite)
+    }
+}
+
+fn compose_paths(paths: &[FinitePath], category: &mut DeclaredFiniteCategory, names: &[String]) -> Result<Vec<Vec<Option<usize>>>, PathError> {
+    let lookup = PathLookup::new(paths);
+    let mut word = Vec::new();
+    let mut composition = vec![vec![None; paths.len()]; paths.len()];
+    for (i, first) in paths.iter().enumerate() {
+        for (j, second) in paths.iter().enumerate() {
+            if first.target != second.source { continue; }
+            word.clear();
+            word.extend_from_slice(&first.edges);
+            word.extend_from_slice(&second.edges);
+            let composite = lookup.find(first.source, &word)?;
+            composition[i][j] = Some(composite);
+            category.set_composition(&names[i], &names[j], &names[composite]);
+        }
+    }
+    Ok(composition)
+}
+
 impl FinitePathCategory {
     pub fn new(vertices: usize, edges: Vec<PathEdge>, max_paths: usize) -> Result<Self, PathError> {
-        if vertices == 0 {
-            return Err(PathError::EmptyGraph);
-        }
-        if vertices > MAX_PATHS || edges.len() > MAX_PATHS {
-            return Err(PathError::GraphBudget);
-        }
-        if edges
-            .iter()
-            .any(|e| e.source >= vertices || e.target >= vertices)
-        {
-            return Err(PathError::InvalidVertex);
-        }
-        let mut outgoing = vec![Vec::new(); vertices];
-        let mut indegree = vec![0usize; vertices];
-        for (i, e) in edges.iter().enumerate() {
-            outgoing[e.source].push(i);
-            indegree[e.target] += 1;
-        }
-        let mut ready: BTreeSet<_> = (0..vertices).filter(|&v| indegree[v] == 0).collect();
-        let mut visited = 0;
-        while let Some(v) = ready.pop_first() {
-            visited += 1;
-            for &i in &outgoing[v] {
-                let target = edges[i].target;
-                indegree[target] -= 1;
-                if indegree[target] == 0 {
-                    ready.insert(target);
-                }
-            }
-        }
-        if visited != vertices {
-            return Err(PathError::Cycle);
-        }
-        let budget = max_paths.min(MAX_PATHS);
-        if vertices > budget {
-            return Err(PathError::PathBudget);
-        }
-        // Identities have indices exactly equal to their vertices.
-        let mut paths: Vec<_> = (0..vertices)
-            .map(|v| FinitePath {
-                source: v,
-                target: v,
-                edges: vec![],
-            })
-            .collect();
-        let mut cursor = 0;
-        while cursor < paths.len() {
-            for &edge in &outgoing[paths[cursor].target] {
-                if paths.len() == budget {
-                    return Err(PathError::PathBudget);
-                }
-                let mut word = paths[cursor].edges.clone();
-                word.push(edge);
-                paths.push(FinitePath {
-                    source: paths[cursor].source,
-                    target: edges[edge].target,
-                    edges: word,
-                });
-            }
-            cursor += 1;
-        }
-        let indices: BTreeMap<_, _> = paths
-            .iter()
-            .enumerate()
-            .map(|(i, p)| ((p.source, p.edges.clone()), i))
-            .collect();
-        let mut category =
-            DeclaredFiniteCategory::new("complete finite acyclic free path category");
-        for v in 0..vertices {
-            category.add_identity(&format!("v{v}"), &format!("p{v}"));
-        }
-        for (i, p) in paths.iter().enumerate().skip(vertices) {
-            category.add_morphism(
-                &format!("p{i}"),
-                &format!("v{}", p.source),
-                &format!("v{}", p.target),
-            );
-        }
-        let mut composition = vec![vec![None; paths.len()]; paths.len()];
-        for (i, p) in paths.iter().enumerate() {
-            for (j, q) in paths.iter().enumerate() {
-                if p.target != q.source {
-                    continue;
-                }
-                let mut word = p.edges.clone();
-                word.extend_from_slice(&q.edges);
-                let k = *indices
-                    .get(&(p.source, word))
-                    .ok_or(PathError::MissingComposite)?;
-                composition[i][j] = Some(k);
-                category.set_composition(&format!("p{i}"), &format!("p{j}"), &format!("p{k}"));
-            }
-        }
+        let outgoing = checked_outgoing(vertices, &edges)?;
+        let paths = enumerate_paths(vertices, &edges, &outgoing, max_paths.min(MAX_PATHS))?;
+        let (mut category, names) = declared_path_category(vertices, &paths);
+        let composition = compose_paths(&paths, &mut category, &names)?;
         let category = ValidatedFiniteCategory::try_new(category)
             .map_err(|_| PathError::CategoryValidation)?;
         Ok(Self {

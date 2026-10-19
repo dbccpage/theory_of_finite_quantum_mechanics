@@ -68,6 +68,8 @@ def capability(path, source):
         return "L1", "Archival documentation and a wholly commented-out sketch; no active Rust item, algorithm, type or test implementation is delivered by this file."
     if key == "category_theory/dagger.rs":
         return "L5", "Immutable owned finite dagger certificate admits the complete category and total reversed arrow map, involution, identity and every reversed composite before construction; raw declarations remain separate."
+    if key == "category_theory/finite_path.rs":
+        return "L5", "Complete finite acyclic free-path category owns immutable graph/path/composition data and an admitted category certificate;cycles and truncated enumeration are refused before exposing the construction."
     if key == "category_theory/finite_groupoid.rs":
         return "L5", "Immutable owned finite groupoid admits a complete dagger context and both inverse equations for every arrow; connected components and reversible chosen-root isotropy coordinates match the underlying groupoid structure."
     if key in foundational:
