@@ -1,3 +1,8 @@
+//! Archived Grothendieck-construction sketch; this module defines no Rust items.
+//! The implementation below is wholly inside a block comment; its tests and
+//! mathematical names do not provide an executable construction or law witness.
+//! Capability is archival only. AuthorityEffect: None.
+
 /*
 // grothendieck_construction.rs
 // The Grothendieck Construction: Category of Elements and Fibrations

@@ -949,3 +949,16 @@ source context records retain original own receipts with explicit preservation.
 all 192 source/score digests and 35 groups. Cleanup checkpoint 150 finds no owned
 debug/tmp/compiled outputs; small exact snapshots remain. Contracts and full goal
 remain unfinished; PR draft.
+
+
+Checkpoint 151: Grothendieck archive L1A
+
+The original block-comment body is retained verbatim after explicit archive docs.
+Compiler controls and full Syn item inventories find four doc attributes and zero
+active items. All nine compiler-valid activation faults are killed, including
+types, imports and macros. The auxiliary tool and all 494 input files are pinned;
+two documentation-only provider contexts retain their own receipts. This certifies
+archive/source shape, not the dormant mathematics. No Lean theorem is claimed.
+20261019T184755Z-score-verification validates all 151 completed records, 192
+source/score digests and 36 groups; 41 category files remain. Cleanup checkpoint
+151 finds no owned debug/tmp/compiled outputs. Full goal and contracts remain open.

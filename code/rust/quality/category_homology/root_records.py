@@ -118,6 +118,9 @@ struct Echo; impl StructurePreservingMap for Echo {type Domain=String;type Codom
 
 
 def challenge(subject):
+    if Path(subject['path']).stem == 'grothendieck_construction':
+        from archival_inventory import challenge as archival_challenge
+        return archival_challenge(subject)
     if Path(subject['path']).stem in ('natural_trans','natural_trans_composition'):
         from natural_transformations import challenge as naturality_challenge
         return naturality_challenge(subject)

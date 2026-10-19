@@ -62,6 +62,8 @@ def capability(path, source):
         return "L2", "Raw 2-functor map records, signature contracts and supplied boundary/name-membership diagnostics; no admitted higher functor or inverse/coherence certificate."
     if key == "category_theory/functor_composition.rs":
         return "L5", "Immutable finite functor certificates own snapshots after complete endpoint/category/map/law admission; raw derived declarations remain distinct and composition requires exact middle-context equality."
+    if key == "category_theory/grothendieck_construction.rs":
+        return "L1", "Archival documentation and a wholly commented-out sketch; no active Rust item, algorithm, type or test implementation is delivered by this file."
     if key in foundational:
         return "L5", foundational[key]
     if "#![cfg(any())]" in source:
