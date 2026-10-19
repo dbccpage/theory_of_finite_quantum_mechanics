@@ -118,6 +118,9 @@ struct Echo; impl StructurePreservingMap for Echo {type Domain=String;type Codom
 
 
 def challenge(subject):
+    if Path(subject['path']).stem == 'finite_joint_dynamics':
+        from joint_dynamics_challenges import challenge as jd_challenge
+        return jd_challenge(subject)
     if Path(subject['path']).stem == 'finite_relational':
         from relational_challenges import challenge as relational_challenge
         return relational_challenge(subject)

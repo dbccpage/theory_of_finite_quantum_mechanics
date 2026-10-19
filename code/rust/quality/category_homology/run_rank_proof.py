@@ -18,7 +18,7 @@ from run_audit import ROOT, digest, execute, write_json
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model",choices=("rank","category","metadata","degree","counter","parameters","finite-set","literal-reversal","shape-inventory","root-records","homology-protocols","degree-repair","two-step-complex","simplicial-closure","simplicial-boundary","simplicial-homology","scalar-admission","carrier-dimensions","vector-maps","graph-incidence","validation-inventory","arrow-effects","finite-builder","em-samples","lawvere-inventory","higher-functor-inventory","finite-functor","functor-operations","finite-naturality","natural-composition","joint-carrier","finite-simulation","finite-independence","finite-trace","finite-dagger","finite-groupoid","cauchy-inventory","tagged-coend","condensation-metadata","root-catalog","finite-profunctor-inventory","finite-continuation","finite-moore","partial-structure","finite-path","family-registry","functional-dependencies","functional-classification","finite-relational"),default="rank")
+    parser.add_argument("--model",choices=("rank","category","metadata","degree","counter","parameters","finite-set","literal-reversal","shape-inventory","root-records","homology-protocols","degree-repair","two-step-complex","simplicial-closure","simplicial-boundary","simplicial-homology","scalar-admission","carrier-dimensions","vector-maps","graph-incidence","validation-inventory","arrow-effects","finite-builder","em-samples","lawvere-inventory","higher-functor-inventory","finite-functor","functor-operations","finite-naturality","natural-composition","joint-carrier","finite-simulation","finite-independence","finite-trace","finite-dagger","finite-groupoid","cauchy-inventory","tagged-coend","condensation-metadata","root-catalog","finite-profunctor-inventory","finite-continuation","finite-moore","partial-structure","finite-path","family-registry","functional-dependencies","functional-classification","finite-relational","joint-dynamics"),default="rank")
     parser.add_argument("--memory-mb", type=int, default=1024,
         help="Explicit Lean memory limit, from 256 to 2048 MiB; default remains 1024.")
     args = parser.parse_args()
@@ -46,6 +46,10 @@ def main():
         proof_name, import_name, namespace = "DegreeWindow", "Data/Int/Basic", "TFQM.DegreeWindow."
         declarations = ("ordered_span_fits_u32", "same_endpoint_zero", "inverted_span_negative")
         scope = "Exact i32 endpoint difference bounds, zero span and inverted-window refusal premise; no category-law claim."
+    elif model == "joint-dynamics":
+        proof_name, import_name, namespace = "JointDynamics", "Data/Set/Lattice", "TFQM.JointDynamics."
+        declarations = ("unavailable", "defined_found", "defined_missing", "no_missing_as_unavailable", "success_found", "refusal_missing", "left_none", "left_some", "right_none", "right_some", "left_closure", "no_collision_iff", "collision_no_factor", "factor_spec", "factor_unique", "paired_profile", "defined_observably_distinct")
+        scope = "Closed partial coordinate updates,missing-target refusal versus genuine unavailability,paired profile fibers and collision/factor boundary;Rust admission costs/provider all-word refinement separate."
     elif model == "finite-relational":
         proof_name, import_name, namespace = "FiniteRelational", "Data/Set/Lattice", "TFQM.FiniteRelational."
         declarations = ("equality_bisim", "flip_bisim", "compose_bisim", "contains", "greatest_refl", "greatest_symm", "greatest_trans", "greatest_bisim", "greatest_reports", "bounded_kernel", "bounded_fibers", "factor_spec", "factor_unique", "coverage_iff", "reach_trans", "reach_least", "le_refl", "le_trans", "scc_refl", "scc_symm", "scc_trans", "representative_invariant", "strict_irreflexive", "strict_trans", "distinct_components_strict")

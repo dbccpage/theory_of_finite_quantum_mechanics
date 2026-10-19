@@ -49,6 +49,142 @@ fn refinement_cost(m: &PartialDynamics) -> Option<usize> {
         .checked_mul(m.transitions()[0].len().checked_add(1)?)
 }
 
+fn admit_work(
+    left: &PartialDynamics,
+    right: &PartialDynamics,
+    pairs: usize,
+    operations: usize,
+    max_cells: usize,
+) -> Result<usize, JointDynamicsError> {
+    let size = pairs.checked_add(1).ok_or(JointDynamicsError::WorkLimit)?;
+    let pair_budget = size
+        .checked_mul(size)
+        .ok_or(JointDynamicsError::WorkLimit)?;
+    let cost = pair_budget
+        .checked_mul(
+            operations
+                .checked_add(1)
+                .ok_or(JointDynamicsError::WorkLimit)?,
+        )
+        .and_then(|n| refinement_cost(left).and_then(|l| n.checked_add(l)))
+        .and_then(|n| refinement_cost(right).and_then(|r| n.checked_add(r)));
+    if cost.is_none_or(|n| n > max_cells) {
+        return Err(JointDynamicsError::WorkLimit);
+    }
+    Ok(pair_budget)
+}
+
+fn admit_relation(
+    left: &PartialDynamics,
+    right: &PartialDynamics,
+    pairs: &[(usize, usize)],
+) -> Result<BTreeMap<(usize, usize), usize>, JointDynamicsError> {
+    let ids: BTreeMap<_, _> = pairs
+        .iter()
+        .copied()
+        .enumerate()
+        .map(|(i, p)| (p, i))
+        .collect();
+    if pairs.is_empty()
+        || ids.len() != pairs.len()
+        || pairs
+            .iter()
+            .any(|&(l, r)| l >= left.reports().len() || r >= right.reports().len())
+    {
+        return Err(JointDynamicsError::InvalidRelation);
+    }
+    Ok(ids)
+}
+
+fn valid_operation(
+    op: &JointOperation,
+    left: &PartialDynamics,
+    right: &PartialDynamics,
+    rows: usize,
+) -> bool {
+    match op {
+        JointOperation::Left(a) => *a < left.transitions()[0].len(),
+        JointOperation::Right(a) => *a < right.transitions()[0].len(),
+        JointOperation::Interaction(t) => t.len() == rows && t.iter().flatten().all(|&s| s < rows),
+    }
+}
+
+struct TransitionContext<'a> {
+    left: &'a PartialDynamics,
+    right: &'a PartialDynamics,
+    ids: &'a BTreeMap<(usize, usize), usize>,
+}
+impl TransitionContext<'_> {
+    fn cell(
+        &self,
+        pair: (usize, usize),
+        op: &JointOperation,
+        row: usize,
+        operation: usize,
+    ) -> Result<Option<usize>, JointDynamicsError> {
+        let (l, r) = pair;
+        let target = match op {
+            JointOperation::Left(a) => self.left.transitions()[l][*a].map(|t| (t, r)),
+            JointOperation::Right(a) => self.right.transitions()[r][*a].map(|t| (l, t)),
+            JointOperation::Interaction(t) => return Ok(t[row]),
+        };
+        target
+            .map(|target| {
+                self.ids
+                    .get(&target)
+                    .copied()
+                    .ok_or(JointDynamicsError::NotClosed {
+                        row,
+                        operation,
+                        target,
+                    })
+            })
+            .transpose()
+    }
+}
+
+fn joint_transitions(
+    left: &PartialDynamics,
+    right: &PartialDynamics,
+    pairs: &[(usize, usize)],
+    operations: &[JointOperation],
+    ids: &BTreeMap<(usize, usize), usize>,
+) -> Result<Vec<Vec<Option<usize>>>, JointDynamicsError> {
+    let context = TransitionContext { left, right, ids };
+    pairs
+        .iter()
+        .enumerate()
+        .map(|(row, &pair)| {
+            operations
+                .iter()
+                .enumerate()
+                .map(|(operation, op)| context.cell(pair, op, row, operation))
+                .collect()
+        })
+        .collect()
+}
+
+fn local_profiles(
+    left: &PartialDynamics,
+    right: &PartialDynamics,
+    pairs: &[(usize, usize)],
+) -> Vec<(usize, usize)> {
+    let lc = left.quotient().state_to_block;
+    let rc = right.quotient().state_to_block;
+    pairs.iter().map(|&(l, r)| (lc[l], rc[r])).collect()
+}
+
+fn profile_reports(local_reports: &[(usize, usize)]) -> Vec<usize> {
+    let mut labels = BTreeMap::new();
+    local_reports
+        .iter()
+        .map(|&p| {
+            let id = labels.len();
+            *labels.entry(p).or_insert(id)
+        })
+        .collect()
+}
+
 impl JointDynamics {
     pub fn new(
         left: &PartialDynamics,
@@ -57,87 +193,17 @@ impl JointDynamics {
         operations: &[JointOperation],
         max_cells: usize,
     ) -> Result<Self, JointDynamicsError> {
-        let size = pairs
-            .len()
-            .checked_add(1)
-            .ok_or(JointDynamicsError::WorkLimit)?;
-        let pair_budget = size
-            .checked_mul(size)
-            .ok_or(JointDynamicsError::WorkLimit)?;
-        let cost = pair_budget
-            .checked_mul(
-                operations
-                    .len()
-                    .checked_add(1)
-                    .ok_or(JointDynamicsError::WorkLimit)?,
-            )
-            .and_then(|n| refinement_cost(left).and_then(|l| n.checked_add(l)))
-            .and_then(|n| refinement_cost(right).and_then(|r| n.checked_add(r)));
-        if cost.is_none_or(|n| n > max_cells) {
-            return Err(JointDynamicsError::WorkLimit);
-        }
-        let ids: BTreeMap<_, _> = pairs
+        let pair_budget = admit_work(left, right, pairs.len(), operations.len(), max_cells)?;
+        let ids = admit_relation(left, right, &pairs)?;
+        if operations
             .iter()
-            .copied()
-            .enumerate()
-            .map(|(i, p)| (p, i))
-            .collect();
-        if pairs.is_empty()
-            || ids.len() != pairs.len()
-            || pairs
-                .iter()
-                .any(|&(l, r)| l >= left.reports().len() || r >= right.reports().len())
+            .any(|op| !valid_operation(op, left, right, pairs.len()))
         {
-            return Err(JointDynamicsError::InvalidRelation);
+            return Err(JointDynamicsError::InvalidOperation);
         }
-        for op in operations {
-            let valid = match op {
-                JointOperation::Left(a) => *a < left.transitions()[0].len(),
-                JointOperation::Right(a) => *a < right.transitions()[0].len(),
-                JointOperation::Interaction(t) => {
-                    t.len() == pairs.len() && t.iter().flatten().all(|&s| s < pairs.len())
-                }
-            };
-            if !valid {
-                return Err(JointDynamicsError::InvalidOperation);
-            }
-        }
-        let mut transitions = Vec::new();
-        for (row, &(l, r)) in pairs.iter().enumerate() {
-            let mut next = Vec::new();
-            for (operation, op) in operations.iter().enumerate() {
-                let target = match op {
-                    JointOperation::Left(a) => left.transitions()[l][*a].map(|t| (t, r)),
-                    JointOperation::Right(a) => right.transitions()[r][*a].map(|t| (l, t)),
-                    JointOperation::Interaction(t) => {
-                        next.push(t[row]);
-                        continue;
-                    }
-                };
-                next.push(match target {
-                    None => None,
-                    Some(target) => {
-                        Some(*ids.get(&target).ok_or(JointDynamicsError::NotClosed {
-                            row,
-                            operation,
-                            target,
-                        })?)
-                    }
-                });
-            }
-            transitions.push(next);
-        }
-        let lc = left.quotient().state_to_block;
-        let rc = right.quotient().state_to_block;
-        let local_reports: Vec<_> = pairs.iter().map(|&(l, r)| (lc[l], rc[r])).collect();
-        let mut labels = BTreeMap::new();
-        let reports = local_reports
-            .iter()
-            .map(|&p| {
-                let id = labels.len();
-                *labels.entry(p).or_insert(id)
-            })
-            .collect();
+        let transitions = joint_transitions(left, right, &pairs, operations, &ids)?;
+        let local_reports = local_profiles(left, right, &pairs);
+        let reports = profile_reports(&local_reports);
         let dynamics = PartialDynamics::new(reports, transitions, operations.len())
             .map_err(JointDynamicsError::Dynamics)?;
         Ok(Self {
@@ -178,7 +244,9 @@ impl JointDynamics {
             collision,
         })
     }
-    /// Recompute against the expected relation AND complete operation table.
+    /// Recompute the analysis on this immutable admitted joint system.
+    /// This verifies its canonical refinement/collision result. It does not
+    /// authenticate external relation/operation declarations or their identity.
     pub fn verify(&self, c: &JointDynamicsAnalysis) -> Result<(), JointDynamicsError> {
         if self.analyze()? == *c {
             Ok(())

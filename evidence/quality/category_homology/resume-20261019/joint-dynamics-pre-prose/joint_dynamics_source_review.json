@@ -1,0 +1,124 @@
+{
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/category_theory/finite_joint_dynamics.rs",
+    "sha256": "764d93103ec4644c2c9982de7d37d7db44d4bd513c2b72d48ec7cf681378ff01",
+    "language": "Rust"
+  },
+  "symbol_map": {
+    "refinement_cost": {
+      "line": 46,
+      "signature": "fn refinement_cost(m: &PartialDynamics) -> Option<usize>",
+      "body": "{\n    let n = m.reports().len().checked_add(1)?;\n    n.checked_mul(n)?\n        .checked_mul(m.transitions()[0].len().checked_add(1)?)\n}",
+      "obligation": "Private admitted nonempty PartialDynamics:checked(n+1)^2*(inputs+1);None on arithmetic overflow. This is the declared admission accounting expression,not a promise of actual runtime/heap bytes."
+    },
+    "admit_work": {
+      "line": 52,
+      "signature": "fn admit_work(\n    left: &PartialDynamics,\n    right: &PartialDynamics,\n    pairs: usize,\n    operations: usize,\n    max_cells: usize,\n) -> Result<usize, JointDynamicsError>",
+      "body": "{\n    let size = pairs.checked_add(1).ok_or(JointDynamicsError::WorkLimit)?;\n    let pair_budget = size\n        .checked_mul(size)\n        .ok_or(JointDynamicsError::WorkLimit)?;\n    let cost = pair_budget\n        .checked_mul(\n            operations\n                .checked_add(1)\n                .ok_or(JointDynamicsError::WorkLimit)?,\n        )\n        .and_then(|n| refinement_cost(left).and_then(|l| n.checked_add(l)))\n        .and_then(|n| refinement_cost(right).and_then(|r| n.checked_add(r)));\n    if cost.is_none_or(|n| n > max_cells) {\n        return Err(JointDynamicsError::WorkLimit);\n    }\n    Ok(pair_budget)\n}",
+      "obligation": "First checked paircount+sink,size-square,operationcount+1 and joint/component cost sum;None or cost>max_cells givesWorkLimit before relation/operation inspection. Equality allowed. Return(p+1)^2 pair-search budget;all arithmetic checked."
+    },
+    "admit_relation": {
+      "line": 77,
+      "signature": "fn admit_relation(\n    left: &PartialDynamics,\n    right: &PartialDynamics,\n    pairs: &[(usize, usize)],\n) -> Result<BTreeMap<(usize, usize), usize>, JointDynamicsError>",
+      "body": "{\n    let ids: BTreeMap<_, _> = pairs\n        .iter()\n        .copied()\n        .enumerate()\n        .map(|(i, p)| (p, i))\n        .collect();\n    if pairs.is_empty()\n        || ids.len() != pairs.len()\n        || pairs\n            .iter()\n            .any(|&(l, r)| l >= left.reports().len() || r >= right.reports().len())\n    {\n        return Err(JointDynamicsError::InvalidRelation);\n    }\n    Ok(ids)\n}",
+      "obligation": "Create exact pair-to-first-row map;then nonempty,duplicate and both component state-range checks inoriginalorder;InvalidRelation before any operation validation. Preserve supplied row order."
+    },
+    "valid_operation": {
+      "line": 99,
+      "signature": "fn valid_operation(\n    op: &JointOperation,\n    left: &PartialDynamics,\n    right: &PartialDynamics,\n    rows: usize,\n) -> bool",
+      "body": "{\n    match op {\n        JointOperation::Left(a) => *a < left.transitions()[0].len(),\n        JointOperation::Right(a) => *a < right.transitions()[0].len(),\n        JointOperation::Interaction(t) => t.len() == rows && t.iter().flatten().all(|&s| s < rows),\n    }\n}",
+      "obligation": "Private admitted components/relationcount:Left/Right indices strictly below component inputcounts;interaction length exactlypaircount and everySome target strictlybelowpaircount. None is genuine supplied unavailability,not a missing coordinate pair."
+    },
+    "cell": {
+      "line": 118,
+      "signature": "fn cell(\n        &self,\n        pair: (usize, usize),\n        op: &JointOperation,\n        row: usize,\n        operation: usize,\n    ) -> Result<Option<usize>, JointDynamicsError>",
+      "body": "{\n        let (l, r) = pair;\n        let target = match op {\n            JointOperation::Left(a) => self.left.transitions()[l][*a].map(|t| (t, r)),\n            JointOperation::Right(a) => self.right.transitions()[r][*a].map(|t| (l, t)),\n            JointOperation::Interaction(t) => return Ok(t[row]),\n        };\n        target\n            .map(|target| {\n                self.ids\n                    .get(&target)\n                    .copied()\n                    .ok_or(JointDynamicsError::NotClosed {\n                        row,\n                        operation,\n                        target,\n                    })\n            })\n            .transpose()\n    }",
+      "obligation": "Private admitted pair/op/table indices. Left changes onlyleft coordinate when available,Right onlyright. Interaction returns literal supplied Optionrow. None local step staysNone;Some defined pair requires exact relation lookup elseNotClosed with original row/op/target. No missing defined pair silently converted toNone."
+    },
+    "joint_transitions": {
+      "line": 146,
+      "signature": "fn joint_transitions(\n    left: &PartialDynamics,\n    right: &PartialDynamics,\n    pairs: &[(usize, usize)],\n    operations: &[JointOperation],\n    ids: &BTreeMap<(usize, usize), usize>,\n) -> Result<Vec<Vec<Option<usize>>>, JointDynamicsError>",
+      "body": "{\n    let context = TransitionContext { left, right, ids };\n    pairs\n        .iter()\n        .enumerate()\n        .map(|(row, &pair)| {\n            operations\n                .iter()\n                .enumerate()\n                .map(|(operation, op)| context.cell(pair, op, row, operation))\n                .collect()\n        })\n        .collect()\n}",
+      "obligation": "Row-major then operation-major Result collect over borrowed admitted data,using private context refs. Build only required owned output rows/cells;stop at first NotClosed with original coordinates. Operations globally validated before this phase."
+    },
+    "local_profiles": {
+      "line": 167,
+      "signature": "fn local_profiles(\n    left: &PartialDynamics,\n    right: &PartialDynamics,\n    pairs: &[(usize, usize)],\n) -> Vec<(usize, usize)>",
+      "body": "{\n    let lc = left.quotient().state_to_block;\n    let rc = right.quotient().state_to_block;\n    pairs.iter().map(|&(l, r)| (lc[l], rc[r])).collect()\n}",
+      "obligation": "Compute actual local PartialDynamics all-word quotients including distinguished sink;for each real admitted pair use component classIDs. Preserve supplied pair occurrence order. Own profilepairs,not rawreport valuepairs."
+    },
+    "profile_reports": {
+      "line": 177,
+      "signature": "fn profile_reports(local_reports: &[(usize, usize)]) -> Vec<usize>",
+      "body": "{\n    let mut labels = BTreeMap::new();\n    local_reports\n        .iter()\n        .map(|&p| {\n            let id = labels.len();\n            *labels.entry(p).or_insert(id)\n        })\n        .collect()\n}",
+      "obligation": "Normalize paired local class IDs by first occurrence using current maplen for fresh code. Sameprofile iff samedensejoint readout. Onlyprimitive copies/mapnodes;no extra output clone."
+    },
+    "new": {
+      "line": 189,
+      "signature": "pub fn new(\n        left: &PartialDynamics,\n        right: &PartialDynamics,\n        pairs: Vec<(usize, usize)>,\n        operations: &[JointOperation],\n        max_cells: usize,\n    ) -> Result<Self, JointDynamicsError>",
+      "body": "{\n        let pair_budget = admit_work(left, right, pairs.len(), operations.len(), max_cells)?;\n        let ids = admit_relation(left, right, &pairs)?;\n        if operations\n            .iter()\n            .any(|op| !valid_operation(op, left, right, pairs.len()))\n        {\n            return Err(JointDynamicsError::InvalidOperation);\n        }\n        let transitions = joint_transitions(left, right, &pairs, operations, &ids)?;\n        let local_reports = local_profiles(left, right, &pairs);\n        let reports = profile_reports(&local_reports);\n        let dynamics = PartialDynamics::new(reports, transitions, operations.len())\n            .map_err(JointDynamicsError::Dynamics)?;\n        Ok(Self {\n            pairs,\n            local_reports,\n            dynamics,\n            pair_budget,\n        })\n    }",
+      "obligation": "Preserve phase order:work admission,relation,all operations,all joint transitions,component quotients/profiles/readout IDs,actualPartialDynamics admission. Own moved pairs/profiles/dynamics andcheckedsearchbudget;public API/errors unchanged. SuppliesInteractionpremises without inferring them from local dynamics."
+    },
+    "pairs": {
+      "line": 216,
+      "signature": "pub fn pairs(&self) -> &[(usize, usize)]",
+      "body": "{\n        &self.pairs\n    }",
+      "obligation": "Borrow exact immutable admitted relation row order;no mutable access or clone."
+    },
+    "local_reports": {
+      "line": 219,
+      "signature": "pub fn local_reports(&self) -> &[(usize, usize)]",
+      "body": "{\n        &self.local_reports\n    }",
+      "obligation": "Borrow exact component behavioral-class pairs,not caller rawreports or arbitrary interaction declarations."
+    },
+    "dynamics": {
+      "line": 222,
+      "signature": "pub fn dynamics(&self) -> &PartialDynamics",
+      "body": "{\n        &self.dynamics\n    }",
+      "obligation": "Borrow actual admitted joint PartialDynamics whose rawreports encode localprofiles and whose columns are supplied operation order."
+    },
+    "analyze": {
+      "line": 226,
+      "signature": "pub fn analyze(&self) -> Result<JointDynamicsAnalysis, JointDynamicsError>",
+      "body": "{\n        let refinement = self.dynamics.quotient();\n        let mut collision = None;\n        'outer: for r in 0..self.pairs.len() {\n            for l in 0..r {\n                if self.local_reports[l] == self.local_reports[r]\n                    && refinement.state_to_block[l] != refinement.state_to_block[r]\n                {\n                    collision = self\n                        .dynamics\n                        .distinguish(l, r, self.pair_budget)\n                        .map_err(JointDynamicsError::Dynamics)?;\n                    break 'outer;\n                }\n            }\n        }\n        Ok(JointDynamicsAnalysis {\n            refinement,\n            collision,\n        })\n    }",
+      "obligation": "Compute actual joint quotient with unavailable sink. Scan rightrowr ascending thenleftl<r ascending;first equal-localprofile/differentfinalclass pair gets actual shortest FIFO distinguishingword with(p+1)^2 product budget. Return full canonical refinement and optionalfirstcollision;None iffprofilekernelpreservesalljointanswers/availability."
+    },
+    "verify": {
+      "line": 250,
+      "signature": "pub fn verify(&self, c: &JointDynamicsAnalysis) -> Result<(), JointDynamicsError>",
+      "body": "{\n        if self.analyze()? == *c {\n            Ok(())\n        } else {\n            Err(JointDynamicsError::CertificateMismatch)\n        }\n    }",
+      "obligation": "Recompute analyze on immutable self and exact compare both full refinement and collision,propagatinganalysiserrors;mismatchCertificateMismatch. This verifies analysis results,not external relation/op declaration identity. Distinctdecls with sameanalysis canpass;explicitnativeceiling case."
+    }
+  },
+  "invariant_argument": [
+    "Component PartialDynamics values are already privately admitted nonempty/range/shape-checked systems. Their first transitionrow exists even with zero inputs. Joint state pairs must be nonempty,unique and in both real carriers;no internal sink component is admitted as a pair. Operation validation covers whole list before transition closure,so a later invalid operation outranks earlier missing-pair failure. WorkLimit is first,thenInvalidRelation,InvalidOperation,first row-major NotClosed,thenwrapped actualdynamics failure. Loop extraction preserves exact source ordering/results;frozen constructor and independent linear pair search compare all errors/data.",
+    "Budget accounting stays exactlyB=(p+1)^2 and declaredcost=B*(operationcount+1)+(leftstates+1)^2*(leftinputs+1)+(rightstates+1)^2*(rightinputs+1). All additions/products use checked arithmetic;anyNone orcost>maxrefuses before building relation IDs. maxequal passes. This is the same specified accounting guard,not an allocation/runtime or totalwork proof. Privateparameteroverflowcases withMAX directly test refusal without allocating enormous models. Actual buffers/payloads still use standard allocator/compiler TCB.",
+    "Unique pair-map IDs are exact input row indices. Local Some target produces specific coordinate update;lookupSome row denotes that exact admitted target pair. LookupNone is NotClosed withoriginalrow/operation/target,notunavailability. Local None and explicitInteractionNone represent actual unavailable operations. Globally admitted interaction vector has one entry perpair andSome indicesinrange. Borrowed context and Result collect preserve original nested row/op order,including interaction shortcuts;partial temporary table drops onerror,immutableinputs unchanged. Lean resolve and local-target/closure lemmas prove this abstract distinction;Rust indices/errorpayload/order separate.",
+    "Both localquotients are actual reviewed PartialDynamics/Moore all-word behavioralquotients with separately tagged unavailable sink. Real paircoordinates are below realstatecount,so local class-vector indicesvalid. profile=(leftclass,rightclass),and first-seen normalizedjointreadout equality is exactly profileequality;raw interned component reportIDs are not substituted forbehaviorclasses. NewPartialDynamics validates the complete joint table. Constructor unwrap-free domain flow preserves zero-operation systems. Supplied interactions can distinguish states that local profiles identify;their table is a premise and no independent interaction law or commutativity is inferred.",
+    "Actual jointquotient refines initial profilekernel and preserves every finite word answer plusavailability by reviewed provider theorem/source invariant. Thus sameprofilebutdifferentfinalclass is exactly a lost jointfuture distinction. Analyzer chooses earliest(r,l) lexicographicpair in its documented scanorder;provider FIFO ascendingoperations supplies shortest lexicographic separator with exactsavedanswers. Totalized jointstatesn=p+1 produce at mostn^2statepairs,so B is sufficient forcompletepairfrontier whenallocations succeed;localfailuretypes remain propagated. None iffno suchprofilefiber split,so every jointfuture observation factors through realizedprofiles. Lean no_collision_iff/factor/collision_no_factor gives abstract fiber theorem,with provider all-word correspondence bound separately.",
+    "Joint ownsprivate admitted pairs/localprofiles/dynamics and no mutable getter or Deserialize/Default bypass. Analysis is a raw mutable report. Verifyrecomputes both completeanalysisparts,so forged history/map/quotient/collision fails ifit changesexpectedanalysis. It does not bind anexternalrequest/declarationhash ordistinguishcontextswhoseanalysis isidentical. Nativeonepairrelations[(0,0)]and[(1,0)]onconstantzero-inputcomponents haveidenticalanalysisandcrossverify;docsnowstate thisceiling explicitly. No external relation identity or authenticity claim.",
+    "All privatehelpercalls use already admitted ranges and immutableborrowed concreteusizevalues. Work/refinement/profile phases remain in old order. Rows/cells are requiredownedoutput;profilevectors and densecodes are differentrequiredoutputs,componentquotients requiredby provider API. No redundantrecord/payloadclone or per-celltemporarymap/set;pairlookupmap builtonce,reports normalizationmap once. Resultiteratorcollect may allocate outputcapacity differently from Vecpush;value/error/order preserved,no allocator/callbackcountorheap-totalityclaim. Sourcegenericcallbacks onlyconcretepure libraryclosures,not arbitrary usercode. Actualprovider cost/runtime separatelybounded byits statedscope,not max_cellsuniversalguarantee."
+  ],
+  "consumer_review": [
+    "No active completed assessmentcontext referenced thissource before edits. Local catalogs/umbrella export actualtfqm_category_theory;targetimports actualcrate::finite_continuation and finite_moore. Public signatures unchanged;source correspondence pluscurrent459category/3independentcontrols supportproviderintegration.",
+    "Moore and continuation ownsource/currentassessment/proofreceipts pinned. Their original independent mutation/model evidence is reused at its originalscope;thischeckpoint doesnot rerunproviderfaultcampaigns orcallincreased packagecoverage a newprovidercertificate.",
+    "Same-name WDP genesis_joint_dynamics and genesis_bell wrappers import externalomega_category_theory. Their Cargo manifest resolves externalthe_symbol_game provider,notthislocalcrate. Bind thoseidentitycontexts;noWDP/external/wholeworkspacetestclaimed.",
+    "Independent controls use synchronousOption-product fixedpoint,unlimitedfiniteBFSword search,linear relationlookup,explicitphasepredicateandliteralbudgetformula;expectedanswersdonotcall productionjointconstructor/analyzer orproviderquotient. Frozenoldimplementation remainsseparatereference for exactdata/errors. Smallmodelenumeration isscopedevidence,notgeneralinteractionlaw."
+  ],
+  "assurance_limits": [
+    "Contracts pending;AuthorityEffectNone.",
+    "Interactiontablesare suppliedpremises,not localtheorems/commutativity/physicaloperationlicenses.",
+    "Verification compares analysisoutputs onself;noexternaldeclarationidentity/hash/authenticity.",
+    "Declaredmax_cells is checkedadmission accounting,not totalheap/time/workcap.",
+    "17abstractnewmodeldeclarations plusreviewed31providerdeclarations are not extractedRust/MIR orallocator-totalityproof.",
+    "Scopedfinitecorpus/23designatedfaults;noexternalomega orwhole-workspacegreen."
+  ],
+  "metrics": {
+    "receipt": "evidence/quality/category_homology/20261019T225343Z-metrics/receipt.json",
+    "functions": 14,
+    "max_ccn": 6,
+    "max_cognitive": 7,
+    "max_nesting": 3
+  }
+}

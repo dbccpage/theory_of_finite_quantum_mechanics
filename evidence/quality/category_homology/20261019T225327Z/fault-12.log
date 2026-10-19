@@ -1,0 +1,22 @@
+
+running 3 tests
+test root_record_replay_13::subject::independent_joint_dynamics_tests::preflight_order_overflow_guards_and_invalid_tables ... ok
+test root_record_replay_13::subject::independent_joint_dynamics_tests::exhaustive_component_pairs_relations_and_exact_refusals ... FAILED
+test root_record_replay_13::subject::independent_joint_dynamics_tests::interaction_tables_all_words_and_declaration_identity_ceiling ... ok
+
+failures:
+
+---- root_record_replay_13::subject::independent_joint_dynamics_tests::exhaustive_component_pairs_relations_and_exact_refusals stdout ----
+
+thread 'root_record_replay_13::subject::independent_joint_dynamics_tests::exhaustive_component_pairs_relations_and_exact_refusals' (45460) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\rr\261019T225327\src\category_theory\q\n13.rs:453:55:
+assertion `left == right` failed
+  left: "Ok(JointDynamics { pairs: [(0, 1)], local_reports: [(0, 0)], dynamics: PartialDynamics { reports: [0], transitions: [[Some(0), Some(0)]], machine: FiniteMoore { reports: [0, 1], transitions: [[0, 0], [1, 1]], input_count: 2 } }, pair_budget: 4 })"
+ right: "Err(NotClosed { row: 0, operation: 1, target: (0, 0) })"
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    root_record_replay_13::subject::independent_joint_dynamics_tests::exhaustive_component_pairs_relations_and_exact_refusals
+
+test result: FAILED. 2 passed; 1 failed; 0 ignored; 0 measured; 528 filtered out; finished in 0.05s
+
