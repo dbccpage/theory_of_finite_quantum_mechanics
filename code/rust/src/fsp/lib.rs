@@ -13,7 +13,8 @@ pub mod witness;
 
 pub use bqnf::{route_packet, CochainComplex, SignPacketMetrics, TerminalRoute};
 pub use fock::{
-    benchmark_fock_lattice_scaling, car_annihilate, car_create, car_hop, jordan_wigner_hop_sign,
+    benchmark_fock_lattice_scaling, car_annihilate, car_create, car_hop,
+    fock_scaling_from_canonical_json, fock_scaling_to_canonical_json, jordan_wigner_hop_sign,
     preceding_count, DiscreteFermionicHamiltonian, EulerPath, FermionicLattice,
     FockLatticeScalingRow, FockState, PartitionReceipt, Spin,
 };
@@ -24,8 +25,9 @@ pub use gin::{
 };
 pub use hubbard::{
     benchmark_hubbard_lattice_scaling, evaluate_hubbard_determinants, exact_determinant,
-    exact_kinetic_matrix, exact_matrix_mul, hubbard_rectangular_bonds, HubbardDeterminantReceipt,
-    HubbardEnsembleSummary, HubbardLatticeScalingRow,
+    exact_kinetic_matrix, exact_matrix_mul, hubbard_rectangular_bonds,
+    hubbard_scaling_from_canonical_json, hubbard_scaling_to_canonical_json,
+    HubbardDeterminantReceipt, HubbardEnsembleSummary, HubbardLatticeScalingRow,
 };
 pub use normal_forms::{
     benchmark_sign_switching_grid_scaling, normalize_cochain, normalize_sign_cochain,

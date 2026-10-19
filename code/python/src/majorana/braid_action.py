@@ -132,3 +132,9 @@ class MajoranaBraidAction:
         for img in self._images:
             sign *= img.sign
         return sign
+
+    def __eq__(self, other: object) -> bool:
+        if not isinstance(other, MajoranaBraidAction):
+            return False
+        return self._images == other._images
+

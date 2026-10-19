@@ -1,9 +1,20 @@
 
 use serde::{Deserialize, Serialize};
 
-use crate::gf2_terminalizer::{GF2Matrix, Gf2CocycleClassifier};
+use crate::complexes::{
+    closed_residual_syndrome_example, exact_syndrome_example, open_syndrome_example, plaquette,
+    surface_exact_from_vertex0, surface_grid_2x2_planar, surface_grid_2x2_torus,
+    surface_open_single_edge_example, torus_logical_x_example, torus_logical_z_example, triangle,
+    ChainComplexGf2,
+};
+use crate::gf2_terminalizer::{GF2Matrix, GF2ScheduleStatus, Gf2CocycleClassifier};
 use crate::harmonic::{h1_basis, l1_harmonic_projection, H1Basis, DEFAULT_BUDGET};
-use crate::repair_limit::{apply_d0, apply_d1, gf2_add, in_image_d0, solve_d0};
+use crate::lggr::detect_lggr;
+use crate::packet_wall::{terminalize_packet, PacketWallReceipt, ToyRepairPacket};
+use crate::repair_limit::{
+    apply_d0, apply_d1, gf2_add, hamming_weight, in_image_d0, repair_capacity_t, solve_d0,
+};
+use crate::tetron::{build_tetron_array, logical_class_representative, Axis, Topology};
 
 pub const CLASSIFIED_RECEIPT_TAG: &str = "omega.majorana-tetron-classified.v1";
 
@@ -37,7 +48,7 @@ impl Terminal {
     }
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ClassifiedReceipt {
     pub certificate_tag: String,
     pub terminal: Terminal,
@@ -208,6 +219,227 @@ fn classify_inner(
 
 pub fn classify_default(d0: &GF2Matrix, d1: &GF2Matrix, residual: &[u8]) -> ClassifiedReceipt {
     classify(d0, d1, residual, DEFAULT_BUDGET)
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+pub struct ResidualPacketWallReceipt {
+    pub label: String,
+    pub complex_name: String,
+    pub num_vertices: usize,
+    pub num_edges: usize,
+    pub num_faces: usize,
+    pub residual: Vec<u8>,
+    pub residual_weight: usize,
+    pub declared_distance_d: Option<usize>,
+    pub repair_capacity_t: Option<usize>,
+    pub budget: u64,
+    pub schedule_status: Option<GF2ScheduleStatus>,
+    pub local_green: bool,
+    pub global_red: bool,
+    pub is_lggr: bool,
+    pub classified: ClassifiedReceipt,
+    pub packet_wall: PacketWallReceipt,
+    pub authority_effect: String,
+}
+
+/// Evaluate the Exact-vs-LGGR-vs-Open cochain packet wall classifier on a declared
+/// `ChainComplexGf2`, edge residual vector, optional declared distance `d`, and search `budget`.
+pub fn classify_residual(
+    label: &str,
+    complex: &ChainComplexGf2,
+    residual: &[u8],
+    declared_distance_d: Option<usize>,
+    budget: u64,
+) -> ResidualPacketWallReceipt {
+    let normalized: Vec<u8> = residual.iter().map(|&b| b % 2).collect();
+    let residual_weight = hamming_weight(&normalized);
+    let repair_capacity_t_val = declared_distance_d.map(repair_capacity_t);
+    let classified = classify(&complex.d0, &complex.d1, &normalized, budget);
+    let mut packet = ToyRepairPacket::complete(complex.clone(), normalized.clone());
+    packet.declared_distance_d = declared_distance_d;
+    let packet_wall = terminalize_packet(&packet);
+    let (schedule_status, local_green, global_red, is_lggr) =
+        match detect_lggr(&complex.d0, &complex.d1, &normalized) {
+            Ok(w) => (
+                Some(w.certificate.status),
+                w.local_green,
+                w.global_red,
+                w.is_lggr,
+            ),
+            Err(_) => (None, false, false, false),
+        };
+    ResidualPacketWallReceipt {
+        label: label.to_string(),
+        complex_name: complex.name.to_string(),
+        num_vertices: complex.num_vertices,
+        num_edges: complex.num_edges,
+        num_faces: complex.num_faces,
+        residual: normalized,
+        residual_weight,
+        declared_distance_d,
+        repair_capacity_t: repair_capacity_t_val,
+        budget,
+        schedule_status,
+        local_green,
+        global_red,
+        is_lggr,
+        classified,
+        packet_wall,
+        authority_effect: "None".to_string(),
+    }
+}
+
+/// Benchmark the Exact-vs-LGGR-vs-Open cochain packet wall classifier across 14 canonical
+/// cochain complexes, residuals, declared repair distances, and search budgets.
+pub fn benchmark_classify_residual() -> Result<Vec<ResidualPacketWallReceipt>, String> {
+    let mut rows = Vec::with_capacity(14);
+
+    let tri = triangle();
+    rows.push(classify_residual(
+        "triangle_exact",
+        &tri,
+        &exact_syndrome_example(),
+        None,
+        DEFAULT_BUDGET,
+    ));
+    rows.push(classify_residual(
+        "triangle_open",
+        &tri,
+        &open_syndrome_example(),
+        None,
+        DEFAULT_BUDGET,
+    ));
+
+    let plaq = plaquette();
+    rows.push(classify_residual(
+        "plaquette_even_cycle_exact",
+        &plaq,
+        &closed_residual_syndrome_example(),
+        None,
+        DEFAULT_BUDGET,
+    ));
+
+    let planar = surface_grid_2x2_planar();
+    let planar_exact = surface_exact_from_vertex0(&planar.d0);
+    let planar_open = surface_open_single_edge_example(planar.num_edges);
+    rows.push(classify_residual(
+        "planar_2x2_exact_vertex0",
+        &planar,
+        &planar_exact,
+        None,
+        DEFAULT_BUDGET,
+    ));
+    rows.push(classify_residual(
+        "planar_2x2_single_edge_open",
+        &planar,
+        &planar_open,
+        None,
+        DEFAULT_BUDGET,
+    ));
+
+    let torus_2x2 = surface_grid_2x2_torus();
+    let torus_lx = torus_logical_x_example();
+    let torus_lz = torus_logical_z_example();
+    rows.push(classify_residual(
+        "torus_2x2_logical_x_lggr",
+        &torus_2x2,
+        &torus_lx,
+        None,
+        DEFAULT_BUDGET,
+    ));
+    rows.push(classify_residual(
+        "torus_2x2_logical_x_capacity_wall",
+        &torus_2x2,
+        &torus_lx,
+        Some(2),
+        DEFAULT_BUDGET,
+    ));
+    rows.push(classify_residual(
+        "torus_2x2_logical_z_capacity_wall",
+        &torus_2x2,
+        &torus_lz,
+        Some(2),
+        DEFAULT_BUDGET,
+    ));
+
+    let (torus_3x3, report_3x3) = build_tetron_array(3, 3, Topology::Torus)?;
+    let mut alpha_3x3 = vec![0u8; report_3x3.num_mzm];
+    alpha_3x3[0] = 1;
+    let gauge_3x3 = apply_d0(&torus_3x3.d0, &alpha_3x3)?;
+    let mut open_3x3 = vec![0u8; report_3x3.num_channels];
+    open_3x3[0] = 1;
+    let logical_col_3x3 = logical_class_representative(&report_3x3, Axis::Column, 0);
+
+    rows.push(classify_residual(
+        "tetron_torus_3x3_gauge_exact",
+        &torus_3x3,
+        &gauge_3x3,
+        Some(3),
+        DEFAULT_BUDGET,
+    ));
+    rows.push(classify_residual(
+        "tetron_torus_3x3_single_edge_open",
+        &torus_3x3,
+        &open_3x3,
+        Some(3),
+        DEFAULT_BUDGET,
+    ));
+    rows.push(classify_residual(
+        "tetron_torus_3x3_logical_col_typed_harmonic",
+        &torus_3x3,
+        &logical_col_3x3,
+        Some(3),
+        DEFAULT_BUDGET,
+    ));
+    rows.push(classify_residual(
+        "tetron_torus_3x3_logical_col_capped_budget",
+        &torus_3x3,
+        &logical_col_3x3,
+        None,
+        4,
+    ));
+
+    let (torus_3x4, report_3x4) = build_tetron_array(3, 4, Topology::Torus)?;
+    let logical_row_3x4 = logical_class_representative(&report_3x4, Axis::Row, 0);
+    rows.push(classify_residual(
+        "tetron_torus_3x4_logical_row_typed_harmonic",
+        &torus_3x4,
+        &logical_row_3x4,
+        Some(3),
+        DEFAULT_BUDGET,
+    ));
+
+    let broken = ChainComplexGf2 {
+        name: "broken_boundary",
+        d0: GF2Matrix::from_data(vec![vec![1, 0], vec![0, 1]]),
+        d1: GF2Matrix::from_data(vec![vec![1, 0]]),
+        num_vertices: 2,
+        num_edges: 2,
+        num_faces: 1,
+    };
+    rows.push(classify_residual(
+        "invalid_broken_boundary_refusal",
+        &broken,
+        &[1, 0],
+        None,
+        DEFAULT_BUDGET,
+    ));
+
+    Ok(rows)
+}
+
+/// Serialize `ResidualPacketWallReceipt` slice to canonical 2-space pretty JSON with LF line endings.
+pub fn classify_residual_to_canonical_json(
+    rows: &[ResidualPacketWallReceipt],
+) -> Result<String, String> {
+    serde_json::to_string_pretty(rows).map_err(|e| e.to_string())
+}
+
+/// Deserialize `ResidualPacketWallReceipt` vector from canonical JSON string.
+pub fn classify_residual_from_canonical_json(
+    json_str: &str,
+) -> Result<Vec<ResidualPacketWallReceipt>, String> {
+    serde_json::from_str(json_str).map_err(|e| e.to_string())
 }
 
 #[cfg(test)]
@@ -475,5 +707,16 @@ mod review_p1_invariants {
             elapsed.as_millis() < 100,
             "in-process classify took {elapsed:?}"
         );
+    }
+
+    #[test]
+    fn classify_residual_matches_cross_language_json_fixture_bit_for_bit() {
+        let rows = benchmark_classify_residual().unwrap();
+        assert_eq!(rows.len(), 14);
+        let serialized = classify_residual_to_canonical_json(&rows).unwrap();
+        let fixture = include_str!("fixtures/classify_residual.json").replace("\r\n", "\n");
+        assert_eq!(serialized, fixture);
+        let roundtrip = classify_residual_from_canonical_json(&fixture).unwrap();
+        assert_eq!(roundtrip, rows);
     }
 }

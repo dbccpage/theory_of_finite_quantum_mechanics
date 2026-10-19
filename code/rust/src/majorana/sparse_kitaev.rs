@@ -1,6 +1,7 @@
 
 use num_traits::{Signed, Zero};
 use omega_number_theory::rational::Rational;
+use serde::{Deserialize, Serialize};
 use std::collections::{BTreeMap, BTreeSet};
 
 pub const MAX_WIRE_SITES: usize = 65_536;
@@ -217,7 +218,7 @@ impl KitaevWire {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct KitaevWireScalingReceipt {
     pub sites: usize,
     pub mode_count: usize,
@@ -226,6 +227,20 @@ pub struct KitaevWireScalingReceipt {
     pub isolated_count: usize,
     pub endpoints_isolated: bool,
     pub is_sweet_spot: bool,
+}
+
+/// Serialize `KitaevWireScalingReceipt` slice to canonical 2-space pretty JSON with LF line endings.
+pub fn sparse_kitaev_scaling_to_canonical_json(
+    rows: &[KitaevWireScalingReceipt],
+) -> Result<String, String> {
+    serde_json::to_string_pretty(rows).map_err(|e| e.to_string())
+}
+
+/// Deserialize `KitaevWireScalingReceipt` vector from canonical JSON string.
+pub fn sparse_kitaev_scaling_from_canonical_json(
+    json_str: &str,
+) -> Result<Vec<KitaevWireScalingReceipt>, String> {
+    serde_json::from_str(json_str).map_err(|e| e.to_string())
 }
 
 /// Finite lattice scaling benchmark for sparse 1D Kitaev wires across declared site counts
@@ -414,5 +429,20 @@ mod tests {
             assert!(row.endpoints_isolated);
             assert!(row.is_sweet_spot);
         }
+    }
+
+    #[test]
+    fn sparse_kitaev_scaling_matches_cross_language_json_fixture_bit_for_bit() {
+        let site_counts = [16usize, 64, 256, 1024, 4096, 16384, MAX_WIRE_SITES];
+        let rows = benchmark_sparse_kitaev_scaling(&site_counts).unwrap();
+        let serialized = sparse_kitaev_scaling_to_canonical_json(&rows).unwrap();
+        let fixture = include_str!("fixtures/sparse_kitaev_scaling.json").replace("\r\n", "\n");
+        assert_eq!(
+            serialized.as_bytes(),
+            fixture.as_bytes(),
+            "Rust benchmark_sparse_kitaev_scaling JSON output drifted from cross-language fixture"
+        );
+        let round_trip = sparse_kitaev_scaling_from_canonical_json(&fixture).unwrap();
+        assert_eq!(round_trip, rows);
     }
 }

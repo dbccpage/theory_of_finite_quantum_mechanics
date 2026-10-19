@@ -25,6 +25,7 @@ Claim Hygiene:
 from dataclasses import dataclass, field
 from typing import List, Tuple, Dict, Set, Optional, Any
 from fractions import Fraction
+import json
 import math
 import itertools
 import numpy as np
@@ -59,7 +60,7 @@ class FermionicLattice:
             low, high = min(u, v), max(u, v)
             if (low, high) not in valid_edges:
                 valid_edges.append((low, high))
-        self.edges = valid_edges
+        self.edges = sorted(valid_edges)
 
     @classmethod
     def linear_chain(cls, n: int, periodic: bool = False) -> "FermionicLattice":
@@ -74,6 +75,55 @@ class FermionicLattice:
     def triangle_cluster(cls) -> "FermionicLattice":
         """Three-site geometry used for a finite signed-path example."""
         return cls(num_sites=3, edges=[(0, 1), (1, 2), (0, 2)])
+
+    @classmethod
+    def triangle(cls) -> "FermionicLattice":
+        """Alias matching Rust FermionicLattice::triangle()."""
+        return cls.triangle_cluster()
+
+    @classmethod
+    def square_plaquette(cls) -> "FermionicLattice":
+        """Four-site square plaquette matching Rust FermionicLattice::square_plaquette()."""
+        return cls(num_sites=4, edges=[(0, 1), (1, 2), (2, 3), (3, 0)])
+
+    @classmethod
+    def rectangular_grid(cls, rows: int, cols: int, periodic: bool = False) -> "FermionicLattice":
+        """2D rectangular grid of rows x cols sites, matching Rust FermionicLattice::rectangular_grid."""
+        if rows <= 0 or cols <= 0:
+            raise ValueError("grid dimensions must be positive")
+        num_sites = rows * cols
+        edges: List[Tuple[int, int]] = []
+        for r in range(rows):
+            for c in range(cols):
+                idx = r * cols + c
+                if c + 1 < cols:
+                    edges.append((idx, r * cols + (c + 1)))
+                elif periodic and cols > 2:
+                    edges.append((idx, r * cols))
+                if r + 1 < rows:
+                    edges.append((idx, (r + 1) * cols + c))
+                elif periodic and rows > 2:
+                    edges.append((idx, c))
+        return cls(num_sites=num_sites, edges=edges)
+
+    @classmethod
+    def triangular_ladder(cls, rungs: int) -> "FermionicLattice":
+        """2-leg frustrated triangular ladder with `rungs` rungs (2 * rungs sites)."""
+        if rungs < 2:
+            raise ValueError("triangular ladder requires at least 2 rungs")
+        num_sites = 2 * rungs
+        edges: List[Tuple[int, int]] = []
+        for i in range(rungs):
+            top = 2 * i
+            bot = 2 * i + 1
+            edges.append((top, bot))
+            if i + 1 < rungs:
+                next_top = 2 * (i + 1)
+                next_bot = 2 * (i + 1) + 1
+                edges.append((top, next_top))
+                edges.append((bot, next_bot))
+                edges.append((top, next_bot))
+        return cls(num_sites=num_sites, edges=edges)
 
 
 @dataclass(frozen=True)
@@ -235,7 +285,20 @@ class DiscreteFermionicHamiltonian:
 
         def mat_mult(A: List[List[Fraction]], B: List[List[Fraction]]) -> List[List[Fraction]]:
             n = len(A)
-            return [[sum(A[i][k] * B[k][j] for k in range(n)) for j in range(n)] for i in range(n)]
+            C = [[Fraction(0) for _ in range(n)] for _ in range(n)]
+            for i in range(n):
+                row_a = A[i]
+                row_c = C[i]
+                for k in range(n):
+                    aik = row_a[k]
+                    if aik == 0:
+                        continue
+                    row_b = B[k]
+                    for j in range(n):
+                        bkj = row_b[j]
+                        if bkj != 0:
+                            row_c[j] += aik * bkj
+            return C
 
         P_ferm = T_ferm
         P_bos = T_bos
@@ -243,8 +306,8 @@ class DiscreteFermionicHamiltonian:
             P_ferm = mat_mult(P_ferm, T_ferm)
             P_bos = mat_mult(P_bos, T_bos)
 
-        z_ferm = sum(P_ferm[i][i] for i in range(dim))
-        z_bos = sum(P_bos[i][i] for i in range(dim))
+        z_ferm = sum((P_ferm[i][i] for i in range(dim)), Fraction(0))
+        z_bos = sum((P_bos[i][i] for i in range(dim)), Fraction(0))
         avg_sign = z_ferm / z_bos if z_bos > 0 else Fraction(0)
 
         z_exact = self.compute_exact_thermal_trace(beta)
@@ -261,6 +324,9 @@ class DiscreteFermionicHamiltonian:
             "dtau": float(dtau),
             "z_fermionic": float(z_ferm),
             "z_bosonic": float(z_bos),
+            "z_fermionic_exact": z_ferm,
+            "z_bosonic_exact": z_bos,
+            "average_sign_exact": avg_sign,
             "z_fermionic_rational": str(z_ferm),
             "z_bosonic_rational": str(z_bos),
             "average_sign_rational": str(avg_sign),
@@ -376,3 +442,119 @@ class WheelerDeWittToyConstraint:
         """Total ||H_perp||_1 violation."""
         violations = self.evaluate_scalar_violations()
         return sum(abs(val) for val in violations.values())
+
+
+@dataclass(frozen=True)
+class FockLatticeScalingRow:
+    """Exact rational Fock-space partition function row matching Rust FockLatticeScalingRow."""
+    label: str
+    num_sites: int
+    num_edges: int
+    num_up: int
+    num_down: int
+    fock_dim: int
+    trotter_steps: int
+    z_fermionic: Fraction
+    z_bosonic: Fraction
+    average_sign: Fraction
+    has_sign_cancellation: bool
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "label": self.label,
+            "num_sites": self.num_sites,
+            "num_edges": self.num_edges,
+            "num_up": self.num_up,
+            "num_down": self.num_down,
+            "fock_dim": self.fock_dim,
+            "trotter_steps": self.trotter_steps,
+            "z_fermionic": str(self.z_fermionic),
+            "z_bosonic": str(self.z_bosonic),
+            "average_sign": str(self.average_sign),
+            "has_sign_cancellation": self.has_sign_cancellation,
+        }
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> "FockLatticeScalingRow":
+        return cls(
+            label=str(data["label"]),
+            num_sites=int(data["num_sites"]),
+            num_edges=int(data["num_edges"]),
+            num_up=int(data["num_up"]),
+            num_down=int(data["num_down"]),
+            fock_dim=int(data["fock_dim"]),
+            trotter_steps=int(data["trotter_steps"]),
+            z_fermionic=Fraction(str(data["z_fermionic"])),
+            z_bosonic=Fraction(str(data["z_bosonic"])),
+            average_sign=Fraction(str(data["average_sign"])),
+            has_sign_cancellation=bool(data["has_sign_cancellation"]),
+        )
+
+
+def benchmark_fock_lattice_scaling(
+    beta: int | float | Fraction = Fraction(2),
+    trotter_steps: int = 3,
+) -> List[FockLatticeScalingRow]:
+    """Finite lattice scaling benchmark for exact Fock-space partition functions across
+    1D chains/rings, 2D rectangular grids, and frustrated triangular ladders up to N = 8 sites.
+    Matches Rust tfqm_fsp::benchmark_fock_lattice_scaling bit-for-bit.
+    """
+    exact_beta = exact_fraction(beta, "beta")
+    if exact_beta <= 0:
+        raise ValueError("beta must be positive")
+    if isinstance(trotter_steps, bool) or not isinstance(trotter_steps, int) or trotter_steps < 1:
+        raise ValueError("trotter_steps must be a positive integer")
+
+    specs: List[Tuple[str, FermionicLattice, int, int, Fraction]] = [
+        ("triangle_3", FermionicLattice.triangle(), 2, 0, Fraction(0)),
+        ("square_4", FermionicLattice.square_plaquette(), 2, 0, Fraction(0)),
+        ("ring_5_frustrated", FermionicLattice.linear_chain(5, True), 2, 0, Fraction(0)),
+        ("chain_6_open", FermionicLattice.linear_chain(6, False), 3, 0, Fraction(0)),
+        ("ladder_2x3_rect", FermionicLattice.rectangular_grid(2, 3, False), 2, 1, Fraction(2)),
+        ("triangular_ladder_6", FermionicLattice.triangular_ladder(3), 2, 0, Fraction(0)),
+        ("ring_7_frustrated", FermionicLattice.linear_chain(7, True), 2, 0, Fraction(0)),
+        ("grid_2x4_rect", FermionicLattice.rectangular_grid(2, 4, False), 2, 0, Fraction(0)),
+        ("triangular_ladder_8", FermionicLattice.triangular_ladder(4), 2, 0, Fraction(0)),
+    ]
+
+    rows: List[FockLatticeScalingRow] = []
+    for label, lattice, num_up, num_down, u_val in specs:
+        ham = DiscreteFermionicHamiltonian(
+            lattice=lattice,
+            t=Fraction(1),
+            u=u_val,
+            num_up=num_up,
+            num_down=num_down,
+        )
+        res = ham.compute_partition_functions(beta=exact_beta, trotter_steps=trotter_steps)
+        z_ferm: Fraction = res["z_fermionic_exact"]
+        z_bos: Fraction = res["z_bosonic_exact"]
+        avg_sign: Fraction = res["average_sign_exact"]
+        rows.append(
+            FockLatticeScalingRow(
+                label=label,
+                num_sites=lattice.num_sites,
+                num_edges=len(lattice.edges),
+                num_up=num_up,
+                num_down=num_down,
+                fock_dim=ham.dim,
+                trotter_steps=trotter_steps,
+                z_fermionic=z_ferm,
+                z_bosonic=z_bos,
+                average_sign=avg_sign,
+                has_sign_cancellation=avg_sign < Fraction(1),
+            )
+        )
+    return rows
+
+
+def fock_scaling_to_canonical_json(rows: List[FockLatticeScalingRow]) -> str:
+    """Serialize FockLatticeScalingRow list to canonical 2-space pretty JSON with LF line endings."""
+    return json.dumps([row.to_dict() for row in rows], indent=2)
+
+
+def fock_scaling_from_canonical_json(json_str: str) -> List[FockLatticeScalingRow]:
+    """Deserialize FockLatticeScalingRow list from canonical JSON string."""
+    raw = json.loads(json_str)
+    return [FockLatticeScalingRow.from_dict(item) for item in raw]
+

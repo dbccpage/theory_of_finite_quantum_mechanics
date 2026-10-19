@@ -3,8 +3,10 @@ use linear_algebra::backend::basic_matrix::{BasicMatrix, MatrixError, OperationL
 use linear_algebra::exact_field::{matrix, ExactFieldError};
 use num_traits::Signed;
 use omega_number_theory::{ri, rq, One, Rational, Zero};
+use serde::{Deserialize, Serialize};
 
 use crate::braid_action::MajoranaBraidAction;
+use crate::multiqubit_braid::{compile_multiqubit_braid, MultiQubitOperation};
 
 pub const MAX_NOISE_MODES: usize = 1_024;
 
@@ -447,10 +449,13 @@ impl DeterministicRationalNoiseGenerator {
     }
 }
 
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct NoiseEvaluation {
+    #[serde(with = "rational_str_serde")]
     pub max_noise_leakage: Rational,
+    #[serde(with = "rational_str_serde")]
     pub circuit_noise_defect: Rational,
+    #[serde(with = "rational_str_serde")]
     pub tolerance_epsilon: Rational,
     pub is_accepted: bool,
 }
@@ -501,6 +506,179 @@ pub fn evaluate_noise_matrix(
         circuit_noise_defect: defect,
         tolerance_epsilon: tolerance.clone(),
     })
+}
+
+pub mod rational_str_serde {
+    use super::{validate_scalar, Rational};
+    use serde::{self, Deserialize, Deserializer, Serializer};
+    use std::str::FromStr;
+
+    pub fn serialize<S>(value: &Rational, serializer: S) -> Result<S::Ok, S::Error>
+    where
+        S: Serializer,
+    {
+        serializer.serialize_str(&value.to_string())
+    }
+
+    pub fn deserialize<'de, D>(deserializer: D) -> Result<Rational, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        let s = String::deserialize(deserializer)?;
+        let q = Rational::from_str(&s).map_err(serde::de::Error::custom)?;
+        validate_scalar(&q).map_err(serde::de::Error::custom)?;
+        Ok(q)
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+pub struct PauliNoiseScalingRow {
+    pub num_qubits: usize,
+    pub mode_count: usize,
+    pub lattice_side: usize,
+    pub seed: i64,
+    pub coupling_count: usize,
+    #[serde(with = "rational_str_serde")]
+    pub budget: Rational,
+    #[serde(with = "rational_str_serde")]
+    pub first_coupling: Rational,
+    #[serde(with = "rational_str_serde")]
+    pub last_coupling: Rational,
+    #[serde(with = "rational_str_serde")]
+    pub mode1_leakage: Rational,
+    #[serde(with = "rational_str_serde")]
+    pub max_noise_leakage: Rational,
+    #[serde(with = "rational_str_serde")]
+    pub circuit_noise_defect: Rational,
+    #[serde(with = "rational_str_serde")]
+    pub tight_tolerance: Rational,
+    pub tight_accepted: bool,
+    pub tight_status: String,
+    #[serde(with = "rational_str_serde")]
+    pub boundary_tolerance: Rational,
+    pub boundary_accepted: bool,
+    pub boundary_status: String,
+    pub leakage_preserved: bool,
+    pub inverse_restores_noise: bool,
+    pub lcg_final_state: u32,
+    #[serde(with = "rational_str_serde")]
+    pub lcg_max_leakage: Rational,
+    #[serde(with = "rational_str_serde")]
+    pub lcg_commutation_defect: Rational,
+}
+
+/// Finite scaling benchmark for exact rational correlated Pauli noise and deterministic
+/// LCG noise evaluation under multi-qubit Majorana braiding across declared `qubit_counts`.
+pub fn benchmark_pauli_noise_scaling(
+    qubit_counts: &[usize],
+) -> Result<Vec<PauliNoiseScalingRow>, NoiseError> {
+    if qubit_counts.is_empty() {
+        return Err(NoiseError::InvalidQubitCount);
+    }
+    let mut rows = Vec::with_capacity(qubit_counts.len());
+    for &nq in qubit_counts {
+        if nq < 2 {
+            return Err(NoiseError::InvalidQubitCount);
+        }
+        let mode_count = 4 * nq;
+        let lattice_side = nq.max(2);
+        let seed = (nq as i64) + 1;
+        let budget = rq(1, 10);
+        let couplings = correlated_cluster_couplings(nq, lattice_side, &budget, seed)?;
+        let coupling_count = couplings.len();
+        let first_coupling = couplings
+            .first()
+            .map(|(_, _, v)| v.clone())
+            .unwrap_or_else(Rational::zero);
+        let last_coupling = couplings
+            .last()
+            .map(|(_, _, v)| v.clone())
+            .unwrap_or_else(Rational::zero);
+        let cluster_noise = LocalMajoranaNoise::stray_couplings(mode_count, &couplings)?;
+
+        let ops = [
+            MultiQubitOperation::Phase {
+                qubit: 1,
+                inverse: false,
+            },
+            MultiQubitOperation::Hadamard {
+                qubit: nq,
+                inverse: false,
+            },
+            MultiQubitOperation::Swap {
+                first: 1,
+                second: 2,
+            },
+            MultiQubitOperation::Cnot {
+                control: 1,
+                target: nq,
+            },
+        ];
+        let compiled =
+            compile_multiqubit_braid(nq, &ops).map_err(|_| NoiseError::InvalidQubitCount)?;
+
+        let mode1_leakage = cluster_noise.leakage_on_mode(1)?;
+        let tight_tolerance = rq(1, 100);
+        let eval_tight = evaluate_noise(&cluster_noise, &compiled.action, &tight_tolerance)?;
+        let boundary_tolerance = eval_tight.circuit_noise_defect.clone();
+        let eval_boundary = evaluate_noise(&cluster_noise, &compiled.action, &boundary_tolerance)?;
+
+        let transformed = cluster_noise.transform(&compiled.action)?;
+        let leakage_preserved = transformed.max_leakage() == cluster_noise.max_leakage();
+        let inv = compiled
+            .action
+            .inverse()
+            .map_err(|_| NoiseError::InvalidDimension)?;
+        let restored = transformed.transform(&inv)?;
+        let inverse_restores_noise = restored == cluster_noise;
+
+        let mut lcg = DeterministicRationalNoiseGenerator::new(100 + nq as u32);
+        let lcg_noise =
+            lcg.generate_skew_symmetric_matrix(mode_count, &rq(1, 20), &rq(1, 2), 50)?;
+        let lcg_final_state = lcg.state();
+        let lcg_max_leakage = lcg_noise.max_leakage();
+        let lcg_commutation_defect = lcg_noise.commutation_defect(&compiled.action)?;
+
+        rows.push(PauliNoiseScalingRow {
+            num_qubits: nq,
+            mode_count,
+            lattice_side,
+            seed,
+            coupling_count,
+            budget,
+            first_coupling,
+            last_coupling,
+            mode1_leakage,
+            max_noise_leakage: eval_tight.max_noise_leakage.clone(),
+            circuit_noise_defect: eval_tight.circuit_noise_defect.clone(),
+            tight_tolerance,
+            tight_accepted: eval_tight.is_accepted,
+            tight_status: eval_tight.status_reason().to_string(),
+            boundary_tolerance,
+            boundary_accepted: eval_boundary.is_accepted,
+            boundary_status: eval_boundary.status_reason().to_string(),
+            leakage_preserved,
+            inverse_restores_noise,
+            lcg_final_state,
+            lcg_max_leakage,
+            lcg_commutation_defect,
+        });
+    }
+    Ok(rows)
+}
+
+/// Serialize `PauliNoiseScalingRow` slice to canonical 2-space pretty JSON with LF line endings.
+pub fn pauli_noise_scaling_to_canonical_json(
+    rows: &[PauliNoiseScalingRow],
+) -> Result<String, String> {
+    serde_json::to_string_pretty(rows).map_err(|e| e.to_string())
+}
+
+/// Deserialize `PauliNoiseScalingRow` vector from canonical JSON string.
+pub fn pauli_noise_scaling_from_canonical_json(
+    json_str: &str,
+) -> Result<Vec<PauliNoiseScalingRow>, String> {
+    serde_json::from_str(json_str).map_err(|e| e.to_string())
 }
 
 #[cfg(test)]
@@ -896,5 +1074,25 @@ mod tests {
             correlated_cluster_couplings(1, 2, &ri(-1), 1),
             Err(NoiseError::NegativeBound)
         );
+    }
+
+    #[test]
+    fn pauli_noise_scaling_matches_cross_language_json_fixture_bit_for_bit() {
+        let counts = [2, 4, 8, 12, 16];
+        let rows = benchmark_pauli_noise_scaling(&counts).unwrap();
+        assert_eq!(rows.len(), 5);
+        for (&nq, row) in counts.iter().zip(rows.iter()) {
+            assert_eq!(row.num_qubits, nq);
+            assert_eq!(row.mode_count, 4 * nq);
+            assert!(row.boundary_accepted);
+            assert_eq!(row.boundary_status, "ACCEPTED_STABLE");
+            assert!(row.leakage_preserved);
+            assert!(row.inverse_restores_noise);
+        }
+        let serialized = pauli_noise_scaling_to_canonical_json(&rows).unwrap();
+        let fixture = include_str!("fixtures/pauli_noise_scaling.json").replace("\r\n", "\n");
+        assert_eq!(serialized, fixture);
+        let roundtrip = pauli_noise_scaling_from_canonical_json(&fixture).unwrap();
+        assert_eq!(roundtrip, rows);
     }
 }

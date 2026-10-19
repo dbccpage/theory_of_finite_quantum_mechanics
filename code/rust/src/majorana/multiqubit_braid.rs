@@ -1,5 +1,6 @@
 
 use crate::braid_action::{BraidActionError, MajoranaBraidAction, MAX_BRAID_MODES};
+use serde::{Deserialize, Serialize};
 
 pub const DEFAULT_MAX_COMPILED_STEPS: usize = 65_536;
 
@@ -163,13 +164,27 @@ pub fn compile_multiqubit_braid_with_limit(
     })
 }
 
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct MultiQubitBraidScalingRow {
     pub num_qubits: usize,
     pub mode_count: usize,
     pub cnot_steps: usize,
     pub determinant_sign: i8,
     pub inverse_restores_identity: bool,
+}
+
+/// Serialize `MultiQubitBraidScalingRow` slice to canonical 2-space pretty JSON with LF line endings.
+pub fn multiqubit_braid_scaling_to_canonical_json(
+    rows: &[MultiQubitBraidScalingRow],
+) -> Result<String, String> {
+    serde_json::to_string_pretty(rows).map_err(|e| e.to_string())
+}
+
+/// Deserialize `MultiQubitBraidScalingRow` vector from canonical JSON string.
+pub fn multiqubit_braid_scaling_from_canonical_json(
+    json_str: &str,
+) -> Result<Vec<MultiQubitBraidScalingRow>, String> {
+    serde_json::from_str(json_str).map_err(|e| e.to_string())
 }
 
 /// Finite register scaling benchmark for multi-qubit Majorana braid compilation across
@@ -374,5 +389,21 @@ mod tests {
             assert_eq!(row.cnot_steps, 32 * (nq - 2) + 1);
             assert!(row.inverse_restores_identity);
         }
+    }
+
+    #[test]
+    fn multiqubit_braid_scaling_matches_cross_language_json_fixture_bit_for_bit() {
+        let counts = [2usize, 4, 8, 12, 16];
+        let rows = benchmark_multiqubit_braid_scaling(&counts).unwrap();
+        let serialized = multiqubit_braid_scaling_to_canonical_json(&rows).unwrap();
+        let fixture =
+            include_str!("fixtures/multiqubit_braid_scaling.json").replace("\r\n", "\n");
+        assert_eq!(
+            serialized.as_bytes(),
+            fixture.as_bytes(),
+            "Rust benchmark_multiqubit_braid_scaling JSON output drifted from cross-language fixture"
+        );
+        let round_trip = multiqubit_braid_scaling_from_canonical_json(&fixture).unwrap();
+        assert_eq!(round_trip, rows);
     }
 }
