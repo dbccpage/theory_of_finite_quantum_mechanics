@@ -562,3 +562,35 @@ checkpoint 134 finds zero owned debug/tmp or compiled outputs. An inactive
 registered cache cleanup also recovered 13,981,419,646 bytes after verifying
 no active compiler. Exact small source snapshots remain for receipt custody;
 contracts and the full all-files goal remain unfinished.
+
+Vector/map checkpoint: 137 completed A assessments and 55 incomplete. Graded
+vector, boundary and coboundary are L3A. Ten unchanged-own-source dependent
+records retain their original primary/metric receipts with an explicit current
+provider transformation argument. Homology has 16 completed files and three
+incomplete; category theory has 121 completed and 52 incomplete.
+
+All raw public/wire/scalar gates, compatibility/refusal order, signatures and
+mathematical domains are preserved. An internal canonical-result constructor
+is justified at all seven producer sites: raw admission, normalized Q zero,
+addition/subtraction/multiplication and the two admitted matrix-vector folds.
+Removing redundant output GCD scans eliminates the pinned large-digit heap-copy
+path. This is source/cost evidence, not an allocation benchmark. Wire is
+explicitly untagged with kind selected statically; map matrices preserve caller
+family labels and do not own/authenticate a family or certify a whole complex.
+
+Native 20261019T060338Z independently detects all 46 designated valid faults,
+passes three controls with eight tests, and passes 99 original local homology
+tests before/after. Oracles check 1250 vector pairs and 6250 scalar cases over
+both kinds, 2025 integer matrix-vector cases per map, rectangular/zero shapes,
+raw/wire/degree/length failures and >200-bit results. VectorMaps checks 15 exact
+context/pointwise/dot-sum/linear statements; its initial notation parse failure
+is retained and excluded. The thirty-function source/data/producer audit and
+current calibrated metrics fit A ceilings. Canonical Q/backend/index/allocator
+trust remains explicit; no Rust/MIR, basis authentication or A+ claim.
+
+20261019T061817Z-score-verification passes all 137 completed assessments, all
+current source/score digests and 24 receipt groups. Every historical score batch
+is preserved; current groups may draw unchanged and refreshed records from
+separate immutable batches. Cleanup checkpoint 137 finds no owned debug/tmp or
+compiled output. Small exact source snapshots remain for evidence custody.
+The full goal and contracts remain unfinished, and the PR remains draft.

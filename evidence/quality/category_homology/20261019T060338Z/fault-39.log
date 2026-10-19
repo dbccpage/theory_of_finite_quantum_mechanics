@@ -1,0 +1,29 @@
+
+running 3 tests
+test homology::degree_repair_replay_42::subject::tests::apply_rejects_coefficient_length_mismatch ... FAILED
+test homology::degree_repair_replay_42::subject::independent_vector_maps::ordered_input_degree_length_and_overflow_failures ... FAILED
+test homology::degree_repair_replay_42::subject::independent_vector_maps::independent_integer_products_and_context_transfer ... ok
+
+failures:
+
+---- homology::degree_repair_replay_42::subject::tests::apply_rejects_coefficient_length_mismatch stdout ----
+
+thread 'homology::degree_repair_replay_42::subject::tests::apply_rejects_coefficient_length_mismatch' (13832) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\dr\261019T060338\src\homology\q\n42.rs:120:9:
+assertion failed: matches!(map.apply(&cochain),
+    Err(HomologicalError::DimensionMismatch { expected: 3, got: 1 }))
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- homology::degree_repair_replay_42::subject::independent_vector_maps::ordered_input_degree_length_and_overflow_failures stdout ----
+
+thread 'homology::degree_repair_replay_42::subject::independent_vector_maps::ordered_input_degree_length_and_overflow_failures' (11416) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\dr\261019T060338\src\homology\q\n42.rs:155:72:
+assertion `left == right` failed
+  left: MatrixError(DimensionMismatch { left: (2, 3), right: (1, 1) })
+ right: DimensionMismatch { expected: 3, got: 1 }
+
+
+failures:
+    homology::degree_repair_replay_42::subject::independent_vector_maps::ordered_input_degree_length_and_overflow_failures
+    homology::degree_repair_replay_42::subject::tests::apply_rejects_coefficient_length_mismatch
+
+test result: FAILED. 1 passed; 2 failed; 0 ignored; 0 measured; 452 filtered out; finished in 0.03s
+

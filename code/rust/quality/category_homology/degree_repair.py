@@ -145,6 +145,9 @@ def complex_tests(cochain):
 
 def challenge(subject):
     name=Path(subject['path']).stem
+    if name in ('graded_vector','boundary','coboundary'):
+        from vector_maps import challenge as vector_challenge
+        return vector_challenge(subject)
     if name in ('exact_scalar','witness','carrier','carrier_manifest'):
         from storage_admission import challenge as storage_challenge
         return storage_challenge(subject)

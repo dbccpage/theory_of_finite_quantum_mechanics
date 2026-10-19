@@ -1,6 +1,8 @@
 //! Exact graded coordinate vectors with sealed chain/cochain kinds.
 //! AuthorityEffect: None. BasisId names a graded coordinate family.
 //! Arithmetic is defined only within one kind, degree and basis family.
+//! Wire data selects its kind through the requested Rust type; it does not
+//! carry a kind tag. Hashes include the sealed kind's distinct domain tag.
 
 use crate::homology::errors::HomologicalError;
 use crate::homology::hashing::{hash_graded_vector, Hash256};
@@ -62,12 +64,19 @@ impl<K: VectorKind> GradedVector<K> {
         coefficients: Vec<Q>,
     ) -> Result<Self, HomologicalError> {
         super::exact_scalar::admit_coefficients(&coefficients)?;
-        Ok(Self {
+        Ok(Self::from_canonical(degree, basis_id, coefficients))
+    }
+
+    /// Internal transport of already canonical coefficients. Every caller
+    /// either just admitted raw input or produced values using canonical Q
+    /// zero/field/matrix operations; this is not a raw-input admission API.
+    pub(super) fn from_canonical(degree: Degree, basis_id: BasisId, coefficients: Vec<Q>) -> Self {
+        Self {
             degree,
             basis_id,
             coefficients,
             kind: std::marker::PhantomData,
-        })
+        }
     }
 
     pub fn degree(&self) -> Degree {
@@ -87,7 +96,7 @@ impl<K: VectorKind> GradedVector<K> {
             .try_reserve_exact(dim)
             .map_err(|_| HomologicalError::ResourceLimit("zero vector allocation"))?;
         coefficients.resize(dim, Q::zero());
-        Self::new(degree, basis_id, coefficients)
+        Ok(Self::from_canonical(degree, basis_id, coefficients))
     }
 
     /// Dimension of the chain (number of coefficients).
@@ -119,12 +128,11 @@ impl<K: VectorKind> GradedVector<K> {
             .zip(other.coefficients.iter())
             .map(|(a, b)| a + b)
             .collect();
-        Ok(Self {
-            degree: self.degree,
-            basis_id: self.basis_id.clone(),
+        Ok(Self::from_canonical(
+            self.degree,
+            self.basis_id.clone(),
             coefficients,
-            kind: std::marker::PhantomData,
-        })
+        ))
     }
 
     /// Subtract another chain.
@@ -136,12 +144,11 @@ impl<K: VectorKind> GradedVector<K> {
             .zip(other.coefficients.iter())
             .map(|(a, b)| a - b)
             .collect();
-        Ok(Self {
-            degree: self.degree,
-            basis_id: self.basis_id.clone(),
+        Ok(Self::from_canonical(
+            self.degree,
+            self.basis_id.clone(),
             coefficients,
-            kind: std::marker::PhantomData,
-        })
+        ))
     }
 
     fn check_compatible(&self, other: &Self) -> Result<(), HomologicalError> {
@@ -168,10 +175,10 @@ impl<K: VectorKind> GradedVector<K> {
     /// Scalar multiplication.
     pub fn scalar_mul(&self, scalar: &Q) -> Result<Self, HomologicalError> {
         super::exact_scalar::admit_coefficients(std::slice::from_ref(scalar))?;
-        Self::new(
+        Ok(Self::from_canonical(
             self.degree,
             self.basis_id.clone(),
             self.coefficients.iter().map(|c| c * scalar).collect(),
-        )
+        ))
     }
 }

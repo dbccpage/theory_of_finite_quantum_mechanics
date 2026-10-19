@@ -1,0 +1,219 @@
+{
+  "AuthorityEffect": "None",
+  "records": [
+    {
+      "family": "",
+      "path": "code/rust/src/homology/graded_vector.rs",
+      "sha256": "5d00acd9db167e9c121a1aed8cfc865ecafdb05b9034c7278e7e2efe5b878828",
+      "parent_aliases": [
+        "exact_scalar"
+      ],
+      "faults": [
+        [
+          "b\"chain\"",
+          "b\"cochain\""
+        ],
+        [
+          "b\"cochain\"",
+          "b\"chain\""
+        ],
+        [
+          "Self::new(value.degree, value.basis_id, value.coefficients)",
+          "Ok(Self::from_canonical(value.degree, value.basis_id, value.coefficients))"
+        ],
+        [
+          "        super::exact_scalar::admit_coefficients(&coefficients)?;",
+          ""
+        ],
+        [
+          "            degree,\n            basis_id,\n            coefficients,",
+          "            degree: Degree::new(0),\n            basis_id,\n            coefficients,"
+        ],
+        [
+          "            basis_id,\n            coefficients,",
+          "            basis_id: BasisId::new(\"wrong family\").unwrap(),\n            coefficients,"
+        ],
+        [
+          "            coefficients,\n            kind:",
+          "            coefficients: Vec::new(),\n            kind:"
+        ],
+        [
+          "        &self.coefficients\n",
+          "        &self.coefficients[..0]\n"
+        ],
+        [
+          "ResourceLimit(\"zero vector allocation\")",
+          "ResourceLimit(\"wrong allocation error\")"
+        ],
+        [
+          "coefficients.resize(dim, Q::zero());",
+          "coefficients.resize(dim, Q::from_integer(1.into()));"
+        ],
+        [
+          "    pub fn dimension(&self) -> usize {\n        self.coefficients.len()\n",
+          "    pub fn dimension(&self) -> usize {\n        self.coefficients.len() + 1\n"
+        ],
+        [
+          ".all(|c| c.is_zero())",
+          ".any(|c| c.is_zero())"
+        ],
+        [
+          "            K::TAG,",
+          "            b\"chain\","
+        ],
+        [
+          ".map(|(a, b)| a + b)",
+          ".map(|(a, b)| a - b)"
+        ],
+        [
+          ".map(|(a, b)| a - b)",
+          ".map(|(a, b)| b - a)"
+        ],
+        [
+          "if self.degree != other.degree {",
+          "if false {"
+        ],
+        [
+          "if self.basis_id != other.basis_id {",
+          "if false {"
+        ],
+        [
+          "if self.coefficients.len() != other.coefficients.len() {",
+          "if false {"
+        ],
+        [
+          "        super::exact_scalar::admit_coefficients(std::slice::from_ref(scalar))?;",
+          ""
+        ],
+        [
+          ".map(|c| c * scalar)",
+          ".map(|c| c + scalar)"
+        ]
+      ]
+    },
+    {
+      "family": "",
+      "path": "code/rust/src/homology/boundary.rs",
+      "sha256": "729ed9b7c143f7dfd45db00402cae06eb1ba86ede6fd1809564d79535f7c15b4",
+      "parent_aliases": [
+        "exact_scalar"
+      ],
+      "faults": [
+        [
+          "        super::exact_scalar::admit_matrix(&matrix)?;",
+          ""
+        ],
+        [
+          ".checked_pred()",
+          ".checked_succ()"
+        ],
+        [
+          ".map_err(|_| HomologicalError::DegreeOverflow)?",
+          ".map_err(|_| HomologicalError::InvalidDegree(0))?"
+        ],
+        [
+          "if to_degree != expected {",
+          "if false {"
+        ],
+        [
+          "expected: expected.value(),",
+          "expected: to_degree.value(),"
+        ],
+        [
+          "if chain.degree != self.from_degree {",
+          "if false {"
+        ],
+        [
+          "if chain.coefficients.len() != self.matrix.cols() {",
+          "if false {"
+        ],
+        [
+          "            .matrix\n            .mul_vec",
+          "            .matrix\n            .try_transpose()?\n            .mul_vec"
+        ],
+        [
+          "Chain::from_canonical(\n            self.to_degree,",
+          "Chain::from_canonical(\n            self.from_degree,"
+        ],
+        [
+          "chain.basis_id.clone()",
+          "crate::homology::ids::BasisId::new(\"wrong family\").unwrap()"
+        ],
+        [
+          "    pub fn source_dim(&self) -> usize {\n        self.matrix.cols()\n",
+          "    pub fn source_dim(&self) -> usize {\n        self.matrix.rows()\n"
+        ],
+        [
+          "    pub fn target_dim(&self) -> usize {\n        self.matrix.rows()\n",
+          "    pub fn target_dim(&self) -> usize {\n        self.matrix.cols()\n"
+        ],
+        [
+          "let map_hash = hash_matrix(&matrix);",
+          "let map_hash = Hash256([0;32]);"
+        ]
+      ]
+    },
+    {
+      "family": "",
+      "path": "code/rust/src/homology/coboundary.rs",
+      "sha256": "52a33a69ef9397f9e7f7bcce74ba0315071f91b4f3c33454b10c0a063f99c356",
+      "parent_aliases": [
+        "exact_scalar"
+      ],
+      "faults": [
+        [
+          "        super::exact_scalar::admit_matrix(&matrix)?;",
+          ""
+        ],
+        [
+          ".checked_succ()",
+          ".checked_pred()"
+        ],
+        [
+          ".map_err(|_| HomologicalError::DegreeOverflow)?",
+          ".map_err(|_| HomologicalError::InvalidDegree(0))?"
+        ],
+        [
+          "if to_degree != expected {",
+          "if false {"
+        ],
+        [
+          "expected: expected.value(),",
+          "expected: to_degree.value(),"
+        ],
+        [
+          "if cochain.degree != self.from_degree {",
+          "if false {"
+        ],
+        [
+          "if cochain.coefficients.len() != self.matrix.cols() {",
+          "if false {"
+        ],
+        [
+          "            .matrix\n            .mul_vec",
+          "            .matrix\n            .try_transpose()?\n            .mul_vec"
+        ],
+        [
+          "Cochain::from_canonical(\n            self.to_degree,",
+          "Cochain::from_canonical(\n            self.from_degree,"
+        ],
+        [
+          "cochain.basis_id.clone()",
+          "crate::homology::ids::BasisId::new(\"wrong family\").unwrap()"
+        ],
+        [
+          "    pub fn source_dim(&self) -> usize {\n        self.matrix.cols()\n",
+          "    pub fn source_dim(&self) -> usize {\n        self.matrix.rows()\n"
+        ],
+        [
+          "    pub fn target_dim(&self) -> usize {\n        self.matrix.rows()\n",
+          "    pub fn target_dim(&self) -> usize {\n        self.matrix.cols()\n"
+        ],
+        [
+          "let map_hash = hash_matrix(&matrix);",
+          "let map_hash = Hash256([0;32]);"
+        ]
+      ]
+    }
+  ]
+}

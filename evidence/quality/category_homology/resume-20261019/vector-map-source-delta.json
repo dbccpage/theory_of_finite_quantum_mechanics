@@ -1,0 +1,90 @@
+{
+  "AuthorityEffect": "None",
+  "records": [
+    {
+      "path": "code/rust/src/homology/graded_vector.rs",
+      "previous_source_sha256": "80a2c598049ad838ff219d1491d0d709c8116107afa49869b7fbd469a7c587b7",
+      "current_source_sha256": "5d00acd9db167e9c121a1aed8cfc865ecafdb05b9034c7278e7e2efe5b878828",
+      "added_functions": [
+        "impl<K: VectorKind> GradedVector<K>::from_canonical"
+      ],
+      "removed_functions": [],
+      "changed_bodies": [
+        "impl<K: VectorKind> GradedVector<K>::new",
+        "impl<K: VectorKind> GradedVector<K>::zero",
+        "impl<K: VectorKind> GradedVector<K>::add",
+        "impl<K: VectorKind> GradedVector<K>::sub",
+        "impl<K: VectorKind> GradedVector<K>::scalar_mul"
+      ],
+      "unchanged_bodies": 8,
+      "all_existing_signatures_preserved": true
+    },
+    {
+      "path": "code/rust/src/homology/boundary.rs",
+      "previous_source_sha256": "9408d47116a07fee24a3d490c122b9d041dbf51b2f9018b929bf2de7ca96abba",
+      "current_source_sha256": "729ed9b7c143f7dfd45db00402cae06eb1ba86ede6fd1809564d79535f7c15b4",
+      "added_functions": [],
+      "removed_functions": [],
+      "changed_bodies": [
+        "implBoundaryMap::apply"
+      ],
+      "unchanged_bodies": 7,
+      "all_existing_signatures_preserved": true
+    },
+    {
+      "path": "code/rust/src/homology/coboundary.rs",
+      "previous_source_sha256": "3b4d98c6a891cb131294b1b671d1f5ff65b50c1d48bf9761d12e589afb1ee03a",
+      "current_source_sha256": "52a33a69ef9397f9e7f7bcce74ba0315071f91b4f3c33454b10c0a063f99c356",
+      "added_functions": [],
+      "removed_functions": [],
+      "changed_bodies": [
+        "implCoboundaryMap::apply"
+      ],
+      "unchanged_bodies": 7,
+      "all_existing_signatures_preserved": true
+    }
+  ],
+  "producer_obligations": [
+    {
+      "producer": "public_new",
+      "canonicality_argument": "raw coefficients admitted before transport"
+    },
+    {
+      "producer": "zero",
+      "canonicality_argument": "Q::zero produces canonical 0/1; clone preserves it"
+    },
+    {
+      "producer": "add",
+      "canonicality_argument": "equal-length canonical Q addition"
+    },
+    {
+      "producer": "sub",
+      "canonicality_argument": "equal-length canonical Q subtraction"
+    },
+    {
+      "producer": "scalar_mul",
+      "canonicality_argument": "raw scalar admitted first; canonical Q multiplication"
+    },
+    {
+      "producer": "boundary.apply",
+      "canonicality_argument": "canonical owned matrix and admitted Chain; exact finite dot sums"
+    },
+    {
+      "producer": "coboundary.apply",
+      "canonicality_argument": "canonical owned matrix and admitted Cochain; exact finite dot sums"
+    }
+  ],
+  "runtime_source_inputs": [
+    {
+      "path": "C:\\Users\\a343o\\source\\repos\\the_symbol_game\\omega_engine\\crates_rs\\omega_linear_algebra\\src\\backend\\basic_matrix.rs",
+      "sha256": "76a37de238c38d9a5939feac8e80b84bf61c3a5f2a6650066e79ff9db1123996"
+    },
+    {
+      "path": "C:\\Users\\a343o\\source\\repos\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\num-rational-0.4.2\\src\\lib.rs",
+      "sha256": "6ce781e573521fb81f5ca47c1e6dab64e4eafc7f7d8e85094161fca5bb39c015"
+    }
+  ],
+  "runtime_argument": "Ratio add/sub/mul return normalized Ratio::new/reduce results; zero denominator cannot arise from these operations on positive admitted denominators over BigInt. BasicMatrix::mul_vec checks length, reserves rows, starts each accumulator at zero and folds canonical products/sums over valid row-major indices. Matrix and allocation errors propagate before any output vector. The source/typed-library correspondence is reviewed, not Rust/MIR extracted.",
+  "behavior_and_failure_delta": "Every existing public signature, raw new/serde/scalar admission gate, compatibility check, map degree/length gate, metadata field and output value is preserved. Only output canonicality re-scans whose InvalidRational branch is unreachable under the explicitly audited backend contract are removed. No public mathematical domain is narrowed or error clamp introduced. The internal producer has its explicit canonical precondition; all seven current call sites discharge it.",
+  "cost_delta": "Avoid the second output GCD scan and its large-digit heap copies; zero generation also avoids an unnecessary all-zero scan. This is a pinned source/call-path cost argument, not an allocator benchmark or precise whole-operation allocation count."
+}

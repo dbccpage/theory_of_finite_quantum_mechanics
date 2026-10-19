@@ -1,4 +1,8 @@
 //! Boundary maps in a chain complex: d_n : C_n -> C_{n-1}.
+//! AuthorityEffect: None. These are canonical coordinate matrices with a
+//! checked degree drop, not independent certificates of a whole complex law.
+//! Basis-family labels are supplied by the caller and preserved on application;
+//! the map itself does not bind a family identifier.
 
 use crate::homology::chain::Chain;
 use crate::homology::errors::HomologicalError;
@@ -64,7 +68,11 @@ impl BoundaryMap {
             .matrix
             .mul_vec(&chain.coefficients)
             .map_err(HomologicalError::MatrixError)?;
-        Chain::new(self.to_degree, chain.basis_id.clone(), result)
+        Ok(Chain::from_canonical(
+            self.to_degree,
+            chain.basis_id.clone(),
+            result,
+        ))
     }
 
     pub fn from_degree(&self) -> Degree {

@@ -1,0 +1,28 @@
+{
+  "AuthorityEffect": "None",
+  "subject": "code/rust/src/homology/graded_vector.rs",
+  "previous_source_sha256": "80a2c598049ad838ff219d1491d0d709c8116107afa49869b7fbd469a7c587b7",
+  "gate": "G5",
+  "established_ceiling": "B",
+  "witness": "One canonical coefficient (2^200+1)/2 and canonical scalar 1. Ratio multiplication returns a normalized pair, after which scalar_mul calls Self::new and re-runs admit_coefficients/GCD over the entire output. BigInt::gcd delegates to BigUint::gcd; the latter clones both nonzero operands, and cloning the >one-digit Heap BigDigits allocates/copies its buffer. This second validation does not establish any invariant not already supplied by canonical Q field closure.",
+  "related_paths": "zero also re-scans generated canonical zeros; map apply calls Chain/Cochain::new after canonical matrix-vector multiplication. Small zero/one BigDigits are inline, so no heap allocation is inferred for those small values.",
+  "evidence_kind": "Concrete source/call-path and pinned dependency implementation trace; no instrumented allocation benchmark or total allocation count is claimed.",
+  "provider_inputs": [
+    {
+      "path": "C:\\Users\\a343o\\source\\repos\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\num-bigint-0.4.8\\src\\bigint.rs",
+      "sha256": "bbed782925af8f9a3c15a02f94154548df92f37aee6b8593597d192533f25c13"
+    },
+    {
+      "path": "C:\\Users\\a343o\\source\\repos\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\num-bigint-0.4.8\\src\\biguint.rs",
+      "sha256": "b2a37538d35c0e7683ce3d311109a7dd59cf498635855598c42b2267c0ce5384"
+    },
+    {
+      "path": "C:\\Users\\a343o\\source\\repos\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\num-bigint-0.4.8\\src\\big_digit.rs",
+      "sha256": "b70899171a1850714ede4a1ea2cb387bd9245ab2d8dfa8ae47e533a6cf95acc1"
+    },
+    {
+      "path": "C:\\Users\\a343o\\source\\repos\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\num-rational-0.4.2\\src\\lib.rs",
+      "sha256": "6ce781e573521fb81f5ca47c1e6dab64e4eafc7f7d8e85094161fca5bb39c015"
+    }
+  ]
+}

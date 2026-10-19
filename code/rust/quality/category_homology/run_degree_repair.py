@@ -42,7 +42,7 @@ def main():
     work = RUST/"target/dr"/stamp[2:15]
     inputs = inventory()
     write_json(output/"source_manifest.json",inputs)
-    for name in (Path(__file__).name,"degree_repair.py","homology_protocols.py","storage_admission.py"):
+    for name in (Path(__file__).name,"degree_repair.py","homology_protocols.py","storage_admission.py","vector_maps.py"):
         shutil.copyfile(Path(__file__).with_name(name),output/name)
     shutil.copyfile(policy,output/policy.name)
     snapshot(work,"homology")

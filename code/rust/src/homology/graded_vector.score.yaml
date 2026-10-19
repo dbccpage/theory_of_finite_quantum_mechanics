@@ -3,46 +3,67 @@ schema_version: "2.0.0"
 artifact:
   path: "code/rust/src/homology/graded_vector.rs"
   language: "Rust"
-  sha256: "80a2c598049ad838ff219d1491d0d709c8116107afa49869b7fbd469a7c587b7"
+  sha256: "5d00acd9db167e9c121a1aed8cfc865ecafdb05b9034c7278e7e2efe5b878828"
 profile: "Exact"
 level: "L3"
 level_basis: "Conservative bounded-domain classification; no upgrade based solely on terminology or module size."
 architecture_target: "L5"
 engineering_target: "A"
 gates:
-  G1: null
-  G2: null
-  G3: null
-  G4: null
-  G5: null
-composite_grade: null
-score_token: null
-is_complete: false
+  G1: "A"
+  G2: "A"
+  G3: "A"
+  G4: "A"
+  G5: "A"
+composite_grade: "A"
+score_token: "L3A"
+is_complete: true
 grade_ceiling: "A"
-evaluation_timestamp: "2026-10-18T18:42:03+00:00"
+evaluation_timestamp: "2026-10-19T06:15:38.904098+00:00"
 AuthorityEffect: "None"
 claim:
   urn: "urn:tfqm:rust:homology:graded_vector"
-  description: "Exact graded coordinate vectors with sealed chain/cochain kinds. AuthorityEffect: None. BasisId names a graded coordinate family. Arithmetic is defined only within one kind, degree and basis family."
+  description: "Exact graded coordinate vectors with sealed chain/cochain kinds. AuthorityEffect: None. BasisId names a graded coordinate family. Arithmetic is defined only within one kind, degree and basis family. Wire data selects its kind through the requested Rust type; it does not carry a kind tag. Hashes include the sealed kind's distinct domain tag."
   scope: "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified."
 contract:
   status: "pending"
   path: null
   note: "Reserved for a later user-requested contract; none created or asserted here."
 evidence:
-  - {"path": "evidence/quality/category_homology/20261018T184203Z/baseline.json", "sha256": "e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c", "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."}
-  - {"path": "evidence/quality/category_homology/20261018T184203Z/summary.json", "sha256": "ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67", "scope": "Source snapshot binding and complete six-outcome accounting."}
-  - {"path": "evidence/quality/category_homology/20261018T184203Z/mutations.json", "sha256": "c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5", "scope": "Designated critical faults only; outcomes for this file are enumerated below."}
-  - {"path": "evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json", "sha256": "86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1", "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."}
+  - {"path": "evidence/quality/category_homology/20261019T060338Z/baseline.json", "sha256": "b515c884b702593afcb0f7e7476fb684a5927d171f8734b36b544d7431cf50d7", "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."}
+  - {"path": "evidence/quality/category_homology/20261019T060338Z/summary.json", "sha256": "3f9002b91997b6846c5ee7dea110155a9b27ad05faf09fbb2d95e8cc5068dbd7", "scope": "Source snapshot binding and complete six-outcome accounting."}
+  - {"path": "evidence/quality/category_homology/20261019T060338Z/mutations.json", "sha256": "683e07c180185644d5574c49f6477f5d4ca05b0ab0b3df5cc54fe2026cca206f", "scope": "Designated critical faults only; outcomes for this file are enumerated below."}
+  - {"path": "evidence/quality/category_homology/20261019T061154Z-metrics/receipt.json", "sha256": "76ba376ed19c13507cc654b97900b6d4db84f309ff4aac64d5c119ca40976dda", "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."}
+  - {"path": "evidence/quality/category_homology/20261019T060338Z/dependency_receipt.json", "sha256": "7c26ba1e2e7b888f48e5d1b719658e9011b2ceeebf48b51bf8d96ed2eb26eb7f", "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred."}
+  - {"path": "code/rust/quality/category_homology/assessments/vector_maps/graded_vector.json", "sha256": "8fe6df125d97c74deecadbb52666357b25dcde0be6841df28852b4b545d1139e", "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping."}
 verification:
   baseline_ok: true
   source_snapshot_unchanged: true
-  compiled_scope: "shared scoped crate build"
+  compiled_scope: "Actual homology with one-fault copies in parent scopes; flagged nominal cycles use a complete homology context with reversible uniform crate-path rename. No visibility widening or provider replacement."
   local_mutant_ids:
-    - "H01-basis"
-    - "H04-vector-kind"
+    - "DR-1-0"
+    - "DR-2-1"
+    - "DR-3-2"
+    - "DR-4-3"
+    - "DR-5-4"
+    - "DR-6-5"
+    - "DR-7-6"
+    - "DR-8-7"
+    - "DR-9-8"
+    - "DR-10-9"
+    - "DR-11-10"
+    - "DR-12-11"
+    - "DR-13-12"
+    - "DR-14-13"
+    - "DR-15-14"
+    - "DR-16-15"
+    - "DR-17-16"
+    - "DR-18-17"
+    - "DR-19-18"
+    - "DR-20-19"
+  dependency_contents_stable: true
 mutation_accounting:
-  killed: 2
+  killed: 20
   survived: 0
   demonstrably_equivalent: 0
   invalid: 0
@@ -53,15 +74,16 @@ structure:
   tool: "syn 3.0.9 source AST"
   source_ast_parsed: true
   expanded_ast: false
-  physical_lines: 177
-  parsed_production_functions: 13
+  physical_lines: 184
+  parsed_production_functions: 14
   max_production_ccn: 4
   cognitive_complexity_upper_bound: 3
   control_nesting: 1
   opaque_function_macros: []
   functions_exceeding_A: []
   scope: "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
-open_findings:
-  - "A complete five-gate semantic, failure and consumer audit has not been established for this file."
-  - "Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds."
-  - "External path dependency source contents have not received a separate origin/content attestation."
+open_findings: []
+assurance_limits:
+  - "A is scoped source/model/native evidence under the explicit compiler/std/Q/matrix runtime contracts, not A+, Rust/MIR extraction, allocator totality or complete file-read tracing."
+  - "Finite native cases are independent expected-value evidence, not an exhaustive enumeration of arbitrary rational inputs. The formal finite-vector/field models are universal over their stated mathematical domains; Rust representation and dependency correspondence remain explicit source review."
+  - "Hashes are fingerprints, basis labels are caller-supplied names, and kind is selected statically; no authentication, global basis registry, physical derivation or authority promotion is inferred. Contracts remain pending."

@@ -1,0 +1,200 @@
+{
+  "AuthorityEffect": "None",
+  "records": [
+    {
+      "artifact": "code/rust/src/homology/graded_vector.rs",
+      "sha256": "5d00acd9db167e9c121a1aed8cfc865ecafdb05b9034c7278e7e2efe5b878828",
+      "symbols": {
+        "impl<K: VectorKind> TryFrom<VectorWire> for GradedVector<K>::try_from": {
+          "signature": "fn try_from(value: VectorWire) -> Result<Self, Self::Error>",
+          "body": "{ Self::new(value.degree, value.basis_id, value.coefficients) }",
+          "obligation": "Wire adapter re-enters public new; raw nonzero-denominator serde ratios are not assumed reduced or positive. Unknown fields are denied, static Rust K chooses kind, and a wire kind label is not accepted."
+        },
+        "impl<K: VectorKind> GradedVector<K>::new": {
+          "signature": "pub fn new( degree: Degree, basis_id: BasisId, coefficients: Vec<Q>, ) -> Result<Self, HomologicalError>",
+          "body": "{ super::exact_scalar::admit_coefficients(&coefficients)?; Ok(Self::from_canonical(degree, basis_id, coefficients)) }",
+          "obligation": "Admit every raw coefficient through exact_scalar, then move unchanged owned degree/family/coefficients through the canonical producer. First invalid index is preserved; no normalization or wider numeric domain."
+        },
+        "impl<K: VectorKind> GradedVector<K>::from_canonical": {
+          "signature": "pub(super) fn from_canonical(degree: Degree, basis_id: BasisId, coefficients: Vec<Q>) -> Self",
+          "body": "{ Self { degree, basis_id, coefficients, kind: std::marker::PhantomData, } }",
+          "obligation": "Internal transport requires canonical coefficients. All seven current call sites are either immediately after raw admission, canonical Q zero, Q addition/subtraction/multiplication, or canonical matrix-vector multiplication. No generic raw-input admission claim is made. It moves all fields unchanged and introduces only PhantomData<K>."
+        },
+        "impl<K: VectorKind> GradedVector<K>::degree": {
+          "signature": "pub fn degree(&self) -> Degree",
+          "body": "{ self.degree }",
+          "obligation": "Copy exact signed degree from immutable admitted state."
+        },
+        "impl<K: VectorKind> GradedVector<K>::basis_id": {
+          "signature": "pub fn basis_id(&self) -> &BasisId",
+          "body": "{ &self.basis_id }",
+          "obligation": "Borrow the exact stored family label; no registry/global uniqueness or map-family binding claim."
+        },
+        "impl<K: VectorKind> GradedVector<K>::coefficients": {
+          "signature": "pub fn coefficients(&self) -> &[Q]",
+          "body": "{ &self.coefficients }",
+          "obligation": "Borrow the canonical stored coefficient slice; no mutable public observer."
+        },
+        "impl<K: VectorKind> GradedVector<K>::zero": {
+          "signature": "pub fn zero(degree: Degree, basis_id: BasisId, dim: usize) -> Result<Self, HomologicalError>",
+          "body": "{ let mut coefficients = Vec::new(); coefficients .try_reserve_exact(dim) .map_err(|_| HomologicalError::ResourceLimit(\"zero vector allocation\"))?; coefficients.resize(dim, Q::zero()); Ok(Self::from_canonical(degree, basis_id, coefficients)) }",
+          "obligation": "try_reserve_exact catches capacity/allocation failure before resize. Q::zero is the normalized 0/1 pair and cloning preserves it; every filled entry is canonical. Preserve exact degree/family and dim, including empty vectors and typed usize::MAX allocation refusal."
+        },
+        "impl<K: VectorKind> GradedVector<K>::dimension": {
+          "signature": "pub fn dimension(&self) -> usize",
+          "body": "{ self.coefficients.len() }",
+          "obligation": "Read exactly Vec length without arithmetic or conversion."
+        },
+        "impl<K: VectorKind> GradedVector<K>::is_zero": {
+          "signature": "pub fn is_zero(&self) -> bool",
+          "body": "{ self.coefficients.iter().all(|c| c.is_zero()) }",
+          "obligation": "Universal numerator-zero test on canonical Q; empty vector is zero. No floating approximation or epsilon."
+        },
+        "impl<K: VectorKind> GradedVector<K>::hash": {
+          "signature": "pub fn hash(&self) -> Hash256",
+          "body": "{ hash_graded_vector( K::TAG, self.degree.value(), self.basis_id.as_str(), &self.coefficients, ) }",
+          "obligation": "Fingerprint includes static sealed kind tag, exact signed degree, literal basis-family string and ordered coefficient values. It is not authentication or proof of kind in wire data; lower hash framing has its separate checked assessment."
+        },
+        "impl<K: VectorKind> GradedVector<K>::add": {
+          "signature": "pub fn add(&self, other: &Self) -> Result<Self, HomologicalError>",
+          "body": "{ self.check_compatible(other)?; let coefficients = self .coefficients .iter() .zip(other.coefficients.iter()) .map(|(a, b)| a + b) .collect(); Ok(Self::from_canonical( self.degree, self.basis_id.clone(), coefficients, )) }",
+          "obligation": "check_compatible first enforces degree, family, length in that order. Equal-length zip produces the exact pointwise Q sum, with no truncation on admitted inputs. Q field closure supplies canonical coefficients before the internal producer; metadata is unchanged."
+        },
+        "impl<K: VectorKind> GradedVector<K>::sub": {
+          "signature": "pub fn sub(&self, other: &Self) -> Result<Self, HomologicalError>",
+          "body": "{ self.check_compatible(other)?; let coefficients = self .coefficients .iter() .zip(other.coefficients.iter()) .map(|(a, b)| a - b) .collect(); Ok(Self::from_canonical( self.degree, self.basis_id.clone(), coefficients, )) }",
+          "obligation": "The same ordered compatibility gate precedes equal-length pointwise Q subtraction. Canonical field closure and the unchanged degree/family/length justify the internal producer; no clamp, widening or hidden drop."
+        },
+        "impl<K: VectorKind> GradedVector<K>::check_compatible": {
+          "signature": "fn check_compatible(&self, other: &Self) -> Result<(), HomologicalError>",
+          "body": "{ if self.degree != other.degree { return Err(HomologicalError::DegreeMismatch { expected: self.degree.value(), got: other.degree.value(), }); } if self.basis_id != other.basis_id { return Err(HomologicalError::BasisMismatch { description: \"different graded basis families\".into(), }); } if self.coefficients.len() != other.coefficients.len() { return Err(HomologicalError::DimensionMismatch { expected: self.coefficients.len(), got: other.coefficients.len(), }); } Ok(()) }",
+          "obligation": "Literal exact comparisons: first unequal signed degree returns expected/actual, then family returns the fixed BasisMismatch, then unequal lengths returns full usize dimensions. VectorMaps compatibility/refusal theorems model this order; kinds are equal statically because other has Self."
+        },
+        "impl<K: VectorKind> GradedVector<K>::scalar_mul": {
+          "signature": "pub fn scalar_mul(&self, scalar: &Q) -> Result<Self, HomologicalError>",
+          "body": "{ super::exact_scalar::admit_coefficients(std::slice::from_ref(scalar))?; Ok(Self::from_canonical( self.degree, self.basis_id.clone(), self.coefficients.iter().map(|c| c * scalar).collect(), )) }",
+          "obligation": "Admit the raw scalar before any operation, even for an empty vector. Multiply every canonical stored coefficient by the admitted canonical Q scalar. Ratio::new/reduce preserves positive reduced denominator and exact arbitrary precision; internal transport removes only a redundant output GCD scan."
+        }
+      },
+      "data_declarations": {
+        "GradedVector": "pub struct GradedVector<K: VectorKind> { #[serde(skip)] kind: std::marker::PhantomData<K>, pub(super) degree: Degree, pub(super) basis_id: BasisId, pub(super) coefficients: Vec<Q>, }",
+        "VectorWire": "struct VectorWire { degree: Degree, basis_id: BasisId, coefficients: Vec<Q>, }"
+      },
+      "serialization_attributes": [
+        "#[derive(Debug, Clone, PartialEq, Eq)]",
+        "#[derive(Debug, Clone, PartialEq, Eq)]",
+        "#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]",
+        "#[serde(try_from = \"VectorWire\", bound = \"\")]",
+        "#[serde(skip)]",
+        "#[derive(Deserialize)]",
+        "#[serde(deny_unknown_fields)]"
+      ],
+      "sealed_kind_source": "mod sealed { pub trait Sealed {} } pub trait VectorKind: sealed::Sealed + Clone + std::fmt::Debug + PartialEq + Eq { const TAG: &'static [u8]; } #[derive(Debug, Clone, PartialEq, Eq)] pub struct ChainKind; #[derive(Debug, Clone, PartialEq, Eq)] pub struct CochainKind; impl sealed::Sealed for ChainKind {} impl sealed::Sealed for CochainKind {} impl VectorKind for ChainKind { const TAG: &'static [u8] = b\"chain\"; } impl VectorKind for CochainKind { const TAG: &'static [u8] = b\"cochain\"; }"
+    },
+    {
+      "artifact": "code/rust/src/homology/boundary.rs",
+      "sha256": "729ed9b7c143f7dfd45db00402cae06eb1ba86ede6fd1809564d79535f7c15b4",
+      "symbols": {
+        "implBoundaryMap::new": {
+          "signature": "pub fn new( from_degree: Degree, to_degree: Degree, matrix: BasicMatrix<Q>, ) -> Result<Self, HomologicalError>",
+          "body": "{ super::exact_scalar::admit_matrix(&matrix)?; let expected = from_degree .checked_pred() .map_err(|_| HomologicalError::DegreeOverflow)?; if to_degree != expected { return Err(HomologicalError::DegreeMismatch { expected: expected.value(), got: to_degree.value(), }); } let map_hash = hash_matrix(&matrix); Ok(Self { from_degree, to_degree, matrix, map_hash, }) }",
+          "obligation": "Admit canonical matrix coefficients before degree work, then checked i32 predecessor/successor, exact target equality and deterministic matrix fingerprint. Preserve the owned fields; neither a whole-complex zero-square law nor a basis-family binding is checked here."
+        },
+        "implBoundaryMap::apply": {
+          "signature": "pub fn apply(&self, chain: &Chain) -> Result<Chain, HomologicalError>",
+          "body": "{ if chain.degree != self.from_degree { return Err(HomologicalError::DegreeMismatch { expected: self.from_degree.value(), got: chain.degree.value(), }); } if chain.coefficients.len() != self.matrix.cols() { return Err(HomologicalError::DimensionMismatch { expected: self.matrix.cols(), got: chain.coefficients.len(), }); } let result = self .matrix .mul_vec(&chain.coefficients) .map_err(HomologicalError::MatrixError)?; Ok(Chain::from_canonical( self.to_degree, chain.basis_id.clone(), result, )) }",
+          "obligation": "Reject source-degree mismatch before coordinate-length mismatch. Canonical admitted matrix and vector feed checked BasicMatrix::mul_vec. Its reserve/index errors remain MatrixError; exact row-major Q dot sums produce canonical output. The internal canonical producer moves that same result with the stored target degree and caller family label; no redundant output admission scan remains."
+        },
+        "implBoundaryMap::from_degree": {
+          "signature": "pub fn from_degree(&self) -> Degree",
+          "body": "{ self.from_degree }",
+          "obligation": "Copy the exact stored source degree."
+        },
+        "implBoundaryMap::to_degree": {
+          "signature": "pub fn to_degree(&self) -> Degree",
+          "body": "{ self.to_degree }",
+          "obligation": "Copy the exact stored target degree."
+        },
+        "implBoundaryMap::matrix": {
+          "signature": "pub fn matrix(&self) -> &BasicMatrix<Q>",
+          "body": "{ &self.matrix }",
+          "obligation": "Borrow the same immutable admitted matrix; no public mutation or unvalidated wire constructor."
+        },
+        "implBoundaryMap::source_dim": {
+          "signature": "pub fn source_dim(&self) -> usize",
+          "body": "{ self.matrix.cols() }",
+          "obligation": "Read matrix column count, including rectangular and zero-area shapes."
+        },
+        "implBoundaryMap::target_dim": {
+          "signature": "pub fn target_dim(&self) -> usize",
+          "body": "{ self.matrix.rows() }",
+          "obligation": "Read matrix row count, including rectangular and zero-area shapes."
+        },
+        "implBoundaryMap::hash": {
+          "signature": "pub fn hash(&self) -> Hash256",
+          "body": "{ hash_matrix(&self.matrix) }",
+          "obligation": "Recompute the matrix-only fingerprint. It does not bind degree or family metadata; different valid degrees on one matrix intentionally have the same hash."
+        }
+      },
+      "data_declarations": {
+        "BoundaryMap": "pub struct BoundaryMap { /// Source degree n. pub(super) from_degree: Degree, /// Target degree n-1. pub(super) to_degree: Degree, /// The matrix representation (rows = dim C_{n-1}, cols = dim C_n). pub(super) matrix: BasicMatrix<Q>, /// Hash of the matrix for manifest binding. pub(super) map_hash: Hash256, }"
+      },
+      "serialization_attributes": [
+        "#[derive(Debug, Clone, PartialEq, Eq)]"
+      ]
+    },
+    {
+      "artifact": "code/rust/src/homology/coboundary.rs",
+      "sha256": "52a33a69ef9397f9e7f7bcce74ba0315071f91b4f3c33454b10c0a063f99c356",
+      "symbols": {
+        "implCoboundaryMap::new": {
+          "signature": "pub fn new( from_degree: Degree, to_degree: Degree, matrix: BasicMatrix<Q>, ) -> Result<Self, HomologicalError>",
+          "body": "{ super::exact_scalar::admit_matrix(&matrix)?; let expected = from_degree .checked_succ() .map_err(|_| HomologicalError::DegreeOverflow)?; if to_degree != expected { return Err(HomologicalError::DegreeMismatch { expected: expected.value(), got: to_degree.value(), }); } let map_hash = hash_matrix(&matrix); Ok(Self { from_degree, to_degree, matrix, map_hash, }) }",
+          "obligation": "Admit canonical matrix coefficients before degree work, then checked i32 predecessor/successor, exact target equality and deterministic matrix fingerprint. Preserve the owned fields; neither a whole-complex zero-square law nor a basis-family binding is checked here."
+        },
+        "implCoboundaryMap::apply": {
+          "signature": "pub fn apply(&self, cochain: &Cochain) -> Result<Cochain, HomologicalError>",
+          "body": "{ if cochain.degree != self.from_degree { return Err(HomologicalError::DegreeMismatch { expected: self.from_degree.value(), got: cochain.degree.value(), }); } if cochain.coefficients.len() != self.matrix.cols() { return Err(HomologicalError::DimensionMismatch { expected: self.matrix.cols(), got: cochain.coefficients.len(), }); } let result = self .matrix .mul_vec(&cochain.coefficients) .map_err(HomologicalError::MatrixError)?; Ok(Cochain::from_canonical( self.to_degree, cochain.basis_id.clone(), result, )) }",
+          "obligation": "Reject source-degree mismatch before coordinate-length mismatch. Canonical admitted matrix and vector feed checked BasicMatrix::mul_vec. Its reserve/index errors remain MatrixError; exact row-major Q dot sums produce canonical output. The internal canonical producer moves that same result with the stored target degree and caller family label; no redundant output admission scan remains."
+        },
+        "implCoboundaryMap::from_degree": {
+          "signature": "pub fn from_degree(&self) -> Degree",
+          "body": "{ self.from_degree }",
+          "obligation": "Copy the exact stored source degree."
+        },
+        "implCoboundaryMap::to_degree": {
+          "signature": "pub fn to_degree(&self) -> Degree",
+          "body": "{ self.to_degree }",
+          "obligation": "Copy the exact stored target degree."
+        },
+        "implCoboundaryMap::matrix": {
+          "signature": "pub fn matrix(&self) -> &BasicMatrix<Q>",
+          "body": "{ &self.matrix }",
+          "obligation": "Borrow the same immutable admitted matrix; no public mutation or unvalidated wire constructor."
+        },
+        "implCoboundaryMap::source_dim": {
+          "signature": "pub fn source_dim(&self) -> usize",
+          "body": "{ self.matrix.cols() }",
+          "obligation": "Read matrix column count, including rectangular and zero-area shapes."
+        },
+        "implCoboundaryMap::target_dim": {
+          "signature": "pub fn target_dim(&self) -> usize",
+          "body": "{ self.matrix.rows() }",
+          "obligation": "Read matrix row count, including rectangular and zero-area shapes."
+        },
+        "implCoboundaryMap::hash": {
+          "signature": "pub fn hash(&self) -> Hash256",
+          "body": "{ hash_matrix(&self.matrix) }",
+          "obligation": "Recompute the matrix-only fingerprint. It does not bind degree or family metadata; different valid degrees on one matrix intentionally have the same hash."
+        }
+      },
+      "data_declarations": {
+        "CoboundaryMap": "pub struct CoboundaryMap { /// Source degree n. pub(super) from_degree: Degree, /// Target degree n+1. pub(super) to_degree: Degree, /// The matrix representation (rows = dim C^{n+1}, cols = dim C^n). pub(super) matrix: BasicMatrix<Q>, /// Hash of the matrix for manifest binding. pub(super) map_hash: Hash256, }"
+      },
+      "serialization_attributes": [
+        "#[derive(Debug, Clone, PartialEq, Eq)]"
+      ]
+    }
+  ],
+  "scope": "All explicit production functions, owned declarations, serde attributes and sealed-kind definitions; derive/runtime/allocator behavior is delegated, not falsely measured as zero code."
+}

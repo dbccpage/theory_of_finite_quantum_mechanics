@@ -1,0 +1,80 @@
+# SCORING.md v2; incomplete gates deliberately remain null.
+schema_version: "2.0.0"
+artifact:
+  path: "code/rust/src/homology/carrier.rs"
+  language: "Rust"
+  sha256: "8c3cd15da1e2446854173c303752f26ca8fedc5dc92c4cc78d15cebd17a15ef8"
+profile: "Exact"
+level: "L5"
+level_basis: "Immutable cochain carrier admits laws and carries checked rank certificates."
+architecture_target: "L5"
+engineering_target: "A"
+gates:
+  G1: "A"
+  G2: "A"
+  G3: "A"
+  G4: "A"
+  G5: "A"
+composite_grade: "A"
+score_token: "L5A"
+is_complete: true
+grade_ceiling: "A"
+evaluation_timestamp: "2026-10-19T05:45:39.838840+00:00"
+AuthorityEffect: "None"
+claim:
+  urn: "urn:tfqm:rust:homology:carrier"
+  description: "Carrier: a finite cochain complex C^0 -> C^1 -> C^2 with weights.  This is the core carrier for the MSS-N obstruction calculus. All arithmetic is exact over the canonical coefficient domain `omega_homology::scalar::Q` = `BigRational` (ADR-001, 2026-08-04). It was `Rational64` before the widening; nothing here narrows back. The cochain relation is verified at construction time.  This module does NOT emit authority-bearing artifacts. Authority promotion belongs to the contract/checking layer."
+  scope: "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified."
+contract:
+  status: "pending"
+  path: null
+  note: "Reserved for a later user-requested contract; none created or asserted here."
+evidence:
+  - {"path": "evidence/quality/category_homology/20261019T053739Z/baseline.json", "sha256": "e9557a2efe76e19c851da324dcba35b2ec58a34760bb515ead4be39a6f3355df", "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."}
+  - {"path": "evidence/quality/category_homology/20261019T053739Z/summary.json", "sha256": "4a6f1c52ba447f448920f3ee8e54600206c9121a33c10f241d60dfaf6b7277a6", "scope": "Source snapshot binding and complete six-outcome accounting."}
+  - {"path": "evidence/quality/category_homology/20261019T053739Z/mutations.json", "sha256": "8cda65393f8384d0abd4529694160218878bb29bd3644be06c36c250d6e25b66", "scope": "Designated critical faults only; outcomes for this file are enumerated below."}
+  - {"path": "evidence/quality/category_homology/20261019T054111Z-metrics/receipt.json", "sha256": "9050722cd3f17698510880e0e3dc28fc3ddeae79d077297b5029414f77d30064", "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."}
+  - {"path": "evidence/quality/category_homology/20261019T053739Z/dependency_receipt.json", "sha256": "b93fa0fcd6f2cb1c017613efa32914b555cde649f6d5d170bc41a2b29f43bd89", "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred."}
+  - {"path": "code/rust/quality/category_homology/assessments/storage_admission/carrier.json", "sha256": "50e1c85fec9d79b955c2aadc90a4662e4246a4afab6ba6b79d790c8ea9908426", "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping."}
+verification:
+  baseline_ok: true
+  source_snapshot_unchanged: true
+  compiled_scope: "Actual homology with one-fault copies in parent scopes; flagged nominal cycles use a complete homology context with reversible uniform crate-path rename. No visibility widening or provider replacement."
+  local_mutant_ids:
+    - "DR-24-0"
+    - "DR-25-1"
+    - "DR-26-2"
+    - "DR-27-3"
+    - "DR-28-4"
+    - "DR-29-5"
+    - "DR-30-6"
+    - "DR-31-7"
+    - "DR-32-8"
+    - "DR-33-9"
+    - "DR-34-10"
+  dependency_contents_stable: true
+mutation_accounting:
+  killed: 11
+  survived: 0
+  demonstrably_equivalent: 0
+  invalid: 0
+  inconclusive: 0
+  unrun: 0
+  conservative_ratio: 1.0
+structure:
+  tool: "syn 3.0.9 source AST"
+  source_ast_parsed: true
+  expanded_ast: false
+  physical_lines: 146
+  parsed_production_functions: 15
+  max_production_ccn: 10
+  cognitive_complexity_upper_bound: 6
+  control_nesting: 2
+  opaque_function_macros: []
+  functions_exceeding_A: []
+  scope: "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
+open_findings: []
+assurance_limits:
+  - "No A+, Rust/MIR extraction, complete compiler read trace, allocator-totality/crash-freedom, origin/authentication, hash injectivity or whole-workspace/application pass."
+  - "Native integer/field cases and designated faults are finite, scope-bound evidence. Kernel models establish their stated general mathematical/data invariants; representation correspondence is separately reviewed source evidence."
+  - "Contracts remain pending. No physical, publication, provenance-truth or authority promotion is inferred."

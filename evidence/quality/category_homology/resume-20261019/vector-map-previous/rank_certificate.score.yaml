@@ -1,0 +1,77 @@
+# SCORING.md v2; incomplete gates deliberately remain null.
+schema_version: "2.0.0"
+artifact:
+  path: "code/rust/src/homology/rank_certificate.rs"
+  language: "Rust"
+  sha256: "a2145d42c3278ed447eb0b05aae2f20d91c6965634ec68348e79fa16fa52d086"
+profile: "Exact"
+level: "L5"
+level_basis: "Exact rank factorization and split-map certificates with a separate identity checker."
+architecture_target: "L5"
+engineering_target: "A"
+gates:
+  G1: "A"
+  G2: "A"
+  G3: "A"
+  G4: "A"
+  G5: "A"
+composite_grade: "A"
+score_token: "L5A"
+is_complete: true
+grade_ceiling: "A"
+evaluation_timestamp: "2026-10-19T05:46:31.928635+00:00"
+AuthorityEffect: "None"
+claim:
+  urn: "urn:tfqm:rust:homology:rank_certificate"
+  description: "Exact rank certificates over Q. AuthorityEffect: None.  For M=UV, LU=I_r and VR=I_r, rank(M)=r: factorization gives the upper bound and the two split maps give the lower bound. The checker uses matrix identities only; it does not trust the producer's elimination result. Trust boundary: exact rational arithmetic and checked dense matrix operations."
+  scope: "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified."
+contract:
+  status: "pending"
+  path: null
+  note: "Reserved for a later user-requested contract; none created or asserted here."
+evidence:
+  - {"path": "evidence/quality/category_homology/20261019T012901Z/baseline.json", "sha256": "f0d0765754b5f8d614bbccf4339e40ccb5ad4a474d94d2bd387bad805e9a5c3e", "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."}
+  - {"path": "evidence/quality/category_homology/20261019T012901Z/summary.json", "sha256": "08a812ac1d4c8beaac25a5e4efb74731b4621be5861646d2b99f7c2fc1b42792", "scope": "Source snapshot binding and complete six-outcome accounting."}
+  - {"path": "evidence/quality/category_homology/20261019T012901Z/mutations.json", "sha256": "72572c9083122448829dc8d6e807a4f16094eae08bd58dccefdc194f43b931ba", "scope": "Designated critical faults only; outcomes for this file are enumerated below."}
+  - {"path": "evidence/quality/category_homology/20261019T013958Z-metrics/receipt.json", "sha256": "389732ce984b239939dc98fe3920a1cee23e37e512539be7278f8dd5977b3e83", "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."}
+  - {"path": "evidence/quality/category_homology/20261019T012901Z/dependency_receipt.json", "sha256": "e0d9e51072867c945034df2c46927c82f4483c981068c3c1e47335ac72d696fa", "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred."}
+  - {"path": "code/rust/quality/category_homology/assessments/storage_provider_refresh/rank_certificate.json", "sha256": "44dbad88f07a8681220fa0c844c16f5d3c435916f4f47616cde7c5cd45549299", "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping."}
+verification:
+  baseline_ok: true
+  source_snapshot_unchanged: true
+  compiled_scope: "shared scoped crate build"
+  local_mutant_ids:
+    - "RK01-LU"
+    - "RK02-VR"
+    - "RK03-MUV"
+    - "RK04-rank-output"
+    - "RK05-candidate-domain"
+    - "RK06-empty-fast-path"
+    - "RK07-typed-inverse"
+    - "RK09-producer-domain-valid"
+    - "RK10-public-replay-domain"
+  dependency_contents_stable: true
+mutation_accounting:
+  killed: 9
+  survived: 0
+  demonstrably_equivalent: 0
+  invalid: 0
+  inconclusive: 0
+  unrun: 0
+  conservative_ratio: 1.0
+structure:
+  tool: "syn 3.0.9 source AST"
+  source_ast_parsed: true
+  expanded_ast: false
+  physical_lines: 381
+  parsed_production_functions: 15
+  max_production_ccn: 10
+  cognitive_complexity_upper_bound: 3
+  control_nesting: 1
+  opaque_function_macros: []
+  functions_exceeding_A: []
+  scope: "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
+open_findings: []
+assurance_limits:
+  - "Current source/provider delta uses source and data correspondence plus fresh native composition evidence. Own-source primary mathematical/mutation receipts retain their original captured providers; the older mutants are not claimed freshly rerun."
+  - "No A+, compiler-extracted/MIR equivalence, allocator totality, origin attestation, hash injectivity/authentication, whole-workspace green or attached contracts."

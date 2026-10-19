@@ -1,0 +1,36 @@
+
+running 3 tests
+test homology::degree_repair_replay_7::subject::independent_vector_maps::widened_coordinate_arithmetic_zero_and_owned_context ... FAILED
+test homology::degree_repair_replay_7::subject::independent_vector_maps::ordered_domain_compatibility_and_wire_gates ... FAILED
+test homology::degree_repair_replay_7::subject::independent_vector_maps::kind_is_static_wire_is_untagged_and_hash_is_framed ... FAILED
+
+failures:
+
+---- homology::degree_repair_replay_7::subject::independent_vector_maps::widened_coordinate_arithmetic_zero_and_owned_context stdout ----
+
+thread 'homology::degree_repair_replay_7::subject::independent_vector_maps::widened_coordinate_arithmetic_zero_and_owned_context' (27604) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\dr\261019T060338\src\homology\q\n7.rs:196:3:
+assertion `left == right` failed
+  left: []
+ right: [Ratio { numer: -4, denom: 1 }, Ratio { numer: -4, denom: 1 }]
+
+---- homology::degree_repair_replay_7::subject::independent_vector_maps::ordered_domain_compatibility_and_wire_gates stdout ----
+
+thread 'homology::degree_repair_replay_7::subject::independent_vector_maps::ordered_domain_compatibility_and_wire_gates' (19908) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\dr\261019T060338\src\homology\q\n7.rs:217:78:
+called `Result::unwrap_err()` on an `Ok` value: GradedVector { kind: PhantomData<tfqm_category_homology_audit::homology::degree_repair_replay_7::subject::ChainKind>, degree: Degree(2), basis_id: BasisId("left"), coefficients: [] }
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- homology::degree_repair_replay_7::subject::independent_vector_maps::kind_is_static_wire_is_untagged_and_hash_is_framed stdout ----
+
+thread 'homology::degree_repair_replay_7::subject::independent_vector_maps::kind_is_static_wire_is_untagged_and_hash_is_framed' (38988) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\dr\261019T060338\src\homology\q\n7.rs:228:2:
+assertion `left == right` failed
+  left: Hash256([89, 219, 26, 12, 251, 88, 93, 44, 22, 199, 224, 208, 190, 169, 58, 111, 182, 109, 143, 10, 199, 88, 31, 158, 146, 78, 192, 106, 41, 133, 91, 4])
+ right: Hash256([55, 220, 35, 20, 101, 252, 119, 10, 138, 106, 209, 214, 142, 87, 173, 83, 198, 211, 91, 150, 55, 81, 184, 185, 197, 184, 24, 253, 147, 43, 184, 156])
+
+
+failures:
+    homology::degree_repair_replay_7::subject::independent_vector_maps::kind_is_static_wire_is_untagged_and_hash_is_framed
+    homology::degree_repair_replay_7::subject::independent_vector_maps::ordered_domain_compatibility_and_wire_gates
+    homology::degree_repair_replay_7::subject::independent_vector_maps::widened_coordinate_arithmetic_zero_and_owned_context
+
+test result: FAILED. 0 passed; 3 failed; 0 ignored; 0 measured; 452 filtered out; finished in 0.00s
+
