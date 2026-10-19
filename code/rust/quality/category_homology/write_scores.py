@@ -58,6 +58,8 @@ def capability(path, source):
         return "L3", "Concrete Maybe transport and typed finite observations; generic Monad/marker records do not certify universal algebra or category laws."
     if key == "category_theory/lawvere.rs":
         return "L3", "Exact slot admission and finite raw-table diagnostics with borrowed lookup indexing; no admitted Lawvere theory or mathematical Cauchy-completeness certificate."
+    if key == "category_theory/family_category.rs":
+        return "L2", "Family/lifecycle records,literal parsing and ordered propagation/name-list observations;historical category/functor labels do not admit mathematical laws or agent references."
     if key == "category_theory/condensation.rs":
         return "L2", "Raw named splitting-equation observations and caller-supplied coherence flags with checked metadata updates; no verified higher cells or infinity-Cauchy certificate."
     if key == "category_theory/higher_functor.rs":

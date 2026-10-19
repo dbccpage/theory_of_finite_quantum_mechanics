@@ -18,7 +18,7 @@ from run_audit import ROOT, digest, execute, write_json
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model",choices=("rank","category","metadata","degree","counter","parameters","finite-set","literal-reversal","shape-inventory","root-records","homology-protocols","degree-repair","two-step-complex","simplicial-closure","simplicial-boundary","simplicial-homology","scalar-admission","carrier-dimensions","vector-maps","graph-incidence","validation-inventory","arrow-effects","finite-builder","em-samples","lawvere-inventory","higher-functor-inventory","finite-functor","functor-operations","finite-naturality","natural-composition","joint-carrier","finite-simulation","finite-independence","finite-trace","finite-dagger","finite-groupoid","cauchy-inventory","tagged-coend","condensation-metadata","root-catalog","finite-profunctor-inventory","finite-continuation","finite-moore","partial-structure","finite-path"),default="rank")
+    parser.add_argument("--model",choices=("rank","category","metadata","degree","counter","parameters","finite-set","literal-reversal","shape-inventory","root-records","homology-protocols","degree-repair","two-step-complex","simplicial-closure","simplicial-boundary","simplicial-homology","scalar-admission","carrier-dimensions","vector-maps","graph-incidence","validation-inventory","arrow-effects","finite-builder","em-samples","lawvere-inventory","higher-functor-inventory","finite-functor","functor-operations","finite-naturality","natural-composition","joint-carrier","finite-simulation","finite-independence","finite-trace","finite-dagger","finite-groupoid","cauchy-inventory","tagged-coend","condensation-metadata","root-catalog","finite-profunctor-inventory","finite-continuation","finite-moore","partial-structure","finite-path","family-registry"),default="rank")
     parser.add_argument("--memory-mb", type=int, default=1024,
         help="Explicit Lean memory limit, from 256 to 2048 MiB; default remains 1024.")
     args = parser.parse_args()
@@ -46,6 +46,10 @@ def main():
         proof_name, import_name, namespace = "DegreeWindow", "Data/Int/Basic", "TFQM.DegreeWindow."
         declarations = ("ordered_span_fits_u32", "same_endpoint_zero", "inverted_span_negative")
         scope = "Exact i32 endpoint difference bounds, zero span and inverted-window refusal premise; no category-law claim."
+    elif model == "family-registry":
+        proof_name, import_name, namespace = "FamilyRegistry", "Data/List/Basic", "TFQM.FamilyRegistry."
+        declarations = ("source_rejected", "inactive_rejected", "existing_unchanged", "fresh_appended", "prefix_preserved", "collect_append", "duplicate_unchanged", "inactive_source_empty", "empty_rules", "register_self", "register_other", "register_twice")
+        scope = "Raw string membership,stable eligible target accumulation and key-list append/query preservation. No categorical functor,agent reference/execution or provenance certification;Rust parsers/borrowed sets/order and metadata fields refined separately."
     elif model == "finite-path":
         proof_name, import_name, namespace = "FinitePath", "CategoryTheory/PathCategory/Basic", "TFQM.FinitePath."
         declarations = ("identity_comp", "comp_identity", "comp_associative", "length_identity", "length_composition", "edgeWord", "word_identity", "word_composition", "word_length", "rank_length", "rank_bound", "rank_no_cycle", "lift_identity", "lift_edge", "lift_composition", "lift_unique", "bounded_fresh", "bounded_count")
