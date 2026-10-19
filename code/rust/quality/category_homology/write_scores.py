@@ -374,9 +374,22 @@ def main():
         else:
             score_manifest.write_text(json.dumps(manifest,indent=2)+"\n",encoding="utf-8",newline="\n")
     else:
-        if not score_manifest.exists():
-            raise SystemExit("Missing source-bound score manifest")
-        if any(stored.get(key) != value for key,value in manifest.items()) or (not args.only and manifest != stored):
+        if args.only:
+            # Selected records may have been refreshed in separate immutable
+            # batches. Each current digest must be witnessed in this same
+            # primary/metric ledger; do not invent a combined execution batch.
+            stem = "score_manifest-"+receipt.name
+            batches = [metric_receipt/(stem+".json"),*sorted(metric_receipt.glob(stem+"-*.json"))]
+            covered = set()
+            for batch in batches:
+                if not batch.exists(): continue
+                entries = json.loads(batch.read_text(encoding="utf-8"))
+                if not isinstance(entries,dict):
+                    raise SystemExit("Invalid source-bound score manifest")
+                covered.update(key for key,value in manifest.items() if entries.get(key)==value)
+            if set(manifest)-covered:
+                raise SystemExit("Score manifest mismatch: "+", ".join(sorted(set(manifest)-covered)))
+        elif not score_manifest.exists() or manifest != stored:
             raise SystemExit("Score manifest mismatch")
     print(("Verified" if args.check else "Wrote"),len(paths),"adjacent score YAML files")
 

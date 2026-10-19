@@ -145,6 +145,9 @@ def complex_tests(cochain):
 
 def challenge(subject):
     name=Path(subject['path']).stem
+    if name in ('exact_scalar','witness','carrier','carrier_manifest'):
+        from storage_admission import challenge as storage_challenge
+        return storage_challenge(subject)
     if name=='errors':
         rows=[*ERROR_ROWS,('InvalidDegreeIndex(7)','invalid degree: 7')]
         body=ERROR_TESTS.replace('__ERRORS__',','.join('(HomologicalError::'+value+','+json.dumps(message,ensure_ascii=False)+')' for value,message in rows))+ERROR_EXTRA

@@ -6,6 +6,7 @@ providers. AuthorityEffect: None. No whole-workspace or extracted-proof claim.
 """
 from collections import Counter
 import argparse
+import hashlib
 from datetime import datetime, timezone
 import json
 from pathlib import Path
@@ -29,22 +30,26 @@ def test_ok(run):
 
 def main():
     parser=argparse.ArgumentParser()
+    parser.add_argument("--policy",type=Path,default=POLICY,
+        help="Explicit source-pinned homology challenge policy.")
     parser.add_argument("--controls-only",action="store_true",
         help="Auxiliary native regression replay; cannot be a grading primary receipt.")
     args=parser.parse_args()
+    policy=args.policy.resolve()
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     output = ROOT/"evidence/quality/category_homology"/stamp
     output.mkdir(parents=True)
     work = RUST/"target/dr"/stamp[2:15]
     inputs = inventory()
     write_json(output/"source_manifest.json",inputs)
-    for name in (Path(__file__).name,"degree_repair.py","homology_protocols.py",POLICY.name):
+    for name in (Path(__file__).name,"degree_repair.py","homology_protocols.py","storage_admission.py"):
         shutil.copyfile(Path(__file__).with_name(name),output/name)
+    shutil.copyfile(policy,output/policy.name)
     snapshot(work,"homology")
     package = work/"src/homology"
     generated = package/"q"
     generated.mkdir()
-    subjects = json.loads(POLICY.read_text(encoding="utf-8"))["records"]
+    subjects = json.loads(policy.read_text(encoding="utf-8"))["records"]
     declarations, controls, records = {}, [], []
     for subject in subjects:
         path = ROOT/subject["path"]
@@ -55,15 +60,47 @@ def main():
         for tag, candidate, needle, replacement in copies:
             index = len(controls)+len(records)
             module = "degree_repair_replay_"+str(index)
-            file = generated/("n"+str(index)+".rs")
-            file.write_text(candidate+challenge(subject),encoding="utf-8")
-            quoted = json.dumps(file.resolve().as_posix())
-            uses = "\n".join("use super::"+name+";" for name in subject.get("parent_aliases",[]))
-            declarations.setdefault(subject["family"],[]).append(
-                f'#[cfg(test)]\n#[allow(dead_code, unused_imports, unused_variables)]\nmod {module} {{\n{uses}\n#[path={quoted}] mod subject;\n}}')
+            raw_candidate=candidate+challenge(subject)
+            context=None
+            if subject.get("native_context") == "homology":
+                # The Carrier/manifest nominal types refer back to one another
+                # through crate-qualified paths. Copy their complete native
+                # context and rename those paths uniformly; never substitute
+                # a provider, delete a method or widen production visibility.
+                context=generated/("context_"+str(index))
+                shutil.copytree(RUST/"src/homology",context)
+                prefix="crate::homology::"+module+"::"
+                for peer in context.rglob("*.rs"):
+                    original=peer.read_text(encoding="utf-8")
+                    renamed=original.replace("crate::homology::",prefix)
+                    if renamed.replace(prefix,"crate::homology::") != original:
+                        raise ValueError("Nonreversible native namespace rename")
+                    peer.write_text(renamed,encoding="utf-8",newline="\n")
+                file=context/path.name
+                file.write_text(raw_candidate.replace("crate::homology::",prefix),encoding="utf-8",newline="\n")
+                quoted=json.dumps((context/"mod.rs").resolve().as_posix())
+                declarations.setdefault(subject["family"],[]).append(
+                    f'#[cfg(test)]\n#[allow(dead_code, unused_imports, unused_variables)]\n#[path={quoted}] mod {module};')
+                selected="homology::"+module+"::"+("" if tag=="control" else path.stem+"::independent_storage_admission::")
+            else:
+                file = generated/("n"+str(index)+".rs")
+                file.write_text(raw_candidate,encoding="utf-8")
+                quoted = json.dumps(file.resolve().as_posix())
+                uses = "\n".join("use super::"+name+";" for name in subject.get("parent_aliases",[]))
+                declarations.setdefault(subject["family"],[]).append(
+                    f'#[cfg(test)]\n#[allow(dead_code, unused_imports, unused_variables)]\nmod {module} {{\n{uses}\n#[path={quoted}] mod subject;\n}}')
+                selected="homology::"+module+"::"
             record = {"id":"DR-"+str(index)+"-"+tag,"path":subject["path"][len("code/rust/src/"):],
-                "module":"homology::"+module+"::","subject_sha256":subject["sha256"],
+                "module":selected,"subject_sha256":subject["sha256"],
                 "candidate_path":file.relative_to(ROOT).as_posix(),"candidate_sha256":digest(file)}
+            if context is not None:
+                manifest={peer.relative_to(ROOT).as_posix():digest(peer) for peer in sorted(context.rglob("*.rs"))}
+                manifest_file=output/("context-"+str(index)+".json")
+                write_json(manifest_file,manifest)
+                record["native_context"]={"manifest":manifest_file.relative_to(ROOT).as_posix(),"sha256":digest(manifest_file),
+                    "rename_from":"crate::homology::","rename_to":prefix,
+                    "unrenamed_candidate_sha256":hashlib.sha256(raw_candidate.encode("utf-8")).hexdigest(),
+                    "scope":"Complete same-source homology context, reversible uniform crate path rename; one designated fault, no provider/visibility replacement. Control runs all context tests; mutant runs its independent subject fixtures."}
             if tag == "control":
                 controls.append(record)
             else:
@@ -128,8 +165,11 @@ def main():
         "generated":len(records),"mutation_accounting":{key:counts[key] for key in ("killed","survived","demonstrably_equivalent","invalid","inconclusive","unrun")},
         "conservative_ratio":counts["killed"]/eligible if eligible else None,"all_files_L5A":False,
         "compiled_subjects":[record["path"] for record in subjects],
-        "compiled_scope":"Actual homology and unmutated namespaces only; auxiliary regression replay" if args.controls_only else "Actual homology namespace and one-fault copies inside their real parent scopes; no visibility widening or provider replacement",
-        "build_outputs_removed":not build.exists(),"runner_sha256":digest(Path(__file__)),"policy_sha256":digest(POLICY),
+        "compiled_scope":"Actual homology and unmutated namespaces only; auxiliary regression replay" if args.controls_only else "Actual homology with one-fault copies in parent scopes; flagged nominal cycles use a complete homology context with reversible uniform crate-path rename. No visibility widening or provider replacement.",
+        "build_outputs_removed":not build.exists(),"runner_sha256":digest(output/Path(__file__).name),
+        "runner_source_unchanged":digest(Path(__file__))==digest(output/Path(__file__).name),
+        "policy_sha256":digest(output/policy.name),
+        "policy_source_unchanged":digest(policy)==digest(output/policy.name),
         "scope":"Canonical homology tests plus independently dispatched controls/faults. All copied candidate files reside inside the dependency-bound package. No whole-workspace, independent compiler or Rust/MIR proof."}
     write_json(output/"summary.json",summary)
     print("Receipt:",output,flush=True)

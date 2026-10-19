@@ -1,0 +1,90 @@
+# SCORING.md v2; incomplete gates deliberately remain null.
+schema_version: "2.0.0"
+artifact:
+  path: "code/rust/src/homology/simplicial.rs"
+  language: "Rust"
+  sha256: "41168fedb6093f4d25ab9828009a03a60c8adf42fd390903876f2692d26b4a01"
+profile: "Exact"
+level: "L4"
+level_basis: "Bounded exact domain implementation with checked constructors and typed failures; shared certificates support it."
+architecture_target: "L5"
+engineering_target: "A"
+gates:
+  G1: "A"
+  G2: "A"
+  G3: "A"
+  G4: "A"
+  G5: "A"
+composite_grade: "A"
+score_token: "L4A"
+is_complete: true
+grade_ceiling: "A"
+evaluation_timestamp: "2026-10-19T05:19:10.603151+00:00"
+AuthorityEffect: "None"
+claim:
+  urn: "urn:tfqm:rust:homology:simplicial"
+  description: "Canonical finite simplicial complex support.  AuthorityEffect: None. Simplex records admit finite nonempty vertex lists. Complex admission allows at most 16 vertices per simplex and 65,535 nonempty faces. Within those bounds it closes under faces, gives deterministic basis order and builds exact-Q boundary/coboundary matrices. Degree shifts that exceed their machine representation return a typed refusal."
+  scope: "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified."
+contract:
+  status: "pending"
+  path: null
+  note: "Reserved for a later user-requested contract; none created or asserted here."
+evidence:
+  - {"path": "evidence/quality/category_homology/20261019T051112Z/baseline.json", "sha256": "df3b58c283444ffdf47fc1fda2f5859a514c6a5afbdaacd7e92f4b7bc17ae5ad", "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."}
+  - {"path": "evidence/quality/category_homology/20261019T051112Z/summary.json", "sha256": "7766a49ff178928fa14267d1b5bda7662aaf6cb7717e73b6d4b06f2c32fa0bb7", "scope": "Source snapshot binding and complete six-outcome accounting."}
+  - {"path": "evidence/quality/category_homology/20261019T051112Z/mutations.json", "sha256": "0462cdfb6bafe98305da7e354ac30261a341da713211ded792b1324687566cce", "scope": "Designated critical faults only; outcomes for this file are enumerated below."}
+  - {"path": "evidence/quality/category_homology/20261019T051536Z-metrics/receipt.json", "sha256": "547887d0ff10cde3710752e7bab7587e69a70b567c0c8ca6e69b5a68d9c0fd6f", "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."}
+  - {"path": "evidence/quality/category_homology/20261019T051112Z/dependency_receipt.json", "sha256": "6262ea3f5ee35979523a4b8a8296469feed90c8a53e47bb3e98c0faa5c919e7b", "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred."}
+  - {"path": "code/rust/quality/category_homology/assessments/simplicial_current.json", "sha256": "111e8af22a0ed70d49cd5c74bb50ec7e0c67b0abb70bb40f24f11e76cddbbe02", "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping."}
+verification:
+  baseline_ok: true
+  source_snapshot_unchanged: true
+  compiled_scope: "Actual homology namespace and one-fault copies inside their real parent scopes; no visibility widening or provider replacement"
+  local_mutant_ids:
+    - "SC-1-0"
+    - "SC-2-1"
+    - "SC-3-2"
+    - "SC-4-3"
+    - "SC-5-4"
+    - "SC-6-5"
+    - "SC-7-6"
+    - "SC-8-7"
+    - "SC-9-8"
+    - "SC-10-9"
+    - "SC-11-10"
+    - "SC-12-11"
+    - "SC-13-12"
+    - "SC-14-13"
+    - "SC-15-14"
+    - "SC-16-15"
+    - "SC-17-16"
+    - "SC-18-17"
+    - "SC-19-18"
+    - "SC-20-19"
+    - "SC-21-20"
+  dependency_contents_stable: true
+mutation_accounting:
+  killed: 21
+  survived: 0
+  demonstrably_equivalent: 0
+  invalid: 0
+  inconclusive: 0
+  unrun: 0
+  conservative_ratio: 1.0
+structure:
+  tool: "syn 3.0.9 source AST"
+  source_ast_parsed: true
+  expanded_ast: false
+  physical_lines: 771
+  parsed_production_functions: 45
+  max_production_ccn: 9
+  cognitive_complexity_upper_bound: 9
+  control_nesting: 3
+  opaque_function_macros: []
+  functions_exceeding_A: []
+  scope: "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
+open_findings: []
+assurance_limits:
+  - "A for this component is source/model/native-bound evidence under the declared runtime trust; no A+, Rust/MIR theorem, allocator benchmark/totality, formal AST bijection, external caller-grade or whole-workspace green."
+  - "Finite native challenges support the source/proof correspondence but are not an exhaustive arbitrary-complex enumeration. Rational ranks/Betti dimensions do not compute integral torsion or confer physical/publication authority."
+  - "Contracts remain pending and are not attached by this assessment."

@@ -1,0 +1,82 @@
+C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\quality\category_homology\proofs\ScalarAdmission.lean:23:36: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  Preorder ℤ
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\quality\category_homology\proofs\ScalarAdmission.lean:23:45: error: Application type mismatch: The argument
+  valid.left
+has type
+  @LT.lt ℤ Int.instLTInt 0 value.den
+but is expected to have type
+  @LT.lt ℤ Preorder.toLT 0 value.den
+in the application
+  ne_of_gt valid.left
+C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\quality\category_homology\proofs\ScalarAdmission.lean:28:14: error: Application type mismatch: The argument
+  Int.natAbs_of_nonneg ?m.17
+has type
+  ↑(Int.natAbs ?m.9) = ?m.9
+but is expected to have type
+  ↑(reify value valid).den = value.den
+in the application
+  ⟨?m.8, Int.natAbs_of_nonneg ?m.17⟩
+C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\quality\category_homology\proofs\ScalarAdmission.lean:28:35: error: Application type mismatch: The argument
+  le_of_lt ?m.16
+has type
+  @LE.le ?m.10 Preorder.toLE ?m.12 ?m.13
+but is expected to have type
+  @LE.le ℤ Int.instLEInt 0 ?m.9
+in the application
+  Int.natAbs_of_nonneg (le_of_lt ?m.16)
+C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\quality\category_homology\proofs\ScalarAdmission.lean:39:6: error: Invalid rewrite argument: The pattern to be substituted is a metavariable (`?m.25`) in this equality
+  ?m.25 = ↑(Int.natAbs ?m.25)
+C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\quality\category_homology\proofs\ScalarAdmission.lean:47:42: error: Application type mismatch: The argument
+  negative
+has type
+  @LT.lt ℤ Int.instLTInt value.den 0
+but is expected to have type
+  @LT.lt ?m.12 Preorder.toLT ?m.15 ?m.14
+in the application
+  not_lt_of_ge (le_of_lt ?m.18) negative
+C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\quality\category_homology\proofs\ScalarAdmission.lean:60:47: warning: Possibly looping simp theorem: `scan.eq_1`
+
+Note: Possibly caused by: `scan`
+
+Hint: You can disable a simp theorem from the default simp set by passing `- theoremName` to `simp`.
+C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\quality\category_homology\proofs\ScalarAdmission.lean:60:41: error: Tactic `simp` failed with a nested error:
+maximum recursion depth has been reached
+use `set_option maxRecDepth <num>` to increase limit
+use `set_option diagnostics true` to get diagnostic information
+C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\quality\category_homology\proofs\ScalarAdmission.lean:76:32: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  if Canonical head then ?m.64 else ?m.65
+in the target expression
+  List.casesOn (motive := fun t => head :: (rest ++ bad :: tail) = t → Except ℕ Unit) (head :: (rest ++ bad :: tail))
+      (fun h => Except.ok ())
+      (fun value tail_1 h => if Canonical value then scan tail_1 (offset + 1) else Except.error offset) ⋯ =
+    Except.error (offset + (head :: rest).length)
+
+case cons
+bad : Raw
+tail : List Raw
+invalid : ¬Canonical bad
+head : Raw
+rest : List Raw
+ih :
+  ∀ (offset : ℕ),
+    (∀ (value : Raw), value ∈ rest → Canonical value) →
+      scan (rest ++ bad :: tail) offset = Except.error (offset + rest.length)
+offset : ℕ
+valid : ∀ (value : Raw), value ∈ head :: rest → Canonical value
+first : Canonical head
+remaining : ∀ (value : Raw), value ∈ rest → Canonical value
+⊢ List.casesOn (motive := fun t => head :: (rest ++ bad :: tail) = t → Except ℕ Unit) (head :: (rest ++ bad :: tail))
+      (fun h => Except.ok ())
+      (fun value tail_1 h => if Canonical value then scan tail_1 (offset + 1) else Except.error offset) ⋯ =
+    Except.error (offset + (head :: rest).length)
+'TFQM.ScalarAdmission.reify_fields' depends on axioms: [sorryAx]
+'TFQM.ScalarAdmission.canonical_roundtrip' depends on axioms: [propext]
+'TFQM.ScalarAdmission.zero_has_unit_denominator' depends on axioms: [propext, sorryAx, Quot.sound]
+'TFQM.ScalarAdmission.zero_denominator_refused' depends on axioms: [propext, Quot.sound]
+'TFQM.ScalarAdmission.negative_denominator_refused' depends on axioms: [sorryAx]
+'TFQM.ScalarAdmission.scan_success_iff' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'TFQM.ScalarAdmission.scan_failed_head' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TFQM.ScalarAdmission.first_invalid' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'TFQM.ScalarAdmission.store_preserves' does not depend on any axioms

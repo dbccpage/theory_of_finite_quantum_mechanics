@@ -18,7 +18,7 @@ from run_audit import ROOT, digest, execute, write_json
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model",choices=("rank","category","metadata","degree","counter","parameters","finite-set","literal-reversal","shape-inventory","root-records","homology-protocols","degree-repair","two-step-complex","simplicial-closure","simplicial-boundary","simplicial-homology"),default="rank")
+    parser.add_argument("--model",choices=("rank","category","metadata","degree","counter","parameters","finite-set","literal-reversal","shape-inventory","root-records","homology-protocols","degree-repair","two-step-complex","simplicial-closure","simplicial-boundary","simplicial-homology","scalar-admission","carrier-dimensions"),default="rank")
     parser.add_argument("--memory-mb", type=int, default=1024,
         help="Explicit Lean memory limit, from 256 to 2048 MiB; default remains 1024.")
     args = parser.parse_args()
@@ -46,6 +46,15 @@ def main():
         proof_name, import_name, namespace = "DegreeWindow", "Data/Int/Basic", "TFQM.DegreeWindow."
         declarations = ("ordered_span_fits_u32", "same_endpoint_zero", "inverted_span_negative")
         scope = "Exact i32 endpoint difference bounds, zero span and inverted-window refusal premise; no category-law claim."
+    elif model == "carrier-dimensions":
+        proof_name, import_name, namespace = "CarrierDimensions", "LinearAlgebra/Dimension/DivisionRing", "TFQM.CarrierDimensions."
+        declarations = ("quotient_dimension", "admitted_subtraction_bounds")
+        scope = "Rational image-quotient dimension and subtraction bounds under the admitted rank/inclusion predicates; separate matrix/certificate and Rust representation review."
+    elif model == "scalar-admission":
+        proof_name, import_name, namespace = "ScalarAdmission", "Data/Int/GCD", "TFQM.ScalarAdmission."
+        declarations = ("reify_fields", "canonical_roundtrip", "zero_has_unit_denominator", "zero_denominator_refused",
+                        "negative_denominator_refused", "scan_success_iff", "scan_failed_head", "first_invalid", "store_preserves")
+        scope = "Canonical integer-pair/Rat representation, exact first-invalid index, domain refusal and literal metadata preservation; separate BigInt/Rust storage and matrix/caller review."
     elif model == "simplicial-homology":
         proof_name, import_name, namespace = "SimplicialHomology", "LinearAlgebra/Dimension/DivisionRing", "TFQM.SimplicialHomology."
         declarations = ("range_in_cycles", "rank_sum_bound", "betti_dimension")

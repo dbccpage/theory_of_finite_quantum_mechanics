@@ -3,23 +3,23 @@ schema_version: "2.0.0"
 artifact:
   path: "code/rust/src/homology/exact_scalar.rs"
   language: "Rust"
-  sha256: "d6c7ebbbeea899412a96cf1f9a686e2fe2a7bf1b09d6eb34ed72f74a0562dc35"
+  sha256: "e72bfd4433941e63a4e2e42e6009929f7d2e4200ff4920ddfbabceb56faed737"
 profile: "Exact"
 level: "L3"
 level_basis: "Conservative bounded-domain classification; no upgrade based solely on terminology or module size."
 architecture_target: "L5"
 engineering_target: "A"
 gates:
-  G1: null
-  G2: null
-  G3: null
-  G4: null
-  G5: null
-composite_grade: null
-score_token: null
-is_complete: false
+  G1: "A"
+  G2: "A"
+  G3: "A"
+  G4: "A"
+  G5: "A"
+composite_grade: "A"
+score_token: "L3A"
+is_complete: true
 grade_ceiling: "A"
-evaluation_timestamp: "2026-10-18T18:42:03+00:00"
+evaluation_timestamp: "2026-10-19T05:45:39.838840+00:00"
 AuthorityEffect: "None"
 claim:
   urn: "urn:tfqm:rust:homology:exact_scalar"
@@ -30,19 +30,29 @@ contract:
   path: null
   note: "Reserved for a later user-requested contract; none created or asserted here."
 evidence:
-  - {"path": "evidence/quality/category_homology/20261018T184203Z/baseline.json", "sha256": "e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c", "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."}
-  - {"path": "evidence/quality/category_homology/20261018T184203Z/summary.json", "sha256": "ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67", "scope": "Source snapshot binding and complete six-outcome accounting."}
-  - {"path": "evidence/quality/category_homology/20261018T184203Z/mutations.json", "sha256": "c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5", "scope": "Designated critical faults only; outcomes for this file are enumerated below."}
-  - {"path": "evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json", "sha256": "86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1", "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."}
+  - {"path": "evidence/quality/category_homology/20261019T053739Z/baseline.json", "sha256": "e9557a2efe76e19c851da324dcba35b2ec58a34760bb515ead4be39a6f3355df", "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."}
+  - {"path": "evidence/quality/category_homology/20261019T053739Z/summary.json", "sha256": "4a6f1c52ba447f448920f3ee8e54600206c9121a33c10f241d60dfaf6b7277a6", "scope": "Source snapshot binding and complete six-outcome accounting."}
+  - {"path": "evidence/quality/category_homology/20261019T053739Z/mutations.json", "sha256": "8cda65393f8384d0abd4529694160218878bb29bd3644be06c36c250d6e25b66", "scope": "Designated critical faults only; outcomes for this file are enumerated below."}
+  - {"path": "evidence/quality/category_homology/20261019T054111Z-metrics/receipt.json", "sha256": "9050722cd3f17698510880e0e3dc28fc3ddeae79d077297b5029414f77d30064", "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."}
+  - {"path": "evidence/quality/category_homology/20261019T053739Z/dependency_receipt.json", "sha256": "b93fa0fcd6f2cb1c017613efa32914b555cde649f6d5d170bc41a2b29f43bd89", "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred."}
+  - {"path": "code/rust/quality/category_homology/assessments/storage_admission/exact_scalar.json", "sha256": "d069b18ad9441f9599a1006de89b285e09a7c01ad02201843beba8ef8b9d4b6e", "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping."}
 verification:
   baseline_ok: true
   source_snapshot_unchanged: true
-  compiled_scope: "shared scoped crate build"
+  compiled_scope: "Actual homology with one-fault copies in parent scopes; flagged nominal cycles use a complete homology context with reversible uniform crate-path rename. No visibility widening or provider replacement."
   local_mutant_ids:
-    - "H14-zero-product"
-    - "H17-raw-rationals"
+    - "DR-1-0"
+    - "DR-2-1"
+    - "DR-3-2"
+    - "DR-4-3"
+    - "DR-5-4"
+    - "DR-6-5"
+    - "DR-7-6"
+    - "DR-8-7"
+    - "DR-9-8"
+  dependency_contents_stable: true
 mutation_accounting:
-  killed: 2
+  killed: 9
   survived: 0
   demonstrably_equivalent: 0
   invalid: 0
@@ -53,7 +63,7 @@ structure:
   tool: "syn 3.0.9 source AST"
   source_ast_parsed: true
   expanded_ast: false
-  physical_lines: 47
+  physical_lines: 50
   parsed_production_functions: 4
   max_production_ccn: 4
   cognitive_complexity_upper_bound: 4
@@ -61,7 +71,8 @@ structure:
   opaque_function_macros: []
   functions_exceeding_A: []
   scope: "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
-open_findings:
-  - "A complete five-gate semantic, failure and consumer audit has not been established for this file."
-  - "Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds."
-  - "External path dependency source contents have not received a separate origin/content attestation."
+open_findings: []
+assurance_limits:
+  - "No A+, Rust/MIR extraction, complete compiler read trace, allocator-totality/crash-freedom, origin/authentication, hash injectivity or whole-workspace/application pass."
+  - "Native integer/field cases and designated faults are finite, scope-bound evidence. Kernel models establish their stated general mathematical/data invariants; representation correspondence is separately reviewed source evidence."
+  - "Contracts remain pending. No physical, publication, provenance-truth or authority promotion is inferred."

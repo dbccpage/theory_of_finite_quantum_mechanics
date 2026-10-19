@@ -496,8 +496,9 @@ proof attempts exceeded 1024 MiB; the final explicit 1536 MiB check succeeds on
 a host measured to have about 5.4 GiB free RAM, without custom axioms or unfinished
 proofs. Failed and warning receipts remain historical. Representation/runtime
 correspondence is reviewed source evidence, not a Rust/MIR extraction claim.
-An existing external DiscreteSpacetime caller's expect on unsupported degrees
-is documented in the consumer review; no external application grade is awarded.
+The external consumer attribution here was corrected at checkpoint 134:
+same-named omega_homology imports bind a separate package. This local
+assessment establishes no external caller panic or application grade.
 
 20261019T052226Z-score-verification revalidates all 130 completed assessments,
 all current source/score digests and 22 receipt groups. Calibrated current source
@@ -511,3 +512,53 @@ Current score verification snapshots its exact writer. Refreshing an unchanged
 source/primary/metric now creates a distinct record-digest batch when needed,
 preserving the published historical manifest byte-for-byte. The actual rank
 refresh preservation check is recorded in score-manifest-custody-repair.json.
+
+Storage/admission checkpoint: 134 completed A assessments and 58 incomplete.
+All 13 completed homology files retain honest capabilities. Four new records
+are exact_scalar L3A, witness and carrier_manifest L2A, and Carrier L5A. The
+scalar/witness source change is full-line documentation only: every non-comment
+line, production declaration and algorithm remains unchanged. Stored witness
+annotations and internal canonical-input preconditions are now explicit.
+Seven dependent records retain their own original primary/metrics/proof
+receipts, with a separate complete source delta and current composition replay.
+
+Native 20261019T053739Z detects all 44 designated valid faults: scalar 9,
+witness 12, carrier 11 and manifest 12. The 99 original local homology tests
+pass before/after, as do four controls; the Carrier control runs 99 native
+context tests plus two independent fixtures. Initial 053100Z failed harness
+compilation on copied Carrier/canonical-manifest nominal types, so all 44
+faults remain unrun there. The corrected harness copies the complete native
+homology context under a reversible uniform crate-path rename, preserving the
+nominal cycle without substituting providers, removing methods or widening
+visibility. An independent audit restores every unmutated peer text exactly
+in all 12 contexts. Thirty-three candidate byte strings match the initial
+copies; the eleven renamed Carrier candidates differ and are labeled so.
+
+Nine ScalarAdmission declarations connect positive/coprime stored integer
+pairs with Rat, preserve exact fields, reject invalid domains at the first
+index and model literal receipt transport only. Two CarrierDimensions
+statements check quotient dimension and subtraction bounds; existing two-step,
+homology and split-rank models supply the other declared algebraic premises.
+Failed proof attempts remain retained and excluded. Current calibrated metrics
+cover all 32 production functions within A ceilings. G1/G2/G3 reviews map every
+entry, private field and failure branch to actual local consumers and runtime
+trust; no Rust/MIR, allocator-totality, hash-authentication or physical claim.
+
+Package custody distinguishes the local pub mod homology from the separate
+omega_homology dependency. A preceding simplicial consumer note incorrectly
+attributed the local 16-vertex cap to an external GR import; that external panic
+attribution is withdrawn in the current review. Broad same-name searches are
+locators until package identity is established, not proof of a consumer edge.
+No external package/application grade is inherited from these local receipts.
+
+20261019T054854Z-score-verification passes all 134 completed source-bound
+assessments, all current source/score digests and 23 receipt groups. The first
+134 verification encountered an immutable-ledger grouping refusal: two refreshed
+records and a third unchanged record occupied different preserved batches.
+The current checker verifies each selected digest against the same primary/
+metric ledger without inventing a combined execution. The actual three-record
+regression passes with every historical manifest byte preserved. Cleanup
+checkpoint 134 finds zero owned debug/tmp or compiled outputs. An inactive
+registered cache cleanup also recovered 13,981,419,646 bytes after verifying
+no active compiler. Exact small source snapshots remain for receipt custody;
+contracts and the full all-files goal remain unfinished.

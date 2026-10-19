@@ -1,8 +1,9 @@
-//! Mathematical witnesses: evidence structs for verified computations.
+//! Stored computation receipts. AuthorityEffect: None.
 //!
-//! Witnesses are created during construction-time verification.
-//! They record that a mathematical property was checked, but do not
-//! re-verify themselves after creation.
+//! These records store fields; their constructors do not check a theorem.
+//! The chain/cochain producers create their receipts after checking the law.
+//! Other receipt kinds require a trusted producer; their type names, hashes
+//! and serialization alone do not establish the recorded property.
 
 use crate::homology::hashing::Hash256;
 use serde::Serialize;
@@ -84,7 +85,7 @@ impl CochainComplexWitness {
     }
 }
 
-/// Witness that boundary(z) = 0, proving z is a cycle.
+/// Stored boundary-zero receipt, conditional on its producer's check.
 // Sealed witness (PO-AUTH-NC): `_private: ()` blocks external literal construction.
 #[allow(clippy::manual_non_exhaustive)]
 #[derive(Debug, Clone, PartialEq, Eq, Serialize)]
@@ -113,7 +114,7 @@ impl BoundaryZeroWitness {
     }
 }
 
-/// Witness that coboundary(alpha) = 0, proving alpha is a cocycle.
+/// Stored coboundary-zero receipt, conditional on its producer's check.
 // Sealed witness (PO-AUTH-NC): `_private: ()` blocks external literal construction.
 #[allow(clippy::manual_non_exhaustive)]
 #[derive(Debug, Clone, PartialEq, Eq, Serialize)]
@@ -142,19 +143,19 @@ impl CoboundaryZeroWitness {
     }
 }
 
-/// Witness for cycle membership.
+/// Stored cycle-membership receipt; no independent checker is provided here.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 pub struct CycleWitness {
     pub(super) boundary_zero: BoundaryZeroWitness,
 }
 
-/// Witness for cocycle membership.
+/// Stored cocycle-membership receipt; no independent checker is provided here.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 pub struct CocycleWitness {
     pub(super) coboundary_zero: CoboundaryZeroWitness,
 }
 
-/// Witness for homology computation results.
+/// Stored homology-result fields; no dimension law is checked here.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 pub struct HomologyWitness {
     pub(super) complex_hash: Hash256,
@@ -164,7 +165,7 @@ pub struct HomologyWitness {
     pub(super) homology_dim: usize,
 }
 
-/// Witness for cohomology computation results.
+/// Stored cohomology-result fields; no dimension law is checked here.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 pub struct CohomologyWitness {
     pub(super) complex_hash: Hash256,
