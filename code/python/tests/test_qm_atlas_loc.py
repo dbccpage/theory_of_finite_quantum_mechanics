@@ -22,6 +22,7 @@ from src.qm.textbook_problems import (  # noqa: E402
     solve_q64_pancharatnam_berry_phase,
     solve_q65_fermi_golden_rule_and_revival,
 )
+from install_qm_atlas_hook import install_pre_commit_hook  # noqa: E402
 from verify_qm_atlas_loc import verify_qm_atlas_loc  # noqa: E402
 
 
@@ -92,7 +93,19 @@ def test_qm_atlas_all_65_questions_and_loc_verifier() -> None:
     loc_report = verify_qm_atlas_loc(REPO_ROOT)
     assert loc_report["all_passed"] is True, f"LOC verifier errors: {loc_report}"
     assert loc_report["verified_links"] >= 400
+    assert loc_report["verified_window_symbols"] >= 195
     assert loc_report["missing_q_ids"] == []
     assert loc_report["loc_errors"] == []
+    assert loc_report["window_symbol_errors"] == []
     assert loc_report["symbol_errors"] == []
+    assert loc_report["rust_python_parity"] is True
     assert loc_report["forbidden_hits"] == []
+
+
+def test_qm_atlas_pre_commit_hook_installed() -> None:
+    hook_path = install_pre_commit_hook(REPO_ROOT)
+    assert hook_path.is_file()
+    hook_text = hook_path.read_text(encoding="utf-8")
+    assert "scripts/verify_qm_atlas_loc.py" in hook_text
+    assert "code/python/tests/test_qm_atlas_loc.py" in hook_text
+
