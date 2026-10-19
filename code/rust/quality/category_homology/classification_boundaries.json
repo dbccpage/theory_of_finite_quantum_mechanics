@@ -1,0 +1,196 @@
+{
+  "AuthorityEffect": "None",
+  "scope": "Exact finite retention/functional predicates,constructor witness data and complete Boolean implication enumeration;no phenomenology or arbitrary tolerance.",
+  "mutation_names": [
+    "singleton-activity",
+    "retention-injective-not-minimal",
+    "inactive-minimal-rule",
+    "raw-recognized-factor",
+    "observability-reversed",
+    "minimality-reversed",
+    "activity-reversed",
+    "tolerance-wrong-key",
+    "tolerance-raw-reversed",
+    "permutation-no-reset",
+    "permutation-not-marked",
+    "inactive-constructor",
+    "cycle-step",
+    "chain-step",
+    "minimal-retention-reports",
+    "nonminimal-retention-tolerance",
+    "functional-factor-rule",
+    "functional-stability-rule",
+    "functional-range",
+    "factor-conflict",
+    "linked-report",
+    "presentation-stable-reversed",
+    "report-stable-reversed",
+    "calibration-reversed",
+    "blind-spot-reversed",
+    "constructor-calibration",
+    "linked-blind-witness",
+    "unlinked-stable-witness",
+    "retention-conclusion-guard",
+    "retention-premise-guard",
+    "functional-conclusion-guard",
+    "functional-premise-guard",
+    "retention-search-order",
+    "functional-search-order",
+    "retention-countermodel-filter",
+    "functional-countermodel-filter"
+  ],
+  "records": [
+    {
+      "family": "",
+      "path": "code/rust/src/category_theory/finite_functional_classification.rs",
+      "sha256": "0416e0936f9fb724f58bfb0a735751ca3db2e505dfc7b39c9ad09ef722f78375",
+      "parent_aliases": [],
+      "faults": [
+        [
+          "self.reversible && self.observable && !self.tolerance && self.minimal && !self.active",
+          "self.reversible && self.observable && !self.tolerance && self.minimal && self.active"
+        ],
+        [
+          "if self.observable && !self.tolerance && !self.minimal {",
+          "if self.observable && !self.tolerance && self.minimal {"
+        ],
+        [
+          "self.reversible && self.minimal == (self.observable && !self.tolerance)",
+          "self.reversible && self.minimal != (self.observable && !self.tolerance)"
+        ],
+        [
+          "if previous != report {",
+          "if previous == report {"
+        ],
+        [
+          "collect::<BTreeSet<_>>().len() == n",
+          "collect::<BTreeSet<_>>().len() != n"
+        ],
+        [
+          "quotient.state_count() == n",
+          "quotient.state_count() != n"
+        ],
+        [
+          "row.iter().any(|&y| x != y)",
+          "row.iter().any(|&y| x == y)"
+        ],
+        [
+          "representatives.insert(s, r)",
+          "representatives.insert(r, s)"
+        ],
+        [
+          "if previous != r {",
+          "if previous == r {"
+        ],
+        [
+          "seen.fill(false);",
+          "let _ = &seen;"
+        ],
+        [
+          "std::mem::replace(&mut seen[row[column]], true)",
+          "std::mem::replace(&mut seen[row[column]], false)"
+        ],
+        [
+          "if !signature.active {\n        x",
+          "if !signature.active {\n        0"
+        ],
+        [
+          "(x + 1) % n",
+          "x % n"
+        ],
+        [
+          "(x + 1).min(n - 1)",
+          "x.min(n - 1)"
+        ],
+        [
+          "(false, true) => (vec![0, 0, 1, 2], vec![0, 0, 0, 1])",
+          "(false, true) => (vec![0, 0, 1, 2], vec![0, 0, 0, 0])"
+        ],
+        [
+          "(false, true) => Ok((vec![0, 0, 1], vec![0, 0, 0]))",
+          "(false, true) => Ok((vec![0, 0, 1], vec![0, 0, 1]))"
+        ],
+        [
+          "self.blind_spot || self.linked",
+          "self.blind_spot && self.linked"
+        ],
+        [
+          "!(self.linked && self.presentation_stable && !self.report_stable)",
+          "!(self.linked && self.presentation_stable && self.report_stable)"
+        ],
+        [
+          "context.iter().any(|&x| x >= n)",
+          "context.iter().any(|&x| x > n)"
+        ],
+        [
+          "if old != s {",
+          "if old == s {"
+        ],
+        [
+          "linked: self.report_factor().is_some()",
+          "linked: self.report_factor().is_none()"
+        ],
+        [
+          "self.presentation[x] == self.presentation[tx]",
+          "self.presentation[x] != self.presentation[tx]"
+        ],
+        [
+          "self.report[x] == self.report[tx]",
+          "self.report[x] != self.report[tx]"
+        ],
+        [
+          "calibrated: self.report == self.target",
+          "calibrated: self.report != self.target"
+        ],
+        [
+          "< self.presentation.len()",
+          "== self.presentation.len()"
+        ],
+        [
+          "if !signature.calibrated {",
+          "if signature.calibrated {"
+        ],
+        [
+          "(true, _) => (vec![0, 0, 1], vec![0, 1, 2])",
+          "(true, _) => (vec![0, 0, 1], vec![2, 1, 2])"
+        ],
+        [
+          "(true, true) => (vec![0, 1, 0], vec![0, 1, 2])",
+          "(true, true) => (vec![0, 1, 0], vec![1, 1, 2])"
+        ],
+        [
+          "conclusion.index >= 6",
+          "conclusion.index > 6"
+        ],
+        [
+          "literal.index >= 6",
+          "literal.index > 6"
+        ],
+        [
+          "conclusion.index >= 5",
+          "conclusion.index > 5"
+        ],
+        [
+          "literal.index >= 5",
+          "literal.index > 5"
+        ],
+        [
+          "for bits in 0_usize..64 {",
+          "for bits in (0_usize..64).rev() {"
+        ],
+        [
+          "for bits in 0_usize..32 {",
+          "for bits in (0_usize..32).rev() {"
+        ],
+        [
+          "let flags: [bool; 6] = std::array::from_fn(|i| bits & (1 << i) != 0);\n        if flags[conclusion.index] == conclusion.value",
+          "let flags: [bool; 6] = std::array::from_fn(|i| bits & (1 << i) != 0);\n        if flags[conclusion.index] != conclusion.value"
+        ],
+        [
+          "let flags: [bool; 5] = std::array::from_fn(|i| bits & (1 << i) != 0);\n        if flags[conclusion.index] == conclusion.value",
+          "let flags: [bool; 5] = std::array::from_fn(|i| bits & (1 << i) != 0);\n        if flags[conclusion.index] != conclusion.value"
+        ]
+      ]
+    }
+  ]
+}
