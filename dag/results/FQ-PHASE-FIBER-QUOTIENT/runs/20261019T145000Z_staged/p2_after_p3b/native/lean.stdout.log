@@ -1,0 +1,41 @@
+'QuantumMechanics.PromptPhaseScope.continuum_two_not_unit' depends on axioms: [propext, Quot.sound]
+'QuantumMechanics.PromptPhaseScope.continuum_discriminant' depends on axioms: [propext, Classical.choice, Quot.sound]
+'QuantumMechanics.PromptPhaseScope.corpus_partial_coverage' does not depend on any axioms
+'QuantumMechanics.PromptPhaseScope.custody_changed_pin' does not depend on any axioms
+'QuantumMechanics.PromptPhaseScope.tensor_product_det' depends on axioms: [propext, Classical.choice, Quot.sound]
+'QuantumMechanics.PromptPhaseScope.tensor_entangled_det' depends on axioms: [propext, Classical.choice, Quot.sound]
+'QuantumMechanics.PromptPhaseScope.u1_cayley_cleared' depends on axioms: [propext, Classical.choice, Quot.sound]
+'QuantumMechanics.PromptPhaseScope.u1_half_square_constraint' depends on axioms: [propext, Classical.choice, Quot.sound]
+'QuantumMechanics.PromptPhaseScope.d2_no_quadratic' depends on axioms: [propext, Classical.choice, Quot.sound]
+'QuantumMechanics.PromptPhaseScope.d2_frame_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'QuantumMechanics.PromptPhaseScope.d2_scale' depends on axioms: [propext, Classical.choice, Quot.sound]
+'QuantumMechanics.PromptPhaseScope.interference_no_descent' depends on axioms: [Quot.sound]
+'QuantumMechanics.PromptPhaseScope.interference_mass_doubles' depends on axioms: [propext]
+'QuantumMechanics.PromptPhaseScope.zero_integer_row_characterization' depends on axioms: [propext, Quot.sound]
+'QuantumMechanics.PromptPhaseScope.zero_projective_cancellation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'QuantumMechanics.PromptPhaseScope.fiber_relative' depends on axioms: [Quot.sound]
+'QuantumMechanics.PromptPhaseScope.fiber_global' depends on axioms: [propext, Quot.sound]
+'QuantumMechanics.PromptPhaseScope.fiber_equivalence' does not depend on any axioms
+'QuantumMechanics.PromptPhaseScope.fiber_unit_orbit_incomplete' depends on axioms: [propext]
+'QuantumMechanics.PromptPhaseScope.weights_two_preparations' depends on axioms: [propext, Classical.choice, Quot.sound]
+'QuantumMechanics.PromptPhaseScope.weights_signed_control' depends on axioms: [propext, Classical.choice, Quot.sound]
+'QuantumMechanics.PromptPhaseScope.weights_convex_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+QuantumMechanics.PromptPhaseScope.d2_no_quadratic :
+  ¬∃ a b c, ∀ (x y : ℚ), x ≠ 0 ∨ y ≠ 0 → a * x * x + 2 * b * x * y + c * y * y = binaryRay x y * (x * x + y * y)
+QuantumMechanics.PromptPhaseScope.d2_frame_sum (x y u v : ℚ) (hxy : x ≠ 0 ∨ y ≠ 0) (huv : u ≠ 0 ∨ v ≠ 0)
+  (horth : x * u + y * v = 0) : binaryRay x y + binaryRay u v = 1
+QuantumMechanics.PromptPhaseScope.d2_scale (x y k : ℚ) (hk : k ≠ 0) : binaryRay (k * x) (k * y) = binaryRay x y
+QuantumMechanics.PromptPhaseScope.interference_no_descent :
+  ¬∃ f, ∀ (v : Vec GaussInt Bool), readout v = f (phaseBlind v)
+QuantumMechanics.PromptPhaseScope.interference_mass_doubles :
+  totalWeight enumBool (mix psi1) = 2 * totalWeight enumBool psi1 ∧
+    totalWeight enumBool (mix psi2) = 2 * totalWeight enumBool psi2
+QuantumMechanics.PromptPhaseScope.zero_integer_row_characterization (M : BornRedundancy.Mat2) :
+  BornRedundancy.DescentCompatible M ↔ BornRedundancy.RowSparse M
+QuantumMechanics.PromptPhaseScope.fiber_relative : ZeroRel (phasePD Bool) psi1 psi2 ∧ psi1 ≠ psi2
+QuantumMechanics.PromptPhaseScope.fiber_global {Q : Type} (v : Vec GaussInt Q) :
+  ZeroRel (phasePD Q) (fun x => GaussInt.gi.gmul (v x)) v
+QuantumMechanics.PromptPhaseScope.fiber_equivalence {Q : Type} (u v : Vec GaussInt Q) :
+  ZeroRel (phasePD Q) u v ↔ phaseBlind u = phaseBlind v
