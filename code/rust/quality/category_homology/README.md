@@ -962,3 +962,22 @@ archive/source shape, not the dormant mathematics. No Lean theorem is claimed.
 20261019T184755Z-score-verification validates all 151 completed records, 192
 source/score digests and 36 groups; 41 category files remain. Cleanup checkpoint
 151 finds no owned debug/tmp/compiled outputs. Full goal and contracts remain open.
+
+
+Checkpoint 152: finite joint carrier L3A
+
+All seven bodies/noncomment source lines are preserved; scope documentation now
+states empty-relation admission and the cell-estimate boundary. Source review
+checks the private nonempty dynamics premise for indexing and complete provider
+refinement. Native controls check 2592 bounded relation analyses using an
+independent product-graph all-word oracle; all 32 faults are detected, including
+both dropped sink truncations. Fifteen clean JointCarrier Lean declarations
+cover profile/coarsest refinement, fibers, decoder uniqueness and replay.
+Canonical replay certifies projections: different raw pairs with identical
+indexed reports/answers can share receipts, explicitly tested. No Cartesian
+preparation, tensor or external physical interpretation is inferred.
+The initial unchanged tamper/control failure and missing proof-report refusal
+remain retained without mutation success credit.
+20261019T190022Z-score-verification passes 152 completed records, 192 source/score
+digests and 37 groups. Cleanup checkpoint152 has zero owned compiled/debug/tmp
+outputs. Forty category files and contracts remain; full goal open and PR draft.

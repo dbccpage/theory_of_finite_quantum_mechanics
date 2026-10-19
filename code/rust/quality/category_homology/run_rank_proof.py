@@ -18,7 +18,7 @@ from run_audit import ROOT, digest, execute, write_json
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model",choices=("rank","category","metadata","degree","counter","parameters","finite-set","literal-reversal","shape-inventory","root-records","homology-protocols","degree-repair","two-step-complex","simplicial-closure","simplicial-boundary","simplicial-homology","scalar-admission","carrier-dimensions","vector-maps","graph-incidence","validation-inventory","arrow-effects","finite-builder","em-samples","lawvere-inventory","higher-functor-inventory","finite-functor","functor-operations","finite-naturality","natural-composition"),default="rank")
+    parser.add_argument("--model",choices=("rank","category","metadata","degree","counter","parameters","finite-set","literal-reversal","shape-inventory","root-records","homology-protocols","degree-repair","two-step-complex","simplicial-closure","simplicial-boundary","simplicial-homology","scalar-admission","carrier-dimensions","vector-maps","graph-incidence","validation-inventory","arrow-effects","finite-builder","em-samples","lawvere-inventory","higher-functor-inventory","finite-functor","functor-operations","finite-naturality","natural-composition","joint-carrier"),default="rank")
     parser.add_argument("--memory-mb", type=int, default=1024,
         help="Explicit Lean memory limit, from 256 to 2048 MiB; default remains 1024.")
     args = parser.parse_args()
@@ -46,6 +46,10 @@ def main():
         proof_name, import_name, namespace = "DegreeWindow", "Data/Int/Basic", "TFQM.DegreeWindow."
         declarations = ("ordered_span_fits_u32", "same_endpoint_zero", "inverted_span_negative")
         scope = "Exact i32 endpoint difference bounds, zero span and inverted-window refusal premise; no category-law claim."
+    elif model == "joint-carrier":
+        proof_name, import_name, namespace = "JointCarrier", "Data/List/Basic", "TFQM.JointCarrier."
+        declarations = ("profile_equal", "profile_retains_left", "profile_retains_right", "profile_retains_answer", "coarsest_refinement", "fiber_member", "fiber_disjoint", "fiber_cover", "fiber_answer", "empty_fiber_answers", "decoder_unique_on_image", "collision_refuses_decoder", "replay_success", "replay_refuses", "budget_boundary")
+        scope = "Exact relation-indexed profile kernel/coarsest refinement, complete fiber/answer semantics, decoder uniqueness on realized image, collision refusal and replay equality; local quotient construction and Rust representation remain separate."
     elif model == "natural-composition":
         proof_name, import_name, namespace = "NaturalComposition", "CategoryTheory/NatTrans", "TFQM.NaturalComposition."
         declarations = ("identity_component", "vertical_component", "vertical_left_identity", "vertical_right_identity", "vertical_associative", "left_component", "right_component", "left_preserves_vertical", "right_preserves_vertical", "horizontal_component", "horizontal_paths", "horizontal_other_path", "horizontal_naturality", "horizontal_identity", "interchange")

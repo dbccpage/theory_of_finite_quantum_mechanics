@@ -118,6 +118,9 @@ struct Echo; impl StructurePreservingMap for Echo {type Domain=String;type Codom
 
 
 def challenge(subject):
+    if Path(subject['path']).stem == 'finite_joint_carrier':
+        from joint_carrier import challenge as joint_challenge
+        return joint_challenge(subject)
     if Path(subject['path']).stem == 'grothendieck_construction':
         from archival_inventory import challenge as archival_challenge
         return archival_challenge(subject)

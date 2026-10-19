@@ -1,6 +1,10 @@
 //! Joint questions on an explicitly admitted relation of component states.
 //! Local carriers are the completed protected-future quotients. No Cartesian
 //! product availability, independent preparation, or tensor structure is assumed.
+//! Analysis and fiber receipts replay against this immutable problem, not a
+//! claimed Cartesian product. Empty relations are valid. Work admission precedes
+//! relation errors; its checked cell estimate is not a byte/time/allocator bound.
+//! AuthorityEffect: None.
 use crate::finite_continuation::PartialDynamics;
 use crate::finite_question_family::{factor_tables, FiniteQuestionFamily, QuestionQuotient};
 use crate::finite_report_query::ReportQueryDecision;
