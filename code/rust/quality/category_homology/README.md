@@ -1081,3 +1081,24 @@ Dagger/core own sources and original receipts retained via two consumer refreshe
 20261019T195657Z-score-verification passes157 completed records,192 source/score
 digests and42 groups;cleanup157 has no owned compiled/debug/tmp outputs.
 35 category files,contracts and full goal remain;PR draft.
+
+
+Checkpoint158: raw Cauchy inventory L3A
+
+Scope explicitly covers supplied named-table observations,not category admission,
+complete Cauchy theorem or Karoubi construction. Historical validated wrapper
+owns raw declaration only,not borrowed context;later map mutation boundary tested.
+Public6 signature tokens/two wrapper bodies unchanged;original4-function native
+reference frozen exactly except own names/pub visibility. Final33/33 faults killed;
+459 canonical category and6 subject tests pass before/after. Independent256
+equation observations,2048 pair/identity masks and2048 flag/composition inventories
+check all messages,first pair,duplicates/order,aliases and vacuity.17 clean new
+CauchyInventory declarations plus existing raw Lawvere filter model support this
+limited claim. Failed reserved-binder/warning run retained,not proof support.
+Status borrows candidate rows and successful pair;no intermediate owned candidate/
+witness/reference Vec inside search. One view per scan/search/status,three fixed
+diagnostic queries avoid O(C) setup. Successful intermediate30/32 campaigns
+retained separately from final bytes.12 functions max CCN6/cognitive8/nesting3.
+20261019T202322Z-score-verification passes158 completed records,192 source/score
+digests and43 groups;cleanup158 has no owned compiled/debug/tmp outputs.
+34 category files,contracts and full goal remain;PR draft.

@@ -18,7 +18,7 @@ from run_audit import ROOT, digest, execute, write_json
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model",choices=("rank","category","metadata","degree","counter","parameters","finite-set","literal-reversal","shape-inventory","root-records","homology-protocols","degree-repair","two-step-complex","simplicial-closure","simplicial-boundary","simplicial-homology","scalar-admission","carrier-dimensions","vector-maps","graph-incidence","validation-inventory","arrow-effects","finite-builder","em-samples","lawvere-inventory","higher-functor-inventory","finite-functor","functor-operations","finite-naturality","natural-composition","joint-carrier","finite-simulation","finite-independence","finite-trace","finite-dagger","finite-groupoid"),default="rank")
+    parser.add_argument("--model",choices=("rank","category","metadata","degree","counter","parameters","finite-set","literal-reversal","shape-inventory","root-records","homology-protocols","degree-repair","two-step-complex","simplicial-closure","simplicial-boundary","simplicial-homology","scalar-admission","carrier-dimensions","vector-maps","graph-incidence","validation-inventory","arrow-effects","finite-builder","em-samples","lawvere-inventory","higher-functor-inventory","finite-functor","functor-operations","finite-naturality","natural-composition","joint-carrier","finite-simulation","finite-independence","finite-trace","finite-dagger","finite-groupoid","cauchy-inventory"),default="rank")
     parser.add_argument("--memory-mb", type=int, default=1024,
         help="Explicit Lean memory limit, from 256 to 2048 MiB; default remains 1024.")
     args = parser.parse_args()
@@ -46,6 +46,10 @@ def main():
         proof_name, import_name, namespace = "DegreeWindow", "Data/Int/Basic", "TFQM.DegreeWindow."
         declarations = ("ordered_span_fits_u32", "same_endpoint_zero", "inverted_span_negative")
         scope = "Exact i32 endpoint difference bounds, zero span and inverted-window refusal premise; no category-law claim."
+    elif model == "cauchy-inventory":
+        proof_name, import_name, namespace = "CauchyInventory", "Data/List/Basic", "TFQM.CauchyInventory."
+        declarations = ("equal_defined", "missing_left", "missing_right", "pair_checks", "first_empty", "first_head", "first_skip", "first_sound", "first_exists", "first_append", "inventory_member", "inventory_append", "inventory_duplicates", "three_checks", "admit_preserves_raw", "admit_success_flags", "failed_flag")
+        scope = "Raw defined-only named equality,ordered first matching pair and duplicate-preserving inventory,three observed checks and historical raw-value admission. No category typing/completeness or Karoubi theorem."
     elif model == "finite-groupoid":
         proof_name, import_name, namespace = "FiniteGroupoid", "CategoryTheory/Groupoid", "TFQM.FiniteGroupoid."
         declarations = ("checks_true_iff", "admit_preserves_data", "admit_success_laws", "failed_guard", "groupoidOfLaws", "groupoid_inverse", "groupoidOfAdmitted", "related_refl", "related_symm", "related_trans", "reconstruct_coordinate", "coordinate_reconstruct", "coordinateEquiv", "coordinate_identity", "coordinate_composition", "thin_from_root", "removal_progress", "empty_not_connected_thin")

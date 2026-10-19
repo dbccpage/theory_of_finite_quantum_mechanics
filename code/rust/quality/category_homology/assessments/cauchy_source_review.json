@@ -1,0 +1,117 @@
+{
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/category_theory/cauchy.rs",
+    "sha256": "b98e2eb4a97918e57e90bf827db0743c35dcedab52a449989b2d2fde814cd5d4"
+  },
+  "production_functions": {
+    "find_idempotents": {
+      "line": 70,
+      "signature": "pub fn find_idempotents(\n    endomorphisms: &[(&str, &str, bool)],\n    compositions: &BTreeMap<(String, String), String>,\n) -> Vec<(String, String)>",
+      "body": "{\n    let view = CompositionLookup::new(compositions);\n    find_idempotents_in(endomorphisms, &view)\n}",
+      "obligation": "Build one borrowed view and return owned ordered pairs from find_idempotents_in. No category/endomorphism admission; supplied object labels and identity flags remain premises,duplicate candidates preserved."
+    },
+    "find_idempotents_in": {
+      "line": 78,
+      "signature": "fn find_idempotents_in(\n    endomorphisms: &[(&str, &str, bool)],\n    view: &CompositionLookup<'_>,\n) -> Vec<(String, String)>",
+      "body": "{\n    let mut idempotents = Vec::new();\n    for &(mor, obj, is_id) in endomorphisms {\n        if is_id {\n            continue;\n        }\n        if view.compose(mor, mor) == Some(mor) {\n            idempotents.push((mor.to_string(), obj.to_string()));\n        }\n    }\n    idempotents\n}",
+      "obligation": "Scan every supplied row in original order. Skip identity-flagged rows without looking up idempotence,then retain iff defined composition(mor,mor)=mor. Preserve raw object label and duplicates as required owned output. Missing composition is not idempotence;no string normalization or identity-name inference."
+    },
+    "first_retraction": {
+      "line": 94,
+      "signature": "fn first_retraction<'a>(\n    section: &str,\n    retract: &str,\n    idempotent: &str,\n    from: impl Iterator<Item = (&'a str, &'a str)>,\n    view: &CompositionLookup<'_>,\n    identity_map: &BTreeMap<String, String>,\n) -> Option<&'a str>",
+      "body": "{\n    let identity = identity_map.get(retract)?;\n    for (retraction, target) in from {\n        if target != retract {\n            continue;\n        }\n        if view.compose(section, retraction) == Some(identity.as_str())\n            && view.compose(retraction, section) == Some(idempotent)\n        {\n            return Some(retraction);\n        }\n    }\n    None\n}",
+      "obligation": "Private standard finite iterator over supplied from-pairs. Require a defined identity name for this declared retract first,then scan from rows in original order,require matching target/retract string and BOTH defined rs=id_R and sr=idempotent. Return first matching borrowed retraction or None. Missing/mismatched data never equals by two absent Options;caller row boundaries beyond supplied retract equality are unverified."
+    },
+    "first_splitting": {
+      "line": 116,
+      "signature": "fn first_splitting<'a>(\n    idempotent: &str,\n    to: impl Iterator<Item = (&'a str, &'a str)>,\n    from: impl Iterator<Item = (&'a str, &'a str)> + Clone,\n    view: &CompositionLookup<'_>,\n    identity_map: &BTreeMap<String, String>,\n) -> Option<(&'a str, &'a str, &'a str)>",
+      "body": "{\n    for (section, retract) in to {\n        if let Some(retraction) = first_retraction(\n            section, retract, idempotent, from.clone(), view, identity_map,\n        ) {\n            return Some((section, retract, retraction));\n        }\n    }\n    None\n}",
+      "obligation": "Private standard finite to-iterator and cloneable finite from-iterator. For each section/retract row in original order,restart a cheap cloned iterator state (not cloned data),find first_retraction,and return borrowed(section,retract,retraction) tuple. No String/record allocation even on success;no e;e or true category boundary check. First tuple is exactly first successful Cartesian row."
+    },
+    "check_idempotent_splits": {
+      "line": 135,
+      "signature": "pub fn check_idempotent_splits(\n    idempotent: &str,\n    carrier: &str,\n    morphisms_to_carrier: &[(&str, &str)],\n    morphisms_from_carrier: &[(&str, &str)],\n    compositions: &BTreeMap<(String, String), String>,\n    identity_map: &BTreeMap<String, String>,\n) -> Option<IdempotentSplitting>",
+      "body": "{\n    let view = CompositionLookup::new(compositions);\n    first_splitting(idempotent, morphisms_to_carrier.iter().copied(),\n        morphisms_from_carrier.iter().copied(), &view, identity_map)\n        .map(|(section, retract, retraction)| IdempotentSplitting {\n            carrier: carrier.to_string(), idempotent: idempotent.to_string(),\n            retract: retract.to_string(), section: section.to_string(),\n            retraction: retraction.to_string(),\n        })\n}",
+      "obligation": "Borrowed view once,then first_splitting on provided slices;only successful returned tuple is converted to required owned IdempotentSplitting fields with exact caller carrier/idempotent. This checks two equations and declared shared retract only,not actual category membership,boundaries,idempotence or complete candidate inventory."
+    },
+    "check_cauchy_completeness": {
+      "line": 155,
+      "signature": "pub fn check_cauchy_completeness(\n    endomorphisms: &[(&str, &str, bool)],\n    compositions: &BTreeMap<(String, String), String>,\n    morphisms_to: &BTreeMap<String, Vec<(String, String)>>,\n    morphisms_from: &BTreeMap<String, Vec<(String, String)>>,\n    identity_map: &BTreeMap<String, String>,\n) -> CauchyStatus",
+      "body": "{\n    let view = CompositionLookup::new(compositions);\n    let mut unsplit = Vec::new();\n    for &(idem, carrier, is_id) in endomorphisms {\n        if is_id || view.compose(idem, idem) != Some(idem) {\n            continue;\n        }\n        let to = morphisms_to.get(carrier).into_iter()\n            .flat_map(|rows| rows.iter().map(|(m, s)| (m.as_str(), s.as_str())));\n        let from = morphisms_from.get(carrier).into_iter()\n            .flat_map(|rows| rows.iter().map(|(m, t)| (m.as_str(), t.as_str())));\n        if first_splitting(idem, to, from, &view, identity_map).is_none() {\n            unsplit.push(idem.to_string());\n        }\n    }\n    if unsplit.is_empty() { CauchyStatus::Complete }\n    else { CauchyStatus::Incomplete { unsplit_idempotents: unsplit } }\n}",
+      "obligation": "Build one view for all candidates. Borrow original rows directly,skip identity flags or absent/wrong e;e;borrow boundary rows through zero-allocation optional slice iterators. Inspect first_splitting existence without constructing owned witness/candidate records. Append only actual unsplit name outputs,in original order with duplicates. Missing to/from maps are empty. Complete means empty UNSPLIT SUPPLIED INVENTORY only,not mathematical Cauchy completeness of an admitted category."
+    },
+    "idempotence_diagnostic": {
+      "line": 185,
+      "signature": "fn idempotence_diagnostic(splitting: &IdempotentSplitting, compositions: &BTreeMap<(String, String), String>) -> Option<String>",
+      "body": "{\n    let key = (splitting.idempotent.clone(), splitting.idempotent.clone());\n    match compositions.get(&key).map(String::as_str) {\n        Some(v) if v == splitting.idempotent.as_str() => None,\n        Some(v) => Some(format!(\"Not idempotent: {} \u2218 {} = {} \u2260 {}\", splitting.idempotent, splitting.idempotent, v, splitting.idempotent)),\n        None => Some(format!(\"Composition {} \u2218 {} not defined\", splitting.idempotent, splitting.idempotent)),\n    }\n}",
+      "obligation": "One fixed raw tuple-key query for e;e;None reports exact undefined diagnostic,Some wrong value reports exact Not idempotent text,Some e emits none. No loop,category typing or boundary check;carrier is not inspected."
+    },
+    "retraction_diagnostic": {
+      "line": 194,
+      "signature": "fn retraction_diagnostic(\n    splitting: &IdempotentSplitting,\n    compositions: &BTreeMap<(String, String), String>,\n    identity_map: &BTreeMap<String, String>,\n) -> Option<String>",
+      "body": "{\n    let key = (splitting.section.clone(), splitting.retraction.clone());\n    match (compositions.get(&key).map(String::as_str), identity_map.get(&splitting.retract)) {\n        (Some(v), Some(id)) if v == id.as_str() => None,\n        (Some(v), Some(id)) => Some(format!(\"Retraction law failed: r \u2218 s = {} but id_R = {}\", v, id)),\n        _ => Some(\"Retraction law: composition r \u2218 s or id_R not defined\".into()),\n    }\n}",
+      "obligation": "One fixed raw query(section,retraction) and identity_map[retract]. Only two defined equal values pass. Two defined unequal values produce exact value/identity message;any missing side produces exact undefined law message. No table ownership or actual identity typing."
+    },
+    "section_diagnostic": {
+      "line": 207,
+      "signature": "fn section_diagnostic(splitting: &IdempotentSplitting, compositions: &BTreeMap<(String, String), String>) -> Option<String>",
+      "body": "{\n    let key = (splitting.retraction.clone(), splitting.section.clone());\n    match compositions.get(&key).map(String::as_str) {\n        Some(v) if v == splitting.idempotent.as_str() => None,\n        Some(v) => Some(format!(\"Section law failed: s \u2218 r = {} but e = {}\", v, splitting.idempotent)),\n        None => Some(\"Section law: composition s \u2218 r not defined\".into()),\n    }\n}",
+      "obligation": "One fixed raw query(retraction,section),require Some(idempotent). Return exact wrong-value or absent diagnostic,otherwise none. Both query orientation and textual payload/order matter."
+    },
+    "validate_splitting": {
+      "line": 218,
+      "signature": "pub fn validate_splitting(\n    splitting: &IdempotentSplitting,\n    compositions: &BTreeMap<(String, String), String>,\n    identity_map: &BTreeMap<String, String>,\n) -> Vec<String>",
+      "body": "{\n    [idempotence_diagnostic(splitting, compositions),\n     retraction_diagnostic(splitting, compositions, identity_map),\n     section_diagnostic(splitting, compositions)].into_iter().flatten().collect()\n}",
+      "obligation": "Evaluate all three individual diagnostics in original idempotence,retraction,section order and collect every failure (no first-error shortcut). Three fixed queries use existing raw map key API;no full O(C) index for these three checks. It checks literal defined equations only;carrier/category and full map contexts are not admitted."
+    },
+    "try_new": {
+      "line": 235,
+      "signature": "pub fn try_new(\n        splitting: IdempotentSplitting,\n        compositions: &BTreeMap<(String, String), String>,\n        identity_map: &BTreeMap<String, String>,\n    ) -> Result<Self, Vec<String>>",
+      "body": "{\n        let violations = validate_splitting(&splitting, compositions, identity_map);\n        if violations.is_empty() {\n            Ok(Self(splitting))\n        } else {\n            Err(violations)\n        }\n    }",
+      "obligation": "Compute all three diagnostics against BORROWED current tables;empty vector stores unchanged raw splitting,otherwise returns complete ordered Vec<String>. It does not retain composition/identity tables or bind a future category state;this is a historical equality receipt with no full-category certificate."
+    },
+    "declared": {
+      "line": 249,
+      "signature": "pub fn declared(&self) -> &IdempotentSplitting",
+      "body": "{\n        &self.0\n    }",
+      "obligation": "Borrow exact owned declaration in historical wrapper. No mutable accessor or retained table snapshot;Clone preserves declaration only,not a continuing proof about independently mutable caller tables."
+    }
+  },
+  "invariant_argument": [
+    "Actual delivered domain is raw finite string tables/flags and declared candidate lists. Every required equality must have both sides present;equal absence does not pass. No admitted category,complete endomorphism domain,carrier/source/target typing or Karoubi construction is established. Documentation narrows the old full-completeness/witness framing to these observed behaviors.",
+    "CompositionLookup builds sorted borrowed str rows in exactly the same tuple order as BTreeMap<String,String> keys;binary search returns identical Option<&str>. Shared view created once per scan/search/status operation. Standard iterator clones restart unchanged original from-sequence for every section;only slice/optional-map/flat-map adapters instantiated internally,not arbitrary public callback iterators.",
+    "Nested first successful pair order is original to-row then from-row. Early missing identity rejects every pair for that retract,just as old per-pair false result. Search does not check e;e;status separately filters named idempotence then tests pair existence. Missing candidate boundary maps act as empty rows and duplicates retain their original multiplicity.",
+    "Private pair selection returns only borrowed names. Public pair API alone builds required owned witness fields;status directly borrows original candidates and allocates only unsplit output names. No intermediate owned idempotent list,witness record or candidate-reference Vec is materialized for existence checks.",
+    "Diagnostic Array evaluates all three observations in phase order;flatten removes only successful None entries. The historical wrapper moves raw input unchanged only after all flags true. Later modifications to independent supplied maps do not update/revoke the stored record,explicitly tested and declared;no continuing-category proof or authority effect is implied."
+  ],
+  "data_trait_derive_macro_review": "IdempotentSplitting has five raw public names;CauchyStatus two literal outcomes;CauchyCompletion three unchecked metadata collections without implementation;ValidatedIdempotentSplitting private raw-record tuple,not context owner. Standard String/Vec/enum Clone/Eq/Debug only. Internal generic iterators are private and instantiated only with standard finite slice/optional-map adapters;no user callback or custom Clone enters public APIs.",
+  "cost_review": [
+    "Let C composition cells,N supplied endomorphism rows,I identities,P to-rows,Q from-rows,U returned unsplit names,and \u2113 relevant string byte length. Borrowed index setup O(C) references once per public scan/search/status operation;each borrowed query O(log(C+1)) comparisons. This linear setup is an explicit tradeoff to remove inner-loop owned keys,not a claim every small-query call is faster than the old raw map API.",
+    "find_idempotents costs O(C+N log(C+1)) key comparisons plus string lengths and required returned pair copies. Split search costs O(C+P log(I+1)+P*Q log(C+1)) worst-case comparisons;from iterator state clone is constant-size stack data for concrete standard adapters,not container/string clone. Only successful public witness output owns five required labels.",
+    "Status costs O(C+N log(C+1)+sum(P_i log(I+1)+P_i*Q_i log(C+1))) comparisons across retained rows plus required U name bytes. It reuses ONE index,does not rebuild it per candidate,does not allocate intermediate pair-reference vectors or owned candidates,and successful existence checks create no owned witness. Required duplicate unsplit outputs reflect caller row multiplicity.",
+    "validate_splitting performs three fixed raw tuple queries plus one identity lookup,with up to six temporary String keys outside all production loops. O(log(C+1)+log(I+1)) comparisons times key bytes,with no O(C) view construction for three queries. At most3 output diagnostic Strings/Vec entries are required error data. try_new pays that same work then moves raw record;declared borrows O(1).",
+    "Data Clone/Eq/Debug costs stored/visited String/Vec bytes;CauchyCompletion has only raw unchecked caller-owned metadata,no algorithm. All loops finite standard slices/maps;no source recursion,unchecked indexing or arithmetic. Finite input cardinalities do not promise allocator/time/byte totality or limits.",
+    "Fresh calibrated AST12 bodies,max CCN6,cognitive8,nesting3. Old split-search nesting4 and validation CCN12 retained with original source/score. Helper boundaries are borrowed pair search and three distinct diagnostics;no redundant owned tuple/witness/candidate allocation in inner loops. Standard format/Array/Option/iterator library semantics reviewed separately;no MIR/A+/benchmark claim."
+  ],
+  "consumer_review": [
+    "Actual local source search finds root lib.rs/mod.rs declarations,an explanatory condensation comment,and unrelated same-named validation enum/Lawvere status records;no external call to these raw checks. No currently completed assessment context refers to this source (pre-edit scan),so no provider refresh required. Original six public signatures/types/wrapper bodies retained;actual459 category tests pass before/after. External omega packages outside scope.",
+    "Four original public function bodies/calls are frozen verbatim in native helper after only own-name and pub->private reference adapter. Full differential checks compare each API with these original behaviors;independent equation/pair/inventory masks supply a separate specification basis. No source/runtime semantics are inferred from the original comments as an authority."
+  ],
+  "source_change": {
+    "before": {
+      "path": "evidence/quality/category_homology/resume-20261019/cauchy-previous/cauchy.rs",
+      "sha256": "dc0e0660d06ac4884ba6dfa9978c13d513ffe9c4d896613f868dae29311904c7"
+    },
+    "before_score": {
+      "path": "evidence/quality/category_homology/resume-20261019/cauchy-previous/cauchy.score.yaml",
+      "sha256": "e9336ac01ac455510105730e1cb609a1a7c9336df5f18039de927f5c150aa2e3"
+    },
+    "all_public_signature_tokens_unchanged": true,
+    "try_new_declared_bodies_unchanged": true,
+    "reference_text_adapter_verified": true,
+    "reference_adapter": "Only four own function names prefixed reference_ and pub fn->fn;otherwise original function/call text exact,leading/trailing newlines ignored.",
+    "line_endings": "Original CRLF preserved."
+  },
+  "native_oracle": "256 exhaustive4^4 three-equation/identity observations with exact messages,wrapper success/error and later-map-mutation boundary;2048 pair/identity masks on3x3 candidates,explicit valid Cartesian positions and reversed order;2048 flag/composition inventories preserving aliases/order/duplicates plus missing-boundary status. Original3 tests and independent3 tests retained. Empty strings/Unicode/NUL labels and arbitrary unchecked carrier admitted where literal equations pass,not category evidence."
+}

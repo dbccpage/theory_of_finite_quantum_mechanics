@@ -1,0 +1,142 @@
+{
+  "AuthorityEffect": "None",
+  "scope": "Raw supplied-name idempotent/pair inventories,ordered three-equation diagnostics and historical wrapper;no admitted category/complete Cauchy claim.",
+  "records": [
+    {
+      "family": "",
+      "path": "code/rust/src/category_theory/cauchy.rs",
+      "sha256": "464e436cbfc9d6f255eebf856e30ab705e26f374be9b4f674cb30333ff91f25d",
+      "parent_aliases": [],
+      "faults": [
+        [
+          "if is_id {",
+          "if !is_id {"
+        ],
+        [
+          "view.compose(mor, mor) == Some(mor)",
+          "view.compose(mor, mor) != Some(mor)"
+        ],
+        [
+          "idempotents.push((mor.to_string(), obj.to_string()));",
+          "idempotents.push((mor.to_string(), mor.to_string()));"
+        ],
+        [
+          "    idempotents\n}",
+          "    idempotents.reverse();\n    idempotents\n}"
+        ],
+        [
+          "identity_map.get(retract)?",
+          "identity_map.get(\"R0\")?"
+        ],
+        [
+          "target != retract",
+          "false"
+        ],
+        [
+          "view.compose(section, retraction) == Some(identity.as_str())",
+          "view.compose(retraction, section) == Some(identity.as_str())"
+        ],
+        [
+          "&& view.compose(retraction, section) == Some(idempotent)",
+          "|| view.compose(retraction, section) == Some(idempotent)"
+        ],
+        [
+          "view.compose(retraction, section) == Some(idempotent)",
+          "view.compose(retraction, section) == Some(identity.as_str())"
+        ],
+        [
+          "return Some(retraction);",
+          "return Some(\"r0\");"
+        ],
+        [
+          "carrier: carrier.to_string(),",
+          "carrier: retract.to_string(),"
+        ],
+        [
+          "idempotent: idempotent.to_string(),",
+          "idempotent: section.to_string(),"
+        ],
+        [
+          "retract: retract.to_string(),",
+          "retract: carrier.to_string(),"
+        ],
+        [
+          "section: section.to_string(),",
+          "section: retraction.to_string(),"
+        ],
+        [
+          "retraction: retraction.to_string(),",
+          "retraction: section.to_string(),"
+        ],
+        [
+          "first_splitting(idempotent, carrier, morphisms_to_carrier.iter().copied(),\n        morphisms_from_carrier.iter().copied(), &view, identity_map)",
+          "first_splitting(idempotent, carrier, morphisms_from_carrier.iter().copied(),\n        morphisms_to_carrier.iter().copied(), &view, identity_map)"
+        ],
+        [
+          "let from = morphisms_from.get(carrier)",
+          "let from = morphisms_to.get(carrier)"
+        ],
+        [
+          "first_splitting(idem, carrier, to, from, &view, identity_map).is_none()",
+          "first_splitting(idem, carrier, to, from, &view, identity_map).is_some()"
+        ],
+        [
+          "unsplit.push(idem.to_string());",
+          "unsplit.push(carrier.to_string());"
+        ],
+        [
+          "if unsplit.is_empty()",
+          "if !unsplit.is_empty()"
+        ],
+        [
+          "match view.compose(&splitting.idempotent, &splitting.idempotent)",
+          "match view.compose(&splitting.section, &splitting.retraction)"
+        ],
+        [
+          "identity_map.get(&splitting.retract)",
+          "identity_map.get(&splitting.carrier)"
+        ],
+        [
+          "match view.compose(&splitting.retraction, &splitting.section)",
+          "match view.compose(&splitting.section, &splitting.retraction)"
+        ],
+        [
+          "_ => Some(\"Retraction law: composition r ∘ s or id_R not defined\".into()),",
+          "_ => None,"
+        ],
+        [
+          "None => Some(\"Section law: composition s ∘ r not defined\".into()),",
+          "None => None,"
+        ],
+        [
+          "[idempotence_diagnostic(splitting, &view),",
+          "[None,"
+        ],
+        [
+          "     retraction_diagnostic(splitting, &view, identity_map),",
+          "     None,"
+        ],
+        [
+          "     section_diagnostic(splitting, &view)].into_iter().flatten().collect()",
+          "     None].into_iter().flatten().collect()"
+        ],
+        [
+          "\"Not idempotent: {} ∘ {} = {} ≠ {}\"",
+          "\"Idempotent admitted: {} ∘ {} = {} ≠ {}\""
+        ],
+        [
+          "if violations.is_empty()",
+          "if true"
+        ],
+        [
+          "if is_id || view.compose(idem, idem) != Some(idem)",
+          "if view.compose(idem, idem) != Some(idem)"
+        ],
+        [
+          "if is_id || view.compose(idem, idem) != Some(idem)",
+          "if is_id"
+        ]
+      ]
+    }
+  ]
+}

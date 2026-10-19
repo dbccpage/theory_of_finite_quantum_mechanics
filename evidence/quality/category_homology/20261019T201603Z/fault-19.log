@@ -1,0 +1,49 @@
+
+running 6 tests
+test root_record_replay_20::subject::tests::validate_correct_splitting ... ok
+test root_record_replay_20::subject::tests::unsplit_idempotent_detected ... FAILED
+test root_record_replay_20::subject::independent_cauchy_tests::flags_duplicates_aliases_and_vacuous_inventory ... FAILED
+test root_record_replay_20::subject::independent_cauchy_tests::exhaustive_pair_masks_and_ordered_unsplit_inventory ... FAILED
+test root_record_replay_20::subject::tests::discrete_category_is_cauchy_complete ... FAILED
+test root_record_replay_20::subject::independent_cauchy_tests::all_three_equation_observations_and_historical_wrapper ... ok
+
+failures:
+
+---- root_record_replay_20::subject::tests::unsplit_idempotent_detected stdout ----
+
+thread 'root_record_replay_20::subject::tests::unsplit_idempotent_detected' (17896) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\rr\261019T201603\src\category_theory\q\n20.rs:301:9:
+assertion `left == right` failed
+  left: Complete
+ right: Incomplete { unsplit_idempotents: ["e"] }
+
+---- root_record_replay_20::subject::independent_cauchy_tests::flags_duplicates_aliases_and_vacuous_inventory stdout ----
+
+thread 'root_record_replay_20::subject::independent_cauchy_tests::flags_duplicates_aliases_and_vacuous_inventory' (25264) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\rr\261019T201603\src\category_theory\q\n20.rs:552:3:
+assertion `left == right` failed
+  left: Incomplete { unsplit_idempotents: [] }
+ right: Complete
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- root_record_replay_20::subject::independent_cauchy_tests::exhaustive_pair_masks_and_ordered_unsplit_inventory stdout ----
+
+thread 'root_record_replay_20::subject::independent_cauchy_tests::exhaustive_pair_masks_and_ordered_unsplit_inventory' (25244) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\rr\261019T201603\src\category_theory\q\n20.rs:541:3:
+assertion `left == right` failed
+  left: Complete
+ right: Incomplete { unsplit_idempotents: ["e", "e", "x"] }
+
+---- root_record_replay_20::subject::tests::discrete_category_is_cauchy_complete stdout ----
+
+thread 'root_record_replay_20::subject::tests::discrete_category_is_cauchy_complete' (26672) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\rr\261019T201603\src\category_theory\q\n20.rs:278:9:
+assertion `left == right` failed
+  left: Incomplete { unsplit_idempotents: [] }
+ right: Complete
+
+
+failures:
+    root_record_replay_20::subject::independent_cauchy_tests::exhaustive_pair_masks_and_ordered_unsplit_inventory
+    root_record_replay_20::subject::independent_cauchy_tests::flags_duplicates_aliases_and_vacuous_inventory
+    root_record_replay_20::subject::tests::discrete_category_is_cauchy_complete
+    root_record_replay_20::subject::tests::unsplit_idempotent_detected
+
+test result: FAILED. 2 passed; 4 failed; 0 ignored; 0 measured; 657 filtered out; finished in 0.00s
+

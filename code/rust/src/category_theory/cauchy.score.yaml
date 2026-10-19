@@ -3,66 +3,101 @@ schema_version: "2.0.0"
 artifact:
   path: "code/rust/src/category_theory/cauchy.rs"
   language: "Rust"
-  sha256: "dc0e0660d06ac4884ba6dfa9978c13d513ffe9c4d896613f868dae29311904c7"
+  sha256: "b98e2eb4a97918e57e90bf827db0743c35dcedab52a449989b2d2fde814cd5d4"
 profile: "Exact"
 level: "L3"
 level_basis: "Conservative bounded-domain classification; no upgrade based solely on terminology or module size."
 architecture_target: "L5"
 engineering_target: "A"
 gates:
-  G1: null
-  G2: null
-  G3: null
-  G4: null
-  G5: null
-composite_grade: null
-score_token: null
-is_complete: false
-grade_ceiling: "B"
-evaluation_timestamp: "2026-10-18T18:42:03+00:00"
+  G1: "A"
+  G2: "A"
+  G3: "A"
+  G4: "A"
+  G5: "A"
+composite_grade: "A"
+score_token: "L3A"
+is_complete: true
+grade_ceiling: "A"
+evaluation_timestamp: "2026-10-19T20:23:01.811280+00:00"
 AuthorityEffect: "None"
 claim:
   urn: "urn:tfqm:rust:category_theory:cauchy"
-  description: "Cauchy Completeness \u2014 Spec Section 17.  A category C is Cauchy complete (Karoubi complete, idempotent complete) iff every idempotent e : A \u2192 A splits:  \u2203 R, s: R \u2192 A, r: A \u2192 R such that r \u2218 s = id_R and s \u2218 r = e.  Bicategorically: every profunctor-retract of a representable is representable.  This module provides: - IdempotentSplitting: a witness that an idempotent splits - CauchyStatus: diagnostic for whether a category is Cauchy complete - CauchyCompletion: explicitly split all unsplit idempotents - Validation functions for splitting laws"
+  description: "Raw finite idempotent-name inventories and splitting-equation diagnostics. In an admitted category, Cauchy completeness means every idempotent splits. Here the supplied tables and boundary/identity flags are caller premises; no category admission, complete-inventory check or Karoubi construction occurs. AuthorityEffect: None."
   scope: "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified."
 contract:
   status: "pending"
   path: null
   note: "Reserved for a later user-requested contract; none created or asserted here."
 evidence:
-  - {"path": "evidence/quality/category_homology/20261018T184203Z/baseline.json", "sha256": "e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c", "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."}
-  - {"path": "evidence/quality/category_homology/20261018T184203Z/summary.json", "sha256": "ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67", "scope": "Source snapshot binding and complete six-outcome accounting."}
-  - {"path": "evidence/quality/category_homology/20261018T184203Z/mutations.json", "sha256": "c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5", "scope": "Designated critical faults only; outcomes for this file are enumerated below."}
-  - {"path": "evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json", "sha256": "86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1", "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."}
+  - {"path": "evidence/quality/category_homology/20261019T201603Z/baseline.json", "sha256": "47b7b9b829efff32e6edbb06f823787afe50ac256fde7617b6f8e962d2b67a07", "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."}
+  - {"path": "evidence/quality/category_homology/20261019T201603Z/summary.json", "sha256": "594780f6c904a9308354d69441d939d541ef5fdd5fa0b611fb0413130f09e1a3", "scope": "Source snapshot binding and complete six-outcome accounting."}
+  - {"path": "evidence/quality/category_homology/20261019T201603Z/mutations.json", "sha256": "ae74558d1fa8578755dc05ae08a9e8945a5fd6f39d48a9f1de8fbd566b15ad57", "scope": "Designated critical faults only; outcomes for this file are enumerated below."}
+  - {"path": "evidence/quality/category_homology/20261019T201603Z-metrics/receipt.json", "sha256": "42de77086624d4fc23ddaf19cca0d52b9e67993f9361f98388272709ae54c1f4", "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."}
+  - {"path": "evidence/quality/category_homology/20261019T201603Z/dependency_receipt.json", "sha256": "0c295cd36748e56ce4858e451538866bdc451ab28c37e6b547d65c9ca32dea13", "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred."}
+  - {"path": "code/rust/quality/category_homology/assessments/cauchy.json", "sha256": "f031c3abba6dce9facfbb4d1ace5ea52e4938e6637810832658fd601e6b7ad40", "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping."}
 verification:
   baseline_ok: true
   source_snapshot_unchanged: true
-  compiled_scope: "shared scoped crate build"
-  local_mutant_ids: []
+  compiled_scope: "Actual category crate and one-fault copies inside their real parent scopes; no visibility widening or provider replacement"
+  local_mutant_ids:
+    - "RR-1-0"
+    - "RR-2-1"
+    - "RR-3-2"
+    - "RR-4-3"
+    - "RR-5-4"
+    - "RR-6-5"
+    - "RR-7-6"
+    - "RR-8-7"
+    - "RR-9-8"
+    - "RR-10-9"
+    - "RR-11-10"
+    - "RR-12-11"
+    - "RR-13-12"
+    - "RR-14-13"
+    - "RR-15-14"
+    - "RR-16-15"
+    - "RR-17-16"
+    - "RR-18-17"
+    - "RR-19-18"
+    - "RR-20-19"
+    - "RR-21-20"
+    - "RR-22-21"
+    - "RR-23-22"
+    - "RR-24-23"
+    - "RR-25-24"
+    - "RR-26-25"
+    - "RR-27-26"
+    - "RR-28-27"
+    - "RR-29-28"
+    - "RR-30-29"
+    - "RR-31-30"
+    - "RR-32-31"
+    - "RR-33-32"
+  dependency_contents_stable: true
 mutation_accounting:
-  killed: 0
+  killed: 33
   survived: 0
   demonstrably_equivalent: 0
   invalid: 0
   inconclusive: 0
   unrun: 0
-  conservative_ratio: null
+  conservative_ratio: 1.0
 structure:
   tool: "syn 3.0.9 source AST"
   source_ast_parsed: true
   expanded_ast: false
-  physical_lines: 382
-  parsed_production_functions: 6
-  max_production_ccn: 12
-  cognitive_complexity_upper_bound: 10
-  control_nesting: 4
+  physical_lines: 340
+  parsed_production_functions: 12
+  max_production_ccn: 6
+  cognitive_complexity_upper_bound: 8
+  control_nesting: 3
   opaque_function_macros: []
-  functions_exceeding_A:
-    - {"ccn": 6, "cognitive_upper_bound": 10, "control_nesting": 4, "line": 110, "name": "check_idempotent_splits", "opaque_macros": []}
-    - {"ccn": 12, "cognitive_upper_bound": 6, "control_nesting": 1, "line": 212, "name": "validate_splitting", "opaque_macros": []}
+  functions_exceeding_A: []
   scope: "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
-open_findings:
-  - "A complete five-gate semantic, failure and consumer audit has not been established for this file."
-  - "Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds."
-  - "External path dependency source contents have not received a separate origin/content attestation."
-  - "Declared source metrics impose a conservative B ceiling; exceeding functions are listed in structure. Cognitive values are upper bounds, not counterexamples to semantic correctness."
+open_findings: []
+assurance_limits:
+  - "L3 bounded raw finite search/diagnostic/historical receipt. No admitted category/endomorphism boundaries/full identity inventory/actual Cauchy completeness or Karoubi/profunctor construction. CauchyCompletion is unchecked caller metadata;Complete is only supplied-candidate outcome."
+  - "Supplied identity flags may skip arbitrary labels;duplicate rows/status names preserved and empty inventory passes vacuously. check_idempotent_splits checks two equations only;validate_splitting adds named idempotence but still no carrier/boundary typing. Empty/misnamed category labels can pass those equations,explicitly tested."
+  - "Validated wrapper owns declaration only,not composition/identity context;later map mutation can invalidate observed equations without changing stored record. Public name retained for compatibility;documentation and score bind only historical three-check claim,not continuing certification or authority."
+  - "Exact String/Option/list model and bounded differential/independent native masks support source semantics. No Rust extraction,MIR,independent compiler/A+,global allocation/time bound or physical interpretation. Index setup tradeoff and fixed diagnostic queries explicit. Contracts pending."
