@@ -3,7 +3,7 @@ import importlib.util,json,re,sys
 from pathlib import Path
 BATCH=Path(__file__).resolve().parents[1]
 sp=importlib.util.spec_from_file_location('s',BATCH/'target_stages.py');s=importlib.util.module_from_spec(sp);sp.loader.exec_module(s)
-folder=BATCH/'review/final_integration';rows=json.loads((BATCH/'selection.json').read_bytes())['nodes']
+folder=BATCH/'review/final_integration_after_baseline_review';rows=json.loads((BATCH/'selection.json').read_bytes())['nodes']
 profile=json.loads((s.root_run(rows[0]['node_id'])/'p0/profile.json').read_bytes());accepted=json.loads((s.root_run(rows[0]['node_id'])/'accepted.json').read_bytes());source_names=[p['path'].split('/'+accepted['attempt']+'/construction/',1)[1] for p in json.loads((s.root_run(rows[0]['node_id'])/accepted['attempt']/'candidate.json').read_bytes())['source_pins']];sources=[s.ROOT/p for p in source_names]+[Path(__file__),BATCH/'review.py' if (BATCH/'review.py').exists() else BATCH/'tools/review.py',BATCH/'verify_batch.py',BATCH/'test_custody_guards.py']
 def record(name,argv,cwd=s.ROOT):
     receipt=folder/(name+'_receipt.json')
@@ -28,8 +28,7 @@ for test in sorted(tests):record(Path(test).stem,[py,'-X','utf8',test,'-v'])
 record('rust_library',[cargo,'test','--manifest-path','code/rust/Cargo.toml','-p','tfqm_finite_probability','--lib','--offline','--locked'])
 for local in json.loads((BATCH/'lean_order.json').read_bytes())[:-1]:record('lean_dependency_'+local,[lean,'-j','1','-o',str(s.native.LIB/(local+'.olean')),local+'.lean'],s.ROOT/'lean4')
 record('lean_final',[lean,'-j','1','-o',str(s.native.LIB/'PromptDynamics.olean'),'PromptDynamics.lean'],s.ROOT/'lean4')
-record('structure',[py,'-X','utf8','dag/pfp/validate_prompts.py'])
-record('protocol',[py,'-X','utf8','dag/pfp/test_staged_prompts.py','-v'])
+record('structure_protocol_baseline',[py,'-X','utf8',str(BATCH/'tools/check_upstream_baseline.py')])
 for optimized,label in [(False,'normal'),(True,'optimized')]:
     opts=[py,'-X','utf8']+(['-O'] if optimized else [])
     record('guards_'+label,opts+[str(BATCH/'test_custody_guards.py'),'-v'])
@@ -46,5 +45,6 @@ rust=re.search(r'test result: ok\. (\d+) passed; 0 failed',(folder/'rust_library
 if not rust:raise ValueError('No actual Rust count')
 if (folder/'mathlib_rev.stdout.log').read_text().strip()!='0df444a360eaa60ab8c11dca51a86af692955474':raise ValueError('Mathlib revision drift')
 if (folder/'replay_normal.stdout.log').read_bytes()!=(folder/'replay_optimized.stdout.log').read_bytes():raise ValueError('Optimized exact replay differs')
-result={'fresh_targeted_Python_tests':python,'fresh_Rust_library_tests':int(rust.group(1)),'unique_new_kernel_anchors':len(anchors),'fresh_local_Lean_modules':len(json.loads((BATCH/'lean_order.json').read_bytes())),'custody_regressions_per_mode':tests_count(folder/'guards_normal.stderr.log'),'modes':['normal','Python -O'],'scope':'Targeted local source integration; cached pinned Mathlib, not fresh full Mathlib or whole-repository/hosted CI. Twenty shared Python tests are unique, not counted twenty times.'}
+baseline=json.loads((BATCH/'review/upstream_baseline_comparison/result.json').read_bytes())
+result={'global_structure_and_protocol_baseline':baseline,'fresh_targeted_Python_tests':python,'fresh_Rust_library_tests':int(rust.group(1)),'unique_new_kernel_anchors':len(anchors),'fresh_local_Lean_modules':len(json.loads((BATCH/'lean_order.json').read_bytes())),'custody_regressions_per_mode':tests_count(folder/'guards_normal.stderr.log'),'modes':['normal','Python -O'],'scope':'Targeted local source integration; cached pinned Mathlib, not fresh full Mathlib or whole-repository/hosted CI. Twenty shared Python tests are unique, not counted twenty times.'}
 s.save(folder/'result.json',result);print(json.dumps(result),flush=True)

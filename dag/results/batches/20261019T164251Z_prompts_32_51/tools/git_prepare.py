@@ -4,7 +4,10 @@ from pathlib import Path
 BATCH=Path(__file__).resolve().parents[1];ROOT=next(p for p in BATCH.parents if (p/'dag/pfp/prepare_stage.py').is_file())
 def git(*args,**kw):return subprocess.check_output(['git',*args],cwd=ROOT,**kw)
 selection=json.loads((BATCH/'selection.json').read_bytes())
-if git('rev-parse','HEAD',text=True).strip()!=selection['base_commit']:raise ValueError('Base SHA changed')
+integration=json.loads((BATCH/'upstream/integration_head.json').read_bytes())
+if git('rev-parse','HEAD',text=True).strip()!=integration['integrated_head']:raise ValueError('Integrated HEAD changed')
+for parent in [selection['base_commit'],integration['upstream_commit']]:
+    subprocess.run(['git','merge-base','--is-ancestor',parent,'HEAD'],cwd=ROOT,check=True)
 if git('branch','--show-current',text=True).strip()!='codex/pfp-prompts-32-through-51':raise ValueError('Wrong branch')
 if git('diff','--cached','--name-only'):raise ValueError('Existing staged changes')
 pins=json.loads((BATCH/'manifest.json').read_bytes())['files'];paths={p['path'] for p in pins};paths.add((BATCH/'manifest.json').relative_to(ROOT).as_posix())

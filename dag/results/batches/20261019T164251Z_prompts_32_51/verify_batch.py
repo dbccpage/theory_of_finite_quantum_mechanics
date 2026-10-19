@@ -16,15 +16,24 @@ def axiom_reports(text,anchors):
 def main():
     if (BATCH/'manifest.json').exists():
         for p in load(BATCH/'manifest.json')['files']:require(sha(ROOT/p['path'])==p['sha256'],'sealed artifact changed '+p['path'])
+    migration=load(BATCH/'upstream/reconciliation_plan.json')
+    upstream_index=load(BATCH/'upstream/index.git.json')
+    raw=(BATCH/'upstream/index.git.json').read_bytes()
+    require(hashlib.sha1(b'blob '+str(len(raw)).encode()+b'\0'+raw).hexdigest()==migration['upstream_index_git_blob'],'upstream index Git blob')
+    for n in migration['nodes'].values():
+        raw=(ROOT/n['upstream_collection_snapshot']).read_bytes()
+        require(hashlib.sha256(raw).hexdigest()==n['upstream_collection_sha256'],'upstream baseline sha256')
+        require(hashlib.sha1(b'blob '+str(len(raw)).encode()+b'\0'+raw).hexdigest()==n['upstream_collection_git_blob'],'upstream collection Git blob')
     rows=load(BATCH/'selection.json')['nodes'];before=load(BATCH/'index_before.json');current=load(ROOT/'dag/operads/index.json');ids={r['node_id'] for r in rows}
     require([r['node_id'] for r in rows]==[r['node_id'] for r in before['nodes'][31:51]],'ordered next-twenty selection')
-    require([n for n in before['nodes'] if n['node_id'] not in ids]==[n for n in current['nodes'] if n['node_id'] not in ids],'unrelated index row changed')
+    require([n for n in upstream_index['nodes'] if n['node_id'] not in ids]==[n for n in current['nodes'] if n['node_id'] not in ids],'unrelated index row changed')
     total=0;records=0;anchors=set();failed=0
     for i,node in enumerate(rows):
         task=node['node_id'];run=ROOT/node['run'];accepted=load(run/'accepted.json');a=run/accepted['attempt'];h=run/accepted['host'];c=load(a/'candidate.json');profile=load(run/'p0/profile.json')
         checker=module('exact_checker'+str(i),run/'check_candidate.py');result=checker.check(a/'request.json',a/'candidate.json');records+=result['records_checked']
-        original=yaml.safe_load((run/'inputs/this_repository'/node['operad_collection']).read_bytes());collection=yaml.safe_load((ROOT/node['operad_collection']).read_bytes())
-        for key in ('target','source_bindings','source_provenance','collection_status'):require(original[key]==collection[key],'historical claim mutated '+key)
+        original=yaml.safe_load((run/'inputs/this_repository'/node['operad_collection']).read_bytes());mapped=migration['nodes'][task];collection=yaml.safe_load((ROOT/mapped['operad_collection']).read_bytes());baseline=yaml.safe_load((ROOT/mapped['upstream_collection_snapshot']).read_bytes())
+        for key in ('target','source_bindings','source_provenance','collection_status'):require(baseline[key]==collection[key],'upstream canonical metadata mutated '+key)
+        require(original['target']['source_statement']==baseline['target']['source_statement'],'mathematical target changed in migration')
         for attempt in load(run/'p1/review_contract.json')['attempts']:require(load(run/attempt/'candidate.json')['data']==c['data'],'numeric certificate altered by proof repair')
         for checkpoint in accepted['failed_checkpoints']:
             old=load(run/checkpoint/'host_check.json');require(old['status']=='repairable_candidate_defect' and any(v!=0 for v in old['predicate_results']['native_exit_codes'].values()),'failed gate promoted');failed+=1
