@@ -844,3 +844,37 @@ previous own-source/receipt-preservation claims are marked historical.
 all 192 source/score digests and 32 groups. Cleanup checkpoint 147 finds no owned
 debug/tmp/compiled outputs; small exact source snapshots remain. Contracts and the
 full goal remain unfinished; the PR remains draft.
+
+Functor operations checkpoint: 148 completed A assessments, 44 incomplete.
+The distinct immutable complete-report finite-functor certificate is L5A: both
+endpoint categories and all map/law phases are checked before owning snapshots.
+Certified composition requires exact middle category data, even when names match,
+and returns a raw declaration. Identity/opposite/inclusion/raw composition helpers
+remain declarations requiring separate admission; inclusion checks membership and
+boundaries only. This avoids promoting raw names or empty domains to certificates.
+
+Two old bodies change costs; all 23 signatures and 21 other bodies are unchanged.
+Composition queries use the assessed shared borrowed view. Opposite construction
+clones the object set once and guards missing endpoint/identity-object insertion;
+required output records preserve raw endpoint union, sorted original key/name
+normalization and duplicate-name overwrite order. No allocation capacity/layout
+compatibility or zero-allocation constructor claim is made.
+
+Native 20261019T174609Z detects all 43 designated faults, with 459 original category
+and fifteen subject/control tests passing before/after. Controls include all eight
+C3->C2 maps, full typed report phases, invalid endpoints, exact raw error precedence,
+owned snapshot access, differing middle data with equal names, opposite reversal,
+malformed raw endpoint/key normalization and inclusion with incompatible laws.
+The first 39-fault receipt predates the opposite allocation repair and is archival.
+FunctorOperations checks nineteen clean actual Mathlib identity/composition,
+partial-map/context guard/reversal and guarded finite-set registration statements.
+A first partial-associativity proof failed elaboration and emitted sorryAx for its
+unfinished declaration; it is retained as failed and never supporting evidence.
+Explicit Option cases repair it; only final clean proof supports this assessment.
+Prior admitted-category/functor/report model claims remain exact. All 23 production
+functions fit A metrics. Four unchanged-own-source provider consumers retain their
+original own primary/metrics with explicit preservation and current evidence.
+
+20261019T174953Z-score-verification passes all 148 completed assessments and
+all 192 source/score digests across 33 groups. Cleanup checkpoint 148 finds no owned
+debug/tmp/compiled outputs. Contracts and full goal remain unfinished; PR draft.

@@ -1,0 +1,74 @@
+
+running 15 tests
+test root_record_replay_29::subject::independent_admission_tests::raw_opposite_preserves_endpoint_union_and_sorted_key_name_normalization ... ok
+test root_record_replay_29::subject::independent_admission_tests::opposite_raw_construction_is_involutive_on_valid_tables_and_uses_explicit_labels ... ok
+test root_record_replay_29::subject::independent_admission_tests::inclusion_is_literal_membership_and_boundary_check_with_laws_separate ... ok
+test root_record_replay_29::subject::independent_admission_tests::report_contains_every_typed_admission_failure_and_preserves_inputs ... FAILED
+test root_record_replay_29::subject::tests::invalid_functor_reports_composition_violation ... FAILED
+test root_record_replay_29::subject::tests::identity_functor_validates ... ok
+test root_record_replay_29::subject::tests::composition_rejects_different_middle_categories_with_the_same_name ... ok
+test root_record_replay_29::subject::tests::admission_rejects_non_categories_and_extra_map_entries ... FAILED
+test root_record_replay_29::subject::independent_admission_tests::certificate_checks_all_cyclic_maps_owns_snapshots_and_rejects_unlawful_endpoints ... FAILED
+test root_record_replay_29::subject::tests::invalid_functor_reports_typed_boundary_violation ... FAILED
+test root_record_replay_29::subject::tests::partial_functor_reports_totality_violations ... FAILED
+test root_record_replay_29::subject::tests::functor_composition_maps_through_middle ... ok
+test root_record_replay_29::subject::tests::opposite_category_reverses_composition_order ... ok
+test root_record_replay_29::subject::tests::invalid_functor_reports_identity_violation ... FAILED
+test root_record_replay_29::subject::independent_admission_tests::raw_identity_composition_and_map_builders_preserve_exact_values_and_first_failures ... ok
+
+failures:
+
+---- root_record_replay_29::subject::independent_admission_tests::report_contains_every_typed_admission_failure_and_preserves_inputs stdout ----
+
+thread 'root_record_replay_29::subject::independent_admission_tests::report_contains_every_typed_admission_failure_and_preserves_inputs' (45644) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\rr\261019T174609\src\category_theory\q\n29.rs:743:166:
+assertion failed: !r.all_passed()
+
+---- root_record_replay_29::subject::tests::invalid_functor_reports_composition_violation stdout ----
+
+thread 'root_record_replay_29::subject::tests::invalid_functor_reports_composition_violation' (25004) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\rr\261019T174609\src\category_theory\q\n29.rs:675:9:
+assertion failed: !report.all_passed()
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- root_record_replay_29::subject::tests::admission_rejects_non_categories_and_extra_map_entries stdout ----
+
+thread 'root_record_replay_29::subject::tests::admission_rejects_non_categories_and_extra_map_entries' (8000) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\rr\261019T174609\src\category_theory\q\n29.rs:548:9:
+assertion failed: ValidatedFiniteFunctor::try_new(extra, &c, &c).is_err()
+
+---- root_record_replay_29::subject::independent_admission_tests::certificate_checks_all_cyclic_maps_owns_snapshots_and_rejects_unlawful_endpoints stdout ----
+
+thread 'root_record_replay_29::subject::independent_admission_tests::certificate_checks_all_cyclic_maps_owns_snapshots_and_rejects_unlawful_endpoints' (3536) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\rr\261019T174609\src\category_theory\q\n29.rs:738:257:
+assertion `left == right` failed
+  left: 2
+ right: 9
+
+---- root_record_replay_29::subject::tests::invalid_functor_reports_typed_boundary_violation stdout ----
+
+thread 'root_record_replay_29::subject::tests::invalid_functor_reports_typed_boundary_violation' (17840) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\rr\261019T174609\src\category_theory\q\n29.rs:638:9:
+assertion failed: !report.all_passed()
+
+---- root_record_replay_29::subject::tests::partial_functor_reports_totality_violations stdout ----
+
+thread 'root_record_replay_29::subject::tests::partial_functor_reports_totality_violations' (16208) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\rr\261019T174609\src\category_theory\q\n29.rs:719:9:
+assertion failed: !report.all_passed()
+
+---- root_record_replay_29::subject::tests::invalid_functor_reports_identity_violation stdout ----
+
+thread 'root_record_replay_29::subject::tests::invalid_functor_reports_identity_violation' (34356) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\rr\261019T174609\src\category_theory\q\n29.rs:700:9:
+assertion failed: report.typed_violations.iter().any(|violation|
+        {
+            violation.unit ==
+                ValidationUnit::Functor(FunctorValidation::IdentityPreservation)
+        })
+
+
+failures:
+    root_record_replay_29::subject::independent_admission_tests::certificate_checks_all_cyclic_maps_owns_snapshots_and_rejects_unlawful_endpoints
+    root_record_replay_29::subject::independent_admission_tests::report_contains_every_typed_admission_failure_and_preserves_inputs
+    root_record_replay_29::subject::tests::admission_rejects_non_categories_and_extra_map_entries
+    root_record_replay_29::subject::tests::invalid_functor_reports_composition_violation
+    root_record_replay_29::subject::tests::invalid_functor_reports_identity_violation
+    root_record_replay_29::subject::tests::invalid_functor_reports_typed_boundary_violation
+    root_record_replay_29::subject::tests::partial_functor_reports_totality_violations
+
+test result: FAILED. 8 passed; 7 failed; 0 ignored; 0 measured; 1104 filtered out; finished in 0.00s
+

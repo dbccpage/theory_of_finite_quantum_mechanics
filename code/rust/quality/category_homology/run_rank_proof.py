@@ -18,7 +18,7 @@ from run_audit import ROOT, digest, execute, write_json
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model",choices=("rank","category","metadata","degree","counter","parameters","finite-set","literal-reversal","shape-inventory","root-records","homology-protocols","degree-repair","two-step-complex","simplicial-closure","simplicial-boundary","simplicial-homology","scalar-admission","carrier-dimensions","vector-maps","graph-incidence","validation-inventory","arrow-effects","finite-builder","em-samples","lawvere-inventory","higher-functor-inventory","finite-functor"),default="rank")
+    parser.add_argument("--model",choices=("rank","category","metadata","degree","counter","parameters","finite-set","literal-reversal","shape-inventory","root-records","homology-protocols","degree-repair","two-step-complex","simplicial-closure","simplicial-boundary","simplicial-homology","scalar-admission","carrier-dimensions","vector-maps","graph-incidence","validation-inventory","arrow-effects","finite-builder","em-samples","lawvere-inventory","higher-functor-inventory","finite-functor","functor-operations"),default="rank")
     parser.add_argument("--memory-mb", type=int, default=1024,
         help="Explicit Lean memory limit, from 256 to 2048 MiB; default remains 1024.")
     args = parser.parse_args()
@@ -46,6 +46,10 @@ def main():
         proof_name, import_name, namespace = "DegreeWindow", "Data/Int/Basic", "TFQM.DegreeWindow."
         declarations = ("ordered_span_fits_u32", "same_endpoint_zero", "inverted_span_negative")
         scope = "Exact i32 endpoint difference bounds, zero span and inverted-window refusal premise; no category-law claim."
+    elif model == "functor-operations":
+        proof_name, import_name, namespace = "FunctorOperations", "CategoryTheory/Functor/Basic", "TFQM.FunctorOperations."
+        declarations = ("identity_object", "identity_arrow", "composite_object", "composite_arrow", "identity_then", "then_identity", "compose_associative", "first_missing", "second_missing", "partial_success", "partial_associative", "equal_middle", "unequal_middle", "names_insufficient", "reverse_entry", "reverse_twice", "guarded_insert_eq", "registration_eq", "registered_member")
+        scope = "Actual Mathlib identity/composition, pure partial-map composition, exact endpoint-data guard and raw table reversal; no automatic opposite/inclusion admission or Rust extraction."
     elif model == "finite-functor":
         proof_name, import_name, namespace = "FiniteFunctor", "CategoryTheory/Functor/Basic", "TFQM.FiniteFunctor."
         declarations = ("checks_true_iff", "admit_preserves_data", "admit_success_laws", "failed_guard", "functor_object", "functor_arrow", "functor_identity", "functor_composition", "functorOfAdmitted", "admitted_object")

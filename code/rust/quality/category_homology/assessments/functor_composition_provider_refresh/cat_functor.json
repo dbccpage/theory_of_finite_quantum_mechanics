@@ -1,0 +1,543 @@
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/category_theory/cat_functor.rs",
+    "sha256": "73fb34edfa85a62b2ceee2423130cf88ba3d3744f628be8653753afc0f9a5960",
+    "language": "Rust"
+  },
+  "evaluation_timestamp": "2026-10-19T17:49:47.501756+00:00",
+  "reviewer": "Codex finite functor admission, real Mathlib functor model, shared lookup allocation repair, all-entry-point/consumer review; explicit functor-operation provider preservation",
+  "gates": {
+    "G1": "A",
+    "G2": "A",
+    "G3": "A",
+    "G4": "A",
+    "G5": "A"
+  },
+  "context_inputs": [
+    {
+      "path": "code/rust/src/category_theory/cat_functor.rs",
+      "sha256": "73fb34edfa85a62b2ceee2423130cf88ba3d3744f628be8653753afc0f9a5960"
+    },
+    {
+      "path": "code/rust/src/category_theory/finite_category_validation.rs",
+      "sha256": "7f2500dd70aa415eebcb9b30b0cf8f5817443d0357b8395569c6df74cbef963d"
+    },
+    {
+      "path": "code/rust/src/category_theory/finite_category.rs",
+      "sha256": "8fa16271129180ef6836f973346fb08192087f4f99fb8225631e1238d100b871"
+    },
+    {
+      "path": "code/rust/src/category_theory/finite_category_builder.rs",
+      "sha256": "258b538e53a8e7c8cb5b4330b56346b6417832fc3ac8e080b5ef7f4cecc8fe04"
+    },
+    {
+      "path": "code/rust/src/category_theory/validation.rs",
+      "sha256": "d5732e24e6c86ae4a9f5e27a39fec0f7d15bd94aa1dfec551d6fa94a585b5d62"
+    },
+    {
+      "path": "code/rust/src/category_theory/l5a_challenges.rs",
+      "sha256": "bc0f92083a961878e8f44e145e7ad554ac5d2db19c565a004dc15fd109432ffd"
+    },
+    {
+      "path": "code/rust/src/category_theory/functor_composition.rs",
+      "sha256": "83e602173ea7486c4db70039a74747756db5b8516e6c1e12194493b27312b5f6"
+    },
+    {
+      "path": "code/rust/src/category_theory/natural_trans.rs",
+      "sha256": "d668e667c7072bfc4de45f0b1f8aeb992d6ae6a7897e925a152e512d9f699700"
+    },
+    {
+      "path": "code/rust/src/category_theory/natural_trans_composition.rs",
+      "sha256": "91a6a7653c08ba364e70f48f083268651e1524fd9c526d1fab08ebc43dc63b2e"
+    },
+    {
+      "path": "code/rust/src/category_theory/higher.rs",
+      "sha256": "7158313eed769c24e7ca04bb5a2fce1990b7b8646580a81df12699ca18249d00"
+    },
+    {
+      "path": "code/rust/src/category_theory/rewriting.rs",
+      "sha256": "b1692cf1829be23f6a80f227b83d9fd4e6f1006dc2ae3da6a70a9ad1a22d8087"
+    },
+    {
+      "path": "code/rust/src/category_theory/legacy_adjunction.rs",
+      "sha256": "5e5273320120a8cb3b7b85c5644a1be67dd7267d5825cd54e34a68e730e4cfdb"
+    },
+    {
+      "path": "code/rust/src/category_theory/legacy_monad.rs",
+      "sha256": "e7001681671b4a00779fee3f783ea42bcb430e9e3ec494a49408f1ed8de143dc"
+    },
+    {
+      "path": "code/rust/src/category_theory/lib.rs",
+      "sha256": "b1535a921f4a69414e8b6636f85c8393f799bd2bc20da600e855864c2d3e8776"
+    },
+    {
+      "path": "code/rust/src/category_theory/mod.rs",
+      "sha256": "12f8a4c97bcf10d93c0b76aebf6b67bf85d6d61e502b1fb64ed8a4f29d803352"
+    },
+    {
+      "path": "code/rust/src/category_theory/Cargo.toml",
+      "sha256": "42378ba9d23fe5a5c97c844ebab457e9187c96b819c5b6a0fe3f9acaff1579a3"
+    },
+    {
+      "path": "code/rust/src/lib.rs",
+      "sha256": "06c94a48399e77727edc334bd6746accf01a1b3a5fc89f4bfc1db9ebc636c252"
+    },
+    {
+      "path": "code/rust/Cargo.toml",
+      "sha256": "3085a37668527cbaddeeb087b4be204f22983a85ac6fb8657e6f2d3e2bf020d2"
+    }
+  ],
+  "evidence": [
+    {
+      "path": "evidence/quality/category_homology/20261019T173227Z/summary.json",
+      "sha256": "2755b3036106ad45a8cff16adf64eb9857d76b4b2ee07224bd9a94c2de61b6b2"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T173227Z/baseline.json",
+      "sha256": "c8c098ac2a5d41f455e4e1dc1bbf255c6d7571e468e1c7c4b9ce9cff5bfa2ea5"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T173227Z/restored.json",
+      "sha256": "2d284ad5e55238d8e384163bffb358b4dc7988b5e691ac00fba527cacd2bac76"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T173227Z/controls.json",
+      "sha256": "7d1744846b5b414de51362a75aabd6da8fbb6e0c335cf10440a6182fc71d3cf0"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T173227Z/mutations.json",
+      "sha256": "8ea8095ba6c457704659976837f63f4f0af7c6ab7ed44879dad3c9ae9deadba5"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T173227Z/dependency_receipt.json",
+      "sha256": "416749ea84b5f31308abe284b901ea09633556395d0c8089e413b48106f33158"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T173227Z/run_root_records.py",
+      "sha256": "c05e83071f133b7323cf5d4a368d45a0a76919d71434d2889c27a32582f706fc"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T173227Z/root_records.py",
+      "sha256": "adba4ee130e9c29f66f9ad2437c8d7c4e11fb4a8fdc5aed6fedd5401bb823ce3"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T173227Z/functor_certificates.py",
+      "sha256": "cd625973fff054c9094d318182cc56a195e4e395061a382f8b99691130ff3cfd"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T173227Z/functor_admission_boundaries.json",
+      "sha256": "0d064dd24b04d54a8ca741eda035b0ea7e32d8baf8c57c96b189334196e87390"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T172736Z-finite-functor-proof/receipt.json",
+      "sha256": "858997df5d33ffed69ee9c22745bb034b58a0ec287b3240cdcea75a21f4187e5"
+    },
+    {
+      "path": "code/rust/quality/category_homology/assessments/functor_admission_source_review.json",
+      "sha256": "772a9507e0d02ca8fc6030c8ec6b462c0a1a0a6e00de87d6094729081c30863b"
+    },
+    {
+      "path": "evidence/quality/category_homology/resume-20261019/functor-admission-provider-scan.json",
+      "sha256": "60125a66039d63cd32ee88f629cc90fb47dde2fcb929711c48624ad127ff0b6e"
+    },
+    {
+      "path": "evidence/quality/category_homology/resume-20261019/functor-admission-current-consumers.log",
+      "sha256": "24a9348083bef5755ad1e523eef43f1ede5f67f2864f9f5725edf54b9f2e535c"
+    },
+    {
+      "path": "evidence/quality/category_homology/resume-20261019/cat-functor-lookup-allocation-finding.json",
+      "sha256": "e56d8bdf7671db083cc11c2906f39e81131979dc1c2d1d818f8501afc127455b"
+    },
+    {
+      "path": "evidence/quality/category_homology/resume-20261019/functor-admission-previous/cat_functor.rs",
+      "sha256": "6b7ecf5ef8b5b4c8f7420fc9bd380a28e8be67b5a6fb0cfde57613abd423f1f5"
+    },
+    {
+      "path": "evidence/quality/category_homology/resume-20261019/functor-admission-previous/finite_category_validation.rs",
+      "sha256": "3ea0e696b41cb5ab361541206ab5f03b257f2040b387fb3ea06bb224170e891d"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T172939Z/summary.json",
+      "sha256": "002b071dda4ad41772ca6ac23ff829f39addbd1af5eaa49352be1fedade5ce9b"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T173047Z/summary.json",
+      "sha256": "ec57a8b3f18355bc3d5002e23edb8a082f3362deb8c32c2858d062d77d0e5bba"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T174609Z/summary.json",
+      "sha256": "0b142a6f138dc45dce746be9401537f65b2b128131a95b7db77c33a7c437a95e"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T174609Z/baseline.json",
+      "sha256": "aad55ba099eb0f1823894e0926e055346826c6fff12f9302131abcf9c9d15c52"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T174609Z/restored.json",
+      "sha256": "206cd16624374a22ac1855dd24b5d20a63dafa2787aaab271a34fc214369338a"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T174609Z/controls.json",
+      "sha256": "6545617efab5cc840a940150555948718586526477a908c75ebbdbda42f01739"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T174609Z/mutations.json",
+      "sha256": "a3cc58ee1df61f5a770141ac3866bd5bf4468815239daa15ce0e1d79d3ddd7f7"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T174609Z/dependency_receipt.json",
+      "sha256": "6ebff2081eda91d8841162f8174fbcc0c95448c00183ea68bd2529abf9cfb4d1"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T174609Z/run_root_records.py",
+      "sha256": "c05e83071f133b7323cf5d4a368d45a0a76919d71434d2889c27a32582f706fc"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T174609Z/root_records.py",
+      "sha256": "717ed15e0f8f535e97109c7cda8bbe65b3577bd989f5c9ad517df37694f0934c"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T174609Z/functor_certificates.py",
+      "sha256": "14e877d5b65ec5ac50d754121e1b1d6f31fae8881f5319b8a55b9c53095a5d2a"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T174609Z/functor_composition_boundaries.json",
+      "sha256": "782eeb21930092f8a998da94a38c19bd4258b9338a29db23d7ef16c2a541bd1a"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T174700Z-functor-operations-proof/receipt.json",
+      "sha256": "f37ba8b1545ac22920f80c80d5cff42b235264c0b4139d4df1bef149a8910d83"
+    },
+    {
+      "path": "code/rust/quality/category_homology/assessments/functor_composition_source_review.json",
+      "sha256": "6ac690436c690e67ce3a97f95f060598788c92a1305b9c06b37e7eb94ec3f75e"
+    },
+    {
+      "path": "evidence/quality/category_homology/resume-20261019/functor-composition-provider-scan.json",
+      "sha256": "9cb0636ea2827cf15959005539fb9cd6f7606b3666ecb13798bc900c245a9117"
+    },
+    {
+      "path": "evidence/quality/category_homology/resume-20261019/functor-composition-current-consumers.log",
+      "sha256": "741b956d510debd2c6615d6a23cbc459236657d619bc35b271260b7ccd9011ae"
+    },
+    {
+      "path": "evidence/quality/category_homology/resume-20261019/functor-composition-lookup-finding.json",
+      "sha256": "53ba821f8a29614780fcbb85d503cd26db9be6645d0e7312654a7e1d2aedf49a"
+    },
+    {
+      "path": "evidence/quality/category_homology/resume-20261019/functor-composition-previous/functor_composition.rs",
+      "sha256": "f808c10b086fa7ffce14381dc86d4fe283ad5c0aa8adde530976170adcc7d60b"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T174225Z/summary.json",
+      "sha256": "bd0df5fc85d532dd5f838aeb94c83936afee19d3f7fcecd6de986738fdf9b4ae"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T174336Z-functor-operations-proof/receipt.json",
+      "sha256": "f8fa4aa0ae7f698e61ea1a6b56e38bf9e5c31094be7de781cf5490610a78d944"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T174424Z-functor-operations-proof/receipt.json",
+      "sha256": "b02e7fdd064fa6db9ef4b9a9a8fa72bd6c5c919a4c852d73763706ea7d5bef46"
+    },
+    {
+      "path": "code/rust/quality/category_homology/assessments/cat_functor.json",
+      "sha256": "8d23520f5228b5c63197749a41f0d8336c883c4730466031c3baaa07bb0a4fd8"
+    }
+  ],
+  "proof_receipts": [
+    {
+      "path": "evidence/quality/category_homology/20261019T172736Z-finite-functor-proof/receipt.json",
+      "sha256": "858997df5d33ffed69ee9c22745bb034b58a0ec287b3240cdcea75a21f4187e5",
+      "proof": "code/rust/quality/category_homology/proofs/FiniteFunctor.lean",
+      "mathlib_root": "lean4/.lake/packages/mathlib"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261018T212725Z-category-proof/receipt.json",
+      "sha256": "f8420288bcc386c790d54d0d0f2da3d855eb644828615e88866e78b8727d9c25",
+      "proof": "code/rust/quality/category_homology/proofs/FiniteCategory.lean",
+      "mathlib_root": "lean4/.lake/packages/mathlib"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T160921Z-validation-inventory-proof/receipt.json",
+      "sha256": "d6ba4a9d2edb2fe61ce4835bcb6580d5492e7bcbe211f86cf2b6d6cca5501524",
+      "proof": "code/rust/quality/category_homology/proofs/ValidationInventory.lean",
+      "mathlib_root": "lean4/.lake/packages/mathlib"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T172121Z-higher-functor-inventory-proof/receipt.json",
+      "sha256": "4bd7d428032709f30e78f92b098cc26c1a08fea9eecf1ab816e8cf68d1e94b6c",
+      "proof": "code/rust/quality/category_homology/proofs/HigherFunctorInventory.lean",
+      "mathlib_root": "lean4/.lake/packages/mathlib"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T174700Z-functor-operations-proof/receipt.json",
+      "sha256": "f37ba8b1545ac22920f80c80d5cff42b235264c0b4139d4df1bef149a8910d83",
+      "proof": "code/rust/quality/category_homology/proofs/FunctorOperations.lean",
+      "mathlib_root": "lean4/.lake/packages/mathlib"
+    }
+  ],
+  "symbol_map": {
+    "ValidatedFiniteFunctor::try_new": {
+      "line": 47,
+      "signature": "pub fn try_new(\n        declared: DeclaredFiniteFunctor,\n        source: ValidatedFiniteCategory,\n        target: ValidatedFiniteCategory,\n    ) -> Result<Self, FunctorAdmissionError>",
+      "body": "{\n        let candidate = Self {\n            declared,\n            source,\n            target,\n        };\n        candidate.check_binding()?;\n        candidate.check_maps()?;\n        candidate.check_boundaries()?;\n        candidate.check_identities()?;\n        candidate.check_compositions()?;\n        Ok(candidate)\n    }",
+      "obligation": "Move raw declaration and two already admitted owned endpoint categories into a private candidate. Binding, exact map domains/images, both boundaries, actual identities and every source composite must all return Ok in that order before releasing the candidate. Any typed error returns no certificate; no rollback of caller/global effects is needed because these are immutable internal checks."
+    },
+    "ValidatedFiniteFunctor::declared": {
+      "line": 65,
+      "signature": "pub fn declared(&self) -> &DeclaredFiniteFunctor",
+      "body": "{\n        &self.declared\n    }",
+      "obligation": "Borrow immutable raw declaration inside admitted certificate; no mutable access/deserialization bypass exists."
+    },
+    "ValidatedFiniteFunctor::source": {
+      "line": 68,
+      "signature": "pub fn source(&self) -> &ValidatedFiniteCategory",
+      "body": "{\n        &self.source\n    }",
+      "obligation": "Borrow the owned admitted source category."
+    },
+    "ValidatedFiniteFunctor::target": {
+      "line": 71,
+      "signature": "pub fn target(&self) -> &ValidatedFiniteCategory",
+      "body": "{\n        &self.target\n    }",
+      "obligation": "Borrow the owned admitted target category, not the source."
+    },
+    "ValidatedFiniteFunctor::on_object": {
+      "line": 74,
+      "signature": "pub fn on_object(&self, object: &str) -> Option<&str>",
+      "body": "{\n        self.declared.on_object(object)\n    }",
+      "obligation": "Delegate exact borrowed lookup to the stored object map; outside-domain identifiers return None."
+    },
+    "ValidatedFiniteFunctor::on_morphism": {
+      "line": 77,
+      "signature": "pub fn on_morphism(&self, morphism: &str) -> Option<&str>",
+      "body": "{\n        self.declared.on_morphism(morphism)\n    }",
+      "obligation": "Delegate exact borrowed lookup to stored morphism map; outside-domain identifiers return None."
+    },
+    "ValidatedFiniteFunctor::check_binding": {
+      "line": 81,
+      "signature": "fn check_binding(&self) -> Result<(), FunctorAdmissionError>",
+      "body": "{\n        if self.declared.name.trim().is_empty() {\n            return Err(FunctorAdmissionError::Name);\n        }\n        if self.declared.source_category != self.source.declared().name\n            || self.declared.target_category != self.target.declared().name\n        {\n            return Err(FunctorAdmissionError::CategoryBinding);\n        }\n        Ok(())\n    }",
+      "obligation": "Reject whitespace-only functor name first, then any mismatch of raw endpoint names against owned admitted endpoints. No reliance on names alone for category laws: actual endpoint objects are owned admitted categories."
+    },
+    "ValidatedFiniteFunctor::check_maps": {
+      "line": 93,
+      "signature": "fn check_maps(&self) -> Result<(), FunctorAdmissionError>",
+      "body": "{\n        let source = self.source.declared();\n        let target = self.target.declared();\n        if !self.declared.object_map.keys().eq(source.objects.iter()) {\n            return Err(FunctorAdmissionError::MappingDomain { kind: \"objects\" });\n        }\n        if !self\n            .declared\n            .morphism_map\n            .keys()\n            .eq(source.morphisms.keys())\n        {\n            return Err(FunctorAdmissionError::MappingDomain { kind: \"morphisms\" });\n        }\n        check_images(\n            &self.declared.object_map,\n            |x| target.has_object(x),\n            \"objects\",\n        )?;\n        check_images(\n            &self.declared.morphism_map,\n            |x| target.has_morphism(x),\n            \"morphisms\",\n        )\n    }",
+      "obligation": "Ordered key equality enforces exact total object and morphism source domains, excluding missing and extra keys. Then validate every object image and every morphism image against actual admitted target membership, with exact objects/morphisms kind payloads and phase precedence."
+    },
+    "ValidatedFiniteFunctor::check_boundaries": {
+      "line": 119,
+      "signature": "fn check_boundaries(&self) -> Result<(), FunctorAdmissionError>",
+      "body": "{\n        for (name, morphism) in &self.source.declared().morphisms {\n            let image = self\n                .on_morphism(name)\n                .and_then(|n| self.target.declared().boundary_of(n));\n            let expected = self\n                .on_object(&morphism.source)\n                .zip(self.on_object(&morphism.target));\n            if image.is_none() || image != expected {\n                return Err(FunctorAdmissionError::Boundary {\n                    morphism: name.clone(),\n                });\n            }\n        }\n        Ok(())\n    }",
+      "obligation": "For every actual admitted source arrow, compare actual target boundary of its mapped arrow against both mapped source endpoints. Reject missing or unequal boundaries with the first sorted source arrow name. No silently skipped unknown images."
+    },
+    "ValidatedFiniteFunctor::check_identities": {
+      "line": 136,
+      "signature": "fn check_identities(&self) -> Result<(), FunctorAdmissionError>",
+      "body": "{\n        for (object, identity) in &self.source.declared().identities {\n            let expected = self\n                .on_object(object)\n                .and_then(|n| self.target.declared().identity_of(n));\n            if self.on_morphism(identity) != expected || expected.is_none() {\n                return Err(FunctorAdmissionError::Identity {\n                    object: object.clone(),\n                });\n            }\n        }\n        Ok(())\n    }",
+      "obligation": "Use each actual source identity binding and actual target identity binding at the mapped object; require a defined expected identity and equal mapped arrow, with exact first object error. No id_ naming assumption in certificate admission."
+    },
+    "ValidatedFiniteFunctor::check_compositions": {
+      "line": 150,
+      "signature": "fn check_compositions(&self) -> Result<(), FunctorAdmissionError>",
+      "body": "{\n        let lookup = CompositionLookup::new(&self.target.declared().compositions);\n        for ((first, second), result) in &self.source.declared().compositions {\n            let pair = self.on_morphism(first).zip(self.on_morphism(second));\n            let expected = pair.and_then(|(f, g)| lookup.compose(f, g));\n            if self.on_morphism(result) != expected || expected.is_none() {\n                return Err(FunctorAdmissionError::Composition {\n                    first: first.clone(),\n                    second: second.clone(),\n                });\n            }\n        }\n        Ok(())\n    }",
+      "obligation": "Build one shared borrowed target-composition view. For every actual admitted source composition row (first,second,result), map both arrows, compose in target in first-then-second order, and require a defined equal image of result. Return first sorted pair error otherwise. Source category admission establishes this table is exactly the composable domain."
+    },
+    "check_images": {
+      "line": 166,
+      "signature": "fn check_images(\n    map: &BTreeMap<String, String>,\n    contains: impl Fn(&str) -> bool,\n    kind: &'static str,\n) -> Result<(), FunctorAdmissionError>",
+      "body": "{\n    for image in map.values() {\n        if !contains(image) {\n            return Err(FunctorAdmissionError::UnknownImage {\n                kind,\n                image: image.clone(),\n            });\n        }\n    }\n    Ok(())\n}",
+      "obligation": "Private known callsites pass only immutable target object/arrow membership predicates. Scan map values in key order and reject the first nonmember with exact kind/image; no external/public callback is admitted by this helper."
+    },
+    "CompositionLookup::new": {
+      "line": 194,
+      "signature": "pub(crate) fn new(table: &'a CompositionTable) -> Self",
+      "body": "{\n        Self {\n            rows: table.iter().map(|((first, second), composite)| {\n                ((first.as_str(), second.as_str()), composite.as_str())\n            }).collect(),\n        }\n    }",
+      "obligation": "Build one borrowed row per sorted unique BTreeMap pair key, without filtering, sorting, owned key copies or changing associations. String and str lexicographic order agree. Immutable borrowing prevents mutation during the view lifetime. This is the prior category-validator lookup moved into a crate-visible shared helper taking the same underlying table directly."
+    },
+    "CompositionLookup::compose": {
+      "line": 202,
+      "signature": "pub(crate) fn compose(&self, first: &str, second: &str) -> Option<&'a str>",
+      "body": "{\n        let index = self.rows.binary_search_by_key(&(first, second), |(key, _)| *key).ok()?;\n        self.rows.get(index).map(|(_, composite)| *composite)\n    }",
+      "obligation": "Use exact first/second borrowed tuple binary search and checked Vec::get to observe the corresponding borrowed result or None. No query-key String allocation or unsafe index. Only crate-level access is widened; fields stay private."
+    },
+    "DeclaredFiniteFunctor::new": {
+      "line": 267,
+      "signature": "pub fn new(name: &str, source: &str, target: &str) -> Self",
+      "body": "{\n        Self {\n            name: name.into(),\n            source_category: source.into(),\n            target_category: target.into(),\n            object_map: BTreeMap::new(),\n            morphism_map: BTreeMap::new(),\n        }\n    }",
+      "obligation": "Own exact raw name/source/target names and initialize independent empty object/morphism BTreeMaps without certification."
+    },
+    "DeclaredFiniteFunctor::map_object": {
+      "line": 277,
+      "signature": "pub fn map_object(&mut self, src: &str, tgt: &str)",
+      "body": "{\n        self.object_map.insert(src.into(), tgt.into());\n    }",
+      "obligation": "Insert/overwrite exact owned source->target object name pair, leaving morphism map unchanged."
+    },
+    "DeclaredFiniteFunctor::map_morphism": {
+      "line": 281,
+      "signature": "pub fn map_morphism(&mut self, src: &str, tgt: &str)",
+      "body": "{\n        self.morphism_map.insert(src.into(), tgt.into());\n    }",
+      "obligation": "Insert/overwrite exact owned source->target morphism name pair, leaving object map unchanged."
+    },
+    "DeclaredFiniteFunctor::on_object": {
+      "line": 285,
+      "signature": "pub fn on_object(&self, obj: &str) -> Option<&str>",
+      "body": "{\n        self.object_map.get(obj).map(|s| s.as_str())\n    }",
+      "obligation": "Borrowed-key lookup of object map only, without insertion or allocation."
+    },
+    "DeclaredFiniteFunctor::on_morphism": {
+      "line": 289,
+      "signature": "pub fn on_morphism(&self, mor: &str) -> Option<&str>",
+      "body": "{\n        self.morphism_map.get(mor).map(|s| s.as_str())\n    }",
+      "obligation": "Borrowed-key lookup of morphism map only, without insertion or allocation."
+    },
+    "check_identity_law": {
+      "line": 322,
+      "signature": "pub fn check_identity_law(functor: &DeclaredFiniteFunctor) -> Vec<String>",
+      "body": "{\n    let mut violations = Vec::new();\n    for (src_obj, tgt_obj) in &functor.object_map {\n        let src_id = format!(\"id_{}\", src_obj);\n        let Some(mapped) = functor.morphism_map.get(&src_id) else {\n            violations.push(format!(\"Identity law: F(id_{}) is not defined\", src_obj));\n            continue;\n        };\n        let expected_tgt_id = format!(\"id_{}\", tgt_obj);\n        if mapped != &expected_tgt_id {\n            violations.push(format!(\n                \"Identity law violated at {}: F(id_{}) = {} but expected {}\",\n                src_obj, src_obj, mapped, expected_tgt_id\n            ));\n        }\n    }\n    violations\n}",
+      "obligation": "Legacy literal id_ naming rule over supplied sorted object mappings. Build the required source identity name; absent mapping yields the exact undefined diagnostic and skips target-name allocation. Only a present mapping builds expected id_target, comparing exact names and reporting mismatch. Empty map is vacuous. This does not check arbitrary category identity labels or source-domain completeness."
+    },
+    "check_composition_law": {
+      "line": 344,
+      "signature": "pub fn check_composition_law(\n    functor: &DeclaredFiniteFunctor,\n    source_compositions: &[(&str, &str, &str)], // (f, g, g\u2218f) in source\n    target_compositions: &CompositionTable,     // (f, g) \u2192 g\u2218f in target\n) -> Vec<String>",
+      "body": "{\n    let mut violations = Vec::new();\n    let lookup = CompositionLookup::new(target_compositions);\n    for &(f, g, gf) in source_compositions {\n        let Some(f_img) = functor.on_morphism(f) else {\n            violations.push(format!(\"Composition law: F({}) is not defined\", f));\n            continue;\n        };\n        let Some(g_img) = functor.on_morphism(g) else {\n            violations.push(format!(\"Composition law: F({}) is not defined\", g));\n            continue;\n        };\n        let Some(gf_img) = functor.on_morphism(gf) else {\n            violations.push(format!(\"Composition law: F({}) is not defined\", gf));\n            continue;\n        };\n\n        match lookup.compose(f_img, g_img) {\n            Some(composed) if composed == gf_img => {}\n            Some(composed) => {\n                violations.push(format!(\n                    \"Composition law violated: F({}\u2218{}) = {} but F({})\u2218F({}) = {}\",\n                    g, f, gf_img, g, f, composed\n                ));\n            }\n            None => {\n                violations.push(format!(\n                    \"Composition law: F({})\u2218F({}) = {}\u2218{} not in target composition table\",\n                    g, f, g_img, f_img\n                ));\n            }\n        }\n    }\n    violations\n}",
+      "obligation": "Use one borrowed view of supplied raw target table and inspect supplied source triples in input order. Missing f, then g, then composite mapping each gives exactly its first missing diagnostic. Otherwise compare explicit target composite with mapped result; absent table row and differing result have distinct exact messages. Empty supplied cases are vacuous, no universal functor law inferred."
+    },
+    "check_object_totality": {
+      "line": 385,
+      "signature": "pub fn check_object_totality(\n    functor: &DeclaredFiniteFunctor,\n    source_objects: &[&str],\n) -> Vec<String>",
+      "body": "{\n    let mut violations = Vec::new();\n    for &obj in source_objects {\n        if functor.on_object(obj).is_none() {\n            violations.push(format!(\n                \"Object totality: {} is not mapped by functor {}\",\n                obj, functor.name\n            ));\n        }\n    }\n    violations\n}",
+      "obligation": "For each supplied object name, emit an exact missing-map diagnostic when absent; retain source list order and duplicates, allow extra mappings and empty source list. This is supplied-list coverage only."
+    },
+    "check_morphism_totality": {
+      "line": 402,
+      "signature": "pub fn check_morphism_totality(\n    functor: &DeclaredFiniteFunctor,\n    source_morphisms: &[&str],\n) -> Vec<String>",
+      "body": "{\n    let mut violations = Vec::new();\n    for &mor in source_morphisms {\n        if functor.on_morphism(mor).is_none() {\n            violations.push(format!(\n                \"Morphism totality: {} is not mapped by functor {}\",\n                mor, functor.name\n            ));\n        }\n    }\n    violations\n}",
+      "obligation": "Corresponding literal supplied-list morphism-map coverage; retain order/duplicates and allow extras/vacuous empty list."
+    },
+    "check_boundary_preservation": {
+      "line": 419,
+      "signature": "pub fn check_boundary_preservation(\n    functor: &DeclaredFiniteFunctor,\n    source_boundaries: &[(&str, &str, &str)], // (morphism, source_obj, target_obj) in source cat\n    target_boundaries: &BTreeMap<String, (String, String)>, // F(f) -> (src, tgt)\n) -> Vec<String>",
+      "body": "{\n    let mut violations = Vec::new();\n\n    for &(mor, src_obj, tgt_obj) in source_boundaries {\n        let Some(f_img) = functor.on_morphism(mor) else {\n            violations.push(format!(\"Boundary preservation: F({}) is not defined\", mor));\n            continue;\n        };\n\n        let Some(src_img) = functor.on_object(src_obj) else {\n            violations.push(format!(\n                \"Boundary preservation: F({}) is not defined\",\n                src_obj\n            ));\n            continue;\n        };\n\n        let Some(tgt_img) = functor.on_object(tgt_obj) else {\n            violations.push(format!(\n                \"Boundary preservation: F({}) is not defined\",\n                tgt_obj\n            ));\n            continue;\n        };\n\n        let Some((actual_src, actual_tgt)) = target_boundaries.get(f_img) else {\n            violations.push(format!(\n                \"Boundary preservation: target boundary for F({}) = {} is not defined\",\n                mor, f_img\n            ));\n            continue;\n        };\n\n        if actual_src != src_img {\n            violations.push(format!(\n                \"Boundary preservation violated for {}: src(F({})) = {}, expected F(src({})) = {}\",\n                mor, mor, actual_src, mor, src_img\n            ));\n        }\n\n        if actual_tgt != tgt_img {\n            violations.push(format!(\n                \"Boundary preservation violated for {}: tgt(F({})) = {}, expected F(tgt({})) = {}\",\n                mor, mor, actual_tgt, mor, tgt_img\n            ));\n        }\n    }\n\n    violations\n}",
+      "obligation": "For each supplied boundary triple require arrow mapping, source mapping, target mapping and target image boundary in that priority, one missing diagnostic then continue. When all present, compare endpoints independently, source mismatch before target mismatch. Supplied order/multiplicity retained; no actual endpoint/category admission or full map domains follows from this legacy diagnostic."
+    }
+  },
+  "formal_specification": {
+    "profile": "Exact retained: admitted finite identifier categories/maps, exact string equality and defined table composition, with no own fixed-width arithmetic, float or unadmitted numeric extension.",
+    "certificate": "The immutable owned certificate admits exactly nonblank correctly bound finite declarations with exact source map domains, known target images, both preserved boundaries, actual identities and every source table composite. Source and target are already admitted categories, not just matching names.",
+    "raw": "Generic trait signatures express caller obligations. Public raw records and legacy supplied-case/name diagnostics remain unchecked; id_ diagnostic is a literal naming rule only, empty domains vacuous."
+  },
+  "invariant_argument": [
+    "Move raw declaration and two already admitted owned endpoint categories into a private candidate. Binding, exact map domains/images, both boundaries, actual identities and every source composite must all return Ok in that order before releasing the candidate. Any typed error returns no certificate; no rollback of caller/global effects is needed because these are immutable internal checks.",
+    "Borrow immutable raw declaration inside admitted certificate; no mutable access/deserialization bypass exists.",
+    "Borrow the owned admitted source category.",
+    "Borrow the owned admitted target category, not the source.",
+    "Delegate exact borrowed lookup to the stored object map; outside-domain identifiers return None.",
+    "Delegate exact borrowed lookup to stored morphism map; outside-domain identifiers return None.",
+    "Reject whitespace-only functor name first, then any mismatch of raw endpoint names against owned admitted endpoints. No reliance on names alone for category laws: actual endpoint objects are owned admitted categories.",
+    "Ordered key equality enforces exact total object and morphism source domains, excluding missing and extra keys. Then validate every object image and every morphism image against actual admitted target membership, with exact objects/morphisms kind payloads and phase precedence.",
+    "For every actual admitted source arrow, compare actual target boundary of its mapped arrow against both mapped source endpoints. Reject missing or unequal boundaries with the first sorted source arrow name. No silently skipped unknown images.",
+    "Use each actual source identity binding and actual target identity binding at the mapped object; require a defined expected identity and equal mapped arrow, with exact first object error. No id_ naming assumption in certificate admission.",
+    "Build one shared borrowed target-composition view. For every actual admitted source composition row (first,second,result), map both arrows, compose in target in first-then-second order, and require a defined equal image of result. Return first sorted pair error otherwise. Source category admission establishes this table is exactly the composable domain.",
+    "Private known callsites pass only immutable target object/arrow membership predicates. Scan map values in key order and reject the first nonmember with exact kind/image; no external/public callback is admitted by this helper.",
+    "Build one borrowed row per sorted unique BTreeMap pair key, without filtering, sorting, owned key copies or changing associations. String and str lexicographic order agree. Immutable borrowing prevents mutation during the view lifetime. This is the prior category-validator lookup moved into a crate-visible shared helper taking the same underlying table directly.",
+    "Use exact first/second borrowed tuple binary search and checked Vec::get to observe the corresponding borrowed result or None. No query-key String allocation or unsafe index. Only crate-level access is widened; fields stay private.",
+    "Own exact raw name/source/target names and initialize independent empty object/morphism BTreeMaps without certification.",
+    "Insert/overwrite exact owned source->target object name pair, leaving morphism map unchanged.",
+    "Insert/overwrite exact owned source->target morphism name pair, leaving object map unchanged.",
+    "Borrowed-key lookup of object map only, without insertion or allocation.",
+    "Borrowed-key lookup of morphism map only, without insertion or allocation.",
+    "Legacy literal id_ naming rule over supplied sorted object mappings. Build the required source identity name; absent mapping yields the exact undefined diagnostic and skips target-name allocation. Only a present mapping builds expected id_target, comparing exact names and reporting mismatch. Empty map is vacuous. This does not check arbitrary category identity labels or source-domain completeness.",
+    "Use one borrowed view of supplied raw target table and inspect supplied source triples in input order. Missing f, then g, then composite mapping each gives exactly its first missing diagnostic. Otherwise compare explicit target composite with mapped result; absent table row and differing result have distinct exact messages. Empty supplied cases are vacuous, no universal functor law inferred.",
+    "For each supplied object name, emit an exact missing-map diagnostic when absent; retain source list order and duplicates, allow extra mappings and empty source list. This is supplied-list coverage only.",
+    "Corresponding literal supplied-list morphism-map coverage; retain order/duplicates and allow extras/vacuous empty list.",
+    "For each supplied boundary triple require arrow mapping, source mapping, target mapping and target image boundary in that priority, one missing diagnostic then continue. When all present, compare endpoints independently, source mismatch before target mismatch. Supplied order/multiplicity retained; no actual endpoint/category admission or full map domains follows from this legacy diagnostic."
+  ],
+  "failure_paths": {
+    "ValidatedFiniteFunctor::try_new": "Move raw declaration and two already admitted owned endpoint categories into a private candidate. Binding, exact map domains/images, both boundaries, actual identities and every source composite must all return Ok in that order before releasing the candidate. Any typed error returns no certificate; no rollback of caller/global effects is needed because these are immutable internal checks.",
+    "ValidatedFiniteFunctor::check_binding": "Reject whitespace-only functor name first, then any mismatch of raw endpoint names against owned admitted endpoints. No reliance on names alone for category laws: actual endpoint objects are owned admitted categories.",
+    "ValidatedFiniteFunctor::check_maps": "Ordered key equality enforces exact total object and morphism source domains, excluding missing and extra keys. Then validate every object image and every morphism image against actual admitted target membership, with exact objects/morphisms kind payloads and phase precedence.",
+    "ValidatedFiniteFunctor::check_boundaries": "For every actual admitted source arrow, compare actual target boundary of its mapped arrow against both mapped source endpoints. Reject missing or unequal boundaries with the first sorted source arrow name. No silently skipped unknown images.",
+    "ValidatedFiniteFunctor::check_identities": "Use each actual source identity binding and actual target identity binding at the mapped object; require a defined expected identity and equal mapped arrow, with exact first object error. No id_ naming assumption in certificate admission.",
+    "ValidatedFiniteFunctor::check_compositions": "Build one shared borrowed target-composition view. For every actual admitted source composition row (first,second,result), map both arrows, compose in target in first-then-second order, and require a defined equal image of result. Return first sorted pair error otherwise. Source category admission establishes this table is exactly the composable domain.",
+    "check_images": "Private known callsites pass only immutable target object/arrow membership predicates. Scan map values in key order and reject the first nonmember with exact kind/image; no external/public callback is admitted by this helper.",
+    "check_identity_law": "Legacy literal id_ naming rule over supplied sorted object mappings. Build the required source identity name; absent mapping yields the exact undefined diagnostic and skips target-name allocation. Only a present mapping builds expected id_target, comparing exact names and reporting mismatch. Empty map is vacuous. This does not check arbitrary category identity labels or source-domain completeness.",
+    "check_composition_law": "Use one borrowed view of supplied raw target table and inspect supplied source triples in input order. Missing f, then g, then composite mapping each gives exactly its first missing diagnostic. Otherwise compare explicit target composite with mapped result; absent table row and differing result have distinct exact messages. Empty supplied cases are vacuous, no universal functor law inferred.",
+    "check_object_totality": "For each supplied object name, emit an exact missing-map diagnostic when absent; retain source list order and duplicates, allow extra mappings and empty source list. This is supplied-list coverage only.",
+    "check_morphism_totality": "Corresponding literal supplied-list morphism-map coverage; retain order/duplicates and allow extras/vacuous empty list.",
+    "check_boundary_preservation": "For each supplied boundary triple require arrow mapping, source mapping, target mapping and target image boundary in that priority, one missing diagnostic then continue. When all present, compare endpoints independently, source mismatch before target mismatch. Supplied order/multiplicity retained; no actual endpoint/category admission or full map domains follows from this legacy diagnostic."
+  },
+  "trust_boundary": {
+    "certificate": "ValidatedFiniteFunctor owns admitted source/target categories and raw maps in private fields; only try_new can construct it within this source, all typed checks precede Ok. Immutable accessors and structural Clone/PartialEq/Eq/Debug preserve contents without admitting arbitrary raw/deserialized declarations. FunctorAdmissionError exhaustively retains Name, CategoryBinding, MappingDomain(kind), UnknownImage(kind,image), Boundary(morphism), Identity(object) and Composition(first,second). No hidden global state or serde bypass.",
+    "raw_and_traits": "DeclaredFiniteFunctor public maps/names remain unchecked; standard derives clone/compare/debug literal data. CompositionTable is the same BTreeMap tuple representation. CatFunctor and ContravariantFunctor have two required map signatures and associated endpoint types; Category has required partial id/src/tgt/compose and Clone/Eq/Debug associated types. All are caller contracts, without default executable bodies or law/purity enforcement. The local root Category is nominally distinct from catalog/legacy/external traits; stale canonical-path prose is removed.",
+    "runtime_and_macros": "No own unchecked arithmetic, floating operation, unsafe, unwrap/expect/assert or unguarded index in production. Standard format! and structural derives are reviewed; String/str order, BTreeMap/BTreeSet iteration/get/key equality, Vec collection/get and binary_search_by_key are trusted standard library behavior. Mutable raw public records have no law claim. Allocation exhaustion/compiler/std defects are outside claimed allocator-totality; no external trait/user callback is invoked by certificate admission."
+  },
+  "consumer_review": [
+    "Current local Rust search maps actual CatFunctor/Category/declaration/certificate users in functor composition, natural transformations, higher/rewriting, legacy adjunction/monad, dagger/limits and adversarial tests. Generic trait signatures and raw diagnostic payload/order remain unchanged. Five currently completed assessment contexts reference either changed source; validator is freshly reassessed, four unchanged-own-source category core/builder/arrow/report assessments receive explicit provider refinement with their own primary/metrics retained. No open consumer is silently upgraded. Local tfqm category and separate external omega package identities remain distinct."
+  ],
+  "open_findings": [],
+  "assurance_limits": [
+    "L5 for the immutable owned finite functor-certificate architecture, not for arbitrary generic trait implementations or raw declarations. No whole-workspace/external application certification, physical theorem or authority promotion.",
+    "Mathlib model uses already admitted endpoint categories and typed total maps; Rust exact domain/image/boundary enumeration justifies that normalization by explicit source/native review. Model admission then proves identity/composition laws and constructs an actual Mathlib Functor. This is not mechanized String/BTreeMap/Rust/MIR extraction, crash-freedom, allocator totality or A+.",
+    "Legacy diagnostics have supplied-case/name-table scope, including literal id_ identities and vacuous empty domains. The crate-visible shared lookup is immutable with private fields; its runtime algorithms remain std/compiler trust. Contracts pending.",
+    "Pinned prior G5 B lookup-allocation finding is repaired. Earlier55/55 campaigns on pre-final prose/identity-allocation snapshots remain retained with exact source. Final receipt alone binds current production bytes."
+  ],
+  "basis": {
+    "G1": [
+      "All24 actual bodies, required trait/data/derive/macro obligations, old allocation finding, package/consumer identities and certificate/raw claim boundaries are explicitly mapped.",
+      "Current functor-operation provider source is explicitly reviewed, not only repinned; old provider bytes and original own receipts remain historical evidence."
+    ],
+    "G2": [
+      "Move raw declaration and two already admitted owned endpoint categories into a private candidate. Binding, exact map domains/images, both boundaries, actual identities and every source composite must all return Ok in that order before releasing the candidate. Any typed error returns no certificate; no rollback of caller/global effects is needed because these are immutable internal checks.",
+      "Borrow immutable raw declaration inside admitted certificate; no mutable access/deserialization bypass exists.",
+      "Borrow the owned admitted source category.",
+      "Borrow the owned admitted target category, not the source.",
+      "Delegate exact borrowed lookup to the stored object map; outside-domain identifiers return None.",
+      "Delegate exact borrowed lookup to stored morphism map; outside-domain identifiers return None.",
+      "Reject whitespace-only functor name first, then any mismatch of raw endpoint names against owned admitted endpoints. No reliance on names alone for category laws: actual endpoint objects are owned admitted categories.",
+      "Ordered key equality enforces exact total object and morphism source domains, excluding missing and extra keys. Then validate every object image and every morphism image against actual admitted target membership, with exact objects/morphisms kind payloads and phase precedence.",
+      "For every actual admitted source arrow, compare actual target boundary of its mapped arrow against both mapped source endpoints. Reject missing or unequal boundaries with the first sorted source arrow name. No silently skipped unknown images.",
+      "Use each actual source identity binding and actual target identity binding at the mapped object; require a defined expected identity and equal mapped arrow, with exact first object error. No id_ naming assumption in certificate admission.",
+      "Build one shared borrowed target-composition view. For every actual admitted source composition row (first,second,result), map both arrows, compose in target in first-then-second order, and require a defined equal image of result. Return first sorted pair error otherwise. Source category admission establishes this table is exactly the composable domain.",
+      "Private known callsites pass only immutable target object/arrow membership predicates. Scan map values in key order and reject the first nonmember with exact kind/image; no external/public callback is admitted by this helper.",
+      "Build one borrowed row per sorted unique BTreeMap pair key, without filtering, sorting, owned key copies or changing associations. String and str lexicographic order agree. Immutable borrowing prevents mutation during the view lifetime. This is the prior category-validator lookup moved into a crate-visible shared helper taking the same underlying table directly.",
+      "Use exact first/second borrowed tuple binary search and checked Vec::get to observe the corresponding borrowed result or None. No query-key String allocation or unsafe index. Only crate-level access is widened; fields stay private.",
+      "Own exact raw name/source/target names and initialize independent empty object/morphism BTreeMaps without certification.",
+      "Insert/overwrite exact owned source->target object name pair, leaving morphism map unchanged.",
+      "Insert/overwrite exact owned source->target morphism name pair, leaving object map unchanged.",
+      "Borrowed-key lookup of object map only, without insertion or allocation.",
+      "Borrowed-key lookup of morphism map only, without insertion or allocation.",
+      "Legacy literal id_ naming rule over supplied sorted object mappings. Build the required source identity name; absent mapping yields the exact undefined diagnostic and skips target-name allocation. Only a present mapping builds expected id_target, comparing exact names and reporting mismatch. Empty map is vacuous. This does not check arbitrary category identity labels or source-domain completeness.",
+      "Use one borrowed view of supplied raw target table and inspect supplied source triples in input order. Missing f, then g, then composite mapping each gives exactly its first missing diagnostic. Otherwise compare explicit target composite with mapped result; absent table row and differing result have distinct exact messages. Empty supplied cases are vacuous, no universal functor law inferred.",
+      "For each supplied object name, emit an exact missing-map diagnostic when absent; retain source list order and duplicates, allow extra mappings and empty source list. This is supplied-list coverage only.",
+      "Corresponding literal supplied-list morphism-map coverage; retain order/duplicates and allow extras/vacuous empty list.",
+      "For each supplied boundary triple require arrow mapping, source mapping, target mapping and target image boundary in that priority, one missing diagnostic then continue. When all present, compare endpoints independently, source mismatch before target mismatch. Supplied order/multiplicity retained; no actual endpoint/category admission or full map domains follows from this legacy diagnostic."
+    ],
+    "G3": [
+      "All seven typed admission error variants and phase precedence are exercised. Any failed check returns no certificate; inputs are moved into private candidate and immutable checks do not alter them or globals. Ten clean formal declarations establish raw preservation, guard refusal, successful laws and actual Functor realization. No own panic/index/arithmetic path; external/runtime trust remains explicit."
+    ],
+    "G4": [
+      "Final native campaign detects41 designated functor faults plus14 validator faults, with no survivor/invalid/equivalent/inconclusive/unrun. Original459 category tests and ten functor/nine validator controls pass before/after. Independent oracles cover all eight C3->C2 functions, exact rejection payloads for all map/binding/identity/composition/boundary failures, empty endpoints, owned immutable accessors, asymmetric borrowed lookup over Unicode/blank/missing keys, raw overwrite/lookup/derive rules, all32 legacy composition presence/result patterns and64 boundary presence/mismatch patterns.",
+      "Validator controls cover all81 unital three-element raw operation tables against an independent numeric associativity equation oracle, all ordinary reference/name/identity/composition refusals and typed phase/severity/order. Shared lookup faults are detected directly at its owning module; validator mutants import the actual production helper, without provider replacement.",
+      "Ten clean FiniteFunctor declarations use real Mathlib Functor. Existing checked category/report model receipts remain exact for preserved validator behavior; pure legacy presence/ordered-diagnostic model is shared with prior HigherFunctorInventory, without any functor/coherence law claim for raw diagnostics.",
+      "New43-fault native/full-report, exact-middle-context and malformed raw-opposite controls plus19 clean model statements support current provider behavior; own original challenges retain their original scope."
+    ],
+    "G5": [
+      "Let K bound endpoint/mapping/table cardinalities and L bound relevant string-comparison length. Functor admission has O(o_s+m_s+c_t+(o_s+m_s+c_s) log(K+1)) key comparisons, with string byte costs L explicit. Exact key-domain equality is linear in source map sizes; image/boundary/identity checks use borrowed tree lookups; composition visits exactly the source table rows after building an O(c_t) target view.",
+      "Functor check auxiliary storage is O(c_t) borrowed rows and, on first refusal, the required owned error payload. Owned raw declaration/endpoints are moved into the candidate, not deep-cloned in admission loops. Raw builder inserts retain owned key/value storage; structural Clone explicitly costs all record/endpoint data.",
+      "Legacy composition diagnostics build O(c_t) borrowed view once and make O(C log(K+1)) queries plus required returned diagnostic bytes for C supplied cases. Legacy identity naming must synthesize id_source and, only if mapping exists, id_target; no target-name allocation on missing-source-identity paths. Other raw coverage/boundary loops use borrowed keys and allocate only returned messages.",
+      "Category validator retains its prior O(c+m^3 log(c+1)) associativity comparison bound and O(c+violations) view/output storage, plus other declared map/identity/boundary phases. Shared helper relocation does not add a sorting pass or change the view key/value projection. String lengths, required diagnostic allocations, compiler/std/allocator and finite memory/time remain explicit. No new work budget, benchmark, zero-allocation whole-constructor or allocator-totality promise.",
+      "All24 functor and13 validator source bodies fit fresh calibrated A ceilings. Shared lookup replaces duplication; every repeated composition query avoids temporary owned tuple keys. Legacy identity no longer allocates expected target name on a missing identity mapping."
+    ]
+  },
+  "functor_operation_provider_review": {
+    "review": {
+      "path": "code/rust/quality/category_homology/assessments/functor_composition_source_review.json",
+      "sha256": "6ac690436c690e67ce3a97f95f060598788c92a1305b9c06b37e7eb94ec3f75e"
+    },
+    "scope": "Own source/primary/metrics remain exact. Provider signatures,21 old bodies, all report/constructor refusal gates and raw operation values are preserved. Two allocation changes use exact shared lookup and guarded raw endpoint insertion with original key/name overwrite order. Existing consumer/category proofs remain valid; current43-fault native/model composition supplements rather than replaces original own evidence."
+  }
+}

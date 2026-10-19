@@ -1,0 +1,48 @@
+
+running 15 tests
+test root_record_replay_36::subject::independent_admission_tests::raw_opposite_preserves_endpoint_union_and_sorted_key_name_normalization ... ok
+test root_record_replay_36::subject::tests::functor_composition_maps_through_middle ... ok
+test root_record_replay_36::subject::independent_admission_tests::opposite_raw_construction_is_involutive_on_valid_tables_and_uses_explicit_labels ... ok
+test root_record_replay_36::subject::tests::identity_functor_validates ... ok
+test root_record_replay_36::subject::tests::opposite_category_reverses_composition_order ... ok
+test root_record_replay_36::subject::tests::composition_rejects_different_middle_categories_with_the_same_name ... ok
+test root_record_replay_36::subject::tests::partial_functor_reports_totality_violations ... ok
+test root_record_replay_36::subject::tests::admission_rejects_non_categories_and_extra_map_entries ... ok
+test root_record_replay_36::subject::tests::invalid_functor_reports_identity_violation ... ok
+test root_record_replay_36::subject::tests::invalid_functor_reports_typed_boundary_violation ... ok
+test root_record_replay_36::subject::independent_admission_tests::raw_identity_composition_and_map_builders_preserve_exact_values_and_first_failures ... ok
+test root_record_replay_36::subject::independent_admission_tests::inclusion_is_literal_membership_and_boundary_check_with_laws_separate ... ok
+test root_record_replay_36::subject::tests::invalid_functor_reports_composition_violation ... FAILED
+test root_record_replay_36::subject::independent_admission_tests::report_contains_every_typed_admission_failure_and_preserves_inputs ... FAILED
+test root_record_replay_36::subject::independent_admission_tests::certificate_checks_all_cyclic_maps_owns_snapshots_and_rejects_unlawful_endpoints ... FAILED
+
+failures:
+
+---- root_record_replay_36::subject::tests::invalid_functor_reports_composition_violation stdout ----
+
+thread 'root_record_replay_36::subject::tests::invalid_functor_reports_composition_violation' (18744) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\rr\261019T174609\src\category_theory\q\n36.rs:635:9:
+assertion failed: report.typed_violations.iter().any(|v|
+        v.unit ==
+            ValidationUnit::Functor(FunctorValidation::CompositionPreservation))
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- root_record_replay_36::subject::independent_admission_tests::report_contains_every_typed_admission_failure_and_preserves_inputs stdout ----
+
+thread 'root_record_replay_36::subject::independent_admission_tests::report_contains_every_typed_admission_failure_and_preserves_inputs' (21408) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\rr\261019T174609\src\category_theory\q\n36.rs:702:166:
+assertion failed: !r.all_passed()
+
+---- root_record_replay_36::subject::independent_admission_tests::certificate_checks_all_cyclic_maps_owns_snapshots_and_rejects_unlawful_endpoints stdout ----
+
+thread 'root_record_replay_36::subject::independent_admission_tests::certificate_checks_all_cyclic_maps_owns_snapshots_and_rejects_unlawful_endpoints' (24060) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\rr\261019T174609\src\category_theory\q\n36.rs:697:179:
+assertion `left == right` failed
+  left: true
+ right: false
+
+
+failures:
+    root_record_replay_36::subject::independent_admission_tests::certificate_checks_all_cyclic_maps_owns_snapshots_and_rejects_unlawful_endpoints
+    root_record_replay_36::subject::independent_admission_tests::report_contains_every_typed_admission_failure_and_preserves_inputs
+    root_record_replay_36::subject::tests::invalid_functor_reports_composition_violation
+
+test result: FAILED. 12 passed; 3 failed; 0 ignored; 0 measured; 1104 filtered out; finished in 0.00s
+

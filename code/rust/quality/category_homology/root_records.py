@@ -118,7 +118,7 @@ struct Echo; impl StructurePreservingMap for Echo {type Domain=String;type Codom
 
 
 def challenge(subject):
-    if Path(subject['path']).stem in ('cat_functor','finite_category_validation'):
+    if Path(subject['path']).stem in ('cat_functor','finite_category_validation','functor_composition'):
         from functor_certificates import challenge as admission_challenge
         return admission_challenge(subject)
     if Path(subject['path']).stem in ('validation','arrow','finite_category_builder','eilenberg_moore','lawvere','higher_functor'):

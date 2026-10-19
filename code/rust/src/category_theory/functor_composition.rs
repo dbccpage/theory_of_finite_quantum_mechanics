@@ -2,9 +2,15 @@
 //!
 //! This module keeps `DeclaredFiniteFunctor` as auditable data and adds the
 //! derived operations needed to build larger categorical structures.
+//! Only this module's immutable certificate constructor admits both endpoints
+//! and all finite functor laws. Its type is distinct from cat_functor's wrapper.
+//! Raw identity/composition/opposite/inclusion helpers return declarations that
+//! require separate admission; inclusion checks membership/boundaries only.
+//! Composing certificates returns a raw declaration, with exact middle-context
+//! equality enforced first. Empty or invalid caller names are not repaired.
 
-use super::cat_functor::DeclaredFiniteFunctor;
-use super::finite_category::DeclaredFiniteCategory;
+use super::cat_functor::{CompositionLookup, DeclaredFiniteFunctor};
+use super::finite_category::{DeclaredFiniteCategory, DeclaredMorphism};
 use super::validation::{
     FunctorValidation, ValidationLocation, ValidationReport, ValidationSeverity, ValidationUnit,
     ValidationViolation,
@@ -149,14 +155,22 @@ pub fn compose_validated_functors(
 pub fn opposite_category(category: &DeclaredFiniteCategory, name: &str) -> DeclaredFiniteCategory {
     let mut opposite = DeclaredFiniteCategory::new(name);
 
-    for object in &category.objects {
-        opposite.add_object(object);
-    }
+    opposite.objects = category.objects.clone();
     for morphism in category.morphisms.values() {
-        opposite.add_morphism(&morphism.name, &morphism.target, &morphism.source);
+        if !opposite.objects.contains(&morphism.target) {
+            opposite.add_object(&morphism.target);
+        }
+        if !opposite.objects.contains(&morphism.source) {
+            opposite.add_object(&morphism.source);
+        }
+        opposite.morphisms.insert(morphism.name.clone(),
+            DeclaredMorphism::new(&morphism.name, &morphism.target, &morphism.source));
     }
     for (object, identity) in &category.identities {
-        opposite.set_identity(object, identity);
+        if !opposite.objects.contains(object) {
+            opposite.add_object(object);
+        }
+        opposite.identities.insert(object.clone(), identity.clone());
     }
     for ((first, second), composite) in &category.compositions {
         opposite.set_composition(second, first, composite);
@@ -166,7 +180,8 @@ pub fn opposite_category(category: &DeclaredFiniteCategory, name: &str) -> Decla
 }
 
 /// Given F : C -> D, returns F^op : C^op -> D^op.
-/// Object and morphism maps are unchanged; source/target categories are reversed externally.
+/// Object/morphism maps are unchanged; endpoint labels are supplied by the caller.
+/// Opposite category structure must be constructed and admitted separately.
 pub fn opposite_functor(
     name: &str,
     functor: &DeclaredFiniteFunctor,
@@ -479,6 +494,7 @@ fn check_composition_images(
     target: &DeclaredFiniteCategory,
 ) -> Vec<ValidationViolation> {
     let mut composition_violations = Vec::new();
+    let lookup = CompositionLookup::new(&target.compositions);
     for ((first, second), composite) in &source.compositions {
         let Some(first_image) = functor.on_morphism(first) else {
             continue;
@@ -490,7 +506,7 @@ fn check_composition_images(
             continue;
         };
 
-        match target.compose(first_image, second_image) {
+        match lookup.compose(first_image, second_image) {
             Some(target_composite) if target_composite == composite_image => {}
             Some(target_composite) => composition_violations.push(violation(
                 FunctorValidation::CompositionPreservation,
