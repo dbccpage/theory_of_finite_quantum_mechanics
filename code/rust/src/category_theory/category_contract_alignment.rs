@@ -1,7 +1,7 @@
-//! Category theory contract alignment module.
-//!
-//! Maps Rust category-theoretic structures (categories, functors, natural transformations,
-//! adjunctions, monads, operads, limits, colimits, coends) to canonical `urn:omega:math:*` contract URNs.
+//! Local conventional category contract labels. AuthorityEffect: None.
+//! Constants and default records describe ten proposed bindings and stratum tags.
+//! is_active is a declared flag; this module performs no registry resolution,
+//! mechanization check or contract attachment. Adjacent score contracts remain pending.
 
 pub const CONTRACT_CATEGORY: &str = "urn:omega:math:category:v0.1.0";
 pub const CONTRACT_FUNCTOR: &str = "urn:omega:math:functor:v0.1.0";

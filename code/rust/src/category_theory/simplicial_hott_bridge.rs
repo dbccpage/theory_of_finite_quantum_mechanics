@@ -1,4 +1,6 @@
-//! Bridge finite nerves and rewrite paths to HoTT path witnesses.
+//! Raw simplex/path labels and coherence-cell inventory. AuthorityEffect: None.
+//! is_coherent_at_level is a legacy name for a length threshold only.
+//! Cells may be empty or repeated; no coherence equation or HoTT path is verified.
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct SimplicialPathWitness {

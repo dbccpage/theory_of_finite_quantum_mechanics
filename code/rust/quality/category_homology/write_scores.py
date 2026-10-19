@@ -50,6 +50,8 @@ def capability(path, source):
         "category_theory/rewriting.rs": "Immutable finite globular admission binds normal-form witnesses and separately checked decreasing-rank termination certificates; derived whiskering re-admits output before commit.",
         "category_theory/higher.rs": "Immutable finite strict 2-category admission owns checked underlying and vertical categories and exhaustively checks horizontal functor, unit, associativity and interchange laws under an admitted work budget.",
     }
+    if key == "category_theory/category_contract_alignment.rs":
+        return "L1", "Local static contract-label table and its owned copies; no registry or mechanization checking."
     if key in foundational:
         return "L5", foundational[key]
     if "#![cfg(any())]" in source:

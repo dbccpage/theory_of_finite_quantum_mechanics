@@ -1,4 +1,6 @@
-//! Bridge HoTT judgments into finite topos-style semantics.
+//! Raw labels for a proposed HoTT interpretation. AuthorityEffect: None.
+//! validate checks only three nonblank labels and reports all missing labels in order.
+//! Evidence strings are unchecked; no semantic interpretation is certified.
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct HottJudgmentInterpretation {

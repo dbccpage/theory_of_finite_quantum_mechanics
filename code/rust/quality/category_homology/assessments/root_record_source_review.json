@@ -1,0 +1,241 @@
+{
+  "AuthorityEffect": "None",
+  "records": [
+    {
+      "artifact": "code/rust/src/category_theory/morphism.rs",
+      "cost": "O(length of compared tags plus output bytes); no recursion, numeric operation or input-length indexing.",
+      "sha256": "2e8c365b358cc49b2076f2901735400de7af81a20b21a6e85f886149502b0df4",
+      "source_refinement": "Only two String equalities guard Some; a failed boundary or category returns None. Source inputs are borrowed and output Strings owned. The RootRecords conjunction theorem proves the guard and foreign-category refusal, while explicit body mapping establishes every copied/formatted field. Mutable metadata cannot become a lawful category certificate.",
+      "specification": "Mutable raw String arrow records. Constructors set the conventional morphism URN and move seven supplied fields. Compose succeeds iff self.codomain_id equals next.domain_id AND literal category tags match. Output uses the conventional URN, formatted f >> g, first domain/category/authority/ceiling, next codomain and formatted description. No contract/authority validity or associative composition is inferred.",
+      "symbols": {
+        "MorphismTrait::category_id": {
+          "body": ";",
+          "scope": "Raw record operation or abstract trait signature only; not a mathematical law proof.",
+          "signature": "fn category_id(&self) -> &str"
+        },
+        "MorphismTrait::codomain": {
+          "body": ";",
+          "scope": "Raw record operation or abstract trait signature only; not a mathematical law proof.",
+          "signature": "fn codomain(&self) -> &Cod"
+        },
+        "MorphismTrait::domain": {
+          "body": ";",
+          "scope": "Raw record operation or abstract trait signature only; not a mathematical law proof.",
+          "signature": "fn domain(&self) -> &Dom"
+        },
+        "MorphismTrait::evaluate": {
+          "body": ";",
+          "scope": "Raw record operation or abstract trait signature only; not a mathematical law proof.",
+          "signature": "fn evaluate(&self, input: &Dom) -> Cod"
+        },
+        "MorphismTrait::id": {
+          "body": ";",
+          "scope": "Raw record operation or abstract trait signature only; not a mathematical law proof.",
+          "signature": "fn id(&self) -> &str"
+        },
+        "SkillMorphism::compose": {
+          "body": "{ if self.codomain_id == next.domain_id && self.category_id == next.category_id { Some(SkillMorphism { contract_id: MORPHISM_CONTRACT_ID.to_string(), morphism_id: format!(\"{} >> {}\", self.morphism_id, next.morphism_id), domain_id: self.domain_id.clone(), codomain_id: next.codomain_id.clone(), category_id: self.category_id.clone(), governance_authority: self.governance_authority.clone(), evidence_ceiling: self.evidence_ceiling.clone(), description: format!( \"Composite morphism of {} and {}\", self.morphism_id, next.morphism_id ), }) } else { None } }",
+          "scope": "Raw record operation or abstract trait signature only; not a mathematical law proof.",
+          "signature": "pub fn compose(&self, next: &SkillMorphism) -> Option<SkillMorphism>"
+        },
+        "SkillMorphism::new": {
+          "body": "{ Self { contract_id: MORPHISM_CONTRACT_ID.to_string(), morphism_id: morphism_id.into(), domain_id: domain_id.into(), codomain_id: codomain_id.into(), category_id: category_id.into(), governance_authority: governance_authority.into(), evidence_ceiling: evidence_ceiling.into(), description: description.into(), } }",
+          "scope": "Raw record operation or abstract trait signature only; not a mathematical law proof.",
+          "signature": "pub fn new( morphism_id: impl Into<String>, domain_id: impl Into<String>, codomain_id: impl Into<String>, category_id: impl Into<String>, governance_authority: impl Into<String>, evidence_ceiling: impl Into<String>, description: impl Into<String>, ) -> Self"
+        }
+      }
+    },
+    {
+      "artifact": "code/rust/src/category_theory/agent_functor.rs",
+      "cost": "O(total copied/formatted bytes); skills moved during construction and not searched while mapping.",
+      "sha256": "b84630d81cb2b051f0483fc774c9054180e0dab7053fd380f44b41e16e8910ef",
+      "source_refinement": "All constructor fields are moved, not interpreted. Mapping is a pure borrowed input to fresh owned output relation; the explicit field table binds the literal formatting. A trait signature is an interface only; neither trait nor record enforces category laws or governance authority. Source/caller mutation after a mapping cannot change the owned result.",
+      "specification": "Raw agent configuration sets the conventional functor URN and copies supplied name/source/target/role/council/skills/description without admission. Mapping accepts any raw SkillMorphism: preserves its contract and evidence-ceiling strings, prefixes name to ID and endpoints, chooses configured target and council, and generates the exact descriptive text. No source gate or functor-law promise exists.",
+      "symbols": {
+        "AgentFunctor::map_skill_morphism": {
+          "body": "{ SkillMorphism { contract_id: morphism.contract_id.clone(), morphism_id: format!(\"{}[{}]\", self.name, morphism.morphism_id), domain_id: format!(\"{}:{}\", self.name, morphism.domain_id), codomain_id: format!(\"{}:{}\", self.name, morphism.codomain_id), category_id: self.target_category_id.clone(), governance_authority: self.council_affiliation.clone(), evidence_ceiling: morphism.evidence_ceiling.clone(), description: format!( \"Skill morphism {} lifted by Agent Functor {}\", morphism.morphism_id, self.name ), } }",
+          "scope": "Raw record operation or abstract trait signature only; not a mathematical law proof.",
+          "signature": "pub fn map_skill_morphism(&self, morphism: &SkillMorphism) -> SkillMorphism"
+        },
+        "AgentFunctor::new": {
+          "body": "{ Self { contract_id: FUNCTOR_CONTRACT_ID.to_string(), name: name.into(), source_category_id: source_category_id.into(), target_category_id: target_category_id.into(), primary_role: primary_role.into(), council_affiliation: council_affiliation.into(), supported_skills, description: description.into(), } }",
+          "scope": "Raw record operation or abstract trait signature only; not a mathematical law proof.",
+          "signature": "pub fn new( name: impl Into<String>, source_category_id: impl Into<String>, target_category_id: impl Into<String>, primary_role: impl Into<String>, council_affiliation: impl Into<String>, supported_skills: Vec<String>, description: impl Into<String>, ) -> Self"
+        },
+        "FunctorTrait::map_morphism": {
+          "body": ";",
+          "scope": "Raw record operation or abstract trait signature only; not a mathematical law proof.",
+          "signature": "fn map_morphism(&self, mor: &MorC) -> MorD"
+        },
+        "FunctorTrait::map_object": {
+          "body": ";",
+          "scope": "Raw record operation or abstract trait signature only; not a mathematical law proof.",
+          "signature": "fn map_object(&self, obj: &ObjC) -> ObjD"
+        },
+        "FunctorTrait::source_category_id": {
+          "body": ";",
+          "scope": "Raw record operation or abstract trait signature only; not a mathematical law proof.",
+          "signature": "fn source_category_id(&self) -> &str"
+        },
+        "FunctorTrait::target_category_id": {
+          "body": ";",
+          "scope": "Raw record operation or abstract trait signature only; not a mathematical law proof.",
+          "signature": "fn target_category_id(&self) -> &str"
+        }
+      }
+    },
+    {
+      "artifact": "code/rust/src/category_theory/bridges.rs",
+      "cost": "Constructor O(label bytes); append amortized vector push plus label bytes, worst-case reallocation linear in existing vector storage; no external mathematical law search.",
+      "sha256": "d2efb4bdbdd232832b12a6a835abcb2fd858dff3382ae197e2d1052bd50c8a75",
+      "source_refinement": "Construction moves three owned String values; append preserves each previous list prefix and adds the supplied label at the tail. No validation, proof token, authority or categorical behavior follows. Clone owns its list independently. The method exposes no indexing or user callback beyond std conversion.",
+      "specification": "StructurePreservingMap is a map signature with associated domain/codomain and no law checker. BridgeEvidence::new copies three unrestricted labels and starts an empty declared-law inventory. preserve_law appends one exact string; blank and duplicate labels are preserved in order.",
+      "symbols": {
+        "BridgeEvidence::new": {
+          "body": "{ Self { source_discipline: source.into(), target_discipline: target.into(), map_name: name.into(), laws_preserved: Vec::new(), } }",
+          "scope": "Raw record operation or abstract trait signature only; not a mathematical law proof.",
+          "signature": "pub fn new(source: &str, target: &str, name: &str) -> Self"
+        },
+        "BridgeEvidence::preserve_law": {
+          "body": "{ self.laws_preserved.push(law.into()); }",
+          "scope": "Raw record operation or abstract trait signature only; not a mathematical law proof.",
+          "signature": "pub fn preserve_law(&mut self, law: &str)"
+        },
+        "StructurePreservingMap::map": {
+          "body": ";",
+          "scope": "Raw record operation or abstract trait signature only; not a mathematical law proof.",
+          "signature": "fn map(&self, x: &Self::Domain) -> Self::Codomain"
+        }
+      }
+    },
+    {
+      "artifact": "code/rust/src/category_theory/hott_topos_bridge.rs",
+      "cost": "Three whitespace scans plus diagnostic allocation; evidence inventory is not scanned. Work linear in label bytes and returned messages.",
+      "sha256": "2de359101dfb3009c8f5549e1fe126a399e51be26097b133355d6fc305403b8e",
+      "source_refinement": "The ordered three-guard accumulator starts empty. After each guard its list is exactly the preceding failed checks in order. RootRecords missingLabels head lemmas establish this prefix invariant; actual Rust trim Unicode semantics and formatting are explicitly reviewed std operations. Validation borrows and cannot mutate raw data; no semantic interpretation is admitted.",
+      "specification": "Three unrestricted raw labels and an initially empty evidence inventory. add_evidence appends unchanged strings. validate returns all and only blank-label diagnostic strings in judgment/context/semantic order, where blank means Rust trim().is_empty(). Evidence contents are ignored.",
+      "symbols": {
+        "HottJudgmentInterpretation::add_evidence": {
+          "body": "{ self.evidence.push(evidence.into()); }",
+          "scope": "Raw record operation or abstract trait signature only; not a mathematical law proof.",
+          "signature": "pub fn add_evidence(&mut self, evidence: &str)"
+        },
+        "HottJudgmentInterpretation::new": {
+          "body": "{ Self { judgment: judgment.into(), context_object: context_object.into(), semantic_object: semantic_object.into(), evidence: Vec::new(), } }",
+          "scope": "Raw record operation or abstract trait signature only; not a mathematical law proof.",
+          "signature": "pub fn new(judgment: &str, context_object: &str, semantic_object: &str) -> Self"
+        },
+        "HottJudgmentInterpretation::validate": {
+          "body": "{ let mut violations = Vec::new(); if self.judgment.trim().is_empty() { violations.push(\"HoTT judgment is empty\".into()); } if self.context_object.trim().is_empty() { violations.push(\"Context object is empty\".into()); } if self.semantic_object.trim().is_empty() { violations.push(\"Semantic object is empty\".into()); } violations }",
+          "scope": "Raw record operation or abstract trait signature only; not a mathematical law proof.",
+          "signature": "pub fn validate(&self) -> Vec<String>"
+        }
+      }
+    },
+    {
+      "artifact": "code/rust/src/category_theory/mssn_functor_bridge.rs",
+      "cost": "Linear in lift/forget bytes, fixed-size vector with one declaration.",
+      "sha256": "b2f5263718d508ec05ee67a7cd843312025fac73f45f4b4d09b0d6d8c8ba3e12",
+      "source_refinement": "Every result field is an owned copy or literal. The actual BridgeEvidence provider is retained, with no validation delegated or law claimed. Even empty or separator-containing input labels are preserved by positional formatting. No runtime failure channel or category admission is advertised.",
+      "specification": "Unrestricted lift and forget labels are copied into a record. Embedded BridgeEvidence has literal MSSN/category disciplines, formatted lift adjoint forget name and the one declared lift/forget boundary label. These are unchecked declarations, not a checked adjunction.",
+      "symbols": {
+        "MssnFunctorBridge::new": {
+          "body": "{ Self { lift_functor: lift_functor.into(), forget_functor: forget_functor.into(), evidence: BridgeEvidence { source_discipline: \"MSSN\".into(), target_discipline: \"category\".into(), map_name: format!(\"{} adjoint {}\", lift_functor, forget_functor), laws_preserved: vec![\"lift/forget boundary\".into()], }, } }",
+          "scope": "Raw record operation or abstract trait signature only; not a mathematical law proof.",
+          "signature": "pub fn new(lift_functor: &str, forget_functor: &str) -> Self"
+        }
+      }
+    },
+    {
+      "artifact": "code/rust/src/category_theory/simplicial_hott_bridge.rs",
+      "cost": "Constructor linear in label bytes; count threshold O(1) and independent of requested level, including usize::MAX.",
+      "sha256": "3c8e3d66fa260d2f542d74ac5d2a6bfb0446c686f6a80a07ee846ec138b5145e",
+      "source_refinement": "The Nat threshold theorem matches usize length comparison, with no arithmetic conversion or overflow. Vec length is read as usize and compared directly to the supplied usize; no traversal, allocated level-sized data or unchecked index is used. Constructors leave the list empty and copy the two raw labels.",
+      "specification": "Raw simplex/path strings and initially empty coherence-cell inventory. The legacy is_coherent_at_level method returns length >= level exactly, including true at level zero and empty/repeated cells counted. This is a threshold only, never coherence verification.",
+      "symbols": {
+        "SimplicialPathWitness::is_coherent_at_level": {
+          "body": "{ self.coherence_cells.len() >= level }",
+          "scope": "Raw record operation or abstract trait signature only; not a mathematical law proof.",
+          "signature": "pub fn is_coherent_at_level(&self, level: usize) -> bool"
+        },
+        "SimplicialPathWitness::new": {
+          "body": "{ Self { simplex: simplex.into(), hott_path: hott_path.into(), coherence_cells: Vec::new(), } }",
+          "scope": "Raw record operation or abstract trait signature only; not a mathematical law proof.",
+          "signature": "pub fn new(simplex: &str, hott_path: &str) -> Self"
+        }
+      }
+    },
+    {
+      "artifact": "code/rust/src/category_theory/topos_hott_model.rs",
+      "cost": "O(1) inventory-presence checks plus name/message bytes when formatting diagnostics; no element scan.",
+      "sha256": "f588da2884c62bb3cc7434d679f9a28222485b3f863851d20417d8930ceac552",
+      "source_refinement": "Two presence checks produce an ordered diagnostic inventory. Prefix induction uses the missingLabels head lemmas. Vec::is_empty does not inspect or validate member strings, so an inventory containing an empty string passes its corresponding presence guard. Raw public fields remain mutable and diagnostic success is not retained admission.",
+      "specification": "Constructor copies the unrestricted name and creates three empty inventories. Minimal-model diagnostics check only nonempty universes and nonempty identity_type_interpretations, in that order. Names, individual entry contents and truncation modalities are ignored. No model semantics are certified.",
+      "symbols": {
+        "ToposHottModel::new": {
+          "body": "{ Self { name: name.into(), universes: Vec::new(), identity_type_interpretations: Vec::new(), truncation_modalities: Vec::new(), } }",
+          "scope": "Raw record operation or abstract trait signature only; not a mathematical law proof.",
+          "signature": "pub fn new(name: &str) -> Self"
+        },
+        "ToposHottModel::validate_minimal_model": {
+          "body": "{ let mut violations = Vec::new(); if self.universes.is_empty() { violations.push(format!( \"Model {} has no universe interpretation\", self.name )); } if self.identity_type_interpretations.is_empty() { violations.push(format!( \"Model {} has no identity type interpretation\", self.name )); } violations }",
+          "scope": "Raw record operation or abstract trait signature only; not a mathematical law proof.",
+          "signature": "pub fn validate_minimal_model(&self) -> Vec<String>"
+        }
+      }
+    },
+    {
+      "artifact": "code/rust/src/category_theory/zeta_functor.rs",
+      "cost": "O(1) ownership moves; no product computation, division, normalization or length-driven allocation in new.",
+      "sha256": "6af67fb5b9255a4c843e7066dd095e03b5424847549ad04db0bcc68d957b8a9e",
+      "source_refinement": "Two moves into public fields preserve original orbit ordering and exact stored scalar pair. No ratio operation, equality comparison, reduction or mathematical admission occurs in the constructor. Derived PartialEq follows the external Ratio protocol and is not a validity checker; raw undefined ratios must be admitted before mathematical downstream use.",
+      "specification": "Constructor moves the complete primitive_orbits inventory and raw BigRational finite_euler_product without interpreting, normalizing or computing either. Empty/duplicate orbits and denominator-zero/negative raw scalar pairs are permitted transport. No Euler-factor, primitivity, functor or zeta theorem is claimed.",
+      "symbols": {
+        "ZetaFunctorWitness::new": {
+          "body": "{ Self { primitive_orbits, finite_euler_product, } }",
+          "scope": "Raw record operation or abstract trait signature only; not a mathematical law proof.",
+          "signature": "pub fn new( primitive_orbits: Vec<String>, finite_euler_product: num_rational::BigRational, ) -> Self"
+        }
+      }
+    },
+    {
+      "artifact": "code/rust/src/category_theory/density_matrix_functor.rs",
+      "cost": "Whitespace scan, exact BigInt denominator/sign comparison and one integer division if needed against zero; cost depends on operand bit lengths. No narrowing, machine integer arithmetic or GCD normalization. Memory limits of arbitrary-precision/std allocation remain runtime conditions.",
+      "sha256": "48b72823a9fddeec6d249fb54a4af0013e9439592abae63d8e9a38875173bd9e",
+      "source_refinement": "The short-circuit denominator guard dominates Ratio ordering, preventing undefined division. Against zero (0/1), positive-denominator BigInt Ratio ordering agrees with numerator sign; its denominator-1 or equal-zero shortcuts and finite integer div_mod_floor branch are inspected in pinned num-rational 0.4.2. Both divisors are nonzero and comparison needs no reciprocal recursion against zero. RootRecords proves the ordered guard success iff nonblank, n>=0, d>0 and blank-label precedence. Private fields, borrowed accessors and derived clone preserve that invariant; no deserializer or setter bypass exists.",
+      "specification": "Private owned witness stores the exact supplied residual label and raw BigRational. New first rejects trim-blank labels, then denominator <=0, then a negative rational value, preserving exact static error text. On success denominator is positive and numerator nonnegative; canonical reduction is NOT required and stored representation is preserved. Getters borrow the unchanged fields. No density operator or rank certificate is produced.",
+      "symbols": {
+        "DensityMatrixFunctorWitness::new": {
+          "body": "{ if residual_label.trim().is_empty() { return Err(\"empty residual label\"); } if rank_one_weight.denom() <= &0.into() || rank_one_weight < BigRational::zero() { return Err(\"weight must be a defined nonnegative rational\"); } Ok(Self { residual_label: residual_label.into(), rank_one_weight, }) }",
+          "scope": "Raw record operation or abstract trait signature only; not a mathematical law proof.",
+          "signature": "pub fn new(residual_label: &str, rank_one_weight: BigRational) -> Result<Self, &'static str>"
+        },
+        "DensityMatrixFunctorWitness::rank_one_weight": {
+          "body": "{ &self.rank_one_weight }",
+          "scope": "Raw record operation or abstract trait signature only; not a mathematical law proof.",
+          "signature": "pub fn rank_one_weight(&self) -> &BigRational"
+        },
+        "DensityMatrixFunctorWitness::residual_label": {
+          "body": "{ &self.residual_label }",
+          "scope": "Raw record operation or abstract trait signature only; not a mathematical law proof.",
+          "signature": "pub fn residual_label(&self) -> &str"
+        }
+      }
+    },
+    {
+      "artifact": "code/rust/src/category_theory/category_contract_alignment.rs",
+      "cost": "Fixed ten rows; bounded constant string allocation, no input-dependent loop or lookup. Linear in fixed literal output bytes.",
+      "sha256": "aec9577d8ae2bc5b3431ea3cd2a1e291e2943b0f2544c36fa31ab447ad62f018",
+      "source_refinement": "The fixed finite ten-row constructor is explicitly compared to the full independently stated concept/stem/stratum table, not merely a URN prefix. Each fresh vector owns its strings and mutation cannot change later results. This static constant table is L1. is_active and mechanization_stratum remain proposed metadata, so the function neither upgrades evidence nor admits a contract.",
+      "specification": "Ten conventional local contract constants in Category, Functor, NaturalTransformation, Adjunction, Monad, Operad, Limit, Colimit, Coend, End order. Factory creates fresh owned records with exact respective version 0.1.0 URNs, M0 for first three, M1 for next five, M2 for last two and active=true. No registry availability, stratum correctness or actual contract attachment is asserted.",
+      "symbols": {
+        "CategoryContractBinding::default_category_bindings": {
+          "body": "{ vec![ Self { concept_name: \"Category\".to_string(), contract_urn: CONTRACT_CATEGORY.to_string(), mechanization_stratum: \"M0\".to_string(), is_active: true, }, Self { concept_name: \"Functor\".to_string(), contract_urn: CONTRACT_FUNCTOR.to_string(), mechanization_stratum: \"M0\".to_string(), is_active: true, }, Self { concept_name: \"NaturalTransformation\".to_string(), contract_urn: CONTRACT_NATURAL_TRANSFORMATION.to_string(), mechanization_stratum: \"M0\".to_string(), is_active: true, }, Self { concept_name: \"Adjunction\".to_string(), contract_urn: CONTRACT_ADJUNCTION.to_string(), mechanization_stratum: \"M1\".to_string(), is_active: true, }, Self { concept_name: \"Monad\".to_string(), contract_urn: CONTRACT_MONAD.to_string(), mechanization_stratum: \"M1\".to_string(), is_active: true, }, Self { concept_name: \"Operad\".to_string(), contract_urn: CONTRACT_OPERAD.to_string(), mechanization_stratum: \"M1\".to_string(), is_active: true, }, Self { concept_name: \"Limit\".to_string(), contract_urn: CONTRACT_LIMIT.to_string(), mechanization_stratum: \"M1\".to_string(), is_active: true, }, Self { concept_name: \"Colimit\".to_string(), contract_urn: CONTRACT_COLIMIT.to_string(), mechanization_stratum: \"M1\".to_string(), is_active: true, }, Self { concept_name: \"Coend\".to_string(), contract_urn: CONTRACT_COEND.to_string(), mechanization_stratum: \"M2\".to_string(), is_active: true, }, Self { concept_name: \"End\".to_string(), contract_urn: CONTRACT_END.to_string(), mechanization_stratum: \"M2\".to_string(), is_active: true, }, ] }",
+          "scope": "Raw record operation or abstract trait signature only; not a mathematical law proof.",
+          "signature": "pub fn default_category_bindings() -> Vec<Self>"
+        }
+      }
+    }
+  ],
+  "scope": "All explicit production functions and abstract trait signatures of ten root records; generated derives/std operations are named trust boundaries."
+}

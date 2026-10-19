@@ -1,8 +1,8 @@
-//! Functor abstraction in Category Theory (omega_category_theory).
-//!
-//! Aligned with URN contract: `urn:omega:math:functor:v0.1.0`.
-//! A functor `F: C -> D` maps objects in `C` to objects in `D` and morphisms `f: A -> B` in `C`
-//! to morphisms `F(f): F(A) -> F(B)` in `D`, preserving identity and composition.
+//! Agent mapping declarations and literal skill-arrow relabeling. AuthorityEffect: None.
+//! FunctorTrait specifies mapping operations without enforcing functor laws.
+//! AgentFunctor stores raw configuration and is not an implementation of that trait.
+//! map_skill_morphism formats labels and copies declared destination/affiliation tags;
+//! it neither admits a source category nor proves identity/composition preservation or authority.
 
 use crate::morphism::SkillMorphism;
 use std::fmt::Debug;
@@ -17,7 +17,7 @@ pub trait FunctorTrait<ObjC, ObjD, MorC, MorD>: Debug {
     fn map_morphism(&self, mor: &MorC) -> MorD;
 }
 
-/// Abstract representation of an Agent Functor mapping domain states and skill morphisms.
+/// Raw agent configuration; fields can be changed without admission.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct AgentFunctor {
     pub contract_id: String,
@@ -52,7 +52,7 @@ impl AgentFunctor {
         }
     }
 
-    /// Map a Skill Morphism under this Agent Functor's domain transformation `F(f): F(A) -> F(B)`.
+    /// Relabel a raw arrow and copy declared destination/affiliation metadata.
     pub fn map_skill_morphism(&self, morphism: &SkillMorphism) -> SkillMorphism {
         SkillMorphism {
             contract_id: morphism.contract_id.clone(),

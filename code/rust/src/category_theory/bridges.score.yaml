@@ -3,55 +3,63 @@ schema_version: "2.0.0"
 artifact:
   path: "code/rust/src/category_theory/bridges.rs"
   language: "Rust"
-  sha256: "bd8ebd50657b76df0c00bb4371ac1571d5edb62bb5d137d3ebd1d8d07a16627e"
+  sha256: "d2efb4bdbdd232832b12a6a835abcb2fd858dff3382ae197e2d1052bd50c8a75"
 profile: "Exact"
 level: "L2"
 level_basis: "Structured data, identifiers, hashes, adapters or declarations; no independent foundational theorem is inferred."
 architecture_target: "L5"
 engineering_target: "A"
 gates:
-  G1: null
-  G2: null
-  G3: null
-  G4: null
-  G5: null
-composite_grade: null
-score_token: null
-is_complete: false
+  G1: "A"
+  G2: "A"
+  G3: "A"
+  G4: "A"
+  G5: "A"
+composite_grade: "A"
+score_token: "L2A"
+is_complete: true
 grade_ceiling: "A"
-evaluation_timestamp: "2026-10-18T18:42:03+00:00"
+evaluation_timestamp: "2026-10-19T03:24:18.023406+00:00"
 AuthorityEffect: "None"
 claim:
   urn: "urn:tfqm:rust:category_theory:bridges"
-  description: "Bridges \u2014 Spec Section 8.  The StructurePreservingMap base trait enables cross-discipline functor-like maps without requiring full categorical infrastructure."
+  description: "Raw cross-discipline mapping interfaces and declarations. AuthorityEffect: None. The trait requires only a map operation. BridgeEvidence stores caller-supplied law labels; it performs no law checking and confers no mathematical evidence."
   scope: "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified."
 contract:
   status: "pending"
   path: null
   note: "Reserved for a later user-requested contract; none created or asserted here."
 evidence:
-  - {"path": "evidence/quality/category_homology/20261018T184203Z/baseline.json", "sha256": "e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c", "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."}
-  - {"path": "evidence/quality/category_homology/20261018T184203Z/summary.json", "sha256": "ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67", "scope": "Source snapshot binding and complete six-outcome accounting."}
-  - {"path": "evidence/quality/category_homology/20261018T184203Z/mutations.json", "sha256": "c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5", "scope": "Designated critical faults only; outcomes for this file are enumerated below."}
-  - {"path": "evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json", "sha256": "86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1", "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."}
+  - {"path": "evidence/quality/category_homology/20261019T032016Z/baseline.json", "sha256": "4b80a02d9a4974d26165766928f4be0eab67701ab76f19a344fa800a360bf2f7", "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."}
+  - {"path": "evidence/quality/category_homology/20261019T032016Z/summary.json", "sha256": "6c1c9c6544d90ea8f643ff7a75cfa61c0ab5fe6d5b536a041a0720f7cb6f54e6", "scope": "Source snapshot binding and complete six-outcome accounting."}
+  - {"path": "evidence/quality/category_homology/20261019T032016Z/mutations.json", "sha256": "84a26d6ab7d14c6dde3adc9334668050d783980ea5e8f1d529460d42dffe9cda", "scope": "Designated critical faults only; outcomes for this file are enumerated below."}
+  - {"path": "evidence/quality/category_homology/20261019T032209Z-metrics/receipt.json", "sha256": "c3b0d0e72b7fc521c5c2e2130a9e35fcecb5ae5b3c6bd867bd70d1f1dd65cfaf", "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."}
+  - {"path": "evidence/quality/category_homology/20261019T032016Z/dependency_receipt.json", "sha256": "f3bcb675795b3d98c0a87faf6c52933cd517c763f096f707b4475e5b01f5b71b", "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred."}
+  - {"path": "code/rust/quality/category_homology/assessments/root_records/bridges.json", "sha256": "9bf120d24264254019536f000a11f37ae62996986c14da6ac894ca653b94f24c", "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping."}
 verification:
   baseline_ok: true
   source_snapshot_unchanged: true
-  compiled_scope: "shared scoped crate build"
-  local_mutant_ids: []
+  compiled_scope: "Actual category crate and one-fault copies inside their real parent scopes; no visibility widening or provider replacement"
+  local_mutant_ids:
+    - "RR-36-0"
+    - "RR-37-1"
+    - "RR-38-2"
+    - "RR-39-3"
+    - "RR-40-4"
+  dependency_contents_stable: true
 mutation_accounting:
-  killed: 0
+  killed: 5
   survived: 0
   demonstrably_equivalent: 0
   invalid: 0
   inconclusive: 0
   unrun: 0
-  conservative_ratio: null
+  conservative_ratio: 1.0
 structure:
   tool: "syn 3.0.9 source AST"
   source_ast_parsed: true
   expanded_ast: false
-  physical_lines: 79
+  physical_lines: 71
   parsed_production_functions: 2
   max_production_ccn: 1
   cognitive_complexity_upper_bound: 1
@@ -59,7 +67,7 @@ structure:
   opaque_function_macros: []
   functions_exceeding_A: []
   scope: "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
-open_findings:
-  - "A complete five-gate semantic, failure and consumer audit has not been established for this file."
-  - "Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds."
-  - "External path dependency source contents have not received a separate origin/content attestation."
+open_findings: []
+assurance_limits:
+  - "Honest L1 static table or L2 records/interfaces, not foundational category architecture by title."
+  - "No contracts attached, no A+, registry/authority validation, alternate compiler, allocator totality, Rust/MIR equivalence, workspace-wide green, category/functor laws or semantic model certification."

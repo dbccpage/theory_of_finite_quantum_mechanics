@@ -377,3 +377,23 @@ provider-delta reviews refresh two facades and the unchanged Arrow/Opposite
 callers. `20261019T031207Z-score-verification` rechecks all completed evidence
 and every current source/score digest without drift. Cleanup checkpoint 115
 finds zero owned compiled outputs; contracts remain pending.
+
+
+Root-record checkpoint: 125 completed A assessments, 67 incomplete.
+SkillMorphism composition previously admitted matching endpoint labels across
+different categories despite its documented guard. The retained native pre-fix
+regression fails; the repaired conjunction rejects foreign category tags.
+Other bridge descriptions now accurately identify declarations and count/shape
+checks, with no functor, HoTT, authority, model or registry certification. The
+local ten-row contract label table is L1A; nine records/interfaces are L2A.
+
+The native ten-file replay passes 1,201 independent boundary/table combinations,
+all 74 designated valid faults, positive namespace controls and 459 canonical
+category tests before/after. Eight guard/report/count/mass lemmas check cleanly;
+the two initial failed proof attempts remain excluded. Raw rational product
+transport and noncanonical positive density mass are explicitly distinguished
+from canonical rational admission. Full source/entry-point, dependency and
+consumer reviews bind the advertised scope. The latest score verifier
+`20261019T032434Z-score-verification` rechecks every completed record and all
+192 unchanged source/score digests; cleanup checkpoint 125 finds no owned
+compiled outputs. Contracts and the broad L5A goal remain unfinished.

@@ -1,4 +1,5 @@
-//! MSS lift/forget towers as finite functor bridge declarations.
+//! Declared lift/forget names and descriptive bridge metadata. AuthorityEffect: None.
+//! The generated adjoint/law strings express a proposal, not a checked adjunction.
 
 use super::bridges::BridgeEvidence;
 

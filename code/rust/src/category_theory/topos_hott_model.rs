@@ -1,4 +1,7 @@
-//! Topos-side model data for HoTT fragments.
+//! Raw inventories for a proposed HoTT model. AuthorityEffect: None.
+//! validate_minimal_model checks only that two inventories are nonempty.
+//! Their contents, the model name and truncation inventory remain unchecked.
+//! Empty diagnostics do not certify a model or interpretation.
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct ToposHottModel {
