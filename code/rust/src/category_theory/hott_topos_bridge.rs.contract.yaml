@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/category_theory/hott_topos_bridge.rs",
+    "sha256": "2de359101dfb3009c8f5549e1fe126a399e51be26097b133355d6fc305403b8e",
+    "language": "Rust"
+  },
+  "status": "source_reviewed",
+  "formal_specification": {
+    "domain": "Three unrestricted raw labels and an initially empty evidence inventory. add_evidence appends unchanged strings. validate returns all and only blank-label diagnostic strings in judgment/context/semantic order, where blank means Rust trim().is_empty(). Evidence contents are ignored.",
+    "failure": "Only the exact documented Option/static error or ordered missing-label diagnostics. Raw constructors permit unspecified/blank labels and declarations intentionally; their results do not grant category laws, proof, governance authority or actual contracts.",
+    "representation": "Owned safe Rust String/Vec and, where present, arbitrary precision raw BigRational; no floats, narrowing, saturating arithmetic or normalization. Caller Into implementations and memory availability remain explicit runtime preconditions."
+  },
+  "operations": {
+    "HottJudgmentInterpretation::add_evidence": {
+      "scope": "Raw record operation or abstract trait signature only; not a mathematical law proof.",
+      "signature": "pub fn add_evidence(&mut self, evidence: &str)"
+    },
+    "HottJudgmentInterpretation::new": {
+      "scope": "Raw record operation or abstract trait signature only; not a mathematical law proof.",
+      "signature": "pub fn new(judgment: &str, context_object: &str, semantic_object: &str) -> Self"
+    },
+    "HottJudgmentInterpretation::validate": {
+      "scope": "Raw record operation or abstract trait signature only; not a mathematical law proof.",
+      "signature": "pub fn validate(&self) -> Vec<String>"
+    }
+  },
+  "invariants": [
+    "The ordered three-guard accumulator starts empty. After each guard its list is exactly the preceding failed checks in order. RootRecords missingLabels head lemmas establish this prefix invariant; actual Rust trim Unicode semantics and formatting are explicitly reviewed std operations. Validation borrows and cannot mutate raw data; no semantic interpretation is admitted."
+  ],
+  "failure_paths": {
+    "entry_points": "The ordered three-guard accumulator starts empty. After each guard its list is exactly the preceding failed checks in order. RootRecords missingLabels head lemmas establish this prefix invariant; actual Rust trim Unicode semantics and formatting are explicitly reviewed std operations. Validation borrows and cannot mutate raw data; no semantic interpretation is admitted.",
+    "runtime": "Standard safe Rust ownership, String formatting, clone/conversion, Vec and dependency operations are trusted as documented. Arbitrary caller Into behavior or allocator exhaustion is not a mathematical counterexample or promised recoverable error. No unchecked index, unsafe block, hidden catch-all success or physical authority effect is added."
+  },
+  "trust_boundary": {
+    "formal": "Eight kernel-checked RootRecords guard/report/count/mass lemmas. Source correspondence is reviewed explicitly, not compiler-extracted Rust/MIR; copy-only constructors are justified by their complete field/body maps. No law of categories, HoTT, zeta or density operators follows.",
+    "runtime": "Pinned compiler/std, num-rational/num-bigint/num-traits and actual production peer providers. Derived traits are std/dependency protocols, not evidence admission. Candidate tests execute in actual crate scopes without replacing providers or widening visibility."
+  },
+  "assurance_limits": [
+    "Honest L1 static table or L2 records/interfaces, not foundational category architecture by title.",
+    "No contracts attached, no A+, registry/authority validation, alternate compiler, allocator totality, Rust/MIR equivalence, workspace-wide green, category/functor laws or semantic model certification."
+  ],
+  "review_evidence": [
+    {
+      "path": "code/rust/src/category_theory/hott_topos_bridge.score.yaml",
+      "sha256": "de2a61565acbd5c7dcf53acf9599292f951354356596b95f6ece32b6c40af640"
+    }
+  ],
+  "open_obligations": []
+}

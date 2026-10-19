@@ -1,0 +1,115 @@
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/category_theory/finite_partial_structure.rs",
+    "sha256": "e2968a3faec1bf1c381aaecff6583d2f594737a70917458224d207dc02942114",
+    "language": "Rust"
+  },
+  "status": "source_reviewed",
+  "formal_specification": {
+    "profile": "Exact retained:usize sort indices/checked Cartesian prefixes,Option partial values and bool predicates,no tolerance or omitted-operation completion.",
+    "domain": "Arbitrary raw finite signature/tables/maps validated per call,including empty sorts/nullary operations/predicates;runtime prefix overflow typedrefusal.",
+    "behavior": [
+      "Checked left-to-right product starting1. Each referenced sort must exist even after a zero prefix;unknown sort InvalidSignature before that multiplication. checked_mul failure CardinalityOverflow at first oversized prefix,even if a later zero would annihilate final natural product. Empty inputs return1. No unchecked product allocation/index.",
+      "For each operation in order,check output sort existence first;then checked input cardinality;require exact value-table length and every Some output<source output size. None permitted even for empty output sort. Then every predicate input signature/cardinality must match Bool-table length. First typed error stops;record remains raw/mutable,no enduring admission token.",
+      "Require map-count and target-size-count equal source sort-count before per-sort indexing. Each map length equals source size,entries within target range,then finite image cardinality equals target size (surjectivity because range known). Empty→empty sort valid;nonempty→empty impossible. First error InvalidSortMap,source unchanged.",
+      "Private valid source/table/map/count preconditions. Decode row in reversed input-sort order via mod/div source base (last coordinate fastest);map each coordinate and accumulate target mixed-radix index with target strides. Row enumeration exists only if every source input size positive;surjectivity then every target base positive. Target checked full cardinality bounds every reverse prefix/stride/product/partial sum and final index<count. Nullary row0 maps0;zero-sized input means no row call.",
+      "Private image_row within allocated target rows. Unseen outerNone stores FIRST source_row and value;seen Some(row,value) retains original first row on equal value;different value invokes private typed conflict closure once and refuses. T is concretely Option<usize> or bool,so outer absence is distinct from stored operation None. No user callback/public generic input;other successful branch does not overwrite representative.",
+      "Consume row markers into output values in target-index order;missing marker typedInvalidSortMap. Surjective coordinate maps/complete source rows imply every target row filled on valid consistent descent;empty target rows empty output. Moves values,not copied input tables. Defensive missing-marker branch not counted as non-equivalent valid-domain mutation.",
+      "Checked target cardinality before row-vector allocation. Enumerate source operation rows in exact order;compute valid target tuple image and map Option output through admitted output-sort map (None callback not called). Check constancy using first-row marker;first mismatch OperationConflict with exact operation ID,left first row,right current row,left/right projected Option values. Complete rows form output operation with unchanged input/output sort signature and target-index values.",
+      "Same target cardinality/tuple grouping,but bool value unchanged (both truth and falsity reflect). First mismatch PredicateConflict with exact predicate/first/current IDs. Output signature preserved and rows ordered,target domains/empty/nullary cases handled.",
+      "Validate entire source first,then entire quotient map. Process operations in original order with first conflict/error,then predicates in original order. Return owned target sizes and full signature/tables only on success;no partial target escapes. Generic helper phase decomposition preserves original per-row observations/error precedence for every admitted finite input.",
+      "Recompute full descent against supplied current source/map and propagate its error before comparing claim. Compare ALL raw target fields (sort sizes,operation/predicate signatures/tables/order) with exact computed target;different yields ReceiptMismatch,identical Ok. Does not trust claimed validity or cache/context-free certificate;raw returned target may later mutate."
+    ],
+    "capability": "L3 bounded exact finite-domain descent/replay;raw mutable structures are not L5 owned persistent context certificates."
+  },
+  "operations": {
+    "cardinality": {
+      "line": 48,
+      "signature": "fn cardinality(sizes: &[usize], inputs: &[usize]) -> Result<usize, DescentError>",
+      "obligation": "Checked left-to-right product starting1. Each referenced sort must exist even after a zero prefix;unknown sort InvalidSignature before that multiplication. checked_mul failure CardinalityOverflow at first oversized prefix,even if a later zero would annihilate final natural product. Empty inputs return1. No unchecked product allocation/index."
+    },
+    "Structure::validate": {
+      "line": 56,
+      "signature": "pub fn validate(&self) -> Result<(), DescentError>",
+      "obligation": "For each operation in order,check output sort existence first;then checked input cardinality;require exact value-table length and every Some output<source output size. None permitted even for empty output sort. Then every predicate input signature/cardinality must match Bool-table length. First typed error stops;record remains raw/mutable,no enduring admission token."
+    },
+    "SortQuotient::validate": {
+      "line": 81,
+      "signature": "fn validate(&self, source: &FinitePartialStructure) -> Result<(), DescentError>",
+      "obligation": "Require map-count and target-size-count equal source sort-count before per-sort indexing. Each map length equals source size,entries within target range,then finite image cardinality equals target size (surjectivity because range known). Empty→empty sort valid;nonempty→empty impossible. First error InvalidSortMap,source unchanged."
+    },
+    "SortQuotient::tuple_image": {
+      "line": 95,
+      "signature": "fn tuple_image(&self, sizes: &[usize], inputs: &[usize], mut row: usize) -> usize",
+      "obligation": "Private valid source/table/map/count preconditions. Decode row in reversed input-sort order via mod/div source base (last coordinate fastest);map each coordinate and accumulate target mixed-radix index with target strides. Row enumeration exists only if every source input size positive;surjectivity then every target base positive. Target checked full cardinality bounds every reverse prefix/stride/product/partial sum and final index<count. Nullary row0 maps0;zero-sized input means no row call."
+    },
+    "insert_fiber": {
+      "line": 108,
+      "signature": "fn insert_fiber<T: Copy + Eq>(\n    rows: &mut [Option<(usize, T)>], image_row: usize, source_row: usize, value: T,\n    conflict: impl FnOnce(usize, T) -> DescentError,\n) -> Result<(), DescentError>",
+      "obligation": "Private image_row within allocated target rows. Unseen outerNone stores FIRST source_row and value;seen Some(row,value) retains original first row on equal value;different value invokes private typed conflict closure once and refuses. T is concretely Option<usize> or bool,so outer absence is distinct from stored operation None. No user callback/public generic input;other successful branch does not overwrite representative."
+    },
+    "finish_fibers": {
+      "line": 119,
+      "signature": "fn finish_fibers<T>(rows: Vec<Option<(usize, T)>>) -> Result<Vec<T>, DescentError>",
+      "obligation": "Consume row markers into output values in target-index order;missing marker typedInvalidSortMap. Surjective coordinate maps/complete source rows imply every target row filled on valid consistent descent;empty target rows empty output. Moves values,not copied input tables. Defensive missing-marker branch not counted as non-equivalent valid-domain mutation."
+    },
+    "descend_operation": {
+      "line": 123,
+      "signature": "fn descend_operation(source: &FinitePartialStructure, quotient: &SortQuotient, id: usize, operation: &PartialOperation) -> Result<PartialOperation, DescentError>",
+      "obligation": "Checked target cardinality before row-vector allocation. Enumerate source operation rows in exact order;compute valid target tuple image and map Option output through admitted output-sort map (None callback not called). Check constancy using first-row marker;first mismatch OperationConflict with exact operation ID,left first row,right current row,left/right projected Option values. Complete rows form output operation with unchanged input/output sort signature and target-index values."
+    },
+    "descend_predicate": {
+      "line": 136,
+      "signature": "fn descend_predicate(source: &FinitePartialStructure, quotient: &SortQuotient, id: usize, predicate: &Predicate) -> Result<Predicate, DescentError>",
+      "obligation": "Same target cardinality/tuple grouping,but bool value unchanged (both truth and falsity reflect). First mismatch PredicateConflict with exact predicate/first/current IDs. Output signature preserved and rows ordered,target domains/empty/nullary cases handled."
+    },
+    "descend": {
+      "line": 151,
+      "signature": "pub fn descend(source: &FinitePartialStructure, quotient: &SortQuotient) -> Result<FinitePartialStructure, DescentError>",
+      "obligation": "Validate entire source first,then entire quotient map. Process operations in original order with first conflict/error,then predicates in original order. Return owned target sizes and full signature/tables only on success;no partial target escapes. Generic helper phase decomposition preserves original per-row observations/error precedence for every admitted finite input."
+    },
+    "verify": {
+      "line": 159,
+      "signature": "pub fn verify(\n    source: &FinitePartialStructure,\n    quotient: &SortQuotient,\n    target: &FinitePartialStructure,\n) -> Result<(), DescentError>",
+      "obligation": "Recompute full descent against supplied current source/map and propagate its error before comparing claim. Compare ALL raw target fields (sort sizes,operation/predicate signatures/tables/order) with exact computed target;different yields ReceiptMismatch,identical Ok. Does not trust claimed validity or cache/context-free certificate;raw returned target may later mutate."
+    }
+  },
+  "invariants": [
+    "Public source/quotient records are raw but immutable for duration of borrow. Source validation establishes all sort references,output bounds,complete Cartesian row counts (including nullary1/empty0) before quotient validation establishes same sort-count,map lengths,range and surjectivity. Thus operation output-map indexing and tuple map indexing use admitted source values/coordinates. Validation errors retain original output-before-input/source-before-map/operation-before-predicate precedence.",
+    "Cardinality is explicit checked prefix admission,not mathematical product reassociation. Later zero does not erase earlier overflow;zero prefix does not hide later unknown sort. Current source function body unchanged and tested nearusizeMAX without allocating conceptual huge carriers. Source table length equals admitted cardinality;when input has size0,source row vector empty,so no modulo/divide byzero call. Nullary source/target Cartesian singleton has empty tuple,image0 and one target marker. Empty output sort still permits a nullary undefined operation valueNone;Option mapping stays lazy and never indexes empty output map.",
+    "Mixed radix induction:source row<source checked product yields each reversed decoded coordinate<size. Range-admitted quotient maps give each target digit<target base. If row exists all source bases>0;surjective map from positive source requires positive target base. Checked target product fitsusize;every positive reverse-prefix product≤full product,so stride multiplication fits. With suffix<stride,digit<base, digit*stride+suffix<base*stride;all intermediate terms/sums and final index<count bounded. Lean coordinate/mixed-digit/fit lemmas correspond to source arithmetic;no extracted machine proof.",
+    "Product of surjective coordinate maps is onto,including nullary singleton and empty tuples. Complete source row enumeration therefore reaches every target row. At each target marker,first source row retained;all later projected operation Option values or predicate bools must equal it. Stored Some((row,None)) is a seen undefined value,not unseen row. A conflicting source row proves no descended total target table on that quotient can agree with every source row;error identifies first input table/first conflicting row and first saved representative.",
+    "When all fibers constant,the target function at each tuple is uniquely determined by surjectivity. Operation projection Option.map(outputMap) reflects undefinedness (None iff sourceNone),while defined outputs may collapse legitimately;predicates preserve/reflection of false as well as true. Lean exists_descent_iff/factor_spec/unique/conflict_refuses prove exact fiber criterion;Option/reflection/composition lemmas cover partial operations and Bool inequality covers predicates. Source many-sorted row/signature/order refinement remains explicit,not generic category-law authority.",
+    "Private generic fiber helper instantiated only with Copy/Eq Optionusize/bool and concrete stack closures constructing existing typed error enums;no arbitrary caller callback/side effect. It matches exact old outerOption row logic,retains first representative on equal revisits and invokes conflict only on inequality. Per-operation/predicate helper called in old order,with same target count/tuple/output observations;finish moves exact target-index values. Therefore old and refactored results/first error fields identical for all admitted inputs,not just small native domains.",
+    "Success output has quotient target sorts with same sort-count;all operation/predicate sort IDs copied from admitted source,values mapped within targetoutput sort,lengths exact target cardinalities,so it is a valid raw structure. Replay computes this output and compares every claim field;invalid or different raw claim never used as an index. No owned enduring certificate or guarantee about later mutations of source/map/target. All own arithmetic/indexing relies on the admitted conditions above;allocator/capacity remain TCB."
+  ],
+  "failure_paths": {
+    "cardinality": "Checked left-to-right product starting1. Each referenced sort must exist even after a zero prefix;unknown sort InvalidSignature before that multiplication. checked_mul failure CardinalityOverflow at first oversized prefix,even if a later zero would annihilate final natural product. Empty inputs return1. No unchecked product allocation/index.",
+    "Structure::validate": "For each operation in order,check output sort existence first;then checked input cardinality;require exact value-table length and every Some output<source output size. None permitted even for empty output sort. Then every predicate input signature/cardinality must match Bool-table length. First typed error stops;record remains raw/mutable,no enduring admission token.",
+    "SortQuotient::validate": "Require map-count and target-size-count equal source sort-count before per-sort indexing. Each map length equals source size,entries within target range,then finite image cardinality equals target size (surjectivity because range known). Empty→empty sort valid;nonempty→empty impossible. First error InvalidSortMap,source unchanged.",
+    "SortQuotient::tuple_image": "Private valid source/table/map/count preconditions. Decode row in reversed input-sort order via mod/div source base (last coordinate fastest);map each coordinate and accumulate target mixed-radix index with target strides. Row enumeration exists only if every source input size positive;surjectivity then every target base positive. Target checked full cardinality bounds every reverse prefix/stride/product/partial sum and final index<count. Nullary row0 maps0;zero-sized input means no row call.",
+    "insert_fiber": "Private image_row within allocated target rows. Unseen outerNone stores FIRST source_row and value;seen Some(row,value) retains original first row on equal value;different value invokes private typed conflict closure once and refuses. T is concretely Option<usize> or bool,so outer absence is distinct from stored operation None. No user callback/public generic input;other successful branch does not overwrite representative.",
+    "finish_fibers": "Consume row markers into output values in target-index order;missing marker typedInvalidSortMap. Surjective coordinate maps/complete source rows imply every target row filled on valid consistent descent;empty target rows empty output. Moves values,not copied input tables. Defensive missing-marker branch not counted as non-equivalent valid-domain mutation.",
+    "descend_operation": "Checked target cardinality before row-vector allocation. Enumerate source operation rows in exact order;compute valid target tuple image and map Option output through admitted output-sort map (None callback not called). Check constancy using first-row marker;first mismatch OperationConflict with exact operation ID,left first row,right current row,left/right projected Option values. Complete rows form output operation with unchanged input/output sort signature and target-index values.",
+    "descend_predicate": "Same target cardinality/tuple grouping,but bool value unchanged (both truth and falsity reflect). First mismatch PredicateConflict with exact predicate/first/current IDs. Output signature preserved and rows ordered,target domains/empty/nullary cases handled.",
+    "descend": "Validate entire source first,then entire quotient map. Process operations in original order with first conflict/error,then predicates in original order. Return owned target sizes and full signature/tables only on success;no partial target escapes. Generic helper phase decomposition preserves original per-row observations/error precedence for every admitted finite input.",
+    "verify": "Recompute full descent against supplied current source/map and propagate its error before comparing claim. Compare ALL raw target fields (sort sizes,operation/predicate signatures/tables/order) with exact computed target;different yields ReceiptMismatch,identical Ok. Does not trust claimed validity or cache/context-free certificate;raw returned target may later mutate."
+  },
+  "trust_boundary": "Rust compiler/std safe Vec/Set/Option/usize ownership/order/allocator,private concrete Copy/Eq/closure behavior,Lean/Mathlib foundations. No unsafe invalid Vecs,MIR/extraction,total RAM/runtime or later-mutation assurance.",
+  "assurance_limits": [
+    "Contracts pending;AuthorityEffect None.",
+    "Raw structure/map/target remain mutable;replay against supplied current context only.",
+    "Checked prefix refusal not mathematical reassociation:overflow before later zero remains refused.",
+    "Formal fiber descent/Option reflection and mixed-radix bounds plus separate Rust row/guard/first-error/storage refinement;no extracted full program theorem.",
+    "Bounded exhaustive controls/designated faults not allpossiblefaults;no whole-workspace green or allocator totality."
+  ],
+  "review_evidence": [
+    {
+      "path": "code/rust/src/category_theory/finite_partial_structure.score.yaml",
+      "sha256": "b315f6bae6061939b815d944146db1decee33caa589115cb52667762f96f7106"
+    }
+  ],
+  "open_obligations": []
+}

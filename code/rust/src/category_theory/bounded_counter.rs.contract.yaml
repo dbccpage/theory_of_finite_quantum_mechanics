@@ -1,0 +1,85 @@
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/category_theory/bounded_counter.rs",
+    "sha256": "0dd87ffb60cff60ef045771a539e8b87ecafb772f7751cc2171337b5dd7fc2c0",
+    "language": "Rust"
+  },
+  "status": "source_reviewed",
+  "formal_specification": {
+    "domain": "A finite horizon r:usize and a private clipped class c with 0<=c<=r. It represents min(n,r) for a conceptual unbounded nonnegative integer n; it does not execute a wrapping native integer counter.",
+    "admission": "from_count injects its bounded input count into this quotient. try_from_clip admits exactly c<=r; a larger integer owner is responsible for supplying its correct clip. Every admitted c has the native representative n=c.",
+    "transition": "At r=0 every event refuses ContextExhausted. Otherwise r decreases by one; increment is n->n+1, decrement refuses exactly n=0 and otherwise n->n-1. Successful reports are the clip at the new horizon.",
+    "observation": "Read the word left to right, stopping at the first typed refusal. An unexecuted long suffix cannot replace an earlier GuardRefusal with ContextExhausted.",
+    "separation": "At a shared horizon equal classes return None. Distinct classes return k=min(c,d)+1<=r, the minimal possible distinguishing continuation length for future legality. k decrements distinguish them; all shorter words are native-guard legal on both. Different horizons return DifferentDepths.",
+    "limits": "The conceptual r+1 class count is not allocated or computed as a machine-size integer. No unrestricted-continuation congruence or physical/native-state custody is claimed."
+  },
+  "operations": {
+    "CounterEvent": {
+      "obligation": "Closed increment/decrement alphabet."
+    },
+    "CounterBoundary": {
+      "obligation": "Exactly native guard refusal or exhausted context budget."
+    },
+    "CounterReportError": {
+      "obligation": "Exactly invalid clip or mismatched comparison horizons."
+    },
+    "CounterReport": {
+      "obligation": "Private Copy value carrying horizon and admitted clipped class."
+    },
+    "from_count": {
+      "obligation": "min(count,r) admits the invariant for every bounded input count."
+    },
+    "try_from_clip": {
+      "obligation": "Reject c>r before constructing the value."
+    },
+    "remaining": {
+      "obligation": "Read the private horizon without mutable exposure."
+    },
+    "clipped": {
+      "obligation": "Read the private admitted class without mutable exposure."
+    },
+    "advance": {
+      "obligation": "Budget guard, native zero/decrement guard, range-safe increment and clipped transition."
+    },
+    "observe": {
+      "obligation": "Standard Result::try_fold preserves order and first-error payload."
+    },
+    "separating_removals": {
+      "obligation": "Same-depth guard, lazy None for equality, otherwise a bounded positive minimal decrement length."
+    }
+  },
+  "invariants": [
+    "clip_bound proves c<=r. Private fields, admitted constructors and Copy-only observation prevent safe callers from injecting c>r. There is no Deserialize implementation or mutable field/getter.",
+    "For r>0, guard_exact proves c=0 iff n=0. increment_step and decrement_step prove the clipped transition identities over Nat, independent of fixed-width arithmetic. The checked budget subtraction rules out r=0 before computing a successor report.",
+    "In the increment addition branch c<r-1, increment_branch_bound gives c+1<=r-1<=usize::MAX; the other branch returns r-1 without adding. Decrement uses checked_sub and min(new_budget). Every successful branch therefore preserves c<=r.",
+    "For distinct c,d<=r, separator_bound gives min(c,d)+1<=r; the arithmetic cannot overflow. Equality uses lazy bool::then, so MAX+1 is never evaluated for equal MAX classes.",
+    "A pure decrement prefix of length min(c,d)+1 reaches zero then refuses in the smaller native class and remains legal in the larger class. decrement_separator supplies the necessary bounds; short_words_legal proves every shorter event word is native-guard legal in both. Such words fit the shared horizon, so none can distinguish by budget refusal.",
+    "Left-to-right standard iterator/Result semantics compose the per-step invariant without mutation or partial state output after a refusal. Namespace/package identity is irrelevant to these production bodies: they use only their private value, closed enums, std operations and a borrowed slice."
+  ],
+  "failure_paths": {
+    "invalid_clip": "ClipExceedsDepth before any CounterReport construction.",
+    "zero_budget": "ContextExhausted before processing either event.",
+    "zero_decrement": "GuardRefusal at the first decrement of a zero class with positive budget.",
+    "comparison": "DifferentDepths before any separator arithmetic.",
+    "error_commit": "Result::Err returns no successor report. The original Copy input and external source owner remain unchanged."
+  },
+  "trust_boundary": {
+    "runtime": "Pinned safe Rust compiler/runtime, usize checked_sub/min, lazy bool::then and standard Result iterator contracts. No allocation, unsafe, user callback, serialization or production recursion occurs.",
+    "proof": "Eight checked Lean clipping/guard/transition/bound/separation/native-word lemmas under a clean pinned Mathlib. These are mathematical models plus source correspondence, not Rust/MIR extraction or crash-freedom verification.",
+    "owner": "try_from_clip checks its own class domain, not the accuracy of an unseen owner count. An owner mapping a BigInt must prove the clip relation before relying on the bounded answer."
+  },
+  "assurance_limits": [
+    "The delivered capability is L3 bounded-domain quotient computation; no L5 promotion based on mathematical terminology.",
+    "The checked model is not mechanized Rust/MIR refinement, allocator/crash-freedom proof, cross-repository authorship attestation or a claim about a whole native WDP owner execution.",
+    "Contracts remain pending, and no whole-directory A or unrestricted-continuation result is inferred."
+  ],
+  "review_evidence": [
+    {
+      "path": "code/rust/src/category_theory/bounded_counter.score.yaml",
+      "sha256": "682848434e716ad05f7b53583cb6261154e7dbab0b8fb74f973bb8898781073c"
+    }
+  ],
+  "open_obligations": []
+}

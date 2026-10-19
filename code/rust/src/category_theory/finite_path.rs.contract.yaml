@@ -1,0 +1,186 @@
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/category_theory/finite_path.rs",
+    "sha256": "5ba9812cd98039414d3fa4338f0d3916c3d04f1472ca6652de3c2173838fb1e9",
+    "language": "Rust"
+  },
+  "status": "source_reviewed",
+  "formal_specification": {
+    "profile": "Exact: finite vertex/generator/path indices, chronological edge words and an owned admitted category; no approximation.",
+    "domain": "Nonempty acyclic multigraphs with V,E<=64 and complete path count<=min(caller max,64); typed refusal otherwise.",
+    "behavior": [
+      "Exact refusal prefix plus standard Debug variant;all eight public unit errors display without additional semantic checking. Standard formatter allocation/failure TCB.",
+      "Borrowed immutable path returns admitted start vertex ID.",
+      "Return admitted end vertex ID.",
+      "Borrow exact chronological edge-ID word;empty word is identity at its source. Edge IDs refer to owned original edge inventory and distinguish parallel edges.",
+      "Ordered admission:zerovertices EmptyGraph;vertexcount>64 OR edgecount>64 GraphBudget;any endpoint>=vertices InvalidVertex. Only then allocate outgoing/indegree and index admitted vertices. Outgoing edge IDs preserve input index order;counts each incoming edge including parallel edges. Ensure acyclic before returning graph index,so Cycle precedes path-budget refusal.",
+      "Private typed outgoing/indegree graph preconditions. Kahn ready set contains residual indegree0 vertices;pop smallest,visit once,process every outgoing edge once,decrement remaining target indegree and queue newlyzero target. Decrements nonnegative,counts<=64. All vertices popped iff acyclic;otherwise Cycle. Success pop order gives strict rank increasing on every edge.",
+      "Private admitted DAG/outgoing and budget<=64. If vertices>budget,PathBudget before identity allocation. Seed identities at indices exactlyvertices,then BFS each path prefix and its ordered outgoing edge IDs. Check count==budget BEFORE every child append. Child word copies necessary owned prefix and appends one actual generator;source preserved,target actualedge.target. All counts<=budget;success only after frontier exhausted and hence complete,never truncated. Distinct source/edge words retained including parallel edges.",
+      "Private complete admitted path inventory starts with vertex identities. Cache required v{id}/p{id} labels once. Add one identity pervertex in vertex order,then all nonidentity arrows with exact outer boundaries/path index labels. Category name exact constant. Returns raw category+path-name vector for same indexed inventory;does not itself certify laws.",
+      "Borrow every unique (path.source,path.edges slice) with its original index;sort lexical tuple keys once. No word/vector clones. DAG enumeration yields unique keys;unstable tie order irrelevant. Returned rows lifetime-bound to immutable original paths.",
+      "Binary search exact borrowed source/word key;return original index on found row or typedMissingComposite. get guard handles any impossible bad search index without panic. Private constructor queries complete composable words;arbitrary direct fixture unknown query intentionally refuses.",
+      "Private path/name inventory consistent. Allocate requiredP² None matrix,one borrowed lookup and ONE reusable word scratch outside nested loops. Skip exactly boundary-mismatched pairs. For composable p thenq,clear scratch,append chronological p.edges thenq.edges,lookup same source;closure gives exact compositek. Store both matrix[i][j]=k and declared category composition(p{i},p{j})=p{k}. Cached names avoid inner-loop formatting;only required owned category table keys/value copies remain.",
+      "Graph admission/cycle check first;enumerate at min(callermax,64);build exact same raw category and indexed composition;call actual ValidatedFiniteCategory::try_new and refuse CategoryValidation on failure. Only then expose owned immutable vertices,originaledges,completepaths,matrix and admitted category. No unchecked/default/deserialized constructor. Public signature/error precedence preserved.",
+      "Return exact admitted original vertex count,not path cardinality.",
+      "Borrow exact original ordered generator inventory;caller cannot mutate owned graph through shared slice.",
+      "Borrow full admitted complete path inventory in BFS order,not a truncatedprefix. Entries private immutable paths.",
+      "Borrow owned actual admitted category certificate for this exact graph/path/composition context;no mutable access or name-only context substitution.",
+      "Checked lookup of pathindex;out ofrange UnknownPath,no fallbackidentity or unsafeindex.",
+      "Checked first and second matrix lookup;unknown either UnknownPath;known pairs yieldSome exact concatenation index iff matching boundaries,otherwiseNone. None never means missing closure;private completed matrix shared with held category certificate.",
+      "Unknown edge>=owned edgecount UnknownPath first. Otherwise find unique one-edge word [edge] in full inventory;returnindex. DefensiveMissingComposite unreachable for admittedgraphgenerator. Parallel same-boundary edges retain distinct IDs/paths.",
+      "Required counts Vecvertexcount initialized0,incrementonce percompletepath at valid immutable source;counts/sum<=P<=64,so no usizeoverflow. Counts actualpaths includingoneidentityeach,not edge degree."
+    ],
+    "capability": "L5: an immutable complete free-path construction owns its graph, paths, composition and actual category certificate, matching the Mathlib path category. The universal property is mathematical; no new Rust lift API is claimed."
+  },
+  "operations": {
+    "PathError::fmt": {
+      "line": 28,
+      "signature": "fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result",
+      "obligation": "Exact refusal prefix plus standard Debug variant;all eight public unit errors display without additional semantic checking. Standard formatter allocation/failure TCB."
+    },
+    "FinitePath::source": {
+      "line": 41,
+      "signature": "pub fn source(&self) -> usize",
+      "obligation": "Borrowed immutable path returns admitted start vertex ID."
+    },
+    "FinitePath::target": {
+      "line": 44,
+      "signature": "pub fn target(&self) -> usize",
+      "obligation": "Return admitted end vertex ID."
+    },
+    "FinitePath::edges": {
+      "line": 48,
+      "signature": "pub fn edges(&self) -> &[usize]",
+      "obligation": "Borrow exact chronological edge-ID word;empty word is identity at its source. Edge IDs refer to owned original edge inventory and distinguish parallel edges."
+    },
+    "checked_outgoing": {
+      "line": 61,
+      "signature": "fn checked_outgoing(vertices: usize, edges: &[PathEdge]) -> Result<Vec<Vec<usize>>, PathError>",
+      "obligation": "Ordered admission:zerovertices EmptyGraph;vertexcount>64 OR edgecount>64 GraphBudget;any endpoint>=vertices InvalidVertex. Only then allocate outgoing/indegree and index admitted vertices. Outgoing edge IDs preserve input index order;counts each incoming edge including parallel edges. Ensure acyclic before returning graph index,so Cycle precedes path-budget refusal."
+    },
+    "ensure_acyclic": {
+      "line": 75,
+      "signature": "fn ensure_acyclic(edges: &[PathEdge], outgoing: &[Vec<usize>], mut indegree: Vec<usize>) -> Result<(), PathError>",
+      "obligation": "Private typed outgoing/indegree graph preconditions. Kahn ready set contains residual indegree0 vertices;pop smallest,visit once,process every outgoing edge once,decrement remaining target indegree and queue newlyzero target. Decrements nonnegative,counts<=64. All vertices popped iff acyclic;otherwise Cycle. Success pop order gives strict rank increasing on every edge."
+    },
+    "enumerate_paths": {
+      "line": 90,
+      "signature": "fn enumerate_paths(vertices: usize, edges: &[PathEdge], outgoing: &[Vec<usize>], budget: usize) -> Result<Vec<FinitePath>, PathError>",
+      "obligation": "Private admitted DAG/outgoing and budget<=64. If vertices>budget,PathBudget before identity allocation. Seed identities at indices exactlyvertices,then BFS each path prefix and its ordered outgoing edge IDs. Check count==budget BEFORE every child append. Child word copies necessary owned prefix and appends one actual generator;source preserved,target actualedge.target. All counts<=budget;success only after frontier exhausted and hence complete,never truncated. Distinct source/edge words retained including parallel edges."
+    },
+    "declared_path_category": {
+      "line": 106,
+      "signature": "fn declared_path_category(vertices: usize, paths: &[FinitePath]) -> (DeclaredFiniteCategory, Vec<String>)",
+      "obligation": "Private complete admitted path inventory starts with vertex identities. Cache required v{id}/p{id} labels once. Add one identity pervertex in vertex order,then all nonidentity arrows with exact outer boundaries/path index labels. Category name exact constant. Returns raw category+path-name vector for same indexed inventory;does not itself certify laws."
+    },
+    "PathLookup::new": {
+      "line": 119,
+      "signature": "fn new(paths: &'a [FinitePath]) -> Self",
+      "obligation": "Borrow every unique (path.source,path.edges slice) with its original index;sort lexical tuple keys once. No word/vector clones. DAG enumeration yields unique keys;unstable tie order irrelevant. Returned rows lifetime-bound to immutable original paths."
+    },
+    "PathLookup::find": {
+      "line": 125,
+      "signature": "fn find(&self, source: usize, word: &[usize]) -> Result<usize, PathError>",
+      "obligation": "Binary search exact borrowed source/word key;return original index on found row or typedMissingComposite. get guard handles any impossible bad search index without panic. Private constructor queries complete composable words;arbitrary direct fixture unknown query intentionally refuses."
+    },
+    "compose_paths": {
+      "line": 131,
+      "signature": "fn compose_paths(paths: &[FinitePath], category: &mut DeclaredFiniteCategory, names: &[String]) -> Result<Vec<Vec<Option<usize>>>, PathError>",
+      "obligation": "Private path/name inventory consistent. Allocate requiredP² None matrix,one borrowed lookup and ONE reusable word scratch outside nested loops. Skip exactly boundary-mismatched pairs. For composable p thenq,clear scratch,append chronological p.edges thenq.edges,lookup same source;closure gives exact compositek. Store both matrix[i][j]=k and declared category composition(p{i},p{j})=p{k}. Cached names avoid inner-loop formatting;only required owned category table keys/value copies remain."
+    },
+    "FinitePathCategory::new": {
+      "line": 150,
+      "signature": "pub fn new(vertices: usize, edges: Vec<PathEdge>, max_paths: usize) -> Result<Self, PathError>",
+      "obligation": "Graph admission/cycle check first;enumerate at min(callermax,64);build exact same raw category and indexed composition;call actual ValidatedFiniteCategory::try_new and refuse CategoryValidation on failure. Only then expose owned immutable vertices,originaledges,completepaths,matrix and admitted category. No unchecked/default/deserialized constructor. Public signature/error precedence preserved."
+    },
+    "FinitePathCategory::vertices": {
+      "line": 165,
+      "signature": "pub fn vertices(&self) -> usize",
+      "obligation": "Return exact admitted original vertex count,not path cardinality."
+    },
+    "FinitePathCategory::edges": {
+      "line": 168,
+      "signature": "pub fn edges(&self) -> &[PathEdge]",
+      "obligation": "Borrow exact original ordered generator inventory;caller cannot mutate owned graph through shared slice."
+    },
+    "FinitePathCategory::paths": {
+      "line": 171,
+      "signature": "pub fn paths(&self) -> &[FinitePath]",
+      "obligation": "Borrow full admitted complete path inventory in BFS order,not a truncatedprefix. Entries private immutable paths."
+    },
+    "FinitePathCategory::category": {
+      "line": 174,
+      "signature": "pub fn category(&self) -> &ValidatedFiniteCategory",
+      "obligation": "Borrow owned actual admitted category certificate for this exact graph/path/composition context;no mutable access or name-only context substitution."
+    },
+    "FinitePathCategory::path": {
+      "line": 177,
+      "signature": "pub fn path(&self, index: usize) -> Result<&FinitePath, PathError>",
+      "obligation": "Checked lookup of pathindex;out ofrange UnknownPath,no fallbackidentity or unsafeindex."
+    },
+    "FinitePathCategory::compose": {
+      "line": 181,
+      "signature": "pub fn compose(&self, first: usize, second: usize) -> Result<Option<usize>, PathError>",
+      "obligation": "Checked first and second matrix lookup;unknown either UnknownPath;known pairs yieldSome exact concatenation index iff matching boundaries,otherwiseNone. None never means missing closure;private completed matrix shared with held category certificate."
+    },
+    "FinitePathCategory::edge_path": {
+      "line": 188,
+      "signature": "pub fn edge_path(&self, edge: usize) -> Result<usize, PathError>",
+      "obligation": "Unknown edge>=owned edgecount UnknownPath first. Otherwise find unique one-edge word [edge] in full inventory;returnindex. DefensiveMissingComposite unreachable for admittedgraphgenerator. Parallel same-boundary edges retain distinct IDs/paths."
+    },
+    "FinitePathCategory::origin_path_counts": {
+      "line": 197,
+      "signature": "pub fn origin_path_counts(&self) -> Vec<usize>",
+      "obligation": "Required counts Vecvertexcount initialized0,incrementonce percompletepath at valid immutable source;counts/sum<=P<=64,so no usizeoverflow. Counts actualpaths includingoneidentityeach,not edge degree."
+    }
+  },
+  "invariants": [
+    "Graph admission establishes 1<=V<=64, E<=64 and valid endpoints. Outgoing lists contain original edge indices in input order; indegree counts every incoming edge, including parallel edges. In Kahn processing, residual indegree counts unprocessed incoming edges. A vertex becomes ready once, and each edge is removed once, so decrements cannot underflow and visited<=V. A successful pop order gives a strictly increasing rank on every edge. A nonempty residual finite graph with no ready vertex contains a cycle. Independent Floyd reachability checks this result.",
+    "Strict rank gives path length<V (Lean rank_length/rank_bound/rank_no_cycle). Enumeration starts with every vertex identity and extends every discovered prefix by each matching outgoing edge. Induction on word length proves completeness on successful exhaustion; unique prefix and final edge ID prove uniqueness of each (source,word). Parallel edges remain distinct generators. BFS order is length, then source and edge-word order. The count starts at V<=budget and is checked before every push, so count<=budget<=64 throughout. Refusal exposes no truncated category.",
+    "The mathematical graph has finite vertex IDs and typed generator IDs with fixed boundaries. Rust chronological words refine Quiver.Path.nil/cons. A source and generator word determine a unique typed path and end vertex. The Lean edgeWord function records chronological labels, proves concatenation and length, and connects to the actual Mathlib path category. This is a source/native representation argument, not extracted Rust code or an unbounded graph claim.",
+    "Borrowed lookup has the same usize/word lexicographic key equality as the original owned BTreeMap. Unique sorted keys retain original path indices. Composable concatenation is a valid DAG path, and complete enumeration guarantees lookup succeeds. Clearing one scratch vector and appending both words gives the original concatenation. Cached v/p labels have exactly the original values. Allocation order changes, but there are no user callbacks or mutable inputs whose successful result depends on that order.",
+    "Identity index v labels arrow p{v} at object v{v}; every other path has its exact outer boundary. The declared composition domain consists of exactly the compatible pairs, with result the unique concatenated word. Empty words give both units, and list append gives associativity. The actual finite-category validator independently checks the declaration before ownership is exposed. Matrix and declared cells use the same i,j,k, so the index API agrees with the held certificate. Missing closure or validation failure returns a typed error.",
+    "FinitePathCategory and FinitePath fields are private. There is no unchecked/default/Deserialize constructor or mutable accessor. The owner retains the graph, complete paths, composition matrix and actual ValidatedFiniteCategory. Shared getters and Clone preserve this context; consuming a separately cloned certificate cannot mutate the owner. Checked public queries refuse unknown indices. None composition means noncomposability. Counts and all private indices are bounded by V,E,P<=64.",
+    "Mathlib Paths and lift_unique establish the mathematical free-category universal property. The finite DAG representation above connects the delivered construction to that theorem. There is no new Rust functor-lift API. L5 describes the owned certificate architecture and theorem-matching abstraction, not a module title or size. MAX_PATHS is an execution cap; acyclicity and strict rank provide mathematical finiteness.",
+    "All phases preserve the original public constructor result and error precedence: graph/cycle admission and prefix BFS are unchanged; borrowed lookup, cached labels and scratch concatenation produce the same words, indices, names and compositions. This preservation assumes standard allocation succeeds, not that OOM is a typed PathError. Unreachable defensive error remaps were not counted as non-equivalent public-domain faults."
+  ],
+  "failure_paths": {
+    "PathError::fmt": "Exact refusal prefix plus standard Debug variant;all eight public unit errors display without additional semantic checking. Standard formatter allocation/failure TCB.",
+    "FinitePath::source": "Borrowed immutable path returns admitted start vertex ID.",
+    "FinitePath::target": "Return admitted end vertex ID.",
+    "FinitePath::edges": "Borrow exact chronological edge-ID word;empty word is identity at its source. Edge IDs refer to owned original edge inventory and distinguish parallel edges.",
+    "checked_outgoing": "Ordered admission:zerovertices EmptyGraph;vertexcount>64 OR edgecount>64 GraphBudget;any endpoint>=vertices InvalidVertex. Only then allocate outgoing/indegree and index admitted vertices. Outgoing edge IDs preserve input index order;counts each incoming edge including parallel edges. Ensure acyclic before returning graph index,so Cycle precedes path-budget refusal.",
+    "ensure_acyclic": "Private typed outgoing/indegree graph preconditions. Kahn ready set contains residual indegree0 vertices;pop smallest,visit once,process every outgoing edge once,decrement remaining target indegree and queue newlyzero target. Decrements nonnegative,counts<=64. All vertices popped iff acyclic;otherwise Cycle. Success pop order gives strict rank increasing on every edge.",
+    "enumerate_paths": "Private admitted DAG/outgoing and budget<=64. If vertices>budget,PathBudget before identity allocation. Seed identities at indices exactlyvertices,then BFS each path prefix and its ordered outgoing edge IDs. Check count==budget BEFORE every child append. Child word copies necessary owned prefix and appends one actual generator;source preserved,target actualedge.target. All counts<=budget;success only after frontier exhausted and hence complete,never truncated. Distinct source/edge words retained including parallel edges.",
+    "declared_path_category": "Private complete admitted path inventory starts with vertex identities. Cache required v{id}/p{id} labels once. Add one identity pervertex in vertex order,then all nonidentity arrows with exact outer boundaries/path index labels. Category name exact constant. Returns raw category+path-name vector for same indexed inventory;does not itself certify laws.",
+    "PathLookup::new": "Borrow every unique (path.source,path.edges slice) with its original index;sort lexical tuple keys once. No word/vector clones. DAG enumeration yields unique keys;unstable tie order irrelevant. Returned rows lifetime-bound to immutable original paths.",
+    "PathLookup::find": "Binary search exact borrowed source/word key;return original index on found row or typedMissingComposite. get guard handles any impossible bad search index without panic. Private constructor queries complete composable words;arbitrary direct fixture unknown query intentionally refuses.",
+    "compose_paths": "Private path/name inventory consistent. Allocate requiredP² None matrix,one borrowed lookup and ONE reusable word scratch outside nested loops. Skip exactly boundary-mismatched pairs. For composable p thenq,clear scratch,append chronological p.edges thenq.edges,lookup same source;closure gives exact compositek. Store both matrix[i][j]=k and declared category composition(p{i},p{j})=p{k}. Cached names avoid inner-loop formatting;only required owned category table keys/value copies remain.",
+    "FinitePathCategory::new": "Graph admission/cycle check first;enumerate at min(callermax,64);build exact same raw category and indexed composition;call actual ValidatedFiniteCategory::try_new and refuse CategoryValidation on failure. Only then expose owned immutable vertices,originaledges,completepaths,matrix and admitted category. No unchecked/default/deserialized constructor. Public signature/error precedence preserved.",
+    "FinitePathCategory::vertices": "Return exact admitted original vertex count,not path cardinality.",
+    "FinitePathCategory::edges": "Borrow exact original ordered generator inventory;caller cannot mutate owned graph through shared slice.",
+    "FinitePathCategory::paths": "Borrow full admitted complete path inventory in BFS order,not a truncatedprefix. Entries private immutable paths.",
+    "FinitePathCategory::category": "Borrow owned actual admitted category certificate for this exact graph/path/composition context;no mutable access or name-only context substitution.",
+    "FinitePathCategory::path": "Checked lookup of pathindex;out ofrange UnknownPath,no fallbackidentity or unsafeindex.",
+    "FinitePathCategory::compose": "Checked first and second matrix lookup;unknown either UnknownPath;known pairs yieldSome exact concatenation index iff matching boundaries,otherwiseNone. None never means missing closure;private completed matrix shared with held category certificate.",
+    "FinitePathCategory::edge_path": "Unknown edge>=owned edgecount UnknownPath first. Otherwise find unique one-edge word [edge] in full inventory;returnindex. DefensiveMissingComposite unreachable for admittedgraphgenerator. Parallel same-boundary edges retain distinct IDs/paths.",
+    "FinitePathCategory::origin_path_counts": "Required counts Vecvertexcount initialized0,incrementonce percompletepath at valid immutable source;counts/sum<=P<=64,so no usizeoverflow. Counts actualpaths includingoneidentityeach,not edge degree."
+  },
+  "trust_boundary": "Rustcompiler/stdVec/Set/sort/binarysearch/format/allocator,safeownedaddressability,actualseparatelyreviewedcategoryadmissionproviders,Lean/Mathlibfoundationaxioms. NoRustextraction/MIR,uncheckedunsafeinput,globalresourceavailabilityorphysicalsemantics.",
+  "assurance_limits": [
+    "Contractspending;AuthorityEffectNone.",
+    "Onlyboundednonemptyacyclicgraphs;cycles/resourceexcessrefused,nottruncatedsuccess.",
+    "Formalactualpathcategory/lift/rank/wordlawsplusseparateRustKahn/completeenumeration/table/certificaterefinement;noextractedRusttheorem.",
+    "No new RustliftAPI;mathematicaluniversalpropertydoesnotinventone.",
+    "Nativefinitecorpus/designatedfaultsnotallpossibleRustfaults;nopackageGlobalGreen/allocatororlatencyguarantee."
+  ],
+  "review_evidence": [
+    {
+      "path": "code/rust/src/category_theory/finite_path.score.yaml",
+      "sha256": "6dcd5b463953ee5816d42c1c026b6a65c62fcb43ff9f814128fb6adc4f438f1a"
+    }
+  ],
+  "open_obligations": []
+}

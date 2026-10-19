@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/category_theory/bridges.rs",
+    "sha256": "d2efb4bdbdd232832b12a6a835abcb2fd858dff3382ae197e2d1052bd50c8a75",
+    "language": "Rust"
+  },
+  "status": "source_reviewed",
+  "formal_specification": {
+    "domain": "StructurePreservingMap is a map signature with associated domain/codomain and no law checker. BridgeEvidence::new copies three unrestricted labels and starts an empty declared-law inventory. preserve_law appends one exact string; blank and duplicate labels are preserved in order.",
+    "failure": "Only the exact documented Option/static error or ordered missing-label diagnostics. Raw constructors permit unspecified/blank labels and declarations intentionally; their results do not grant category laws, proof, governance authority or actual contracts.",
+    "representation": "Owned safe Rust String/Vec and, where present, arbitrary precision raw BigRational; no floats, narrowing, saturating arithmetic or normalization. Caller Into implementations and memory availability remain explicit runtime preconditions."
+  },
+  "operations": {
+    "BridgeEvidence::new": {
+      "scope": "Raw record operation or abstract trait signature only; not a mathematical law proof.",
+      "signature": "pub fn new(source: &str, target: &str, name: &str) -> Self"
+    },
+    "BridgeEvidence::preserve_law": {
+      "scope": "Raw record operation or abstract trait signature only; not a mathematical law proof.",
+      "signature": "pub fn preserve_law(&mut self, law: &str)"
+    },
+    "StructurePreservingMap::map": {
+      "scope": "Raw record operation or abstract trait signature only; not a mathematical law proof.",
+      "signature": "fn map(&self, x: &Self::Domain) -> Self::Codomain"
+    }
+  },
+  "invariants": [
+    "Construction moves three owned String values; append preserves each previous list prefix and adds the supplied label at the tail. No validation, proof token, authority or categorical behavior follows. Clone owns its list independently. The method exposes no indexing or user callback beyond std conversion."
+  ],
+  "failure_paths": {
+    "entry_points": "Construction moves three owned String values; append preserves each previous list prefix and adds the supplied label at the tail. No validation, proof token, authority or categorical behavior follows. Clone owns its list independently. The method exposes no indexing or user callback beyond std conversion.",
+    "runtime": "Standard safe Rust ownership, String formatting, clone/conversion, Vec and dependency operations are trusted as documented. Arbitrary caller Into behavior or allocator exhaustion is not a mathematical counterexample or promised recoverable error. No unchecked index, unsafe block, hidden catch-all success or physical authority effect is added."
+  },
+  "trust_boundary": {
+    "formal": "Eight kernel-checked RootRecords guard/report/count/mass lemmas. Source correspondence is reviewed explicitly, not compiler-extracted Rust/MIR; copy-only constructors are justified by their complete field/body maps. No law of categories, HoTT, zeta or density operators follows.",
+    "runtime": "Pinned compiler/std, num-rational/num-bigint/num-traits and actual production peer providers. Derived traits are std/dependency protocols, not evidence admission. Candidate tests execute in actual crate scopes without replacing providers or widening visibility."
+  },
+  "assurance_limits": [
+    "Honest L1 static table or L2 records/interfaces, not foundational category architecture by title.",
+    "No contracts attached, no A+, registry/authority validation, alternate compiler, allocator totality, Rust/MIR equivalence, workspace-wide green, category/functor laws or semantic model certification."
+  ],
+  "review_evidence": [
+    {
+      "path": "code/rust/src/category_theory/bridges.score.yaml",
+      "sha256": "8b496f76a7585139a43670cb90be8cbdfb313e56fffbcdec5ab382478f23cacf"
+    }
+  ],
+  "open_obligations": []
+}

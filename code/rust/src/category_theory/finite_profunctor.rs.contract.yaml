@@ -1,0 +1,163 @@
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/category_theory/finite_profunctor.rs",
+    "sha256": "e9a01371eaef30bac523a632c17fe6e76737c656fb4c1f0844cbce4114fc6ea0",
+    "language": "Rust"
+  },
+  "status": "source_reviewed",
+  "formal_specification": {
+    "profile": "Exact retained:literal names/list positions,usize safe-collection counts and admitted exact rational weights.",
+    "domain": "Raw finite named multiset/action metadata with no action/category admission;private weight map admits defined nonnegative values.",
+    "behavior": [
+      "Store exact name/source/target and empty relation/action maps;raw names,not category admission.",
+      "Append exactly one owned literal witness to exact (source,target) key,creating vector if missing. Preserve multiplicity/order and other fields. Fixed public query uses required owned map key;composition no longer invokes this allocating wrapper per product.",
+      "Return exact borrowed vector slice for literal owned tuple lookup,or borrowed empty slice if absent;no normalization or copy of payloads. Fixed public query allocates two temporary String keys outside any own loop.",
+      "True iff exact hom_set slice nonempty. Empty stored entry and absent entry both false.",
+      "Sum stored Vec lengths,including duplicate/empty witnesses,not distinct names. Domain is safely owned valid Rust BTreeMap/Vec/String storage. Aggregate nonzero-sized live String element counts fit addressable usize range under std ownership/allocation invariants;not a theorem about arbitrary counterfeit lengths/unsafe overlapping buffers.",
+      "Store exact name/source/target and empty private weighted map. No action/context law admission.",
+      "Before any insertion,refuse denominator<=0 OR negative rational value with exact error text. Denominator guard precedes comparison,so undefined raw denominator never reaches arithmetic comparison. Positive-denominator,nonnegative raw weights including zero/nonreduced fractions accepted unchanged. Success moves one weight and required owned key/witness into private vector;error preserves map.",
+      "Borrow exact private weighted collection immutably;no mutable accessor or raw constructor bypass. Standard Clone preserves admitted entries.",
+      "Query exact literal pair;sum all admitted weights,including duplicates/zero,or exact rational zero for absent. Private map admission ensures each denominator positive and value nonnegative;BigRational exact add/normalization trusted. Rational bit lengths/arithmetic/allocator costs are not bounded by entry count alone.",
+      "Build private borrowed tuple-str→original-slice view from every raw relation entry,including empty entries. Bijective String/str key order/equality correspondence;payloads and labels not cloned. One view per input per whole composition.",
+      "Borrow exact original slice by two borrowed str components,or static empty slice;no owned tuple/String allocation per lookup.",
+      "For supplied middle rows in exact order (duplicates retained),lookup left/right slices once per row,then append required textual descriptors in left-major/right-minor order. Only actual output descriptor strings allocate inside innermost loop;Vec grows as output. Missing/empty factors yield no output. Equal descriptor text remains separate list positions;encoding injectivity not assumed.",
+      "Refuse mismatched middle category-name strings first. On success own result name/source=p.source/target=q.target,empty action maps. Build two borrowed views and sorted borrowed endpoint sets once. For each endpoint pair collect helper witness group;insert only nonempty group using two owned output keys once and move its Vec. Input actions ignored,metadata names unvalidated and no general coend/action laws admitted.",
+      "Consume borrowed-key grouped output,copy each final key label once and move witness vector unchanged. No payload clone,ordering change or retention of input borrows.",
+      "From arbitrary supplied functor object map,scan actual target raw morphism values in map order;for source==image append required morphism.name to (a,morphism.target). Borrow keys while grouping then own each final key once. Preserve duplicates and exact order,even if category names/maps are unadmitted or map keys differ from payload names. Result actions empty,contexts copied from raw functor.",
+      "Analogous raw target==image scan;append morphism.name at (morphism.source,a),with source/target category strings reversed. Same grouping/move/order/unchecked-context boundaries;not certified conjoint laws.",
+      "Ordered boundary-only report:source name mismatch,target name mismatch,then each sorted relation key missing source object before missing target object. Check even empty stored entries;ignore action maps/witness text and do not admit category/functor/action laws. All violations exact Other(ProfunctorBoundary),locations/messages,Errorseverity;report target is prof.name."
+    ],
+    "capability": "L3 bounded finite multiset algorithm;no L5 owned category/functor/profunctor context or universal coend certificate."
+  },
+  "operations": {
+    "Relational::new": {
+      "line": 38,
+      "signature": "pub fn new(name: &str, source: &str, target: &str) -> Self",
+      "obligation": "Store exact name/source/target and empty relation/action maps;raw names,not category admission."
+    },
+    "Relational::add_witness": {
+      "line": 50,
+      "signature": "pub fn add_witness(&mut self, source_ob: &str, target_ob: &str, witness: &str)",
+      "obligation": "Append exactly one owned literal witness to exact (source,target) key,creating vector if missing. Preserve multiplicity/order and other fields. Fixed public query uses required owned map key;composition no longer invokes this allocating wrapper per product."
+    },
+    "Relational::hom_set": {
+      "line": 58,
+      "signature": "pub fn hom_set(&self, source_ob: &str, target_ob: &str) -> &[String]",
+      "obligation": "Return exact borrowed vector slice for literal owned tuple lookup,or borrowed empty slice if absent;no normalization or copy of payloads. Fixed public query allocates two temporary String keys outside any own loop."
+    },
+    "Relational::is_related": {
+      "line": 66,
+      "signature": "pub fn is_related(&self, source_ob: &str, target_ob: &str) -> bool",
+      "obligation": "True iff exact hom_set slice nonempty. Empty stored entry and absent entry both false."
+    },
+    "Relational::total_witnesses": {
+      "line": 71,
+      "signature": "pub fn total_witnesses(&self) -> usize",
+      "obligation": "Sum stored Vec lengths,including duplicate/empty witnesses,not distinct names. Domain is safely owned valid Rust BTreeMap/Vec/String storage. Aggregate nonzero-sized live String element counts fit addressable usize range under std ownership/allocation invariants;not a theorem about arbitrary counterfeit lengths/unsafe overlapping buffers."
+    },
+    "Weighted::new": {
+      "line": 93,
+      "signature": "pub fn new(name: &str, source: &str, target: &str) -> Self",
+      "obligation": "Store exact name/source/target and empty private weighted map. No action/context law admission."
+    },
+    "Weighted::add_weighted_witness": {
+      "line": 102,
+      "signature": "pub fn add_weighted_witness(\n        &mut self,\n        source_ob: &str,\n        target_ob: &str,\n        witness: &str,\n        weight: BigRational,\n    ) -> Result<(), String>",
+      "obligation": "Before any insertion,refuse denominator<=0 OR negative rational value with exact error text. Denominator guard precedes comparison,so undefined raw denominator never reaches arithmetic comparison. Positive-denominator,nonnegative raw weights including zero/nonreduced fractions accepted unchanged. Success moves one weight and required owned key/witness into private vector;error preserves map."
+    },
+    "Weighted::weighted_relations": {
+      "line": 125,
+      "signature": "pub fn weighted_relations(&self) -> &BTreeMap<(String, String), Vec<(String, BigRational)>>",
+      "obligation": "Borrow exact private weighted collection immutably;no mutable accessor or raw constructor bypass. Standard Clone preserves admitted entries."
+    },
+    "Weighted::total_weight": {
+      "line": 129,
+      "signature": "pub fn total_weight(&self, source_ob: &str, target_ob: &str) -> BigRational",
+      "obligation": "Query exact literal pair;sum all admitted weights,including duplicates/zero,or exact rational zero for absent. Private map admission ensures each denominator positive and value nonnegative;BigRational exact add/normalization trusted. Rational bit lengths/arithmetic/allocator costs are not bounded by entry count alone."
+    },
+    "RelationView::new": {
+      "line": 146,
+      "signature": "fn new(relations: &'a BTreeMap<(String, String), Vec<String>>) -> Self",
+      "obligation": "Build private borrowed tuple-str→original-slice view from every raw relation entry,including empty entries. Bijective String/str key order/equality correspondence;payloads and labels not cloned. One view per input per whole composition."
+    },
+    "RelationView::hom": {
+      "line": 150,
+      "signature": "fn hom(&self, source: &str, target: &str) -> &'a [String]",
+      "obligation": "Borrow exact original slice by two borrowed str components,or static empty slice;no owned tuple/String allocation per lookup."
+    },
+    "composed_witnesses": {
+      "line": 155,
+      "signature": "fn composed_witnesses(p: &RelationView<'_>, q: &RelationView<'_>, a: &str, c: &str, middle: &[&str]) -> Vec<String>",
+      "obligation": "For supplied middle rows in exact order (duplicates retained),lookup left/right slices once per row,then append required textual descriptors in left-major/right-minor order. Only actual output descriptor strings allocate inside innermost loop;Vec grows as output. Missing/empty factors yield no output. Equal descriptor text remains separate list positions;encoding injectivity not assumed."
+    },
+    "compose_relational_profunctors_discrete_middle": {
+      "line": 180,
+      "signature": "pub fn compose_relational_profunctors_discrete_middle(\n    name: &str,\n    p: &DeclaredFiniteRelationalProfunctor,\n    q: &DeclaredFiniteRelationalProfunctor,\n    intermediate_objects: &[&str],\n) -> Result<DeclaredFiniteRelationalProfunctor, String>",
+      "obligation": "Refuse mismatched middle category-name strings first. On success own result name/source=p.source/target=q.target,empty action maps. Build two borrowed views and sorted borrowed endpoint sets once. For each endpoint pair collect helper witness group;insert only nonempty group using two owned output keys once and move its Vec. Input actions ignored,metadata names unvalidated and no general coend/action laws admitted."
+    },
+    "own_relations": {
+      "line": 224,
+      "signature": "fn own_relations(rows: BorrowedRelations<'_>) -> BTreeMap<(String, String), Vec<String>>",
+      "obligation": "Consume borrowed-key grouped output,copy each final key label once and move witness vector unchanged. No payload clone,ordering change or retention of input borrows."
+    },
+    "declared_companion_profunctor": {
+      "line": 233,
+      "signature": "pub fn declared_companion_profunctor(\n    name: &str,\n    functor: &DeclaredFiniteFunctor,\n    target_category: &DeclaredFiniteCategory,\n) -> DeclaredFiniteRelationalProfunctor",
+      "obligation": "From arbitrary supplied functor object map,scan actual target raw morphism values in map order;for source==image append required morphism.name to (a,morphism.target). Borrow keys while grouping then own each final key once. Preserve duplicates and exact order,even if category names/maps are unadmitted or map keys differ from payload names. Result actions empty,contexts copied from raw functor."
+    },
+    "declared_conjoint_profunctor": {
+      "line": 260,
+      "signature": "pub fn declared_conjoint_profunctor(\n    name: &str,\n    functor: &DeclaredFiniteFunctor,\n    target_category: &DeclaredFiniteCategory,\n) -> DeclaredFiniteRelationalProfunctor",
+      "obligation": "Analogous raw target==image scan;append morphism.name at (morphism.source,a),with source/target category strings reversed. Same grouping/move/order/unchecked-context boundaries;not certified conjoint laws."
+    },
+    "validate_relational_profunctor": {
+      "line": 289,
+      "signature": "pub fn validate_relational_profunctor(\n    prof: &DeclaredFiniteRelationalProfunctor,\n    source: &DeclaredFiniteCategory,\n    target: &DeclaredFiniteCategory,\n) -> ValidationReport",
+      "obligation": "Ordered boundary-only report:source name mismatch,target name mismatch,then each sorted relation key missing source object before missing target object. Check even empty stored entries;ignore action maps/witness text and do not admit category/functor/action laws. All violations exact Other(ProfunctorBoundary),locations/messages,Errorseverity;report target is prof.name."
+    }
+  },
+  "invariants": [
+    "Private borrowed relation view has one row per raw map key,including empty lists,and original slice data;String→str preserves pair equality/order. No clones/intermediate owned keys inside Cartesian traversal. Raw public hom_set remains separate fixed-query wrapper. Source/target sets are borrowed sorted unique keys,matching original cloned BTreeSet ordering.",
+    "Composition loop invariants:for each endpoint cell,helper output is concatenation of each supplied middle row product in order. Each product loops left-major/right-minor and formats exactly one required descriptor per occurrence. Middle repeats duplicate summands;input action maps unused,result action maps empty. Empty cell not inserted. Moving grouped Vec and copying keys once preserves old observable raw multiset/metadata output;noninjective descriptor strings do not merge list occurrences.",
+    "Companion/conjoint grouped builders append the same morphism values in identical object-map/arrow-map iteration order and use same literal boundary predicates as original. Borrowed pair key equality is same as final owned pair;consuming own_relations preserves vectors/multiplicity. No arrow-action/context/functor law checked and raw names may mismatch actual target category;explicitly tested.",
+    "Weighted map starts empty and is private. Admission guard checks denominator first,then sign using exact BigRational;defined positive denominator and nonnegative value precede every insertion. Invalid input returns without any map mutation. Immutable accessor/Clone cannot admit a new invalid weight. Exact sums remain defined/nonnegative;bit growth/normalization cost and allocator behavior are TCB,not fixed-size arithmetic.",
+    "Public unweighted relation map allows arbitrary finite entries/empty lists/action metadata. Count/query functions observe these directly;source safety assumes valid safely owned std collections. In particular live owned String buffers/element slots obey nonoverlap/addressability,so total number of nonzero-sized String elements and partial length sums fit usize;no arbitrary-length or invalid-unsafe-Vec model is claimed. There is no source unchecked indexing/recursion/unwrap.",
+    "Lean12 declarations establish ordered product membership/cardinality/append,duplicate-preserving middle concatenation and defined nonnegative raw weight predicate. Rust source loop/order/view/grouping/positive-denominator comparison refinement reviewed separately and exercised by independent count-based products plus exact rational controls. No actual profunctor/category/coend or encoding-injectivity theorem."
+  ],
+  "failure_paths": {
+    "Relational::new": "Store exact name/source/target and empty relation/action maps;raw names,not category admission.",
+    "Relational::add_witness": "Append exactly one owned literal witness to exact (source,target) key,creating vector if missing. Preserve multiplicity/order and other fields. Fixed public query uses required owned map key;composition no longer invokes this allocating wrapper per product.",
+    "Relational::hom_set": "Return exact borrowed vector slice for literal owned tuple lookup,or borrowed empty slice if absent;no normalization or copy of payloads. Fixed public query allocates two temporary String keys outside any own loop.",
+    "Relational::is_related": "True iff exact hom_set slice nonempty. Empty stored entry and absent entry both false.",
+    "Relational::total_witnesses": "Sum stored Vec lengths,including duplicate/empty witnesses,not distinct names. Domain is safely owned valid Rust BTreeMap/Vec/String storage. Aggregate nonzero-sized live String element counts fit addressable usize range under std ownership/allocation invariants;not a theorem about arbitrary counterfeit lengths/unsafe overlapping buffers.",
+    "Weighted::new": "Store exact name/source/target and empty private weighted map. No action/context law admission.",
+    "Weighted::add_weighted_witness": "Before any insertion,refuse denominator<=0 OR negative rational value with exact error text. Denominator guard precedes comparison,so undefined raw denominator never reaches arithmetic comparison. Positive-denominator,nonnegative raw weights including zero/nonreduced fractions accepted unchanged. Success moves one weight and required owned key/witness into private vector;error preserves map.",
+    "Weighted::weighted_relations": "Borrow exact private weighted collection immutably;no mutable accessor or raw constructor bypass. Standard Clone preserves admitted entries.",
+    "Weighted::total_weight": "Query exact literal pair;sum all admitted weights,including duplicates/zero,or exact rational zero for absent. Private map admission ensures each denominator positive and value nonnegative;BigRational exact add/normalization trusted. Rational bit lengths/arithmetic/allocator costs are not bounded by entry count alone.",
+    "RelationView::new": "Build private borrowed tuple-str→original-slice view from every raw relation entry,including empty entries. Bijective String/str key order/equality correspondence;payloads and labels not cloned. One view per input per whole composition.",
+    "RelationView::hom": "Borrow exact original slice by two borrowed str components,or static empty slice;no owned tuple/String allocation per lookup.",
+    "composed_witnesses": "For supplied middle rows in exact order (duplicates retained),lookup left/right slices once per row,then append required textual descriptors in left-major/right-minor order. Only actual output descriptor strings allocate inside innermost loop;Vec grows as output. Missing/empty factors yield no output. Equal descriptor text remains separate list positions;encoding injectivity not assumed.",
+    "compose_relational_profunctors_discrete_middle": "Refuse mismatched middle category-name strings first. On success own result name/source=p.source/target=q.target,empty action maps. Build two borrowed views and sorted borrowed endpoint sets once. For each endpoint pair collect helper witness group;insert only nonempty group using two owned output keys once and move its Vec. Input actions ignored,metadata names unvalidated and no general coend/action laws admitted.",
+    "own_relations": "Consume borrowed-key grouped output,copy each final key label once and move witness vector unchanged. No payload clone,ordering change or retention of input borrows.",
+    "declared_companion_profunctor": "From arbitrary supplied functor object map,scan actual target raw morphism values in map order;for source==image append required morphism.name to (a,morphism.target). Borrow keys while grouping then own each final key once. Preserve duplicates and exact order,even if category names/maps are unadmitted or map keys differ from payload names. Result actions empty,contexts copied from raw functor.",
+    "declared_conjoint_profunctor": "Analogous raw target==image scan;append morphism.name at (morphism.source,a),with source/target category strings reversed. Same grouping/move/order/unchecked-context boundaries;not certified conjoint laws.",
+    "validate_relational_profunctor": "Ordered boundary-only report:source name mismatch,target name mismatch,then each sorted relation key missing source object before missing target object. Check even empty stored entries;ignore action maps/witness text and do not admit category/functor/action laws. All violations exact Other(ProfunctorBoundary),locations/messages,Errorseverity;report target is prof.name."
+  },
+  "trust_boundary": "Rust compiler/std collection ownership/allocation,exact string comparison/formatting,num-rational/num-bigint arithmetic and display,pinned actual category/functor/report providers,Lean/Mathlib foundations. No invalid unsafe Vec metadata,address-space overflow model,callback code,MIR/extraction or allocator/time totality proof.",
+  "assurance_limits": [
+    "Contracts pending;AuthorityEffect None.",
+    "Raw actions/functor/category laws unadmitted;boundary report only names/objects.",
+    "Discrete-middle result is ordered occurrence inventory with descriptive noninjective text and empty actions,not general coend.",
+    "Weight/count costs depend on valid safe storage and integer/string bit/byte sizes;no fixed resource bound.",
+    "Exhaustive small multiplicity cases/designated mutations do not prove every Rust input/fault;no whole-workspace green claim."
+  ],
+  "review_evidence": [
+    {
+      "path": "code/rust/src/category_theory/finite_profunctor.score.yaml",
+      "sha256": "99bf82a609511b3fb49978f2a89105353546e2a7882147f171a710a8cdfe312e"
+    }
+  ],
+  "open_obligations": []
+}

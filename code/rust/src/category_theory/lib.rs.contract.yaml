@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/category_theory/lib.rs",
+    "sha256": "b1535a921f4a69414e8b6636f85c8393f799bd2bc20da600e855864c2d3e8776",
+    "language": "Rust"
+  },
+  "status": "source_reviewed",
+  "formal_specification": {
+    "profile": "Exact retained:opaque caller Eq bool and postconversion String value;no numeric computation.",
+    "domain": "Arbitrary implementations satisfying static trait bounds and Into<String>;callback behavior remains external premise.",
+    "behavior": [
+      "Return exactly one evaluation of left == right on associated Mor;A/B generic parameters unused. Arbitrary Mor::PartialEq implementation is TCB and may be stateful/refuse/panic. Method itself performs no category or equality-law admission and adds no allocation/clone. Static Category trait bounds do not enforce category axioms.",
+      "Consume caller Into<String> once and move its exact resulting String into public name field. No trimming/validation/proof replay/authority;empty or arbitrary name accepted. Arbitrary conversion behavior/termination/allocation is TCB. Constructor itself does not clone result or reinterpret name."
+    ],
+    "capability": "L2 module catalog plus unchecked abstract traits and metadata defaults;no per-file mathematical law checker."
+  },
+  "operations": {
+    "core::MorphismEq::morphism_eq": {
+      "line": 33,
+      "signature": "fn morphism_eq<A, B>(left: &Self::Mor, right: &Self::Mor) -> bool",
+      "obligation": "Return exactly one evaluation of left == right on associated Mor;A/B generic parameters unused. Arbitrary Mor::PartialEq implementation is TCB and may be stateful/refuse/panic. Method itself performs no category or equality-law admission and adds no allocation/clone. Static Category trait bounds do not enforce category axioms."
+    },
+    "witness::Witness::new": {
+      "line": 55,
+      "signature": "pub fn new(name: impl Into<String>) -> Self",
+      "obligation": "Consume caller Into<String> once and move its exact resulting String into public name field. No trimming/validation/proof replay/authority;empty or arbitrary name accepted. Arbitrary conversion behavior/termination/allocation is TCB. Constructor itself does not clone result or reinterpret name."
+    }
+  },
+  "invariants": [
+    "Actual root lib.rs remains canonical Cargo library and compiles unadapted with all actual providers in baseline. mod.rs is an unused compatibility catalog byte-equal after removal of lib-only self alias. Copied namespaces rebind exactly72 semicolon child modules to actual crate paths,including private cfg(test) challenge module;all inline declarations/default bodies/compatibility aliases and cfg attributes preserved. Every control/fault before/after hash/prefix revalidated in this review. No separate nominal instantiation of all children or standalone mod.rs crate execution claimed.",
+    "MorphismEq forwards one opaque user Eq result;matching bool means this callback returned that bool,not a certified mathematical equality relation. No generic A/B runtime work. Witness new consumes exact converted String once;one callback can be stateful and is not assumed pure by Rust review. Lean uses pure value model only to state postconversion/forwarding;native counters and direct source inspection separately bind callback evaluation count.",
+    "core Category has two associated types and abstract identity/compose;MorphismEq has one default. Law has abstract Subject/check returning raw Result<Witness,ArithmosError>;no semantic law or authority certified. MonoidalCategory and BraidedMonoidalCategory are abstract signatures with no law admission. Concrete test Raw deliberately violates identity behavior while satisfying signatures,documenting this ceiling.",
+    "Inline ArithmosError has three distinct String-payload enum variants;Witness exposes raw mutable name with standard Clone/PartialEq/Eq/Debug. Both aliases point to legacy providers. Hierarchical/legacy module catalogs expose actual providers but do not inherit their capabilities as per-file algorithms. All provider mathematics remains separately scored,including incomplete records."
+  ],
+  "failure_paths": {
+    "morphism_eq": "No own refusal or panic;delegates exactly once to potentially arbitrary user Eq. No Eq axioms/category laws admitted.",
+    "Witness::new": "No label admission;conversion may panic/allocate as TCB;exact returned string stored includingempty. No extra callback or clone.",
+    "traits": "Abstract programmer implementations may return None/Err or violate mathematical laws;type checking does not certify semantic axioms.",
+    "catalog": "Canonicalrootcompilesunadapted;compatibilitydefaultbodiescompileonlywithexplicitprovideraliasadapter. No separate child nominal identity guarantee."
+  },
+  "trust_boundary": "Rust compiler/std,caller Eq and Into<String> behavior,standard derives,canonical child providers. Lean pure callback-value model,not arbitrary Rust callback purity/termination/allocator or full module graph semantics.",
+  "assurance_limits": [
+    "Contracts pending;AuthorityEffect None.",
+    "Category/monoidal/law abstract signatures do not check axioms;raw labels are not certificates.",
+    "Exported modules retain their own independent scores;whole-workspace/GlobalGreen not claimed.",
+    "Copied namespaces use explicit actual-provider aliases and do not test separate nominal child instantiation or standalone mod.rs root.",
+    "Callback failures/allocation/termination outside own two-body control;native finite callback probes not a universal guarantee."
+  ],
+  "review_evidence": [
+    {
+      "path": "code/rust/src/category_theory/lib.score.yaml",
+      "sha256": "da4df96007c5921115e99abee29d01fd70115696d65ef5ca4792eb9929f76ea5"
+    }
+  ],
+  "open_obligations": []
+}

@@ -1,0 +1,79 @@
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/category_theory/limits_colimits/pushout.rs",
+    "sha256": "6fc65f41a4bcf13d776e0d20d2f21f3e1850123e7a4082a4ce357f802dc724ca",
+    "language": "Rust"
+  },
+  "status": "source_reviewed",
+  "formal_specification": {
+    "domain": "A raw mutable metadata record. validate_shell checks only the listed nonempty byte strings in order; whitespace and arbitrary Unicode labels are allowed. Optional declarations never establish the named mathematical laws.",
+    "acceptance": "AND of nonempty String byte lengths for the ordered required_fields; no law claim is admitted.",
+    "required_fields": [
+      "label",
+      "pushout_object",
+      "left_target",
+      "right_target",
+      "span_base",
+      "morphism_f",
+      "morphism_g",
+      "injection_left",
+      "injection_right"
+    ],
+    "failure": "First empty field returns ArithmosError::InvalidShape(\"empty FIELD\"). The raw record is read without mutation.",
+    "construction": "Raw data constructors and setters intentionally do not certify a valid record. Boolean flags, notes and other optional fields remain declarations."
+  },
+  "operations": {
+    "new": {
+      "signature": "pub fn new(label: impl Into<String>) -> Self",
+      "classification": "raw data constructor/setter; no mathematical admission claim"
+    },
+    "of_span": {
+      "signature": "pub fn of_span( label: impl Into<String>, pushout_object: impl Into<String>, left_target: impl Into<String>, right_target: impl Into<String>, span_base: impl Into<String>, morphism_f: impl Into<String>, morphism_g: impl Into<String>, injection_left: impl Into<String>, injection_right: impl Into<String>, ) -> Self",
+      "classification": "raw data constructor/setter; no mathematical admission claim"
+    },
+    "validate_shell": {
+      "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+      "classification": "ordered nonempty-label admission and first InvalidShape refusal"
+    }
+  },
+  "invariants": [
+    "The validator reads each listed String length in the policy order and returns the first typed InvalidShape. Constructors and setters store raw declared values and can intentionally create an invalid candidate. No admitted mathematical wrapper is constructed.",
+    "All listed public constructors/setters were reviewed as direct moves, explicit constant defaults, String formatting/cloning or raw Boolean checklist conjunction. None constructs an admitted mathematical value.",
+    "The finite Boolean model proves exact acceptance, first-failure preservation, absence of a success value after refusal and observation without changing the raw value. The source relation maps each concrete .is_empty guard and sole Ok return to that model. This relation is source reviewed, not Rust/MIR mechanized."
+  ],
+  "failure_paths": {
+    "required_labels": {
+      "label": "First InvalidShape(\"empty label\") when all earlier required labels are nonempty.",
+      "pushout_object": "First InvalidShape(\"empty pushout_object\") when all earlier required labels are nonempty.",
+      "left_target": "First InvalidShape(\"empty left_target\") when all earlier required labels are nonempty.",
+      "right_target": "First InvalidShape(\"empty right_target\") when all earlier required labels are nonempty.",
+      "span_base": "First InvalidShape(\"empty span_base\") when all earlier required labels are nonempty.",
+      "morphism_f": "First InvalidShape(\"empty morphism_f\") when all earlier required labels are nonempty.",
+      "morphism_g": "First InvalidShape(\"empty morphism_g\") when all earlier required labels are nonempty.",
+      "injection_left": "First InvalidShape(\"empty injection_left\") when all earlier required labels are nonempty.",
+      "injection_right": "First InvalidShape(\"empty injection_right\") when all earlier required labels are nonempty."
+    },
+    "conversion_and_allocation": "Constructors accept standard String/&str conversions; arbitrary caller-supplied Into implementations and process-level allocator failure remain the ordinary external Rust runtime boundary. Validation itself invokes no user-supplied conversion.",
+    "serde": "Derived deserialization returns the raw metadata type. Callers must explicitly validate it before relying even on the shape predicate; it cannot mint a mathematical certificate."
+  },
+  "trust_boundary": {
+    "runtime": "Pinned safe Rust compiler, std String/Vec, serde and its derive macro. No unsafe, indexing, division, recursion or mutable validation state occurs in the reviewed production bodies.",
+    "proof_model": "Lean kernel and pinned clean Mathlib; axiom reports contain propext and Quot.sound only. No unfinished obligations.",
+    "claim": "All category, functor, adjunction, limit and monoidal names here are references or flags. No corresponding law, existence theorem or physical authority is established."
+  },
+  "assurance_limits": [
+    "The capability remains L2 raw metadata; no underlying category-theoretic law is certified.",
+    "Contracts remain pending by user request.",
+    "No A+, alternate compiler, mechanized Rust/MIR refinement, allocator totality, cross-repository authorship attestation or whole-workspace pass is claimed.",
+    "Current compiled consumer scope is the category package and the isolated source challenge harness."
+  ],
+  "review_evidence": [
+    {
+      "path": "code/rust/src/category_theory/limits_colimits/pushout.score.yaml",
+      "sha256": "e7b5c3bbd05e74e8e597900d8b4738c8a3b6cfbe1f4f8fdeb3dcf34a835ed9a0"
+    }
+  ],
+  "open_obligations": []
+}

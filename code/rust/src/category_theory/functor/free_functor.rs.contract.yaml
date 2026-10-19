@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/category_theory/functor/free_functor.rs",
+    "sha256": "0778df879ab12d7512acf32c591d46704eebf24078853d84b1e4e1cde5310f9a",
+    "language": "Rust"
+  },
+  "status": "source_reviewed",
+  "formal_specification": {
+    "domain": "A raw mutable metadata record. validate_shell checks only the listed nonempty byte strings in order; whitespace and arbitrary Unicode labels are allowed. Optional declarations never establish the named mathematical laws.",
+    "acceptance": "AND of nonempty String byte lengths for the ordered required_fields; no law claim is admitted.",
+    "required_fields": [
+      "label",
+      "source_category",
+      "target_category"
+    ],
+    "failure": "First empty field returns ArithmosError::InvalidShape(\"empty FIELD\"). The raw record is read without mutation.",
+    "construction": "Raw data constructors and setters intentionally do not certify a valid record. Boolean flags, notes and other optional fields remain declarations."
+  },
+  "operations": {
+    "new": {
+      "signature": "pub fn new(label: impl Into<String>) -> Self",
+      "classification": "raw data constructor/setter; no mathematical admission claim"
+    },
+    "between": {
+      "signature": "pub fn between( label: impl Into<String>, source_category: impl Into<String>, target_category: impl Into<String>, ) -> Self",
+      "classification": "raw data constructor/setter; no mathematical admission claim"
+    },
+    "validate_shell": {
+      "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+      "classification": "ordered nonempty-label admission and first InvalidShape refusal"
+    }
+  },
+  "invariants": [
+    "The validator reads each listed String length in the policy order and returns the first typed InvalidShape. Constructors and setters store raw declared values and can intentionally create an invalid candidate. No admitted mathematical wrapper is constructed.",
+    "All listed public constructors/setters were reviewed as direct moves, explicit constant defaults, String formatting/cloning or raw Boolean checklist conjunction. None constructs an admitted mathematical value.",
+    "The finite Boolean model proves exact acceptance, first-failure preservation, absence of a success value after refusal and observation without changing the raw value. The source relation maps each concrete .is_empty guard and sole Ok return to that model. This relation is source reviewed, not Rust/MIR mechanized."
+  ],
+  "failure_paths": {
+    "required_labels": {
+      "label": "First InvalidShape(\"empty label\") when all earlier required labels are nonempty.",
+      "source_category": "First InvalidShape(\"empty source_category\") when all earlier required labels are nonempty.",
+      "target_category": "First InvalidShape(\"empty target_category\") when all earlier required labels are nonempty."
+    },
+    "conversion_and_allocation": "Constructors accept standard String/&str conversions; arbitrary caller-supplied Into implementations and process-level allocator failure remain the ordinary external Rust runtime boundary. Validation itself invokes no user-supplied conversion.",
+    "serde": "Derived deserialization returns the raw metadata type. Callers must explicitly validate it before relying even on the shape predicate; it cannot mint a mathematical certificate."
+  },
+  "trust_boundary": {
+    "runtime": "Pinned safe Rust compiler, std String/Vec, serde and its derive macro. No unsafe, indexing, division, recursion or mutable validation state occurs in the reviewed production bodies.",
+    "proof_model": "Lean kernel and pinned clean Mathlib; axiom reports contain propext and Quot.sound only. No unfinished obligations.",
+    "claim": "All category, functor, adjunction, limit and monoidal names here are references or flags. No corresponding law, existence theorem or physical authority is established."
+  },
+  "assurance_limits": [
+    "The capability remains L2 raw metadata; no underlying category-theoretic law is certified.",
+    "Contracts remain pending by user request.",
+    "No A+, alternate compiler, mechanized Rust/MIR refinement, allocator totality, cross-repository authorship attestation or whole-workspace pass is claimed.",
+    "Current compiled consumer scope is the category package and the isolated source challenge harness."
+  ],
+  "review_evidence": [
+    {
+      "path": "code/rust/src/category_theory/functor/free_functor.score.yaml",
+      "sha256": "26488ea0e1cbfaa1c7dcae966b1502727ba10586ffe1e017486b0061d82bc177"
+    }
+  ],
+  "open_obligations": []
+}

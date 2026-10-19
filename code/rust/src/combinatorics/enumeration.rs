@@ -1,4 +1,3 @@
-
 use num_bigint::BigUint;
 use num_traits::{One, ToPrimitive, Zero};
 use thiserror::Error;
@@ -8,6 +7,12 @@ pub const PROVENANCE: &str = "Origin: code/rust/src/combinatorics/enumeration.rs
 pub const MAX_FACTORIAL_ARGUMENT: usize = 20_000;
 
 pub const MAX_BINOMIAL_CHOICE: u64 = 1 << 14;
+
+/// Maximum number of coordinates owned by a combination or weak composition.
+pub const MAX_ENUMERATION_WIDTH: usize = 4096;
+
+/// Maximum total coordinates retained by the eager weak-composition API.
+pub const MAX_COMPOSITION_CELLS: usize = 1 << 20;
 
 #[derive(Debug, Clone, PartialEq, Eq, Error)]
 pub enum CombinatoricsError {
@@ -162,6 +167,7 @@ pub fn weak_compositions(
     parts: usize,
     limit: usize,
 ) -> Result<Vec<Vec<usize>>, CombinatoricsError> {
+    admit_width("weak composition parts", parts)?;
     let count = if parts == 0 {
         if total == 0 {
             BigUint::one()
@@ -180,35 +186,54 @@ pub fn weak_compositions(
         binomial(upper, u64::try_from(parts - 1).unwrap_or(u64::MAX))?
     };
     budget("weak compositions", &count, limit)?;
-    let mut out = Vec::new();
-    let mut current = Vec::with_capacity(parts);
-    fill_compositions(total, parts, &mut current, &mut out);
-    Ok(out)
+    budget(
+        "weak composition cells",
+        &(count * BigUint::from(parts)),
+        MAX_COMPOSITION_CELLS,
+    )?;
+    Ok(collect_compositions(total, parts))
 }
 
-fn fill_compositions(
-    remaining: usize,
-    parts: usize,
-    current: &mut Vec<usize>,
-    out: &mut Vec<Vec<usize>>,
-) {
+fn admit_width(what: &'static str, width: usize) -> Result<(), CombinatoricsError> {
+    if width > MAX_ENUMERATION_WIDTH {
+        return Err(CombinatoricsError::ArgumentTooLarge {
+            what,
+            argument: u64::try_from(width).unwrap_or(u64::MAX),
+            max: MAX_ENUMERATION_WIDTH as u64,
+        });
+    }
+    Ok(())
+}
+
+fn collect_compositions(total: usize, parts: usize) -> Vec<Vec<usize>> {
     if parts == 0 {
-        if remaining == 0 {
-            out.push(current.clone());
-        }
-        return;
+        return if total == 0 { vec![vec![]] } else { vec![] };
     }
-    if parts == 1 {
-        current.push(remaining);
+    let mut out = Vec::new();
+    let mut current = vec![0; parts];
+    current[parts - 1] = total;
+    loop {
         out.push(current.clone());
-        current.pop();
-        return;
+        if !next_composition(&mut current) {
+            return out;
+        }
     }
-    for first in 0..=remaining {
-        current.push(first);
-        fill_compositions(remaining - first, parts - 1, current, out);
-        current.pop();
-    }
+}
+
+// The rightmost nonzero coordinate after the first is the lexicographic pivot.
+// Its suffix is zero. Move one unit left and put its remainder in the last slot.
+// A positive pivot ensures that incrementing its predecessor cannot exceed total.
+fn next_composition(current: &mut [usize]) -> bool {
+    let Some(pivot) = current[1..].iter().rposition(|&value| value != 0) else {
+        return false;
+    };
+    let index = pivot + 1;
+    let remaining = current[index] - 1;
+    current[index] = 0;
+    current[index - 1] += 1;
+    let last = current.len() - 1;
+    current[last] = remaining;
+    true
 }
 
 #[derive(Debug, Clone, PartialEq, Eq)]
@@ -260,6 +285,9 @@ impl Combinations {
             u64::try_from(k).unwrap_or(u64::MAX),
         )?;
         budget("combinations", &size, limit)?;
+        if k <= n {
+            admit_width("combination width", k)?;
+        }
         Ok(Self {
             n,
             current: if k > n { None } else { Some((0..k).collect()) },
@@ -315,10 +343,7 @@ mod tests {
     #[test]
     fn e2e_weak_compositions_contract() {
         let rows = weak_compositions(3, 2, 8).unwrap();
-        assert_eq!(
-            rows,
-            vec![vec![0, 3], vec![1, 2], vec![2, 1], vec![3, 0]]
-        );
+        assert_eq!(rows, vec![vec![0, 3], vec![1, 2], vec![2, 1], vec![3, 0]]);
         assert!(PROVENANCE.contains("AuthorityEffect: None"));
         assert!(PROVENANCE.contains("Mutation-Kills: 2 non-equivalent source mutants"));
     }

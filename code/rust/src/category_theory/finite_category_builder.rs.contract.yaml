@@ -1,0 +1,102 @@
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/category_theory/finite_category_builder.rs",
+    "sha256": "258b538e53a8e7c8cb5b4330b56346b6417832fc3ac8e080b5ef7f4cecc8fe04",
+    "language": "Rust"
+  },
+  "status": "source_reviewed",
+  "formal_specification": {
+    "domain": "Finite owned raw category declarations and caller strings; arbitrary blank/colliding names and partial/overwritten tables remain untrusted.",
+    "delivered_behavior": "Fluent raw edits, boundary-only identity_checked, ordered identity recipe, raw move-out or full fresh certificate admission. No generated-name freshness, free-category property or standalone category-law proof from builder calls.",
+    "failure": "identity_checked returns exact String refusal on foreign loop boundary; build_validated propagates the fresh report; ordinary allocator/format/map runtime contracts remain explicit."
+  },
+  "operations": {
+    "new": {
+      "signature": "pub fn new(name: &str) -> Self",
+      "obligation": "Own a raw DeclaredFiniteCategory with the exact supplied name and empty data. No validation, freshness or nonempty-domain claim."
+    },
+    "walking_arrow": {
+      "signature": "pub fn walking_arrow(name: &str, source: &str, target: &str, arrow: &str) -> Self",
+      "obligation": "Apply the literal recipe: generated source identity, generated target identity, named source->target arrow, then identity completions. Labels may collide or be blank; no free/walking-category theorem is promised for arbitrary caller names. Complete admission remains separate."
+    },
+    "object": {
+      "signature": "pub fn object(mut self, object: &str) -> Self",
+      "obligation": "Insert exact supplied object through canonical raw mutator and return owned Self."
+    },
+    "morphism": {
+      "signature": "pub fn morphism(mut self, name: &str, source: &str, target: &str) -> Self",
+      "obligation": "Insert/overwrite exact name/source/target through raw mutator, including its endpoint object insertions. No name/boundary/law gate here."
+    },
+    "identity": {
+      "signature": "pub fn identity(mut self, object: &str, morphism: &str) -> Self",
+      "obligation": "Declare a raw loop and identity binding. It may overwrite a named arrow or leave stale bindings elsewhere; full admission later rejects invalid resulting presentations."
+    },
+    "identity_checked": {
+      "signature": "pub fn identity_checked(mut self, object: &str, morphism: &str) -> Result<Self, String>",
+      "obligation": "If arrow exists, refuse when either endpoint differs from supplied object, preserving full message payload. If absent, create the requested loop. Then set the raw identity binding. This is only boundary admission, not unit-law certification. On error the consumed builder is dropped, not returned as a partial value."
+    },
+    "identity_object": {
+      "signature": "pub fn identity_object(mut self, object: &str) -> Self",
+      "obligation": "Format exact id_ prefix plus object; insert loop and binding with that name. Formatting is a deterministic recipe, not collision avoidance or an automatic mathematical identity proof."
+    },
+    "composition": {
+      "signature": "pub fn composition(mut self, first: &str, second: &str, composite: &str) -> Self",
+      "obligation": "Raw overwrite of ordered (first,second)->composite, where second follows first. No endpoint, totality or associativity check."
+    },
+    "path_composition": {
+      "signature": "pub fn path_composition(mut self, f: &str, g: &str, composite: &str) -> Self",
+      "obligation": "Same raw overwrite convention with argument names f,g. Preserve order g after f."
+    },
+    "identity_compositions": {
+      "signature": "pub fn identity_compositions(mut self) -> Self",
+      "obligation": "Borrow morphisms/identities immutably and compositions mutably through disjoint fields. Visit the same BTreeMap value order as old cloned snapshot. For each morphism, source identity entry update precedes target identity entry update. Present identities set exact ordered keys to the morphism name; missing ones do nothing. Entry modify/insert has the same logical overwrite semantics, including deterministic last-write wins on raw collisions. Other fields and unrelated table entries remain unchanged."
+    },
+    "build": {
+      "signature": "pub fn build(self) -> DeclaredFiniteCategory",
+      "obligation": "Move out the exact owned raw declaration without admission. It is not a certificate."
+    },
+    "build_validated": {
+      "signature": "pub fn build_validated(self) -> Result<ValidatedFiniteCategory, ValidationReport>",
+      "obligation": "Delegate the exact owned declaration to the only full ValidatedFiniteCategory::try_new admission path. Fresh typed report failure propagates; success owns that same admitted context. No private certificate field construction or stale user report is accepted."
+    }
+  },
+  "invariants": [
+    "FiniteBuilder.checked_missing/checked_existing_iff mirror None creation versus exact source=object AND target=object boundary admission. String/Option/boolean translation and precise error formatting are separately source-reviewed.",
+    "FiniteBuilder.update_self/update_other/update_shadow specify logical table insertion and last-write wins. Four completeOne cases match the two optional identity lookups in source-before-target order; complete_append binds ordered iteration. Old Vec snapshot cloned the same ascending BTreeMap values; disjoint borrowed maps cannot be mutated through the composition field, so all logical updates and their order are unchanged.",
+    "BTreeMap Entry modifies/inserts exactly the same key/value contents as the old raw set_composition, reusing existing value String capacity where available. String capacities, map layout and allocation addresses are not mathematical fields or promised compatibility. Required owned tuple keys remain copied for the existing public map API; no allocation-free overwrite guarantee is invented.",
+    "build_validated passes exact owned raw data to the existing checked finite-category constructor. Its exhaustive fresh guards, private immutable commit and FiniteCategory model realize actual finite laws on success; the raw builder does not claim those laws beforehand. ValidationInventory supplies exact report flag/typed issue behavior."
+  ],
+  "failure_paths": {
+    "new": "Own a raw DeclaredFiniteCategory with the exact supplied name and empty data. No validation, freshness or nonempty-domain claim.",
+    "walking_arrow": "Apply the literal recipe: generated source identity, generated target identity, named source->target arrow, then identity completions. Labels may collide or be blank; no free/walking-category theorem is promised for arbitrary caller names. Complete admission remains separate.",
+    "object": "Insert exact supplied object through canonical raw mutator and return owned Self.",
+    "morphism": "Insert/overwrite exact name/source/target through raw mutator, including its endpoint object insertions. No name/boundary/law gate here.",
+    "identity": "Declare a raw loop and identity binding. It may overwrite a named arrow or leave stale bindings elsewhere; full admission later rejects invalid resulting presentations.",
+    "identity_checked": "If arrow exists, refuse when either endpoint differs from supplied object, preserving full message payload. If absent, create the requested loop. Then set the raw identity binding. This is only boundary admission, not unit-law certification. On error the consumed builder is dropped, not returned as a partial value.",
+    "identity_object": "Format exact id_ prefix plus object; insert loop and binding with that name. Formatting is a deterministic recipe, not collision avoidance or an automatic mathematical identity proof.",
+    "composition": "Raw overwrite of ordered (first,second)->composite, where second follows first. No endpoint, totality or associativity check.",
+    "path_composition": "Same raw overwrite convention with argument names f,g. Preserve order g after f.",
+    "identity_compositions": "Borrow morphisms/identities immutably and compositions mutably through disjoint fields. Visit the same BTreeMap value order as old cloned snapshot. For each morphism, source identity entry update precedes target identity entry update. Present identities set exact ordered keys to the morphism name; missing ones do nothing. Entry modify/insert has the same logical overwrite semantics, including deterministic last-write wins on raw collisions. Other fields and unrelated table entries remain unchanged.",
+    "build": "Move out the exact owned raw declaration without admission. It is not a certificate.",
+    "build_validated": "Delegate the exact owned declaration to the only full ValidatedFiniteCategory::try_new admission path. Fresh typed report failure propagates; success owns that same admitted context. No private certificate field construction or stale user report is accepted."
+  },
+  "trust_boundary": {
+    "formal": "Clean pinned Lean/Mathlib models: actual finite-category admission, literal reports and raw table/loop/ordered update semantics. Explicit Rust correspondence, not extracted Rust or MIR.",
+    "runtime": "Captured rustc/std String/Vec/BTreeMap/BTreeSet contracts, format and derived Clone. Safe disjoint borrowing prevents mutation of iterated morphism/identity fields. No allocator-totality or memory-layout theorem.",
+    "scope": "Own source and current local consumers only; no external application/package or authority promotion."
+  },
+  "assurance_limits": [
+    "L2 is the delivered fluent declaration/guard capability; complete mathematical admission delegates to the separately assessed L5 certificate core.",
+    "A is scoped source/model/native evidence, not A+, measured allocation contract, Rust/MIR extraction, crash/allocator totality or full application success.",
+    "Generated names and arbitrary caller overwrites are raw recipes. String capacities, allocation addresses and map layout may change; logical names/endpoints/table contents and public signatures are preserved. Contracts pending."
+  ],
+  "review_evidence": [
+    {
+      "path": "code/rust/src/category_theory/finite_category_builder.score.yaml",
+      "sha256": "199926411776d7a056681762b17c8c1ed3e37865db2b66a4b9814afe4142638d"
+    }
+  ],
+  "open_obligations": []
+}

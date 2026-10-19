@@ -1,0 +1,89 @@
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/category_theory/foundations/finite_set.rs",
+    "sha256": "6c154362ed87f04513aa3e3f705ca79a7fbda10be3e797fccf805b6b6ac81f5d",
+    "language": "Rust"
+  },
+  "status": "source_reviewed",
+  "formal_specification": {
+    "domain": "Finite sequences of literal stored UTF-8 String elements. Trimming is solely a non-whitespace-emptiness check and never normalizes element identity. Differently spelled strings, including Unicode compositions or padded names, are distinct elements.",
+    "acceptance": "Label and every element have a nonempty trimmed view; elements are pairwise distinct under exact stored-string equality; optional declared_cardinality is None or exactly elements.len(). Empty element inventory is allowed.",
+    "refusal_order": "EmptyLabel first; then first empty or duplicate element in increasing index order, emptiness before duplication at one entry; then CardinalityMismatch {declared,actual}.",
+    "raw_and_admitted": "FiniteSet constructors/Default/public fields/serde are raw transport. ValidatedFiniteSet owns exactly the checked raw record privately. TryFrom and its serde path re-run all gates, getters expose only shared views, Clone preserves owned checked data, and consuming conversion returns freely mutable raw data.",
+    "errors": "Public FiniteSetError variants carry exact payloads. Display preserves prior diagnostics and propagates formatter failure. Raw cardinality always reports actual inventory length, including rejected raw records.",
+    "authority": "None. This establishes a finite literal-set invariant; no real-world entity equivalence, category law, HoTT principle, normalization theorem or physical claim follows."
+  },
+  "operations": {
+    "FiniteSetError::fmt": {
+      "obligation": "Render the four exact error variants and return the formatter result; all indices/counts are usize."
+    },
+    "FiniteSet::new": {
+      "obligation": "Raw empty inventory with supplied label and Some(0)."
+    },
+    "FiniteSet::with_elements": {
+      "obligation": "Move supplied label/elements, store the actual len as Some(n); admission remains separate."
+    },
+    "FiniteSet::cardinality": {
+      "obligation": "Observe actual elements.len(), independently of declared validity."
+    },
+    "FiniteSet::validate_shell": {
+      "obligation": "Trim-emptiness label, per-entry emptiness then BTreeSet duplicate rejection, optional cardinality equality; return unit or exact typed payload without mutation."
+    },
+    "ValidatedFiniteSet::try_from": {
+      "obligation": "Borrow-check the owned candidate before the sole private-field construction."
+    },
+    "FiniteSet::from(ValidatedFiniteSet)": {
+      "obligation": "Consume the admitted wrapper and move out the original raw record."
+    },
+    "ValidatedFiniteSet::declared": {
+      "obligation": "Shared borrow of the checked raw record."
+    },
+    "ValidatedFiniteSet::label": {
+      "obligation": "Shared borrow of unchanged stored label."
+    },
+    "ValidatedFiniteSet::elements": {
+      "obligation": "Shared slice of unchanged stored elements."
+    },
+    "ValidatedFiniteSet::cardinality": {
+      "obligation": "Delegate to the actual inventory length."
+    },
+    "ValidatedFiniteSet::contains": {
+      "obligation": "Exact stored-string membership by finite iteration; no normalization or trimming."
+    }
+  },
+  "invariants": [
+    "The BTreeSet loop invariant is seen = the exact set of already visited tags, all prior tags nonblank and distinct. It starts empty; a nonblank fresh tag extends that prefix; a blank or repeated tag returns before the next iteration. Safe String equality and ordering agree on exact stored identity. Entries are borrowed, not cloned or mutated.",
+    "FiniteLiteralSet.scan_success_iff proves finite scan success exactly when all remaining tags satisfy the primitive nonblank predicate, are pairwise distinct, and avoid the initial seen set. Initial seen is empty. The optional cardinality theorem and checks_success_iff add label and actual-list-length binding. admit_preserves_raw and admit_invariants prove data preservation and the full admitted predicate.",
+    "Rust correspondence is explicitly reviewed: Unicode trim emptiness is the declared primitive; BTreeSet membership/insert implements the finite set operation, enumerate supplies successive bounded entry indices, and Vec::len supplies exact usize cardinality. The model uses Nat indices/counts, not narrowed coefficient arithmetic. This is not extracted Rust or mechanized MIR refinement.",
+    "All entries lie in a finite Vec<String>; enumerate cannot overflow an actual allocated sequence. No index operation, addition, subtraction, multiplication or division is used by production validation. Counts are compared in usize without narrowing; diagnostics retain exact indices/counts.",
+    "Only TryFrom constructs the private admitted field, after validation. Derived deserialization calls that TryFrom. There is no admitted Default or public mutable field; shared String/Vec views cannot be mutated in safe Rust. Clone owns checked data, and raw conversion consumes a wrapper, so later raw mutation cannot invalidate a retained admitted clone.",
+    "Each fmt branch uses bounded formatting or direct write_str and propagates fmt::Error. Error values are ordinary diagnostic data; constructing an error or raw record does not construct a valid set."
+  ],
+  "failure_paths": {
+    "label": "EmptyLabel before constructing the seen set or inspecting element data.",
+    "entry": "EmptyElement or DuplicateElement at the first relevant exact index; no partial admitted artifact is returned.",
+    "cardinality": "CardinalityMismatch preserves both the caller declaration and actual len, after every entry passes.",
+    "serde": "Raw FiniteSet serde preserves even rejected candidates. Admitted serde re-runs TryFrom and rejects private wrapper layout; serde type/range errors remain serde errors.",
+    "format": "All four display branches propagate a failing writer result.",
+    "resources": "BTreeSet temporary nodes, String/Vec/serde clones and allocations use pinned safe library/runtime contracts. No global allocator totality or memory reservation theorem is asserted."
+  },
+  "trust_boundary": {
+    "runtime": "Pinned safe Rust/std, String UTF-8 equality/ordering and Unicode-whitespace predicates, BTreeSet insert/membership, Vec ownership/length/iteration, serde derives/json and ordinary allocator/conversion contracts. Arbitrary caller-supplied Into/serializer implementations remain external.",
+    "formal": "Pinned Lean/Mathlib kernel and standard foundational axioms. The nonblank primitive and BTreeSet-to-Finset/source representation relation are explicit reviewed boundaries, not newly proved Unicode/stdlib implementations.",
+    "wire": "Serde JSON candidate transport and admitted rechecking only. No signature, author origin, cross-repository attestation or global theorem authority."
+  },
+  "assurance_limits": [
+    "Capability L3 bounded literal-set domain and immutable admission, not an L5 theorem inferred from naming.",
+    "Contracts pending. No A+, extracted-program/MIR equivalence, Unicode normalization theorem, global allocator totality, external-origin attestation or whole-workspace pass.",
+    "Rust source/representation correspondence is reviewed separately from the checked mathematical model. Namespace compilation is shared; candidate test dispatch/state is separate."
+  ],
+  "review_evidence": [
+    {
+      "path": "code/rust/src/category_theory/foundations/finite_set.score.yaml",
+      "sha256": "5bca0fe7ae540d2c67d97396ae9404f32e76ccfaf1486bfeb4bc242b338c8893"
+    }
+  ],
+  "open_obligations": []
+}
