@@ -3,6 +3,7 @@
 //!
 //! Disc(S): objects = S; only identity morphisms.
 
+use omega_category_theory::errors::ArithmosError;
 use serde::{Deserialize, Serialize};
 
 use super::category::MorphismTriple;
@@ -12,8 +13,8 @@ use super::category::MorphismTriple;
 pub struct DiscreteCategoryShell {
     pub label: String,
     pub objects: Vec<String>,
-    /// Morphisms as (src, dst, name) triples — for a discrete category these
-    /// should be identities only (src == dst); validated best-effort.
+    /// Stored (source, target, name) triples. Validation checks nonempty tags
+    /// and source == target only; that equality does not prove an identity law.
     pub morphisms: Vec<MorphismTriple>,
     pub notes: Vec<String>,
 }
@@ -41,24 +42,28 @@ impl DiscreteCategoryShell {
         }
     }
 
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
         for (i, o) in self.objects.iter().enumerate() {
             if o.is_empty() {
-                return Err(format!("empty object tag at index {i}"));
+                return Err(ArithmosError::InvalidShape(format!(
+                    "empty object tag at index {i}"
+                )));
             }
         }
         for (i, m) in self.morphisms.iter().enumerate() {
             if m.source.is_empty() || m.target.is_empty() || m.name.is_empty() {
-                return Err(format!("empty morphism field at index {i}"));
+                return Err(ArithmosError::InvalidShape(format!(
+                    "empty morphism field at index {i}"
+                )));
             }
             if m.source != m.target {
-                return Err(format!(
-                    "non-identity morphism at index {i}: {} → {} ({})",
+                return Err(ArithmosError::InvalidShape(format!(
+                    "non-endomorphism at index {i}: {} → {} ({})",
                     m.source, m.target, m.name
-                ));
+                )));
             }
         }
         Ok(())
@@ -87,7 +92,7 @@ mod tests {
     }
 
     #[test]
-    fn rejects_non_identity() {
+    fn rejects_non_endomorphism() {
         let mut d = DiscreteCategoryShell::on_objects("D", vec!["a".into()]);
         d.morphisms.push(MorphismTriple::new("a", "b", "f"));
         assert!(d.validate_shell().is_err());

@@ -1,0 +1,69 @@
+{
+  "AuthorityEffect": "None",
+  "change": "Typed InvalidShape across eight metadata modules. Nested shape context preserves prior diagnostic prefix; other typed variants propagate unchanged. Discrete diagnostics are corrected to describe endomorphism-boundary equality, not an identity law.",
+  "records": [
+    {
+      "path": "code/rust/src/category_theory/category/category.rs",
+      "before_sha256": "7af748956b465218bc869617a0a934d32941e98aaa5c8ac32ad6663418e110ea",
+      "after_sha256": "88eafc7a8a0a4157b7c77bdac38a9a66a2701435543ce4c2ac078932ca4b844f"
+    },
+    {
+      "path": "code/rust/src/category_theory/category/discrete_category.rs",
+      "before_sha256": "ad9f6e801fca49f99827ac9185653914f05e150c4ab0a47b5bfcd52aab1385b0",
+      "after_sha256": "a6aefc3fbadda8094cbafdf0cca8b577b6c8b016c94fb18d2dfec7f03a529e66"
+    },
+    {
+      "path": "code/rust/src/category_theory/category/small_category.rs",
+      "before_sha256": "9b7c4e3b50ae2dd327d24e7a5ae70d272329af6117d40cb0cf324f190ada7acc",
+      "after_sha256": "c0d16efa485ecc73e646d97b76b90ce3d4c132eb5c04e897875f570e1fbdf3f6"
+    },
+    {
+      "path": "code/rust/src/category_theory/limits_colimits/cone.rs",
+      "before_sha256": "7162cd0e4739b2a21b7aad5029ec7ab88cd7c1ad820fb4890b3e38dea0167afc",
+      "after_sha256": "835f464b262485e2adfed394b5603f794ae7114a90720c7fbd669738ca5441f2"
+    },
+    {
+      "path": "code/rust/src/category_theory/limits_colimits/limit.rs",
+      "before_sha256": "f51524e00754f5b012e9d8be1a1fce3ddb5f50364d773e41a3152b9d7f6fcd82",
+      "after_sha256": "256c626531f8db5c20c35637d8f6153835db32baea9ea21e4e1a33285fa71e2f"
+    },
+    {
+      "path": "code/rust/src/category_theory/limits_colimits/colimit.rs",
+      "before_sha256": "0a117d0cf807444d1e0bbd37d19acf26f31ab08444430e1e090568246f0cbc90",
+      "after_sha256": "4cdf6d681e9b4d1c448906b0f02d60770a748fbfeb6139de604cf0913fc46d0c"
+    },
+    {
+      "path": "code/rust/src/category_theory/limits_colimits/product.rs",
+      "before_sha256": "ea49d9c907ff286fe3e9137c24e55c5f7c8ac93b35846a4ce10d8f07e08937ca",
+      "after_sha256": "506b19842ed1ae06ac578b11cd096c5be2c5cc590b2f64d0c29e295060079022"
+    },
+    {
+      "path": "code/rust/src/category_theory/limits_colimits/coproduct.rs",
+      "before_sha256": "32db291e788404b09703c08f5e9194329b16929053b289b428bbcc79955fb162",
+      "after_sha256": "4f7aec81569672d6cd61326a10ac2c4a4f7e5069dc30b493c60c55f85ed5b0c7"
+    }
+  ],
+  "source_changes": [
+    "Category validation delegates its three ordered inventory checks to cohesive private helpers; predicates/order/payloads are preserved.",
+    "SmallCategory removes a child-label emptiness check already ruled out by prior child admission and corrects its optional-presentation comment.",
+    "DiscreteCategory explicitly checks only endomorphism boundaries; diagnostic/test naming no longer calls that an identity law.",
+    "Cone/Cocone share a private typed shape-context helper; Limit/Colimit preserve other error variants while retaining existing shape prefixes."
+  ],
+  "unchanged_called_provider_fragments": [
+    {
+      "symbol": "pub struct MorphismTriple",
+      "normalized_sha256": "513c854d9f112f55bc6ca97ce61954cc3304ff8b6567732650e1e2ca97c10ccb",
+      "byte_scope": "Whitespace-normalized declaration/impl; only raw field moves/derives, no validation body."
+    },
+    {
+      "symbol": "impl MorphismTriple",
+      "normalized_sha256": "39ea89b19e60e32805c4b63ce150954e9f1320b2dca67eb3f5dac70fee3fca83",
+      "byte_scope": "Whitespace-normalized declaration/impl; only raw field moves/derives, no validation body."
+    },
+    {
+      "symbol": "MorphismTriple derive header",
+      "normalized_sha256": "ff0750e16a4281a8ce42b93e5c9c7780ffb9c11ec4f8ec43f0591efc62f1c2ed",
+      "byte_scope": "Exact same derive list, including raw serde, Clone/Default/Eq/Debug; no Drop impl added."
+    }
+  ]
+}

@@ -1,0 +1,736 @@
+{
+  "AuthorityEffect": "None",
+  "scope": "Eight explicit shape/inventory specifications with nested child ordering, endomorphism boundaries, optional alignment, typed context and raw constructors. No category/universal-property law.",
+  "records": [
+    {
+      "type": "FiniteCategoryShell",
+      "required_fields": [
+        "label"
+      ],
+      "collection_schema": [
+        {
+          "field": "objects",
+          "kind": "strings",
+          "fields": [
+            "tag"
+          ],
+          "diagnostic": "empty object tag at index {i}",
+          "loop": "for (i, o) in self.objects.iter().enumerate()",
+          "source_operands": [
+            "o.is_empty()"
+          ]
+        },
+        {
+          "field": "morphisms",
+          "kind": "records",
+          "fields": [
+            "source",
+            "target",
+            "name"
+          ],
+          "diagnostic": "empty morphism field at index {i}",
+          "loop": "for (i, m) in self.morphisms.iter().enumerate()",
+          "source_operands": [
+            "m.source.is_empty()",
+            "m.target.is_empty()",
+            "m.name.is_empty()"
+          ]
+        },
+        {
+          "field": "identity_map",
+          "kind": "map",
+          "fields": [
+            "key",
+            "value"
+          ],
+          "diagnostic": "empty identity_map key or value",
+          "loop": "for (obj, id_name) in &self.identity_map",
+          "source_operands": [
+            "obj.is_empty()",
+            "id_name.is_empty()"
+          ]
+        }
+      ],
+      "parameter_schema": true,
+      "constructor_checks": "let m=MorphismTriple::new(\"S\",\"T\",\"f\"); assert_eq!((&*m.source,&*m.target,&*m.name),(\"S\",\"T\",\"f\"));\n        let c=FiniteCategoryShell::with_objects(\"C\",vec![\"A\".into(),\"B\".into(),\"A\".into()]); assert_eq!(c.label,\"C\"); assert_eq!(c.objects,vec![\"A\",\"B\",\"A\"]); assert_eq!(c.morphisms.len(),3); assert_eq!(c.identity_map.len(),2); assert_eq!(c.identity_map.get(\"A\").map(String::as_str),Some(\"id_A\")); assert_eq!(c.morphisms[1],MorphismTriple::new(\"B\",\"B\",\"id_B\")); assert!(c.validate_shell().is_ok());",
+      "faults": [
+        [
+          "skip-object-call",
+          "        self.validate_object_tags()?;",
+          ""
+        ],
+        [
+          "skip-morphism-call",
+          "        self.validate_morphism_tags()?;",
+          ""
+        ],
+        [
+          "skip-identity-call",
+          "        self.validate_identity_tags()",
+          "        Ok(())"
+        ],
+        [
+          "morphism-constructor-fields",
+          "source: source.into(),\n            target: target.into(),",
+          "source: target.into(),\n            target: source.into(),"
+        ]
+      ],
+      "mode": "collection",
+      "path": "code/rust/src/category_theory/category/category.rs",
+      "sha256": "88eafc7a8a0a4157b7c77bdac38a9a66a2701435543ce4c2ac078932ca4b844f",
+      "family": "category"
+    },
+    {
+      "mode": "collection",
+      "type": "DiscreteCategoryShell",
+      "parent_aliases": [
+        "category"
+      ],
+      "parameter_schema": true,
+      "required_fields": [
+        "label"
+      ],
+      "collection_schema": [
+        {
+          "field": "objects",
+          "kind": "strings",
+          "fields": [
+            "tag"
+          ],
+          "diagnostic": "empty object tag at index {i}",
+          "loop": "for (i, o) in self.objects.iter().enumerate()",
+          "source_operands": [
+            "o.is_empty()"
+          ]
+        },
+        {
+          "field": "morphisms",
+          "kind": "records",
+          "fields": [
+            "source",
+            "target",
+            "name"
+          ],
+          "diagnostic": "empty morphism field at index {i}",
+          "loop": "for (i, m) in self.morphisms.iter().enumerate()",
+          "source_operands": [
+            "m.source.is_empty()",
+            "m.target.is_empty()",
+            "m.name.is_empty()"
+          ],
+          "equal_fields": [
+            "source",
+            "target"
+          ]
+        }
+      ],
+      "constructor_checks": "let d=DiscreteCategoryShell::on_objects(\"D\",vec![\"A\".into(),\"B\".into()]); assert_eq!(d.label,\"D\"); assert_eq!(d.objects,vec![\"A\",\"B\"]); assert_eq!(d.morphisms,vec![MorphismTriple::new(\"A\",\"A\",\"id_A\"),MorphismTriple::new(\"B\",\"B\",\"id_B\")]);",
+      "additional_cases": [
+        [
+          {
+            "objects": [
+              "X"
+            ],
+            "morphisms": [
+              {
+                "source": "X",
+                "target": "X",
+                "name": "not-an-identity"
+              }
+            ]
+          },
+          null
+        ],
+        [
+          {
+            "objects": [
+              "X"
+            ],
+            "morphisms": [
+              {
+                "source": "Y",
+                "target": "Y",
+                "name": "opaque"
+              }
+            ]
+          },
+          null
+        ],
+        [
+          {
+            "objects": [
+              "X"
+            ],
+            "morphisms": [
+              {
+                "source": "X",
+                "target": "Y",
+                "name": "f"
+              }
+            ]
+          },
+          "non-endomorphism at index 0: X \u2192 Y (f)"
+        ]
+      ],
+      "faults": [
+        [
+          "skip-endomorphism",
+          "if m.source != m.target {",
+          "if false {"
+        ],
+        [
+          "invert-endomorphism",
+          "if m.source != m.target {",
+          "if m.source == m.target {"
+        ]
+      ],
+      "path": "code/rust/src/category_theory/category/discrete_category.rs",
+      "sha256": "a6aefc3fbadda8094cbafdf0cca8b577b6c8b016c94fb18d2dfec7f03a529e66",
+      "family": "category"
+    },
+    {
+      "mode": "parent",
+      "type": "SmallCategoryShell",
+      "parent_aliases": [
+        "category"
+      ],
+      "required_fields": [
+        "label"
+      ],
+      "child": {
+        "type": "FiniteCategoryShell",
+        "required_fields": [
+          "label"
+        ],
+        "collection_schema": [
+          {
+            "field": "objects",
+            "kind": "strings",
+            "fields": [
+              "tag"
+            ],
+            "diagnostic": "empty object tag at index {i}",
+            "loop": "for (i, o) in self.objects.iter().enumerate()",
+            "source_operands": [
+              "o.is_empty()"
+            ]
+          },
+          {
+            "field": "morphisms",
+            "kind": "records",
+            "fields": [
+              "source",
+              "target",
+              "name"
+            ],
+            "diagnostic": "empty morphism field at index {i}",
+            "loop": "for (i, m) in self.morphisms.iter().enumerate()",
+            "source_operands": [
+              "m.source.is_empty()",
+              "m.target.is_empty()",
+              "m.name.is_empty()"
+            ]
+          },
+          {
+            "field": "identity_map",
+            "kind": "map",
+            "fields": [
+              "key",
+              "value"
+            ],
+            "diagnostic": "empty identity_map key or value",
+            "loop": "for (obj, id_name) in &self.identity_map",
+            "source_operands": [
+              "obj.is_empty()",
+              "id_name.is_empty()"
+            ]
+          }
+        ],
+        "parameter_schema": true,
+        "constructor_checks": "let m=MorphismTriple::new(\"S\",\"T\",\"f\"); assert_eq!((&*m.source,&*m.target,&*m.name),(\"S\",\"T\",\"f\"));\n        let c=FiniteCategoryShell::with_objects(\"C\",vec![\"A\".into(),\"B\".into(),\"A\".into()]); assert_eq!(c.label,\"C\"); assert_eq!(c.objects,vec![\"A\",\"B\",\"A\"]); assert_eq!(c.morphisms.len(),3); assert_eq!(c.identity_map.len(),2); assert_eq!(c.identity_map.get(\"A\").map(String::as_str),Some(\"id_A\")); assert_eq!(c.morphisms[1],MorphismTriple::new(\"B\",\"B\",\"id_B\")); assert!(c.validate_shell().is_ok());",
+        "faults": [
+          [
+            "skip-object-call",
+            "        self.validate_object_tags()?;",
+            ""
+          ],
+          [
+            "skip-morphism-call",
+            "        self.validate_morphism_tags()?;",
+            ""
+          ],
+          [
+            "skip-identity-call",
+            "        self.validate_identity_tags()",
+            "        Ok(())"
+          ],
+          [
+            "morphism-constructor-fields",
+            "source: source.into(),\n            target: target.into(),",
+            "source: target.into(),\n            target: source.into(),"
+          ]
+        ],
+        "defaults": {
+          "label": "C",
+          "objects": [],
+          "morphisms": [],
+          "identity_map": {},
+          "notes": []
+        },
+        "label_values": {
+          "label": "C"
+        }
+      },
+      "child_field": "presentation",
+      "new_label_binding": [
+        "            label,",
+        "            label: String::new(),"
+      ],
+      "constructor_checks": "let p=FiniteCategoryShell::with_objects(\"P\",vec![\"A\".into(),\"B\".into()]); let s=SmallCategoryShell::from_presentation(p.clone()); assert_eq!(s.label,\"P\"); assert_eq!(s.presentation,p); assert!(s.claims_small); assert_eq!(s.objects(),p.objects); assert_eq!(s.morphisms(),p.morphisms); let s=SmallCategoryShell::new(\"C\"); assert_eq!(s.presentation.label,s.label); assert!(s.claims_small);",
+      "additional_cases": [
+        [
+          {
+            "label": "C",
+            "claims_small": true,
+            "presentation": {
+              "label": "D",
+              "objects": [],
+              "morphisms": [],
+              "identity_map": {},
+              "notes": []
+            }
+          },
+          null
+        ],
+        [
+          {
+            "label": "C",
+            "claims_small": true,
+            "presentation": {
+              "label": "D",
+              "objects": [
+                "A"
+              ],
+              "morphisms": [],
+              "identity_map": {},
+              "notes": []
+            }
+          },
+          "presentation.label \"D\" != shell.label \"C\""
+        ],
+        [
+          {
+            "label": "\u03b1\u0000",
+            "claims_small": true,
+            "presentation": {
+              "label": "\u03b1\u0000",
+              "objects": [
+                "A"
+              ],
+              "morphisms": [],
+              "identity_map": {},
+              "notes": []
+            }
+          },
+          null
+        ]
+      ],
+      "faults": [
+        [
+          "skip-claim",
+          "if !self.claims_small {",
+          "if false {"
+        ],
+        [
+          "skip-child",
+          "        self.presentation.validate_shell()?;",
+          ""
+        ],
+        [
+          "skip-label-binding",
+          "if self.presentation.label != self.label && !self.presentation.objects.is_empty() {",
+          "if false {"
+        ],
+        [
+          "objects-observer",
+          "        &self.presentation.objects",
+          "        &self.presentation.objects[..0]"
+        ],
+        [
+          "morphisms-observer",
+          "        &self.presentation.morphisms",
+          "        &self.presentation.morphisms[..0]"
+        ],
+        [
+          "from-label",
+          "label: presentation.label.clone()",
+          "label: String::new()"
+        ]
+      ],
+      "path": "code/rust/src/category_theory/category/small_category.rs",
+      "sha256": "c0d16efa485ecc73e646d97b76b90ce3d4c132eb5c04e897875f570e1fbdf3f6",
+      "family": "category"
+    },
+    {
+      "mode": "dual-cone",
+      "type": "ConeAndCocone",
+      "types": [
+        {
+          "type": "Cone",
+          "parameter_schema": true,
+          "required_fields": [
+            "label",
+            "apex"
+          ],
+          "collection_schema": [
+            {
+              "field": "legs",
+              "kind": "records",
+              "fields": [
+                "index",
+                "morphism_label"
+              ],
+              "diagnostic": "empty leg tag at index {i}",
+              "loop": "for (i, leg) in self.legs.iter().enumerate()",
+              "source_operands": [
+                "leg.index.is_empty()",
+                "leg.morphism_label.is_empty()"
+              ]
+            }
+          ],
+          "constructor_checks": "let mut c=Cone::with_apex(\"C\",\"V\"); c.with_leg(\"I\",\"f\"); c.with_leg(\"J\",\"g\"); assert_eq!((&*c.label,&*c.apex),(\"C\",\"V\")); assert_eq!(c.legs.len(),2); assert_eq!((&*c.legs[0].index,&*c.legs[0].morphism_label,&*c.legs[1].index,&*c.legs[1].morphism_label),(\"I\",\"f\",\"J\",\"g\"));",
+          "faults": [
+            [
+              "vertex-binding",
+              "apex: apex.into()",
+              "apex: String::new()"
+            ],
+            [
+              "leg-binding",
+              "morphism_label: morphism_label.into()",
+              "morphism_label: String::new()"
+            ]
+          ]
+        },
+        {
+          "type": "Cocone",
+          "parameter_schema": true,
+          "required_fields": [
+            "label",
+            "nadir"
+          ],
+          "collection_schema": [
+            {
+              "field": "legs",
+              "kind": "records",
+              "fields": [
+                "index",
+                "morphism_label"
+              ],
+              "diagnostic": "empty leg tag at index {i}",
+              "loop": "for (i, leg) in self.legs.iter().enumerate()",
+              "source_operands": [
+                "leg.index.is_empty()",
+                "leg.morphism_label.is_empty()"
+              ]
+            }
+          ],
+          "constructor_checks": "let mut c=Cocone::with_nadir(\"C\",\"V\"); c.with_leg(\"I\",\"f\"); c.with_leg(\"J\",\"g\"); assert_eq!((&*c.label,&*c.nadir),(\"C\",\"V\")); assert_eq!(c.legs.len(),2); assert_eq!((&*c.legs[0].index,&*c.legs[0].morphism_label,&*c.legs[1].index,&*c.legs[1].morphism_label),(\"I\",\"f\",\"J\",\"g\"));",
+          "faults": [
+            [
+              "vertex-binding",
+              "nadir: nadir.into()",
+              "nadir: String::new()"
+            ],
+            [
+              "leg-binding",
+              "morphism_label: morphism_label.into()",
+              "morphism_label: String::new()"
+            ]
+          ]
+        }
+      ],
+      "faults": [
+        [
+          "context-prefix",
+          "format!(\"{location}: {detail}\")",
+          "format!(\"{detail}\")"
+        ],
+        [
+          "context-typed-cause",
+          "        other => other,",
+          "        other => ArithmosError::InvalidShape(\"masked\".into()),"
+        ]
+      ],
+      "path": "code/rust/src/category_theory/limits_colimits/cone.rs",
+      "sha256": "835f464b262485e2adfed394b5603f794ae7114a90720c7fbd669738ca5441f2",
+      "family": "limits_colimits"
+    },
+    {
+      "mode": "parent",
+      "type": "Limit",
+      "parent_aliases": [
+        "cone"
+      ],
+      "required_fields": [
+        "label",
+        "diagram_ref"
+      ],
+      "child": {
+        "type": "Cone",
+        "parameter_schema": true,
+        "required_fields": [
+          "label",
+          "apex"
+        ],
+        "collection_schema": [
+          {
+            "field": "legs",
+            "kind": "records",
+            "fields": [
+              "index",
+              "morphism_label"
+            ],
+            "diagnostic": "empty leg tag at index {i}",
+            "loop": "for (i, leg) in self.legs.iter().enumerate()",
+            "source_operands": [
+              "leg.index.is_empty()",
+              "leg.morphism_label.is_empty()"
+            ]
+          }
+        ],
+        "constructor_checks": "let mut c=Cone::with_apex(\"C\",\"V\"); c.with_leg(\"I\",\"f\"); c.with_leg(\"J\",\"g\"); assert_eq!((&*c.label,&*c.apex),(\"C\",\"V\")); assert_eq!(c.legs.len(),2); assert_eq!((&*c.legs[0].index,&*c.legs[0].morphism_label,&*c.legs[1].index,&*c.legs[1].morphism_label),(\"I\",\"f\",\"J\",\"g\"));",
+        "faults": [
+          [
+            "vertex-binding",
+            "apex: apex.into()",
+            "apex: String::new()"
+          ],
+          [
+            "leg-binding",
+            "morphism_label: morphism_label.into()",
+            "morphism_label: String::new()"
+          ]
+        ],
+        "defaults": {
+          "label": "C",
+          "apex": "V",
+          "legs": [],
+          "notes": []
+        },
+        "label_values": {
+          "label": "C",
+          "apex": "V"
+        }
+      },
+      "child_field": "cone",
+      "constructor_checks": "let child=Cone::with_apex(\"child\",\"V\"); let p=Limit::of_diagram(\"P\",\"D\",child.clone()); assert_eq!((&*p.label,&*p.diagram_ref),(\"P\",\"D\")); assert_eq!(p.cone,child);",
+      "faults": [
+        [
+          "skip-child",
+          "        self.cone\n            .validate_shell()\n            .map_err(|error| super::cone::shape_context(\"cone\", error))?;",
+          ""
+        ],
+        [
+          "wrong-context",
+          "shape_context(\"cone\", error)",
+          "shape_context(\"wrong\", error)"
+        ]
+      ],
+      "path": "code/rust/src/category_theory/limits_colimits/limit.rs",
+      "sha256": "256c626531f8db5c20c35637d8f6153835db32baea9ea21e4e1a33285fa71e2f",
+      "family": "limits_colimits"
+    },
+    {
+      "mode": "parent",
+      "type": "Colimit",
+      "parent_aliases": [
+        "cone"
+      ],
+      "required_fields": [
+        "label",
+        "diagram_ref"
+      ],
+      "child": {
+        "type": "Cocone",
+        "parameter_schema": true,
+        "required_fields": [
+          "label",
+          "nadir"
+        ],
+        "collection_schema": [
+          {
+            "field": "legs",
+            "kind": "records",
+            "fields": [
+              "index",
+              "morphism_label"
+            ],
+            "diagnostic": "empty leg tag at index {i}",
+            "loop": "for (i, leg) in self.legs.iter().enumerate()",
+            "source_operands": [
+              "leg.index.is_empty()",
+              "leg.morphism_label.is_empty()"
+            ]
+          }
+        ],
+        "constructor_checks": "let mut c=Cocone::with_nadir(\"C\",\"V\"); c.with_leg(\"I\",\"f\"); c.with_leg(\"J\",\"g\"); assert_eq!((&*c.label,&*c.nadir),(\"C\",\"V\")); assert_eq!(c.legs.len(),2); assert_eq!((&*c.legs[0].index,&*c.legs[0].morphism_label,&*c.legs[1].index,&*c.legs[1].morphism_label),(\"I\",\"f\",\"J\",\"g\"));",
+        "faults": [
+          [
+            "vertex-binding",
+            "nadir: nadir.into()",
+            "nadir: String::new()"
+          ],
+          [
+            "leg-binding",
+            "morphism_label: morphism_label.into()",
+            "morphism_label: String::new()"
+          ]
+        ],
+        "defaults": {
+          "label": "C",
+          "nadir": "V",
+          "legs": [],
+          "notes": []
+        },
+        "label_values": {
+          "label": "C",
+          "nadir": "V"
+        }
+      },
+      "child_field": "cocone",
+      "constructor_checks": "let child=Cocone::with_nadir(\"child\",\"V\"); let p=Colimit::of_diagram(\"P\",\"D\",child.clone()); assert_eq!((&*p.label,&*p.diagram_ref),(\"P\",\"D\")); assert_eq!(p.cocone,child);",
+      "faults": [
+        [
+          "skip-child",
+          "        self.cocone\n            .validate_shell()\n            .map_err(|error| super::cone::shape_context(\"cocone\", error))?;",
+          ""
+        ],
+        [
+          "wrong-context",
+          "shape_context(\"cocone\", error)",
+          "shape_context(\"wrong\", error)"
+        ]
+      ],
+      "path": "code/rust/src/category_theory/limits_colimits/colimit.rs",
+      "sha256": "4cdf6d681e9b4d1c448906b0f02d60770a748fbfeb6139de604cf0913fc46d0c",
+      "family": "limits_colimits"
+    },
+    {
+      "mode": "product",
+      "type": "Product",
+      "parameter_schema": true,
+      "required_fields": [
+        "label",
+        "product_object"
+      ],
+      "collection_schema": [
+        {
+          "field": "factors",
+          "kind": "strings",
+          "fields": [
+            "tag"
+          ],
+          "diagnostic": "empty factor at index {i}",
+          "loop": "for (i, f) in self.factors.iter().enumerate()",
+          "source_operands": [
+            "f.is_empty()"
+          ]
+        },
+        {
+          "field": "projections",
+          "kind": "strings",
+          "fields": [
+            "tag"
+          ],
+          "diagnostic": "empty projection at index {i}",
+          "loop": "for (i, p) in self.projections.iter().enumerate()",
+          "source_operands": [
+            "p.is_empty()"
+          ]
+        }
+      ],
+      "empty_inventory": "empty factors",
+      "alignment_error": "projections length must match factors length",
+      "constructor_checks": "let p=Product::binary(\"P\",\"O\",\"L\",\"R\",\"a\",\"b\"); assert_eq!((&*p.label,&*p.product_object),(\"P\",\"O\")); assert_eq!(p.factors,vec![\"L\",\"R\"]); assert_eq!(p.projections,vec![\"a\",\"b\"]);",
+      "faults": [
+        [
+          "allow-empty-inventory",
+          "if self.factors.is_empty() {",
+          "if false {"
+        ],
+        [
+          "empty-diagnostic",
+          "\"empty factors\".into()",
+          "\"wrong inventory\".into()"
+        ],
+        [
+          "optional-alignment",
+          "if !self.projections.is_empty() && self.projections.len() != self.factors.len() {",
+          "if false {"
+        ]
+      ],
+      "path": "code/rust/src/category_theory/limits_colimits/product.rs",
+      "sha256": "506b19842ed1ae06ac578b11cd096c5be2c5cc590b2f64d0c29e295060079022",
+      "family": "limits_colimits"
+    },
+    {
+      "mode": "product",
+      "type": "Coproduct",
+      "parameter_schema": true,
+      "required_fields": [
+        "label",
+        "coproduct_object"
+      ],
+      "collection_schema": [
+        {
+          "field": "summands",
+          "kind": "strings",
+          "fields": [
+            "tag"
+          ],
+          "diagnostic": "empty summand at index {i}",
+          "loop": "for (i, s) in self.summands.iter().enumerate()",
+          "source_operands": [
+            "s.is_empty()"
+          ]
+        },
+        {
+          "field": "injections",
+          "kind": "strings",
+          "fields": [
+            "tag"
+          ],
+          "diagnostic": "empty injection at index {i}",
+          "loop": "for (i, j) in self.injections.iter().enumerate()",
+          "source_operands": [
+            "j.is_empty()"
+          ]
+        }
+      ],
+      "empty_inventory": "empty summands",
+      "alignment_error": "injections length must match summands length",
+      "constructor_checks": "let p=Coproduct::binary(\"P\",\"O\",\"L\",\"R\",\"a\",\"b\"); assert_eq!((&*p.label,&*p.coproduct_object),(\"P\",\"O\")); assert_eq!(p.summands,vec![\"L\",\"R\"]); assert_eq!(p.injections,vec![\"a\",\"b\"]);",
+      "faults": [
+        [
+          "allow-empty-inventory",
+          "if self.summands.is_empty() {",
+          "if false {"
+        ],
+        [
+          "empty-diagnostic",
+          "\"empty summands\".into()",
+          "\"wrong inventory\".into()"
+        ],
+        [
+          "optional-alignment",
+          "if !self.injections.is_empty() && self.injections.len() != self.summands.len() {",
+          "if false {"
+        ]
+      ],
+      "path": "code/rust/src/category_theory/limits_colimits/coproduct.rs",
+      "sha256": "4f7aec81569672d6cd61326a10ac2c4a4f7e5069dc30b493c60c55f85ed5b0c7",
+      "family": "limits_colimits"
+    }
+  ]
+}

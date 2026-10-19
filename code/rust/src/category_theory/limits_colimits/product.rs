@@ -1,6 +1,7 @@
 //! product shell for omega_category_theory.
 //! AuthorityEffect: None. Not PROVED / GlobalGreen.
 
+use omega_category_theory::errors::ArithmosError;
 use serde::{Deserialize, Serialize};
 
 /// Best-effort shell for a (binary or multi-factor) product.
@@ -44,28 +45,34 @@ impl Product {
         }
     }
 
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
         if self.product_object.is_empty() {
-            return Err("empty product_object".into());
+            return Err(ArithmosError::InvalidShape("empty product_object".into()));
         }
         if self.factors.is_empty() {
-            return Err("empty factors".into());
+            return Err(ArithmosError::InvalidShape("empty factors".into()));
         }
         for (i, f) in self.factors.iter().enumerate() {
             if f.is_empty() {
-                return Err(format!("empty factor at index {i}"));
+                return Err(ArithmosError::InvalidShape(format!(
+                    "empty factor at index {i}"
+                )));
             }
         }
         for (i, p) in self.projections.iter().enumerate() {
             if p.is_empty() {
-                return Err(format!("empty projection at index {i}"));
+                return Err(ArithmosError::InvalidShape(format!(
+                    "empty projection at index {i}"
+                )));
             }
         }
         if !self.projections.is_empty() && self.projections.len() != self.factors.len() {
-            return Err("projections length must match factors length".into());
+            return Err(ArithmosError::InvalidShape(
+                "projections length must match factors length".into(),
+            ));
         }
         Ok(())
     }

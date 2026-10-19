@@ -15,7 +15,11 @@ def valid_entry(group, index):
     if group["kind"] == "strings":
         return "entry:" + str(index) + ":\u03b1\0"
     if group["kind"] == "records":
-        return {field:field + ":" + str(index) for field in fields}
+        result = {field:field + ":" + str(index) for field in fields}
+        equal = group.get("equal_fields", [])
+        for field in equal[1:]:
+            result[field] = result[equal[0]]
+        return result
     return [field + ":" + str(index) for field in fields]
 
 
@@ -63,6 +67,7 @@ def schema_cases(record):
         for group in groups:
             patch[group["field"]] = invalidate(group,patch[group["field"]],1,1)
         cases.append((patch,groups[0]["diagnostic"].format(i=1)))
+    cases.extend(record.get("additional_cases", []))
     return cases
 
 

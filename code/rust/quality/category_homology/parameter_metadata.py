@@ -67,8 +67,8 @@ def variants(record, source):
             raise ValueError("Nonunique designated parameter fault: " + record["path"] + ":" + name)
         rows.append((name,source.replace(needle,replacement,1),needle,replacement))
     # Observe new() directly; replace only its first label binding.
-    needle = "label: label.into()"
+    needle, replacement = record.get("new_label_binding", ["label: label.into()", "label: String::new()"])
     if needle not in source:
         raise ValueError("Missing raw new-label assignment")
-    rows.append(("new-label",source.replace(needle,"label: String::new()",1),needle,"label: String::new()"))
+    rows.append(("new-label",source.replace(needle,replacement,1),needle,replacement))
     return rows

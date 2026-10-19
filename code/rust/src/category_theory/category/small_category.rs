@@ -4,6 +4,7 @@
 //! A small category has a set (not a proper class) of morphisms.
 //! This shell records a finite presentation claim only.
 
+use omega_category_theory::errors::ArithmosError;
 use serde::{Deserialize, Serialize};
 
 use super::category::{FiniteCategoryShell, MorphismTriple};
@@ -12,7 +13,8 @@ use super::category::{FiniteCategoryShell, MorphismTriple};
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize)]
 pub struct SmallCategoryShell {
     pub label: String,
-    /// Underlying finite presentation (optional; may be empty).
+    /// Underlying raw presentation. Its object inventory may be empty;
+    /// its label and stored tags must still pass the presentation shape checks.
     pub presentation: FiniteCategoryShell,
     /// Declared claim that Hom-sets are sets (diagnostic flag only).
     pub claims_small: bool,
@@ -47,22 +49,22 @@ impl SmallCategoryShell {
         &self.presentation.morphisms
     }
 
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
         if !self.claims_small {
-            return Err("claims_small must be true for SmallCategoryShell".into());
+            return Err(ArithmosError::InvalidShape(
+                "claims_small must be true for SmallCategoryShell".into(),
+            ));
         }
         self.presentation.validate_shell()?;
-        if self.presentation.label != self.label && !self.presentation.label.is_empty() {
-            // Allow empty presentation label only when objects empty; otherwise labels should match.
-            if !self.presentation.objects.is_empty() {
-                return Err(format!(
-                    "presentation.label {:?} != shell.label {:?}",
-                    self.presentation.label, self.label
-                ));
-            }
+        // Child admission above already rejects an empty presentation label.
+        if self.presentation.label != self.label && !self.presentation.objects.is_empty() {
+            return Err(ArithmosError::InvalidShape(format!(
+                "presentation.label {:?} != shell.label {:?}",
+                self.presentation.label, self.label
+            )));
         }
         Ok(())
     }

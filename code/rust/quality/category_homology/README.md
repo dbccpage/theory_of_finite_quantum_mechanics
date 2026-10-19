@@ -358,3 +358,22 @@ recovered space; all source and dirty work remain untouched.
 python code/rust/quality/category_homology/run_metadata_challenges.py --policy code/rust/quality/category_homology/flat_inventory_boundaries.json --jobs 1 --batch-size 4
 python code/rust/quality/category_homology/run_rank_proof.py --model literal-reversal
 ```
+
+
+The nested-inventory checkpoint has 115 completed A records and 77 incomplete
+records. All 108 hierarchical category files now have honest per-file A scores.
+Eight raw schema modules are L2A: typed shape errors preserve rejection order
+and data, while the discrete shell explicitly checks endomorphisms only.
+Category validation is split into cohesive private tag checks. Cone context
+preserves non-shape error variants. These records claim no category laws,
+commuting cones or universal properties.
+
+The native replay passes 1,593 independent schema/context cases, 49 namespace
+controls, all 118 faults and 459 canonical category tests before/after. The
+nine-lemma shape model and all 107 export faults pass. The initial missing
+snapshot test dependency failure is retained; its correction ledger binds all
+118 identical candidate byte strings to their successful rerun. Explicit
+provider-delta reviews refresh two facades and the unchanged Arrow/Opposite
+callers. `20261019T031207Z-score-verification` rechecks all completed evidence
+and every current source/score digest without drift. Cleanup checkpoint 115
+finds zero owned compiled outputs; contracts remain pending.

@@ -1,0 +1,29 @@
+
+running 6 tests
+test category::nested_replay_24::subject::tests::on_objects_ok ... ok
+test category::nested_replay_24::subject::parameter_challenge::constructors_preserve_distinct_supplied_parameters ... ok
+test category::nested_replay_24::subject::tests::rejects_non_endomorphism ... ok
+test category::nested_replay_24::subject::tests::validate_ok ... ok
+test category::nested_replay_24::subject::tests::validate_rejects_empty ... FAILED
+test category::nested_replay_24::subject::parameter_challenge::independent_schema_cases_and_first_error ... FAILED
+
+failures:
+
+---- category::nested_replay_24::subject::tests::validate_rejects_empty stdout ----
+
+thread 'category::nested_replay_24::subject::tests::validate_rejects_empty' (31612) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\ni\261019T025937\src\category_theory\q\n24.rs:84:9:
+assertion failed: DiscreteCategoryShell::new("").validate_shell().is_err()
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- category::nested_replay_24::subject::parameter_challenge::independent_schema_cases_and_first_error stdout ----
+
+thread 'category::nested_replay_24::subject::parameter_challenge::independent_schema_cases_and_first_error' (4304) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\ni\261019T025937\src\category_theory\q\n24.rs:114:37:
+expected Some("empty label"), got Ok(()); raw={"label":"","morphisms":[],"notes":[],"objects":[]}
+
+
+failures:
+    category::nested_replay_24::subject::parameter_challenge::independent_schema_cases_and_first_error
+    category::nested_replay_24::subject::tests::validate_rejects_empty
+
+test result: FAILED. 4 passed; 2 failed; 0 ignored; 0 measured; 1277 filtered out; finished in 0.00s
+

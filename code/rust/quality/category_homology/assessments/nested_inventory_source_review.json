@@ -1,0 +1,250 @@
+{
+  "AuthorityEffect": "None",
+  "scope": "All explicit public/private production functions of eight shape modules; source relation only, no grade inferred.",
+  "records": [
+    {
+      "artifact": "code/rust/src/category_theory/category/category.rs",
+      "sha256": "88eafc7a8a0a4157b7c77bdac38a9a66a2701435543ce4c2ac078932ca4b844f",
+      "symbols": {
+        "MorphismTriple::new": {
+          "signature": "pub fn new( source: impl Into<String>, target: impl Into<String>, name: impl Into<String>, ) -> Self",
+          "body": "{ Self { source: source.into(), target: target.into(), name: name.into(), } }",
+          "scope": "Literal shape/typed context or raw-data construction/observation only; not a category/universal-property admission."
+        },
+        "FiniteCategoryShell::new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), objects: Vec::new(), morphisms: Vec::new(), identity_map: BTreeMap::new(), notes: Vec::new(), } }",
+          "scope": "Literal shape/typed context or raw-data construction/observation only; not a category/universal-property admission."
+        },
+        "FiniteCategoryShell::with_objects": {
+          "signature": "pub fn with_objects(label: impl Into<String>, objects: Vec<String>) -> Self",
+          "body": "{ let mut identity_map = BTreeMap::new(); let mut morphisms = Vec::new(); for o in &objects { let id_name = format!(\"id_{o}\"); identity_map.insert(o.clone(), id_name.clone()); morphisms.push(MorphismTriple::new(o.clone(), o.clone(), id_name)); } Self { label: label.into(), objects, morphisms, identity_map, notes: Vec::new(), } }",
+          "scope": "Literal shape/typed context or raw-data construction/observation only; not a category/universal-property admission."
+        },
+        "FiniteCategoryShell::validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } self.validate_object_tags()?; self.validate_morphism_tags()?; self.validate_identity_tags() }",
+          "scope": "Literal shape/typed context or raw-data construction/observation only; not a category/universal-property admission."
+        },
+        "FiniteCategoryShell::validate_object_tags": {
+          "signature": "fn validate_object_tags(&self) -> Result<(), ArithmosError>",
+          "body": "{ for (i, o) in self.objects.iter().enumerate() { if o.is_empty() { return Err(ArithmosError::InvalidShape(format!( \"empty object tag at index {i}\" ))); } } Ok(()) }",
+          "scope": "Literal shape/typed context or raw-data construction/observation only; not a category/universal-property admission."
+        },
+        "FiniteCategoryShell::validate_morphism_tags": {
+          "signature": "fn validate_morphism_tags(&self) -> Result<(), ArithmosError>",
+          "body": "{ for (i, m) in self.morphisms.iter().enumerate() { if m.source.is_empty() || m.target.is_empty() || m.name.is_empty() { return Err(ArithmosError::InvalidShape(format!( \"empty morphism field at index {i}\" ))); } } Ok(()) }",
+          "scope": "Literal shape/typed context or raw-data construction/observation only; not a category/universal-property admission."
+        },
+        "FiniteCategoryShell::validate_identity_tags": {
+          "signature": "fn validate_identity_tags(&self) -> Result<(), ArithmosError>",
+          "body": "{ for (obj, id_name) in &self.identity_map { if obj.is_empty() || id_name.is_empty() { return Err(ArithmosError::InvalidShape( \"empty identity_map key or value\".into(), )); } } Ok(()) }",
+          "scope": "Literal shape/typed context or raw-data construction/observation only; not a category/universal-property admission."
+        }
+      },
+      "policy_mode": "collection",
+      "refinement": "Ordered literal-label/inventory guards compose before nested contextual refusal or conditional alignment. Typed tags and data are preserved; source closures/private helpers are explicitly mapped. Constructors/serde remain raw transport. No category identity, smallness, commutativity or universal-property theorem is assumed."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/category/discrete_category.rs",
+      "sha256": "a6aefc3fbadda8094cbafdf0cca8b577b6c8b016c94fb18d2dfec7f03a529e66",
+      "symbols": {
+        "DiscreteCategoryShell::new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), objects: Vec::new(), morphisms: Vec::new(), notes: Vec::new(), } }",
+          "scope": "Literal shape/typed context or raw-data construction/observation only; not a category/universal-property admission."
+        },
+        "DiscreteCategoryShell::on_objects": {
+          "signature": "pub fn on_objects(label: impl Into<String>, objects: Vec<String>) -> Self",
+          "body": "{ let morphisms = objects .iter() .map(|o| MorphismTriple::new(o.clone(), o.clone(), format!(\"id_{o}\"))) .collect(); Self { label: label.into(), objects, morphisms, notes: Vec::new(), } }",
+          "scope": "Literal shape/typed context or raw-data construction/observation only; not a category/universal-property admission."
+        },
+        "DiscreteCategoryShell::validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } for (i, o) in self.objects.iter().enumerate() { if o.is_empty() { return Err(ArithmosError::InvalidShape(format!( \"empty object tag at index {i}\" ))); } } for (i, m) in self.morphisms.iter().enumerate() { if m.source.is_empty() || m.target.is_empty() || m.name.is_empty() { return Err(ArithmosError::InvalidShape(format!( \"empty morphism field at index {i}\" ))); } if m.source != m.target { return Err(ArithmosError::InvalidShape(format!( \"non-endomorphism at index {i}: {} \u2192 {} ({})\", m.source, m.target, m.name ))); } } Ok(()) }",
+          "scope": "Literal shape/typed context or raw-data construction/observation only; not a category/universal-property admission."
+        }
+      },
+      "policy_mode": "collection",
+      "refinement": "Ordered literal-label/inventory guards compose before nested contextual refusal or conditional alignment. Typed tags and data are preserved; source closures/private helpers are explicitly mapped. Constructors/serde remain raw transport. No category identity, smallness, commutativity or universal-property theorem is assumed."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/category/small_category.rs",
+      "sha256": "c0d16efa485ecc73e646d97b76b90ce3d4c132eb5c04e897875f570e1fbdf3f6",
+      "symbols": {
+        "SmallCategoryShell::new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ let label = label.into(); Self { presentation: FiniteCategoryShell::new(label.clone()), label, claims_small: true, notes: Vec::new(), } }",
+          "scope": "Literal shape/typed context or raw-data construction/observation only; not a category/universal-property admission."
+        },
+        "SmallCategoryShell::from_presentation": {
+          "signature": "pub fn from_presentation(presentation: FiniteCategoryShell) -> Self",
+          "body": "{ Self { label: presentation.label.clone(), presentation, claims_small: true, notes: Vec::new(), } }",
+          "scope": "Literal shape/typed context or raw-data construction/observation only; not a category/universal-property admission."
+        },
+        "SmallCategoryShell::objects": {
+          "signature": "pub fn objects(&self) -> &[String]",
+          "body": "{ &self.presentation.objects }",
+          "scope": "Literal shape/typed context or raw-data construction/observation only; not a category/universal-property admission."
+        },
+        "SmallCategoryShell::morphisms": {
+          "signature": "pub fn morphisms(&self) -> &[MorphismTriple]",
+          "body": "{ &self.presentation.morphisms }",
+          "scope": "Literal shape/typed context or raw-data construction/observation only; not a category/universal-property admission."
+        },
+        "SmallCategoryShell::validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if !self.claims_small { return Err(ArithmosError::InvalidShape( \"claims_small must be true for SmallCategoryShell\".into(), )); } self.presentation.validate_shell()?; // Child admission above already rejects an empty presentation label. if self.presentation.label != self.label && !self.presentation.objects.is_empty() { return Err(ArithmosError::InvalidShape(format!( \"presentation.label {:?} != shell.label {:?}\", self.presentation.label, self.label ))); } Ok(()) }",
+          "scope": "Literal shape/typed context or raw-data construction/observation only; not a category/universal-property admission."
+        }
+      },
+      "policy_mode": "parent",
+      "refinement": "Ordered literal-label/inventory guards compose before nested contextual refusal or conditional alignment. Typed tags and data are preserved; source closures/private helpers are explicitly mapped. Constructors/serde remain raw transport. No category identity, smallness, commutativity or universal-property theorem is assumed."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/limits_colimits/cone.rs",
+      "sha256": "835f464b262485e2adfed394b5603f794ae7114a90720c7fbd669738ca5441f2",
+      "symbols": {
+        "module::shape_context": {
+          "signature": "pub(super) fn shape_context(location: &str, error: ArithmosError) -> ArithmosError",
+          "body": "{ match error { ArithmosError::InvalidShape(detail) => { ArithmosError::InvalidShape(format!(\"{location}: {detail}\")) } other => other, } }",
+          "scope": "Literal shape/typed context or raw-data construction/observation only; not a category/universal-property admission."
+        },
+        "Cone::new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), apex: String::new(), legs: Vec::new(), notes: Vec::new(), } }",
+          "scope": "Literal shape/typed context or raw-data construction/observation only; not a category/universal-property admission."
+        },
+        "Cone::with_apex": {
+          "signature": "pub fn with_apex(label: impl Into<String>, apex: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), apex: apex.into(), legs: Vec::new(), notes: Vec::new(), } }",
+          "scope": "Literal shape/typed context or raw-data construction/observation only; not a category/universal-property admission."
+        },
+        "Cone::with_leg": {
+          "signature": "pub fn with_leg(&mut self, index: impl Into<String>, morphism_label: impl Into<String>)",
+          "body": "{ self.legs.push(ConeLeg { index: index.into(), morphism_label: morphism_label.into(), }); }",
+          "scope": "Literal shape/typed context or raw-data construction/observation only; not a category/universal-property admission."
+        },
+        "Cone::validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.apex.is_empty() { return Err(ArithmosError::InvalidShape(\"empty apex\".into())); } for (i, leg) in self.legs.iter().enumerate() { if leg.index.is_empty() || leg.morphism_label.is_empty() { return Err(ArithmosError::InvalidShape(format!( \"empty leg tag at index {i}\" ))); } } Ok(()) }",
+          "scope": "Literal shape/typed context or raw-data construction/observation only; not a category/universal-property admission."
+        },
+        "Cocone::new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), nadir: String::new(), legs: Vec::new(), notes: Vec::new(), } }",
+          "scope": "Literal shape/typed context or raw-data construction/observation only; not a category/universal-property admission."
+        },
+        "Cocone::with_nadir": {
+          "signature": "pub fn with_nadir(label: impl Into<String>, nadir: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), nadir: nadir.into(), legs: Vec::new(), notes: Vec::new(), } }",
+          "scope": "Literal shape/typed context or raw-data construction/observation only; not a category/universal-property admission."
+        },
+        "Cocone::with_leg": {
+          "signature": "pub fn with_leg(&mut self, index: impl Into<String>, morphism_label: impl Into<String>)",
+          "body": "{ self.legs.push(ConeLeg { index: index.into(), morphism_label: morphism_label.into(), }); }",
+          "scope": "Literal shape/typed context or raw-data construction/observation only; not a category/universal-property admission."
+        },
+        "Cocone::validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.nadir.is_empty() { return Err(ArithmosError::InvalidShape(\"empty nadir\".into())); } for (i, leg) in self.legs.iter().enumerate() { if leg.index.is_empty() || leg.morphism_label.is_empty() { return Err(ArithmosError::InvalidShape(format!( \"empty leg tag at index {i}\" ))); } } Ok(()) }",
+          "scope": "Literal shape/typed context or raw-data construction/observation only; not a category/universal-property admission."
+        }
+      },
+      "policy_mode": "dual-cone",
+      "refinement": "Ordered literal-label/inventory guards compose before nested contextual refusal or conditional alignment. Typed tags and data are preserved; source closures/private helpers are explicitly mapped. Constructors/serde remain raw transport. No category identity, smallness, commutativity or universal-property theorem is assumed."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/limits_colimits/limit.rs",
+      "sha256": "256c626531f8db5c20c35637d8f6153835db32baea9ea21e4e1a33285fa71e2f",
+      "symbols": {
+        "Limit::new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), diagram_ref: String::new(), cone: Cone::default(), notes: Vec::new(), } }",
+          "scope": "Literal shape/typed context or raw-data construction/observation only; not a category/universal-property admission."
+        },
+        "Limit::of_diagram": {
+          "signature": "pub fn of_diagram( label: impl Into<String>, diagram_ref: impl Into<String>, cone: Cone, ) -> Self",
+          "body": "{ Self { label: label.into(), diagram_ref: diagram_ref.into(), cone, notes: Vec::new(), } }",
+          "scope": "Literal shape/typed context or raw-data construction/observation only; not a category/universal-property admission."
+        },
+        "Limit::validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.diagram_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty diagram_ref\".into())); } self.cone .validate_shell() .map_err(|error| super::cone::shape_context(\"cone\", error))?; Ok(()) }",
+          "scope": "Literal shape/typed context or raw-data construction/observation only; not a category/universal-property admission."
+        }
+      },
+      "policy_mode": "parent",
+      "refinement": "Ordered literal-label/inventory guards compose before nested contextual refusal or conditional alignment. Typed tags and data are preserved; source closures/private helpers are explicitly mapped. Constructors/serde remain raw transport. No category identity, smallness, commutativity or universal-property theorem is assumed."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/limits_colimits/colimit.rs",
+      "sha256": "4cdf6d681e9b4d1c448906b0f02d60770a748fbfeb6139de604cf0913fc46d0c",
+      "symbols": {
+        "Colimit::new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), diagram_ref: String::new(), cocone: Cocone::default(), notes: Vec::new(), } }",
+          "scope": "Literal shape/typed context or raw-data construction/observation only; not a category/universal-property admission."
+        },
+        "Colimit::of_diagram": {
+          "signature": "pub fn of_diagram( label: impl Into<String>, diagram_ref: impl Into<String>, cocone: Cocone, ) -> Self",
+          "body": "{ Self { label: label.into(), diagram_ref: diagram_ref.into(), cocone, notes: Vec::new(), } }",
+          "scope": "Literal shape/typed context or raw-data construction/observation only; not a category/universal-property admission."
+        },
+        "Colimit::validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.diagram_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty diagram_ref\".into())); } self.cocone .validate_shell() .map_err(|error| super::cone::shape_context(\"cocone\", error))?; Ok(()) }",
+          "scope": "Literal shape/typed context or raw-data construction/observation only; not a category/universal-property admission."
+        }
+      },
+      "policy_mode": "parent",
+      "refinement": "Ordered literal-label/inventory guards compose before nested contextual refusal or conditional alignment. Typed tags and data are preserved; source closures/private helpers are explicitly mapped. Constructors/serde remain raw transport. No category identity, smallness, commutativity or universal-property theorem is assumed."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/limits_colimits/product.rs",
+      "sha256": "506b19842ed1ae06ac578b11cd096c5be2c5cc590b2f64d0c29e295060079022",
+      "symbols": {
+        "Product::new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), product_object: String::new(), factors: Vec::new(), projections: Vec::new(), notes: Vec::new(), } }",
+          "scope": "Literal shape/typed context or raw-data construction/observation only; not a category/universal-property admission."
+        },
+        "Product::binary": {
+          "signature": "pub fn binary( label: impl Into<String>, product_object: impl Into<String>, left: impl Into<String>, right: impl Into<String>, projection_left: impl Into<String>, projection_right: impl Into<String>, ) -> Self",
+          "body": "{ Self { label: label.into(), product_object: product_object.into(), factors: vec![left.into(), right.into()], projections: vec![projection_left.into(), projection_right.into()], notes: Vec::new(), } }",
+          "scope": "Literal shape/typed context or raw-data construction/observation only; not a category/universal-property admission."
+        },
+        "Product::validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.product_object.is_empty() { return Err(ArithmosError::InvalidShape(\"empty product_object\".into())); } if self.factors.is_empty() { return Err(ArithmosError::InvalidShape(\"empty factors\".into())); } for (i, f) in self.factors.iter().enumerate() { if f.is_empty() { return Err(ArithmosError::InvalidShape(format!( \"empty factor at index {i}\" ))); } } for (i, p) in self.projections.iter().enumerate() { if p.is_empty() { return Err(ArithmosError::InvalidShape(format!( \"empty projection at index {i}\" ))); } } if !self.projections.is_empty() && self.projections.len() != self.factors.len() { return Err(ArithmosError::InvalidShape( \"projections length must match factors length\".into(), )); } Ok(()) }",
+          "scope": "Literal shape/typed context or raw-data construction/observation only; not a category/universal-property admission."
+        }
+      },
+      "policy_mode": "product",
+      "refinement": "Ordered literal-label/inventory guards compose before nested contextual refusal or conditional alignment. Typed tags and data are preserved; source closures/private helpers are explicitly mapped. Constructors/serde remain raw transport. No category identity, smallness, commutativity or universal-property theorem is assumed."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/limits_colimits/coproduct.rs",
+      "sha256": "4f7aec81569672d6cd61326a10ac2c4a4f7e5069dc30b493c60c55f85ed5b0c7",
+      "symbols": {
+        "Coproduct::new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), coproduct_object: String::new(), summands: Vec::new(), injections: Vec::new(), notes: Vec::new(), } }",
+          "scope": "Literal shape/typed context or raw-data construction/observation only; not a category/universal-property admission."
+        },
+        "Coproduct::binary": {
+          "signature": "pub fn binary( label: impl Into<String>, coproduct_object: impl Into<String>, left: impl Into<String>, right: impl Into<String>, injection_left: impl Into<String>, injection_right: impl Into<String>, ) -> Self",
+          "body": "{ Self { label: label.into(), coproduct_object: coproduct_object.into(), summands: vec![left.into(), right.into()], injections: vec![injection_left.into(), injection_right.into()], notes: Vec::new(), } }",
+          "scope": "Literal shape/typed context or raw-data construction/observation only; not a category/universal-property admission."
+        },
+        "Coproduct::validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.coproduct_object.is_empty() { return Err(ArithmosError::InvalidShape(\"empty coproduct_object\".into())); } if self.summands.is_empty() { return Err(ArithmosError::InvalidShape(\"empty summands\".into())); } for (i, s) in self.summands.iter().enumerate() { if s.is_empty() { return Err(ArithmosError::InvalidShape(format!( \"empty summand at index {i}\" ))); } } for (i, j) in self.injections.iter().enumerate() { if j.is_empty() { return Err(ArithmosError::InvalidShape(format!( \"empty injection at index {i}\" ))); } } if !self.injections.is_empty() && self.injections.len() != self.summands.len() { return Err(ArithmosError::InvalidShape( \"injections length must match summands length\".into(), )); } Ok(()) }",
+          "scope": "Literal shape/typed context or raw-data construction/observation only; not a category/universal-property admission."
+        }
+      },
+      "policy_mode": "product",
+      "refinement": "Ordered literal-label/inventory guards compose before nested contextual refusal or conditional alignment. Typed tags and data are preserved; source closures/private helpers are explicitly mapped. Constructors/serde remain raw transport. No category identity, smallness, commutativity or universal-property theorem is assumed."
+    }
+  ]
+}
