@@ -594,3 +594,34 @@ is preserved; current groups may draw unchanged and refreshed records from
 separate immutable batches. Cleanup checkpoint 137 finds no owned debug/tmp or
 compiled output. Small exact source snapshots remain for evidence custody.
 The full goal and contracts remain unfinished, and the PR remains draft.
+
+Carrier facade checkpoint: 139 completed A assessments and 53 incomplete.
+Root and directed-graph carrier facades are L4A; homology has 18 completed
+files and one incomplete challenge file. Category theory remains 121/52.
+Fourteen unchanged-own-source dependent records retain their original primary
+and metric receipts with an explicit current facade preservation argument.
+
+Root serialization now borrows matrices and weights instead of cloning the
+whole admitted carrier/certificates and then cloning its buffers again. Legacy
+fingerprint framing, field order, Serde CarrierWire/ExactMatrix/Hash256 names,
+hash-first deserialization and core admission are preserved. The graph domain
+explicitly allows opposite directed edges and repeated triangle rows while
+refusing duplicate directed pairs and repeated vertices inside a triangle.
+Dense initialization and exact law/rank costs remain separate from table work.
+This is source-cost evidence, not an allocation benchmark.
+
+Native 20261019T064912Z detects all 40 designated valid faults (22 root,
+18 graph), with no unresolved outcomes, and passes all 99 original local tests
+before/after plus positive controls. Initial 20261019T064602Z caught 39/40:
+equal outer dimensions hid a serialized C2/C0 substitution. An independent
+unequal-dimension zero-area wire case detects it in the final campaign; the
+initial survivor remains recorded. GraphIncidence checks nine finite incidence,
+sparse-row and signed-cancellation statements without warnings or unfinished
+axioms. Existing core admission, canonical scalar, rank and quotient proofs
+retain their precise statements and separate Rust correspondence review.
+Fresh metrics and all 35 explicit function/data/derive obligations fit A.
+
+20261019T065405Z-score-verification passes all 139 completed assessments,
+all current source/score digests and 25 receipt groups. Cleanup checkpoint 139
+finds zero owned debug/tmp/compiled outputs. Exact small source snapshots remain
+for receipt custody. Contracts and the full goal remain unfinished; PR is draft.

@@ -1,0 +1,67 @@
+# SCORING.md v2; incomplete gates deliberately remain null.
+schema_version: "2.0.0"
+artifact:
+  path: "code/rust/src/homology/mod.rs"
+  language: "Rust"
+  sha256: "b3412998bc0dba0f0203d5d305f50017ff151fa2c582f64e8c0b81adecd04f4d"
+profile: "Exact"
+level: "L4"
+level_basis: "Bounded exact domain implementation with checked constructors and typed failures; shared certificates support it."
+architecture_target: "L5"
+engineering_target: "A"
+gates:
+  G1: null
+  G2: null
+  G3: null
+  G4: null
+  G5: null
+composite_grade: null
+score_token: null
+is_complete: false
+grade_ceiling: "A"
+evaluation_timestamp: "2026-10-19T01:36:20+00:00"
+AuthorityEffect: "None"
+claim:
+  urn: "urn:tfqm:rust:homology:mod"
+  description: "Exact finite rational homology. AuthorityEffect: None.  Runtime certificates establish finite algebraic identities only. The canonical carrier admits shapes, d1*d0=0, positive weights and rank inclusion before use."
+  scope: "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified."
+contract:
+  status: "pending"
+  path: null
+  note: "Reserved for a later user-requested contract; none created or asserted here."
+evidence:
+  - {"path": "evidence/quality/category_homology/20261019T013620Z/baseline.json", "sha256": "83cf31e8bad88938f47be7d18a7f391f672b24ea7cb3a4b9206fb631d1bfc09e", "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."}
+  - {"path": "evidence/quality/category_homology/20261019T013620Z/summary.json", "sha256": "8514cafbd4388ede5f1e259e4e6d483d07c9e656a56199d3c49ec15dc7cd19e7", "scope": "Source snapshot binding and complete six-outcome accounting."}
+  - {"path": "evidence/quality/category_homology/20261019T013620Z/mutations.json", "sha256": "3f00855cdcd9e7b950db6288a5db150c9a69a8fa7ba7badbb1be9a9f187a1aee", "scope": "Designated critical faults only; outcomes for this file are enumerated below."}
+  - {"path": "evidence/quality/category_homology/20261019T013958Z-metrics/receipt.json", "sha256": "389732ce984b239939dc98fe3920a1cee23e37e512539be7278f8dd5977b3e83", "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."}
+  - {"path": "evidence/quality/category_homology/20261019T013620Z/dependency_receipt.json", "sha256": "f56928af34b26b35d65c5712a7ba0d1bdfc936d0cbdb902722746ff7896e1b47", "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred."}
+verification:
+  baseline_ok: true
+  source_snapshot_unchanged: true
+  compiled_scope: "shared scoped crate build"
+  local_mutant_ids: []
+  dependency_contents_stable: true
+mutation_accounting:
+  killed: 0
+  survived: 0
+  demonstrably_equivalent: 0
+  invalid: 0
+  inconclusive: 0
+  unrun: 0
+  conservative_ratio: null
+structure:
+  tool: "syn 3.0.9 source AST"
+  source_ast_parsed: true
+  expanded_ast: false
+  physical_lines: 214
+  parsed_production_functions: 16
+  max_production_ccn: 3
+  cognitive_complexity_upper_bound: 2
+  control_nesting: 1
+  opaque_function_macros: []
+  functions_exceeding_A: []
+  scope: "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
+open_findings:
+  - "A complete five-gate semantic, failure and consumer audit has not been established for this file."
+  - "Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds."
+  - "External path dependency source contents have not received a separate origin/content attestation."

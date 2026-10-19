@@ -18,7 +18,7 @@ from run_audit import ROOT, digest, execute, write_json
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model",choices=("rank","category","metadata","degree","counter","parameters","finite-set","literal-reversal","shape-inventory","root-records","homology-protocols","degree-repair","two-step-complex","simplicial-closure","simplicial-boundary","simplicial-homology","scalar-admission","carrier-dimensions","vector-maps"),default="rank")
+    parser.add_argument("--model",choices=("rank","category","metadata","degree","counter","parameters","finite-set","literal-reversal","shape-inventory","root-records","homology-protocols","degree-repair","two-step-complex","simplicial-closure","simplicial-boundary","simplicial-homology","scalar-admission","carrier-dimensions","vector-maps","graph-incidence"),default="rank")
     parser.add_argument("--memory-mb", type=int, default=1024,
         help="Explicit Lean memory limit, from 256 to 2048 MiB; default remains 1024.")
     args = parser.parse_args()
@@ -46,6 +46,11 @@ def main():
         proof_name, import_name, namespace = "DegreeWindow", "Data/Int/Basic", "TFQM.DegreeWindow."
         declarations = ("ordered_span_fits_u32", "same_endpoint_zero", "inverted_span_negative")
         scope = "Exact i32 endpoint difference bounds, zero span and inverted-window refusal premise; no category-law claim."
+    elif model == "graph-incidence":
+        proof_name, import_name, namespace = "GraphIncidence", "Data/Matrix/Mul", "TFQM.GraphIncidence."
+        declarations = ("incidence_loop_zero", "incidence_reverse", "triangle_cancellation", "distinct_edge_pairs",
+                        "triangle_at_ab", "triangle_at_bc", "triangle_at_ac", "row_action", "row_product_zero")
+        scope = "Finite directed incidence and signed triangle-row product cancellation; separate Rust index-map, admission, rank and storage correspondence."
     elif model == "vector-maps":
         proof_name, import_name, namespace = "VectorMaps", "Data/Matrix/Mul", "TFQM.VectorMaps."
         declarations = ("compatible_iff", "degree_first", "basis_after_degree", "length_after_context",

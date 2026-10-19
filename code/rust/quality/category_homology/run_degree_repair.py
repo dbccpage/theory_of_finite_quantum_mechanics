@@ -42,7 +42,7 @@ def main():
     work = RUST/"target/dr"/stamp[2:15]
     inputs = inventory()
     write_json(output/"source_manifest.json",inputs)
-    for name in (Path(__file__).name,"degree_repair.py","homology_protocols.py","storage_admission.py","vector_maps.py"):
+    for name in (Path(__file__).name,"degree_repair.py","homology_protocols.py","storage_admission.py","vector_maps.py","carrier_facades.py"):
         shutil.copyfile(Path(__file__).with_name(name),output/name)
     shutil.copyfile(policy,output/policy.name)
     snapshot(work,"homology")
@@ -81,7 +81,8 @@ def main():
                 quoted=json.dumps((context/"mod.rs").resolve().as_posix())
                 declarations.setdefault(subject["family"],[]).append(
                     f'#[cfg(test)]\n#[allow(dead_code, unused_imports, unused_variables)]\n#[path={quoted}] mod {module};')
-                selected="homology::"+module+"::"+("" if tag=="control" else path.stem+"::independent_storage_admission::")
+                nested="" if path.name=="mod.rs" else path.stem+"::"
+                selected="homology::"+module+"::"+("" if tag=="control" else nested+subject.get("independent_module","independent_storage_admission")+"::")
             else:
                 file = generated/("n"+str(index)+".rs")
                 file.write_text(raw_candidate,encoding="utf-8")

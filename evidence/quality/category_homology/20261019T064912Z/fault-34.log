@@ -1,0 +1,31 @@
+
+running 14 tests
+test homology::degree_repair_replay_36::subject::tests::non_positive_weight_rejected ... ok
+test homology::degree_repair_replay_36::subject::tests::cochain_relation_enforced ... ok
+test homology::degree_repair_replay_36::subject::tests::maps_with_non_composable_shapes_must_be_rejected ... ok
+test homology::degree_repair_replay_36::subject::tests::single_edge_tree ... ok
+test homology::degree_repair_replay_36::subject::tests::zero_complex ... ok
+test homology::degree_repair_replay_36::subject::independent_carrier_facades::exact_incidence_refusal_priority_and_payloads ... FAILED
+test homology::degree_repair_replay_36::subject::tests::path_graph_no_survivor ... ok
+test homology::degree_repair_replay_36::subject::tests::matrix_kernel_basis ... ok
+test homology::degree_repair_replay_36::subject::tests::triangle_cycle ... ok
+test homology::degree_repair_replay_36::subject::tests::triangle_cycle_no_filling ... ok
+test homology::degree_repair_replay_36::subject::tests::carrier_manifest_deterministic ... ok
+test homology::degree_repair_replay_36::subject::tests::different_carriers_different_hashes ... ok
+test homology::degree_repair_replay_36::subject::independent_carrier_facades::independent_axis_ranks_views_and_admission ... ok
+test homology::degree_repair_replay_36::subject::independent_carrier_facades::all_three_vertex_directed_graphs_and_each_triangle_orientation ... ok
+
+failures:
+
+---- homology::degree_repair_replay_36::subject::independent_carrier_facades::exact_incidence_refusal_priority_and_payloads stdout ----
+
+thread 'homology::degree_repair_replay_36::subject::independent_carrier_facades::exact_incidence_refusal_priority_and_payloads' (34236) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\dr\261019T064912\src\homology\q\n36.rs:332:54:
+called `Result::unwrap_err()` on an `Ok` value: Carrier { inner: Carrier { complex: CochainComplex { c0_dim: 3, c1_dim: 1, c2_dim: 0, d0: CoboundaryMap { from_degree: Degree(0), to_degree: Degree(1), matrix: BasicMatrix { rows: 1, cols: 3, data: [Ratio { numer: 0, denom: 1 }, Ratio { numer: 1, denom: 1 }, Ratio { numer: 0, denom: 1 }] }, map_hash: Hash256([50, 144, 59, 66, 108, 159, 81, 150, 69, 13, 209, 87, 72, 108, 164, 11, 254, 228, 144, 87, 82, 145, 99, 220, 253, 59, 199, 246, 139, 6, 102, 41]) }, d1: CoboundaryMap { from_degree: Degree(1), to_degree: Degree(2), matrix: BasicMatrix { rows: 0, cols: 1, data: [] }, map_hash: Hash256([35, 141, 235, 79, 150, 65, 10, 188, 4, 45, 154, 170, 221, 103, 159, 90, 235, 27, 148, 236, 41, 173, 89, 177, 0, 121, 194, 24, 231, 185, 63, 63]) }, witness: CochainComplexWitness { complex_hash: Hash256([115, 248, 243, 174, 5, 68, 254, 117, 198, 120, 235, 188, 59, 9, 150, 50, 50, 246, 249, 97, 71, 94, 224, 59, 241, 110, 135, 99, 48, 136, 107, 35]), d0_hash: Hash256([50, 144, 59, 66, 108, 159, 81, 150, 69, 13, 209, 87, 72, 108, 164, 11, 254, 228, 144, 87, 82, 145, 99, 220, 253, 59, 199, 246, 139, 6, 102, 41]), d1_hash: Hash256([35, 141, 235, 79, 150, 65, 10, 188, 4, 45, 154, 170, 221, 103, 159, 90, 235, 27, 148, 236, 41, 173, 89, 177, 0, 121, 194, 24, 231, 185, 63, 63]), d0_shape: (1, 3), d1_shape: (0, 1), provenance_hash: Hash256([103, 204, 13, 212, 224, 154, 69, 163, 55, 2, 14, 81, 186, 172, 236, 52, 170, 119, 158, 238, 180, 144, 230, 41, 124, 147, 217, 137, 219, 173, 84, 91]), _private: () } }, weights: [Ratio { numer: 1, denom: 1 }], ranks: (RankCertificate { matrix_hash: Hash256([50, 144, 59, 66, 108, 159, 81, 150, 69, 13, 209, 87, 72, 108, 164, 11, 254, 228, 144, 87, 82, 145, 99, 220, 253, 59, 199, 246, 139, 6, 102, 41]), rank: 1, candidate: RankCandidate { image: BasicMatrix { rows: 1, cols: 1, data: [Ratio { numer: 1, denom: 1 }] }, coordinates: BasicMatrix { rows: 1, cols: 3, data: [Ratio { numer: 0, denom: 1 }, Ratio { numer: 1, denom: 1 }, Ratio { numer: 0, denom: 1 }] }, image_retraction: BasicMatrix { rows: 1, cols: 1, data: [Ratio { numer: 1, denom: 1 }] }, coordinate_section: BasicMatrix { rows: 3, cols: 1, data: [Ratio { numer: 0, denom: 1 }, Ratio { numer: 1, denom: 1 }, Ratio { numer: 0, denom: 1 }] } } }, RankCertificate { matrix_hash: Hash256([35, 141, 235, 79, 150, 65, 10, 188, 4, 45, 154, 170, 221, 103, 159, 90, 235, 27, 148, 236, 41, 173, 89, 177, 0, 121, 194, 24, 231, 185, 63, 63]), rank: 0, candidate: RankCandidate { image: BasicMatrix { rows: 0, cols: 0, data: [] }, coordinates: BasicMatrix { rows: 0, cols: 1, data: [] }, image_retraction: BasicMatrix { rows: 0, cols: 0, data: [] }, coordinate_section: BasicMatrix { rows: 1, cols: 0, data: [] } } }) } }
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    homology::degree_repair_replay_36::subject::independent_carrier_facades::exact_incidence_refusal_priority_and_payloads
+
+test result: FAILED. 13 passed; 1 failed; 0 ignored; 0 measured; 2920 filtered out; finished in 0.14s
+
