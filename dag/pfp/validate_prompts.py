@@ -4,6 +4,7 @@ import hashlib
 import json
 import re
 import yaml
+from custody import Custody
 
 ROOT=Path(__file__).resolve().parents[2]
 REJECT=re.compile(r'stage_route_shadow_invariant|quotient_reduced_countermodel_defect|Set cochain_d1_d0_exact_zero|Set should_continue|exact 18 keys|which equals|raw_candidate_rival_int|countermodel_expected_int|P\* Cycle C_4')
@@ -49,6 +50,10 @@ def validate():
     indexed={row['node_id'] for row in index['nodes']}
     audit=json.loads((ROOT/'dag/pfp/prompt_audit.json').read_text(encoding='utf-8'))
     audited={row['node_id']:row for row in audit['nodes']}
+    try:
+        custody=Custody(ROOT)
+    except (ValueError,KeyError,TypeError,OSError) as error:
+        return {'prompts':len(files),'collections':len(indexed),'errors':['filename custody invalid: '+str(error)],'claim':'Custody failure; no mathematical acceptance.'}
     seen=set()
     for path in files:
         prompt=yaml.safe_load(path.read_bytes())
@@ -78,12 +83,15 @@ def validate():
                 if not p.is_file() or hashlib.sha256(p.read_bytes()).hexdigest()!=binding['sha256']:
                     errors.append(node+': local source pin changed '+binding['path'])
         for pin in record['target'].get('paper_source_pins',[]):
-            p=ROOT/pin['path']
-            if not p.is_file() or hashlib.sha256(p.read_bytes()).hexdigest()!=pin['sha256']:
+            if not custody.matches('paper',pin['path'],pin['sha256'],node):
                 errors.append(node+': local paper source pin changed '+pin['path'])
         row=audited.get(node,{})
-        if row.get('after_sha256')!=hashlib.sha256(path.read_bytes()).hexdigest(): errors.append(node+': audit hash mismatch')
+        if not custody.matches('prompt',path.relative_to(ROOT).as_posix(),row.get('after_sha256'),node): errors.append(node+': audit hash mismatch')
     if len(files)!=177 or seen!=indexed or seen!=set(audited): errors.append('corpus identity mismatch')
+    try:
+        custody.finish()
+    except ValueError as error:
+        errors.append(str(error))
     workflow=yaml.safe_load((ROOT/'dag/pfp/workflow.yaml').read_bytes())
     if workflow['entry_stage']!='P0_MINE_OPERAD': errors.append('workflow entry')
     if [s['id'] for s in workflow['stages']]!=['P0_MINE_OPERAD','P1_DERIVE','P2_VERIFY','P3_REPAIR','P4_CHALLENGE','P5_RECORD']:
