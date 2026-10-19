@@ -730,3 +730,25 @@ records retain original primary/metrics with explicit builder-provider refinemen
 all source/score digests and 28 receipt groups. Cleanup checkpoint 143 finds no
 owned debug/tmp/compiled outputs. Historical source snapshots/finding remain.
 Contracts and the full goal remain unfinished; the PR remains draft.
+
+Eilenberg-Moore checkpoint: 144 completed A assessments, 48 incomplete.
+The L3A implementation replaces two unconditional positive verification shells
+with deprecated fail-closed legacy queries and explicit finite sample checks.
+Only supplied observations/counts are reported; empty samples are vacuous.
+A guarded clone is compared once and that same copy enters the equation.
+Unit checks precede associativity; typed refusals retain the first phase/index.
+Rust callbacks, Clone/Eq/Monad contracts, allocation and termination remain
+explicit trust boundaries. Maybe has concrete constructor equations; marker
+printers do not construct a comparison category or certify generic monad laws.
+
+Final native 20261019T165705Z detects all 24 designated faults; 459 original
+category tests and ten subject tests pass before/after. EMSamples checks sixteen
+pure Maybe/finite-observation declarations without unexpected axioms or warnings.
+All 21 production functions fit A metrics. Final source/metrics preserve CRLF
+bytes. Earlier false-acceptance source and its two failing native counterexamples,
+narrower campaigns and the reconsidered stateful extra-clone fault remain retained.
+20261019T170433Z-score-verification verifies all 144 completed assessments and
+all 192 source/score records. Lawvere remains incomplete with explicit G2/G3 E
+for unchecked slot addition, under repair. Contracts and the full goal remain
+unfinished; this PR remains draft. Owned build outputs are removed after builds;
+small exact source/dependency snapshots used by receipts remain.

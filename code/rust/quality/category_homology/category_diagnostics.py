@@ -106,7 +106,67 @@ BUILDER=r'''
 }
 '''
 
+EM_COUNTER=r'''
+fn free_bool()->EMAlgebra<MaybeMonad,Maybe<bool>>{FreeAlgebraFunctor::<MaybeMonad>::new().map::<bool>()}
+fn bad_morphism(_:Maybe<bool>)->Maybe<bool>{Maybe::Just(true)}
+#[test]fn false_unit_law_must_not_be_accepted_without_evaluation(){
+ let mut algebra=free_bool();algebra.action=Box::new(|_|Maybe::Nothing);let a=Maybe::Just(true);assert_ne!((algebra.action)(MaybeMonad::unit(a.clone())),a);assert!(!algebra.verify_laws());
+}
+#[test]fn false_morphism_law_must_not_be_accepted_without_evaluation(){
+ let dom=free_bool();let cod=free_bool();let morphism=AlgebraMorphism::<MaybeMonad,Maybe<bool>,Maybe<bool>>::new(bad_morphism);let input=Maybe::<Maybe<bool>>::Nothing;let left=bad_morphism((dom.action)(input.clone()));let right=(cod.action)(MaybeMonad::fmap(bad_morphism,input));assert_ne!(left,right);assert!(!morphism.respects_algebras(&dom,&cod));
+}
+'''
+
+EM_SAMPLES=EM_COUNTER+r'''
+use std::rc::Rc;
+use std::cell::Cell;
+fn units()->Vec<Maybe<bool>>{vec![Maybe::Nothing,Maybe::Just(false),Maybe::Just(true)]}
+fn nested()->Vec<Maybe<Maybe<Maybe<bool>>>>{vec![Maybe::Nothing,Maybe::Just(Maybe::Nothing),Maybe::Just(Maybe::Just(Maybe::Nothing)),Maybe::Just(Maybe::Just(Maybe::Just(false))),Maybe::Just(Maybe::Just(Maybe::Just(true)))]}
+fn morph_inputs()->Vec<Maybe<Maybe<bool>>>{vec![Maybe::Nothing,Maybe::Just(Maybe::Nothing),Maybe::Just(Maybe::Just(false)),Maybe::Just(Maybe::Just(true))]}
+#[test]fn explicit_samples_observe_valid_algebras_and_empty_scope(){
+ let a=free_bool();assert!(!a.verify_laws());assert_eq!(a.check_samples(units(),nested()),Ok(AlgebraSampleCheck{unit_samples:3,associativity_samples:5}));assert_eq!(a.check_samples(vec![],vec![]),Ok(AlgebraSampleCheck{unit_samples:0,associativity_samples:0}));
+ let id=AlgebraMorphism::<MaybeMonad,Maybe<bool>,Maybe<bool>>::new(|x|x);let b=free_bool();assert!(!id.respects_algebras(&a,&b));assert_eq!(id.check_samples(&a,&b,morph_inputs()),Ok(4));assert_eq!(id.check_samples(&a,&b,vec![]),Ok(0));
+}
+#[test]fn unit_associativity_and_morphism_counterexamples_have_exact_first_payloads(){
+ let calls=Rc::new(Cell::new(0usize));let c=calls.clone();let mut a=free_bool();a.action=Box::new(move|_|{c.set(c.get()+1);Maybe::Nothing});assert_eq!(a.check_samples(vec![Maybe::Nothing,Maybe::Just(true)],nested()),Err(LawCheckError::Violated{law:AlgebraLaw::Unit,index:1}));assert_eq!(calls.get(),2);
+ let mut a=free_bool();a.action=Box::new(|x|match x{Maybe::Nothing=>Maybe::Nothing,Maybe::Just(Maybe::Nothing)=>Maybe::Nothing,Maybe::Just(Maybe::Just(v))=>Maybe::Just(!v)});let passing=Maybe::Nothing;let failing=Maybe::Just(Maybe::Just(Maybe::Just(false)));assert_eq!(a.check_samples(vec![],vec![passing,failing]),Err(LawCheckError::Violated{law:AlgebraLaw::Associativity,index:1}));
+ let dom=free_bool();let cod=free_bool();let m=AlgebraMorphism::<MaybeMonad,Maybe<bool>,Maybe<bool>>::new(bad_morphism);assert_eq!(m.check_samples(&dom,&cod,vec![Maybe::Just(Maybe::Just(true)),Maybe::Nothing]),Err(LawCheckError::Violated{law:AlgebraLaw::Morphism,index:1}));
+}
+#[derive(Debug)]struct IdMonad;
+impl Monad for IdMonad{type T<A:Obj>=A;fn unit<A:Obj>(x:A)->A{x}fn bind<A:Obj,B:Obj>(a:A,f:impl Fn(A)->B)->B{f(a)}fn fmap<A:Obj,B:Obj>(f:impl Fn(A)->B,a:A)->B{f(a)}}
+#[derive(Debug,PartialEq,Eq)]struct Odd(u8);impl Clone for Odd{fn clone(&self)->Self{Self(if self.0==0{0}else{self.0^1})}}
+#[test]fn nonpreserving_clone_is_rejected_before_callback_evaluation(){
+ for law in [AlgebraLaw::Unit,AlgebraLaw::Associativity]{let mut a=FreeAlgebraFunctor::<IdMonad>::new().map::<Odd>();a.action=Box::new(|_|panic!("clone refusal must precede action"));let (unit,assoc)=if law==AlgebraLaw::Unit{(vec![Odd(1)],vec![])}else{(vec![],vec![Odd(1)])};assert_eq!(a.check_samples(unit,assoc),Err(LawCheckError::NonPreservingClone{law,index:0}));}
+ let mut a=FreeAlgebraFunctor::<IdMonad>::new().map::<Odd>();a.action=Box::new(|_|panic!("clone refusal must precede action"));let b=FreeAlgebraFunctor::<IdMonad>::new().map::<Odd>();let m=AlgebraMorphism::<IdMonad,Odd,Odd>::new(|_|panic!("clone refusal must precede morphism"));assert_eq!(m.check_samples(&a,&b,vec![Odd(1)]),Err(LawCheckError::NonPreservingClone{law:AlgebraLaw::Morphism,index:0}));
+ let a=FreeAlgebraFunctor::<IdMonad>::new().map::<Odd>();let b=FreeAlgebraFunctor::<IdMonad>::new().map::<Odd>();
+ assert_eq!(a.check_samples(vec![Odd(0),Odd(1)],vec![]),Err(LawCheckError::NonPreservingClone{law:AlgebraLaw::Unit,index:1}));
+ assert_eq!(a.check_samples(vec![],vec![Odd(0),Odd(1)]),Err(LawCheckError::NonPreservingClone{law:AlgebraLaw::Associativity,index:1}));
+ let id=AlgebraMorphism::<IdMonad,Odd,Odd>::new(|x|x);assert_eq!(id.check_samples(&a,&b,vec![Odd(0),Odd(1)]),Err(LawCheckError::NonPreservingClone{law:AlgebraLaw::Morphism,index:1}));
+}
+#[derive(Debug)]struct SwitchClone{value:bool,calls:Rc<Cell<usize>>}
+impl PartialEq for SwitchClone{fn eq(&self,other:&Self)->bool{self.value==other.value}}impl Eq for SwitchClone{}
+impl Clone for SwitchClone{fn clone(&self)->Self{let n=self.calls.get();self.calls.set(n+1);Self{value:if n==0{self.value}else{!self.value},calls:self.calls.clone()}}}
+#[test]fn exactly_the_guarded_clone_enters_the_law(){
+ let calls=Rc::new(Cell::new(0));let point=SwitchClone{value:false,calls:calls.clone()};let a=FreeAlgebraFunctor::<IdMonad>::new().map::<SwitchClone>();assert_eq!(a.check_samples(vec![point],vec![]),Ok(AlgebraSampleCheck{unit_samples:1,associativity_samples:0}));assert_eq!(calls.get(),1);
+}
+#[test]fn maybe_truth_tables_join_action_and_descriptive_adapters_are_literal(){
+ for x in [false,true]{assert_eq!(MaybeMonad::unit(x),Maybe::Just(x));assert_eq!(MaybeMonad::bind(Maybe::Just(x),|v|Maybe::Just(!v)),Maybe::Just(!x));assert_eq!(MaybeMonad::fmap(|v|!v,Maybe::Just(x)),Maybe::Just(!x));}
+ assert_eq!(MaybeMonad::bind::<bool,bool>(Maybe::Nothing,|_|panic!("Nothing must not call bind")),Maybe::Nothing);assert_eq!(MaybeMonad::fmap::<bool,bool>(|_|panic!("Nothing must not call fmap"),Maybe::Nothing),Maybe::Nothing);
+ let free=FreeAlgebraFunctor::<MaybeMonad>::default().map::<bool>();for (input,expected) in [(Maybe::Nothing,Maybe::Nothing),(Maybe::Just(Maybe::Nothing),Maybe::Nothing),(Maybe::Just(Maybe::Just(false)),Maybe::Just(false)),(Maybe::Just(Maybe::Just(true)),Maybe::Just(true))]{assert_eq!(MaybeMonad::join(input.clone()),expected);assert_eq!((free.action)(input),expected);}
+ let printer=ForgetfulFunctor::<MaybeMonad>::default().map(&free);assert_eq!(printer(),"Carrier type A");assert_eq!(ComparisonFunctor::<MaybeMonad,()>::default().map(&free),"Object in D (via comparison)");let m=AlgebraMorphism::<MaybeMonad,Maybe<bool>,Maybe<bool>>::new(|x|x);assert_eq!(format!("{:?}",m),"AlgebraMorphism");
+}
+'''
+
+LAWVERE_COUNTER=r'''
+#[test]fn overflowing_slot_is_reported_without_panicking_or_wrapping(){
+ let mut t=LawvereTheory::new("raw");t.add_substitution("f",usize::MAX,"g","fg");
+ let errors=check_substitution_associativity(&t,&[("f",usize::MAX,"g",1,"h")]);
+ assert_eq!(errors,vec!["Substitution slot overflow: i=18446744073709551615, j=1".to_string()]);
+}
+'''
+
 def challenge(subject):
     name=Path(subject['path']).stem
-    body=VALIDATION if name=='validation' else BUILDER if name=='finite_category_builder' else ARROW
-    return '\n#[cfg(test)] mod independent_record_tests { use super::*;\n'+body+'\n}\n'
+    body=LAWVERE_COUNTER if name=='lawvere' else (EM_COUNTER if subject.get('mode')=='counterexample' else EM_SAMPLES) if name=='eilenberg_moore' else VALIDATION if name=='validation' else BUILDER if name=='finite_category_builder' else ARROW
+    allow='#[allow(deprecated)]' if name=='eilenberg_moore' else ''
+    return '\n#[cfg(test)] '+allow+' mod independent_record_tests { use super::*;\n'+body+'\n}\n'

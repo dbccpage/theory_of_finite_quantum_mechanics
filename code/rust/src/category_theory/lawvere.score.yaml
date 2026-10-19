@@ -11,14 +11,14 @@ architecture_target: "L5"
 engineering_target: "A"
 gates:
   G1: null
-  G2: null
-  G3: null
+  G2: "E"
+  G3: "E"
   G4: null
   G5: null
 composite_grade: null
 score_token: null
 is_complete: false
-grade_ceiling: "C"
+grade_ceiling: "E"
 evaluation_timestamp: "2026-10-18T18:42:03+00:00"
 AuthorityEffect: "None"
 claim:
@@ -61,6 +61,7 @@ structure:
     - {"ccn": 8, "cognitive_upper_bound": 11, "control_nesting": 5, "line": 137, "name": "check_theory_cauchy", "opaque_macros": []}
   scope: "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
 open_findings:
+  - "Established G2/G3 E: unchecked i+j in substitution associativity is reachable with i=usize::MAX,j=1 after a supplied (f,i,g)->fg row; debug panics and release wraps instead of refusing an unrepresentable slot. Other gates remain unassessed."
   - "A complete five-gate semantic, failure and consumer audit has not been established for this file."
   - "Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds."
   - "External path dependency source contents have not received a separate origin/content attestation."

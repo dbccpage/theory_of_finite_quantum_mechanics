@@ -18,7 +18,7 @@ from run_audit import ROOT, digest, execute, write_json
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model",choices=("rank","category","metadata","degree","counter","parameters","finite-set","literal-reversal","shape-inventory","root-records","homology-protocols","degree-repair","two-step-complex","simplicial-closure","simplicial-boundary","simplicial-homology","scalar-admission","carrier-dimensions","vector-maps","graph-incidence","validation-inventory","arrow-effects","finite-builder"),default="rank")
+    parser.add_argument("--model",choices=("rank","category","metadata","degree","counter","parameters","finite-set","literal-reversal","shape-inventory","root-records","homology-protocols","degree-repair","two-step-complex","simplicial-closure","simplicial-boundary","simplicial-homology","scalar-admission","carrier-dimensions","vector-maps","graph-incidence","validation-inventory","arrow-effects","finite-builder","em-samples"),default="rank")
     parser.add_argument("--memory-mb", type=int, default=1024,
         help="Explicit Lean memory limit, from 256 to 2048 MiB; default remains 1024.")
     args = parser.parse_args()
@@ -46,6 +46,10 @@ def main():
         proof_name, import_name, namespace = "DegreeWindow", "Data/Int/Basic", "TFQM.DegreeWindow."
         declarations = ("ordered_span_fits_u32", "same_endpoint_zero", "inverted_span_negative")
         scope = "Exact i32 endpoint difference bounds, zero span and inverted-window refusal premise; no category-law claim."
+    elif model == "em-samples":
+        proof_name, import_name, namespace = "EMSamples", "Data/List/Basic", "TFQM.EMSamples."
+        declarations = ("bind_left", "bind_right", "bind_associative", "map_identity", "map_composition", "join_spec", "free_unit", "free_associativity", "clone_first", "law_after_clone", "step_pass", "scan_empty", "scan_ok_iff", "algebra_empty", "unit_before_associativity", "observed_counts")
+        scope = "Concrete Maybe value equations and finite observed clone/law flags with typed first refusal/counts; no generic Monad or callback certification and no exhaustive-domain claim."
     elif model == "finite-builder":
         proof_name, import_name, namespace = "FiniteBuilder", "Data/List/Basic", "TFQM.FiniteBuilder."
         declarations = ("update_self", "update_other", "update_shadow", "checked_missing", "checked_existing_iff", "no_identities", "source_only", "target_only", "both_identities", "complete_empty", "complete_append")

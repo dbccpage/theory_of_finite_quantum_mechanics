@@ -54,6 +54,8 @@ def capability(path, source):
         return "L1", "Local static contract-label table and its owned copies; no registry or mechanization checking."
     if key == "category_theory/finite_category_builder.rs":
         return "L2", "Fluent raw declarations and a loop-boundary guard; complete law admission delegates to the canonical category certificate constructor."
+    if key == "category_theory/eilenberg_moore.rs":
+        return "L3", "Concrete Maybe transport and typed finite observations; generic Monad/marker records do not certify universal algebra or category laws."
     if key in foundational:
         return "L5", foundational[key]
     if "#![cfg(any())]" in source:

@@ -1,0 +1,304 @@
+{
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/category_theory/eilenberg_moore.rs",
+    "sha256": "545eb8a155b3dee52e24d5e58fb13974bf8674bd534650eee57d6d4b855a6d5e"
+  },
+  "symbol_map": {
+    "Monad::join": {
+      "signature": "fn join<A: Obj>(tta: Self::T<Self::T<A>>) -> Self::T<A>",
+      "body": "{ Self::bind(tta, |x| x) }",
+      "obligation": "Invoke the implementation-supplied bind with identity callback, moving the inner wrapped value. This derived operation is only as lawful/total as the supplied Monad; no generic monad law admission occurs."
+    },
+    "checked_clone": {
+      "signature": "fn checked_clone<T: Clone + Eq>( value: &T, law: AlgebraLaw, index: usize, ) -> Result<T, LawCheckError>",
+      "body": "{ let copy = value.clone(); if copy != *value { return Err(LawCheckError::NonPreservingClone { law, index }); } Ok(copy) }",
+      "obligation": "Clone exactly once, compare that copy to the original under supplied Eq and refuse NonPreservingClone with the exact law/index before callback evaluation. Return that same checked copy; no second unverified clone. Eq/Clone semantics, side effects, panic/drop and allocation remain caller contracts."
+    },
+    "Phantom::new": {
+      "signature": "fn new() -> Self",
+      "body": "{ Phantom(std::marker::PhantomData) }",
+      "obligation": "Construct only PhantomData; no carrier value, action, evidence or mathematical object is manufactured."
+    },
+    "EMAlgebra::verify_laws": {
+      "signature": "pub fn verify_laws(&self) -> bool where A: Clone + Eq, M::T<A>: Clone + Eq, M::T<M::T<A>>: Clone,",
+      "body": "{ false }",
+      "obligation": "Deprecated no-domain compatibility method always returns false (unverified), even for lawful actions. It invokes no callback and does not emit a counterexample or universal certificate."
+    },
+    "EMAlgebra::check_samples": {
+      "signature": "pub fn check_samples( &self, unit_samples: Vec<A>, associativity_samples: Vec<M::T<M::T<A>>>, ) -> Result<AlgebraSampleCheck, LawCheckError> where A: Eq, M::T<M::T<A>>: Eq,",
+      "body": "{ let observed = AlgebraSampleCheck { unit_samples: unit_samples.len(), associativity_samples: associativity_samples.len(), }; for (index, value) in unit_samples.into_iter().enumerate() { let copy = checked_clone(&value, AlgebraLaw::Unit, index)?; if (self.action)(M::unit::<A>(copy)) != value { return Err(LawCheckError::Violated { law: AlgebraLaw::Unit, index, }); } } for (index, value) in associativity_samples.into_iter().enumerate() { let copy = checked_clone(&value, AlgebraLaw::Associativity, index)?; let left = (self.action)(M::fmap::<M::T<A>, A>(|ta| (self.action)(ta), copy)); let right = (self.action)(M::join::<A>(value)); if left != right { return Err(LawCheckError::Violated { law: AlgebraLaw::Associativity, index, }); } } Ok(observed) }",
+      "obligation": "Capture both Vec lengths, scan owned unit samples then associativity samples in input order with phase-local usize enumerate indices. Each input is shared by one checked Clone. Unit compares h(unit(copy)) with original; associativity compares h(fmap(h,copy)) with h(join(original)), moving fmap inner values without redundant clones. First clone/law refusal returns exact phase/index and prevents later evaluation. Success reports supplied lengths only, including vacuous empty lists."
+    },
+    "AlgebraMorphism::fmt": {
+      "signature": "fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result",
+      "body": "{ f.debug_struct(\"AlgebraMorphism\").finish() }",
+      "obligation": "Render literal AlgebraMorphism debug label through standard formatter and propagate formatting failure. Does not expose, compare or certify the boxed callback."
+    },
+    "AlgebraMorphism::new": {
+      "signature": "pub fn new(f: impl Fn(A) -> B + 'static) -> Self",
+      "body": "{ Self { f: Box::new(f), _phantom: Phantom(std::marker::PhantomData), } }",
+      "obligation": "Own the supplied Fn in one Box and a type marker. Candidate construction performs no preservation test or algebra admission."
+    },
+    "AlgebraMorphism::respects_algebras": {
+      "signature": "pub fn respects_algebras(&self, _dom: &EMAlgebra<M, A>, _cod: &EMAlgebra<M, B>) -> bool where A: Clone, B: Clone + Eq, M::T<A>: Clone, M::T<B>: Clone,",
+      "body": "{ false }",
+      "obligation": "Deprecated no-domain compatibility query always returns false/unverified. It neither evaluates candidates nor establishes invalidity; use supplied finite observations instead."
+    },
+    "AlgebraMorphism::check_samples": {
+      "signature": "pub fn check_samples( &self, dom: &EMAlgebra<M, A>, cod: &EMAlgebra<M, B>, samples: Vec<M::T<A>>, ) -> Result<usize, LawCheckError> where B: Eq, M::T<A>: Eq,",
+      "body": "{ let count = samples.len(); for (index, value) in samples.into_iter().enumerate() { let copy = checked_clone(&value, AlgebraLaw::Morphism, index)?; let left = (self.f)((dom.action)(copy)); let right = (cod.action)(M::fmap::<A, B>(&self.f, value)); if left != right { return Err(LawCheckError::Violated { law: AlgebraLaw::Morphism, index, }); } } Ok(count) }",
+      "obligation": "Scan owned wrapped inputs once, cloning and checking each shared input before callbacks. Compare f(dom.action(copy)) with cod.action(fmap(f,original)); first refusal returns Morphism and exact index. Success returns input Vec length, not universal preservation or endpoint admission."
+    },
+    "ForgetfulFunctor::default": {
+      "signature": "fn default() -> Self",
+      "body": "{ Self::new() }",
+      "obligation": "Delegate to marker new; no input action is evaluated or carrier object returned."
+    },
+    "ForgetfulFunctor::new": {
+      "signature": "pub fn new() -> Self",
+      "body": "{ Self(Phantom::new()) }",
+      "obligation": "Construct a type marker only; no forgetful mathematical functor/certificate is admitted."
+    },
+    "ForgetfulFunctor::map": {
+      "signature": "pub fn map<A: Obj + 'static>(&self, alg: &EMAlgebra<M, A>) -> Box<dyn Fn() -> String>",
+      "body": "{ // We can't return A directly due to typing, so we return a printer let _ = alg; Box::new(|| \"Carrier type A\".to_string()) }",
+      "obligation": "Ignore the candidate algebra and return a boxed printer of the exact constant Carrier type A. This is a descriptive label, not extraction of an A value or a categorical map."
+    },
+    "FreeAlgebraFunctor::default": {
+      "signature": "fn default() -> Self",
+      "body": "{ Self::new() }",
+      "obligation": "Delegate to marker new without executing Monad operations."
+    },
+    "FreeAlgebraFunctor::new": {
+      "signature": "pub fn new() -> Self",
+      "body": "{ Self(Phantom::new()) }",
+      "obligation": "Construct only Phantom marker data; generic Monad laws are not tested."
+    },
+    "FreeAlgebraFunctor::map": {
+      "signature": "pub fn map<A: Obj>(&self) -> EMAlgebra<M, M::T<A>> where M::T<M::T<A>>: 'static, M::T<A>: 'static,",
+      "body": "{ EMAlgebra { carrier: Phantom::new(), action: Box::new(|tta: M::T<M::T<A>>| M::join(tta)), } }",
+      "obligation": "Build an unchecked candidate whose boxed action is the actual supplied M::join. For concrete lawful Maybe this is the proved join algebra; no claim that arbitrary Rust Monad implementations obey those laws."
+    },
+    "ComparisonFunctor::default": {
+      "signature": "fn default() -> Self",
+      "body": "{ Self::new() }",
+      "obligation": "Delegate to marker new without constructing any value in D."
+    },
+    "ComparisonFunctor::new": {
+      "signature": "pub fn new() -> Self",
+      "body": "{ Self { _phantom: Phantom::new(), } }",
+      "obligation": "Construct a type-parameter marker, not comparison-functor or adjunction evidence."
+    },
+    "ComparisonFunctor::map": {
+      "signature": "pub fn map<A: Obj + 'static>(&self, _alg: &EMAlgebra<M, A>) -> &'static str",
+      "body": "{ \"Object in D (via comparison)\" // Descriptive metadata only. }",
+      "obligation": "Return the exact fixed descriptive string Object in D (via comparison); ignore the candidate. No DObj or actual category is computed."
+    },
+    "MaybeMonad::unit": {
+      "signature": "fn unit<A: Obj>(x: A) -> Self::T<A>",
+      "body": "{ Maybe::Just(x) }",
+      "obligation": "Construct Just(x), moving the exact opaque payload without conversion or numeric arithmetic."
+    },
+    "MaybeMonad::bind": {
+      "signature": "fn bind<A: Obj, B: Obj>(ta: Maybe<A>, f: impl Fn(A) -> Maybe<B>) -> Maybe<B>",
+      "body": "{ match ta { Maybe::Just(x) => f(x), Maybe::Nothing => Maybe::Nothing, } }",
+      "obligation": "Nothing returns Nothing without invoking f; Just(x) invokes the supplied f once and returns its exact wrapped result. Callback behavior is external; concrete pure value equations match Option.bind."
+    },
+    "MaybeMonad::fmap": {
+      "signature": "fn fmap<A: Obj, B: Obj>(f: impl Fn(A) -> B, ta: Maybe<A>) -> Maybe<B>",
+      "body": "{ Self::bind(ta, |a| Self::unit(f(a))) }",
+      "obligation": "Delegate to this actual bind, applying f once only to Just and rewrapping with unit. No input cloning, coercion, hidden numerical operation or None callback."
+    }
+  },
+  "metrics": [
+    {
+      "ccn": 1,
+      "cognitive_upper_bound": 0,
+      "control_nesting": 1,
+      "line": 36,
+      "name": "join",
+      "opaque_macros": []
+    },
+    {
+      "ccn": 2,
+      "cognitive_upper_bound": 1,
+      "control_nesting": 1,
+      "line": 80,
+      "name": "checked_clone",
+      "opaque_macros": []
+    },
+    {
+      "ccn": 1,
+      "cognitive_upper_bound": 0,
+      "control_nesting": 0,
+      "line": 96,
+      "name": "new",
+      "opaque_macros": []
+    },
+    {
+      "ccn": 1,
+      "cognitive_upper_bound": 0,
+      "control_nesting": 0,
+      "line": 107,
+      "name": "verify_laws",
+      "opaque_macros": []
+    },
+    {
+      "ccn": 7,
+      "cognitive_upper_bound": 6,
+      "control_nesting": 2,
+      "line": 119,
+      "name": "check_samples",
+      "opaque_macros": []
+    },
+    {
+      "ccn": 1,
+      "cognitive_upper_bound": 0,
+      "control_nesting": 0,
+      "line": 167,
+      "name": "fmt",
+      "opaque_macros": []
+    },
+    {
+      "ccn": 1,
+      "cognitive_upper_bound": 1,
+      "control_nesting": 0,
+      "line": 173,
+      "name": "new",
+      "opaque_macros": []
+    },
+    {
+      "ccn": 1,
+      "cognitive_upper_bound": 0,
+      "control_nesting": 0,
+      "line": 184,
+      "name": "respects_algebras",
+      "opaque_macros": []
+    },
+    {
+      "ccn": 4,
+      "cognitive_upper_bound": 3,
+      "control_nesting": 2,
+      "line": 195,
+      "name": "check_samples",
+      "opaque_macros": []
+    },
+    {
+      "ccn": 1,
+      "cognitive_upper_bound": 0,
+      "control_nesting": 0,
+      "line": 230,
+      "name": "default",
+      "opaque_macros": []
+    },
+    {
+      "ccn": 1,
+      "cognitive_upper_bound": 1,
+      "control_nesting": 0,
+      "line": 236,
+      "name": "new",
+      "opaque_macros": []
+    },
+    {
+      "ccn": 1,
+      "cognitive_upper_bound": 0,
+      "control_nesting": 1,
+      "line": 241,
+      "name": "map",
+      "opaque_macros": []
+    },
+    {
+      "ccn": 1,
+      "cognitive_upper_bound": 0,
+      "control_nesting": 0,
+      "line": 254,
+      "name": "default",
+      "opaque_macros": []
+    },
+    {
+      "ccn": 1,
+      "cognitive_upper_bound": 1,
+      "control_nesting": 0,
+      "line": 260,
+      "name": "new",
+      "opaque_macros": []
+    },
+    {
+      "ccn": 1,
+      "cognitive_upper_bound": 0,
+      "control_nesting": 1,
+      "line": 265,
+      "name": "map",
+      "opaque_macros": []
+    },
+    {
+      "ccn": 1,
+      "cognitive_upper_bound": 0,
+      "control_nesting": 0,
+      "line": 289,
+      "name": "default",
+      "opaque_macros": []
+    },
+    {
+      "ccn": 1,
+      "cognitive_upper_bound": 1,
+      "control_nesting": 0,
+      "line": 295,
+      "name": "new",
+      "opaque_macros": []
+    },
+    {
+      "ccn": 1,
+      "cognitive_upper_bound": 0,
+      "control_nesting": 0,
+      "line": 302,
+      "name": "map",
+      "opaque_macros": []
+    },
+    {
+      "ccn": 1,
+      "cognitive_upper_bound": 0,
+      "control_nesting": 0,
+      "line": 323,
+      "name": "unit",
+      "opaque_macros": []
+    },
+    {
+      "ccn": 3,
+      "cognitive_upper_bound": 1,
+      "control_nesting": 1,
+      "line": 327,
+      "name": "bind",
+      "opaque_macros": []
+    },
+    {
+      "ccn": 1,
+      "cognitive_upper_bound": 0,
+      "control_nesting": 1,
+      "line": 334,
+      "name": "fmap",
+      "opaque_macros": []
+    }
+  ],
+  "previous_source": {
+    "path": "evidence/quality/category_homology/resume-20261019/em-previous/eilenberg_moore.rs",
+    "sha256": "7480cfb7199d9607f330c11f78eb7062e750c473be1eda2a70139eccc3630df8"
+  },
+  "data_and_derive_review": "Obj is a Clone/Debug/static Rust marker, not finite enumeration or mathematical Set membership. EMAlgebra action and carrier fields are unchecked mutable candidate data. Morphism owns a private boxed Fn with no law constructor. AlgebraLaw and LawCheckError are closed tagged data with exact usize payloads. AlgebraSampleCheck fields are public observation counts, forgeable metadata rather than a certificate. Standard derived Clone/Eq/Debug preserve their fields; no serde or authority parser is present.",
+  "trait_and_macro_review": "Monad unit/bind/fmap signatures are caller contracts, with only the explicit join default implemented here. Blanket Obj and Phantom impls do not prove laws. Deprecated attributes document unverified legacy queries. Standard Debug builder writes only a fixed label and propagates errors; no opaque computation macro or unfinished proof is hidden.",
+  "invariant_argument": [
+    "Rust Maybe::Nothing/Just map structurally to Option.none/some. EMSamples proves bind left/right/associativity, fmap identity/composition and join/free-action unit/associativity for this concrete pure value model. Monad trait implementations remain unchecked caller contracts; the theorem is not generalized to arbitrary Rust implementations or effects.",
+    "EMSamples.step and scan_ok_iff mirror observed copy equality before observed law equality, exact phase/index refusal and ordered finite iteration. The two separate Vec enumerations reset indices per law; actual indices are below their Vec length and counts are those finite usize lengths, with no narrowing or unchecked arithmetic.",
+    "The algebra sequence scans all unit observations before associativity observations, and returns only the two supplied counts on success. The morphism sequence applies the same step to its supplied wrapped values. Empty success is vacuous and supplies no domain coverage; generic callbacks can be stateful, so observations are not universal mathematical proofs.",
+    "The single private checked_clone returns the very copy it compared, not a second clone. Native static Odd and stateful SwitchClone fixtures test both rejected non-preservation and exactly-once checked input routing. No assumption of globally lawful Clone is silently inferred from Rust Clone bounds.",
+    "The historical G2 E false-acceptance source is retained. Both no-input bool methods now fail closed as deprecated unverified queries. Real supplied-sample APIs accept lawful concrete examples and reject the original finite counterexamples with typed errors; the repair is not merely always rejecting every check."
+  ],
+  "cost_review": [
+    "Owned input vectors are consumed directly; lengths are captured without counting overflow. Each observation needs one shared input copy for the two consuming routes, with one equality guard, and no cloned sample-vector snapshot. Assoc fmap moves its inner input into h, eliminating the prototype redundant inner clone.",
+    "Wrapper work is linear in supplied observations excluding explicit caller Clone/Eq/action/Monad work and destruction costs. Generic fmap may evaluate its callback on multiple elements, so no constant bound on user operations is invented. Maybe itself performs constant constructor/dispatch work plus the selected callback.",
+    "Marker constructors are zero-sized data operations; boxed callback/printer adapters allocate their returned Box. The fixed printer allocates the owned String required by its signature. These are source/contract costs, not benchmark or verified zero-allocation claims."
+  ],
+  "source_delta": "Remove two true-returning private law placeholders and unused closures. Deprecate/fail-close the two no-domain bool methods without changing their return type/trait bounds. Add real owned-sample checks, typed refusal/count records and one checked-clone helper. Preserve existing Maybe operations and fixed descriptive adapters; clarify marker rather than functor-object semantics. Original CRLF convention is restored with normalized source text unchanged.",
+  "consumer_review": "No active local source caller of these old no-input methods or candidate algebra/morphism types was found outside this module. Root lib/mod declare the module; the host re-exports the local category Cargo package. The similarly named WDP operad verification command is a different API. Public compatibility risk is explicit: callers relying on unsupported true results now receive deprecated false/unverified, while actual checks require supplied samples."
+}
