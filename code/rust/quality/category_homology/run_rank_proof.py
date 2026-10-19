@@ -18,7 +18,7 @@ from run_audit import ROOT, digest, execute, write_json
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model",choices=("rank","category","metadata","degree","counter","parameters","finite-set","literal-reversal","shape-inventory","root-records","homology-protocols","degree-repair","two-step-complex","simplicial-closure","simplicial-boundary","simplicial-homology","scalar-admission","carrier-dimensions","vector-maps","graph-incidence","validation-inventory","arrow-effects","finite-builder","em-samples","lawvere-inventory","higher-functor-inventory","finite-functor","functor-operations","finite-naturality","natural-composition","joint-carrier","finite-simulation","finite-independence","finite-trace","finite-dagger","finite-groupoid","cauchy-inventory","tagged-coend","condensation-metadata","root-catalog","finite-profunctor-inventory","finite-continuation"),default="rank")
+    parser.add_argument("--model",choices=("rank","category","metadata","degree","counter","parameters","finite-set","literal-reversal","shape-inventory","root-records","homology-protocols","degree-repair","two-step-complex","simplicial-closure","simplicial-boundary","simplicial-homology","scalar-admission","carrier-dimensions","vector-maps","graph-incidence","validation-inventory","arrow-effects","finite-builder","em-samples","lawvere-inventory","higher-functor-inventory","finite-functor","functor-operations","finite-naturality","natural-composition","joint-carrier","finite-simulation","finite-independence","finite-trace","finite-dagger","finite-groupoid","cauchy-inventory","tagged-coend","condensation-metadata","root-catalog","finite-profunctor-inventory","finite-continuation","finite-moore"),default="rank")
     parser.add_argument("--memory-mb", type=int, default=1024,
         help="Explicit Lean memory limit, from 256 to 2048 MiB; default remains 1024.")
     args = parser.parse_args()
@@ -46,6 +46,10 @@ def main():
         proof_name, import_name, namespace = "DegreeWindow", "Data/Int/Basic", "TFQM.DegreeWindow."
         declarations = ("ordered_span_fits_u32", "same_endpoint_zero", "inverted_span_negative")
         scope = "Exact i32 endpoint difference bounds, zero span and inverted-window refusal premise; no category-law claim."
+    elif model == "finite-moore":
+        proof_name, import_name, namespace = "FiniteMoore", "Data/List/Basic", "TFQM.FiniteMoore."
+        declarations = ("run_append", "future_refl", "future_symm", "future_trans", "future_congruence", "congruence_future", "depth_refines", "depth_readout", "future_in_depth", "fixed_point_exact", "preserving_run", "map_kernel_future", "factor", "factor_spec", "factor_unique", "split_counter_bound")
+        scope = "All-word total Moore future equivalence/greatest readout congruence at a stable finite-depth relation,homomorphic kernel and surjective factor uniqueness. Rust canonical IDs/strict finite split progress,chain/storage replay and disjoint-union comparison refined separately."
     elif model == "finite-continuation":
         proof_name, import_name, namespace = "FiniteContinuation", "Data/List/Basic", "TFQM.FiniteContinuation."
         declarations = ("run_empty", "next_unavailable", "run_unavailable", "run_append", "sink_observably_distinct", "future_refl", "future_symm", "future_trans", "closed_pairs_no_distinction", "replay_distinguishes", "replay_saved_answers", "predecessor_length", "charge_success", "charge_refused", "charge_bounded")

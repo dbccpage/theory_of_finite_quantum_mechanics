@@ -33,7 +33,7 @@ pub struct MooreQuotient {
     pub quotient: FiniteMoore,
 }
 
-fn normalize<T: Ord>(signatures: Vec<T>) -> Vec<usize> {
+fn normalize<T: Ord>(signatures: impl IntoIterator<Item = T>) -> Vec<usize> {
     let mut ids = BTreeMap::new();
     signatures
         .into_iter()
@@ -42,6 +42,16 @@ fn normalize<T: Ord>(signatures: Vec<T>) -> Vec<usize> {
             *ids.entry(signature).or_insert(fresh)
         })
         .collect()
+}
+
+// Reuse the scan's scratch signature;only a fresh stored map key owns a copy.
+fn intern_signature(ids: &mut BTreeMap<Vec<usize>, usize>, signature: &[usize]) -> usize {
+    if let Some(&existing) = ids.get(signature) {
+        return existing;
+    }
+    let fresh = ids.len();
+    ids.insert(signature.to_vec(), fresh);
+    fresh
 }
 
 impl FiniteMoore {
@@ -86,19 +96,28 @@ impl FiniteMoore {
     }
 
     fn initial_partition(&self) -> Vec<usize> {
-        normalize(self.reports.clone())
+        normalize(self.reports.iter().copied())
     }
 
     fn refine(&self, partition: &[usize]) -> Vec<usize> {
-        normalize(
-            (0..self.state_count())
-                .map(|state| {
-                    let mut signature = vec![partition[state]];
-                    signature.extend(self.transitions[state].iter().map(|&next| partition[next]));
-                    signature
-                })
-                .collect(),
-        )
+        let mut ids = BTreeMap::new();
+        let mut signature = Vec::new();
+        let mut refined = Vec::with_capacity(self.state_count());
+        for state in 0..self.state_count() {
+            signature.clear();
+            signature.push(partition[state]);
+            signature.extend(self.transitions[state].iter().map(|&next| partition[next]));
+            refined.push(intern_signature(&mut ids, &signature));
+        }
+        refined
+    }
+
+    fn pair_preserves(&self, partition: &[usize], left: usize, right: usize) -> bool {
+        partition[left] != partition[right]
+            || (self.reports[left] == self.reports[right]
+                && (0..self.input_count).all(|input| {
+                    partition[self.transitions[left][input]] == partition[self.transitions[right][input]]
+                }))
     }
 
     /// A congruence is an equivalence partition whose related states have equal
@@ -107,19 +126,9 @@ impl FiniteMoore {
         if partition.len() != self.state_count() {
             return false;
         }
-        for s in 0..self.state_count() {
-            for t in 0..s {
-                if partition[s] == partition[t]
-                    && (self.reports[s] != self.reports[t]
-                        || (0..self.input_count).any(|i| {
-                            partition[self.transitions[s][i]] != partition[self.transitions[t][i]]
-                        }))
-                {
-                    return false;
-                }
-            }
-        }
-        true
+        (0..self.state_count()).all(|state| {
+            (0..state).all(|previous| self.pair_preserves(partition, state, previous))
+        })
     }
 
     /// R0 = ker(report), R(k+1) = Rk intersect all labelled inverse images of Rk.
@@ -205,18 +214,11 @@ impl FiniteMoore {
         target: &Self,
         map: &[usize],
     ) -> Result<Vec<usize>, MooreError> {
-        if self.input_count != target.input_count
-            || map.len() != self.state_count()
-            || map.iter().any(|&n| n >= target.state_count())
-            || map.iter().copied().collect::<BTreeSet<_>>().len() != target.state_count()
-        {
+        if !self.valid_quotient_map_shape(target, map) {
             return Err(MooreError::InvalidQuotientMap);
         }
-        for m in 0..self.state_count() {
-            if self.reports[m] != target.reports[map[m]]
-                || (0..self.input_count)
-                    .any(|i| map[self.transitions[m][i]] != target.transitions[map[m]][i])
-            {
+        for state in 0..self.state_count() {
+            if !self.preserves_quotient_at(target, map, state) {
                 return Err(MooreError::InvalidQuotientMap);
             }
         }
@@ -230,6 +232,20 @@ impl FiniteMoore {
             }
         }
         Ok(factor.into_iter().map(Option::unwrap).collect())
+    }
+
+    fn valid_quotient_map_shape(&self, target: &Self, map: &[usize]) -> bool {
+        self.input_count == target.input_count
+            && map.len() == self.state_count()
+            && map.iter().all(|&state| state < target.state_count())
+            && map.iter().copied().collect::<BTreeSet<_>>().len() == target.state_count()
+    }
+
+    fn preserves_quotient_at(&self, target: &Self, map: &[usize], state: usize) -> bool {
+        self.reports[state] == target.reports[map[state]]
+            && (0..self.input_count).all(|input| {
+                map[self.transitions[state][input]] == target.transitions[map[state]][input]
+            })
     }
 
     /// Unpointed classification: the machines realize the same set of labelled
