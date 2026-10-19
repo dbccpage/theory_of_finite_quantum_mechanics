@@ -1,0 +1,177 @@
+{
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/category_theory/natural_trans_composition.rs",
+    "sha256": "dc006678c56be73ac184f8015d3fe7a55557d1d994eb1d3d8647f089079a568e"
+  },
+  "production_functions": {
+    "fmt": {
+      "line": 43,
+      "signature": "fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result",
+      "body": "{\n        write!(f, \"{self:?}\")\n    }",
+      "obligation": "Delegate Display to standard Debug formatting of this fixed error enum, returning formatter failure as fmt::Result. No custom recursive formatting, panic or authority semantics; std Error has the default None cause."
+    },
+    "composite_name": {
+      "line": 49,
+      "signature": "fn composite_name(outer: &str, inner: &str) -> String",
+      "body": "{\n    format!(\"Comp[{outer} after {inner}]\")\n}",
+      "obligation": "Create the literal Comp[outer after inner] label, preserving both names in that order. This is deterministic metadata, not an injective/fresh/global identifier or proof of composability."
+    },
+    "same": {
+      "line": 53,
+      "signature": "fn same(role: &'static str, expected: &str, got: &str) -> Result<(), CompositionError>",
+      "body": "{\n    if expected != got {\n        return Err(CompositionError::Binding {\n            role,\n            expected: expected.into(),\n            got: got.into(),\n        });\n    }\n    Ok(())\n}",
+      "obligation": "On expected/got inequality return Binding with exact static role and owned expected/got values; otherwise Ok. No normalization or name-based mathematical admission."
+    },
+    "component": {
+      "line": 64,
+      "signature": "fn component<'a>(\n    nat: &'a DeclaredFiniteNatTrans,\n    object: &str,\n) -> Result<&'a str, CompositionError>",
+      "body": "{\n    nat.component(object)\n        .ok_or_else(|| CompositionError::Missing {\n            kind: \"component\",\n            owner: nat.name.clone(),\n            key: object.into(),\n        })\n}",
+      "obligation": "Borrow the requested raw component or return Missing(component, nat.name, object); output/error ownership and exact payload are preserved."
+    },
+    "mapped_morphism": {
+      "line": 75,
+      "signature": "fn mapped_morphism<'a>(\n    functor: &'a DeclaredFiniteFunctor,\n    name: &str,\n) -> Result<&'a str, CompositionError>",
+      "body": "{\n    functor\n        .on_morphism(name)\n        .ok_or_else(|| CompositionError::Missing {\n            kind: \"morphism image\",\n            owner: functor.name.clone(),\n            key: name.into(),\n        })\n}",
+      "obligation": "Borrow actual functor arrow image or Missing(morphism image, functor.name, key). This does not admit raw functor lawfulness."
+    },
+    "mapped_object": {
+      "line": 87,
+      "signature": "fn mapped_object<'a>(\n    functor: &'a DeclaredFiniteFunctor,\n    name: &str,\n) -> Result<&'a str, CompositionError>",
+      "body": "{\n    functor\n        .on_object(name)\n        .ok_or_else(|| CompositionError::Missing {\n            kind: \"object image\",\n            owner: functor.name.clone(),\n            key: name.into(),\n        })\n}",
+      "obligation": "Borrow actual object image or Missing(object image, functor.name, key)."
+    },
+    "compose_at": {
+      "line": 99,
+      "signature": "fn compose_at<'a>(\n    table: &CompositionLookup<'a>,\n    object: &str,\n    first: &str,\n    second: &str,\n) -> Result<&'a str, CompositionError>",
+      "body": "{\n    table\n        .compose(first, second)\n        .ok_or_else(|| CompositionError::Undefined {\n            object: object.into(),\n            first: first.into(),\n            second: second.into(),\n        })\n}",
+      "obligation": "Query exact first-then-second pair in the shared immutable borrowed view, returning value borrowed from its original target table. On absence return Undefined with exact object/first/second. Production callers construct the view from the same target category they bind; no per-query owned key Strings remain."
+    },
+    "identity_nat_trans": {
+      "line": 114,
+      "signature": "pub fn identity_nat_trans(\n    name: &str,\n    functor: &DeclaredFiniteFunctor,\n    target_category: &DeclaredFiniteCategory,\n) -> Result<DeclaredFiniteNatTrans, CompositionError>",
+      "body": "{\n    same(\n        \"identity target category\",\n        &functor.target_category,\n        &target_category.name,\n    )?;\n    let mut nat = DeclaredFiniteNatTrans::new(name, &functor.name, &functor.name);\n    for (object, image) in &functor.object_map {\n        let identity =\n            target_category\n                .identity_of(image)\n                .ok_or_else(|| CompositionError::Missing {\n                    kind: \"identity\",\n                    owner: target_category.name.clone(),\n                    key: image.clone(),\n                })?;\n        nat.set_component(object, identity);\n    }\n    Ok(nat)\n}",
+      "obligation": "Require literal target category label binding first; create raw nat F=>F and, for each provided object-map entry, use actual target identity_of(mapped object), or Missing(identity,target.name,mapped object). Output is raw and requires separate admission; no id_ naming assumption."
+    },
+    "vertical_compose_nat_trans": {
+      "line": 140,
+      "signature": "pub fn vertical_compose_nat_trans(\n    name: &str,\n    alpha: &DeclaredFiniteNatTrans,\n    beta: &DeclaredFiniteNatTrans,\n    source_category: &DeclaredFiniteCategory,\n    target_category: &DeclaredFiniteCategory,\n) -> Result<DeclaredFiniteNatTrans, CompositionError>",
+      "body": "{\n    same(\n        \"vertical middle functor\",\n        &alpha.target_functor,\n        &beta.source_functor,\n    )?;\n    let mut nat = DeclaredFiniteNatTrans::new(name, &alpha.source_functor, &beta.target_functor);\n    let lookup = CompositionLookup::new(&target_category.compositions);\n    for object in &source_category.objects {\n        let first = component(alpha, object)?;\n        let second = component(beta, object)?;\n        nat.set_component(object, compose_at(&lookup, object, first, second)?);\n    }\n    Ok(nat)\n}",
+      "obligation": "Require alpha target functor label equal beta source label, then build one borrowed target table view. For every supplied source object in sorted order, resolve alpha then beta component and their target composition in that order. Return a raw caller-named alpha-source=>beta-target declaration. On first error return no partial output; no raw law/domain admission is implied."
+    },
+    "left_whisker_nat_trans": {
+      "line": 163,
+      "signature": "pub fn left_whisker_nat_trans(\n    name: &str,\n    outer: &DeclaredFiniteFunctor,\n    alpha: &DeclaredFiniteNatTrans,\n) -> Result<DeclaredFiniteNatTrans, CompositionError>",
+      "body": "{\n    let mut nat = DeclaredFiniteNatTrans::new(\n        name,\n        &composite_name(&outer.name, &alpha.source_functor),\n        &composite_name(&outer.name, &alpha.target_functor),\n    );\n    for (object, arrow) in &alpha.components {\n        nat.set_component(object, mapped_morphism(outer, arrow)?);\n    }\n    Ok(nat)\n}",
+      "obligation": "Raw H alpha: retain each alpha component object key and map its arrow through outer H, refusing missing images. Generate source/target composite labels in H-after-F/G order; output is a raw declaration."
+    },
+    "right_whisker_nat_trans": {
+      "line": 180,
+      "signature": "pub fn right_whisker_nat_trans(\n    name: &str,\n    alpha: &DeclaredFiniteNatTrans,\n    inner: &DeclaredFiniteFunctor,\n) -> Result<DeclaredFiniteNatTrans, CompositionError>",
+      "body": "{\n    let mut nat = DeclaredFiniteNatTrans::new(\n        name,\n        &composite_name(&alpha.source_functor, &inner.name),\n        &composite_name(&alpha.target_functor, &inner.name),\n    );\n    for (object, middle) in &inner.object_map {\n        nat.set_component(object, component(alpha, middle)?);\n    }\n    Ok(nat)\n}",
+      "obligation": "Raw alpha I: iterate every provided inner object-map entry and retrieve alpha at its mapped object, preserving original inner-domain keys. Generate F/G-after-I labels; missing component refuses before output."
+    },
+    "check_binding": {
+      "line": 206,
+      "signature": "fn check_binding(&self) -> Result<(), CompositionError>",
+      "body": "{\n        self.check_transformation_names()?;\n        check_parallel(self.f, self.g)?;\n        check_parallel(self.h, self.k)?;\n        same(\n            \"horizontal middle category\",\n            &self.f.target_category,\n            &self.h.source_category,\n        )?;\n        same(\n            \"horizontal target category\",\n            &self.h.target_category,\n            &self.target.name,\n        )\n    }",
+      "obligation": "Check all transformation/F/G/H/K name bindings, both parallel endpoint label pairs, the horizontal middle category label and actual target category label in that order. Only raw label consistency is established here; complete actual contexts are checked separately by certified operations."
+    },
+    "check_transformation_names": {
+      "line": 221,
+      "signature": "fn check_transformation_names(&self) -> Result<(), CompositionError>",
+      "body": "{\n        same(\"alpha source\", &self.f.name, &self.alpha.source_functor)?;\n        same(\"alpha target\", &self.g.name, &self.alpha.target_functor)?;\n        same(\"beta source\", &self.h.name, &self.beta.source_functor)?;\n        same(\"beta target\", &self.k.name, &self.beta.target_functor)\n    }",
+      "obligation": "Require alpha source/target labels equal actual f/g names and beta source/target labels equal h/k names, with exact first role/expected/got failure."
+    },
+    "component_at": {
+      "line": 227,
+      "signature": "fn component_at<'a>(&self, lookup: &CompositionLookup<'a>, object: &str) -> Result<&'a str, CompositionError>",
+      "body": "{\n        let alpha = component(self.alpha, object)?;\n        let left = self.left_path(lookup, object, alpha)?;\n        let right = self.right_path(lookup, object, alpha)?;\n        if left != right {\n            return Err(CompositionError::Interchange {\n                object: object.into(),\n                left: left.into(),\n                right: right.into(),\n            });\n        }\n        Ok(left)\n    }",
+      "obligation": "Resolve alpha component, compute left path then right path from the same target lookup, and reject unequal values with exact object/left/right Interchange payload. Return the left borrowed target value directly on equality; the caller makes only the required output-map value copy, not a temporary owned result String."
+    },
+    "left_path": {
+      "line": 240,
+      "signature": "fn left_path<'a>(&self, lookup: &CompositionLookup<'a>, object: &str, alpha: &str) -> Result<&'a str, CompositionError>",
+      "body": "{\n        let h_alpha = mapped_morphism(self.h, alpha)?;\n        let g_object = mapped_object(self.g, object)?;\n        compose_at(\n            lookup,\n            object,\n            h_alpha,\n            component(self.beta, g_object)?,\n        )\n    }",
+      "obligation": "Resolve H(alpha), G(object), beta at that object, then query beta_G after H(alpha). Preserve exact prerequisite/Undefined failure order and return borrowed target value."
+    },
+    "right_path": {
+      "line": 250,
+      "signature": "fn right_path<'a>(&self, lookup: &CompositionLookup<'a>, object: &str, alpha: &str) -> Result<&'a str, CompositionError>",
+      "body": "{\n        let k_alpha = mapped_morphism(self.k, alpha)?;\n        let f_object = mapped_object(self.f, object)?;\n        compose_at(\n            lookup,\n            object,\n            component(self.beta, f_object)?,\n            k_alpha,\n        )\n    }",
+      "obligation": "Resolve K(alpha), F(object), beta at that object, then query K(alpha) after beta_F. Missing F object is unreachable through the current public loop over F keys but remains a correct defensive private-helper refusal, tested directly without claiming a public witness."
+    },
+    "check_parallel": {
+      "line": 261,
+      "signature": "fn check_parallel(\n    f: &DeclaredFiniteFunctor,\n    g: &DeclaredFiniteFunctor,\n) -> Result<(), CompositionError>",
+      "body": "{\n    same(\n        \"parallel source category\",\n        &f.source_category,\n        &g.source_category,\n    )?;\n    same(\n        \"parallel target category\",\n        &f.target_category,\n        &g.target_category,\n    )\n}",
+      "obligation": "Require exact source labels then target labels of the supplied raw parallel functors. Raw label equality is not full context/category admission."
+    },
+    "horizontal_compose_nat_trans": {
+      "line": 278,
+      "signature": "pub fn horizontal_compose_nat_trans(\n    name: &str,\n    alpha: &DeclaredFiniteNatTrans,\n    beta: &DeclaredFiniteNatTrans,\n    f: &DeclaredFiniteFunctor,\n    g: &DeclaredFiniteFunctor,\n    h: &DeclaredFiniteFunctor,\n    k: &DeclaredFiniteFunctor,\n    target_category: &DeclaredFiniteCategory,\n) -> Result<DeclaredFiniteNatTrans, CompositionError>",
+      "body": "{\n    let context = HorizontalContext {\n        alpha,\n        beta,\n        f,\n        g,\n        h,\n        k,\n        target: target_category,\n    };\n    context.check_binding()?;\n    let lookup = CompositionLookup::new(&target_category.compositions);\n    let mut nat = DeclaredFiniteNatTrans::new(\n        name,\n        &composite_name(&h.name, &f.name),\n        &composite_name(&k.name, &g.name),\n    );\n    for object in f.object_map.keys() {\n        nat.set_component(object, context.component_at(&lookup, object)?);\n    }\n    Ok(nat)\n}",
+      "obligation": "Bind raw context labels before target-index construction. Build one borrowed view from the same target referenced by context; for every F object-map key, require both horizontal paths equal and store one required owned component. Source/target labels are H-after-F and K-after-G. Empty raw F domain is vacuous; this returns a declaration, not a certificate."
+    },
+    "identity_validated_nat_trans": {
+      "line": 310,
+      "signature": "pub fn identity_validated_nat_trans(\n    name: &str,\n    functor: &ValidatedFiniteFunctor,\n) -> Result<ValidatedFiniteNatTrans, CompositionError>",
+      "body": "{\n    let candidate = identity_nat_trans(name, functor.declared(), functor.target())?;\n    ValidatedFiniteNatTrans::try_new(\n        candidate,\n        functor.source(),\n        functor.target(),\n        functor.declared(),\n        functor.declared(),\n    )\n    .map_err(CompositionError::Admission)\n}",
+      "obligation": "Build identity candidate from an admitted owned functor and its actual target identities, then re-admit the candidate against both actual endpoint categories and the same actual F snapshot. Map every failure to typed Admission; blank output name cannot escape as a certificate."
+    },
+    "vertical_compose_validated_nat_trans": {
+      "line": 326,
+      "signature": "pub fn vertical_compose_validated_nat_trans(\n    name: &str,\n    alpha: &ValidatedFiniteNatTrans,\n    beta: &ValidatedFiniteNatTrans,\n) -> Result<ValidatedFiniteNatTrans, CompositionError>",
+      "body": "{\n    check_vertical_context(alpha, beta)?;\n    let candidate = vertical_compose_nat_trans(\n        name,\n        alpha.declared(),\n        beta.declared(),\n        alpha.source_category(),\n        alpha.target_category(),\n    )?;\n    ValidatedFiniteNatTrans::try_new(\n        candidate,\n        alpha.source_category(),\n        alpha.target_category(),\n        alpha.source_functor(),\n        beta.target_functor(),\n    )\n    .map_err(CompositionError::Admission)\n}",
+      "obligation": "First check complete source/target category and middle functor snapshot equality. Build raw beta-after-alpha components, then re-admit against alpha source/target categories, alpha source functor and beta target functor. Preserve ContextMismatch before candidate/re-admission errors; return only a newly admitted certificate."
+    },
+    "check_vertical_context": {
+      "line": 348,
+      "signature": "fn check_vertical_context(\n    alpha: &ValidatedFiniteNatTrans,\n    beta: &ValidatedFiniteNatTrans,\n) -> Result<(), CompositionError>",
+      "body": "{\n    if alpha.source_category() != beta.source_category()\n        || alpha.target_category() != beta.target_category()\n        || alpha.target_functor() != beta.source_functor()\n    {\n        return Err(CompositionError::ContextMismatch {\n            boundary: \"vertical middle functor and categories\",\n        });\n    }\n    Ok(())\n}",
+      "obligation": "Require all three structural equalities: source categories, target categories, and alpha target functor vs beta source functor. Same names and even equal raw functor maps do not substitute for category composition tables. Any mismatch returns exact vertical ContextMismatch."
+    },
+    "horizontal_compose_validated_nat_trans": {
+      "line": 365,
+      "signature": "pub fn horizontal_compose_validated_nat_trans(\n    name: &str,\n    alpha: &ValidatedFiniteNatTrans,\n    beta: &ValidatedFiniteNatTrans,\n) -> Result<ValidatedFiniteNatTrans, CompositionError>",
+      "body": "{\n    if alpha.target_category() != beta.source_category() {\n        return Err(CompositionError::ContextMismatch {\n            boundary: \"horizontal middle category\",\n        });\n    }\n    let (f, g, h, k) = (\n        alpha.source_functor(),\n        alpha.target_functor(),\n        beta.source_functor(),\n        beta.target_functor(),\n    );\n    let candidate = horizontal_compose_nat_trans(\n        name,\n        alpha.declared(),\n        beta.declared(),\n        f,\n        g,\n        h,\n        k,\n        beta.target_category(),\n    )?;\n    let source = compose_declared_functors(&candidate.source_functor, f, h)\n        .map_err(CompositionError::FunctorComposition)?;\n    let target = compose_declared_functors(&candidate.target_functor, g, k)\n        .map_err(CompositionError::FunctorComposition)?;\n    ValidatedFiniteNatTrans::try_new(\n        candidate,\n        alpha.source_category(),\n        beta.target_category(),\n        &source,\n        &target,\n    )\n    .map_err(CompositionError::Admission)\n}",
+      "obligation": "Require complete alpha-target/beta-source category equality before raw work. Use actual F/G/H/K snapshots; build and check both horizontal paths; derive source as H after F and target as K after G with the candidate labels, propagating defensive raw functor-composition errors. Finally re-admit candidate against alpha source category, beta target category and those actual derived functors. Failure never returns a partial certificate; output name is still checked by admission."
+    }
+  },
+  "data_trait_macro_review": "CompositionError is a fixed Debug/Clone enum with Binding(role,expected,got), ContextMismatch(boundary), Missing(kind,owner,key), Undefined(object,first,second), Interchange(object,left,right), FunctorComposition(String) and Admission(ValidationReport). Display writes standard Debug and returns fmt::Result; std Error has its default source behavior. Private HorizontalContext only borrows raw alpha/beta/F/G/H/K/target records; no unchecked constructor is exported. Production APIs expose borrowed inputs and owned Result outputs, invoking no user callback/trait math method. Ordinary format!/write!/structural derives only; no own numeric arithmetic, float, unsafe, indexing, unwrap/expect/assert or mutable global state.",
+  "source_preservation": {
+    "all_public_signatures_unchanged": true,
+    "unchanged16_bodies": [
+      "fmt",
+      "composite_name",
+      "same",
+      "component",
+      "mapped_morphism",
+      "mapped_object",
+      "identity_nat_trans",
+      "left_whisker_nat_trans",
+      "right_whisker_nat_trans",
+      "check_binding",
+      "check_transformation_names",
+      "check_parallel",
+      "identity_validated_nat_trans",
+      "vertical_compose_validated_nat_trans",
+      "check_vertical_context",
+      "horizontal_compose_validated_nat_trans"
+    ],
+    "changed_private_signatures": [
+      "component_at",
+      "compose_at",
+      "left_path",
+      "right_path"
+    ],
+    "semantic_argument": "The shared lookup is constructed from the same bound target composition table as before. BTreeMap String/str pair order and exact Option values are unchanged; every query, error and left/right comparison retains its order. Borrowed returned values refer to the original immutable target. Removing into() and the immediate caller copy changes only scratch allocation, not required owned output fields. Six bodies adapt this storage path; sixteen others and all public/record/error definitions remain unchanged."
+  },
+  "cost_review": [
+    "Let N be provided component/object entries, C target composition rows, K bound map sizes and L relevant string byte-comparison lengths. Raw vertical/horizontal operations build O(C) borrowed view once after label binding; each component makes bounded borrowed map/table queries, O(C+N log(K+1)) comparisons plus string costs and required output bytes. Neither repeated tuple-key String copies nor an owned horizontal return buffer remain.",
+    "Raw identity/whiskering perform bounded tree lookups per provided entry and allocate required independent output keys/values or exact first error payload. Composite labels are fixed-count setup formatting strings copied into the existing raw constructor; no whole-operation zero-allocation or name freshness guarantee is claimed.",
+    "Certified context equality compares actual raw snapshots, including all map/identity/composition values, with cost proportional to visited structure and string comparisons. Candidate functor composition is linear/logarithmic in explicit first-map entries. Re-admission includes complete category/functor/naturality work and required owned snapshot clones; its polynomial/string/storage bounds remain those separately assessed modules.",
+    "Fixed Error fields are owned String/static-role/report values with structural Debug/Clone and Display delegation; on Err all partial local output is dropped. Standard allocator/compiler/std/map/string behavior remains trust. No uniform speedup, benchmark, capacity/layout guarantee, allocation-totality or work-budget promise; O(C) view setup is explicit even on empty raw component domains."
+  ],
+  "consumer_review": "Live local source search finds root lib.rs/mod.rs exports and this module own tests, with no other local production caller. It depends on actual local cat_functor shared lookup, category data, functor-composition certificate/derived maps and naturality certificate. Four completed assessment contexts reference this source; their own bytes/primary/metrics remain exact and are refreshed with explicit private-signature/borrowed-result preservation. Open/exported clients are not inferred A from package compilation. Local tfqm type/package identity is distinct from external omega modules."
+}

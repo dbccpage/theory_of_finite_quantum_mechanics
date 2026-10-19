@@ -118,7 +118,7 @@ struct Echo; impl StructurePreservingMap for Echo {type Domain=String;type Codom
 
 
 def challenge(subject):
-    if Path(subject['path']).stem == 'natural_trans':
+    if Path(subject['path']).stem in ('natural_trans','natural_trans_composition'):
         from natural_transformations import challenge as naturality_challenge
         return naturality_challenge(subject)
     if Path(subject['path']).stem in ('cat_functor','finite_category_validation','functor_composition'):

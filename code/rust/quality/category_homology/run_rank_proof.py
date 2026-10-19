@@ -18,7 +18,7 @@ from run_audit import ROOT, digest, execute, write_json
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model",choices=("rank","category","metadata","degree","counter","parameters","finite-set","literal-reversal","shape-inventory","root-records","homology-protocols","degree-repair","two-step-complex","simplicial-closure","simplicial-boundary","simplicial-homology","scalar-admission","carrier-dimensions","vector-maps","graph-incidence","validation-inventory","arrow-effects","finite-builder","em-samples","lawvere-inventory","higher-functor-inventory","finite-functor","functor-operations","finite-naturality"),default="rank")
+    parser.add_argument("--model",choices=("rank","category","metadata","degree","counter","parameters","finite-set","literal-reversal","shape-inventory","root-records","homology-protocols","degree-repair","two-step-complex","simplicial-closure","simplicial-boundary","simplicial-homology","scalar-admission","carrier-dimensions","vector-maps","graph-incidence","validation-inventory","arrow-effects","finite-builder","em-samples","lawvere-inventory","higher-functor-inventory","finite-functor","functor-operations","finite-naturality","natural-composition"),default="rank")
     parser.add_argument("--memory-mb", type=int, default=1024,
         help="Explicit Lean memory limit, from 256 to 2048 MiB; default remains 1024.")
     args = parser.parse_args()
@@ -46,6 +46,10 @@ def main():
         proof_name, import_name, namespace = "DegreeWindow", "Data/Int/Basic", "TFQM.DegreeWindow."
         declarations = ("ordered_span_fits_u32", "same_endpoint_zero", "inverted_span_negative")
         scope = "Exact i32 endpoint difference bounds, zero span and inverted-window refusal premise; no category-law claim."
+    elif model == "natural-composition":
+        proof_name, import_name, namespace = "NaturalComposition", "CategoryTheory/NatTrans", "TFQM.NaturalComposition."
+        declarations = ("identity_component", "vertical_component", "vertical_left_identity", "vertical_right_identity", "vertical_associative", "left_component", "right_component", "left_preserves_vertical", "right_preserves_vertical", "horizontal_component", "horizontal_paths", "horizontal_other_path", "horizontal_naturality", "horizontal_identity", "interchange")
+        scope = "Actual Mathlib natural-transformation identity/vertical composition, constructed whiskering, horizontal naturality/path equality and interchange; raw partial diagram failures and Rust storage/context refinement remain separate."
     elif model == "finite-naturality":
         proof_name, import_name, namespace = "FiniteNaturality", "CategoryTheory/NatTrans", "TFQM.FiniteNaturality."
         declarations = ("checks_true_iff", "admit_preserves_data", "admit_success", "failed_guard", "natTrans_app", "natTrans_naturality", "natTransOfAdmitted", "admitted_component")

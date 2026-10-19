@@ -914,3 +914,38 @@ is promoted to a pass. Prior G5 B allocation finding remains source-pinned.
 all 192 source/score digests and 34 groups. Cleanup checkpoint 149 finds no owned
 debug/tmp/compiled outputs; small exact snapshots remain. Contracts/full goal
 remain unfinished and the PR remains draft.
+
+Natural composition checkpoint: 150 completed A assessments, 42 incomplete.
+Readmitted immutable natural-transformation operations are L5A. Complete context
+guards, actual identity lookup, whiskering, both horizontal paths and output
+re-admission remain exact; raw candidate helpers and composite-name printers do
+not certify laws or freshness. Six cost-path bodies/four private signatures now
+carry one same-target borrowed view and return borrowed component results.
+Sixteen other bodies, public signatures, data/error definitions and typed refusal
+order remain unchanged. Required output/error strings stay owned.
+
+Final native 20261019T182316Z detects all 54 selected faults, with 459 original
+category and seventeen subject/control tests passing before/after. Independent
+oracles cover 27 vertical/81 horizontal C3 diagrams, raw identity/whisker/ten-role
+binding/missing/undefined/interchange payloads, and actual nonconstant-object
+terminal/walking diagrams. Initial 51-case campaign detects 50: constant-on-object
+K collapsed F/G images and hid a wrong target composition. Identity K preserves
+distinct A/B images and detects the unchanged fault; earlier 50/51 is not relabeled.
+The closed 51/51 scope remains, then three independently dropped vertical context
+guards are added. Admitted cyclic/max categories share names/carriers/constant
+functor maps but have distinct source/target multiplication; every mismatch is
+rejected before a plausible output can be re-admitted. No outcome exclusions.
+
+NaturalComposition checks fifteen clean actual Mathlib identity/vertical,
+whiskering, horizontal path/naturality and interchange statements. Existing
+complete category/functor/naturality/context/report models retain their claims.
+A defensive private missing-F-object branch is checked directly and is not claimed
+as publicly reachable through the F-key loop. All 22 bodies fit fresh A metrics;
+costs include target-view setup, fixed label formatting, full structural context
+equality, required snapshots/re-admission and string lengths. Four unchanged-own-
+source context records retain original own receipts with explicit preservation.
+
+20261019T182821Z-score-verification passes all 150 completed assessments,
+all 192 source/score digests and 35 groups. Cleanup checkpoint 150 finds no owned
+debug/tmp/compiled outputs; small exact snapshots remain. Contracts and full goal
+remain unfinished; PR draft.

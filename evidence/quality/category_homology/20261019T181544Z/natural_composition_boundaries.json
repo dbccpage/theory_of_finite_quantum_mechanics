@@ -1,0 +1,223 @@
+{
+  "AuthorityEffect": "None",
+  "records": [
+    {
+      "family": "",
+      "path": "code/rust/src/category_theory/natural_trans_composition.rs",
+      "sha256": "dc006678c56be73ac184f8015d3fe7a55557d1d994eb1d3d8647f089079a568e",
+      "parent_aliases": [
+        "cat_functor",
+        "finite_category",
+        "functor_composition",
+        "natural_trans",
+        "validation"
+      ],
+      "faults": [
+        [
+          "write!(f, \"{self:?}\")",
+          "write!(f, \"wrong\")"
+        ],
+        [
+          "format!(\"Comp[{outer} after {inner}]\")",
+          "format!(\"Comp[{inner} after {outer}]\")"
+        ],
+        [
+          "if expected != got {",
+          "if false {"
+        ],
+        [
+          "expected: expected.into(),",
+          "expected: got.into(),"
+        ],
+        [
+          "got: got.into(),",
+          "got: expected.into(),"
+        ],
+        [
+          "\nfn component<'a>(\n    nat: &'a DeclaredFiniteNatTrans,\n    object: &str,\n) -> Result<&'a str, CompositionError> {\n    nat.component(object)\n        .ok_or_else(|| CompositionError::Missing {\n            kind: \"component\",\n            owner: nat.name.clone(),\n            key: object.into(),\n        })\n}",
+          "\nfn component<'a>(\n    nat: &'a DeclaredFiniteNatTrans,\n    object: &str,\n) -> Result<&'a str, CompositionError> {\n    nat.component(&nat.name)\n        .ok_or_else(|| CompositionError::Missing {\n            kind: \"component\",\n            owner: nat.name.clone(),\n            key: object.into(),\n        })\n}"
+        ],
+        [
+          "\nfn component<'a>(\n    nat: &'a DeclaredFiniteNatTrans,\n    object: &str,\n) -> Result<&'a str, CompositionError> {\n    nat.component(object)\n        .ok_or_else(|| CompositionError::Missing {\n            kind: \"component\",\n            owner: nat.name.clone(),\n            key: object.into(),\n        })\n}",
+          "\nfn component<'a>(\n    nat: &'a DeclaredFiniteNatTrans,\n    object: &str,\n) -> Result<&'a str, CompositionError> {\n    nat.component(object)\n        .ok_or_else(|| CompositionError::Missing {\n            kind: \"component\",\n            owner: \"wrong\".into(),\n            key: object.into(),\n        })\n}"
+        ],
+        [
+          "\nfn component<'a>(\n    nat: &'a DeclaredFiniteNatTrans,\n    object: &str,\n) -> Result<&'a str, CompositionError> {\n    nat.component(object)\n        .ok_or_else(|| CompositionError::Missing {\n            kind: \"component\",\n            owner: nat.name.clone(),\n            key: object.into(),\n        })\n}",
+          "\nfn component<'a>(\n    nat: &'a DeclaredFiniteNatTrans,\n    object: &str,\n) -> Result<&'a str, CompositionError> {\n    nat.component(object)\n        .ok_or_else(|| CompositionError::Missing {\n            kind: \"component\",\n            owner: nat.name.clone(),\n            key: \"wrong\".into(),\n        })\n}"
+        ],
+        [
+          "fn mapped_morphism<'a>(\n    functor: &'a DeclaredFiniteFunctor,\n    name: &str,\n) -> Result<&'a str, CompositionError> {\n    functor\n        .on_morphism(name)\n        .ok_or_else(|| CompositionError::Missing {\n            kind: \"morphism image\",\n            owner: functor.name.clone(),\n            key: name.into(),\n        })\n}",
+          "fn mapped_morphism<'a>(\n    functor: &'a DeclaredFiniteFunctor,\n    name: &str,\n) -> Result<&'a str, CompositionError> {\n    functor\n        .on_object(name)\n        .ok_or_else(|| CompositionError::Missing {\n            kind: \"morphism image\",\n            owner: functor.name.clone(),\n            key: name.into(),\n        })\n}"
+        ],
+        [
+          "fn mapped_object<'a>(\n    functor: &'a DeclaredFiniteFunctor,\n    name: &str,\n) -> Result<&'a str, CompositionError> {\n    functor\n        .on_object(name)\n        .ok_or_else(|| CompositionError::Missing {\n            kind: \"object image\",\n            owner: functor.name.clone(),\n            key: name.into(),\n        })\n}",
+          "fn mapped_object<'a>(\n    functor: &'a DeclaredFiniteFunctor,\n    name: &str,\n) -> Result<&'a str, CompositionError> {\n    functor\n        .on_morphism(name)\n        .ok_or_else(|| CompositionError::Missing {\n            kind: \"object image\",\n            owner: functor.name.clone(),\n            key: name.into(),\n        })\n}"
+        ],
+        [
+          "fn mapped_morphism<'a>(\n    functor: &'a DeclaredFiniteFunctor,\n    name: &str,\n) -> Result<&'a str, CompositionError> {\n    functor\n        .on_morphism(name)\n        .ok_or_else(|| CompositionError::Missing {\n            kind: \"morphism image\",\n            owner: functor.name.clone(),\n            key: name.into(),\n        })\n}",
+          "fn mapped_morphism<'a>(\n    functor: &'a DeclaredFiniteFunctor,\n    name: &str,\n) -> Result<&'a str, CompositionError> {\n    functor\n        .on_morphism(name)\n        .ok_or_else(|| CompositionError::Missing {\n            kind: \"morphism image\",\n            owner: \"wrong\".into(),\n            key: name.into(),\n        })\n}"
+        ],
+        [
+          "fn mapped_morphism<'a>(\n    functor: &'a DeclaredFiniteFunctor,\n    name: &str,\n) -> Result<&'a str, CompositionError> {\n    functor\n        .on_morphism(name)\n        .ok_or_else(|| CompositionError::Missing {\n            kind: \"morphism image\",\n            owner: functor.name.clone(),\n            key: name.into(),\n        })\n}",
+          "fn mapped_morphism<'a>(\n    functor: &'a DeclaredFiniteFunctor,\n    name: &str,\n) -> Result<&'a str, CompositionError> {\n    functor\n        .on_morphism(name)\n        .ok_or_else(|| CompositionError::Missing {\n            kind: \"morphism image\",\n            owner: functor.name.clone(),\n            key: \"wrong\".into(),\n        })\n}"
+        ],
+        [
+          "fn mapped_object<'a>(\n    functor: &'a DeclaredFiniteFunctor,\n    name: &str,\n) -> Result<&'a str, CompositionError> {\n    functor\n        .on_object(name)\n        .ok_or_else(|| CompositionError::Missing {\n            kind: \"object image\",\n            owner: functor.name.clone(),\n            key: name.into(),\n        })\n}",
+          "fn mapped_object<'a>(\n    functor: &'a DeclaredFiniteFunctor,\n    name: &str,\n) -> Result<&'a str, CompositionError> {\n    functor\n        .on_object(name)\n        .ok_or_else(|| CompositionError::Missing {\n            kind: \"object image\",\n            owner: \"wrong\".into(),\n            key: name.into(),\n        })\n}"
+        ],
+        [
+          "fn mapped_object<'a>(\n    functor: &'a DeclaredFiniteFunctor,\n    name: &str,\n) -> Result<&'a str, CompositionError> {\n    functor\n        .on_object(name)\n        .ok_or_else(|| CompositionError::Missing {\n            kind: \"object image\",\n            owner: functor.name.clone(),\n            key: name.into(),\n        })\n}",
+          "fn mapped_object<'a>(\n    functor: &'a DeclaredFiniteFunctor,\n    name: &str,\n) -> Result<&'a str, CompositionError> {\n    functor\n        .on_object(name)\n        .ok_or_else(|| CompositionError::Missing {\n            kind: \"object image\",\n            owner: functor.name.clone(),\n            key: \"wrong\".into(),\n        })\n}"
+        ],
+        [
+          ".compose(first, second)",
+          ".compose(second, first)"
+        ],
+        [
+          "fn compose_at<'a>(\n    table: &CompositionLookup<'a>,\n    object: &str,\n    first: &str,\n    second: &str,\n) -> Result<&'a str, CompositionError> {\n    table\n        .compose(first, second)\n        .ok_or_else(|| CompositionError::Undefined {\n            object: object.into(),\n            first: first.into(),\n            second: second.into(),\n        })\n}",
+          "fn compose_at<'a>(\n    table: &CompositionLookup<'a>,\n    object: &str,\n    first: &str,\n    second: &str,\n) -> Result<&'a str, CompositionError> {\n    table\n        .compose(first, second)\n        .ok_or_else(|| CompositionError::Undefined {\n            object: \"wrong\".into(),\n            first: first.into(),\n            second: second.into(),\n        })\n}"
+        ],
+        [
+          "fn compose_at<'a>(\n    table: &CompositionLookup<'a>,\n    object: &str,\n    first: &str,\n    second: &str,\n) -> Result<&'a str, CompositionError> {\n    table\n        .compose(first, second)\n        .ok_or_else(|| CompositionError::Undefined {\n            object: object.into(),\n            first: first.into(),\n            second: second.into(),\n        })\n}",
+          "fn compose_at<'a>(\n    table: &CompositionLookup<'a>,\n    object: &str,\n    first: &str,\n    second: &str,\n) -> Result<&'a str, CompositionError> {\n    table\n        .compose(first, second)\n        .ok_or_else(|| CompositionError::Undefined {\n            object: object.into(),\n            first: \"wrong\".into(),\n            second: second.into(),\n        })\n}"
+        ],
+        [
+          "fn compose_at<'a>(\n    table: &CompositionLookup<'a>,\n    object: &str,\n    first: &str,\n    second: &str,\n) -> Result<&'a str, CompositionError> {\n    table\n        .compose(first, second)\n        .ok_or_else(|| CompositionError::Undefined {\n            object: object.into(),\n            first: first.into(),\n            second: second.into(),\n        })\n}",
+          "fn compose_at<'a>(\n    table: &CompositionLookup<'a>,\n    object: &str,\n    first: &str,\n    second: &str,\n) -> Result<&'a str, CompositionError> {\n    table\n        .compose(first, second)\n        .ok_or_else(|| CompositionError::Undefined {\n            object: object.into(),\n            first: first.into(),\n            second: \"wrong\".into(),\n        })\n}"
+        ],
+        [
+          "\npub fn identity_nat_trans(\n    name: &str,\n    functor: &DeclaredFiniteFunctor,\n    target_category: &DeclaredFiniteCategory,\n) -> Result<DeclaredFiniteNatTrans, CompositionError> {\n    same(\n        \"identity target category\",\n        &functor.target_category,\n        &target_category.name,\n    )?;\n    let mut nat = DeclaredFiniteNatTrans::new(name, &functor.name, &functor.name);\n    for (object, image) in &functor.object_map {\n        let identity =\n            target_category\n                .identity_of(image)\n                .ok_or_else(|| CompositionError::Missing {\n                    kind: \"identity\",\n                    owner: target_category.name.clone(),\n                    key: image.clone(),\n                })?;\n        nat.set_component(object, identity);\n    }\n    Ok(nat)\n}",
+          "\npub fn identity_nat_trans(\n    name: &str,\n    functor: &DeclaredFiniteFunctor,\n    target_category: &DeclaredFiniteCategory,\n) -> Result<DeclaredFiniteNatTrans, CompositionError> {\n    same(\n        \"identity target category\",\n        &functor.target_category,\n        &target_category.name,\n    )?;\n    let mut nat = DeclaredFiniteNatTrans::new(\"wrong\", &functor.name, &functor.name);\n    for (object, image) in &functor.object_map {\n        let identity =\n            target_category\n                .identity_of(image)\n                .ok_or_else(|| CompositionError::Missing {\n                    kind: \"identity\",\n                    owner: target_category.name.clone(),\n                    key: image.clone(),\n                })?;\n        nat.set_component(object, identity);\n    }\n    Ok(nat)\n}"
+        ],
+        [
+          "\npub fn identity_nat_trans(\n    name: &str,\n    functor: &DeclaredFiniteFunctor,\n    target_category: &DeclaredFiniteCategory,\n) -> Result<DeclaredFiniteNatTrans, CompositionError> {\n    same(\n        \"identity target category\",\n        &functor.target_category,\n        &target_category.name,\n    )?;\n    let mut nat = DeclaredFiniteNatTrans::new(name, &functor.name, &functor.name);\n    for (object, image) in &functor.object_map {\n        let identity =\n            target_category\n                .identity_of(image)\n                .ok_or_else(|| CompositionError::Missing {\n                    kind: \"identity\",\n                    owner: target_category.name.clone(),\n                    key: image.clone(),\n                })?;\n        nat.set_component(object, identity);\n    }\n    Ok(nat)\n}",
+          "\npub fn identity_nat_trans(\n    name: &str,\n    functor: &DeclaredFiniteFunctor,\n    target_category: &DeclaredFiniteCategory,\n) -> Result<DeclaredFiniteNatTrans, CompositionError> {\n    same(\n        \"identity target category\",\n        &functor.target_category,\n        &target_category.name,\n    )?;\n    let mut nat = DeclaredFiniteNatTrans::new(name, &functor.name, &functor.name);\n    for (object, image) in &functor.object_map {\n        let identity =\n            target_category\n                .identity_of(image)\n                .ok_or_else(|| CompositionError::Missing {\n                    kind: \"identity\",\n                    owner: target_category.name.clone(),\n                    key: \"wrong\".into(),\n                })?;\n        nat.set_component(object, identity);\n    }\n    Ok(nat)\n}"
+        ],
+        [
+          "pub fn vertical_compose_nat_trans(\n    name: &str,\n    alpha: &DeclaredFiniteNatTrans,\n    beta: &DeclaredFiniteNatTrans,\n    source_category: &DeclaredFiniteCategory,\n    target_category: &DeclaredFiniteCategory,\n) -> Result<DeclaredFiniteNatTrans, CompositionError> {\n    same(\n        \"vertical middle functor\",\n        &alpha.target_functor,\n        &beta.source_functor,\n    )?;\n    let mut nat = DeclaredFiniteNatTrans::new(name, &alpha.source_functor, &beta.target_functor);\n    let lookup = CompositionLookup::new(&target_category.compositions);\n    for object in &source_category.objects {\n        let first = component(alpha, object)?;\n        let second = component(beta, object)?;\n        nat.set_component(object, compose_at(&lookup, object, first, second)?);\n    }\n    Ok(nat)\n}",
+          "pub fn vertical_compose_nat_trans(\n    name: &str,\n    alpha: &DeclaredFiniteNatTrans,\n    beta: &DeclaredFiniteNatTrans,\n    source_category: &DeclaredFiniteCategory,\n    target_category: &DeclaredFiniteCategory,\n) -> Result<DeclaredFiniteNatTrans, CompositionError> {\n    same(\n        \"vertical middle functor\",\n        &alpha.target_functor,\n        &beta.source_functor,\n    )?;\n    let mut nat = DeclaredFiniteNatTrans::new(name, &beta.source_functor, &beta.target_functor);\n    let lookup = CompositionLookup::new(&target_category.compositions);\n    for object in &source_category.objects {\n        let first = component(alpha, object)?;\n        let second = component(beta, object)?;\n        nat.set_component(object, compose_at(&lookup, object, first, second)?);\n    }\n    Ok(nat)\n}"
+        ],
+        [
+          "pub fn vertical_compose_nat_trans(\n    name: &str,\n    alpha: &DeclaredFiniteNatTrans,\n    beta: &DeclaredFiniteNatTrans,\n    source_category: &DeclaredFiniteCategory,\n    target_category: &DeclaredFiniteCategory,\n) -> Result<DeclaredFiniteNatTrans, CompositionError> {\n    same(\n        \"vertical middle functor\",\n        &alpha.target_functor,\n        &beta.source_functor,\n    )?;\n    let mut nat = DeclaredFiniteNatTrans::new(name, &alpha.source_functor, &beta.target_functor);\n    let lookup = CompositionLookup::new(&target_category.compositions);\n    for object in &source_category.objects {\n        let first = component(alpha, object)?;\n        let second = component(beta, object)?;\n        nat.set_component(object, compose_at(&lookup, object, first, second)?);\n    }\n    Ok(nat)\n}",
+          "pub fn vertical_compose_nat_trans(\n    name: &str,\n    alpha: &DeclaredFiniteNatTrans,\n    beta: &DeclaredFiniteNatTrans,\n    source_category: &DeclaredFiniteCategory,\n    target_category: &DeclaredFiniteCategory,\n) -> Result<DeclaredFiniteNatTrans, CompositionError> {\n    same(\n        \"vertical middle functor\",\n        &alpha.target_functor,\n        &beta.source_functor,\n    )?;\n    let mut nat = DeclaredFiniteNatTrans::new(name, &alpha.source_functor, &alpha.target_functor);\n    let lookup = CompositionLookup::new(&target_category.compositions);\n    for object in &source_category.objects {\n        let first = component(alpha, object)?;\n        let second = component(beta, object)?;\n        nat.set_component(object, compose_at(&lookup, object, first, second)?);\n    }\n    Ok(nat)\n}"
+        ],
+        [
+          "pub fn left_whisker_nat_trans(\n    name: &str,\n    outer: &DeclaredFiniteFunctor,\n    alpha: &DeclaredFiniteNatTrans,\n) -> Result<DeclaredFiniteNatTrans, CompositionError> {\n    let mut nat = DeclaredFiniteNatTrans::new(\n        name,\n        &composite_name(&outer.name, &alpha.source_functor),\n        &composite_name(&outer.name, &alpha.target_functor),\n    );\n    for (object, arrow) in &alpha.components {\n        nat.set_component(object, mapped_morphism(outer, arrow)?);\n    }\n    Ok(nat)\n}",
+          "pub fn left_whisker_nat_trans(\n    name: &str,\n    outer: &DeclaredFiniteFunctor,\n    alpha: &DeclaredFiniteNatTrans,\n) -> Result<DeclaredFiniteNatTrans, CompositionError> {\n    let mut nat = DeclaredFiniteNatTrans::new(\n        name,\n        &composite_name(&outer.name, &alpha.source_functor),\n        &composite_name(&outer.name, &alpha.target_functor),\n    );\n    for (object, arrow) in &alpha.components {\n        nat.set_component(object, component(alpha, object)?);\n    }\n    Ok(nat)\n}"
+        ],
+        [
+          "pub fn right_whisker_nat_trans(\n    name: &str,\n    alpha: &DeclaredFiniteNatTrans,\n    inner: &DeclaredFiniteFunctor,\n) -> Result<DeclaredFiniteNatTrans, CompositionError> {\n    let mut nat = DeclaredFiniteNatTrans::new(\n        name,\n        &composite_name(&alpha.source_functor, &inner.name),\n        &composite_name(&alpha.target_functor, &inner.name),\n    );\n    for (object, middle) in &inner.object_map {\n        nat.set_component(object, component(alpha, middle)?);\n    }\n    Ok(nat)\n}",
+          "pub fn right_whisker_nat_trans(\n    name: &str,\n    alpha: &DeclaredFiniteNatTrans,\n    inner: &DeclaredFiniteFunctor,\n) -> Result<DeclaredFiniteNatTrans, CompositionError> {\n    let mut nat = DeclaredFiniteNatTrans::new(\n        name,\n        &composite_name(&alpha.source_functor, &inner.name),\n        &composite_name(&alpha.target_functor, &inner.name),\n    );\n    for (object, middle) in &inner.object_map {\n        nat.set_component(object, component(alpha, object)?);\n    }\n    Ok(nat)\n}"
+        ],
+        [
+          "    fn check_binding(&self) -> Result<(), CompositionError> {\n        self.check_transformation_names()?;\n        check_parallel(self.f, self.g)?;\n        check_parallel(self.h, self.k)?;\n        same(\n            \"horizontal middle category\",\n            &self.f.target_category,\n            &self.h.source_category,\n        )?;\n        same(\n            \"horizontal target category\",\n            &self.h.target_category,\n            &self.target.name,\n        )\n    }",
+          "    fn check_binding(&self) -> Result<(), CompositionError> { Ok(()) }"
+        ],
+        [
+          "    fn check_transformation_names(&self) -> Result<(), CompositionError> {\n        same(\"alpha source\", &self.f.name, &self.alpha.source_functor)?;\n        same(\"alpha target\", &self.g.name, &self.alpha.target_functor)?;\n        same(\"beta source\", &self.h.name, &self.beta.source_functor)?;\n        same(\"beta target\", &self.k.name, &self.beta.target_functor)\n    }",
+          "    fn check_transformation_names(&self) -> Result<(), CompositionError> { Ok(()) }"
+        ],
+        [
+          "fn check_parallel(\n    f: &DeclaredFiniteFunctor,\n    g: &DeclaredFiniteFunctor,\n) -> Result<(), CompositionError> {\n    same(\n        \"parallel source category\",\n        &f.source_category,\n        &g.source_category,\n    )?;\n    same(\n        \"parallel target category\",\n        &f.target_category,\n        &g.target_category,\n    )\n}",
+          "fn check_parallel(\n    f: &DeclaredFiniteFunctor,\n    g: &DeclaredFiniteFunctor,\n) -> Result<(), CompositionError> { Ok(()) }"
+        ],
+        [
+          "fn check_vertical_context(\n    alpha: &ValidatedFiniteNatTrans,\n    beta: &ValidatedFiniteNatTrans,\n) -> Result<(), CompositionError> {\n    if alpha.source_category() != beta.source_category()\n        || alpha.target_category() != beta.target_category()\n        || alpha.target_functor() != beta.source_functor()\n    {\n        return Err(CompositionError::ContextMismatch {\n            boundary: \"vertical middle functor and categories\",\n        });\n    }\n    Ok(())\n}",
+          "fn check_vertical_context(\n    alpha: &ValidatedFiniteNatTrans,\n    beta: &ValidatedFiniteNatTrans,\n) -> Result<(), CompositionError> { Ok(()) }"
+        ],
+        [
+          "if left != right {",
+          "if false {"
+        ],
+        [
+          "        Ok(left)\n",
+          "        Ok(\"wrong\")\n"
+        ],
+        [
+          "    fn component_at<'a>(&self, lookup: &CompositionLookup<'a>, object: &str) -> Result<&'a str, CompositionError> {\n        let alpha = component(self.alpha, object)?;\n        let left = self.left_path(lookup, object, alpha)?;\n        let right = self.right_path(lookup, object, alpha)?;\n        if left != right {\n            return Err(CompositionError::Interchange {\n                object: object.into(),\n                left: left.into(),\n                right: right.into(),\n            });\n        }\n        Ok(left)\n    }",
+          "    fn component_at<'a>(&self, lookup: &CompositionLookup<'a>, object: &str) -> Result<&'a str, CompositionError> {\n        let alpha = component(self.alpha, object)?;\n        let left = self.left_path(lookup, object, alpha)?;\n        let right = self.right_path(lookup, object, alpha)?;\n        if left != right {\n            return Err(CompositionError::Interchange {\n                object: object.into(),\n                left: right.into(),\n                right: right.into(),\n            });\n        }\n        Ok(left)\n    }"
+        ],
+        [
+          "    fn component_at<'a>(&self, lookup: &CompositionLookup<'a>, object: &str) -> Result<&'a str, CompositionError> {\n        let alpha = component(self.alpha, object)?;\n        let left = self.left_path(lookup, object, alpha)?;\n        let right = self.right_path(lookup, object, alpha)?;\n        if left != right {\n            return Err(CompositionError::Interchange {\n                object: object.into(),\n                left: left.into(),\n                right: right.into(),\n            });\n        }\n        Ok(left)\n    }",
+          "    fn component_at<'a>(&self, lookup: &CompositionLookup<'a>, object: &str) -> Result<&'a str, CompositionError> {\n        let alpha = component(self.alpha, object)?;\n        let left = self.left_path(lookup, object, alpha)?;\n        let right = self.right_path(lookup, object, alpha)?;\n        if left != right {\n            return Err(CompositionError::Interchange {\n                object: object.into(),\n                left: left.into(),\n                right: left.into(),\n            });\n        }\n        Ok(left)\n    }"
+        ],
+        [
+          "    fn component_at<'a>(&self, lookup: &CompositionLookup<'a>, object: &str) -> Result<&'a str, CompositionError> {\n        let alpha = component(self.alpha, object)?;\n        let left = self.left_path(lookup, object, alpha)?;\n        let right = self.right_path(lookup, object, alpha)?;\n        if left != right {\n            return Err(CompositionError::Interchange {\n                object: object.into(),\n                left: left.into(),\n                right: right.into(),\n            });\n        }\n        Ok(left)\n    }",
+          "    fn component_at<'a>(&self, lookup: &CompositionLookup<'a>, object: &str) -> Result<&'a str, CompositionError> {\n        let alpha = component(self.alpha, object)?;\n        let left = self.left_path(lookup, object, alpha)?;\n        let right = self.right_path(lookup, object, alpha)?;\n        if left != right {\n            return Err(CompositionError::Interchange {\n                object: \"wrong\".into(),\n                left: left.into(),\n                right: right.into(),\n            });\n        }\n        Ok(left)\n    }"
+        ],
+        [
+          "    fn left_path<'a>(&self, lookup: &CompositionLookup<'a>, object: &str, alpha: &str) -> Result<&'a str, CompositionError> {\n        let h_alpha = mapped_morphism(self.h, alpha)?;\n        let g_object = mapped_object(self.g, object)?;\n        compose_at(\n            lookup,\n            object,\n            h_alpha,\n            component(self.beta, g_object)?,\n        )\n    }",
+          "    fn left_path<'a>(&self, lookup: &CompositionLookup<'a>, object: &str, alpha: &str) -> Result<&'a str, CompositionError> {\n        let h_alpha = mapped_morphism(self.k, alpha)?;\n        let g_object = mapped_object(self.g, object)?;\n        compose_at(\n            lookup,\n            object,\n            h_alpha,\n            component(self.beta, g_object)?,\n        )\n    }"
+        ],
+        [
+          "    fn left_path<'a>(&self, lookup: &CompositionLookup<'a>, object: &str, alpha: &str) -> Result<&'a str, CompositionError> {\n        let h_alpha = mapped_morphism(self.h, alpha)?;\n        let g_object = mapped_object(self.g, object)?;\n        compose_at(\n            lookup,\n            object,\n            h_alpha,\n            component(self.beta, g_object)?,\n        )\n    }",
+          "    fn left_path<'a>(&self, lookup: &CompositionLookup<'a>, object: &str, alpha: &str) -> Result<&'a str, CompositionError> {\n        let h_alpha = mapped_morphism(self.h, alpha)?;\n        let g_object = mapped_object(self.f, object)?;\n        compose_at(\n            lookup,\n            object,\n            h_alpha,\n            component(self.beta, g_object)?,\n        )\n    }"
+        ],
+        [
+          "    fn right_path<'a>(&self, lookup: &CompositionLookup<'a>, object: &str, alpha: &str) -> Result<&'a str, CompositionError> {\n        let k_alpha = mapped_morphism(self.k, alpha)?;\n        let f_object = mapped_object(self.f, object)?;\n        compose_at(\n            lookup,\n            object,\n            component(self.beta, f_object)?,\n            k_alpha,\n        )\n    }",
+          "    fn right_path<'a>(&self, lookup: &CompositionLookup<'a>, object: &str, alpha: &str) -> Result<&'a str, CompositionError> {\n        let k_alpha = mapped_morphism(self.h, alpha)?;\n        let f_object = mapped_object(self.f, object)?;\n        compose_at(\n            lookup,\n            object,\n            component(self.beta, f_object)?,\n            k_alpha,\n        )\n    }"
+        ],
+        [
+          "    fn right_path<'a>(&self, lookup: &CompositionLookup<'a>, object: &str, alpha: &str) -> Result<&'a str, CompositionError> {\n        let k_alpha = mapped_morphism(self.k, alpha)?;\n        let f_object = mapped_object(self.f, object)?;\n        compose_at(\n            lookup,\n            object,\n            component(self.beta, f_object)?,\n            k_alpha,\n        )\n    }",
+          "    fn right_path<'a>(&self, lookup: &CompositionLookup<'a>, object: &str, alpha: &str) -> Result<&'a str, CompositionError> {\n        let k_alpha = mapped_morphism(self.k, alpha)?;\n        let f_object = mapped_object(self.g, object)?;\n        compose_at(\n            lookup,\n            object,\n            component(self.beta, f_object)?,\n            k_alpha,\n        )\n    }"
+        ],
+        [
+          "context.check_binding()?;",
+          "let _=context.check_binding();"
+        ],
+        [
+          "&composite_name(&h.name, &f.name),",
+          "&composite_name(&k.name, &f.name),"
+        ],
+        [
+          "&composite_name(&k.name, &g.name),",
+          "&composite_name(&h.name, &g.name),"
+        ],
+        [
+          "check_vertical_context(alpha, beta)?;",
+          "let _=check_vertical_context(alpha,beta);"
+        ],
+        [
+          "if alpha.target_category() != beta.source_category() {",
+          "if false {"
+        ],
+        [
+          "pub fn vertical_compose_validated_nat_trans(\n    name: &str,\n    alpha: &ValidatedFiniteNatTrans,\n    beta: &ValidatedFiniteNatTrans,\n) -> Result<ValidatedFiniteNatTrans, CompositionError> {\n    check_vertical_context(alpha, beta)?;\n    let candidate = vertical_compose_nat_trans(\n        name,\n        alpha.declared(),\n        beta.declared(),\n        alpha.source_category(),\n        alpha.target_category(),\n    )?;\n    ValidatedFiniteNatTrans::try_new(\n        candidate,\n        alpha.source_category(),\n        alpha.target_category(),\n        alpha.source_functor(),\n        beta.target_functor(),\n    )\n    .map_err(CompositionError::Admission)\n}",
+          "pub fn vertical_compose_validated_nat_trans(\n    name: &str,\n    alpha: &ValidatedFiniteNatTrans,\n    beta: &ValidatedFiniteNatTrans,\n) -> Result<ValidatedFiniteNatTrans, CompositionError> { Ok(alpha.clone()) }"
+        ],
+        [
+          "pub fn horizontal_compose_validated_nat_trans(\n    name: &str,\n    alpha: &ValidatedFiniteNatTrans,\n    beta: &ValidatedFiniteNatTrans,\n) -> Result<ValidatedFiniteNatTrans, CompositionError> {\n    if alpha.target_category() != beta.source_category() {\n        return Err(CompositionError::ContextMismatch {\n            boundary: \"horizontal middle category\",\n        });\n    }\n    let (f, g, h, k) = (\n        alpha.source_functor(),\n        alpha.target_functor(),\n        beta.source_functor(),\n        beta.target_functor(),\n    );\n    let candidate = horizontal_compose_nat_trans(\n        name,\n        alpha.declared(),\n        beta.declared(),\n        f,\n        g,\n        h,\n        k,\n        beta.target_category(),\n    )?;\n    let source = compose_declared_functors(&candidate.source_functor, f, h)\n        .map_err(CompositionError::FunctorComposition)?;\n    let target = compose_declared_functors(&candidate.target_functor, g, k)\n        .map_err(CompositionError::FunctorComposition)?;\n    ValidatedFiniteNatTrans::try_new(\n        candidate,\n        alpha.source_category(),\n        beta.target_category(),\n        &source,\n        &target,\n    )\n    .map_err(CompositionError::Admission)\n}",
+          "pub fn horizontal_compose_validated_nat_trans(\n    name: &str,\n    alpha: &ValidatedFiniteNatTrans,\n    beta: &ValidatedFiniteNatTrans,\n) -> Result<ValidatedFiniteNatTrans, CompositionError> { Ok(alpha.clone()) }"
+        ],
+        [
+          "\npub fn identity_validated_nat_trans(\n    name: &str,\n    functor: &ValidatedFiniteFunctor,\n) -> Result<ValidatedFiniteNatTrans, CompositionError> {\n    let candidate = identity_nat_trans(name, functor.declared(), functor.target())?;\n    ValidatedFiniteNatTrans::try_new(\n        candidate,\n        functor.source(),\n        functor.target(),\n        functor.declared(),\n        functor.declared(),\n    )\n    .map_err(CompositionError::Admission)\n}",
+          "\npub fn identity_validated_nat_trans(\n    name: &str,\n    functor: &ValidatedFiniteFunctor,\n) -> Result<ValidatedFiniteNatTrans, CompositionError> {\n    let candidate = identity_nat_trans(name, functor.declared(), functor.target())?;\n    ValidatedFiniteNatTrans::try_new(\n        candidate,\n        functor.source(),\n        functor.target(),\n        functor.declared(),\n        functor.declared(),\n    )\n    .map_err(|_| CompositionError::FunctorComposition(\"wrong\".into()))\n}"
+        ],
+        [
+          "pub fn vertical_compose_validated_nat_trans(\n    name: &str,\n    alpha: &ValidatedFiniteNatTrans,\n    beta: &ValidatedFiniteNatTrans,\n) -> Result<ValidatedFiniteNatTrans, CompositionError> {\n    check_vertical_context(alpha, beta)?;\n    let candidate = vertical_compose_nat_trans(\n        name,\n        alpha.declared(),\n        beta.declared(),\n        alpha.source_category(),\n        alpha.target_category(),\n    )?;\n    ValidatedFiniteNatTrans::try_new(\n        candidate,\n        alpha.source_category(),\n        alpha.target_category(),\n        alpha.source_functor(),\n        beta.target_functor(),\n    )\n    .map_err(CompositionError::Admission)\n}",
+          "pub fn vertical_compose_validated_nat_trans(\n    name: &str,\n    alpha: &ValidatedFiniteNatTrans,\n    beta: &ValidatedFiniteNatTrans,\n) -> Result<ValidatedFiniteNatTrans, CompositionError> {\n    check_vertical_context(alpha, beta)?;\n    let candidate = vertical_compose_nat_trans(\n        name,\n        alpha.declared(),\n        beta.declared(),\n        alpha.source_category(),\n        alpha.target_category(),\n    )?;\n    ValidatedFiniteNatTrans::try_new(\n        candidate,\n        alpha.source_category(),\n        alpha.target_category(),\n        alpha.source_functor(),\n        beta.target_functor(),\n    )\n    .map_err(|_| CompositionError::FunctorComposition(\"wrong\".into()))\n}"
+        ],
+        [
+          "pub fn horizontal_compose_validated_nat_trans(\n    name: &str,\n    alpha: &ValidatedFiniteNatTrans,\n    beta: &ValidatedFiniteNatTrans,\n) -> Result<ValidatedFiniteNatTrans, CompositionError> {\n    if alpha.target_category() != beta.source_category() {\n        return Err(CompositionError::ContextMismatch {\n            boundary: \"horizontal middle category\",\n        });\n    }\n    let (f, g, h, k) = (\n        alpha.source_functor(),\n        alpha.target_functor(),\n        beta.source_functor(),\n        beta.target_functor(),\n    );\n    let candidate = horizontal_compose_nat_trans(\n        name,\n        alpha.declared(),\n        beta.declared(),\n        f,\n        g,\n        h,\n        k,\n        beta.target_category(),\n    )?;\n    let source = compose_declared_functors(&candidate.source_functor, f, h)\n        .map_err(CompositionError::FunctorComposition)?;\n    let target = compose_declared_functors(&candidate.target_functor, g, k)\n        .map_err(CompositionError::FunctorComposition)?;\n    ValidatedFiniteNatTrans::try_new(\n        candidate,\n        alpha.source_category(),\n        beta.target_category(),\n        &source,\n        &target,\n    )\n    .map_err(CompositionError::Admission)\n}",
+          "pub fn horizontal_compose_validated_nat_trans(\n    name: &str,\n    alpha: &ValidatedFiniteNatTrans,\n    beta: &ValidatedFiniteNatTrans,\n) -> Result<ValidatedFiniteNatTrans, CompositionError> {\n    if alpha.target_category() != beta.source_category() {\n        return Err(CompositionError::ContextMismatch {\n            boundary: \"horizontal middle category\",\n        });\n    }\n    let (f, g, h, k) = (\n        alpha.source_functor(),\n        alpha.target_functor(),\n        beta.source_functor(),\n        beta.target_functor(),\n    );\n    let candidate = horizontal_compose_nat_trans(\n        name,\n        alpha.declared(),\n        beta.declared(),\n        f,\n        g,\n        h,\n        k,\n        beta.target_category(),\n    )?;\n    let source = compose_declared_functors(&candidate.source_functor, f, h)\n        .map_err(CompositionError::FunctorComposition)?;\n    let target = compose_declared_functors(&candidate.target_functor, g, k)\n        .map_err(CompositionError::FunctorComposition)?;\n    ValidatedFiniteNatTrans::try_new(\n        candidate,\n        alpha.source_category(),\n        beta.target_category(),\n        &source,\n        &target,\n    )\n    .map_err(|_| CompositionError::FunctorComposition(\"wrong\".into()))\n}"
+        ],
+        [
+          "pub fn horizontal_compose_validated_nat_trans(\n    name: &str,\n    alpha: &ValidatedFiniteNatTrans,\n    beta: &ValidatedFiniteNatTrans,\n) -> Result<ValidatedFiniteNatTrans, CompositionError> {\n    if alpha.target_category() != beta.source_category() {\n        return Err(CompositionError::ContextMismatch {\n            boundary: \"horizontal middle category\",\n        });\n    }\n    let (f, g, h, k) = (\n        alpha.source_functor(),\n        alpha.target_functor(),\n        beta.source_functor(),\n        beta.target_functor(),\n    );\n    let candidate = horizontal_compose_nat_trans(\n        name,\n        alpha.declared(),\n        beta.declared(),\n        f,\n        g,\n        h,\n        k,\n        beta.target_category(),\n    )?;\n    let source = compose_declared_functors(&candidate.source_functor, f, h)\n        .map_err(CompositionError::FunctorComposition)?;\n    let target = compose_declared_functors(&candidate.target_functor, g, k)\n        .map_err(CompositionError::FunctorComposition)?;\n    ValidatedFiniteNatTrans::try_new(\n        candidate,\n        alpha.source_category(),\n        beta.target_category(),\n        &source,\n        &target,\n    )\n    .map_err(CompositionError::Admission)\n}",
+          "pub fn horizontal_compose_validated_nat_trans(\n    name: &str,\n    alpha: &ValidatedFiniteNatTrans,\n    beta: &ValidatedFiniteNatTrans,\n) -> Result<ValidatedFiniteNatTrans, CompositionError> {\n    if alpha.target_category() != beta.source_category() {\n        return Err(CompositionError::ContextMismatch {\n            boundary: \"horizontal middle category\",\n        });\n    }\n    let (f, g, h, k) = (\n        alpha.source_functor(),\n        alpha.target_functor(),\n        beta.source_functor(),\n        beta.target_functor(),\n    );\n    let candidate = horizontal_compose_nat_trans(\n        name,\n        alpha.declared(),\n        beta.declared(),\n        f,\n        g,\n        h,\n        k,\n        beta.target_category(),\n    )?;\n    let source = compose_declared_functors(&candidate.source_functor, g, h)\n        .map_err(CompositionError::FunctorComposition)?;\n    let target = compose_declared_functors(&candidate.target_functor, g, k)\n        .map_err(CompositionError::FunctorComposition)?;\n    ValidatedFiniteNatTrans::try_new(\n        candidate,\n        alpha.source_category(),\n        beta.target_category(),\n        &source,\n        &target,\n    )\n    .map_err(CompositionError::Admission)\n}"
+        ],
+        [
+          "pub fn horizontal_compose_validated_nat_trans(\n    name: &str,\n    alpha: &ValidatedFiniteNatTrans,\n    beta: &ValidatedFiniteNatTrans,\n) -> Result<ValidatedFiniteNatTrans, CompositionError> {\n    if alpha.target_category() != beta.source_category() {\n        return Err(CompositionError::ContextMismatch {\n            boundary: \"horizontal middle category\",\n        });\n    }\n    let (f, g, h, k) = (\n        alpha.source_functor(),\n        alpha.target_functor(),\n        beta.source_functor(),\n        beta.target_functor(),\n    );\n    let candidate = horizontal_compose_nat_trans(\n        name,\n        alpha.declared(),\n        beta.declared(),\n        f,\n        g,\n        h,\n        k,\n        beta.target_category(),\n    )?;\n    let source = compose_declared_functors(&candidate.source_functor, f, h)\n        .map_err(CompositionError::FunctorComposition)?;\n    let target = compose_declared_functors(&candidate.target_functor, g, k)\n        .map_err(CompositionError::FunctorComposition)?;\n    ValidatedFiniteNatTrans::try_new(\n        candidate,\n        alpha.source_category(),\n        beta.target_category(),\n        &source,\n        &target,\n    )\n    .map_err(CompositionError::Admission)\n}",
+          "pub fn horizontal_compose_validated_nat_trans(\n    name: &str,\n    alpha: &ValidatedFiniteNatTrans,\n    beta: &ValidatedFiniteNatTrans,\n) -> Result<ValidatedFiniteNatTrans, CompositionError> {\n    if alpha.target_category() != beta.source_category() {\n        return Err(CompositionError::ContextMismatch {\n            boundary: \"horizontal middle category\",\n        });\n    }\n    let (f, g, h, k) = (\n        alpha.source_functor(),\n        alpha.target_functor(),\n        beta.source_functor(),\n        beta.target_functor(),\n    );\n    let candidate = horizontal_compose_nat_trans(\n        name,\n        alpha.declared(),\n        beta.declared(),\n        f,\n        g,\n        h,\n        k,\n        beta.target_category(),\n    )?;\n    let source = compose_declared_functors(&candidate.source_functor, f, h)\n        .map_err(CompositionError::FunctorComposition)?;\n    let target = compose_declared_functors(&candidate.target_functor, f, k)\n        .map_err(CompositionError::FunctorComposition)?;\n    ValidatedFiniteNatTrans::try_new(\n        candidate,\n        alpha.source_category(),\n        beta.target_category(),\n        &source,\n        &target,\n    )\n    .map_err(CompositionError::Admission)\n}"
+        ],
+        [
+          "boundary: \"vertical middle functor and categories\",",
+          "boundary: \"wrong\","
+        ],
+        [
+          "boundary: \"horizontal middle category\",",
+          "boundary: \"wrong\","
+        ]
+      ]
+    }
+  ]
+}
