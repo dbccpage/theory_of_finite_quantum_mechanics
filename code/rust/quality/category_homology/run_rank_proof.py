@@ -18,7 +18,7 @@ from run_audit import ROOT, digest, execute, write_json
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model",choices=("rank","category","metadata","degree","counter","parameters","finite-set","literal-reversal","shape-inventory","root-records","homology-protocols","degree-repair","two-step-complex","simplicial-closure","simplicial-boundary","simplicial-homology","scalar-admission","carrier-dimensions","vector-maps","graph-incidence","validation-inventory","arrow-effects","finite-builder","em-samples","lawvere-inventory","higher-functor-inventory","finite-functor","functor-operations","finite-naturality","natural-composition","joint-carrier","finite-simulation","finite-independence","finite-trace","finite-dagger","finite-groupoid","cauchy-inventory","tagged-coend","condensation-metadata"),default="rank")
+    parser.add_argument("--model",choices=("rank","category","metadata","degree","counter","parameters","finite-set","literal-reversal","shape-inventory","root-records","homology-protocols","degree-repair","two-step-complex","simplicial-closure","simplicial-boundary","simplicial-homology","scalar-admission","carrier-dimensions","vector-maps","graph-incidence","validation-inventory","arrow-effects","finite-builder","em-samples","lawvere-inventory","higher-functor-inventory","finite-functor","functor-operations","finite-naturality","natural-composition","joint-carrier","finite-simulation","finite-independence","finite-trace","finite-dagger","finite-groupoid","cauchy-inventory","tagged-coend","condensation-metadata","root-catalog"),default="rank")
     parser.add_argument("--memory-mb", type=int, default=1024,
         help="Explicit Lean memory limit, from 256 to 2048 MiB; default remains 1024.")
     args = parser.parse_args()
@@ -46,6 +46,10 @@ def main():
         proof_name, import_name, namespace = "DegreeWindow", "Data/Int/Basic", "TFQM.DegreeWindow."
         declarations = ("ordered_span_fits_u32", "same_endpoint_zero", "inverted_span_negative")
         scope = "Exact i32 endpoint difference bounds, zero span and inverted-window refusal premise; no category-law claim."
+    elif model == "root-catalog":
+        proof_name, import_name, namespace = "RootCatalog", "Data/List/Basic", "TFQM.RootCatalog."
+        declarations = ("newWitness", "stored_conversion", "defaultEquality", "forwarded_result", "opaque_true", "opaque_false")
+        scope = "Exact post-conversion label storage and opaque equality callback forwarding only. No category/law/typeclass admission,arbitrary callback purity or child-module graph proof;Rust callback counts/provider identities separately tested."
     elif model == "condensation-metadata":
         proof_name, import_name, namespace = "CondensationMetadata", "Data/List/Basic", "TFQM.CondensationMetadata."
         declarations = ("update_success", "update_refused", "boundary_refused", "next_level_bound", "base_ignored", "asserted_ignored", "positive_false", "flags_append", "flags_empty", "duplicate_failure", "all_empty", "all_append", "false_base_can_pass")

@@ -39,7 +39,7 @@ def main():
     work = RUST/"target/rr"/stamp[2:15]
     inputs = inventory()
     write_json(output/"source_manifest.json",inputs)
-    for name in (Path(__file__).name,"root_records.py","category_diagnostics.py","functor_certificates.py","natural_transformations.py","archival_inventory.py","joint_carrier.py","simulation.py","independence.py","finite_trace_challenges.py","finite_dagger_challenges.py","finite_groupoid_challenges.py","finite_cauchy_challenges.py","finite_coend_challenges.py","finite_condensation_challenges.py"):
+    for name in (Path(__file__).name,"root_records.py","category_diagnostics.py","functor_certificates.py","natural_transformations.py","archival_inventory.py","joint_carrier.py","simulation.py","independence.py","finite_trace_challenges.py","finite_dagger_challenges.py","finite_groupoid_challenges.py","finite_cauchy_challenges.py","finite_coend_challenges.py","finite_condensation_challenges.py","root_catalog_challenges.py"):
         shutil.copyfile(Path(__file__).with_name(name),output/name)
     shutil.copyfile(policy,output/policy.name)
     snapshot(work,"category")
@@ -65,6 +65,18 @@ def main():
             file = generated/("n"+str(index)+".rs")
             fixture = challenge(subject)
             alpha = []
+            catalog_adapter = None
+            if "catalog_modules" in subject:
+                pattern = r"^(pub )?mod ([A-Za-z_][A-Za-z0-9_]*);$"
+                modules = [[visibility or "", name] for visibility, name in re.findall(pattern, candidate, re.M)]
+                if modules != subject["catalog_modules"]:
+                    raise ValueError("Catalog module inventory drift")
+                before = candidate
+                candidate = re.sub(pattern, lambda m: (m[1] or "") + "use crate::" + m[2] + ";", candidate, flags=re.M)
+                catalog_adapter = {"modules":modules,
+                    "before_sha256":hashlib.sha256(before.encode("utf-8")).hexdigest(),
+                    "after_sha256":hashlib.sha256(candidate.encode("utf-8")).hexdigest(),
+                    "scope":"Test-only catalog namespace rebinds semicolon child modules to actual canonical crate providers; inline traits/default method/metadata constructor and compatibility exports unchanged. Does not test separate nominal child-module instantiation or standalone mod.rs crate execution. Canonical lib.rs itself compiles unadapted in the original category baseline."}
             for method in subject.get("inherent_methods", []):
                 if not re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]*", method):
                     raise ValueError("Invalid inherent method identifier")
@@ -92,6 +104,8 @@ def main():
                 "candidate_path":file.relative_to(ROOT).as_posix(),"candidate_sha256":digest(file)}
             if alpha:
                 record["method_alpha_renaming"] = alpha
+            if catalog_adapter:
+                record["catalog_module_adapter"] = catalog_adapter
             if tag == "control":
                 controls.append(record)
             else:
