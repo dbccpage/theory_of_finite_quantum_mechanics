@@ -12,7 +12,8 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from enum import Enum
-from typing import Optional
+import json
+from typing import Any, Dict, List, Optional, Sequence, Tuple
 
 from .complexes import ChainComplexGf2
 from .gf2_terminalizer import GF2Matrix, Gf2CocycleClassifier
@@ -200,3 +201,117 @@ def logical_class_representative(
         for col_idx in report.vertical[slot]:
             residual[col_idx] = 1
     return residual
+
+
+@dataclass(frozen=True)
+class TetronScalingRow:
+    """2D Tetron cochain complex scaling row over F_2 matching Rust TetronScalingRow."""
+    topology: Topology
+    rows: int
+    cols: int
+    num_mzm: int
+    num_channels: int
+    num_islands: int
+    rank_d0: int
+    rank_d1: int
+    dim_h1: int
+    expected_dim_h1: int
+    boundary_exact: bool
+    euler_agrees: bool
+    generators_closed: bool
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "topology": self.topology.value,
+            "rows": self.rows,
+            "cols": self.cols,
+            "num_mzm": self.num_mzm,
+            "num_channels": self.num_channels,
+            "num_islands": self.num_islands,
+            "rank_d0": self.rank_d0,
+            "rank_d1": self.rank_d1,
+            "dim_h1": self.dim_h1,
+            "expected_dim_h1": self.expected_dim_h1,
+            "boundary_exact": self.boundary_exact,
+            "euler_agrees": self.euler_agrees,
+            "generators_closed": self.generators_closed,
+        }
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> "TetronScalingRow":
+        return cls(
+            topology=Topology(str(data["topology"])),
+            rows=int(data["rows"]),
+            cols=int(data["cols"]),
+            num_mzm=int(data["num_mzm"]),
+            num_channels=int(data["num_channels"]),
+            num_islands=int(data["num_islands"]),
+            rank_d0=int(data["rank_d0"]),
+            rank_d1=int(data["rank_d1"]),
+            dim_h1=int(data["dim_h1"]),
+            expected_dim_h1=int(data["expected_dim_h1"]),
+            boundary_exact=bool(data["boundary_exact"]),
+            euler_agrees=bool(data["euler_agrees"]),
+            generators_closed=bool(data["generators_closed"]),
+        )
+
+
+def benchmark_tetron_lattice_scaling(
+    sizes: Sequence[Tuple[int, int]],
+    topologies: Sequence[Topology],
+) -> List[TetronScalingRow]:
+    """Finite lattice scaling benchmark for 2D Tetron cochain complexes across declared
+    (rows, cols) grid dimensions and topologies (Disk, Cylinder, Torus).
+    Matches Rust tfqm_majorana::benchmark_tetron_lattice_scaling bit-for-bit.
+    """
+    if not sizes or not topologies:
+        raise ValueError("sizes and topologies must be non-empty")
+
+    from .repair_limit import apply_d1
+
+    rows_out: List[TetronScalingRow] = []
+    for topology in topologies:
+        for rows, cols in sizes:
+            complex_gf2, report = build_tetron_array(rows, cols, topology)
+            boundary_exact = bool(complex_gf2.verify_boundary())
+            closed_surface = topology == Topology.Torus
+            predicted_h1 = (2 if closed_surface else 1) - report.euler_characteristic
+            euler_agrees = report.dim_h1 == predicted_h1
+
+            generators_closed = True
+            for axis in (Axis.Column, Axis.Row):
+                rep = logical_class_representative(report, axis, 0)
+                syn = apply_d1(complex_gf2.d1, rep)
+                if any(b != 0 for b in syn):
+                    generators_closed = False
+
+            rows_out.append(
+                TetronScalingRow(
+                    topology=topology,
+                    rows=rows,
+                    cols=cols,
+                    num_mzm=report.num_mzm,
+                    num_channels=report.num_channels,
+                    num_islands=report.num_islands,
+                    rank_d0=report.rank_d0,
+                    rank_d1=report.rank_d1,
+                    dim_h1=report.dim_h1,
+                    expected_dim_h1=report.expected_dim_h1,
+                    boundary_exact=boundary_exact,
+                    euler_agrees=euler_agrees,
+                    generators_closed=generators_closed,
+                )
+            )
+    return rows_out
+
+
+def tetron_scaling_to_canonical_json(rows: Sequence[TetronScalingRow]) -> str:
+    """Serialize TetronScalingRow list to canonical 2-space pretty JSON with LF line endings."""
+    return json.dumps([row.to_dict() for row in rows], indent=2)
+
+
+def tetron_scaling_from_canonical_json(json_str: str) -> List[TetronScalingRow]:
+    """Deserialize TetronScalingRow list from canonical JSON string."""
+    raw = json.loads(json_str)
+    return [TetronScalingRow.from_dict(item) for item in raw]
+

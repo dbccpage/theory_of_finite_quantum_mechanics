@@ -1,8 +1,9 @@
 
 use crate::complexes::ChainComplexGf2;
 use crate::gf2_terminalizer::{GF2Matrix, Gf2CocycleClassifier};
+use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 pub enum Topology {
     Disk,
     Cylinder,
@@ -200,7 +201,7 @@ pub fn logical_class_representative(report: &TetronReport, axis: Axis, index: us
     residual
 }
 
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct TetronScalingRow {
     pub topology: Topology,
     pub rows: usize,
@@ -215,6 +216,16 @@ pub struct TetronScalingRow {
     pub boundary_exact: bool,
     pub euler_agrees: bool,
     pub generators_closed: bool,
+}
+
+/// Serialize `TetronScalingRow` slice to canonical 2-space pretty JSON with LF line endings.
+pub fn tetron_scaling_to_canonical_json(rows: &[TetronScalingRow]) -> Result<String, String> {
+    serde_json::to_string_pretty(rows).map_err(|e| e.to_string())
+}
+
+/// Deserialize `TetronScalingRow` vector from canonical JSON string.
+pub fn tetron_scaling_from_canonical_json(json_str: &str) -> Result<Vec<TetronScalingRow>, String> {
+    serde_json::from_str(json_str).map_err(|e| e.to_string())
 }
 
 /// Finite lattice scaling benchmark for 2D Tetron cochain complexes across declared
@@ -421,5 +432,28 @@ mod tests {
             ),
             (64, 128, 64, 63, 63, 2)
         );
+    }
+
+    #[test]
+    fn tetron_lattice_scaling_matches_cross_language_json_fixture_bit_for_bit() {
+        let sizes = [
+            (2usize, 2usize),
+            (3, 3),
+            (4, 4),
+            (5, 5),
+            (6, 6),
+            (6, 8),
+            (8, 8),
+        ];
+        let rows = benchmark_tetron_lattice_scaling(&sizes, &ALL).unwrap();
+        let serialized = tetron_scaling_to_canonical_json(&rows).unwrap();
+        let fixture = include_str!("fixtures/tetron_lattice_scaling.json").replace("\r\n", "\n");
+        assert_eq!(
+            serialized.as_bytes(),
+            fixture.as_bytes(),
+            "Rust benchmark_tetron_lattice_scaling JSON output drifted from cross-language fixture"
+        );
+        let round_trip = tetron_scaling_from_canonical_json(&fixture).unwrap();
+        assert_eq!(round_trip, rows);
     }
 }

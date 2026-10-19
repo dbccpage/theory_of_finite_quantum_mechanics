@@ -105,9 +105,14 @@ from .majorana_fock_algebra import (
 from .classify import (
     CLASSIFIED_RECEIPT_TAG,
     ClassifiedReceipt,
+    ResidualPacketWallReceipt,
     Terminal,
+    benchmark_classify_residual,
     classify,
     classify_default,
+    classify_residual,
+    classify_residual_from_canonical_json,
+    classify_residual_to_canonical_json,
     classify_with_diagnostics,
 )
 
@@ -120,12 +125,57 @@ from .harmonic import (
     l1_harmonic_projection,
 )
 
+from .multiqubit_braid import (
+    CompiledMultiQubitBraid,
+    MultiQubitBraidError,
+    MultiQubitBraidScalingRow,
+    MultiQubitOperation,
+    benchmark_multiqubit_braid_scaling,
+    compile_multi_qubit_braid,
+    compile_multiqubit_braid,
+    compile_multiqubit_braid_with_limit,
+    multiqubit_braid_scaling_from_canonical_json,
+    multiqubit_braid_scaling_to_canonical_json,
+)
+
+from .pauli_noise import (
+    MAX_NOISE_MODES,
+    DeterministicRationalNoiseGenerator,
+    LocalMajoranaNoise,
+    NoiseError,
+    NoiseEvaluation,
+    PauliNoiseScalingRow,
+    SkewNoiseMatrix,
+    benchmark_pauli_noise_scaling,
+    correlated_cluster_couplings,
+    evaluate_noise,
+    pauli_noise_scaling_from_canonical_json,
+    pauli_noise_scaling_to_canonical_json,
+)
+
+from .sparse_kitaev import (
+    MAX_WIRE_SITES,
+    BoundaryIsolation,
+    KitaevWire,
+    KitaevWireError,
+    KitaevWireScalingReceipt,
+    MajoranaBilinear,
+    SparseKitaevWire,
+    benchmark_sparse_kitaev_scaling,
+    sparse_kitaev_scaling_from_canonical_json,
+    sparse_kitaev_scaling_to_canonical_json,
+)
+
 from .tetron import (
     Axis,
     TetronReport,
+    TetronScalingRow,
     Topology,
+    benchmark_tetron_lattice_scaling,
     build_tetron_array,
     logical_class_representative,
+    tetron_scaling_from_canonical_json,
+    tetron_scaling_to_canonical_json,
 )
 
 from .complexes import (

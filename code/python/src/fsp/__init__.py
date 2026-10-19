@@ -135,3 +135,28 @@ def refuse_foreign_fixture(value: int) -> None:
         return
     else:
         raise ValueError("scalar is outside the computed orbit values")
+
+
+from .fermionic_hamiltonian import (
+    DiscreteFermionicHamiltonian,
+    FermionicLattice,
+    FockLatticeScalingRow,
+    FockState,
+    benchmark_fock_lattice_scaling,
+    fock_scaling_from_canonical_json,
+    fock_scaling_to_canonical_json,
+)
+from .hubbard_scaling import (
+    HubbardDeterminantReceipt,
+    HubbardEnsembleSummary,
+    HubbardLatticeScalingRow,
+    benchmark_hubbard_lattice_scaling,
+    evaluate_hubbard_determinants,
+    exact_determinant,
+    exact_kinetic_matrix,
+    exact_matrix_mul,
+    hubbard_rectangular_bonds,
+    hubbard_scaling_from_canonical_json,
+    hubbard_scaling_to_canonical_json,
+)
+

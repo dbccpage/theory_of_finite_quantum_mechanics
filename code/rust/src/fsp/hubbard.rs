@@ -308,8 +308,21 @@ pub struct HubbardLatticeScalingRow {
     pub evaluated_fields: usize,
     pub negative_fields_count: usize,
     pub zero_fields_count: usize,
+    #[serde(with = "crate::fock::rational_str_serde")]
     pub average_sign: BigRational,
     pub attractive_square_root_protected: bool,
+}
+
+/// Serialize `HubbardLatticeScalingRow` slice to canonical 2-space pretty JSON with LF line endings.
+pub fn hubbard_scaling_to_canonical_json(rows: &[HubbardLatticeScalingRow]) -> Result<String, String> {
+    serde_json::to_string_pretty(rows).map_err(|e| e.to_string())
+}
+
+/// Deserialize `HubbardLatticeScalingRow` vector from canonical JSON string.
+pub fn hubbard_scaling_from_canonical_json(
+    json_str: &str,
+) -> Result<Vec<HubbardLatticeScalingRow>, String> {
+    serde_json::from_str(json_str).map_err(|e| e.to_string())
 }
 
 /// Construct 2D rectangular grid bonds (`rows x cols` sites) with optional periodic wrapping.
@@ -501,5 +514,19 @@ mod tests {
                 );
             }
         }
+    }
+
+    #[test]
+    fn hubbard_lattice_scaling_matches_cross_language_json_fixture_bit_for_bit() {
+        let rows = benchmark_hubbard_lattice_scaling().unwrap();
+        let serialized = hubbard_scaling_to_canonical_json(&rows).unwrap();
+        let fixture = include_str!("fixtures/hubbard_lattice_scaling.json").replace("\r\n", "\n");
+        assert_eq!(
+            serialized.as_bytes(),
+            fixture.as_bytes(),
+            "Rust benchmark_hubbard_lattice_scaling JSON output drifted from cross-language fixture"
+        );
+        let round_trip = hubbard_scaling_from_canonical_json(&fixture).unwrap();
+        assert_eq!(round_trip, rows);
     }
 }

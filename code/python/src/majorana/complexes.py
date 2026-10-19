@@ -193,11 +193,13 @@ def torus_logical_z_example() -> list[int]:
     return [0, 0, 0, 0, 1, 1, 0, 0]
 
 
-def surface_open_single_edge_example() -> list[int]:
-    return [1] + [0] * 7
+def surface_open_single_edge_example(num_edges: int = 8) -> list[int]:
+    if num_edges <= 0:
+        return []
+    return [1] + [0] * (num_edges - 1)
 
 
-def surface_exact_from_vertex0(complex: ChainComplexGf2) -> list[int]:
-    v = [0] * complex.num_vertices
-    v[0] = 1
-    return complex.d0.multiply_vector(v)
+def surface_exact_from_vertex0(complex_or_d0: ChainComplexGf2 | GF2Matrix) -> list[int]:
+    d0 = complex_or_d0.d0 if isinstance(complex_or_d0, ChainComplexGf2) else complex_or_d0
+    return [d0.data[r][0] for r in range(d0.rows)]
+

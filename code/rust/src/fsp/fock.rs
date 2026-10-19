@@ -520,6 +520,27 @@ pub struct EulerPath {
     pub is_cancelling: bool,
 }
 
+pub mod rational_str_serde {
+    use num_rational::BigRational;
+    use serde::{self, Deserialize, Deserializer, Serializer};
+    use std::str::FromStr;
+
+    pub fn serialize<S>(value: &BigRational, serializer: S) -> Result<S::Ok, S::Error>
+    where
+        S: Serializer,
+    {
+        serializer.serialize_str(&value.to_string())
+    }
+
+    pub fn deserialize<'de, D>(deserializer: D) -> Result<BigRational, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        let s = String::deserialize(deserializer)?;
+        BigRational::from_str(&s).map_err(serde::de::Error::custom)
+    }
+}
+
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct FockLatticeScalingRow {
     pub label: String,
@@ -529,10 +550,25 @@ pub struct FockLatticeScalingRow {
     pub num_down: usize,
     pub fock_dim: usize,
     pub trotter_steps: usize,
+    #[serde(with = "rational_str_serde")]
     pub z_fermionic: BigRational,
+    #[serde(with = "rational_str_serde")]
     pub z_bosonic: BigRational,
+    #[serde(with = "rational_str_serde")]
     pub average_sign: BigRational,
     pub has_sign_cancellation: bool,
+}
+
+/// Serialize `FockLatticeScalingRow` slice to canonical 2-space pretty JSON with LF line endings.
+pub fn fock_scaling_to_canonical_json(rows: &[FockLatticeScalingRow]) -> Result<String, String> {
+    serde_json::to_string_pretty(rows).map_err(|e| e.to_string())
+}
+
+/// Deserialize `FockLatticeScalingRow` vector from canonical JSON string.
+pub fn fock_scaling_from_canonical_json(
+    json_str: &str,
+) -> Result<Vec<FockLatticeScalingRow>, String> {
+    serde_json::from_str(json_str).map_err(|e| e.to_string())
 }
 
 /// Finite lattice scaling benchmark for exact Fock-space partition functions across
@@ -709,5 +745,20 @@ mod tests {
                 r.average_sign
             );
         }
+    }
+
+    #[test]
+    fn fock_lattice_scaling_matches_cross_language_json_fixture_bit_for_bit() {
+        let beta = BigRational::from(BigInt::from(2));
+        let rows = benchmark_fock_lattice_scaling(&beta, 3).unwrap();
+        let serialized = fock_scaling_to_canonical_json(&rows).unwrap();
+        let fixture = include_str!("fixtures/fock_lattice_scaling.json").replace("\r\n", "\n");
+        assert_eq!(
+            serialized.as_bytes(),
+            fixture.as_bytes(),
+            "Rust benchmark_fock_lattice_scaling JSON output drifted from cross-language fixture"
+        );
+        let round_trip = fock_scaling_from_canonical_json(&fixture).unwrap();
+        assert_eq!(round_trip, rows);
     }
 }
