@@ -30,6 +30,7 @@
 -/
 
 import Core
+import E003_projection_fiber_primitive_difference
 
 namespace GrokPdNight20260814.E005
 
@@ -42,6 +43,14 @@ def fiberSetoid {X M : Type} (p : X → M) : Setoid X where
     symm := fun h => h.symm
     trans := fun h1 h2 => h1.trans h2
   }
+
+theorem quotient_eq_iff_report_eq {X Q : Type} (pres : X → Q) (x y : X) :
+    Quotient.mk (fiberSetoid pres) x = Quotient.mk (fiberSetoid pres) y ↔ pres x = pres y := by
+  constructor
+  · intro h; exact Quotient.exact h
+  · intro h; apply Quotient.sound; exact h
+
+#print axioms quotient_eq_iff_report_eq
 
 /-- Forward: classes to the presented carrier. Well-defined by fiber equality. -/
 def toM {X M : Type} (p : X → M) : ResidualQuotient (fiberSetoid p) → M :=

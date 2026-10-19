@@ -140,9 +140,12 @@ class CyclotomicElement:
         """Lift element from Q(zeta_m) to Q(zeta_n) where m | n."""
         m = self.conductor
         n = target_conductor
+        if type(n) is not int or n < 1:
+            raise ValueError("Target conductor must be a positive integer")
         if m == n:
             return self
-        assert n % m == 0, f"Cannot lift from conductor {m} to non-multiple {n}"
+        if n % m != 0:
+            raise ValueError(f"Cannot lift from conductor {m} to non-multiple {n}")
         step = n // m
 
         target_phi = cyclotomic_polynomial_coeffs(n)
@@ -180,7 +183,8 @@ class CyclotomicElement:
     def born_weight(self) -> CyclotomicElement:
         """Compute Born weight w = psi * conjugate(psi). Ensured under the declared assumptions to land in Q(zeta_n)^+."""
         w = self * self.conjugate()
-        assert w.is_real(), "Born weight must be invariant under complex conjugation"
+        if not w.is_real():
+            raise ArithmeticError("Born weight is not invariant under complex conjugation")
         return w
 
     def __add__(self, other: Union[CyclotomicElement, int, Fraction]) -> CyclotomicElement:

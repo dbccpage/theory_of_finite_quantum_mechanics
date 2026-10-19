@@ -3,22 +3,22 @@ node_id: FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: 'If norms N_n on Herm_0(n,C) satisfy N_m(Phi(X)) <= N_n(X) for every CPTP map Phi : M_n(C)
-    -> M_m(C), then there is one c > 0 with N_n = c ||.||_1 on every nonzero space. Holds on the full stated channel
-    and matrix domain; not a selection of that domain from primitive difference.'
+  source_statement: 'If norms N_n on Herm_0(n,C) satisfy N_m(Phi(X)) <= N_n(X) for every CPTP map Phi
+    : M_n(C) -> M_m(C), then there is one c > 0 with N_n = c ||.||_1 on every nonzero space. Holds on
+    the full stated channel and matrix domain; not a selection of that domain from primitive difference.'
   statement_status: source_claim_to_scope_check_not_accepted_result
-  declared_assumptions: &id001
+  declared_assumptions:
   - complex matrices and full CPTP class (assumption)
-  source_bottleneck: No Lean statement of the uniqueness-up-to-scale theorem found; TraceZeroDuality.lean item
-    3 states only that c||.||_1 is monotone for every c > 0. Rust certifies trace norms of given Hermitian matrices
-    over Q(i), not the theorem.
+  source_bottleneck: No Lean statement of the uniqueness-up-to-scale theorem found; TraceZeroDuality.lean
+    item 3 states only that c||.||_1 is monotone for every c > 0. Rust certifies trace norms of given
+    Hermitian matrices over Q(i), not the theorem.
   source_refs:
   - omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md:619
   paper_refs:
   - dag/derivations/12_finite_qm_structure/tfq_0263_trace_norm_under_a_supplied_cptp_family.md
   source_claim_label: PROVED_LEAN
-  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports before
-    reusing a result.
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
   historical_paper_refs:
   - papers/derivations/12_finite_qm_structure/tfq_0263_trace_norm_under_a_supplied_cptp_family.md
   paper_relocations:
@@ -110,23 +110,25 @@ relation_candidates:
 - kind: theorem
   name: trace_zero_duality_gap_zero
   line: 83
-  signature_excerpt: "theorem trace_zero_duality_gap_zero (L : Eig2) :\n    pairing L (optimalVec2 L) = opNorm\
-    \ L (optimalShift L)"
+  signature_excerpt: "theorem trace_zero_duality_gap_zero (L : Eig2) :\n    pairing L (optimalVec2 L)\
+    \ = opNorm L (optimalShift L)"
   source: lean4/TraceZeroDuality.lean
   repository: this_repository
   source_sha256: faafda639fbe1ea89ef890d9fe55577695627a4062e33127a749aee1cb0ce091
   status: source_candidate_requires_semantic_review
-  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 - kind: theorem
   name: trace_zero_pinching_contraction
   line: 249
-  signature_excerpt: "theorem trace_zero_pinching_contraction (a b : Int) :\n    traceZeroDetNeg a 0 ≤ traceZeroDetNeg\
-    \ a b ∧\n    (traceZeroDetNeg a 0 = traceZeroDetNeg a b ↔ b = 0)"
+  signature_excerpt: "theorem trace_zero_pinching_contraction (a b : Int) :\n    traceZeroDetNeg a 0 ≤\
+    \ traceZeroDetNeg a b ∧\n    (traceZeroDetNeg a 0 = traceZeroDetNeg a b ↔ b = 0)"
   source: lean4/DerivationDagQMClosure.lean
   repository: this_repository
   source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
   status: source_candidate_requires_semantic_review
-  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 source_bindings:
 - original_ref: lean4/quantum_mechanics/TraceZeroDuality.lean::trace_zero_duality_gap_zero
   availability: local
@@ -165,44 +167,548 @@ source_bindings:
   line: 338
   role: source_lead_only
 presentation:
-  colours: []
-  generators: []
-  relations: []
-  compositions: []
-  identities: []
+  status: scoped_stage_result_reviewed
+  scope: Exact squared trace norms for the stated 2x2 trace-zero Hermitian family contract under the admitted
+    diagonal pinching; the scalar inequality and positive rescaling implication are kernel checked.
+  colours:
+  - id: NonnegativeRationalScalar
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: RationalPair
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: TraceZeroHermitian2
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  generators:
+  - id: tracezero_matrix
+    ordered_inputs:
+    - RationalPair
+    output: TraceZeroHermitian2
+    arity: 1
+    carrier: Literal named finite or admitted scalar carrier
+    coefficient_ring: Z, Q, Q(i), or Q(sqrt2) exactly as stated
+    hypotheses:
+    - Fixed real symmetric subfamily, admitted complex-matrix interpretation.
+    semantic_predicate: Build [[a,b],[b,-a]].
+    source_pins:
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY__PROVED_LEAN.yaml
+      sha256: 761eccf3f94bc8bbb0de1ff53172fa5a8af4068f14eeeddd8f94d8dbe8d890ef
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/inputs/this_repository/dag/operads/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY.yaml
+      sha256: 198cfa9925e3f15c801578769163caaaae77002ac88c57100b21ef5f55c7a5f1
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/inputs/this_repository/lean4/TraceZeroDuality.lean
+      sha256: faafda639fbe1ea89ef890d9fe55577695627a4062e33127a749aee1cb0ce091
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/trace_norm_certificate.rs
+      sha256: 5e4b1765b7914b98dfd7237710c59730253bb7ae6ba9ecc1c3c8104dc50104b1
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/TFQ-0263_trace_norm_under_a_supplied_cptp_family.md
+      sha256: 0e8dfb0fb3571b6de9ca9073ed9bbcba654962b3885db445df20bd3695402fa5
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/code/python/src/qm/structure_exact.py
+      sha256: 0a35a5782b47e06167fc768320ee7fbf90c99fbdf336cbfaf2d2e1b93f9ca89d
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/code/python/tests/test_structure_exact.py
+      sha256: e1a2398a963432c3b6e9dede60a6dc888b22469f5cf297d7262a866da7e44677
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/code/rust/src/finite_probability/structure_exact.rs
+      sha256: 9c714e91517144cf0fa614c8195bcf2f56fc32c0b4959750a4515f75fd5b6d28
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/structure_exact_replay.rs
+      sha256: 4a042c6534fddd7c9ddaae932edac12ef4be2c708175b08a14a64b4b8c49f702
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/dag/pfp/structure_checker.py
+      sha256: 554c0811b794c03ce8badba12075ccb8b12165f6837acff805af0ceba3b3fea7
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/dag/results/batches/20261019T160201Z_prompts_22_31/tools/prepare.py
+      sha256: d9c366929fc4752c08b97e32aa888c028b6ef081caf2f71cff5a596d6952e3da
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/check_candidate.py
+      sha256: f3fd12b9280c4b4c9af34eba242d0bce988f8a18bd3893ace4051e41f7838937
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/format_certificate.py
+      sha256: f6ee1fb7d5274f758c205ab64ffa8872732fdba9452c57c18a8d2f640b885aa6
+    evidence_status: Reviewed exact finite native records; literal named kernel statements supply only
+      their own universal scopes. Full refined-carrier operad/coherence remains open.
+    latest_host_check: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p2/host_check.json
+  - id: pinch_diagonal
+    ordered_inputs:
+    - TraceZeroHermitian2
+    output: TraceZeroHermitian2
+    arity: 1
+    carrier: Literal named finite or admitted scalar carrier
+    coefficient_ring: Z, Q, Q(i), or Q(sqrt2) exactly as stated
+    hypotheses:
+    - Declared two diagonal Kraus projectors; CPTP domain is an import.
+    semantic_predicate: Remove off-diagonal entries.
+    source_pins:
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY__PROVED_LEAN.yaml
+      sha256: 761eccf3f94bc8bbb0de1ff53172fa5a8af4068f14eeeddd8f94d8dbe8d890ef
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/inputs/this_repository/dag/operads/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY.yaml
+      sha256: 198cfa9925e3f15c801578769163caaaae77002ac88c57100b21ef5f55c7a5f1
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/inputs/this_repository/lean4/TraceZeroDuality.lean
+      sha256: faafda639fbe1ea89ef890d9fe55577695627a4062e33127a749aee1cb0ce091
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/trace_norm_certificate.rs
+      sha256: 5e4b1765b7914b98dfd7237710c59730253bb7ae6ba9ecc1c3c8104dc50104b1
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/TFQ-0263_trace_norm_under_a_supplied_cptp_family.md
+      sha256: 0e8dfb0fb3571b6de9ca9073ed9bbcba654962b3885db445df20bd3695402fa5
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/code/python/src/qm/structure_exact.py
+      sha256: 0a35a5782b47e06167fc768320ee7fbf90c99fbdf336cbfaf2d2e1b93f9ca89d
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/code/python/tests/test_structure_exact.py
+      sha256: e1a2398a963432c3b6e9dede60a6dc888b22469f5cf297d7262a866da7e44677
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/code/rust/src/finite_probability/structure_exact.rs
+      sha256: 9c714e91517144cf0fa614c8195bcf2f56fc32c0b4959750a4515f75fd5b6d28
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/structure_exact_replay.rs
+      sha256: 4a042c6534fddd7c9ddaae932edac12ef4be2c708175b08a14a64b4b8c49f702
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/dag/pfp/structure_checker.py
+      sha256: 554c0811b794c03ce8badba12075ccb8b12165f6837acff805af0ceba3b3fea7
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/dag/results/batches/20261019T160201Z_prompts_22_31/tools/prepare.py
+      sha256: d9c366929fc4752c08b97e32aa888c028b6ef081caf2f71cff5a596d6952e3da
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/check_candidate.py
+      sha256: f3fd12b9280c4b4c9af34eba242d0bce988f8a18bd3893ace4051e41f7838937
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/format_certificate.py
+      sha256: f6ee1fb7d5274f758c205ab64ffa8872732fdba9452c57c18a8d2f640b885aa6
+    evidence_status: Reviewed exact finite native records; literal named kernel statements supply only
+      their own universal scopes. Full refined-carrier operad/coherence remains open.
+    latest_host_check: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p2/host_check.json
+  - id: trace_norm_squared
+    ordered_inputs:
+    - TraceZeroHermitian2
+    output: NonnegativeRationalScalar
+    arity: 1
+    carrier: Literal named finite or admitted scalar carrier
+    coefficient_ring: Z, Q, Q(i), or Q(sqrt2) exactly as stated
+    hypotheses:
+    - Exact squared norm, not an approximation to an arbitrary spectrum.
+    semantic_predicate: 4(a²+b²) on this family.
+    source_pins:
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY__PROVED_LEAN.yaml
+      sha256: 761eccf3f94bc8bbb0de1ff53172fa5a8af4068f14eeeddd8f94d8dbe8d890ef
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/inputs/this_repository/dag/operads/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY.yaml
+      sha256: 198cfa9925e3f15c801578769163caaaae77002ac88c57100b21ef5f55c7a5f1
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/inputs/this_repository/lean4/TraceZeroDuality.lean
+      sha256: faafda639fbe1ea89ef890d9fe55577695627a4062e33127a749aee1cb0ce091
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/trace_norm_certificate.rs
+      sha256: 5e4b1765b7914b98dfd7237710c59730253bb7ae6ba9ecc1c3c8104dc50104b1
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/TFQ-0263_trace_norm_under_a_supplied_cptp_family.md
+      sha256: 0e8dfb0fb3571b6de9ca9073ed9bbcba654962b3885db445df20bd3695402fa5
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/code/python/src/qm/structure_exact.py
+      sha256: 0a35a5782b47e06167fc768320ee7fbf90c99fbdf336cbfaf2d2e1b93f9ca89d
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/code/python/tests/test_structure_exact.py
+      sha256: e1a2398a963432c3b6e9dede60a6dc888b22469f5cf297d7262a866da7e44677
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/code/rust/src/finite_probability/structure_exact.rs
+      sha256: 9c714e91517144cf0fa614c8195bcf2f56fc32c0b4959750a4515f75fd5b6d28
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/structure_exact_replay.rs
+      sha256: 4a042c6534fddd7c9ddaae932edac12ef4be2c708175b08a14a64b4b8c49f702
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/dag/pfp/structure_checker.py
+      sha256: 554c0811b794c03ce8badba12075ccb8b12165f6837acff805af0ceba3b3fea7
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/dag/results/batches/20261019T160201Z_prompts_22_31/tools/prepare.py
+      sha256: d9c366929fc4752c08b97e32aa888c028b6ef081caf2f71cff5a596d6952e3da
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/check_candidate.py
+      sha256: f3fd12b9280c4b4c9af34eba242d0bce988f8a18bd3893ace4051e41f7838937
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/format_certificate.py
+      sha256: f6ee1fb7d5274f758c205ab64ffa8872732fdba9452c57c18a8d2f640b885aa6
+    evidence_status: Reviewed exact finite native records; literal named kernel statements supply only
+      their own universal scopes. Full refined-carrier operad/coherence remains open.
+    latest_host_check: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p2/host_check.json
+  relations:
+  - id: pinching_relation_0
+    equation_or_predicate: 4a²≤4(a²+b²); positive rescaling preserves an admitted contraction, without
+      selecting its scale.
+    typing_conditions: Literal declared operation domains; Prove the norm-family uniqueness theorem over
+      all dimensions and the full CPTP class. Diagonal pinching and a scale family are necessary controls,
+      not that theorem.
+    evidence_status: Accepted P2 plus executed P4; consult literal named Lean signatures and retained
+      matrix/coordinate transport obligations rather than treating the whole relation prose as a theorem.
+    scope: Exact squared trace norms for the stated 2x2 trace-zero Hermitian family contract under the
+      admitted diagonal pinching; the scalar inequality and positive rescaling implication are kernel
+      checked.
+    source_pins:
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY__PROVED_LEAN.yaml
+      sha256: 761eccf3f94bc8bbb0de1ff53172fa5a8af4068f14eeeddd8f94d8dbe8d890ef
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/inputs/this_repository/dag/operads/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY.yaml
+      sha256: 198cfa9925e3f15c801578769163caaaae77002ac88c57100b21ef5f55c7a5f1
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/inputs/this_repository/lean4/TraceZeroDuality.lean
+      sha256: faafda639fbe1ea89ef890d9fe55577695627a4062e33127a749aee1cb0ce091
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/trace_norm_certificate.rs
+      sha256: 5e4b1765b7914b98dfd7237710c59730253bb7ae6ba9ecc1c3c8104dc50104b1
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/TFQ-0263_trace_norm_under_a_supplied_cptp_family.md
+      sha256: 0e8dfb0fb3571b6de9ca9073ed9bbcba654962b3885db445df20bd3695402fa5
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/code/python/src/qm/structure_exact.py
+      sha256: 0a35a5782b47e06167fc768320ee7fbf90c99fbdf336cbfaf2d2e1b93f9ca89d
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/code/python/tests/test_structure_exact.py
+      sha256: e1a2398a963432c3b6e9dede60a6dc888b22469f5cf297d7262a866da7e44677
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/code/rust/src/finite_probability/structure_exact.rs
+      sha256: 9c714e91517144cf0fa614c8195bcf2f56fc32c0b4959750a4515f75fd5b6d28
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/structure_exact_replay.rs
+      sha256: 4a042c6534fddd7c9ddaae932edac12ef4be2c708175b08a14a64b4b8c49f702
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/dag/pfp/structure_checker.py
+      sha256: 554c0811b794c03ce8badba12075ccb8b12165f6837acff805af0ceba3b3fea7
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/dag/results/batches/20261019T160201Z_prompts_22_31/tools/prepare.py
+      sha256: d9c366929fc4752c08b97e32aa888c028b6ef081caf2f71cff5a596d6952e3da
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/check_candidate.py
+      sha256: f3fd12b9280c4b4c9af34eba242d0bce988f8a18bd3893ace4051e41f7838937
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/format_certificate.py
+      sha256: f6ee1fb7d5274f758c205ab64ffa8872732fdba9452c57c18a8d2f640b885aa6
+    latest_host_check: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p2/host_check.json
+    historical_evidence_annotation: P1 candidate; independent native and named kernel gates remain required.
+  compositions: &id001
+  - outer_operation: trace_norm_squared
+    input_slot: 0
+    inner_operation: pinch_diagonal
+    colour_match: TraceZeroHermitian2 -> TraceZeroHermitian2
+    hypothesis_match: Same declared coordinates, coefficients and context; all operation hypotheses must
+      be carried into the graft.
+    licensing_relations:
+    - pinching_relation_0
+    evidence_status: Semantic substitution supported by the retained finite operation traces and separately
+      scoped named kernel statements. A complete refined-carrier operad is not asserted.
+  - outer_operation: pinch_diagonal
+    input_slot: 0
+    inner_operation: tracezero_matrix
+    colour_match: TraceZeroHermitian2 -> TraceZeroHermitian2
+    hypothesis_match: Same declared coordinates, coefficients and context; all operation hypotheses must
+      be carried into the graft.
+    licensing_relations:
+    - pinching_relation_0
+    evidence_status: Semantic substitution supported by the retained finite operation traces and separately
+      scoped named kernel statements. A complete refined-carrier operad is not asserted.
+  identities:
+  - colour: NonnegativeRationalScalar
+    proposed_operation: id_NonnegativeRationalScalar
+    signature: NonnegativeRationalScalar -> NonnegativeRationalScalar
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: RationalPair
+    proposed_operation: id_RationalPair
+    signature: RationalPair -> RationalPair
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: TraceZeroHermitian2
+    proposed_operation: id_TraceZeroHermitian2
+    signature: TraceZeroHermitian2 -> TraceZeroHermitian2
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
   symmetric_actions: []
-  coherence_obligations:
-  - identity_operations
-  - unit_laws
-  - partial_composition_associativity
-  - symmetric_action_if_claimed
-  - relations_stable_under_grafting
+  coherence_obligations: &id002
+  - Prove the norm-family uniqueness theorem over all dimensions and the full CPTP class. Diagonal pinching
+    and a scale family are necessary controls, not that theorem.
+  - Prove the full refined-carrier operad identity, substitution, symmetry and coherence laws; mere colour
+    matches do not instantiate that formal structure.
+  - No inference from a source flag, declared census label, finite sample, quotient carrier or coordinate
+    name to a stronger mathematical/physical authority claim.
+  failed_compositions:
+  - proposal: Promote the selected step to the unrestricted original target
+    reason: Prove the norm-family uniqueness theorem over all dimensions and the full CPTP class. Diagonal
+      pinching and a scale family are necessary controls, not that theorem.
+  counterexamples:
+  - id: retained_actual_domain_controls
+    records:
+    - input:
+      - '3'
+      - '4'
+      - '1'
+      output:
+      - '100'
+      - '36'
+      - '64'
+      - '100'
+      - '36'
+    - input:
+      - '-2'
+      - '0'
+      - '2'
+      output:
+      - '16'
+      - '16'
+      - '0'
+      - '64'
+      - '64'
+    - input:
+      - '0'
+      - '5'
+      - 1/2
+      output:
+      - '100'
+      - '0'
+      - '100'
+      - '25'
+      - '0'
+    scope: Computed values, with the source/kernel/native distinctions retained in claim_boundary.
 operad_slots:
   slot_m1_layer0_ambient_carrier:
-    mining_status: UNREVIEWED
-    carrier: null
-    coefficient_ring: null
-    assumptions: *id001
-    source_pins: []
-    public_input: {}
+    mining_status: FILLED
+    carrier: Literal per-operation finite or admitted scalar carriers
+    coefficient_ring: Exact Z, Q, Q(i), Q(sqrt2); admitted Real.rpow only in the stated Lean equation
+    source_pins:
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY__PROVED_LEAN.yaml
+      sha256: 761eccf3f94bc8bbb0de1ff53172fa5a8af4068f14eeeddd8f94d8dbe8d890ef
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/inputs/this_repository/dag/operads/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY.yaml
+      sha256: 198cfa9925e3f15c801578769163caaaae77002ac88c57100b21ef5f55c7a5f1
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/inputs/this_repository/lean4/TraceZeroDuality.lean
+      sha256: faafda639fbe1ea89ef890d9fe55577695627a4062e33127a749aee1cb0ce091
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/trace_norm_certificate.rs
+      sha256: 5e4b1765b7914b98dfd7237710c59730253bb7ae6ba9ecc1c3c8104dc50104b1
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/TFQ-0263_trace_norm_under_a_supplied_cptp_family.md
+      sha256: 0e8dfb0fb3571b6de9ca9073ed9bbcba654962b3885db445df20bd3695402fa5
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/code/python/src/qm/structure_exact.py
+      sha256: 0a35a5782b47e06167fc768320ee7fbf90c99fbdf336cbfaf2d2e1b93f9ca89d
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/code/python/tests/test_structure_exact.py
+      sha256: e1a2398a963432c3b6e9dede60a6dc888b22469f5cf297d7262a866da7e44677
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/code/rust/src/finite_probability/structure_exact.rs
+      sha256: 9c714e91517144cf0fa614c8195bcf2f56fc32c0b4959750a4515f75fd5b6d28
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/structure_exact_replay.rs
+      sha256: 4a042c6534fddd7c9ddaae932edac12ef4be2c708175b08a14a64b4b8c49f702
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/dag/pfp/structure_checker.py
+      sha256: 554c0811b794c03ce8badba12075ccb8b12165f6837acff805af0ceba3b3fea7
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/dag/results/batches/20261019T160201Z_prompts_22_31/tools/prepare.py
+      sha256: d9c366929fc4752c08b97e32aa888c028b6ef081caf2f71cff5a596d6952e3da
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/check_candidate.py
+      sha256: f3fd12b9280c4b4c9af34eba242d0bce988f8a18bd3893ace4051e41f7838937
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/format_certificate.py
+      sha256: f6ee1fb7d5274f758c205ab64ffa8872732fdba9452c57c18a8d2f640b885aa6
+    public_input:
+      kind: pinching
+      cases:
+      - - '3'
+        - '4'
+        - '1'
+      - - '-2'
+        - '0'
+        - '2'
+      - - '0'
+        - '5'
+        - 1/2
+      scope: Exact squared trace norms for the stated 2x2 trace-zero Hermitian family contract under the
+        admitted diagonal pinching; the scalar inequality and positive rescaling implication are kernel
+        checked.
+      unpaid_target: Prove the norm-family uniqueness theorem over all dimensions and the full CPTP class.
+        Diagonal pinching and a scale family are necessary controls, not that theorem.
+    original_target: 'If norms N_n on Herm_0(n,C) satisfy N_m(Phi(X)) <= N_n(X) for every CPTP map Phi
+      : M_n(C) -> M_m(C), then there is one c > 0 with N_n = c ||.||_1 on every nonzero space. Holds on
+      the full stated channel and matrix domain; not a selection of that domain from primitive difference.'
+    source_scope_review: The source pinching theorem compares a² and a²+b², not every CPTP map or uniqueness
+      of a norm family. Native code treats the explicit real symmetric trace-zero X=[[a,b],[b,-a]] and
+      the admitted diagonal pinching channel. Squared trace norms avoid approximate square roots. The
+      fresh universal contraction inequality and positive rescaling implication do not prove uniqueness-up-to-scale
+      on all Herm_0(n,C).
+    admitted_assumptions:
+    - complex matrices and full CPTP class (assumption)
   slot_m2_layer1_forward_morphisms:
-    mining_status: UNREVIEWED
-    operations: []
-    composition_plan: []
+    mining_status: FILLED
+    operations:
+    - catalog_id: tracezero_matrix
+      inputs:
+      - RationalPair
+      output: TraceZeroHermitian2
+      semantic_predicate: Build [[a,b],[b,-a]].
+    - catalog_id: pinch_diagonal
+      inputs:
+      - TraceZeroHermitian2
+      output: TraceZeroHermitian2
+      semantic_predicate: Remove off-diagonal entries.
+    - catalog_id: trace_norm_squared
+      inputs:
+      - TraceZeroHermitian2
+      output: NonnegativeRationalScalar
+      semantic_predicate: 4(a²+b²) on this family.
+    composition_plan: *id001
+    tree:
+    - 4a²≤4(a²+b²); positive rescaling preserves an admitted contraction, without selecting its scale.
   slot_m3_layer2_ideals_and_annihilators:
-    mining_status: UNREVIEWED
-    algebraic_relations: []
-    rejection_predicates: []
-    negative_control_plan: []
+    mining_status: FILLED
+    algebraic_relations:
+    - id: pinching_relation_0
+      equation_or_predicate: 4a²≤4(a²+b²); positive rescaling preserves an admitted contraction, without
+        selecting its scale.
+      typing_conditions: Literal declared operation domains; Prove the norm-family uniqueness theorem
+        over all dimensions and the full CPTP class. Diagonal pinching and a scale family are necessary
+        controls, not that theorem.
+      evidence_status: P1 candidate; independent native and named kernel gates remain required.
+      scope: Exact squared trace norms for the stated 2x2 trace-zero Hermitian family contract under the
+        admitted diagonal pinching; the scalar inequality and positive rescaling implication are kernel
+        checked.
+      source_pins:
+      - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY__PROVED_LEAN.yaml
+        sha256: 761eccf3f94bc8bbb0de1ff53172fa5a8af4068f14eeeddd8f94d8dbe8d890ef
+      - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/inputs/this_repository/dag/operads/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY.yaml
+        sha256: 198cfa9925e3f15c801578769163caaaae77002ac88c57100b21ef5f55c7a5f1
+      - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/inputs/this_repository/lean4/TraceZeroDuality.lean
+        sha256: faafda639fbe1ea89ef890d9fe55577695627a4062e33127a749aee1cb0ce091
+      - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+        sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+      - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/trace_norm_certificate.rs
+        sha256: 5e4b1765b7914b98dfd7237710c59730253bb7ae6ba9ecc1c3c8104dc50104b1
+      - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/TFQ-0263_trace_norm_under_a_supplied_cptp_family.md
+        sha256: 0e8dfb0fb3571b6de9ca9073ed9bbcba654962b3885db445df20bd3695402fa5
+      - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/code/python/src/qm/structure_exact.py
+        sha256: 0a35a5782b47e06167fc768320ee7fbf90c99fbdf336cbfaf2d2e1b93f9ca89d
+      - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/code/python/tests/test_structure_exact.py
+        sha256: e1a2398a963432c3b6e9dede60a6dc888b22469f5cf297d7262a866da7e44677
+      - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/code/rust/src/finite_probability/structure_exact.rs
+        sha256: 9c714e91517144cf0fa614c8195bcf2f56fc32c0b4959750a4515f75fd5b6d28
+      - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/structure_exact_replay.rs
+        sha256: 4a042c6534fddd7c9ddaae932edac12ef4be2c708175b08a14a64b4b8c49f702
+      - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/dag/pfp/structure_checker.py
+        sha256: 554c0811b794c03ce8badba12075ccb8b12165f6837acff805af0ceba3b3fea7
+      - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+        sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+      - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operation_sources/dag/results/batches/20261019T160201Z_prompts_22_31/tools/prepare.py
+        sha256: d9c366929fc4752c08b97e32aa888c028b6ef081caf2f71cff5a596d6952e3da
+      - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/check_candidate.py
+        sha256: f3fd12b9280c4b4c9af34eba242d0bce988f8a18bd3893ace4051e41f7838937
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/format_certificate.py
+        sha256: f6ee1fb7d5274f758c205ab64ffa8872732fdba9452c57c18a8d2f640b885aa6
+    rejection_predicates:
+    - Independent domain equations and actual matrix/graph/quotient arrays recompute every output.
+    - Exact public input, canonical rational primitive types, complete source pins and exact sealed request
+      bytes.
+    - Full native cross-language output equality and actual named Lean axiom reports; no label-based target
+      promotion.
+    negative_control_plan: Alter every output coordinate, input identity, primitive types, source set
+      and sealed request.
   slot_m4_tri_language_witness_anchors:
-    mining_status: UNREVIEWED
-    certificate_predicates: []
-    anchors: []
-    unpaid_imports: *id001
-stage_history: []
-open_obligations:
-- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
-- Select and semantically check the generators needed by one useful next step.
-- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
-- Bind independent certificate predicates and real checker anchors before P1.
+    mining_status: FILLED
+    certificate_predicates:
+    - Independent domain equations and actual matrix/graph/quotient arrays recompute every output.
+    - Exact public input, canonical rational primitive types, complete source pins and exact sealed request
+      bytes.
+    - Full native cross-language output equality and actual named Lean axiom reports; no label-based target
+      promotion.
+    anchors:
+    - code/python/src/qm/structure_exact.py
+    - code/python/tests/test_structure_exact.py
+    - code/rust/src/finite_probability/structure_exact.rs
+    - code/rust/src/finite_probability/examples/structure_exact_replay.rs
+    - dag/pfp/structure_checker.py
+    - dag/pfp/exact_json.py
+    - dag/pfp/review_exact_json.py
+    - lean4/PrimitiveDifference.lean
+    - lean4/HWKernel.lean
+    - lean4/H004FreeLinearization.lean
+    - lean4/H005InnerProductAdmission.lean
+    - lean4/H003ReversibilityGate.lean
+    - lean4/H006PermutationUnitary.lean
+    - lean4/H007Complexification.lean
+    - lean4/H017MatrixFiniteRecovery.lean
+    - lean4/H017Fin.lean
+    - lean4/H016ContinuousDynamicsFork.lean
+    - lean4/H008PhaseBlindPresentation.lean
+    - lean4/Core.lean
+    - lean4/H009PhaseFiber.lean
+    - lean4/H010InterferenceNonDescent.lean
+    - lean4/H011U1SelectorBoundary.lean
+    - lean4/H011Circle.lean
+    - lean4/H014TensorCompositionBoundary.lean
+    - lean4/H014BilinearProduct.lean
+    - lean4/H014Interface.lean
+    - lean4/H015IrreversibleFork.lean
+    - lean4/H013BornPairingBoundary.lean
+    - lean4/H013SameContract.lean
+    - lean4/H017Gleason.lean
+    - lean4/H017Extras.lean
+    - lean4/H017ExtrasDropone.lean
+    - lean4/E003_projection_fiber_primitive_difference.lean
+    - lean4/E005_fiber_quotient_equivalence.lean
+    - lean4/H000FinitePresentedCarrier.lean
+    - lean4/H055DiscreteDynamicsStone.lean
+    - lean4/PromptStructure.lean
+    - dag/results/batches/20261019T160201Z_prompts_22_31/tools/prepare.py
+    - QuantumMechanics.PromptStructure.pinching_squared
+    - QuantumMechanics.PromptStructure.positive_rescaling
+    unpaid_imports:
+    - Prove the norm-family uniqueness theorem over all dimensions and the full CPTP class. Diagonal pinching
+      and a scale family are necessary controls, not that theorem.
+    - Prove the full refined-carrier operad identity, substitution, symmetry and coherence laws; mere
+      colour matches do not instantiate that formal structure.
+    anchor_status: New Lean anchors are candidate declarations until the retained P2 compiler runs; compiled
+      source leads retain their literal scope.
+stage_history:
+- stage: P0_MINE_OPERAD
+  attempt: p0
+  run: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged
+  operad_delta: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/operad_delta.yaml
+  host_check: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/host_check.json
+- stage: P1_DERIVE
+  attempt: p1
+  run: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged
+  operad_delta: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p1/operad_delta.yaml
+  host_check: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p1/host_check.json
+- stage: P2_VERIFY
+  attempt: p2
+  run: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged
+  operad_delta: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p2/operad_delta.yaml
+  host_check: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p2/host_check.json
+- stage: P4_CHALLENGE
+  attempt: p4
+  run: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged
+  operad_delta: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p4/operad_delta.yaml
+  host_check: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p4/host_check.json
+- stage: P5_RECORD
+  attempt: p5
+  run: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged
+  operad_delta: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p5/operad_delta.yaml
+  host_check: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p5/host_check.json
+open_obligations: *id002
 excluded_relation_leads: []
+operad_slots_scope:
+  work_unit: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged/p0/reviewed_missions.json
+  scope: FILLED means reviewed prerequisites for this selected step; original target and unpaid imports
+    retained.
+  review_refinement: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/reviews/20261019_structure_audit/scope_review.json
+latest_run:
+  path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/runs/20261019T160201Z_staged
+  stage: P5_RECORD
+  status: scoped_result_or_obstruction_reviewed
+scope_notes:
+- The source pinching theorem compares a² and a²+b², not every CPTP map or uniqueness of a norm family.
+  Native code treats the explicit real symmetric trace-zero X=[[a,b],[b,-a]] and the admitted diagonal
+  pinching channel. Squared trace norms avoid approximate square roots. The fresh universal contraction
+  inequality and positive rescaling implication do not prove uniqueness-up-to-scale on all Herm_0(n,C).
+latest_review:
+  path: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/reviews/20261019_structure_audit
+  status: reviewed_with_final_native_integration
+  operad_delta: dag/results/FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY/reviews/20261019_structure_audit/operad_delta.yaml

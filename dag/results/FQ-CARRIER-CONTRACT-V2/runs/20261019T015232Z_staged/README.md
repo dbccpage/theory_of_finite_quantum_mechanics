@@ -1,0 +1,5 @@
+# Carrier contract and selected exact embeddings
+
+The actual 23-target inventory has label LCM120. Seven selected elements in the declared conductors are checked by two native implementations and an independent Mobius-polynomial quotient checker, including direct/via embedding, sum, product, conjugation and norm transport. The original Python assert-only lift guard accepted the invalid 3-to-4 chain under optimization; the retained probe demonstrates that defect and the repaired implementation raises ValueError. The literal kernel results cover directed positive labels and generic star-compatible ring homomorphism laws. Q^ab, Kronecker-Weber, field minimality and complete target-amplitude coverage are not proved by this finite run.
+
+Every executed checkpoint retains an operad delta, source/candidate bindings and actual host results. This is local file-based PFP execution, not an external-provider transcript. No whole-repository or hosted-CI success is claimed. Awaiting the requested batch review. AuthorityEffect: None.

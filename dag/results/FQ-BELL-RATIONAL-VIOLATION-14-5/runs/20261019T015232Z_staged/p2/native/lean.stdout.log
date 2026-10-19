@@ -1,0 +1,86 @@
+PromptBellRational.lean:31:12: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  StarOrderedRing ℚ
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+PromptBellRational.lean:32:17: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  StarOrderedRing ℚ
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+PromptBellRational.lean:38:2: error: Tactic `decide` failed for proposition
+  tr rho = 1 ∧ z * z = 1 ∧ x * x = 1 ∧ b0 * b0 = 1 ∧ b1 * b1 = 1
+because its `Decidable` instance
+  instDecidableAnd
+did not reduce to `isTrue` or `isFalse`.
+
+After unfolding the instances `instDecidableAnd`, `instDecidableEqRat`, `Int.decEq`, `Int.instDecidableEq`, and `instDecidableEqRat.decEq`, reduction got stuck at the `Decidable` instance
+  match
+    (((fun i => rho i i) ((fun i => i) ⟨0, ⋯⟩)).add
+        (List.foldr (fun x1 x2 => x1 + x2) 0
+          (List.map (fun i => rho i i)
+            ((fun x1 x2 => (fun i => i) x1 :: x2) ⟨1, ⋯⟩
+              ((fun x1 x2 => (fun i => i) x1 :: x2) ⟨2, ⋯⟩ ((fun x1 x2 => (fun i => i) x1 :: x2) ⟨3, ⋯⟩ [])))))).num,
+    ↑1 with
+  | Int.ofNat a, Int.ofNat b =>
+    match decEq a b with
+    | isTrue h => isTrue ⋯
+    | isFalse h => isFalse ⋯
+  | Int.ofNat a, Int.negSucc a_1 => isFalse ⋯
+  | Int.negSucc a, Int.ofNat a_1 => isFalse ⋯
+  | Int.negSucc a, Int.negSucc b =>
+    match decEq a b with
+    | isTrue h => isTrue ⋯
+    | isFalse h => isFalse ⋯
+PromptBellRational.lean:44:2: error: Tactic `decide` failed for proposition
+  correlation z b0 = 3 / 5 ∧
+    correlation z b1 = 4 / 5 ∧ correlation x b0 = 4 / 5 ∧ correlation x b1 = -3 / 5 ∧ chsh = 14 / 5 ∧ 2 < chsh
+because its `Decidable` instance
+  instDecidableAnd
+did not reduce to `isTrue` or `isFalse`.
+
+After unfolding the instances `instDecidableAnd`, `instDecidableEqRat`, `Int.decEq`, `Int.instDecidableEq`, and `instDecidableEqRat.decEq`, reduction got stuck at the `Decidable` instance
+  match
+    (((fun i => (rho * tensor z b0) i i) ((fun i => i) ⟨0, ⋯⟩)).add
+        (List.foldr (fun x1 x2 => x1 + x2) 0
+          (List.map (fun i => (rho * tensor z b0) i i)
+            ((fun x1 x2 => (fun i => i) x1 :: x2) ⟨1, ⋯⟩
+              ((fun x1 x2 => (fun i => i) x1 :: x2) ⟨2, ⋯⟩ ((fun x1 x2 => (fun i => i) x1 :: x2) ⟨3, ⋯⟩ [])))))).num,
+    (Rat.mul 3 (Rat.inv 5)).num with
+  | Int.ofNat a, Int.ofNat b =>
+    match decEq a b with
+    | isTrue h => isTrue ⋯
+    | isFalse h => isFalse ⋯
+  | Int.ofNat a, Int.negSucc a_1 => isFalse ⋯
+  | Int.negSucc a, Int.ofNat a_1 => isFalse ⋯
+  | Int.negSucc a, Int.negSucc b =>
+    match decEq a b with
+    | isTrue h => isTrue ⋯
+    | isFalse h => isFalse ⋯
+PromptBellRational.lean:50:2: error: Tactic `decide` failed for proposition
+  ∀ a ∈ [z, x], ∀ b ∈ [b0, b1], ∀ (s t : Bool), 0 < probability a b s t
+because its `Decidable` instance
+  List.decidableBAll (fun a => ∀ b ∈ [b0, b1], ∀ (s t : Bool), 0 < probability a b s t) [z, x]
+did not reduce to `isTrue` or `isFalse`.
+
+After unfolding the instances `decEq`, `instDecidableEqBool`, `instDecidableEqNat`, `Bool.decEq`, `Bool.instDecidableForallOfDecidablePred`, `Int.decEq`, `Int.decLt`, `Int.decNonneg`, `Int.instDecidableEq`, `List.decidableBAll`, `Nat.decEq`, and `Rat.instDecidableLt`, reduction got stuck at the `Decidable` instance
+  match Rat.blt 0 (probability z b0 true true), true with
+  | false, false => isTrue ⋯
+  | false, true => isFalse ⋯
+  | true, false => isFalse ⋯
+  | true, true => isTrue ⋯
+'QuantumMechanics.PromptBellRational.density_positive' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'QuantumMechanics.PromptBellRational.rational_density_and_involutions' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'QuantumMechanics.PromptBellRational.exact_born_correlations' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'QuantumMechanics.PromptBellRational.all_born_cells_strictly_positive' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]
+'QuantumMechanics.PromptBellRational.no_scaled_joint_law' depends on axioms: [propext, Classical.choice, Quot.sound]

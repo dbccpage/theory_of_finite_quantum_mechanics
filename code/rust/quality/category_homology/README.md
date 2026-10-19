@@ -169,3 +169,7 @@ printed 95 passing tests but its Cargo process hit the deadline, so the receipt
 correctly remains unsuccessful. Sources and dependencies stayed stable, and
 all owned build outputs were removed. See the publication checkpoint for this
 limitation; it does not replace the earlier category-only grading receipt.
+
+Cargo deadlines are configurable with `--build-timeout SECONDS` (default 900).
+The deadline covers the whole Cargo process, including compilation and exit.
+A printed test-success line never overrides a timed-out process result.

@@ -1,0 +1,30 @@
+PromptBornRay.lean:31:4: error: Tactic `decide` failed for proposition
+  weightsOfRealPair 1 1 = weightsOfRealPair 1 (-1)
+because its `Decidable` instance
+  instDecidableEqList (weightsOfRealPair 1 1) (weightsOfRealPair 1 (-1))
+did not reduce to `isTrue` or `isFalse`.
+
+After unfolding the instances `decEq`, `instDecidableEqList`, `instDecidableEqRat`, `Int.decEq`, `Int.instDecidableEq`, and `instDecidableEqRat.decEq`, reduction got stuck at the `Decidable` instance
+  match (Rat.mul 1 1).num, (Rat.mul 1 1).num with
+  | Int.ofNat a, Int.ofNat b =>
+    match decEq a b with
+    | isTrue h => isTrue ⋯
+    | isFalse h => isFalse ⋯
+  | Int.ofNat a, Int.negSucc a_1 => isFalse ⋯
+  | Int.negSucc a, Int.ofNat a_1 => isFalse ⋯
+  | Int.negSucc a, Int.negSucc b =>
+    match decEq a b with
+    | isTrue h => isTrue ⋯
+    | isFalse h => isFalse ⋯
+'QuantumMechanics.PromptBornRay.normalization_idempotent' depends on axioms: [propext, Classical.choice, Quot.sound]
+'QuantumMechanics.PromptBornRay.unit_mass_fixedpoint' depends on axioms: [propext, Classical.choice, Quot.sound]
+'QuantumMechanics.PromptBornRay.positive_weight_ray_classification' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'QuantumMechanics.PromptBornRay.normalization_constant_on_positive_weight_ray' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'QuantumMechanics.PromptBornRay.equal_born_weights_do_not_classify_amplitude_rays' depends on axioms: [propext,
+ sorryAx,
+ Classical.choice,
+ Quot.sound]

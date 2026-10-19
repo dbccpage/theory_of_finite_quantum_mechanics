@@ -1,0 +1,1148 @@
+{
+  "task_id": "FQ-CABELLO-FRAME-POLYTOPE-146",
+  "stage_id": "P4_CHALLENGE",
+  "attempt_id": "p4",
+  "input_sha256": "7377ce81f5958defd60f90453427c0e4bca4a718d98258eff1a7c0c0e503fd54",
+  "candidate_sha256": "6c64f84c5ea4472d0a02af2c4014cbbf1ae32a515b16efd78fe30dd0cd1bb1cc",
+  "status": "survives_executed_challenges",
+  "predicate_results": {
+    "mutants": [
+      {
+        "id": "omitted_vertex",
+        "path": "p4/mutants/omitted_vertex.json",
+        "rejected": true,
+        "reason": "G3_WITNESS:incomplete_census"
+      },
+      {
+        "id": "duplicate_vertex",
+        "path": "p4/mutants/duplicate_vertex.json",
+        "rejected": true,
+        "reason": "G3_WITNESS:duplicate_or_unordered_vertex"
+      },
+      {
+        "id": "wrong_trace_one_representative",
+        "path": "p4/mutants/wrong_trace_one_representative.json",
+        "rejected": true,
+        "reason": "G3_WITNESS:tomography"
+      },
+      {
+        "id": "zero_negative_vector",
+        "path": "p4/mutants/zero_negative_vector.json",
+        "rejected": true,
+        "reason": "G4_COUNTERMODEL:negative_quadratic"
+      },
+      {
+        "id": "wrong_spectral_class",
+        "path": "p4/mutants/wrong_spectral_class.json",
+        "rejected": true,
+        "reason": "G3_WITNESS:quarter_spectral_class"
+      },
+      {
+        "id": "wrong_integer_matrix_transport",
+        "path": "p4/mutants/wrong_integer_matrix_transport.json",
+        "rejected": true,
+        "reason": "G3_WITNESS:integer_transport"
+      }
+    ],
+    "valid_control": {
+      "basis_supports_checked": 48620,
+      "distinct_vertices": 146,
+      "spectral_counts": {
+        "at_minus_half": 26,
+        "above_minus_quarter": 120
+      },
+      "actual_negative_quadratic_witnesses": 146,
+      "scope": "Exact fixed finite input census and matrix witnesses; no promotion of the old arithmetic census lemma into a real-polytope completeness proof."
+    },
+    "counterexamples": [
+      {
+        "id": "nonnegative_frame_values_are_not_PSD",
+        "scope": "Each actual normalized frame valuation has a recovered symmetric matrix and a negative integer quadratic witness. This refutes promotion to PSD from the measured ray values.",
+        "basis_coverage": "Every size-nine support independently checked; the formal real-polytope completeness bridge is still an obligation."
+      }
+    ]
+  },
+  "bounded_failure_codes": [],
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "frame_incidence",
+        "ordered_inputs": [
+          "IntegerRayFrameSystem"
+        ],
+        "output": "FrameIncidence",
+        "arity": 1,
+        "carrier": "Fixed Cabello 18-ray/nine-frame real-symmetric system",
+        "coefficient_ring": "Q; cleared Int certificates",
+        "hypotheses": [
+          "each frame consists of four distinct nonzero pairwise orthogonal integer rays"
+        ],
+        "semantic_predicate": "Build A[F,r]=1 exactly when the declared orthogonal frame contains ray r.",
+        "implementation_note": "Source/native functions interpret these refined carriers; no new formal operad of real frame-polytope subtypes is claimed.",
+        "source_pins": [
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-CABELLO-FRAME-POLYTOPE-146__PROVED_LEAN.yaml",
+            "sha256": "82851fa570097cb0302dbbf696d24c88214c6333c912bdb9fef605f0c0f8fb7c"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-CABELLO-FRAME-POLYTOPE-146.yaml",
+            "sha256": "cdb38c807a09b96fbfbf9cb247cae9af14d38727abca038d43c813349306cd6f"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/frame_function_polytope.rs",
+            "sha256": "e5c15eeac034c32c6b6a00e208847efd5f83fe316215ebd4764810bab7b9b2d7"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/09_finite_hilbert/TFQ-0298_bra-ket_section_remains_non-canonical.md",
+            "sha256": "4d47b6a7b5e92f8a45216e1b7917495e9111b062349abe129b6e840d1a5cdcc7"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/cabello_frame.py",
+            "sha256": "426428057450f42c1a8d754f7b4f68256c281bc1085501f6ebd164d7ee193a64"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/pfp_exact.py",
+            "sha256": "33a78864b07a7924bff59226cbef4e276665671ebd9ea1d7860afbda273398be"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/python/tests/test_cabello_frame.py",
+            "sha256": "e69269779fa7b8d63aa742f5770c973a181470be27d7942380706501202a5dcf"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/frame_polytope.rs",
+            "sha256": "89b20f07ddb10e95e5d33f383c318624461454089a8316702512832902a76fd3"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/cabello_certificates.rs",
+            "sha256": "6366c8b58617bb80e713697e5213cb9d8a25d96c675449311a2df9ff07211910"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_exact.rs",
+            "sha256": "bc3366a3fe6702306136b112a49a8d6df5e5679306d2c03131eef33b909b5404"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/cabello_replay.rs",
+            "sha256": "4c0aff197b89befc82f8d895ba509e2fba1830407599353450215df96e95a8bc"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/check_candidate.py",
+            "sha256": "48ff0c84bd8506c1b8830ae7fecd31da053d32fe2368b3a64142a7173f36f0d5"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/format_certificate.py",
+            "sha256": "49a964282c3c6f3c31e953a638d367c8605bb78565e83246918e9b656131e7b8"
+          }
+        ],
+        "evidence_status": "Source semantics reviewed; actual native and candidate kernel acceptance remain P2 gates."
+      },
+      {
+        "id": "enumerate_basic_vertices",
+        "ordered_inputs": [
+          "FullRankDegreeTwoSystemWithBudget"
+        ],
+        "output": "CompleteVertexCensus",
+        "arity": 1,
+        "carrier": "Fixed Cabello 18-ray/nine-frame real-symmetric system",
+        "coefficient_ring": "Q; cleared Int certificates",
+        "hypotheses": [
+          "A has full row rank",
+          "each ray has degree exactly two",
+          "budget covers all size-row-rank supports"
+        ],
+        "semantic_predicate": "Visit every size-row-rank support; solve nonsingular incidence systems exactly and retain all nonnegative basic solutions.",
+        "implementation_note": "Source/native functions interpret these refined carriers; no new formal operad of real frame-polytope subtypes is claimed.",
+        "source_pins": [
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-CABELLO-FRAME-POLYTOPE-146__PROVED_LEAN.yaml",
+            "sha256": "82851fa570097cb0302dbbf696d24c88214c6333c912bdb9fef605f0c0f8fb7c"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-CABELLO-FRAME-POLYTOPE-146.yaml",
+            "sha256": "cdb38c807a09b96fbfbf9cb247cae9af14d38727abca038d43c813349306cd6f"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/frame_function_polytope.rs",
+            "sha256": "e5c15eeac034c32c6b6a00e208847efd5f83fe316215ebd4764810bab7b9b2d7"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/09_finite_hilbert/TFQ-0298_bra-ket_section_remains_non-canonical.md",
+            "sha256": "4d47b6a7b5e92f8a45216e1b7917495e9111b062349abe129b6e840d1a5cdcc7"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/cabello_frame.py",
+            "sha256": "426428057450f42c1a8d754f7b4f68256c281bc1085501f6ebd164d7ee193a64"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/pfp_exact.py",
+            "sha256": "33a78864b07a7924bff59226cbef4e276665671ebd9ea1d7860afbda273398be"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/python/tests/test_cabello_frame.py",
+            "sha256": "e69269779fa7b8d63aa742f5770c973a181470be27d7942380706501202a5dcf"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/frame_polytope.rs",
+            "sha256": "89b20f07ddb10e95e5d33f383c318624461454089a8316702512832902a76fd3"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/cabello_certificates.rs",
+            "sha256": "6366c8b58617bb80e713697e5213cb9d8a25d96c675449311a2df9ff07211910"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_exact.rs",
+            "sha256": "bc3366a3fe6702306136b112a49a8d6df5e5679306d2c03131eef33b909b5404"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/cabello_replay.rs",
+            "sha256": "4c0aff197b89befc82f8d895ba509e2fba1830407599353450215df96e95a8bc"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/check_candidate.py",
+            "sha256": "48ff0c84bd8506c1b8830ae7fecd31da053d32fe2368b3a64142a7173f36f0d5"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/format_certificate.py",
+            "sha256": "49a964282c3c6f3c31e953a638d367c8605bb78565e83246918e9b656131e7b8"
+          }
+        ],
+        "evidence_status": "Source semantics reviewed; actual native and candidate kernel acceptance remain P2 gates."
+      },
+      {
+        "id": "tomographic_representative",
+        "ordered_inputs": [
+          "RepresentableFrameValuation"
+        ],
+        "output": "CabelloAdmissibleSymmetric4",
+        "arity": 1,
+        "carrier": "Fixed Cabello 18-ray/nine-frame real-symmetric system",
+        "coefficient_ring": "Q; cleared Int certificates",
+        "hypotheses": [
+          "valuation is feasible and has a representative",
+          "ray projectors span all ten real-symmetric directions"
+        ],
+        "semantic_predicate": "Recover the unique trace-one real-symmetric rational matrix with the actual 18 normalized ray evaluations.",
+        "implementation_note": "Source/native functions interpret these refined carriers; no new formal operad of real frame-polytope subtypes is claimed.",
+        "source_pins": [
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-CABELLO-FRAME-POLYTOPE-146__PROVED_LEAN.yaml",
+            "sha256": "82851fa570097cb0302dbbf696d24c88214c6333c912bdb9fef605f0c0f8fb7c"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-CABELLO-FRAME-POLYTOPE-146.yaml",
+            "sha256": "cdb38c807a09b96fbfbf9cb247cae9af14d38727abca038d43c813349306cd6f"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/frame_function_polytope.rs",
+            "sha256": "e5c15eeac034c32c6b6a00e208847efd5f83fe316215ebd4764810bab7b9b2d7"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/09_finite_hilbert/TFQ-0298_bra-ket_section_remains_non-canonical.md",
+            "sha256": "4d47b6a7b5e92f8a45216e1b7917495e9111b062349abe129b6e840d1a5cdcc7"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/cabello_frame.py",
+            "sha256": "426428057450f42c1a8d754f7b4f68256c281bc1085501f6ebd164d7ee193a64"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/pfp_exact.py",
+            "sha256": "33a78864b07a7924bff59226cbef4e276665671ebd9ea1d7860afbda273398be"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/python/tests/test_cabello_frame.py",
+            "sha256": "e69269779fa7b8d63aa742f5770c973a181470be27d7942380706501202a5dcf"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/frame_polytope.rs",
+            "sha256": "89b20f07ddb10e95e5d33f383c318624461454089a8316702512832902a76fd3"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/cabello_certificates.rs",
+            "sha256": "6366c8b58617bb80e713697e5213cb9d8a25d96c675449311a2df9ff07211910"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_exact.rs",
+            "sha256": "bc3366a3fe6702306136b112a49a8d6df5e5679306d2c03131eef33b909b5404"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/cabello_replay.rs",
+            "sha256": "4c0aff197b89befc82f8d895ba509e2fba1830407599353450215df96e95a8bc"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/check_candidate.py",
+            "sha256": "48ff0c84bd8506c1b8830ae7fecd31da053d32fe2368b3a64142a7173f36f0d5"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/format_certificate.py",
+            "sha256": "49a964282c3c6f3c31e953a638d367c8605bb78565e83246918e9b656131e7b8"
+          }
+        ],
+        "evidence_status": "Source semantics reviewed; actual native and candidate kernel acceptance remain P2 gates."
+      },
+      {
+        "id": "frame_readout",
+        "ordered_inputs": [
+          "CabelloAdmissibleSymmetric4"
+        ],
+        "output": "FrameValuation",
+        "arity": 1,
+        "carrier": "Fixed Cabello 18-ray/nine-frame real-symmetric system",
+        "coefficient_ring": "Q; cleared Int certificates",
+        "hypotheses": [
+          "same declared ray carrier, trace one, nonnegative evaluations on those rays"
+        ],
+        "semantic_predicate": "Evaluate r^T H r / ||r||^2 on the same declared rays; no PSD inference.",
+        "implementation_note": "Source/native functions interpret these refined carriers; no new formal operad of real frame-polytope subtypes is claimed.",
+        "source_pins": [
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-CABELLO-FRAME-POLYTOPE-146__PROVED_LEAN.yaml",
+            "sha256": "82851fa570097cb0302dbbf696d24c88214c6333c912bdb9fef605f0c0f8fb7c"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-CABELLO-FRAME-POLYTOPE-146.yaml",
+            "sha256": "cdb38c807a09b96fbfbf9cb247cae9af14d38727abca038d43c813349306cd6f"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/frame_function_polytope.rs",
+            "sha256": "e5c15eeac034c32c6b6a00e208847efd5f83fe316215ebd4764810bab7b9b2d7"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/09_finite_hilbert/TFQ-0298_bra-ket_section_remains_non-canonical.md",
+            "sha256": "4d47b6a7b5e92f8a45216e1b7917495e9111b062349abe129b6e840d1a5cdcc7"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/cabello_frame.py",
+            "sha256": "426428057450f42c1a8d754f7b4f68256c281bc1085501f6ebd164d7ee193a64"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/pfp_exact.py",
+            "sha256": "33a78864b07a7924bff59226cbef4e276665671ebd9ea1d7860afbda273398be"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/python/tests/test_cabello_frame.py",
+            "sha256": "e69269779fa7b8d63aa742f5770c973a181470be27d7942380706501202a5dcf"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/frame_polytope.rs",
+            "sha256": "89b20f07ddb10e95e5d33f383c318624461454089a8316702512832902a76fd3"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/cabello_certificates.rs",
+            "sha256": "6366c8b58617bb80e713697e5213cb9d8a25d96c675449311a2df9ff07211910"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_exact.rs",
+            "sha256": "bc3366a3fe6702306136b112a49a8d6df5e5679306d2c03131eef33b909b5404"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/cabello_replay.rs",
+            "sha256": "4c0aff197b89befc82f8d895ba509e2fba1830407599353450215df96e95a8bc"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/check_candidate.py",
+            "sha256": "48ff0c84bd8506c1b8830ae7fecd31da053d32fe2368b3a64142a7173f36f0d5"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/format_certificate.py",
+            "sha256": "49a964282c3c6f3c31e953a638d367c8605bb78565e83246918e9b656131e7b8"
+          }
+        ],
+        "evidence_status": "Source semantics reviewed; actual native and candidate kernel acceptance remain P2 gates."
+      },
+      {
+        "id": "negative_quadratic",
+        "ordered_inputs": [
+          "CabelloAdmissibleSymmetric4",
+          "IntegerVector4"
+        ],
+        "output": "QuadraticQ",
+        "arity": 2,
+        "carrier": "Fixed Cabello 18-ray/nine-frame real-symmetric system",
+        "coefficient_ring": "Q; cleared Int certificates",
+        "hypotheses": [
+          "the actual recovered symmetric matrix and explicit integer vector"
+        ],
+        "semantic_predicate": "Compute an actual v^T H v; a negative value refuses PSD.",
+        "implementation_note": "Source/native functions interpret these refined carriers; no new formal operad of real frame-polytope subtypes is claimed.",
+        "source_pins": [
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-CABELLO-FRAME-POLYTOPE-146__PROVED_LEAN.yaml",
+            "sha256": "82851fa570097cb0302dbbf696d24c88214c6333c912bdb9fef605f0c0f8fb7c"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-CABELLO-FRAME-POLYTOPE-146.yaml",
+            "sha256": "cdb38c807a09b96fbfbf9cb247cae9af14d38727abca038d43c813349306cd6f"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/frame_function_polytope.rs",
+            "sha256": "e5c15eeac034c32c6b6a00e208847efd5f83fe316215ebd4764810bab7b9b2d7"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/09_finite_hilbert/TFQ-0298_bra-ket_section_remains_non-canonical.md",
+            "sha256": "4d47b6a7b5e92f8a45216e1b7917495e9111b062349abe129b6e840d1a5cdcc7"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/cabello_frame.py",
+            "sha256": "426428057450f42c1a8d754f7b4f68256c281bc1085501f6ebd164d7ee193a64"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/pfp_exact.py",
+            "sha256": "33a78864b07a7924bff59226cbef4e276665671ebd9ea1d7860afbda273398be"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/python/tests/test_cabello_frame.py",
+            "sha256": "e69269779fa7b8d63aa742f5770c973a181470be27d7942380706501202a5dcf"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/frame_polytope.rs",
+            "sha256": "89b20f07ddb10e95e5d33f383c318624461454089a8316702512832902a76fd3"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/cabello_certificates.rs",
+            "sha256": "6366c8b58617bb80e713697e5213cb9d8a25d96c675449311a2df9ff07211910"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_exact.rs",
+            "sha256": "bc3366a3fe6702306136b112a49a8d6df5e5679306d2c03131eef33b909b5404"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/cabello_replay.rs",
+            "sha256": "4c0aff197b89befc82f8d895ba509e2fba1830407599353450215df96e95a8bc"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/check_candidate.py",
+            "sha256": "48ff0c84bd8506c1b8830ae7fecd31da053d32fe2368b3a64142a7173f36f0d5"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/format_certificate.py",
+            "sha256": "49a964282c3c6f3c31e953a638d367c8605bb78565e83246918e9b656131e7b8"
+          }
+        ],
+        "evidence_status": "Source semantics reviewed; actual native and candidate kernel acceptance remain P2 gates."
+      },
+      {
+        "id": "spectral_shift",
+        "ordered_inputs": [
+          "CabelloAdmissibleSymmetric4",
+          "ThresholdQ"
+        ],
+        "output": "SpectralComparison",
+        "arity": 2,
+        "carrier": "Fixed Cabello 18-ray/nine-frame real-symmetric system",
+        "coefficient_ring": "Q; cleared Int certificates",
+        "hypotheses": [
+          "the actual matrix and rational threshold, exact order predicates"
+        ],
+        "semantic_predicate": "Check exact inertia/principal minors of H-tI, distinguishing semidefinite from definite and strict bounds.",
+        "implementation_note": "Source/native functions interpret these refined carriers; no new formal operad of real frame-polytope subtypes is claimed.",
+        "source_pins": [
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-CABELLO-FRAME-POLYTOPE-146__PROVED_LEAN.yaml",
+            "sha256": "82851fa570097cb0302dbbf696d24c88214c6333c912bdb9fef605f0c0f8fb7c"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-CABELLO-FRAME-POLYTOPE-146.yaml",
+            "sha256": "cdb38c807a09b96fbfbf9cb247cae9af14d38727abca038d43c813349306cd6f"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/frame_function_polytope.rs",
+            "sha256": "e5c15eeac034c32c6b6a00e208847efd5f83fe316215ebd4764810bab7b9b2d7"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/09_finite_hilbert/TFQ-0298_bra-ket_section_remains_non-canonical.md",
+            "sha256": "4d47b6a7b5e92f8a45216e1b7917495e9111b062349abe129b6e840d1a5cdcc7"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/cabello_frame.py",
+            "sha256": "426428057450f42c1a8d754f7b4f68256c281bc1085501f6ebd164d7ee193a64"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/pfp_exact.py",
+            "sha256": "33a78864b07a7924bff59226cbef4e276665671ebd9ea1d7860afbda273398be"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/python/tests/test_cabello_frame.py",
+            "sha256": "e69269779fa7b8d63aa742f5770c973a181470be27d7942380706501202a5dcf"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/frame_polytope.rs",
+            "sha256": "89b20f07ddb10e95e5d33f383c318624461454089a8316702512832902a76fd3"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/cabello_certificates.rs",
+            "sha256": "6366c8b58617bb80e713697e5213cb9d8a25d96c675449311a2df9ff07211910"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_exact.rs",
+            "sha256": "bc3366a3fe6702306136b112a49a8d6df5e5679306d2c03131eef33b909b5404"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/cabello_replay.rs",
+            "sha256": "4c0aff197b89befc82f8d895ba509e2fba1830407599353450215df96e95a8bc"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/check_candidate.py",
+            "sha256": "48ff0c84bd8506c1b8830ae7fecd31da053d32fe2368b3a64142a7173f36f0d5"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/format_certificate.py",
+            "sha256": "49a964282c3c6f3c31e953a638d367c8605bb78565e83246918e9b656131e7b8"
+          }
+        ],
+        "evidence_status": "Source semantics reviewed; actual native and candidate kernel acceptance remain P2 gates."
+      },
+      {
+        "id": "clear_denominators",
+        "ordered_inputs": [
+          "ValuationMatrixVectorWitness"
+        ],
+        "output": "IntegerFrameCertificate",
+        "arity": 1,
+        "carrier": "Fixed Cabello 18-ray/nine-frame real-symmetric system",
+        "coefficient_ring": "Q; cleared Int certificates",
+        "hypotheses": [
+          "positive common denominator",
+          "same retained weights, representative and negative vector"
+        ],
+        "semantic_predicate": "Clear a strictly positive common denominator and retain frame, tomography and negative quadratic equations as integer predicates.",
+        "implementation_note": "Source/native functions interpret these refined carriers; no new formal operad of real frame-polytope subtypes is claimed.",
+        "source_pins": [
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-CABELLO-FRAME-POLYTOPE-146__PROVED_LEAN.yaml",
+            "sha256": "82851fa570097cb0302dbbf696d24c88214c6333c912bdb9fef605f0c0f8fb7c"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-CABELLO-FRAME-POLYTOPE-146.yaml",
+            "sha256": "cdb38c807a09b96fbfbf9cb247cae9af14d38727abca038d43c813349306cd6f"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/frame_function_polytope.rs",
+            "sha256": "e5c15eeac034c32c6b6a00e208847efd5f83fe316215ebd4764810bab7b9b2d7"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/09_finite_hilbert/TFQ-0298_bra-ket_section_remains_non-canonical.md",
+            "sha256": "4d47b6a7b5e92f8a45216e1b7917495e9111b062349abe129b6e840d1a5cdcc7"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/cabello_frame.py",
+            "sha256": "426428057450f42c1a8d754f7b4f68256c281bc1085501f6ebd164d7ee193a64"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/pfp_exact.py",
+            "sha256": "33a78864b07a7924bff59226cbef4e276665671ebd9ea1d7860afbda273398be"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/python/tests/test_cabello_frame.py",
+            "sha256": "e69269779fa7b8d63aa742f5770c973a181470be27d7942380706501202a5dcf"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/frame_polytope.rs",
+            "sha256": "89b20f07ddb10e95e5d33f383c318624461454089a8316702512832902a76fd3"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/cabello_certificates.rs",
+            "sha256": "6366c8b58617bb80e713697e5213cb9d8a25d96c675449311a2df9ff07211910"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_exact.rs",
+            "sha256": "bc3366a3fe6702306136b112a49a8d6df5e5679306d2c03131eef33b909b5404"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/cabello_replay.rs",
+            "sha256": "4c0aff197b89befc82f8d895ba509e2fba1830407599353450215df96e95a8bc"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/check_candidate.py",
+            "sha256": "48ff0c84bd8506c1b8830ae7fecd31da053d32fe2368b3a64142a7173f36f0d5"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/format_certificate.py",
+            "sha256": "49a964282c3c6f3c31e953a638d367c8605bb78565e83246918e9b656131e7b8"
+          }
+        ],
+        "evidence_status": "Source semantics reviewed; actual native and candidate kernel acceptance remain P2 gates."
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "frame_normalization",
+        "equation_or_predicate": "A f = 1 and f>=0",
+        "typing_conditions": "the fixed orthogonal tetrads",
+        "evidence_status": "Actual exact finite equations; integer-cleared list predicate to be checked in Lean.",
+        "scope": "Each listed valuation; real convex vertex-set equivalence is separate.",
+        "source_pins": [
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-CABELLO-FRAME-POLYTOPE-146__PROVED_LEAN.yaml",
+            "sha256": "82851fa570097cb0302dbbf696d24c88214c6333c912bdb9fef605f0c0f8fb7c"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-CABELLO-FRAME-POLYTOPE-146.yaml",
+            "sha256": "cdb38c807a09b96fbfbf9cb247cae9af14d38727abca038d43c813349306cd6f"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/frame_function_polytope.rs",
+            "sha256": "e5c15eeac034c32c6b6a00e208847efd5f83fe316215ebd4764810bab7b9b2d7"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/09_finite_hilbert/TFQ-0298_bra-ket_section_remains_non-canonical.md",
+            "sha256": "4d47b6a7b5e92f8a45216e1b7917495e9111b062349abe129b6e840d1a5cdcc7"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/cabello_frame.py",
+            "sha256": "426428057450f42c1a8d754f7b4f68256c281bc1085501f6ebd164d7ee193a64"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/pfp_exact.py",
+            "sha256": "33a78864b07a7924bff59226cbef4e276665671ebd9ea1d7860afbda273398be"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/python/tests/test_cabello_frame.py",
+            "sha256": "e69269779fa7b8d63aa742f5770c973a181470be27d7942380706501202a5dcf"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/frame_polytope.rs",
+            "sha256": "89b20f07ddb10e95e5d33f383c318624461454089a8316702512832902a76fd3"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/cabello_certificates.rs",
+            "sha256": "6366c8b58617bb80e713697e5213cb9d8a25d96c675449311a2df9ff07211910"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_exact.rs",
+            "sha256": "bc3366a3fe6702306136b112a49a8d6df5e5679306d2c03131eef33b909b5404"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/cabello_replay.rs",
+            "sha256": "4c0aff197b89befc82f8d895ba509e2fba1830407599353450215df96e95a8bc"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/check_candidate.py",
+            "sha256": "48ff0c84bd8506c1b8830ae7fecd31da053d32fe2368b3a64142a7173f36f0d5"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/format_certificate.py",
+            "sha256": "49a964282c3c6f3c31e953a638d367c8605bb78565e83246918e9b656131e7b8"
+          }
+        ]
+      },
+      {
+        "id": "basic_support_completeness",
+        "equation_or_predicate": "All feasible independent supports extend to a size-rank basis; every feasible basic solution is a vertex.",
+        "typing_conditions": "full row rank A in a nonnegative affine polytope",
+        "evidence_status": "Mathematical basis characterization plus native exhaustive enumeration; not a new general Lean polytope theorem.",
+        "scope": "Fixed finite input, with independent Cramer enumeration of every basis.",
+        "source_pins": [
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-CABELLO-FRAME-POLYTOPE-146__PROVED_LEAN.yaml",
+            "sha256": "82851fa570097cb0302dbbf696d24c88214c6333c912bdb9fef605f0c0f8fb7c"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-CABELLO-FRAME-POLYTOPE-146.yaml",
+            "sha256": "cdb38c807a09b96fbfbf9cb247cae9af14d38727abca038d43c813349306cd6f"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/frame_function_polytope.rs",
+            "sha256": "e5c15eeac034c32c6b6a00e208847efd5f83fe316215ebd4764810bab7b9b2d7"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/09_finite_hilbert/TFQ-0298_bra-ket_section_remains_non-canonical.md",
+            "sha256": "4d47b6a7b5e92f8a45216e1b7917495e9111b062349abe129b6e840d1a5cdcc7"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/cabello_frame.py",
+            "sha256": "426428057450f42c1a8d754f7b4f68256c281bc1085501f6ebd164d7ee193a64"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/pfp_exact.py",
+            "sha256": "33a78864b07a7924bff59226cbef4e276665671ebd9ea1d7860afbda273398be"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/python/tests/test_cabello_frame.py",
+            "sha256": "e69269779fa7b8d63aa742f5770c973a181470be27d7942380706501202a5dcf"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/frame_polytope.rs",
+            "sha256": "89b20f07ddb10e95e5d33f383c318624461454089a8316702512832902a76fd3"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/cabello_certificates.rs",
+            "sha256": "6366c8b58617bb80e713697e5213cb9d8a25d96c675449311a2df9ff07211910"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_exact.rs",
+            "sha256": "bc3366a3fe6702306136b112a49a8d6df5e5679306d2c03131eef33b909b5404"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/cabello_replay.rs",
+            "sha256": "4c0aff197b89befc82f8d895ba509e2fba1830407599353450215df96e95a8bc"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/check_candidate.py",
+            "sha256": "48ff0c84bd8506c1b8830ae7fecd31da053d32fe2368b3a64142a7173f36f0d5"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/format_certificate.py",
+            "sha256": "49a964282c3c6f3c31e953a638d367c8605bb78565e83246918e9b656131e7b8"
+          }
+        ]
+      },
+      {
+        "id": "tomography_roundtrip",
+        "equation_or_predicate": "frame_readout(tomographic_representative(f))=f",
+        "typing_conditions": "same rays, a representable valuation, projector span rank ten",
+        "evidence_status": "Exact native equality on every retained vertex; integer-cleared readout equations planned for kernel checking.",
+        "scope": "No passage from nonnegative finite ray values to PSD.",
+        "source_pins": [
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-CABELLO-FRAME-POLYTOPE-146__PROVED_LEAN.yaml",
+            "sha256": "82851fa570097cb0302dbbf696d24c88214c6333c912bdb9fef605f0c0f8fb7c"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-CABELLO-FRAME-POLYTOPE-146.yaml",
+            "sha256": "cdb38c807a09b96fbfbf9cb247cae9af14d38727abca038d43c813349306cd6f"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/frame_function_polytope.rs",
+            "sha256": "e5c15eeac034c32c6b6a00e208847efd5f83fe316215ebd4764810bab7b9b2d7"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/09_finite_hilbert/TFQ-0298_bra-ket_section_remains_non-canonical.md",
+            "sha256": "4d47b6a7b5e92f8a45216e1b7917495e9111b062349abe129b6e840d1a5cdcc7"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/cabello_frame.py",
+            "sha256": "426428057450f42c1a8d754f7b4f68256c281bc1085501f6ebd164d7ee193a64"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/pfp_exact.py",
+            "sha256": "33a78864b07a7924bff59226cbef4e276665671ebd9ea1d7860afbda273398be"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/python/tests/test_cabello_frame.py",
+            "sha256": "e69269779fa7b8d63aa742f5770c973a181470be27d7942380706501202a5dcf"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/frame_polytope.rs",
+            "sha256": "89b20f07ddb10e95e5d33f383c318624461454089a8316702512832902a76fd3"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/cabello_certificates.rs",
+            "sha256": "6366c8b58617bb80e713697e5213cb9d8a25d96c675449311a2df9ff07211910"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_exact.rs",
+            "sha256": "bc3366a3fe6702306136b112a49a8d6df5e5679306d2c03131eef33b909b5404"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/cabello_replay.rs",
+            "sha256": "4c0aff197b89befc82f8d895ba509e2fba1830407599353450215df96e95a8bc"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/check_candidate.py",
+            "sha256": "48ff0c84bd8506c1b8830ae7fecd31da053d32fe2368b3a64142a7173f36f0d5"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/format_certificate.py",
+            "sha256": "49a964282c3c6f3c31e953a638d367c8605bb78565e83246918e9b656131e7b8"
+          }
+        ]
+      },
+      {
+        "id": "negative_quadratic_obstruction",
+        "equation_or_predicate": "v^T H v < 0 excludes real positive semidefiniteness",
+        "typing_conditions": "explicit nonzero rational/integer v, positive denominator",
+        "evidence_status": "Direct exact order witness; kernel checks integer negativity on the actual listed matrices.",
+        "scope": "The general real PSD transport/vertex-completeness theorem is not installed as a Lean result.",
+        "source_pins": [
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-CABELLO-FRAME-POLYTOPE-146__PROVED_LEAN.yaml",
+            "sha256": "82851fa570097cb0302dbbf696d24c88214c6333c912bdb9fef605f0c0f8fb7c"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-CABELLO-FRAME-POLYTOPE-146.yaml",
+            "sha256": "cdb38c807a09b96fbfbf9cb247cae9af14d38727abca038d43c813349306cd6f"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/frame_function_polytope.rs",
+            "sha256": "e5c15eeac034c32c6b6a00e208847efd5f83fe316215ebd4764810bab7b9b2d7"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/09_finite_hilbert/TFQ-0298_bra-ket_section_remains_non-canonical.md",
+            "sha256": "4d47b6a7b5e92f8a45216e1b7917495e9111b062349abe129b6e840d1a5cdcc7"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/cabello_frame.py",
+            "sha256": "426428057450f42c1a8d754f7b4f68256c281bc1085501f6ebd164d7ee193a64"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/pfp_exact.py",
+            "sha256": "33a78864b07a7924bff59226cbef4e276665671ebd9ea1d7860afbda273398be"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/python/tests/test_cabello_frame.py",
+            "sha256": "e69269779fa7b8d63aa742f5770c973a181470be27d7942380706501202a5dcf"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/frame_polytope.rs",
+            "sha256": "89b20f07ddb10e95e5d33f383c318624461454089a8316702512832902a76fd3"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/cabello_certificates.rs",
+            "sha256": "6366c8b58617bb80e713697e5213cb9d8a25d96c675449311a2df9ff07211910"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_exact.rs",
+            "sha256": "bc3366a3fe6702306136b112a49a8d6df5e5679306d2c03131eef33b909b5404"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/cabello_replay.rs",
+            "sha256": "4c0aff197b89befc82f8d895ba509e2fba1830407599353450215df96e95a8bc"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/check_candidate.py",
+            "sha256": "48ff0c84bd8506c1b8830ae7fecd31da053d32fe2368b3a64142a7173f36f0d5"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/format_certificate.py",
+            "sha256": "49a964282c3c6f3c31e953a638d367c8605bb78565e83246918e9b656131e7b8"
+          }
+        ]
+      },
+      {
+        "id": "spectral_shift_comparison",
+        "equation_or_predicate": "H+(1/2)I PSD and singular gives lambda_min=-1/2; H+(1/4)I PD gives lambda_min>-1/4",
+        "typing_conditions": "real symmetric matrices; exact semidefinite/definite tests distinguished",
+        "evidence_status": "Native exact inertia versus independent principal-minor checks; no floating eigenvalues or epsilon.",
+        "scope": "Actual finite list only, not a new general Lean spectral theorem.",
+        "source_pins": [
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-CABELLO-FRAME-POLYTOPE-146__PROVED_LEAN.yaml",
+            "sha256": "82851fa570097cb0302dbbf696d24c88214c6333c912bdb9fef605f0c0f8fb7c"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-CABELLO-FRAME-POLYTOPE-146.yaml",
+            "sha256": "cdb38c807a09b96fbfbf9cb247cae9af14d38727abca038d43c813349306cd6f"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/frame_function_polytope.rs",
+            "sha256": "e5c15eeac034c32c6b6a00e208847efd5f83fe316215ebd4764810bab7b9b2d7"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/09_finite_hilbert/TFQ-0298_bra-ket_section_remains_non-canonical.md",
+            "sha256": "4d47b6a7b5e92f8a45216e1b7917495e9111b062349abe129b6e840d1a5cdcc7"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/cabello_frame.py",
+            "sha256": "426428057450f42c1a8d754f7b4f68256c281bc1085501f6ebd164d7ee193a64"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/pfp_exact.py",
+            "sha256": "33a78864b07a7924bff59226cbef4e276665671ebd9ea1d7860afbda273398be"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/python/tests/test_cabello_frame.py",
+            "sha256": "e69269779fa7b8d63aa742f5770c973a181470be27d7942380706501202a5dcf"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/frame_polytope.rs",
+            "sha256": "89b20f07ddb10e95e5d33f383c318624461454089a8316702512832902a76fd3"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/cabello_certificates.rs",
+            "sha256": "6366c8b58617bb80e713697e5213cb9d8a25d96c675449311a2df9ff07211910"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_exact.rs",
+            "sha256": "bc3366a3fe6702306136b112a49a8d6df5e5679306d2c03131eef33b909b5404"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/cabello_replay.rs",
+            "sha256": "4c0aff197b89befc82f8d895ba509e2fba1830407599353450215df96e95a8bc"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/check_candidate.py",
+            "sha256": "48ff0c84bd8506c1b8830ae7fecd31da053d32fe2368b3a64142a7173f36f0d5"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/format_certificate.py",
+            "sha256": "49a964282c3c6f3c31e953a638d367c8605bb78565e83246918e9b656131e7b8"
+          }
+        ]
+      },
+      {
+        "id": "positive_denominator_transport",
+        "equation_or_predicate": "2*r^T H_num r = D*||r||^2*f_num2 and v^T H_num v <0 with D>0",
+        "typing_conditions": "same retained matrix, weights and vectors",
+        "evidence_status": "Generated integer data and all row predicates will be checked by the kernel and independently translated back.",
+        "scope": "Fixed finite integer witness list; no promoted arithmetic census label.",
+        "source_pins": [
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-CABELLO-FRAME-POLYTOPE-146__PROVED_LEAN.yaml",
+            "sha256": "82851fa570097cb0302dbbf696d24c88214c6333c912bdb9fef605f0c0f8fb7c"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-CABELLO-FRAME-POLYTOPE-146.yaml",
+            "sha256": "cdb38c807a09b96fbfbf9cb247cae9af14d38727abca038d43c813349306cd6f"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/frame_function_polytope.rs",
+            "sha256": "e5c15eeac034c32c6b6a00e208847efd5f83fe316215ebd4764810bab7b9b2d7"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/09_finite_hilbert/TFQ-0298_bra-ket_section_remains_non-canonical.md",
+            "sha256": "4d47b6a7b5e92f8a45216e1b7917495e9111b062349abe129b6e840d1a5cdcc7"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/cabello_frame.py",
+            "sha256": "426428057450f42c1a8d754f7b4f68256c281bc1085501f6ebd164d7ee193a64"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/pfp_exact.py",
+            "sha256": "33a78864b07a7924bff59226cbef4e276665671ebd9ea1d7860afbda273398be"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/python/tests/test_cabello_frame.py",
+            "sha256": "e69269779fa7b8d63aa742f5770c973a181470be27d7942380706501202a5dcf"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/frame_polytope.rs",
+            "sha256": "89b20f07ddb10e95e5d33f383c318624461454089a8316702512832902a76fd3"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/cabello_certificates.rs",
+            "sha256": "6366c8b58617bb80e713697e5213cb9d8a25d96c675449311a2df9ff07211910"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_exact.rs",
+            "sha256": "bc3366a3fe6702306136b112a49a8d6df5e5679306d2c03131eef33b909b5404"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/cabello_replay.rs",
+            "sha256": "4c0aff197b89befc82f8d895ba509e2fba1830407599353450215df96e95a8bc"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/check_candidate.py",
+            "sha256": "48ff0c84bd8506c1b8830ae7fecd31da053d32fe2368b3a64142a7173f36f0d5"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/FQ-CABELLO-FRAME-POLYTOPE-146/runs/20261019T015232Z_staged/format_certificate.py",
+            "sha256": "49a964282c3c6f3c31e953a638d367c8605bb78565e83246918e9b656131e7b8"
+          }
+        ]
+      }
+    ],
+    "checked_compositions": [
+      {
+        "outer_operation": "frame_readout",
+        "input_slot": 0,
+        "inner_operation": "tomographic_representative",
+        "colour_match": "CabelloAdmissibleSymmetric4 -> CabelloAdmissibleSymmetric4",
+        "hypothesis_match": "Same representable valuation and declared ray coordinate order; exact matrix solution retained.",
+        "licensing_relations": [
+          "tomography_roundtrip"
+        ],
+        "evidence_status": "Typed semantic insertion with actual finite readout checks; general refined-carrier operad transport is open."
+      },
+      {
+        "outer_operation": "negative_quadratic",
+        "input_slot": 0,
+        "inner_operation": "tomographic_representative",
+        "colour_match": "CabelloAdmissibleSymmetric4 -> CabelloAdmissibleSymmetric4",
+        "hypothesis_match": "The explicit negative vector is supplied for that exact recovered matrix.",
+        "licensing_relations": [
+          "negative_quadratic_obstruction"
+        ],
+        "evidence_status": "Checked finite witness composition, not a positivity claim from finite ray values."
+      }
+    ],
+    "failed_compositions": [
+      {
+        "outer_operation": "admit_density_matrix",
+        "input_slot": 0,
+        "inner_operation": "tomographic_representative",
+        "colour_match": "Fails: nonnegative declared frame values do not give a PSD density matrix.",
+        "hypothesis_match": "PSD must be checked on all real vectors, not just the 18 measured rays.",
+        "licensing_relations": [],
+        "evidence_status": "Actual recovered matrices and negative vectors are part of P1/P2; no theorem acceptance from source labels."
+      }
+    ],
+    "counterexamples": [
+      {
+        "id": "nonnegative_frame_values_are_not_PSD",
+        "scope": "Each actual normalized frame valuation has a recovered symmetric matrix and a negative integer quadratic witness. This refutes promotion to PSD from the measured ray values.",
+        "basis_coverage": "Every size-nine support independently checked; the formal real-polytope completeness bridge is still an obligation."
+      }
+    ],
+    "open_obligations": [
+      "Formalize the linear-basis characterization and the completeness bridge from exhaustive rational bases to all extreme points of the real frame polytope.",
+      "The kernel checks the integer list and its actual frame/tomography/negative equations; general real-matrix PSD and spectral transport remain separate formal obligations.",
+      "General frame-polytope subtype operad identities, composition coherence, symmetric actions and quotient presentation are not instantiated.",
+      "The original 2+72+72=146 source lemma is an arithmetic/incidence fact; it is not reused as a vertex enumeration proof."
+    ],
+    "retained_native_failures": [
+      {
+        "kind": "kernel data elaboration",
+        "failure": "The actual 146-row integer data declaration exceeded the default heartbeat budget. The values and row predicates were preserved and an explicit finite elaboration budget was set."
+      },
+      {
+        "kind": "Rust replay compilation",
+        "failure": "The formatter attempted to move a Vec from a shared vertex reference; it now borrows the unchanged exact minors."
+      }
+    ]
+  }
+}

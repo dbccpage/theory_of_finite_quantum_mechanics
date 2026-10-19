@@ -1,6 +1,14 @@
 
 extern crate self as omega_finite_probability;
 pub mod bell_joint_extension;
+pub mod bell_separator_extension;
+pub mod pfp_exact;
+pub mod rational_bell;
+pub mod born_ray;
+pub mod frame_polytope;
+pub mod cabello_certificates;
+pub mod cabello_obstruction;
+pub mod carrier_contract;
 pub mod classical_instrument;
 pub mod error;
 pub mod finite_set;
@@ -45,3 +53,17 @@ mod prob_tests {
         assert!(verify_distribution_sum(&dist));
     }
 }
+
+pub mod cech_f2;
+
+pub mod declared_interface;
+
+pub mod entropy_exact;
+
+pub mod born_gap;
+
+pub mod c500_ledger;
+
+pub mod phase_scope;
+
+pub mod structure_exact;

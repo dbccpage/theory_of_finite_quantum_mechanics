@@ -124,11 +124,11 @@ def execute(command, cwd, log, timeout=300, environment_overlay=None):
             "environment":{"CARGO_INCREMENTAL":"0","CARGO_BUILD_JOBS":"2",**(environment_overlay or {})}}
 
 
-def execute_build(command, cwd, log):
+def execute_build(command, cwd, log, timeout=900):
     """Refuse a fresh Cargo invocation without 3 GiB free; start no compiler."""
     free = shutil.disk_usage(ROOT).free
     if free >= 3 * 1024**3:
-        return execute(command,cwd,log)
+        return execute(command,cwd,log,timeout=timeout)
     log.write_text(f"Build not started: {free} bytes free; 3 GiB headroom required.\n",encoding="utf-8")
     return {"command":command,"cwd":str(cwd),"exit_code":None,"timed_out":False,
             "started":False,"resource_refused":True,"elapsed_seconds":0,
@@ -279,7 +279,10 @@ def main():
     parser.add_argument("--mutations", action="store_true")
     parser.add_argument("--scope", choices=("all","category","homology"), default="all")
     parser.add_argument("--mutation-prefix", default="")
+    parser.add_argument("--build-timeout", type=int, default=900, help="Cargo process deadline in seconds (default: 900)")
     args = parser.parse_args()
+    if args.build_timeout <= 0:
+        parser.error("--build-timeout must be positive")
     if shutil.disk_usage(ROOT).free < 3 * 1024**3:
         raise SystemExit("Audit requires at least 3 GiB free for a fresh isolated build")
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
@@ -300,7 +303,7 @@ def main():
         command = ["cargo","test","--target-dir",str(build),"-p",package,"--lib","--offline","--locked","--quiet"]
         command.append("l5a_challenges" if challenge else ("homology" if package.endswith("audit") else ""))
         try:
-            return execute_build([x for x in command if x], work, output / (name+".log"))
+            return execute_build([x for x in command if x], work, output / (name+".log"), timeout=args.build_timeout)
         finally:
             clear_debug_outputs(build, work)
     packages = [] if args.scope == "homology" else [("tfqm_category_theory","category")]

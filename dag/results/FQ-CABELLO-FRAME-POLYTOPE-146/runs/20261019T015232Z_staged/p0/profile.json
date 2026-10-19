@@ -1,0 +1,79 @@
+{
+  "source_review_status": "semantics_reviewed_for_selected_step",
+  "source_scope_review": "The source census lemma checks 9 tetrads, degree two and 2+72+72=146, without an enumeration or PSD proof. The pinned FrameSystem actually exposes vertices/is_vertex/state_of and exact inertia; prior symbol_not_found annotations are source-scan limitations. We use the actual H054 rays/tetrads and two independent exhaustive basis methods, not the arithmetic label.",
+  "carrier": "18 integer rays, nine orthogonal tetrads in real dimension four; rational valuations and real-symmetric representatives.",
+  "coefficient_ring": "Q with explicit positive-denominator Int certificates",
+  "production_sources": [
+    "code/python/src/qm/cabello_frame.py",
+    "code/python/src/qm/pfp_exact.py",
+    "code/python/tests/test_cabello_frame.py",
+    "code/rust/src/finite_probability/frame_polytope.rs",
+    "code/rust/src/finite_probability/cabello_certificates.rs",
+    "code/rust/src/finite_probability/pfp_exact.rs",
+    "code/rust/src/finite_probability/examples/cabello_replay.rs",
+    "lean4/CabelloVertexData.lean",
+    "lean4/PromptCabelloCensus.lean"
+  ],
+  "build_sources": [
+    "code/rust/src/finite_probability/lib.rs",
+    "code/rust/src/finite_probability/Cargo.toml",
+    "code/rust/Cargo.lock",
+    "lean4/lakefile.lean",
+    "lean4/lean-toolchain",
+    "lean4/lake-manifest.json"
+  ],
+  "independent_predicates": [
+    "Independent Bareiss/Cramer traversal of every nine-column incidence basis, with no graph prefilter",
+    "Every actual frame equation, normalized quadratic readout and trace-one symmetric matrix",
+    "Explicit negative integer vector and exact rational quadratic value",
+    "All principal minors for semidefinite shifts and positive leading minors for definite shifts",
+    "Literal generated Lean integer arrays equal every numerical JSON certificate",
+    "Four named kernel reports for the listed integer certificates, separately scoped from polytope completeness"
+  ],
+  "challenge_plan": "Drop or duplicate a listed vertex, alter a trace-one representative, falsify a negative vector, or mislabel a strict spectral bound. Accept the original complete exact list as the same-checker control.",
+  "composition_tree": "frame_readout(tomographic_representative(f))=f; negative_quadratic(tomographic_representative(f),v)<0 with all integer data retained.",
+  "anchors": [
+    "code/python/src/qm/cabello_frame.py",
+    "code/python/src/qm/pfp_exact.py",
+    "code/python/tests/test_cabello_frame.py",
+    "code/rust/src/finite_probability/frame_polytope.rs",
+    "code/rust/src/finite_probability/cabello_certificates.rs",
+    "code/rust/src/finite_probability/pfp_exact.rs",
+    "code/rust/src/finite_probability/examples/cabello_replay.rs",
+    "lean4/CabelloVertexData.lean",
+    "lean4/PromptCabelloCensus.lean",
+    "QuantumMechanics.PromptCabelloCensus.listed_count_and_distinct",
+    "QuantumMechanics.PromptCabelloCensus.all_integer_frame_and_negative_certificates",
+    "QuantumMechanics.PromptCabelloCensus.each_listed_certificate",
+    "QuantumMechanics.PromptCabelloCensus.every_listed_negative"
+  ],
+  "checker_id": "independent-exhaustive-Cramer-Cabello-and-integer-transport-v1",
+  "python_test": "code/python/tests/test_cabello_frame.py",
+  "rust_filter": "cabello_certificates",
+  "lean_source": "lean4/PromptCabelloCensus.lean",
+  "lean_anchors": [
+    "QuantumMechanics.PromptCabelloCensus.listed_count_and_distinct",
+    "QuantumMechanics.PromptCabelloCensus.all_integer_frame_and_negative_certificates",
+    "QuantumMechanics.PromptCabelloCensus.each_listed_certificate",
+    "QuantumMechanics.PromptCabelloCensus.every_listed_negative"
+  ],
+  "rust_example": "cabello_replay",
+  "construction": "Exhaust incidence bases; reconstruct every unique symmetric matrix; obtain exact shifted principal/inertia tests and an actual negative integer vector; generate a kernel list of cleared equations.",
+  "claim_boundary": {
+    "supports": "A complete finite native basis census on the fixed 18-ray input, exact real-symmetric rational tomography, strict/semidefinite shifted-matrix bounds and explicit negative quadratic witnesses. Kernel checks are on the actual listed integer certificates.",
+    "does_not_support": "A formal Lean theorem identifying the entire real polytope vertex set, a general real spectral/PSD transport theorem, or positivity from finite frame additivity.",
+    "narrowest_claim": "Independently exhaustive exact basis computations and every actual finite matrix witness, with a separate literal integer-list kernel certificate; the general real-polytope completeness bridge remains open.",
+    "next_test": "Review basis coverage, source geometry, generated-data translation and the exact strict/non-strict spectral tests before promoting any broader claim."
+  },
+  "result_or_obstruction": "An exact finite frame-polytope census and real-symmetric positivity obstruction, with full formal real-polytope completeness still an explicit obligation.",
+  "next_mathematical_step": "Formalize the basic-solution/extreme-point equivalence and real interpretation map if a complete Lean real-polytope theorem is requested.",
+  "colour_meanings": {
+    "IntegerRayFrameSystem": "The fixed source-pinned integer rays and orthogonal frames.",
+    "FullRankDegreeTwoSystemWithBudget": "The same incidence, with actual full row rank, degree two and adequate support budget.",
+    "RepresentableFrameValuation": "A nonnegative normalized frame valuation with an actual unique symmetric solution.",
+    "CabelloAdmissibleSymmetric4": "Trace-one real-symmetric rational matrices nonnegative on the declared rays; PSD is not part of this colour.",
+    "IntegerVector4": "An actual integer four-vector, retained with its matrix.",
+    "IntegerFrameCertificate": "The weights/matrix/denominator/vector integer equations for one actual listed valuation."
+  },
+  "report": "# Cabello frame-polytope census\n\nThe old Lean arithmetic/incidence census is not a vertex-enumeration proof. This run exhausts every nine-column incidence basis and independently recomputes the census with integer Bareiss/Cramer determinants. Every actual rational symmetric representative is checked on all 18 rays and has an explicit negative integer quadratic witness. Spectral classes use exact shifted semidefinite/definite predicates, never floating eigenvalues. Generated Lean data are tied to the numerical certificates and checked as finite integer equations. The bridge to a general formal real-polytope vertex theorem and general PSD/spectral transport remains open."
+}

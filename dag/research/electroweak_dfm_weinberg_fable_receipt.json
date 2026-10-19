@@ -1,0 +1,128 @@
+{
+  "campaign_id": "FABLE_5_1_MCTS_QM_220_ELECTROWEAK_DFM_WEINBERG_ANOMALY",
+  "timestamp_utc": "2026-10-16T04:59:33.017191+00:00",
+  "anthropic_model_catalog_discovery": {
+    "endpoint": "https://api.anthropic.com/v1/models",
+    "key_sha256_prefix": "1f698894fe7a",
+    "discovered_model_count": 14,
+    "selected_model": "claude-fable-5-1",
+    "catalog_sample": [
+      "claude-haiku-5-5",
+      "claude-sonnet-5-5",
+      "claude-opus-5-5",
+      "claude-fable-5-1",
+      "claude-opus-5",
+      "claude-sonnet-5",
+      "claude-fable-5",
+      "claude-opus-4-8"
+    ]
+  },
+  "anthropic_messages_probe": {
+    "status": "LIVE_OK",
+    "provider": "anthropic",
+    "model": "claude-fable-5-1",
+    "generation_id": "msg_011Cg5KpDfWvNDsoZJKYx9XD",
+    "input_tokens": 613,
+    "output_tokens": 3331,
+    "response_excerpt": "```json\n{\n  \"dressing_matrix_su2\": {\n    \"status\": \"confirmed\",\n    \"setup\": \"Phi=(phi_+,phi_0)^T, r^2=|phi_+|^2+|phi_0|^2, u(Phi)=(1/r)[[phi_0^*,phi_+],[-phi_+^*,phi_0]]\",\n    \"det_u\": \"(|phi_0|^2+|phi_+|^2)/r^2 = 1\",\n    \"u_dagger\": \"(1/r)[[phi_0,-phi_+],[phi_+^*,phi_0^*]]\",\n    \"u_dagger_Phi\": \"(1/r)*(phi_0*phi_+ - phi_+*phi_0, |phi_+|^2+|phi_0|^2)^T = (0, r)^T\",\n    \"field_note\": \"entries lie in Q[i] when phi_+,phi_0 in Q[i] and r in Q; otherwise u in SU(2) over Q(i,r)\"\n  },\n  \"goldstone_elimination\": {\n    \"status\": \"confirmed\",\n    \"mechanism\": \"u(Phi) rotates the doublet onto the real neutral direction; three Goldstone phases are absorbed into u, leaving the single radial field r = (v+h)/sqrt(2)\",\n    \"gauge_invariance\": \"r = sqrt(Phi^dagger Phi) is SU(2)xU(1)-invariant\"\n  },\n  \"weinberg_projectors_rational\": {\n    \"status\": \"confirmed\",\n    \"M2\": \"(v^2/4)[[g^2,-g g'],[-g g',g'^2]]\",\n    \"det\": \"(v^4/16)(g^2 g'^2 - g^2 g'^2) = 0\",\n    \"trace\": \"(v^2/4)(g^2+g'^2) = m_Z^2\",\n    \"Pi_gamma\": \"(1/(g^2+g'^2))[[g'^2, g g'],[g g', g^2]]  (eigenvalue 0)\",\n    \"Pi_Z\": \"(1/(g^2+g'^2))[[g^2,-g g'],[-g g',g'^2]] = M2/m_Z^2  (eigenvalue m_Z^2)\",\n    \"checks\": \"Pi_gamma+Pi_Z=1, Pi_gamma*Pi_Z=0, Pi^2=Pi; both projectors are rational functions of (g,g'), no square roots\"\n  },\n  \"custodial_rho_eq_one\": {\n    \"status\": \"confirmed\",\n    \"m_W2\": \"g^2 v^2/4\",\n    \"cos2_thetaW\": \"g^2/(g^2+g'^2)\",\n    \"rho_EW\": \"(g^2 v^2/4) / [ (v^2/4)(g^2+g'^2) * g^2/(g^2+g'^2) ] = 1\",\n    \"origin\": \"SU(2)_L"
+  },
+  "auxiliary_live_provider_dispatch": null,
+  "goals_targeted": [
+    "FQM-EW-DFM-DRESSING",
+    "FQM-EW-WEINBERG-CUSTODIAL",
+    "FQM-EW-GELL-MANN-NISHIJIMA",
+    "FQM-EW-ANOMALY-CANCELLATION",
+    "QM-220-ELECTROWEAK-DFM-WEINBERG-MAP"
+  ],
+  "rounds": [
+    {
+      "round_index": 1,
+      "candidate_id": "cand_r1_su2_doublet_dfm_dressing",
+      "ast_faults": {
+        "has_syntax_error": false,
+        "illegal_nodes": [],
+        "declared_functions": [
+          "check_su2_dfm_doublet_dressing"
+        ]
+      },
+      "dense_diff": {
+        "diff_sha256": "sha256:d2a0132e1fa9d1ae387314e40158c9a7bfd6712d4d52f4f48fb072f80aee9d19",
+        "added_lines": 9,
+        "removed_lines": 2,
+        "token_amortization_score": 21.4844
+      }
+    },
+    {
+      "round_index": 2,
+      "candidate_id": "cand_r2_weinberg_projectors_custodial_rho",
+      "ast_faults": {
+        "has_syntax_error": false,
+        "illegal_nodes": [],
+        "declared_functions": [
+          "check_su2_dfm_doublet_dressing",
+          "check_weinberg_and_custodial_rho"
+        ]
+      },
+      "dense_diff": {
+        "diff_sha256": "sha256:b8c026f47593b558f5a241632233f9c002c0b935b12a066c5bc7cee50ed1f5bd",
+        "added_lines": 9,
+        "removed_lines": 0,
+        "token_amortization_score": 17.5781
+      }
+    },
+    {
+      "round_index": 3,
+      "candidate_id": "cand_r3_production_qm220_electroweak_control",
+      "ast_faults": {
+        "has_syntax_error": false,
+        "illegal_nodes": [],
+        "declared_functions": [
+          "zero",
+          "one",
+          "conj",
+          "norm_sq",
+          "__add__",
+          "__sub__",
+          "__neg__",
+          "__mul__",
+          "scale",
+          "norm_sq",
+          "identity",
+          "dagger",
+          "det",
+          "mul_mat",
+          "mul_vec",
+          "su2_doublet_dressing_matrix",
+          "_mat2_q_mul",
+          "_mat2_q_add",
+          "_build_su2_doublet_dfm_audit",
+          "_build_weinberg_custodial_audit",
+          "_build_gell_mann_nishijima_audit",
+          "_build_anomaly_cancellation_audit",
+          "eval_anomalies",
+          "evaluate_electroweak_dfm_weinberg_control"
+        ]
+      },
+      "dense_diff": {
+        "diff_sha256": "sha256:24b925efacc043ada1386c623eb281d0eb281a63085e0963ebff56b7dbc191c0",
+        "added_lines": 562,
+        "removed_lines": 17,
+        "token_amortization_score": 565.4297
+      },
+      "oracle_passed": true
+    }
+  ],
+  "mcts_summary": {
+    "tip_id": "cand_r3_production_qm220_electroweak_control",
+    "checkpoint_count": 4,
+    "needs_backtrack": false
+  },
+  "sovereign_verification_artifacts": {
+    "rust_module": "omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps/electroweak_dfm_weinberg_control.rs",
+    "rust_sha256": "sha256:4ca6c50d0d1cbf5efbe00eb0e633c4113057c5579f3d3c25ff4d3631233c0dee",
+    "python_module": "omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/python/finite_qm/use_cases/electroweak_dfm_weinberg_control.py",
+    "python_sha256": "sha256:9ad60d818948ffbcd699e86dcbf8d183db7327c923821eac7c59db96d2d2b0b7",
+    "lean4_module": "lean4/quantum_mechanics/FiniteQM.lean",
+    "lean4_sha256": "sha256:2f59dcea6f432a1ae07cdfecf71df81e6e870d79534cd2994371570771ed99cc"
+  }
+}

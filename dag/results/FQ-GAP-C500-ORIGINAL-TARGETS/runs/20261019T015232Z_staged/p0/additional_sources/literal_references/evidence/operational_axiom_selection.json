@@ -1,0 +1,193 @@
+{
+  "authority_effect": "None",
+  "citation": "sealed-derivation-v1 (3100c4e)",
+  "campaign": "C500",
+  "block": "block_07",
+  "global_targets": "C500-T451..C500-T475",
+  "terminal_outcome": "OPERATIONAL_AXIOMS_PRICED",
+  "predecessor_binding_status": "NOT_VERIFIED_BY_KERNEL",
+  "local_tomography_evaluations": {
+    "qubit_qubit_2x2": {
+      "subsystem_dimensions": {
+        "d_A": 2,
+        "d_B": 2,
+        "d_AB": 4
+      },
+      "classical": {
+        "D_A": 2,
+        "D_B": 2,
+        "D_AB": 4,
+        "product": 4,
+        "local_tomography_holds": true
+      },
+      "complex_quantum": {
+        "D_A": 4,
+        "D_B": 4,
+        "D_AB": 16,
+        "product": 16,
+        "local_tomography_holds": true
+      },
+      "real_quantum": {
+        "D_A": 3,
+        "D_B": 3,
+        "D_AB": 10,
+        "product": 9,
+        "deficit": -1,
+        "local_tomography_holds": false
+      },
+      "quaternionic_quantum": {
+        "D_A": 6,
+        "D_B": 6,
+        "D_AB": 28,
+        "product": 36,
+        "deficit": 8,
+        "local_tomography_holds": false
+      }
+    },
+    "qubit_qutrit_2x3": {
+      "subsystem_dimensions": {
+        "d_A": 2,
+        "d_B": 3,
+        "d_AB": 6
+      },
+      "classical": {
+        "D_A": 2,
+        "D_B": 3,
+        "D_AB": 6,
+        "product": 6,
+        "local_tomography_holds": true
+      },
+      "complex_quantum": {
+        "D_A": 4,
+        "D_B": 9,
+        "D_AB": 36,
+        "product": 36,
+        "local_tomography_holds": true
+      },
+      "real_quantum": {
+        "D_A": 3,
+        "D_B": 6,
+        "D_AB": 21,
+        "product": 18,
+        "deficit": -3,
+        "local_tomography_holds": false
+      },
+      "quaternionic_quantum": {
+        "D_A": 6,
+        "D_B": 15,
+        "D_AB": 66,
+        "product": 90,
+        "deficit": 24,
+        "local_tomography_holds": false
+      }
+    },
+    "qutrit_qutrit_3x3": {
+      "subsystem_dimensions": {
+        "d_A": 3,
+        "d_B": 3,
+        "d_AB": 9
+      },
+      "classical": {
+        "D_A": 3,
+        "D_B": 3,
+        "D_AB": 9,
+        "product": 9,
+        "local_tomography_holds": true
+      },
+      "complex_quantum": {
+        "D_A": 9,
+        "D_B": 9,
+        "D_AB": 81,
+        "product": 81,
+        "local_tomography_holds": true
+      },
+      "real_quantum": {
+        "D_A": 6,
+        "D_B": 6,
+        "D_AB": 45,
+        "product": 36,
+        "deficit": -9,
+        "local_tomography_holds": false
+      },
+      "quaternionic_quantum": {
+        "D_A": 15,
+        "D_B": 15,
+        "D_AB": 153,
+        "product": 225,
+        "deficit": 72,
+        "local_tomography_holds": false
+      }
+    }
+  },
+  "rival_axiom_comparison": {
+    "candidate_rivals": [
+      {
+        "theory_name": "Finite Classical Probability",
+        "causality": true,
+        "local_tomography": true,
+        "purification": false,
+        "continuous_reversibility": false,
+        "superposition": false,
+        "survives_some_axioms": true,
+        "survives_all_axioms": false
+      },
+      {
+        "theory_name": "Finite Real Quantum Mechanics (Rebits)",
+        "causality": true,
+        "local_tomography": false,
+        "purification": true,
+        "continuous_reversibility": true,
+        "superposition": true,
+        "survives_some_axioms": true,
+        "survives_all_axioms": false
+      },
+      {
+        "theory_name": "Finite Quaternionic Quantum Mechanics",
+        "causality": true,
+        "local_tomography": false,
+        "purification": true,
+        "continuous_reversibility": true,
+        "superposition": true,
+        "survives_some_axioms": true,
+        "survives_all_axioms": false
+      },
+      {
+        "theory_name": "Finite Complex Quantum Mechanics",
+        "causality": true,
+        "local_tomography": true,
+        "purification": true,
+        "continuous_reversibility": true,
+        "superposition": true,
+        "survives_some_axioms": true,
+        "survives_all_axioms": true
+      }
+    ],
+    "table_evidence_class": "DECLARED_ASSUMPTION",
+    "uniquely_selects_complex_qm": true,
+    "selected_table_rows": [
+      "Finite Complex Quantum Mechanics"
+    ],
+    "operational_model_uniqueness_proved": false,
+    "selection_axioms": [
+      "Causality",
+      "Local Tomography",
+      "Purification"
+    ]
+  },
+  "naimark_dilation_audit": {
+    "dilation_theorem": "Naimark Dilation: POVM -> Projective Measurement on Ancilla",
+    "assumes_trace_pairing": false,
+    "probability_evaluation_assumes_trace_pairing": true,
+    "derives_born_rule_uniqueness": false,
+    "status": "NON_DERIVATION",
+    "audit_finding": "Naimark dilation is an operator identity; using trace pairing to evaluate probabilities is a separate input."
+  },
+  "machine_bet_clauses": {
+    "operational_axioms_derived_from_carrier_alone": false,
+    "classical_rival_survives_some_but_not_all_axioms": true,
+    "real_hilbert_rival_differs_on_composition_or_local_tomography": true,
+    "naimark_dilation_alone_derives_born_uniqueness": false,
+    "complex_model_selection_scope_is_explicit": false,
+    "independent_axiom_subsets_are_frozen_before_search": false
+  }
+}

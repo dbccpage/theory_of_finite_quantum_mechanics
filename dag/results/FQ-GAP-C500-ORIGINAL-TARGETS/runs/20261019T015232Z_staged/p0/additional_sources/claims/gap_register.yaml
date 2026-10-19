@@ -1,0 +1,1386 @@
+schema_version: 1.0.0
+book_eadc: EA:001.000.001
+authority_effect: None
+gaps:
+- gap_id: GAP-FQM-025
+  title: Fifteen restored current originals differ from their historical disposition hashes
+  type: false_receipt
+  blocking: None for the explicitly reconciled current FinQM imports; new or unrecorded drift is refused
+  status: DISCHARGED
+  opened: '2026-10-13'
+  affected_sources:
+  - SRC-000
+  - SRC-020
+  - SRC-060
+  - SRC-061
+  - SRC-120
+  - SRC-122
+  - SRC-200
+  - SRC-201
+  - SRC-202
+  - SRC-203
+  - SRC-204
+  - SRC-205
+  - SRC-209
+  - SRC-210
+  - SRC-211
+  description: 'All 67 restored originals resolve: 52 match the historical digest and 15 retain separately pinned
+    current observations. Each changed original has been compared with available historical/retained versions
+    and its complete current FinQM consumer rows. SRC-060 and SRC-122 are older versions superseded by the retained
+    imports. SRC-020 is read through the corrected retained version. SRC-200-205 are admitted as reserved slots
+    only. SRC-061 and SRC-209-211 are independently readmitted with specific interference, contextuality, Born
+    and stochastic-isometry corrections; their unknown historical text is not declared equivalent.'
+  retained_result: The historical 67 paper_sha256 fields and 15 current_observed_sha256 fields are preserved.
+    Tests now require the semantic reconciliation to bind exact source versions and downstream claims before a
+    discharged gap can authorize their use. Observation hashes alone, a bare DISCHARGED label or a missing source
+    still fail.
+  closure_obligation: Current-use reconciliation is complete only for the pinned versions and bound consumer contracts
+    in source_inventory.yaml. Any changed source bytes, changed claim statement/type/evidence, missing source
+    or invalid reconciliation requires a new explicit assessment before admission. The listed scientific and public-version
+    obligations remain separate; this is not blanket proof verification.
+  source_refs:
+  - claims/source_inventory.yaml
+  - claims/claim_ledger.yaml
+  - tests/legacy/unit/test_source_inventory.py
+  resolved_on: '2026-10-15'
+  resolution: CURRENT_CLAIM_USE_RECONCILED
+  closure_history:
+  - date: '2026-10-13'
+    status: DISCHARGED_FOR_CURRENT_USE
+    basis: Every affected source has an independently assessed semantic_reconciliation entry in source_inventory.yaml,
+      bound to the actual original/retained bytes and every downstream claim statement/type/evidence row. Historical
+      hashes and dispositions are preserved. Missing historical versions are explicitly superseded for current
+      use, not declared equivalent.
+  - date: '2026-10-15'
+    status: DISCHARGED_FOR_CURRENT_USE
+    basis: SRC-000 and SRC-120 changed on main (status line; mechanization pointer, declared d1 and certificate
+      paragraph). Both now carry pinned current observations and semantic_reconciliation entries bound to the
+      new original and retained bytes; their claim contracts are unchanged and their paper-archive copies were
+      refreshed to the current originals.
+  - date: '2026-10-15'
+    status: DISCHARGED_FOR_CURRENT_USE
+    basis: The publication review changed the main verb to "establishes" in three SRC-061 and SRC-122 claim
+      statements. The meaning, type and evidence of each row are unchanged; the two consumer contracts were
+      re-pinned after that comparison.
+- gap_id: GAP-FQM-024
+  title: Five retained source copies do not match the digests their dispositions were decided against
+  type: false_receipt
+  blocking: None for the explicitly reconciled current FinQM imports; new or unrecorded drift is refused
+  status: DISCHARGED
+  opened: '2026-10-12'
+  affected_sources:
+  - SRC-000
+  - SRC-020
+  - SRC-080
+  - SRC-120
+  - SRC-122
+  description: Five retained manuscripts differ from their historical disposition digests. Exact original bytes
+    are available for SRC-000/080/120, and the old SRC-122 manuscript was recovered from git. SRC-000 adds a migration
+    pointer; SRC-120 changes formatting; SRC-122 removes one obsolete reference path. SRC-080 adds substantive
+    results including an invalid centred-dual SDP, now explicitly excluded by corrected consumer rows. SRC-020
+    historical bytes remain unrecovered in the searched named-source history; the retained v3.0.3 import was independently
+    reassessed with explicit normalization, representation and proof-premise corrections.
+  retained_result: All five retained_sha256 observations remain unchanged, as do paper_sha256 and historical dispositions.
+    Current claim use is replaced by the scoped per-source decisions; the retained files and the 37/336-file snapshots
+    are not edited. This discharge does not equate either retained published-source version with its Zenodo deposit
+    or authorize replacement; GAP-FQM-009 remains the public-version obligation.
+  closure_obligation: Current-use reconciliation is complete only for the pinned versions and bound consumer contracts
+    in source_inventory.yaml. Any changed source bytes, changed claim statement/type/evidence, missing source
+    or invalid reconciliation requires a new explicit assessment before admission. The listed scientific and public-version
+    obligations remain separate; this is not blanket proof verification.
+  source_refs:
+  - claims/source_inventory.yaml
+  - claims/claim_ledger.yaml
+  - tests/legacy/unit/test_source_inventory.py
+  - tests/legacy/unit/test_retained_sources.py
+  resolved_on: '2026-10-13'
+  resolution: CURRENT_CLAIM_USE_RECONCILED
+  closure_history:
+  - date: '2026-10-13'
+    status: DISCHARGED_FOR_CURRENT_USE
+    basis: Every affected source has an independently assessed semantic_reconciliation entry in source_inventory.yaml,
+      bound to the actual original/retained bytes and every downstream claim statement/type/evidence row. Historical
+      hashes and dispositions are preserved. Missing historical versions are explicitly superseded for current
+      use, not declared equivalent.
+- gap_id: GAP-FQM-021
+  title: Primitive difference does not yet select the declared quantum model or readout
+  type: open_bridge
+  blocking: Unconditional primitive-to-QM reconstruction
+  status: OPEN
+  reopened: '2026-10-11'
+  description: >-
+    Direct packet consumption is an integration result, not a derivation of the packet or quantum
+    interpretation from primitive difference. The audited legacy complete-walk version computed a floating-point
+    subtraction, then supplied its complexes, rational Cayley parameter, cyclotomic weights, detector
+    and squared-amplitude readout independently. The difference value did not construct those inputs.
+    The exact pairing engine explicitly calls norm_sq; its I3 cancellation is conditional on that
+    declared quadratic rule. Cochain identities, positivity and endpoint normalization alone leave
+    alternative readouts available on the same carrier.
+  retained_result: >-
+    GAP-FQM-005 remains discharged: declared finite models have executable integration paths.
+    Exact rational/cyclotomic calculations inside those paths retain their stated scope; the legacy
+    cochain classifier uses numerical LP tolerance and is not an exact certificate.
+  closure_obligation: >-
+    Specify admitted native Genesis histories and protected questions; construct and justify a faithful
+    quotient and the observable/scalar structure; justify the readout, composition, positivity and
+    process-availability premises. Show which choices are forced and which remain physical imports.
+    Wiring a declared model through a packet, or checking I3=0 after defining a square, is insufficient.
+  source_refs:
+  - tests/legacy/e2e/test_quantum_walk_e2e.py::TestDirectCochainPacketWalkE2E
+  - tests/legacy/e2e/conftest.py::ExactChainCochainPairing.probability_quadratic_from_complex
+  - ../../omega_engine_projects/ms_majorana/code/tests/support/finite_qm/use_cases/cochain.py
+  - ../../omega_engine/crates_rs/tests/omega_quantum_physics/synthesis/quadratic_readout_interference.rs
+  - research/qm_primitive_readout_boundary.md
+  closure_history:
+  - date: '2026-09-06'
+    status: CLAIMED_DISCHARGED
+    claim: >-
+      The direct cochain packet walk was described as an executed derivation from primitive
+      difference through the cochain complex to physical quantum predictions.
+  - date: '2026-10-11'
+    status: REOPENED_AFTER_SOURCE_AUDIT
+    reason: >-
+      The test establishes model integration with declared quantum inputs. The primitive scalar
+      is not used to construct the packet or readout. Historical receipts and changelog entries
+      are retained as records of their revisions, not as current closure evidence.
+- gap_id: GAP-F001-S000-001
+  title: Exact duality gap certificate
+  type: open_bridge
+  blocking: Ch05 zero-duality-gap claim
+  description: 'QM_080 Thm 5 asserts quotient duality in finite dimension. Atlas DualWitness.lean is a
+    2-integer pairing bound and a Mermin-Peres sign-parity obstruction. It is a candidate mirror for QM-120,
+    not a duality certificate for QM_080 Theorems 5-6. A compiling Lean file is a candidate mirror, not
+    an admission.
+
+    '
+  source_refs:
+  - qm_080 §2
+  - DualWitness.lean (candidate_mirror for QM-120 only)
+- gap_id: GAP-F001-S000-002
+  title: Continuum Hilbert lift
+  type: continuum_interface
+  status: PRICED_CONTINUUM_INTERFACE
+  resolution: PRICED_CONTINUUM_INTERFACE
+  blocking: No chapter closure
+  description: The transition from the finite presented carrier (integer weights, finite report labels)
+    to a continuous infinite-dimensional Hilbert space is not constructed in any source paper. QM_122
+    §6 explicitly refuses this. The discrete/continuum boundary is an open asymptotic interface, refused
+    in the finite presentation. Canonical continuous observables [X, P] = i hbar I have no finite-dimensional
+    representation (Wintner-Wielandt theorem).
+  costed_statement: Requires topological completion of l1/l2 normed space, infinite-dimensional operator
+    domain, and non-admitted canonical commutation [X, P] = i hbar I (unrealizable in finite dimension
+    by Wintner-Wielandt trace theorem).
+  defended_disposition: PRICED_CONTINUUM_INTERFACE. The finite programme stops at discrete dimension d < infty.
+    Continuum Hilbert space completion is an imported asymptotic boundary, requiring Cauchy completeness,
+    infinite dimensions (for CCR [X, P] = i*hbar*I), and continuous sphere topology (for Born uniqueness).
+  source_refs:
+  - qm_122 §6
+  - qm_020 demotion box
+  - lean4/H056ContinuumLiftBoundary.lean
+  - code/continuum_lift.py
+  - code_rs/src/continuum.rs
+  - evidence/continuum_lift_boundary.json
+- gap_id: GAP-F001-S000-003
+  title: Corpus rewrite admission
+  type: open_bridge
+  blocking: Book lifecycle admission
+  description: 'The whole-program QM rewrite has not been completed. The book README carries a deferred
+    tag. This consolidation pass does not discharge that tag; it narrows its scope.
+
+    '
+  source_refs:
+  - book/README.md coalescence status
+- gap_id: GAP-F001-S000-004
+  title: Born uniqueness (Gleason)
+  type: continuum_interface
+  status: OPEN (CONDITIONAL)
+  resolution: OPEN (CONDITIONAL)
+  blocking: Ch02 Born uniqueness claim
+  description: Born uniqueness of the quadratic form requires imported Hilbert space, projection lattices,
+    and Gleason-type assumptions (QM_020 Theorem 6). On the two-label host the dimension extra fails (QM_122
+    H017Gleason) because 2-dimensional systems admit non-contextual hidden variables. A genuine binary non-Born frame function on rational two-vectors is proved in
+    the repository module GleasonRationalPlane.lean (binary_values, scale_invariant,
+    orthogonal_frame_sum, no_quadratic_representation). The older
+    GleasonTheorem.lean d2_binary_non_bornian_obstruction only establishes integer
+    odd-coefficient arithmetic, not a frame-function representation theorem. At d >= 3, the finite integer partition is not a topology proof for
+    S(Q(zeta_n)^3) and does not construct a non-Bornian
+    frame function on Q(zeta_n)^3 (the d=3 rival f_rival(v) = (v_0^2 + v_2^2)/(2 ||v||^2) is generated by valid density matrix
+    diag(1/2, 0, 1/2)). The Cabello 18-ray witness establishes state-independent non-contextuality defect on finite configurations,
+    leaving Born rule derivation vs declaration as an open conditional question on general dense subfields.
+  costed_statement: Standard Gleason representation uses the complete real/complex
+    projection domain in dimension at least three and its frame-additivity and
+    positivity hypotheses. This does not prove that continuum completion or an
+    independently postulated continuity condition is necessary on every smaller domain.
+  defended_disposition: OPEN (CONDITIONAL). Uniqueness of the quadratic Born rule on dense cyclotomic subfields
+    without continuous sphere topology remains open. Finite configurations (Cabello 18-ray) force contextuality
+    defects; disconnectedness alone is not a proof that every algebraic-domain
+    representation theorem fails. H058 establishes d=2 four-effect tomography and recovery under its stated frame
+    assumptions. Rational homogeneity requires a supplied RationalHomogeneityWitness2;
+    d=3 coordinate uniqueness assumes the off-diagonal equalities.
+    Global positive effect-state representation in arbitrary dimension and projection-only
+    Gleason uniqueness on dense cyclotomic subfields remain unproved here.
+  busch_effect_frame_resolution: H058 establishes d=2 four-effect tomography and recovery under its stated frame
+    assumptions. Rational homogeneity requires a supplied RationalHomogeneityWitness2;
+    d=3 coordinate uniqueness assumes the off-diagonal equalities.
+    Global positive effect-state representation in arbitrary dimension and projection-only
+    Gleason uniqueness on dense cyclotomic subfields remain unproved here.
+  source_refs:
+  - qm_020 Theorem 6
+  - qm_122 §7.2 (H017Gleason)
+  - lean4/GleasonTheorem.lean (d2_binary_non_bornian_obstruction)
+  - lean4/H054GleasonCyclotomicObstruction.lean
+  - code/gleason_cyclotomic.py
+  - code_rs/src/gleason.rs
+  - evidence/gleason_cyclotomic_obstruction.json
+  - lean4/H058EffectFrameBusch.lean
+  - code/busch_effects.py
+  - code_rs/src/busch_effects.rs
+  - evidence/busch_effect_frame.json
+  - lean4/H064ContextualityThresholds.lean
+  - code/contextuality_thresholds.py
+  - code_rs/src/contextuality_thresholds.rs
+  - evidence/c250_block07_contextuality.json
+- gap_id: GAP-F001-S000-005
+  title: U(1) circle construction
+  type: open_bridge
+  blocking: Ch03 holonomy transport
+  description: 'The circle group is not constructed on the finite host. Under the extra "not of exponent
+    two", the sign group {+1,-1} is excluded (QM_122 H011Circle). Gaussian units and a three-cycle meet
+    the extra. The circle group itself, and continuity of a one-parameter phase group, remain hypotheses.
+
+    '
+  source_refs:
+  - qm_122 §7.1 item 3
+  - qm_062
+- gap_id: GAP-F001-S000-006
+  title: Hilbert tensor product uniqueness
+  type: open_bridge
+  status: OPEN
+  resolution: RIVAL_EXCLUDED_UNIQUENESS_OPEN
+  blocking: Ch04 composite-system uniqueness
+  description: 'On Bool x Bool, a bilinear integer-homogeneous Kronecker-normalized product equals the
+    pointwise product (QM_122 H014Bilin). A weaker same-host combining interface has a dump-the-right-report
+    rival (QM_122 H014Interface). Hilbert tensor product as the unique way to combine systems remains
+    extra structure. Campaign C250 Block 05 excludes the locality-dropping rival
+    u boxtimes v = (<0|v> + <1|v>) u by failure of local unitary covariance.
+    H062 explicitly leaves four-axiom uniqueness unproved; the native
+    tensor_unique_under_axioms returns None. Additional invisible summands are
+    not excluded by listing bilinearity, covariance, product marginals
+    and no-signaling.'
+  costed_statement: 'OPEN. Specify the composite carrier and observable class,
+    a generation/local-tomography or minimality condition excluding invisible
+    sectors, and prove uniqueness under that complete premise package.'
+  defended_disposition: 'One exact rival is excluded. No classification or
+    conditional tensor-uniqueness theorem is claimed.'
+  source_refs:
+  - qm_122 §7.1 item 4
+  - qm_070
+- gap_id: GAP-F001-S000-007
+  title: CPTP channel class definition
+  type: open_bridge
+  status: DEFINED
+  resolution: DEFINED
+  blocking: Ch05 channel theory
+  description: 'No channel class is defined on the finite host. Collapse non-reversibility and failure
+    of a same-basis isometry are not CPTP obstructions (QM_122 §7.2). The class of completely positive
+    trace-preserving maps is imported from standard quantum information theory. In Campaign C250 Block 06,
+    the CPTP channel class is defined constructively on Q(zeta_n) via the positive semi-definiteness of the
+    Choi matrix under the declared real embedding, with trace preservation as an exact rational identity.
+    A spectral or fixed-Kraus construction can require square roots outside
+    its coefficient field, but this is not a channel-wide necessity.
+    channel_census.rs implements LDL* with rational four-square splitting;
+    all eight declared census examples, including depolarizing p=1/7, admit
+    an enlarged rational Kraus family without conductor escalation.'
+  costed_statement: 'DEFINED under declared scalar embedding, Choi positivity
+    and trace preservation. For rational/Gaussian-rational PSD Choi matrices,
+    LDL* and four-square splitting avoid spectral square roots by allowing
+    more Kraus operators. Minimal-rank dilation and other scalar fields require
+    separate arguments.'
+  defended_disposition: 'Exact declared channel constructions; no derivation
+    of physical availability or general fixed-field minimal dilation is claimed.'
+  source_refs:
+  - qm_122 §7.2
+  - qm_080 C2
+- gap_id: GAP-F001-S000-008
+  title: Continuous time and Stone theorem
+  type: continuum_interface
+  status: PRICED_CONTINUUM_INTERFACE
+  resolution: PRICED_CONTINUUM_INTERFACE
+  blocking: No chapter (deferred)
+  description: 'The two-state toggle has no report-level square root (QM_122 H016).
+    Complex interpolants are not unique because of matrix-logarithm branches.
+    The declared integral-unitary argument and selected rational rotations
+    distinguish finite and infinite orders; rational entries alone do not imply
+    infinite order. Dense-orbit closure already uses an ambient topology and
+    does not select a one-parameter interpolation or its generator.'
+  costed_statement: 'Topology, continuous-time interpolation and generator
+    choices remain explicit additional premises in both periodic and aperiodic
+    examples. No zero-declaration continuum reconstruction is established.'
+  defended_disposition: 'PRICED_CONTINUUM_INTERFACE. Preserve exact finite-order
+    and infinite-order witnesses, separately from the open continuum bridge.'
+  source_refs:
+  - qm_122 §3.3 extra-structure table
+  - qm_122 §7.1 item 6 (continuous time)
+  - lean4/H055DiscreteDynamicsStone.lean
+  - code/discrete_dynamics.py
+  - code_rs/src/dynamics.rs
+  - evidence/discrete_dynamics_stone.json
+  - block_04/result.json
+  - code/dynamics_dichotomy.py
+  - code_rs/src/dynamics_dichotomy.rs
+  - lean4/H061DynamicsDichotomy.lean
+  - evidence/c250_block04_dynamics.json
+- gap_id: GAP-F001-S000-009
+  title: Ordinary M_n(C) recovery
+  type: open_bridge
+  blocking: Ch06 finite Hilbert boundary
+  description: 'M_n(Z[i]) is recovered for finite enumerated report sets (QM_122 H017Fin). This is not
+    M_n(C). GaussInt is not a field. A self-adjoint GaussInt matrix need not have a GaussInt eigenvalue.
+    Recovering M_n(C) would not by itself recover finite quantum theory; state positivity, effects, composite
+    structure, channel structure, Born uniqueness, and continuous dynamics remain separately priced.
+
+    '
+  source_refs:
+  - qm_122 §7.2
+- gap_id: GAP-F001-S000-010
+  title: Gleason dimension extra at n >= 3
+  type: continuum_interface
+  status: OPEN (CONDITIONAL)
+  resolution: OPEN (CONDITIONAL)
+  historical_resolution: REFUSED-DERIVABLE (CONTINUUM IMPORT REQUIRED); withdrawn by PR 205 review
+  blocking: Ch06 Born pairing uniqueness
+  description: A three-label cardinality surrogate (3 <= |Q|) is false on Bool (QM_122 H017Gleason). The
+    weaker unit-effect contract already has two disagreeing pairings (QM_122 H013Contract). The dimension-2
+    rational-plane frame-function obstruction is mechanized in the repository
+    GleasonRationalPlane.lean; the older GleasonTheorem.lean only supplies arithmetic witnesses.
+    Gleason frame additivity at n >= 3 is verified over orthogonal triads, but uniqueness under the full
+    continuum package (noncontextuality, sigma-additivity, continuity) stays imported. Finite ray configurations
+    such as the Cabello 18-ray configuration in d=4 over Q(zeta_12) admit quadratic trace-one representations that are non-PSD despite satisfying
+    the declared frame constraints. This finite example does not prove
+    non-quadraticity on a complete ray domain.
+  costed_statement: Finite configurations alone do not enforce global PSD. The full dense-sphere
+    question requires a typed theorem or counterexample; neither is established here.
+  defended_disposition: OPEN (CONDITIONAL). No theorem here shows that continuum completion
+    is necessary. H054 supplies finite matrix checks and an integer partition, not sphere topology.
+    H058 establishes d=2 four-effect tomography and recovery under its stated frame
+    assumptions. Rational homogeneity requires a supplied RationalHomogeneityWitness2;
+    d=3 coordinate uniqueness assumes the off-diagonal equalities.
+    Global positive effect-state representation in arbitrary dimension and projection-only
+    Gleason uniqueness on dense cyclotomic subfields remain unproved here.
+  busch_effect_frame_resolution: H058 establishes d=2 four-effect tomography and recovery under its stated frame
+    assumptions. Rational homogeneity requires a supplied RationalHomogeneityWitness2;
+    d=3 coordinate uniqueness assumes the off-diagonal equalities.
+    Global positive effect-state representation in arbitrary dimension and projection-only
+    Gleason uniqueness on dense cyclotomic subfields remain unproved here.
+  source_refs:
+  - qm_122 §7.2 (H017Gleason)
+  - qm_122 §7.1 item 5 (H013Contract)
+  - lean4/GleasonTheorem.lean (quad_frame_sum, d2_binary_non_bornian_obstruction)
+  - lean4/H054GleasonCyclotomicObstruction.lean
+  - code/gleason_cyclotomic.py
+  - code_rs/src/gleason.rs
+  - evidence/gleason_cyclotomic_obstruction.json
+  - lean4/H058EffectFrameBusch.lean
+  - code/busch_effects.py
+  - code_rs/src/busch_effects.rs
+  - evidence/busch_effect_frame.json
+- gap_id: GAP-F001-S000-011
+  title: Everett branch counting rational sector boundary and irrational wall
+  type: continuum_interface
+  status: PRICED_CONTINUUM_INTERFACE
+  resolution: REFUSED_BEYOND_RATIONAL_SECTOR
+  blocking: Everett branch counting representation of Born weights
+  description: Equal-weight branch counting in an Everett forking tree reproduces Born weights if and
+    only if all branch weights lie in the rational field Q. For states with Born weights in the irrational
+    sector Q(zeta_n)^+ \ Q (witnessed at minimal conductor n=5 with weights (5 +- sqrt(5))/10), no finite
+    integer fine-graining N = \sum m_j can satisfy m_j / N = w_j. Extending branch counting to the irrational
+    sector requires infinite branch limits or continuous topological completion, which are refused by the finite
+    cyclotomic carrier.
+  costed_statement: Requires infinite-depth forking trees or topological limits of rational approximation
+    sequences, unconstructible on finite discrete carriers.
+  defended_disposition: REFUSED_BEYOND_RATIONAL_SECTOR. Branch counting representation of Born weights is
+    derived on the rational sector via minimal fine-graining of multiplicity N* = lcm(denominators) (e.g. N* = 25
+    for Target 8 Bell-CHSH), but strictly refused on the irrational sector Q(zeta_n)^+ \ Q without continuous
+    topological completion.
+  source_refs:
+  - lean4/H059RationalSector.lean
+  - code/branch_finegraining.py
+  - code_rs/src/branch_finegraining.rs
+  - evidence/branch_finegraining.json
+  - block_02/result.json
+- gap_id: GAP-F001-S000-012
+  title: Choice of real embedding declaration
+  type: continuum_interface
+  status: OPEN (DECLARED_EXTERNAL_ASSUMPTION)
+  resolution: DECLARED_EXTERNAL_ASSUMPTION
+  blocking: Mixed state positivity and Archimedean ordering
+  description: 'The maximal totally real subfield Q(zeta_n)^+ has phi(n)/2 real embeddings into R (16 at target conductor n=120). Pure state Gram matrices are totally positive (positive semidefinite under all real embeddings), but mixed state witnesses exist starting at minimal conductor n=5 (witness W_5 = diag(sqrt(5)-2, 3-sqrt(5))) that are positive semidefinite under one real embedding and indefinite under another. The Galois group Gal(Q(zeta_n)/Q) acts transitively on Emb(n); no finite algebraic structure within Q(zeta_n) distinguishes an ordered real embedding without an external declaration.'
+  costed_statement: 'Requires 1 external declaration selecting an ordered real embedding iota: Q(zeta_n)^+ -> R.'
+  defended_disposition: 'DECLARED_EXTERNAL_ASSUMPTION. Selection of an ordered real embedding is an external declaration (count = 1). Pure states require zero declarations as their Gram matrices are totally positive across all real embeddings. Mixed states and density operators with irrational eigenvalues require an embedding declaration to evaluate positivity.'
+  source_refs:
+  - lean4/H060EmbeddingRelativity.lean
+  - code/c250_b03_embeddings.py
+  - code/embedding_relativity.py
+  - code_rs/src/c250_b03_embeddings.rs
+  - code_rs/src/embedding_relativity.rs
+  - evidence/c250_block03_embeddings.json
+  - block_03/result.json
+- gap_id: GAP-FQM-002
+  title: 24 claim rows carry no parseable type
+  type: triage_required
+  blocking: Ledger completeness
+  description: '24 of 189 consolidated rows had no status the parser could read, so they are typed UNTYPED.
+    Each needs a human decision: DEFINITION, SCOPE FENCE, CONDITIONAL, OPEN, or ASSERTED. Until then the
+    ledger''s type distribution understates what is unsupported.'
+  source_refs:
+  - finite_quantum_mechanics_claim_ledger.md
+- gap_id: GAP-FQM-003
+  title: The described algorithms have no implementation
+  type: missing_implementation
+  blocking: Any executable walk through the papers
+  description: The source papers specify machinery in prose - the M2 packet verifier V_Q, the four-way
+    ExactClass / ClosedResidual / ActiveClosureFailure / Refusal classifier, the finite-descent audit,
+    the cofiber-to-Banach quotient bridge - and none of it exists as code. The application's `code/` currently
+    holds only the five kernel routines carried in from F001/S000.
+  source_refs:
+  - qm_005 PO-D19a-e
+  - qm_006 descent audit
+  - qm_002 §2
+- gap_id: GAP-FQM-004
+  title: QM_001 execution receipt does not bind to its artifacts
+  type: false_receipt
+  blocking: Trust in any F004 execution receipt
+  description: '`001_.../evidence/execution_receipt.json` reports Lean `PASS` at `lean4/research_programs/003_quantum_foundations/003_qf001_witness.lean`,
+    a path that does not exist in this repository, and `PASS (60/60 claim bijection)` against a ledger
+    holding 45 rows. The receipt asserts an outcome it never computed. Treat every sibling receipt as
+    suspect until each is re-derived.'
+  source_refs:
+  - 001_tower_walk_registry_relative_interface_lift/evidence/execution_receipt.json
+- gap_id: GAP-FQM-006
+  title: QM_000 claims a Zenodo release it does not have
+  type: false_receipt
+  blocking: Provenance of every source header
+  description: 'RESOLVED 2026-09-04 (author confirmation + coda_atlas/F004_papers/zenodo_records.md):
+    none of the ten consolidated sources is on Zenodo. All eight real paper titles are absent from the
+    33-record list. QM_000''s header nevertheless reads `**Status:** published Zenodo release`, and seven
+    others read `RELEASED`, which in this tree means released-in-tree and not published. The false header
+    is the gap: a status line that asserts a public record is a receipt, and this one does not bind. The
+    ten may be rewritten freely; the headers must be corrected first so the next reader is not misled
+    the way this consolidation was.'
+  source_refs:
+  - coda_atlas/F004_papers/zenodo_records.md
+  - 000_primitive_difference_for_quantum_carriers/primitive_difference_for_quantum_carriers.md (header)
+- gap_id: GAP-FQM-007
+  title: Zenodo titles drift from the in-tree titles for QM_020 and QM_080
+  type: triage_required
+  blocking: Any citation of the two genuinely published quantum papers
+  description: 'The two published quantum-foundations papers are outside this consolidation but bound
+    to it by subject, and their public titles do not match their in-tree titles. QM_020 is in-tree `Conditional
+    Hilbert Lifts of l1 Sector Weights and Born Normalization Redundancy`, published as `The Born Rule
+    and Hilbert Space Emergence from l1 Phase Averaging` (zenodo 20683775). QM_080 is in-tree `CPTP-Compatible
+    Obstruction Theory: Trace-Norm Geometry and Quantum Dual Witnesses`, published as `CPTP-Invariant
+    Obstruction Theory ...` (zenodo 20550459). The second drift is not cosmetic: in this tree''s vocabulary
+    `invariant` is a strictly stronger claim than `compatible`, so the public record may overclaim relative
+    to the paper it names. Establish which title the deposit actually carries before either is cited.'
+  source_refs:
+  - coda_atlas/F004_papers/zenodo_records.md
+  - coda_atlas/F004_papers/003_quantum_foundations/020_born_normalization_and_conditional_hilbert_lift
+  - coda_atlas/F004_papers/003_quantum_foundations/080_cptp_trace_norm_geometry_and_quantum_dual_witnesses
+- gap_id: GAP-FQM-008
+  title: QM_020 ships two different test files with the same basename
+  type: false_receipt
+  blocking: Any replay of QM_020's evidence
+  description: '`020_.../code/tests/test_qm020_born_lift.py` (195 lines) and `020_.../tests/test_qm020_born_lift.py`
+    (41 lines) are DIFFERENT files sharing a basename with no package marker, so pytest refuses to collect
+    them together: running the package''s own tests as a whole is an error, not a pass. Only the `code/tests`
+    copy is hashed in `evidence/qm_020_golden_receipt.json`; the outer copy is outside the receipt and
+    asserts a narrower set of facts. The canonical population per `docs/claim_code_map.yaml` is `code/tests`,
+    which passes 27/27 on its own. Delete or rename the unhashed duplicate before citing a whole-package
+    run.'
+  source_refs:
+  - 020_born_normalization_and_conditional_hilbert_lift/tests/test_qm020_born_lift.py
+  - 020_born_normalization_and_conditional_hilbert_lift/evidence/qm_020_golden_receipt.json
+- gap_id: GAP-FQM-009
+  title: QM_020 is consolidated but published, so it is not free to rewrite
+  type: triage_required
+  blocking: Any rewrite or retirement of QM_020
+  description: 'The 000-035 pass pulled QM_020 into the consolidation. It has a public Zenodo deposit
+    (20683775), so unlike the other twenty sources it cannot be rewritten in place: an edit forks from the
+    published record rather than replacing it. Decide the relationship - erratum, new version, or superseding
+    paper - before editing. `free_to_rewrite: false` is recorded against it in claims/source_inventory.yaml
+    and enforced by code/tests/unit/test_publication_status.py.'
+  source_refs:
+  - claims/source_inventory.yaml
+  - https://zenodo.org/records/20683775
+- gap_id: GAP-FQM-010
+  title: QM_028 aliases a paper outside this consolidation
+  type: triage_required
+  blocking: Completeness of the U(1) selector thread
+  description: '`028_the_u1_selector` is a 12-line dual-alias stub pointing at `062_the_u1_selector`,
+    which is real but sits above the 035 cut. The U(1) selector argument is therefore present in this
+    consolidation only as a forward reference. Either pull 062 in or record the thread as deliberately
+    out of scope.'
+  source_refs:
+  - 028_the_u1_selector
+  - 062_the_u1_selector
+- gap_id: GAP-FQM-012
+  title: A scaffold stub carries a doc comment claiming it is mechanized
+  type: false_receipt
+  blocking: Trust in any Lean doc comment in the scaffold tree
+  description: >-
+    This legacy gap records a scaffold doc comment claiming mechanization without a corresponding
+    proof. No source reference is currently retained in this row. Restoring this required description
+    restates the existing gap; it does not revalidate the historical audit or supply missing evidence.
+  source_refs: []
+- gap_id: GAP-FQM-014
+  title: The audit's own evidence is not committed
+  type: open_bridge
+  blocking: Replaying any audit verdict
+  description: PAPER_CLAIM_MAP.md says of itself that its narrative cells are truncated summaries and
+    that the un-truncated audit evidence lives in workflow transcript wf_7387b23a-e18, which is not committed
+    to this repository. So its 98 verdicts - including all 31 refutations - are triage signals, not replayable
+    receipts. Either commit a compact workflow specification with an exact custody pointer, or re-derive
+    the verdicts that matter.
+  source_refs:
+  - 122_finite_hilbert_boundary_from_primitive_difference/evidence/PAPER_CLAIM_MAP.md
+- gap_id: GAP-FQM-017
+  title: QM_208-211 claim maps point at libraries that do not exist
+  type: false_receipt
+  blocking: Any promotion of QM_208-211 claims
+  description: Each of 208, 209, 210 and 211 ships a docs/claim_code_map.yaml binding its claims to a
+    `qm2NN_lib.qm2NN_lib_core` module. None of those four libraries exists; the only *_lib directory in
+    the corpus is qm122_lib. The referenced test files do exist, but they are the standard tautology,
+    so the maps promise a binding they cannot deliver. This consolidation admits only map entries whose
+    files are present, so the four contribute no evidence.
+  source_refs:
+  - 208_quadratic_l2_readout_and_interference_boundary/docs/claim_code_map.yaml
+  - 209_non_commutative_operator_algebra_and_contextuality/docs/claim_code_map.yaml
+  - 210_born_rule_postulate_and_state_effect_pairing/docs/claim_code_map.yaml
+  - 211_continuous_unitary_dynamics_and_l1_to_qm_synthesis/docs/claim_code_map.yaml
+- gap_id: GAP-FQM-019
+  title: The eight unreplayed claims need a Mathlib build to promote
+  type: open_bridge
+  blocking: The 8 LEAN SOURCE (UNREPLAYED) rows
+  description: The declarations those claims cite - directProb_sum_eq_one, l1Norm_add_of_disjointSupport,
+    bornNormalization_redundant_certificate, finiteRowDescentCompatible_iff_rowSupportSubsingleton and
+    the rest - all live in lean4/original_lean_20260809/qm_l010_01_born_redundancy.lean (2,215 lines),
+    which imports Mathlib.Tactic. Of the 39-file import closure, 21 are transitively Mathlib-tainted and
+    every QM-specific one is among them. No prebuilt Mathlib exists anywhere in this repository. Promoting
+    the eight therefore costs a Mathlib toolchain build or cache fetch - a real, bounded task, but not
+    a free one.
+  source_refs:
+  - lean4/original_lean_20260809/qm_l010_01_born_redundancy.lean
+- gap_id: GAP-FQM-020
+  title: QM_122's axiom report is stale and one dependency is undisclosed
+  type: false_receipt
+  blocking: The 25 LEAN PROVED (RECEIPTED) rows
+  description: Replaying the build surfaced two things the recorded receipt cannot show. (1) evidence/AXIOM_REPORT.txt
+    is dated 2026-08-20 'review round 5' and names only 22 of the 53 Lean files now in the tree; H019-H027,
+    added since, are outside it entirely. (2) The replay reports 228 declarations with axiom dependencies,
+    of which 11 use Classical.choice. Ten are the receipt's disclosed exception (ratPack plus 9 per-law
+    Rat lemmas). The eleventh, H019.basisGen8_eval_pos, is NOT disclosed and sits outside the stated {propext,
+    Quot.sound} policy. The mathematics may be fine; the receipt is no longer a description of
+    the tree. Regenerate it over all 53 files and either disclose that dependency or remove it.
+  source_refs:
+  - 122_finite_hilbert_boundary_from_primitive_difference/evidence/AXIOM_REPORT.txt
+  - apps/finite_qm/evidence/lake_replay_20260905.json
+- gap_id: GAP-FQM-022
+  title: QM_122's provenance points at sources that do not exist
+  type: false_receipt
+  blocking: Provenance of QM_122's `brought/` material
+  description: '`122_.../docs/provenance.md` records, for each file under `brought/`, a "Live original
+    now:" location. Two of its four pointers do not resolve, and both aim into `coda_university/coda_genx/2_use_for_finite_quantum_mechanics/complex_lift_uniqueness_toy/`
+    - `readme.md` and `uniqueness_ledger.md`. That directory held no files at all; it was six empty folders,
+    and it was deleted on 2026-09-05. One of the two is written as `.../uniqueness_ledger.md` with a literal
+    ellipsis, so it could never have resolved. The pointers were dangling before the deletion, not because
+    of it: a provenance record naming a live original that is not there is a receipt about custody that
+    does not bind. Either restore the originals from history or rewrite those rows to say the source is
+    gone. Note the file is inside the retained verbatim copy of QM_122, so the fix belongs upstream in
+    coda_atlas, not in apps/finite_qm/sources/.'
+  source_refs:
+  - coda_atlas/F004_papers/003_quantum_foundations/122_finite_hilbert_boundary_from_primitive_difference/docs/provenance.md
+- gap_id: GAP-FQM-023
+  title: Transcendental von Neumann entropy interface for mixed states
+  type: continuum_interface
+  blocking: None (external interface priced with certified error bound)
+  status: PRICED_CONTINUUM_INTERFACE
+  resolution: PRICED_CONTINUUM_INTERFACE
+  description: >-
+    For any mixed density operator with algebraic spectrum, von Neumann entropy S(rho) = -Tr(rho log rho)
+    exits the cyclotomic carrier Q(zeta_n) and is transcendental by Baker's Theorem (1975) on non-vanishing
+    linear forms in logarithms (Anchor A1). It is strictly refused as a carrier-internal quantity (C750-T558,
+    C750-T559). When evaluated for external thermodynamic interfaces, it must carry a certified rational interval
+    enclosure [L_k, U_k] with metric width |U_k - L_k| <= 2^-k and explicit error obligation |S(rho) - S_mid| <= 2^-k.
+  metric: Rational interval enclosure [L_k, U_k] with L_k <= S(rho) <= U_k
+  error_obligation: Width bound U_k - L_k <= 2^-k for declared precision k >= 1
+  source_refs:
+  - Anchor A1 (Baker 1975, Chapters 1-3)
+  - Anchor A2 (Lindemann-Weierstrass)
+  - code/c750_b01_entropy_verdict.py
+  - code/c750_b01_entropy_approx.py
+  - evidence/c750_b01_reduction_proof.md
+  - lean4/FiniteQm/C750/B01/Reduction.lean
+  - lean4/FiniteQm/C750/B01/Purity.lean
+- gap_id: GAP-C500-LAUNCH
+  title: C500 launch class and prospective custody are not established
+  type: evidence_vacuum
+  blocking: false
+  status: RESOLVED
+  resolution: RESOLVED
+  resolution_date: '2026-09-09'
+  unblock_reference: apps/finite_qm/evidence/c500_certification_receipt_20260909.json
+  description: The original campaign requires two independent pre-execution bet sets, a tool/input census,
+    and an inhabited frozen FQMC-1 class. The publication does not establish them; fresh replay cannot repair
+    their historical timing.
+  evidence:
+  - evidence/c500_certification_receipt_20260909.json
+  - evidence/C500_FQMC1_CLOSURE.md
+  - campaigns/c500/INSTRUCTIONS.md
+  - campaigns/c500_execution/WITHDRAWAL.md
+  open_or_invalid_standing_clauses:
+  - M4
+  - M6
+  - M8
+  - J3
+- gap_id: GAP-C500-PINS
+  title: Published C500 predecessor bindings failed replay
+  type: false_receipt
+  blocking: false
+  status: RESOLVED
+  resolution: RESOLVED
+  resolution_date: '2026-09-09'
+  unblock_reference: apps/finite_qm/evidence/c500_certification_receipt_20260909.json
+  description: 28 of 33 asserted predecessor Git blob IDs mismatch the publication commit; all five Block 01
+    recorded C250 pins match. Current replay hashes certify current file identity only.
+  evidence:
+  - evidence/c500_certification_receipt_20260909.json
+  - evidence/C500_FQMC1_CLOSURE.md
+  - campaigns/c500_execution/withdrawn_pin_audit.json
+  - campaigns/c500_execution/replay_manifest.json
+- gap_id: GAP-C500-B01
+  title: C500 Block 01 original target contract remains open
+  type: open_bridge
+  blocking: false
+  status: RESOLVED_WITH_SCOPED_EVIDENCE
+  resolution: RESOLVED
+  resolution_date: '2026-09-09'
+  unblock_reference: apps/finite_qm/evidence/c500_certification_receipt_20260909.json
+  description: launch input census; general field/ring theorem scope; every requested norm bound; mutation
+    adequacy and cited-theorem/axiom census at original scope. Exact rational/cyclotomic matrix fixtures and
+    Lean integer matrix statements at dimensions 2 and 3. General field/ring and all-dimension prose is not
+    supplied by these Lean proofs.
+  unresolved_targets:
+  - C500-T301
+  - C500-T302
+  - C500-T303
+  - C500-T304
+  - C500-T305
+  - C500-T306
+  - C500-T307
+  - C500-T308
+  - C500-T309
+  - C500-T310
+  - C500-T311
+  - C500-T312
+  - C500-T313
+  - C500-T314
+  - C500-T315
+  - C500-T316
+  - C500-T317
+  - C500-T318
+  - C500-T319
+  - C500-T320
+  - C500-T321
+  - C500-T322
+  - C500-T323
+  - C500-T324
+  - C500-T325
+  open_or_invalid_bet_clauses: []
+  evidence:
+  - evidence/c500_certification_receipt_20260909.json
+  - evidence/C500_FQMC1_CLOSURE.md
+  - campaigns/c500_execution/block_01/review.json
+  - campaigns/c500_execution/block_01/RESULT.md
+- gap_id: GAP-C500-B02
+  title: C500 Block 02 original target contract remains open
+  type: open_bridge
+  blocking: false
+  status: RESOLVED_WITH_SCOPED_EVIDENCE
+  resolution: RESOLVED
+  resolution_date: '2026-09-09'
+  unblock_reference: apps/finite_qm/evidence/c500_certification_receipt_20260909.json
+  description: launch-frozen phase/dimension corpus; irrational schedules; all-candidate parity; uniform approximation
+    and Bott-obstruction hypotheses. Exact rational phase-grid and normalized trace/rank formulas on the emitted
+    finite schedule. Winding metadata and a finite grid do not prove a uniform analytic approximation or operator-algebra
+    obstruction theorem.
+  unresolved_targets:
+  - C500-T326
+  - C500-T327
+  - C500-T328
+  - C500-T329
+  - C500-T330
+  - C500-T331
+  - C500-T332
+  - C500-T333
+  - C500-T334
+  - C500-T335
+  - C500-T336
+  - C500-T337
+  - C500-T338
+  - C500-T339
+  - C500-T340
+  - C500-T341
+  - C500-T342
+  - C500-T343
+  - C500-T344
+  - C500-T345
+  - C500-T346
+  - C500-T347
+  - C500-T348
+  - C500-T349
+  - C500-T350
+  open_or_invalid_bet_clauses:
+  - M2
+  - M5
+  evidence:
+  - evidence/c500_certification_receipt_20260909.json
+  - evidence/C500_FQMC1_CLOSURE.md
+  - campaigns/c500_execution/block_02/review.json
+  - campaigns/c500_execution/block_02/RESULT.md
+- gap_id: GAP-C500-B03
+  title: C500 Block 03 original target contract remains open
+  type: open_bridge
+  blocking: false
+  status: RESOLVED_WITH_SCOPED_EVIDENCE
+  resolution: RESOLVED
+  resolution_date: '2026-09-09'
+  unblock_reference: apps/finite_qm/evidence/c500_certification_receipt_20260909.json
+  description: irreducibility and all-representation uniqueness; intertwiners; composite-modulus theorem hypotheses;
+    exact representation census. Finite Heisenberg multiplication/action checks and declared representation-count
+    formulas. The census does not classify all irreducible representations, and the Lean table theorem does
+    not prove Stone-von Neumann uniqueness.
+  unresolved_targets:
+  - C500-T351
+  - C500-T352
+  - C500-T353
+  - C500-T354
+  - C500-T355
+  - C500-T356
+  - C500-T357
+  - C500-T358
+  - C500-T359
+  - C500-T360
+  - C500-T361
+  - C500-T362
+  - C500-T363
+  - C500-T364
+  - C500-T365
+  - C500-T366
+  - C500-T367
+  - C500-T368
+  - C500-T369
+  - C500-T370
+  - C500-T371
+  - C500-T372
+  - C500-T373
+  - C500-T374
+  - C500-T375
+  open_or_invalid_bet_clauses:
+  - M1
+  - M3
+  - M5
+  - J2
+  evidence:
+  - evidence/c500_certification_receipt_20260909.json
+  - evidence/C500_FQMC1_CLOSURE.md
+  - campaigns/c500_execution/block_03/review.json
+  - campaigns/c500_execution/block_03/RESULT.md
+- gap_id: GAP-C500-B04
+  title: C500 Block 04 original target contract remains open
+  type: open_bridge
+  blocking: false
+  status: RESOLVED_WITH_SCOPED_EVIDENCE
+  resolution: RESOLVED
+  resolution_date: '2026-09-09'
+  unblock_reference: apps/finite_qm/evidence/c500_certification_receipt_20260909.json
+  description: matrix-algebra embedding classification; actual state/channel intertwiners; functorial subsystem
+    compatibility beyond divisibility arithmetic. Divisibility and phase-compatibility tests on named dimensions,
+    plus arithmetic chain checks. General matrix *-homomorphism classification and functorial state/channel
+    compatibility remain open.
+  unresolved_targets:
+  - C500-T376
+  - C500-T377
+  - C500-T378
+  - C500-T379
+  - C500-T380
+  - C500-T381
+  - C500-T382
+  - C500-T383
+  - C500-T384
+  - C500-T385
+  - C500-T386
+  - C500-T387
+  - C500-T388
+  - C500-T389
+  - C500-T390
+  - C500-T391
+  - C500-T392
+  - C500-T393
+  - C500-T394
+  - C500-T395
+  - C500-T396
+  - C500-T397
+  - C500-T398
+  - C500-T399
+  - C500-T400
+  open_or_invalid_bet_clauses:
+  - M3
+  - M5
+  evidence:
+  - evidence/c500_certification_receipt_20260909.json
+  - evidence/C500_FQMC1_CLOSURE.md
+  - campaigns/c500_execution/block_04/review.json
+  - campaigns/c500_execution/block_04/RESULT.md
+- gap_id: GAP-C500-B05
+  title: C500 Block 05 original target contract remains open
+  type: open_bridge
+  blocking: false
+  status: RESOLVED_WITH_SCOPED_EVIDENCE
+  resolution: RESOLVED
+  resolution_date: '2026-09-09'
+  unblock_reference: apps/finite_qm/evidence/c500_certification_receipt_20260909.json
+  description: common topology and comparison maps; benchmark convergence theorem; metric/error bound; p-adic
+    completion identification. Rational fuzzy-coordinate norm/Casimir formulas and rank-one trace-versus-norm
+    tables. These tables do not establish metric-space convergence, a weak-* topology on one common state space,
+    or a field-completion theorem.
+  unresolved_targets:
+  - C500-T401
+  - C500-T402
+  - C500-T403
+  - C500-T404
+  - C500-T405
+  - C500-T406
+  - C500-T407
+  - C500-T408
+  - C500-T409
+  - C500-T410
+  - C500-T411
+  - C500-T412
+  - C500-T413
+  - C500-T414
+  - C500-T415
+  - C500-T416
+  - C500-T417
+  - C500-T418
+  - C500-T419
+  - C500-T420
+  - C500-T421
+  - C500-T422
+  - C500-T423
+  - C500-T424
+  - C500-T425
+  open_or_invalid_bet_clauses:
+  - M2
+  - M5
+  - M6
+  - J2
+  evidence:
+  - evidence/c500_certification_receipt_20260909.json
+  - evidence/C500_FQMC1_CLOSURE.md
+  - campaigns/c500_execution/block_05/review.json
+  - campaigns/c500_execution/block_05/RESULT.md
+- gap_id: GAP-C500-B06
+  title: C500 Block 06 original target contract remains open
+  type: open_bridge
+  blocking: false
+  status: RESOLVED_WITH_SCOPED_EVIDENCE
+  resolution: RESOLVED
+  resolution_date: '2026-09-09'
+  unblock_reference: apps/finite_qm/evidence/c500_certification_receipt_20260909.json
+  description: actual matrix-exponential/product-formula errors; certified commutator majorants; volume-uniform
+    local dynamics and Lieb-Robinson hypotheses. Scalar product-formula expressions conditional on declared
+    nonnegative commutator bounds, and schematic local/global error scaling. No Hamiltonian evolution comparison
+    or volume-uniform Lieb-Robinson estimate is proved by these tables.
+  unresolved_targets:
+  - C500-T426
+  - C500-T427
+  - C500-T428
+  - C500-T429
+  - C500-T430
+  - C500-T431
+  - C500-T432
+  - C500-T433
+  - C500-T434
+  - C500-T435
+  - C500-T436
+  - C500-T437
+  - C500-T438
+  - C500-T439
+  - C500-T440
+  - C500-T441
+  - C500-T442
+  - C500-T443
+  - C500-T444
+  - C500-T445
+  - C500-T446
+  - C500-T447
+  - C500-T448
+  - C500-T449
+  - C500-T450
+  open_or_invalid_bet_clauses:
+  - M5
+  evidence:
+  - evidence/c500_certification_receipt_20260909.json
+  - evidence/C500_FQMC1_CLOSURE.md
+  - campaigns/c500_execution/block_06/review.json
+  - campaigns/c500_execution/block_06/RESULT.md
+- gap_id: GAP-C500-B07
+  title: C500 Block 07 original target contract remains open
+  type: open_bridge
+  blocking: false
+  status: RESOLVED_WITH_SCOPED_EVIDENCE
+  resolution: RESOLVED
+  resolution_date: '2026-09-09'
+  unblock_reference: apps/finite_qm/evidence/c500_certification_receipt_20260909.json
+  description: launch-frozen rival/axiom subsets; operational model witnesses; reconstruction and drop-one
+    independence evidence. Declared state-space dimension formulas and a four-label operational-axiom comparison
+    table. Table selection is conditional on the supplied axiom values; reconstruction and axiom-independence
+    proofs remain open.
+  unresolved_targets:
+  - C500-T451
+  - C500-T452
+  - C500-T453
+  - C500-T454
+  - C500-T455
+  - C500-T456
+  - C500-T457
+  - C500-T458
+  - C500-T459
+  - C500-T460
+  - C500-T461
+  - C500-T462
+  - C500-T463
+  - C500-T464
+  - C500-T465
+  - C500-T466
+  - C500-T467
+  - C500-T468
+  - C500-T469
+  - C500-T470
+  - C500-T471
+  - C500-T472
+  - C500-T473
+  - C500-T474
+  - C500-T475
+  open_or_invalid_bet_clauses:
+  - M6
+  evidence:
+  - evidence/c500_certification_receipt_20260909.json
+  - evidence/C500_FQMC1_CLOSURE.md
+  - campaigns/c500_execution/block_07/review.json
+  - campaigns/c500_execution/block_07/RESULT.md
+- gap_id: GAP-C500-B08
+  title: C500 Block 08 original target contract remains open
+  type: open_bridge
+  blocking: false
+  status: RESOLVED_WITH_SCOPED_EVIDENCE
+  resolution: RESOLVED
+  resolution_date: '2026-09-09'
+  unblock_reference: apps/finite_qm/evidence/c500_certification_receipt_20260909.json
+  description: launch-frozen game family; NPA matrices and feasibility; strategy extraction; theorem-level
+    correlation-set inclusions. Exact rational enclosure arithmetic for the cited CHSH value expression, plus
+    separate correlation-model labels and cited guardrails. No NPA implementation, extracted strategy, or general
+    correlation solver is supplied.
+  unresolved_targets:
+  - C500-T476
+  - C500-T477
+  - C500-T478
+  - C500-T479
+  - C500-T480
+  - C500-T481
+  - C500-T482
+  - C500-T483
+  - C500-T484
+  - C500-T485
+  - C500-T486
+  - C500-T487
+  - C500-T488
+  - C500-T489
+  - C500-T490
+  - C500-T491
+  - C500-T492
+  - C500-T493
+  - C500-T494
+  - C500-T495
+  - C500-T496
+  - C500-T497
+  - C500-T498
+  - C500-T499
+  - C500-T500
+  open_or_invalid_bet_clauses:
+  - M6
+  evidence:
+  - evidence/c500_certification_receipt_20260909.json
+  - evidence/C500_FQMC1_CLOSURE.md
+  - campaigns/c500_execution/block_08/review.json
+  - campaigns/c500_execution/block_08/RESULT.md
+- gap_id: GAP-C500-B09
+  title: C500 Block 09 original target contract remains open
+  type: open_bridge
+  blocking: false
+  status: RESOLVED_WITH_SCOPED_EVIDENCE
+  resolution: RESOLVED
+  resolution_date: '2026-09-09'
+  unblock_reference: apps/finite_qm/evidence/c500_certification_receipt_20260909.json
+  description: launch-frozen extrapolation grid; broader many-body observables; separate volume, truncation
+    and spacing estimates. The explicit two-site Ising Hamiltonian has characteristic polynomial x^4-6*x^2+5
+    and algebraic spectrum {-sqrt(5),-1,1,sqrt(5)}. A finite plaquette parity calculation is separate from
+    any continuum or thermodynamic limit.
+  unresolved_targets:
+  - C500-T501
+  - C500-T502
+  - C500-T503
+  - C500-T504
+  - C500-T505
+  - C500-T506
+  - C500-T507
+  - C500-T508
+  - C500-T509
+  - C500-T510
+  - C500-T511
+  - C500-T512
+  - C500-T513
+  - C500-T514
+  - C500-T515
+  - C500-T516
+  - C500-T517
+  - C500-T518
+  - C500-T519
+  - C500-T520
+  - C500-T521
+  - C500-T522
+  - C500-T523
+  - C500-T524
+  - C500-T525
+  open_or_invalid_bet_clauses:
+  - M6
+  evidence:
+  - evidence/c500_certification_receipt_20260909.json
+  - evidence/C500_FQMC1_CLOSURE.md
+  - campaigns/c500_execution/block_09/review.json
+  - campaigns/c500_execution/block_09/RESULT.md
+- gap_id: GAP-C500-B10
+  title: C500 Block 10 original target contract remains open
+  type: open_bridge
+  blocking: false
+  status: RESOLVED_WITH_SCOPED_EVIDENCE
+  resolution: RESOLVED
+  resolution_date: '2026-09-09'
+  unblock_reference: apps/finite_qm/evidence/c500_certification_receipt_20260909.json
+  description: launch-frozen inhabited system class; original-clause evidence graph; declaration necessity;
+    theorem and computation census; qualified campaign adjudication. A checker inventories the original ten
+    README obligations as OPEN_UNVERIFIED and records the missing launch-frozen class. Its open terminal reports
+    missing evidence, not closure of a finite operational theory.
+  unresolved_targets:
+  - C500-T526
+  - C500-T527
+  - C500-T528
+  - C500-T529
+  - C500-T530
+  - C500-T531
+  - C500-T532
+  - C500-T533
+  - C500-T534
+  - C500-T535
+  - C500-T536
+  - C500-T537
+  - C500-T538
+  - C500-T539
+  - C500-T540
+  - C500-T541
+  - C500-T542
+  - C500-T543
+  - C500-T544
+  - C500-T545
+  - C500-T546
+  - C500-T547
+  - C500-T548
+  - C500-T549
+  - C500-T550
+  open_or_invalid_bet_clauses:
+  - M2
+  - M5
+  - M7
+  - J1
+  - J2
+  evidence:
+  - evidence/c500_certification_receipt_20260909.json
+  - evidence/C500_FQMC1_CLOSURE.md
+  - campaigns/c500_execution/block_10/review.json
+  - campaigns/c500_execution/block_10/RESULT.md
+app: apps/finite_qm
+note: Gaps GAP-F001-S000-* are carried in verbatim from coda_atlas/F001_quantum/S000_finite_quantum_mechanics/001_.../claims/gap_register.yaml.
+  GAP-FQM-001..007 were opened by the 2026-09-04 consolidation of sources 000-010, -008..011 by the extension
+  to 000-035, and -012..017 by the whole-corpus pass over all 67.
+published_sources:
+  note: 'The only Zenodo-published papers in 003_quantum_foundations. The whole-corpus pass pulled BOTH
+    inside the consolidation, so neither is free to rewrite: an edit forks from the public record rather
+    than replacing it.'
+  records:
+  - dir: 020_born_normalization_and_conditional_hilbert_lift
+    zenodo: https://zenodo.org/records/20683775
+    consolidated: true
+    free_to_rewrite: false
+  - dir: 080_cptp_trace_norm_geometry_and_quantum_dual_witnesses
+    zenodo: https://zenodo.org/records/20550459
+    consolidated: true
+    free_to_rewrite: false
+retained_sources:
+  note: >-
+    Historical copies held under sources/ at author request, independently of later changes or
+    retirement of the coda_atlas originals. The 2026-09-04 byte-identity statement is a historical
+    report, not a claim about current originals. The 2026-10-13 review found that the current QM060
+    and QM122 originals have diverged, while all 37 and 336 retained files respectively still match
+    the earlier finite_qm_file_manifest.yaml pins at commit
+    7cd08f596ad05fd168ba3dac4e40a715ed829f05. tests/legacy/unit/test_retained_sources.py checks that
+    frozen snapshot contract. The separate current-use reconciliation for GAP-FQM-024 is recorded
+    above and bound to explicit source versions and corrected consumer claims; byte custody alone
+    does not establish that semantic decision.
+  dirs:
+  - 060_superposition_as_the_quotient_fiber
+  - 122_finite_hilbert_boundary_from_primitive_difference
+discharged:
+- gap_id: GAP-FQM-001
+  title: Evidence vacuum under the F004 quantum-foundations claims
+  closed: '2026-09-05'
+  note: 'Discharged by deletion. The 801 `theorem X : True := by trivial` declarations that stood in for
+    sibling programmes that were also 100% stubs - 001_finite_obstruction_calculus (1,545), 004_general_relativity
+    (67), 005_mind_and_consciousness (36) - plus 17 pure-stub files inside 000_coda and 002_projection_obstruction.
+    132 files in all. Lakefiles and import aggregators were kept; 143 files with real content remain across
+    three programmes. The Python analogue went the same way: 61 test files whose only assertion was `assert
+    mod is not None or True`. NOTHING WAS PROMOTED BY THIS. The claims those stubs pretended to support
+    were already typed with evidence `none`, and they still are; what changed is that the tree no longer
+    offers a green build in place of a proof. The inventory now records `no_lean_file` for 64 sources
+    rather than a stub count.'
+- gap_id: GAP-FQM-005
+  title: No end-to-end walk exists
+  closed: '2026-09-05'
+  note: 'Discharged. A 170-test, 3,331-line, five-tier end-to-end suite was found at the corpus root -
+    `003_quantum_foundations/tests/e2e/`, outside every paper package and run by nothing - and moved into
+    `code/tests/e2e/`, where the application''s suite now runs it. Tier 4 executes real quantum scenarios:
+    a discrete Mach-Zehnder interferometer, a Sorkin 3-slit interference measurement, rational Cayley
+    discrete time evolution, Cabello glued-interface state filtering, and a monotone admission pipeline
+    with entropy audit. Tier 1 covers diamond-complex Stokes, cyclotomic-12 algebra, bilinear pairing,
+    quadratic readout at p=2 and the vanishing of Sorkin I3. Fixtures are exact `Fraction` arithmetic.
+    It passes 170/170. What it does not do is start from a primitive-difference carrier - see GAP-FQM-021.'
+- gap_id: GAP-FQM-011
+  title: QM_001's one real test is bound to no claim
+  closed: '2026-09-04'
+  note: 'Discharged, but NOT as opened. The gap said QM_001''s `code/test_qm_001_tower_walk.py` ''asserts
+    something real - a lift map is linear with constant difference 2 - unlike the tautology in the same
+    package'', and called populating its claim map the cheapest promotion in the corpus. That premise
+    was WRONG. The test builds `lift_map = {n: float(n*2)}` and then asserts `lift_map[n] == float(n*2)`:
+    it checks a dict comprehension against the expression that produced it. It is a tautology with extra
+    steps, no failure of QM-001-C1 could make it fail, and its docstring''s claim to verify C1 was false.
+    Populating the map would have manufactured exactly the false receipt this application exists to catch.
+
+    What was done instead: QM_001''s claim-code map, which bound C1 to the non-existent module `qm001_lib.qm001_core`,
+    was emptied; the test''s docstring was corrected in place; and the QM-001 claims that ARE finitely
+    checkable were implemented and tested independently. `code/cochain.py` computes the §1 packet - D(x,y)=y-x,
+    d1 d0 = 0, the weighted L1 norm, Phi_1 as an exact linear program, Gamma_2, and the trichotomy - and
+    `code/tests/unit/test_cochain.py` checks C4, C5 and C6 with negative controls. Six deliberate mutations
+    of the implementation were all killed by the suite. Registered as FQM-E6 through E9: the first evidence
+    this application produced rather than inherited.
+
+    QM-001-C1 itself, the conditional forced-lift implication, remains unevidenced and stays ASSERTED.'
+- gap_id: GAP-FQM-013
+  title: 31 claims were refuted by audit and the source ledgers still carry them
+  closed: '2026-09-04'
+  note: 'Discharged. All 31 rows were re-verified against the tree and then withdrawn in place across
+    eleven packages (061, 200-205, 208-211): five RELEASED/v1.0 headers demoted to the INTERNAL DRAFT
+    v0.1 their own status boxes already declared; nine Witnesses inventory slots withdrawn for naming
+    certifiers that do not exist; ten mutation audits rewritten from a 100% pass to NOT RUN; five claim-code
+    maps emptied of bindings to phantom `*_lib` modules; QM_061''s ''five axiom-free theorems'' count
+    withdrawn as never recounted under the pinned toolchain; and QM_208''s paper filename and canonicality
+    line corrected. Nothing was deleted outright. No mathematical claim changed - every repair was to
+    packaging that asserted evidence which does not exist. Each package''s change log carries the dated
+    entry.'
+- gap_id: GAP-FQM-015
+  title: The archived Lean the audit cites has no lake project here
+  closed: '2026-09-05'
+  note: 'Partially discharged, and re-scoped as GAP-FQM-019. The Mathlib-free transitive closure of lean4/original_lean_20260809
+    - 15 files, the primitive-difference and obstruction-pipeline base - was pulled into apps/finite_qm/lean4/FiniteQuantum,
+    imports normalised to on-disk stems, and now BUILDS: 17 files, 254 theorems, 0 True-stubs, 0 sorry,
+    every axiom within {propext, Quot.sound}. That also verifies DualWitness and FiniteDensity, which
+    the v0.1.0 entry could only call sorry-free by inspection. What is NOT discharged: the eight LEAN
+    SOURCE (UNREPLAYED) claims cite PaperQF002 declarations in qm_l010_01_born_redundancy.lean, which
+    imports Mathlib.Tactic. Every QM-specific file in that closure is transitively Mathlib-tainted, so
+    promoting those eight needs a Mathlib build. See GAP-FQM-019.'
+- gap_id: GAP-FQM-016
+  title: QM_122's real Lean is receipted but has no lakefile in tree
+  closed: '2026-09-05'
+  note: 'Discharged. A lakefile, lake-manifest and toolchain pin landed with the QM_122 monograph merge,
+    and the build was then REPLAYED in this worktree rather than trusted: `lake build` exits 0 over 53
+    files with 0 errors and 0 sorry, no Mathlib and no external packages. QM_060 and QM_061 also now ship
+    buildable Lean projects and both build clean. The replay, with a full #print axioms sweep, is recorded
+    in apps/finite_qm/evidence/lake_replay_20260905.json.'
+- gap_id: GAP-FQM-018
+  title: Mutation-audit files asserting a 100% pass against no code
+  closed: '2026-09-04'
+  note: 'Discharged. All remaining mutation-audit files that ASSERTED a 100% pass are withdrawn in place:
+    51 reading `Passes 100%.` plus the QM_208 and QM_209 single-guard variants. Each package was checked
+    individually first and all were uniform - one test file, zero source modules, no `*_lib`, and the
+    test''s only assertion the tautology `assert mod is not None or True`. Nothing was deleted; each file
+    now records what it used to say and why the figure could not have been computed. Together with the
+    ten repaired under GAP-FQM-013, all 63 mutation audits in the corpus are now honest.
+
+    CORRECTION: this gap was opened saying 59 files remained. That figure was wrong - it came from a loose
+    text match that also counted the withdrawal notes written under GAP-FQM-013, which quote the old wording.
+    The true count was 53. The same false positive had already been fixed in code/tests/unit/test_withdrawn_rows.py
+    hours earlier and was then repeated in prose; the sweep script and the tests now share the assertion-form
+    match.'
+- gap_id: GAP-C1000-001
+  title: Causal order is an admitted external datum, not supplied by finite quantum carrier
+  type: declared_assumption
+  blocking: false
+  description: 'Campaign C1000 Block 01 adjudicates that algebraic number field carriers Q(zeta_n) supply no relation between spacetime events. The causal order is admitted as an external datum (partial order on events), with carrier-internal incidence algebra and Möbius inversion at zero conductor cost.'
+  evidence:
+  - campaigns/c1000/block_01/RESULT.md
+  - evidence/causal_order_receipt.json
+  - campaigns/c1000/block_01/result.json
+- gap_id: GAP-C1000-002
+  title: Tensor composition rule is an admitted assumption, not derived from carrier
+  type: declared_assumption
+  blocking: false
+  description: 'Campaign C1000 Block 02 adjudicates that no-signalling across spacelike separated regions is derived from the admitted tensor composition rule and unique partial trace, not directly from the finite quantum carrier Q(i). The composition rule is typed as a declared assumption.'
+  evidence:
+  - campaigns/c1000/block_02/RESULT.md
+  - evidence/no_signalling_receipt.json
+  - campaigns/c1000/block_02/result.json
+- gap_id: GAP-C1000-003
+  title: Conductor prices of finite rotation groups in SO(3)
+  type: proved_theorem
+  blocking: false
+  description: 'Campaign C1000 Block 03 establishes that under the REAL_ORTHOGONAL dimension 3 convention, octahedral group closes at cyclotomic conductor 1, tetrahedral group closes at conductor 1, icosahedral group closes at conductor 5 (with no rational realization possible because order-5 traces force sqrt(5) into the trace field), and cyclic/dihedral families close at lcm(m, 4) for m >= 3.'
+  evidence:
+  - campaigns/c1000/block_03/RESULT.md
+  - evidence/rotation_groups_receipt.json
+  - campaigns/c1000/block_03/result.json
+- gap_id: GAP-C1000-004
+  title: Lorentz boosts close into no finite subgroup at any conductor
+  type: proved_theorem
+  blocking: false
+  description: 'Campaign C1000 Block 04 establishes that exact rational Lorentz boosts exist in SO(1, 1; Q) and SO(2, 1; Q) with gamma = 5/4, beta*gamma = 3/4, but close into no finite group at any conductor. By elementary eigenvalue analysis without invoking Cartan, eigenvalues 2 and 1/2 prevent any power from equaling identity in characteristic zero. The height sequence grows as 4^k + 1 with exact denominator 2^{k+1} in lowest terms, independently agreeing with C750 block 06 with zero C750 artifacts consumed.'
+  evidence:
+  - campaigns/c1000/block_04/RESULT.md
+  - evidence/lorentz_boost_receipt.json
+  - campaigns/c1000/block_04/result.json
+- gap_id: GAP-C1000-005
+  title: Two-boost composition in SO(2, 1; Q) is aperiodic with infinite-order rotational factor
+  type: proved_theorem
+  blocking: false
+  description: 'Campaign C1000 Block 05 establishes that the composition of two rational boosts in SO(2, 1; Q) uniquely decomposes into a symmetric boost and a rotation with rational cosine. For frozen pair B2, cos(theta) = 40/41 lies strictly outside Niven exceptional set {0, +-1/2, +-1}, showing infinite order via Niven (Anchor B2). Enumeration of 1445 boost pairs at the bound exhibits 289 collinear exceptions (cos = 1) and zero non-collinear periodic pairs, independently agreeing with C750 block 06 with zero C750 artifacts consumed.'
+  evidence:
+  - campaigns/c1000/block_05/RESULT.md
+  - evidence/boost_composition_receipt.json
+  - campaigns/c1000/block_05/result.json
+- gap_id: GAP-C1000-006
+  title: Exact field supremum of CHSH expression over cyclotomic carriers with conductor not divisible by 8
+  type: open_question
+  blocking: false
+  description: 'Campaign C1000 Block 06 establishes that Tsirelson quantum bound 2*sqrt(2) is attained if and only if 8 divides the conductor (attained at conductor 8 by Q2 witness). For conductors not divisible by 8 (such as conductor 4 with Gaussian rationals Q(i)), 2*sqrt(2) is outside the carrier field. At height bound H=5, the exact maximum is 14/5 (deficit polynomial 25x^2 + 140x - 4 = 0). The exact field supremum of the CHSH expression over the full infinite set of unit vectors in Q(zeta_n)^2 without height bound remains an open question.'
+  evidence:
+  - campaigns/c1000/block_06/RESULT.md
+  - evidence/quantum_correlation_receipt.json
+  - campaigns/c1000/block_06/result.json
+- gap_id: GAP-C1000-007
+  title: Cohomological obstruction classes for measurement scenarios over non-binary coefficient rings
+  type: open_question
+  blocking: false
+  description: 'Campaign C1000 Block 07 establishes exact cohomological obstruction classes over Z_2 for the Cabello 18-ray configuration X1 ([c_X1] != 0 in H^1(U, F; Z_2) ~= Z_2) and the negative control product scenario X2 ([c_X2] = 0 in H^1(U, F; Z_2) witnessed by exhibited global section [1, 1, 0, 0]). Non-contextuality verdicts are strictly scoped to the declared coefficient group Z_2. The computation of presheaf cohomology obstruction classes over general rings (e.g. Z, Q, or cyclotomic rings Z[zeta_n]) and the systematic classification of scenarios whose contextuality status changes across coefficient rings remain open.'
+  evidence:
+  - campaigns/c1000/block_07/RESULT.md
+  - evidence/contextuality_obstruction_receipt.json
+  - campaigns/c1000/block_07/result.json
+- gap_id: GAP-C1000-008
+  title: Finite microcausality and commuting observable embeddings for causal posets on multi-factor quantum carriers
+  type: open_question
+  blocking: false
+  description: 'Campaign C1000 Block 08 establishes that for the bipartite Q1 carrier algebra Herm_4(Q(i)) = Herm_2 \otimes Herm_2, non-degenerate commuting observable assignments exist if and only if the incomparability graph inc(P) is bipartite (no odd cycles), yielding an obstruction for the 3-element antichain and 7 out of 21 posets at n in {3, 4}. For multipartite quantum carriers with k > 2 tensor factors (e.g. Herm_{2^k}(Q(i))), the exact general criterion corresponds to k-colorability of inc(P). The constructive extension of this microcausality framework to variable-factor carriers and relativistic causal sets with bounded degree remains open.'
+  evidence:
+  - campaigns/c1000/block_08/RESULT.md
+  - evidence/commuting_observables_receipt.json
+  - campaigns/c1000/block_08/result.json
+- gap_id: GAP-C1000-009
+  title: Group parameter typing and Lindemann-Weierstrass dichotomy for finite quantum carriers
+  type: open_question
+  blocking: false
+  description: 'Campaign C1000 Block 09 establishes that non-identity group parameters for one-parameter subgroups in SO(3), SO(2,1), and unitary dynamics with algebraic matrix entries are transcendental via Lindemann-Weierstrass (Anchor B1). The algebraic carrier Q1 holds group elements while refusing non-identity parameters, interfacing with external transcendental parameters via certified rational intervals.'
+  evidence:
+  - campaigns/c1000/block_09/RESULT.md
+  - evidence/group_parameter_receipt.json
+  - campaigns/c1000/block_09/result.json
+- gap_id: GAP-C1000-010
+  title: Causal price list totality and FQMR-1 finite quantum mechanics class closure
+  type: open_question
+  blocking: false
+  description: 'Campaign C1000 Block 10 establishes that the consolidated causal price list (47 rows across 2 admissions, 13 imported structures, 25 external parameters and declared bounds, and 7 field extensions) achieves bidirectional totality, and all 10 FQMR-1 clauses are discharged against the launch-frozen class FQMR-1-CLASS-V1, establishing terminal outcome FQMR1_CLOSED_AT_DECLARED_CLASS on the declared carrier Q1 without spacetime claims.'
+  evidence:
+  - campaigns/c1000/block_10/RESULT.md
+  - evidence/causal_price_list_receipt.json
+  - campaigns/c1000/block_10/result.json
+atlas_review_findings:
+  note: 'Review findings against commit 860ebf6 across coda_atlas recorded as text per workspace fence rule.'
+  findings:
+  - id: ATLAS-REV-01
+    topic: quotient_duality_formula
+    location: coda_atlas/F001_quantum/S000_finite_quantum_mechanics/001_from_primitive_difference_to_quantum_mechanics/book/ch05_cptp_trace_norm_geometry_and_dual_witnesses.md:37-39
+    finding: '(C_1/ker\partial_1)^* was identified with ker\partial_1^*. The correct dual is the annihilator (ker\partial_1)^\perp = im\partial_1^*. On a triangle, the spaces have dimensions 2 versus 1. Divergence-free witnesses belong to the dual of the quotient by coboundaries.'
+  - id: ATLAS-REV-02
+    topic: finite_chains_quadratic_readout
+    location: coda_atlas/F001_quantum/S000_finite_quantum_mechanics/001_from_primitive_difference_to_quantum_mechanics/book/ch02_conditional_hilbert_lift_and_born_normalization.md:475-476
+    finding: 'Higher-degree readouts are not obstructed by discreteness alone. A finite, rational three-slit assignment P(S) = |S|^4/81 gives I_3 = 4/9. Quadratic detector structure must be an explicit assumption; I_3 = 0 does not establish that assumption.'
+  - id: ATLAS-REV-03
+    topic: cabello_psd_admission_vs_gluing
+    location: coda_atlas/F001_quantum/S000_finite_quantum_mechanics/001_from_primitive_difference_to_quantum_mechanics/book/ch05_cptp_trace_norm_geometry_and_dual_witnesses.md:88-89
+    finding: 'filter_state explicitly calls is_psd_4x4. An exact rational matrix can satisfy all 18 ray constraints and 9 frame sums, passing gluing, but have negative eigenvalue -1/100. Positivity is an admission filter, not derived from gluing alone.'
+  - id: ATLAS-REV-04
+    topic: dual_certificate_lean_scope
+    location: coda_atlas/F001_quantum/S000_finite_quantum_mechanics/001_from_primitive_difference_to_quantum_mechanics/book/ch05_cptp_trace_norm_geometry_and_dual_witnesses.md:50-51
+    finding: 'DualWitness.lean establishes an upper bound for an already supplied witness against two integers; it does not establish matrix-witness existence or zero duality gap. General matrix-witness attainment remains open.'
+  - id: ATLAS-REV-05
+    topic: row_sparsity_markov_descent
+    location: coda_atlas/F001_quantum/S000_finite_quantum_mechanics/001_from_primitive_difference_to_quantum_mechanics/book/ch03_superposition_fibers_and_u1_holonomy.md:26-27
+    finding: 'Row sparsity fails for T = diag(1, 2) which fixes probability vertices but shifts (1/2, 1/2) to (1/5, 4/5). Nonlinear normalized descent must be distinguished from linear stochastic kernels.'
+  - id: ATLAS-REV-06
+    topic: finite_unitary_scope
+    location: coda_atlas/F001_quantum/S000_finite_quantum_mechanics/001_from_primitive_difference_to_quantum_mechanics/book/ch01_from_primitive_difference_to_quantum_carriers.md:59
+    finding: 'Finite unitaries are not confined to signed permutations; exact rational rotations like (3/5, -4/5; 4/5, 3/5) exist. Scope must be restricted to integer-lattice orthogonal maps or simultaneous l1/l2 isometries.'
+  - id: ATLAS-REV-07
+    topic: resource_deficit_entanglement
+    location: coda_atlas/F001_quantum/S000_finite_quantum_mechanics/001_from_primitive_difference_to_quantum_mechanics/book/ch04_entanglement_and_separability_obstructions.md:60-63
+    finding: 'Resource deficit Delta_1,2 measures basis-dependent amplitude spread, positive even on product vector (1, 1) \otimes (1, 1) (Delta_1,2 = 12 > 0). Entanglement requires a separate nonfactorization criterion.'
+  - id: ATLAS-REV-08
+    topic: cyclotomic_holonomy_assumption
+    location: coda_atlas/F001_quantum/S000_finite_quantum_mechanics/001_from_primitive_difference_to_quantum_mechanics/book/ch01_from_primitive_difference_to_quantum_carriers.md:34-35
+    finding: 'H021 explicitly assigns rho_J := i and rho_tau := zeta_3 and checks identities; it does not derive assignments from boundary geometry alone. Representation and coefficient ring are assumptions.'
+  - id: ATLAS-REV-09
+    topic: recoupling_pentagon_coherence
+    location: coda_atlas/F001_quantum/S000_finite_quantum_mechanics/001_from_primitive_difference_to_quantum_mechanics/book/ch06_contextuality_and_operator_algebra_boundaries.md:33-34
+    finding: '5D paths agree on e_0 but disagree on e_1; 2D check establishes S_3 braid relation. Claim must be scoped to finite braid relation rather than general coherent tensor associator family.'
+  - id: ATLAS-REV-10
+    topic: source_inventory_formal_bindings
+    location: coda_atlas/F001_quantum/S000_finite_quantum_mechanics/001_from_primitive_difference_to_quantum_mechanics/claims/source_inventory.yaml:175-192
+    finding: 'Source inventory references older path containing receipts but no Lean files. SRC-QM-209 hash is stale. Upstream bindings require path and hash synchronization.'
+  - id: ATLAS-REV-11
+    topic: repo_root_discovery_depth
+    location: coda_atlas/F001_quantum/reconciliation/round_01/tools/qm_corpus_lib.py:133-134
+    finding: 'parents[7] climbs too far in current layout (requires parents[5]); sentinel-based discovery is preferred.'
+  - id: ATLAS-REV-12
+    topic: density_validation_tolerance
+    location: density_matrix.py:7-9
+    finding: 'Retaining NumPy default relative tolerance (rtol=1e-5) accepted Hermiticity and trace errors ~1e-6 when tol=1e-9. Remediated in apps/finite_qm/code/density_matrix.py by setting rtol=0.0.'
+  - id: ATLAS-REV-13
+    topic: measurement_rare_outcome_deletion
+    location: density_matrix.py:17-22
+    finding: 'Thresholding at 1e-12 deleted valid rare outcomes (p = 1e-13). Remediated in apps/finite_qm/code/density_matrix.py by separating zero-probability outcomes (p <= 0) from valid positive outcomes (p > 0).'
