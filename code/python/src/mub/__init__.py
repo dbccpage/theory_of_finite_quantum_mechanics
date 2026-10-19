@@ -55,9 +55,10 @@ def package_info() -> Dict[str, str]:
 
 
 def verify_mub_crate_invariants() -> bool:
-    """Top-level MUB invariant verification matching Rust verify_mub_crate_invariants()."""
-    d = 6
-    expected_overlap = Fraction(1, d)
-    if expected_overlap != Fraction(1, 6):
-        raise ValueError("MUB overlap mismatch")
+    """Top-level MUB invariant verification executing genuine algebraic checks."""
+    from .mub_verify.mub_triples import dita_seed_triple_columns, verify_triple_pairwise_mu
+    cols = dita_seed_triple_columns(0, 8)
+    if not verify_triple_pairwise_mu(cols):
+        raise ValueError("MUB triple pairwise mutual unbiasedness failed")
     return True
+

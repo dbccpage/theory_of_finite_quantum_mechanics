@@ -25,7 +25,7 @@ def test_tracked_release_outputs_cannot_enter_catalog_cycle(tmp_path: Path) -> N
     (paper / "README.md").write_text("Reviewed source.\n")
     catalog = paper / "finite_qm_file_manifest.yaml"
     catalog.write_text("metadata: {}\nfiles: []\n")
-    (paper / "SHA256SUMS").write_text("A separate generated checksum catalog.\n")
+    (paper / "sha256sums").write_text("A separate generated checksum catalog.\n")
     outputs = [
         paper / "dist/v0.54.1/release.zip",
         paper / "dist/v0.54.1/receipt.json",

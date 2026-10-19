@@ -229,7 +229,7 @@ REQUIRED_PUBLICATION_PATHS = {
     "000_projection_obstruction.tex",
     "PO000_ENVIRONMENT_RECEIPT.json",
     "PO000_REPRODUCTION_REQUIREMENTS.txt",
-    "PO000_LEAN_AXIOM_REPORT.txt",
+    "PO000_LEAN_axiom_report.txt",
     "PO000_LICENSE.md",
     "PO000_RELEASE_NOTES.md",
     "PO000_RELEASE_README.md",

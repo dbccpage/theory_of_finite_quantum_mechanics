@@ -11,4 +11,4 @@ The new files print their theorem axiom dependencies. Their compiled statements 
 
 **Withdrawal in place.** Earlier descriptions of `GenesisFspBridge` as a deductive ladder from the sealed inscription to Troyer–Wiese hardness are withdrawn. Its structures are independently admitted fixtures. `BqnfSignPacket` supplies scalar/Boolean routing abstractions and does not verify the validated Python witness router. Advanced physics-labelled modules establish only their actual conditional algebraic statements. A reflexive theorem about a status string is not evidence of physical or implementation correctness.
 
-See [PROVENANCE.md](PROVENANCE.md) and the package [verification receipt](../verification.md).
+See [provenance.md](provenance.md) and the package [verification receipt](../verification.md).

@@ -87,7 +87,7 @@ def main() -> None:
         paths = {}
         for relative in sorted(filter(None, tracked.split("\0"))):
             path = root / relative
-            if path in (manifest, project / "SHA256SUMS") or path.is_symlink() or not path.is_file():
+            if path in (manifest, project / "sha256sums") or path.is_symlink() or not path.is_file():
                 continue
             key = path.relative_to(project).as_posix()
             if key.split("/", 1)[0] == "dist" or ("/" not in key and path.suffix.lower() == ".zip"):
@@ -107,7 +107,7 @@ def main() -> None:
             rows.append(row)
         data["metadata"].update(
             cataloged_count=len(rows),
-            scope="Current tracked regular files, excluding this manifest, SHA256SUMS, dist/ outputs and root-level ZIP archives; nested historical ZIPs retain catalog custody and historical receipts retain their recorded revision scopes",
+            scope="Current tracked regular files, excluding this manifest, sha256sums, dist/ outputs and root-level ZIP archives; nested historical ZIPs retain catalog custody and historical receipts retain their recorded revision scopes",
             directories_walked=sorted({row["path"].replace("\\", "/").split("/")[0]
                                       for row in rows if "/" in row["path"].replace("\\", "/")}),
         )

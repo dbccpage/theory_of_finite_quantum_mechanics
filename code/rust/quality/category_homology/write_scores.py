@@ -190,7 +190,7 @@ def verify_dependencies(receipt, summary):
     if sha(dependency_path) != summary["dependency_receipt_sha256"]:
         raise SystemExit("Dependency receipt digest mismatch")
     dependency = json.loads(dependency_path.read_text())
-    checks = {"cargo-metadata.json":"metadata_sha256", "cargo-metadata.stderr.log":"stderr_sha256",
+    checks = {"cargo_metadata.json":"metadata_sha256", "cargo_metadata_stderr.log":"stderr_sha256",
               "dependency_manifest.json":"dependency_manifest_sha256", "run_audit.py":"harness_sha256"}
     for name, key in checks.items():
         if sha(receipt/name) != dependency[key]:

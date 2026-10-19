@@ -100,11 +100,8 @@ def test_part_3_qutrit_stabilizer_magic_wigner_dichotomy() -> None:
 
 def test_part_4_lean4_part8_parity() -> None:
     paper_root = Path(__file__).resolve().parents[3]
-    repo_root = Path(r"c:/Users/a343o/source/repos/the_symbol_game")
-    canonical_lean = repo_root / "lean4/quantum_mechanics/FiniteQM.lean"
     paper_lean = paper_root / "lean4/FiniteQM.lean" if (paper_root / "lean4/FiniteQM.lean").is_file() else paper_root / "lean/FiniteQM.lean"
-    if not canonical_lean.is_file():
-        canonical_lean = paper_root / "lean4" / "FiniteQM.lean" if (paper_root / "lean4" / "FiniteQM.lean").is_file() else paper_root / "lean" / "FiniteQM.lean"
+    canonical_lean = paper_lean
     assert canonical_lean.is_file()
     assert paper_lean.is_file()
     text = canonical_lean.read_text(encoding="utf-8")

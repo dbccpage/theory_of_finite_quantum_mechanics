@@ -67,9 +67,9 @@ def bind_dependencies(work, output):
     command = ["cargo","metadata","--offline","--quiet","--format-version","1"]
     started = time.monotonic()
     run = subprocess.run(command,cwd=work,text=True,capture_output=True)
-    metadata_path = output/"cargo-metadata.json"
+    metadata_path = output/"cargo_metadata.json"
     metadata_path.write_text(run.stdout,encoding="utf-8")
-    (output/"cargo-metadata.stderr.log").write_text(run.stderr,encoding="utf-8")
+    (output/"cargo_metadata_stderr.log").write_text(run.stderr,encoding="utf-8")
     if run.returncode != 0: raise RuntimeError("Offline dependency metadata failed; see retained stderr")
     metadata = json.loads(run.stdout)
     packages = metadata["packages"]
@@ -93,7 +93,7 @@ def bind_dependencies(work, output):
              "RUSTC","RUSTC_WRAPPER","RUSTC_WORKSPACE_WRAPPER","RUSTUP_TOOLCHAIN")
     record = {"AuthorityEffect":"None","command":command,"cwd":str(work),"exit_code":run.returncode,
               "elapsed_seconds":round(time.monotonic()-started,3),"metadata_sha256":digest(metadata_path),
-              "stderr_sha256":digest(output/"cargo-metadata.stderr.log"),
+              "stderr_sha256":digest(output/"cargo_metadata_stderr.log"),
               "dependency_manifest_sha256":digest(output/"dependency_manifest.json"),
               "harness_sha256":digest(output/"run_audit.py"),"tool_binaries":tool_binaries,
               "rustc_verbose":subprocess.check_output(["rustc","-vV"],text=True).strip(),
@@ -332,7 +332,7 @@ def main():
              "scope":"Designated critical faults only; no inference of a whole-directory grade.",
              "source_scope":args.scope,"mutation_prefix":args.mutation_prefix}
     write_json(output / "summary.json",final)
-    shutil.copy2(work / "Cargo.lock", output / "snapshot-Cargo.lock")
+    shutil.copy2(work / "Cargo.lock", output / "snapshot_cargo.lock")
     print(json.dumps(final,indent=2),flush=True)
     print("Receipt:",output,flush=True)
     # Only this run's derived binaries are disposable; preserve sources and logs.

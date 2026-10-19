@@ -1,0 +1,210 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: L1-QM020-THM1-DIRECT-NORMALIZATION
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: For weights w with total W != 0, P = w/W sums to one, is idempotent under renormalization,
+    and P(w) = P(w') iff w, w' lie on the same positive ray. Lean (BornRedundancy.lean) states this over List
+    Rat.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: &id001 []
+  source_bottleneck: none for the finite rational statement. Ledger-cited names PaperQF002 / L010_01_BornRedundancy
+    were not found as modules; BornRedundancy.lean (axioms include Classical.choice per its header) is the located
+    home.
+  source_refs:
+  - omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/020_born_normalization_and_conditional_hilbert_lift/born_normalization_and_conditional_hilbert_lift.md:123
+  - omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/020_born_normalization_and_conditional_hilbert_lift/qm_020_born_normalization_and_conditional_hilbert_lift_claim_ledger.md#C1
+  paper_refs:
+  - dag/derivations/08_l1_to_l2/tfq_0290_direct_normalization_of_sector_weights.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports before
+    reusing a result.
+  historical_paper_refs:
+  - papers/derivations/08_l1_to_l2/tfq_0290_direct_normalization_of_sector_weights.md
+  paper_relocations:
+  - from: papers/derivations/08_l1_to_l2/tfq_0290_direct_normalization_of_sector_weights.md
+    to: dag/derivations/08_l1_to_l2/tfq_0290_direct_normalization_of_sector_weights.md
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/08_l1_to_l2/tfq_0290_direct_normalization_of_sector_weights.md
+    sha256: 27e19e8682d69649ee0821a20010b9ef97dfcad5a20aaf56e410cf3ef464866d
+source_provenance:
+  repository: this_repository
+  commit: 642f5b95a116da6df805adbd745a4826c6739c2b
+  path: dag/prompts/l1_to_l2_l1_qm020_thm1_direct_normalization_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: listSum
+  line: 8
+  signature_excerpt: 'def listSum : List Rat → Rat'
+  source: lean4/BornRedundancy.lean
+  repository: this_repository
+  source_sha256: 8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: smul
+  line: 12
+  signature_excerpt: 'def smul (c : Rat) : List Rat → List Rat'
+  source: lean4/BornRedundancy.lean
+  repository: this_repository
+  source_sha256: 8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: normalize
+  line: 43
+  signature_excerpt: 'def normalize (w : List Rat) : List Rat'
+  source: lean4/BornRedundancy.lean
+  repository: this_repository
+  source_sha256: 8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: ray_quotient_classification
+  line: 93
+  signature_excerpt: "theorem ray_quotient_classification (w1 w2 : List Rat)\n    (hw1 : 0 < listSum w1) (hw2\
+    \ : 0 < listSum w2) :\n    normalize w1 = normalize w2 ↔ ∃ c : Rat, 0 < c ∧ w2 = smul c w1"
+  source: lean4/BornRedundancy.lean
+  repository: this_repository
+  source_sha256: 8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+- kind: theorem
+  name: normalize_idempotent
+  line: 51
+  signature_excerpt: "theorem normalize_idempotent (w : List Rat) (hw : listSum w ≠ 0) :\n    normalize (normalize\
+    \ w) = normalize w"
+  source: lean4/BornRedundancy.lean
+  repository: this_repository
+  source_sha256: 8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+- kind: theorem
+  name: listSum_normalize
+  line: 46
+  signature_excerpt: "theorem listSum_normalize (w : List Rat) (hw : listSum w ≠ 0) :\n    listSum (normalize\
+    \ w) = 1"
+  source: lean4/BornRedundancy.lean
+  repository: this_repository
+  source_sha256: 8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+- kind: theorem
+  name: l1_to_l2_and_cross_fragment_route_composition
+  line: 1267
+  signature_excerpt: "theorem l1_to_l2_and_cross_fragment_route_composition\n    (w0 w1 re_cross : Int) :\n  \
+    \  ((w0 * 1 = w0 ∧ w1 * 1 = w1) ∧ ((w0 + w1 + 2 * re_cross = w0 + w1) ↔ re_cross = 0)) ∧\n    ((1 * 1 + 1\
+    \ * 1 = 2) ∧ (1 * 1 + 2 * 1 = 3) ∧ (2 ≠ 3)) ∧\n    (∀ i : Fin 7,\n      let f (j : Fin 7) : Bool"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion follows
+    automatically.
+source_bindings:
+- original_ref: lean4/quantum_mechanics/BornRedundancy.lean::ray_quotient_classification
+  availability: local
+  symbol: ray_quotient_classification
+  path: lean4/BornRedundancy.lean
+  repository: this_repository
+  sha256: 8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b
+  declaration_status: declaration_found_not_proof_checked
+  line: 93
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/BornRedundancy.lean::normalize_idempotent
+  availability: local
+  symbol: normalize_idempotent
+  path: lean4/BornRedundancy.lean
+  repository: this_repository
+  sha256: 8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b
+  declaration_status: declaration_found_not_proof_checked
+  line: 51
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/BornRedundancy.lean::listSum_normalize
+  availability: local
+  symbol: listSum_normalize
+  path: lean4/BornRedundancy.lean
+  repository: this_repository
+  sha256: 8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b
+  declaration_status: declaration_found_not_proof_checked
+  line: 46
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_to_l2_and_cross_fragment_route_composition
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.l1_to_l2_and_cross_fragment_route_composition
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 1267
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_finite_probability/src/simplex.rs::try_from_weights
+  availability: local
+  symbol: try_from_weights
+  path: code/rust/src/finite_probability/simplex.rs
+  repository: this_repository
+  sha256: f806fa8ae31e1d13be6cfe1ba131d1ae33c5778f7448c58601e5f2ed6eb7791f
+  declaration_status: declaration_found_not_executed
+  line: 91
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness
+  availability: external
+  symbol: verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 1280
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche14_cross_stage_route_composition_and_sorkin_hierarchy_witness
+  availability: external
+  symbol: verify_tranche14_cross_stage_route_composition_and_sorkin_hierarchy_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 1415
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: *id001
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: *id001
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

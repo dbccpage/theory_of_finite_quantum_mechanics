@@ -318,8 +318,7 @@ pub(crate) fn qsi(a: i64, b: i64) -> QSqrt2 {
 }
 
 pub(crate) fn sign_of_rational(x: &BigRational) -> i8 {
-    use num_traits::Zero;
-    match x.cmp(&BigRational::zero()) {
+    match x.cmp(&<BigRational as num_traits::Zero>::zero()) {
         std::cmp::Ordering::Less => -1,
         std::cmp::Ordering::Equal => 0,
         std::cmp::Ordering::Greater => 1,

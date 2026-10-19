@@ -54,8 +54,8 @@ path = "src/main.rs"
 name = "patched"
 path = "src/patched.rs"
 ''', encoding="utf-8")
-shutil.copyfile(Path(__file__).with_name("RustProbes.rs"), crate / "src/main.rs")
-shutil.copyfile(Path(__file__).with_name("PatchedRustChecks.rs"), crate / "src/patched.rs")
+shutil.copyfile(Path(__file__).with_name("rust_probes.rs"), crate / "src/main.rs")
+shutil.copyfile(Path(__file__).with_name("patched_rust_checks.rs"), crate / "src/patched.rs")
 print("Prepared Rust probe; generated files remain under scratch.")
 
 patched_pilot = OUT / "patched/lean4/012_mutually_unbiased_bases/MUB/CertificatePilot.lean"

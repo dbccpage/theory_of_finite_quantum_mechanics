@@ -2,7 +2,7 @@ use num_bigint::BigInt;
 use num_rational::BigRational;
 use num_traits::One;
 
-pub const PROVENANCE: &str = "Origin: papers/derivations/21_implementation_core/TFQ-0135_parity_contextuality_and_frame_functions.md\nClaim: urn:tfqm:TFQ-0135:two-frames-sum-to-one\nAuthorityEffect: None";
+pub const PROVENANCE: &str = "Origin: papers/derivations/21_implementation_core/tfq_0135_parity_contextuality_and_frame_functions.md\nClaim: urn:tfqm:TFQ-0135:two-frames-sum-to-one\nAuthorityEffect: None";
 
 pub const MUTATION_KILL_RECORD: &str = "killed=3";
 

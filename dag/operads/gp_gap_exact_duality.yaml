@@ -1,0 +1,218 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: GP-GAP-EXACT-DUALITY
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: Exact zero-duality-gap certificate for QM_080 Theorems 5-6 (quotient duality in finite dimension).
+    The Lean file DualWitness.lean is a candidate mirror for QM-120 only (2-integer pairing bound plus Mermin-Peres
+    parity).
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: &id001 []
+  source_bottleneck: Exact zero-duality-gap certificates are mechanized for the finite K_{2,3} and 3-cycle instances;
+    general infinite-dimensional dual attainment remains outside the finite carrier.
+  source_refs:
+  - omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics/001_from_primitive_difference_to_quantum_mechanics/claims/gap_register.yaml#GAP-F001-S000-001
+  - omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics/001_from_primitive_difference_to_quantum_mechanics/claims/continuum_price_ledger.yaml#PRICE-HD-05
+  paper_refs:
+  - dag/derivations/12_finite_qm_structure/tfq_0250_mermin_peres_contextuality_on_a_finite_cochain.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports before
+    reusing a result.
+  historical_paper_refs:
+  - papers/derivations/12_finite_qm_structure/tfq_0250_mermin_peres_contextuality_on_a_finite_cochain.md
+  paper_relocations:
+  - from: papers/derivations/12_finite_qm_structure/tfq_0250_mermin_peres_contextuality_on_a_finite_cochain.md
+    to: dag/derivations/12_finite_qm_structure/tfq_0250_mermin_peres_contextuality_on_a_finite_cochain.md
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/12_finite_qm_structure/tfq_0250_mermin_peres_contextuality_on_a_finite_cochain.md
+    sha256: 980ce1c06a424aee0cc391d25bc253013459b81120013aa14fac0f5c96dea878
+source_provenance:
+  repository: this_repository
+  commit: 642f5b95a116da6df805adbd745a4826c6739c2b
+  path: dag/prompts/finite_qm_structure_gp_gap_exact_duality_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: k23PrimalAlt
+  line: 263
+  signature_excerpt: 'def k23PrimalAlt (u0 u1 v0 v1 v2 : Int) : Nat'
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: k23PrimalCenteredScaled2
+  line: 275
+  signature_excerpt: 'def k23PrimalCenteredScaled2 (u0 u1 v0 v1 v2 : Int) : Nat'
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: Meas
+  line: 6
+  signature_excerpt: 'abbrev Meas (A : Type)'
+  source: lean4/LggrFiniteResults.lean
+  repository: this_repository
+  source_sha256: ce736b577beb07997dba02bd7f86f83f1ecac7ce7a569e72b6350171179f34de
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: mass
+  line: 11
+  signature_excerpt: 'def mass {A : Type} (p : Meas A) : Nat'
+  source: lean4/LggrFiniteResults.lean
+  repository: this_repository
+  source_sha256: ce736b577beb07997dba02bd7f86f83f1ecac7ce7a569e72b6350171179f34de
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: totalSatWeight3
+  line: 184
+  signature_excerpt: 'def totalSatWeight3 (q : Meas TriVertex) : Nat'
+  source: lean4/LggrFiniteResults.lean
+  repository: this_repository
+  source_sha256: ce736b577beb07997dba02bd7f86f83f1ecac7ce7a569e72b6350171179f34de
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: satCount3
+  line: 175
+  signature_excerpt: 'def satCount3 (g : TriVertex) : Nat'
+  source: lean4/LggrFiniteResults.lean
+  repository: this_repository
+  source_sha256: ce736b577beb07997dba02bd7f86f83f1ecac7ce7a569e72b6350171179f34de
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: TriVertex
+  line: 173
+  signature_excerpt: abbrev TriVertex
+  source: lean4/LggrFiniteResults.lean
+  repository: this_repository
+  source_sha256: ce736b577beb07997dba02bd7f86f83f1ecac7ce7a569e72b6350171179f34de
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: k23_uncentered_zero_duality_gap
+  line: 268
+  signature_excerpt: "theorem k23_uncentered_zero_duality_gap (u0 u1 v0 v1 v2 : Int) :\n    k23PrimalAlt 0 2 1\
+    \ 1 1 = 4 ∧\n    4 ≤ k23PrimalAlt u0 u1 v0 v1 v2"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+- kind: theorem
+  name: k23_centered_scaled2_zero_duality_gap
+  line: 280
+  signature_excerpt: "theorem k23_centered_scaled2_zero_duality_gap (u0 u1 v0 v1 v2 : Int) :\n    k23PrimalCenteredScaled2\
+    \ 0 6 3 3 3 = 12 ∧\n    12 ≤ k23PrimalCenteredScaled2 u0 u1 v0 v1 v2"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+- kind: theorem
+  name: totalSatWeight3_le_two_mul_mass
+  line: 187
+  signature_excerpt: "theorem totalSatWeight3_le_two_mul_mass (q : Meas TriVertex) :\n    totalSatWeight3 q ≤\
+    \ 2 * mass q"
+  source: lean4/LggrFiniteResults.lean
+  repository: this_repository
+  source_sha256: ce736b577beb07997dba02bd7f86f83f1ecac7ce7a569e72b6350171179f34de
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+source_bindings:
+- original_ref: lean4/quantum_mechanics/DualWitness.lean::DualWitness
+  availability: local
+  symbol: DualWitness
+  path: lean4/DualWitness.lean
+  repository: this_repository
+  sha256: b69a5a5b0f7e69541787915ccd48e7b29b687e04a54d838b556936e034e7f7f7
+  declaration_status: symbol_not_found
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.k23_uncentered_zero_duality_gap
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.k23_uncentered_zero_duality_gap
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 268
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.k23_centered_scaled2_zero_duality_gap
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.k23_centered_scaled2_zero_duality_gap
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 280
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/LggrFiniteResults.lean::LggrFiniteResults.totalSatWeight3_le_two_mul_mass
+  availability: local
+  symbol: LggrFiniteResults.totalSatWeight3_le_two_mul_mass
+  path: lean4/LggrFiniteResults.lean
+  repository: this_repository
+  sha256: ce736b577beb07997dba02bd7f86f83f1ecac7ce7a569e72b6350171179f34de
+  declaration_status: declaration_found_not_proof_checked
+  line: 187
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_fq_core_and_k23_duality_witness
+  availability: external
+  symbol: verify_fq_core_and_k23_duality_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 338
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche13_ds_qm_final_16_second_witness_closure_witness
+  availability: external
+  symbol: verify_tranche13_ds_qm_final_16_second_witness_closure_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 1343
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: *id001
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: *id001
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

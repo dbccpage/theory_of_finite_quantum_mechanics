@@ -19,9 +19,10 @@ import Higher2GroupBraiding
 import Cobordism5dAnomaly
 import InstantonDyonGas
 import FoliatedFracton2Gauge
-
-
-
+import ChiralSuperconductorCore
+import KitaevHoneycombCore
+import MajoranaGinCore
+import regge_wdw_core
 
 namespace FermionSignAll
 

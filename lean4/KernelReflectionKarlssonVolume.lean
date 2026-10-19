@@ -1,4 +1,24 @@
-import Mathlib
+import Mathlib.Data.Real.Basic
+import Mathlib.Data.Complex.Basic
+import Mathlib.Data.Matrix.Basic
+import Mathlib.Data.Rat.Defs
+import Mathlib.Data.Rat.Lemmas
+import Mathlib.Analysis.Real.Sqrt
+import Mathlib.Analysis.InnerProductSpace.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+import Mathlib.Topology.ContinuousMap.Basic
+import Mathlib.Topology.Compactness.Compact
+import Mathlib.Topology.Order.MonotoneContinuity
+import Mathlib.Topology.MetricSpace.Basic
+import Mathlib.Topology.MetricSpace.ProperSpace
+import Mathlib.LinearAlgebra.UnitaryGroup
+import Mathlib.Analysis.CStarAlgebra.Matrix
+import Mathlib.Algebra.BigOperators.Fin
+import Mathlib.Tactic.Ring
+import Mathlib.Tactic.Linarith
+import Mathlib.Tactic.NormNum
+import Mathlib.Tactic.Positivity
+import Mathlib.Tactic.FinCases
 import ExtensionCurvatureObstruction
 import BasisExtensionObstruction
 import FiniteVectorCover
@@ -345,6 +365,10 @@ end KernelReflectionKarlssonVolume
 end MUB
 
 namespace ModuliReduction
+open MUB6.Gluing
+open MUB6.Gluing.Orbits
+open MUB6.Gluing.Variety
+open MUB6.Gluing.ModuliReduction
 
 /-- Witness predicate that the Karlsson 3D volume cover is certified with positive curvature. -/
 def KarlssonVolumeCoverCertified : Prop :=
@@ -378,29 +402,33 @@ end ModuliReduction
 
 namespace MUB
 namespace KernelReflectionKarlssonVolume
+open MUB6.Gluing
+open MUB6.Gluing.Orbits
+open MUB6.Gluing.Variety
+open MUB6.Gluing.ModuliReduction
 
 /-- **Karlsson Volume No Complete MUB6 Theorem**:
     Direct connection to `ModuliReduction.moduli_reduction_grand_synthesis`
     proving `NoCompleteMUB6`. -/
 theorem karlsson_volume_no_complete_mub6
-    (h_cov : ModuliReduction.ModuliCoverageConjecture)
-    (h_atlas : ModuliReduction.AtlasCoversKnownModuli)
-    (h_gauge : ModuliReduction.GaugeInvariantClassMembership)
-    (h_g2_var : ModuliReduction.G2_Variety)
-    (h_g3 : ModuliReduction.G3) :
-    ModuliReduction.NoCompleteMUB6 :=
+    (h_cov : ModuliCoverageConjecture)
+    (h_atlas : AtlasCoversKnownModuli)
+    (h_gauge : GaugeInvariantClassMembership)
+    (h_g2_var : G2_Variety)
+    (h_g3 : G3) :
+    NoCompleteMUB6 :=
   ModuliReduction.karlsson_volume_moduli_reduction_step h_cov h_atlas h_gauge h_g2_var h_g3
 
 /-- **Karlsson Volume Master Assembly**:
     Using `ModuliReduction.g3_theorem` to discharge Premise G3 constructively,
     reducing the terminal obstruction to G1 and G2. -/
 theorem karlsson_volume_master_assembly
-    (h_cov : ModuliReduction.ModuliCoverageConjecture)
-    (h_atlas : ModuliReduction.AtlasCoversKnownModuli)
-    (h_gauge : ModuliReduction.GaugeInvariantClassMembership)
-    (h_g2_var : ModuliReduction.G2_Variety) :
-    ModuliReduction.NoCompleteMUB6 :=
-  karlsson_volume_no_complete_mub6 h_cov h_atlas h_gauge h_g2_var ModuliReduction.g3_theorem
+    (h_cov : ModuliCoverageConjecture)
+    (h_atlas : AtlasCoversKnownModuli)
+    (h_gauge : GaugeInvariantClassMembership)
+    (h_g2_var : G2_Variety) :
+    NoCompleteMUB6 :=
+  karlsson_volume_no_complete_mub6 h_cov h_atlas h_gauge h_g2_var g3_theorem
 
 end KernelReflectionKarlssonVolume
 end MUB

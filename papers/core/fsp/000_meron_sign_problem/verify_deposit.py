@@ -2,7 +2,7 @@
 """One-command verifier for the research paper deposit.
 
 Deterministic, two-way verification:
-1. Every file listed in SHA256SUMS exists and matches its recorded hash.
+1. Every file listed in sha256sums exists and matches its recorded hash.
 2. Sweep: no unrecorded non-excluded file is present in the deposit tree.
 3. Fail-closed symlink rejection: rejects any unauthorized symlink.
 4. Structural artifacts are present and non-empty.
@@ -29,7 +29,7 @@ from deposit_paths import (
 )
 
 ROOT = Path(__file__).resolve().parent
-MANIFEST = ROOT / "SHA256SUMS"
+MANIFEST = ROOT / "sha256sums"
 
 EXCLUDED_DIRS = DEFAULT_EXCLUDED_DIRS
 EXCLUDED_NAMES = DEFAULT_EXCLUDED_NAMES
@@ -42,7 +42,7 @@ REQUIRED_PATTERNS = (
     "README.md",
     "LICENSE",
     "LICENSE-CODE",
-    "MANIFEST.sha256",
+    "manifest.sha256",
     "pyproject.toml",
     "zenodo_metadata.json",
     "docs/descriptions.md",
@@ -65,8 +65,8 @@ def check_manifest(manifest_path: Path) -> list[str]:
     errors: list[str] = []
     try:
         excluded_names = set(EXCLUDED_NAMES)
-        if manifest_path.name == "MANIFEST.sha256":
-            excluded_names.add("MANIFEST.sha256")
+        if manifest_path.name == "manifest.sha256":
+            excluded_names.add("manifest.sha256")
         expected_files = walk_files(ROOT, EXCLUDED_DIRS, excluded_names, EXCLUDED_SUFFIXES)
         entries = read_manifest(ROOT, manifest_path)
         recorded = {relative for relative, _ in entries}
@@ -182,8 +182,8 @@ def main() -> int:
     all_errors: list[str] = []
 
     manifest_target = MANIFEST
-    if not manifest_target.is_file() and (ROOT / "MANIFEST.sha256").is_file():
-        manifest_target = ROOT / "MANIFEST.sha256"
+    if not manifest_target.is_file() and (ROOT / "manifest.sha256").is_file():
+        manifest_target = ROOT / "manifest.sha256"
 
     manifest_errors = check_manifest(manifest_target)
     all_errors.extend(manifest_errors)

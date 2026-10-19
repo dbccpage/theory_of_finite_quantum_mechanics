@@ -573,8 +573,8 @@ def verify_t05_11_pigeonhole_lemma() -> Dict[str, Any]:
 
     Validates that:
     1. Reindexed counting for 6 non-identity bases forces >= 5 Dita/Fourier bases.
-    2. Forced >= 5 Dita bases guarantees >= 10 pure Dita triples extending I6.
-    3. Forced >= 5 Dita bases guarantees >= 10 pure Dita triples among non-identity bases.
+    2. Forced >= 5 Dita bases implies under the declared assumptions >= 10 pure Dita triples extending I6.
+    3. Forced >= 5 Dita bases implies under the declared assumptions >= 10 pure Dita triples among non-identity bases.
     4. Boundary checks with and without cross-orbit exclusion.
     """
     res_with_cross = reindexed_pigeonhole_dita_count(cross_orbit_exclusion=True)

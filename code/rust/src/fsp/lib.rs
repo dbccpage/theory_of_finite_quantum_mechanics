@@ -13,19 +13,23 @@ pub mod witness;
 
 pub use bqnf::{route_packet, CochainComplex, SignPacketMetrics, TerminalRoute};
 pub use fock::{
-    car_annihilate, car_create, car_hop, jordan_wigner_hop_sign, preceding_count,
-    DiscreteFermionicHamiltonian, EulerPath, FermionicLattice, FockState, PartitionReceipt, Spin,
+    benchmark_fock_lattice_scaling, car_annihilate, car_create, car_hop, jordan_wigner_hop_sign,
+    preceding_count, DiscreteFermionicHamiltonian, EulerPath, FermionicLattice,
+    FockLatticeScalingRow, FockState, PartitionReceipt, Spin,
 };
 pub use gin::{
-    audit_kitaev_chain_majorana, FermionConfiguration, GinIndex, InvolutionCancellationReceipt,
-    MajoranaZeroModeReceipt,
+    audit_kitaev_chain_majorana, benchmark_gin_involution_scaling,
+    benchmark_kitaev_chain_mzm_scaling, FermionConfiguration, GinIndex,
+    InvolutionCancellationReceipt, MajoranaZeroModeReceipt,
 };
 pub use hubbard::{
-    evaluate_hubbard_determinants, exact_determinant, exact_kinetic_matrix, exact_matrix_mul,
-    HubbardDeterminantReceipt, HubbardEnsembleSummary,
+    benchmark_hubbard_lattice_scaling, evaluate_hubbard_determinants, exact_determinant,
+    exact_kinetic_matrix, exact_matrix_mul, hubbard_rectangular_bonds, HubbardDeterminantReceipt,
+    HubbardEnsembleSummary, HubbardLatticeScalingRow,
 };
 pub use normal_forms::{
-    normalize_cochain, normalize_sign_cochain, rref_with_witness, QuotientNormalForm, RrefResult,
+    benchmark_sign_switching_grid_scaling, normalize_cochain, normalize_sign_cochain,
+    rref_with_witness, QuotientNormalForm, RrefResult, SignSwitchingGridRow,
     SignSwitchingNormalForm,
 };
 pub use witness::{refuse_foreign_fixture, refuse_removed_holonomy, witness, Witness, HOPS, MASKS};

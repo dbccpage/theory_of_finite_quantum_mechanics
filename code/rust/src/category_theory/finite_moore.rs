@@ -198,7 +198,7 @@ impl FiniteMoore {
 
     /// Given a surjective readout/transition-preserving map f:M->N, produce the
     /// unique map g:N->M/~ satisfying g(f(m))=[m]. Kernel(f) is a congruence,
-    /// hence lies inside ~. This proves |M/~| <= |N| and the minimal quotient
+    /// hence lies inside ~. This shows in this model |M/~| <= |N| and the minimal quotient
     /// property. The factor also preserves every report and labelled update.
     pub fn factor_surjective_quotient(
         &self,

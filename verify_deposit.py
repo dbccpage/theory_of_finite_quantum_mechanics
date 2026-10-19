@@ -36,12 +36,19 @@ def _library_dir() -> Path:
 
 
 def _bind_paths() -> tuple[set[str], set[str], set[str], ReadManifest, SafePath, DigestOf, WalkFiles]:
+    import importlib.util
     library = _library_dir()
-    sys.path.insert(0, str(library))
-    try:
-        import deposit_paths as paths
-    finally:
-        sys.path.remove(str(library))
+    target_path = library / "deposit_paths.py"
+    spec = importlib.util.spec_from_file_location("_deposit_paths_bound", target_path)
+    if spec is not None and spec.loader is not None:
+        paths = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(paths)
+    else:
+        sys.path.insert(0, str(library))
+        try:
+            import deposit_paths as paths
+        finally:
+            sys.path.remove(str(library))
     return (
         set(cast(Iterable[str], paths.DEFAULT_EXCLUDED_DIRS)),
         set(cast(Iterable[str], paths.DEFAULT_EXCLUDED_NAMES)),
@@ -148,8 +155,8 @@ def repository_checkout() -> Path | None:
 
 def _excluded_names(manifest_path: Path) -> set[str]:
     names = set(EXCLUDED_NAMES)
-    if manifest_path.name == "MANIFEST.sha256":
-        names.add("MANIFEST.sha256")
+    if manifest_path.name == "manifest.sha256":
+        names.add("manifest.sha256")
     return names
 
 
@@ -326,10 +333,10 @@ def check_tests(targets: list[str]) -> list[str]:
 
 
 def _manifest_path() -> Path | None:
-    primary = ROOT / "SHA256SUMS"
+    primary = ROOT / "sha256sums"
     if primary.is_file():
         return primary
-    alternate = ROOT / "MANIFEST.sha256"
+    alternate = ROOT / "manifest.sha256"
     if alternate.is_file():
         return alternate
     return None
@@ -386,7 +393,7 @@ def _print_result(error_count: int, not_run: list[str]) -> int:
 def _collect_manifest() -> list[str]:
     manifest_target = _manifest_path()
     if manifest_target is None:
-        return [f"Manifest not found: {ROOT / 'SHA256SUMS'}"]
+        return [f"Manifest not found: {ROOT / 'sha256sums'}"]
     errors = check_manifest(manifest_target)
     _print_manifest(errors)
     return errors

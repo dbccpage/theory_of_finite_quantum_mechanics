@@ -33,7 +33,7 @@ listed.
 
 - Corrected the 4-site live prompt so `build_pfp_prompt_4site` passes `assert_lexical_hygiene`.
 - Corrected the space-bunny ladder line to 1,380 completion tokens, 0 reasoning tokens, and a stored reasoning text of 3,692 characters.
-- Regenerated `MANIFEST.sha256`, `SHA256SUMS`, and the deposit archive from the LF checkout.
+- Regenerated `manifest.sha256`, `sha256sums`, and the deposit archive from the LF checkout.
 
 ## [0.1.0 local candidate] — 2026-10-02
 

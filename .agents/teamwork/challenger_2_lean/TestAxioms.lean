@@ -1,0 +1,10 @@
+import BqnfSignPacket
+
+open BqnfSignPacket
+
+#print axioms exact_packet_routes_exact_repair
+#print axioms involution_paired_routes_exact_repair
+#print axioms open_defect_routes_open_obstruction
+#print axioms disjoint_supports_routes_split_brain
+#print axioms invalid_complex_routes_closure_failure
+#print axioms routing_is_exhaustive

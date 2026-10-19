@@ -33,7 +33,23 @@ pub use harmonic::{
     code_distance, h1_basis, l1_harmonic_projection, H1Basis, L1HarmonicProjection,
     DEFAULT_BUDGET as HARMONIC_DEFAULT_BUDGET,
 };
-pub use tetron::{build_tetron_array, logical_class_representative, Axis, TetronReport, Topology};
+pub use multiqubit_braid::{
+    benchmark_multiqubit_braid_scaling, compile_multiqubit_braid,
+    compile_multiqubit_braid_with_limit, CompiledMultiQubitBraid, MultiQubitBraidError,
+    MultiQubitBraidScalingRow, MultiQubitOperation,
+};
+pub use noise_mc::{
+    noise_mc_planar_grid, noise_mc_size_sweep, noise_mc_torus_grid, noise_mc_torus_size_sweep,
+    NoiseMcReceipt, NOISE_MC_RECEIPT_TAG,
+};
+pub use sparse_kitaev::{
+    benchmark_sparse_kitaev_scaling, BoundaryIsolation, KitaevWire, KitaevWireError,
+    KitaevWireScalingReceipt, MajoranaBilinear, MAX_WIRE_SITES,
+};
+pub use tetron::{
+    benchmark_tetron_lattice_scaling, build_tetron_array, logical_class_representative, Axis,
+    TetronReport, TetronScalingRow, Topology,
+};
 
 pub use complexes::{
     closed_residual_syndrome_example, exact_syndrome_example, open_syndrome_example, plaquette,

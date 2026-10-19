@@ -59,7 +59,7 @@ def main():
             for function in functions:
                 if function["ccn"] > 10 or function["cognitive_upper_bound"] > 15 or function["control_nesting"] > 3:
                     exceeded.append({"path": path, **function})
-        write_json(receipt / "exceeding_A.json", exceeded)
+        write_json(receipt / "exceeding_a.json", exceeded)
         print(len(records), "files parsed;", len(exceeded), "functions exceed at least one A structural ceiling")
     finally:
         # Only this run's resolved child is disposable; never delete arbitrary target trees.

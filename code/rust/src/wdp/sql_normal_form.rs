@@ -39,7 +39,7 @@ pub struct DeclaredSetDecomposition {
 }
 
 pub fn admit_exact_budget(token: &str) -> Result<u64, DecompositionError> {
-    if token == "TRUE" || token == "false" {
+    if token.eq_ignore_ascii_case("true") || token.eq_ignore_ascii_case("false") {
         return Err(DecompositionError::BooleanAsNumber);
     }
     if token.bytes().any(|byte| matches!(byte, b'.' | b'e' | b'E' | b'+' | b'-')) {

@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Refresh and verify a paper package's pinned deterministic release archive.
 
-The existing MANIFEST.sha256 defines the release file set. This tool updates
-hashes for that set, writes SHA256SUMS, and rebuilds the package's single ZIP.
+The existing manifest.sha256 defines the release file set. This tool updates
+hashes for that set, writes sha256sums, and rebuilds the package's single ZIP.
 An explicit ``--include`` extends that set with a package-relative file. A hash
 match certifies byte identity only; it does not promote any claim.
 """
@@ -114,15 +114,15 @@ def current_entries(
                 "dist", "build", "htmlcov", "dev_rips", "rt", "target", "b", "scratch",
                 "_support", "evidence", "reconstruction_v1",
             }
-            excluded_names = {"SHA256SUMS", "MANIFEST.sha256", ".coverage", ".env", "DEPOSIT_CHECKLIST.md", ".gitkeep"}
+            excluded_names = {"sha256sums", "manifest.sha256", ".coverage", ".env", "DEPOSIT_CHECKLIST.md", ".gitkeep"}
             excluded_suffixes = getattr(
                 dp,
                 "DEFAULT_EXCLUDED_SUFFIXES",
                 {".zip", ".pyc", ".pyo", ".tmp", ".log", ".aux", ".out", ".bbl", ".blg", ".toc", ".synctex.gz"},
             )
             paths = [p.relative_to(package).as_posix() for p in dp.walk_files(package, excluded_dirs, excluded_names, excluded_suffixes)]
-    elif (package / "MANIFEST.sha256").is_file():
-        paths = [relative for relative, _ in read_manifest(package / "MANIFEST.sha256", package)]
+    elif (package / "manifest.sha256").is_file():
+        paths = [relative for relative, _ in read_manifest(package / "manifest.sha256", package)]
 
     folded = {relative.casefold(): relative for relative in paths}
     for relative in includes:
@@ -170,8 +170,8 @@ def refresh(package: Path, includes: tuple[str, ...] = ()) -> None:
         raise ValueError("expected at most one regular release ZIP before refresh")
     for old in old_archives:
         zip_date_from_name(package, old)
-    manifest = package / "MANIFEST.sha256"
-    sums = package / "SHA256SUMS"
+    manifest = package / "manifest.sha256"
+    sums = package / "sha256sums"
     for control in (manifest, sums):
         if control.exists() or _is_reparse(control):
             _regular_control(control)
@@ -240,8 +240,8 @@ def _canonical_archive_bytes(
 
 def validate(package: Path) -> list[str]:
     errors: list[str] = []
-    manifest = package / "MANIFEST.sha256"
-    sums = package / "SHA256SUMS"
+    manifest = package / "manifest.sha256"
+    sums = package / "sha256sums"
     try:
         manifest_entries = read_manifest(manifest, package)
         sums_entries = read_manifest(sums, package)
@@ -251,7 +251,7 @@ def validate(package: Path) -> list[str]:
     expected_sums = {relative: digest for relative, digest in manifest_entries}
     expected_sums[manifest.name] = sha256_file(manifest)
     if dict(sums_entries) != dict(sorted(expected_sums.items())):
-        errors.append("SHA256SUMS does not equal MANIFEST.sha256 plus its digest")
+        errors.append("sha256sums does not equal manifest.sha256 plus its digest")
     for relative, digest in sums_entries:
         path = safe_file(package, relative)
         if not path.is_file():
@@ -272,23 +272,23 @@ def validate(package: Path) -> list[str]:
             metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
             if metadata.get("publication_date") != release_day:
                 errors.append("metadata publication_date differs from release ZIP date")
-        cff_path = package / "CITATION.cff"
+        cff_path = package / "citation.cff"
         if cff_path.is_file():
             match = re.search(r"(?m)^date-released:\s*(\d{4}-\d{2}-\d{2})\s*$", cff_path.read_text(encoding="utf-8"))
             if match is not None and match.group(1) != release_day:
-                errors.append("CITATION.cff date-released differs from release ZIP date")
+                errors.append("citation.cff date-released differs from release ZIP date")
         with zipfile.ZipFile(archive_path_) as archive:
             infos = archive.infolist()
             names = [info.filename for info in infos]
             archive_entries = list(sums_entries)
-            if any(info.filename.endswith("/SHA256SUMS") for info in infos):
-                archive_entries.append(("SHA256SUMS", sha256_file(sums)))
+            if any(info.filename.endswith("/sha256sums") for info in infos):
+                archive_entries.append(("sha256sums", sha256_file(sums)))
                 archive_entries.sort(key=lambda item: item[0])
             expected_names = [
                 f"{package.name}/{relative}" for relative, _ in sorted(archive_entries)
             ]
             if names != expected_names:
-                errors.append("ZIP membership or ordering differs from SHA256SUMS")
+                errors.append("ZIP membership or ordering differs from sha256sums")
             if len({name.casefold() for name in names}) != len(names):
                 errors.append("ZIP contains duplicate case-folded members")
             for info, (relative, digest) in zip(infos, sorted(archive_entries)):

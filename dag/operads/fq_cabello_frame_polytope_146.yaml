@@ -1,0 +1,154 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: FQ-CABELLO-FRAME-POLYTOPE-146
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: 'The frame polytope {f in R^18 : f >= 0, Af = 1} of the Cabello configuration has exactly
+    146 half-integral extreme valuations; none has a PSD real-symmetric representative H_f (26 have smallest eigenvalue
+    -1/2; 120 have smallest eigenvalue > -1/4).'
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: &id001
+  - real-symmetric operator representative H_f (assumption)
+  source_bottleneck: 'No Lean artifact: the string 146 occurs in no Lean file under lean4/quantum_mechanics and
+    not in frame_function_polytope.rs; the enumeration is exercised through the generic vertices() routine and
+    the Python/test harness not read here.'
+  source_refs:
+  - omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md:659
+  paper_refs:
+  - dag/derivations/09_finite_hilbert/tfq_0298_bra_ket_section_remains_non_canonical.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports before
+    reusing a result.
+  historical_paper_refs:
+  - papers/derivations/09_finite_hilbert/tfq_0298_bra_ket_section_remains_non_canonical.md
+  paper_relocations:
+  - from: papers/derivations/09_finite_hilbert/tfq_0298_bra_ket_section_remains_non_canonical.md
+    to: dag/derivations/09_finite_hilbert/tfq_0298_bra_ket_section_remains_non_canonical.md
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/09_finite_hilbert/tfq_0298_bra_ket_section_remains_non_canonical.md
+    sha256: 4d47b6a7b5e92f8a45216e1b7917495e9111b062349abe129b6e840d1a5cdcc7
+source_provenance:
+  repository: this_repository
+  commit: 642f5b95a116da6df805adbd745a4826c6739c2b
+  path: dag/prompts/finite_qm_core_fq_cabello_frame_polytope_146_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: rayDegreeInCabello
+  line: 237
+  signature_excerpt: 'def rayDegreeInCabello (r : Fin 18) : Nat'
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: cabello_18_9_two_regular_and_146_census
+  line: 240
+  signature_excerpt: "theorem cabello_18_9_two_regular_and_146_census :\n    cabelloContexts.length = 9 ∧\n  \
+    \  (cabelloContexts.all (fun ctx => ctx.length == 4)) = true ∧\n    ((List.finRange 18).all (fun r => rayDegreeInCabello\
+    \ r == 2)) = true ∧\n    (2 + 72 + 72 = 146)"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+source_bindings:
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.cabello_18_9_two_regular_and_146_census
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.cabello_18_9_two_regular_and_146_census
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 240
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_power_p2_cabello_146_and_weyl_commutant_irreducibility
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.fq_power_p2_cabello_146_and_weyl_commutant_irreducibility
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 1196
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_quantum_physics/src/frame_function_polytope.rs::FrameSystem::vertices
+  availability: external
+  symbol: FrameSystem::vertices
+  path: omega_engine/crates_rs/omega_quantum_physics/src/frame_function_polytope.rs
+  repository: the_symbol_game
+  sha256: e5c15eeac034c32c6b6a00e208847efd5f83fe316215ebd4764810bab7b9b2d7
+  declaration_status: symbol_not_found
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_quantum_physics/src/frame_function_polytope.rs::FrameSystem::is_vertex
+  availability: external
+  symbol: FrameSystem::is_vertex
+  path: omega_engine/crates_rs/omega_quantum_physics/src/frame_function_polytope.rs
+  repository: the_symbol_game
+  sha256: e5c15eeac034c32c6b6a00e208847efd5f83fe316215ebd4764810bab7b9b2d7
+  declaration_status: symbol_not_found
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_fq_core_and_k23_duality_witness
+  availability: external
+  symbol: verify_fq_core_and_k23_duality_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 338
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness
+  availability: external
+  symbol: verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 1280
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: *id001
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: *id001
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads:
+- source: lean4/DerivationDagQMClosure.lean
+  name: fq_power_p2_cabello_146_and_weyl_commutant_irreducibility
+  reason: aggregate_or_proxy_scope_requires_projection_not_a_task_relation

@@ -336,7 +336,7 @@ impl SimplicialComplex {
     }
 
     /// Euler characteristic. At most MAX_SIMPLICES terms of magnitude one
-    /// occur, so the admitted storage bound proves that the i64 sum fits.
+    /// occur, so the admitted storage bound shows in this model that the i64 sum fits.
     pub fn euler_characteristic(&self) -> i64 {
         self.simplices_by_dim
             .iter()

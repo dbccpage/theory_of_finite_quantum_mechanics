@@ -12,7 +12,7 @@ the same central module objects. Importing the new package does not add flat
 application directories to Python's search path. Legacy script facades temporarily
 bootstrap the repository root and retain their command behavior.
 
-`LOCAL_SOURCE_RELOCATION.json` records the current CODA source blobs, former
+`local_source_relocation.json` records the current CODA source blobs, former
 imported overlaps, and each destination hash. The CPTP module retains both API
 families. The correlation module retains CODA's corrected product-marginal
 derivative. These are computational contracts and carry no theorem promotion.

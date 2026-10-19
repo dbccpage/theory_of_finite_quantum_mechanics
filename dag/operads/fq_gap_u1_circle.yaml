@@ -1,0 +1,189 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: FQ-GAP-U1-CIRCLE
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: The circle group U(1) is not constructed on the finite host; continuity of a one-parameter
+    phase group remains a hypothesis. In Q(i), u=(3+4i)/5 has no square root and n -> u^n is injective, so no
+    homomorphism (Q,+) -> U(1)(Q(i)) sends 1 to u.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: &id001
+  - circle group U(1) (assumption)
+  - continuity of one-parameter phase group (assumption)
+  source_bottleneck: Algebraic non-square obstruction in Q(i) and rational Cayley punctured-circle parameterization
+    are mechanized; compact continuous R/Z completion remains a declared external import.
+  source_refs:
+  - omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/claims/gap_register.yaml:243
+  paper_refs:
+  - dag/derivations/08_l1_to_l2/tfq_0294_circle_phases_as_an_imported_unit_group.md
+  - dag/derivations/12_finite_qm_structure/tfq_0253_conditional_complex_carrier_selector.md
+  source_claim_label: CONDITIONAL
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports before
+    reusing a result.
+  historical_paper_refs:
+  - papers/derivations/08_l1_to_l2/tfq_0294_circle_phases_as_an_imported_unit_group.md
+  - papers/derivations/12_finite_qm_structure/tfq_0253_conditional_complex_carrier_selector.md
+  paper_relocations:
+  - from: papers/derivations/08_l1_to_l2/tfq_0294_circle_phases_as_an_imported_unit_group.md
+    to: dag/derivations/08_l1_to_l2/tfq_0294_circle_phases_as_an_imported_unit_group.md
+  - from: papers/derivations/12_finite_qm_structure/tfq_0253_conditional_complex_carrier_selector.md
+    to: dag/derivations/12_finite_qm_structure/tfq_0253_conditional_complex_carrier_selector.md
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/08_l1_to_l2/tfq_0294_circle_phases_as_an_imported_unit_group.md
+    sha256: 3a89471ee883168c0f0a8d020fda528ff3884fbd692932ab2c5fa4dbd387477a
+  - path: dag/derivations/12_finite_qm_structure/tfq_0253_conditional_complex_carrier_selector.md
+    sha256: 5d9912315c92d8c2f76c00020d6fd25261af59596dce3e424d5d6a192ff2d46b
+source_provenance:
+  repository: this_repository
+  commit: 642f5b95a116da6df805adbd745a4826c6739c2b
+  path: dag/prompts/finite_qm_core_fq_gap_u1_circle_conditional.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates: []
+relation_candidates:
+- kind: theorem
+  name: fq_gap_u1_circle_pythagorean_half_exponent_obstruction
+  line: 512
+  signature_excerpt: "theorem fq_gap_u1_circle_pythagorean_half_exponent_obstruction (a b d : Int)\n    (h_re\
+    \ : 5 * (a * a - b * b) = 3 * (d * d))\n    (h_norm : a * a + b * b = d * d) :\n    5 * (a * a) = 4 * (d *\
+    \ d) ∧\n    (∀ x y : Fin 25, y.val > 0 → 5 * (x.val * x.val) ≠ 4 * (y.val * y.val))"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion follows
+    automatically.
+- kind: theorem
+  name: fq_u1_selector_split_real_zero_divisors_and_cayley_unit_circle
+  line: 959
+  signature_excerpt: "theorem fq_u1_selector_split_real_zero_divisors_and_cayley_unit_circle\n    (t : Int) :\n\
+    \    ((1 * 1 - 1 * 1 = (0 : Int)) ∧ (1 * 1 + 1 * 1 = (2 : Int)) ∧ (2 : Int) ≠ 0) ∧\n    (((1 - t * t) * (1\
+    \ - t * t) + (2 * t) * (2 * t)) = (1 + t * t) * (1 + t * t)) ∧\n    ((1 - t * t) + (1 + t * t) = 2 ∧ (2 :\
+    \ Int) ≠ 0)"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+- kind: theorem
+  name: conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure
+  line: 1311
+  signature_excerpt: "theorem conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure\n    (s imp : Bool)\
+    \ :\n    (((s && imp) = true ↔ (s = true ∧ imp = true)) ∧ ((true && false) = false)) ∧\n    (∀ r : Fin 16,\n\
+    \      let f (j : Fin 16) : Bool"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion follows
+    automatically.
+source_bindings:
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_gap_u1_circle_pythagorean_half_exponent_obstruction
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.fq_gap_u1_circle_pythagorean_half_exponent_obstruction
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 512
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_u1_selector_split_real_zero_divisors_and_cayley_unit_circle
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.fq_u1_selector_split_real_zero_divisors_and_cayley_unit_circle
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 959
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 1311
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_wdp/src/amplitude_bridge.rs::half_exponent_obstruction
+  availability: local
+  symbol: half_exponent_obstruction
+  path: code/rust/src/wdp/amplitude_bridge.rs
+  repository: this_repository
+  sha256: d580c2ecf1b895e222a55c9903c55fcfbd1e842cf8bdfde955164213721d36df
+  declaration_status: declaration_found_not_executed
+  line: 396
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche2_row_sparsity_bell_torsion_and_structure_witness
+  availability: external
+  symbol: verify_tranche2_row_sparsity_bell_torsion_and_structure_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 518
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche9_bloch_gap_cayley_u1_hadamard_coherence_and_destructive_interference_witness
+  availability: external
+  symbol: verify_tranche9_bloch_gap_cayley_u1_hadamard_coherence_and_destructive_interference_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 1060
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness
+  availability: external
+  symbol: verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 1489
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: *id001
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: *id001
+stage_history: []
+open_obligations:
+- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
+  premises; do not invent an operation.
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

@@ -334,7 +334,7 @@ The continuum is not a prerequisite for physical law. Physics operates natively 
 | **C1000 Certification Receipt** | `apps/finite_qm/evidence/c1000_certification_receipt_20260909.json` | **CERTIFIED** |
 | **C1000 FQMR-1 Closure Dossier** | `apps/finite_qm/evidence/C1000_FQMR1_CLOSURE.md` | **CERTIFIED** |
 | **Dual Independence Receipt** | `apps/finite_qm/evidence/dual_independence_receipt_20260909.json` | **PUBLISHED** |
-| **L4A Adversarial Scorecard** | `apps/finite_qm/evidence/L4A_ADVERSARIAL_SCORECARD.md` | **CERTIFIED** |
+| **L4A Adversarial Scorecard** | `apps/finite_qm/evidence/l4a_adversarial_scorecard.md` | **CERTIFIED** |
 | **Master Synthesis Dossier** | `apps/finite_qm/evidence/C250_C1000_MASTER_SYNTHESIS_DOSSIER.md` | **PUBLISHED** |
 
 ---

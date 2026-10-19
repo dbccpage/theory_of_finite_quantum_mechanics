@@ -31,7 +31,7 @@ The role names Alpha, Beta, and Gamma specify responsibilities, not model capabi
 
 ## 1. Establish the current frontier before deriving anything
 
-At activation, record the repository revision and working-tree changes, read applicable `AGENTS.md`/rules, and inspect the current versions of:
+At activation, record the repository revision and working-tree changes, read applicable `agents.md`/rules, and inspect the current versions of:
 
 - `omega_engine_atlas/coda_atlas/F004_papers/010_mub6/papers/paper.md`
 - `omega_engine_atlas/coda_atlas/F004_papers/010_mub6/papers/mub6_executive_checkpoint.md`
