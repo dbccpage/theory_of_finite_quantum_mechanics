@@ -1,0 +1,1303 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: PG-GEN-ONGOING-FEWEST-CHANGES
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: The fewest changes to reach a result is the first derivation's size-plus-twice-destroyed-givens
+    formula, with matching lower and upper bounds (fewest_changes_A/B).
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: []
+  source_bottleneck: Extension to every writing of the terms is discharged via PG-GEN-REWRITING-COMMUTATION
+    (mechanized in Second/Rename.lean and DerivationDagQMClosure.lean).
+  source_refs:
+  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/paper/claim_ledger.md
+  paper_refs:
+  - dag/derivations/02_genesis/tfq_0389_fewest_changes_formula.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  historical_paper_refs:
+  - papers/derivations/02_genesis/tfq_0389_fewest_changes_formula.md
+  paper_relocations:
+  - from: papers/derivations/02_genesis/tfq_0389_fewest_changes_formula.md
+    to: dag/derivations/02_genesis/tfq_0389_fewest_changes_formula.md
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/02_genesis/tfq_0389_fewest_changes_formula.md
+    sha256: d5e4899c0c4e88b39838d6ac6031c89ab4cfeee13efc2488f6e62b10a842f0d5
+source_provenance:
+  repository: this_repository
+  commit: 642f5b95a116da6df805adbd745a4826c6739c2b
+  path: dag/prompts/genesis_pg_gen_ongoing_fewest_changes_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: inductive
+  name: Reach
+  line: 262
+  signature_excerpt: 'inductive Reach : St → St → ℕ → Prop'
+  source: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/H3V7N5QF/Cost.lean
+  repository: the_symbol_game
+  source_sha256: 1667c61c62622dd434aadd6a93aaa2c6bfa98a5597ddaa06143e705ba634ca60
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: fewest_changes_A
+  line: 247
+  signature_excerpt: "theorem fewest_changes_A {g : St} (hg : g.Legal) (hgw : g.WF) (ha : g.a = 0)\n \
+    \   (hb : g.b = 1 ∨ g.b = 0) :\n    (∃ n, Reach givenA g n ∧ n + 3 = costA g) ∧ ∀ n, Reach givenA\
+    \ g n → costA g ≤ n + 3"
+  source: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/H3V7N5QF/Paths.lean
+  repository: the_symbol_game
+  source_sha256: 4ce85210218e6b2eff2b73c67d18f867bc467a79f418d102c123f2347b684f2c
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: reach_by_edits
+  line: 84
+  signature_excerpt: "theorem reach_by_edits (s g : St) (hg : g.Legal) (hgw : g.WF) (hT : s.T ⊆ g.T)\n\
+    \    (ha : g.a = s.a) (hb : g.b = s.b) :\n    Reach s g ((s.A \\ g.A).card + (g.T \\ s.T).card + (g.A\
+    \ \\ s.A).card)"
+  source: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/H3V7N5QF/Paths.lean
+  repository: the_symbol_game
+  source_sha256: 4ce85210218e6b2eff2b73c67d18f867bc467a79f418d102c123f2347b684f2c
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: Reach.names_stay_merged
+  line: 284
+  signature_excerpt: "theorem Reach.names_stay_merged {s t : St} {n : ℕ} (h : Reach s t n) (hab : s.a\
+    \ = s.b) :\n    t.a = t.b"
+  source: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/H3V7N5QF/Cost.lean
+  repository: the_symbol_game
+  source_sha256: 1667c61c62622dd434aadd6a93aaa2c6bfa98a5597ddaa06143e705ba634ca60
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/H3V7N5QF/Paths.lean::fewest_changes_A
+  availability: external
+  symbol: fewest_changes_A
+  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/H3V7N5QF/Paths.lean
+  repository: the_symbol_game
+  sha256: 4ce85210218e6b2eff2b73c67d18f867bc467a79f418d102c123f2347b684f2c
+  declaration_status: declaration_found_not_proof_checked
+  line: 247
+  role: source_lead_only
+- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/H3V7N5QF/Paths.lean::reach_by_edits
+  availability: external
+  symbol: reach_by_edits
+  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/H3V7N5QF/Paths.lean
+  repository: the_symbol_game
+  sha256: 4ce85210218e6b2eff2b73c67d18f867bc467a79f418d102c123f2347b684f2c
+  declaration_status: declaration_found_not_proof_checked
+  line: 84
+  role: source_lead_only
+- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/H3V7N5QF/Cost.lean::Reach.names_stay_merged
+  availability: external
+  symbol: Reach.names_stay_merged
+  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/H3V7N5QF/Cost.lean
+  repository: the_symbol_game
+  sha256: 1667c61c62622dd434aadd6a93aaa2c6bfa98a5597ddaa06143e705ba634ca60
+  declaration_status: declaration_found_not_proof_checked
+  line: 284
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche5_full_dag_177_node_coverage_witness
+  availability: external
+  symbol: verify_tranche5_full_dag_177_node_coverage_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 768
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness
+  availability: external
+  symbol: verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 1280
+  role: source_lead_only
+presentation:
+  status: scoped_stage_result_pending_batch_review
+  scope: Complete 68-state shortest-path tables for both apart seeds and exact edit-cost identities are
+    retained; scalar lower-bound algebra is kernel checked.
+  colours:
+  - id: CompleteSixtyEightStateEditGraph
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: CostIdentityResidual
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: DeclaredApartSeedAndTarget
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: ShortestPathDistanceTable
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  generators:
+  - id: apart_state_edit_graph
+    ordered_inputs:
+    - DeclaredApartSeedAndTarget
+    output: CompleteSixtyEightStateEditGraph
+    arity: 1
+    carrier: Declared DeclaredApartSeedAndTarget
+    coefficient_ring: Exact rational/Gaussian/cubic-cyclotomic coordinates, finite sets and bounded natural
+      event fields
+    hypotheses:
+    - Names remain a=0,b=1; term2 can be added; no identification is allowed in this selected apart branch.
+    semantic_predicate: Enumerate all legal assertions on the admitted two/three terms.
+    source_pins:
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/inputs/this_repository/dag/prompts/genesis_pg_gen_ongoing_fewest_changes_proved_lean.yaml
+      sha256: 211077f1fa04098d96a809932bed5591afac488b7c5f1e3685ba5b027dfe105f
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/inputs/this_repository/dag/operads/pg_gen_ongoing_fewest_changes.yaml
+      sha256: 3e9906b677bc885fef0fc3e414398a4fbea0a660c92fcf5db6a24ba39de335f4
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/H3V7N5QF/Paths.lean
+      sha256: 4ce85210218e6b2eff2b73c67d18f867bc467a79f418d102c123f2347b684f2c
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/H3V7N5QF/Cost.lean
+      sha256: 1667c61c62622dd434aadd6a93aaa2c6bfa98a5597ddaa06143e705ba634ca60
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/inputs/this_repository/dag/derivations/02_genesis/tfq_0389_fewest_changes_formula.md
+      sha256: a104cc78b841b7e7c5f927f96ff593a4cd3b2fe5195e5869f7e8d839d5646e70
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p0/operation_sources/code/python/src/qm/genesis_impl_exact.py
+      sha256: c089e168b2fdf95035234b3c790033a7c26faeeb560caba3702316b67a83de08
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p0/operation_sources/code/python/tests/test_genesis_impl_exact.py
+      sha256: 83bb286035e4bf51798b48bfcbb41e42e367a1735439733ddc2df93874bd4bba
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p0/operation_sources/code/rust/src/finite_probability/genesis_impl_exact.rs
+      sha256: 69ec2e18c3114e5087881dc7dc58f5ccd27af0dc64d8b673afd7a4c59646405c
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/genesis_impl_exact_replay.rs
+      sha256: 6f62d62b19601a4c57bab60bc683a8f65e7a38ecb47cb8291746c6e44fedfe43
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/genesis_impl_checker.py
+      sha256: aaee07218bf3ce39df57837cecb0df3da420cec6311b0c8389bec96dba42f286
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p0/operation_sources/dag/results/batches/20261019T215447Z_prompts_92_111/tools/prepare.py
+      sha256: 7aacd1e0ac730a596635ea0c1faac5113bb58cfac79f80cbc3d92636a75cb5b8
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p0/operation_sources/dag/results/batches/20261019T215447Z_prompts_92_111/tools/specs.py
+      sha256: c8db59e0e612c454d9ec6a012326d016a0a7f74c09642531d4f5a8f5df2ce76b
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/check_candidate.py
+      sha256: ae9e22486db4aaa90dedca70cd8ddf58b998e2b1cacd5b23c1986000290b99a3
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/format_certificate.py
+      sha256: 772bee5748f6d1892fc78d2bb4d40912cb14df068d5fed3062c081d02ab3ce91
+    evidence_status: Target-specific native predicates checked on retained inputs; relation-specific kernel
+      scope is separate. General refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p2/host_check.json
+  - id: breadth_first_distances
+    ordered_inputs:
+    - CompleteSixtyEightStateEditGraph
+    output: ShortestPathDistanceTable
+    arity: 1
+    carrier: Declared CompleteSixtyEightStateEditGraph
+    coefficient_ring: Exact rational/Gaussian/cubic-cyclotomic coordinates, finite sets and bounded natural
+      event fields
+    hypotheses:
+    - Names remain a=0,b=1; term2 can be added; no identification is allowed in this selected apart branch.
+    semantic_predicate: BFS using one performed edit per edge.
+    source_pins:
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/inputs/this_repository/dag/prompts/genesis_pg_gen_ongoing_fewest_changes_proved_lean.yaml
+      sha256: 211077f1fa04098d96a809932bed5591afac488b7c5f1e3685ba5b027dfe105f
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/inputs/this_repository/dag/operads/pg_gen_ongoing_fewest_changes.yaml
+      sha256: 3e9906b677bc885fef0fc3e414398a4fbea0a660c92fcf5db6a24ba39de335f4
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/H3V7N5QF/Paths.lean
+      sha256: 4ce85210218e6b2eff2b73c67d18f867bc467a79f418d102c123f2347b684f2c
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/H3V7N5QF/Cost.lean
+      sha256: 1667c61c62622dd434aadd6a93aaa2c6bfa98a5597ddaa06143e705ba634ca60
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/inputs/this_repository/dag/derivations/02_genesis/tfq_0389_fewest_changes_formula.md
+      sha256: a104cc78b841b7e7c5f927f96ff593a4cd3b2fe5195e5869f7e8d839d5646e70
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p0/operation_sources/code/python/src/qm/genesis_impl_exact.py
+      sha256: c089e168b2fdf95035234b3c790033a7c26faeeb560caba3702316b67a83de08
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p0/operation_sources/code/python/tests/test_genesis_impl_exact.py
+      sha256: 83bb286035e4bf51798b48bfcbb41e42e367a1735439733ddc2df93874bd4bba
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p0/operation_sources/code/rust/src/finite_probability/genesis_impl_exact.rs
+      sha256: 69ec2e18c3114e5087881dc7dc58f5ccd27af0dc64d8b673afd7a4c59646405c
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/genesis_impl_exact_replay.rs
+      sha256: 6f62d62b19601a4c57bab60bc683a8f65e7a38ecb47cb8291746c6e44fedfe43
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/genesis_impl_checker.py
+      sha256: aaee07218bf3ce39df57837cecb0df3da420cec6311b0c8389bec96dba42f286
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p0/operation_sources/dag/results/batches/20261019T215447Z_prompts_92_111/tools/prepare.py
+      sha256: 7aacd1e0ac730a596635ea0c1faac5113bb58cfac79f80cbc3d92636a75cb5b8
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p0/operation_sources/dag/results/batches/20261019T215447Z_prompts_92_111/tools/specs.py
+      sha256: c8db59e0e612c454d9ec6a012326d016a0a7f74c09642531d4f5a8f5df2ce76b
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/check_candidate.py
+      sha256: ae9e22486db4aaa90dedca70cd8ddf58b998e2b1cacd5b23c1986000290b99a3
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/format_certificate.py
+      sha256: 772bee5748f6d1892fc78d2bb4d40912cb14df068d5fed3062c081d02ab3ce91
+    evidence_status: Target-specific native predicates checked on retained inputs; relation-specific kernel
+      scope is separate. General refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p2/host_check.json
+  - id: edit_potential_comparison
+    ordered_inputs:
+    - ShortestPathDistanceTable
+    output: CostIdentityResidual
+    arity: 1
+    carrier: Declared ShortestPathDistanceTable
+    coefficient_ring: Exact rational/Gaussian/cubic-cyclotomic coordinates, finite sets and bounded natural
+      event fields
+    hypotheses:
+    - Names remain a=0,b=1; term2 can be added; no identification is allowed in this selected apart branch.
+    semantic_predicate: Compare distance with symmetric difference and size+2*lost-base.
+    source_pins:
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/inputs/this_repository/dag/prompts/genesis_pg_gen_ongoing_fewest_changes_proved_lean.yaml
+      sha256: 211077f1fa04098d96a809932bed5591afac488b7c5f1e3685ba5b027dfe105f
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/inputs/this_repository/dag/operads/pg_gen_ongoing_fewest_changes.yaml
+      sha256: 3e9906b677bc885fef0fc3e414398a4fbea0a660c92fcf5db6a24ba39de335f4
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/H3V7N5QF/Paths.lean
+      sha256: 4ce85210218e6b2eff2b73c67d18f867bc467a79f418d102c123f2347b684f2c
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/H3V7N5QF/Cost.lean
+      sha256: 1667c61c62622dd434aadd6a93aaa2c6bfa98a5597ddaa06143e705ba634ca60
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/inputs/this_repository/dag/derivations/02_genesis/tfq_0389_fewest_changes_formula.md
+      sha256: a104cc78b841b7e7c5f927f96ff593a4cd3b2fe5195e5869f7e8d839d5646e70
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p0/operation_sources/code/python/src/qm/genesis_impl_exact.py
+      sha256: c089e168b2fdf95035234b3c790033a7c26faeeb560caba3702316b67a83de08
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p0/operation_sources/code/python/tests/test_genesis_impl_exact.py
+      sha256: 83bb286035e4bf51798b48bfcbb41e42e367a1735439733ddc2df93874bd4bba
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p0/operation_sources/code/rust/src/finite_probability/genesis_impl_exact.rs
+      sha256: 69ec2e18c3114e5087881dc7dc58f5ccd27af0dc64d8b673afd7a4c59646405c
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/genesis_impl_exact_replay.rs
+      sha256: 6f62d62b19601a4c57bab60bc683a8f65e7a38ecb47cb8291746c6e44fedfe43
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/genesis_impl_checker.py
+      sha256: aaee07218bf3ce39df57837cecb0df3da420cec6311b0c8389bec96dba42f286
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p0/operation_sources/dag/results/batches/20261019T215447Z_prompts_92_111/tools/prepare.py
+      sha256: 7aacd1e0ac730a596635ea0c1faac5113bb58cfac79f80cbc3d92636a75cb5b8
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p0/operation_sources/dag/results/batches/20261019T215447Z_prompts_92_111/tools/specs.py
+      sha256: c8db59e0e612c454d9ec6a012326d016a0a7f74c09642531d4f5a8f5df2ce76b
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/check_candidate.py
+      sha256: ae9e22486db4aaa90dedca70cd8ddf58b998e2b1cacd5b23c1986000290b99a3
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/format_certificate.py
+      sha256: 772bee5748f6d1892fc78d2bb4d40912cb14df068d5fed3062c081d02ab3ce91
+    evidence_status: Target-specific native predicates checked on retained inputs; relation-specific kernel
+      scope is separate. General refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p2/host_check.json
+  relations:
+  - id: fewest_relation_0
+    equation_or_predicate: For these apart states, distance=added terms+|A symmetric_difference given|=size+2*lost-base.
+    typing_conditions: Literal declared operation domains; Extend the refinement to merged-name states,
+      arbitrary labels and all source identification steps and prove the full lower/upper transport. This
+      apart-state search is not the unrestricted fewest_changes_A/B theorem.
+    evidence_status: P1 candidate; independent native and named kernel gates remain required.
+    scope: Complete 68-state shortest-path tables for both apart seeds and exact edit-cost identities
+      are retained; scalar lower-bound algebra is kernel checked.
+    source_pins:
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/inputs/this_repository/dag/prompts/genesis_pg_gen_ongoing_fewest_changes_proved_lean.yaml
+      sha256: 211077f1fa04098d96a809932bed5591afac488b7c5f1e3685ba5b027dfe105f
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/inputs/this_repository/dag/operads/pg_gen_ongoing_fewest_changes.yaml
+      sha256: 3e9906b677bc885fef0fc3e414398a4fbea0a660c92fcf5db6a24ba39de335f4
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/H3V7N5QF/Paths.lean
+      sha256: 4ce85210218e6b2eff2b73c67d18f867bc467a79f418d102c123f2347b684f2c
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/H3V7N5QF/Cost.lean
+      sha256: 1667c61c62622dd434aadd6a93aaa2c6bfa98a5597ddaa06143e705ba634ca60
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/inputs/this_repository/dag/derivations/02_genesis/tfq_0389_fewest_changes_formula.md
+      sha256: a104cc78b841b7e7c5f927f96ff593a4cd3b2fe5195e5869f7e8d839d5646e70
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p0/operation_sources/code/python/src/qm/genesis_impl_exact.py
+      sha256: c089e168b2fdf95035234b3c790033a7c26faeeb560caba3702316b67a83de08
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p0/operation_sources/code/python/tests/test_genesis_impl_exact.py
+      sha256: 83bb286035e4bf51798b48bfcbb41e42e367a1735439733ddc2df93874bd4bba
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p0/operation_sources/code/rust/src/finite_probability/genesis_impl_exact.rs
+      sha256: 69ec2e18c3114e5087881dc7dc58f5ccd27af0dc64d8b673afd7a4c59646405c
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/genesis_impl_exact_replay.rs
+      sha256: 6f62d62b19601a4c57bab60bc683a8f65e7a38ecb47cb8291746c6e44fedfe43
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/genesis_impl_checker.py
+      sha256: aaee07218bf3ce39df57837cecb0df3da420cec6311b0c8389bec96dba42f286
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p0/operation_sources/dag/results/batches/20261019T215447Z_prompts_92_111/tools/prepare.py
+      sha256: 7aacd1e0ac730a596635ea0c1faac5113bb58cfac79f80cbc3d92636a75cb5b8
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p0/operation_sources/dag/results/batches/20261019T215447Z_prompts_92_111/tools/specs.py
+      sha256: c8db59e0e612c454d9ec6a012326d016a0a7f74c09642531d4f5a8f5df2ce76b
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/check_candidate.py
+      sha256: ae9e22486db4aaa90dedca70cd8ddf58b998e2b1cacd5b23c1986000290b99a3
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/format_certificate.py
+      sha256: 772bee5748f6d1892fc78d2bb4d40912cb14df068d5fed3062c081d02ab3ce91
+    latest_host_check: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p2/host_check.json
+  compositions:
+  - outer_operation: breadth_first_distances
+    input_slot: 0
+    inner_operation: apart_state_edit_graph
+    colour_match: CompleteSixtyEightStateEditGraph -> CompleteSixtyEightStateEditGraph
+    hypothesis_match: Same declared coordinates, coefficients and context; all operation hypotheses must
+      be carried into the graft.
+    licensing_relations:
+    - fewest_relation_0
+    evidence_status: Semantic substitution supported by the retained finite operation traces and separately
+      scoped named kernel statements. A complete refined-carrier operad is not asserted.
+  - outer_operation: edit_potential_comparison
+    input_slot: 0
+    inner_operation: breadth_first_distances
+    colour_match: ShortestPathDistanceTable -> ShortestPathDistanceTable
+    hypothesis_match: Same declared coordinates, coefficients and context; all operation hypotheses must
+      be carried into the graft.
+    licensing_relations:
+    - fewest_relation_0
+    evidence_status: Semantic substitution supported by the retained finite operation traces and separately
+      scoped named kernel statements. A complete refined-carrier operad is not asserted.
+  identities:
+  - colour: CompleteSixtyEightStateEditGraph
+    proposed_operation: id_CompleteSixtyEightStateEditGraph
+    signature: CompleteSixtyEightStateEditGraph -> CompleteSixtyEightStateEditGraph
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: CostIdentityResidual
+    proposed_operation: id_CostIdentityResidual
+    signature: CostIdentityResidual -> CostIdentityResidual
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: DeclaredApartSeedAndTarget
+    proposed_operation: id_DeclaredApartSeedAndTarget
+    signature: DeclaredApartSeedAndTarget -> DeclaredApartSeedAndTarget
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: ShortestPathDistanceTable
+    proposed_operation: id_ShortestPathDistanceTable
+    signature: ShortestPathDistanceTable -> ShortestPathDistanceTable
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  symmetric_actions: []
+  coherence_obligations: &id001
+  - Extend the refinement to merged-name states, arbitrary labels and all source identification steps
+    and prove the full lower/upper transport. This apart-state search is not the unrestricted fewest_changes_A/B
+    theorem.
+  - Prove the full refined-carrier operad identity, substitution, symmetry and coherence laws; mere colour
+    matches do not instantiate that formal structure.
+  failed_compositions:
+  - proposal: Promote the selected step to the unrestricted original target
+    reason: Extend the refinement to merged-name states, arbitrary labels and all source identification
+      steps and prove the full lower/upper transport. This apart-state search is not the unrestricted
+      fewest_changes_A/B theorem.
+  counterexamples:
+  - id: retained_actual_domain_controls
+    records:
+    - input:
+      - '0'
+      - '3'
+      - '0'
+      output:
+      - '68'
+      - '1'
+      - '2'
+      - '1'
+      - '3'
+      - '1'
+      - '3'
+      - '0'
+      - '1'
+      - '3'
+      - '2'
+      - '0'
+      - '3'
+      - '8'
+      - '2'
+      - '3'
+      - '10'
+      - '1'
+      - '7'
+      - '0'
+      - '2'
+      - '7'
+      - '2'
+      - '1'
+      - '7'
+      - '4'
+      - '3'
+      - '7'
+      - '6'
+      - '2'
+      - '7'
+      - '8'
+      - '3'
+      - '7'
+      - '10'
+      - '2'
+      - '7'
+      - '12'
+      - '4'
+      - '7'
+      - '14'
+      - '3'
+      - '7'
+      - '32'
+      - '3'
+      - '7'
+      - '34'
+      - '2'
+      - '7'
+      - '36'
+      - '4'
+      - '7'
+      - '38'
+      - '3'
+      - '7'
+      - '40'
+      - '4'
+      - '7'
+      - '42'
+      - '3'
+      - '7'
+      - '44'
+      - '5'
+      - '7'
+      - '46'
+      - '4'
+      - '7'
+      - '64'
+      - '3'
+      - '7'
+      - '66'
+      - '2'
+      - '7'
+      - '68'
+      - '4'
+      - '7'
+      - '70'
+      - '3'
+      - '7'
+      - '72'
+      - '4'
+      - '7'
+      - '74'
+      - '3'
+      - '7'
+      - '76'
+      - '5'
+      - '7'
+      - '78'
+      - '4'
+      - '7'
+      - '96'
+      - '4'
+      - '7'
+      - '98'
+      - '3'
+      - '7'
+      - '100'
+      - '5'
+      - '7'
+      - '102'
+      - '4'
+      - '7'
+      - '104'
+      - '5'
+      - '7'
+      - '106'
+      - '4'
+      - '7'
+      - '108'
+      - '6'
+      - '7'
+      - '110'
+      - '5'
+      - '7'
+      - '128'
+      - '3'
+      - '7'
+      - '130'
+      - '2'
+      - '7'
+      - '132'
+      - '4'
+      - '7'
+      - '134'
+      - '3'
+      - '7'
+      - '136'
+      - '4'
+      - '7'
+      - '138'
+      - '3'
+      - '7'
+      - '140'
+      - '5'
+      - '7'
+      - '142'
+      - '4'
+      - '7'
+      - '160'
+      - '4'
+      - '7'
+      - '162'
+      - '3'
+      - '7'
+      - '164'
+      - '5'
+      - '7'
+      - '166'
+      - '4'
+      - '7'
+      - '168'
+      - '5'
+      - '7'
+      - '170'
+      - '4'
+      - '7'
+      - '172'
+      - '6'
+      - '7'
+      - '174'
+      - '5'
+      - '7'
+      - '192'
+      - '4'
+      - '7'
+      - '194'
+      - '3'
+      - '7'
+      - '196'
+      - '5'
+      - '7'
+      - '198'
+      - '4'
+      - '7'
+      - '200'
+      - '5'
+      - '7'
+      - '202'
+      - '4'
+      - '7'
+      - '204'
+      - '6'
+      - '7'
+      - '206'
+      - '5'
+      - '7'
+      - '224'
+      - '5'
+      - '7'
+      - '226'
+      - '4'
+      - '7'
+      - '228'
+      - '6'
+      - '7'
+      - '230'
+      - '5'
+      - '7'
+      - '232'
+      - '6'
+      - '7'
+      - '234'
+      - '5'
+      - '7'
+      - '236'
+      - '7'
+      - '7'
+      - '238'
+      - '6'
+    - input:
+      - '0'
+      - '7'
+      - '34'
+      output:
+      - '68'
+      - '2'
+      - '5'
+      - '0'
+      - '3'
+      - '2'
+      - '3'
+      - '0'
+      - '1'
+      - '3'
+      - '2'
+      - '0'
+      - '3'
+      - '8'
+      - '2'
+      - '3'
+      - '10'
+      - '1'
+      - '7'
+      - '0'
+      - '2'
+      - '7'
+      - '2'
+      - '1'
+      - '7'
+      - '4'
+      - '3'
+      - '7'
+      - '6'
+      - '2'
+      - '7'
+      - '8'
+      - '3'
+      - '7'
+      - '10'
+      - '2'
+      - '7'
+      - '12'
+      - '4'
+      - '7'
+      - '14'
+      - '3'
+      - '7'
+      - '32'
+      - '3'
+      - '7'
+      - '34'
+      - '2'
+      - '7'
+      - '36'
+      - '4'
+      - '7'
+      - '38'
+      - '3'
+      - '7'
+      - '40'
+      - '4'
+      - '7'
+      - '42'
+      - '3'
+      - '7'
+      - '44'
+      - '5'
+      - '7'
+      - '46'
+      - '4'
+      - '7'
+      - '64'
+      - '3'
+      - '7'
+      - '66'
+      - '2'
+      - '7'
+      - '68'
+      - '4'
+      - '7'
+      - '70'
+      - '3'
+      - '7'
+      - '72'
+      - '4'
+      - '7'
+      - '74'
+      - '3'
+      - '7'
+      - '76'
+      - '5'
+      - '7'
+      - '78'
+      - '4'
+      - '7'
+      - '96'
+      - '4'
+      - '7'
+      - '98'
+      - '3'
+      - '7'
+      - '100'
+      - '5'
+      - '7'
+      - '102'
+      - '4'
+      - '7'
+      - '104'
+      - '5'
+      - '7'
+      - '106'
+      - '4'
+      - '7'
+      - '108'
+      - '6'
+      - '7'
+      - '110'
+      - '5'
+      - '7'
+      - '128'
+      - '3'
+      - '7'
+      - '130'
+      - '2'
+      - '7'
+      - '132'
+      - '4'
+      - '7'
+      - '134'
+      - '3'
+      - '7'
+      - '136'
+      - '4'
+      - '7'
+      - '138'
+      - '3'
+      - '7'
+      - '140'
+      - '5'
+      - '7'
+      - '142'
+      - '4'
+      - '7'
+      - '160'
+      - '4'
+      - '7'
+      - '162'
+      - '3'
+      - '7'
+      - '164'
+      - '5'
+      - '7'
+      - '166'
+      - '4'
+      - '7'
+      - '168'
+      - '5'
+      - '7'
+      - '170'
+      - '4'
+      - '7'
+      - '172'
+      - '6'
+      - '7'
+      - '174'
+      - '5'
+      - '7'
+      - '192'
+      - '4'
+      - '7'
+      - '194'
+      - '3'
+      - '7'
+      - '196'
+      - '5'
+      - '7'
+      - '198'
+      - '4'
+      - '7'
+      - '200'
+      - '5'
+      - '7'
+      - '202'
+      - '4'
+      - '7'
+      - '204'
+      - '6'
+      - '7'
+      - '206'
+      - '5'
+      - '7'
+      - '224'
+      - '5'
+      - '7'
+      - '226'
+      - '4'
+      - '7'
+      - '228'
+      - '6'
+      - '7'
+      - '230'
+      - '5'
+      - '7'
+      - '232'
+      - '6'
+      - '7'
+      - '234'
+      - '5'
+      - '7'
+      - '236'
+      - '7'
+      - '7'
+      - '238'
+      - '6'
+    - input:
+      - '1'
+      - '7'
+      - '10'
+      output:
+      - '68'
+      - '1'
+      - '5'
+      - '0'
+      - '4'
+      - '1'
+      - '3'
+      - '0'
+      - '2'
+      - '3'
+      - '2'
+      - '1'
+      - '3'
+      - '8'
+      - '1'
+      - '3'
+      - '10'
+      - '0'
+      - '7'
+      - '0'
+      - '3'
+      - '7'
+      - '2'
+      - '2'
+      - '7'
+      - '4'
+      - '4'
+      - '7'
+      - '6'
+      - '3'
+      - '7'
+      - '8'
+      - '2'
+      - '7'
+      - '10'
+      - '1'
+      - '7'
+      - '12'
+      - '3'
+      - '7'
+      - '14'
+      - '2'
+      - '7'
+      - '32'
+      - '4'
+      - '7'
+      - '34'
+      - '3'
+      - '7'
+      - '36'
+      - '5'
+      - '7'
+      - '38'
+      - '4'
+      - '7'
+      - '40'
+      - '3'
+      - '7'
+      - '42'
+      - '2'
+      - '7'
+      - '44'
+      - '4'
+      - '7'
+      - '46'
+      - '3'
+      - '7'
+      - '64'
+      - '4'
+      - '7'
+      - '66'
+      - '3'
+      - '7'
+      - '68'
+      - '5'
+      - '7'
+      - '70'
+      - '4'
+      - '7'
+      - '72'
+      - '3'
+      - '7'
+      - '74'
+      - '2'
+      - '7'
+      - '76'
+      - '4'
+      - '7'
+      - '78'
+      - '3'
+      - '7'
+      - '96'
+      - '5'
+      - '7'
+      - '98'
+      - '4'
+      - '7'
+      - '100'
+      - '6'
+      - '7'
+      - '102'
+      - '5'
+      - '7'
+      - '104'
+      - '4'
+      - '7'
+      - '106'
+      - '3'
+      - '7'
+      - '108'
+      - '5'
+      - '7'
+      - '110'
+      - '4'
+      - '7'
+      - '128'
+      - '4'
+      - '7'
+      - '130'
+      - '3'
+      - '7'
+      - '132'
+      - '5'
+      - '7'
+      - '134'
+      - '4'
+      - '7'
+      - '136'
+      - '3'
+      - '7'
+      - '138'
+      - '2'
+      - '7'
+      - '140'
+      - '4'
+      - '7'
+      - '142'
+      - '3'
+      - '7'
+      - '160'
+      - '5'
+      - '7'
+      - '162'
+      - '4'
+      - '7'
+      - '164'
+      - '6'
+      - '7'
+      - '166'
+      - '5'
+      - '7'
+      - '168'
+      - '4'
+      - '7'
+      - '170'
+      - '3'
+      - '7'
+      - '172'
+      - '5'
+      - '7'
+      - '174'
+      - '4'
+      - '7'
+      - '192'
+      - '5'
+      - '7'
+      - '194'
+      - '4'
+      - '7'
+      - '196'
+      - '6'
+      - '7'
+      - '198'
+      - '5'
+      - '7'
+      - '200'
+      - '4'
+      - '7'
+      - '202'
+      - '3'
+      - '7'
+      - '204'
+      - '5'
+      - '7'
+      - '206'
+      - '4'
+      - '7'
+      - '224'
+      - '6'
+      - '7'
+      - '226'
+      - '5'
+      - '7'
+      - '228'
+      - '7'
+      - '7'
+      - '230'
+      - '6'
+      - '7'
+      - '232'
+      - '5'
+      - '7'
+      - '234'
+      - '4'
+      - '7'
+      - '236'
+      - '6'
+      - '7'
+      - '238'
+      - '5'
+    scope: Computed values, with the source/kernel/native distinctions retained in claim_boundary.
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: FILLED
+    carrier: Literal per-operation finite or admitted scalar carriers
+    coefficient_ring: Exact Z, Q, Gaussian rational pairs and supplied Boolean fields
+    source_pins:
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/inputs/this_repository/dag/prompts/genesis_pg_gen_ongoing_fewest_changes_proved_lean.yaml
+      sha256: 211077f1fa04098d96a809932bed5591afac488b7c5f1e3685ba5b027dfe105f
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/inputs/this_repository/dag/operads/pg_gen_ongoing_fewest_changes.yaml
+      sha256: 3e9906b677bc885fef0fc3e414398a4fbea0a660c92fcf5db6a24ba39de335f4
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/H3V7N5QF/Paths.lean
+      sha256: 4ce85210218e6b2eff2b73c67d18f867bc467a79f418d102c123f2347b684f2c
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/H3V7N5QF/Cost.lean
+      sha256: 1667c61c62622dd434aadd6a93aaa2c6bfa98a5597ddaa06143e705ba634ca60
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/inputs/this_repository/dag/derivations/02_genesis/tfq_0389_fewest_changes_formula.md
+      sha256: a104cc78b841b7e7c5f927f96ff593a4cd3b2fe5195e5869f7e8d839d5646e70
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p0/operation_sources/code/python/src/qm/genesis_impl_exact.py
+      sha256: c089e168b2fdf95035234b3c790033a7c26faeeb560caba3702316b67a83de08
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p0/operation_sources/code/python/tests/test_genesis_impl_exact.py
+      sha256: 83bb286035e4bf51798b48bfcbb41e42e367a1735439733ddc2df93874bd4bba
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p0/operation_sources/code/rust/src/finite_probability/genesis_impl_exact.rs
+      sha256: 69ec2e18c3114e5087881dc7dc58f5ccd27af0dc64d8b673afd7a4c59646405c
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/genesis_impl_exact_replay.rs
+      sha256: 6f62d62b19601a4c57bab60bc683a8f65e7a38ecb47cb8291746c6e44fedfe43
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/genesis_impl_checker.py
+      sha256: aaee07218bf3ce39df57837cecb0df3da420cec6311b0c8389bec96dba42f286
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p0/operation_sources/dag/results/batches/20261019T215447Z_prompts_92_111/tools/prepare.py
+      sha256: 7aacd1e0ac730a596635ea0c1faac5113bb58cfac79f80cbc3d92636a75cb5b8
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p0/operation_sources/dag/results/batches/20261019T215447Z_prompts_92_111/tools/specs.py
+      sha256: c8db59e0e612c454d9ec6a012326d016a0a7f74c09642531d4f5a8f5df2ce76b
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/check_candidate.py
+      sha256: ae9e22486db4aaa90dedca70cd8ddf58b998e2b1cacd5b23c1986000290b99a3
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/format_certificate.py
+      sha256: 772bee5748f6d1892fc78d2bb4d40912cb14df068d5fed3062c081d02ab3ce91
+    public_input:
+      kind: fewest
+      cases:
+      - - '0'
+        - '3'
+        - '0'
+      - - '0'
+        - '7'
+        - '34'
+      - - '1'
+        - '7'
+        - '10'
+      scope: Complete 68-state shortest-path tables for both apart seeds and exact edit-cost identities
+        are retained; scalar lower-bound algebra is kernel checked.
+      unpaid_target: Extend the refinement to merged-name states, arbitrary labels and all source identification
+        steps and prove the full lower/upper transport. This apart-state search is not the unrestricted
+        fewest_changes_A/B theorem.
+    original_target: The fewest changes to reach a result is the first derivation's size-plus-twice-destroyed-givens
+      formula, with matching lower and upper bounds (fewest_changes_A/B).
+    source_scope_review: The source distinguishes one- and two-directed-given seeds and merged versus
+      apart names. This step keeps names apart, bounds labels to {0,1,2}, and searches the complete 68-state
+      add-term/add-assertion/remove-assertion graph for each seed. BFS distances are independently checked
+      against added terms plus assertion symmetric difference and the size+2*lost-givens identity. Merged
+      targets and arbitrary writings remain explicit next work.
+    admitted_assumptions: []
+  slot_m2_layer1_forward_morphisms:
+    mining_status: FILLED
+    operations:
+    - catalog_id: apart_state_edit_graph
+      inputs:
+      - DeclaredApartSeedAndTarget
+      output: CompleteSixtyEightStateEditGraph
+      semantic_predicate: Enumerate all legal assertions on the admitted two/three terms.
+    - catalog_id: breadth_first_distances
+      inputs:
+      - CompleteSixtyEightStateEditGraph
+      output: ShortestPathDistanceTable
+      semantic_predicate: BFS using one performed edit per edge.
+    - catalog_id: edit_potential_comparison
+      inputs:
+      - ShortestPathDistanceTable
+      output: CostIdentityResidual
+      semantic_predicate: Compare distance with symmetric difference and size+2*lost-base.
+    composition_plan:
+    - outer_operation: breadth_first_distances
+      input_slot: 0
+      inner_operation: apart_state_edit_graph
+      colour_match: CompleteSixtyEightStateEditGraph -> CompleteSixtyEightStateEditGraph
+      hypothesis_match: Same declared coordinates, coefficients and context; all operation hypotheses
+        must be carried into the graft.
+      licensing_relations:
+      - fewest_relation_0
+      evidence_status: Semantic substitution supported by the retained finite operation traces and separately
+        scoped named kernel statements. A complete refined-carrier operad is not asserted.
+    - outer_operation: edit_potential_comparison
+      input_slot: 0
+      inner_operation: breadth_first_distances
+      colour_match: ShortestPathDistanceTable -> ShortestPathDistanceTable
+      hypothesis_match: Same declared coordinates, coefficients and context; all operation hypotheses
+        must be carried into the graft.
+      licensing_relations:
+      - fewest_relation_0
+      evidence_status: Semantic substitution supported by the retained finite operation traces and separately
+        scoped named kernel statements. A complete refined-carrier operad is not asserted.
+    tree:
+    - For these apart states, distance=added terms+|A symmetric_difference given|=size+2*lost-base.
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: FILLED
+    algebraic_relations:
+    - id: fewest_relation_0
+      equation_or_predicate: For these apart states, distance=added terms+|A symmetric_difference given|=size+2*lost-base.
+      typing_conditions: Literal declared operation domains; Extend the refinement to merged-name states,
+        arbitrary labels and all source identification steps and prove the full lower/upper transport.
+        This apart-state search is not the unrestricted fewest_changes_A/B theorem.
+      evidence_status: P1 candidate; independent native and named kernel gates remain required.
+      scope: Complete 68-state shortest-path tables for both apart seeds and exact edit-cost identities
+        are retained; scalar lower-bound algebra is kernel checked.
+      source_pins:
+      - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/inputs/this_repository/dag/prompts/genesis_pg_gen_ongoing_fewest_changes_proved_lean.yaml
+        sha256: 211077f1fa04098d96a809932bed5591afac488b7c5f1e3685ba5b027dfe105f
+      - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/inputs/this_repository/dag/operads/pg_gen_ongoing_fewest_changes.yaml
+        sha256: 3e9906b677bc885fef0fc3e414398a4fbea0a660c92fcf5db6a24ba39de335f4
+      - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/H3V7N5QF/Paths.lean
+        sha256: 4ce85210218e6b2eff2b73c67d18f867bc467a79f418d102c123f2347b684f2c
+      - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/H3V7N5QF/Cost.lean
+        sha256: 1667c61c62622dd434aadd6a93aaa2c6bfa98a5597ddaa06143e705ba634ca60
+      - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/inputs/this_repository/dag/derivations/02_genesis/tfq_0389_fewest_changes_formula.md
+        sha256: a104cc78b841b7e7c5f927f96ff593a4cd3b2fe5195e5869f7e8d839d5646e70
+      - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p0/operation_sources/code/python/src/qm/genesis_impl_exact.py
+        sha256: c089e168b2fdf95035234b3c790033a7c26faeeb560caba3702316b67a83de08
+      - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p0/operation_sources/code/python/tests/test_genesis_impl_exact.py
+        sha256: 83bb286035e4bf51798b48bfcbb41e42e367a1735439733ddc2df93874bd4bba
+      - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p0/operation_sources/code/rust/src/finite_probability/genesis_impl_exact.rs
+        sha256: 69ec2e18c3114e5087881dc7dc58f5ccd27af0dc64d8b673afd7a4c59646405c
+      - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/genesis_impl_exact_replay.rs
+        sha256: 6f62d62b19601a4c57bab60bc683a8f65e7a38ecb47cb8291746c6e44fedfe43
+      - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/genesis_impl_checker.py
+        sha256: aaee07218bf3ce39df57837cecb0df3da420cec6311b0c8389bec96dba42f286
+      - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+        sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+      - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p0/operation_sources/dag/results/batches/20261019T215447Z_prompts_92_111/tools/prepare.py
+        sha256: 7aacd1e0ac730a596635ea0c1faac5113bb58cfac79f80cbc3d92636a75cb5b8
+      - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p0/operation_sources/dag/results/batches/20261019T215447Z_prompts_92_111/tools/specs.py
+        sha256: c8db59e0e612c454d9ec6a012326d016a0a7f74c09642531d4f5a8f5df2ce76b
+      - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/custody.py
+        sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+      - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+        sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+      - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/check_candidate.py
+        sha256: ae9e22486db4aaa90dedca70cd8ddf58b998e2b1cacd5b23c1986000290b99a3
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/format_certificate.py
+        sha256: 772bee5748f6d1892fc78d2bb4d40912cb14df068d5fed3062c081d02ab3ce91
+    rejection_predicates:
+    - Independent domain equations and actual matrix/graph/quotient arrays recompute every output.
+    - Exact public input, canonical rational primitive types, complete source pins and exact sealed request
+      bytes.
+    - Full native cross-language output equality and actual named Lean axiom reports; no label-based target
+      promotion.
+    negative_control_plan: Alter every output coordinate, input identity, primitive types, source set
+      and sealed request.
+  slot_m4_tri_language_witness_anchors:
+    mining_status: FILLED
+    certificate_predicates:
+    - Independent domain equations and actual matrix/graph/quotient arrays recompute every output.
+    - Exact public input, canonical rational primitive types, complete source pins and exact sealed request
+      bytes.
+    - Full native cross-language output equality and actual named Lean axiom reports; no label-based target
+      promotion.
+    anchors:
+    - code/python/src/qm/genesis_impl_exact.py
+    - code/python/tests/test_genesis_impl_exact.py
+    - code/rust/src/finite_probability/genesis_impl_exact.rs
+    - code/rust/src/finite_probability/examples/genesis_impl_exact_replay.rs
+    - dag/pfp/genesis_impl_checker.py
+    - dag/pfp/exact_json.py
+    - dag/pfp/review_exact_json.py
+    - lean4/WeylCommutant.lean
+    - lean4/LggrFiniteResults.lean
+    - lean4/PromptGenesisImplementation.lean
+    - dag/results/batches/20261019T215447Z_prompts_92_111/tools/prepare.py
+    - dag/results/batches/20261019T215447Z_prompts_92_111/tools/specs.py
+    - dag/pfp/custody.py
+    - dag/pfp/filename_custody.json
+    - QuantumMechanics.PromptGenesisImplementation.fewest_edit_identity
+    - QuantumMechanics.PromptGenesisImplementation.fewest_lower_bound
+    unpaid_imports:
+    - Extend the refinement to merged-name states, arbitrary labels and all source identification steps
+      and prove the full lower/upper transport. This apart-state search is not the unrestricted fewest_changes_A/B
+      theorem.
+    - Prove the full refined-carrier operad identity, substitution, symmetry and coherence laws; mere
+      colour matches do not instantiate that formal structure.
+    anchor_status: New Lean anchors are candidate declarations until the retained P2 compiler runs; compiled
+      source leads retain their literal scope.
+stage_history:
+- stage: P0_MINE_OPERAD
+  attempt: p0
+  run: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged
+  operad_delta: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p0/operad_delta.yaml
+  host_check: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p0/host_check.json
+- stage: P1_DERIVE
+  attempt: p1
+  run: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged
+  operad_delta: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p1/operad_delta.yaml
+  host_check: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p1/host_check.json
+- stage: P2_VERIFY
+  attempt: p2
+  run: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged
+  operad_delta: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p2/operad_delta.yaml
+  host_check: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p2/host_check.json
+- stage: P4_CHALLENGE
+  attempt: p4
+  run: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged
+  operad_delta: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p4/operad_delta.yaml
+  host_check: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p4/host_check.json
+- stage: P5_RECORD
+  attempt: p5
+  run: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged
+  operad_delta: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p5/operad_delta.yaml
+  host_check: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p5/host_check.json
+open_obligations: *id001
+excluded_relation_leads: []
+operad_slots_scope:
+  work_unit: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged/p0/reviewed_missions.json
+  scope: FILLED means reviewed prerequisites for this selected step; original target and unpaid imports
+    retained.
+latest_run:
+  path: dag/results/PG-GEN-ONGOING-FEWEST-CHANGES/runs/20261019T215447Z_staged
+  stage: P5_RECORD
+  status: scoped_result_or_obstruction_pending_batch_review
+scope_notes:
+- The source distinguishes one- and two-directed-given seeds and merged versus apart names. This step
+  keeps names apart, bounds labels to {0,1,2}, and searches the complete 68-state add-term/add-assertion/remove-assertion
+  graph for each seed. BFS distances are independently checked against added terms plus assertion symmetric
+  difference and the size+2*lost-givens identity. Merged targets and arbitrary writings remain explicit
+  next work.

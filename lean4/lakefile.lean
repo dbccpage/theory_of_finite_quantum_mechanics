@@ -215,7 +215,7 @@ lean_lib «FiniteQuantum» where
     `PromptStructure,
     `PromptDynamics,
     `PromptResources,
-    `PromptBoundaries,
+    `PromptBoundaries, `PromptGenesisImplementation,
     `PromptEntropyExact,
     `PromptDeclaredInterface,
     `LggrFiniteResults,

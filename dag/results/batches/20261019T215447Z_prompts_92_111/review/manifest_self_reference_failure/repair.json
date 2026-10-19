@@ -1,0 +1,14 @@
+{
+  "reason": "A reseal saw the pre-existing manifest during rglob and included its old digest, causing the final read-only seal check to reject it.",
+  "failed_check": "ValueError: sealed artifact changed dag/results/batches/20261019T215447Z_prompts_92_111/manifest.json",
+  "before_finalizer_sha256": "41710e653288c2576cbcc20ee3e5cb5b0617919436b15ae545d9a7468c2893bf",
+  "after_finalizer_sha256": "52060f2c99c3d8ff0e9f5834ae60eb0959e81e7e44375835d8f7f4d0058267ed",
+  "exact_replacement": {
+    "before": "'files':[s.pin(p) for p in sorted(paths)]",
+    "after": "'files':[s.pin(p) for p in sorted(paths) if p != B/'manifest.json']"
+  },
+  "retained_rejected_manifest_sha256": "603137911544e042af066b207bda0f5607518da078f808aa761ac3c1017dfc68",
+  "excluded_path": "dag/results/batches/20261019T215447Z_prompts_92_111/manifest.json",
+  "stage_or_mathematical_source_changes": 0,
+  "companion_bindings_rechecked": 219
+}

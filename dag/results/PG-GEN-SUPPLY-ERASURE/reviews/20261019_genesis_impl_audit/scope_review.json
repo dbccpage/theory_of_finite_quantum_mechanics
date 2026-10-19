@@ -1,0 +1,18 @@
+{
+  "task_id": "PG-GEN-SUPPLY-ERASURE",
+  "reviewed_finding": "SupplyErasure proves supply removal for the source replay. This selected interpreter checks complete guarded final states and failures before and after supply removal, preserving original-history failure indices. Lean separately proves the generic Option-event erasure identity for arbitrary total admission transitions; lifting this to the entire partial source interpreter remains explicit.",
+  "claim_boundary": {
+    "supports": "Full guarded replay states agree after supply erasure on the retained histories; generic erasure/filterMap and supply-prefix identities are kernel checked.",
+    "does_not_support": "Prove the partial Option/failure and five-field Regime representation bridge for every source history. Erasure does not erase guard failures, actual admissions or external custody requirements.",
+    "narrowest_claim": "Full guarded replay states agree after supply erasure on the retained histories; generic erasure/filterMap and supply-prefix identities are kernel checked.",
+    "next_test": "Challenge every output coordinate and strict custody/type boundary, then address the explicit unpaid mathematical bridge."
+  },
+  "accepted": {
+    "attempt": "p1",
+    "host": "p2",
+    "failed_checkpoints": []
+  },
+  "additional_scope_clarifications": {},
+  "reviewer": "Same local Codex researcher. Separate checker code and native kernels do not constitute an independent author/model panel.",
+  "authority_effect": "None"
+}
