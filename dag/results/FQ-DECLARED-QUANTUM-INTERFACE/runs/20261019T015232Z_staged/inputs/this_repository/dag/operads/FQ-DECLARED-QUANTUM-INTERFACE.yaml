@@ -1,0 +1,174 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: FQ-DECLARED-QUANTUM-INTERFACE
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: 'Bundle of inputs every finite-QM result in this fragment consumes: scalar field (Q(i) or
+    Q(zeta_n)), Hilbert/inner-product carrier, positive cone and effects, trace/Born pairing, tensor composition,
+    declared channels, and (where used) a unitary step or time. Declared, not derived.'
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: &id001
+  - complex scalar field (assumption)
+  - Hilbert/inner-product carrier (assumption)
+  - positivity and Born/trace pairing (assumption)
+  - tensor composition (assumption)
+  - time / unitary step (assumption)
+  - observer/record availability (assumption)
+  source_bottleneck: See FQ-PRIM-TO-QM-SELECTION-OPEN.
+  source_refs:
+  - omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md:17
+  - omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md:431
+  - omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md:761
+  - omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/claims/gap_register.yaml:105
+  paper_refs:
+  - dag/derivations/10_finite_qm_core/TFQ-0007_finite_quantum_mechanics_core_on_an_admitted_carrier.md
+  - dag/derivations/12_finite_qm_structure/TFQ-0273_finite_descent_of_an_imported_quantum_interface.md
+  source_claim_label: IMPORTED_ASSUMPTION
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports before
+    reusing a result.
+  historical_paper_refs:
+  - papers/derivations/10_finite_qm_core/TFQ-0007_finite_quantum_mechanics_core_on_an_admitted_carrier.md
+  - papers/derivations/12_finite_qm_structure/TFQ-0273_finite_descent_of_an_imported_quantum_interface.md
+  paper_relocations:
+  - from: papers/derivations/10_finite_qm_core/TFQ-0007_finite_quantum_mechanics_core_on_an_admitted_carrier.md
+    to: dag/derivations/10_finite_qm_core/TFQ-0007_finite_quantum_mechanics_core_on_an_admitted_carrier.md
+  - from: papers/derivations/12_finite_qm_structure/TFQ-0273_finite_descent_of_an_imported_quantum_interface.md
+    to: dag/derivations/12_finite_qm_structure/TFQ-0273_finite_descent_of_an_imported_quantum_interface.md
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/10_finite_qm_core/TFQ-0007_finite_quantum_mechanics_core_on_an_admitted_carrier.md
+    sha256: a267860ffcd249c07fa4c18624850ee66ad19195c20c9031e76cfdfa91cb18b2
+  - path: dag/derivations/12_finite_qm_structure/TFQ-0273_finite_descent_of_an_imported_quantum_interface.md
+    sha256: c1f5ab8e59c737b286b24f731a096fbc9cbefc65d2f03ebcb31c3e3d891ddc8c
+source_provenance:
+  repository: this_repository
+  commit: 642f5b95a116da6df805adbd745a4826c6739c2b
+  path: dag/prompts/FINITE_QM_CORE__FQ-DECLARED-QUANTUM-INTERFACE__IMPORTED_ASSUMPTION.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: structure
+  name: Mat2Int
+  line: 177
+  signature_excerpt: structure Mat2Int
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: Mat2Int.mul
+  line: 184
+  signature_excerpt: 'def Mat2Int.mul (A B : Mat2Int) : Mat2Int'
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: ds_qm062_u1_selector_layers_and_ring_iso
+  line: 685
+  signature_excerpt: "theorem ds_qm062_u1_selector_layers_and_ring_iso :\n    let I2 : Mat2Int"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+source_bindings:
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm062_u1_selector_layers_and_ring_iso
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.ds_qm062_u1_selector_layers_and_ring_iso
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 685
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_and_ds_imported_assumption_separation_certificates
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.l1_and_ds_imported_assumption_separation_certificates
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 1049
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_quantum_physics/src/hilbert_space.rs::HilbertSpace
+  availability: external
+  symbol: HilbertSpace
+  path: omega_engine/crates_rs/omega_quantum_physics/src/hilbert_space.rs
+  repository: the_symbol_game
+  sha256: 8946cd8e6ab60085062ab11639080d6413fd1d2e61ec55471be32e74021a3eab
+  declaration_status: declaration_found_not_executed
+  line: 83
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_quantum_physics/src/operational_axiom_selection.rs::FiniteRivalTheory
+  availability: external
+  symbol: FiniteRivalTheory
+  path: omega_engine/crates_rs/omega_quantum_physics/src/operational_axiom_selection.rs
+  repository: the_symbol_game
+  sha256: dd227bedb7a8bc7f550ff0cbe797801f79e1fb1beb6553c006be19406710e805
+  declaration_status: declaration_found_not_executed
+  line: 6
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche5_full_dag_177_node_coverage_witness
+  availability: external
+  symbol: verify_tranche5_full_dag_177_node_coverage_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 768
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche10_chsh_tsirelson_pr_box_tier3_uniqueness_edgewise_l1_and_import_boundaries_witness
+  availability: external
+  symbol: verify_tranche10_chsh_tsirelson_pr_box_tier3_uniqueness_edgewise_l1_and_import_boundaries_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 1134
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: *id001
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: *id001
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads:
+- source: lean4/DerivationDagQMClosure.lean
+  name: l1_and_ds_imported_assumption_separation_certificates
+  reason: aggregate_or_proxy_scope_requires_projection_not_a_task_relation

@@ -1,0 +1,5 @@
+# Born uniqueness gap stage
+
+The actual two-label source host cannot satisfy a dimension-at-least-three premise. A duplicate report name does not add a distinct label. On the same declared effect labels, the source positive unit-total rules normalize to4/5 and1/5 at psi21, so that weak contract does not establish uniqueness. The explicit orthogonal 3-4-5 frames have quadratic sums1 in dimension2 and in the retained complete dimension3 embedding, but the quartic rival has sums1 and337/625, a deficit288/625. The source raw integer deficit180000 and the normalized fixed rational arithmetic are separately compiled anchors. These finite refusals do not classify all frame measures or prove universal Born/Gleason uniqueness; the exact imported assumptions and general transport remain open.
+
+Every executed checkpoint retains an operad delta, source/candidate bindings and actual host results. This is local file-based PFP execution, not an external-provider transcript. No whole-repository or hosted-CI success is claimed. Awaiting the requested batch review. AuthorityEffect: None.

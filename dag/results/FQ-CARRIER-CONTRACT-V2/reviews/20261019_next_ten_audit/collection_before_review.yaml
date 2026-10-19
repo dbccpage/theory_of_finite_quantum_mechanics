@@ -1,0 +1,1739 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: FQ-CARRIER-CONTRACT-V2
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: 'Declared carrier: cyclotomic fields Q(zeta_n) with directed tower law (m | n gives
+    Q(zeta_m) <= Q(zeta_n)), declared target conductor LCM 120 (distinct conductors 1,2,3,4,5,8,12; 23
+    targets), Born weights |psi_j|^2 in the real subfield Q(zeta_n)^+. The colimit Q^ab is named but not
+    constructed; Kronecker-Weber is DECLARED.'
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions:
+  - complex/cyclotomic scalar field Q(zeta_n) (assumption)
+  - Kronecker-Weber theorem cited, not proved (assumption)
+  - target conductor 120 chosen, minimality not proved (assumption)
+  source_bottleneck: Q^ab colimit not constructed; no proof that 120 is minimal; amplitude embedding for
+    all 23 targets not verified.
+  source_refs:
+  - omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/claims/carrier_contract.yaml:1
+  - omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/claims/carrier_contract.yaml:13
+  - omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md:149
+  paper_refs:
+  - dag/derivations/10_finite_qm_core/TFQ-0007_finite_quantum_mechanics_core_on_an_admitted_carrier.md
+  source_claim_label: DEFINITION
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  historical_paper_refs:
+  - papers/derivations/10_finite_qm_core/TFQ-0007_finite_quantum_mechanics_core_on_an_admitted_carrier.md
+  paper_relocations:
+  - from: papers/derivations/10_finite_qm_core/TFQ-0007_finite_quantum_mechanics_core_on_an_admitted_carrier.md
+    to: dag/derivations/10_finite_qm_core/TFQ-0007_finite_quantum_mechanics_core_on_an_admitted_carrier.md
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/10_finite_qm_core/TFQ-0007_finite_quantum_mechanics_core_on_an_admitted_carrier.md
+    sha256: a267860ffcd249c07fa4c18624850ee66ad19195c20c9031e76cfdfa91cb18b2
+source_provenance:
+  repository: this_repository
+  commit: 642f5b95a116da6df805adbd745a4826c6739c2b
+  path: dag/prompts/FINITE_QM_CORE__FQ-CARRIER-CONTRACT-V2__DEFINITION.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: targetLcm120
+  line: 5
+  signature_excerpt: 'def targetLcm120 : Nat'
+  source: lean4/H057HigherDimConductorBounds.lean
+  repository: this_repository
+  source_sha256: 490d743d8b1395d21bed1914a4a7050117ea25b9cde576a42e1293c472a47253
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: cyclotomic_tower_is_directed
+  line: 14
+  signature_excerpt: "theorem cyclotomic_tower_is_directed (m1 m2 : Nat) (h1 : m1 ≥ 1) (h2 : m2 ≥ 1) :\n\
+    \    ∃ n : Nat, n ≥ 1 ∧ m1 ∣ n ∧ m2 ∣ n"
+  source: lean4/H052CyclotomicTowerDirected.lean
+  repository: this_repository
+  source_sha256: c7e8d3e1e36a80bf4e60d9da3bae5cafef90a386f410fc244ea616e33a45fc43
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: css_horodecki_conductor_1_div_120
+  line: 8
+  signature_excerpt: 'theorem css_horodecki_conductor_1_div_120 : 1 ∣ targetLcm120'
+  source: lean4/H057HigherDimConductorBounds.lean
+  repository: this_repository
+  source_sha256: 490d743d8b1395d21bed1914a4a7050117ea25b9cde576a42e1293c472a47253
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: master_dag_177_node_10_stage_and_172_route_partition_conservation
+  line: 1320
+  signature_excerpt: "theorem master_dag_177_node_10_stage_and_172_route_partition_conservation :\n  \
+    \  (132 + 0 + 25 + 14 + 3 + 3 = 177) ∧\n    (14 + 11 + 2 + 6 + 9 + 35 + 30 + 19 + 44 + 7 = 177) ∧\n\
+    \    (149 + 12 + 11 = 172 ∧ 1 + 7 + 1 + 2 = 11) ∧\n    (2 * 177 = 354 ∧ 354 + 354 = 708)"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: master_operad_25_family_composition_and_end_to_end_chain_closure
+  line: 1327
+  signature_excerpt: "theorem master_operad_25_family_composition_and_end_to_end_chain_closure\n    (c0\
+    \ c1 c2 d : Nat) (d0 d1 re_cross a b aa bb cc ab ac bc : Int) (s imp : Bool) :\n    (((1 + 1 = 2 ∧\
+    \ 2 > 1) ∧ 0 + 2 = 2) ∧\n     ((d0 * 1 = d0 ∧ d1 * 1 = d1) ∧ (d0 + d1 + 2 * re_cross = d0 + d1 ↔ re_cross\
+    \ = 0)) ∧\n     ((a + b) * (a + b) - a * a - b * b = 2 * (a * b) ∧\n      (aa + bb + cc + 2 * ab +\
+    \ 2 * ac + 2 * bc) -\n        (aa + bb + 2 * ab) - (aa + cc + 2 * ac) - (bb + cc + 2 * bc) +\n   \
+    \     aa + bb + cc = 0) ∧\n     (((s && imp) = true ↔ (s = true ∧ imp = true)) ∧ ((true && false)\
+    \ = false))) ∧\n    (∀ k : Fin 25,\n      let f (j : Fin 25) : Bool"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+source_bindings:
+- original_ref: lean4/quantum_mechanics/H052CyclotomicTowerDirected.lean::cyclotomic_tower_is_directed
+  availability: local
+  symbol: cyclotomic_tower_is_directed
+  path: lean4/H052CyclotomicTowerDirected.lean
+  repository: this_repository
+  sha256: c7e8d3e1e36a80bf4e60d9da3bae5cafef90a386f410fc244ea616e33a45fc43
+  declaration_status: declaration_found_not_proof_checked
+  line: 14
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/H057HigherDimConductorBounds.lean::css_horodecki_conductor_1_div_120
+  availability: local
+  symbol: css_horodecki_conductor_1_div_120
+  path: lean4/H057HigherDimConductorBounds.lean
+  repository: this_repository
+  sha256: 490d743d8b1395d21bed1914a4a7050117ea25b9cde576a42e1293c472a47253
+  declaration_status: declaration_found_not_proof_checked
+  line: 8
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.master_dag_177_node_10_stage_and_172_route_partition_conservation
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.master_dag_177_node_10_stage_and_172_route_partition_conservation
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 1320
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.master_operad_25_family_composition_and_end_to_end_chain_closure
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.master_operad_25_family_composition_and_end_to_end_chain_closure
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 1327
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_quantum_physics/src/tower.rs::CyclotomicTower
+  availability: external
+  symbol: CyclotomicTower
+  path: omega_engine/crates_rs/omega_quantum_physics/src/tower.rs
+  repository: the_symbol_game
+  sha256: 69428219cf30740fcadbf10e0187d6b814cdfaa4a6f1fe789cc49dd593d735da
+  declaration_status: declaration_found_not_executed
+  line: 9
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness
+  availability: external
+  symbol: verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 1280
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche16_master_177_node_172_route_dag_completeness_and_operad_audit_witness
+  availability: external
+  symbol: verify_tranche16_master_177_node_172_route_dag_completeness_and_operad_audit_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 1552
+  role: source_lead_only
+presentation:
+  status: scoped_stage_result_pending_batch_review
+  scope: LCM120 on the actual inventory, literal conductor directedness and star-compatible RingHom theorem
+    signatures, and seven independently checked quotient computations.
+  colours:
+  - id: CommonMultipleLabel
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: ConjugationFixedElement
+    meaning: An exact quotient element fixed by star; it need not be rational.
+  - id: CyclotomicElement
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: CyclotomicModulus
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: DivisibleTargetLabel
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: PositiveConductorInventory
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: RationalPolynomial
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  generators:
+  - id: label_lcm
+    ordered_inputs:
+    - PositiveConductorInventory
+    output: CommonMultipleLabel
+    arity: 1
+    carrier: Exact finite cyclotomic power-basis quotients indexed by positive conductor
+    coefficient_ring: Q
+    hypotheses:
+    - Positive labels, exact rational coefficients and matching source/target quotients; divisibility
+      is required for the declared lift.
+    semantic_predicate: Compute the LCM of actual positive conductor labels; this is not field minimality.
+    source_pins:
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-CARRIER-CONTRACT-V2__DEFINITION.yaml
+      sha256: 10fd2d62cc5231bb8a25d1323e28b867c40bc9ecb0051c371264ed7b35c60bf9
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-CARRIER-CONTRACT-V2.yaml
+      sha256: eb7c9c68856481a37cb8b158016d4470641a6f4da78ee3d041030833329513ad
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/H052CyclotomicTowerDirected.lean
+      sha256: c7e8d3e1e36a80bf4e60d9da3bae5cafef90a386f410fc244ea616e33a45fc43
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/H057HigherDimConductorBounds.lean
+      sha256: 490d743d8b1395d21bed1914a4a7050117ea25b9cde576a42e1293c472a47253
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/tower.rs
+      sha256: 69428219cf30740fcadbf10e0187d6b814cdfaa4a6f1fe789cc49dd593d735da
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/10_finite_qm_core/TFQ-0007_finite_quantum_mechanics_core_on_an_admitted_carrier.md
+      sha256: a267860ffcd249c07fa4c18624850ee66ad19195c20c9031e76cfdfa91cb18b2
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/code/python/src/qm/domain/cyclotomic_tower.py
+      sha256: a3c8e982044b89352e4ba485012d75130b73e111022e0632d5425abb84f4279d
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/claims/carrier_contract.yaml
+      sha256: a1c709630c5a79fef6a8638e8fd9ee2d081643405a1ef49796e99c3b83ab8cb8
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/evidence/carrier_inventory.json
+      sha256: 86a00e8c1e85f58ea3265350a892fea92b087762c57710c6d44b7fa79c7d0ba4
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/native_dependency/cyclotomic_field.rs
+      sha256: ed99d8566c8bd563e2c567f23865bdc7b93dd27dbf1fff5ea6d57f7716a3ab53
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/native_dependency/polynomial.rs
+      sha256: e59e3e57c1200e14c5f3882929ae0e3f78dfb9639af77e5f4769562833c63a04
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/native_dependency/cyclotomic120.rs
+      sha256: 69a0dc4f3bec2afe66dc69264380a3dcbfc3204739f875a1bd6977211841fa84
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/carrier_contract.py
+      sha256: f99b30b376d0ae4f703e92d3e38ff71d46fbb17646beff521fb280d5e9629421
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/domain/cyclotomic_tower.py
+      sha256: f0871821e62d9dab37c119214107d93348e202f8b4aef9dd3ef7f2df97085aec
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/tests/test_carrier_contract.py
+      sha256: 70e1565aac8591eea5f7e2be1c30b205006ea0e0e945935c221d59f65bd9c57f
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/carrier_contract.rs
+      sha256: 924085c863748f289c83cd65699edef7cccdbbaaa896246a4089b0c01f6296a8
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_exact.rs
+      sha256: bc3366a3fe6702306136b112a49a8d6df5e5679306d2c03131eef33b909b5404
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/carrier_contract_replay.rs
+      sha256: 3d9d64de2158a97d06353c6bde93144bddfe42e0b3904d22ba3b458de63d9963
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/check_candidate.py
+      sha256: dc4e29fad1c40e3e0819c756caf144fd407debef6b1ba1f697c0d6bfa3475524
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/format_certificate.py
+      sha256: e8a449c2c3d20916f2d7f1fd00155744c26bd05a47328f2965ae9657c7546fee
+    evidence_status: Target-specific native predicates checked on retained inputs; relation-specific kernel
+      scope is separate. General refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p2/host_check.json
+  - id: quotient_reduce
+    ordered_inputs:
+    - RationalPolynomial
+    - CyclotomicModulus
+    output: CyclotomicElement
+    arity: 2
+    carrier: Exact finite cyclotomic power-basis quotients indexed by positive conductor
+    coefficient_ring: Q
+    hypotheses:
+    - Positive labels, exact rational coefficients and matching source/target quotients; divisibility
+      is required for the declared lift.
+    semantic_predicate: Reduce in the actual power-basis quotient Q[X]/Phi_n.
+    source_pins:
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-CARRIER-CONTRACT-V2__DEFINITION.yaml
+      sha256: 10fd2d62cc5231bb8a25d1323e28b867c40bc9ecb0051c371264ed7b35c60bf9
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-CARRIER-CONTRACT-V2.yaml
+      sha256: eb7c9c68856481a37cb8b158016d4470641a6f4da78ee3d041030833329513ad
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/H052CyclotomicTowerDirected.lean
+      sha256: c7e8d3e1e36a80bf4e60d9da3bae5cafef90a386f410fc244ea616e33a45fc43
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/H057HigherDimConductorBounds.lean
+      sha256: 490d743d8b1395d21bed1914a4a7050117ea25b9cde576a42e1293c472a47253
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/tower.rs
+      sha256: 69428219cf30740fcadbf10e0187d6b814cdfaa4a6f1fe789cc49dd593d735da
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/10_finite_qm_core/TFQ-0007_finite_quantum_mechanics_core_on_an_admitted_carrier.md
+      sha256: a267860ffcd249c07fa4c18624850ee66ad19195c20c9031e76cfdfa91cb18b2
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/code/python/src/qm/domain/cyclotomic_tower.py
+      sha256: a3c8e982044b89352e4ba485012d75130b73e111022e0632d5425abb84f4279d
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/claims/carrier_contract.yaml
+      sha256: a1c709630c5a79fef6a8638e8fd9ee2d081643405a1ef49796e99c3b83ab8cb8
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/evidence/carrier_inventory.json
+      sha256: 86a00e8c1e85f58ea3265350a892fea92b087762c57710c6d44b7fa79c7d0ba4
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/native_dependency/cyclotomic_field.rs
+      sha256: ed99d8566c8bd563e2c567f23865bdc7b93dd27dbf1fff5ea6d57f7716a3ab53
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/native_dependency/polynomial.rs
+      sha256: e59e3e57c1200e14c5f3882929ae0e3f78dfb9639af77e5f4769562833c63a04
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/native_dependency/cyclotomic120.rs
+      sha256: 69a0dc4f3bec2afe66dc69264380a3dcbfc3204739f875a1bd6977211841fa84
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/carrier_contract.py
+      sha256: f99b30b376d0ae4f703e92d3e38ff71d46fbb17646beff521fb280d5e9629421
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/domain/cyclotomic_tower.py
+      sha256: f0871821e62d9dab37c119214107d93348e202f8b4aef9dd3ef7f2df97085aec
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/tests/test_carrier_contract.py
+      sha256: 70e1565aac8591eea5f7e2be1c30b205006ea0e0e945935c221d59f65bd9c57f
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/carrier_contract.rs
+      sha256: 924085c863748f289c83cd65699edef7cccdbbaaa896246a4089b0c01f6296a8
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_exact.rs
+      sha256: bc3366a3fe6702306136b112a49a8d6df5e5679306d2c03131eef33b909b5404
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/carrier_contract_replay.rs
+      sha256: 3d9d64de2158a97d06353c6bde93144bddfe42e0b3904d22ba3b458de63d9963
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/check_candidate.py
+      sha256: dc4e29fad1c40e3e0819c756caf144fd407debef6b1ba1f697c0d6bfa3475524
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/format_certificate.py
+      sha256: e8a449c2c3d20916f2d7f1fd00155744c26bd05a47328f2965ae9657c7546fee
+    evidence_status: Target-specific native predicates checked on retained inputs; relation-specific kernel
+      scope is separate. General refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p2/host_check.json
+  - id: divisibility_lift
+    ordered_inputs:
+    - CyclotomicElement
+    - DivisibleTargetLabel
+    output: CyclotomicElement
+    arity: 2
+    carrier: Exact finite cyclotomic power-basis quotients indexed by positive conductor
+    coefficient_ring: Q
+    hypotheses:
+    - Positive labels, exact rational coefficients and matching source/target quotients; divisibility
+      is required for the declared lift.
+    semantic_predicate: Substitute zeta_n -> zeta_N^(N/n) only when n divides N.
+    source_pins:
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-CARRIER-CONTRACT-V2__DEFINITION.yaml
+      sha256: 10fd2d62cc5231bb8a25d1323e28b867c40bc9ecb0051c371264ed7b35c60bf9
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-CARRIER-CONTRACT-V2.yaml
+      sha256: eb7c9c68856481a37cb8b158016d4470641a6f4da78ee3d041030833329513ad
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/H052CyclotomicTowerDirected.lean
+      sha256: c7e8d3e1e36a80bf4e60d9da3bae5cafef90a386f410fc244ea616e33a45fc43
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/H057HigherDimConductorBounds.lean
+      sha256: 490d743d8b1395d21bed1914a4a7050117ea25b9cde576a42e1293c472a47253
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/tower.rs
+      sha256: 69428219cf30740fcadbf10e0187d6b814cdfaa4a6f1fe789cc49dd593d735da
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/10_finite_qm_core/TFQ-0007_finite_quantum_mechanics_core_on_an_admitted_carrier.md
+      sha256: a267860ffcd249c07fa4c18624850ee66ad19195c20c9031e76cfdfa91cb18b2
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/code/python/src/qm/domain/cyclotomic_tower.py
+      sha256: a3c8e982044b89352e4ba485012d75130b73e111022e0632d5425abb84f4279d
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/claims/carrier_contract.yaml
+      sha256: a1c709630c5a79fef6a8638e8fd9ee2d081643405a1ef49796e99c3b83ab8cb8
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/evidence/carrier_inventory.json
+      sha256: 86a00e8c1e85f58ea3265350a892fea92b087762c57710c6d44b7fa79c7d0ba4
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/native_dependency/cyclotomic_field.rs
+      sha256: ed99d8566c8bd563e2c567f23865bdc7b93dd27dbf1fff5ea6d57f7716a3ab53
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/native_dependency/polynomial.rs
+      sha256: e59e3e57c1200e14c5f3882929ae0e3f78dfb9639af77e5f4769562833c63a04
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/native_dependency/cyclotomic120.rs
+      sha256: 69a0dc4f3bec2afe66dc69264380a3dcbfc3204739f875a1bd6977211841fa84
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/carrier_contract.py
+      sha256: f99b30b376d0ae4f703e92d3e38ff71d46fbb17646beff521fb280d5e9629421
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/domain/cyclotomic_tower.py
+      sha256: f0871821e62d9dab37c119214107d93348e202f8b4aef9dd3ef7f2df97085aec
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/tests/test_carrier_contract.py
+      sha256: 70e1565aac8591eea5f7e2be1c30b205006ea0e0e945935c221d59f65bd9c57f
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/carrier_contract.rs
+      sha256: 924085c863748f289c83cd65699edef7cccdbbaaa896246a4089b0c01f6296a8
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_exact.rs
+      sha256: bc3366a3fe6702306136b112a49a8d6df5e5679306d2c03131eef33b909b5404
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/carrier_contract_replay.rs
+      sha256: 3d9d64de2158a97d06353c6bde93144bddfe42e0b3904d22ba3b458de63d9963
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/check_candidate.py
+      sha256: dc4e29fad1c40e3e0819c756caf144fd407debef6b1ba1f697c0d6bfa3475524
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/format_certificate.py
+      sha256: e8a449c2c3d20916f2d7f1fd00155744c26bd05a47328f2965ae9657c7546fee
+    evidence_status: Target-specific native predicates checked on retained inputs; relation-specific kernel
+      scope is separate. General refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p2/host_check.json
+  - id: conjugate
+    ordered_inputs:
+    - CyclotomicElement
+    output: CyclotomicElement
+    arity: 1
+    carrier: Exact finite cyclotomic power-basis quotients indexed by positive conductor
+    coefficient_ring: Q
+    hypotheses:
+    - Positive labels, exact rational coefficients and matching source/target quotients; divisibility
+      is required for the declared lift.
+    semantic_predicate: Substitute zeta_n -> zeta_n^-1 in the same exact quotient.
+    source_pins:
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-CARRIER-CONTRACT-V2__DEFINITION.yaml
+      sha256: 10fd2d62cc5231bb8a25d1323e28b867c40bc9ecb0051c371264ed7b35c60bf9
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-CARRIER-CONTRACT-V2.yaml
+      sha256: eb7c9c68856481a37cb8b158016d4470641a6f4da78ee3d041030833329513ad
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/H052CyclotomicTowerDirected.lean
+      sha256: c7e8d3e1e36a80bf4e60d9da3bae5cafef90a386f410fc244ea616e33a45fc43
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/H057HigherDimConductorBounds.lean
+      sha256: 490d743d8b1395d21bed1914a4a7050117ea25b9cde576a42e1293c472a47253
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/tower.rs
+      sha256: 69428219cf30740fcadbf10e0187d6b814cdfaa4a6f1fe789cc49dd593d735da
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/10_finite_qm_core/TFQ-0007_finite_quantum_mechanics_core_on_an_admitted_carrier.md
+      sha256: a267860ffcd249c07fa4c18624850ee66ad19195c20c9031e76cfdfa91cb18b2
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/code/python/src/qm/domain/cyclotomic_tower.py
+      sha256: a3c8e982044b89352e4ba485012d75130b73e111022e0632d5425abb84f4279d
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/claims/carrier_contract.yaml
+      sha256: a1c709630c5a79fef6a8638e8fd9ee2d081643405a1ef49796e99c3b83ab8cb8
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/evidence/carrier_inventory.json
+      sha256: 86a00e8c1e85f58ea3265350a892fea92b087762c57710c6d44b7fa79c7d0ba4
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/native_dependency/cyclotomic_field.rs
+      sha256: ed99d8566c8bd563e2c567f23865bdc7b93dd27dbf1fff5ea6d57f7716a3ab53
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/native_dependency/polynomial.rs
+      sha256: e59e3e57c1200e14c5f3882929ae0e3f78dfb9639af77e5f4769562833c63a04
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/native_dependency/cyclotomic120.rs
+      sha256: 69a0dc4f3bec2afe66dc69264380a3dcbfc3204739f875a1bd6977211841fa84
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/carrier_contract.py
+      sha256: f99b30b376d0ae4f703e92d3e38ff71d46fbb17646beff521fb280d5e9629421
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/domain/cyclotomic_tower.py
+      sha256: f0871821e62d9dab37c119214107d93348e202f8b4aef9dd3ef7f2df97085aec
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/tests/test_carrier_contract.py
+      sha256: 70e1565aac8591eea5f7e2be1c30b205006ea0e0e945935c221d59f65bd9c57f
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/carrier_contract.rs
+      sha256: 924085c863748f289c83cd65699edef7cccdbbaaa896246a4089b0c01f6296a8
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_exact.rs
+      sha256: bc3366a3fe6702306136b112a49a8d6df5e5679306d2c03131eef33b909b5404
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/carrier_contract_replay.rs
+      sha256: 3d9d64de2158a97d06353c6bde93144bddfe42e0b3904d22ba3b458de63d9963
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/check_candidate.py
+      sha256: dc4e29fad1c40e3e0819c756caf144fd407debef6b1ba1f697c0d6bfa3475524
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/format_certificate.py
+      sha256: e8a449c2c3d20916f2d7f1fd00155744c26bd05a47328f2965ae9657c7546fee
+    evidence_status: Target-specific native predicates checked on retained inputs; relation-specific kernel
+      scope is separate. General refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p2/host_check.json
+  - id: norm
+    ordered_inputs:
+    - CyclotomicElement
+    output: ConjugationFixedElement
+    arity: 1
+    carrier: Exact finite cyclotomic power-basis quotients indexed by positive conductor
+    coefficient_ring: Q
+    hypotheses:
+    - Positive labels, exact rational coefficients and matching source/target quotients; divisibility
+      is required for the declared lift.
+    semantic_predicate: Compute z*conjugate(z); this is fixed by conjugation, not generally a rational
+      scalar.
+    source_pins:
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-CARRIER-CONTRACT-V2__DEFINITION.yaml
+      sha256: 10fd2d62cc5231bb8a25d1323e28b867c40bc9ecb0051c371264ed7b35c60bf9
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-CARRIER-CONTRACT-V2.yaml
+      sha256: eb7c9c68856481a37cb8b158016d4470641a6f4da78ee3d041030833329513ad
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/H052CyclotomicTowerDirected.lean
+      sha256: c7e8d3e1e36a80bf4e60d9da3bae5cafef90a386f410fc244ea616e33a45fc43
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/H057HigherDimConductorBounds.lean
+      sha256: 490d743d8b1395d21bed1914a4a7050117ea25b9cde576a42e1293c472a47253
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/tower.rs
+      sha256: 69428219cf30740fcadbf10e0187d6b814cdfaa4a6f1fe789cc49dd593d735da
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/10_finite_qm_core/TFQ-0007_finite_quantum_mechanics_core_on_an_admitted_carrier.md
+      sha256: a267860ffcd249c07fa4c18624850ee66ad19195c20c9031e76cfdfa91cb18b2
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/code/python/src/qm/domain/cyclotomic_tower.py
+      sha256: a3c8e982044b89352e4ba485012d75130b73e111022e0632d5425abb84f4279d
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/claims/carrier_contract.yaml
+      sha256: a1c709630c5a79fef6a8638e8fd9ee2d081643405a1ef49796e99c3b83ab8cb8
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/evidence/carrier_inventory.json
+      sha256: 86a00e8c1e85f58ea3265350a892fea92b087762c57710c6d44b7fa79c7d0ba4
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/native_dependency/cyclotomic_field.rs
+      sha256: ed99d8566c8bd563e2c567f23865bdc7b93dd27dbf1fff5ea6d57f7716a3ab53
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/native_dependency/polynomial.rs
+      sha256: e59e3e57c1200e14c5f3882929ae0e3f78dfb9639af77e5f4769562833c63a04
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/native_dependency/cyclotomic120.rs
+      sha256: 69a0dc4f3bec2afe66dc69264380a3dcbfc3204739f875a1bd6977211841fa84
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/carrier_contract.py
+      sha256: f99b30b376d0ae4f703e92d3e38ff71d46fbb17646beff521fb280d5e9629421
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/domain/cyclotomic_tower.py
+      sha256: f0871821e62d9dab37c119214107d93348e202f8b4aef9dd3ef7f2df97085aec
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/tests/test_carrier_contract.py
+      sha256: 70e1565aac8591eea5f7e2be1c30b205006ea0e0e945935c221d59f65bd9c57f
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/carrier_contract.rs
+      sha256: 924085c863748f289c83cd65699edef7cccdbbaaa896246a4089b0c01f6296a8
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_exact.rs
+      sha256: bc3366a3fe6702306136b112a49a8d6df5e5679306d2c03131eef33b909b5404
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/carrier_contract_replay.rs
+      sha256: 3d9d64de2158a97d06353c6bde93144bddfe42e0b3904d22ba3b458de63d9963
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/check_candidate.py
+      sha256: dc4e29fad1c40e3e0819c756caf144fd407debef6b1ba1f697c0d6bfa3475524
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/format_certificate.py
+      sha256: e8a449c2c3d20916f2d7f1fd00155744c26bd05a47328f2965ae9657c7546fee
+    evidence_status: Target-specific native predicates checked on retained inputs; relation-specific kernel
+      scope is separate. General refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p2/host_check.json
+  - id: lift_norm
+    ordered_inputs:
+    - ConjugationFixedElement
+    - DivisibleTargetLabel
+    output: ConjugationFixedElement
+    arity: 2
+    carrier: Exact finite cyclotomic power-basis quotients indexed by positive conductor
+    coefficient_ring: Q
+    hypotheses:
+    - Positive labels, exact rational coefficients and matching source/target quotients; divisibility
+      is required for the declared lift.
+    semantic_predicate: Transport the actual norm by the same star-compatible quotient embedding.
+    source_pins:
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-CARRIER-CONTRACT-V2__DEFINITION.yaml
+      sha256: 10fd2d62cc5231bb8a25d1323e28b867c40bc9ecb0051c371264ed7b35c60bf9
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-CARRIER-CONTRACT-V2.yaml
+      sha256: eb7c9c68856481a37cb8b158016d4470641a6f4da78ee3d041030833329513ad
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/H052CyclotomicTowerDirected.lean
+      sha256: c7e8d3e1e36a80bf4e60d9da3bae5cafef90a386f410fc244ea616e33a45fc43
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/H057HigherDimConductorBounds.lean
+      sha256: 490d743d8b1395d21bed1914a4a7050117ea25b9cde576a42e1293c472a47253
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/tower.rs
+      sha256: 69428219cf30740fcadbf10e0187d6b814cdfaa4a6f1fe789cc49dd593d735da
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/10_finite_qm_core/TFQ-0007_finite_quantum_mechanics_core_on_an_admitted_carrier.md
+      sha256: a267860ffcd249c07fa4c18624850ee66ad19195c20c9031e76cfdfa91cb18b2
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/code/python/src/qm/domain/cyclotomic_tower.py
+      sha256: a3c8e982044b89352e4ba485012d75130b73e111022e0632d5425abb84f4279d
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/claims/carrier_contract.yaml
+      sha256: a1c709630c5a79fef6a8638e8fd9ee2d081643405a1ef49796e99c3b83ab8cb8
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/evidence/carrier_inventory.json
+      sha256: 86a00e8c1e85f58ea3265350a892fea92b087762c57710c6d44b7fa79c7d0ba4
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/native_dependency/cyclotomic_field.rs
+      sha256: ed99d8566c8bd563e2c567f23865bdc7b93dd27dbf1fff5ea6d57f7716a3ab53
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/native_dependency/polynomial.rs
+      sha256: e59e3e57c1200e14c5f3882929ae0e3f78dfb9639af77e5f4769562833c63a04
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/native_dependency/cyclotomic120.rs
+      sha256: 69a0dc4f3bec2afe66dc69264380a3dcbfc3204739f875a1bd6977211841fa84
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/carrier_contract.py
+      sha256: f99b30b376d0ae4f703e92d3e38ff71d46fbb17646beff521fb280d5e9629421
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/domain/cyclotomic_tower.py
+      sha256: f0871821e62d9dab37c119214107d93348e202f8b4aef9dd3ef7f2df97085aec
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/tests/test_carrier_contract.py
+      sha256: 70e1565aac8591eea5f7e2be1c30b205006ea0e0e945935c221d59f65bd9c57f
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/carrier_contract.rs
+      sha256: 924085c863748f289c83cd65699edef7cccdbbaaa896246a4089b0c01f6296a8
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_exact.rs
+      sha256: bc3366a3fe6702306136b112a49a8d6df5e5679306d2c03131eef33b909b5404
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/carrier_contract_replay.rs
+      sha256: 3d9d64de2158a97d06353c6bde93144bddfe42e0b3904d22ba3b458de63d9963
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/check_candidate.py
+      sha256: dc4e29fad1c40e3e0819c756caf144fd407debef6b1ba1f697c0d6bfa3475524
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/format_certificate.py
+      sha256: e8a449c2c3d20916f2d7f1fd00155744c26bd05a47328f2965ae9657c7546fee
+    evidence_status: Target-specific native predicates checked on retained inputs; relation-specific kernel
+      scope is separate. General refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p2/host_check.json
+  relations:
+  - id: inventory_lcm
+    equation_or_predicate: lcm of the 23 supplied labels equals 120, with distinct labels [1,2,3,4,5,8,12]
+    typing_conditions: Actual source inventory; label arithmetic only
+    evidence_status: Literal finite Nat kernel check and native/checker inventory binding.
+    scope: No minimal field assertion.
+    source_pins:
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-CARRIER-CONTRACT-V2__DEFINITION.yaml
+      sha256: 10fd2d62cc5231bb8a25d1323e28b867c40bc9ecb0051c371264ed7b35c60bf9
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-CARRIER-CONTRACT-V2.yaml
+      sha256: eb7c9c68856481a37cb8b158016d4470641a6f4da78ee3d041030833329513ad
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/H052CyclotomicTowerDirected.lean
+      sha256: c7e8d3e1e36a80bf4e60d9da3bae5cafef90a386f410fc244ea616e33a45fc43
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/H057HigherDimConductorBounds.lean
+      sha256: 490d743d8b1395d21bed1914a4a7050117ea25b9cde576a42e1293c472a47253
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/tower.rs
+      sha256: 69428219cf30740fcadbf10e0187d6b814cdfaa4a6f1fe789cc49dd593d735da
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/10_finite_qm_core/TFQ-0007_finite_quantum_mechanics_core_on_an_admitted_carrier.md
+      sha256: a267860ffcd249c07fa4c18624850ee66ad19195c20c9031e76cfdfa91cb18b2
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/code/python/src/qm/domain/cyclotomic_tower.py
+      sha256: a3c8e982044b89352e4ba485012d75130b73e111022e0632d5425abb84f4279d
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/claims/carrier_contract.yaml
+      sha256: a1c709630c5a79fef6a8638e8fd9ee2d081643405a1ef49796e99c3b83ab8cb8
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/evidence/carrier_inventory.json
+      sha256: 86a00e8c1e85f58ea3265350a892fea92b087762c57710c6d44b7fa79c7d0ba4
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/native_dependency/cyclotomic_field.rs
+      sha256: ed99d8566c8bd563e2c567f23865bdc7b93dd27dbf1fff5ea6d57f7716a3ab53
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/native_dependency/polynomial.rs
+      sha256: e59e3e57c1200e14c5f3882929ae0e3f78dfb9639af77e5f4769562833c63a04
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/native_dependency/cyclotomic120.rs
+      sha256: 69a0dc4f3bec2afe66dc69264380a3dcbfc3204739f875a1bd6977211841fa84
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/carrier_contract.py
+      sha256: f99b30b376d0ae4f703e92d3e38ff71d46fbb17646beff521fb280d5e9629421
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/domain/cyclotomic_tower.py
+      sha256: f0871821e62d9dab37c119214107d93348e202f8b4aef9dd3ef7f2df97085aec
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/tests/test_carrier_contract.py
+      sha256: 70e1565aac8591eea5f7e2be1c30b205006ea0e0e945935c221d59f65bd9c57f
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/carrier_contract.rs
+      sha256: 924085c863748f289c83cd65699edef7cccdbbaaa896246a4089b0c01f6296a8
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_exact.rs
+      sha256: bc3366a3fe6702306136b112a49a8d6df5e5679306d2c03131eef33b909b5404
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/carrier_contract_replay.rs
+      sha256: 3d9d64de2158a97d06353c6bde93144bddfe42e0b3904d22ba3b458de63d9963
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/check_candidate.py
+      sha256: dc4e29fad1c40e3e0819c756caf144fd407debef6b1ba1f697c0d6bfa3475524
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/format_certificate.py
+      sha256: e8a449c2c3d20916f2d7f1fd00155744c26bd05a47328f2965ae9657c7546fee
+    latest_host_check: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p2/host_check.json
+  - id: directed_labels
+    equation_or_predicate: Two positive labels divide some positive common label
+    typing_conditions: Nat divisibility labels
+    evidence_status: Universal source kernel theorem; not construction of field objects.
+    scope: The positive conductor indexing diagram.
+    source_pins:
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-CARRIER-CONTRACT-V2__DEFINITION.yaml
+      sha256: 10fd2d62cc5231bb8a25d1323e28b867c40bc9ecb0051c371264ed7b35c60bf9
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-CARRIER-CONTRACT-V2.yaml
+      sha256: eb7c9c68856481a37cb8b158016d4470641a6f4da78ee3d041030833329513ad
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/H052CyclotomicTowerDirected.lean
+      sha256: c7e8d3e1e36a80bf4e60d9da3bae5cafef90a386f410fc244ea616e33a45fc43
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/H057HigherDimConductorBounds.lean
+      sha256: 490d743d8b1395d21bed1914a4a7050117ea25b9cde576a42e1293c472a47253
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/tower.rs
+      sha256: 69428219cf30740fcadbf10e0187d6b814cdfaa4a6f1fe789cc49dd593d735da
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/10_finite_qm_core/TFQ-0007_finite_quantum_mechanics_core_on_an_admitted_carrier.md
+      sha256: a267860ffcd249c07fa4c18624850ee66ad19195c20c9031e76cfdfa91cb18b2
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/code/python/src/qm/domain/cyclotomic_tower.py
+      sha256: a3c8e982044b89352e4ba485012d75130b73e111022e0632d5425abb84f4279d
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/claims/carrier_contract.yaml
+      sha256: a1c709630c5a79fef6a8638e8fd9ee2d081643405a1ef49796e99c3b83ab8cb8
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/evidence/carrier_inventory.json
+      sha256: 86a00e8c1e85f58ea3265350a892fea92b087762c57710c6d44b7fa79c7d0ba4
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/native_dependency/cyclotomic_field.rs
+      sha256: ed99d8566c8bd563e2c567f23865bdc7b93dd27dbf1fff5ea6d57f7716a3ab53
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/native_dependency/polynomial.rs
+      sha256: e59e3e57c1200e14c5f3882929ae0e3f78dfb9639af77e5f4769562833c63a04
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/native_dependency/cyclotomic120.rs
+      sha256: 69a0dc4f3bec2afe66dc69264380a3dcbfc3204739f875a1bd6977211841fa84
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/carrier_contract.py
+      sha256: f99b30b376d0ae4f703e92d3e38ff71d46fbb17646beff521fb280d5e9629421
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/domain/cyclotomic_tower.py
+      sha256: f0871821e62d9dab37c119214107d93348e202f8b4aef9dd3ef7f2df97085aec
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/tests/test_carrier_contract.py
+      sha256: 70e1565aac8591eea5f7e2be1c30b205006ea0e0e945935c221d59f65bd9c57f
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/carrier_contract.rs
+      sha256: 924085c863748f289c83cd65699edef7cccdbbaaa896246a4089b0c01f6296a8
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_exact.rs
+      sha256: bc3366a3fe6702306136b112a49a8d6df5e5679306d2c03131eef33b909b5404
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/carrier_contract_replay.rs
+      sha256: 3d9d64de2158a97d06353c6bde93144bddfe42e0b3904d22ba3b458de63d9963
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/check_candidate.py
+      sha256: dc4e29fad1c40e3e0819c756caf144fd407debef6b1ba1f697c0d6bfa3475524
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/format_certificate.py
+      sha256: e8a449c2c3d20916f2d7f1fd00155744c26bd05a47328f2965ae9657c7546fee
+    latest_host_check: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p2/host_check.json
+  - id: lift_composition
+    equation_or_predicate: lift_N(lift_mid(z)) = lift_N(z)
+    typing_conditions: n divides mid divides N and the same power-basis element
+    evidence_status: Seven exact quotient calculations and substituted source-polynomial relations; general
+      field-map coherence remains a formal obligation.
+    scope: The seven supplied elements and chains.
+    source_pins:
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-CARRIER-CONTRACT-V2__DEFINITION.yaml
+      sha256: 10fd2d62cc5231bb8a25d1323e28b867c40bc9ecb0051c371264ed7b35c60bf9
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-CARRIER-CONTRACT-V2.yaml
+      sha256: eb7c9c68856481a37cb8b158016d4470641a6f4da78ee3d041030833329513ad
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/H052CyclotomicTowerDirected.lean
+      sha256: c7e8d3e1e36a80bf4e60d9da3bae5cafef90a386f410fc244ea616e33a45fc43
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/H057HigherDimConductorBounds.lean
+      sha256: 490d743d8b1395d21bed1914a4a7050117ea25b9cde576a42e1293c472a47253
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/tower.rs
+      sha256: 69428219cf30740fcadbf10e0187d6b814cdfaa4a6f1fe789cc49dd593d735da
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/10_finite_qm_core/TFQ-0007_finite_quantum_mechanics_core_on_an_admitted_carrier.md
+      sha256: a267860ffcd249c07fa4c18624850ee66ad19195c20c9031e76cfdfa91cb18b2
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/code/python/src/qm/domain/cyclotomic_tower.py
+      sha256: a3c8e982044b89352e4ba485012d75130b73e111022e0632d5425abb84f4279d
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/claims/carrier_contract.yaml
+      sha256: a1c709630c5a79fef6a8638e8fd9ee2d081643405a1ef49796e99c3b83ab8cb8
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/evidence/carrier_inventory.json
+      sha256: 86a00e8c1e85f58ea3265350a892fea92b087762c57710c6d44b7fa79c7d0ba4
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/native_dependency/cyclotomic_field.rs
+      sha256: ed99d8566c8bd563e2c567f23865bdc7b93dd27dbf1fff5ea6d57f7716a3ab53
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/native_dependency/polynomial.rs
+      sha256: e59e3e57c1200e14c5f3882929ae0e3f78dfb9639af77e5f4769562833c63a04
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/native_dependency/cyclotomic120.rs
+      sha256: 69a0dc4f3bec2afe66dc69264380a3dcbfc3204739f875a1bd6977211841fa84
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/carrier_contract.py
+      sha256: f99b30b376d0ae4f703e92d3e38ff71d46fbb17646beff521fb280d5e9629421
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/domain/cyclotomic_tower.py
+      sha256: f0871821e62d9dab37c119214107d93348e202f8b4aef9dd3ef7f2df97085aec
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/tests/test_carrier_contract.py
+      sha256: 70e1565aac8591eea5f7e2be1c30b205006ea0e0e945935c221d59f65bd9c57f
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/carrier_contract.rs
+      sha256: 924085c863748f289c83cd65699edef7cccdbbaaa896246a4089b0c01f6296a8
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_exact.rs
+      sha256: bc3366a3fe6702306136b112a49a8d6df5e5679306d2c03131eef33b909b5404
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/carrier_contract_replay.rs
+      sha256: 3d9d64de2158a97d06353c6bde93144bddfe42e0b3904d22ba3b458de63d9963
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/check_candidate.py
+      sha256: dc4e29fad1c40e3e0819c756caf144fd407debef6b1ba1f697c0d6bfa3475524
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/format_certificate.py
+      sha256: e8a449c2c3d20916f2d7f1fd00155744c26bd05a47328f2965ae9657c7546fee
+    latest_host_check: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p2/host_check.json
+  - id: star_ring_norm
+    equation_or_predicate: star(z*star(z))=z*star(z)
+    typing_conditions: Commutative ring with StarRing
+    evidence_status: Generic kernel theorem; no new StarRing or field instance is manufactured.
+    scope: Universal under the explicit typeclass assumptions.
+    source_pins:
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-CARRIER-CONTRACT-V2__DEFINITION.yaml
+      sha256: 10fd2d62cc5231bb8a25d1323e28b867c40bc9ecb0051c371264ed7b35c60bf9
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-CARRIER-CONTRACT-V2.yaml
+      sha256: eb7c9c68856481a37cb8b158016d4470641a6f4da78ee3d041030833329513ad
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/H052CyclotomicTowerDirected.lean
+      sha256: c7e8d3e1e36a80bf4e60d9da3bae5cafef90a386f410fc244ea616e33a45fc43
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/H057HigherDimConductorBounds.lean
+      sha256: 490d743d8b1395d21bed1914a4a7050117ea25b9cde576a42e1293c472a47253
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/tower.rs
+      sha256: 69428219cf30740fcadbf10e0187d6b814cdfaa4a6f1fe789cc49dd593d735da
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/10_finite_qm_core/TFQ-0007_finite_quantum_mechanics_core_on_an_admitted_carrier.md
+      sha256: a267860ffcd249c07fa4c18624850ee66ad19195c20c9031e76cfdfa91cb18b2
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/code/python/src/qm/domain/cyclotomic_tower.py
+      sha256: a3c8e982044b89352e4ba485012d75130b73e111022e0632d5425abb84f4279d
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/claims/carrier_contract.yaml
+      sha256: a1c709630c5a79fef6a8638e8fd9ee2d081643405a1ef49796e99c3b83ab8cb8
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/evidence/carrier_inventory.json
+      sha256: 86a00e8c1e85f58ea3265350a892fea92b087762c57710c6d44b7fa79c7d0ba4
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/native_dependency/cyclotomic_field.rs
+      sha256: ed99d8566c8bd563e2c567f23865bdc7b93dd27dbf1fff5ea6d57f7716a3ab53
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/native_dependency/polynomial.rs
+      sha256: e59e3e57c1200e14c5f3882929ae0e3f78dfb9639af77e5f4769562833c63a04
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/native_dependency/cyclotomic120.rs
+      sha256: 69a0dc4f3bec2afe66dc69264380a3dcbfc3204739f875a1bd6977211841fa84
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/carrier_contract.py
+      sha256: f99b30b376d0ae4f703e92d3e38ff71d46fbb17646beff521fb280d5e9629421
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/domain/cyclotomic_tower.py
+      sha256: f0871821e62d9dab37c119214107d93348e202f8b4aef9dd3ef7f2df97085aec
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/tests/test_carrier_contract.py
+      sha256: 70e1565aac8591eea5f7e2be1c30b205006ea0e0e945935c221d59f65bd9c57f
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/carrier_contract.rs
+      sha256: 924085c863748f289c83cd65699edef7cccdbbaaa896246a4089b0c01f6296a8
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_exact.rs
+      sha256: bc3366a3fe6702306136b112a49a8d6df5e5679306d2c03131eef33b909b5404
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/carrier_contract_replay.rs
+      sha256: 3d9d64de2158a97d06353c6bde93144bddfe42e0b3904d22ba3b458de63d9963
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/check_candidate.py
+      sha256: dc4e29fad1c40e3e0819c756caf144fd407debef6b1ba1f697c0d6bfa3475524
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/format_certificate.py
+      sha256: e8a449c2c3d20916f2d7f1fd00155744c26bd05a47328f2965ae9657c7546fee
+    latest_host_check: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p2/host_check.json
+  - id: norm_transport
+    equation_or_predicate: f(z*star(z))=f(z)*star(f(z))
+    typing_conditions: RingHom with an explicit star-commutation hypothesis
+    evidence_status: Generic kernel theorem plus actual selected finite lift identities.
+    scope: The theorem assumes the compatible map; it does not construct it from divisibility.
+    source_pins:
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-CARRIER-CONTRACT-V2__DEFINITION.yaml
+      sha256: 10fd2d62cc5231bb8a25d1323e28b867c40bc9ecb0051c371264ed7b35c60bf9
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-CARRIER-CONTRACT-V2.yaml
+      sha256: eb7c9c68856481a37cb8b158016d4470641a6f4da78ee3d041030833329513ad
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/H052CyclotomicTowerDirected.lean
+      sha256: c7e8d3e1e36a80bf4e60d9da3bae5cafef90a386f410fc244ea616e33a45fc43
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/H057HigherDimConductorBounds.lean
+      sha256: 490d743d8b1395d21bed1914a4a7050117ea25b9cde576a42e1293c472a47253
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/tower.rs
+      sha256: 69428219cf30740fcadbf10e0187d6b814cdfaa4a6f1fe789cc49dd593d735da
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/10_finite_qm_core/TFQ-0007_finite_quantum_mechanics_core_on_an_admitted_carrier.md
+      sha256: a267860ffcd249c07fa4c18624850ee66ad19195c20c9031e76cfdfa91cb18b2
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/code/python/src/qm/domain/cyclotomic_tower.py
+      sha256: a3c8e982044b89352e4ba485012d75130b73e111022e0632d5425abb84f4279d
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/claims/carrier_contract.yaml
+      sha256: a1c709630c5a79fef6a8638e8fd9ee2d081643405a1ef49796e99c3b83ab8cb8
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/evidence/carrier_inventory.json
+      sha256: 86a00e8c1e85f58ea3265350a892fea92b087762c57710c6d44b7fa79c7d0ba4
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/native_dependency/cyclotomic_field.rs
+      sha256: ed99d8566c8bd563e2c567f23865bdc7b93dd27dbf1fff5ea6d57f7716a3ab53
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/native_dependency/polynomial.rs
+      sha256: e59e3e57c1200e14c5f3882929ae0e3f78dfb9639af77e5f4769562833c63a04
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/native_dependency/cyclotomic120.rs
+      sha256: 69a0dc4f3bec2afe66dc69264380a3dcbfc3204739f875a1bd6977211841fa84
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/carrier_contract.py
+      sha256: f99b30b376d0ae4f703e92d3e38ff71d46fbb17646beff521fb280d5e9629421
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/domain/cyclotomic_tower.py
+      sha256: f0871821e62d9dab37c119214107d93348e202f8b4aef9dd3ef7f2df97085aec
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/tests/test_carrier_contract.py
+      sha256: 70e1565aac8591eea5f7e2be1c30b205006ea0e0e945935c221d59f65bd9c57f
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/carrier_contract.rs
+      sha256: 924085c863748f289c83cd65699edef7cccdbbaaa896246a4089b0c01f6296a8
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_exact.rs
+      sha256: bc3366a3fe6702306136b112a49a8d6df5e5679306d2c03131eef33b909b5404
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/carrier_contract_replay.rs
+      sha256: 3d9d64de2158a97d06353c6bde93144bddfe42e0b3904d22ba3b458de63d9963
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/check_candidate.py
+      sha256: dc4e29fad1c40e3e0819c756caf144fd407debef6b1ba1f697c0d6bfa3475524
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/format_certificate.py
+      sha256: e8a449c2c3d20916f2d7f1fd00155744c26bd05a47328f2965ae9657c7546fee
+    latest_host_check: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p2/host_check.json
+  - id: selected_hom_identities
+    equation_or_predicate: Selected quotient lifts preserve sum, product and conjugation
+    typing_conditions: Same exact elements and divisibility chain
+    evidence_status: Independent Mobius-polynomial arithmetic and complete Rust/Python coefficient equality.
+    scope: Finite selected inputs only.
+    source_pins:
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-CARRIER-CONTRACT-V2__DEFINITION.yaml
+      sha256: 10fd2d62cc5231bb8a25d1323e28b867c40bc9ecb0051c371264ed7b35c60bf9
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-CARRIER-CONTRACT-V2.yaml
+      sha256: eb7c9c68856481a37cb8b158016d4470641a6f4da78ee3d041030833329513ad
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/H052CyclotomicTowerDirected.lean
+      sha256: c7e8d3e1e36a80bf4e60d9da3bae5cafef90a386f410fc244ea616e33a45fc43
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/H057HigherDimConductorBounds.lean
+      sha256: 490d743d8b1395d21bed1914a4a7050117ea25b9cde576a42e1293c472a47253
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/tower.rs
+      sha256: 69428219cf30740fcadbf10e0187d6b814cdfaa4a6f1fe789cc49dd593d735da
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/10_finite_qm_core/TFQ-0007_finite_quantum_mechanics_core_on_an_admitted_carrier.md
+      sha256: a267860ffcd249c07fa4c18624850ee66ad19195c20c9031e76cfdfa91cb18b2
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/code/python/src/qm/domain/cyclotomic_tower.py
+      sha256: a3c8e982044b89352e4ba485012d75130b73e111022e0632d5425abb84f4279d
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/claims/carrier_contract.yaml
+      sha256: a1c709630c5a79fef6a8638e8fd9ee2d081643405a1ef49796e99c3b83ab8cb8
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/evidence/carrier_inventory.json
+      sha256: 86a00e8c1e85f58ea3265350a892fea92b087762c57710c6d44b7fa79c7d0ba4
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/native_dependency/cyclotomic_field.rs
+      sha256: ed99d8566c8bd563e2c567f23865bdc7b93dd27dbf1fff5ea6d57f7716a3ab53
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/native_dependency/polynomial.rs
+      sha256: e59e3e57c1200e14c5f3882929ae0e3f78dfb9639af77e5f4769562833c63a04
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/native_dependency/cyclotomic120.rs
+      sha256: 69a0dc4f3bec2afe66dc69264380a3dcbfc3204739f875a1bd6977211841fa84
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/carrier_contract.py
+      sha256: f99b30b376d0ae4f703e92d3e38ff71d46fbb17646beff521fb280d5e9629421
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/domain/cyclotomic_tower.py
+      sha256: f0871821e62d9dab37c119214107d93348e202f8b4aef9dd3ef7f2df97085aec
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/tests/test_carrier_contract.py
+      sha256: 70e1565aac8591eea5f7e2be1c30b205006ea0e0e945935c221d59f65bd9c57f
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/carrier_contract.rs
+      sha256: 924085c863748f289c83cd65699edef7cccdbbaaa896246a4089b0c01f6296a8
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_exact.rs
+      sha256: bc3366a3fe6702306136b112a49a8d6df5e5679306d2c03131eef33b909b5404
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/carrier_contract_replay.rs
+      sha256: 3d9d64de2158a97d06353c6bde93144bddfe42e0b3904d22ba3b458de63d9963
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/check_candidate.py
+      sha256: dc4e29fad1c40e3e0819c756caf144fd407debef6b1ba1f697c0d6bfa3475524
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/format_certificate.py
+      sha256: e8a449c2c3d20916f2d7f1fd00155744c26bd05a47328f2965ae9657c7546fee
+    latest_host_check: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p2/host_check.json
+  - id: declaration_fence
+    equation_or_predicate: Colimit and Kronecker-Weber are declared inputs; all-amplitude and field-minimality
+      claims remain unpaid
+    typing_conditions: Source contract and inventory are declarations
+    evidence_status: Actual source boundary flags retained and challenged.
+    scope: No declaration is promoted to a theorem by a success label.
+    source_pins:
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-CARRIER-CONTRACT-V2__DEFINITION.yaml
+      sha256: 10fd2d62cc5231bb8a25d1323e28b867c40bc9ecb0051c371264ed7b35c60bf9
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-CARRIER-CONTRACT-V2.yaml
+      sha256: eb7c9c68856481a37cb8b158016d4470641a6f4da78ee3d041030833329513ad
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/H052CyclotomicTowerDirected.lean
+      sha256: c7e8d3e1e36a80bf4e60d9da3bae5cafef90a386f410fc244ea616e33a45fc43
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/H057HigherDimConductorBounds.lean
+      sha256: 490d743d8b1395d21bed1914a4a7050117ea25b9cde576a42e1293c472a47253
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/tower.rs
+      sha256: 69428219cf30740fcadbf10e0187d6b814cdfaa4a6f1fe789cc49dd593d735da
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/10_finite_qm_core/TFQ-0007_finite_quantum_mechanics_core_on_an_admitted_carrier.md
+      sha256: a267860ffcd249c07fa4c18624850ee66ad19195c20c9031e76cfdfa91cb18b2
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/code/python/src/qm/domain/cyclotomic_tower.py
+      sha256: a3c8e982044b89352e4ba485012d75130b73e111022e0632d5425abb84f4279d
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/claims/carrier_contract.yaml
+      sha256: a1c709630c5a79fef6a8638e8fd9ee2d081643405a1ef49796e99c3b83ab8cb8
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/evidence/carrier_inventory.json
+      sha256: 86a00e8c1e85f58ea3265350a892fea92b087762c57710c6d44b7fa79c7d0ba4
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/native_dependency/cyclotomic_field.rs
+      sha256: ed99d8566c8bd563e2c567f23865bdc7b93dd27dbf1fff5ea6d57f7716a3ab53
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/native_dependency/polynomial.rs
+      sha256: e59e3e57c1200e14c5f3882929ae0e3f78dfb9639af77e5f4769562833c63a04
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/native_dependency/cyclotomic120.rs
+      sha256: 69a0dc4f3bec2afe66dc69264380a3dcbfc3204739f875a1bd6977211841fa84
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/carrier_contract.py
+      sha256: f99b30b376d0ae4f703e92d3e38ff71d46fbb17646beff521fb280d5e9629421
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/domain/cyclotomic_tower.py
+      sha256: f0871821e62d9dab37c119214107d93348e202f8b4aef9dd3ef7f2df97085aec
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/tests/test_carrier_contract.py
+      sha256: 70e1565aac8591eea5f7e2be1c30b205006ea0e0e945935c221d59f65bd9c57f
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/carrier_contract.rs
+      sha256: 924085c863748f289c83cd65699edef7cccdbbaaa896246a4089b0c01f6296a8
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_exact.rs
+      sha256: bc3366a3fe6702306136b112a49a8d6df5e5679306d2c03131eef33b909b5404
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/carrier_contract_replay.rs
+      sha256: 3d9d64de2158a97d06353c6bde93144bddfe42e0b3904d22ba3b458de63d9963
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/check_candidate.py
+      sha256: dc4e29fad1c40e3e0819c756caf144fd407debef6b1ba1f697c0d6bfa3475524
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/format_certificate.py
+      sha256: e8a449c2c3d20916f2d7f1fd00155744c26bd05a47328f2965ae9657c7546fee
+    latest_host_check: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p2/host_check.json
+  compositions:
+  - outer_operation: divisibility_lift
+    input_slot: 0
+    inner_operation: divisibility_lift
+    colour_match: CyclotomicElement -> CyclotomicElement
+    hypothesis_match: The intermediate label divides the final one; both maps use the same root substitution.
+    licensing_relations:
+    - lift_composition
+    evidence_status: Actual selected direct/via coefficient equality; general formal coherence open.
+  - outer_operation: lift_norm
+    input_slot: 0
+    inner_operation: norm
+    colour_match: ConjugationFixedElement -> ConjugationFixedElement
+    hypothesis_match: The map is a star-compatible ring hom; selected native maps are checked exactly.
+    licensing_relations:
+    - star_ring_norm
+    - norm_transport
+    - selected_hom_identities
+    evidence_status: Generic conditional kernel identity plus actual selected quotient computations.
+  identities:
+  - colour: CommonMultipleLabel
+    proposed_operation: id_CommonMultipleLabel
+    signature: CommonMultipleLabel -> CommonMultipleLabel
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: ConjugationFixedElement
+    proposed_operation: id_ConjugationFixedElement
+    signature: ConjugationFixedElement -> ConjugationFixedElement
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: CyclotomicElement
+    proposed_operation: id_CyclotomicElement
+    signature: CyclotomicElement -> CyclotomicElement
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: CyclotomicModulus
+    proposed_operation: id_CyclotomicModulus
+    signature: CyclotomicModulus -> CyclotomicModulus
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: DivisibleTargetLabel
+    proposed_operation: id_DivisibleTargetLabel
+    signature: DivisibleTargetLabel -> DivisibleTargetLabel
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: PositiveConductorInventory
+    proposed_operation: id_PositiveConductorInventory
+    signature: PositiveConductorInventory -> PositiveConductorInventory
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: RationalPolynomial
+    proposed_operation: id_RationalPolynomial
+    signature: RationalPolynomial -> RationalPolynomial
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  symmetric_actions: []
+  coherence_obligations: &id001
+  - Construct actual compatible field embeddings and the Q^ab colimit, or retain them as declared inputs.
+  - Kronecker-Weber remains explicitly DECLARED; this run does not prove it.
+  - Seven selected elements are not all amplitudes in the 23 inventoried targets; that full audit remains
+    open.
+  - The LCM of labels is not a proof of field minimality; conductor 2 already represents a rational root.
+  - A formal operad of these refined quotient carriers, identities, symmetric actions and general transport
+    laws is not instantiated here.
+  failed_compositions:
+  - outer_operation: divisibility_lift
+    input_slot: 0
+    inner_operation: quotient_reduce
+    colour_match: Invalid proposed label chain 3 -> 4.
+    hypothesis_match: 3 does not divide 4; the original assert-only guard accepted it under Python -O.
+      The production guard is repaired to an explicit ValueError.
+    licensing_relations: []
+    evidence_status: Original optimized acceptance probe retained, repaired native regression awaits P2.
+  counterexamples:
+  - id: invalid_divisibility_chain
+    actual_probe: p0/native/original_optimized_lift_probe.stdout.log
+    observation: Original -O accepted 3 -> 4; repaired explicit guard refuses, including in the retained
+      fresh Python optimized subprocess test.
+    scope: This tests a divisibility-labelled API; it is not an iff classification of all field inclusions.
+  - id: conductor_two_is_rational
+    observation: Actual zeta_2 coefficient is -1 while raw label LCM([2]) is 2; field minimality does
+      not follow from label minimality.
+    evidence: Retained Python and Rust unit tests.
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: FILLED
+    carrier: Finite cyclotomic quotient power bases and the positive conductor-label inventory
+    coefficient_ring: Q; Int polynomial moduli; Nat conductor labels
+    source_pins:
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-CARRIER-CONTRACT-V2__DEFINITION.yaml
+      sha256: 10fd2d62cc5231bb8a25d1323e28b867c40bc9ecb0051c371264ed7b35c60bf9
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-CARRIER-CONTRACT-V2.yaml
+      sha256: eb7c9c68856481a37cb8b158016d4470641a6f4da78ee3d041030833329513ad
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/H052CyclotomicTowerDirected.lean
+      sha256: c7e8d3e1e36a80bf4e60d9da3bae5cafef90a386f410fc244ea616e33a45fc43
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/H057HigherDimConductorBounds.lean
+      sha256: 490d743d8b1395d21bed1914a4a7050117ea25b9cde576a42e1293c472a47253
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/tower.rs
+      sha256: 69428219cf30740fcadbf10e0187d6b814cdfaa4a6f1fe789cc49dd593d735da
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/10_finite_qm_core/TFQ-0007_finite_quantum_mechanics_core_on_an_admitted_carrier.md
+      sha256: a267860ffcd249c07fa4c18624850ee66ad19195c20c9031e76cfdfa91cb18b2
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/code/python/src/qm/domain/cyclotomic_tower.py
+      sha256: a3c8e982044b89352e4ba485012d75130b73e111022e0632d5425abb84f4279d
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/claims/carrier_contract.yaml
+      sha256: a1c709630c5a79fef6a8638e8fd9ee2d081643405a1ef49796e99c3b83ab8cb8
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/evidence/carrier_inventory.json
+      sha256: 86a00e8c1e85f58ea3265350a892fea92b087762c57710c6d44b7fa79c7d0ba4
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/native_dependency/cyclotomic_field.rs
+      sha256: ed99d8566c8bd563e2c567f23865bdc7b93dd27dbf1fff5ea6d57f7716a3ab53
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/native_dependency/polynomial.rs
+      sha256: e59e3e57c1200e14c5f3882929ae0e3f78dfb9639af77e5f4769562833c63a04
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/native_dependency/cyclotomic120.rs
+      sha256: 69a0dc4f3bec2afe66dc69264380a3dcbfc3204739f875a1bd6977211841fa84
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/carrier_contract.py
+      sha256: f99b30b376d0ae4f703e92d3e38ff71d46fbb17646beff521fb280d5e9629421
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/domain/cyclotomic_tower.py
+      sha256: f0871821e62d9dab37c119214107d93348e202f8b4aef9dd3ef7f2df97085aec
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/tests/test_carrier_contract.py
+      sha256: 70e1565aac8591eea5f7e2be1c30b205006ea0e0e945935c221d59f65bd9c57f
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/carrier_contract.rs
+      sha256: 924085c863748f289c83cd65699edef7cccdbbaaa896246a4089b0c01f6296a8
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_exact.rs
+      sha256: bc3366a3fe6702306136b112a49a8d6df5e5679306d2c03131eef33b909b5404
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/carrier_contract_replay.rs
+      sha256: 3d9d64de2158a97d06353c6bde93144bddfe42e0b3904d22ba3b458de63d9963
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/check_candidate.py
+      sha256: dc4e29fad1c40e3e0819c756caf144fd407debef6b1ba1f697c0d6bfa3475524
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/format_certificate.py
+      sha256: e8a449c2c3d20916f2d7f1fd00155744c26bd05a47328f2965ae9657c7546fee
+    public_input:
+      targets:
+      - target_id: 1
+        name: Primitive Difference
+        conductor: 1
+      - target_id: 2
+        name: Simplicial Diamond Complex
+        conductor: 12
+      - target_id: 3
+        name: Sorkin 3-Slit Interference Vanishing
+        conductor: 12
+      - target_id: 4
+        name: Rational Cayley Transform Flows
+        conductor: 1
+      - target_id: 5
+        name: Pentagon Associator (Biedenharn-Elliott)
+        conductor: 1
+      - target_id: 6
+        name: Cabello 18-Ray Contextuality
+        conductor: 12
+      - target_id: 7
+        name: Monotone Layer Admission
+        conductor: 1
+      - target_id: 8
+        name: Pythagorean Bell-CHSH Nonlocality
+        conductor: 1
+      - target_id: 9
+        name: 3-Qubit Bit-Flip Code [[3, 1, 1]]
+        conductor: 1
+      - target_id: 10
+        name: Discrete Quantum Teleportation
+        conductor: 1
+      - target_id: 11
+        name: Superdense Coding over Z[i]
+        conductor: 4
+      - target_id: 12
+        name: '[[4, 2, 2]] CSS Surface Code'
+        conductor: 1
+      - target_id: 13
+        name: Prime-5 Gross Wigner Phase Space
+        conductor: 5
+      - target_id: 14
+        name: Shor [[9, 1, 3]] Code
+        conductor: 1
+      - target_id: 15
+        name: Discrete Phase Estimation
+        conductor: 4
+      - target_id: 16
+        name: Surface Code Toric Topology & Anyons
+        conductor: 2
+      - target_id: 17
+        name: Discrete Grover Search N=4
+        conductor: 12
+      - target_id: 18
+        name: Discrete Clifford Sp(2n, F_2)
+        conductor: 8
+      - target_id: 19
+        name: Stone-von Neumann Obstruction
+        conductor: 1
+      - target_id: 20
+        name: Richardson Error Mitigation
+        conductor: 1
+      - target_id: 21
+        name: Cayley Graph Quantum Walk
+        conductor: 1
+      - target_id: 22
+        name: Discrete MUB State Tomography d=3
+        conductor: 3
+      - target_id: 23
+        name: 'Target 22 Ext: MUB d=4 Galois Field'
+        conductor: 4
+      samples:
+      - id: zeta_1
+        source_conductor: 1
+        intermediate_conductor: 2
+        target_conductor: 120
+        a:
+        - '3'
+        b:
+        - '0'
+      - id: zeta_2
+        source_conductor: 2
+        intermediate_conductor: 4
+        target_conductor: 120
+        a:
+        - '1'
+        b:
+        - '2'
+      - id: zeta_3
+        source_conductor: 3
+        intermediate_conductor: 6
+        target_conductor: 120
+        a:
+        - '2'
+        - '1'
+        b:
+        - '1'
+        - '-1'
+      - id: zeta_4
+        source_conductor: 4
+        intermediate_conductor: 8
+        target_conductor: 120
+        a:
+        - '2'
+        - '1'
+        b:
+        - '1'
+        - '-1'
+      - id: zeta_5
+        source_conductor: 5
+        intermediate_conductor: 10
+        target_conductor: 120
+        a:
+        - '2'
+        - '1'
+        - '0'
+        - '0'
+        b:
+        - '1'
+        - '-1'
+        - '0'
+        - '0'
+      - id: zeta_8
+        source_conductor: 8
+        intermediate_conductor: 24
+        target_conductor: 120
+        a:
+        - '2'
+        - '1'
+        - '0'
+        - '0'
+        b:
+        - '1'
+        - '-1'
+        - '0'
+        - '0'
+      - id: zeta_12
+        source_conductor: 12
+        intermediate_conductor: 24
+        target_conductor: 120
+        a:
+        - '2'
+        - '1'
+        - '0'
+        - '0'
+        b:
+        - '1'
+        - '-1'
+        - '0'
+        - '0'
+      scope: The actual declared inventory plus seven selected elements; no complete amplitude audit or
+        construction of a colimit.
+    original_target: 'Declared carrier: cyclotomic fields Q(zeta_n) with directed tower law (m | n gives
+      Q(zeta_m) <= Q(zeta_n)), declared target conductor LCM 120 (distinct conductors 1,2,3,4,5,8,12;
+      23 targets), Born weights |psi_j|^2 in the real subfield Q(zeta_n)^+. The colimit Q^ab is named
+      but not constructed; Kronecker-Weber is DECLARED.'
+    source_scope_review: The carrier contract declares Q^ab and Kronecker-Weber, and explicitly leaves
+      field minimality and all-amplitude embedding coverage unproved. H052 constructs a directed Nat-label
+      diagram, not a cyclotomic field colimit. The actual Python quotient arithmetic and Rust cyclotomic
+      backend are separately exercised; stale atlas code pointers are not claimed to execute. An assert-only
+      invalid-lift guard was reproduced under -O and repaired explicitly.
+    admitted_assumptions:
+    - complex/cyclotomic scalar field Q(zeta_n) (assumption)
+    - Kronecker-Weber theorem cited, not proved (assumption)
+    - target conductor 120 chosen, minimality not proved (assumption)
+  slot_m2_layer1_forward_morphisms:
+    mining_status: FILLED
+    operations:
+    - catalog_id: label_lcm
+      inputs:
+      - PositiveConductorInventory
+      output: CommonMultipleLabel
+      semantic_predicate: Compute the LCM of actual positive conductor labels; this is not field minimality.
+    - catalog_id: quotient_reduce
+      inputs:
+      - RationalPolynomial
+      - CyclotomicModulus
+      output: CyclotomicElement
+      semantic_predicate: Reduce in the actual power-basis quotient Q[X]/Phi_n.
+    - catalog_id: divisibility_lift
+      inputs:
+      - CyclotomicElement
+      - DivisibleTargetLabel
+      output: CyclotomicElement
+      semantic_predicate: Substitute zeta_n -> zeta_N^(N/n) only when n divides N.
+    - catalog_id: conjugate
+      inputs:
+      - CyclotomicElement
+      output: CyclotomicElement
+      semantic_predicate: Substitute zeta_n -> zeta_n^-1 in the same exact quotient.
+    - catalog_id: norm
+      inputs:
+      - CyclotomicElement
+      output: ConjugationFixedElement
+      semantic_predicate: Compute z*conjugate(z); this is fixed by conjugation, not generally a rational
+        scalar.
+    - catalog_id: lift_norm
+      inputs:
+      - ConjugationFixedElement
+      - DivisibleTargetLabel
+      output: ConjugationFixedElement
+      semantic_predicate: Transport the actual norm by the same star-compatible quotient embedding.
+    composition_plan:
+    - outer_operation: divisibility_lift
+      input_slot: 0
+      inner_operation: divisibility_lift
+      colour_match: CyclotomicElement -> CyclotomicElement
+      hypothesis_match: The intermediate label divides the final one; both maps use the same root substitution.
+      licensing_relations:
+      - lift_composition
+      evidence_status: Actual selected direct/via coefficient equality; general formal coherence open.
+    - outer_operation: lift_norm
+      input_slot: 0
+      inner_operation: norm
+      colour_match: ConjugationFixedElement -> ConjugationFixedElement
+      hypothesis_match: The map is a star-compatible ring hom; selected native maps are checked exactly.
+      licensing_relations:
+      - star_ring_norm
+      - norm_transport
+      - selected_hom_identities
+      evidence_status: Generic conditional kernel identity plus actual selected quotient computations.
+    tree: divisibility_lift(divisibility_lift(z,n|mid),mid|120); lift_norm(norm(z),n|120).
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: FILLED
+    algebraic_relations:
+    - id: inventory_lcm
+      equation_or_predicate: lcm of the 23 supplied labels equals 120, with distinct labels [1,2,3,4,5,8,12]
+      typing_conditions: Actual source inventory; label arithmetic only
+      evidence_status: Literal finite Nat kernel check and native/checker inventory binding.
+      scope: No minimal field assertion.
+      source_pins:
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-CARRIER-CONTRACT-V2__DEFINITION.yaml
+        sha256: 10fd2d62cc5231bb8a25d1323e28b867c40bc9ecb0051c371264ed7b35c60bf9
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-CARRIER-CONTRACT-V2.yaml
+        sha256: eb7c9c68856481a37cb8b158016d4470641a6f4da78ee3d041030833329513ad
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/H052CyclotomicTowerDirected.lean
+        sha256: c7e8d3e1e36a80bf4e60d9da3bae5cafef90a386f410fc244ea616e33a45fc43
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/H057HigherDimConductorBounds.lean
+        sha256: 490d743d8b1395d21bed1914a4a7050117ea25b9cde576a42e1293c472a47253
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+        sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/tower.rs
+        sha256: 69428219cf30740fcadbf10e0187d6b814cdfaa4a6f1fe789cc49dd593d735da
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/10_finite_qm_core/TFQ-0007_finite_quantum_mechanics_core_on_an_admitted_carrier.md
+        sha256: a267860ffcd249c07fa4c18624850ee66ad19195c20c9031e76cfdfa91cb18b2
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/code/python/src/qm/domain/cyclotomic_tower.py
+        sha256: a3c8e982044b89352e4ba485012d75130b73e111022e0632d5425abb84f4279d
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/claims/carrier_contract.yaml
+        sha256: a1c709630c5a79fef6a8638e8fd9ee2d081643405a1ef49796e99c3b83ab8cb8
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/evidence/carrier_inventory.json
+        sha256: 86a00e8c1e85f58ea3265350a892fea92b087762c57710c6d44b7fa79c7d0ba4
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/native_dependency/cyclotomic_field.rs
+        sha256: ed99d8566c8bd563e2c567f23865bdc7b93dd27dbf1fff5ea6d57f7716a3ab53
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/native_dependency/polynomial.rs
+        sha256: e59e3e57c1200e14c5f3882929ae0e3f78dfb9639af77e5f4769562833c63a04
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/native_dependency/cyclotomic120.rs
+        sha256: 69a0dc4f3bec2afe66dc69264380a3dcbfc3204739f875a1bd6977211841fa84
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/carrier_contract.py
+        sha256: f99b30b376d0ae4f703e92d3e38ff71d46fbb17646beff521fb280d5e9629421
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/domain/cyclotomic_tower.py
+        sha256: f0871821e62d9dab37c119214107d93348e202f8b4aef9dd3ef7f2df97085aec
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/tests/test_carrier_contract.py
+        sha256: 70e1565aac8591eea5f7e2be1c30b205006ea0e0e945935c221d59f65bd9c57f
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/carrier_contract.rs
+        sha256: 924085c863748f289c83cd65699edef7cccdbbaaa896246a4089b0c01f6296a8
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_exact.rs
+        sha256: bc3366a3fe6702306136b112a49a8d6df5e5679306d2c03131eef33b909b5404
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/carrier_contract_replay.rs
+        sha256: 3d9d64de2158a97d06353c6bde93144bddfe42e0b3904d22ba3b458de63d9963
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/check_candidate.py
+        sha256: dc4e29fad1c40e3e0819c756caf144fd407debef6b1ba1f697c0d6bfa3475524
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/format_certificate.py
+        sha256: e8a449c2c3d20916f2d7f1fd00155744c26bd05a47328f2965ae9657c7546fee
+    - id: directed_labels
+      equation_or_predicate: Two positive labels divide some positive common label
+      typing_conditions: Nat divisibility labels
+      evidence_status: Universal source kernel theorem; not construction of field objects.
+      scope: The positive conductor indexing diagram.
+      source_pins:
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-CARRIER-CONTRACT-V2__DEFINITION.yaml
+        sha256: 10fd2d62cc5231bb8a25d1323e28b867c40bc9ecb0051c371264ed7b35c60bf9
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-CARRIER-CONTRACT-V2.yaml
+        sha256: eb7c9c68856481a37cb8b158016d4470641a6f4da78ee3d041030833329513ad
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/H052CyclotomicTowerDirected.lean
+        sha256: c7e8d3e1e36a80bf4e60d9da3bae5cafef90a386f410fc244ea616e33a45fc43
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/H057HigherDimConductorBounds.lean
+        sha256: 490d743d8b1395d21bed1914a4a7050117ea25b9cde576a42e1293c472a47253
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+        sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/tower.rs
+        sha256: 69428219cf30740fcadbf10e0187d6b814cdfaa4a6f1fe789cc49dd593d735da
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/10_finite_qm_core/TFQ-0007_finite_quantum_mechanics_core_on_an_admitted_carrier.md
+        sha256: a267860ffcd249c07fa4c18624850ee66ad19195c20c9031e76cfdfa91cb18b2
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/code/python/src/qm/domain/cyclotomic_tower.py
+        sha256: a3c8e982044b89352e4ba485012d75130b73e111022e0632d5425abb84f4279d
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/claims/carrier_contract.yaml
+        sha256: a1c709630c5a79fef6a8638e8fd9ee2d081643405a1ef49796e99c3b83ab8cb8
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/evidence/carrier_inventory.json
+        sha256: 86a00e8c1e85f58ea3265350a892fea92b087762c57710c6d44b7fa79c7d0ba4
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/native_dependency/cyclotomic_field.rs
+        sha256: ed99d8566c8bd563e2c567f23865bdc7b93dd27dbf1fff5ea6d57f7716a3ab53
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/native_dependency/polynomial.rs
+        sha256: e59e3e57c1200e14c5f3882929ae0e3f78dfb9639af77e5f4769562833c63a04
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/native_dependency/cyclotomic120.rs
+        sha256: 69a0dc4f3bec2afe66dc69264380a3dcbfc3204739f875a1bd6977211841fa84
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/carrier_contract.py
+        sha256: f99b30b376d0ae4f703e92d3e38ff71d46fbb17646beff521fb280d5e9629421
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/domain/cyclotomic_tower.py
+        sha256: f0871821e62d9dab37c119214107d93348e202f8b4aef9dd3ef7f2df97085aec
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/tests/test_carrier_contract.py
+        sha256: 70e1565aac8591eea5f7e2be1c30b205006ea0e0e945935c221d59f65bd9c57f
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/carrier_contract.rs
+        sha256: 924085c863748f289c83cd65699edef7cccdbbaaa896246a4089b0c01f6296a8
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_exact.rs
+        sha256: bc3366a3fe6702306136b112a49a8d6df5e5679306d2c03131eef33b909b5404
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/carrier_contract_replay.rs
+        sha256: 3d9d64de2158a97d06353c6bde93144bddfe42e0b3904d22ba3b458de63d9963
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/check_candidate.py
+        sha256: dc4e29fad1c40e3e0819c756caf144fd407debef6b1ba1f697c0d6bfa3475524
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/format_certificate.py
+        sha256: e8a449c2c3d20916f2d7f1fd00155744c26bd05a47328f2965ae9657c7546fee
+    - id: lift_composition
+      equation_or_predicate: lift_N(lift_mid(z)) = lift_N(z)
+      typing_conditions: n divides mid divides N and the same power-basis element
+      evidence_status: Seven exact quotient calculations and substituted source-polynomial relations;
+        general field-map coherence remains a formal obligation.
+      scope: The seven supplied elements and chains.
+      source_pins:
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-CARRIER-CONTRACT-V2__DEFINITION.yaml
+        sha256: 10fd2d62cc5231bb8a25d1323e28b867c40bc9ecb0051c371264ed7b35c60bf9
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-CARRIER-CONTRACT-V2.yaml
+        sha256: eb7c9c68856481a37cb8b158016d4470641a6f4da78ee3d041030833329513ad
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/H052CyclotomicTowerDirected.lean
+        sha256: c7e8d3e1e36a80bf4e60d9da3bae5cafef90a386f410fc244ea616e33a45fc43
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/H057HigherDimConductorBounds.lean
+        sha256: 490d743d8b1395d21bed1914a4a7050117ea25b9cde576a42e1293c472a47253
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+        sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/tower.rs
+        sha256: 69428219cf30740fcadbf10e0187d6b814cdfaa4a6f1fe789cc49dd593d735da
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/10_finite_qm_core/TFQ-0007_finite_quantum_mechanics_core_on_an_admitted_carrier.md
+        sha256: a267860ffcd249c07fa4c18624850ee66ad19195c20c9031e76cfdfa91cb18b2
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/code/python/src/qm/domain/cyclotomic_tower.py
+        sha256: a3c8e982044b89352e4ba485012d75130b73e111022e0632d5425abb84f4279d
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/claims/carrier_contract.yaml
+        sha256: a1c709630c5a79fef6a8638e8fd9ee2d081643405a1ef49796e99c3b83ab8cb8
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/evidence/carrier_inventory.json
+        sha256: 86a00e8c1e85f58ea3265350a892fea92b087762c57710c6d44b7fa79c7d0ba4
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/native_dependency/cyclotomic_field.rs
+        sha256: ed99d8566c8bd563e2c567f23865bdc7b93dd27dbf1fff5ea6d57f7716a3ab53
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/native_dependency/polynomial.rs
+        sha256: e59e3e57c1200e14c5f3882929ae0e3f78dfb9639af77e5f4769562833c63a04
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/native_dependency/cyclotomic120.rs
+        sha256: 69a0dc4f3bec2afe66dc69264380a3dcbfc3204739f875a1bd6977211841fa84
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/carrier_contract.py
+        sha256: f99b30b376d0ae4f703e92d3e38ff71d46fbb17646beff521fb280d5e9629421
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/domain/cyclotomic_tower.py
+        sha256: f0871821e62d9dab37c119214107d93348e202f8b4aef9dd3ef7f2df97085aec
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/tests/test_carrier_contract.py
+        sha256: 70e1565aac8591eea5f7e2be1c30b205006ea0e0e945935c221d59f65bd9c57f
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/carrier_contract.rs
+        sha256: 924085c863748f289c83cd65699edef7cccdbbaaa896246a4089b0c01f6296a8
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_exact.rs
+        sha256: bc3366a3fe6702306136b112a49a8d6df5e5679306d2c03131eef33b909b5404
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/carrier_contract_replay.rs
+        sha256: 3d9d64de2158a97d06353c6bde93144bddfe42e0b3904d22ba3b458de63d9963
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/check_candidate.py
+        sha256: dc4e29fad1c40e3e0819c756caf144fd407debef6b1ba1f697c0d6bfa3475524
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/format_certificate.py
+        sha256: e8a449c2c3d20916f2d7f1fd00155744c26bd05a47328f2965ae9657c7546fee
+    - id: star_ring_norm
+      equation_or_predicate: star(z*star(z))=z*star(z)
+      typing_conditions: Commutative ring with StarRing
+      evidence_status: Generic kernel theorem; no new StarRing or field instance is manufactured.
+      scope: Universal under the explicit typeclass assumptions.
+      source_pins:
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-CARRIER-CONTRACT-V2__DEFINITION.yaml
+        sha256: 10fd2d62cc5231bb8a25d1323e28b867c40bc9ecb0051c371264ed7b35c60bf9
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-CARRIER-CONTRACT-V2.yaml
+        sha256: eb7c9c68856481a37cb8b158016d4470641a6f4da78ee3d041030833329513ad
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/H052CyclotomicTowerDirected.lean
+        sha256: c7e8d3e1e36a80bf4e60d9da3bae5cafef90a386f410fc244ea616e33a45fc43
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/H057HigherDimConductorBounds.lean
+        sha256: 490d743d8b1395d21bed1914a4a7050117ea25b9cde576a42e1293c472a47253
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+        sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/tower.rs
+        sha256: 69428219cf30740fcadbf10e0187d6b814cdfaa4a6f1fe789cc49dd593d735da
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/10_finite_qm_core/TFQ-0007_finite_quantum_mechanics_core_on_an_admitted_carrier.md
+        sha256: a267860ffcd249c07fa4c18624850ee66ad19195c20c9031e76cfdfa91cb18b2
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/code/python/src/qm/domain/cyclotomic_tower.py
+        sha256: a3c8e982044b89352e4ba485012d75130b73e111022e0632d5425abb84f4279d
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/claims/carrier_contract.yaml
+        sha256: a1c709630c5a79fef6a8638e8fd9ee2d081643405a1ef49796e99c3b83ab8cb8
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/evidence/carrier_inventory.json
+        sha256: 86a00e8c1e85f58ea3265350a892fea92b087762c57710c6d44b7fa79c7d0ba4
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/native_dependency/cyclotomic_field.rs
+        sha256: ed99d8566c8bd563e2c567f23865bdc7b93dd27dbf1fff5ea6d57f7716a3ab53
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/native_dependency/polynomial.rs
+        sha256: e59e3e57c1200e14c5f3882929ae0e3f78dfb9639af77e5f4769562833c63a04
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/native_dependency/cyclotomic120.rs
+        sha256: 69a0dc4f3bec2afe66dc69264380a3dcbfc3204739f875a1bd6977211841fa84
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/carrier_contract.py
+        sha256: f99b30b376d0ae4f703e92d3e38ff71d46fbb17646beff521fb280d5e9629421
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/domain/cyclotomic_tower.py
+        sha256: f0871821e62d9dab37c119214107d93348e202f8b4aef9dd3ef7f2df97085aec
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/tests/test_carrier_contract.py
+        sha256: 70e1565aac8591eea5f7e2be1c30b205006ea0e0e945935c221d59f65bd9c57f
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/carrier_contract.rs
+        sha256: 924085c863748f289c83cd65699edef7cccdbbaaa896246a4089b0c01f6296a8
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_exact.rs
+        sha256: bc3366a3fe6702306136b112a49a8d6df5e5679306d2c03131eef33b909b5404
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/carrier_contract_replay.rs
+        sha256: 3d9d64de2158a97d06353c6bde93144bddfe42e0b3904d22ba3b458de63d9963
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/check_candidate.py
+        sha256: dc4e29fad1c40e3e0819c756caf144fd407debef6b1ba1f697c0d6bfa3475524
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/format_certificate.py
+        sha256: e8a449c2c3d20916f2d7f1fd00155744c26bd05a47328f2965ae9657c7546fee
+    - id: norm_transport
+      equation_or_predicate: f(z*star(z))=f(z)*star(f(z))
+      typing_conditions: RingHom with an explicit star-commutation hypothesis
+      evidence_status: Generic kernel theorem plus actual selected finite lift identities.
+      scope: The theorem assumes the compatible map; it does not construct it from divisibility.
+      source_pins:
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-CARRIER-CONTRACT-V2__DEFINITION.yaml
+        sha256: 10fd2d62cc5231bb8a25d1323e28b867c40bc9ecb0051c371264ed7b35c60bf9
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-CARRIER-CONTRACT-V2.yaml
+        sha256: eb7c9c68856481a37cb8b158016d4470641a6f4da78ee3d041030833329513ad
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/H052CyclotomicTowerDirected.lean
+        sha256: c7e8d3e1e36a80bf4e60d9da3bae5cafef90a386f410fc244ea616e33a45fc43
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/H057HigherDimConductorBounds.lean
+        sha256: 490d743d8b1395d21bed1914a4a7050117ea25b9cde576a42e1293c472a47253
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+        sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/tower.rs
+        sha256: 69428219cf30740fcadbf10e0187d6b814cdfaa4a6f1fe789cc49dd593d735da
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/10_finite_qm_core/TFQ-0007_finite_quantum_mechanics_core_on_an_admitted_carrier.md
+        sha256: a267860ffcd249c07fa4c18624850ee66ad19195c20c9031e76cfdfa91cb18b2
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/code/python/src/qm/domain/cyclotomic_tower.py
+        sha256: a3c8e982044b89352e4ba485012d75130b73e111022e0632d5425abb84f4279d
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/claims/carrier_contract.yaml
+        sha256: a1c709630c5a79fef6a8638e8fd9ee2d081643405a1ef49796e99c3b83ab8cb8
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/evidence/carrier_inventory.json
+        sha256: 86a00e8c1e85f58ea3265350a892fea92b087762c57710c6d44b7fa79c7d0ba4
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/native_dependency/cyclotomic_field.rs
+        sha256: ed99d8566c8bd563e2c567f23865bdc7b93dd27dbf1fff5ea6d57f7716a3ab53
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/native_dependency/polynomial.rs
+        sha256: e59e3e57c1200e14c5f3882929ae0e3f78dfb9639af77e5f4769562833c63a04
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/native_dependency/cyclotomic120.rs
+        sha256: 69a0dc4f3bec2afe66dc69264380a3dcbfc3204739f875a1bd6977211841fa84
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/carrier_contract.py
+        sha256: f99b30b376d0ae4f703e92d3e38ff71d46fbb17646beff521fb280d5e9629421
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/domain/cyclotomic_tower.py
+        sha256: f0871821e62d9dab37c119214107d93348e202f8b4aef9dd3ef7f2df97085aec
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/tests/test_carrier_contract.py
+        sha256: 70e1565aac8591eea5f7e2be1c30b205006ea0e0e945935c221d59f65bd9c57f
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/carrier_contract.rs
+        sha256: 924085c863748f289c83cd65699edef7cccdbbaaa896246a4089b0c01f6296a8
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_exact.rs
+        sha256: bc3366a3fe6702306136b112a49a8d6df5e5679306d2c03131eef33b909b5404
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/carrier_contract_replay.rs
+        sha256: 3d9d64de2158a97d06353c6bde93144bddfe42e0b3904d22ba3b458de63d9963
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/check_candidate.py
+        sha256: dc4e29fad1c40e3e0819c756caf144fd407debef6b1ba1f697c0d6bfa3475524
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/format_certificate.py
+        sha256: e8a449c2c3d20916f2d7f1fd00155744c26bd05a47328f2965ae9657c7546fee
+    - id: selected_hom_identities
+      equation_or_predicate: Selected quotient lifts preserve sum, product and conjugation
+      typing_conditions: Same exact elements and divisibility chain
+      evidence_status: Independent Mobius-polynomial arithmetic and complete Rust/Python coefficient equality.
+      scope: Finite selected inputs only.
+      source_pins:
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-CARRIER-CONTRACT-V2__DEFINITION.yaml
+        sha256: 10fd2d62cc5231bb8a25d1323e28b867c40bc9ecb0051c371264ed7b35c60bf9
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-CARRIER-CONTRACT-V2.yaml
+        sha256: eb7c9c68856481a37cb8b158016d4470641a6f4da78ee3d041030833329513ad
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/H052CyclotomicTowerDirected.lean
+        sha256: c7e8d3e1e36a80bf4e60d9da3bae5cafef90a386f410fc244ea616e33a45fc43
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/H057HigherDimConductorBounds.lean
+        sha256: 490d743d8b1395d21bed1914a4a7050117ea25b9cde576a42e1293c472a47253
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+        sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/tower.rs
+        sha256: 69428219cf30740fcadbf10e0187d6b814cdfaa4a6f1fe789cc49dd593d735da
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/10_finite_qm_core/TFQ-0007_finite_quantum_mechanics_core_on_an_admitted_carrier.md
+        sha256: a267860ffcd249c07fa4c18624850ee66ad19195c20c9031e76cfdfa91cb18b2
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/code/python/src/qm/domain/cyclotomic_tower.py
+        sha256: a3c8e982044b89352e4ba485012d75130b73e111022e0632d5425abb84f4279d
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/claims/carrier_contract.yaml
+        sha256: a1c709630c5a79fef6a8638e8fd9ee2d081643405a1ef49796e99c3b83ab8cb8
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/evidence/carrier_inventory.json
+        sha256: 86a00e8c1e85f58ea3265350a892fea92b087762c57710c6d44b7fa79c7d0ba4
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/native_dependency/cyclotomic_field.rs
+        sha256: ed99d8566c8bd563e2c567f23865bdc7b93dd27dbf1fff5ea6d57f7716a3ab53
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/native_dependency/polynomial.rs
+        sha256: e59e3e57c1200e14c5f3882929ae0e3f78dfb9639af77e5f4769562833c63a04
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/native_dependency/cyclotomic120.rs
+        sha256: 69a0dc4f3bec2afe66dc69264380a3dcbfc3204739f875a1bd6977211841fa84
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/carrier_contract.py
+        sha256: f99b30b376d0ae4f703e92d3e38ff71d46fbb17646beff521fb280d5e9629421
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/domain/cyclotomic_tower.py
+        sha256: f0871821e62d9dab37c119214107d93348e202f8b4aef9dd3ef7f2df97085aec
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/tests/test_carrier_contract.py
+        sha256: 70e1565aac8591eea5f7e2be1c30b205006ea0e0e945935c221d59f65bd9c57f
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/carrier_contract.rs
+        sha256: 924085c863748f289c83cd65699edef7cccdbbaaa896246a4089b0c01f6296a8
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_exact.rs
+        sha256: bc3366a3fe6702306136b112a49a8d6df5e5679306d2c03131eef33b909b5404
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/carrier_contract_replay.rs
+        sha256: 3d9d64de2158a97d06353c6bde93144bddfe42e0b3904d22ba3b458de63d9963
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/check_candidate.py
+        sha256: dc4e29fad1c40e3e0819c756caf144fd407debef6b1ba1f697c0d6bfa3475524
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/format_certificate.py
+        sha256: e8a449c2c3d20916f2d7f1fd00155744c26bd05a47328f2965ae9657c7546fee
+    - id: declaration_fence
+      equation_or_predicate: Colimit and Kronecker-Weber are declared inputs; all-amplitude and field-minimality
+        claims remain unpaid
+      typing_conditions: Source contract and inventory are declarations
+      evidence_status: Actual source boundary flags retained and challenged.
+      scope: No declaration is promoted to a theorem by a success label.
+      source_pins:
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_CORE__FQ-CARRIER-CONTRACT-V2__DEFINITION.yaml
+        sha256: 10fd2d62cc5231bb8a25d1323e28b867c40bc9ecb0051c371264ed7b35c60bf9
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/dag/operads/FQ-CARRIER-CONTRACT-V2.yaml
+        sha256: eb7c9c68856481a37cb8b158016d4470641a6f4da78ee3d041030833329513ad
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/H052CyclotomicTowerDirected.lean
+        sha256: c7e8d3e1e36a80bf4e60d9da3bae5cafef90a386f410fc244ea616e33a45fc43
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/H057HigherDimConductorBounds.lean
+        sha256: 490d743d8b1395d21bed1914a4a7050117ea25b9cde576a42e1293c472a47253
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+        sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/tower.rs
+        sha256: 69428219cf30740fcadbf10e0187d6b814cdfaa4a6f1fe789cc49dd593d735da
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/inputs/this_repository/dag/derivations/10_finite_qm_core/TFQ-0007_finite_quantum_mechanics_core_on_an_admitted_carrier.md
+        sha256: a267860ffcd249c07fa4c18624850ee66ad19195c20c9031e76cfdfa91cb18b2
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/code/python/src/qm/domain/cyclotomic_tower.py
+        sha256: a3c8e982044b89352e4ba485012d75130b73e111022e0632d5425abb84f4279d
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/claims/carrier_contract.yaml
+        sha256: a1c709630c5a79fef6a8638e8fd9ee2d081643405a1ef49796e99c3b83ab8cb8
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/evidence/carrier_inventory.json
+        sha256: 86a00e8c1e85f58ea3265350a892fea92b087762c57710c6d44b7fa79c7d0ba4
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/native_dependency/cyclotomic_field.rs
+        sha256: ed99d8566c8bd563e2c567f23865bdc7b93dd27dbf1fff5ea6d57f7716a3ab53
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/native_dependency/polynomial.rs
+        sha256: e59e3e57c1200e14c5f3882929ae0e3f78dfb9639af77e5f4769562833c63a04
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/additional_sources/native_dependency/cyclotomic120.rs
+        sha256: 69a0dc4f3bec2afe66dc69264380a3dcbfc3204739f875a1bd6977211841fa84
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/carrier_contract.py
+        sha256: f99b30b376d0ae4f703e92d3e38ff71d46fbb17646beff521fb280d5e9629421
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/src/qm/domain/cyclotomic_tower.py
+        sha256: f0871821e62d9dab37c119214107d93348e202f8b4aef9dd3ef7f2df97085aec
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/python/tests/test_carrier_contract.py
+        sha256: 70e1565aac8591eea5f7e2be1c30b205006ea0e0e945935c221d59f65bd9c57f
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/carrier_contract.rs
+        sha256: 924085c863748f289c83cd65699edef7cccdbbaaa896246a4089b0c01f6296a8
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/pfp_exact.rs
+        sha256: bc3366a3fe6702306136b112a49a8d6df5e5679306d2c03131eef33b909b5404
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/carrier_contract_replay.rs
+        sha256: 3d9d64de2158a97d06353c6bde93144bddfe42e0b3904d22ba3b458de63d9963
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/check_candidate.py
+        sha256: dc4e29fad1c40e3e0819c756caf144fd407debef6b1ba1f697c0d6bfa3475524
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/format_certificate.py
+        sha256: e8a449c2c3d20916f2d7f1fd00155744c26bd05a47328f2965ae9657c7546fee
+    rejection_predicates:
+    - All 23 target IDs/conductors bound to source inventory and actual label LCM120
+    - Mobius-product Phi_n independently reconstructed and exact source relation vanishes after substitution
+    - All thirteen coefficient arrays per sample and direct/via lift composition
+    - Sum/product/conjugation and norm transport on actual seven field elements
+    - Explicit declaration flags cannot be promoted; optimized invalid-lift guard refuses
+    - Five required literal Lean reports and complete exact native replay
+    negative_control_plan: Mutate label LCM, actual modulus, transported coefficient, norm coefficient
+      or direct/via equality, and promote a declared colimit flag.
+  slot_m4_tri_language_witness_anchors:
+    mining_status: FILLED
+    certificate_predicates:
+    - All 23 target IDs/conductors bound to source inventory and actual label LCM120
+    - Mobius-product Phi_n independently reconstructed and exact source relation vanishes after substitution
+    - All thirteen coefficient arrays per sample and direct/via lift composition
+    - Sum/product/conjugation and norm transport on actual seven field elements
+    - Explicit declaration flags cannot be promoted; optimized invalid-lift guard refuses
+    - Five required literal Lean reports and complete exact native replay
+    anchors:
+    - code/python/src/qm/carrier_contract.py
+    - code/python/src/qm/domain/cyclotomic_tower.py
+    - code/python/tests/test_carrier_contract.py
+    - code/rust/src/finite_probability/carrier_contract.rs
+    - code/rust/src/finite_probability/pfp_exact.rs
+    - code/rust/src/finite_probability/examples/carrier_contract_replay.rs
+    - lean4/PromptCarrierContract.lean
+    - lean4/H052CyclotomicTowerDirected.lean
+    - QuantumMechanics.PromptCarrierContract.positive_label_diagram_is_directed
+    - QuantumMechanics.PromptCarrierContract.declared_distinct_label_lcm
+    - QuantumMechanics.PromptCarrierContract.raw_label_divisibility_asymmetry
+    - QuantumMechanics.PromptCarrierContract.norm_is_conjugation_fixed
+    - QuantumMechanics.PromptCarrierContract.norm_transport_requires_a_star_compatible_hom
+    unpaid_imports:
+    - Construct actual compatible field embeddings and the Q^ab colimit, or retain them as declared inputs.
+    - Kronecker-Weber remains explicitly DECLARED; this run does not prove it.
+    - Seven selected elements are not all amplitudes in the 23 inventoried targets; that full audit remains
+      open.
+    - The LCM of labels is not a proof of field minimality; conductor 2 already represents a rational
+      root.
+    - A formal operad of these refined quotient carriers, identities, symmetric actions and general transport
+      laws is not instantiated here.
+    anchor_status: New Lean anchors are candidate declarations until the retained P2 compiler runs; compiled
+      source leads retain their literal scope.
+stage_history:
+- stage: P0_MINE_OPERAD
+  attempt: p0
+  run: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged
+  operad_delta: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/operad_delta.yaml
+  host_check: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/host_check.json
+- stage: P1_DERIVE
+  attempt: p1
+  run: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged
+  operad_delta: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p1/operad_delta.yaml
+  host_check: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p1/host_check.json
+- stage: P2_VERIFY
+  attempt: p2
+  run: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged
+  operad_delta: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p2/operad_delta.yaml
+  host_check: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p2/host_check.json
+- stage: P4_CHALLENGE
+  attempt: p4
+  run: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged
+  operad_delta: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p4/operad_delta.yaml
+  host_check: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p4/host_check.json
+- stage: P5_RECORD
+  attempt: p5
+  run: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged
+  operad_delta: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p5/operad_delta.yaml
+  host_check: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p5/host_check.json
+open_obligations: *id001
+excluded_relation_leads: []
+operad_slots_scope:
+  work_unit: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged/p0/reviewed_missions.json
+  scope: FILLED means reviewed prerequisites for this selected step; original target and unpaid imports
+    retained.
+latest_run:
+  path: dag/results/FQ-CARRIER-CONTRACT-V2/runs/20261019T015232Z_staged
+  stage: P5_RECORD
+  status: scoped_result_or_obstruction_pending_batch_review
+scope_notes:
+- The carrier contract declares Q^ab and Kronecker-Weber, and explicitly leaves field minimality and all-amplitude
+  embedding coverage unproved. H052 constructs a directed Nat-label diagram, not a cyclotomic field colimit.
+  The actual Python quotient arithmetic and Rust cyclotomic backend are separately exercised; stale atlas
+  code pointers are not claimed to execute. An assert-only invalid-lift guard was reproduced under -O
+  and repaired explicitly.

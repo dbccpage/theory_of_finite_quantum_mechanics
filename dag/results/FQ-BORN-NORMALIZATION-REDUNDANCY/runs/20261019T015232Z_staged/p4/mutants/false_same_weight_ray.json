@@ -1,0 +1,206 @@
+{
+  "schema_id": "finite-qm.domain-certificate.v1",
+  "task_id": "FQ-BORN-NORMALIZATION-REDUNDANCY",
+  "stage_id": "P3_REPAIR",
+  "attempt_id": "p3",
+  "input_sha256": "92a0ebeb7b168deb0ed9c0bf27615b19561c2642c10065e7c14e8e9b9b086ab1",
+  "source_pins": [
+    {
+      "path": "dag/results/FQ-BORN-NORMALIZATION-REDUNDANCY/runs/20261019T015232Z_staged/p3/construction/code/python/src/qm/born_ray.py",
+      "sha256": "dd189b92d11820bdadb46f044cce4c1c88589f07f7ed7e3b4dcedf38a797d4f3"
+    },
+    {
+      "path": "dag/results/FQ-BORN-NORMALIZATION-REDUNDANCY/runs/20261019T015232Z_staged/p3/construction/code/python/src/qm/pfp_exact.py",
+      "sha256": "33a78864b07a7924bff59226cbef4e276665671ebd9ea1d7860afbda273398be"
+    },
+    {
+      "path": "dag/results/FQ-BORN-NORMALIZATION-REDUNDANCY/runs/20261019T015232Z_staged/p3/construction/code/python/tests/test_born_ray.py",
+      "sha256": "2e8fcf8007d4efcda313c16368585908b911d62aaf5f01509154fde89890d8fb"
+    },
+    {
+      "path": "dag/results/FQ-BORN-NORMALIZATION-REDUNDANCY/runs/20261019T015232Z_staged/p3/construction/code/rust/src/finite_probability/born_ray.rs",
+      "sha256": "1abf468244a86c6cddbc91ecee1d35101ad0cb82ee6b7bd2776d07131f85dfe9"
+    },
+    {
+      "path": "dag/results/FQ-BORN-NORMALIZATION-REDUNDANCY/runs/20261019T015232Z_staged/p3/construction/code/rust/src/finite_probability/pfp_exact.rs",
+      "sha256": "bc3366a3fe6702306136b112a49a8d6df5e5679306d2c03131eef33b909b5404"
+    },
+    {
+      "path": "dag/results/FQ-BORN-NORMALIZATION-REDUNDANCY/runs/20261019T015232Z_staged/p3/construction/code/rust/src/finite_probability/examples/born_ray_replay.rs",
+      "sha256": "57d9499024adf6e01d1abb30bcdfae6c69d7e6e94658cb708c066545f96d926c"
+    },
+    {
+      "path": "dag/results/FQ-BORN-NORMALIZATION-REDUNDANCY/runs/20261019T015232Z_staged/p3/construction/lean4/PromptBornRay.lean",
+      "sha256": "96a11db25c3b4724a0b7ceb8518ebac5fd610548d8554e8d11903962096d2371"
+    },
+    {
+      "path": "dag/results/FQ-BORN-NORMALIZATION-REDUNDANCY/runs/20261019T015232Z_staged/p3/construction/lean4/BornRedundancy.lean",
+      "sha256": "8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b"
+    },
+    {
+      "path": "dag/results/FQ-BORN-NORMALIZATION-REDUNDANCY/runs/20261019T015232Z_staged/p3/construction/code/rust/src/finite_probability/lib.rs",
+      "sha256": "50ad20a137598816158432720724e0443982f22c6daadaa2d3450aa2ed20d559"
+    },
+    {
+      "path": "dag/results/FQ-BORN-NORMALIZATION-REDUNDANCY/runs/20261019T015232Z_staged/p3/construction/code/rust/src/finite_probability/Cargo.toml",
+      "sha256": "7f2f46bd1285b52c86e395b9f0fef46bbe57eb245533513a162c6b2d2efa40c9"
+    },
+    {
+      "path": "dag/results/FQ-BORN-NORMALIZATION-REDUNDANCY/runs/20261019T015232Z_staged/p3/construction/code/rust/Cargo.lock",
+      "sha256": "e280f8904cedb969b5bf6da105b81c82c9f711a8dde6e41bce165d7008e75f3b"
+    },
+    {
+      "path": "dag/results/FQ-BORN-NORMALIZATION-REDUNDANCY/runs/20261019T015232Z_staged/p3/construction/lean4/lakefile.lean",
+      "sha256": "6a57251fa820c786b24a0ccc34b247b56b232b2bf91ce50d6740b8889183d4c6"
+    },
+    {
+      "path": "dag/results/FQ-BORN-NORMALIZATION-REDUNDANCY/runs/20261019T015232Z_staged/p3/construction/lean4/lean-toolchain",
+      "sha256": "a0ada3782cd088719516bbfdf37b9e7032230e211bf424b85d952ee650c51091"
+    },
+    {
+      "path": "dag/results/FQ-BORN-NORMALIZATION-REDUNDANCY/runs/20261019T015232Z_staged/p3/construction/lean4/lake-manifest.json",
+      "sha256": "7420c413da283f6b7aa102fd1a4be076a5c3ba1fbf3227bfeced44c7afcc61d2"
+    }
+  ],
+  "data": {
+    "cases": [
+      {
+        "id": "positive_proportional",
+        "left_sum": "6",
+        "right_sum": "12",
+        "normalized": [
+          "1/6",
+          "1/3",
+          "1/2"
+        ],
+        "normalized_twice": [
+          "1/6",
+          "1/3",
+          "1/2"
+        ],
+        "normalized_scaled": [
+          "1/6",
+          "1/3",
+          "1/2"
+        ],
+        "same_weight_ray": true,
+        "ray_scale": "2",
+        "separating_minor": null
+      },
+      {
+        "id": "different_with_zero_coordinate",
+        "left_sum": "4",
+        "right_sum": "8",
+        "normalized": [
+          "1/4",
+          "0",
+          "3/4"
+        ],
+        "normalized_twice": [
+          "1/4",
+          "0",
+          "3/4"
+        ],
+        "normalized_scaled": [
+          "1/4",
+          "0",
+          "3/4"
+        ],
+        "same_weight_ray": true,
+        "ray_scale": null,
+        "separating_minor": {
+          "indices": [
+            0,
+            1
+          ],
+          "value": "-2"
+        }
+      },
+      {
+        "id": "pure_weight_ray",
+        "left_sum": "5",
+        "right_sum": "1",
+        "normalized": [
+          "0",
+          "1",
+          "0"
+        ],
+        "normalized_twice": [
+          "0",
+          "1",
+          "0"
+        ],
+        "normalized_scaled": [
+          "0",
+          "1",
+          "0"
+        ],
+        "same_weight_ray": true,
+        "ray_scale": "1/5",
+        "separating_minor": null
+      },
+      {
+        "id": "fractional_ray",
+        "left_sum": "22/35",
+        "right_sum": "44/35",
+        "normalized": [
+          "15/22",
+          "7/22"
+        ],
+        "normalized_twice": [
+          "15/22",
+          "7/22"
+        ],
+        "normalized_scaled": [
+          "15/22",
+          "7/22"
+        ],
+        "same_weight_ray": true,
+        "ray_scale": "2",
+        "separating_minor": null
+      },
+      {
+        "id": "arbitrary_precision_ray",
+        "left_sum": "100000000000000000000000000000000000000000000000000000000000000000000000000000002",
+        "right_sum": "200000000000000000000000000000000000000000000000000000000000000000000000000000004",
+        "normalized": [
+          "100000000000000000000000000000000000000000000000000000000000000000000000000000001/100000000000000000000000000000000000000000000000000000000000000000000000000000002",
+          "1/100000000000000000000000000000000000000000000000000000000000000000000000000000002"
+        ],
+        "normalized_twice": [
+          "100000000000000000000000000000000000000000000000000000000000000000000000000000001/100000000000000000000000000000000000000000000000000000000000000000000000000000002",
+          "1/100000000000000000000000000000000000000000000000000000000000000000000000000000002"
+        ],
+        "normalized_scaled": [
+          "100000000000000000000000000000000000000000000000000000000000000000000000000000001/100000000000000000000000000000000000000000000000000000000000000000000000000000002",
+          "1/100000000000000000000000000000000000000000000000000000000000000000000000000000002"
+        ],
+        "same_weight_ray": true,
+        "ray_scale": "2",
+        "separating_minor": null
+      }
+    ],
+    "amplitude_control": {
+      "left_weights": [
+        "1",
+        "1"
+      ],
+      "right_weights": [
+        "1",
+        "1"
+      ],
+      "normalized_left": [
+        "1/2",
+        "1/2"
+      ],
+      "normalized_right": [
+        "1/2",
+        "1/2"
+      ],
+      "amplitude_minor": [
+        "-2",
+        "0"
+      ]
+    }
+  }
+}
