@@ -1,0 +1,119 @@
+{
+  "AuthorityEffect": "None",
+  "records": [
+    {
+      "family": "",
+      "path": "code/rust/src/category_theory/higher_functor.rs",
+      "sha256": "320ffe78f546ff6ce5bcc4e71f4b65bd7050f712139ea0eca8b49401cf4a8f14",
+      "parent_aliases": [
+        "higher"
+      ],
+      "faults": [
+        [
+          "name: name.into(),",
+          "name: \"wrong\".into(),"
+        ],
+        [
+          "source_two_category: source.into(),",
+          "source_two_category: target.into(),"
+        ],
+        [
+          "target_two_category: target.into(),",
+          "target_two_category: source.into(),"
+        ],
+        [
+          "self.object_map.get(a).map(|s| s.as_str())",
+          "self.one_morphism_map.get(a).map(|s| s.as_str())"
+        ],
+        [
+          "self.one_morphism_map.get(f).map(|s| s.as_str())",
+          "self.two_morphism_map.get(f).map(|s| s.as_str())"
+        ],
+        [
+          "self.two_morphism_map.get(alpha).map(|s| s.as_str())",
+          "self.one_morphism_map.get(alpha).map(|s| s.as_str())"
+        ],
+        [
+          "violations.push(format!(\"1-boundary: F({}) is not defined\", f));",
+          "let _: String = format!(\"1-boundary: F({}) is not defined\", f);"
+        ],
+        [
+          "violations.push(format!(\"1-boundary: F({}) is not defined\", src_obj));",
+          "let _: String = format!(\"1-boundary: F({}) is not defined\", src_obj);"
+        ],
+        [
+          "violations.push(format!(\"1-boundary: F({}) is not defined\", tgt_obj));",
+          "let _: String = format!(\"1-boundary: F({}) is not defined\", tgt_obj);"
+        ],
+        [
+          "violations.push(format!(\n                \"1-boundary: target boundary for F({}) = {} is not defined\",\n                f, f_img\n            ));",
+          "let _: String = format!(\n                \"1-boundary: target boundary for F({}) = {} is not defined\",\n                f, f_img\n            );"
+        ],
+        [
+          "violations.push(format!(\n                \"1-boundary violated for {}: src\u2081(F({})) = {}, expected F(src\u2081({})) = {}\",\n                f, f, actual_src, f, src_img\n            ));",
+          "let _: String = format!(\n                \"1-boundary violated for {}: src\u2081(F({})) = {}, expected F(src\u2081({})) = {}\",\n                f, f, actual_src, f, src_img\n            );"
+        ],
+        [
+          "violations.push(format!(\n                \"1-boundary violated for {}: tgt\u2081(F({})) = {}, expected F(tgt\u2081({})) = {}\",\n                f, f, actual_tgt, f, tgt_img\n            ));",
+          "let _: String = format!(\n                \"1-boundary violated for {}: tgt\u2081(F({})) = {}, expected F(tgt\u2081({})) = {}\",\n                f, f, actual_tgt, f, tgt_img\n            );"
+        ],
+        [
+          "violations.push(format!(\"2-boundary: F({}) is not defined\", alpha));",
+          "let _: String = format!(\"2-boundary: F({}) is not defined\", alpha);"
+        ],
+        [
+          "violations.push(format!(\"2-boundary: F({}) is not defined\", src_1mor));",
+          "let _: String = format!(\"2-boundary: F({}) is not defined\", src_1mor);"
+        ],
+        [
+          "violations.push(format!(\"2-boundary: F({}) is not defined\", tgt_1mor));",
+          "let _: String = format!(\"2-boundary: F({}) is not defined\", tgt_1mor);"
+        ],
+        [
+          "violations.push(format!(\n                \"2-boundary: target boundary for F({}) = {} is not defined\",\n                alpha, alpha_img\n            ));",
+          "let _: String = format!(\n                \"2-boundary: target boundary for F({}) = {} is not defined\",\n                alpha, alpha_img\n            );"
+        ],
+        [
+          "violations.push(format!(\n                \"2-boundary violated for {}: src\u2082(F({})) = {}, expected F(src\u2082({})) = {}\",\n                alpha, alpha, actual_src, alpha, src_img\n            ));",
+          "let _: String = format!(\n                \"2-boundary violated for {}: src\u2082(F({})) = {}, expected F(src\u2082({})) = {}\",\n                alpha, alpha, actual_src, alpha, src_img\n            );"
+        ],
+        [
+          "violations.push(format!(\n                \"2-boundary violated for {}: tgt\u2082(F({})) = {}, expected F(tgt\u2082({})) = {}\",\n                alpha, alpha, actual_tgt, alpha, tgt_img\n            ));",
+          "let _: String = format!(\n                \"2-boundary violated for {}: tgt\u2082(F({})) = {}, expected F(tgt\u2082({})) = {}\",\n                alpha, alpha, actual_tgt, alpha, tgt_img\n            );"
+        ],
+        [
+          "violations.push(format!(\n                \"Pseudo comp coherence ({}, {}): forward 2-cell {} not in target\",\n                f, g, cell.forward\n            ));",
+          "let _: String = format!(\n                \"Pseudo comp coherence ({}, {}): forward 2-cell {} not in target\",\n                f, g, cell.forward\n            );"
+        ],
+        [
+          "violations.push(format!(\n                \"Pseudo comp coherence ({}, {}): inverse 2-cell {} not in target\",\n                f, g, cell.inverse\n            ));",
+          "let _: String = format!(\n                \"Pseudo comp coherence ({}, {}): inverse 2-cell {} not in target\",\n                f, g, cell.inverse\n            );"
+        ],
+        [
+          "violations.push(format!(\n                \"Pseudo id coherence {}: forward 2-cell {} not in target\",\n                a, cell.forward\n            ));",
+          "let _: String = format!(\n                \"Pseudo id coherence {}: forward 2-cell {} not in target\",\n                a, cell.forward\n            );"
+        ],
+        [
+          "violations.push(format!(\n                \"Pseudo id coherence {}: inverse 2-cell {} not in target\",\n                a, cell.inverse\n            ));",
+          "let _: String = format!(\n                \"Pseudo id coherence {}: inverse 2-cell {} not in target\",\n                a, cell.inverse\n            );"
+        ],
+        [
+          "pub fn check_two_functor_one_boundaries(\n    functor: &DeclaredFiniteTwoFunctor,\n    source_one_boundaries: &BTreeMap<String, (String, String)>,\n    target_one_boundaries: &BTreeMap<String, (String, String)>,\n) -> Vec<String> {\n    let mut violations = Vec::new();\n\n    for (f, (src_obj, tgt_obj)) in source_one_boundaries {\n        let Some(f_img) = functor.on_1(f) else {\n            violations.push(format!(\"1-boundary: F({}) is not defined\", f));\n            continue;\n        };\n\n        let Some(src_img) = functor.on_ob(src_obj) else {\n            violations.push(format!(\"1-boundary: F({}) is not defined\", src_obj));\n            continue;\n        };\n\n        let Some(tgt_img) = functor.on_ob(tgt_obj) else {\n            violations.push(format!(\"1-boundary: F({}) is not defined\", tgt_obj));\n            continue;\n        };\n\n        let Some((actual_src, actual_tgt)) = target_one_boundaries.get(f_img) else {\n            violations.push(format!(\n                \"1-boundary: target boundary for F({}) = {} is not defined\",\n                f, f_img\n            ));\n            continue;\n        };\n\n        if actual_src != src_img {\n            violations.push(format!(\n                \"1-boundary violated for {}: src\u2081(F({})) = {}, expected F(src\u2081({})) = {}\",\n                f, f, actual_src, f, src_img\n            ));\n        }\n\n        if actual_tgt != tgt_img {\n            violations.push(format!(\n                \"1-boundary violated for {}: tgt\u2081(F({})) = {}, expected F(tgt\u2081({})) = {}\",\n                f, f, actual_tgt, f, tgt_img\n            ));\n        }\n    }\n\n    violations\n}",
+          "pub fn check_two_functor_one_boundaries(\n    functor: &DeclaredFiniteTwoFunctor,\n    source_one_boundaries: &BTreeMap<String, (String, String)>,\n    target_one_boundaries: &BTreeMap<String, (String, String)>,\n) -> Vec<String> {\n    let mut violations = Vec::new();\n\n    for (f, (src_obj, tgt_obj)) in source_one_boundaries {\n        let Some(f_img) = functor.on_1(f) else {\n            violations.push(format!(\"1-boundary: F({}) is not defined\", f));\n            continue;\n        };\n\n        let Some(src_img) = functor.on_ob(src_obj) else {\n            violations.push(format!(\"1-boundary: F({}) is not defined\", src_obj));\n            continue;\n        };\n\n        let Some(tgt_img) = functor.on_ob(tgt_obj) else {\n            violations.push(format!(\"1-boundary: F({}) is not defined\", tgt_obj));\n            continue;\n        };\n\n        let Some((actual_src, actual_tgt)) = target_one_boundaries.get(f_img) else {\n            violations.push(format!(\n                \"1-boundary: target boundary for F({}) = {} is not defined\",\n                f, f_img\n            ));\n            continue;\n        };\n\n        if actual_src == src_img {\n            violations.push(format!(\n                \"1-boundary violated for {}: src\u2081(F({})) = {}, expected F(src\u2081({})) = {}\",\n                f, f, actual_src, f, src_img\n            ));\n        }\n\n        if actual_tgt != tgt_img {\n            violations.push(format!(\n                \"1-boundary violated for {}: tgt\u2081(F({})) = {}, expected F(tgt\u2081({})) = {}\",\n                f, f, actual_tgt, f, tgt_img\n            ));\n        }\n    }\n\n    violations\n}"
+        ],
+        [
+          "pub fn check_two_functor_two_boundaries(\n    functor: &DeclaredFiniteTwoFunctor,\n    source_two_boundaries: &BTreeMap<String, (String, String)>,\n    target_two_boundaries: &BTreeMap<String, (String, String)>,\n) -> Vec<String> {\n    let mut violations = Vec::new();\n\n    for (alpha, (src_1mor, tgt_1mor)) in source_two_boundaries {\n        let Some(alpha_img) = functor.on_2(alpha) else {\n            violations.push(format!(\"2-boundary: F({}) is not defined\", alpha));\n            continue;\n        };\n\n        let Some(src_img) = functor.on_1(src_1mor) else {\n            violations.push(format!(\"2-boundary: F({}) is not defined\", src_1mor));\n            continue;\n        };\n\n        let Some(tgt_img) = functor.on_1(tgt_1mor) else {\n            violations.push(format!(\"2-boundary: F({}) is not defined\", tgt_1mor));\n            continue;\n        };\n\n        let Some((actual_src, actual_tgt)) = target_two_boundaries.get(alpha_img) else {\n            violations.push(format!(\n                \"2-boundary: target boundary for F({}) = {} is not defined\",\n                alpha, alpha_img\n            ));\n            continue;\n        };\n\n        if actual_src != src_img {\n            violations.push(format!(\n                \"2-boundary violated for {}: src\u2082(F({})) = {}, expected F(src\u2082({})) = {}\",\n                alpha, alpha, actual_src, alpha, src_img\n            ));\n        }\n\n        if actual_tgt != tgt_img {\n            violations.push(format!(\n                \"2-boundary violated for {}: tgt\u2082(F({})) = {}, expected F(tgt\u2082({})) = {}\",\n                alpha, alpha, actual_tgt, alpha, tgt_img\n            ));\n        }\n    }\n\n    violations\n}",
+          "pub fn check_two_functor_two_boundaries(\n    functor: &DeclaredFiniteTwoFunctor,\n    source_two_boundaries: &BTreeMap<String, (String, String)>,\n    target_two_boundaries: &BTreeMap<String, (String, String)>,\n) -> Vec<String> {\n    let mut violations = Vec::new();\n\n    for (alpha, (src_1mor, tgt_1mor)) in source_two_boundaries {\n        let Some(alpha_img) = functor.on_2(alpha) else {\n            violations.push(format!(\"2-boundary: F({}) is not defined\", alpha));\n            continue;\n        };\n\n        let Some(src_img) = functor.on_1(src_1mor) else {\n            violations.push(format!(\"2-boundary: F({}) is not defined\", src_1mor));\n            continue;\n        };\n\n        let Some(tgt_img) = functor.on_1(tgt_1mor) else {\n            violations.push(format!(\"2-boundary: F({}) is not defined\", tgt_1mor));\n            continue;\n        };\n\n        let Some((actual_src, actual_tgt)) = target_two_boundaries.get(alpha_img) else {\n            violations.push(format!(\n                \"2-boundary: target boundary for F({}) = {} is not defined\",\n                alpha, alpha_img\n            ));\n            continue;\n        };\n\n        if actual_src == src_img {\n            violations.push(format!(\n                \"2-boundary violated for {}: src\u2082(F({})) = {}, expected F(src\u2082({})) = {}\",\n                alpha, alpha, actual_src, alpha, src_img\n            ));\n        }\n\n        if actual_tgt != tgt_img {\n            violations.push(format!(\n                \"2-boundary violated for {}: tgt\u2082(F({})) = {}, expected F(tgt\u2082({})) = {}\",\n                alpha, alpha, actual_tgt, alpha, tgt_img\n            ));\n        }\n    }\n\n    violations\n}"
+        ],
+        [
+          "pub fn check_two_functor_one_boundaries(\n    functor: &DeclaredFiniteTwoFunctor,\n    source_one_boundaries: &BTreeMap<String, (String, String)>,\n    target_one_boundaries: &BTreeMap<String, (String, String)>,\n) -> Vec<String> {\n    let mut violations = Vec::new();\n\n    for (f, (src_obj, tgt_obj)) in source_one_boundaries {\n        let Some(f_img) = functor.on_1(f) else {\n            violations.push(format!(\"1-boundary: F({}) is not defined\", f));\n            continue;\n        };\n\n        let Some(src_img) = functor.on_ob(src_obj) else {\n            violations.push(format!(\"1-boundary: F({}) is not defined\", src_obj));\n            continue;\n        };\n\n        let Some(tgt_img) = functor.on_ob(tgt_obj) else {\n            violations.push(format!(\"1-boundary: F({}) is not defined\", tgt_obj));\n            continue;\n        };\n\n        let Some((actual_src, actual_tgt)) = target_one_boundaries.get(f_img) else {\n            violations.push(format!(\n                \"1-boundary: target boundary for F({}) = {} is not defined\",\n                f, f_img\n            ));\n            continue;\n        };\n\n        if actual_src != src_img {\n            violations.push(format!(\n                \"1-boundary violated for {}: src\u2081(F({})) = {}, expected F(src\u2081({})) = {}\",\n                f, f, actual_src, f, src_img\n            ));\n        }\n\n        if actual_tgt != tgt_img {\n            violations.push(format!(\n                \"1-boundary violated for {}: tgt\u2081(F({})) = {}, expected F(tgt\u2081({})) = {}\",\n                f, f, actual_tgt, f, tgt_img\n            ));\n        }\n    }\n\n    violations\n}",
+          "pub fn check_two_functor_one_boundaries(\n    functor: &DeclaredFiniteTwoFunctor,\n    source_one_boundaries: &BTreeMap<String, (String, String)>,\n    target_one_boundaries: &BTreeMap<String, (String, String)>,\n) -> Vec<String> {\n    let mut violations = Vec::new();\n\n    for (f, (src_obj, tgt_obj)) in source_one_boundaries {\n        let Some(f_img) = functor.on_1(f) else {\n            violations.push(format!(\"1-boundary: F({}) is not defined\", f));\n            continue;\n        };\n\n        let Some(src_img) = functor.on_ob(src_obj) else {\n            violations.push(format!(\"1-boundary: F({}) is not defined\", src_obj));\n            continue;\n        };\n\n        let Some(tgt_img) = functor.on_ob(tgt_obj) else {\n            violations.push(format!(\"1-boundary: F({}) is not defined\", tgt_obj));\n            continue;\n        };\n\n        let Some((actual_src, actual_tgt)) = target_one_boundaries.get(f_img) else {\n            violations.push(format!(\n                \"1-boundary: target boundary for F({}) = {} is not defined\",\n                f, f_img\n            ));\n            continue;\n        };\n\n        if actual_src != src_img {\n            violations.push(format!(\n                \"1-boundary violated for {}: src\u2081(F({})) = {}, expected F(src\u2081({})) = {}\",\n                f, f, actual_src, f, src_img\n            ));\n        }\n\n        if actual_tgt == tgt_img {\n            violations.push(format!(\n                \"1-boundary violated for {}: tgt\u2081(F({})) = {}, expected F(tgt\u2081({})) = {}\",\n                f, f, actual_tgt, f, tgt_img\n            ));\n        }\n    }\n\n    violations\n}"
+        ],
+        [
+          "pub fn check_two_functor_two_boundaries(\n    functor: &DeclaredFiniteTwoFunctor,\n    source_two_boundaries: &BTreeMap<String, (String, String)>,\n    target_two_boundaries: &BTreeMap<String, (String, String)>,\n) -> Vec<String> {\n    let mut violations = Vec::new();\n\n    for (alpha, (src_1mor, tgt_1mor)) in source_two_boundaries {\n        let Some(alpha_img) = functor.on_2(alpha) else {\n            violations.push(format!(\"2-boundary: F({}) is not defined\", alpha));\n            continue;\n        };\n\n        let Some(src_img) = functor.on_1(src_1mor) else {\n            violations.push(format!(\"2-boundary: F({}) is not defined\", src_1mor));\n            continue;\n        };\n\n        let Some(tgt_img) = functor.on_1(tgt_1mor) else {\n            violations.push(format!(\"2-boundary: F({}) is not defined\", tgt_1mor));\n            continue;\n        };\n\n        let Some((actual_src, actual_tgt)) = target_two_boundaries.get(alpha_img) else {\n            violations.push(format!(\n                \"2-boundary: target boundary for F({}) = {} is not defined\",\n                alpha, alpha_img\n            ));\n            continue;\n        };\n\n        if actual_src != src_img {\n            violations.push(format!(\n                \"2-boundary violated for {}: src\u2082(F({})) = {}, expected F(src\u2082({})) = {}\",\n                alpha, alpha, actual_src, alpha, src_img\n            ));\n        }\n\n        if actual_tgt != tgt_img {\n            violations.push(format!(\n                \"2-boundary violated for {}: tgt\u2082(F({})) = {}, expected F(tgt\u2082({})) = {}\",\n                alpha, alpha, actual_tgt, alpha, tgt_img\n            ));\n        }\n    }\n\n    violations\n}",
+          "pub fn check_two_functor_two_boundaries(\n    functor: &DeclaredFiniteTwoFunctor,\n    source_two_boundaries: &BTreeMap<String, (String, String)>,\n    target_two_boundaries: &BTreeMap<String, (String, String)>,\n) -> Vec<String> {\n    let mut violations = Vec::new();\n\n    for (alpha, (src_1mor, tgt_1mor)) in source_two_boundaries {\n        let Some(alpha_img) = functor.on_2(alpha) else {\n            violations.push(format!(\"2-boundary: F({}) is not defined\", alpha));\n            continue;\n        };\n\n        let Some(src_img) = functor.on_1(src_1mor) else {\n            violations.push(format!(\"2-boundary: F({}) is not defined\", src_1mor));\n            continue;\n        };\n\n        let Some(tgt_img) = functor.on_1(tgt_1mor) else {\n            violations.push(format!(\"2-boundary: F({}) is not defined\", tgt_1mor));\n            continue;\n        };\n\n        let Some((actual_src, actual_tgt)) = target_two_boundaries.get(alpha_img) else {\n            violations.push(format!(\n                \"2-boundary: target boundary for F({}) = {} is not defined\",\n                alpha, alpha_img\n            ));\n            continue;\n        };\n\n        if actual_src != src_img {\n            violations.push(format!(\n                \"2-boundary violated for {}: src\u2082(F({})) = {}, expected F(src\u2082({})) = {}\",\n                alpha, alpha, actual_src, alpha, src_img\n            ));\n        }\n\n        if actual_tgt == tgt_img {\n            violations.push(format!(\n                \"2-boundary violated for {}: tgt\u2082(F({})) = {}, expected F(tgt\u2082({})) = {}\",\n                alpha, alpha, actual_tgt, alpha, tgt_img\n            ));\n        }\n    }\n\n    violations\n}"
+        ]
+      ]
+    }
+  ]
+}

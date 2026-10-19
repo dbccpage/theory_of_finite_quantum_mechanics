@@ -201,8 +201,36 @@ fn unary(name:&str)->OperationDecl{OperationDecl::new(name,vec!["S".into()],vec!
 }
 '''
 
+HIGHER_FUNCTOR=r'''
+fn raw_two()->DeclaredFiniteTwoFunctor{DeclaredFiniteTwoFunctor::new("raw","C","D")}
+#[test]fn raw_higher_records_and_exact_map_names_are_distinct(){
+ let mut f=raw_two();assert_eq!((f.name.as_str(),f.source_two_category.as_str(),f.target_two_category.as_str()),("raw","C","D"));assert!(f.object_map.is_empty()&&f.one_morphism_map.is_empty()&&f.two_morphism_map.is_empty());assert_eq!(f.on_ob("x"),None);assert_eq!(f.on_1("x"),None);assert_eq!(f.on_2("x"),None);
+ f.object_map.insert("x".into(),"object".into());f.one_morphism_map.insert("x".into(),"one".into());f.two_morphism_map.insert("x".into(),"two".into());assert_eq!(f.on_ob("x"),Some("object"));assert_eq!(f.on_1("x"),Some("one"));assert_eq!(f.on_2("x"),Some("two"));assert_eq!(f,f.clone());let mut altered=f.clone();altered.name="other".into();assert_ne!(f,altered);
+ let pair=DeclaredFiniteInvertibleTwoMor{forward:"same".into(),inverse:"same".into()};assert_eq!(pair,pair.clone());let unverified=InvertibleTwoMor{forward:0u8,inverse:1u8};assert_eq!((unverified.forward,unverified.inverse),(0,1));assert_eq!(unverified,unverified.clone());
+ let pseudo=DeclaredFinitePseudoFunctor{underlying:f.clone(),comp_coherence:Default::default(),id_coherence:Default::default()};assert_eq!(pseudo,pseudo.clone());let lax=DeclaredFiniteLaxFunctor{underlying:f,lax_comp:std::collections::BTreeMap::from([(("f".into(),"g".into()),"cell".into())]),lax_id:std::collections::BTreeMap::from([("A".into(),"id".into())])};assert_eq!(lax,lax.clone());assert_eq!(lax.lax_comp.values().next().unwrap(),"cell");assert!(format!("{:?}",lax).contains("raw"));
+}
+#[test]fn both_boundary_diagnostics_match_all_presence_and_endpoint_cases(){
+ for dimension in [1,2]{for present in 0..16{for wrong in 0..4{let mut f=raw_two();let (src_img,tgt_img)=if dimension==1{("OA","OB")}else{("MA","MB")};
+ // Put conflicting sentinel maps in the other dimension so wrong routing fails.
+ f.object_map.insert("A".into(),"OA".into());f.object_map.insert("B".into(),"OB".into());f.one_morphism_map.insert("A".into(),"MA".into());f.one_morphism_map.insert("B".into(),"MB".into());
+ if dimension==1{if present&1!=0{f.one_morphism_map.insert("f".into(),"image".into());}if present&2==0{f.object_map.remove("A");}if present&4==0{f.object_map.remove("B");}}else{if present&1!=0{f.two_morphism_map.insert("f".into(),"image".into());}if present&2==0{f.one_morphism_map.remove("A");}if present&4==0{f.one_morphism_map.remove("B");}}
+ let source=std::collections::BTreeMap::from([("f".to_string(),("A".to_string(),"B".to_string()))]);let actual_src=if wrong&1!=0{"bad-src"}else{src_img};let actual_tgt=if wrong&2!=0{"bad-tgt"}else{tgt_img};let mut target=std::collections::BTreeMap::new();if present&8!=0{target.insert("image".to_string(),(actual_src.to_string(),actual_tgt.to_string()));}
+ let prefix=format!("{dimension}-boundary");let expected=if present&1==0{vec![format!("{prefix}: F(f) is not defined")]}else if present&2==0{vec![format!("{prefix}: F(A) is not defined")]}else if present&4==0{vec![format!("{prefix}: F(B) is not defined")]}else if present&8==0{vec![format!("{prefix}: target boundary for F(f) = image is not defined")]}else{let mut errors=vec![];let sub=if dimension==1{"₁"}else{"₂"};if wrong&1!=0{errors.push(format!("{prefix} violated for f: src{sub}(F(f)) = bad-src, expected F(src{sub}(f)) = {src_img}"));}if wrong&2!=0{errors.push(format!("{prefix} violated for f: tgt{sub}(F(f)) = bad-tgt, expected F(tgt{sub}(f)) = {tgt_img}"));}errors};
+ let actual=if dimension==1{check_two_functor_one_boundaries(&f,&source,&target)}else{check_two_functor_two_boundaries(&f,&source,&target)};assert_eq!(actual,expected,"dim={dimension},present={present},wrong={wrong}");
+ let empty=std::collections::BTreeMap::new();assert!(check_two_functor_one_boundaries(&f,&empty,&target).is_empty());assert!(check_two_functor_two_boundaries(&f,&empty,&target).is_empty());
+ }}}
+}
+#[test]fn supplied_boundary_order_is_map_order_and_omissions_are_not_totality_checks(){
+ let f=raw_two();let table=std::collections::BTreeMap::from([("z".to_string(),("A".into(),"B".into())),("a".to_string(),("A".into(),"B".into()))]);let empty=Default::default();assert_eq!(check_two_functor_one_boundaries(&f,&table,&empty),vec!["1-boundary: F(a) is not defined","1-boundary: F(z) is not defined"]);assert_eq!(check_two_functor_two_boundaries(&f,&table,&empty),vec!["2-boundary: F(a) is not defined","2-boundary: F(z) is not defined"]);
+}
+#[test]fn coherence_membership_is_not_invertibility_and_covers_every_missing_side(){
+ for present in 0..16{let p=DeclaredFinitePseudoFunctor{underlying:raw_two(),comp_coherence:std::collections::BTreeMap::from([(("f".into(),"g".into()),DeclaredFiniteInvertibleTwoMor{forward:"cf".into(),inverse:"ci".into()})]),id_coherence:std::collections::BTreeMap::from([("A".into(),DeclaredFiniteInvertibleTwoMor{forward:"if".into(),inverse:"ii".into()})])};let labels=["cf","ci","if","ii"];let target:std::collections::BTreeSet<String>=labels.iter().enumerate().filter(|(i,_)|present&(1<<i)!=0).map(|(_,name)|name.to_string()).collect();let expected_labels=["Pseudo comp coherence (f, g): forward 2-cell cf not in target","Pseudo comp coherence (f, g): inverse 2-cell ci not in target","Pseudo id coherence A: forward 2-cell if not in target","Pseudo id coherence A: inverse 2-cell ii not in target"];let expected:Vec<String>=expected_labels.iter().enumerate().filter(|(i,_)|present&(1<<i)==0).map(|(_,s)|s.to_string()).collect();let saved=p.clone();assert_eq!(check_pseudo_coherence_cells_defined(&p,&target),expected);assert_eq!(p,saved);}
+ let mut p=DeclaredFinitePseudoFunctor{underlying:raw_two(),comp_coherence:Default::default(),id_coherence:Default::default()};assert!(check_pseudo_coherence_cells_defined(&p,&Default::default()).is_empty());p.comp_coherence.insert(("z".into(),"z".into()),DeclaredFiniteInvertibleTwoMor{forward:"x".into(),inverse:"x".into()});p.comp_coherence.insert(("a".into(),"a".into()),DeclaredFiniteInvertibleTwoMor{forward:"x".into(),inverse:"x".into()});let target=std::collections::BTreeSet::from(["x".to_string()]);assert!(check_pseudo_coherence_cells_defined(&p,&target).is_empty());let errors=check_pseudo_coherence_cells_defined(&p,&Default::default());assert_eq!(errors.len(),4);assert!(errors[0].contains("(a, a): forward"));assert!(errors[1].contains("(a, a): inverse"));assert!(errors[2].contains("(z, z): forward"));assert!(errors[3].contains("(z, z): inverse"));
+}
+'''
+
 def challenge(subject):
     name=Path(subject['path']).stem
-    body=(LAWVERE_COUNTER if subject.get('mode')=='counterexample' else LAWVERE_SAMPLES) if name=='lawvere' else (EM_COUNTER if subject.get('mode')=='counterexample' else EM_SAMPLES) if name=='eilenberg_moore' else VALIDATION if name=='validation' else BUILDER if name=='finite_category_builder' else ARROW
+    body=HIGHER_FUNCTOR if name=='higher_functor' else (LAWVERE_COUNTER if subject.get('mode')=='counterexample' else LAWVERE_SAMPLES) if name=='lawvere' else (EM_COUNTER if subject.get('mode')=='counterexample' else EM_SAMPLES) if name=='eilenberg_moore' else VALIDATION if name=='validation' else BUILDER if name=='finite_category_builder' else ARROW
     allow='#[allow(deprecated)]' if name=='eilenberg_moore' else ''
     return '\n#[cfg(test)] '+allow+' mod independent_record_tests { use super::*;\n'+body+'\n}\n'

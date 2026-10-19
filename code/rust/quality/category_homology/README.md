@@ -778,3 +778,26 @@ production functions fit A metrics. No complete assessment depends on Lawvere.
 20261019T171624Z-score-verification passes all 145 completed assessments,
 all 192 source/score digests and 30 groups. Cleanup checkpoint 145 finds no owned
 debug/tmp/compiled outputs. Contracts/full goal remain unfinished; PR draft.
+
+Higher-functor checkpoint: 146 completed A assessments and 46 incomplete.
+The L2A module provides raw map records/signature contracts and supplied-table
+boundary/name-membership diagnostics. Forward/inverse pairs remain unchecked;
+name membership is not inverse/coherence admission and empty tables are vacuous.
+All noncomment source lines, seven executable bodies, seven required trait
+signatures, marker/data/derive obligations and test bodies are unchanged.
+
+Native 20261019T172037Z detects all 26 designated faults, with 459 original
+category and eight subject/control tests passing before/after. Independent
+fixtures cover both boundary dimensions across 16 presence and 4 mismatch patterns,
+distinct cross-map sentinels, all 16 coherence membership masks, map order,
+empty scope, public records/derives, equal pair labels and unchanged input values.
+HigherFunctorInventory checks sixteen clean flag/diagnostic precedence and
+membership/ordered-inventory declarations. All seven production bodies fit A
+metrics. No complete assessment depends on this subject. The unfinished functor
+checker now records G5 B for temporary String lookup keys in composition loops;
+that operational finding remains visible separately from metric ceilings.
+
+20261019T172326Z-score-verification passes 146 completed assessments and all 192
+source/score digests across 31 groups. Cleanup checkpoint 146 finds no owned
+debug/tmp/compiled outputs; small exact snapshots remain. Contracts and full goal
+remain unfinished; PR draft.

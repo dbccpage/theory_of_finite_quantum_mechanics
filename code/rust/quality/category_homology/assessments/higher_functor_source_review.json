@@ -1,0 +1,70 @@
+{
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/category_theory/higher_functor.rs",
+    "sha256": "320ffe78f546ff6ce5bcc4e71f4b65bd7050f712139ea0eca8b49401cf4a8f14"
+  },
+  "production_functions": {
+    "new": {
+      "line": 166,
+      "signature": "pub fn new(name: &str, source: &str, target: &str) -> Self",
+      "body": "{\n        Self {\n            name: name.into(),\n            source_two_category: source.into(),\n            target_two_category: target.into(),\n            object_map: BTreeMap::new(),\n            one_morphism_map: BTreeMap::new(),\n            two_morphism_map: BTreeMap::new(),\n        }\n    }",
+      "obligation": "Own exact supplied name/source/target names and initialize three independent empty BTreeMaps. No admission, source/target law binding, nonblank names or full domain requirement."
+    },
+    "on_ob": {
+      "line": 177,
+      "signature": "pub fn on_ob(&self, a: &str) -> Option<&str>",
+      "body": "{\n        self.object_map.get(a).map(|s| s.as_str())\n    }",
+      "obligation": "Exact object_map lookup by borrowed key, returning a borrowed string or None. Do not route through either morphism map."
+    },
+    "on_1": {
+      "line": 181,
+      "signature": "pub fn on_1(&self, f: &str) -> Option<&str>",
+      "body": "{\n        self.one_morphism_map.get(f).map(|s| s.as_str())\n    }",
+      "obligation": "Exact one_morphism_map lookup by borrowed key, returning a borrowed string or None."
+    },
+    "on_2": {
+      "line": 185,
+      "signature": "pub fn on_2(&self, alpha: &str) -> Option<&str>",
+      "body": "{\n        self.two_morphism_map.get(alpha).map(|s| s.as_str())\n    }",
+      "obligation": "Exact two_morphism_map lookup by borrowed key, returning a borrowed string or None."
+    },
+    "check_two_functor_one_boundaries": {
+      "line": 220,
+      "signature": "pub fn check_two_functor_one_boundaries(\n    functor: &DeclaredFiniteTwoFunctor,\n    source_one_boundaries: &BTreeMap<String, (String, String)>,\n    target_one_boundaries: &BTreeMap<String, (String, String)>,\n) -> Vec<String>",
+      "body": "{\n    let mut violations = Vec::new();\n\n    for (f, (src_obj, tgt_obj)) in source_one_boundaries {\n        let Some(f_img) = functor.on_1(f) else {\n            violations.push(format!(\"1-boundary: F({}) is not defined\", f));\n            continue;\n        };\n\n        let Some(src_img) = functor.on_ob(src_obj) else {\n            violations.push(format!(\"1-boundary: F({}) is not defined\", src_obj));\n            continue;\n        };\n\n        let Some(tgt_img) = functor.on_ob(tgt_obj) else {\n            violations.push(format!(\"1-boundary: F({}) is not defined\", tgt_obj));\n            continue;\n        };\n\n        let Some((actual_src, actual_tgt)) = target_one_boundaries.get(f_img) else {\n            violations.push(format!(\n                \"1-boundary: target boundary for F({}) = {} is not defined\",\n                f, f_img\n            ));\n            continue;\n        };\n\n        if actual_src != src_img {\n            violations.push(format!(\n                \"1-boundary violated for {}: src\u2081(F({})) = {}, expected F(src\u2081({})) = {}\",\n                f, f, actual_src, f, src_img\n            ));\n        }\n\n        if actual_tgt != tgt_img {\n            violations.push(format!(\n                \"1-boundary violated for {}: tgt\u2081(F({})) = {}, expected F(tgt\u2081({})) = {}\",\n                f, f, actual_tgt, f, tgt_img\n            ));\n        }\n    }\n\n    violations\n}",
+      "obligation": "Scan every supplied source-one-boundary in BTreeMap order. Require the 1-cell map, then source object map, then target object map, then supplied target image boundary. On each missing input emit its exact one diagnostic and continue to next source row. If all exist, compare source and target independently and emit each mismatch in source-then-target order. No source category, map-domain totality, identity/composition, label membership or higher coherence is checked. Empty supplied source table passes vacuously."
+    },
+    "check_two_functor_two_boundaries": {
+      "line": 275,
+      "signature": "pub fn check_two_functor_two_boundaries(\n    functor: &DeclaredFiniteTwoFunctor,\n    source_two_boundaries: &BTreeMap<String, (String, String)>,\n    target_two_boundaries: &BTreeMap<String, (String, String)>,\n) -> Vec<String>",
+      "body": "{\n    let mut violations = Vec::new();\n\n    for (alpha, (src_1mor, tgt_1mor)) in source_two_boundaries {\n        let Some(alpha_img) = functor.on_2(alpha) else {\n            violations.push(format!(\"2-boundary: F({}) is not defined\", alpha));\n            continue;\n        };\n\n        let Some(src_img) = functor.on_1(src_1mor) else {\n            violations.push(format!(\"2-boundary: F({}) is not defined\", src_1mor));\n            continue;\n        };\n\n        let Some(tgt_img) = functor.on_1(tgt_1mor) else {\n            violations.push(format!(\"2-boundary: F({}) is not defined\", tgt_1mor));\n            continue;\n        };\n\n        let Some((actual_src, actual_tgt)) = target_two_boundaries.get(alpha_img) else {\n            violations.push(format!(\n                \"2-boundary: target boundary for F({}) = {} is not defined\",\n                alpha, alpha_img\n            ));\n            continue;\n        };\n\n        if actual_src != src_img {\n            violations.push(format!(\n                \"2-boundary violated for {}: src\u2082(F({})) = {}, expected F(src\u2082({})) = {}\",\n                alpha, alpha, actual_src, alpha, src_img\n            ));\n        }\n\n        if actual_tgt != tgt_img {\n            violations.push(format!(\n                \"2-boundary violated for {}: tgt\u2082(F({})) = {}, expected F(tgt\u2082({})) = {}\",\n                alpha, alpha, actual_tgt, alpha, tgt_img\n            ));\n        }\n    }\n\n    violations\n}",
+      "obligation": "Same four-presence precedence and independent ordered endpoint mismatch diagnostics for supplied 2-cell boundaries. Read the 2-cell map and then the two 1-cell endpoint maps; the object map is irrelevant. Lookup keys use mapped image for target boundary. No identity/composition/coherence or full category/finite domain admission. All inputs remain borrowed and unchanged."
+    },
+    "check_pseudo_coherence_cells_defined": {
+      "line": 331,
+      "signature": "pub fn check_pseudo_coherence_cells_defined(\n    pseudo: &DeclaredFinitePseudoFunctor,\n    target_two_morphisms: &std::collections::BTreeSet<String>,\n) -> Vec<String>",
+      "body": "{\n    let mut violations = Vec::new();\n\n    for ((f, g), cell) in &pseudo.comp_coherence {\n        if !target_two_morphisms.contains(&cell.forward) {\n            violations.push(format!(\n                \"Pseudo comp coherence ({}, {}): forward 2-cell {} not in target\",\n                f, g, cell.forward\n            ));\n        }\n        if !target_two_morphisms.contains(&cell.inverse) {\n            violations.push(format!(\n                \"Pseudo comp coherence ({}, {}): inverse 2-cell {} not in target\",\n                f, g, cell.inverse\n            ));\n        }\n    }\n\n    for (a, cell) in &pseudo.id_coherence {\n        if !target_two_morphisms.contains(&cell.forward) {\n            violations.push(format!(\n                \"Pseudo id coherence {}: forward 2-cell {} not in target\",\n                a, cell.forward\n            ));\n        }\n        if !target_two_morphisms.contains(&cell.inverse) {\n            violations.push(format!(\n                \"Pseudo id coherence {}: inverse 2-cell {} not in target\",\n                a, cell.inverse\n            ));\n        }\n    }\n\n    violations\n}",
+      "obligation": "For each declared composition coherence pair in sorted tuple-key order, check forward then inverse membership in supplied target name set, emitting both missing sides independently with exact names. Then scan sorted identity coherence keys with the same order. Only provided entries are visited; missing expected entries, inverse round trips, cell boundaries, triangle/pentagon and underlying functor laws are not checked. Forward/inverse may be equal. Empty supplied coherence maps pass vacuously; no mutation or authenticated certificate."
+    }
+  },
+  "data_trait_derive_macro_review": {
+    "traits": "TwoFunctorMapping binds Source/Target to the external local TwoCategory trait and requires map_ob/map_1/map_2. StrictTwoFunctor is an empty marker extension. PseudoFunctor requires comp/id coherence returning the unchecked generic forward/inverse wrapper; LaxFunctor requires lax comp/id values. None has executable default bodies or law-enforcing constructor. Rust trait bounds and signatures do not imply mathematical functor or inverse laws, purity/termination or coherent implementations.",
+    "records": "Generic InvertibleTwoMor has public forward/inverse and Clone/Eq/Debug bounds; finite name pair derives structural Clone/PartialEq/Eq/Debug. DeclaredFiniteTwoFunctor has exact raw names and three independent public ordered maps. Pseudo record wraps underlying record plus comp/id pair maps; Lax wraps underlying plus comp/id cell-name maps. All public mutable fields remain unchecked. Standard derives are structural and may allocate copied strings/maps; no serde, cryptographic signature, arithmetic or hidden constructor.",
+    "macros_and_failure": "Only ordinary format! diagnostic generation and standard structural derives. Missing data/mismatch are Vec<String> observations, with no own panic/indexing/unchecked arithmetic or callbacks in these checks. Queries borrow maps; no mutation, partial output object or stored certification occurs. Allocator/format/std/compiler behavior remains runtime trust. No total allocation/termination for arbitrary trait implementations or rollback guarantee."
+  },
+  "cost_review": [
+    "Let N be supplied source boundary rows, M maximum map/target-boundary size, K supplied coherence entries and T target name-set size. Each boundary row performs at most four borrowed-key tree lookups: O(N log(M+1)) key comparisons plus String equality/format byte costs. At most two diagnostic strings per row are output; those are required returned values, not redundant scratch clones.",
+    "Coherence inventory does two borrowed membership queries per provided pair: O(K log(T+1)) comparisons plus string lengths, and at most 2K diagnostic strings. BTreeMap iteration supplies deterministic ordering. No temporary owned tuple String key is allocated in either loop.",
+    "Constructor owns three supplied strings and creates empty maps. Accessors perform one borrowed-key tree lookup and allocate nothing. Structural Clone costs total record bytes and entries; equality/debug costs the visited structure/output bytes. No hidden parser, category-law evaluation, expanded-MIR guarantee, benchmark or allocator-totality claim."
+  ],
+  "consumer_review": "Local source search finds only lib.rs/mod.rs module exports, with no callsite importing these checks. Actual category package compiles with its real local higher::TwoCategory nominal type; trait signatures and record derives are reviewed separately from seven executable bodies. No completed assessment context depends on this module (conservative scan includes historical assessments), so no provider refresh is needed. Separate external omega crates are outside this subject.",
+  "source_change": {
+    "noncomment_lines_unchanged": true,
+    "previous_source": {
+      "path": "evidence/quality/category_homology/resume-20261019/higher-functor-previous/higher_functor.rs",
+      "sha256": "712f28dd9621693c8e4ec0d7b3302465e0f721d00d5be9565f4d7289cbb09e3a"
+    },
+    "scope": "Only documentation narrows what raw pairs and checks deliver; all seven method bodies/signatures, required trait signatures, records, attributes and test bodies remain unchanged."
+  }
+}
