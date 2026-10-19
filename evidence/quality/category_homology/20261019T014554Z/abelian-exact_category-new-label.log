@@ -1,0 +1,31 @@
+
+running 6 tests
+test mutant_7::tests::rejects_zero_max ... ok
+test mutant_7::tests::validate_rejects_empty ... ok
+test mutant_7::tests::with_max_ok ... ok
+test mutant_7::tests::validate_ok ... FAILED
+test mutant_7::parameter_challenge::constructors_preserve_distinct_supplied_parameters ... FAILED
+test mutant_7::parameter_challenge::independent_schema_cases_and_first_error ... ok
+
+failures:
+
+---- mutant_7::tests::validate_ok stdout ----
+
+thread 'mutant_7::tests::validate_ok' (23716) panicked at metadata_challenge_0\mutant_7.rs:60:9:
+assertion failed: ExactCategory::new("exact").validate_shell().is_ok()
+
+---- mutant_7::parameter_challenge::constructors_preserve_distinct_supplied_parameters stdout ----
+
+thread 'mutant_7::parameter_challenge::constructors_preserve_distinct_supplied_parameters' (31000) panicked at metadata_challenge_0\mutant_7.rs:102:9:
+assertion `left == right` failed
+  left: ""
+ right: "label\0α"
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    mutant_7::parameter_challenge::constructors_preserve_distinct_supplied_parameters
+    mutant_7::tests::validate_ok
+
+test result: FAILED. 4 passed; 2 failed; 0 ignored; 0 measured; 372 filtered out; finished in 0.00s
+

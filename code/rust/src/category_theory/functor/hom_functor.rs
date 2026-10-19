@@ -3,6 +3,7 @@
 //!
 //! Hom-functor Hom(A, −) / Hom(−, A) — shape only.
 
+use omega_category_theory::errors::ArithmosError;
 use serde::{Deserialize, Serialize};
 
 /// Best-effort shell for a Hom-functor on a category reference.
@@ -56,22 +57,22 @@ impl HomFunctor {
         }
     }
 
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
         if self.category_ref.is_empty() {
-            return Err("empty category_ref".into());
+            return Err(ArithmosError::InvalidShape("empty category_ref".into()));
         }
         if self.fixed_object.is_empty() {
-            return Err("empty fixed_object".into());
+            return Err(ArithmosError::InvalidShape("empty fixed_object".into()));
         }
         if self.variance.is_empty() {
-            return Err("empty variance".into());
+            return Err(ArithmosError::InvalidShape("empty variance".into()));
         }
         match self.variance.as_str() {
             "covariant" | "contravariant" => Ok(()),
-            other => Err(format!("unknown variance tag: {other}")),
+            other => Err(ArithmosError::InvalidShape(format!("unknown variance tag: {other}"))),
         }
     }
 }

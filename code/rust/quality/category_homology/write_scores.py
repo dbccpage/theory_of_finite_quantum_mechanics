@@ -232,7 +232,10 @@ def make_record(path, receipt, summary, mutations, metrics, metric_receipt):
     return {
         "schema_version":"2.0.0",
         "artifact":{"path":path.relative_to(ROOT).as_posix(),"language":"Rust","sha256":sha(path)},
-        "profile":"Exact" if key == "category_theory/abelian/chain_complex_category.rs" else "Non-Numeric" if "shell" in source.split("#[cfg(test)]")[0].lower() else "Exact",
+        "profile":"Exact" if key in ("category_theory/abelian/chain_complex_category.rs",
+            "category_theory/abelian/exact_category.rs", "category_theory/foundations/hlevel.rs",
+            "category_theory/foundations/truncation.rs", "category_theory/foundations/universe.rs",
+            "category_theory/functor/diagonal_functor.rs") else "Non-Numeric" if "shell" in source.split("#[cfg(test)]")[0].lower() else "Exact",
         "level":level,"level_basis":basis,"architecture_target":"L5","engineering_target":"A",
         "gates":gates,"composite_grade":None,"score_token":None,"is_complete":False,
         "grade_ceiling":grade_ceiling,"evaluation_timestamp":timestamp,"AuthorityEffect":"None",

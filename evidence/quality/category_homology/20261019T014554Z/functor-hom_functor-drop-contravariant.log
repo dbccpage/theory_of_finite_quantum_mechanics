@@ -1,0 +1,29 @@
+
+running 6 tests
+test mutant_47::tests::contravariant_ok ... FAILED
+test mutant_47::tests::validate_ok ... ok
+test mutant_47::tests::validate_rejects_empty ... ok
+test mutant_47::tests::validate_rejects_bad_variance ... ok
+test mutant_47::parameter_challenge::constructors_preserve_distinct_supplied_parameters ... ok
+test mutant_47::parameter_challenge::independent_schema_cases_and_first_error ... FAILED
+
+failures:
+
+---- mutant_47::tests::contravariant_ok stdout ----
+
+thread 'mutant_47::tests::contravariant_ok' (24516) panicked at metadata_challenge_0\mutant_47.rs:105:9:
+assertion failed: HomFunctor::contravariant("Hom_A", "C", "A").validate_shell().is_ok()
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- mutant_47::parameter_challenge::independent_schema_cases_and_first_error stdout ----
+
+thread 'mutant_47::parameter_challenge::independent_schema_cases_and_first_error' (28068) panicked at metadata_challenge_0\mutant_47.rs:123:37:
+expected None, got Err(InvalidShape("unknown variance tag: contravariant")); raw={"category_ref":"category_ref:α\u0000","fixed_object":"fixed_object:α\u0000","label":"label:α\u0000","notes":[],"variance":"contravariant"}
+
+
+failures:
+    mutant_47::parameter_challenge::independent_schema_cases_and_first_error
+    mutant_47::tests::contravariant_ok
+
+test result: FAILED. 4 passed; 2 failed; 0 ignored; 0 measured; 372 filtered out; finished in 0.00s
+

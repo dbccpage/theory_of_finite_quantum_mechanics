@@ -1,0 +1,23 @@
+
+running 6 tests
+test mutant_41::parameter_challenge::constructors_preserve_distinct_supplied_parameters ... ok
+test mutant_41::tests::validate_ok ... ok
+test mutant_41::tests::validate_rejects_bad_variance ... ok
+test mutant_41::tests::validate_rejects_empty ... ok
+test mutant_41::tests::contravariant_ok ... ok
+test mutant_41::parameter_challenge::independent_schema_cases_and_first_error ... FAILED
+
+failures:
+
+---- mutant_41::parameter_challenge::independent_schema_cases_and_first_error stdout ----
+
+thread 'mutant_41::parameter_challenge::independent_schema_cases_and_first_error' (16156) panicked at metadata_challenge_0\mutant_41.rs:123:37:
+expected Some("empty category_ref"), got Ok(()); raw={"category_ref":"","fixed_object":"fixed_object:α\u0000","label":"label:α\u0000","notes":[],"variance":"covariant"}
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    mutant_41::parameter_challenge::independent_schema_cases_and_first_error
+
+test result: FAILED. 5 passed; 1 failed; 0 ignored; 0 measured; 372 filtered out; finished in 0.00s
+

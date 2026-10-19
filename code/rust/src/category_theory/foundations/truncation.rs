@@ -3,6 +3,7 @@
 //!
 //! Related contract (if present): `urn:omega:math:truncation_level:v0.1.0`.
 
+use omega_category_theory::errors::ArithmosError;
 use serde::{Deserialize, Serialize};
 
 /// Best-effort shell for an n-truncation claim / level tag.
@@ -46,13 +47,13 @@ impl Truncation {
         }
     }
 
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
         if let Some(n) = self.level {
             if n < -2 {
-                return Err(format!("truncation level {n} < -2"));
+                return Err(ArithmosError::InvalidShape(format!("truncation level {n} < -2")));
             }
         }
         Ok(())

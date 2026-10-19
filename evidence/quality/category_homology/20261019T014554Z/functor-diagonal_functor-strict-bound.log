@@ -1,0 +1,29 @@
+
+running 6 tests
+test mutant_34::parameter_challenge::constructors_preserve_distinct_supplied_parameters ... ok
+test mutant_34::tests::validate_ok ... FAILED
+test mutant_34::tests::validate_rejects_empty ... ok
+test mutant_34::parameter_challenge::independent_schema_cases_and_first_error ... FAILED
+test mutant_34::tests::validate_rejects_missing_ref ... ok
+test mutant_34::tests::rejects_arity_one ... ok
+
+failures:
+
+---- mutant_34::tests::validate_ok stdout ----
+
+thread 'mutant_34::tests::validate_ok' (22336) panicked at metadata_challenge_0\mutant_34.rs:71:9:
+assertion failed: DiagonalFunctor::on_category("Delta", "C").validate_shell().is_ok()
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- mutant_34::parameter_challenge::independent_schema_cases_and_first_error stdout ----
+
+thread 'mutant_34::parameter_challenge::independent_schema_cases_and_first_error' (29400) panicked at metadata_challenge_0\mutant_34.rs:105:37:
+expected None, got Err(InvalidShape("arity 2 < 2")); raw={"arity":2,"category_ref":"category_ref:α\u0000","label":"label:α\u0000","notes":[]}
+
+
+failures:
+    mutant_34::parameter_challenge::independent_schema_cases_and_first_error
+    mutant_34::tests::validate_ok
+
+test result: FAILED. 4 passed; 2 failed; 0 ignored; 0 measured; 372 filtered out; finished in 0.00s
+

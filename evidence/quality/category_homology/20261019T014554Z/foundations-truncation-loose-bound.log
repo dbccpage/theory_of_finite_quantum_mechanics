@@ -1,0 +1,29 @@
+
+running 6 tests
+test mutant_19::parameter_challenge::constructors_preserve_distinct_supplied_parameters ... ok
+test mutant_19::tests::untruncated_ok ... ok
+test mutant_19::tests::validate_ok ... ok
+test mutant_19::tests::validate_rejects_empty ... ok
+test mutant_19::parameter_challenge::independent_schema_cases_and_first_error ... FAILED
+test mutant_19::tests::rejects_below_minus_two ... FAILED
+
+failures:
+
+---- mutant_19::parameter_challenge::independent_schema_cases_and_first_error stdout ----
+
+thread 'mutant_19::parameter_challenge::independent_schema_cases_and_first_error' (24156) panicked at metadata_challenge_0\mutant_19.rs:100:37:
+expected Some("truncation level -3 < -2"), got Ok(()); raw={"label":"label:α\u0000","level":-3,"notes":[],"type_ref":""}
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- mutant_19::tests::rejects_below_minus_two stdout ----
+
+thread 'mutant_19::tests::rejects_below_minus_two' (10088) panicked at metadata_challenge_0\mutant_19.rs:84:9:
+assertion failed: Truncation::at_level("bad", -3).validate_shell().is_err()
+
+
+failures:
+    mutant_19::parameter_challenge::independent_schema_cases_and_first_error
+    mutant_19::tests::rejects_below_minus_two
+
+test result: FAILED. 4 passed; 2 failed; 0 ignored; 0 measured; 372 filtered out; finished in 0.00s
+

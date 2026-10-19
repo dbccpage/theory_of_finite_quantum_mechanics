@@ -1,0 +1,28 @@
+
+running 5 tests
+test mutant_24::parameter_challenge::constructors_preserve_distinct_supplied_parameters ... ok
+test mutant_24::tests::validate_ok ... ok
+test mutant_24::tests::at_level_sets_level ... ok
+test mutant_24::tests::validate_rejects_empty ... FAILED
+test mutant_24::parameter_challenge::independent_schema_cases_and_first_error ... FAILED
+
+failures:
+
+---- mutant_24::tests::validate_rejects_empty stdout ----
+
+thread 'mutant_24::tests::validate_rejects_empty' (3208) panicked at metadata_challenge_0\mutant_24.rs:59:9:
+assertion failed: Universe::new("").validate_shell().is_err()
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- mutant_24::parameter_challenge::independent_schema_cases_and_first_error stdout ----
+
+thread 'mutant_24::parameter_challenge::independent_schema_cases_and_first_error' (15684) panicked at metadata_challenge_0\mutant_24.rs:82:37:
+expected Some("empty label"), got Ok(()); raw={"cumulative":false,"label":"","level":0,"notes":[]}
+
+
+failures:
+    mutant_24::parameter_challenge::independent_schema_cases_and_first_error
+    mutant_24::tests::validate_rejects_empty
+
+test result: FAILED. 3 passed; 2 failed; 0 ignored; 0 measured; 373 filtered out; finished in 0.00s
+

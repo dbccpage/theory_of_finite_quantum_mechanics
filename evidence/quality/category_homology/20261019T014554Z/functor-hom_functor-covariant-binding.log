@@ -1,0 +1,25 @@
+
+running 6 tests
+test mutant_49::tests::validate_rejects_empty ... ok
+test mutant_49::tests::contravariant_ok ... ok
+test mutant_49::tests::validate_ok ... ok
+test mutant_49::tests::validate_rejects_bad_variance ... ok
+test mutant_49::parameter_challenge::constructors_preserve_distinct_supplied_parameters ... FAILED
+test mutant_49::parameter_challenge::independent_schema_cases_and_first_error ... ok
+
+failures:
+
+---- mutant_49::parameter_challenge::constructors_preserve_distinct_supplied_parameters stdout ----
+
+thread 'mutant_49::parameter_challenge::constructors_preserve_distinct_supplied_parameters' (24316) panicked at metadata_challenge_0\mutant_49.rs:132:43:
+assertion `left == right` failed
+  left: ("c", "C", "A", "contravariant")
+ right: ("c", "C", "A", "covariant")
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    mutant_49::parameter_challenge::constructors_preserve_distinct_supplied_parameters
+
+test result: FAILED. 5 passed; 1 failed; 0 ignored; 0 measured; 372 filtered out; finished in 0.00s
+

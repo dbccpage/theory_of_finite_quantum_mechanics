@@ -1,0 +1,33 @@
+
+running 6 tests
+test mutant_63::parameter_challenge::constructors_preserve_distinct_supplied_parameters ... FAILED
+test mutant_63::tests::validate_rejects_missing_formula ... ok
+test mutant_63::tests::lan_validate_ok ... ok
+test mutant_63::tests::ran_validate_ok ... FAILED
+test mutant_63::parameter_challenge::independent_schema_cases_and_first_error ... ok
+test mutant_63::tests::validate_rejects_empty ... ok
+
+failures:
+
+---- mutant_63::parameter_challenge::constructors_preserve_distinct_supplied_parameters stdout ----
+
+thread 'mutant_63::parameter_challenge::constructors_preserve_distinct_supplied_parameters' (9056) panicked at metadata_challenge_0\mutant_63.rs:145:195:
+assertion `left == right` failed
+  left: Lan
+ right: Ran
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- mutant_63::tests::ran_validate_ok stdout ----
+
+thread 'mutant_63::tests::ran_validate_ok' (16244) panicked at metadata_challenge_0\mutant_63.rs:108:9:
+assertion `left == right` failed
+  left: Lan
+ right: Ran
+
+
+failures:
+    mutant_63::parameter_challenge::constructors_preserve_distinct_supplied_parameters
+    mutant_63::tests::ran_validate_ok
+
+test result: FAILED. 4 passed; 2 failed; 0 ignored; 0 measured; 372 filtered out; finished in 0.00s
+

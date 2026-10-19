@@ -1,6 +1,7 @@
 //! pointwise_kan_extension shell for omega_category_theory.
 //! AuthorityEffect: None. Not PROVED / GlobalGreen.
 
+use omega_category_theory::errors::ArithmosError;
 use serde::{Deserialize, Serialize};
 
 use super::kan_extension::KanExtensionKind;
@@ -70,21 +71,21 @@ impl PointwiseKanExtension {
         }
     }
 
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
         if self.functor_f.is_empty() {
-            return Err("empty functor_f".into());
+            return Err(ArithmosError::InvalidShape("empty functor_f".into()));
         }
         if self.along_k.is_empty() {
-            return Err("empty along_k".into());
+            return Err(ArithmosError::InvalidShape("empty along_k".into()));
         }
         if self.extension_functor.is_empty() {
-            return Err("empty extension_functor".into());
+            return Err(ArithmosError::InvalidShape("empty extension_functor".into()));
         }
         if self.pointwise_formula.is_empty() {
-            return Err("empty pointwise_formula".into());
+            return Err(ArithmosError::InvalidShape("empty pointwise_formula".into()));
         }
         Ok(())
     }

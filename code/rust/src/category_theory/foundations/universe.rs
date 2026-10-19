@@ -3,6 +3,7 @@
 //!
 //! Related contract (if present): `urn:omega:math:type_universe:v0.1.0`.
 
+use omega_category_theory::errors::ArithmosError;
 use serde::{Deserialize, Serialize};
 
 /// Best-effort shell for a type-universe level record (U_i).
@@ -35,9 +36,9 @@ impl Universe {
         }
     }
 
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            Err("empty label".into())
+            Err(ArithmosError::InvalidShape("empty label".into()))
         } else {
             Ok(())
         }

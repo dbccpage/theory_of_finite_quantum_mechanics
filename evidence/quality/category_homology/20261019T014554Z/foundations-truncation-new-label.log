@@ -1,0 +1,31 @@
+
+running 6 tests
+test mutant_22::tests::validate_rejects_empty ... ok
+test mutant_22::tests::untruncated_ok ... ok
+test mutant_22::tests::rejects_below_minus_two ... ok
+test mutant_22::parameter_challenge::constructors_preserve_distinct_supplied_parameters ... FAILED
+test mutant_22::tests::validate_ok ... FAILED
+test mutant_22::parameter_challenge::independent_schema_cases_and_first_error ... ok
+
+failures:
+
+---- mutant_22::parameter_challenge::constructors_preserve_distinct_supplied_parameters stdout ----
+
+thread 'mutant_22::parameter_challenge::constructors_preserve_distinct_supplied_parameters' (9512) panicked at metadata_challenge_0\mutant_22.rs:108:9:
+assertion `left == right` failed
+  left: ""
+ right: "label\0α"
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- mutant_22::tests::validate_ok stdout ----
+
+thread 'mutant_22::tests::validate_ok' (20284) panicked at metadata_challenge_0\mutant_22.rs:69:9:
+assertion failed: Truncation::new("x").validate_shell().is_ok()
+
+
+failures:
+    mutant_22::parameter_challenge::constructors_preserve_distinct_supplied_parameters
+    mutant_22::tests::validate_ok
+
+test result: FAILED. 4 passed; 2 failed; 0 ignored; 0 measured; 372 filtered out; finished in 0.00s
+

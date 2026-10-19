@@ -9,6 +9,7 @@ import hashlib
 import json
 from pathlib import Path
 import re
+import shutil
 import subprocess
 import sys
 
@@ -24,6 +25,7 @@ def main():
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     output = ROOT / "evidence/quality/category_homology" / (stamp + "-score-verification")
     output.mkdir(parents=True)
+    shutil.copyfile(__file__,output / "verify_current_scores.py")
     groups, rows = defaultdict(dict), []
     for folder in ("category_theory", "homology"):
         for source in sorted((ROOT / "code/rust/src" / folder).rglob("*.rs")):
@@ -33,6 +35,7 @@ def main():
                 return json.loads(re.search(r"^" + name + r": (.*)$",text,re.M)[1])
             token, complete = field("score_token"), field("is_complete")
             record = {"path":source.relative_to(ROOT).as_posix(),"source_sha256":sha(source),
+                "score_sha256":sha(score),
                 "record_source_matches":re.search(r'^  sha256: "([a-f0-9]{64})"',text,re.M)[1] == sha(source),
                 "level":field("level"),"score_token":token,"is_complete":complete,
                 "grade_ceiling":field("grade_ceiling"),
@@ -62,6 +65,7 @@ def main():
         log = output / f"check-{index}.log"
         log.write_text(run.stdout + run.stderr,encoding="utf-8")
         checks.append({"subjects":list(mapping),"command":command,"cwd":str(ROOT),
+                       "assessment_map":map_path.relative_to(ROOT).as_posix(),"assessment_map_sha256":sha(map_path),
                        "exit_code":run.returncode,"log":log.relative_to(ROOT).as_posix(),"log_sha256":sha(log)})
         print("group",index,"subjects",len(mapping),"exit",run.returncode,flush=True)
         if run.returncode:
@@ -70,12 +74,14 @@ def main():
         "completed_A_files":sum(row["is_complete"] and row["score_token"].endswith("A") for row in rows),
         "incomplete_files":sum(not row["is_complete"] for row in rows),
         "all_source_records_match":all(row["record_source_matches"] for row in rows),
+        "source_records_unchanged":all(sha(ROOT/row["path"]) == row["source_sha256"] and
+            sha((ROOT/row["path"]).with_suffix(".score.yaml")) == row["score_sha256"] for row in rows),
         "completed_checks_passed":all(check["exit_code"] == 0 for check in checks),
         "rows":rows,"checks":checks,"runner_sha256":sha(Path(__file__)),
         "scope":"All completed records are revalidated; incomplete records remain unassessed, regardless of passing package tests."}
     (output / "summary.json").write_text(json.dumps(summary,indent=2) + "\n",encoding="utf-8")
     print("Receipt:",output,flush=True)
-    return 0 if summary["all_source_records_match"] and summary["completed_checks_passed"] else 1
+    return 0 if summary["all_source_records_match"] and summary["source_records_unchanged"] and summary["completed_checks_passed"] else 1
 
 
 if __name__ == "__main__":

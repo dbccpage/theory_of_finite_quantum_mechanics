@@ -253,3 +253,26 @@ removed at campaign completion; small source snapshots and receipts are retained
 The inactive registered-worktree cache cleanup is separately recorded in
 `resume-20261019/registered-worktree-cleanup.json`. This goal remains open and
 contracts remain pending.
+
+
+The subsequent parameter-metadata checkpoint has 86 completed A records and
+106 incomplete records. The seven additional L2A files retain their literal
+level/bound/tag predicates and now return the existing typed InvalidShape
+variant. Their 237 independent schema cases, constructor checks, 57 isolated
+faults and seven-lemma parameter model cover the declared metadata scope.
+The initial failed proof attempt remains excluded. The actual category suite
+still passes all 459 tests before/after; all 107 nominal export faults are
+replayed against the changed provider signatures, without awarding provider
+mathematics to a facade. Four affected facade assessments explicitly review
+that provider delta.
+
+`20261019T015208Z-score-verification` checks every completed record and binds
+all adjacent YAML digests as well as Rust digests. None changed during the
+verification. `resume-20261019/progress.json` now records this checkpoint;
+`cleanup-checkpoint-86.json` confirms zero remaining owned compiled outputs.
+Replay the new narrow checks with:
+
+```powershell
+python code/rust/quality/category_homology/run_metadata_challenges.py --policy code/rust/quality/category_homology/parameter_boundaries.json
+python code/rust/quality/category_homology/run_rank_proof.py --model parameters
+```

@@ -24,6 +24,9 @@ POLICY = Path(__file__).with_name("metadata_boundaries.json")
 
 def challenge(record):
     """Generate tests from the separately reviewed schema, never its guards."""
+    if record.get("parameter_schema"):
+        from parameter_metadata import challenge as parameter_challenge
+        return parameter_challenge(record)
     kind, fields = record["type"], record["required_fields"]
     assignments = "\n".join(f'        value.{f} = format!("{f}:alpha\\0");' for f in fields)
     clear = "\n".join(f'            if mask & (1 << {i}) != 0 {{ value.{f}.clear(); }}'
@@ -106,6 +109,9 @@ mod checklist_challenge {
 
 
 def variants(record, source):
+    if record.get("parameter_schema"):
+        from parameter_metadata import variants as parameter_variants
+        return parameter_variants(record, source)
     rows = []
     for field in record["required_fields"]:
         for suffix, needle, replacement in (
@@ -144,13 +150,15 @@ def variants(record, source):
 
 def main():
     parser = argparse.ArgumentParser()
+    parser.add_argument("--policy", type=Path, default=POLICY)
     parser.add_argument("--limit", type=int)
     parser.add_argument("--offset", type=int, default=0)
     parser.add_argument("--batch-size", type=int, default=8)
     args = parser.parse_args()
     if args.batch_size < 1 or args.offset < 0 or (args.limit is not None and args.limit < 1):
         parser.error("positive batch/limit and nonnegative offset required")
-    records = json.loads(POLICY.read_text(encoding="utf-8"))["records"]
+    policy = args.policy.resolve()
+    records = json.loads(policy.read_text(encoding="utf-8"))["records"]
     records = records[args.offset:None if args.limit is None else args.offset + args.limit]
     if not records:
         parser.error("empty selection")
@@ -161,7 +169,9 @@ def main():
     inputs = inventory()
     write_json(output / "source_manifest.json", inputs)
     shutil.copyfile(__file__, output / "run_metadata_challenges.py")
-    shutil.copyfile(POLICY, output / POLICY.name)
+    shutil.copyfile(policy, output / policy.name)
+    if any(record.get("parameter_schema") for record in records):
+        shutil.copyfile(Path(__file__).with_name("parameter_metadata.py"), output / "parameter_metadata.py")
     snapshot(work, "category")
     build = work / "target"
     members, campaigns = [], []
@@ -174,7 +184,9 @@ def main():
             '[lib]\npath="lib.rs"\n[dependencies]\n'
             'omega_category_theory={package="tfqm_category_theory",path="../src/category_theory"}\n'
             'serde={version="1.0",features=["derive"]}\nserde_json="1.0"\n', encoding="utf-8")
-        declarations, candidates = [], []
+        declarations = sorted({declaration for item in records[batch_index:batch_index + args.batch_size]
+                               for declaration in item.get("harness_imports", [])})
+        candidates = []
         for item in records[batch_index:batch_index + args.batch_size]:
             source_path = ROOT / item["path"]
             if digest(source_path) != item["sha256"]:
@@ -265,7 +277,7 @@ def main():
         "mutation_accounting":{key:outcomes[key] for key in ("killed","survived","demonstrably_equivalent","invalid","inconclusive","unrun")},
         "conservative_ratio":outcomes["killed"] / eligible if eligible else None,"all_files_L5A":False,
         "scope":"Independent single-fault module variants; module-local tests run separately. Source guards are not used to construct expected outcomes. No whole-directory grade, extracted proof or alternate compiler claim.",
-        "selected_records":len(records),"policy_sha256":digest(POLICY),"runner_sha256":digest(Path(__file__)),"build_outputs_removed":not build.exists()}
+        "selected_records":len(records),"policy_sha256":digest(policy),"runner_sha256":digest(Path(__file__)),"build_outputs_removed":not build.exists()}
     write_json(output / "summary.json",final)
     print("Receipt:",output,flush=True)
     print(json.dumps(final,indent=2),flush=True)

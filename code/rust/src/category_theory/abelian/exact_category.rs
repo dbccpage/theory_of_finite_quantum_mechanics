@@ -4,6 +4,7 @@
 //! Exact category shape: admissible short exact sequences. Optional bound on
 //! tracked exact-sequence length is a diagnostic note only.
 
+use omega_category_theory::errors::ArithmosError;
 use serde::{Deserialize, Serialize};
 
 /// Best-effort shell for an exact-category claim.
@@ -38,13 +39,13 @@ impl ExactCategory {
         self
     }
 
-    /// Validate structural emptiness only (shell gate).
-    pub fn validate_shell(&self) -> Result<(), String> {
+    /// Validate the literal label and optional positive diagnostic bound only.
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
         if let Some(0) = self.max_exact_sequences {
-            return Err("max_exact_sequences must be > 0 when set".into());
+            return Err(ArithmosError::InvalidShape("max_exact_sequences must be > 0 when set".into()));
         }
         Ok(())
     }
