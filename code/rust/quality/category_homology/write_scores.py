@@ -64,6 +64,8 @@ def capability(path, source):
         return "L5", "Immutable finite functor certificates own snapshots after complete endpoint/category/map/law admission; raw derived declarations remain distinct and composition requires exact middle-context equality."
     if key == "category_theory/grothendieck_construction.rs":
         return "L1", "Archival documentation and a wholly commented-out sketch; no active Rust item, algorithm, type or test implementation is delivered by this file."
+    if key == "category_theory/dagger.rs":
+        return "L5", "Immutable owned finite dagger certificate admits the complete category and total reversed arrow map, involution, identity and every reversed composite before construction; raw declarations remain separate."
     if key in foundational:
         return "L5", foundational[key]
     if "#![cfg(any())]" in source:

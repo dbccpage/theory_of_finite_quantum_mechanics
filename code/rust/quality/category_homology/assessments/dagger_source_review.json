@@ -1,0 +1,104 @@
+{
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/category_theory/dagger.rs",
+    "sha256": "9ac82f5c6a8537cc9455b789dcdcdd1c726ae6a641c632e1be7e580d291c4f92"
+  },
+  "production_functions": {
+    "fmt": {
+      "line": 24,
+      "signature": "fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result",
+      "body": "{\n        write!(f, \"finite dagger validation refused: {self:?}\")\n    }",
+      "obligation": "Display the exact fixed refusal prefix followed by Debug of the full typed error; no success or silent loss of variant payload. std::error::Error source remains None by default, not a nested causal-chain API. Standard formatter failure propagates fmt::Result."
+    },
+    "admit_dagger_budget": {
+      "line": 36,
+      "signature": "fn admit_dagger_budget(category: &DeclaredFiniteCategory) -> Result<(), DaggerValidationError>",
+      "body": "{\n    if category.objects.len() > 64\n        || category.morphisms.len() > 64\n        || category.compositions.len() > 4096\n    {\n        return Err(DaggerValidationError::Budget);\n    }\n    Ok(())\n}",
+      "obligation": "Raw category object/morphism counts must be<=64 and raw composition entries<=4096, with Budget refusal before category/map validation. Exact boundaries pass; no multiplication/overflow or allocation here. Bounds constrain cubic category work, not string bytes, allocator behavior or elapsed time."
+    },
+    "check_dagger_domain": {
+      "line": 46,
+      "signature": "fn check_dagger_domain(\n    category: &DeclaredFiniteCategory,\n    dagger: &BTreeMap<String, String>,\n) -> Result<(), DaggerValidationError>",
+      "body": "{\n    if dagger.len() != category.morphisms.len()\n        || dagger.keys().any(|f| !category.has_morphism(f))\n    {\n        return Err(DaggerValidationError::Domain);\n    }\n    Ok(())\n}",
+      "obligation": "After complete category admission, require map cardinality equals morphism cardinality AND every key is a declared morphism; finite subset+equal size ensures exact total key domain. Unknown image values are checked later. Empty category/map valid. First domain mismatch is Domain before any arrow/image check."
+    },
+    "check_dagger_arrows": {
+      "line": 58,
+      "signature": "fn check_dagger_arrows(\n    category: &DeclaredFiniteCategory,\n    dagger: &BTreeMap<String, String>,\n) -> Result<(), DaggerValidationError>",
+      "body": "{\n    for (f, morphism) in &category.morphisms {\n        let fd = dagger\n            .get(f)\n            .ok_or_else(|| DaggerValidationError::MissingImage { morphism: f.clone() })?;\n        let image = category\n            .morphisms\n            .get(fd)\n            .ok_or_else(|| DaggerValidationError::MissingImage { morphism: f.clone() })?;\n        if image.source != morphism.target || image.target != morphism.source {\n            return Err(DaggerValidationError::Boundary { morphism: f.clone() });\n        }\n        if dagger.get(fd) != Some(f) {\n            return Err(DaggerValidationError::Involution { morphism: f.clone() });\n        }\n    }\n    Ok(())\n}",
+      "obligation": "Scan every declared arrow in sorted key order, require own map entry (defensive under exact domain), then require its image is a declared arrow (reachable MissingImage). Check reversed source and target independently as one Boundary failure before involution. Require d(d(f))=f. Return exact first offending source morphism. Immutable maps preserve earlier premises; involution implies bijection, no extra injectivity assumption."
+    },
+    "check_dagger_identities": {
+      "line": 80,
+      "signature": "fn check_dagger_identities(\n    category: &DeclaredFiniteCategory,\n    dagger: &BTreeMap<String, String>,\n) -> Result<(), DaggerValidationError>",
+      "body": "{\n    for (object, identity) in &category.identities {\n        if dagger.get(identity) != Some(identity) {\n            return Err(DaggerValidationError::Identity { object: object.clone() });\n        }\n    }\n    Ok(())\n}",
+      "obligation": "After complete arrow boundary/involution checks, scan every actual object identity and require its dagger image is that same identity. First failure Identity carries object name. No literal id_ naming or freely selected candidate identity. This phase precedes composition and uses exact admitted identity table."
+    },
+    "check_dagger_compositions": {
+      "line": 92,
+      "signature": "fn check_dagger_compositions(\n    category: &DeclaredFiniteCategory,\n    dagger: &BTreeMap<String, String>,\n) -> Result<(), DaggerValidationError>",
+      "body": "{\n    let view = CompositionLookup::new(&category.compositions);\n    for ((first, second), composite) in &category.compositions {\n        let expected = view.compose(&dagger[second], &dagger[first]);\n        if expected != dagger.get(composite).map(String::as_str) {\n            return Err(DaggerValidationError::Composition {\n                first: first.clone(), second: second.clone(),\n            });\n        }\n    }\n    Ok(())\n}",
+      "obligation": "After category/domain/arrow/identity admission, build one sorted borrowed CompositionLookup from actual owned category table. For EVERY declared/composable(first,second)->composite require compose(d(second),d(first)) = d(composite), comparing exact Options/labels. Reverse order is essential. Category admits exact composition domain; map has every source key and known images with reversed boundaries, so indexed map entries and both required compositions are defined. First mismatch carries original first/second names. No owned temporary tuple key is constructed in loop."
+    },
+    "try_new": {
+      "line": 111,
+      "signature": "pub fn try_new(\n        category: DeclaredFiniteCategory,\n        dagger: BTreeMap<String, String>,\n    ) -> Result<Self, DaggerValidationError>",
+      "body": "{\n        admit_dagger_budget(&category)?;\n        let category =\n            ValidatedFiniteCategory::try_new(category).map_err(DaggerValidationError::Category)?;\n        let declared = category.declared();\n        check_dagger_domain(declared, &dagger)?;\n        check_dagger_arrows(declared, &dagger)?;\n        check_dagger_identities(declared, &dagger)?;\n        check_dagger_compositions(declared, &dagger)?;\n        Ok(Self { category, dagger })\n    }",
+      "obligation": "Ordered size->complete finite category->exact domain->all arrow image/boundary/involution->identities->all reversed composites admission. Any failure returns typed error and destroys provisional owned inputs; no DaggerStructure is constructed. Success owns unchanged admitted full category and unchanged dagger map privately. No unchecked constructor/mutator/default/deserialize bypass exists; category and map are exposed only by shared lookup. Empty category allowed."
+    },
+    "category": {
+      "line": 125,
+      "signature": "pub fn category(&self) -> &ValidatedFiniteCategory",
+      "body": "{\n        &self.category\n    }",
+      "obligation": "Return a shared reference to the exact immutable owned ValidatedFiniteCategory, not a raw mutator or clone that changes the certificate. Consumers can clone/consume copies without altering this value."
+    },
+    "dagger": {
+      "line": 128,
+      "signature": "pub fn dagger(&self, morphism: &str) -> Option<&str>",
+      "body": "{\n        self.dagger.get(morphism).map(String::as_str)\n    }",
+      "obligation": "Borrow map value for exact requested arrow key, None for unknown names; no fallback, normalization or fresh output string. Every known arrow has an image by admission, and applying twice returns original arrow."
+    },
+    "is_unitary": {
+      "line": 133,
+      "signature": "pub fn is_unitary(&self, morphism: &str) -> Option<bool>",
+      "body": "{\n        let c = self.category.declared();\n        let (source, target) = c.boundary_of(morphism)?;\n        let fd = self.dagger(morphism)?;\n        Some(\n            c.compose(morphism, fd) == c.identity_of(source)\n                && c.compose(fd, morphism) == c.identity_of(target),\n        )\n    }",
+      "obligation": "Unknown arrow returns None at boundary lookup, then missing dagger also None defensively. For known arrow require BOTH d(f) after f = id(source) and f after d(f)=id(target). Complete admitted category/reversed map guarantee both compositions and identities Some, so None==None cannot make a false unitary. Nonunitary known arrows return Some(false); partial one-sided inverse is insufficient. Exact primitive String equality, no approximate relation."
+    }
+  },
+  "provider_refinement": "ValidatedFiniteCategory::try_new runs the canonical full report and stores the entire moved declaration only when every own check passes. Canonical validator checks object/arrow key-name/boundary membership, exact identities, no extra/missing composites, valid output boundaries, left/right units and every associative composable triple. Its Mathlib FiniteCategory model realizes the admitted table as actual Category. Owned private ValidatedFiniteCategory field has no unchecked public constructor; shared declared() exposes no mutation, into_declared consumes an owned value, Clone makes independent owned tables. Dagger can thus use exact complete identity/compose data and known real arrow strings. Source-bound core assessment/proof remains independent. CompositionLookup builds borrowed key/value rows in BTreeMap(String,String) lexicographic order; str pair order is identical, binary search returns same Option<&str> as raw compose without allocating owned tuple keys.",
+  "invariant_argument": [
+    "Exact finite map key domain plus known typed image for each arrow yields a total map Hom(X,Y)->Hom(Y,X). Source validates every arrow and every composite against immutable complete category; no sampling. Involution, identity and reversed composition checks correspond directly to typed FiniteDagger.Data/Laws on actual Mathlib Category. Constructor returns original owned data only after all complete checks, matching Certified with law evidence; this is the delivered L5 capability, not an upgrade for the word dagger alone.",
+    "Domain cardinality+subset makes own dagger.get(f) defensive MissingImage branch unreachable in healthy source. Image lookup MissingImage is reachable. After arrow loop, every fd is a declared arrow and total-domain key, so dagger[second]/[first] for admitted composition keys is safe. No user callback, public mutable interior or raw forged certificate can invalidate between phases.",
+    "For any known f:X->Y, dagger f:Y->X. Both requested round trips are composable and both object identities exist by category admission; every Option in known-arrow unitary comparison is Some. Therefore two inverse equations are genuine and cannot pass by two absent lookups. Empty category has no known arrows and all quantified dagger laws vacuous.",
+    "Standard derived Clone/Eq/Debug preserve owned structure and validity. No external alias to mutable maps exists; source consumes raw arguments and only returns shared accessors/borrowed strings. Category/morphism labels are exact strings, category name/table content retained; no cryptographic identity or physical authority implied."
+  ],
+  "data_trait_derive_macro_review": "Eight typed refusal variants preserve selected names or full canonical report. DaggerStructure private owned ValidatedFiniteCategory and total String map, derives Debug/Clone/PartialEq/Eq; no mutable accessor,unchecked/default/deserialization path. Concrete standard formatting/tree/string/index semantics,no unsafe,float,narrowing,custom Eq or external effect.",
+  "cost_review": [
+    "Let O objects<=64,M arrows<=64,C composition entries<=4096, and B total name bytes. Budget O(1) after already supplied maps; it bounds cardinalities,not B/time/allocator memory. Complete category checker is at worst cubic in M with ordered-map/key comparison costs and report output; its current borrowed lookup avoids inner-loop tuple clones. No repeat category admission inside dagger arrow/composition loops.",
+    "Exact domain costs O(M log(M+1)) string comparisons, arrow/image/involution O(M log(M+1)), identities O(O log(M+1)). CompositionLookup builds O(C) borrowed references once in original map order; each composition does constant dagger map lookups plus O(log(C+1)) borrowed tuple comparisons. Multiply key comparisons by relevant name lengths; selected error clones are required payload only. No cloned category/map or redundant owned tuple String allocation per composite.",
+    "Certificate owns original category and dagger map by move, not a duplicate snapshot. category accessor O(1), dagger one borrowed-key tree lookup without allocation. is_unitary does at most two fixed raw compose calls with up to four temporary owned Strings for existing raw CompositionTable API (constant number of public queries,not an inner loop in this module); O(log(C+1)) key comparisons plus key bytes. No O(C) index is rebuilt for two single queries. Consumer loop costs must include these keys; no zero-allocation accessor claim for is_unitary.",
+    "Error Debug/Display and Clone/Eq cost visited payload/name/report bytes, with no hidden custom Eq/callback. DaggerValidationError::Category retains full report; Error.source intentionally None,not causality traversal. Validator report/diagnostic storage depends on rejected input and label lengths even under cardinality caps.",
+    "Fresh calibrated AST covers all10 bodies max CCN7,cognitive6,nesting2. Original try_new17/18/2 archived. Domain,arrow,identity,composition and size phases have distinct invariants and first-error boundaries. Standard derives/write! and checked helper/index behavior reviewed separately; no MIR/allocator-totality/benchmark/A+ claim."
+  ],
+  "consumer_review": [
+    "Finite_groupoid::try_new delegates dagger admission; try_from_dagger scans every known arrow and requires Some(true) from is_unitary, stores the owned DaggerStructure, and exposes shared category/inverse lookups. Original actual module and its tests compile/run among459 baseline category tests before/after. This review does not grade the remaining groupoid coordinate algorithms. lib.rs/mod.rs declare exports; external omega packages outside scope.",
+    "One completed finite_category assessment pins dagger as a consumer. Its own source/proof/primary/metrics unchanged; refresh consumer-context record with exact phase/API preservation and new native/Mathlib evidence. No backwards core runtime dependency or package-wide grade inferred.",
+    "All five original public/error/lookup signatures and fmt/category/dagger/is_unitary bodies remain identical. Constructor phase predicates/error order identical after helper extraction; only composition storage lookup replaced by same-source sorted borrowed view. Private data shape,derive/API and whole data ownership unchanged; no alpha adapter needed for local DaggerStructure receiver."
+  ],
+  "source_change": {
+    "before": {
+      "path": "evidence/quality/category_homology/resume-20261019/dagger-previous/dagger.rs",
+      "sha256": "0e041c1d235c8f2af39e934b8fb358c69d00dd4f00cc459d74868944c6989eeb"
+    },
+    "before_score": {
+      "path": "evidence/quality/category_homology/resume-20261019/dagger-previous/dagger.score.yaml",
+      "sha256": "6146811bcc93df25fcbec218d9016399fb5d449b401e5635c0b905d71cbeaec5"
+    },
+    "all_original_signatures_unchanged": true,
+    "four_nonconstructor_bodies_unchanged": true,
+    "phase_preservation": "Same budget/full-category/domain/arrow/identity/composition order. Same first sorted offending key and variant. Borrowed table view is exact representation refinement; every stored input is moved unchanged.",
+    "line_endings": "Original CRLF preserved."
+  },
+  "native_oracle": "Three independent tests plus2 existing tests:26 concrete relations across1- and2-point objects with existential composition/converse,bijective-relation unitarity predicate,one-sided injection and its converse,empty/discrete64,cubic-size budget boundaries before semantic failure,exact phase/error-field precedence including independent source-only/target-only boundary faults,identity-vs-composition refusal,noncommutative left-zero monoid,Display/default Error.source. Existing S3,pair groupoid and Rel(2) controls retained."
+}

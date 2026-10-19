@@ -118,6 +118,9 @@ struct Echo; impl StructurePreservingMap for Echo {type Domain=String;type Codom
 
 
 def challenge(subject):
+    if Path(subject['path']).stem == 'dagger':
+        from finite_dagger_challenges import challenge as dagger_challenge
+        return dagger_challenge(subject)
     if Path(subject['path']).stem == 'finite_trace':
         from finite_trace_challenges import challenge as trace_challenge
         return trace_challenge(subject)

@@ -18,7 +18,7 @@ from run_audit import ROOT, digest, execute, write_json
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model",choices=("rank","category","metadata","degree","counter","parameters","finite-set","literal-reversal","shape-inventory","root-records","homology-protocols","degree-repair","two-step-complex","simplicial-closure","simplicial-boundary","simplicial-homology","scalar-admission","carrier-dimensions","vector-maps","graph-incidence","validation-inventory","arrow-effects","finite-builder","em-samples","lawvere-inventory","higher-functor-inventory","finite-functor","functor-operations","finite-naturality","natural-composition","joint-carrier","finite-simulation","finite-independence","finite-trace"),default="rank")
+    parser.add_argument("--model",choices=("rank","category","metadata","degree","counter","parameters","finite-set","literal-reversal","shape-inventory","root-records","homology-protocols","degree-repair","two-step-complex","simplicial-closure","simplicial-boundary","simplicial-homology","scalar-admission","carrier-dimensions","vector-maps","graph-incidence","validation-inventory","arrow-effects","finite-builder","em-samples","lawvere-inventory","higher-functor-inventory","finite-functor","functor-operations","finite-naturality","natural-composition","joint-carrier","finite-simulation","finite-independence","finite-trace","finite-dagger"),default="rank")
     parser.add_argument("--memory-mb", type=int, default=1024,
         help="Explicit Lean memory limit, from 256 to 2048 MiB; default remains 1024.")
     args = parser.parse_args()
@@ -46,6 +46,10 @@ def main():
         proof_name, import_name, namespace = "DegreeWindow", "Data/Int/Basic", "TFQM.DegreeWindow."
         declarations = ("ordered_span_fits_u32", "same_endpoint_zero", "inverted_span_negative")
         scope = "Exact i32 endpoint difference bounds, zero span and inverted-window refusal premise; no category-law claim."
+    elif model == "finite-dagger":
+        proof_name, import_name, namespace = "FiniteDagger", "CategoryTheory/Functor/Basic", "TFQM.FiniteDagger."
+        declarations = ("checks_true_iff", "admit_preserves_data", "admit_success_laws", "failed_guard", "certifiedOfAdmitted", "certified_arrow", "dagger_involutive", "dagger_injective", "dagger_surjective", "dagger_identity", "dagger_composition", "unitary_identity", "unitary_dagger", "unitary_composite", "unitary_check_iff")
+        scope = "Total reversed typed arrows over actual Mathlib Category carry admitted involution/identity/composition laws; unitary requires both inverse equations and is closed under dagger/composition. Rust finite domain/boundary/enumeration/storage/budget refinement remains separate."
     elif model == "finite-trace":
         proof_name, import_name, namespace = "FiniteTrace", "Data/List/Basic", "TFQM.FiniteTrace."
         declarations = ("initial_sound", "fresh_sound", "insert_sound", "closed_contains_reachable", "empty_frontier_closed", "complete_component", "existing_self_edge", "adjacent_length", "adjacent_inventory", "charge_success", "charge_refusal", "charge_bounded", "charge_strict", "machine_increment_fits", "replay_complete", "replay_refuses_missing")
