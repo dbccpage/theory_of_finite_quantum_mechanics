@@ -4,6 +4,7 @@
 //! Equivalence C ≃ D via functors + unit/counit refs — shape only, not a proof.
 
 use serde::{Deserialize, Serialize};
+use omega_category_theory::errors::ArithmosError;
 
 /// Best-effort shell for an equivalence of categories claim.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize)]
@@ -45,15 +46,15 @@ impl EquivalenceOfCategories {
         }
     }
 
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
         if self.left_functor_ref.is_empty() {
-            return Err("empty left_functor_ref".into());
+            return Err(ArithmosError::InvalidShape("empty left_functor_ref".into()));
         }
         if self.right_functor_ref.is_empty() {
-            return Err("empty right_functor_ref".into());
+            return Err(ArithmosError::InvalidShape("empty right_functor_ref".into()));
         }
         Ok(())
     }

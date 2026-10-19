@@ -1,0 +1,47 @@
+code/rust/src\category_theory\category\discrete_category.rs:79:        assert!(DiscreteCategoryShell::new("Disc").validate_shell().is_ok());
+code/rust/src\category_theory\category\discrete_category.rs:84:        assert!(DiscreteCategoryShell::new("").validate_shell().is_err());
+code/rust/src\category_theory\category\discrete_category.rs:89:        let d = DiscreteCategoryShell::on_objects("D", vec!["a".into(), "b".into()]);
+code/rust/src\category_theory\category\discrete_category.rs:96:        let mut d = DiscreteCategoryShell::on_objects("D", vec!["a".into()]);
+code/rust/src\category_theory\enriched\weighted_limit.rs:81:        assert!(WeightedLimit::of("wlim", "W", "D", "C", "V")
+code/rust/src\category_theory\enriched\weighted_limit.rs:88:        assert!(WeightedLimit::new("").validate_shell().is_err());
+code/rust/src\category_theory\enriched\weighted_colimit.rs:81:        assert!(WeightedColimit::of("wcolim", "W", "D", "C", "V")
+code/rust/src\category_theory\enriched\weighted_colimit.rs:88:        assert!(WeightedColimit::new("").validate_shell().is_err());
+code/rust/src\category_theory\category\small_category.rs:28:            presentation: FiniteCategoryShell::new(label.clone()),
+code/rust/src\category_theory\category\small_category.rs:79:        assert!(SmallCategoryShell::new("C").validate_shell().is_ok());
+code/rust/src\category_theory\category\small_category.rs:84:        assert!(SmallCategoryShell::new("").validate_shell().is_err());
+code/rust/src\category_theory\category\small_category.rs:89:        let p = FiniteCategoryShell::with_objects("C", vec!["x".into()]);
+code/rust/src\category_theory\category\small_category.rs:90:        let s = SmallCategoryShell::from_presentation(p);
+code/rust/src\category_theory\limits_colimits\product.rs:87:        let p = Product::binary("A×B", "A×B", "A", "B", "π₁", "π₂");
+code/rust/src\category_theory\limits_colimits\product.rs:93:        assert!(Product::new("").validate_shell().is_err());
+code/rust/src\category_theory\limits_colimits\product.rs:98:        let mut p = Product::binary("P", "P", "A", "B", "π₁", "π₂");
+code/rust/src\category_theory\limits_colimits\limit.rs:24:            cone: Cone::default(),
+code/rust/src\category_theory\limits_colimits\limit.rs:59:    use crate::limits_colimits::cone::Cone;
+code/rust/src\category_theory\limits_colimits\limit.rs:63:        let cone = Cone::with_apex("lim_cone", "L");
+code/rust/src\category_theory\limits_colimits\limit.rs:64:        let lim = Limit::of_diagram("lim", "D", cone);
+code/rust/src\category_theory\limits_colimits\limit.rs:70:        let cone = Cone::with_apex("lim_cone", "L");
+code/rust/src\category_theory\limits_colimits\limit.rs:71:        let lim = Limit::of_diagram("lim", "", cone);
+code/rust/src\category_theory\limits_colimits\limit.rs:77:        assert!(Limit::new("").validate_shell().is_err());
+code/rust/src\category_theory\limits_colimits\limit.rs:82:        let lim = Limit::of_diagram("lim", "D", Cone::new("c"));
+code/rust/src\category_theory\limits_colimits\coproduct.rs:87:        let c = Coproduct::binary("A+B", "A+B", "A", "B", "ι₁", "ι₂");
+code/rust/src\category_theory\limits_colimits\coproduct.rs:93:        assert!(Coproduct::new("").validate_shell().is_err());
+code/rust/src\category_theory\limits_colimits\coproduct.rs:98:        let mut c = Coproduct::binary("S", "S", "A", "B", "ι₁", "ι₂");
+code/rust/src\category_theory\category\category.rs:121:        assert!(FiniteCategoryShell::new("C").validate_shell().is_ok());
+code/rust/src\category_theory\category\category.rs:126:        assert!(FiniteCategoryShell::new("").validate_shell().is_err());
+code/rust/src\category_theory\category\category.rs:131:        let c = FiniteCategoryShell::with_objects("C", vec!["a".into(), "b".into()]);
+code/rust/src\category_theory\limits_colimits\cone.rs:138:        let mut c = Cone::with_apex("c", "L");
+code/rust/src\category_theory\limits_colimits\cone.rs:145:        assert!(Cone::new("c").validate_shell().is_err());
+code/rust/src\category_theory\limits_colimits\cone.rs:150:        assert!(Cone::with_apex("", "L").validate_shell().is_err());
+code/rust/src\category_theory\limits_colimits\cone.rs:155:        let mut c = Cone::with_apex("c", "L");
+code/rust/src\category_theory\limits_colimits\cone.rs:162:        let mut c = Cocone::with_nadir("cc", "Q");
+code/rust/src\category_theory\limits_colimits\cone.rs:169:        assert!(Cocone::new("cc").validate_shell().is_err());
+code/rust/src\category_theory\limits_colimits\colimit.rs:24:            cocone: Cocone::default(),
+code/rust/src\category_theory\limits_colimits\colimit.rs:59:    use crate::limits_colimits::cone::Cocone;
+code/rust/src\category_theory\limits_colimits\colimit.rs:63:        let cocone = Cocone::with_nadir("colim_cocone", "Q");
+code/rust/src\category_theory\limits_colimits\colimit.rs:64:        let colim = Colimit::of_diagram("colim", "D", cocone);
+code/rust/src\category_theory\limits_colimits\colimit.rs:70:        let cocone = Cocone::with_nadir("colim_cocone", "Q");
+code/rust/src\category_theory\limits_colimits\colimit.rs:71:        let colim = Colimit::of_diagram("colim", "", cocone);
+code/rust/src\category_theory\limits_colimits\colimit.rs:77:        assert!(Colimit::new("").validate_shell().is_err());
+code/rust/src\category_theory\limits_colimits\colimit.rs:82:        let colim = Colimit::of_diagram("colim", "D", Cocone::new("cc"));
+code/rust/src\higher_category_theory\derived.rs:370:        let cone = MappingCone::construct(map, src, tgt, &self.limits)?;
+code/rust/src\general_relativity\bi_crossed_product.rs:78:        let bp = BiCrossedProduct::new(2, 2, "abelian_pair");
+code/rust/src\general_relativity\bi_crossed_product.rs:84:        let mut bp = BiCrossedProduct::new(3, 0, "heisenberg");

@@ -1,13 +1,14 @@
 //! Canonical finite simplicial complex support.
 //!
-//! This module is the single simplicial implementation for `omega_homology`.
-//! It supports simplices in every finite dimension, closes complexes under all
-//! faces, gives deterministic basis order, and builds signed boundary and
-//! coboundary matrices for arbitrary degree.
+//! AuthorityEffect: None. Simplex records admit finite nonempty vertex lists.
+//! Complex admission allows at most 16 vertices per simplex and 65,535 nonempty
+//! faces. Within those bounds it closes under faces, gives deterministic basis
+//! order and builds exact-Q boundary/coboundary matrices. Degree shifts that
+//! exceed their machine representation return a typed refusal.
 
 use crate::homology::errors::HomologicalError;
+use crate::homology::rank_certificate::certify_rank;
 use crate::linear_algebra::basic_matrix::BasicMatrix;
-use crate::linear_algebra::image_kernel::ExactRowReduction;
 use crate::linear_algebra::scalars::{q, Q};
 use serde::{Deserialize, Serialize};
 use std::collections::{BTreeMap, BTreeSet};
@@ -64,9 +65,11 @@ impl Simplex {
     }
 
     /// The i-th codimension-one face, with the canonical boundary sign.
+    /// Singleton simplices have no face in this unaugmented model. Out-of-range
+    /// indices are rejected without narrowing their diagnostic payload.
     pub fn face(&self, removed_index: usize) -> Result<(Self, i8), HomologicalError> {
         if removed_index >= self.vertices.len() {
-            return Err(HomologicalError::InvalidDegree(removed_index as i32));
+            return Err(HomologicalError::invalid_degree_index(removed_index));
         }
         if self.vertices.len() == 1 {
             return Err(HomologicalError::InvalidDegree(0));
@@ -101,8 +104,9 @@ impl Simplex {
 
 /// An oriented simplex.
 ///
-/// The stored vertices are canonical. `orientation` is the sign of the input
-/// ordering relative to canonical ascending order.
+/// The stored vertices are canonical and `orientation` is a chosen ±1 sign.
+/// `from_ordered` derives that sign from permutation parity; wire admission
+/// accepts either sign on an already canonical simplex.
 #[derive(Debug, Clone, PartialEq, Eq, Hash, PartialOrd, Ord, Serialize, Deserialize)]
 #[serde(try_from = "OrientedWire")]
 pub struct OrientedSimplex {
@@ -141,6 +145,8 @@ impl OrientedSimplex {
     }
 
     /// Construct from an ordered vertex list, preserving permutation parity.
+    /// Uses quadratic comparisons and retains parity, without summing a
+    /// machine-sized inversion total. This record does not admit a complex.
     pub fn from_ordered(vertices: Vec<usize>) -> Result<Self, HomologicalError> {
         let orientation = permutation_orientation(&vertices)?;
         Ok(Self {
@@ -336,7 +342,7 @@ impl SimplicialComplex {
     }
 
     /// Euler characteristic. At most MAX_SIMPLICES terms of magnitude one
-    /// occur, so the admitted storage bound shows in this model that the i64 sum fits.
+    /// occur, so the admitted storage bound proves that the i64 sum fits.
     pub fn euler_characteristic(&self) -> i64 {
         self.simplices_by_dim
             .iter()
@@ -369,7 +375,7 @@ impl SimplicialComplex {
         let face_indices = self
             .indices_by_dim
             .get(k - 1)
-            .ok_or(HomologicalError::InvalidDegree(k as i32))?;
+            .ok_or_else(|| HomologicalError::invalid_degree_index(k))?;
         let mut matrix = BasicMatrix::<Q>::zero(rows, cols)?;
 
         for (col, simplex) in self.simplices(k).iter().enumerate() {
@@ -408,7 +414,7 @@ impl SimplicialComplex {
     /// vanishes identically: d_{k-1} * d_k = 0 for all k >= 2.
     pub fn boundary_composition(&self, k: usize) -> Result<BasicMatrix<Q>, HomologicalError> {
         if k < 2 {
-            return Err(HomologicalError::InvalidDegree(k as i32));
+            return Err(HomologicalError::invalid_degree_index(k));
         }
         let lower = self.boundary_matrix(k - 1)?;
         let upper = self.boundary_matrix(k)?;
@@ -448,7 +454,7 @@ impl SimplicialComplex {
     /// Composed coboundary matrix d^k * d^{k-1}: C^{k-1} -> C^{k+1}.
     pub fn coboundary_composition(&self, k: usize) -> Result<BasicMatrix<Q>, HomologicalError> {
         if k < 1 {
-            return Err(HomologicalError::InvalidDegree(k as i32));
+            return Err(HomologicalError::invalid_degree_index(k));
         }
         let lower = self.coboundary_matrix(k - 1)?;
         let upper = self.coboundary_matrix(k)?;
@@ -481,16 +487,18 @@ impl SimplicialComplex {
     /// Exact rational Betti numbers `b_k = dim H_k(K; Q)` for `0 <= k <= max_dimension`.
     ///
     /// `b_k = dim C_k - rank d_k - rank d_{k+1}`, with ranks by exact row
-    /// reduction. A rank that exceeds the dimension it is subtracted from is a
+    /// reduction followed by independent split-map certificate checks,
+    /// computing each differential's rank once and carrying it to
+    /// the next degree. A rank that exceeds the dimension it is subtracted from is a
     /// typed [`HomologicalError::BettiRankInconsistency`], never a clamp.
     pub fn rational_betti_numbers(&self) -> Result<Vec<usize>, HomologicalError> {
         let max_dim = self.max_dimension();
         let rank = |k: usize| -> Result<usize, HomologicalError> {
-            self.boundary_matrix(k)?
-                .rank()
-                .map_err(|e| HomologicalError::UnsupportedOperation(format!("{}", e)))
+            let matrix = self.boundary_matrix(k)?;
+            Ok(certify_rank(&matrix)?.rank())
         };
         let mut betti = Vec::with_capacity(max_dim + 1);
+        let mut rank_dk = 0;
 
         for k in 0..=max_dim {
             let ck_dim = self.count(k);
@@ -499,7 +507,6 @@ impl SimplicialComplex {
                 continue;
             }
 
-            let rank_dk = if k == 0 { 0 } else { rank(k)? };
             let ker_dk =
                 ck_dim
                     .checked_sub(rank_dk)
@@ -519,6 +526,7 @@ impl SimplicialComplex {
             )?;
 
             betti.push(bk);
+            rank_dk = rank_dk_plus_1;
         }
 
         Ok(betti)
@@ -537,14 +545,16 @@ fn close_faces(simplices: Vec<Simplex>) -> Result<BTreeSet<Simplex>, Homological
     let mut stack = simplices;
 
     while let Some(simplex) = stack.pop() {
-        if all.insert(simplex.clone()) {
-            if all.len() > MAX_SIMPLICES {
-                return Err(HomologicalError::ResourceLimit("simplicial face closure"));
-            }
-            for (face, _) in simplex.faces() {
-                stack.push(face);
-            }
+        if all.contains(&simplex) {
+            continue;
         }
+        if all.len() == MAX_SIMPLICES {
+            return Err(HomologicalError::ResourceLimit("simplicial face closure"));
+        }
+        for (face, _) in simplex.faces() {
+            stack.push(face);
+        }
+        all.insert(simplex);
     }
 
     Ok(all)
@@ -597,19 +607,19 @@ fn permutation_orientation(vertices: &[usize]) -> Result<i8, HomologicalError> {
         }
     }
 
-    let inversions = vertices
+    // Only inversion parity is needed. Keeping the parity avoids overflowing
+    // a machine-sized total on a large standalone ordered simplex.
+    let odd = vertices
         .iter()
         .enumerate()
-        .map(|(i, left)| {
+        .fold(false, |parity, (i, left)| {
             vertices
                 .iter()
                 .skip(i + 1)
-                .filter(|right| left > *right)
-                .count()
-        })
-        .sum::<usize>();
+                .fold(parity, |prior, right| prior ^ (left > right))
+        });
 
-    Ok(if inversions % 2 == 0 { 1 } else { -1 })
+    Ok(if odd { -1 } else { 1 })
 }
 
 #[cfg(test)]

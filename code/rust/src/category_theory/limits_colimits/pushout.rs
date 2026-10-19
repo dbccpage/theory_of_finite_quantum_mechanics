@@ -2,6 +2,7 @@
 //! AuthorityEffect: None. Not PROVED / GlobalGreen.
 
 use serde::{Deserialize, Serialize};
+use omega_category_theory::errors::ArithmosError;
 
 /// Best-effort shell for a pushout of a span A ← C → B.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize)]
@@ -65,33 +66,33 @@ impl Pushout {
         }
     }
 
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
         if self.pushout_object.is_empty() {
-            return Err("empty pushout_object".into());
+            return Err(ArithmosError::InvalidShape("empty pushout_object".into()));
         }
         if self.left_target.is_empty() {
-            return Err("empty left_target".into());
+            return Err(ArithmosError::InvalidShape("empty left_target".into()));
         }
         if self.right_target.is_empty() {
-            return Err("empty right_target".into());
+            return Err(ArithmosError::InvalidShape("empty right_target".into()));
         }
         if self.span_base.is_empty() {
-            return Err("empty span_base".into());
+            return Err(ArithmosError::InvalidShape("empty span_base".into()));
         }
         if self.morphism_f.is_empty() {
-            return Err("empty morphism_f".into());
+            return Err(ArithmosError::InvalidShape("empty morphism_f".into()));
         }
         if self.morphism_g.is_empty() {
-            return Err("empty morphism_g".into());
+            return Err(ArithmosError::InvalidShape("empty morphism_g".into()));
         }
         if self.injection_left.is_empty() {
-            return Err("empty injection_left".into());
+            return Err(ArithmosError::InvalidShape("empty injection_left".into()));
         }
         if self.injection_right.is_empty() {
-            return Err("empty injection_right".into());
+            return Err(ArithmosError::InvalidShape("empty injection_right".into()));
         }
         Ok(())
     }

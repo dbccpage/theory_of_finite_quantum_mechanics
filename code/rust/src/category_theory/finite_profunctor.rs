@@ -1,11 +1,8 @@
-//! Finite relational profunctors — distributors as finite weighted sets.
-//!
-//! `FnProfunctor` in `profunctor.rs` models P(A, B) = A → B (functional).
-//! MSS obstruction work needs P(A, B) as a finite set or weighted set:
-//! relational profunctors, composition via coends, and companion/conjoint
-//! constructions for functors.
-//!
-//! All structures are finite and declarative for kernel audit.
+//! Raw finite named witness multisets and nonnegative rational-weight collections.
+//! Discrete-middle composition concatenates supplied witness Cartesian products;
+//! it does not admit category actions or a general coend. Companion/conjoint
+//! helpers observe supplied object maps/arrow boundaries only. Boundary reports
+//! do not certify action/functor/category laws. AuthorityEffect: None.
 
 use num_rational::BigRational;
 use num_traits::Zero;
@@ -15,7 +12,7 @@ use std::collections::BTreeMap;
 // Finite relational profunctor
 // ═══════════════════════════════════════════════════════════════════════════
 
-/// A finite relational profunctor P : C^op × D → FinSet.
+/// Raw named relation multisets with unchecked action metadata.
 ///
 /// For each pair (A, B) where A ∈ Ob(C) and B ∈ Ob(D),
 /// P(A, B) is a finite multiset (list) of elements (witnesses/relations).
@@ -80,10 +77,9 @@ impl DeclaredFiniteRelationalProfunctor {
 // Weighted profunctor (P(A,B) → R≥0)
 // ═══════════════════════════════════════════════════════════════════════════
 
-/// A finite weighted profunctor: each witness carries a non-negative weight.
+/// Raw named witness multisets with admitted defined nonnegative rational weights.
 ///
-/// This models P : C^op × D → [0, ∞)-Set, useful for obstruction mass
-/// computations where P(A, B) tracks how much obstruction connects A to B.
+/// Names are metadata;no category actions or profunctor laws are admitted.
 #[derive(Debug, Clone, PartialEq)]
 pub struct DeclaredFiniteWeightedProfunctor {
     pub name: String,
@@ -142,6 +138,34 @@ impl DeclaredFiniteWeightedProfunctor {
 // Profunctor composition via coend
 // ═══════════════════════════════════════════════════════════════════════════
 
+struct RelationView<'a> {
+    rows: BTreeMap<(&'a str, &'a str), &'a [String]>,
+}
+
+impl<'a> RelationView<'a> {
+    fn new(relations: &'a BTreeMap<(String, String), Vec<String>>) -> Self {
+        Self { rows: relations.iter().map(|((a, b), values)| ((a.as_str(), b.as_str()), values.as_slice())).collect() }
+    }
+
+    fn hom(&self, source: &str, target: &str) -> &'a [String] {
+        self.rows.get(&(source, target)).copied().unwrap_or(&[])
+    }
+}
+
+fn composed_witnesses(p: &RelationView<'_>, q: &RelationView<'_>, a: &str, c: &str, middle: &[&str]) -> Vec<String> {
+    let mut witnesses = Vec::new();
+    for &b in middle {
+        let left = p.hom(a, b);
+        let right = q.hom(b, c);
+        for pw in left {
+            for qw in right {
+                witnesses.push(format!("({},{})@{}", pw, qw, b));
+            }
+        }
+    }
+    witnesses
+}
+
 /// Compose two finite relational profunctors assuming a discrete middle category.
 ///
 /// Given P : C^op × D → Set and Q : D^op × E → Set,
@@ -149,8 +173,10 @@ impl DeclaredFiniteWeightedProfunctor {
 /// (Q ∘ P)(A, C) = ∫^B P(A, B) × Q(B, C) reduces to the coproduct
 /// ∐_B P(A, B) × Q(B, C) over the intermediate objects B.
 ///
-/// This computes exactly that discrete-middle coproduct. True coend
-/// quotienting requires actions maps and quotienting by identifications.
+/// Output positions enumerate these products in supplied middle-list order,
+/// preserving repetitions. Textual witness descriptors need not be injective;
+/// equal text remains separate list occurrences. Actions are ignored and result
+/// action maps are empty. No general coend quotient or action law is admitted.
 pub fn compose_relational_profunctors_discrete_middle(
     name: &str,
     p: &DeclaredFiniteRelationalProfunctor,
@@ -167,34 +193,15 @@ pub fn compose_relational_profunctors_discrete_middle(
     let mut result =
         DeclaredFiniteRelationalProfunctor::new(name, &p.source_category, &q.target_category);
 
-    // Collect all source objects from P and target objects from Q
-    let source_objects: Vec<_> = p
-        .relations
-        .keys()
-        .map(|(a, _)| a.clone())
-        .collect::<std::collections::BTreeSet<_>>()
-        .into_iter()
-        .collect();
-
-    let target_objects: Vec<_> = q
-        .relations
-        .keys()
-        .map(|(_, c)| c.clone())
-        .collect::<std::collections::BTreeSet<_>>()
-        .into_iter()
-        .collect();
-
-    for a in &source_objects {
-        for c in &target_objects {
-            for &b in intermediate_objects {
-                let p_ab = p.hom_set(a, b);
-                let q_bc = q.hom_set(b, c);
-                for pw in p_ab {
-                    for qw in q_bc {
-                        let witness = format!("({},{})@{}", pw, qw, b);
-                        result.add_witness(a, c, &witness);
-                    }
-                }
+    let p_view = RelationView::new(&p.relations);
+    let q_view = RelationView::new(&q.relations);
+    let sources: std::collections::BTreeSet<&str> = p.relations.keys().map(|(a, _)| a.as_str()).collect();
+    let targets: std::collections::BTreeSet<&str> = q.relations.keys().map(|(_, c)| c.as_str()).collect();
+    for a in sources {
+        for &c in &targets {
+            let witnesses = composed_witnesses(&p_view, &q_view, a, c, intermediate_objects);
+            if !witnesses.is_empty() {
+                result.relations.insert((a.to_owned(), c.to_owned()), witnesses);
             }
         }
     }
@@ -212,7 +219,13 @@ use super::validation::{
     ValidationLocation, ValidationReport, ValidationSeverity, ValidationUnit, ValidationViolation,
 };
 
-/// Build the companion profunctor of F : C → D.
+type BorrowedRelations<'a> = BTreeMap<(&'a str, &'a str), Vec<String>>;
+
+fn own_relations(rows: BorrowedRelations<'_>) -> BTreeMap<(String, String), Vec<String>> {
+    rows.into_iter().map(|((a, b), values)| ((a.to_owned(), b.to_owned()), values)).collect()
+}
+
+/// Build raw Hom-boundary witness multisets from a supplied object map.
 ///
 /// F_* : C^op × D → Set defined by F_*(A, B) = Hom_D(F(A), B).
 /// Note: Adjunctions L ⊣ R can be expressed as isomorphisms between
@@ -228,18 +241,20 @@ pub fn declared_companion_profunctor(
         &functor.target_category,
     );
 
+    let mut rows = BorrowedRelations::new();
     for (a, fa) in &functor.object_map {
         for morphism in target_category.morphisms.values() {
             if morphism.source == *fa {
-                prof.add_witness(a, &morphism.target, &morphism.name);
+                rows.entry((a.as_str(), morphism.target.as_str())).or_default().push(morphism.name.clone());
             }
         }
     }
 
+    prof.relations = own_relations(rows);
     prof
 }
 
-/// Build the conjoint profunctor of F : C → D.
+/// Build raw reversed Hom-boundary multisets from a supplied object map.
 ///
 /// F^* : D^op × C → Set defined by F^*(B, A) = Hom_D(B, F(A)).
 pub fn declared_conjoint_profunctor(
@@ -253,14 +268,16 @@ pub fn declared_conjoint_profunctor(
         &functor.source_category,
     );
 
+    let mut rows = BorrowedRelations::new();
     for (a, fa) in &functor.object_map {
         for morphism in target_category.morphisms.values() {
             if morphism.target == *fa {
-                prof.add_witness(&morphism.source, a, &morphism.name);
+                rows.entry((morphism.source.as_str(), a.as_str())).or_default().push(morphism.name.clone());
             }
         }
     }
 
+    prof.relations = own_relations(rows);
     prof
 }
 
@@ -268,6 +285,7 @@ pub fn declared_conjoint_profunctor(
 // Validation
 // ═══════════════════════════════════════════════════════════════════════════
 
+/// Check declared category-name/object-key membership only;action laws untouched.
 pub fn validate_relational_profunctor(
     prof: &DeclaredFiniteRelationalProfunctor,
     source: &DeclaredFiniteCategory,

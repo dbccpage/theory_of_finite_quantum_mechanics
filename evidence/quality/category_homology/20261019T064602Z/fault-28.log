@@ -1,0 +1,63 @@
+
+running 14 tests
+test homology::degree_repair_replay_30::subject::tests::cochain_relation_enforced ... ok
+test homology::degree_repair_replay_30::subject::independent_carrier_facades::exact_incidence_refusal_priority_and_payloads ... ok
+test homology::degree_repair_replay_30::subject::tests::maps_with_non_composable_shapes_must_be_rejected ... ok
+test homology::degree_repair_replay_30::subject::tests::non_positive_weight_rejected ... ok
+test homology::degree_repair_replay_30::subject::tests::triangle_cycle ... FAILED
+test homology::degree_repair_replay_30::subject::independent_carrier_facades::all_three_vertex_directed_graphs_and_each_triangle_orientation ... FAILED
+test homology::degree_repair_replay_30::subject::tests::zero_complex ... ok
+test homology::degree_repair_replay_30::subject::tests::single_edge_tree ... ok
+test homology::degree_repair_replay_30::subject::tests::different_carriers_different_hashes ... ok
+test homology::degree_repair_replay_30::subject::tests::carrier_manifest_deterministic ... FAILED
+test homology::degree_repair_replay_30::subject::tests::path_graph_no_survivor ... ok
+test homology::degree_repair_replay_30::subject::tests::matrix_kernel_basis ... FAILED
+test homology::degree_repair_replay_30::subject::tests::triangle_cycle_no_filling ... FAILED
+test homology::degree_repair_replay_30::subject::independent_carrier_facades::independent_axis_ranks_views_and_admission ... ok
+
+failures:
+
+---- homology::degree_repair_replay_30::subject::tests::triangle_cycle stdout ----
+
+thread 'homology::degree_repair_replay_30::subject::tests::triangle_cycle' (36116) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\dr\261019T064602\src\homology\q\n30.rs:218:88:
+called `Result::unwrap()` on an `Err` value: CoboundaryLawViolation { degree: 0 }
+
+---- homology::degree_repair_replay_30::subject::independent_carrier_facades::all_three_vertex_directed_graphs_and_each_triangle_orientation stdout ----
+
+thread 'homology::degree_repair_replay_30::subject::independent_carrier_facades::all_three_vertex_directed_graphs_and_each_triangle_orientation' (40828) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\dr\261019T064602\src\homology\q\n30.rs:322:131:
+assertion `left == right` failed
+  left: Ratio { numer: 1, denom: 1 }
+ right: Ratio { numer: -1, denom: 1 }
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- homology::degree_repair_replay_30::subject::tests::carrier_manifest_deterministic stdout ----
+
+thread 'homology::degree_repair_replay_30::subject::tests::carrier_manifest_deterministic' (7152) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\dr\261019T064602\src\homology\q\n30.rs:277:9:
+assertion `left == right` failed
+  left: 0
+ right: 1
+
+---- homology::degree_repair_replay_30::subject::tests::matrix_kernel_basis stdout ----
+
+thread 'homology::degree_repair_replay_30::subject::tests::matrix_kernel_basis' (23412) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\dr\261019T064602\src\homology\q\n30.rs:296:9:
+assertion `left == right` failed
+  left: 0
+ right: 1
+
+---- homology::degree_repair_replay_30::subject::tests::triangle_cycle_no_filling stdout ----
+
+thread 'homology::degree_repair_replay_30::subject::tests::triangle_cycle_no_filling' (46764) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\dr\261019T064602\src\homology\q\n30.rs:232:9:
+assertion `left == right` failed
+  left: 0
+ right: 1
+
+
+failures:
+    homology::degree_repair_replay_30::subject::independent_carrier_facades::all_three_vertex_directed_graphs_and_each_triangle_orientation
+    homology::degree_repair_replay_30::subject::tests::carrier_manifest_deterministic
+    homology::degree_repair_replay_30::subject::tests::matrix_kernel_basis
+    homology::degree_repair_replay_30::subject::tests::triangle_cycle
+    homology::degree_repair_replay_30::subject::tests::triangle_cycle_no_filling
+
+test result: FAILED. 9 passed; 5 failed; 0 ignored; 0 measured; 2897 filtered out; finished in 0.00s
+

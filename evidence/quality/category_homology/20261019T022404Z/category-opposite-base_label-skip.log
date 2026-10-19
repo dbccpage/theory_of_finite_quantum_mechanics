@@ -1,0 +1,28 @@
+
+running 5 tests
+test mutant_34::tests::reverse_of_swaps_endpoints ... ok
+test mutant_34::tests::validate_ok ... ok
+test mutant_34::parameter_challenge::constructors_preserve_distinct_supplied_parameters ... ok
+test mutant_34::tests::validate_rejects_empty ... FAILED
+test mutant_34::parameter_challenge::independent_schema_cases_and_first_error ... FAILED
+
+failures:
+
+---- mutant_34::tests::validate_rejects_empty stdout ----
+
+thread 'mutant_34::tests::validate_rejects_empty' (19432) panicked at metadata_challenge_0\mutant_34.rs:83:9:
+assertion failed: OppositeCategoryShell::new("Cop", "").validate_shell().is_err()
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- mutant_34::parameter_challenge::independent_schema_cases_and_first_error stdout ----
+
+thread 'mutant_34::parameter_challenge::independent_schema_cases_and_first_error' (12580) panicked at metadata_challenge_0\mutant_34.rs:110:37:
+expected Some("empty base_label"), got Ok(()); raw={"base_label":"","label":"label:α\u0000","notes":[],"reversed_morphisms":[]}
+
+
+failures:
+    mutant_34::parameter_challenge::independent_schema_cases_and_first_error
+    mutant_34::tests::validate_rejects_empty
+
+test result: FAILED. 3 passed; 2 failed; 0 ignored; 0 measured; 238 filtered out; finished in 0.00s
+

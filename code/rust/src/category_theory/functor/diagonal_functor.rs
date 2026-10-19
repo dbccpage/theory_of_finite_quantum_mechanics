@@ -3,6 +3,7 @@
 //!
 //! Diagonal functor Δ : C → C × C (or C^n) — shape only.
 
+use omega_category_theory::errors::ArithmosError;
 use serde::{Deserialize, Serialize};
 
 /// Best-effort shell for a diagonal functor on a category reference.
@@ -47,15 +48,15 @@ impl DiagonalFunctor {
         }
     }
 
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
         if self.category_ref.is_empty() {
-            return Err("empty category_ref".into());
+            return Err(ArithmosError::InvalidShape("empty category_ref".into()));
         }
         if self.arity < 2 {
-            return Err(format!("arity {} < 2", self.arity));
+            return Err(ArithmosError::InvalidShape(format!("arity {} < 2", self.arity)));
         }
         Ok(())
     }

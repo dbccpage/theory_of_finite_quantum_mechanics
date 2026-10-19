@@ -1,0 +1,21 @@
+
+running 4 tests
+test mutant_32::schema_challenge::labels_are_literal_not_mathematical_certificates ... ok
+test mutant_32::tests::validate_rejects_empty ... ok
+test mutant_32::schema_challenge::exhaustive_required_fields ... FAILED
+test mutant_32::tests::validate_ok ... ok
+
+failures:
+
+---- mutant_32::schema_challenge::exhaustive_required_fields stdout ----
+
+thread 'mutant_32::schema_challenge::exhaustive_required_fields' (22132) panicked at metadata_challenge_1\mutant_32.rs:111:34:
+mask 2, expected Some(1), got Ok(())
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    mutant_32::schema_challenge::exhaustive_required_fields
+
+test result: FAILED. 3 passed; 1 failed; 0 ignored; 0 measured; 351 filtered out; finished in 0.00s
+

@@ -1,0 +1,29 @@
+
+running 6 tests
+test mutant_53::tests::validate_ok ... ok
+test mutant_53::tests::rejects_missing_reflector ... FAILED
+test mutant_53::tests::validate_rejects_empty ... ok
+test mutant_53::tests::with_inclusion_and_unit_ok ... ok
+test mutant_53::schema_challenge::exhaustive_required_fields ... FAILED
+test mutant_53::schema_challenge::labels_are_literal_not_mathematical_certificates ... ok
+
+failures:
+
+---- mutant_53::tests::rejects_missing_reflector stdout ----
+
+thread 'mutant_53::tests::rejects_missing_reflector' (28016) panicked at metadata_challenge_0\mutant_53.rs:128:9:
+assertion failed: r.validate_shell().is_err()
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- mutant_53::schema_challenge::exhaustive_required_fields stdout ----
+
+thread 'mutant_53::schema_challenge::exhaustive_required_fields' (9340) panicked at metadata_challenge_0\mutant_53.rs:155:34:
+mask 8, expected Some(3), got Ok(())
+
+
+failures:
+    mutant_53::schema_challenge::exhaustive_required_fields
+    mutant_53::tests::rejects_missing_reflector
+
+test result: FAILED. 4 passed; 2 failed; 0 ignored; 0 measured; 364 filtered out; finished in 0.00s
+

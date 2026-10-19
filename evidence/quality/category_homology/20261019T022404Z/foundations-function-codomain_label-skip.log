@@ -1,0 +1,23 @@
+
+running 6 tests
+test mutant_49::parameter_challenge::constructors_preserve_distinct_supplied_parameters ... ok
+test mutant_49::tests::validate_rejects_missing_domain ... ok
+test mutant_49::tests::validate_ok ... ok
+test mutant_49::tests::with_pair_ok ... ok
+test mutant_49::tests::validate_rejects_empty ... ok
+test mutant_49::parameter_challenge::independent_schema_cases_and_first_error ... FAILED
+
+failures:
+
+---- mutant_49::parameter_challenge::independent_schema_cases_and_first_error stdout ----
+
+thread 'mutant_49::parameter_challenge::independent_schema_cases_and_first_error' (17132) panicked at metadata_challenge_1\mutant_49.rs:121:37:
+expected Some("empty codomain_label"), got Ok(()); raw={"codomain_label":"","domain_label":"domain_label:α\u0000","label":"label:α\u0000","notes":[],"pairs":[]}
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    mutant_49::parameter_challenge::independent_schema_cases_and_first_error
+
+test result: FAILED. 5 passed; 1 failed; 0 ignored; 0 measured; 248 filtered out; finished in 0.00s
+

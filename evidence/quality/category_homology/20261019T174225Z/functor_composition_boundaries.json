@@ -1,0 +1,174 @@
+{
+  "AuthorityEffect": "None",
+  "records": [
+    {
+      "family": "",
+      "path": "code/rust/src/category_theory/functor_composition.rs",
+      "sha256": "f240aa886c21bee86d26a74dbcdff380fa48b1495b5d5b062f5bbe26def480dd",
+      "parent_aliases": [
+        "cat_functor",
+        "finite_category",
+        "validation",
+        "finite_category_validation"
+      ],
+      "faults": [
+        [
+          "if report.all_passed() {",
+          "if true {"
+        ],
+        [
+          "source: source.clone(),",
+          "source: target.clone(),"
+        ],
+        [
+          "target: target.clone(),",
+          "target: source.clone(),"
+        ],
+        [
+          "        &self.declared\n",
+          "        panic!(\"lost accessor\")\n"
+        ],
+        [
+          "        &self.source\n",
+          "        &self.target\n"
+        ],
+        [
+          "        &self.target\n",
+          "        &self.source\n"
+        ],
+        [
+          "        self.declared\n",
+          "        DeclaredFiniteFunctor::new(\"wrong\",\"wrong\",\"wrong\")\n"
+        ],
+        [
+          "\npub fn identity_functor(category: &DeclaredFiniteCategory, name: &str) -> DeclaredFiniteFunctor {\n    let mut functor = DeclaredFiniteFunctor::new(name, &category.name, &category.name);\n\n    for object in &category.objects {\n        functor.map_object(object, object);\n    }\n    for morphism in category.morphisms.keys() {\n        functor.map_morphism(morphism, morphism);\n    }\n\n    functor\n}",
+          "\npub fn identity_functor(category: &DeclaredFiniteCategory, name: &str) -> DeclaredFiniteFunctor {\n    let mut functor = DeclaredFiniteFunctor::new(name, &category.name, &category.name);\n\n    for object in &category.objects {\n        functor.map_object(object, \"wrong\");\n    }\n    for morphism in category.morphisms.keys() {\n        functor.map_morphism(morphism, morphism);\n    }\n\n    functor\n}"
+        ],
+        [
+          "\npub fn identity_functor(category: &DeclaredFiniteCategory, name: &str) -> DeclaredFiniteFunctor {\n    let mut functor = DeclaredFiniteFunctor::new(name, &category.name, &category.name);\n\n    for object in &category.objects {\n        functor.map_object(object, object);\n    }\n    for morphism in category.morphisms.keys() {\n        functor.map_morphism(morphism, morphism);\n    }\n\n    functor\n}",
+          "\npub fn identity_functor(category: &DeclaredFiniteCategory, name: &str) -> DeclaredFiniteFunctor {\n    let mut functor = DeclaredFiniteFunctor::new(name, &category.name, &category.name);\n\n    for object in &category.objects {\n        functor.map_object(object, object);\n    }\n    for morphism in category.morphisms.keys() {\n        functor.map_morphism(morphism, \"wrong\");\n    }\n\n    functor\n}"
+        ],
+        [
+          "if first.target_category != second.source_category {",
+          "if false {"
+        ],
+        [
+          "if first.target() != second.source() {",
+          "if false {"
+        ],
+        [
+          "pub fn compose_declared_functors(\n    name: &str,\n    first: &DeclaredFiniteFunctor,\n    second: &DeclaredFiniteFunctor,\n) -> Result<DeclaredFiniteFunctor, String> {\n    if first.target_category != second.source_category {\n        return Err(format!(\n            \"Cannot compose {} then {}: target {} does not match source {}\",\n            first.name, second.name, first.target_category, second.source_category\n        ));\n    }\n\n    let mut composite =\n        DeclaredFiniteFunctor::new(name, &first.source_category, &second.target_category);\n\n    for (object, middle_object) in &first.object_map {\n        let Some(target_object) = second.object_map.get(middle_object) else {\n            return Err(format!(\n                \"Cannot compose object {}: {}({}) = {}, but {} is undefined there\",\n                object, first.name, object, middle_object, second.name\n            ));\n        };\n        composite.map_object(object, target_object);\n    }\n\n    for (morphism, middle_morphism) in &first.morphism_map {\n        let Some(target_morphism) = second.morphism_map.get(middle_morphism) else {\n            return Err(format!(\n                \"Cannot compose morphism {}: {}({}) = {}, but {} is undefined there\",\n                morphism, first.name, morphism, middle_morphism, second.name\n            ));\n        };\n        composite.map_morphism(morphism, target_morphism);\n    }\n\n    Ok(composite)\n}",
+          "pub fn compose_declared_functors(\n    name: &str,\n    first: &DeclaredFiniteFunctor,\n    second: &DeclaredFiniteFunctor,\n) -> Result<DeclaredFiniteFunctor, String> {\n    if first.target_category != second.source_category {\n        return Err(\"wrong error\".to_string());\n    }\n\n    let mut composite =\n        DeclaredFiniteFunctor::new(name, &first.source_category, &second.target_category);\n\n    for (object, middle_object) in &first.object_map {\n        let Some(target_object) = second.object_map.get(middle_object) else {\n            return Err(format!(\n                \"Cannot compose object {}: {}({}) = {}, but {} is undefined there\",\n                object, first.name, object, middle_object, second.name\n            ));\n        };\n        composite.map_object(object, target_object);\n    }\n\n    for (morphism, middle_morphism) in &first.morphism_map {\n        let Some(target_morphism) = second.morphism_map.get(middle_morphism) else {\n            return Err(format!(\n                \"Cannot compose morphism {}: {}({}) = {}, but {} is undefined there\",\n                morphism, first.name, morphism, middle_morphism, second.name\n            ));\n        };\n        composite.map_morphism(morphism, target_morphism);\n    }\n\n    Ok(composite)\n}"
+        ],
+        [
+          "pub fn compose_declared_functors(\n    name: &str,\n    first: &DeclaredFiniteFunctor,\n    second: &DeclaredFiniteFunctor,\n) -> Result<DeclaredFiniteFunctor, String> {\n    if first.target_category != second.source_category {\n        return Err(format!(\n            \"Cannot compose {} then {}: target {} does not match source {}\",\n            first.name, second.name, first.target_category, second.source_category\n        ));\n    }\n\n    let mut composite =\n        DeclaredFiniteFunctor::new(name, &first.source_category, &second.target_category);\n\n    for (object, middle_object) in &first.object_map {\n        let Some(target_object) = second.object_map.get(middle_object) else {\n            return Err(format!(\n                \"Cannot compose object {}: {}({}) = {}, but {} is undefined there\",\n                object, first.name, object, middle_object, second.name\n            ));\n        };\n        composite.map_object(object, target_object);\n    }\n\n    for (morphism, middle_morphism) in &first.morphism_map {\n        let Some(target_morphism) = second.morphism_map.get(middle_morphism) else {\n            return Err(format!(\n                \"Cannot compose morphism {}: {}({}) = {}, but {} is undefined there\",\n                morphism, first.name, morphism, middle_morphism, second.name\n            ));\n        };\n        composite.map_morphism(morphism, target_morphism);\n    }\n\n    Ok(composite)\n}",
+          "pub fn compose_declared_functors(\n    name: &str,\n    first: &DeclaredFiniteFunctor,\n    second: &DeclaredFiniteFunctor,\n) -> Result<DeclaredFiniteFunctor, String> {\n    if first.target_category != second.source_category {\n        return Err(format!(\n            \"Cannot compose {} then {}: target {} does not match source {}\",\n            first.name, second.name, first.target_category, second.source_category\n        ));\n    }\n\n    let mut composite =\n        DeclaredFiniteFunctor::new(name, &first.source_category, &second.target_category);\n\n    for (object, middle_object) in &first.object_map {\n        let Some(target_object) = second.object_map.get(middle_object) else {\n            return Err(\"wrong error\".to_string());\n        };\n        composite.map_object(object, target_object);\n    }\n\n    for (morphism, middle_morphism) in &first.morphism_map {\n        let Some(target_morphism) = second.morphism_map.get(middle_morphism) else {\n            return Err(format!(\n                \"Cannot compose morphism {}: {}({}) = {}, but {} is undefined there\",\n                morphism, first.name, morphism, middle_morphism, second.name\n            ));\n        };\n        composite.map_morphism(morphism, target_morphism);\n    }\n\n    Ok(composite)\n}"
+        ],
+        [
+          "pub fn compose_declared_functors(\n    name: &str,\n    first: &DeclaredFiniteFunctor,\n    second: &DeclaredFiniteFunctor,\n) -> Result<DeclaredFiniteFunctor, String> {\n    if first.target_category != second.source_category {\n        return Err(format!(\n            \"Cannot compose {} then {}: target {} does not match source {}\",\n            first.name, second.name, first.target_category, second.source_category\n        ));\n    }\n\n    let mut composite =\n        DeclaredFiniteFunctor::new(name, &first.source_category, &second.target_category);\n\n    for (object, middle_object) in &first.object_map {\n        let Some(target_object) = second.object_map.get(middle_object) else {\n            return Err(format!(\n                \"Cannot compose object {}: {}({}) = {}, but {} is undefined there\",\n                object, first.name, object, middle_object, second.name\n            ));\n        };\n        composite.map_object(object, target_object);\n    }\n\n    for (morphism, middle_morphism) in &first.morphism_map {\n        let Some(target_morphism) = second.morphism_map.get(middle_morphism) else {\n            return Err(format!(\n                \"Cannot compose morphism {}: {}({}) = {}, but {} is undefined there\",\n                morphism, first.name, morphism, middle_morphism, second.name\n            ));\n        };\n        composite.map_morphism(morphism, target_morphism);\n    }\n\n    Ok(composite)\n}",
+          "pub fn compose_declared_functors(\n    name: &str,\n    first: &DeclaredFiniteFunctor,\n    second: &DeclaredFiniteFunctor,\n) -> Result<DeclaredFiniteFunctor, String> {\n    if first.target_category != second.source_category {\n        return Err(format!(\n            \"Cannot compose {} then {}: target {} does not match source {}\",\n            first.name, second.name, first.target_category, second.source_category\n        ));\n    }\n\n    let mut composite =\n        DeclaredFiniteFunctor::new(name, &first.source_category, &second.target_category);\n\n    for (object, middle_object) in &first.object_map {\n        let Some(target_object) = second.object_map.get(middle_object) else {\n            return Err(format!(\n                \"Cannot compose object {}: {}({}) = {}, but {} is undefined there\",\n                object, first.name, object, middle_object, second.name\n            ));\n        };\n        composite.map_object(object, target_object);\n    }\n\n    for (morphism, middle_morphism) in &first.morphism_map {\n        let Some(target_morphism) = second.morphism_map.get(middle_morphism) else {\n            return Err(\"wrong error\".to_string());\n        };\n        composite.map_morphism(morphism, target_morphism);\n    }\n\n    Ok(composite)\n}"
+        ],
+        [
+          "\npub fn inclusion_functor(\n    name: &str,\n    source: &DeclaredFiniteCategory,\n    target: &DeclaredFiniteCategory,\n) -> Result<DeclaredFiniteFunctor, String> {\n    let mut functor = DeclaredFiniteFunctor::new(name, &source.name, &target.name);\n\n    for object in &source.objects {\n        if !target.has_object(object) {\n            return Err(format!(\"Target category lacks object {}\", object));\n        }\n        functor.map_object(object, object);\n    }\n\n    for (name, morphism) in &source.morphisms {\n        let Some(target_morphism) = target.morphisms.get(name) else {\n            return Err(format!(\"Target category lacks morphism {}\", name));\n        };\n        if target_morphism.source != morphism.source || target_morphism.target != morphism.target {\n            return Err(format!(\n                \"Target morphism {} has boundary {} -> {}, expected {} -> {}\",\n                name,\n                target_morphism.source,\n                target_morphism.target,\n                morphism.source,\n                morphism.target\n            ));\n        }\n        functor.map_morphism(name, name);\n    }\n\n    Ok(functor)\n}",
+          "\npub fn inclusion_functor(\n    name: &str,\n    source: &DeclaredFiniteCategory,\n    target: &DeclaredFiniteCategory,\n) -> Result<DeclaredFiniteFunctor, String> {\n    let mut functor = DeclaredFiniteFunctor::new(name, &source.name, &target.name);\n\n    for object in &source.objects {\n        if !target.has_object(object) {\n            return Err(\"wrong error\".to_string());\n        }\n        functor.map_object(object, object);\n    }\n\n    for (name, morphism) in &source.morphisms {\n        let Some(target_morphism) = target.morphisms.get(name) else {\n            return Err(format!(\"Target category lacks morphism {}\", name));\n        };\n        if target_morphism.source != morphism.source || target_morphism.target != morphism.target {\n            return Err(format!(\n                \"Target morphism {} has boundary {} -> {}, expected {} -> {}\",\n                name,\n                target_morphism.source,\n                target_morphism.target,\n                morphism.source,\n                morphism.target\n            ));\n        }\n        functor.map_morphism(name, name);\n    }\n\n    Ok(functor)\n}"
+        ],
+        [
+          "\npub fn inclusion_functor(\n    name: &str,\n    source: &DeclaredFiniteCategory,\n    target: &DeclaredFiniteCategory,\n) -> Result<DeclaredFiniteFunctor, String> {\n    let mut functor = DeclaredFiniteFunctor::new(name, &source.name, &target.name);\n\n    for object in &source.objects {\n        if !target.has_object(object) {\n            return Err(format!(\"Target category lacks object {}\", object));\n        }\n        functor.map_object(object, object);\n    }\n\n    for (name, morphism) in &source.morphisms {\n        let Some(target_morphism) = target.morphisms.get(name) else {\n            return Err(format!(\"Target category lacks morphism {}\", name));\n        };\n        if target_morphism.source != morphism.source || target_morphism.target != morphism.target {\n            return Err(format!(\n                \"Target morphism {} has boundary {} -> {}, expected {} -> {}\",\n                name,\n                target_morphism.source,\n                target_morphism.target,\n                morphism.source,\n                morphism.target\n            ));\n        }\n        functor.map_morphism(name, name);\n    }\n\n    Ok(functor)\n}",
+          "\npub fn inclusion_functor(\n    name: &str,\n    source: &DeclaredFiniteCategory,\n    target: &DeclaredFiniteCategory,\n) -> Result<DeclaredFiniteFunctor, String> {\n    let mut functor = DeclaredFiniteFunctor::new(name, &source.name, &target.name);\n\n    for object in &source.objects {\n        if !target.has_object(object) {\n            return Err(format!(\"Target category lacks object {}\", object));\n        }\n        functor.map_object(object, object);\n    }\n\n    for (name, morphism) in &source.morphisms {\n        let Some(target_morphism) = target.morphisms.get(name) else {\n            return Err(\"wrong error\".to_string());\n        };\n        if target_morphism.source != morphism.source || target_morphism.target != morphism.target {\n            return Err(format!(\n                \"Target morphism {} has boundary {} -> {}, expected {} -> {}\",\n                name,\n                target_morphism.source,\n                target_morphism.target,\n                morphism.source,\n                morphism.target\n            ));\n        }\n        functor.map_morphism(name, name);\n    }\n\n    Ok(functor)\n}"
+        ],
+        [
+          "\npub fn inclusion_functor(\n    name: &str,\n    source: &DeclaredFiniteCategory,\n    target: &DeclaredFiniteCategory,\n) -> Result<DeclaredFiniteFunctor, String> {\n    let mut functor = DeclaredFiniteFunctor::new(name, &source.name, &target.name);\n\n    for object in &source.objects {\n        if !target.has_object(object) {\n            return Err(format!(\"Target category lacks object {}\", object));\n        }\n        functor.map_object(object, object);\n    }\n\n    for (name, morphism) in &source.morphisms {\n        let Some(target_morphism) = target.morphisms.get(name) else {\n            return Err(format!(\"Target category lacks morphism {}\", name));\n        };\n        if target_morphism.source != morphism.source || target_morphism.target != morphism.target {\n            return Err(format!(\n                \"Target morphism {} has boundary {} -> {}, expected {} -> {}\",\n                name,\n                target_morphism.source,\n                target_morphism.target,\n                morphism.source,\n                morphism.target\n            ));\n        }\n        functor.map_morphism(name, name);\n    }\n\n    Ok(functor)\n}",
+          "\npub fn inclusion_functor(\n    name: &str,\n    source: &DeclaredFiniteCategory,\n    target: &DeclaredFiniteCategory,\n) -> Result<DeclaredFiniteFunctor, String> {\n    let mut functor = DeclaredFiniteFunctor::new(name, &source.name, &target.name);\n\n    for object in &source.objects {\n        if !target.has_object(object) {\n            return Err(format!(\"Target category lacks object {}\", object));\n        }\n        functor.map_object(object, object);\n    }\n\n    for (name, morphism) in &source.morphisms {\n        let Some(target_morphism) = target.morphisms.get(name) else {\n            return Err(format!(\"Target category lacks morphism {}\", name));\n        };\n        if target_morphism.source != morphism.source || target_morphism.target != morphism.target {\n            return Err(\"wrong error\".to_string());\n        }\n        functor.map_morphism(name, name);\n    }\n\n    Ok(functor)\n}"
+        ],
+        [
+          "composite.map_object(object, target_object);",
+          "composite.map_object(object, middle_object);"
+        ],
+        [
+          "composite.map_morphism(morphism, target_morphism);",
+          "composite.map_morphism(morphism, middle_morphism);"
+        ],
+        [
+          "opposite.add_morphism(&morphism.name, &morphism.target, &morphism.source);",
+          "opposite.add_morphism(&morphism.name, &morphism.source, &morphism.target);"
+        ],
+        [
+          "opposite.set_identity(object, identity);",
+          "let _=(object,identity);"
+        ],
+        [
+          "opposite.set_composition(second, first, composite);",
+          "opposite.set_composition(first, second, composite);"
+        ],
+        [
+          "opposite.object_map = functor.object_map.clone();",
+          "opposite.object_map = functor.morphism_map.clone();"
+        ],
+        [
+          "opposite.morphism_map = functor.morphism_map.clone();",
+          "opposite.morphism_map = functor.object_map.clone();"
+        ],
+        [
+          "DeclaredFiniteFunctor::new(name, source_op_category, target_op_category)",
+          "DeclaredFiniteFunctor::new(name, target_op_category, source_op_category)"
+        ],
+        [
+          "functor.map_object(source_object, target_object);",
+          "functor.map_object(target_object, source_object);"
+        ],
+        [
+          "functor.map_morphism(source_morphism, target_morphism);",
+          "functor.map_morphism(target_morphism, source_morphism);"
+        ],
+        [
+          "\nfn check_endpoint_categories(\n    report: &mut ValidationReport,\n    source: &DeclaredFiniteCategory,\n    target: &DeclaredFiniteCategory,\n) {\n    let checked_source = super::finite_category_validation::validate_finite_category(source);\n    report.add_typed(\"functor::source_category\", checked_source.typed_violations);\n    if source != target {\n        let checked_target = super::finite_category_validation::validate_finite_category(target);\n        report.add_typed(\"functor::target_category\", checked_target.typed_violations);\n    }\n}",
+          "\nfn check_endpoint_categories(\n    report: &mut ValidationReport,\n    source: &DeclaredFiniteCategory,\n    target: &DeclaredFiniteCategory,\n) {}"
+        ],
+        [
+          "\nfn add_unit(\n    report: &mut ValidationReport,\n    unit: FunctorValidation,\n    violations: Vec<ValidationViolation>,\n) {\n    report.add_typed(&format!(\"functor::{:?}\", unit), violations);\n}",
+          "\nfn add_unit(\n    report: &mut ValidationReport,\n    unit: FunctorValidation,\n    violations: Vec<ValidationViolation>,\n) {}"
+        ],
+        [
+          "\nfn check_functor_name(functor: &DeclaredFiniteFunctor) -> Vec<ValidationViolation> {\n    if functor.name.trim().is_empty() {\n        return vec![violation(\n            FunctorValidation::Name,\n            ValidationLocation::Global,\n            \"Empty functor name\",\n        )];\n    }\n    Vec::new()\n}",
+          "\nfn check_functor_name(functor: &DeclaredFiniteFunctor) -> Vec<ValidationViolation> { Vec::new() }"
+        ],
+        [
+          "\nfn check_mapping_domains(\n    functor: &DeclaredFiniteFunctor,\n    source: &DeclaredFiniteCategory,\n) -> Vec<ValidationViolation> {\n    let mut errors = Vec::new();\n    if !functor.object_map.keys().eq(source.objects.iter()) {\n        errors.push(violation(\n            FunctorValidation::MappingDomain,\n            ValidationLocation::Global,\n            \"Object map domain differs from source objects\",\n        ));\n    }\n    if !functor.morphism_map.keys().eq(source.morphisms.keys()) {\n        errors.push(violation(\n            FunctorValidation::MappingDomain,\n            ValidationLocation::Global,\n            \"Morphism map domain differs from source morphisms\",\n        ));\n    }\n    errors\n}",
+          "\nfn check_mapping_domains(\n    functor: &DeclaredFiniteFunctor,\n    source: &DeclaredFiniteCategory,\n) -> Vec<ValidationViolation> { Vec::new() }"
+        ],
+        [
+          "\nfn check_object_images(\n    functor: &DeclaredFiniteFunctor,\n    source: &DeclaredFiniteCategory,\n    target: &DeclaredFiniteCategory,\n) -> Vec<ValidationViolation> {\n    let mut object_violations = Vec::new();\n    if functor.source_category != source.name {\n        object_violations.push(violation(\n            FunctorValidation::ObjectTotality,\n            ValidationLocation::Global,\n            format!(\n                \"Functor source category is {}, expected {}\",\n                functor.source_category, source.name\n            ),\n        ));\n    }\n    if functor.target_category != target.name {\n        object_violations.push(violation(\n            FunctorValidation::ObjectTotality,\n            ValidationLocation::Global,\n            format!(\n                \"Functor target category is {}, expected {}\",\n                functor.target_category, target.name\n            ),\n        ));\n    }\n\n    for object in &source.objects {\n        match functor.on_object(object) {\n            Some(image) if target.has_object(image) => {}\n            Some(image) => object_violations.push(violation(\n                FunctorValidation::ObjectTotality,\n                ValidationLocation::Object(object.clone()),\n                format!(\n                    \"F({}) = {} is not an object of {}\",\n                    object, image, target.name\n                ),\n            )),\n            None => object_violations.push(violation(\n                FunctorValidation::ObjectTotality,\n                ValidationLocation::Object(object.clone()),\n                format!(\"Object {} is not mapped by {}\", object, functor.name),\n            )),\n        }\n    }\n    object_violations\n}",
+          "\nfn check_object_images(\n    functor: &DeclaredFiniteFunctor,\n    source: &DeclaredFiniteCategory,\n    target: &DeclaredFiniteCategory,\n) -> Vec<ValidationViolation> { Vec::new() }"
+        ],
+        [
+          "\nfn check_morphism_images(\n    functor: &DeclaredFiniteFunctor,\n    source: &DeclaredFiniteCategory,\n    target: &DeclaredFiniteCategory,\n) -> Vec<ValidationViolation> {\n    let mut morphism_violations = Vec::new();\n    for morphism in source.morphisms.keys() {\n        match functor.on_morphism(morphism) {\n            Some(image) if target.has_morphism(image) => {}\n            Some(image) => morphism_violations.push(violation(\n                FunctorValidation::MorphismTotality,\n                ValidationLocation::Morphism(morphism.clone()),\n                format!(\n                    \"F({}) = {} is not a morphism of {}\",\n                    morphism, image, target.name\n                ),\n            )),\n            None => morphism_violations.push(violation(\n                FunctorValidation::MorphismTotality,\n                ValidationLocation::Morphism(morphism.clone()),\n                format!(\"Morphism {} is not mapped by {}\", morphism, functor.name),\n            )),\n        }\n    }\n    morphism_violations\n}",
+          "\nfn check_morphism_images(\n    functor: &DeclaredFiniteFunctor,\n    source: &DeclaredFiniteCategory,\n    target: &DeclaredFiniteCategory,\n) -> Vec<ValidationViolation> { Vec::new() }"
+        ],
+        [
+          "\nfn check_boundary_images(\n    functor: &DeclaredFiniteFunctor,\n    source: &DeclaredFiniteCategory,\n    target: &DeclaredFiniteCategory,\n) -> Vec<ValidationViolation> {\n    let mut boundary_violations = Vec::new();\n    for morphism in source.morphisms.values() {\n        let Some(image_morphism) = functor.on_morphism(&morphism.name) else {\n            continue;\n        };\n        let Some(image_source) = functor.on_object(&morphism.source) else {\n            continue;\n        };\n        let Some(image_target) = functor.on_object(&morphism.target) else {\n            continue;\n        };\n        let Some((actual_source, actual_target)) = target.boundary_of(image_morphism) else {\n            continue;\n        };\n\n        if actual_source != image_source || actual_target != image_target {\n            boundary_violations.push(violation(\n                FunctorValidation::BoundaryPreservation,\n                ValidationLocation::Boundary {\n                    morphism: morphism.name.clone(),\n                    source: image_source.into(),\n                    target: image_target.into(),\n                },\n                format!(\n                    \"F({}) has boundary {} -> {}, expected {} -> {}\",\n                    morphism.name, actual_source, actual_target, image_source, image_target\n                ),\n            ));\n        }\n    }\n    boundary_violations\n}",
+          "\nfn check_boundary_images(\n    functor: &DeclaredFiniteFunctor,\n    source: &DeclaredFiniteCategory,\n    target: &DeclaredFiniteCategory,\n) -> Vec<ValidationViolation> { Vec::new() }"
+        ],
+        [
+          "\nfn check_identity_images(\n    functor: &DeclaredFiniteFunctor,\n    source: &DeclaredFiniteCategory,\n    target: &DeclaredFiniteCategory,\n) -> Vec<ValidationViolation> {\n    let mut identity_violations = Vec::new();\n    for object in &source.objects {\n        let Some(source_identity) = source.identity_of(object) else {\n            continue;\n        };\n        let Some(image_object) = functor.on_object(object) else {\n            continue;\n        };\n        let Some(expected_identity) = target.identity_of(image_object) else {\n            continue;\n        };\n        match functor.on_morphism(source_identity) {\n            Some(image_identity) if image_identity == expected_identity => {}\n            Some(image_identity) => identity_violations.push(violation(\n                FunctorValidation::IdentityPreservation,\n                ValidationLocation::Object(object.clone()),\n                format!(\n                    \"F(id_{}) = {}, expected {}\",\n                    object, image_identity, expected_identity\n                ),\n            )),\n            None => identity_violations.push(violation(\n                FunctorValidation::IdentityPreservation,\n                ValidationLocation::Morphism(source_identity.into()),\n                format!(\"F({}) is not defined\", source_identity),\n            )),\n        }\n    }\n    identity_violations\n}",
+          "\nfn check_identity_images(\n    functor: &DeclaredFiniteFunctor,\n    source: &DeclaredFiniteCategory,\n    target: &DeclaredFiniteCategory,\n) -> Vec<ValidationViolation> { Vec::new() }"
+        ],
+        [
+          "\nfn check_composition_images(\n    functor: &DeclaredFiniteFunctor,\n    source: &DeclaredFiniteCategory,\n    target: &DeclaredFiniteCategory,\n) -> Vec<ValidationViolation> {\n    let mut composition_violations = Vec::new();\n    let lookup = CompositionLookup::new(&target.compositions);\n    for ((first, second), composite) in &source.compositions {\n        let Some(first_image) = functor.on_morphism(first) else {\n            continue;\n        };\n        let Some(second_image) = functor.on_morphism(second) else {\n            continue;\n        };\n        let Some(composite_image) = functor.on_morphism(composite) else {\n            continue;\n        };\n\n        match lookup.compose(first_image, second_image) {\n            Some(target_composite) if target_composite == composite_image => {}\n            Some(target_composite) => composition_violations.push(violation(\n                FunctorValidation::CompositionPreservation,\n                ValidationLocation::Composition {\n                    first: first.clone(),\n                    second: second.clone(),\n                    composite: Some(composite.clone()),\n                },\n                format!(\n                    \"F({} after {}) = {}, but F({}) after F({}) = {}\",\n                    second, first, composite_image, second, first, target_composite\n                ),\n            )),\n            None => composition_violations.push(violation(\n                FunctorValidation::CompositionPreservation,\n                ValidationLocation::Composition {\n                    first: first.clone(),\n                    second: second.clone(),\n                    composite: Some(composite.clone()),\n                },\n                format!(\n                    \"Target composition F({}) after F({}) is not defined\",\n                    second, first\n                ),\n            )),\n        }\n    }\n    composition_violations\n}",
+          "\nfn check_composition_images(\n    functor: &DeclaredFiniteFunctor,\n    source: &DeclaredFiniteCategory,\n    target: &DeclaredFiniteCategory,\n) -> Vec<ValidationViolation> { Vec::new() }"
+        ],
+        [
+          "ValidationSeverity::Error,",
+          "ValidationSeverity::Warning,"
+        ],
+        [
+          "if target_morphism.source != morphism.source || target_morphism.target != morphism.target {",
+          "if false {"
+        ],
+        [
+          "let lookup = CompositionLookup::new(&target.compositions);",
+          "let lookup = CompositionLookup::new(&source.compositions);"
+        ]
+      ]
+    }
+  ]
+}

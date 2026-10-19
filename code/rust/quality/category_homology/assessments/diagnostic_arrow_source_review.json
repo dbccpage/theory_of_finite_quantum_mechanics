@@ -1,0 +1,273 @@
+{
+  "AuthorityEffect": "None",
+  "records": [
+    {
+      "artifact": {
+        "path": "code/rust/src/category_theory/validation.rs",
+        "sha256": "d5732e24e6c86ae4a9f5e27a39fec0f7d15bd94aa1dfec551d6fa94a585b5d62"
+      },
+      "symbol_map": {
+        "ValidationViolation::new": {
+          "signature": "pub fn new( unit: ValidationUnit, location: ValidationLocation, message: impl Into<String>, severity: ValidationSeverity, ) -> Self",
+          "body": "{ Self { unit, location, message: message.into(), severity, } }",
+          "obligation": "Own exact supplied unit, location and severity; invoke message Into<String> once and preserve its converted string. No severity filtering, sanitization or implicit mathematical check. Caller-provided conversion behavior is not assumed pure or terminating."
+        },
+        "ValidationResult::pass": {
+          "signature": "pub fn pass(unit: &str) -> Self",
+          "body": "{ Self { unit: unit.into(), passed: true, violations: Vec::new(), } }",
+          "obligation": "Store exact unit, passed=true and empty message vector. This is caller metadata, not an executed test."
+        },
+        "ValidationResult::fail": {
+          "signature": "pub fn fail(unit: &str, violations: Vec<String>) -> Self",
+          "body": "{ Self { unit: unit.into(), passed: false, violations, } }",
+          "obligation": "Store exact unit and owned message vector with passed=false, even if messages are empty."
+        },
+        "ValidationReport::new": {
+          "signature": "pub fn new(name: &str) -> Self",
+          "body": "{ Self { target_name: name.into(), results: Vec::new(), typed_violations: Vec::new(), } }",
+          "obligation": "Store exact target name and empty vectors. Empty report is vacuously passing; names are unvalidated metadata."
+        },
+        "ValidationReport::add": {
+          "signature": "pub fn add(&mut self, result: ValidationResult)",
+          "body": "{ self.results.push(result); }",
+          "obligation": "Append one supplied raw result unchanged. Public passed/messages fields may contradict; only passed flags enter success/failure counts."
+        },
+        "ValidationReport::add_violation": {
+          "signature": "pub fn add_violation(&mut self, violation: ValidationViolation)",
+          "body": "{ self.results.push(ValidationResult::fail( &format!(\"{:?}\", violation.unit), vec![violation.message.clone()], )); self.typed_violations.push(violation); }",
+          "obligation": "Append one failed result with exact Debug unit name and cloned message, then move the complete typed issue to typed_violations. Error/Warning/Info all block all_passed. Type renderer is diagnostic text, not a stable wire format."
+        },
+        "ValidationReport::add_typed": {
+          "signature": "pub fn add_typed(&mut self, unit: &str, violations: Vec<ValidationViolation>)",
+          "body": "{ if violations.is_empty() { self.results.push(ValidationResult::pass(unit)); } else { let messages = violations .iter() .map(|violation| violation.message.clone()) .collect(); self.results.push(ValidationResult::fail(unit, messages)); self.typed_violations.extend(violations); } }",
+          "obligation": "Empty batch appends exactly one passing result and no typed issue. Nonempty batch appends one failed result named by the separate batch unit, projects messages in input order and moves complete typed issues in that same order. Batch unit need not equal issue units; failure_count counts result rows, not individual issues."
+        },
+        "ValidationReport::all_passed": {
+          "signature": "pub fn all_passed(&self) -> bool",
+          "body": "{ self.results.iter().all(|r| r.passed) && self.typed_violations.is_empty() }",
+          "obligation": "Return all stored flags true AND typed vector empty. Short circuit has no side effects. Messages/severity are not inferred as flags; public contradictory fields do not become certificates."
+        },
+        "ValidationReport::failure_count": {
+          "signature": "pub fn failure_count(&self) -> usize",
+          "body": "{ self.results.iter().filter(|r| !r.passed).count() }",
+          "obligation": "Count false result flags only. Count is at most results.len(), hence fits actual usize Vec length; no sum of unbounded external counts."
+        },
+        "ValidationReport::violation_count": {
+          "signature": "pub fn violation_count(&self) -> usize",
+          "body": "{ self.typed_violations.len() }",
+          "obligation": "Return exactly typed_violations.len(), independent of result row count and severity."
+        }
+      },
+      "data_and_derive_review": "//! Diagnostic labels and caller-supplied validation results. AuthorityEffect: None.\n//!\n//! Unit names identify obligations; this file does not execute their checkers.\n//! Reports preserve supplied flags and diagnostics, including empty reports.\n//! Public fields are metadata, not an authenticated mathematical certificate.\n\n// ---------------------------------------------------------------------------\n// Validation unit identifiers (spec §4)\n// ---------------------------------------------------------------------------\n\n/// Identifiers for all functor validation units.\n///\n/// These name validation obligations and serve as diagnostic keys.\n/// Constructing a label does not establish the named obligation.\n#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]\npub enum FunctorValidation {\n    Name,\n    MappingDomain,\n    // Covariant functor (spec §4)\n    ObjectTotality,\n    MorphismTotality,\n    BoundaryPreservation,\n    IdentityPreservation,\n    CompositionPreservation,\n\n    // Contravariant functor (spec §4)\n    ContravariantIdentityPreservation,\n    ContravariantCompositionReversal,\n}\n\n#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]\npub enum NatTransValidation {\n    Name,\n    FunctorBinding,\n    ComponentDomain,\n    ComponentBoundary,\n    NaturalitySquare,\n}\n\n#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]\npub enum AdjunctionValidation {\n    UnitNaturality,\n    CounitNaturality,\n    TriangleLeft,\n    TriangleRight,\n    HomSetMembership,\n    HomBijectionTotality,\n    HomBijectionRoundTrip,\n}\n\n#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]\npub enum ProfunctorValidation {\n    DimapIdentity,\n    DimapComposition,\n    StrongFirstSecond,\n    ClosedInteraction,\n}\n\n#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]\npub enum HigherFunctorValidation {\n    TwoFunctorObjectMap,\n    TwoFunctorOneMorphismMap,\n    TwoFunctorTwoMorphismMap,\n    TwoFunctorCompositionPreservation,\n    TwoFunctorIdentityPreservation,\n    PseudofunctorPentagonCoherence,\n    PseudofunctorTriangleCoherence,\n    InterchangeLaw,\n}\n\n#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]\npub enum CoendValidation {\n    /// Quotient respects all morphisms (spec §14).\n    Dinaturality,\n}\n\n#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]\npub enum KanExtensionValidation {\n    /// Lan is universal (spec §16).\n    UniversalProperty,\n    /// Lan_id F ≅ F (Yoneda unit law, spec §16).\n    YonedaUnitLaw,\n}\n\n#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]\npub enum CauchyValidation {\n    /// r ∘ s = id_R, s ∘ r = e (spec §17).\n    IdempotentSplitting,\n    /// All idempotents split (spec §17).\n    CauchyCompleteness,\n}\n\n#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]\npub enum MonadValidation {\n    /// μ ∘ Tη = id_T (spec §22).\n    UnitLeft,\n    /// μ ∘ ηT = id_T (spec §22).\n    UnitRight,\n    /// μ ∘ Tμ = μ ∘ μT (spec §22).\n    Associativity,\n}\n\n#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]\npub enum CondensationValidation {\n    /// Base splitting laws: r∘s = id, s∘r = e (spec §21).\n    BaseSplitting,\n    /// Homotopy coherence at each level (spec §21).\n    CoherenceWitness,\n    /// All condensations split (∞-Cauchy, spec §21).\n    InfinityCauchyCompleteness,\n}\n\n#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]\npub enum LawvereValidation {\n    /// Theory respects finite products (spec §25).\n    ProductPreservation,\n    /// Composition = substitution (spec §25).\n    SubstitutionAssociativity,\n    /// All idempotent operations split (spec §25).\n    CauchyCompleteness,\n    /// Theory ↔ finitary monad correspondence (spec §25).\n    MonadEquivalence,\n}\n\n#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]\npub enum OperadValidation {\n    /// Tree-substitution is associative (spec §26).\n    Associativity,\n    /// Identity operations act as units (spec §26).\n    Unit,\n    /// Symmetric group action is compatible (spec §26).\n    Equivariance,\n    /// Homotopy coherence at each level (spec §26).\n    InfinityCoherence,\n}\n\n#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]\npub enum FiniteCategoryValidation {\n    ObjectReference,\n    MorphismBoundary,\n    IdentityTotality,\n    IdentityLaw,\n    CompositionTotality,\n    CompositionClosure,\n    CompositionBoundary,\n    Associativity,\n}\n\n#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]\npub enum RewritingValidation {\n    /// All critical pairs join (local confluence).\n    LocalConfluence,\n    /// No infinite rewrite chains (termination).\n    Termination,\n    /// 2-cells resolve all non-confluent pairs (homotopy resolution).\n    HomotopyResolution,\n    /// Higher cells are coherent at declared truncation level.\n    TruncationCoherence,\n}\n\n#[derive(Debug, Clone, PartialEq, Eq, Hash)]\npub enum ValidationUnit {\n    FiniteCategory(FiniteCategoryValidation),\n    Functor(FunctorValidation),\n    NatTrans(NatTransValidation),\n    Adjunction(AdjunctionValidation),\n    Profunctor(ProfunctorValidation),\n    HigherFunctor(HigherFunctorValidation),\n    Coend(CoendValidation),\n    KanExtension(KanExtensionValidation),\n    Cauchy(CauchyValidation),\n    Monad(MonadValidation),\n    Condensation(CondensationValidation),\n    Lawvere(LawvereValidation),\n    Operad(OperadValidation),\n    Rewriting(RewritingValidation),\n    Other(String),\n}\n\n#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]\npub enum ValidationSeverity {\n    Error,\n    Warning,\n    Info,\n}\n\n#[derive(Debug, Clone, PartialEq, Eq, Hash)]\npub enum ValidationLocation {\n    Global,\n    Object(String),\n    Morphism(String),\n    Named(String),\n    Boundary {\n        morphism: String,\n        source: String,\n        target: String,\n    },\n    Composition {\n        first: String,\n        second: String,\n        composite: Option<String>,\n    },\n}\n\n#[derive(Debug, Clone, PartialEq, Eq)]\npub struct ValidationViolation {\n    pub unit: ValidationUnit,\n    pub location: ValidationLocation,\n    pub message: String,\n    pub severity: ValidationSeverity,\n}\n\nimpl ValidationViolation {\n    pub fn new(\n        unit: ValidationUnit,\n        location: ValidationLocation,\n        message: impl Into<String>,\n        severity: ValidationSeverity,\n    ) -> Self {\n        Self {\n            unit,\n            location,\n            message: message.into(),\n            severity,\n        }\n    }\n}\n\n// ---------------------------------------------------------------------------\n// Validation report\n// ---------------------------------------------------------------------------\n\n/// A single validation result.\n#[derive(Debug, Clone)]\npub struct ValidationResult {\n    pub unit: String,\n    pub passed: bool,\n    pub violations: Vec<String>,\n}\n\nimpl ValidationResult {\n    pub fn pass(unit: &str) -> Self {\n        Self {\n            unit: unit.into(),\n            passed: true,\n            violations: Vec::new(),\n        }\n    }\n\n    pub fn fail(unit: &str, violations: Vec<String>) -> Self {\n        Self {\n            unit: unit.into(),\n            passed: false,\n            violations,\n        }\n    }\n}\n\n/// A collection of validation results for a functor or related structure.\n#[derive(Debug, Clone)]\npub struct ValidationReport {\n    pub target_name: String,\n    pub results: Vec<ValidationResult>,\n    pub typed_violations: Vec<ValidationViolation>,\n}\n\nimpl ValidationReport {\n    pub fn new(name: &str) -> Self {\n        Self {\n            target_name: name.into(),\n            results: Vec::new(),\n            typed_violations: Vec::new(),\n        }\n    }\n\n    pub fn add(&mut self, result: ValidationResult) {\n        self.results.push(result);\n    }\n\n    pub fn add_violation(&mut self, violation: ValidationViolation) {\n        self.results.push(ValidationResult::fail(\n            &format!(\"{:?}\", violation.unit),\n            vec![violation.message.clone()],\n        ));\n        self.typed_violations.push(violation);\n    }\n\n    pub fn add_typed(&mut self, unit: &str, violations: Vec<ValidationViolation>) {\n        if violations.is_empty() {\n            self.results.push(ValidationResult::pass(unit));\n        } else {\n            let messages = violations\n                .iter()\n                .map(|violation| violation.message.clone())\n                .collect();\n            self.results.push(ValidationResult::fail(unit, messages));\n            self.typed_violations.extend(violations);\n        }\n    }\n\n    pub fn all_passed(&self) -> bool {\n        self.results.iter().all(|r| r.passed) && self.typed_violations.is_empty()\n    }\n\n    pub fn failure_count(&self) -> usize {\n        self.results.iter().filter(|r| !r.passed).count()\n    }\n\n    pub fn violation_count(&self) -> usize {\n        self.typed_violations.len()\n    }\n}\n",
+      "all_noncomment_lines_unchanged": true,
+      "prior": {
+        "path": "evidence/quality/category_homology/resume-20261019/diagnostic-arrow-previous/validation.rs",
+        "sha256": "847cf46a1c2370a8f09d647d3b27de1f629c11c19243e71a723f3f23c56bb5d5"
+      },
+      "metrics": [
+        {
+          "ccn": 1,
+          "cognitive_upper_bound": 0,
+          "control_nesting": 0,
+          "line": 214,
+          "name": "new",
+          "opaque_macros": []
+        },
+        {
+          "ccn": 1,
+          "cognitive_upper_bound": 0,
+          "control_nesting": 0,
+          "line": 242,
+          "name": "pass",
+          "opaque_macros": []
+        },
+        {
+          "ccn": 1,
+          "cognitive_upper_bound": 0,
+          "control_nesting": 0,
+          "line": 250,
+          "name": "fail",
+          "opaque_macros": []
+        },
+        {
+          "ccn": 1,
+          "cognitive_upper_bound": 2,
+          "control_nesting": 0,
+          "line": 268,
+          "name": "new",
+          "opaque_macros": []
+        },
+        {
+          "ccn": 1,
+          "cognitive_upper_bound": 0,
+          "control_nesting": 0,
+          "line": 276,
+          "name": "add",
+          "opaque_macros": []
+        },
+        {
+          "ccn": 1,
+          "cognitive_upper_bound": 0,
+          "control_nesting": 0,
+          "line": 280,
+          "name": "add_violation",
+          "opaque_macros": []
+        },
+        {
+          "ccn": 2,
+          "cognitive_upper_bound": 2,
+          "control_nesting": 2,
+          "line": 288,
+          "name": "add_typed",
+          "opaque_macros": []
+        },
+        {
+          "ccn": 2,
+          "cognitive_upper_bound": 1,
+          "control_nesting": 1,
+          "line": 301,
+          "name": "all_passed",
+          "opaque_macros": []
+        },
+        {
+          "ccn": 1,
+          "cognitive_upper_bound": 0,
+          "control_nesting": 1,
+          "line": 305,
+          "name": "failure_count",
+          "opaque_macros": []
+        },
+        {
+          "ccn": 1,
+          "cognitive_upper_bound": 0,
+          "control_nesting": 0,
+          "line": 309,
+          "name": "violation_count",
+          "opaque_macros": []
+        }
+      ]
+    },
+    {
+      "artifact": {
+        "path": "code/rust/src/category_theory/arrow.rs",
+        "sha256": "57571c9cfa26d71575075deab4c329fc901b67511732fc6cf3c8eca5d7e17540"
+      },
+      "symbol_map": {
+        "arr": {
+          "signature": "pub fn arr<A, B, F>(f: F) -> Arrow<A, B> where A: 'static + Send + Sync, B: 'static + Send + Sync, F: Fn(A) -> B + Send + Sync + 'static,",
+          "body": "{ Arc::new(move |_ctx, st, a| Ok((vec![], st, f(a)))) }",
+          "obligation": "Capture Fn in one Arc. Invoke supplied f once, return its B with identical moved state and empty writer; borrowed context is unused. No callback purity/termination/panic guarantee from Fn."
+        },
+        "compose": {
+          "signature": "pub fn compose<A, B, C>(k1: Arrow<A, B>, k2: Arrow<B, C>) -> Arrow<A, C> where A: 'static + Send + Sync, B: 'static + Send + Sync, C: 'static + Send + Sync,",
+          "body": "{ Arc::new(move |ctx, st, a| { let (mut w1, st1, b) = k1(ctx, st, a)?; let (w2, st2, c) = k2(ctx, st1, b)?; w1.extend(w2); Ok((w1, st2, c)) }) }",
+          "obligation": "Call k1 with original context/state/input; first Err returns before k2. On first success call k2 once with identical context, returned state and B. Second Err discards returned local logs/state and preserves original anyhow Error. On success move ordered w1 then w2, second state and C. External callback effects are not rolled back."
+        },
+        "tell": {
+          "signature": "pub fn tell<A>(v: Violation) -> Arrow<A, A> where A: 'static + Clone + Send + Sync,",
+          "body": "{ Arc::new(move |_ctx, st, a| Ok((vec![v.clone()], st, a))) }",
+          "obligation": "Per invocation clone exactly the stored Violation into singleton writer and move state/input unchanged. A:Clone bound is retained but input clone is not invoked. Violation clone cost includes its three strings."
+        },
+        "map_input": {
+          "signature": "pub fn map_input<A, B, F>(f: F) -> Arrow<A, B> where A: 'static + Send + Sync, B: 'static + Send + Sync, F: Fn(A) -> B + Send + Sync + 'static,",
+          "body": "{ Arc::new(move |_ctx, st, a| Ok((vec![], st, f(a)))) }",
+          "obligation": "Same executable lift as arr: call supplied input transformation once, preserve moved state, emit no log. No hidden Arrow parameter, reader transformation or mathematical law validation."
+        },
+        "fanout": {
+          "signature": "pub fn fanout<A, B, C>(ab: Arrow<A, B>, ac: Arrow<A, C>) -> Arrow<A, (B, C)> where A: Clone + 'static + Send + Sync, B: 'static + Send + Sync, C: 'static + Send + Sync,",
+          "body": "{ Arc::new(move |ctx, st, a| { let (mut w1, st1, b) = ab(ctx, st, a.clone())?; let (w2, st2, c) = ac(ctx, st1, a)?; w1.extend(w2); Ok((w1, st2, (b, c))) }) }",
+          "obligation": "Call Clone::clone once for the left input, then ab with original context/state and that clone. On success call ac with first returned state and original input; errors propagate and short circuit. Success appends ordered logs, returns second state and (B,C). No equality or purity assumption on custom Clone; model takes arbitrary clone function."
+        },
+        "split": {
+          "signature": "pub fn split<A, B, C, D>(f1: Arrow<A, B>, f2: Arrow<C, D>) -> Arrow<(A, C), (B, D)> where A: 'static + Send + Sync, B: 'static + Send + Sync, C: 'static + Send + Sync, D: 'static + Send + Sync,",
+          "body": "{ Arc::new(move |ctx, st, (a, c)| { let (mut w1, st, b) = f1(ctx, st, a)?; let (w2, st, d) = f2(ctx, st, c)?; w1.extend(w2); Ok((w1, st, (b, d))) }) }",
+          "obligation": "Consume pair (A,C), call f1 with A then f2 with C and returned state, same context. Errors propagate/short circuit; append logs in order and return second state plus (B,D). No input cloning or parallel execution."
+        },
+        "choice": {
+          "signature": "pub fn choice<A, B, C>(f: Arrow<A, C>, g: Arrow<B, C>) -> Arrow<Either<A, B>, C> where A: 'static + Send + Sync, B: 'static + Send + Sync, C: 'static + Send + Sync,",
+          "body": "{ Arc::new(move |ctx, st, input| match input { Either::Left(a) => f(ctx, st, a), Either::Right(b) => g(ctx, st, b), }) }",
+          "obligation": "Match actual Either tag, invoke only selected callback with identical context, state and payload. Return its exact result or error, with no extra writer/state transformation."
+        }
+      },
+      "data_and_derive_review": "//! Exact Reader/State/Writer arrow combinators. AuthorityEffect: None.\n//! Callback termination and panic behavior remain the caller's trust boundary.\n//! Errors discard returned state/logs; callback side effects are not rolled back.\n//! Fan-out sends `Clone::clone` to the left callback and the original to the right.\n\nuse std::sync::Arc;\n\n// ----------------------------------------------------------------------------\n// Core Types\n// ----------------------------------------------------------------------------\n\n// Ctx: Configuration / Global Constants (Reader)\n#[derive(Clone, Debug)]\npub struct Ctx {\n    pub common_constants: Vec<num_rational::BigRational>,\n    pub threshold: num_rational::BigRational,\n}\n\n// St: State (Accumulated suggestions, local symbol table)\n#[derive(Clone, Debug, Default)]\npub struct St {\n    pub suggestions: Vec<String>,\n}\n\n// Writer: Accumulated Violations\n#[derive(Clone, Debug)]\npub struct Violation {\n    pub rule_id: String,\n    pub msg: String,\n    pub severity: String,\n}\n\npub type Writer = Vec<Violation>;\npub type ArrowResult<B> = Result<(Writer, St, B), anyhow::Error>;\n\npub type Arrow<A, B> = Arc<dyn Fn(&Ctx, St, A) -> ArrowResult<B> + Send + Sync>;\n\npub enum Either<L, R> {\n    Left(L),\n    Right(R),\n}\n\n// ----------------------------------------------------------------------------\n// Combinators\n// ----------------------------------------------------------------------------\n\npub fn arr<A, B, F>(f: F) -> Arrow<A, B>\nwhere\n    A: 'static + Send + Sync,\n    B: 'static + Send + Sync,\n    F: Fn(A) -> B + Send + Sync + 'static,\n{\n    Arc::new(move |_ctx, st, a| Ok((vec![], st, f(a))))\n}\n\npub fn compose<A, B, C>(k1: Arrow<A, B>, k2: Arrow<B, C>) -> Arrow<A, C>\nwhere\n    A: 'static + Send + Sync,\n    B: 'static + Send + Sync,\n    C: 'static + Send + Sync,\n{\n    Arc::new(move |ctx, st, a| {\n        let (mut w1, st1, b) = k1(ctx, st, a)?;\n        let (w2, st2, c) = k2(ctx, st1, b)?;\n        w1.extend(w2);\n        Ok((w1, st2, c))\n    })\n}\n\npub fn tell<A>(v: Violation) -> Arrow<A, A>\nwhere\n    A: 'static + Clone + Send + Sync,\n{\n    Arc::new(move |_ctx, st, a| Ok((vec![v.clone()], st, a)))\n}\n\n// Lift a pure input transformation, as in arr; preserve state and emit no log.\npub fn map_input<A, B, F>(f: F) -> Arrow<A, B>\nwhere\n    A: 'static + Send + Sync,\n    B: 'static + Send + Sync,\n    F: Fn(A) -> B + Send + Sync + 'static,\n{\n    Arc::new(move |_ctx, st, a| Ok((vec![], st, f(a))))\n}\n\n// Fan-out: apply two arrows to the same input, combine their outputs\npub fn fanout<A, B, C>(ab: Arrow<A, B>, ac: Arrow<A, C>) -> Arrow<A, (B, C)>\nwhere\n    A: Clone + 'static + Send + Sync,\n    B: 'static + Send + Sync,\n    C: 'static + Send + Sync,\n{\n    Arc::new(move |ctx, st, a| {\n        let (mut w1, st1, b) = ab(ctx, st, a.clone())?;\n        let (w2, st2, c) = ac(ctx, st1, a)?;\n        w1.extend(w2);\n        Ok((w1, st2, (b, c)))\n    })\n}\n\n// Split: apply two arrows to a pair, produce a pair\npub fn split<A, B, C, D>(f1: Arrow<A, B>, f2: Arrow<C, D>) -> Arrow<(A, C), (B, D)>\nwhere\n    A: 'static + Send + Sync,\n    B: 'static + Send + Sync,\n    C: 'static + Send + Sync,\n    D: 'static + Send + Sync,\n{\n    Arc::new(move |ctx, st, (a, c)| {\n        let (mut w1, st, b) = f1(ctx, st, a)?;\n        let (w2, st, d) = f2(ctx, st, c)?;\n        w1.extend(w2);\n        Ok((w1, st, (b, d)))\n    })\n}\n\n// Choice: apply either the left or right arrow depending on an Either value\npub fn choice<A, B, C>(f: Arrow<A, C>, g: Arrow<B, C>) -> Arrow<Either<A, B>, C>\nwhere\n    A: 'static + Send + Sync,\n    B: 'static + Send + Sync,\n    C: 'static + Send + Sync,\n{\n    Arc::new(move |ctx, st, input| match input {\n        Either::Left(a) => f(ctx, st, a),\n        Either::Right(b) => g(ctx, st, b),\n    })\n}\n",
+      "all_noncomment_lines_unchanged": true,
+      "prior": {
+        "path": "evidence/quality/category_homology/resume-20261019/diagnostic-arrow-previous/arrow.rs",
+        "sha256": "dde1cd5aa01e9c8d6aef72e5da0b9f559c067eb1fbd798ba8bdac2fd0c54dba1"
+      },
+      "metrics": [
+        {
+          "ccn": 1,
+          "cognitive_upper_bound": 0,
+          "control_nesting": 1,
+          "line": 47,
+          "name": "arr",
+          "opaque_macros": []
+        },
+        {
+          "ccn": 3,
+          "cognitive_upper_bound": 0,
+          "control_nesting": 1,
+          "line": 56,
+          "name": "compose",
+          "opaque_macros": []
+        },
+        {
+          "ccn": 1,
+          "cognitive_upper_bound": 0,
+          "control_nesting": 1,
+          "line": 70,
+          "name": "tell",
+          "opaque_macros": []
+        },
+        {
+          "ccn": 1,
+          "cognitive_upper_bound": 0,
+          "control_nesting": 1,
+          "line": 78,
+          "name": "map_input",
+          "opaque_macros": []
+        },
+        {
+          "ccn": 3,
+          "cognitive_upper_bound": 0,
+          "control_nesting": 1,
+          "line": 88,
+          "name": "fanout",
+          "opaque_macros": []
+        },
+        {
+          "ccn": 3,
+          "cognitive_upper_bound": 0,
+          "control_nesting": 1,
+          "line": 103,
+          "name": "split",
+          "opaque_macros": []
+        },
+        {
+          "ccn": 3,
+          "cognitive_upper_bound": 2,
+          "control_nesting": 2,
+          "line": 119,
+          "name": "choice",
+          "opaque_macros": []
+        }
+      ]
+    }
+  ],
+  "diagnostic_declarations": "Closed enum tags retain typed obligation, location and severity payloads. Standard derived Clone/Eq/Hash/Debug copy/compare/hash/render their fields; HashSet cases check concrete distinct tags, not collision-free hashes. Constructing any unit label runs no mathematical checker. Public report fields remain unrestricted caller data; empty reports and contradictory messages/flags are literal semantics.",
+  "formal_correspondence": [
+    "ValidationInventory models unrestricted flags/issues, exact append/projection, vacuous success, typed blockers and bounded failure counts. Rust Vec preserves list order, clones only necessary owned projections, and count cannot exceed actual Vec length. Unit Debug rendering and std allocation are separately reviewed runtime contracts.",
+    "ArrowEffects is a pure total mathematical callback value model over Reader, owned State, ordered List writer and Except. Compose associativity is proved in that model only. Rust Fn does not imply purity, termination, panic freedom or determinism. Concrete source control flow and native traces establish invocation order/short circuit and original error payloads under admitted runtime callbacks; no blanket runtime category-law or rollback theorem.",
+    "Fanout model accepts an arbitrary clone function; successful left input is clone(a) and right input is a. The non-lawful Odd clone fixture detects swapped clone/original delivery. Context rationals are opaque stored input: even raw 1/0 or 2/4 is transported without normalization or arithmetic by these combinators."
+  ],
+  "failure_and_resource_review": [
+    "No unsafe code, internal unchecked indexing, arithmetic/narrowing or recursive combinator body. Metadata methods store unrestricted data. Callback Err is propagated; callback panic/nontermination, custom Clone behavior and external side effects remain explicit caller boundaries.",
+    "Rust String/Vec/Arc allocation and ordinary Clone behavior are runtime contracts; caller-defined Into<String> conversion and Clone/Into behavior are explicit external code boundaries. No allocator-totality, verified MIR or external-effect rollback claim. Failed second callback returns no state/log value by Result type; existing external trace effects remain visible."
+  ],
+  "cost_review": [
+    "Report construction/add is constant work plus owned string conversion/amortized vector append. add_typed is linear in issue count and copied message bytes; duplicate message ownership is required by the public two-vector schema. all_passed/failure_count scan stored result flags; typed count is O(1). No checker search is hidden behind labels.",
+    "Arrow construction captures callbacks once in Arc. lift/choice add constant dispatch cost; tell clones one Violation and its strings. compose/fanout/split perform two sequential callbacks with short circuit, plus ordered Vec append (worst case linear in combined entries if reallocating). Fanout additionally pays the caller-defined input Clone cost. Callback, String/Vec/Arc allocator costs are explicit, not silently O(1)."
+  ],
+  "consumer_review": "Actual category Cargo package uses lib.rs; root host re-exports tfqm_category_theory. Sixteen category files mention diagnostic types; finite category certificate admission obtains a fresh complete validator report before constructing private certificate state. The apparent arrow::Morph/Obj imports occur inside the commented Grothendieck source, not an active combinator consumer. No external application or commented import is counted as execution evidence."
+}

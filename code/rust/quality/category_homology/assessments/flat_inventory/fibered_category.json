@@ -1,0 +1,196 @@
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/category_theory/category/fibered_category.rs",
+    "language": "Rust",
+    "sha256": "657ed33b3f1e577da632335c8159a1a1a3aebbb360f565ad117871dc80ad3702"
+  },
+  "reviewer": "Codex explicit raw-inventory, source, ordered-failure and consumer review",
+  "evaluation_timestamp": "2026-10-19T02:32:51.070453+00:00",
+  "gates": {
+    "G1": "A",
+    "G2": "A",
+    "G3": "A",
+    "G4": "A",
+    "G5": "A"
+  },
+  "formal_specification": {
+    "domain": "Raw mutable literal metadata. Required fields and every selected inventory component are nonempty byte strings; whitespace/Unicode/NUL and arbitrary nonempty labels are permitted. Empty inventories are permitted. No referential integrity, totality, monotonicity, naturality, adjoint, commutative-square or lifting law is admitted.",
+    "ordered_labels": [
+      "label",
+      "total_label",
+      "base_label"
+    ],
+    "ordered_inventories": [
+      {
+        "field": "fibers",
+        "kind": "pairs",
+        "fields": [
+          "b",
+          "f"
+        ],
+        "diagnostic": "empty fiber entry at index {i}",
+        "loop": "for (i, (b, f)) in self.fibers.iter().enumerate()",
+        "source_operands": [
+          "b.is_empty()",
+          "f.is_empty()"
+        ]
+      }
+    ],
+    "construction": "Constructors/setters store raw data without mathematical admission. Vec append or list replacement preserves the declared input order; raw flags remain declarations. Serde remains raw transport.",
+    "acceptance": "All ordered required fields and all ordered selected entry components satisfy nonemptiness. Other fields remain unconstrained declarations. Success returns unit only.",
+    "failure": "First required-label failure then first invalid collection/entry returns existing typed InvalidShape with its exact specified diagnostic. For maps iteration is BTreeMap key order; the shared entry diagnostic does not claim a numeric insertion index. No validation mutation or partial admitted artifact.",
+    "specific_operation": "No operation beyond the mapped raw data construction/assignment and literal inventory validation."
+  },
+  "symbol_map": {
+    "FiberedCategoryShell::new": {
+      "signature": "pub fn new(label: impl Into<String>) -> Self",
+      "body": "{ Self { label: label.into(), total_label: String::new(), base_label: String::new(), cloven: false, fibers: Vec::new(), notes: Vec::new(), } }",
+      "classification": "Raw constructor, flag default, assignment or append; no mathematical-law admission"
+    },
+    "FiberedCategoryShell::over": {
+      "signature": "pub fn over( label: impl Into<String>, total_label: impl Into<String>, base_label: impl Into<String>, ) -> Self",
+      "body": "{ Self { label: label.into(), total_label: total_label.into(), base_label: base_label.into(), cloven: false, fibers: Vec::new(), notes: Vec::new(), } }",
+      "classification": "Raw constructor, flag default, assignment or append; no mathematical-law admission"
+    },
+    "FiberedCategoryShell::validate_shell": {
+      "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+      "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.total_label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty total_label\".into())); } if self.base_label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty base_label\".into())); } for (i, (b, f)) in self.fibers.iter().enumerate() { if b.is_empty() || f.is_empty() { return Err(ArithmosError::InvalidShape(format!(\"empty fiber entry at index {i}\"))); } } Ok(()) }",
+      "classification": "Ordered raw label/component refusal"
+    }
+  },
+  "invariant_argument": [
+    "Flatten required literal labels then each selected collection/component in source order. The first empty String returns its exact typed diagnostic without mutation. Constructors/setters are raw data; no law is admitted.",
+    "Flatten individual nonempty String checks into the unchanged ordered-predicate model, giving every component of one entry the same diagnostic. The OR-of-empty condition is the complement of the required conjunction. success_iff/first_error_preserved apply to any finite inventory, including empty lists. This is source-reviewed correspondence, not extracted Rust/MIR.",
+    "Borrowed iter()/enumerate() yields actual bounded entries; no mutable validation, unchecked indexing or numeric conversion occurs. The prefix invariant extends on a valid entry and exits at the first violation. All 42 public production methods in this twelve-file batch have owner-qualified body maps.",
+    "Raw constructors, field/list replacement, append and flag defaults do not construct an admitted mathematical wrapper. Standard String/Vec/conversion/allocator contracts remain explicit dependencies."
+  ],
+  "failure_paths": {
+    "required_labels": "First literal empty field, exact InvalidShape(empty FIELD).",
+    "inventory": "First invalid component of the first invalid entry, in the stated collection order. Entry components share the policy diagnostic, so no stronger component-name claim is made.",
+    "raw_transport": "Derived serde may construct rejected raw candidates, which must still call validate_shell. No admitted wrapper exists in these modules.",
+    "runtime": "Validation performs no user callback, rational arithmetic, narrowing cast, partial index or mutable operation. Standard String/&str constructor conversions, arbitrary caller Into implementations and allocator behavior remain the ordinary external runtime boundary."
+  },
+  "trust_boundary": {
+    "model": "Unchanged kernel-checked ordered finite String-predicate/refusal model with standard foundational axioms. Dynamic inventory-to-list relation and runtime enumeration are source reviewed.",
+    "runtime": "Pinned safe Rust/std, actual crate errors::ArithmosError via the canonical self-alias, serde derives and standard allocator/conversion contracts.",
+    "adapter": "Only OppositeCategoryShell requires a parent category import adapter for the actual current MorphismTriple provider; no provider algorithm is cloned. Typed InvalidShape comes from the canonical category self-alias or that same real crate in challenge namespaces."
+  },
+  "consumer_review": [
+    "Current hierarchy re-exports are replayed through canonical public TypeId controls and all 107 export faults; the unchanged 459-test actual category suite passes before/after the current batch. The error-carrier change is deliberate and preserves predicate/payload order.",
+    "The retained qualified lexical Rust-src inventory distinguishes overloaded raw Functor/Function/Set names; it is a call-site aid, not an external or whole-workspace compatibility attestation. Raw metadata does not acquire a consumer category law."
+  ],
+  "basis": {
+    "G1": [
+      "Source SHA, complete public-symbol mapping, independent required-field/entry schema and diagnostics, explicit provider/crate pins and current runtime/dependency receipts bind the limited claim. Original sources and the error-carrier-only delta are retained; AuthorityEffect is None."
+    ],
+    "G2": [
+      "Literal labels, entry components and first-error ordering agree with the declared schema. Raw flags and optional references remain declarations; no fibration, category, functor, naturality or total-function law is inferred. Arbitrary nonempty strings remain literal data, without normalization or hidden referential constraints."
+    ],
+    "G3": [
+      "The checked ordered-predicate model plus the explicit source/iterator relation covers each validation return and data preservation. Each loop has a finite collection bound and borrows without mutation. Typed diagnostics propagate directly; constructors/setters emit raw candidates and retain the declared standard conversion/allocator boundary."
+    ],
+    "G4": [
+      "107 independent schema cases cross label masks and every component emptiness subset with first/middle/last and multiple-invalid positions. Distinct constructors, raw flags and list bindings are checked independently. All 14 valid single-fault candidates for this file compile and are killed in their own namespace.",
+      "The final twelve-file campaign has 156 kills, zero other outcomes, 60 unmutated local/challenge tests and 459 actual category tests before/after. Every source, helper, policy, tool/dependency and log pin is retained. Shared compilation is disclosed; no compiler failure or unrun candidate counts as a kill."
+    ],
+    "G5": [
+      "Finite loops, one visit per entry, O(1) String byte-length tests per component and one diagnostic allocation at first refusal. Move-based constructors, finite Vec append/replacement and no recursion or unchecked production indexing. Opposite maps each owned triple once; Set length observes Vec::len exactly.",
+      "Calibrated source AST ceilings are separately enforced. All bodies and iterator closures are mapped; standard serde/collection internals are pinned trusted libraries, not silently treated as expanded compiler proof."
+    ]
+  },
+  "open_findings": [],
+  "assurance_limits": [
+    "Capability remains L2 raw metadata and literal data operations; named mathematical objects are not admitted by these shape checks.",
+    "Contracts pending. No A+, independent compiler, Rust/MIR refinement, allocator-totality theorem, origin authentication or whole-workspace pass."
+  ],
+  "evidence": [
+    {
+      "path": "evidence/quality/category_homology/20261018T233729Z-metadata-proof/receipt.json",
+      "sha256": "71187f438fb571fd2e7339b19be871c3b5882e3b2e34e3a1df0b62e637c6f0ea"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T022404Z/summary.json",
+      "sha256": "2f0eeb0081b025be144401e9cd6c0689dd554e2c07637111af9b310c2c0c11ff"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T022404Z/baseline.json",
+      "sha256": "d609d35243fab3153703d316c68d97bb05416892ee65b80c7c57e358cf3ba4ef"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T022404Z/restored.json",
+      "sha256": "acb0aed9af3d2c774cbb7d511bb6059d62c71577a5030df7a38a493056118e7c"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T022404Z/mutations.json",
+      "sha256": "08043807e2d184a5016e791fab015eaf0c14d2a7510eb248b9561bdcb48f4d2f"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T022404Z/builds.json",
+      "sha256": "0aed61e25cf026f40401e3097fc4be3513ef36f94ca5892703fc40bb9a8978d5"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T022404Z/dependency_receipt.json",
+      "sha256": "71c2c320084f8c07b6affc16c3424e480c3502fa7d7880cea5658d1d29e55fcd"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T022404Z/flat_inventory_boundaries.json",
+      "sha256": "94b47e24940bdaa270da8740cd0f78d2349a613e816fe7d65fb0a314f167247b"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T022404Z/collection_metadata.py",
+      "sha256": "8ed777f093844eed9126468f936e58d1e3948960a9b22b9ad1df12880d10a89b"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T022404Z/parameter_metadata.py",
+      "sha256": "e5ec8c10dc6e9b08b6299e63fec5b67354b451e257d99e97b2a59fa9b8b72844"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T022404Z/run_metadata_challenges.py",
+      "sha256": "ef83b713d3a6819c23ce6b9428229355737846a508be780083c4dbc07c2bfc66"
+    },
+    {
+      "path": "code/rust/quality/category_homology/assessments/flat_inventory_source_review.json",
+      "sha256": "bdce7dc96f6ef7fe457b63e44b0ce1c4077e544f97a7a7d499ef370545860306"
+    },
+    {
+      "path": "evidence/quality/category_homology/resume-20261019/flat-inventory-consumers.json",
+      "sha256": "ed8c9c50078ffe20aa7badc655456b053b197fdf67a0e34a4537eba8dd5a6bc7"
+    },
+    {
+      "path": "evidence/quality/category_homology/resume-20261019/flat-inventory-consumers.log",
+      "sha256": "7da52c6e7ee2e054ba19527ad0fe2dc5f55101d7e598f655d87e27b6f9ebd2c8"
+    },
+    {
+      "path": "evidence/quality/category_homology/resume-20261019/flat-inventory-changes.json",
+      "sha256": "088f0275757a707d93f27dc9f9b0676da6fd19d762de589c8fd68afb90e7af02"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T022845Z/summary.json",
+      "sha256": "37c3ac2cbe10e0ef5a5a3ebecef556830733de5fee25f3cc8f12ee4dffc28d6a"
+    }
+  ],
+  "proof_receipts": [
+    {
+      "path": "evidence/quality/category_homology/20261018T233729Z-metadata-proof/receipt.json",
+      "sha256": "71187f438fb571fd2e7339b19be871c3b5882e3b2e34e3a1df0b62e637c6f0ea",
+      "proof": "code/rust/quality/category_homology/proofs/MetadataValidation.lean",
+      "mathlib_root": "lean4/.lake/packages/mathlib"
+    }
+  ],
+  "context_inputs": [
+    {
+      "path": "code/rust/src/category_theory/category/mod.rs",
+      "sha256": "7d3cb801950b7f87ffd197aa4b1c30717b82c3c2d0ddbc1335332ba7e8212673"
+    },
+    {
+      "path": "code/rust/src/category_theory/lib.rs",
+      "sha256": "b1535a921f4a69414e8b6636f85c8393f799bd2bc20da600e855864c2d3e8776"
+    },
+    {
+      "path": "code/rust/src/category_theory/Cargo.toml",
+      "sha256": "42378ba9d23fe5a5c97c844ebab457e9187c96b819c5b6a0fe3f9acaff1579a3"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+
+running 6 tests
+test mutant_16::tests::structure_fields_present ... FAILED
+test mutant_16::schema_challenge::labels_are_literal_not_mathematical_certificates ... FAILED
+test mutant_16::tests::validate_ok ... FAILED
+test mutant_16::schema_challenge::exhaustive_required_fields ... FAILED
+test mutant_16::tests::validate_rejects_empty_label ... ok
+test mutant_16::tests::validate_rejects_missing_refs ... ok
+
+failures:
+
+---- mutant_16::tests::structure_fields_present stdout ----
+
+thread 'mutant_16::tests::structure_fields_present' (19232) panicked at metadata_challenge_6\mutant_16.rs:104:9:
+assertion failed: m.validate_shell().is_ok()
+
+---- mutant_16::schema_challenge::labels_are_literal_not_mathematical_certificates stdout ----
+
+thread 'mutant_16::schema_challenge::labels_are_literal_not_mathematical_certificates' (28616) panicked at metadata_challenge_6\mutant_16.rs:149:13:
+assertion failed: value.validate_shell().is_ok()
+
+---- mutant_16::tests::validate_ok stdout ----
+
+thread 'mutant_16::tests::validate_ok' (17404) panicked at metadata_challenge_6\mutant_16.rs:83:9:
+assertion failed: m.validate_shell().is_ok()
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- mutant_16::schema_challenge::exhaustive_required_fields stdout ----
+
+thread 'mutant_16::schema_challenge::exhaustive_required_fields' (29376) panicked at metadata_challenge_6\mutant_16.rs:131:34:
+mask 0, expected None, got Err(InvalidShape("reject valid"))
+
+
+failures:
+    mutant_16::schema_challenge::exhaustive_required_fields
+    mutant_16::schema_challenge::labels_are_literal_not_mathematical_certificates
+    mutant_16::tests::structure_fields_present
+    mutant_16::tests::validate_ok
+
+test result: FAILED. 2 passed; 4 failed; 0 ignored; 0 measured; 352 filtered out; finished in 0.00s
+

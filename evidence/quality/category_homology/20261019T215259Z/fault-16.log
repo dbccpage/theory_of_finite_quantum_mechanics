@@ -1,0 +1,22 @@
+
+running 3 tests
+test root_record_replay_17::subject::independent_path_tests::borrowed_lookup_and_category_composition_are_not_just_counters ... ok
+test root_record_replay_17::subject::independent_path_tests::all_three_vertex_multigraphs_and_path_budget_boundaries ... FAILED
+test root_record_replay_17::subject::independent_path_tests::complete_four_vertex_dags_parallel_names_and_refusals ... ok
+
+failures:
+
+---- root_record_replay_17::subject::independent_path_tests::all_three_vertex_multigraphs_and_path_budget_boundaries stdout ----
+
+thread 'root_record_replay_17::subject::independent_path_tests::all_three_vertex_multigraphs_and_path_budget_boundaries' (41616) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\rr\261019T215259\src\category_theory\q\n17.rs:320:206:
+assertion `left == right` failed
+  left: Ok(FinitePathCategory { vertices: 3, edges: [PathEdge { source: 0, target: 1 }], paths: [FinitePath { source: 0, target: 0, edges: [] }, FinitePath { source: 1, target: 1, edges: [] }, FinitePath { source: 2, target: 2, edges: [] }, FinitePath { source: 0, target: 1, edges: [0] }], composition: [[Some(0), None, None, Some(3)], [None, Some(1), None, None], [None, None, Some(2), None], [None, Some(3), None, None]], category: ValidatedFiniteCategory { declared: DeclaredFiniteCategory { name: "complete finite acyclic free path category", objects: {"v0", "v1", "v2"}, morphisms: {"p0": DeclaredMorphism { name: "p0", source: "v0", target: "v0" }, "p1": DeclaredMorphism { name: "p1", source: "v1", target: "v1" }, "p2": DeclaredMorphism { name: "p2", source: "v2", target: "v2" }, "p3": DeclaredMorphism { name: "p3", source: "v0", target: "v1" }}, identities: {"v0": "p0", "v1": "p1", "v2": "p2"}, compositions: {("p0", "p0"): "p0", ("p0", "p3"): "p3", ("p1", "p1"): "p1", ("p2", "p2"): "p2", ("p3", "p1"): "p3"} } } })
+ right: Err(PathBudget)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    root_record_replay_17::subject::independent_path_tests::all_three_vertex_multigraphs_and_path_budget_boundaries
+
+test result: FAILED. 2 passed; 1 failed; 0 ignored; 0 measured; 552 filtered out; finished in 0.02s
+

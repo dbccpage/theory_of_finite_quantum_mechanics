@@ -6,6 +6,7 @@
 //! (see crate-root `kleisli_category` / `legacy_monad` for finite builds).
 
 use serde::{Deserialize, Serialize};
+use omega_category_theory::errors::ArithmosError;
 
 /// Best-effort shell for a labeled Kleisli category of a monad.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize)]
@@ -43,12 +44,12 @@ impl KleisliCategory {
     }
 
     /// Validate structural emptiness only (shell gate).
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
         if self.base_monad_ref.is_empty() {
-            return Err("empty base_monad_ref".into());
+            return Err(ArithmosError::InvalidShape("empty base_monad_ref".into()));
         }
         Ok(())
     }

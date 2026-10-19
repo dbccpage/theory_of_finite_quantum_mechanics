@@ -1,0 +1,37 @@
+
+running 455 tests
+.... 4/455
+abelian::chain_complex_category::tests::rejects_inverted_bounds --- FAILED
+. 6/455
+abelian::chain_complex_category::tests::degree_span_covers_the_entire_signed_domain --- FAILED
+....................................................................................... 94/455
+....................................................................................... 181/455
+....................................................................................... 268/455
+....................................................................................... 355/455
+....................................................................................... 442/455
+.............
+failures:
+
+---- abelian::chain_complex_category::tests::rejects_inverted_bounds stdout ----
+
+thread 'abelian::chain_complex_category::tests::rejects_inverted_bounds' (18536) panicked at src\category_theory\abelian\chain_complex_category.rs:90:9:
+assertion `left == right` failed
+  left: Ok(())
+ right: Err(InvalidShape("degree_min 3 > degree_max 1"))
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- abelian::chain_complex_category::tests::degree_span_covers_the_entire_signed_domain stdout ----
+
+thread 'abelian::chain_complex_category::tests::degree_span_covers_the_entire_signed_domain' (28740) panicked at src\category_theory\abelian\chain_complex_category.rs:105:17:
+assertion `left == right` failed
+  left: true
+ right: false
+
+
+failures:
+    abelian::chain_complex_category::tests::degree_span_covers_the_entire_signed_domain
+    abelian::chain_complex_category::tests::rejects_inverted_bounds
+
+test result: FAILED. 453 passed; 2 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.55s
+
+error: test failed, to rerun pass `-p tfqm_category_theory --lib`

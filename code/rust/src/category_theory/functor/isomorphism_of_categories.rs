@@ -4,6 +4,7 @@
 //! Strict isomorphism of categories (inverse functors) — shape only.
 
 use serde::{Deserialize, Serialize};
+use omega_category_theory::errors::ArithmosError;
 
 /// Best-effort shell for an isomorphism-of-categories claim.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize)]
@@ -37,15 +38,15 @@ impl IsomorphismOfCategories {
         }
     }
 
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
         if self.functor_ref.is_empty() {
-            return Err("empty functor_ref".into());
+            return Err(ArithmosError::InvalidShape("empty functor_ref".into()));
         }
         if self.inverse_functor_ref.is_empty() {
-            return Err("empty inverse_functor_ref".into());
+            return Err(ArithmosError::InvalidShape("empty inverse_functor_ref".into()));
         }
         Ok(())
     }

@@ -3,6 +3,7 @@
 //!
 //! Homotopy h-level / n-type classification shell (shape only).
 
+use omega_category_theory::errors::ArithmosError;
 use serde::{Deserialize, Serialize};
 
 /// Best-effort shell for an h-level claim on a type reference.
@@ -38,12 +39,12 @@ impl HLevel {
         }
     }
 
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
         if self.level < -2 {
-            return Err(format!("h-level {} < -2", self.level));
+            return Err(ArithmosError::InvalidShape(format!("h-level {} < -2", self.level)));
         }
         Ok(())
     }

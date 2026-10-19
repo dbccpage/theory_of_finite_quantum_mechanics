@@ -1,0 +1,223 @@
+{
+  "AuthorityEffect": "None",
+  "records": [
+    {
+      "artifact": {
+        "path": "code/rust/src/homology/mod.rs",
+        "sha256": "40f163fb350b95b3438b530a28e11b9f9e3df2c59849dc905a8f0457d4b2e579"
+      },
+      "symbols": {
+        "hash_exact_matrix": {
+          "signature": "pub fn hash_exact_matrix(m: &ExactMatrix<Q>) -> Hash256",
+          "body": "{ hash_legacy_matrix(&m.0) }",
+          "obligation": "Borrow ExactMatrix.0 and delegate to private legacy frame. Raw zero denominators remain opaque pairs, not admitted values; fingerprinting is not authentication."
+        },
+        "hash_legacy_matrix": {
+          "signature": "fn hash_legacy_matrix(m: &crate::linear_algebra::BasicMatrix<Q>) -> Hash256",
+          "body": "{ let mut hasher = blake3::Hasher::new(); hasher.update(b\"TheoryOfFiniteQM.ExactMatrix<Q>.v1\"); hasher.update(&(m.rows() as u64).to_le_bytes()); hasher.update(&(m.cols() as u64).to_le_bytes()); for val in m.as_slice() { hashing::hash_stored_rational(&mut hasher, val); } Hash256(*hasher.finalize().as_bytes()) }",
+          "obligation": "Preserve legacy tag, rows then columns LE-u64 on captured 64-bit target, then row-major scalar framing. Unchanged helper normalizes defined ratios and frames raw undefined pairs. One scan, no matrix/certificate clones."
+        },
+        "serialize_matrix_ref": {
+          "signature": "fn serialize_matrix_ref<S: serde::Serializer>( matrix: &&crate::linear_algebra::BasicMatrix<Q>, serializer: S, ) -> Result<S::Ok, S::Error>",
+          "body": "{ serializer.serialize_newtype_struct(\"ExactMatrix\", *matrix) }",
+          "obligation": "Forward borrowed BasicMatrix through ExactMatrix newtype envelope, retaining the Serde name for name-sensitive formats. Propagate serializer errors."
+        },
+        "serialize": {
+          "signature": "fn serialize<S: serde::Serializer>(&self, serializer: S) -> Result<S::Ok, S::Error>",
+          "body": "{ CarrierWireRef { c0_dim: self.c0_dim(), c1_dim: self.c1_dim(), c2_dim: self.c2_dim(), d0: self.d0(), d1: self.d1(), weights: self.weights(), d0_hash: hash_legacy_matrix(self.d0()), d1_hash: hash_legacy_matrix(self.d1()), } .serialize(serializer) }",
+          "obligation": "Borrow core matrices/weights in CarrierWireRef, copying dimensions/two hashes. Preserve original field order and CarrierWire/ExactMatrix/Hash256 names. Each matrix hashed once; no Carrier/certificate/matrix/weight clone. Serializer retains output allocation/failure semantics; no atomic-output guarantee."
+        },
+        "new": {
+          "signature": "pub fn new( c0_dim: usize, c1_dim: usize, c2_dim: usize, d0: ExactMatrix<Q>, d1: ExactMatrix<Q>, weights: Vec<Q>, ) -> Result<Self, HomologicalError>",
+          "body": "{ let provenance = cochain_complex::TheoremProvenance::new(\"runtime exact d1*d0 verification\".into())?; Ok(Self { inner: carrier::Carrier::new(c0_dim, c1_dim, c2_dim, d0.0, d1.0, weights, provenance)?, }) }",
+          "obligation": "Make fixed runtime provenance; move dimensions, matrices and weights unchanged into the canonical core Carrier::new. Raw weight, length/positivity, scalar/shape/law, independent rank certificates and inclusion gates all precede return; no value escapes failed admission."
+        },
+        "c0_dim": {
+          "signature": "pub fn c0_dim(&self) -> usize",
+          "body": "{ self.inner.c0_dim() }",
+          "obligation": "Forward exactly core.c0_dim. Copy usize dimensions/ranks or borrow matrices/weights immutably; no conversion, public mutation, recomputation or admission bypass."
+        },
+        "c1_dim": {
+          "signature": "pub fn c1_dim(&self) -> usize",
+          "body": "{ self.inner.c1_dim() }",
+          "obligation": "Forward exactly core.c1_dim. Copy usize dimensions/ranks or borrow matrices/weights immutably; no conversion, public mutation, recomputation or admission bypass."
+        },
+        "c2_dim": {
+          "signature": "pub fn c2_dim(&self) -> usize",
+          "body": "{ self.inner.c2_dim() }",
+          "obligation": "Forward exactly core.c2_dim. Copy usize dimensions/ranks or borrow matrices/weights immutably; no conversion, public mutation, recomputation or admission bypass."
+        },
+        "d0": {
+          "signature": "pub fn d0(&self) -> &crate::linear_algebra::BasicMatrix<Q>",
+          "body": "{ self.inner.d0() }",
+          "obligation": "Forward exactly core.d0. Copy usize dimensions/ranks or borrow matrices/weights immutably; no conversion, public mutation, recomputation or admission bypass."
+        },
+        "d1": {
+          "signature": "pub fn d1(&self) -> &crate::linear_algebra::BasicMatrix<Q>",
+          "body": "{ self.inner.d1() }",
+          "obligation": "Forward exactly core.d1. Copy usize dimensions/ranks or borrow matrices/weights immutably; no conversion, public mutation, recomputation or admission bypass."
+        },
+        "weights": {
+          "signature": "pub fn weights(&self) -> &[Q]",
+          "body": "{ self.inner.weights() }",
+          "obligation": "Forward exactly core.weights. Copy usize dimensions/ranks or borrow matrices/weights immutably; no conversion, public mutation, recomputation or admission bypass."
+        },
+        "rank_d0": {
+          "signature": "pub fn rank_d0(&self) -> usize",
+          "body": "{ self.inner.rank_d0() }",
+          "obligation": "Forward exactly core.rank_d0. Copy usize dimensions/ranks or borrow matrices/weights immutably; no conversion, public mutation, recomputation or admission bypass."
+        },
+        "rank_d1": {
+          "signature": "pub fn rank_d1(&self) -> usize",
+          "body": "{ self.inner.rank_d1() }",
+          "obligation": "Forward exactly core.rank_d1. Copy usize dimensions/ranks or borrow matrices/weights immutably; no conversion, public mutation, recomputation or admission bypass."
+        },
+        "dim_q1": {
+          "signature": "pub fn dim_q1(&self) -> usize",
+          "body": "{ self.c1_dim() - self.rank_d0() }",
+          "obligation": "Core inclusion establishes rank(d0)+rank(d1)<=C1, hence rank(d0)<=C1. Unsigned subtraction on immutable state is safe and equals quotient dimension."
+        },
+        "dim_h1": {
+          "signature": "pub fn dim_h1(&self) -> Result<usize, HomologicalError>",
+          "body": "{ self.inner.dim_h1() }",
+          "obligation": "Use admitted exact ranks and C1. Core inclusion establishes both subtraction bounds. Root forwards Result; graph facade returns the same safe unsigned value."
+        },
+        "as_ref": {
+          "signature": "fn as_ref(&self) -> &carrier::Carrier",
+          "body": "{ &self.inner }",
+          "obligation": "Borrow the same immutable admitted core. Generic manifest consumers see exact stored data and cached certified ranks."
+        },
+        "try_from": {
+          "signature": "fn try_from(value: CarrierWire) -> Result<Self, Self::Error>",
+          "body": "{ verify_hash(&value.d0_hash, &hash_exact_matrix(&value.d0))?; verify_hash(&value.d1_hash, &hash_exact_matrix(&value.d1))?; Self::new( value.c0_dim, value.c1_dim, value.c2_dim, value.d0, value.d1, value.weights, ) }",
+          "obligation": "Verify d0 hash then d1 hash with correct payloads, then re-admit all supplied fields via new. Fingerprints exclude weights and separate dimension fields; changed positive weights are intentionally valid. Never trust deserialized cached rank/provenance."
+        },
+        "verify_hash": {
+          "signature": "fn verify_hash(expected: &Hash256, got: &Hash256) -> Result<(), HomologicalError>",
+          "body": "{ if expected != got { return Err(HomologicalError::HashMismatch { expected: expected.to_hex(), got: got.to_hex(), }); } Ok(()) }",
+          "obligation": "Unequal fingerprints return typed HashMismatch with exact expected/got hex; equal fingerprints return unit. No authentication claim."
+        }
+      },
+      "data_and_derive_review": "//! Exact finite rational homology. AuthorityEffect: None.\n//!\n//! Runtime certificates establish finite algebraic identities only. The canonical\n//! carrier admits shapes, d1*d0=0, positive weights and rank inclusion before use.\n\nuse crate::linear_algebra::{ExactMatrix, Q};\nuse serde::{Deserialize, Serialize};\n\npub mod boundary;\npub mod carrier;\npub mod carrier_manifest;\npub mod chain;\npub mod chain_complex;\npub mod coboundary;\npub mod cochain;\npub mod cochain_complex;\npub mod errors;\npub mod exact_carrier;\nmod exact_scalar;\npub mod graded_vector;\npub mod hashing;\npub mod ids;\npub mod rank_certificate;\npub mod simplicial;\npub mod witness;\n\n#[cfg(test)]\nmod l5a_challenges;\n\npub use errors::HomologicalError;\npub use hashing::Hash256;\n\n/// Legacy root matrix fingerprint; its tag is retained for existing receipts.\n/// Undefined raw ratios are opaque stored pairs, never admitted rational values.\npub fn hash_exact_matrix(m: &ExactMatrix<Q>) -> Hash256 {\n    hash_legacy_matrix(&m.0)\n}\n\nfn hash_legacy_matrix(m: &crate::linear_algebra::BasicMatrix<Q>) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"TheoryOfFiniteQM.ExactMatrix<Q>.v1\");\n    hasher.update(&(m.rows() as u64).to_le_bytes());\n    hasher.update(&(m.cols() as u64).to_le_bytes());\n    for val in m.as_slice() {\n        hashing::hash_stored_rational(&mut hasher, val);\n    }\n    Hash256(*hasher.finalize().as_bytes())\n}\n\n/// Compatibility facade over the single admitted carrier. Serialization is data;\n/// deserialization recomputes the law, ranks and hashes instead of trusting bytes.\n#[derive(Debug, Clone, PartialEq, Eq, Deserialize)]\n#[serde(try_from = \"CarrierWire\")]\npub struct Carrier {\n    inner: carrier::Carrier,\n}\n\n#[derive(Serialize, Deserialize)]\n#[serde(deny_unknown_fields)]\nstruct CarrierWire {\n    c0_dim: usize,\n    c1_dim: usize,\n    c2_dim: usize,\n    d0: ExactMatrix<Q>,\n    d1: ExactMatrix<Q>,\n    weights: Vec<Q>,\n    d0_hash: Hash256,\n    d1_hash: Hash256,\n}\n\n/// Borrow the existing wire fields without cloning the carrier's certificates\n/// or coefficient buffers. Preserve both Serde struct and newtype identities.\n#[derive(Serialize)]\n#[serde(rename = \"CarrierWire\")]\nstruct CarrierWireRef<'a> {\n    c0_dim: usize,\n    c1_dim: usize,\n    c2_dim: usize,\n    #[serde(serialize_with = \"serialize_matrix_ref\")]\n    d0: &'a crate::linear_algebra::BasicMatrix<Q>,\n    #[serde(serialize_with = \"serialize_matrix_ref\")]\n    d1: &'a crate::linear_algebra::BasicMatrix<Q>,\n    weights: &'a [Q],\n    d0_hash: Hash256,\n    d1_hash: Hash256,\n}\n\nfn serialize_matrix_ref<S: serde::Serializer>(\n    matrix: &&crate::linear_algebra::BasicMatrix<Q>,\n    serializer: S,\n) -> Result<S::Ok, S::Error> {\n    serializer.serialize_newtype_struct(\"ExactMatrix\", *matrix)\n}\n\nimpl Serialize for Carrier {\n    fn serialize<S: serde::Serializer>(&self, serializer: S) -> Result<S::Ok, S::Error> {\n        CarrierWireRef {\n            c0_dim: self.c0_dim(),\n            c1_dim: self.c1_dim(),\n            c2_dim: self.c2_dim(),\n            d0: self.d0(),\n            d1: self.d1(),\n            weights: self.weights(),\n            d0_hash: hash_legacy_matrix(self.d0()),\n            d1_hash: hash_legacy_matrix(self.d1()),\n        }\n        .serialize(serializer)\n    }\n}\n\nimpl Carrier {\n    pub fn new(\n        c0_dim: usize,\n        c1_dim: usize,\n        c2_dim: usize,\n        d0: ExactMatrix<Q>,\n        d1: ExactMatrix<Q>,\n        weights: Vec<Q>,\n    ) -> Result<Self, HomologicalError> {\n        let provenance =\n            cochain_complex::TheoremProvenance::new(\"runtime exact d1*d0 verification\".into())?;\n        Ok(Self {\n            inner: carrier::Carrier::new(c0_dim, c1_dim, c2_dim, d0.0, d1.0, weights, provenance)?,\n        })\n    }\n    pub fn c0_dim(&self) -> usize {\n        self.inner.c0_dim()\n    }\n    pub fn c1_dim(&self) -> usize {\n        self.inner.c1_dim()\n    }\n    pub fn c2_dim(&self) -> usize {\n        self.inner.c2_dim()\n    }\n    pub fn d0(&self) -> &crate::linear_algebra::BasicMatrix<Q> {\n        self.inner.d0()\n    }\n    pub fn d1(&self) -> &crate::linear_algebra::BasicMatrix<Q> {\n        self.inner.d1()\n    }\n    pub fn weights(&self) -> &[Q] {\n        self.inner.weights()\n    }\n    pub fn rank_d0(&self) -> usize {\n        self.inner.rank_d0()\n    }\n    pub fn rank_d1(&self) -> usize {\n        self.inner.rank_d1()\n    }\n    pub fn dim_q1(&self) -> usize {\n        self.c1_dim() - self.rank_d0()\n    }\n    pub fn dim_h1(&self) -> Result<usize, HomologicalError> {\n        self.inner.dim_h1()\n    }\n}\n\nimpl AsRef<carrier::Carrier> for Carrier {\n    fn as_ref(&self) -> &carrier::Carrier {\n        &self.inner\n    }\n}\n\nimpl TryFrom<CarrierWire> for Carrier {\n    type Error = HomologicalError;\n    fn try_from(value: CarrierWire) -> Result<Self, Self::Error> {\n        verify_hash(&value.d0_hash, &hash_exact_matrix(&value.d0))?;\n        verify_hash(&value.d1_hash, &hash_exact_matrix(&value.d1))?;\n        Self::new(\n            value.c0_dim,\n            value.c1_dim,\n            value.c2_dim,\n            value.d0,\n            value.d1,\n            value.weights,\n        )\n    }\n}\n\nfn verify_hash(expected: &Hash256, got: &Hash256) -> Result<(), HomologicalError> {\n    if expected != got {\n        return Err(HomologicalError::HashMismatch {\n            expected: expected.to_hex(),\n            got: got.to_hex(),\n        });\n    }\n    Ok(())\n}\n"
+    },
+    {
+      "artifact": {
+        "path": "code/rust/src/homology/exact_carrier.rs",
+        "sha256": "bc877f6f429ad97519c0104f86f634da6a8a059fb74bde44bc6b864b4395a360"
+      },
+      "symbols": {
+        "as_ref": {
+          "signature": "fn as_ref(&self) -> &super::carrier::Carrier",
+          "body": "{ &self.inner }",
+          "obligation": "Borrow the same immutable admitted core. Generic manifest consumers see exact stored data and cached certified ranks."
+        },
+        "new": {
+          "signature": "pub fn new( c0_dim: usize, c1_dim: usize, c2_dim: usize, d0: BasicMatrix<Q>, d1: BasicMatrix<Q>, weights: Vec<Q>, ) -> Result<Self, CarrierError>",
+          "body": "{ let provenance = TheoremProvenance::new(\"runtime exact d1*d0 verification\".into())?; Ok(Self { inner: super::carrier::Carrier::new( c0_dim, c1_dim, c2_dim, d0, d1, weights, provenance, )?, }) }",
+          "obligation": "Make fixed runtime provenance; move dimensions, matrices and weights unchanged into the canonical core Carrier::new. Raw weight, length/positivity, scalar/shape/law, independent rank certificates and inclusion gates all precede return; no value escapes failed admission."
+        },
+        "c0_dim": {
+          "signature": "pub fn c0_dim(&self) -> usize",
+          "body": "{ self.inner.c0_dim() }",
+          "obligation": "Forward exactly core.c0_dim. Copy usize dimensions/ranks or borrow matrices/weights immutably; no conversion, public mutation, recomputation or admission bypass."
+        },
+        "c1_dim": {
+          "signature": "pub fn c1_dim(&self) -> usize",
+          "body": "{ self.inner.c1_dim() }",
+          "obligation": "Forward exactly core.c1_dim. Copy usize dimensions/ranks or borrow matrices/weights immutably; no conversion, public mutation, recomputation or admission bypass."
+        },
+        "c2_dim": {
+          "signature": "pub fn c2_dim(&self) -> usize",
+          "body": "{ self.inner.c2_dim() }",
+          "obligation": "Forward exactly core.c2_dim. Copy usize dimensions/ranks or borrow matrices/weights immutably; no conversion, public mutation, recomputation or admission bypass."
+        },
+        "d0": {
+          "signature": "pub fn d0(&self) -> &BasicMatrix<Q>",
+          "body": "{ self.inner.d0() }",
+          "obligation": "Forward exactly core.d0. Copy usize dimensions/ranks or borrow matrices/weights immutably; no conversion, public mutation, recomputation or admission bypass."
+        },
+        "d1": {
+          "signature": "pub fn d1(&self) -> &BasicMatrix<Q>",
+          "body": "{ self.inner.d1() }",
+          "obligation": "Forward exactly core.d1. Copy usize dimensions/ranks or borrow matrices/weights immutably; no conversion, public mutation, recomputation or admission bypass."
+        },
+        "weights": {
+          "signature": "pub fn weights(&self) -> &[Q]",
+          "body": "{ self.inner.weights() }",
+          "obligation": "Forward exactly core.weights. Copy usize dimensions/ranks or borrow matrices/weights immutably; no conversion, public mutation, recomputation or admission bypass."
+        },
+        "rank_d0": {
+          "signature": "pub fn rank_d0(&self) -> usize",
+          "body": "{ self.inner.rank_d0() }",
+          "obligation": "Forward exactly core.rank_d0. Copy usize dimensions/ranks or borrow matrices/weights immutably; no conversion, public mutation, recomputation or admission bypass."
+        },
+        "rank_d1": {
+          "signature": "pub fn rank_d1(&self) -> usize",
+          "body": "{ self.inner.rank_d1() }",
+          "obligation": "Forward exactly core.rank_d1. Copy usize dimensions/ranks or borrow matrices/weights immutably; no conversion, public mutation, recomputation or admission bypass."
+        },
+        "dim_q1": {
+          "signature": "pub fn dim_q1(&self) -> usize",
+          "body": "{ self.c1_dim() - self.rank_d0() }",
+          "obligation": "Core inclusion establishes rank(d0)+rank(d1)<=C1, hence rank(d0)<=C1. Unsigned subtraction on immutable state is safe and equals quotient dimension."
+        },
+        "dim_h1": {
+          "signature": "pub fn dim_h1(&self) -> usize",
+          "body": "{ self.c1_dim() - self.rank_d1() - self.rank_d0() }",
+          "obligation": "Use admitted exact ranks and C1. Core inclusion establishes both subtraction bounds. Root forwards Result; graph facade returns the same safe unsigned value."
+        },
+        "graph_carrier": {
+          "signature": "pub fn graph_carrier( num_nodes: usize, edges: &[(usize, usize)], triangles: &[(usize, usize, usize)], weights: Vec<Q>, ) -> Result<Carrier, CarrierError>",
+          "body": "{ let indices = edge_indices(num_nodes, edges)?; let mut d0 = BasicMatrix::<Q>::zero(edges.len(), num_nodes)?; for (i, &(src, tgt)) in edges.iter().enumerate() { d0.set(i, src, q(-1))?; d0.set(i, tgt, q(1))?; } let d1 = triangle_boundary(num_nodes, edges.len(), triangles, &indices)?; Carrier::new(num_nodes, edges.len(), triangles.len(), d0, d1, weights) }",
+          "obligation": "Validate/index directed edges first; checked E-by-N zero matrix receives -1 at distinct source and +1 at target. Build T-by-E d1; re-admit values, law and ranks through core. Huge zero area succeeds; huge nonzero product meets checked matrix allocation refusal."
+        },
+        "triangle_boundary": {
+          "signature": "fn triangle_boundary( num_nodes: usize, num_edges: usize, triangles: &[(usize, usize, usize)], indices: &BTreeMap<(usize, usize), usize>, ) -> Result<BasicMatrix<Q>, CarrierError>",
+          "body": "{ let mut d1 = BasicMatrix::<Q>::zero(triangles.len(), num_edges)?; for (i, &(a, b, c)) in triangles.iter().enumerate() { admit_triangle(num_nodes, i, (a, b, c))?; for (src, tgt, sign) in [(a, b, 1), (b, c, 1), (a, c, -1)] { let col = indices .get(&(src, tgt)) .ok_or(CarrierError::TriangleMissingEdge { triangle: i, src, tgt, })?; d1.set(i, *col, q(sign))?; } } Ok(d1) }",
+          "obligation": "Checked T-by-E allocation. Validate triangle before ordered ab,bc,ac lookups; preserve first missing-edge payload. Distinct vertices imply distinct ordered pairs/columns, so checked set(+1,+1,-1) equals indicator sum. Enumerated row/map column are in range. Duplicate triangle rows remain separate rows."
+        },
+        "edge_indices": {
+          "signature": "fn edge_indices( num_nodes: usize, edges: &[(usize, usize)], ) -> Result<BTreeMap<(usize, usize), usize>, CarrierError>",
+          "body": "{ let mut indices = BTreeMap::new(); for (i, &(src, tgt)) in edges.iter().enumerate() { admit_edge(num_nodes, i, src, tgt)?; if indices.insert((src, tgt), i).is_some() { return Err(CarrierError::BasisMismatch { description: \"parallel directed edges\".into(), }); } } Ok(indices) }",
+          "obligation": "Validate before insertion; duplicate directed pair returns BasisMismatch. Successful map contains exactly input pairs and distinct enumerated indices<E. Opposite pairs differ. Partial local data drops on failure."
+        },
+        "admit_edge": {
+          "signature": "fn admit_edge(n: usize, edge: usize, src: usize, tgt: usize) -> Result<(), CarrierError>",
+          "body": "{ if src >= n { return Err(CarrierError::EdgeSourceOutOfRange { edge, src }); } if tgt >= n { return Err(CarrierError::EdgeTargetOutOfRange { edge, tgt }); } if src == tgt { return Err(CarrierError::SelfLoopNotAllowed { node: src }); } Ok(()) }",
+          "obligation": "Reject source>=N first, target>=N second, then self loop. Exact full usize payloads, no arithmetic/narrowing or unchecked indexing."
+        },
+        "admit_triangle": {
+          "signature": "fn admit_triangle( n: usize, triangle: usize, (a, b, c): (usize, usize, usize), ) -> Result<(), CarrierError>",
+          "body": "{ for vertex in [a, b, c] { if vertex >= n { return Err(CarrierError::TriangleVertexOutOfRange { triangle, vertex }); } } if a == b || b == c || a == c { return Err(CarrierError::BasisMismatch { description: \"triangle vertices must be distinct\".into(), }); } Ok(()) }",
+          "obligation": "Check a,b,c against N in order before three pairwise inequality guards. Preserve first full-index error; any repeated vertex returns BasisMismatch."
+        }
+      },
+      "data_and_derive_review": "//! Compatibility facade for the admitted rational carrier. AuthorityEffect: None.\n//!\n//! All three carrier entry points share the same immutable law-checked core.\n\nuse super::cochain_complex::TheoremProvenance;\nuse crate::linear_algebra::basic_matrix::BasicMatrix;\nuse crate::linear_algebra::scalars::{q, Q};\nuse std::collections::BTreeMap;\n\npub use super::carrier_manifest::CarrierManifest;\npub use super::errors::HomologicalError as CarrierError;\n\n#[derive(Debug, Clone, PartialEq, Eq)]\npub struct Carrier {\n    inner: super::carrier::Carrier,\n}\n\nimpl AsRef<super::carrier::Carrier> for Carrier {\n    fn as_ref(&self) -> &super::carrier::Carrier {\n        &self.inner\n    }\n}\n\nimpl Carrier {\n    pub fn new(\n        c0_dim: usize,\n        c1_dim: usize,\n        c2_dim: usize,\n        d0: BasicMatrix<Q>,\n        d1: BasicMatrix<Q>,\n        weights: Vec<Q>,\n    ) -> Result<Self, CarrierError> {\n        let provenance = TheoremProvenance::new(\"runtime exact d1*d0 verification\".into())?;\n        Ok(Self {\n            inner: super::carrier::Carrier::new(\n                c0_dim, c1_dim, c2_dim, d0, d1, weights, provenance,\n            )?,\n        })\n    }\n    pub fn c0_dim(&self) -> usize {\n        self.inner.c0_dim()\n    }\n    pub fn c1_dim(&self) -> usize {\n        self.inner.c1_dim()\n    }\n    pub fn c2_dim(&self) -> usize {\n        self.inner.c2_dim()\n    }\n    pub fn d0(&self) -> &BasicMatrix<Q> {\n        self.inner.d0()\n    }\n    pub fn d1(&self) -> &BasicMatrix<Q> {\n        self.inner.d1()\n    }\n    pub fn weights(&self) -> &[Q] {\n        self.inner.weights()\n    }\n    pub fn rank_d0(&self) -> usize {\n        self.inner.rank_d0()\n    }\n    pub fn rank_d1(&self) -> usize {\n        self.inner.rank_d1()\n    }\n    pub fn dim_q1(&self) -> usize {\n        self.c1_dim() - self.rank_d0()\n    }\n    /// Rank inclusion was checked during construction; subtraction cannot underflow.\n    pub fn dim_h1(&self) -> usize {\n        self.c1_dim() - self.rank_d1() - self.rank_d0()\n    }\n}\n\n/// Signed incidence carrier for a finite simple directed presentation.\n/// Triangles (a,b,c) require edges a->b, b->c and a->c. Missing edges,\n/// repeated vertices, parallel edges and self loops are rejected explicitly.\n/// Construction costs O(E log E + T log E) table work, plus exact law/rank checks.\n/// Opposite directed edges are distinct; duplicate directed edges are refused.\n/// Triangle rows may repeat. Only repeated vertices within one triangle are\n/// refused; each supplied triangle contributes its own signed row.\npub fn graph_carrier(\n    num_nodes: usize,\n    edges: &[(usize, usize)],\n    triangles: &[(usize, usize, usize)],\n    weights: Vec<Q>,\n) -> Result<Carrier, CarrierError> {\n    let indices = edge_indices(num_nodes, edges)?;\n    let mut d0 = BasicMatrix::<Q>::zero(edges.len(), num_nodes)?;\n    for (i, &(src, tgt)) in edges.iter().enumerate() {\n        d0.set(i, src, q(-1))?;\n        d0.set(i, tgt, q(1))?;\n    }\n    let d1 = triangle_boundary(num_nodes, edges.len(), triangles, &indices)?;\n    Carrier::new(num_nodes, edges.len(), triangles.len(), d0, d1, weights)\n}\n\nfn triangle_boundary(\n    num_nodes: usize,\n    num_edges: usize,\n    triangles: &[(usize, usize, usize)],\n    indices: &BTreeMap<(usize, usize), usize>,\n) -> Result<BasicMatrix<Q>, CarrierError> {\n    let mut d1 = BasicMatrix::<Q>::zero(triangles.len(), num_edges)?;\n    for (i, &(a, b, c)) in triangles.iter().enumerate() {\n        admit_triangle(num_nodes, i, (a, b, c))?;\n        for (src, tgt, sign) in [(a, b, 1), (b, c, 1), (a, c, -1)] {\n            let col = indices\n                .get(&(src, tgt))\n                .ok_or(CarrierError::TriangleMissingEdge {\n                    triangle: i,\n                    src,\n                    tgt,\n                })?;\n            d1.set(i, *col, q(sign))?;\n        }\n    }\n    Ok(d1)\n}\n\nfn edge_indices(\n    num_nodes: usize,\n    edges: &[(usize, usize)],\n) -> Result<BTreeMap<(usize, usize), usize>, CarrierError> {\n    let mut indices = BTreeMap::new();\n    for (i, &(src, tgt)) in edges.iter().enumerate() {\n        admit_edge(num_nodes, i, src, tgt)?;\n        if indices.insert((src, tgt), i).is_some() {\n            return Err(CarrierError::BasisMismatch {\n                description: \"parallel directed edges\".into(),\n            });\n        }\n    }\n    Ok(indices)\n}\n\nfn admit_edge(n: usize, edge: usize, src: usize, tgt: usize) -> Result<(), CarrierError> {\n    if src >= n {\n        return Err(CarrierError::EdgeSourceOutOfRange { edge, src });\n    }\n    if tgt >= n {\n        return Err(CarrierError::EdgeTargetOutOfRange { edge, tgt });\n    }\n    if src == tgt {\n        return Err(CarrierError::SelfLoopNotAllowed { node: src });\n    }\n    Ok(())\n}\n\nfn admit_triangle(\n    n: usize,\n    triangle: usize,\n    (a, b, c): (usize, usize, usize),\n) -> Result<(), CarrierError> {\n    for vertex in [a, b, c] {\n        if vertex >= n {\n            return Err(CarrierError::TriangleVertexOutOfRange { triangle, vertex });\n        }\n    }\n    if a == b || b == c || a == c {\n        return Err(CarrierError::BasisMismatch {\n            description: \"triangle vertices must be distinct\".into(),\n        });\n    }\n    Ok(())\n}\n"
+    }
+  ],
+  "source_delta": {
+    "root": "Remove private From<Carrier> for private CarrierWire; replace derive Serialize/into with manual borrowed view. Public constructor/getter/hash signatures and deserializer schema preserved. Move legacy hash body unchanged into borrowing helper.",
+    "exact_carrier_noncomment_lines_unchanged": true,
+    "previous_sources": [
+      {
+        "path": "evidence/quality/category_homology/resume-20261019/carrier-facade-previous/exact_carrier.rs",
+        "sha256": "45dac03bf600211df22a75bcb2fd02c209e91353d15181e301b598ea35644c83"
+      },
+      {
+        "path": "evidence/quality/category_homology/resume-20261019/carrier-facade-previous/mod.rs",
+        "sha256": "b3412998bc0dba0f0203d5d305f50017ff151fa2c582f64e8c0b81adecd04f4d"
+      }
+    ]
+  },
+  "formal_correspondence": [
+    "GraphIncidence.incidence is target indicator minus source indicator; admitted unequal endpoints make d0 sets equivalent. distinct_edge_pairs and successful enumerated map imply distinct columns. triangle_at_ab/bc/ac and row_action identify signs; triangle_cancellation proves product zero. Core additionally checks concrete zero product.",
+    "RankCertificate.valid_rank identifies exact ranks through independently checked split identities. TwoStepComplex gives zero composition/image as cycles. CarrierDimensions proves quotient dimension and natural subtraction bounds. Facades add no mutable state or rank cache.",
+    "ScalarAdmission and reviewed BigRational establish admitted canonical Q. Raw hashing remains separate. TryFrom re-admits after hashes. Serde data/name preservation is source-reviewed and independently observed, not Rust/MIR extracted."
+  ],
+  "cost_review": [
+    "Graph table work O(E log E+T log E), input scans O(E+T). Dense initialization O(E*N+T*E) Q cells plus law multiplication and exact rank/certificate work. BigInt bit costs/matrix limits inherited; no unit-time or resource-totality claim.",
+    "Borrowed serialization removes full Carrier clone and subsequent matrix/weight clones. Field traversal and hash scans remain linear in coefficient bytes plus rational normalization costs. Source trace, not allocation/throughput measurement.",
+    "All explicit functions enumerated. Serde derives emit field visitors/struct sequences with error propagation; schema, independent owned-wire oracle and Probe cover names/order/data. Standard Clone/Eq/Debug are field traversal contracts, not admission bypasses."
+  ],
+  "consumer_scope": "Actual local root homology and l5a_challenges; generic manifest through AsRef. GR/sheaf/WDP omega_homology imports resolve to another package per pinned identity correction. No external application replay."
+}

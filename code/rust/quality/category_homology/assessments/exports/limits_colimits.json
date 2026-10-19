@@ -1,0 +1,225 @@
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/category_theory/limits_colimits/mod.rs",
+    "language": "Rust",
+    "sha256": "dff35bbea251d6d7cb535d9104bcf27ffdc15f41c8baa9dfb44ac4b83ed68a5d"
+  },
+  "reviewer": "Codex explicit public namespace/source identity review",
+  "evaluation_timestamp": "2026-10-19T01:22:37.053749+00:00",
+  "gates": {
+    "G1": "A",
+    "G2": "A",
+    "G3": "A",
+    "G4": "A",
+    "G5": "A"
+  },
+  "formal_specification": {
+    "domain": "Static Rust module and nominal type exports. There is no runtime mathematical input or admission operation in this file.",
+    "exports": {
+      "Coend": "coend::Coend",
+      "Coequalizer": "coequalizer::Coequalizer",
+      "CokernelPair": "cokernel_pair::CokernelPair",
+      "Colimit": "colimit::Colimit",
+      "Cocone": "cone::Cocone",
+      "Cone": "cone::Cone",
+      "ConeLeg": "cone::ConeLeg",
+      "Coproduct": "coproduct::Coproduct",
+      "DensityComonad": "density_comonad::DensityComonad",
+      "End": "end::End",
+      "Equalizer": "equalizer::Equalizer",
+      "InitialObject": "initial_object::InitialObject",
+      "KanExtension": "kan_extension::KanExtension",
+      "KanExtensionKind": "kan_extension::KanExtensionKind",
+      "KernelPair": "kernel_pair::KernelPair",
+      "Limit": "limit::Limit",
+      "PointwiseKanExtension": "pointwise_kan_extension::PointwiseKanExtension",
+      "Product": "product::Product",
+      "Pullback": "pullback::Pullback",
+      "Pushout": "pushout::Pushout",
+      "TerminalObject": "terminal_object::TerminalObject"
+    },
+    "module_exposure": "Every declared public child module is loaded by the canonical category crate from its source file. Exported aliases must identify exactly the separately specified provider types.",
+    "not_claimed": "No child algorithm, mathematical law, theorem, or engineering grade is inherited by reexporting its type."
+  },
+  "symbol_map": {
+    "Coend": "Public alias of coend::Coend",
+    "Coequalizer": "Public alias of coequalizer::Coequalizer",
+    "CokernelPair": "Public alias of cokernel_pair::CokernelPair",
+    "Colimit": "Public alias of colimit::Colimit",
+    "Cocone": "Public alias of cone::Cocone",
+    "Cone": "Public alias of cone::Cone",
+    "ConeLeg": "Public alias of cone::ConeLeg",
+    "Coproduct": "Public alias of coproduct::Coproduct",
+    "DensityComonad": "Public alias of density_comonad::DensityComonad",
+    "End": "Public alias of end::End",
+    "Equalizer": "Public alias of equalizer::Equalizer",
+    "InitialObject": "Public alias of initial_object::InitialObject",
+    "KanExtension": "Public alias of kan_extension::KanExtension",
+    "KanExtensionKind": "Public alias of kan_extension::KanExtensionKind",
+    "KernelPair": "Public alias of kernel_pair::KernelPair",
+    "Limit": "Public alias of limit::Limit",
+    "PointwiseKanExtension": "Public alias of pointwise_kan_extension::PointwiseKanExtension",
+    "Product": "Public alias of product::Product",
+    "Pullback": "Public alias of pullback::Pullback",
+    "Pushout": "Public alias of pushout::Pushout",
+    "TerminalObject": "Public alias of terminal_object::TerminalObject"
+  },
+  "invariant_argument": [
+    "All noncomment source items were inspected and mechanically restricted to public child-module declarations, public use declarations and lint-only module-inception annotations. No initializer, macro-generated item, unsafe block, function or mutable state is present.",
+    "Under the pinned Rust module/type-resolution semantics, a pub use binds the original provider item and does not construct or validate a mathematical object. Canonical controls compare each actual public alias with its explicit original provider type in the real category crate.",
+    "The challenge adapter rebinds child declarations to those same actual canonical modules, splits grouped imports and omits only comments/lint-only attributes. Its normalized positive controls establish the same nominal identities. Each negative module changes one type binding while leaving that provider environment unchanged. No provider algorithm is cloned or reimplemented."
+  ],
+  "failure_paths": {
+    "unresolved_or_private_provider": "The Rust compiler rejects the external canonical control; no successful runtime/API receipt or completed grade follows.",
+    "wrong_valid_binding": "A syntactically valid peer type can compile but violates the declared nominal identity. Every designated peer replacement is detected by its isolated TypeId comparison.",
+    "runtime": "This file has no runtime operation, argument conversion, allocation, indexing, recursion or error recovery. Importing its namespace does not execute the providers functions."
+  },
+  "trust_boundary": {
+    "compiler": "Pinned Rust compiler, linker and standard nominal type identity within this one binary. TypeId values are not serialized, treated as cryptographic attestations or assumed stable across compiler versions.",
+    "providers": "Actual canonical crate child modules and the explicitly pinned source definitions. Their semantics, failure behavior and mathematical claims remain independently graded.",
+    "scope": "This is compiler/API-wiring verification, not a Lean theorem, Rust/MIR refinement, underlying category proof or source-origin attestation."
+  },
+  "consumer_review": [
+    "The actual category library exposes this hierarchy as a public module. Canonical external controls and the unchanged 459-test category suite validate the current public namespace before and after the challenges.",
+    "Known child types are still raw declarations or separately admitted implementations as their own files specify. A public facade cannot turn pending child score gates into completed ones."
+  ],
+  "basis": {
+    "G1": [
+      "Subject and every immediate provider source are SHA-bound; all public export names map to explicit provider paths. Docs already state shells/AuthorityEffect None. The actual crate and captured offline dependencies/compiler binaries anchor the API receipt."
+    ],
+    "G2": [
+      "Canonical and normalized controls agree with the declared nominal identities for every public alias, including the two legacy adjunction exports. There is no semantic arithmetic or unadmitted numeric domain in this file."
+    ],
+    "G3": [
+      "There are no executable production paths or mutable state to violate an invariant. Invalid source/provider visibility is rejected by the trusted compiler; the current external controls compile and execute. All runtime behavior of provider functions remains outside this facade claim."
+    ],
+    "G4": [
+      "All 21 valid single-fault re-export replacements are killed by separate namespace dispatches; no survivor, invalid/equivalent, inconclusive or unrun result. R=1.0 for this file.",
+      "The full campaign detects 107 wrong bindings across nine module files. It separately passes 107 canonical public controls, 107 normalized positive controls and 459 actual category tests before and after. The adapter and exact observation are disclosed; invalid compiler failures are not counted as kills."
+    ],
+    "G5": [
+      "The parsed Rust source contains zero production functions and no item-generating macros. Declared source CCN, cognitive complexity and control nesting are zero because this is a facade, not an unsupported parser result.",
+      "Runtime re-export overhead and allocations are absent. The small explicit module/use lists follow source boundaries; imported provider operational costs are not concealed or awarded this file grade."
+    ]
+  },
+  "open_findings": [],
+  "assurance_limits": [
+    "Capability remains L1 namespace glue, not L5 mathematics.",
+    "No child mathematical validity or engineering grade is inherited.",
+    "Contracts stay pending. No A+, alternate compiler, MIR/allocator proof, cross-repository attestation or whole-workspace success is claimed."
+  ],
+  "evidence": [
+    {
+      "path": "code/rust/quality/category_homology/export_boundaries.json",
+      "sha256": "53abe84f0fc31e39d5de22443abf09f2c573d187fef5f876989a3b38767c4d3d"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T003819Z/summary.json",
+      "sha256": "2718bda7f6bf2f3b3108adf045884f32a3ce9c0f91b8c281fb030e4474d338d3"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T003819Z/mutations.json",
+      "sha256": "2442605cd814bfb6a86e38d68c7955e14fd2d20191ab22daf2a1e1748a940b6b"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T003819Z/baseline.json",
+      "sha256": "7dd3e741e551001f2418b2dd6b599dfa1965cb07e1e1bfe9e5c2e7b71f6b6674"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T003819Z/restored.json",
+      "sha256": "91d060c822367eb16b0579a1d9313b77df494bc92dbbfe0fe25c1cf094f27c02"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T003819Z/builds.json",
+      "sha256": "988646c7a83d4ef5967db314fbad2ffa9bc4fa7a7c7fc8a550f8d9055b5a0c74"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T003819Z/run_export_challenges.py",
+      "sha256": "2c89c6df319fc87e3aae3d781675b556ad9bed23f0285cd378aa31ce6794327f"
+    }
+  ],
+  "context_inputs": [
+    {
+      "path": "code/rust/src/category_theory/limits_colimits/coend.rs",
+      "sha256": "6eee2619b88cc078514e5d5f7452aa4cf378afec6fdc364c120c40b49470479c"
+    },
+    {
+      "path": "code/rust/src/category_theory/limits_colimits/coequalizer.rs",
+      "sha256": "49f7d6316099ccfe807d704b2a5860e4ee431630c577b46b88c39081353b2efd"
+    },
+    {
+      "path": "code/rust/src/category_theory/limits_colimits/cokernel_pair.rs",
+      "sha256": "1d4241d6fc5b4d01b97bc8c950842b90994fba7201ce384d0f4bab2e61d4acef"
+    },
+    {
+      "path": "code/rust/src/category_theory/limits_colimits/colimit.rs",
+      "sha256": "0a117d0cf807444d1e0bbd37d19acf26f31ab08444430e1e090568246f0cbc90"
+    },
+    {
+      "path": "code/rust/src/category_theory/limits_colimits/cone.rs",
+      "sha256": "7162cd0e4739b2a21b7aad5029ec7ab88cd7c1ad820fb4890b3e38dea0167afc"
+    },
+    {
+      "path": "code/rust/src/category_theory/limits_colimits/coproduct.rs",
+      "sha256": "32db291e788404b09703c08f5e9194329b16929053b289b428bbcc79955fb162"
+    },
+    {
+      "path": "code/rust/src/category_theory/limits_colimits/density_comonad.rs",
+      "sha256": "294f6749619265f6d3cbf63e26d8c64ba6ddccb58e715e9ffaf21818f0800f16"
+    },
+    {
+      "path": "code/rust/src/category_theory/limits_colimits/end.rs",
+      "sha256": "20b2b06e6cc9717f43b229644f4c1dd090b703b8f218a5a7d0d4e01e6a766fe8"
+    },
+    {
+      "path": "code/rust/src/category_theory/limits_colimits/equalizer.rs",
+      "sha256": "6340f12bb14995760ca7ee37262f84d3b26fab79b09bfed7be03e99f1619dc06"
+    },
+    {
+      "path": "code/rust/src/category_theory/limits_colimits/initial_object.rs",
+      "sha256": "c0b132123a3ce6e33dd69a6080a7a0eaa77cac79314c4fb9ecf311551282952b"
+    },
+    {
+      "path": "code/rust/src/category_theory/limits_colimits/kan_extension.rs",
+      "sha256": "5ad7347227fe7c72d7e7d2a85ff76a8c566ebf15497f545c5e4152eb8929b99f"
+    },
+    {
+      "path": "code/rust/src/category_theory/limits_colimits/kernel_pair.rs",
+      "sha256": "9127cbf6ffcbc2c200358b6d94968a7be5e644da0a7862eb4068db152b953882"
+    },
+    {
+      "path": "code/rust/src/category_theory/limits_colimits/limit.rs",
+      "sha256": "f51524e00754f5b012e9d8be1a1fce3ddb5f50364d773e41a3152b9d7f6fcd82"
+    },
+    {
+      "path": "code/rust/src/category_theory/limits_colimits/pointwise_kan_extension.rs",
+      "sha256": "284a56ca2d49c89d5448de356a66540b3aa2b4f624cfe03505cdd217b89718ee"
+    },
+    {
+      "path": "code/rust/src/category_theory/limits_colimits/product.rs",
+      "sha256": "ea49d9c907ff286fe3e9137c24e55c5f7c8ac93b35846a4ce10d8f07e08937ca"
+    },
+    {
+      "path": "code/rust/src/category_theory/limits_colimits/pullback.rs",
+      "sha256": "3ddb48784b9b230b734f5d4749ab531b669d4f7fe55338cb4b5eeaa6af54a215"
+    },
+    {
+      "path": "code/rust/src/category_theory/limits_colimits/pushout.rs",
+      "sha256": "6fc65f41a4bcf13d776e0d20d2f21f3e1850123e7a4082a4ce357f802dc724ca"
+    },
+    {
+      "path": "code/rust/src/category_theory/limits_colimits/terminal_object.rs",
+      "sha256": "f72d2a7af96edccac86f043c2afd6d64b0abe062f6cac37409226515ca7d36a4"
+    },
+    {
+      "path": "code/rust/src/category_theory/lib.rs",
+      "sha256": "b1535a921f4a69414e8b6636f85c8393f799bd2bc20da600e855864c2d3e8776"
+    },
+    {
+      "path": "code/rust/src/category_theory/Cargo.toml",
+      "sha256": "42378ba9d23fe5a5c97c844ebab457e9187c96b819c5b6a0fe3f9acaff1579a3"
+    }
+  ]
+}

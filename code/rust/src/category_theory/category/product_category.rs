@@ -3,6 +3,7 @@
 //!
 //! C × D: objects are pairs (c, d); morphisms are pairs of morphisms.
 
+use omega_category_theory::errors::ArithmosError;
 use serde::{Deserialize, Serialize};
 
 /// Best-effort product category shell C × D.
@@ -41,19 +42,19 @@ impl ProductCategoryShell {
         }
     }
 
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
         if self.left_factor_label.is_empty() {
-            return Err("empty left_factor_label".into());
+            return Err(ArithmosError::InvalidShape("empty left_factor_label".into()));
         }
         if self.right_factor_label.is_empty() {
-            return Err("empty right_factor_label".into());
+            return Err(ArithmosError::InvalidShape("empty right_factor_label".into()));
         }
         for (i, p) in self.object_pairs.iter().enumerate() {
             if p.is_empty() {
-                return Err(format!("empty object_pair tag at index {i}"));
+                return Err(ArithmosError::InvalidShape(format!("empty object_pair tag at index {i}")));
             }
         }
         Ok(())

@@ -1,7 +1,8 @@
-//! Validation — cross-cutting validation unit declarations.
+//! Diagnostic labels and caller-supplied validation results. AuthorityEffect: None.
 //!
-//! Maps directly to spec §4 and §10 validation unit lists.
-//! Each validation unit is a single-property checker.
+//! Unit names identify obligations; this file does not execute their checkers.
+//! Reports preserve supplied flags and diagnostics, including empty reports.
+//! Public fields are metadata, not an authenticated mathematical certificate.
 
 // ---------------------------------------------------------------------------
 // Validation unit identifiers (spec §4)
@@ -9,8 +10,8 @@
 
 /// Identifiers for all functor validation units.
 ///
-/// These correspond 1:1 with the spec's declared validation obligations.
-/// They are used as keys in validation reports and contract audit trails.
+/// These name validation obligations and serve as diagnostic keys.
+/// Constructing a label does not establish the named obligation.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub enum FunctorValidation {
     Name,

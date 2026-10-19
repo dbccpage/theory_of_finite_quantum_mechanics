@@ -1,4 +1,8 @@
-// eilenberg_moore.rs
+//! Generic callback adapters, finite algebra observations and Maybe transport.
+//! AuthorityEffect: None. Monad/Eq/Clone are caller contracts, not checked laws.
+//! Samples establish only their evaluated observations; empty samples are vacuous.
+//! Callback purity, termination, panic/drop behavior and external effects remain
+//! caller boundaries. Marker/printer adapters do not construct a category in D.
 
 use std::fmt::Debug;
 
@@ -16,8 +20,8 @@ impl<T> Obj for T where T: Clone + Debug + 'static {}
 //   η: Id → T  (unit)
 //   μ: T² → T (multiplication)
 
-/// A monad over a category (assumed to be Set).
-/// The monad acts on types and functions.
+/// A monad-shaped interface over Rust types and functions.
+/// Implementations must separately justify the mathematical monad laws.
 pub trait Monad {
     /// Type constructor: for any type `A`, T<A> is the "wrapped" type.
     type T<A: Obj>: Obj;
@@ -40,16 +44,49 @@ pub trait Monad {
 // --------------------------------------------------
 // EILENBERG-MOORE ALGEBRA FOR A MONAD
 
-/// An Eilenberg–Moore algebra for a monad `M` is a pair (A, h)
+/// An unchecked candidate action for a monad-like interface `M`.
+/// An Eilenberg–Moore algebra is a pair (A, h)
 /// where:
 ///   A: object (carrier)
 ///   h: T<A> → A  (action morphism)
-/// satisfying two laws:
+/// satisfying two laws; this public callback record does not enforce them:
 ///   1. h ∘ T(h) = h ∘ μ_A     (associativity)
 ///   2. h ∘ η_A = id_A          (unit law)
 pub struct EMAlgebra<M: Monad, A: Obj> {
     pub carrier: Phantom<A>, // Just to carry type info
     pub action: Box<dyn Fn(M::T<A>) -> A>,
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum AlgebraLaw {
+    Unit,
+    Associativity,
+    Morphism,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub enum LawCheckError {
+    NonPreservingClone { law: AlgebraLaw, index: usize },
+    Violated { law: AlgebraLaw, index: usize },
+}
+
+/// Counts of supplied observations, not an exhaustive-domain certificate.
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct AlgebraSampleCheck {
+    pub unit_samples: usize,
+    pub associativity_samples: usize,
+}
+
+fn checked_clone<T: Clone + Eq>(
+    value: &T,
+    law: AlgebraLaw,
+    index: usize,
+) -> Result<T, LawCheckError> {
+    let copy = value.clone();
+    if copy != *value {
+        return Err(LawCheckError::NonPreservingClone { law, index });
+    }
+    Ok(copy)
 }
 
 // We use a phantom to avoid storing data
@@ -62,45 +99,57 @@ impl<T> Phantom<T> {
 }
 
 impl<M: Monad, A: Obj> EMAlgebra<M, A> {
-    /// Check algebra laws (for finite types, via enumeration)
-    /// Note: Only feasible for small or discrete types.
+    /// No domain was supplied, so this legacy method establishes no laws.
+    /// False means unverified here, not a mathematical counterexample.
+    #[deprecated(
+        note = "No input domain: always unverified. Use check_samples for finite observations."
+    )]
     pub fn verify_laws(&self) -> bool
     where
         A: Clone + Eq,
         M::T<A>: Clone + Eq,
         M::T<M::T<A>>: Clone,
     {
-        self.unit_law() && self.associativity_law()
+        false
     }
 
-    // Unit law: h(η(a)) = a
-    fn unit_law(&self) -> bool
+    /// Evaluate unit samples first, then associativity samples, in caller order.
+    /// Clone must preserve each shared input under the supplied Eq contract.
+    /// Success covers these observations only, even if both vectors are empty.
+    pub fn check_samples(
+        &self,
+        unit_samples: Vec<A>,
+        associativity_samples: Vec<M::T<M::T<A>>>,
+    ) -> Result<AlgebraSampleCheck, LawCheckError>
     where
-        A: Clone + Eq,
+        A: Eq,
+        M::T<M::T<A>>: Eq,
     {
-        let _h = &self.action;
-        // Since we can't enumerate all A, we require test inputs
-        // This is a limitation — in practice, laws are proven.
-        true // Placeholder; user must test
-    }
-
-    // Associativity law: h(T(h)(x)) = h(join(x)) for x: T<T<A>>
-    fn associativity_law(&self) -> bool
-    where
-        A: Clone + Eq,
-        M::T<A>: Clone,
-        M::T<M::T<A>>: Clone,
-    {
-        // We can't test universally without enumeration.
-        // But we can define the condition.
-        let h = &self.action;
-        let _test_case = |tta: M::T<M::T<A>>| {
-            let lhs = h(M::fmap(|ta: M::T<A>| h(ta.clone()), tta.clone()));
-            let rhs = h(M::join(tta));
-            lhs == rhs
+        let observed = AlgebraSampleCheck {
+            unit_samples: unit_samples.len(),
+            associativity_samples: associativity_samples.len(),
         };
-        // In real use, pass test cases
-        true
+        for (index, value) in unit_samples.into_iter().enumerate() {
+            let copy = checked_clone(&value, AlgebraLaw::Unit, index)?;
+            if (self.action)(M::unit::<A>(copy)) != value {
+                return Err(LawCheckError::Violated {
+                    law: AlgebraLaw::Unit,
+                    index,
+                });
+            }
+        }
+        for (index, value) in associativity_samples.into_iter().enumerate() {
+            let copy = checked_clone(&value, AlgebraLaw::Associativity, index)?;
+            let left = (self.action)(M::fmap::<M::T<A>, A>(|ta| (self.action)(ta), copy));
+            let right = (self.action)(M::join::<A>(value));
+            if left != right {
+                return Err(LawCheckError::Violated {
+                    law: AlgebraLaw::Associativity,
+                    index,
+                });
+            }
+        }
+        Ok(observed)
     }
 }
 
@@ -108,7 +157,7 @@ impl<M: Monad, A: Obj> EMAlgebra<M, A> {
 // CATEGORY OF EILENBERG-MOORE ALGEBRAS
 
 /// A morphism between two EM algebras (A, h) and (B, k) is a function f: A → B
-/// such that: f ∘ h = k ∘ T(f)
+/// such that f ∘ h = k ∘ T(f). This record stores an unchecked candidate.
 pub struct AlgebraMorphism<M: Monad, A: Obj, B: Obj> {
     f: Box<dyn Fn(A) -> B>,
     _phantom: Phantom<(M, A, B)>,
@@ -128,38 +177,52 @@ impl<M: Monad, A: Obj, B: Obj> AlgebraMorphism<M, A, B> {
         }
     }
 
-    /// Check if this morphism respects algebra structure
-    pub fn respects_algebras(&self, dom: &EMAlgebra<M, A>, cod: &EMAlgebra<M, B>) -> bool
+    /// Without a supplied domain no preservation law has been established.
+    #[deprecated(
+        note = "No input domain: always unverified. Use check_samples for finite observations."
+    )]
+    pub fn respects_algebras(&self, _dom: &EMAlgebra<M, A>, _cod: &EMAlgebra<M, B>) -> bool
     where
         A: Clone,
         B: Clone + Eq,
         M::T<A>: Clone,
         M::T<B>: Clone,
     {
-        let f = &self.f;
-        let h = &dom.action;
-        let k = &cod.action;
+        false
+    }
 
-        // We need to test: for all ta in T<A>, f(h(ta)) == k(T(f)(ta))
-        // Again, without enumeration, we can't verify fully.
-        // But we define the law.
-
-        let _test_case = |ta: M::T<A>| {
-            let lhs = f(h(ta.clone()));
-            let rhs = k(M::fmap(f, ta));
-            lhs == rhs
-        };
-
-        // Return true conservatively; actual verification needs sample inputs
-        true
+    /// Count successful supplied preservation observations; no exhaustive claim.
+    pub fn check_samples(
+        &self,
+        dom: &EMAlgebra<M, A>,
+        cod: &EMAlgebra<M, B>,
+        samples: Vec<M::T<A>>,
+    ) -> Result<usize, LawCheckError>
+    where
+        B: Eq,
+        M::T<A>: Eq,
+    {
+        let count = samples.len();
+        for (index, value) in samples.into_iter().enumerate() {
+            let copy = checked_clone(&value, AlgebraLaw::Morphism, index)?;
+            let left = (self.f)((dom.action)(copy));
+            let right = (cod.action)(M::fmap::<A, B>(&self.f, value));
+            if left != right {
+                return Err(LawCheckError::Violated {
+                    law: AlgebraLaw::Morphism,
+                    index,
+                });
+            }
+        }
+        Ok(count)
     }
 }
 
 // --------------------------------------------------
 // FREE FORGETFUL ADJUNCTION AND MONAD DERIVATION
 
-/// A forgetful functor U: EM(M) → C
-/// Forgets the algebra structure, keeps the carrier.
+/// Marker for the intended forgetful role. `map` only builds a label printer;
+/// it does not extract a carrier value or establish a categorical functor.
 #[derive(Debug)]
 pub struct ForgetfulFunctor<M: Monad>(Phantom<M>);
 
@@ -174,7 +237,7 @@ impl<M: Monad> ForgetfulFunctor<M> {
         Self(Phantom::new())
     }
 
-    /// Apply to an algebra: returns its carrier type (as a boxed object)
+    /// Return a fixed carrier-description printer, not a carrier object or map.
     pub fn map<A: Obj + 'static>(&self, alg: &EMAlgebra<M, A>) -> Box<dyn Fn() -> String> {
         // We can't return A directly due to typing, so we return a printer
         let _ = alg;
@@ -198,7 +261,7 @@ impl<M: Monad> FreeAlgebraFunctor<M> {
         Self(Phantom::new())
     }
 
-    /// Returns the free EM algebra on type A
+    /// Construct the join action; algebra laws require a lawful supplied Monad.
     pub fn map<A: Obj>(&self) -> EMAlgebra<M, M::T<A>>
     where
         M::T<M::T<A>>: 'static,
@@ -215,11 +278,8 @@ impl<M: Monad> FreeAlgebraFunctor<M> {
 // COMPARISON FUNCTOR K: C^T → D
 // In the canonical case: K: EM(M) → D where M arises from adjunction C ⇄ D
 
-/// The comparison functor from the Eilenberg–Moore category to the original category D
-/// assuming a monad M comes from an adjunction F ⊣ U.
-/// K sends an algebra (A, h) to the object in D such that U(K(A,h)) ≅ A.
-///
-/// This is abstract; we model it as a mapping assuming D is known.
+/// Type-parameter marker for a proposed comparison role in D.
+/// `map` returns descriptive metadata, not an object or categorical functor.
 #[derive(Debug)]
 pub struct ComparisonFunctor<M: Monad, DObj: Obj> {
     _phantom: Phantom<(M, DObj)>,
@@ -238,10 +298,9 @@ impl<M: Monad, DObj: Obj> ComparisonFunctor<M, DObj> {
         }
     }
 
-    /// Apply K to an EM algebra: conceptually gives an object in D
-    /// Since D is abstract, we return a name or identifier
+    /// Return a fixed descriptive label; no object or actual comparison map in D.
     pub fn map<A: Obj + 'static>(&self, _alg: &EMAlgebra<M, A>) -> &'static str {
-        "Object in D (via comparison)" // Placeholder
+        "Object in D (via comparison)" // Descriptive metadata only.
     }
 }
 

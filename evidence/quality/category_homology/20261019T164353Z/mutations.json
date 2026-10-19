@@ -1,0 +1,596 @@
+[
+  {
+    "candidate_path": "code/rust/target/rr/261019T164353/src/category_theory/q/n1.rs",
+    "candidate_sha256": "26c90f7f0132b9845769482df24b5c5cfbb9df05e13f9980dca08a895de15728",
+    "id": "RR-1-0",
+    "module": "root_record_replay_1::",
+    "needle": "    pub fn verify_laws(&self) -> bool\n    where\n        A: Clone + Eq,\n        M::T<A>: Clone + Eq,\n        M::T<M::T<A>>: Clone,\n    {\n        false\n    }",
+    "outcome": "killed",
+    "path": "category_theory/eilenberg_moore.rs",
+    "replacement": "    pub fn verify_laws(&self) -> bool\n    where\n        A: Clone + Eq,\n        M::T<A>: Clone + Eq,\n        M::T<M::T<A>>: Clone,\n    {\n        true\n    }",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T164353\\root-record-tests.exe",
+        "root_record_replay_1::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T164353",
+      "elapsed_seconds": 0.016,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T164353Z\\fault-0.log",
+      "log_sha256": "11748f901fd90f408faecfbee09831463dc5e54d295709d67989bc489928f761",
+      "timed_out": false
+    },
+    "subject_sha256": "0933226fd61e0ce03769c83b929639bf75fe7531761637af3ae7faf3ab651044"
+  },
+  {
+    "candidate_path": "code/rust/target/rr/261019T164353/src/category_theory/q/n2.rs",
+    "candidate_sha256": "18e7a129a7cc2eb7522b6115e634efaa92e7e777a88e6b60b80ac579adf9d75d",
+    "id": "RR-2-1",
+    "module": "root_record_replay_2::",
+    "needle": "    pub fn respects_algebras(&self, _dom: &EMAlgebra<M, A>, _cod: &EMAlgebra<M, B>) -> bool\n    where\n        A: Clone,\n        B: Clone + Eq,\n        M::T<A>: Clone,\n        M::T<B>: Clone,\n    {\n        false\n    }",
+    "outcome": "killed",
+    "path": "category_theory/eilenberg_moore.rs",
+    "replacement": "    pub fn respects_algebras(&self, _dom: &EMAlgebra<M, A>, _cod: &EMAlgebra<M, B>) -> bool\n    where\n        A: Clone,\n        B: Clone + Eq,\n        M::T<A>: Clone,\n        M::T<B>: Clone,\n    {\n        true\n    }",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T164353\\root-record-tests.exe",
+        "root_record_replay_2::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T164353",
+      "elapsed_seconds": 0.0,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T164353Z\\fault-1.log",
+      "log_sha256": "d88804dee4e53734f066b35461742a54953db24e1930bb25087e74d0756d035b",
+      "timed_out": false
+    },
+    "subject_sha256": "0933226fd61e0ce03769c83b929639bf75fe7531761637af3ae7faf3ab651044"
+  },
+  {
+    "candidate_path": "code/rust/target/rr/261019T164353/src/category_theory/q/n3.rs",
+    "candidate_sha256": "d3452f68a86228df927359e6e8a235a5f3e218d1502ec4eccdd0ce6d559b6b9d",
+    "id": "RR-3-2",
+    "module": "root_record_replay_3::",
+    "needle": "fn checked_clone<T: Clone + Eq>(\n    value: &T,\n    law: AlgebraLaw,\n    index: usize,\n) -> Result<T, LawCheckError> {\n    let copy = value.clone();\n    if copy != *value {\n        return Err(LawCheckError::NonPreservingClone { law, index });\n    }\n    Ok(copy)\n}",
+    "outcome": "killed",
+    "path": "category_theory/eilenberg_moore.rs",
+    "replacement": "fn checked_clone<T: Clone + Eq>(\n    value: &T,\n    law: AlgebraLaw,\n    index: usize,\n) -> Result<T, LawCheckError> {\n    let copy = value.clone();\n    if false {\n        return Err(LawCheckError::NonPreservingClone { law, index });\n    }\n    Ok(copy)\n}",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T164353\\root-record-tests.exe",
+        "root_record_replay_3::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T164353",
+      "elapsed_seconds": 0.0,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T164353Z\\fault-2.log",
+      "log_sha256": "bd19dd68f6932069d882581bd5238c6bbc6c9fa6ee1bc0cb51df13c401eb54d7",
+      "timed_out": false
+    },
+    "subject_sha256": "0933226fd61e0ce03769c83b929639bf75fe7531761637af3ae7faf3ab651044"
+  },
+  {
+    "candidate_path": "code/rust/target/rr/261019T164353/src/category_theory/q/n4.rs",
+    "candidate_sha256": "45b154a1e7c82a00ec5f9e4ed3ebe93a4b8c56b237c88680f0e61e997007cd82",
+    "id": "RR-4-3",
+    "module": "root_record_replay_4::",
+    "needle": "fn checked_clone<T: Clone + Eq>(\n    value: &T,\n    law: AlgebraLaw,\n    index: usize,\n) -> Result<T, LawCheckError> {\n    let copy = value.clone();\n    if copy != *value {\n        return Err(LawCheckError::NonPreservingClone { law, index });\n    }\n    Ok(copy)\n}",
+    "outcome": "killed",
+    "path": "category_theory/eilenberg_moore.rs",
+    "replacement": "fn checked_clone<T: Clone + Eq>(\n    value: &T,\n    law: AlgebraLaw,\n    index: usize,\n) -> Result<T, LawCheckError> {\n    let copy = value.clone();\n    if copy != *value {\n        return Err(LawCheckError::NonPreservingClone { law: AlgebraLaw::Morphism, index });\n    }\n    Ok(copy)\n}",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T164353\\root-record-tests.exe",
+        "root_record_replay_4::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T164353",
+      "elapsed_seconds": 0.031,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T164353Z\\fault-3.log",
+      "log_sha256": "746e4921ac8562e571f5987dd3848175ebebe2524a55c2286384903a848629e7",
+      "timed_out": false
+    },
+    "subject_sha256": "0933226fd61e0ce03769c83b929639bf75fe7531761637af3ae7faf3ab651044"
+  },
+  {
+    "candidate_path": "code/rust/target/rr/261019T164353/src/category_theory/q/n5.rs",
+    "candidate_sha256": "c16f65550aa76955ed05e331ac8e07e27bfdf227b6c94ab2c8245e3bf765473e",
+    "id": "RR-5-4",
+    "module": "root_record_replay_5::",
+    "needle": "    pub fn check_samples(\n        &self,\n        unit_samples: Vec<A>,\n        associativity_samples: Vec<M::T<M::T<A>>>,\n    ) -> Result<AlgebraSampleCheck, LawCheckError>\n    where\n        A: Eq,\n        M::T<M::T<A>>: Eq,\n    {\n        let observed = AlgebraSampleCheck {\n            unit_samples: unit_samples.len(),\n            associativity_samples: associativity_samples.len(),\n        };\n        for (index, value) in unit_samples.into_iter().enumerate() {\n            let copy = checked_clone(&value, AlgebraLaw::Unit, index)?;\n            if (self.action)(M::unit::<A>(copy)) != value {\n                return Err(LawCheckError::Violated {\n                    law: AlgebraLaw::Unit,\n                    index,\n                });\n            }\n        }\n        for (index, value) in associativity_samples.into_iter().enumerate() {\n            let copy = checked_clone(&value, AlgebraLaw::Associativity, index)?;\n            let left = (self.action)(M::fmap::<M::T<A>, A>(|ta| (self.action)(ta), copy));\n            let right = (self.action)(M::join::<A>(value));\n            if left != right {\n                return Err(LawCheckError::Violated {\n                    law: AlgebraLaw::Associativity,\n                    index,\n                });\n            }\n        }\n        Ok(observed)\n    }",
+    "outcome": "killed",
+    "path": "category_theory/eilenberg_moore.rs",
+    "replacement": "    pub fn check_samples(\n        &self,\n        unit_samples: Vec<A>,\n        associativity_samples: Vec<M::T<M::T<A>>>,\n    ) -> Result<AlgebraSampleCheck, LawCheckError>\n    where\n        A: Eq,\n        M::T<M::T<A>>: Eq,\n    {\n        let observed = AlgebraSampleCheck {\n            unit_samples: unit_samples.len(),\n            associativity_samples: associativity_samples.len(),\n        };\n        for (index, value) in unit_samples.into_iter().enumerate() {\n            let copy = checked_clone(&value, AlgebraLaw::Unit, index)?;\n            if false {\n                return Err(LawCheckError::Violated {\n                    law: AlgebraLaw::Unit,\n                    index,\n                });\n            }\n        }\n        for (index, value) in associativity_samples.into_iter().enumerate() {\n            let copy = checked_clone(&value, AlgebraLaw::Associativity, index)?;\n            let left = (self.action)(M::fmap::<M::T<A>, A>(|ta| (self.action)(ta), copy));\n            let right = (self.action)(M::join::<A>(value));\n            if left != right {\n                return Err(LawCheckError::Violated {\n                    law: AlgebraLaw::Associativity,\n                    index,\n                });\n            }\n        }\n        Ok(observed)\n    }",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T164353\\root-record-tests.exe",
+        "root_record_replay_5::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T164353",
+      "elapsed_seconds": 0.016,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T164353Z\\fault-4.log",
+      "log_sha256": "aac7a8482a9bb9b07eecea2b9ccb3dbc8529ceb29e5dc0b6258c175b9cb954a8",
+      "timed_out": false
+    },
+    "subject_sha256": "0933226fd61e0ce03769c83b929639bf75fe7531761637af3ae7faf3ab651044"
+  },
+  {
+    "candidate_path": "code/rust/target/rr/261019T164353/src/category_theory/q/n6.rs",
+    "candidate_sha256": "1bf505abb932f249609c1244a1b775011d4091da37e3882f3170e5e2aa4882c0",
+    "id": "RR-6-5",
+    "module": "root_record_replay_6::",
+    "needle": "    pub fn check_samples(\n        &self,\n        unit_samples: Vec<A>,\n        associativity_samples: Vec<M::T<M::T<A>>>,\n    ) -> Result<AlgebraSampleCheck, LawCheckError>\n    where\n        A: Eq,\n        M::T<M::T<A>>: Eq,\n    {\n        let observed = AlgebraSampleCheck {\n            unit_samples: unit_samples.len(),\n            associativity_samples: associativity_samples.len(),\n        };\n        for (index, value) in unit_samples.into_iter().enumerate() {\n            let copy = checked_clone(&value, AlgebraLaw::Unit, index)?;\n            if (self.action)(M::unit::<A>(copy)) != value {\n                return Err(LawCheckError::Violated {\n                    law: AlgebraLaw::Unit,\n                    index,\n                });\n            }\n        }\n        for (index, value) in associativity_samples.into_iter().enumerate() {\n            let copy = checked_clone(&value, AlgebraLaw::Associativity, index)?;\n            let left = (self.action)(M::fmap::<M::T<A>, A>(|ta| (self.action)(ta), copy));\n            let right = (self.action)(M::join::<A>(value));\n            if left != right {\n                return Err(LawCheckError::Violated {\n                    law: AlgebraLaw::Associativity,\n                    index,\n                });\n            }\n        }\n        Ok(observed)\n    }",
+    "outcome": "killed",
+    "path": "category_theory/eilenberg_moore.rs",
+    "replacement": "    pub fn check_samples(\n        &self,\n        unit_samples: Vec<A>,\n        associativity_samples: Vec<M::T<M::T<A>>>,\n    ) -> Result<AlgebraSampleCheck, LawCheckError>\n    where\n        A: Eq,\n        M::T<M::T<A>>: Eq,\n    {\n        let observed = AlgebraSampleCheck {\n            unit_samples: unit_samples.len(),\n            associativity_samples: associativity_samples.len(),\n        };\n        for (index, value) in unit_samples.into_iter().enumerate() {\n            let copy = checked_clone(&value, AlgebraLaw::Unit, index)?;\n            if (self.action)(M::unit::<A>(copy)) != value {\n                return Err(LawCheckError::Violated {\n                    law: AlgebraLaw::Unit,\n                    index,\n                });\n            }\n        }\n        for (index, value) in associativity_samples.into_iter().enumerate() {\n            let copy = checked_clone(&value, AlgebraLaw::Associativity, index)?;\n            let left = (self.action)(M::fmap::<M::T<A>, A>(|ta| (self.action)(ta), copy));\n            let right = (self.action)(M::join::<A>(value));\n            if false {\n                return Err(LawCheckError::Violated {\n                    law: AlgebraLaw::Associativity,\n                    index,\n                });\n            }\n        }\n        Ok(observed)\n    }",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T164353\\root-record-tests.exe",
+        "root_record_replay_6::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T164353",
+      "elapsed_seconds": 0.0,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T164353Z\\fault-5.log",
+      "log_sha256": "a3c756948ad8698e8590cb065f47c3496a6ac388d06d15846d9e08c84d59004b",
+      "timed_out": false
+    },
+    "subject_sha256": "0933226fd61e0ce03769c83b929639bf75fe7531761637af3ae7faf3ab651044"
+  },
+  {
+    "candidate_path": "code/rust/target/rr/261019T164353/src/category_theory/q/n7.rs",
+    "candidate_sha256": "394cd35aaa4484c2084cb5d6c166c9e7c609965cdcfb905152623acc47c94991",
+    "id": "RR-7-6",
+    "module": "root_record_replay_7::",
+    "needle": "    pub fn check_samples(\n        &self,\n        unit_samples: Vec<A>,\n        associativity_samples: Vec<M::T<M::T<A>>>,\n    ) -> Result<AlgebraSampleCheck, LawCheckError>\n    where\n        A: Eq,\n        M::T<M::T<A>>: Eq,\n    {\n        let observed = AlgebraSampleCheck {\n            unit_samples: unit_samples.len(),\n            associativity_samples: associativity_samples.len(),\n        };\n        for (index, value) in unit_samples.into_iter().enumerate() {\n            let copy = checked_clone(&value, AlgebraLaw::Unit, index)?;\n            if (self.action)(M::unit::<A>(copy)) != value {\n                return Err(LawCheckError::Violated {\n                    law: AlgebraLaw::Unit,\n                    index,\n                });\n            }\n        }\n        for (index, value) in associativity_samples.into_iter().enumerate() {\n            let copy = checked_clone(&value, AlgebraLaw::Associativity, index)?;\n            let left = (self.action)(M::fmap::<M::T<A>, A>(|ta| (self.action)(ta), copy));\n            let right = (self.action)(M::join::<A>(value));\n            if left != right {\n                return Err(LawCheckError::Violated {\n                    law: AlgebraLaw::Associativity,\n                    index,\n                });\n            }\n        }\n        Ok(observed)\n    }",
+    "outcome": "killed",
+    "path": "category_theory/eilenberg_moore.rs",
+    "replacement": "    pub fn check_samples(\n        &self,\n        unit_samples: Vec<A>,\n        associativity_samples: Vec<M::T<M::T<A>>>,\n    ) -> Result<AlgebraSampleCheck, LawCheckError>\n    where\n        A: Eq,\n        M::T<M::T<A>>: Eq,\n    {\n        let observed = AlgebraSampleCheck {\n            unit_samples: 0,\n            associativity_samples: associativity_samples.len(),\n        };\n        for (index, value) in unit_samples.into_iter().enumerate() {\n            let copy = checked_clone(&value, AlgebraLaw::Unit, index)?;\n            if (self.action)(M::unit::<A>(copy)) != value {\n                return Err(LawCheckError::Violated {\n                    law: AlgebraLaw::Unit,\n                    index,\n                });\n            }\n        }\n        for (index, value) in associativity_samples.into_iter().enumerate() {\n            let copy = checked_clone(&value, AlgebraLaw::Associativity, index)?;\n            let left = (self.action)(M::fmap::<M::T<A>, A>(|ta| (self.action)(ta), copy));\n            let right = (self.action)(M::join::<A>(value));\n            if left != right {\n                return Err(LawCheckError::Violated {\n                    law: AlgebraLaw::Associativity,\n                    index,\n                });\n            }\n        }\n        Ok(observed)\n    }",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T164353\\root-record-tests.exe",
+        "root_record_replay_7::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T164353",
+      "elapsed_seconds": 0.0,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T164353Z\\fault-6.log",
+      "log_sha256": "07d957ae5b20954a0d9f11c6e49d64a06aae380b64c1adcbab3c693d7f8e607a",
+      "timed_out": false
+    },
+    "subject_sha256": "0933226fd61e0ce03769c83b929639bf75fe7531761637af3ae7faf3ab651044"
+  },
+  {
+    "candidate_path": "code/rust/target/rr/261019T164353/src/category_theory/q/n8.rs",
+    "candidate_sha256": "082d0cd6f6f49aa60fa34e05467a5cd4d99fed1f493d74791349c5f43946ee15",
+    "id": "RR-8-7",
+    "module": "root_record_replay_8::",
+    "needle": "    pub fn check_samples(\n        &self,\n        unit_samples: Vec<A>,\n        associativity_samples: Vec<M::T<M::T<A>>>,\n    ) -> Result<AlgebraSampleCheck, LawCheckError>\n    where\n        A: Eq,\n        M::T<M::T<A>>: Eq,\n    {\n        let observed = AlgebraSampleCheck {\n            unit_samples: unit_samples.len(),\n            associativity_samples: associativity_samples.len(),\n        };\n        for (index, value) in unit_samples.into_iter().enumerate() {\n            let copy = checked_clone(&value, AlgebraLaw::Unit, index)?;\n            if (self.action)(M::unit::<A>(copy)) != value {\n                return Err(LawCheckError::Violated {\n                    law: AlgebraLaw::Unit,\n                    index,\n                });\n            }\n        }\n        for (index, value) in associativity_samples.into_iter().enumerate() {\n            let copy = checked_clone(&value, AlgebraLaw::Associativity, index)?;\n            let left = (self.action)(M::fmap::<M::T<A>, A>(|ta| (self.action)(ta), copy));\n            let right = (self.action)(M::join::<A>(value));\n            if left != right {\n                return Err(LawCheckError::Violated {\n                    law: AlgebraLaw::Associativity,\n                    index,\n                });\n            }\n        }\n        Ok(observed)\n    }",
+    "outcome": "killed",
+    "path": "category_theory/eilenberg_moore.rs",
+    "replacement": "    pub fn check_samples(\n        &self,\n        unit_samples: Vec<A>,\n        associativity_samples: Vec<M::T<M::T<A>>>,\n    ) -> Result<AlgebraSampleCheck, LawCheckError>\n    where\n        A: Eq,\n        M::T<M::T<A>>: Eq,\n    {\n        let observed = AlgebraSampleCheck {\n            unit_samples: unit_samples.len(),\n            associativity_samples: 0,\n        };\n        for (index, value) in unit_samples.into_iter().enumerate() {\n            let copy = checked_clone(&value, AlgebraLaw::Unit, index)?;\n            if (self.action)(M::unit::<A>(copy)) != value {\n                return Err(LawCheckError::Violated {\n                    law: AlgebraLaw::Unit,\n                    index,\n                });\n            }\n        }\n        for (index, value) in associativity_samples.into_iter().enumerate() {\n            let copy = checked_clone(&value, AlgebraLaw::Associativity, index)?;\n            let left = (self.action)(M::fmap::<M::T<A>, A>(|ta| (self.action)(ta), copy));\n            let right = (self.action)(M::join::<A>(value));\n            if left != right {\n                return Err(LawCheckError::Violated {\n                    law: AlgebraLaw::Associativity,\n                    index,\n                });\n            }\n        }\n        Ok(observed)\n    }",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T164353\\root-record-tests.exe",
+        "root_record_replay_8::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T164353",
+      "elapsed_seconds": 0.0,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T164353Z\\fault-7.log",
+      "log_sha256": "a3bf6ca5c4067b3cad67b4baaec0637739a0036b849010c05b9bef062f5cb11f",
+      "timed_out": false
+    },
+    "subject_sha256": "0933226fd61e0ce03769c83b929639bf75fe7531761637af3ae7faf3ab651044"
+  },
+  {
+    "candidate_path": "code/rust/target/rr/261019T164353/src/category_theory/q/n9.rs",
+    "candidate_sha256": "95608dc87380c406d289970a51f2301d4c053973688fe2288a799e67dfdee774",
+    "id": "RR-9-8",
+    "module": "root_record_replay_9::",
+    "needle": "    pub fn check_samples(\n        &self,\n        unit_samples: Vec<A>,\n        associativity_samples: Vec<M::T<M::T<A>>>,\n    ) -> Result<AlgebraSampleCheck, LawCheckError>\n    where\n        A: Eq,\n        M::T<M::T<A>>: Eq,\n    {\n        let observed = AlgebraSampleCheck {\n            unit_samples: unit_samples.len(),\n            associativity_samples: associativity_samples.len(),\n        };\n        for (index, value) in unit_samples.into_iter().enumerate() {\n            let copy = checked_clone(&value, AlgebraLaw::Unit, index)?;\n            if (self.action)(M::unit::<A>(copy)) != value {\n                return Err(LawCheckError::Violated {\n                    law: AlgebraLaw::Unit,\n                    index,\n                });\n            }\n        }\n        for (index, value) in associativity_samples.into_iter().enumerate() {\n            let copy = checked_clone(&value, AlgebraLaw::Associativity, index)?;\n            let left = (self.action)(M::fmap::<M::T<A>, A>(|ta| (self.action)(ta), copy));\n            let right = (self.action)(M::join::<A>(value));\n            if left != right {\n                return Err(LawCheckError::Violated {\n                    law: AlgebraLaw::Associativity,\n                    index,\n                });\n            }\n        }\n        Ok(observed)\n    }",
+    "outcome": "killed",
+    "path": "category_theory/eilenberg_moore.rs",
+    "replacement": "    pub fn check_samples(\n        &self,\n        unit_samples: Vec<A>,\n        associativity_samples: Vec<M::T<M::T<A>>>,\n    ) -> Result<AlgebraSampleCheck, LawCheckError>\n    where\n        A: Eq,\n        M::T<M::T<A>>: Eq,\n    {\n        let observed = AlgebraSampleCheck {\n            unit_samples: unit_samples.len(),\n            associativity_samples: associativity_samples.len(),\n        };\n        for (index, value) in unit_samples.into_iter().enumerate() {\n            let copy = checked_clone(&value, AlgebraLaw::Morphism, index)?;\n            if (self.action)(M::unit::<A>(copy)) != value {\n                return Err(LawCheckError::Violated {\n                    law: AlgebraLaw::Unit,\n                    index,\n                });\n            }\n        }\n        for (index, value) in associativity_samples.into_iter().enumerate() {\n            let copy = checked_clone(&value, AlgebraLaw::Associativity, index)?;\n            let left = (self.action)(M::fmap::<M::T<A>, A>(|ta| (self.action)(ta), copy));\n            let right = (self.action)(M::join::<A>(value));\n            if left != right {\n                return Err(LawCheckError::Violated {\n                    law: AlgebraLaw::Associativity,\n                    index,\n                });\n            }\n        }\n        Ok(observed)\n    }",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T164353\\root-record-tests.exe",
+        "root_record_replay_9::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T164353",
+      "elapsed_seconds": 0.0,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T164353Z\\fault-8.log",
+      "log_sha256": "118badbf3cf1c6e78dab1c5f8923d5b33fd1779104305ffe6fcb96dc3807060a",
+      "timed_out": false
+    },
+    "subject_sha256": "0933226fd61e0ce03769c83b929639bf75fe7531761637af3ae7faf3ab651044"
+  },
+  {
+    "candidate_path": "code/rust/target/rr/261019T164353/src/category_theory/q/n10.rs",
+    "candidate_sha256": "f3f0b68af88b80ea327580a6eccf640303f545e034ad5381252d772830dfb570",
+    "id": "RR-10-9",
+    "module": "root_record_replay_10::",
+    "needle": "    pub fn check_samples(\n        &self,\n        unit_samples: Vec<A>,\n        associativity_samples: Vec<M::T<M::T<A>>>,\n    ) -> Result<AlgebraSampleCheck, LawCheckError>\n    where\n        A: Eq,\n        M::T<M::T<A>>: Eq,\n    {\n        let observed = AlgebraSampleCheck {\n            unit_samples: unit_samples.len(),\n            associativity_samples: associativity_samples.len(),\n        };\n        for (index, value) in unit_samples.into_iter().enumerate() {\n            let copy = checked_clone(&value, AlgebraLaw::Unit, index)?;\n            if (self.action)(M::unit::<A>(copy)) != value {\n                return Err(LawCheckError::Violated {\n                    law: AlgebraLaw::Unit,\n                    index,\n                });\n            }\n        }\n        for (index, value) in associativity_samples.into_iter().enumerate() {\n            let copy = checked_clone(&value, AlgebraLaw::Associativity, index)?;\n            let left = (self.action)(M::fmap::<M::T<A>, A>(|ta| (self.action)(ta), copy));\n            let right = (self.action)(M::join::<A>(value));\n            if left != right {\n                return Err(LawCheckError::Violated {\n                    law: AlgebraLaw::Associativity,\n                    index,\n                });\n            }\n        }\n        Ok(observed)\n    }",
+    "outcome": "killed",
+    "path": "category_theory/eilenberg_moore.rs",
+    "replacement": "    pub fn check_samples(\n        &self,\n        unit_samples: Vec<A>,\n        associativity_samples: Vec<M::T<M::T<A>>>,\n    ) -> Result<AlgebraSampleCheck, LawCheckError>\n    where\n        A: Eq,\n        M::T<M::T<A>>: Eq,\n    {\n        let observed = AlgebraSampleCheck {\n            unit_samples: unit_samples.len(),\n            associativity_samples: associativity_samples.len(),\n        };\n        for (index, value) in unit_samples.into_iter().enumerate() {\n            let copy = checked_clone(&value, AlgebraLaw::Unit, index)?;\n            if (self.action)(M::unit::<A>(copy)) != value {\n                return Err(LawCheckError::Violated {\n                    law: AlgebraLaw::Unit,\n                    index,\n                });\n            }\n        }\n        for (index, value) in associativity_samples.into_iter().enumerate() {\n            let copy = checked_clone(&value, AlgebraLaw::Unit, index)?;\n            let left = (self.action)(M::fmap::<M::T<A>, A>(|ta| (self.action)(ta), copy));\n            let right = (self.action)(M::join::<A>(value));\n            if left != right {\n                return Err(LawCheckError::Violated {\n                    law: AlgebraLaw::Associativity,\n                    index,\n                });\n            }\n        }\n        Ok(observed)\n    }",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T164353\\root-record-tests.exe",
+        "root_record_replay_10::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T164353",
+      "elapsed_seconds": 0.015,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T164353Z\\fault-9.log",
+      "log_sha256": "5a521e3af0d74c90252bb4dc099d1235cb23dbb2160934c6660d9417e603e901",
+      "timed_out": false
+    },
+    "subject_sha256": "0933226fd61e0ce03769c83b929639bf75fe7531761637af3ae7faf3ab651044"
+  },
+  {
+    "candidate_path": "code/rust/target/rr/261019T164353/src/category_theory/q/n11.rs",
+    "candidate_sha256": "85693105c91942ec851a1b0d0fb0194ef511d722c38b7d505a745d7f9d226a20",
+    "id": "RR-11-10",
+    "module": "root_record_replay_11::",
+    "needle": "    pub fn check_samples(\n        &self,\n        unit_samples: Vec<A>,\n        associativity_samples: Vec<M::T<M::T<A>>>,\n    ) -> Result<AlgebraSampleCheck, LawCheckError>\n    where\n        A: Eq,\n        M::T<M::T<A>>: Eq,\n    {\n        let observed = AlgebraSampleCheck {\n            unit_samples: unit_samples.len(),\n            associativity_samples: associativity_samples.len(),\n        };\n        for (index, value) in unit_samples.into_iter().enumerate() {\n            let copy = checked_clone(&value, AlgebraLaw::Unit, index)?;\n            if (self.action)(M::unit::<A>(copy)) != value {\n                return Err(LawCheckError::Violated {\n                    law: AlgebraLaw::Unit,\n                    index,\n                });\n            }\n        }\n        for (index, value) in associativity_samples.into_iter().enumerate() {\n            let copy = checked_clone(&value, AlgebraLaw::Associativity, index)?;\n            let left = (self.action)(M::fmap::<M::T<A>, A>(|ta| (self.action)(ta), copy));\n            let right = (self.action)(M::join::<A>(value));\n            if left != right {\n                return Err(LawCheckError::Violated {\n                    law: AlgebraLaw::Associativity,\n                    index,\n                });\n            }\n        }\n        Ok(observed)\n    }",
+    "outcome": "killed",
+    "path": "category_theory/eilenberg_moore.rs",
+    "replacement": "    pub fn check_samples(\n        &self,\n        unit_samples: Vec<A>,\n        associativity_samples: Vec<M::T<M::T<A>>>,\n    ) -> Result<AlgebraSampleCheck, LawCheckError>\n    where\n        A: Eq,\n        M::T<M::T<A>>: Eq,\n    {\n        let observed = AlgebraSampleCheck {\n            unit_samples: unit_samples.len(),\n            associativity_samples: associativity_samples.len(),\n        };\n        for (index, value) in unit_samples.into_iter().enumerate() {\n            let copy = checked_clone(&value, AlgebraLaw::Unit, index)?;\n            if (self.action)(M::unit::<A>(copy)) != value {\n                return Err(LawCheckError::Violated {\n                    law: AlgebraLaw::Unit,\n                    index: 0,\n                });\n            }\n        }\n        for (index, value) in associativity_samples.into_iter().enumerate() {\n            let copy = checked_clone(&value, AlgebraLaw::Associativity, index)?;\n            let left = (self.action)(M::fmap::<M::T<A>, A>(|ta| (self.action)(ta), copy));\n            let right = (self.action)(M::join::<A>(value));\n            if left != right {\n                return Err(LawCheckError::Violated {\n                    law: AlgebraLaw::Associativity,\n                    index,\n                });\n            }\n        }\n        Ok(observed)\n    }",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T164353\\root-record-tests.exe",
+        "root_record_replay_11::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T164353",
+      "elapsed_seconds": 0.016,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T164353Z\\fault-10.log",
+      "log_sha256": "4cf5a0a6388f023afca3b03ff0d09cffed777a3dd00542bccd3b236f573bbcdf",
+      "timed_out": false
+    },
+    "subject_sha256": "0933226fd61e0ce03769c83b929639bf75fe7531761637af3ae7faf3ab651044"
+  },
+  {
+    "candidate_path": "code/rust/target/rr/261019T164353/src/category_theory/q/n12.rs",
+    "candidate_sha256": "ca7662ca02b41d0f3b3961c14c5801aacfa58b465ff3a4768fa8975cefb2680f",
+    "id": "RR-12-11",
+    "module": "root_record_replay_12::",
+    "needle": "    pub fn check_samples(\n        &self,\n        unit_samples: Vec<A>,\n        associativity_samples: Vec<M::T<M::T<A>>>,\n    ) -> Result<AlgebraSampleCheck, LawCheckError>\n    where\n        A: Eq,\n        M::T<M::T<A>>: Eq,\n    {\n        let observed = AlgebraSampleCheck {\n            unit_samples: unit_samples.len(),\n            associativity_samples: associativity_samples.len(),\n        };\n        for (index, value) in unit_samples.into_iter().enumerate() {\n            let copy = checked_clone(&value, AlgebraLaw::Unit, index)?;\n            if (self.action)(M::unit::<A>(copy)) != value {\n                return Err(LawCheckError::Violated {\n                    law: AlgebraLaw::Unit,\n                    index,\n                });\n            }\n        }\n        for (index, value) in associativity_samples.into_iter().enumerate() {\n            let copy = checked_clone(&value, AlgebraLaw::Associativity, index)?;\n            let left = (self.action)(M::fmap::<M::T<A>, A>(|ta| (self.action)(ta), copy));\n            let right = (self.action)(M::join::<A>(value));\n            if left != right {\n                return Err(LawCheckError::Violated {\n                    law: AlgebraLaw::Associativity,\n                    index,\n                });\n            }\n        }\n        Ok(observed)\n    }",
+    "outcome": "killed",
+    "path": "category_theory/eilenberg_moore.rs",
+    "replacement": "    pub fn check_samples(\n        &self,\n        unit_samples: Vec<A>,\n        associativity_samples: Vec<M::T<M::T<A>>>,\n    ) -> Result<AlgebraSampleCheck, LawCheckError>\n    where\n        A: Eq,\n        M::T<M::T<A>>: Eq,\n    {\n        let observed = AlgebraSampleCheck {\n            unit_samples: unit_samples.len(),\n            associativity_samples: associativity_samples.len(),\n        };\n        for (index, value) in unit_samples.into_iter().enumerate() {\n            let copy = checked_clone(&value, AlgebraLaw::Unit, index)?;\n            if (self.action)(M::unit::<A>(copy)) != value {\n                return Err(LawCheckError::Violated {\n                    law: AlgebraLaw::Unit,\n                    index,\n                });\n            }\n        }\n        for (index, value) in associativity_samples.into_iter().enumerate() {\n            let copy = checked_clone(&value, AlgebraLaw::Associativity, index)?;\n            let left = (self.action)(M::fmap::<M::T<A>, A>(|ta| (self.action)(ta), copy));\n            let right = (self.action)(M::join::<A>(value));\n            if left != right {\n                return Err(LawCheckError::Violated {\n                    law: AlgebraLaw::Associativity,\n                    index: 0,\n                });\n            }\n        }\n        Ok(observed)\n    }",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T164353\\root-record-tests.exe",
+        "root_record_replay_12::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T164353",
+      "elapsed_seconds": 0.0,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T164353Z\\fault-11.log",
+      "log_sha256": "e30ad19d6eb3eec6d52db90aa3d52c0d9637246822ce5a9662dfae21ee009ea1",
+      "timed_out": false
+    },
+    "subject_sha256": "0933226fd61e0ce03769c83b929639bf75fe7531761637af3ae7faf3ab651044"
+  },
+  {
+    "candidate_path": "code/rust/target/rr/261019T164353/src/category_theory/q/n13.rs",
+    "candidate_sha256": "27ee95d4199e0badf31a1b29ea1aea29c90177ad58b31dc13ba7bee6eaa9622b",
+    "id": "RR-13-12",
+    "module": "root_record_replay_13::",
+    "needle": "    pub fn check_samples(\n        &self,\n        dom: &EMAlgebra<M, A>,\n        cod: &EMAlgebra<M, B>,\n        samples: Vec<M::T<A>>,\n    ) -> Result<usize, LawCheckError>\n    where\n        B: Eq,\n        M::T<A>: Eq,\n    {\n        let count = samples.len();\n        for (index, value) in samples.into_iter().enumerate() {\n            let copy = checked_clone(&value, AlgebraLaw::Morphism, index)?;\n            let left = (self.f)((dom.action)(copy));\n            let right = (cod.action)(M::fmap::<A, B>(&self.f, value));\n            if left != right {\n                return Err(LawCheckError::Violated {\n                    law: AlgebraLaw::Morphism,\n                    index,\n                });\n            }\n        }\n        Ok(count)\n    }",
+    "outcome": "killed",
+    "path": "category_theory/eilenberg_moore.rs",
+    "replacement": "    pub fn check_samples(\n        &self,\n        dom: &EMAlgebra<M, A>,\n        cod: &EMAlgebra<M, B>,\n        samples: Vec<M::T<A>>,\n    ) -> Result<usize, LawCheckError>\n    where\n        B: Eq,\n        M::T<A>: Eq,\n    {\n        let count = samples.len();\n        for (index, value) in samples.into_iter().enumerate() {\n            let copy = checked_clone(&value, AlgebraLaw::Morphism, index)?;\n            let left = (self.f)((dom.action)(copy));\n            let right = (cod.action)(M::fmap::<A, B>(&self.f, value));\n            if false {\n                return Err(LawCheckError::Violated {\n                    law: AlgebraLaw::Morphism,\n                    index,\n                });\n            }\n        }\n        Ok(count)\n    }",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T164353\\root-record-tests.exe",
+        "root_record_replay_13::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T164353",
+      "elapsed_seconds": 0.016,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T164353Z\\fault-12.log",
+      "log_sha256": "8fb4b5fa4d2d7ef8d1ea8d5bbda895768b8e9f5f459527a2789097dcf5bdd84c",
+      "timed_out": false
+    },
+    "subject_sha256": "0933226fd61e0ce03769c83b929639bf75fe7531761637af3ae7faf3ab651044"
+  },
+  {
+    "candidate_path": "code/rust/target/rr/261019T164353/src/category_theory/q/n14.rs",
+    "candidate_sha256": "a45e1b4a5826c9712cce22264a61375070bb9cd1c1051a9d28a6310b964d9661",
+    "id": "RR-14-13",
+    "module": "root_record_replay_14::",
+    "needle": "    pub fn check_samples(\n        &self,\n        dom: &EMAlgebra<M, A>,\n        cod: &EMAlgebra<M, B>,\n        samples: Vec<M::T<A>>,\n    ) -> Result<usize, LawCheckError>\n    where\n        B: Eq,\n        M::T<A>: Eq,\n    {\n        let count = samples.len();\n        for (index, value) in samples.into_iter().enumerate() {\n            let copy = checked_clone(&value, AlgebraLaw::Morphism, index)?;\n            let left = (self.f)((dom.action)(copy));\n            let right = (cod.action)(M::fmap::<A, B>(&self.f, value));\n            if left != right {\n                return Err(LawCheckError::Violated {\n                    law: AlgebraLaw::Morphism,\n                    index,\n                });\n            }\n        }\n        Ok(count)\n    }",
+    "outcome": "killed",
+    "path": "category_theory/eilenberg_moore.rs",
+    "replacement": "    pub fn check_samples(\n        &self,\n        dom: &EMAlgebra<M, A>,\n        cod: &EMAlgebra<M, B>,\n        samples: Vec<M::T<A>>,\n    ) -> Result<usize, LawCheckError>\n    where\n        B: Eq,\n        M::T<A>: Eq,\n    {\n        let count = samples.len();\n        for (index, value) in samples.into_iter().enumerate() {\n            let copy = checked_clone(&value, AlgebraLaw::Morphism, index)?;\n            let left = (self.f)((dom.action)(copy));\n            let right = (cod.action)(M::fmap::<A, B>(&self.f, value));\n            if left != right {\n                return Err(LawCheckError::Violated {\n                    law: AlgebraLaw::Morphism,\n                    index,\n                });\n            }\n        }\n        Ok(0)\n    }",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T164353\\root-record-tests.exe",
+        "root_record_replay_14::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T164353",
+      "elapsed_seconds": 0.015,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T164353Z\\fault-13.log",
+      "log_sha256": "322bbc45a9ae922ec3303dc2845651984b9099bfd22bf18642f7c271583be0f0",
+      "timed_out": false
+    },
+    "subject_sha256": "0933226fd61e0ce03769c83b929639bf75fe7531761637af3ae7faf3ab651044"
+  },
+  {
+    "candidate_path": "code/rust/target/rr/261019T164353/src/category_theory/q/n15.rs",
+    "candidate_sha256": "367003d09cd27b31c221237a302d05a70edfb3c467f08e7630243d3110ca3652",
+    "id": "RR-15-14",
+    "module": "root_record_replay_15::",
+    "needle": "    pub fn check_samples(\n        &self,\n        dom: &EMAlgebra<M, A>,\n        cod: &EMAlgebra<M, B>,\n        samples: Vec<M::T<A>>,\n    ) -> Result<usize, LawCheckError>\n    where\n        B: Eq,\n        M::T<A>: Eq,\n    {\n        let count = samples.len();\n        for (index, value) in samples.into_iter().enumerate() {\n            let copy = checked_clone(&value, AlgebraLaw::Morphism, index)?;\n            let left = (self.f)((dom.action)(copy));\n            let right = (cod.action)(M::fmap::<A, B>(&self.f, value));\n            if left != right {\n                return Err(LawCheckError::Violated {\n                    law: AlgebraLaw::Morphism,\n                    index,\n                });\n            }\n        }\n        Ok(count)\n    }",
+    "outcome": "killed",
+    "path": "category_theory/eilenberg_moore.rs",
+    "replacement": "    pub fn check_samples(\n        &self,\n        dom: &EMAlgebra<M, A>,\n        cod: &EMAlgebra<M, B>,\n        samples: Vec<M::T<A>>,\n    ) -> Result<usize, LawCheckError>\n    where\n        B: Eq,\n        M::T<A>: Eq,\n    {\n        let count = samples.len();\n        for (index, value) in samples.into_iter().enumerate() {\n            let copy = checked_clone(&value, AlgebraLaw::Morphism, index)?;\n            let left = (self.f)((dom.action)(copy));\n            let right = (cod.action)(M::fmap::<A, B>(&self.f, value));\n            if left != right {\n                return Err(LawCheckError::Violated {\n                    law: AlgebraLaw::Morphism,\n                    index: 0,\n                });\n            }\n        }\n        Ok(count)\n    }",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T164353\\root-record-tests.exe",
+        "root_record_replay_15::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T164353",
+      "elapsed_seconds": 0.016,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T164353Z\\fault-14.log",
+      "log_sha256": "40423044b927de2a200be05719d8a848b43a9ed600a87abf2c7944fb5411a618",
+      "timed_out": false
+    },
+    "subject_sha256": "0933226fd61e0ce03769c83b929639bf75fe7531761637af3ae7faf3ab651044"
+  },
+  {
+    "candidate_path": "code/rust/target/rr/261019T164353/src/category_theory/q/n16.rs",
+    "candidate_sha256": "aaaba9c01cce67b3ee2f4b44f68a4c546057cb60c9b0082ab77ff35567f14d60",
+    "id": "RR-16-15",
+    "module": "root_record_replay_16::",
+    "needle": "    pub fn check_samples(\n        &self,\n        dom: &EMAlgebra<M, A>,\n        cod: &EMAlgebra<M, B>,\n        samples: Vec<M::T<A>>,\n    ) -> Result<usize, LawCheckError>\n    where\n        B: Eq,\n        M::T<A>: Eq,\n    {\n        let count = samples.len();\n        for (index, value) in samples.into_iter().enumerate() {\n            let copy = checked_clone(&value, AlgebraLaw::Morphism, index)?;\n            let left = (self.f)((dom.action)(copy));\n            let right = (cod.action)(M::fmap::<A, B>(&self.f, value));\n            if left != right {\n                return Err(LawCheckError::Violated {\n                    law: AlgebraLaw::Morphism,\n                    index,\n                });\n            }\n        }\n        Ok(count)\n    }",
+    "outcome": "killed",
+    "path": "category_theory/eilenberg_moore.rs",
+    "replacement": "    pub fn check_samples(\n        &self,\n        dom: &EMAlgebra<M, A>,\n        cod: &EMAlgebra<M, B>,\n        samples: Vec<M::T<A>>,\n    ) -> Result<usize, LawCheckError>\n    where\n        B: Eq,\n        M::T<A>: Eq,\n    {\n        let count = samples.len();\n        for (index, value) in samples.into_iter().enumerate() {\n            let copy = checked_clone(&value, AlgebraLaw::Unit, index)?;\n            let left = (self.f)((dom.action)(copy));\n            let right = (cod.action)(M::fmap::<A, B>(&self.f, value));\n            if left != right {\n                return Err(LawCheckError::Violated {\n                    law: AlgebraLaw::Morphism,\n                    index,\n                });\n            }\n        }\n        Ok(count)\n    }",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T164353\\root-record-tests.exe",
+        "root_record_replay_16::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T164353",
+      "elapsed_seconds": 0.016,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T164353Z\\fault-15.log",
+      "log_sha256": "8e0dbdc6aa6d2a5484eb4c7ce2dabb303f959d29279f94f06ea837fa9a2c4a52",
+      "timed_out": false
+    },
+    "subject_sha256": "0933226fd61e0ce03769c83b929639bf75fe7531761637af3ae7faf3ab651044"
+  },
+  {
+    "candidate_path": "code/rust/target/rr/261019T164353/src/category_theory/q/n17.rs",
+    "candidate_sha256": "32e2136cede7f063a7447da79ced2baaacd0395de5c346ff6ea308feef0454ca",
+    "id": "RR-17-16",
+    "module": "root_record_replay_17::",
+    "needle": "    fn unit<A: Obj>(x: A) -> Self::T<A> {\n        Maybe::Just(x)\n    }",
+    "outcome": "killed",
+    "path": "category_theory/eilenberg_moore.rs",
+    "replacement": "    fn unit<A: Obj>(x: A) -> Self::T<A> {\n        Maybe::Nothing\n    }",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T164353\\root-record-tests.exe",
+        "root_record_replay_17::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T164353",
+      "elapsed_seconds": 0.015,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T164353Z\\fault-16.log",
+      "log_sha256": "a9e0ca22624e4c20123775b3b1a36ef0565773c563afdf9744962369dabad6a8",
+      "timed_out": false
+    },
+    "subject_sha256": "0933226fd61e0ce03769c83b929639bf75fe7531761637af3ae7faf3ab651044"
+  },
+  {
+    "candidate_path": "code/rust/target/rr/261019T164353/src/category_theory/q/n18.rs",
+    "candidate_sha256": "537ed08c67391d81bb90cec25752fc960ee7b13c7cd1055ca7c9aa07f51d88fd",
+    "id": "RR-18-17",
+    "module": "root_record_replay_18::",
+    "needle": "    fn bind<A: Obj, B: Obj>(ta: Maybe<A>, f: impl Fn(A) -> Maybe<B>) -> Maybe<B> {\n        match ta {\n            Maybe::Just(x) => f(x),\n            Maybe::Nothing => Maybe::Nothing,\n        }\n    }",
+    "outcome": "killed",
+    "path": "category_theory/eilenberg_moore.rs",
+    "replacement": "    fn bind<A: Obj, B: Obj>(ta: Maybe<A>, f: impl Fn(A) -> Maybe<B>) -> Maybe<B> {\n        match ta {\n            Maybe::Just(x) => Maybe::Nothing,\n            Maybe::Nothing => Maybe::Nothing,\n        }\n    }",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T164353\\root-record-tests.exe",
+        "root_record_replay_18::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T164353",
+      "elapsed_seconds": 0.016,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T164353Z\\fault-17.log",
+      "log_sha256": "359b12d4ed5a9964c7f1c2b0be39e12902a3547d45805326debde6c5ef413a7a",
+      "timed_out": false
+    },
+    "subject_sha256": "0933226fd61e0ce03769c83b929639bf75fe7531761637af3ae7faf3ab651044"
+  },
+  {
+    "candidate_path": "code/rust/target/rr/261019T164353/src/category_theory/q/n19.rs",
+    "candidate_sha256": "31b9b3c84cba14d40561743721a8afeac84cb907d4b9209e36392df3b5cd91e0",
+    "id": "RR-19-18",
+    "module": "root_record_replay_19::",
+    "needle": "    fn fmap<A: Obj, B: Obj>(f: impl Fn(A) -> B, ta: Maybe<A>) -> Maybe<B> {\n        Self::bind(ta, |a| Self::unit(f(a)))\n    }",
+    "outcome": "killed",
+    "path": "category_theory/eilenberg_moore.rs",
+    "replacement": "    fn fmap<A: Obj, B: Obj>(f: impl Fn(A) -> B, ta: Maybe<A>) -> Maybe<B> {\n        Maybe::Nothing\n    }",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T164353\\root-record-tests.exe",
+        "root_record_replay_19::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T164353",
+      "elapsed_seconds": 0.016,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T164353Z\\fault-18.log",
+      "log_sha256": "3da3b11bf033d0c23bc6d7f501ef71b3eea409e75e7eec402ff5938ae7b60f87",
+      "timed_out": false
+    },
+    "subject_sha256": "0933226fd61e0ce03769c83b929639bf75fe7531761637af3ae7faf3ab651044"
+  },
+  {
+    "candidate_path": "code/rust/target/rr/261019T164353/src/category_theory/q/n20.rs",
+    "candidate_sha256": "8f3536a919cc213c9606b383aaf9ab521e2513427052bb9607cfe33a1cbe3fd2",
+    "id": "RR-20-19",
+    "module": "root_record_replay_20::",
+    "needle": "    pub fn map<A: Obj>(&self) -> EMAlgebra<M, M::T<A>>\n    where\n        M::T<M::T<A>>: 'static,\n        M::T<A>: 'static,\n    {\n        EMAlgebra {\n            carrier: Phantom::new(),\n            action: Box::new(|tta: M::T<M::T<A>>| M::join(tta)),\n        }\n    }",
+    "outcome": "killed",
+    "path": "category_theory/eilenberg_moore.rs",
+    "replacement": "    pub fn map<A: Obj>(&self) -> EMAlgebra<M, M::T<A>>\n    where\n        M::T<M::T<A>>: 'static,\n        M::T<A>: 'static,\n    {\n        EMAlgebra {\n            carrier: Phantom::new(),\n            action: Box::new(|tta: M::T<M::T<A>>| panic!(\"missing join action\")),\n        }\n    }",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T164353\\root-record-tests.exe",
+        "root_record_replay_20::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T164353",
+      "elapsed_seconds": 0.015,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T164353Z\\fault-19.log",
+      "log_sha256": "ce41d7856ae3c2afcdb7b5810850b1307dd0b65c52cac5e7c38ccf4f50258766",
+      "timed_out": false
+    },
+    "subject_sha256": "0933226fd61e0ce03769c83b929639bf75fe7531761637af3ae7faf3ab651044"
+  },
+  {
+    "candidate_path": "code/rust/target/rr/261019T164353/src/category_theory/q/n21.rs",
+    "candidate_sha256": "fc0d8107682592f961664969cd8634f507ac4bc0cbc83485dfbaf8d9149afa0b",
+    "id": "RR-21-20",
+    "module": "root_record_replay_21::",
+    "needle": "    pub fn map<A: Obj + 'static>(&self, alg: &EMAlgebra<M, A>) -> Box<dyn Fn() -> String> {\n        // We can't return A directly due to typing, so we return a printer\n        let _ = alg;\n        Box::new(|| \"Carrier type A\".to_string())\n    }",
+    "outcome": "killed",
+    "path": "category_theory/eilenberg_moore.rs",
+    "replacement": "    pub fn map<A: Obj + 'static>(&self, alg: &EMAlgebra<M, A>) -> Box<dyn Fn() -> String> {\n        // We can't return A directly due to typing, so we return a printer\n        let _ = alg;\n        Box::new(|| \"wrong\".to_string())\n    }",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T164353\\root-record-tests.exe",
+        "root_record_replay_21::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T164353",
+      "elapsed_seconds": 0.016,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T164353Z\\fault-20.log",
+      "log_sha256": "61a9df43f96d5e65ef47ac2964ce9ebe9d087f1627209e36e2c1bba5dd6ef7a8",
+      "timed_out": false
+    },
+    "subject_sha256": "0933226fd61e0ce03769c83b929639bf75fe7531761637af3ae7faf3ab651044"
+  },
+  {
+    "candidate_path": "code/rust/target/rr/261019T164353/src/category_theory/q/n22.rs",
+    "candidate_sha256": "3e94812bd23602477826da467816c80e22c3835475e4f42d5435b8b022c1ccde",
+    "id": "RR-22-21",
+    "module": "root_record_replay_22::",
+    "needle": "    pub fn map<A: Obj + 'static>(&self, _alg: &EMAlgebra<M, A>) -> &'static str {\n        \"Object in D (via comparison)\" // Placeholder\n    }",
+    "outcome": "killed",
+    "path": "category_theory/eilenberg_moore.rs",
+    "replacement": "    pub fn map<A: Obj + 'static>(&self, _alg: &EMAlgebra<M, A>) -> &'static str {\n        \"wrong\" // Placeholder\n    }",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T164353\\root-record-tests.exe",
+        "root_record_replay_22::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\rr\\261019T164353",
+      "elapsed_seconds": 0.015,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T164353Z\\fault-21.log",
+      "log_sha256": "02a0d09d08c7206914f488021f57b0c2cb5f9bff272c18108df5f249a633fad9",
+      "timed_out": false
+    },
+    "subject_sha256": "0933226fd61e0ce03769c83b929639bf75fe7531761637af3ae7faf3ab651044"
+  }
+]

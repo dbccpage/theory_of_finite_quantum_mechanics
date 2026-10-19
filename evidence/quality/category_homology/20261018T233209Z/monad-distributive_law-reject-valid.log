@@ -1,0 +1,33 @@
+
+running 4 tests
+test mutant_93::schema_challenge::exhaustive_required_fields ... FAILED
+test mutant_93::schema_challenge::labels_are_literal_not_mathematical_certificates ... FAILED
+test mutant_93::tests::validate_ok ... FAILED
+test mutant_93::tests::validate_rejects_empty ... ok
+
+failures:
+
+---- mutant_93::schema_challenge::exhaustive_required_fields stdout ----
+
+thread 'mutant_93::schema_challenge::exhaustive_required_fields' (9700) panicked at metadata_challenge_5\mutant_93.rs:112:34:
+mask 0, expected None, got Err(InvalidShape("reject valid"))
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- mutant_93::schema_challenge::labels_are_literal_not_mathematical_certificates stdout ----
+
+thread 'mutant_93::schema_challenge::labels_are_literal_not_mathematical_certificates' (28552) panicked at metadata_challenge_5\mutant_93.rs:130:13:
+assertion failed: value.validate_shell().is_ok()
+
+---- mutant_93::tests::validate_ok stdout ----
+
+thread 'mutant_93::tests::validate_ok' (8976) panicked at metadata_challenge_5\mutant_93.rs:79:9:
+assertion failed: d.validate_shell().is_ok()
+
+
+failures:
+    mutant_93::schema_challenge::exhaustive_required_fields
+    mutant_93::schema_challenge::labels_are_literal_not_mathematical_certificates
+    mutant_93::tests::validate_ok
+
+test result: FAILED. 1 passed; 3 failed; 0 ignored; 0 measured; 466 filtered out; finished in 0.00s
+

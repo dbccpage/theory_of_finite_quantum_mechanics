@@ -50,6 +50,32 @@ def capability(path, source):
         "category_theory/rewriting.rs": "Immutable finite globular admission binds normal-form witnesses and separately checked decreasing-rank termination certificates; derived whiskering re-admits output before commit.",
         "category_theory/higher.rs": "Immutable finite strict 2-category admission owns checked underlying and vertical categories and exhaustively checks horizontal functor, unit, associativity and interchange laws under an admitted work budget.",
     }
+    if key == "category_theory/category_contract_alignment.rs":
+        return "L1", "Local static contract-label table and its owned copies; no registry or mechanization checking."
+    if key == "category_theory/finite_category_builder.rs":
+        return "L2", "Fluent raw declarations and a loop-boundary guard; complete law admission delegates to the canonical category certificate constructor."
+    if key == "category_theory/eilenberg_moore.rs":
+        return "L3", "Concrete Maybe transport and typed finite observations; generic Monad/marker records do not certify universal algebra or category laws."
+    if key == "category_theory/lawvere.rs":
+        return "L3", "Exact slot admission and finite raw-table diagnostics with borrowed lookup indexing; no admitted Lawvere theory or mathematical Cauchy-completeness certificate."
+    if key == "category_theory/family_category.rs":
+        return "L2", "Family/lifecycle records,literal parsing and ordered propagation/name-list observations;historical category/functor labels do not admit mathematical laws or agent references."
+    if key == "category_theory/condensation.rs":
+        return "L2", "Raw named splitting-equation observations and caller-supplied coherence flags with checked metadata updates; no verified higher cells or infinity-Cauchy certificate."
+    if key == "category_theory/higher_functor.rs":
+        return "L2", "Raw 2-functor map records, signature contracts and supplied boundary/name-membership diagnostics; no admitted higher functor or inverse/coherence certificate."
+    if key == "category_theory/functor_composition.rs":
+        return "L5", "Immutable finite functor certificates own snapshots after complete endpoint/category/map/law admission; raw derived declarations remain distinct and composition requires exact middle-context equality."
+    if key == "category_theory/grothendieck_construction.rs":
+        return "L1", "Archival documentation and a wholly commented-out sketch; no active Rust item, algorithm, type or test implementation is delivered by this file."
+    if key == "category_theory/dagger.rs":
+        return "L5", "Immutable owned finite dagger certificate admits the complete category and total reversed arrow map, involution, identity and every reversed composite before construction; raw declarations remain separate."
+    if key == "category_theory/context_reflection.rs":
+        return "L5", "Immutable contextual objects and checked law-preserving arrows implement identity/composition, least congruent reflection, typed units, reflector maps and unique comma factors; constructors enforce the categorical boundary and the model proves the universal laws."
+    if key == "category_theory/finite_path.rs":
+        return "L5", "Complete finite acyclic free-path category owns immutable graph/path/composition data and an admitted category certificate;cycles and truncated enumeration are refused before exposing the construction."
+    if key == "category_theory/finite_groupoid.rs":
+        return "L5", "Immutable owned finite groupoid admits a complete dagger context and both inverse equations for every arrow; connected components and reversible chosen-root isotropy coordinates match the underlying groupoid structure."
     if key in foundational:
         return "L5", foundational[key]
     if "#![cfg(any())]" in source:
@@ -190,7 +216,7 @@ def verify_dependencies(receipt, summary):
     if sha(dependency_path) != summary["dependency_receipt_sha256"]:
         raise SystemExit("Dependency receipt digest mismatch")
     dependency = json.loads(dependency_path.read_text())
-    checks = {"cargo_metadata.json":"metadata_sha256", "cargo_metadata_stderr.log":"stderr_sha256",
+    checks = {"cargo-metadata.json":"metadata_sha256", "cargo-metadata.stderr.log":"stderr_sha256",
               "dependency_manifest.json":"dependency_manifest_sha256", "run_audit.py":"harness_sha256"}
     for name, key in checks.items():
         if sha(receipt/name) != dependency[key]:
@@ -232,7 +258,12 @@ def make_record(path, receipt, summary, mutations, metrics, metric_receipt):
     return {
         "schema_version":"2.0.0",
         "artifact":{"path":path.relative_to(ROOT).as_posix(),"language":"Rust","sha256":sha(path)},
-        "profile":"Non-Numeric" if "shell" in source.split("#[cfg(test)]")[0].lower() else "Exact",
+        "profile":"Non-Numeric" if key in ("category_theory/arrow.rs", "category_theory/validation.rs") else "Exact" if key in ("category_theory/abelian/chain_complex_category.rs",
+            "category_theory/abelian/exact_category.rs", "category_theory/foundations/hlevel.rs",
+            "category_theory/foundations/truncation.rs", "category_theory/foundations/universe.rs",
+            "category_theory/functor/diagonal_functor.rs", "category_theory/foundations/finite_set.rs",
+            "category_theory/foundations/set.rs", "category_theory/limits_colimits/product.rs",
+            "category_theory/limits_colimits/coproduct.rs") else "Non-Numeric" if "shell" in source.split("#[cfg(test)]")[0].lower() else "Exact",
         "level":level,"level_basis":basis,"architecture_target":"L5","engineering_target":"A",
         "gates":gates,"composite_grade":None,"score_token":None,"is_complete":False,
         "grade_ceiling":grade_ceiling,"evaluation_timestamp":timestamp,"AuthorityEffect":"None",
@@ -244,8 +275,11 @@ def make_record(path, receipt, summary, mutations, metrics, metric_receipt):
                     {"path":mutation_path.relative_to(ROOT).as_posix(),"sha256":sha(mutation_path),"scope":"Designated critical faults only; outcomes for this file are enumerated below."},
                     {"path":(metric_receipt/"receipt.json").relative_to(ROOT).as_posix(),"sha256":sha(metric_receipt/"receipt.json"),"scope":"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."}],
         "verification":{"baseline_ok":summary["baseline_ok"],"source_snapshot_unchanged":summary["source_unchanged"],
-                        "compiled_scope":"excluded by cfg(any())" if disabled else "compatibility root not independently built" if key == "category_theory/mod.rs" else "shared scoped crate build",
-                        "local_mutant_ids":[m["id"] for m in local_mutants]},
+                        "compiled_scope":"excluded by cfg(any())" if disabled else "compatibility root not independently built" if key == "category_theory/mod.rs" else summary.get("compiled_scope","shared scoped crate build"),
+                        "local_mutant_ids":[m["id"] for m in local_mutants],
+                        **({"fault_injection_scope":"Production providers named below are mutated; assessed consumer bodies remain unchanged in each native copy. These are sensitivity challenges of this test artifact, not test-source mutations.",
+                            "provider_faults":[{"id":m["id"],"provider":m["provider_fault"],"unchanged_consumer":m["unchanged_consumer"]} for m in local_mutants]}
+                           if local_mutants and all("provider_fault" in m and "unchanged_consumer" in m for m in local_mutants) else {})},
         "mutation_accounting":outcomes,
         "structure":structure,
         "open_findings":findings,
@@ -257,10 +291,15 @@ def main():
     parser.add_argument("--receipt",type=Path,required=True)
     parser.add_argument("--metrics",type=Path,required=True)
     parser.add_argument("--assessment",type=Path,help="Explicit gate review for a single --only artifact; no automatic grade promotion.")
+    parser.add_argument("--assessment-map",type=Path,help="JSON map from each selected artifact path to its explicit reviewed assessment; never infers gates.")
     parser.add_argument("--check",action="store_true")
     parser.add_argument("--only",nargs="+",help="Repository-relative Rust paths; update only these source-bound records.")
     args = parser.parse_args()
+    if args.assessment and args.assessment_map:
+        parser.error("Select either --assessment or --assessment-map")
     receipt = args.receipt.resolve()
+    if json.loads((receipt/"summary.json").read_text()).get("primary_eligible", True) is not True:
+        raise SystemExit("Auxiliary replay cannot be a primary grading receipt")
     metric_receipt = args.metrics.resolve()
     metric_summary = json.loads((metric_receipt/"receipt.json").read_text())
     metric_sources = json.loads((metric_receipt/"source_manifest.json").read_text())
@@ -308,8 +347,18 @@ def main():
         raise SystemExit("Category-only execution cannot support homology score records; use --only")
     if summary.get("source_scope", "all") == "homology" and any("category_theory" in path.parts for path in paths):
         raise SystemExit("Homology-only execution cannot support category score records; use --only")
+    if "compiled_subjects" in summary and any(path.relative_to(ROOT).as_posix() not in summary["compiled_subjects"] for path in paths):
+        raise SystemExit("Selected artifact was not compiled by this scoped receipt")
     if args.assessment and len(paths) != 1:
         raise SystemExit("An explicit gate assessment must select exactly one artifact")
+    assessment_map = {}
+    if args.assessment_map:
+        assessment_map = json.loads(args.assessment_map.read_text(encoding="utf-8"))
+        selected_keys = {path.relative_to(ROOT).as_posix() for path in paths}
+        if not isinstance(assessment_map,dict) or set(assessment_map) != selected_keys:
+            raise SystemExit("Assessment map must cover exactly the selected artifacts")
+        if any(not isinstance(value,str) or not (ROOT/value).is_file() for value in assessment_map.values()):
+            raise SystemExit("Assessment map references a missing review")
     manifest, failures = {}, []
     for path in paths:
         key = path.relative_to(ROOT).as_posix()
@@ -324,6 +373,8 @@ def main():
             record["verification"]["dependency_contents_stable"] = summary["dependencies_unchanged"]
         if args.assessment:
             apply_assessment(record,args.assessment.resolve())
+        elif args.assessment_map:
+            apply_assessment(record,(ROOT/assessment_map[key]).resolve())
         text = "# SCORING.md v2; incomplete gates deliberately remain null.\n"+yaml(record)+"\n"
         destination = path.with_suffix(".score.yaml")
         if args.check:
@@ -334,16 +385,38 @@ def main():
         if destination.exists(): manifest[destination.relative_to(ROOT).as_posix()] = sha(destination)
     if failures:
         raise SystemExit("Missing/stale score records:\n"+"\n".join(failures))
-    # A later structural assessment must not overwrite a historical receipt's
-    # original score manifest. Each metric replay records its own derived batch.
+    # Keep every historical batch immutable, even when a review changes while
+    # the primary source/metrics stay identical. Select by current record bytes.
     score_manifest = metric_receipt / ("score_manifest-"+receipt.name+".json")
-    if not args.check:
+    stored = json.loads(score_manifest.read_text()) if score_manifest.exists() else {}
+    matches = all(stored.get(key) == value for key,value in manifest.items())
+    if score_manifest.exists() and (not matches or (not args.only and manifest != stored)):
+        batch = hashlib.sha256(json.dumps(manifest,sort_keys=True).encode("utf-8")).hexdigest()[:16]
+        score_manifest = score_manifest.with_name(score_manifest.stem+"-"+batch+".json")
         stored = json.loads(score_manifest.read_text()) if score_manifest.exists() else {}
-        stored.update(manifest)
-        score_manifest.write_text(json.dumps(stored,indent=2)+"\n",encoding="utf-8",newline="\n")
+    if not args.check:
+        if score_manifest.exists():
+            if any(stored.get(key) != value for key,value in manifest.items()) or (not args.only and manifest != stored):
+                raise SystemExit("Refusing to replace a historical score manifest")
+        else:
+            score_manifest.write_text(json.dumps(manifest,indent=2)+"\n",encoding="utf-8",newline="\n")
     else:
-        stored = json.loads(score_manifest.read_text())
-        if any(stored.get(key) != value for key,value in manifest.items()) or (not args.only and manifest != stored):
+        if args.only:
+            # Selected records may have been refreshed in separate immutable
+            # batches. Each current digest must be witnessed in this same
+            # primary/metric ledger; do not invent a combined execution batch.
+            stem = "score_manifest-"+receipt.name
+            batches = [metric_receipt/(stem+".json"),*sorted(metric_receipt.glob(stem+"-*.json"))]
+            covered = set()
+            for batch in batches:
+                if not batch.exists(): continue
+                entries = json.loads(batch.read_text(encoding="utf-8"))
+                if not isinstance(entries,dict):
+                    raise SystemExit("Invalid source-bound score manifest")
+                covered.update(key for key,value in manifest.items() if entries.get(key)==value)
+            if set(manifest)-covered:
+                raise SystemExit("Score manifest mismatch: "+", ".join(sorted(set(manifest)-covered)))
+        elif not score_manifest.exists() or manifest != stored:
             raise SystemExit("Score manifest mismatch")
     print(("Verified" if args.check else "Wrote"),len(paths),"adjacent score YAML files")
 

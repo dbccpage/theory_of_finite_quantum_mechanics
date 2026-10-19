@@ -1,0 +1,43 @@
+{
+  "AuthorityEffect": "None",
+  "change": "Extract six element-kind and eight structure-kind prefix constructions into cohesive private checked helpers; main combines arrays into a 14-string Vec. Existing prechecks, parse, prefix iteration, inner comparisons and exact errors retained. Fixed extra Vec allocation is std runtime memory cost, not new mathematical behavior.",
+  "consumer_inventory": {
+    "path": "evidence/quality/category_homology/resume-20261019/identifier-roundtrip-consumers.log",
+    "sha256": "21d448ea029c73b24f77d9df91300d9bac810d4ac24bdf9b7e4fae3779dcf657"
+  },
+  "current_provider_impact": "All nominal types, public constructors, accessors, serde attributes and degree behavior are byte-identical. The affected public kind-display checker and new private helpers are not called by rank hashing/arithmetic or vector aliases; only its existing local test calls it. Current native canonical homology tests replay compositions.",
+  "established_pre_refactor_G5": {
+    "ccn": 22,
+    "function": "identifier_kinds_round_trip",
+    "grade": "D",
+    "source_metrics": "evidence/quality/category_homology/20261019T032209Z-metrics/metrics.json"
+  },
+  "new_source": {
+    "path": "code/rust/src/homology/ids.rs",
+    "sha256": "a50af254a6ea02531a2fbb24350705e67ad67f0a1a992d61f227b31402aa1aa9"
+  },
+  "old_source": {
+    "path": "evidence/quality/category_homology/resume-20261019/ids-before-prefix-refactor.rs",
+    "sha256": "0045aac4bd35a4d1479ac5fcff00a6b4d7964087a70c4e2dec303af0733b29e1"
+  },
+  "unchanged_sections": {
+    "all_fourteen_constructor_calls_and_their_order": [
+      "ChainId",
+      "CochainId",
+      "CycleId",
+      "CocycleId",
+      "BoundaryId",
+      "CoboundaryId",
+      "ChainComplexId",
+      "CochainComplexId",
+      "HomologyClassId",
+      "CohomologyClassId",
+      "CarrierId",
+      "MatrixId",
+      "ManifestId",
+      "WitnessId"
+    ],
+    "all_items_before_identifier_kinds_round_trip": true,
+    "private_parser_and_all_original_tests": true
+  }
+}

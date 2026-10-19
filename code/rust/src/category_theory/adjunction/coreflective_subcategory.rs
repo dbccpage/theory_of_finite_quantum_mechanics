@@ -5,6 +5,7 @@
 //! a right adjoint (coreflector) c : C → A, i ⊣ c.
 
 use serde::{Deserialize, Serialize};
+use omega_category_theory::errors::ArithmosError;
 
 /// Best-effort shell for a coreflective subcategory declaration.
 ///
@@ -74,18 +75,18 @@ impl CoreflectiveSubcategoryShell {
         self
     }
 
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
         if self.ambient_category.is_empty() {
-            return Err("empty ambient_category".into());
+            return Err(ArithmosError::InvalidShape("empty ambient_category".into()));
         }
         if self.subcategory.is_empty() {
-            return Err("empty subcategory".into());
+            return Err(ArithmosError::InvalidShape("empty subcategory".into()));
         }
         if self.coreflector.is_empty() {
-            return Err("empty coreflector".into());
+            return Err(ArithmosError::InvalidShape("empty coreflector".into()));
         }
         Ok(())
     }

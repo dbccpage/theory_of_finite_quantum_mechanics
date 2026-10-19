@@ -1,0 +1,161 @@
+{
+  "AuthorityEffect": "None",
+  "scope": "Finite total Moore greatest report congruence,exact refinement-chain replay,surjective factor and unpointed behavior sets with unchanged public APIs.",
+  "mutation_names": [
+    "skip-first-normalization",
+    "erase-output-classes",
+    "wrong-fresh-signature-id",
+    "do-not-clear-scratch",
+    "ignore-transition-signature",
+    "ignore-last-input-signature",
+    "pair-kernel-reversed",
+    "pair-ignore-reports",
+    "pair-ignore-updates",
+    "skip-last-congruence-row",
+    "truncate-refinement",
+    "skip-origin-check",
+    "skip-exact-step",
+    "allow-repeated-step",
+    "skip-stabilization",
+    "skip-submitted-map",
+    "ignore-quotient-payload",
+    "skip-map-length",
+    "skip-map-range",
+    "skip-surjectivity",
+    "skip-map-alphabet",
+    "skip-map-readout",
+    "skip-map-transition",
+    "wrong-factor-label",
+    "wrong-union-offset",
+    "classification-wrong-alphabet",
+    "shape-outside-boundary",
+    "empty-wrong-error",
+    "outside-target-accepted"
+  ],
+  "records": [
+    {
+      "family": "",
+      "path": "code/rust/src/category_theory/finite_moore.rs",
+      "sha256": "c4464e2a36d3e788bbdc631cedcfdd39bf016f38add55810b47fc32931718b15",
+      "parent_aliases": [],
+      "faults": [
+        [
+          "signatures\n        .into_iter()",
+          "signatures\n        .into_iter().skip(1)"
+        ],
+        [
+          "*ids.entry(signature).or_insert(fresh)",
+          "*ids.entry(signature).or_insert(0)"
+        ],
+        [
+          "    ids.insert(signature.to_vec(), fresh);\n    fresh",
+          "    ids.insert(signature.to_vec(), fresh);\n    fresh + 1"
+        ],
+        [
+          "            signature.clear();",
+          "            // signature.clear();"
+        ],
+        [
+          "signature.extend(self.transitions[state].iter().map(|&next| partition[next]));",
+          "signature.extend(std::iter::empty::<usize>());"
+        ],
+        [
+          "self.transitions[state].iter().map(|&next| partition[next])",
+          "self.transitions[state].iter().take(self.input_count.saturating_sub(1)).map(|&next| partition[next])"
+        ],
+        [
+          "partition[left] != partition[right]",
+          "partition[left] == partition[right]"
+        ],
+        [
+          "self.reports[left] == self.reports[right]",
+          "true"
+        ],
+        [
+          "partition[self.transitions[left][input]] == partition[self.transitions[right][input]]",
+          "true"
+        ],
+        [
+          "(0..self.state_count()).all(|state| {",
+          "(0..self.state_count().saturating_sub(1)).all(|state| {"
+        ],
+        [
+          "if next == *partitions.last().unwrap() {",
+          "if next == *partitions.last().unwrap() || partitions.len() > 1 {"
+        ],
+        [
+          "if receipt.partitions.first() != Some(&self.initial_partition()) {",
+          "if false && receipt.partitions.first() != Some(&self.initial_partition()) {"
+        ],
+        [
+          "|| self.refine(&pair[0]) != pair[1]",
+          "|| false"
+        ],
+        [
+          "|| pair[0] == pair[1]",
+          "|| false"
+        ],
+        [
+          "|| self.refine(last) != *last",
+          "|| false"
+        ],
+        [
+          "|| receipt.state_to_block != *last",
+          "|| false"
+        ],
+        [
+          "receipt.quotient == checked.quotient",
+          "true"
+        ],
+        [
+          "&& map.len() == self.state_count()",
+          "&& true"
+        ],
+        [
+          "&& map.iter().all(|&state| state < target.state_count())",
+          "&& true"
+        ],
+        [
+          "&& map.iter().copied().collect::<BTreeSet<_>>().len() == target.state_count()",
+          "&& true"
+        ],
+        [
+          "self.input_count == target.input_count",
+          "true"
+        ],
+        [
+          "self.reports[state] == target.reports[map[state]]",
+          "true"
+        ],
+        [
+          "map[self.transitions[state][input]] == target.transitions[map[state]][input]",
+          "true"
+        ],
+        [
+          "factor[map[m]] = Some(block)",
+          "factor[map[m]] = Some(0)"
+        ],
+        [
+          "row.iter().map(|&s| s + offset)",
+          "row.iter().map(|&s| s)"
+        ],
+        [
+          "if self.input_count != other.input_count {",
+          "if self.input_count == other.input_count {"
+        ],
+        [
+          "if reports.is_empty() {",
+          "if false && reports.is_empty() {"
+        ],
+        [
+          "return Err(MooreError::EmptyCarrier);",
+          "return Err(MooreError::TransitionShape);"
+        ],
+        [
+          ".any(|&state| state >= reports.len())",
+          ".any(|&state| state > reports.len())"
+        ]
+      ]
+    }
+  ]
+}

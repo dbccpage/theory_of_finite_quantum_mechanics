@@ -3,6 +3,7 @@
 //!
 //! Covariant functor F : C → D as a labeled finite record (shape only).
 
+use omega_category_theory::errors::ArithmosError;
 use serde::{Deserialize, Serialize};
 
 /// Best-effort shell for a labeled functor between labeled categories.
@@ -57,24 +58,24 @@ impl Functor {
         self
     }
 
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
         if self.source_category.is_empty() {
-            return Err("empty source_category".into());
+            return Err(ArithmosError::InvalidShape("empty source_category".into()));
         }
         if self.target_category.is_empty() {
-            return Err("empty target_category".into());
+            return Err(ArithmosError::InvalidShape("empty target_category".into()));
         }
         for (i, (a, b)) in self.object_map.iter().enumerate() {
             if a.is_empty() || b.is_empty() {
-                return Err(format!("empty object_map tag at index {i}"));
+                return Err(ArithmosError::InvalidShape(format!("empty object_map tag at index {i}")));
             }
         }
         for (i, (a, b)) in self.morphism_map.iter().enumerate() {
             if a.is_empty() || b.is_empty() {
-                return Err(format!("empty morphism_map tag at index {i}"));
+                return Err(ArithmosError::InvalidShape(format!("empty morphism_map tag at index {i}")));
             }
         }
         Ok(())

@@ -1,0 +1,23 @@
+
+running 6 tests
+test mutant_57::tests::validate_rejects_empty ... ok
+test mutant_57::tests::lan_validate_ok ... ok
+test mutant_57::tests::validate_rejects_missing_formula ... ok
+test mutant_57::tests::ran_validate_ok ... ok
+test mutant_57::parameter_challenge::constructors_preserve_distinct_supplied_parameters ... ok
+test mutant_57::parameter_challenge::independent_schema_cases_and_first_error ... FAILED
+
+failures:
+
+---- mutant_57::parameter_challenge::independent_schema_cases_and_first_error stdout ----
+
+thread 'mutant_57::parameter_challenge::independent_schema_cases_and_first_error' (21424) panicked at metadata_challenge_0\mutant_57.rs:135:37:
+expected Some("empty along_k"), got Ok(()); raw={"along_k":"","extension_functor":"extension_functor:α\u0000","functor_f":"functor_f:α\u0000","kind":"lan","label":"label:α\u0000","notes":[],"pointwise_formula":"pointwise_formula:α\u0000"}
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    mutant_57::parameter_challenge::independent_schema_cases_and_first_error
+
+test result: FAILED. 5 passed; 1 failed; 0 ignored; 0 measured; 372 filtered out; finished in 0.00s
+

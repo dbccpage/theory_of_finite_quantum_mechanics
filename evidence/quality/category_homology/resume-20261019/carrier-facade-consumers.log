@@ -1,0 +1,169 @@
+code/rust/Cargo.toml:45:omega_homology = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_homology" }
+code/rust/src\general_relativity\causal_set.rs:5:use omega_homology::finite_poset::{FinitePoset, PosetError};
+code/rust/src\general_relativity\discrete_spacetime.rs:2:use omega_homology::errors::HomologicalError;
+code/rust/src\general_relativity\discrete_spacetime.rs:3:use omega_homology::simplicial::{OrientedSimplex, Simplex, SimplicialComplex};
+code/rust/src\general_relativity\Cargo.toml:12:omega_homology = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_homology" }
+code/rust/src\general_relativity\regge_4d.rs:6:use omega_homology::simplicial::{OrientedSimplex, SimplicialComplex};
+code/rust/src\general_relativity\regge_calculus.rs:3:use omega_homology::errors::HomologicalError;
+code/rust/src\general_relativity\regge_calculus.rs:4:use omega_homology::simplicial::{OrientedSimplex, Simplex, SimplicialComplex};
+code/rust/src\tests\causal_order_tests.rs:163:    let bad = omega_homology::finite_poset::FinitePoset::new(3, [(1usize, 0usize), (0, 1)]);
+code/rust/src\qm\report_fiber.rs:157:    let _complex = omega_homology::chain_complex::ChainComplex::new(
+code/rust/src\wdp\connection.rs:186:    use omega_homology::scalar::{q, qr};
+code/rust/src\sheaf_theory\open_set.rs:2:use omega_homology::simplicial::{OrientedSimplex, SimplicialComplex};
+code/rust/src\homology\witness.rs:8:use crate::homology::hashing::Hash256;
+code/rust/src\majorana\Cargo.toml:23:omega_homology = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_homology" }
+code/rust/src\homology\simplicial.rs:9:use crate::homology::errors::HomologicalError;
+code/rust/src\homology\simplicial.rs:10:use crate::homology::rank_certificate::certify_rank;
+code/rust/src\homology\mod.rs:35:pub fn hash_exact_matrix(m: &ExactMatrix<Q>) -> Hash256 {
+code/rust/src\homology\mod.rs:167:        verify_hash(&value.d0_hash, &hash_exact_matrix(&value.d0))?;
+code/rust/src\homology\mod.rs:168:        verify_hash(&value.d1_hash, &hash_exact_matrix(&value.d1))?;
+code/rust/src\homology\mod.rs:219:                hash_exact_matrix(&matrix).0,
+code/rust/src\holonomy\gauge_quotient.rs:7:use omega_homology::finite_rational_homology::{
+code/rust/src\holonomy\gauge_quotient.rs:10:use omega_homology::scalar::Q;
+code/rust/src\homology\l5a_challenges.rs:125:    use exact_carrier::graph_carrier;
+code/rust/src\homology\l5a_challenges.rs:126:    assert!(graph_carrier(1, &[(0, 0)], &[], vec![q(1)]).is_err());
+code/rust/src\homology\l5a_challenges.rs:127:    assert!(graph_carrier(2, &[(2, 1)], &[], vec![q(1)]).is_err());
+code/rust/src\homology\l5a_challenges.rs:128:    assert!(graph_carrier(2, &[(0, 2)], &[], vec![q(1)]).is_err());
+code/rust/src\homology\l5a_challenges.rs:129:    assert!(graph_carrier(2, &[(0, 1), (0, 1)], &[], vec![q(1); 2]).is_err());
+code/rust/src\homology\l5a_challenges.rs:130:    assert!(graph_carrier(3, &[], &[(0, 1, 2)], vec![]).is_err());
+code/rust/src\homology\l5a_challenges.rs:131:    assert!(graph_carrier(3, &[], &[(0, 1, 3)], vec![]).is_err());
+code/rust/src\homology\l5a_challenges.rs:132:    assert!(graph_carrier(3, &[], &[(0, 0, 1)], vec![]).is_err());
+code/rust/src\homology\l5a_challenges.rs:133:    assert!(graph_carrier(2, &[(0, 1)], &[], vec![]).is_err());
+code/rust/src\homology\l5a_challenges.rs:134:    assert!(graph_carrier(2, &[(0, 1)], &[], vec![q(-1)]).is_err());
+code/rust/src\homology\l5a_challenges.rs:233:        let c = exact_carrier::graph_carrier(4, &edges, &[], vec![q(1); edges.len()]).unwrap();
+code/rust/src\homology\ids.rs:4://! within the omega_homology system. Numeric constructors reject the zero id.
+code/rust/src\homology\hashing.rs:155:    hasher.update(&crate::homology::carrier_manifest::CARRIER_MANIFEST_VERSION.to_le_bytes());
+code/rust/src\homology\hashing.rs:163:    hasher.update(crate::homology::carrier_manifest::COEFFICIENT_DOMAIN.as_bytes());
+code/rust/src\homology\hashing.rs:164:    hasher.update(crate::homology::carrier_manifest::COEFFICIENT_REPRESENTATION.as_bytes());
+code/rust/src\homology\hashing.rs:244:        let h1 = hash_provenance("omega_homology::test");
+code/rust/src\homology\hashing.rs:245:        let h2 = hash_provenance("omega_homology::test");
+code/rust/src\homology\graded_vector.rs:7:use crate::homology::errors::HomologicalError;
+code/rust/src\homology\graded_vector.rs:8:use crate::homology::hashing::{hash_graded_vector, Hash256};
+code/rust/src\homology\graded_vector.rs:9:use crate::homology::ids::{BasisId, Degree};
+code/rust/src\homology\exact_carrier.rs:80:pub fn graph_carrier(
+code/rust/src\homology\exact_carrier.rs:205:        let cx = graph_carrier(2, &[(0, 1)], &[], unit_weights(1)).unwrap();
+code/rust/src\homology\exact_carrier.rs:218:            graph_carrier(3, &[(0, 1), (1, 2), (0, 2)], &[(0, 1, 2)], unit_weights(3)).unwrap();
+code/rust/src\homology\exact_carrier.rs:230:        let cx = graph_carrier(3, &[(0, 1), (1, 2), (0, 2)], &[], unit_weights(3)).unwrap();
+code/rust/src\homology\exact_carrier.rs:238:        let cx = graph_carrier(3, &[(0, 1), (1, 2)], &[], unit_weights(2)).unwrap();
+code/rust/src\homology\exact_carrier.rs:271:        let cx = graph_carrier(3, &[(0, 1), (1, 2), (0, 2)], &[], unit_weights(3)).unwrap();
+code/rust/src\homology\exact_carrier.rs:283:        let cx1 = graph_carrier(3, &[(0, 1), (1, 2), (0, 2)], &[], unit_weights(3)).unwrap();
+code/rust/src\homology\exact_carrier.rs:284:        let cx2 = graph_carrier(3, &[(0, 1), (1, 2)], &[], unit_weights(2)).unwrap();
+code/rust/src\homology\exact_carrier.rs:294:        let cx = graph_carrier(3, &[(0, 1), (1, 2), (0, 2)], &[], unit_weights(3)).unwrap();
+code/rust/src\holonomy\Cargo.toml:13:omega_homology = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_homology" }
+code/rust/src\homology\chain.rs:9:    use crate::homology::errors::HomologicalError;
+code/rust/src\homology\chain.rs:10:    use crate::homology::ids::{BasisId, Degree};
+code/rust/src\homology\cochain_complex.rs:4:use crate::homology::coboundary::CoboundaryMap;
+code/rust/src\homology\cochain_complex.rs:5:use crate::homology::errors::HomologicalError;
+code/rust/src\homology\cochain_complex.rs:6:use crate::homology::hashing::{hash_cochain_complex_manifest, hash_provenance, Hash256};
+code/rust/src\homology\cochain_complex.rs:7:use crate::homology::ids::Degree;
+code/rust/src\homology\cochain_complex.rs:8:use crate::homology::witness::CochainComplexWitness;
+code/rust/src\sheaf_theory\cech.rs:109:    use omega_homology::scalar::inject_rational64;
+code/rust/src\sheaf_theory\cech.rs:110:    use omega_homology::simplicial::{Simplex, SimplicialComplex};
+code/rust/src\sheaf_theory\cech.rs:111:    use omega_homology::trichotomy_witness::{is_coboundary, is_cocycle};
+code/rust/src\homology\cochain.rs:9:    use crate::homology::errors::HomologicalError;
+code/rust/src\homology\cochain.rs:10:    use crate::homology::ids::{BasisId, Degree};
+code/rust/src\homology\carrier.rs:5://! `omega_homology::scalar::Q` = `BigRational` (ADR-001, 2026-08-04). It was
+code/rust/src\homology\carrier.rs:13:use crate::homology::cochain_complex::{CochainComplex, TheoremProvenance};
+code/rust/src\homology\carrier.rs:14:use crate::homology::errors::HomologicalError;
+code/rust/src\homology\carrier.rs:143:    pub fn manifest(&self) -> crate::homology::carrier_manifest::CarrierManifest {
+code/rust/src\homology\carrier.rs:144:        crate::homology::carrier_manifest::CarrierManifest::from_carrier(self)
+code/rust/src\homology\coboundary.rs:7:use crate::homology::cochain::Cochain;
+code/rust/src\homology\coboundary.rs:8:use crate::homology::errors::HomologicalError;
+code/rust/src\homology\coboundary.rs:9:use crate::homology::hashing::{hash_matrix, Hash256};
+code/rust/src\homology\coboundary.rs:10:use crate::homology::ids::Degree;
+code/rust/src\homology\coboundary.rs:107:    use crate::homology::ids::BasisId;
+code/rust/src\sheaf_theory\Cargo.toml:12:omega_homology = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_homology" }
+code/rust/src\homology\boundary.rs:7:use crate::homology::chain::Chain;
+code/rust/src\homology\boundary.rs:8:use crate::homology::errors::HomologicalError;
+code/rust/src\homology\boundary.rs:9:use crate::homology::hashing::{hash_matrix, Hash256};
+code/rust/src\homology\boundary.rs:10:use crate::homology::ids::Degree;
+code/rust/src\homology\chain_complex.rs:4:use crate::homology::boundary::BoundaryMap;
+code/rust/src\homology\chain_complex.rs:5:use crate::homology::errors::HomologicalError;
+code/rust/src\homology\chain_complex.rs:6:use crate::homology::hashing::{hash_chain_complex_manifest, Hash256};
+code/rust/src\homology\chain_complex.rs:7:use crate::homology::ids::Degree;
+code/rust/src\homology\chain_complex.rs:8:use crate::homology::witness::ChainComplexWitness;
+code/rust/src\homology\chain_complex.rs:127:impl omega_homology::chain_map::FiniteChainComplexView<Q> for ChainComplex {
+code/rust/src\local_green_global_red_lggr\residual_families\wire.rs:7:use omega_homology::cochain_primitive_difference::CochainPrimitiveDifference;
+code/rust/src\local_green_global_red_lggr\residual_families\wire.rs:8:use omega_homology::quotient::QuotientSpace;
+code/rust/src\local_green_global_red_lggr\residual_families\signature.rs:7:use omega_homology::cochain_primitive_difference::CochainPrimitiveDifference;
+code/rust/src\local_green_global_red_lggr\residual_families\signature.rs:8:use omega_homology::quotient::{QuotientRelation, QuotientSpace};
+code/rust/src\local_green_global_red_lggr\residual_families\signature.rs:43:    out.extend_from_slice(b"omega_homology::CochainPrimitiveDifference::shape_fingerprint::v1");
+code/rust/src\local_green_global_red_lggr\residual_families\signature.rs:146:    use omega_homology::cochain_complex::{CochainComplex, TheoremProvenance};
+code/rust/src\local_green_global_red_lggr\residual_families\signature.rs:147:    use omega_homology::coefficient_domain::CoefficientDomain;
+code/rust/src\local_green_global_red_lggr\residual_families\signature.rs:148:    use omega_homology::hash::{Blake3Hash, ComplexHash};
+code/rust/src\local_green_global_red_lggr\residual_families\signature.rs:149:    use omega_homology::quotient::{QuotientRelation, QuotientSpace};
+code/rust/src\local_green_global_red_lggr\residual_families\signature.rs:151:    type Q = omega_homology::scalar::Q;
+code/rust/src\local_green_global_red_lggr\residual_families\signature.rs:154:        omega_homology::scalar::q(n)
+code/rust/src\wdp\carrier_binding.rs:6:use omega_homology::carrier::Carrier;
+code/rust/src\wdp\carrier_binding.rs:7:use omega_homology::carrier_manifest::CarrierManifest;
+code/rust/src\wdp\carrier_binding.rs:8:use omega_homology::cochain_complex::TheoremProvenance;
+code/rust/src\wdp\carrier_binding.rs:9:use omega_homology::errors::HomologicalError;
+code/rust/src\wdp\Cargo.toml:30:omega_homology = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_homology" }
+code/rust/src\wdp\Cargo.toml:45:omega_homology = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_homology" }
+code/rust/src\wdp\cochains.rs:9:use omega_homology::carrier::Carrier;
+code/rust/src\wdp\cochains.rs:10:use omega_homology::cochain_complex::TheoremProvenance;
+code/rust/src\wdp\cochains.rs:11:use omega_homology::finite_directed_graph::{self, DirectedGraphBuilder};
+code/rust/src\wdp\cochains.rs:12:use omega_homology::graph_carrier::graph_carrier;
+code/rust/src\wdp\cochains.rs:171:        named_graph_carrier(
+code/rust/src\wdp\cochains.rs:192:pub(crate) fn named_graph_carrier(
+code/rust/src\wdp\cochains.rs:219:    Ok(graph_carrier(
+code/rust/src\wdp\cochains.rs:270:    use omega_homology::scalar::{q, qr};
+code/rust/src\wdp\cochains.rs:314:    fn test_presentation_uses_omega_homology_incidence() {
+code/rust/src\wdp\bridges.rs:184:            WdpError::Homology(omega_homology::errors::HomologicalError::MatrixError(error))
+code/rust/src\wdp\bridges.rs:357:    use omega_homology::scalar::q;
+code/rust/src\local_green_global_red_lggr\matrix_path_kernel.rs:8:use omega_homology::finite_directed_graph::{DirectedGraphBuilder, TheoremProvenance};
+code/rust/src\local_green_global_red_lggr\matrix_path_kernel.rs:15:    GraphCarrier(#[from] omega_homology::finite_directed_graph::NamedEdgeResolutionError),
+code/rust/src\local_green_global_red_lggr\matrix_path_kernel.rs:321:    use omega_homology::scalar::{q, qr};
+code/rust/src\local_green_global_red_lggr\Cargo.toml:15:omega_homology = { path = "C:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs/omega_homology" }
+code/rust/src\qm\campaigns\commuting_obs.rs:7:use omega_homology::finite_poset::FinitePoset;
+code/rust/src\qm\campaigns\commuting_obs.rs:8:use omega_homology::graph_coloring::{two_coloring, TwoColoring};
+code/rust/src\qm\campaigns\causal_order.rs:1:use omega_homology::finite_poset::{FinitePoset, PosetError};
+code/rust/src\qm\campaigns\causal_order.rs:2:use omega_homology::poset_census::{canonical_relations, labelled_posets};
+code/rust/src\qm\campaigns\finite_geometry_host.rs:4:use omega_homology::finite_cliques::cliques;
+code/rust/src\qm\campaigns\finite_geometry_host.rs:20:    Cliques(#[from] omega_homology::finite_cliques::CliqueError),
+code/rust/src\qm\campaigns\finite_geometry_host.rs:82:    omega_homology::chain_complex::ChainComplex::new(4, 5, 2, b1.clone(), b2.clone())
+code/rust/src\wdp\quantum_geometries.rs:396:    use omega_homology::scalar::{q, qr};
+code/rust/src\wdp\primitive_axiomatics.rs:12:use omega_homology::carrier::Carrier;
+code/rust/src\wdp\primitive_axiomatics.rs:19:use crate::cochains::{coboundary_rows, named_graph_carrier};
+code/rust/src\wdp\primitive_axiomatics.rs:198:        named_graph_carrier(
+code/rust/src\wdp\primitive_axiomatics.rs:241:    use omega_homology::scalar::{q, qr};
+code/rust/src\qm\campaigns\lattice_gauge.rs:5:use omega_homology::f2_cohomology::F2ChainComplex;
+code/rust/src\qm\campaigns\phase_fiber.rs:2:use omega_homology::cyclic_phase::{CyclicPhaseError, CyclicPhaseGroup};
+code/rust/src\qm\campaigns\phase_fiber.rs:131:    use omega_homology::cyclic_phase::{check_coboundary_triviality, coboundary, PhaseOneCochain};
+code/rust/src\qm\campaigns\phase_fiber.rs:132:    use omega_homology::finite_directed_graph::{DirectedGraphBuilder, TheoremProvenance};
+code/rust/src\wdp\lib.rs:144:    use omega_homology::scalar::{q, qr};
+code/rust/src\wdp\kan_wdp_bridge.rs:4:use omega_homology::errors::HomologicalError;
+code/rust/src\wdp\kan_wdp_bridge.rs:5:use omega_homology::simplicial::{Simplex, SimplicialComplex};
+code/rust/src\wdp\kan_wdp_bridge.rs:609:    fn test_homology_betti_numbers_via_omega_homology() {
+code/rust/src\wdp\guarded_chain_transport.rs:4:use omega_homology::f2_cohomology::ComplexError;
+code/rust/src\wdp\guarded_chain_transport.rs:5:use omega_homology::finite_poset::{FinitePoset, PosetError};
+code/rust/src\wdp\guarded_chain_transport.rs:6:use omega_homology::integral_chain_complex::{IntegralChainComplex, SparseIntegerMatrix};
+code/rust/src\wdp\guarded_chain_transport.rs:7:use omega_homology::integral_chain_equivalence::{
+code/rust/src\wdp\guarded_chain_transport.rs:10:use omega_homology::permutohedral::{
+code/rust/src\wdp\genesis_geometry.rs:4:use omega_homology::declared_incidence::{
+code/rust/src\wdp\genesis_geometry.rs:7:use omega_homology::simplicial::SimplicialComplex;
+code/rust/src\wdp\guarded_chain_transport\sparse.rs:3:use omega_homology::finite_poset::{FinitePoset, MAX_POSET_ELEMENTS};
+code/rust/src\wdp\guarded_chain_transport\sparse.rs:4:use omega_homology::permutohedral::{
+code/rust/src\wdp\genesis_construction.rs:4:use omega_homology::declared_incidence::{declared_chain_report, encode_declared};
+code/rust/src\wdp\genesis_construction.rs:5:use omega_homology::simplicial::SimplicialComplex;
+code/rust/src\wdp\error.rs:7:use omega_homology::errors::HomologicalError;
+code/rust/src\wdp\error.rs:8:use omega_homology::finite_directed_graph::NamedEdgeResolutionError;
+code/rust/src\wdp\gauge_classification.rs:638:    use omega_homology::scalar::{q, qr};
+code/rust/src\wdp\fenchel_duality.rs:9:use crate::cochains::{coboundary_rows, named_graph_carrier};
+code/rust/src\wdp\fenchel_duality.rs:72:        let carrier = named_graph_carrier(
+code/rust/src\wdp\fenchel_duality.rs:119:    use omega_homology::scalar::q;
+code/rust/src\qm\campaigns\toric.rs:3:use omega_homology::matrix_reduction::{is_zero_z2, multiply_z2, rank_z2};
+code/rust/src\wdp\examples\genesis_construction.rs:26:            "signed rational chains through omega_homology",
+code/rust/src\wdp\examples\sparse_guarded_transport.rs:1:use omega_homology::permutohedral::{add_scaled, boundary, Cell, CellChain, ContractionLimits};
+code/rust/src\wdp\examples\sparse_guarded_transport.rs:100:            let projected_boundary = omega_homology::permutohedral::boundary_chain(
+code/rust/src\category_theory\abelian\chain_complex_category.rs:6://! live in `omega_homology` (conceptual link in docs comments only).
+code/rust/src\category_theory\abelian\derived_category.rs:6://! Computational homology of complexes is owned by `omega_homology` (docs link).
+code/rust/src\category_theory\abelian\homological_algebra.rs:6://! Computational homology / cochain machinery is owned by `omega_homology`
+code/rust/src\category_theory\abelian\homological_algebra.rs:69:        let h = HomologicalAlgebra::new("Tor").with_note("docs-only link to omega_homology");
+code/rust/src\category_theory\abelian\mod.rs:5://! `omega_homology`; these shells only record categorical shape claims.
+code/rust/src\mub\src\omega_native\d6_exact_maurer_cartan.rs:4:use crate::omega_native::exact::d6_exact_obstruction_cohomology::bianchi_d1;
+code/rust/src\mub\src\omega_native\d6_exact_path_b_gate_candidates.rs:11:use crate::omega_native::exact::d6_exact_obstruction_cohomology::obstruction_cohomology;
+code/rust/src\mub\src\omega_native\d6_exact_deformation_invariance_probe.rs:9:use crate::omega_native::exact::d6_exact_obstruction_cohomology::obstruction_cohomology;
+code/rust/src\mub\omega_native\d6_exact_deformation_invariance_probe.rs:9:use crate::omega_native::exact::d6_exact_obstruction_cohomology::obstruction_cohomology;
+code/rust/src\mub\omega_native\d6_exact_maurer_cartan.rs:4:use crate::omega_native::exact::d6_exact_obstruction_cohomology::bianchi_d1;
+code/rust/src\mub\omega_native\d6_exact_path_b_gate_candidates.rs:11:use crate::omega_native::exact::d6_exact_obstruction_cohomology::obstruction_cohomology;

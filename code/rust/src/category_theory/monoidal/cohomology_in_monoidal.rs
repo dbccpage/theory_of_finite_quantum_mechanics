@@ -2,6 +2,7 @@
 //! AuthorityEffect: None. Not PROVED / GlobalGreen.
 
 use serde::{Deserialize, Serialize};
+use omega_category_theory::errors::ArithmosError;
 
 /// Best-effort shell for cohomology computed in / valued in a monoidal category.
 /// Diagnostic inventory only — not a spectral-sequence certificate.
@@ -47,18 +48,18 @@ impl CohomologyInMonoidal {
         }
     }
 
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
         if self.monoidal_ref.is_empty() {
-            return Err("empty monoidal_ref".into());
+            return Err(ArithmosError::InvalidShape("empty monoidal_ref".into()));
         }
         if self.complex_ref.is_empty() {
-            return Err("empty complex_ref".into());
+            return Err(ArithmosError::InvalidShape("empty complex_ref".into()));
         }
         if self.degree.is_empty() {
-            return Err("empty degree".into());
+            return Err(ArithmosError::InvalidShape("empty degree".into()));
         }
         Ok(())
     }

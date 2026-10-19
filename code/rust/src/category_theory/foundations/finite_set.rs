@@ -5,6 +5,30 @@
 
 use serde::{Deserialize, Serialize};
 
+/// Exact refusal of finite literal-set admission.
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub enum FiniteSetError {
+    EmptyLabel,
+    EmptyElement { index: usize },
+    DuplicateElement { index: usize },
+    CardinalityMismatch { declared: usize, actual: usize },
+}
+
+impl std::fmt::Display for FiniteSetError {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            Self::EmptyLabel => f.write_str("empty label"),
+            Self::EmptyElement { index } => write!(f, "empty element tag at index {index}"),
+            Self::DuplicateElement { index } => write!(f, "duplicate element tag at index {index}"),
+            Self::CardinalityMismatch { declared, actual } => {
+                write!(f, "declared_cardinality {declared} != elements.len() {actual}")
+            }
+        }
+    }
+}
+
+impl std::error::Error for FiniteSetError {}
+
 /// Best-effort shell for a finite set with explicit element inventory.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize)]
 pub struct FiniteSet {
@@ -40,25 +64,25 @@ impl FiniteSet {
         self.elements.len()
     }
 
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), FiniteSetError> {
         if self.label.trim().is_empty() {
-            return Err("empty label".into());
+            return Err(FiniteSetError::EmptyLabel);
         }
         let mut seen = std::collections::BTreeSet::new();
         for (i, e) in self.elements.iter().enumerate() {
             if e.trim().is_empty() {
-                return Err(format!("empty element tag at index {i}"));
+                return Err(FiniteSetError::EmptyElement { index: i });
             }
             if !seen.insert(e) {
-                return Err(format!("duplicate element tag at index {i}"));
+                return Err(FiniteSetError::DuplicateElement { index: i });
             }
         }
         if let Some(n) = self.declared_cardinality {
             if n != self.elements.len() {
-                return Err(format!(
-                    "declared_cardinality {n} != elements.len() {}",
-                    self.elements.len()
-                ));
+                return Err(FiniteSetError::CardinalityMismatch {
+                    declared: n,
+                    actual: self.elements.len(),
+                });
             }
         }
         Ok(())
@@ -67,6 +91,8 @@ impl FiniteSet {
 
 /// A finite set whose distinct, nonempty elements and cardinality were checked.
 /// The declaration stays mutable until admission; admitted data is immutable.
+/// Elements use exact stored-string identity. Trimming only checks emptiness;
+/// it does not rewrite tags or identify differently spelled elements.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(try_from = "FiniteSet", into = "FiniteSet")]
 pub struct ValidatedFiniteSet {
@@ -74,8 +100,8 @@ pub struct ValidatedFiniteSet {
 }
 
 impl TryFrom<FiniteSet> for ValidatedFiniteSet {
-    type Error = String;
-    fn try_from(declared: FiniteSet) -> Result<Self, String> {
+    type Error = FiniteSetError;
+    fn try_from(declared: FiniteSet) -> Result<Self, FiniteSetError> {
         declared.validate_shell()?;
         Ok(Self { declared })
     }

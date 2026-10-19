@@ -1,0 +1,174 @@
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/category_theory/adjunction/mod.rs",
+    "language": "Rust",
+    "sha256": "1ad841979b4764c5af78516a65a11a2566fe34aa578c4fd5a57ece9b9b591fea"
+  },
+  "reviewer": "Codex explicit public namespace/source identity review",
+  "evaluation_timestamp": "2026-10-19T02:03:02.445062+00:00",
+  "gates": {
+    "G1": "A",
+    "G2": "A",
+    "G3": "A",
+    "G4": "A",
+    "G5": "A"
+  },
+  "formal_specification": {
+    "domain": "Static Rust module and nominal type exports. There is no runtime mathematical input or admission operation in this file.",
+    "exports": {
+      "AdjointFunctorTheoremShell": "adjoint_functor_theorem::AdjointFunctorTheoremShell",
+      "AdjunctionShell": "adjunction::AdjunctionShell",
+      "CoreflectiveSubcategoryShell": "coreflective_subcategory::CoreflectiveSubcategoryShell",
+      "CounitShell": "counit::CounitShell",
+      "GaloisConnectionShell": "galois_connection::GaloisConnectionShell",
+      "MonotonePair": "galois_connection::MonotonePair",
+      "HomSetAdjunctionShell": "hom_set_adjunction::HomSetAdjunctionShell",
+      "ReflectiveSubcategoryShell": "reflective_subcategory::ReflectiveSubcategoryShell",
+      "UnitShell": "unit::UnitShell",
+      "DeclaredFiniteAdjunction": "crate::legacy_adjunction::DeclaredFiniteAdjunction",
+      "DerivedMonad": "crate::legacy_adjunction::DerivedMonad"
+    },
+    "module_exposure": "Every declared public child module is loaded by the canonical category crate from its source file. Exported aliases must identify exactly the separately specified provider types.",
+    "not_claimed": "No child algorithm, mathematical law, theorem, or engineering grade is inherited by reexporting its type."
+  },
+  "symbol_map": {
+    "AdjointFunctorTheoremShell": "Public alias of adjoint_functor_theorem::AdjointFunctorTheoremShell",
+    "AdjunctionShell": "Public alias of adjunction::AdjunctionShell",
+    "CoreflectiveSubcategoryShell": "Public alias of coreflective_subcategory::CoreflectiveSubcategoryShell",
+    "CounitShell": "Public alias of counit::CounitShell",
+    "GaloisConnectionShell": "Public alias of galois_connection::GaloisConnectionShell",
+    "MonotonePair": "Public alias of galois_connection::MonotonePair",
+    "HomSetAdjunctionShell": "Public alias of hom_set_adjunction::HomSetAdjunctionShell",
+    "ReflectiveSubcategoryShell": "Public alias of reflective_subcategory::ReflectiveSubcategoryShell",
+    "UnitShell": "Public alias of unit::UnitShell",
+    "DeclaredFiniteAdjunction": "Public alias of crate::legacy_adjunction::DeclaredFiniteAdjunction",
+    "DerivedMonad": "Public alias of crate::legacy_adjunction::DerivedMonad"
+  },
+  "invariant_argument": [
+    "All noncomment source items were inspected and mechanically restricted to public child-module declarations, public use declarations and lint-only module-inception annotations. No initializer, macro-generated item, unsafe block, function or mutable state is present.",
+    "Under the pinned Rust module/type-resolution semantics, a pub use binds the original provider item and does not construct or validate a mathematical object. Canonical controls compare each actual public alias with its explicit original provider type in the real category crate.",
+    "The challenge adapter rebinds child declarations to those same actual canonical modules, splits grouped imports and omits only comments/lint-only attributes. Its normalized positive controls establish the same nominal identities. Each negative module changes one type binding while leaving that provider environment unchanged. No provider algorithm is cloned or reimplemented."
+  ],
+  "failure_paths": {
+    "unresolved_or_private_provider": "The Rust compiler rejects the external canonical control; no successful runtime/API receipt or completed grade follows.",
+    "wrong_valid_binding": "A syntactically valid peer type can compile but violates the declared nominal identity. Every designated peer replacement is detected by its isolated TypeId comparison.",
+    "runtime": "This file has no runtime operation, argument conversion, allocation, indexing, recursion or error recovery. Importing its namespace does not execute the providers functions."
+  },
+  "trust_boundary": {
+    "compiler": "Pinned Rust compiler, linker and standard nominal type identity within this one binary. TypeId values are not serialized, treated as cryptographic attestations or assumed stable across compiler versions.",
+    "providers": "Actual canonical crate child modules and the explicitly pinned source definitions. Their semantics, failure behavior and mathematical claims remain independently graded.",
+    "scope": "This is compiler/API-wiring verification, not a Lean theorem, Rust/MIR refinement, underlying category proof or source-origin attestation."
+  },
+  "consumer_review": [
+    "The actual category library exposes this hierarchy as a public module. Canonical external controls and the unchanged 459-test category suite validate the current public namespace before and after the challenges.",
+    "Known child types are still raw declarations or separately admitted implementations as their own files specify. A public facade cannot turn pending child score gates into completed ones."
+  ],
+  "basis": {
+    "G1": [
+      "Subject and every immediate provider source are SHA-bound; all public export names map to explicit provider paths. Docs already state shells/AuthorityEffect None. The actual crate and captured offline dependencies/compiler binaries anchor the API receipt.",
+      "Collection-metadata provider delta: code/rust/src/category_theory/adjunction/adjoint_functor_theorem.rs, code/rust/src/category_theory/adjunction/counit.rs, code/rust/src/category_theory/adjunction/galois_connection.rs, code/rust/src/category_theory/adjunction/hom_set_adjunction.rs, code/rust/src/category_theory/adjunction/unit.rs. These validators now return existing typed InvalidShape, preserving collection predicates, first-error order, diagnostics and raw constructor/setter semantics. Public type definitions and alias targets retain nominal identity. Fresh 020037Z external controls and all 107 export faults check that exact provider context; no provider mathematical grade is inherited."
+    ],
+    "G2": [
+      "Canonical and normalized controls agree with the declared nominal identities for every public alias, including the two legacy adjunction exports. There is no semantic arithmetic or unadmitted numeric domain in this file."
+    ],
+    "G3": [
+      "There are no executable production paths or mutable state to violate an invariant. Invalid source/provider visibility is rejected by the trusted compiler; the current external controls compile and execute. All runtime behavior of provider functions remains outside this facade claim."
+    ],
+    "G4": [
+      "All 11 valid single-fault re-export replacements are killed by separate namespace dispatches; no survivor, invalid/equivalent, inconclusive or unrun result. R=1.0 for this file.",
+      "The full campaign detects 107 wrong bindings across nine module files. It separately passes 107 canonical public controls, 107 normalized positive controls and 459 actual category tests before and after. The adapter and exact observation are disclosed; invalid compiler failures are not counted as kills."
+    ],
+    "G5": [
+      "The parsed Rust source contains zero production functions and no item-generating macros. Declared source CCN, cognitive complexity and control nesting are zero because this is a facade, not an unsupported parser result.",
+      "Runtime re-export overhead and allocations are absent. The small explicit module/use lists follow source boundaries; imported provider operational costs are not concealed or awarded this file grade."
+    ]
+  },
+  "open_findings": [],
+  "assurance_limits": [
+    "Capability remains L1 namespace glue, not L5 mathematics.",
+    "No child mathematical validity or engineering grade is inherited.",
+    "Contracts stay pending. No A+, alternate compiler, MIR/allocator proof, cross-repository attestation or whole-workspace success is claimed."
+  ],
+  "evidence": [
+    {
+      "path": "code/rust/quality/category_homology/export_boundaries.json",
+      "sha256": "53abe84f0fc31e39d5de22443abf09f2c573d187fef5f876989a3b38767c4d3d"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T020037Z/summary.json",
+      "sha256": "e504c03d087c2b6d8bdbfc52f49c55139f2f1e641f74f75137a84bf1749683ef"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T020037Z/baseline.json",
+      "sha256": "05737cfc75d055fc7e791c77eeef6adc25a54fa8e9e19c26862ab494f0043310"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T020037Z/restored.json",
+      "sha256": "ba35baad1aa1550803860bad204654de7a618141fc5828f171695f251ebcdf5a"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T020037Z/mutations.json",
+      "sha256": "ac1acb106752dd9bf98b96b594786e56586d7e532724e4b4d351d9b80ec60fa6"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T020037Z/builds.json",
+      "sha256": "7830de9fb461ac676793badb1c726e1e2defc9e4285b514602860463676abb9e"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T020037Z/dependency_receipt.json",
+      "sha256": "4f40c7d677c032eedf35e20059915009330442a63bd0baca864b9c9447cdb8ea"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T020037Z/run_export_challenges.py",
+      "sha256": "7b282a18cdd40c3fa51761bc853b67e8821c5c0e5be5349e90fd0542b265cee9"
+    }
+  ],
+  "context_inputs": [
+    {
+      "path": "code/rust/src/category_theory/adjunction/adjoint_functor_theorem.rs",
+      "sha256": "65ac99c2b3be58f1e865ecaa77d4e9e87e37d0597ace1cb44cfae76f8b19913c"
+    },
+    {
+      "path": "code/rust/src/category_theory/adjunction/adjunction.rs",
+      "sha256": "6f8e4375995f1968e53440dbe89707444aa70ffbbbb364301cfe8fac9a25d730"
+    },
+    {
+      "path": "code/rust/src/category_theory/adjunction/coreflective_subcategory.rs",
+      "sha256": "bda9c6c685bb6b6ff7e6b629c5fb2533be268d3213f7a606c5cd98c8b9281d89"
+    },
+    {
+      "path": "code/rust/src/category_theory/adjunction/counit.rs",
+      "sha256": "8256c2eced8a80cacdddfb2610772d45794aea07f746960d3f73d252ecae6952"
+    },
+    {
+      "path": "code/rust/src/category_theory/adjunction/galois_connection.rs",
+      "sha256": "733f5d689335c9d4a5ab85c2485c8b384e23c4cd73b2ac5eacafecc02cb5acb8"
+    },
+    {
+      "path": "code/rust/src/category_theory/adjunction/hom_set_adjunction.rs",
+      "sha256": "406abdfcb86f136b792f35ed9a69830ebe71ee6b316a2995579bf4a6640abcfa"
+    },
+    {
+      "path": "code/rust/src/category_theory/adjunction/reflective_subcategory.rs",
+      "sha256": "57e4c5bb67d83594fbe85b1d97fb98168ccbbfdd1e234316ea054da647b4c617"
+    },
+    {
+      "path": "code/rust/src/category_theory/adjunction/unit.rs",
+      "sha256": "57a004a5509c9db9132e60cd87e7349ca8e0aaff544fbbedf11805a77acaa203"
+    },
+    {
+      "path": "code/rust/src/category_theory/lib.rs",
+      "sha256": "b1535a921f4a69414e8b6636f85c8393f799bd2bc20da600e855864c2d3e8776"
+    },
+    {
+      "path": "code/rust/src/category_theory/Cargo.toml",
+      "sha256": "42378ba9d23fe5a5c97c844ebab457e9187c96b819c5b6a0fe3f9acaff1579a3"
+    },
+    {
+      "path": "code/rust/src/category_theory/legacy_adjunction.rs",
+      "sha256": "5e5273320120a8cb3b7b85c5644a1be67dd7267d5825cd54e34a68e730e4cfdb"
+    }
+  ]
+}

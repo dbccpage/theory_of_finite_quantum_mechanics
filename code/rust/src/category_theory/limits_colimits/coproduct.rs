@@ -1,6 +1,7 @@
 //! coproduct shell for omega_category_theory.
 //! AuthorityEffect: None. Not PROVED / GlobalGreen.
 
+use omega_category_theory::errors::ArithmosError;
 use serde::{Deserialize, Serialize};
 
 /// Best-effort shell for a (binary or multi-summand) coproduct.
@@ -44,28 +45,34 @@ impl Coproduct {
         }
     }
 
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
         if self.coproduct_object.is_empty() {
-            return Err("empty coproduct_object".into());
+            return Err(ArithmosError::InvalidShape("empty coproduct_object".into()));
         }
         if self.summands.is_empty() {
-            return Err("empty summands".into());
+            return Err(ArithmosError::InvalidShape("empty summands".into()));
         }
         for (i, s) in self.summands.iter().enumerate() {
             if s.is_empty() {
-                return Err(format!("empty summand at index {i}"));
+                return Err(ArithmosError::InvalidShape(format!(
+                    "empty summand at index {i}"
+                )));
             }
         }
         for (i, j) in self.injections.iter().enumerate() {
             if j.is_empty() {
-                return Err(format!("empty injection at index {i}"));
+                return Err(ArithmosError::InvalidShape(format!(
+                    "empty injection at index {i}"
+                )));
             }
         }
         if !self.injections.is_empty() && self.injections.len() != self.summands.len() {
-            return Err("injections length must match summands length".into());
+            return Err(ArithmosError::InvalidShape(
+                "injections length must match summands length".into(),
+            ));
         }
         Ok(())
     }

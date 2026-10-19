@@ -1,0 +1,32 @@
+
+running 5 tests
+test mutant_26::parameter_challenge::constructors_preserve_distinct_supplied_parameters ... FAILED
+test mutant_26::tests::validate_ok ... ok
+test mutant_26::tests::at_level_sets_level ... FAILED
+test mutant_26::tests::validate_rejects_empty ... ok
+test mutant_26::parameter_challenge::independent_schema_cases_and_first_error ... ok
+
+failures:
+
+---- mutant_26::parameter_challenge::constructors_preserve_distinct_supplied_parameters stdout ----
+
+thread 'mutant_26::parameter_challenge::constructors_preserve_distinct_supplied_parameters' (11044) panicked at metadata_challenge_0\mutant_26.rs:91:41:
+assertion `left == right` failed
+  left: ("U", 0, true)
+ right: ("U", 4294967295, true)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- mutant_26::tests::at_level_sets_level stdout ----
+
+thread 'mutant_26::tests::at_level_sets_level' (18012) panicked at metadata_challenge_0\mutant_26.rs:65:9:
+assertion `left == right` failed
+  left: 0
+ right: 2
+
+
+failures:
+    mutant_26::parameter_challenge::constructors_preserve_distinct_supplied_parameters
+    mutant_26::tests::at_level_sets_level
+
+test result: FAILED. 3 passed; 2 failed; 0 ignored; 0 measured; 373 filtered out; finished in 0.00s
+

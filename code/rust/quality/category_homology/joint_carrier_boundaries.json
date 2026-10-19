@@ -1,0 +1,142 @@
+{
+  "AuthorityEffect": "None",
+  "scope": "Private admitted joint relation and exact report/answer refinement/fiber replay; no Cartesian preparation premise.",
+  "records": [
+    {
+      "family": "",
+      "path": "code/rust/src/category_theory/finite_joint_carrier.rs",
+      "sha256": "c5b0adbdbf585dfc546676ad9e9bc516e7c9626ccf069571ef5ffa9c86eb3044",
+      "parent_aliases": [],
+      "faults": [
+        [
+          "m.reports().len().checked_add(1)?",
+          "m.reports().len().checked_add(0)?"
+        ],
+        [
+          "n.checked_mul(n)?",
+          "n.checked_mul(1)?"
+        ],
+        [
+          "m.transitions()[0].len().checked_add(1)?",
+          "m.transitions()[0].len().checked_add(2)?"
+        ],
+        [
+          "l.checked_add(r)",
+          "l.checked_add(0)"
+        ],
+        [
+          "pairs.len().checked_mul(3)",
+          "pairs.len().checked_mul(2)"
+        ],
+        [
+          "c > max_cells",
+          "c >= max_cells"
+        ],
+        [
+          "pairs.len() != answers.len()",
+          "false"
+        ],
+        [
+          "pairs.iter().copied().collect::<BTreeSet<_>>().len() != pairs.len()",
+          "false"
+        ],
+        [
+          "l >= left.reports().len()",
+          "l > left.reports().len()"
+        ],
+        [
+          "r >= right.reports().len()",
+          "r > right.reports().len()"
+        ],
+        [
+          "lc.truncate(left.reports().len());",
+          "lc.truncate(0);"
+        ],
+        [
+          "rc.truncate(right.reports().len());",
+          "rc.truncate(0);"
+        ],
+        [
+          "map(|&(l, r)| (lc[l], rc[r]))",
+          "map(|&(l, r)| (rc[r], lc[l]))"
+        ],
+        [
+          "            pairs,",
+          "            pairs: pairs.into_iter().rev().collect(),"
+        ],
+        [
+          "left_classes: lc,",
+          "left_classes: rc.clone(),"
+        ],
+        [
+          "right_classes: rc,",
+          "right_classes: vec![0],"
+        ],
+        [
+          "            reports,\n            answers,",
+          "            reports,\n            answers: vec![0; answers.len()],"
+        ],
+        [
+          "factor_tables(&self.reports, &self.answers)",
+          "factor_tables(&self.reports, &vec![0; self.answers.len()])"
+        ],
+        [
+          "            3,",
+          "            2,"
+        ],
+        [
+          "vec![l, r, a]",
+          "vec![r, r, a]"
+        ],
+        [
+          "vec![l, r, a]",
+          "vec![l, l, a]"
+        ],
+        [
+          "vec![l, r, a]",
+          "vec![l, r, 0]"
+        ],
+        [
+          "reports: self.reports.clone(),",
+          "reports: self.reports.iter().copied().rev().collect(),"
+        ],
+        [
+          "if self.analyze()? == *c",
+          "if self.analyze().is_ok()"
+        ],
+        [
+          "!self.left_classes.contains(&locals.0) || !self.right_classes.contains(&locals.1)",
+          "!self.left_classes.contains(&locals.0) && !self.right_classes.contains(&locals.1)"
+        ],
+        [
+          "(r == locals).then_some(i)",
+          "(r != locals).then_some(i)"
+        ],
+        [
+          "(r == locals).then_some(i)",
+          "(r == locals).then_some(0)"
+        ],
+        [
+          "rows.iter().map(|&i| self.answers[i]).collect()",
+          "rows.iter().map(|_| 0).collect()"
+        ],
+        [
+          "            locals,",
+          "            locals: (locals.1, locals.0),"
+        ],
+        [
+          "if self.fiber(locals)? == *c",
+          "if self.fiber(locals)?.locals == c.locals"
+        ],
+        [
+          "lc.truncate(left.reports().len());",
+          "// retain the internal unavailable sink in local carrier"
+        ],
+        [
+          "rc.truncate(right.reports().len());",
+          "// retain the internal unavailable sink in local carrier"
+        ]
+      ]
+    }
+  ]
+}

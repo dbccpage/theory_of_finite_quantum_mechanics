@@ -1,0 +1,18 @@
+{
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/category_theory/lawvere.rs",
+    "sha256": "88f3b71794190eab51cc51cee15603660fde253b54168164b31be1fddf953c55"
+  },
+  "status": "known_failure_under_repair",
+  "gates": {
+    "G2": "E",
+    "G3": "E"
+  },
+  "source_counterexample": "LawvereTheory::new(\"raw\"); add_substitution(\"f\",usize::MAX,\"g\",\"fg\"); check_substitution_associativity(cases=[(\"f\",usize::MAX,\"g\",1,\"h\")]). Right prefix lookup succeeds and evaluates MAX+1 without an admitted slot bound; left may be undefined but is not an early return.",
+  "scope": "Source establishes reachable overflow; native counterexample receipt follows. No completed token emitted.",
+  "native_counterexample": {
+    "path": "evidence/quality/category_homology/20261019T170800Z/summary.json",
+    "sha256": "196eafa27e3a1c4194cc6d46d8902ea4f8cd769dabbed1fb8a2c66abbc996f03"
+  }
+}

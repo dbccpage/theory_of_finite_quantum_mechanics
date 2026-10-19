@@ -1,0 +1,34 @@
+
+running 7 tests
+test mutant_8::tests::with_elements_ok ... ok
+test mutant_8::tests::rejects_cardinality_mismatch ... ok
+test mutant_8::tests::validate_ok ... ok
+test mutant_8::tests::validate_rejects_empty ... ok
+test mutant_8::finite_literal_set_oracle::constructors_ownership_and_literal_identity_are_preserved ... FAILED
+test mutant_8::finite_literal_set_oracle::exact_error_payloads_display_and_formatter_refusal ... ok
+test mutant_8::finite_literal_set_oracle::all_short_tag_words_match_independent_prefix_and_wire_admission ... FAILED
+
+failures:
+
+---- mutant_8::finite_literal_set_oracle::constructors_ownership_and_literal_identity_are_preserved stdout ----
+
+thread 'mutant_8::finite_literal_set_oracle::constructors_ownership_and_literal_identity_are_preserved' (2280) panicked at metadata_challenge_0\mutant_8.rs:243:47:
+assertion `left == right` failed
+  left: []
+ right: ["x", " x ", "é", "e\u{301}"]
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- mutant_8::finite_literal_set_oracle::all_short_tag_words_match_independent_prefix_and_wire_admission stdout ----
+
+thread 'mutant_8::finite_literal_set_oracle::all_short_tag_words_match_independent_prefix_and_wire_admission' (6280) panicked at metadata_challenge_0\mutant_8.rs:212:29:
+assertion `left == right` failed
+  left: []
+ right: ["x"]
+
+
+failures:
+    mutant_8::finite_literal_set_oracle::all_short_tag_words_match_independent_prefix_and_wire_admission
+    mutant_8::finite_literal_set_oracle::constructors_ownership_and_literal_identity_are_preserved
+
+test result: FAILED. 5 passed; 2 failed; 0 ignored; 0 measured; 140 filtered out; finished in 0.00s
+

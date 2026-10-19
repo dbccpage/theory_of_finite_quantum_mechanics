@@ -1,0 +1,618 @@
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/category_theory/finite_category_validation.rs",
+    "sha256": "7f2500dd70aa415eebcb9b30b0cf8f5817443d0357b8395569c6df74cbef963d",
+    "language": "Rust"
+  },
+  "reviewer": "Codex fresh full validator review with shared borrowed lookup preservation and55-fault native composition evidence; explicit functor-operation provider preservation",
+  "evaluation_timestamp": "2026-10-19T17:49:47.501756+00:00",
+  "gates": {
+    "G1": "A",
+    "G2": "A",
+    "G5": "A",
+    "G4": "A",
+    "G3": "A"
+  },
+  "formal_specification": {
+    "raw_domain": "Finite owned object-name set O, named-arrow map M, identity map I and a partial composition map C. C[(f,g)] is g after f. Raw declarations are untrusted mutable data; names are opaque strings, not structural certificates.",
+    "admission": "Category, object and arrow names are nonblank. Each arrow key equals its name and has both endpoints in O. Identity-map domain is exactly O; each identity is a declared self-loop. Composition domain is exactly the boundary-compatible pairs of declared arrows; results are declared arrows with the required outer endpoints. Both unit equations hold, and every compatible triple has two defined equal composites.",
+    "certificate": "ValidatedFiniteCategory owns the entire admitted declaration in a private field. There is one checked constructor; Clone preserves its data, declared() returns only a shared borrow, and into_declared consumes the certificate. No Deserialize/Default/unchecked constructor exists.",
+    "observation": "The Category trait returns Option: foreign objects/arrows and noncomposable pairs yield None. Successful lookups return the exactly bound declared values. No name-only replacement of endpoint context occurs.",
+    "diagnostics": "validate_finite_category always reports eight phases. Each diagnostic carries a typed law unit, location and Error severity. Name diagnostics for category/object names use ObjectReference; blank morphism names use MorphismBoundary. The name-check phase itself has the stable MorphismBoundary phase label.",
+    "mathematics": "The admitted finite identifier sets refine Fin n and Fin m. FiniteCategory.lean checks six typed law predicates plus arbitrary raw-domain guard flags; success implies Laws, preserves the exact input data and realizes an actual Mathlib Category on Fin n. Finite model proofs are not mechanized Rust extraction, parser equivalence or MIR crash-freedom proofs.",
+    "authority": "AuthorityEffect None. Neither metadata declarations nor the model proof establish physical, infinite-category or whole-directory results."
+  },
+  "symbol_map": {
+    "violation": {
+      "line": 14,
+      "signature": "fn violation(\n    unit: FiniteCategoryValidation,\n    location: ValidationLocation,\n    message: impl Into<String>,\n) -> ValidationViolation",
+      "body": "{\n    ValidationViolation::new(\n        ValidationUnit::FiniteCategory(unit),\n        location,\n        message,\n        ValidationSeverity::Error,\n    )\n}",
+      "obligation": "Create an Error-severity typed law/location diagnostic."
+    },
+    "add_unit": {
+      "line": 27,
+      "signature": "fn add_unit(\n    report: &mut ValidationReport,\n    unit: FiniteCategoryValidation,\n    violations: Vec<ValidationViolation>,\n)",
+      "body": "{\n    report.add_typed(&format!(\"finite_category::{:?}\", unit), violations);\n}",
+      "obligation": "Preserve the phase name and typed diagnostics through ValidationReport::add_typed."
+    },
+    "check_object_references": {
+      "line": 35,
+      "signature": "pub fn check_object_references(category: &DeclaredFiniteCategory) -> Vec<ValidationViolation>",
+      "body": "{\n    let mut violations = Vec::new();\n\n    for (name, morphism) in &category.morphisms {\n        if name != &morphism.name {\n            violations.push(violation(\n                FiniteCategoryValidation::ObjectReference,\n                ValidationLocation::Morphism(name.clone()),\n                format!(\n                    \"Morphism key {} does not match declared name {}\",\n                    name, morphism.name\n                ),\n            ));\n        }\n        if !category.objects.contains(&morphism.source) {\n            violations.push(violation(\n                FiniteCategoryValidation::ObjectReference,\n                ValidationLocation::Boundary {\n                    morphism: name.clone(),\n                    source: morphism.source.clone(),\n                    target: morphism.target.clone(),\n                },\n                format!(\n                    \"Morphism {} has unknown source object {}\",\n                    name, morphism.source\n                ),\n            ));\n        }\n        if !category.objects.contains(&morphism.target) {\n            violations.push(violation(\n                FiniteCategoryValidation::ObjectReference,\n                ValidationLocation::Boundary {\n                    morphism: name.clone(),\n                    source: morphism.source.clone(),\n                    target: morphism.target.clone(),\n                },\n                format!(\n                    \"Morphism {} has unknown target object {}\",\n                    name, morphism.target\n                ),\n            ));\n        }\n    }\n\n    for object in category.identities.keys() {\n        if !category.objects.contains(object) {\n            violations.push(violation(\n                FiniteCategoryValidation::ObjectReference,\n                ValidationLocation::Object(object.clone()),\n                format!(\"Identity declared for unknown object {}\", object),\n            ));\n        }\n    }\n\n    violations\n}",
+      "obligation": "Check key/name equality, both endpoints and foreign identity-map objects."
+    },
+    "check_nonempty_names": {
+      "line": 92,
+      "signature": "pub fn check_nonempty_names(category: &DeclaredFiniteCategory) -> Vec<ValidationViolation>",
+      "body": "{\n    let mut violations = Vec::new();\n\n    if category.name.trim().is_empty() {\n        violations.push(violation(\n            FiniteCategoryValidation::ObjectReference,\n            ValidationLocation::Object(category.name.clone()),\n            \"Empty category name\",\n        ));\n    }\n    for object in &category.objects {\n        if object.trim().is_empty() {\n            violations.push(violation(\n                FiniteCategoryValidation::ObjectReference,\n                ValidationLocation::Object(object.clone()),\n                \"Empty object name declared\",\n            ));\n        }\n    }\n\n    for name in category.morphisms.keys() {\n        if name.trim().is_empty() {\n            violations.push(violation(\n                FiniteCategoryValidation::MorphismBoundary,\n                ValidationLocation::Morphism(name.clone()),\n                \"Empty morphism name declared\",\n            ));\n        }\n    }\n\n    violations\n}",
+      "obligation": "Reject blank category, object and arrow keys with their declared typed diagnostic units."
+    },
+    "check_identity_totality": {
+      "line": 125,
+      "signature": "pub fn check_identity_totality(category: &DeclaredFiniteCategory) -> Vec<ValidationViolation>",
+      "body": "{\n    let mut violations = Vec::new();\n\n    for object in &category.objects {\n        let Some(identity) = category.identities.get(object) else {\n            violations.push(violation(\n                FiniteCategoryValidation::IdentityTotality,\n                ValidationLocation::Object(object.clone()),\n                format!(\"Object {} has no declared identity morphism\", object),\n            ));\n            continue;\n        };\n\n        let Some(identity_morphism) = category.morphisms.get(identity) else {\n            violations.push(violation(\n                FiniteCategoryValidation::IdentityTotality,\n                ValidationLocation::Morphism(identity.clone()),\n                format!(\n                    \"Identity {} for object {} is not a declared morphism\",\n                    identity, object\n                ),\n            ));\n            continue;\n        };\n\n        if identity_morphism.source != *object || identity_morphism.target != *object {\n            violations.push(violation(\n                FiniteCategoryValidation::IdentityTotality,\n                ValidationLocation::Boundary {\n                    morphism: identity.clone(),\n                    source: identity_morphism.source.clone(),\n                    target: identity_morphism.target.clone(),\n                },\n                format!(\n                    \"Identity {} for object {} has boundary {} -> {}\",\n                    identity, object, identity_morphism.source, identity_morphism.target\n                ),\n            ));\n        }\n    }\n\n    violations\n}",
+      "obligation": "Require each object identity to exist, name a declared arrow and have a self-loop boundary."
+    },
+    "check_identity_laws": {
+      "line": 169,
+      "signature": "pub fn check_identity_laws(category: &DeclaredFiniteCategory) -> Vec<ValidationViolation>",
+      "body": "{\n    let mut violations = Vec::new();\n    let lookup = CompositionLookup::new(&category.compositions);\n\n    for morphism in category.morphisms.values() {\n        let Some(source_identity) = category.identities.get(&morphism.source) else {\n            continue;\n        };\n        let Some(target_identity) = category.identities.get(&morphism.target) else {\n            continue;\n        };\n\n        violations.extend(identity_composition_violation(\n            &lookup,\n            source_identity,\n            &morphism.name,\n            &morphism.name,\n        ));\n        violations.extend(identity_composition_violation(\n            &lookup,\n            &morphism.name,\n            target_identity,\n            &morphism.name,\n        ));\n    }\n\n    violations\n}",
+      "obligation": "Check both unit compositions for every arrow with resolved identities; missing identities are independently rejected by totality."
+    },
+    "identity_composition_violation": {
+      "line": 198,
+      "signature": "fn identity_composition_violation(\n    lookup: &CompositionLookup<'_>,\n    first: &str,\n    second: &str,\n    expected: &str,\n) -> Option<ValidationViolation>",
+      "body": "{\n    let composite = lookup.compose(first, second);\n    if composite == Some(expected) {\n        return None;\n    }\n    Some(violation(\n        FiniteCategoryValidation::IdentityLaw,\n        ValidationLocation::Composition {\n            first: first.into(), second: second.into(), composite: composite.map(str::to_string),\n        },\n        format!(\"Identity composition {second} after {first} should equal {expected}, got {composite:?}\"),\n    ))\n}",
+      "obligation": "Accept only Some(expected); preserve the actual optional composite and pair on refusal."
+    },
+    "check_composition_totality": {
+      "line": 217,
+      "signature": "pub fn check_composition_totality(category: &DeclaredFiniteCategory) -> Vec<ValidationViolation>",
+      "body": "{\n    let mut violations = Vec::new();\n    let lookup = CompositionLookup::new(&category.compositions);\n\n    for first in category.morphisms.values() {\n        for second in category.morphisms.values() {\n            if first.target != second.source {\n                continue;\n            }\n\n            if lookup.compose(&first.name, &second.name).is_none() {\n                violations.push(violation(\n                    FiniteCategoryValidation::CompositionTotality,\n                    ValidationLocation::Composition {\n                        first: first.name.clone(),\n                        second: second.name.clone(),\n                        composite: None,\n                    },\n                    format!(\n                        \"Composable pair ({}, {}) has no declared composite\",\n                        first.name, second.name\n                    ),\n                ));\n            }\n        }\n    }\n\n    violations\n}",
+      "obligation": "Require a table result for every boundary-compatible declared pair."
+    },
+    "check_composition_closure": {
+      "line": 247,
+      "signature": "pub fn check_composition_closure(category: &DeclaredFiniteCategory) -> Vec<ValidationViolation>",
+      "body": "{\n    let mut violations = Vec::new();\n\n    for ((first, second), composite) in &category.compositions {\n        if !category.morphisms.contains_key(first) {\n            violations.push(violation(\n                FiniteCategoryValidation::CompositionClosure,\n                ValidationLocation::Composition {\n                    first: first.clone(),\n                    second: second.clone(),\n                    composite: Some(composite.clone()),\n                },\n                format!(\"Composition references unknown first morphism {}\", first),\n            ));\n        }\n        if !category.morphisms.contains_key(second) {\n            violations.push(violation(\n                FiniteCategoryValidation::CompositionClosure,\n                ValidationLocation::Composition {\n                    first: first.clone(),\n                    second: second.clone(),\n                    composite: Some(composite.clone()),\n                },\n                format!(\"Composition references unknown second morphism {}\", second),\n            ));\n        }\n        if !category.morphisms.contains_key(composite) {\n            violations.push(violation(\n                FiniteCategoryValidation::CompositionClosure,\n                ValidationLocation::Composition {\n                    first: first.clone(),\n                    second: second.clone(),\n                    composite: Some(composite.clone()),\n                },\n                format!(\"Composite {} is not a declared morphism\", composite),\n            ));\n        }\n    }\n\n    violations\n}",
+      "obligation": "Reject each unknown first arrow, second arrow or result in any table row."
+    },
+    "check_composition_boundaries": {
+      "line": 289,
+      "signature": "pub fn check_composition_boundaries(category: &DeclaredFiniteCategory) -> Vec<ValidationViolation>",
+      "body": "{\n    let mut violations = Vec::new();\n\n    for ((first_name, second_name), composite_name) in &category.compositions {\n        let Some(first) = category.morphisms.get(first_name) else {\n            continue;\n        };\n        let Some(second) = category.morphisms.get(second_name) else {\n            continue;\n        };\n        let Some(composite) = category.morphisms.get(composite_name) else {\n            continue;\n        };\n\n        if first.target != second.source {\n            violations.push(violation(\n                FiniteCategoryValidation::CompositionBoundary,\n                ValidationLocation::Composition {\n                    first: first_name.clone(),\n                    second: second_name.clone(),\n                    composite: Some(composite_name.clone()),\n                },\n                format!(\n                    \"Morphism {} targets {}, but {} sources {}\",\n                    first.name, first.target, second.name, second.source\n                ),\n            ));\n            continue;\n        }\n\n        if composite.source != first.source || composite.target != second.target {\n            violations.push(violation(\n                FiniteCategoryValidation::CompositionBoundary,\n                ValidationLocation::Boundary {\n                    morphism: composite.name.clone(),\n                    source: composite.source.clone(),\n                    target: composite.target.clone(),\n                },\n                format!(\n                    \"Composite {} should have boundary {} -> {}, got {} -> {}\",\n                    composite.name, first.source, second.target, composite.source, composite.target\n                ),\n            ));\n        }\n    }\n\n    violations\n}",
+      "obligation": "Reject noncomposable rows and wrong outer endpoints; unresolved references are independently rejected by closure."
+    },
+    "check_associativity": {
+      "line": 339,
+      "signature": "pub fn check_associativity(category: &DeclaredFiniteCategory) -> Vec<ValidationViolation>",
+      "body": "{\n    let mut violations = Vec::new();\n    let lookup = CompositionLookup::new(&category.compositions);\n    for first in category.morphisms.values() {\n        let seconds = category\n            .morphisms\n            .values()\n            .filter(|second| first.target == second.source);\n        for second in seconds {\n            let thirds = category\n                .morphisms\n                .values()\n                .filter(|third| second.target == third.source);\n            violations.extend(thirds.filter_map(|third| {\n                associativity_at(&lookup, &first.name, &second.name, &third.name)\n            }));\n        }\n    }\n    violations\n}",
+      "obligation": "Enumerate compatible triples and collect every unequal/undefined comparison."
+    },
+    "associativity_at": {
+      "line": 360,
+      "signature": "fn associativity_at(\n    lookup: &CompositionLookup<'_>,\n    first: &str,\n    second: &str,\n    third: &str,\n) -> Option<ValidationViolation>",
+      "body": "{\n    let left = lookup\n        .compose(first, second)\n        .and_then(|pair| lookup.compose(pair, third));\n    let right = lookup\n        .compose(second, third)\n        .and_then(|pair| lookup.compose(first, pair));\n    if left.is_some() && left == right {\n        return None;\n    }\n    Some(violation(FiniteCategoryValidation::Associativity,\n        ValidationLocation::Composition { first: first.into(), second: second.into(), composite: Some(third.into()) },\n        format!(\"Associativity fails or is undefined for ({first}, {second}, {third}): {left:?} versus {right:?}\")))\n}",
+      "obligation": "Compare the two Option composition routes and require an actual defined result."
+    },
+    "validate_finite_category": {
+      "line": 380,
+      "signature": "pub fn validate_finite_category(category: &DeclaredFiniteCategory) -> ValidationReport",
+      "body": "{\n    let mut report = ValidationReport::new(&category.name);\n\n    add_unit(\n        &mut report,\n        FiniteCategoryValidation::ObjectReference,\n        check_object_references(category),\n    );\n    add_unit(\n        &mut report,\n        FiniteCategoryValidation::MorphismBoundary,\n        check_nonempty_names(category),\n    );\n    add_unit(\n        &mut report,\n        FiniteCategoryValidation::IdentityTotality,\n        check_identity_totality(category),\n    );\n    add_unit(\n        &mut report,\n        FiniteCategoryValidation::IdentityLaw,\n        check_identity_laws(category),\n    );\n    add_unit(\n        &mut report,\n        FiniteCategoryValidation::CompositionTotality,\n        check_composition_totality(category),\n    );\n    add_unit(\n        &mut report,\n        FiniteCategoryValidation::CompositionClosure,\n        check_composition_closure(category),\n    );\n    add_unit(\n        &mut report,\n        FiniteCategoryValidation::CompositionBoundary,\n        check_composition_boundaries(category),\n    );\n    add_unit(\n        &mut report,\n        FiniteCategoryValidation::Associativity,\n        check_associativity(category),\n    );\n\n    report\n}",
+      "obligation": "Run all eight phases and return their fresh complete typed report."
+    }
+  },
+  "invariant_argument": {
+    "representation": [
+      "Ordered unique string keys enumerate O and M. Equality of key/name and endpoint membership establish source/target functions Fin m -> Fin n. Identity-domain checks establish total self-loop identities. Composition closure admits outputs into Fin m; totality plus boundary rejection gives exact partial-composition domain.",
+      "Rust Some/None results refine Lean Option. Identity comparisons require Some(expected), never two undefined values. Associativity requires a defined left composite and equality of both sides. Given independently checked composition domain/boundaries this is equivalent to the model Option.bind law."
+    ],
+    "commit_and_failure": [
+      "try_new creates a fresh local report from an immutable borrow, then constructs Self only under report.all_passed(). Publicly forgeable standalone reports are not accepted as constructor inputs.",
+      "Each checker emits Error violations on its failing branches. add_typed marks any nonempty violation vector failed and retains its typed payload; all_passed requires all phase booleans and an empty typed-violation list. Therefore any raw-domain refusal or failed law dominates the sole successful commit.",
+      "No production unwrap/expect, direct slice indexing, recursion, unsafe, FFI, async task, service handle or mutable global occurs in these two modules. Borrowed candidate state is not mutated, and owned scratch vectors are dropped on return. Expected rejection returns a typed report, rather than a default certificate."
+    ],
+    "lookup_index": [
+      "CompositionLookup borrows every raw table row once, in BTreeMap lexicographic key order. String::Ord and str::Ord compare the same bytes, so the borrowed pair order is unchanged. binary_search_by_key compares exact pairs; its index is observed through Vec::get, not unchecked indexing.",
+      "The view retains junk rows too: admission does not silently discard unknown/noncomposable entries. Separate closure/boundary checks still reject them. Pair-view tests include prefix, empty, embedded-NUL, non-ASCII and missing keys.",
+      "Standard Rust collection/iterator and binary-search contracts remain in the declared TCB. Their compiler implementation is not mechanized here; the bridge is a complete source-stage audit, not a claimed verified-MIR result."
+    ],
+    "ownership": [
+      "All successful construction paths flow through try_new, including the builder, path category, dagger/groupoid and higher-category derived presentations and validated Kleisli output. Certificates have no interior-mutable fields. A mutable declaration recovered by consuming or cloning a certificate is not itself evidence after mutation."
+    ]
+  },
+  "failure_paths": {
+    "raw_declarations": "Raw mutators only edit untrusted data; no category-law claim is made until admission.",
+    "admission": "Any violating phase returns a nonpassing fresh report; the certificate commit is unreachable on that branch.",
+    "lookup": "Unknown identifiers/noncomposable pairs return None. A missing/incorrect borrowed lookup causes refusal, never default acceptance.",
+    "runtime": "Ordinary safe-Rust, collection, allocation and compiler contracts remain the declared TCB; allocator totality and machine-checked crash freedom are not claimed."
+  },
+  "consumer_review": [
+    "Current local Rust search maps actual CatFunctor/Category/declaration/certificate users in functor composition, natural transformations, higher/rewriting, legacy adjunction/monad, dagger/limits and adversarial tests. Generic trait signatures and raw diagnostic payload/order remain unchanged. Five currently completed assessment contexts reference either changed source; validator is freshly reassessed, four unchanged-own-source category core/builder/arrow/report assessments receive explicit provider refinement with their own primary/metrics retained. No open consumer is silently upgraded. Local tfqm category and separate external omega package identities remain distinct."
+  ],
+  "trust_boundary": {
+    "runtime": "Pinned Rust compiler, standard String/BTreeMap/BTreeSet/Vec contracts and the resolved Cargo dependency closure.",
+    "formal": "Lean 4.33.1, pinned clean Mathlib revision, standard foundational axioms only. Explicit Rust-to-model source audit; no extracted-program or MIR proof."
+  },
+  "basis": {
+    "G1": [
+      "Current artifact, all13 actual executable signatures/bodies, same-typed shared composition provider, current consumer context and exact native/metric evidence are pinned. Raw report diagnostics remain distinct from immutable category certificates.",
+      "All13 remaining validator signatures/bodies match archived source after replacing only the three constructor arguments by the same category.compositions table. Removed lookup implementation is now one shared crate-visible helper in cat_functor; BTreeMap/str order and safe borrowed association remain identical. The existing lookup test changes only its constructor argument. Required returned error payload/message values are preserved.",
+      "Earlier own-source and provider preservation statements belong to their archived source versions; this new assessment uses current primary/metrics. No authorship attestation, merged-tree claim or whole-directory pass.",
+      "Current functor-operation provider source is explicitly reviewed, not only repinned; old provider bytes and original own receipts remain historical evidence."
+    ],
+    "G2": [
+      "Exact finite sets/maps and string equality implement admitted finite domains. Canonical object/arrow references, identity and composition domains, unit equations and every compatible triple are checked. There is no floating/fixed-width coefficient path or dimension arithmetic in these two subjects.",
+      "The model specifies partial composition, not equality of two absent routes. Under separately admitted totality/closure/boundaries, the Rust defined-equality test matches the model associative Option.bind equation."
+    ],
+    "G5": [
+      "Let K bound endpoint/mapping/table cardinalities and L bound relevant string-comparison length. Functor admission has O(o_s+m_s+c_t+(o_s+m_s+c_s) log(K+1)) key comparisons, with string byte costs L explicit. Exact key-domain equality is linear in source map sizes; image/boundary/identity checks use borrowed tree lookups; composition visits exactly the source table rows after building an O(c_t) target view.",
+      "Functor check auxiliary storage is O(c_t) borrowed rows and, on first refusal, the required owned error payload. Owned raw declaration/endpoints are moved into the candidate, not deep-cloned in admission loops. Raw builder inserts retain owned key/value storage; structural Clone explicitly costs all record/endpoint data.",
+      "Legacy composition diagnostics build O(c_t) borrowed view once and make O(C log(K+1)) queries plus required returned diagnostic bytes for C supplied cases. Legacy identity naming must synthesize id_source and, only if mapping exists, id_target; no target-name allocation on missing-source-identity paths. Other raw coverage/boundary loops use borrowed keys and allocate only returned messages.",
+      "Category validator retains its prior O(c+m^3 log(c+1)) associativity comparison bound and O(c+violations) view/output storage, plus other declared map/identity/boundary phases. Shared helper relocation does not add a sorting pass or change the view key/value projection. String lengths, required diagnostic allocations, compiler/std/allocator and finite memory/time remain explicit. No new work budget, benchmark, zero-allocation whole-constructor or allocator-totality promise.",
+      "Fresh calibrated metrics cover all13 remaining source bodies: max CCN8, cognitive12,nesting3. Two old lookup bodies relocate to one shared immutable provider, whose fields remain private. No temporary String lookup keys in nested checks."
+    ],
+    "G4": [
+      "Fresh current-source native campaign catches all14 designated validator faults plus41 owning-functor/helper faults, without other outcomes or exclusions. Original459 category tests and ten functor/nine validator controls pass before/after; source/dependency snapshots stable and build outputs removed.",
+      "Independent oracle covers all81 unital three-element raw operation tables against numeric associativity equations, including noncommutative and nonassociative cases; malformed reference/name/identity/composition boundaries, optional undefined associativity, exact typed unit/location/severity and report phase count are exercised. Shared helper faults are checked at its owning module, while validator candidates import actual production helper.",
+      "Existing clean FiniteCategory and ValidationInventory models establish the preserved mathematical phase/report invariants. New FiniteFunctor model supports exact caller/category composition. None is an automatic Rust/MIR extraction. Original own-source evidence and earlier provider refinements remain historical only.",
+      "New43-fault native/full-report, exact-middle-context and malformed raw-opposite controls plus19 clean model statements support current provider behavior; own original challenges retain their original scope."
+    ],
+    "G3": [
+      "The final 20261018T212725Z-category-proof receipt has all three command exits zero, no diagnostic warnings, ten checked declarations, stable proof/import inputs and clean pinned Mathlib source. Transitive axiom reports use only propext, Classical.choice and Quot.sound.",
+      "The model does not return a type that assumes the desired theorem: admit returns raw Data. admit_success_laws derives all six typed category predicates from actual successful boolean checks; admit_preserves_data binds the exact output to the admitted input. failed_guard proves no successful return after any failed raw-domain guard.",
+      "categoryOfAdmitted constructs Mathlib Category with dependent hom sets from the admitted arrow boundaries. Identity and composition laws are proved from the partial table, including existence and correct result boundaries. This is a mathematical realization, not a merely renamed category label.",
+      "The explicit source-stage refinement audit maps all raw-domain checks, the eight report phases, defined Option equality, immutable ownership, the sole commit and outside-domain refusals. Standard map/iterator/binary-search contracts and ordinary safe-Rust/runtime behavior are the declared TCB; no custom axiom or unfinished obligation stands in for a claimed theorem.",
+      "The earlier 20261018T211037Z-category-proof replay passed elaboration but printed two class-definition reducibility warnings. It is retained and excluded from grading. Explicit instance_reducible attributes repaired those declarations; warning-bearing proof logs are now rejected even if a receipt claims success.",
+      "Mechanized Rust/MIR equivalence, global allocator totality and machine-checked crash/memory-safety proofs are not asserted. The completed A review combines a kernel-checked model with a complete explicit source refinement/failure audit under the declared TCB."
+    ]
+  },
+  "unassessed": {},
+  "assurance_limits": [
+    "Contracts remain pending at the user request.",
+    "No mechanized Rust/MIR equivalence, allocator totality, machine-checked crash freedom, exact compiler file-read trace, cross-repository origin attestation or whole-directory A grade is inferred."
+  ],
+  "open_findings": [],
+  "context_inputs": [
+    {
+      "path": "code/rust/src/category_theory/cat_functor.rs",
+      "sha256": "73fb34edfa85a62b2ceee2423130cf88ba3d3744f628be8653753afc0f9a5960"
+    },
+    {
+      "path": "code/rust/src/category_theory/finite_category_validation.rs",
+      "sha256": "7f2500dd70aa415eebcb9b30b0cf8f5817443d0357b8395569c6df74cbef963d"
+    },
+    {
+      "path": "code/rust/src/category_theory/finite_category.rs",
+      "sha256": "8fa16271129180ef6836f973346fb08192087f4f99fb8225631e1238d100b871"
+    },
+    {
+      "path": "code/rust/src/category_theory/finite_category_builder.rs",
+      "sha256": "258b538e53a8e7c8cb5b4330b56346b6417832fc3ac8e080b5ef7f4cecc8fe04"
+    },
+    {
+      "path": "code/rust/src/category_theory/validation.rs",
+      "sha256": "d5732e24e6c86ae4a9f5e27a39fec0f7d15bd94aa1dfec551d6fa94a585b5d62"
+    },
+    {
+      "path": "code/rust/src/category_theory/l5a_challenges.rs",
+      "sha256": "bc0f92083a961878e8f44e145e7ad554ac5d2db19c565a004dc15fd109432ffd"
+    },
+    {
+      "path": "code/rust/src/category_theory/functor_composition.rs",
+      "sha256": "83e602173ea7486c4db70039a74747756db5b8516e6c1e12194493b27312b5f6"
+    },
+    {
+      "path": "code/rust/src/category_theory/natural_trans.rs",
+      "sha256": "d668e667c7072bfc4de45f0b1f8aeb992d6ae6a7897e925a152e512d9f699700"
+    },
+    {
+      "path": "code/rust/src/category_theory/natural_trans_composition.rs",
+      "sha256": "91a6a7653c08ba364e70f48f083268651e1524fd9c526d1fab08ebc43dc63b2e"
+    },
+    {
+      "path": "code/rust/src/category_theory/higher.rs",
+      "sha256": "7158313eed769c24e7ca04bb5a2fce1990b7b8646580a81df12699ca18249d00"
+    },
+    {
+      "path": "code/rust/src/category_theory/rewriting.rs",
+      "sha256": "b1692cf1829be23f6a80f227b83d9fd4e6f1006dc2ae3da6a70a9ad1a22d8087"
+    },
+    {
+      "path": "code/rust/src/category_theory/legacy_adjunction.rs",
+      "sha256": "5e5273320120a8cb3b7b85c5644a1be67dd7267d5825cd54e34a68e730e4cfdb"
+    },
+    {
+      "path": "code/rust/src/category_theory/legacy_monad.rs",
+      "sha256": "e7001681671b4a00779fee3f783ea42bcb430e9e3ec494a49408f1ed8de143dc"
+    },
+    {
+      "path": "code/rust/src/category_theory/lib.rs",
+      "sha256": "b1535a921f4a69414e8b6636f85c8393f799bd2bc20da600e855864c2d3e8776"
+    },
+    {
+      "path": "code/rust/src/category_theory/mod.rs",
+      "sha256": "12f8a4c97bcf10d93c0b76aebf6b67bf85d6d61e502b1fb64ed8a4f29d803352"
+    },
+    {
+      "path": "code/rust/src/category_theory/Cargo.toml",
+      "sha256": "42378ba9d23fe5a5c97c844ebab457e9187c96b819c5b6a0fe3f9acaff1579a3"
+    },
+    {
+      "path": "code/rust/src/lib.rs",
+      "sha256": "06c94a48399e77727edc334bd6746accf01a1b3a5fc89f4bfc1db9ebc636c252"
+    },
+    {
+      "path": "code/rust/Cargo.toml",
+      "sha256": "3085a37668527cbaddeeb087b4be204f22983a85ac6fb8657e6f2d3e2bf020d2"
+    }
+  ],
+  "evidence": [
+    {
+      "path": "evidence/quality/category_homology/20261018T211112Z-metrics/receipt.json",
+      "sha256": "cc0505b71484b2f5c17349b1dbbc6e17c92105b8a5671e770f985df663d25aaf"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261018T211112Z-metrics/metrics.json",
+      "sha256": "88e118ad8a81ddcf467200845dd7eff6518fbdf961645b737b17e50702df5bf1"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261018T211047Z/source_manifest.json",
+      "sha256": "84b250ea8e59ca29e63260eb5f9da0cebe07d6d1456186e3dc0972996cc925f3"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261018T211047Z/baseline.json",
+      "sha256": "02e9abb5e3fdb94f76fa238407e064031a97ac5e9436c082a0f23ddaa0e2e290"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261018T211047Z/category-baseline.log",
+      "sha256": "796dc9106f557934f2ffb383b32ed3b396f8c64e777b295a9a3c8a6ef021c5ee"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261018T211047Z/restored.json",
+      "sha256": "035d4e528a205b31ca6a29e59de15393341ac9f7be3c7ac4a5dd0dba5eaf93ad"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261018T211047Z/category-restored.log",
+      "sha256": "b0108bc8c7c772031950f0083ed4fde45e1eaee75f50e1f5ef5d3570216a23d2"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261018T211047Z/mutations.json",
+      "sha256": "2588f75197213ba80b0e18532a2f847946a3a9d19564a986c3391835fd6e58fa"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261018T211047Z/summary.json",
+      "sha256": "748a82c496c586f11554c4e3c89070f0dc61793bde926d7776163451875c9155"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261018T211047Z/dependency_receipt.json",
+      "sha256": "394a42fdbe864d8e2e823425cb28d4d234fc18aeac77f358d795e5e4900e886f"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261018T211047Z/dependency_manifest.json",
+      "sha256": "ec076f5d8f3212d4d1208b37c36f6766d6e9ad8cb6ee01eb8b0414fc50ebdd9d"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261018T211047Z/cargo-metadata.json",
+      "sha256": "ec47ddda064fc78866d367541b766ced98666985186eb9ca24878bad0d2184b3"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261018T211047Z/snapshot-Cargo.lock",
+      "sha256": "d0941ac0bee999833046ed26d9e81a877cb23142ccd8f25df315eaaff3c0a9e2"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261018T211047Z/run_audit.py",
+      "sha256": "42a425aa7ee23b8da1370214e0fde42919f74bf8b4580655fb629556ee2face4"
+    },
+    {
+      "path": "code/rust/quality/category_homology/proofs/FiniteCategory.lean",
+      "sha256": "38acfccc557a93646099538baf0620249c23d76797bdf39b9d3967340b2b1347"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261018T212725Z-category-proof/receipt.json",
+      "sha256": "f8420288bcc386c790d54d0d0f2da3d855eb644828615e88866e78b8727d9c25"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261018T212725Z-category-proof/source_manifest.json",
+      "sha256": "a3422a122d1169ea8f478ac496205f206aadf7c3847886c435d84b5fd0004a38"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261018T212725Z-category-proof/dependency_manifest.json",
+      "sha256": "89476c0848fbffa7dd78f12dfca1f0eecc65d2826a518ae6d7a76679a3d7a029"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261018T212725Z-category-proof/environment.json",
+      "sha256": "3b7dd88f93ba110e0b27cda290cfde6c89d4dab4d41bfe53520cf6b071378bd9"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261018T212725Z-category-proof/check.log",
+      "sha256": "fb5d3ce128b2ea1caf8fc09cf8723d00081709ed4ca83797a8bd4fd2fc0ee287"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261018T212725Z-category-proof/dependencies.log",
+      "sha256": "d32d6329a481647b001e6af0d9030aac7e846490fc060a4da363385b57d2a320"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261018T212725Z-category-proof/dependency-sources.log",
+      "sha256": "f75ecba2e85091d1f16617b65c0a60010cbff8bd3f73599b698078adc4095fdb"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261018T212725Z-category-proof/run_rank_proof.py",
+      "sha256": "bd3ef1d95d34a84eb822942cb920afdcd53581134f841964398cef46da863b45"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261018T212725Z-category-proof/run_audit.py",
+      "sha256": "6890ef7614fd2bdadd5becb66aaf8897a7860d182bfd0fea181d756d8954c334"
+    },
+    {
+      "path": "code/rust/quality/category_homology/assessments/diagnostic_arrow_source_review.json",
+      "sha256": "7a09322d082dccaffef334a0a2b4f3c24815e8e3cb5337ae8cf75f1c0ed60e83"
+    },
+    {
+      "path": "evidence/quality/category_homology/resume-20261019/diagnostic-arrow-provider-delta.json",
+      "sha256": "68b57eaedfc9b088f57d8a54e7fb1a585adb0b33c8e44da6e02d45715e670eca"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T161115Z/summary.json",
+      "sha256": "c092180eb0b06e9ee71ed4b16061fa421fb2b6219ddeb73081c48e39af2e191f"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T161115Z/baseline.json",
+      "sha256": "9ed886de69f20f5f41f772cf372002a8b7fdc1a2ce80e422c553cd7929411dc1"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T161115Z/restored.json",
+      "sha256": "7735bcf73e42421cb8500156d8f96a54cb7c3725d41e6a0e31622affdacecc5b"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T161115Z/dependency_receipt.json",
+      "sha256": "ad118c433c2ea02f18c4c99411b65390319fa578fa515b93eabd03e1194d70ce"
+    },
+    {
+      "path": "code/rust/quality/category_homology/assessments/builder_source_review.json",
+      "sha256": "94581fd086e532158776fd642476fb848a96055867923fca96789e27898126d1"
+    },
+    {
+      "path": "evidence/quality/category_homology/resume-20261019/builder-provider-delta.json",
+      "sha256": "73af84781061c2b64ae3d94479af73454d47432a47139278b82e4936a69d6a5b"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T162627Z/summary.json",
+      "sha256": "b2d1f3e6b636332a254dae5f8007da0dc39280fafbcef33a87a3a6d30c13153c"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T162627Z/baseline.json",
+      "sha256": "4dd34b61afa351fe0aa3ba76e216bb1e5f1492c3f2b68184bdc3220d91284587"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T162627Z/restored.json",
+      "sha256": "1a1de054ebed135685691abcde8247e152e361c484d93b1e70a2dc15822b3a0a"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T162627Z/dependency_receipt.json",
+      "sha256": "a84de5628d2e9799a00f64b2457363ba47ac2d9a5f30bdb44f7f364e6b7c9756"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T173227Z/summary.json",
+      "sha256": "2755b3036106ad45a8cff16adf64eb9857d76b4b2ee07224bd9a94c2de61b6b2"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T173227Z/baseline.json",
+      "sha256": "c8c098ac2a5d41f455e4e1dc1bbf255c6d7571e468e1c7c4b9ce9cff5bfa2ea5"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T173227Z/restored.json",
+      "sha256": "2d284ad5e55238d8e384163bffb358b4dc7988b5e691ac00fba527cacd2bac76"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T173227Z/controls.json",
+      "sha256": "7d1744846b5b414de51362a75aabd6da8fbb6e0c335cf10440a6182fc71d3cf0"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T173227Z/mutations.json",
+      "sha256": "8ea8095ba6c457704659976837f63f4f0af7c6ab7ed44879dad3c9ae9deadba5"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T173227Z/dependency_receipt.json",
+      "sha256": "416749ea84b5f31308abe284b901ea09633556395d0c8089e413b48106f33158"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T173227Z/run_root_records.py",
+      "sha256": "c05e83071f133b7323cf5d4a368d45a0a76919d71434d2889c27a32582f706fc"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T173227Z/root_records.py",
+      "sha256": "adba4ee130e9c29f66f9ad2437c8d7c4e11fb4a8fdc5aed6fedd5401bb823ce3"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T173227Z/functor_certificates.py",
+      "sha256": "cd625973fff054c9094d318182cc56a195e4e395061a382f8b99691130ff3cfd"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T173227Z/functor_admission_boundaries.json",
+      "sha256": "0d064dd24b04d54a8ca741eda035b0ea7e32d8baf8c57c96b189334196e87390"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T172736Z-finite-functor-proof/receipt.json",
+      "sha256": "858997df5d33ffed69ee9c22745bb034b58a0ec287b3240cdcea75a21f4187e5"
+    },
+    {
+      "path": "code/rust/quality/category_homology/assessments/functor_admission_source_review.json",
+      "sha256": "772a9507e0d02ca8fc6030c8ec6b462c0a1a0a6e00de87d6094729081c30863b"
+    },
+    {
+      "path": "evidence/quality/category_homology/resume-20261019/functor-admission-provider-scan.json",
+      "sha256": "60125a66039d63cd32ee88f629cc90fb47dde2fcb929711c48624ad127ff0b6e"
+    },
+    {
+      "path": "evidence/quality/category_homology/resume-20261019/functor-admission-current-consumers.log",
+      "sha256": "24a9348083bef5755ad1e523eef43f1ede5f67f2864f9f5725edf54b9f2e535c"
+    },
+    {
+      "path": "evidence/quality/category_homology/resume-20261019/cat-functor-lookup-allocation-finding.json",
+      "sha256": "e56d8bdf7671db083cc11c2906f39e81131979dc1c2d1d818f8501afc127455b"
+    },
+    {
+      "path": "evidence/quality/category_homology/resume-20261019/functor-admission-previous/cat_functor.rs",
+      "sha256": "6b7ecf5ef8b5b4c8f7420fc9bd380a28e8be67b5a6fb0cfde57613abd423f1f5"
+    },
+    {
+      "path": "evidence/quality/category_homology/resume-20261019/functor-admission-previous/finite_category_validation.rs",
+      "sha256": "3ea0e696b41cb5ab361541206ab5f03b257f2040b387fb3ea06bb224170e891d"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T172939Z/summary.json",
+      "sha256": "002b071dda4ad41772ca6ac23ff829f39addbd1af5eaa49352be1fedade5ce9b"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T173047Z/summary.json",
+      "sha256": "ec57a8b3f18355bc3d5002e23edb8a082f3362deb8c32c2858d062d77d0e5bba"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T174609Z/summary.json",
+      "sha256": "0b142a6f138dc45dce746be9401537f65b2b128131a95b7db77c33a7c437a95e"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T174609Z/baseline.json",
+      "sha256": "aad55ba099eb0f1823894e0926e055346826c6fff12f9302131abcf9c9d15c52"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T174609Z/restored.json",
+      "sha256": "206cd16624374a22ac1855dd24b5d20a63dafa2787aaab271a34fc214369338a"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T174609Z/controls.json",
+      "sha256": "6545617efab5cc840a940150555948718586526477a908c75ebbdbda42f01739"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T174609Z/mutations.json",
+      "sha256": "a3cc58ee1df61f5a770141ac3866bd5bf4468815239daa15ce0e1d79d3ddd7f7"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T174609Z/dependency_receipt.json",
+      "sha256": "6ebff2081eda91d8841162f8174fbcc0c95448c00183ea68bd2529abf9cfb4d1"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T174609Z/run_root_records.py",
+      "sha256": "c05e83071f133b7323cf5d4a368d45a0a76919d71434d2889c27a32582f706fc"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T174609Z/root_records.py",
+      "sha256": "717ed15e0f8f535e97109c7cda8bbe65b3577bd989f5c9ad517df37694f0934c"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T174609Z/functor_certificates.py",
+      "sha256": "14e877d5b65ec5ac50d754121e1b1d6f31fae8881f5319b8a55b9c53095a5d2a"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T174609Z/functor_composition_boundaries.json",
+      "sha256": "782eeb21930092f8a998da94a38c19bd4258b9338a29db23d7ef16c2a541bd1a"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T174700Z-functor-operations-proof/receipt.json",
+      "sha256": "f37ba8b1545ac22920f80c80d5cff42b235264c0b4139d4df1bef149a8910d83"
+    },
+    {
+      "path": "code/rust/quality/category_homology/assessments/functor_composition_source_review.json",
+      "sha256": "6ac690436c690e67ce3a97f95f060598788c92a1305b9c06b37e7eb94ec3f75e"
+    },
+    {
+      "path": "evidence/quality/category_homology/resume-20261019/functor-composition-provider-scan.json",
+      "sha256": "9cb0636ea2827cf15959005539fb9cd6f7606b3666ecb13798bc900c245a9117"
+    },
+    {
+      "path": "evidence/quality/category_homology/resume-20261019/functor-composition-current-consumers.log",
+      "sha256": "741b956d510debd2c6615d6a23cbc459236657d619bc35b271260b7ccd9011ae"
+    },
+    {
+      "path": "evidence/quality/category_homology/resume-20261019/functor-composition-lookup-finding.json",
+      "sha256": "53ba821f8a29614780fcbb85d503cd26db9be6645d0e7312654a7e1d2aedf49a"
+    },
+    {
+      "path": "evidence/quality/category_homology/resume-20261019/functor-composition-previous/functor_composition.rs",
+      "sha256": "f808c10b086fa7ffce14381dc86d4fe283ad5c0aa8adde530976170adcc7d60b"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T174225Z/summary.json",
+      "sha256": "bd0df5fc85d532dd5f838aeb94c83936afee19d3f7fcecd6de986738fdf9b4ae"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T174336Z-functor-operations-proof/receipt.json",
+      "sha256": "f8fa4aa0ae7f698e61ea1a6b56e38bf9e5c31094be7de781cf5490610a78d944"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T174424Z-functor-operations-proof/receipt.json",
+      "sha256": "b02e7fdd064fa6db9ef4b9a9a8fa72bd6c5c919a4c852d73763706ea7d5bef46"
+    },
+    {
+      "path": "code/rust/quality/category_homology/assessments/finite_category_validation_shared_lookup.json",
+      "sha256": "69549fad6e845c301669a28f2ef3e3cc65db0693a25afd86d1a6026a7ec05d1d"
+    }
+  ],
+  "proof_receipts": [
+    {
+      "path": "evidence/quality/category_homology/20261018T212725Z-category-proof/receipt.json",
+      "sha256": "f8420288bcc386c790d54d0d0f2da3d855eb644828615e88866e78b8727d9c25",
+      "proof": "code/rust/quality/category_homology/proofs/FiniteCategory.lean",
+      "mathlib_root": "lean4/.lake/packages/mathlib"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T160921Z-validation-inventory-proof/receipt.json",
+      "sha256": "d6ba4a9d2edb2fe61ce4835bcb6580d5492e7bcbe211f86cf2b6d6cca5501524",
+      "proof": "code/rust/quality/category_homology/proofs/ValidationInventory.lean",
+      "mathlib_root": "lean4/.lake/packages/mathlib"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T162901Z-finite-builder-proof/receipt.json",
+      "sha256": "2f8c0de58bf7e89b18ffbe13d79e6aef91b5878fab6636c5a97e5db11ced2b16",
+      "proof": "code/rust/quality/category_homology/proofs/FiniteBuilder.lean",
+      "mathlib_root": "lean4/.lake/packages/mathlib"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T172736Z-finite-functor-proof/receipt.json",
+      "sha256": "858997df5d33ffed69ee9c22745bb034b58a0ec287b3240cdcea75a21f4187e5",
+      "proof": "code/rust/quality/category_homology/proofs/FiniteFunctor.lean",
+      "mathlib_root": "lean4/.lake/packages/mathlib"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T174700Z-functor-operations-proof/receipt.json",
+      "sha256": "f37ba8b1545ac22920f80c80d5cff42b235264c0b4139d4df1bef149a8910d83",
+      "proof": "code/rust/quality/category_homology/proofs/FunctorOperations.lean",
+      "mathlib_root": "lean4/.lake/packages/mathlib"
+    }
+  ],
+  "shared_lookup_review": {
+    "review": {
+      "path": "code/rust/quality/category_homology/assessments/functor_admission_source_review.json",
+      "sha256": "772a9507e0d02ca8fc6030c8ec6b462c0a1a0a6e00de87d6094729081c30863b"
+    },
+    "preservation": "All13 remaining validator signatures/bodies match archived source after replacing only the three constructor arguments by the same category.compositions table. Removed lookup implementation is now one shared crate-visible helper in cat_functor; BTreeMap/str order and safe borrowed association remain identical. The existing lookup test changes only its constructor argument. Required returned error payload/message values are preserved.",
+    "current_production_body_count": 13,
+    "moved_provider": "cat_functor::CompositionLookup (crate-visible immutable helper, fields private)"
+  },
+  "historical_prior_refinements": {
+    "assessment": {
+      "path": "code/rust/quality/category_homology/assessments/builder_provider_refresh/finite_category_validation.json",
+      "sha256": "5b556817457d32fbd0e900eaa5b0157119d048ee1a83463ced23a43a5f1d269d"
+    },
+    "scope": "Previous own-source/primary/metric preservation statements apply only to the prior pinned validator version. Current source has13 bodies and the shared lookup relocation; current primary and metrics supersede those own-source bindings."
+  },
+  "historical_origin": {
+    "repository": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-l5a",
+    "repository_head": "a4b4cc92e98acc7f682664f9d090e64af1ebae41",
+    "subject_state": "Isolated candidate with restored reviewed source and new validator/challenge edits. Artifact SHA-256, not HEAD, identifies evaluated bytes; no authorship attestation is asserted."
+  },
+  "origin": {
+    "repository": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr",
+    "subject_state": "Current isolated worktree edits derived from archived reviewed source. New artifact hashes and current native/metrics identify these bytes; historical origin and prior immutable assessment retain their original scope."
+  },
+  "functor_operation_provider_review": {
+    "review": {
+      "path": "code/rust/quality/category_homology/assessments/functor_composition_source_review.json",
+      "sha256": "6ac690436c690e67ce3a97f95f060598788c92a1305b9c06b37e7eb94ec3f75e"
+    },
+    "scope": "Own source/primary/metrics remain exact. Provider signatures,21 old bodies, all report/constructor refusal gates and raw operation values are preserved. Two allocation changes use exact shared lookup and guarded raw endpoint insertion with original key/name overwrite order. Existing consumer/category proofs remain valid; current43-fault native/model composition supplements rather than replaces original own evidence."
+  }
+}

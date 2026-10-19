@@ -1,0 +1,188 @@
+{
+  "AuthorityEffect": "None",
+  "records": [
+    {
+      "family": "",
+      "path": "code/rust/src/homology/mod.rs",
+      "sha256": "40f163fb350b95b3438b530a28e11b9f9e3df2c59849dc905a8f0457d4b2e579",
+      "independent_module": "independent_carrier_facades",
+      "faults": [
+        [
+          "hasher.update(b\"TheoryOfFiniteQM.ExactMatrix<Q>.v1\");",
+          "hasher.update(b\"WrongMatrix.v1\");"
+        ],
+        [
+          "&(m.rows() as u64).to_le_bytes()",
+          "&(m.cols() as u64).to_le_bytes()"
+        ],
+        [
+          "hashing::hash_stored_rational(&mut hasher, val);",
+          "hashing::hash_stored_rational(&mut hasher, &crate::linear_algebra::scalars::q(0));"
+        ],
+        [
+          "#[serde(rename = \"CarrierWire\")]",
+          "#[serde(rename = \"WrongCarrierWire\")]"
+        ],
+        [
+          "serialize_newtype_struct(\"ExactMatrix\", *matrix)",
+          "serialize_newtype_struct(\"WrongMatrix\", *matrix)"
+        ],
+        [
+          "serializer.serialize_newtype_struct(\"ExactMatrix\", *matrix)",
+          "(*matrix).serialize(serializer)"
+        ],
+        [
+          "c0_dim: self.c0_dim(),",
+          "c0_dim: self.c1_dim(),"
+        ],
+        [
+          "c2_dim: self.c2_dim(),",
+          "c2_dim: self.c0_dim(),"
+        ],
+        [
+          "d0: self.d0(),",
+          "d0: self.d1(),"
+        ],
+        [
+          "weights: self.weights(),",
+          "weights: &[], "
+        ],
+        [
+          "d0_hash: hash_legacy_matrix(self.d0()),",
+          "d0_hash: hash_legacy_matrix(self.d1()),"
+        ],
+        [
+          "carrier::Carrier::new(c0_dim, c1_dim, c2_dim, d0.0, d1.0, weights, provenance)?",
+          "carrier::Carrier::new(c1_dim, c0_dim, c2_dim, d0.0, d1.0, weights, provenance)?"
+        ],
+        [
+          "self.inner.c0_dim()",
+          "self.inner.c1_dim()"
+        ],
+        [
+          "self.inner.rank_d0()",
+          "self.inner.rank_d1()"
+        ],
+        [
+          "self.c1_dim() - self.rank_d0()",
+          "self.c1_dim() + self.rank_d0()"
+        ],
+        [
+          "self.inner.dim_h1()",
+          "Ok(0)"
+        ],
+        [
+          "if expected != got {",
+          "if false {"
+        ],
+        [
+          "expected: expected.to_hex(),",
+          "expected: got.to_hex(),"
+        ],
+        [
+          "verify_hash(&value.d0_hash, &hash_exact_matrix(&value.d0))?;",
+          ""
+        ],
+        [
+          "verify_hash(&value.d1_hash, &hash_exact_matrix(&value.d1))?;",
+          ""
+        ],
+        [
+          "            value.weights,",
+          "            vec![crate::linear_algebra::scalars::q(1); value.c1_dim],"
+        ],
+        [
+          "self.inner.d0()",
+          "self.inner.d1()"
+        ]
+      ],
+      "native_context": "homology"
+    },
+    {
+      "family": "",
+      "path": "code/rust/src/homology/exact_carrier.rs",
+      "sha256": "bc877f6f429ad97519c0104f86f634da6a8a059fb74bde44bc6b864b4395a360",
+      "independent_module": "independent_carrier_facades",
+      "faults": [
+        [
+          "c0_dim, c1_dim, c2_dim, d0, d1, weights, provenance,",
+          "c1_dim, c0_dim, c2_dim, d0, d1, weights, provenance,"
+        ],
+        [
+          "self.inner.c0_dim()",
+          "self.inner.c1_dim()"
+        ],
+        [
+          "self.inner.d0()",
+          "self.inner.d1()"
+        ],
+        [
+          "self.inner.rank_d0()",
+          "self.inner.rank_d1()"
+        ],
+        [
+          "self.c1_dim() - self.rank_d0()",
+          "self.c1_dim() + self.rank_d0()"
+        ],
+        [
+          "self.c1_dim() - self.rank_d1() - self.rank_d0()",
+          "self.c1_dim() + self.rank_d1() - self.rank_d0()"
+        ],
+        [
+          "d0.set(i, src, q(-1))?;",
+          "d0.set(i, src, q(1))?;"
+        ],
+        [
+          "d0.set(i, tgt, q(1))?;",
+          "d0.set(i, tgt, q(-1))?;"
+        ],
+        [
+          "(a, c, -1)",
+          "(a, c, 1)"
+        ],
+        [
+          "if indices.insert((src, tgt), i).is_some() {",
+          "if indices.insert((src, tgt), i).is_some() && false {"
+        ],
+        [
+          "if src >= n {",
+          "if src > n {"
+        ],
+        [
+          "if tgt >= n {",
+          "if tgt > n {"
+        ],
+        [
+          "if src == tgt {",
+          "if false {"
+        ],
+        [
+          "if vertex >= n {",
+          "if vertex > n {"
+        ],
+        [
+          "if a == b || b == c || a == c {",
+          "if a == b && b == c && a == c {"
+        ],
+        [
+          "                    src,\n                    tgt,",
+          "                    src: tgt,\n                    tgt: src,"
+        ],
+        [
+          "d1.set(i, *col, q(sign))?;",
+          "d1.set(i, *col, q(-sign))?;"
+        ],
+        [
+          "BasicMatrix::<Q>::zero(edges.len(), num_nodes)?",
+          "BasicMatrix::<Q>::zero(num_nodes, edges.len())?"
+        ]
+      ],
+      "parent_aliases": [
+        "carrier",
+        "cochain_complex",
+        "carrier_manifest",
+        "errors"
+      ]
+    }
+  ]
+}

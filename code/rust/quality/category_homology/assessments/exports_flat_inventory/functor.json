@@ -1,0 +1,243 @@
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/category_theory/functor/mod.rs",
+    "language": "Rust",
+    "sha256": "9b576dba40c5e99c50d85793e0103fe76e6af63247831ffc9ee4c31708028781"
+  },
+  "reviewer": "Codex explicit public namespace/source identity review",
+  "evaluation_timestamp": "2026-10-19T02:31:01.729407+00:00",
+  "gates": {
+    "G1": "A",
+    "G2": "A",
+    "G3": "A",
+    "G4": "A",
+    "G5": "A"
+  },
+  "formal_specification": {
+    "domain": "Static Rust module and nominal type exports. There is no runtime mathematical input or admission operation in this file.",
+    "exports": {
+      "ConstantFunctor": "constant_functor::ConstantFunctor",
+      "Copresheaf": "copresheaf::Copresheaf",
+      "DiagonalFunctor": "diagonal_functor::DiagonalFunctor",
+      "EquivalenceOfCategories": "equivalence_of_categories::EquivalenceOfCategories",
+      "EssentiallySurjective": "essentially_surjective::EssentiallySurjective",
+      "FaithfulFunctor": "faithful_functor::FaithfulFunctor",
+      "ForgetfulFunctor": "forgetful_functor::ForgetfulFunctor",
+      "FreeFunctor": "free_functor::FreeFunctor",
+      "FullFunctor": "full_functor::FullFunctor",
+      "Functor": "functor::Functor",
+      "FunctorCategory": "functor_category::FunctorCategory",
+      "HomFunctor": "hom_functor::HomFunctor",
+      "HorizontalComposition": "horizontal_composition::HorizontalComposition",
+      "IdentityFunctor": "identity_functor::IdentityFunctor",
+      "IsomorphismOfCategories": "isomorphism_of_categories::IsomorphismOfCategories",
+      "NatTransComponents": "nat_trans_components::NatTransComponents",
+      "NaturalTransformation": "natural_transformation::NaturalTransformation",
+      "Presheaf": "presheaf::Presheaf",
+      "RepresentableFunctor": "representable_functor::RepresentableFunctor",
+      "VerticalComposition": "vertical_composition::VerticalComposition",
+      "Yoneda": "yoneda::Yoneda"
+    },
+    "module_exposure": "Every declared public child module is loaded by the canonical category crate from its source file. Exported aliases must identify exactly the separately specified provider types.",
+    "not_claimed": "No child algorithm, mathematical law, theorem, or engineering grade is inherited by reexporting its type."
+  },
+  "symbol_map": {
+    "ConstantFunctor": "Public alias of constant_functor::ConstantFunctor",
+    "Copresheaf": "Public alias of copresheaf::Copresheaf",
+    "DiagonalFunctor": "Public alias of diagonal_functor::DiagonalFunctor",
+    "EquivalenceOfCategories": "Public alias of equivalence_of_categories::EquivalenceOfCategories",
+    "EssentiallySurjective": "Public alias of essentially_surjective::EssentiallySurjective",
+    "FaithfulFunctor": "Public alias of faithful_functor::FaithfulFunctor",
+    "ForgetfulFunctor": "Public alias of forgetful_functor::ForgetfulFunctor",
+    "FreeFunctor": "Public alias of free_functor::FreeFunctor",
+    "FullFunctor": "Public alias of full_functor::FullFunctor",
+    "Functor": "Public alias of functor::Functor",
+    "FunctorCategory": "Public alias of functor_category::FunctorCategory",
+    "HomFunctor": "Public alias of hom_functor::HomFunctor",
+    "HorizontalComposition": "Public alias of horizontal_composition::HorizontalComposition",
+    "IdentityFunctor": "Public alias of identity_functor::IdentityFunctor",
+    "IsomorphismOfCategories": "Public alias of isomorphism_of_categories::IsomorphismOfCategories",
+    "NatTransComponents": "Public alias of nat_trans_components::NatTransComponents",
+    "NaturalTransformation": "Public alias of natural_transformation::NaturalTransformation",
+    "Presheaf": "Public alias of presheaf::Presheaf",
+    "RepresentableFunctor": "Public alias of representable_functor::RepresentableFunctor",
+    "VerticalComposition": "Public alias of vertical_composition::VerticalComposition",
+    "Yoneda": "Public alias of yoneda::Yoneda"
+  },
+  "invariant_argument": [
+    "All noncomment source items were inspected and mechanically restricted to public child-module declarations, public use declarations and lint-only module-inception annotations. No initializer, macro-generated item, unsafe block, function or mutable state is present.",
+    "Under the pinned Rust module/type-resolution semantics, a pub use binds the original provider item and does not construct or validate a mathematical object. Canonical controls compare each actual public alias with its explicit original provider type in the real category crate.",
+    "The challenge adapter rebinds child declarations to those same actual canonical modules, splits grouped imports and omits only comments/lint-only attributes. Its normalized positive controls establish the same nominal identities. Each negative module changes one type binding while leaving that provider environment unchanged. No provider algorithm is cloned or reimplemented."
+  ],
+  "failure_paths": {
+    "unresolved_or_private_provider": "The Rust compiler rejects the external canonical control; no successful runtime/API receipt or completed grade follows.",
+    "wrong_valid_binding": "A syntactically valid peer type can compile but violates the declared nominal identity. Every designated peer replacement is detected by its isolated TypeId comparison.",
+    "runtime": "This file has no runtime operation, argument conversion, allocation, indexing, recursion or error recovery. Importing its namespace does not execute the providers functions."
+  },
+  "trust_boundary": {
+    "compiler": "Pinned Rust compiler, linker and standard nominal type identity within this one binary. TypeId values are not serialized, treated as cryptographic attestations or assumed stable across compiler versions.",
+    "providers": "Actual canonical crate child modules and the explicitly pinned source definitions. Their semantics, failure behavior and mathematical claims remain independently graded.",
+    "scope": "This is compiler/API-wiring verification, not a Lean theorem, Rust/MIR refinement, underlying category proof or source-origin attestation."
+  },
+  "consumer_review": [
+    "The actual category library exposes this hierarchy as a public module. Canonical external controls and the unchanged 459-test category suite validate the current public namespace before and after the challenges.",
+    "Known child types are still raw declarations or separately admitted implementations as their own files specify. A public facade cannot turn pending child score gates into completed ones."
+  ],
+  "basis": {
+    "G1": [
+      "Subject and every immediate provider source are SHA-bound; all public export names map to explicit provider paths. Docs already state shells/AuthorityEffect None. The actual crate and captured offline dependencies/compiler binaries anchor the API receipt.",
+      "Current provider delta: seven raw parameter metadata validators now return existing typed InvalidShape, preserving their predicates and diagnostic order. No declaration exported by this facade or its nominal identity changes. The only documentation change clarifies that ExactCategory also checks its optional positive bound. Changed pinned providers for this facade: code/rust/src/category_theory/functor/diagonal_functor.rs, code/rust/src/category_theory/functor/hom_functor.rs. Fresh external TypeId controls and all 107 faults re-execute on that provider context.",
+      "Flat-inventory provider delta explicitly reviewed: code/rust/src/category_theory/functor/functor.rs, code/rust/src/category_theory/functor/nat_trans_components.rs, code/rust/src/category_theory/functor/natural_transformation.rs. These raw validators switch String payloads to existing typed InvalidShape while preserving predicates, order, payload text and data operations. Set documentation clarifies that its count includes repetitions; opposite still swaps only literal boundaries and does not prove an opposite category. Public nominal identities are unchanged. Fresh 022845Z external controls and all 107 valid type-binding faults replay this context, without inheriting provider mathematical grades."
+    ],
+    "G2": [
+      "Canonical and normalized controls agree with the declared nominal identities for every public alias, including the two legacy adjunction exports. There is no semantic arithmetic or unadmitted numeric domain in this file."
+    ],
+    "G3": [
+      "There are no executable production paths or mutable state to violate an invariant. Invalid source/provider visibility is rejected by the trusted compiler; the current external controls compile and execute. All runtime behavior of provider functions remains outside this facade claim."
+    ],
+    "G4": [
+      "All 21 valid single-fault re-export replacements are killed by separate namespace dispatches; no survivor, invalid/equivalent, inconclusive or unrun result. R=1.0 for this file.",
+      "The full campaign detects 107 wrong bindings across nine module files. It separately passes 107 canonical public controls, 107 normalized positive controls and 459 actual category tests before and after. The adapter and exact observation are disclosed; invalid compiler failures are not counted as kills."
+    ],
+    "G5": [
+      "The parsed Rust source contains zero production functions and no item-generating macros. Declared source CCN, cognitive complexity and control nesting are zero because this is a facade, not an unsupported parser result.",
+      "Runtime re-export overhead and allocations are absent. The small explicit module/use lists follow source boundaries; imported provider operational costs are not concealed or awarded this file grade."
+    ]
+  },
+  "open_findings": [],
+  "assurance_limits": [
+    "Capability remains L1 namespace glue, not L5 mathematics.",
+    "No child mathematical validity or engineering grade is inherited.",
+    "Contracts stay pending. No A+, alternate compiler, MIR/allocator proof, cross-repository attestation or whole-workspace success is claimed."
+  ],
+  "evidence": [
+    {
+      "path": "code/rust/quality/category_homology/export_boundaries.json",
+      "sha256": "53abe84f0fc31e39d5de22443abf09f2c573d187fef5f876989a3b38767c4d3d"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T022845Z/summary.json",
+      "sha256": "37c3ac2cbe10e0ef5a5a3ebecef556830733de5fee25f3cc8f12ee4dffc28d6a"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T022845Z/baseline.json",
+      "sha256": "b4a41534369524b020bd2519a5daf57feb6284083d23f5591ad87dd579216458"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T022845Z/restored.json",
+      "sha256": "4430452daf0e1da52154ba8bbd45f2359b0f6ff2f058f2d6cd0ae8a766bc5758"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T022845Z/mutations.json",
+      "sha256": "3daff73962a6a59249c26a62ea39e15224b50f8ed4d281fb01e0f0acd4248c4e"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T022845Z/builds.json",
+      "sha256": "b783ff731e4dbb23dd45b6a999bb3fcc5d43f6e24cb4795cea8bcdb69b5bcda1"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T022845Z/dependency_receipt.json",
+      "sha256": "90a69665a30171e97204f57136c87822182cd6ab899b238bcb6636f3c8b4aba4"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T022845Z/run_export_challenges.py",
+      "sha256": "7b282a18cdd40c3fa51761bc853b67e8821c5c0e5be5349e90fd0542b265cee9"
+    }
+  ],
+  "context_inputs": [
+    {
+      "path": "code/rust/src/category_theory/functor/constant_functor.rs",
+      "sha256": "10de3a759f98b396245f61f15058613f61ccd0e7684f6db171a3ed4fea2dc586"
+    },
+    {
+      "path": "code/rust/src/category_theory/functor/copresheaf.rs",
+      "sha256": "0e38478aa7d334ce3384812bfa0442c5f7fbcd068f977fd5fff8a7502effdc00"
+    },
+    {
+      "path": "code/rust/src/category_theory/functor/diagonal_functor.rs",
+      "sha256": "07feaf71b5eab5dd771d727edf8218ea0338e36d1641a829072d007cdaf73bd4"
+    },
+    {
+      "path": "code/rust/src/category_theory/functor/equivalence_of_categories.rs",
+      "sha256": "c814c33b2d6b99ae4b30e93c437f485a24acd1127f0342fa5a5d4c3067b2736d"
+    },
+    {
+      "path": "code/rust/src/category_theory/functor/essentially_surjective.rs",
+      "sha256": "475075d3d88cc4816e306db8931f517509c30677ec023f68a3e2d3ec0c2e8f4f"
+    },
+    {
+      "path": "code/rust/src/category_theory/functor/faithful_functor.rs",
+      "sha256": "bc8dff1b2e4d3e8460cfd6639fbdc2ae511048833999b2795cb3aa52a45cd277"
+    },
+    {
+      "path": "code/rust/src/category_theory/functor/forgetful_functor.rs",
+      "sha256": "28662f63bd81f012cd2972ea12cbd72b5bacd6236a71b5c9549a618005d7f2b4"
+    },
+    {
+      "path": "code/rust/src/category_theory/functor/free_functor.rs",
+      "sha256": "0778df879ab12d7512acf32c591d46704eebf24078853d84b1e4e1cde5310f9a"
+    },
+    {
+      "path": "code/rust/src/category_theory/functor/full_functor.rs",
+      "sha256": "896cb9c6caa77db592e38348353a6c179e047b93dd291b8575250e606db60427"
+    },
+    {
+      "path": "code/rust/src/category_theory/functor/functor.rs",
+      "sha256": "f0910eb6749ba84a342d93b11dbc130e9fe288091d88663c7d7b5d7f59f428fc"
+    },
+    {
+      "path": "code/rust/src/category_theory/functor/functor_category.rs",
+      "sha256": "2bad09b6dceec4db40ed2377a9e1fbc1d9c2f9939900341bae0dab9194bef3cb"
+    },
+    {
+      "path": "code/rust/src/category_theory/functor/hom_functor.rs",
+      "sha256": "59ab554b4ff222872b3968c3c7f3b6b159382d04dd93a04c60ce01d67f435e5e"
+    },
+    {
+      "path": "code/rust/src/category_theory/functor/horizontal_composition.rs",
+      "sha256": "3b0470a03f65e569f17a3e17ca61be2d15e98222621cd5eebf7d7ceadf00ec3a"
+    },
+    {
+      "path": "code/rust/src/category_theory/functor/identity_functor.rs",
+      "sha256": "8a8c209702a73c15df864c57725cceb634e4818ab1d281913eec3a87041af1c8"
+    },
+    {
+      "path": "code/rust/src/category_theory/functor/isomorphism_of_categories.rs",
+      "sha256": "7bd93ee8ae3152ae4d18a7c183a42e743ed5307e1a000a0bd18f0b953708154f"
+    },
+    {
+      "path": "code/rust/src/category_theory/functor/nat_trans_components.rs",
+      "sha256": "e63b04af716427d1b2cde8771804b505503275c872af296f0090a202e7b49d9a"
+    },
+    {
+      "path": "code/rust/src/category_theory/functor/natural_transformation.rs",
+      "sha256": "fafce2639115ed1a022180c1b7bbb8b50749e858d2931f1d91a898db5aed643c"
+    },
+    {
+      "path": "code/rust/src/category_theory/functor/presheaf.rs",
+      "sha256": "4ede84da4e9f6d182cd07587a047c407f02d5605ab0cbdcb316c3b8d032b8362"
+    },
+    {
+      "path": "code/rust/src/category_theory/functor/representable_functor.rs",
+      "sha256": "93d872461444aefab38325e91f01e78043b3743374070b534c3b1037b2a0aeeb"
+    },
+    {
+      "path": "code/rust/src/category_theory/functor/vertical_composition.rs",
+      "sha256": "bf389825ff2a05dfc029d930700e6d1a5be352dd626f54a70631600ec6e70356"
+    },
+    {
+      "path": "code/rust/src/category_theory/functor/yoneda.rs",
+      "sha256": "88cd0ceb399f1d418d7115a35659faab3d75d596f4301c58d951562963b3a445"
+    },
+    {
+      "path": "code/rust/src/category_theory/lib.rs",
+      "sha256": "b1535a921f4a69414e8b6636f85c8393f799bd2bc20da600e855864c2d3e8776"
+    },
+    {
+      "path": "code/rust/src/category_theory/Cargo.toml",
+      "sha256": "42378ba9d23fe5a5c97c844ebab457e9187c96b819c5b6a0fe3f9acaff1579a3"
+    }
+  ]
+}

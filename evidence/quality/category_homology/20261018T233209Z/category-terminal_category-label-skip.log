@@ -1,0 +1,28 @@
+
+running 5 tests
+test mutant_58::schema_challenge::labels_are_literal_not_mathematical_certificates ... ok
+test mutant_58::tests::with_object_ok ... ok
+test mutant_58::tests::validate_rejects_empty ... FAILED
+test mutant_58::schema_challenge::exhaustive_required_fields ... FAILED
+test mutant_58::tests::validate_ok ... ok
+
+failures:
+
+---- mutant_58::tests::validate_rejects_empty stdout ----
+
+thread 'mutant_58::tests::validate_rejects_empty' (21092) panicked at metadata_challenge_0\mutant_58.rs:65:9:
+assertion failed: TerminalCategoryShell::new("").validate_shell().is_err()
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- mutant_58::schema_challenge::exhaustive_required_fields stdout ----
+
+thread 'mutant_58::schema_challenge::exhaustive_required_fields' (19272) panicked at metadata_challenge_0\mutant_58.rs:97:34:
+mask 1, expected Some(0), got Ok(())
+
+
+failures:
+    mutant_58::schema_challenge::exhaustive_required_fields
+    mutant_58::tests::validate_rejects_empty
+
+test result: FAILED. 3 passed; 2 failed; 0 ignored; 0 measured; 365 filtered out; finished in 0.00s
+

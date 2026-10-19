@@ -1,0 +1,21 @@
+
+running 4 tests
+test mutant_51::parameter_challenge::constructors_preserve_distinct_supplied_parameters ... ok
+test mutant_51::tests::validate_rejects_empty ... ok
+test mutant_51::tests::validate_ok ... ok
+test mutant_51::parameter_challenge::independent_schema_cases_and_first_error ... FAILED
+
+failures:
+
+---- mutant_51::parameter_challenge::independent_schema_cases_and_first_error stdout ----
+
+thread 'mutant_51::parameter_challenge::independent_schema_cases_and_first_error' (20880) panicked at metadata_challenge_0\mutant_51.rs:94:37:
+expected Some("empty right_factor_label"), got Ok(()); raw={"label":"label:α\u0000","left_factor_label":"left_factor_label:α\u0000","notes":[],"object_pairs":[],"right_factor_label":""}
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    mutant_51::parameter_challenge::independent_schema_cases_and_first_error
+
+test result: FAILED. 3 passed; 1 failed; 0 ignored; 0 measured; 239 filtered out; finished in 0.00s
+

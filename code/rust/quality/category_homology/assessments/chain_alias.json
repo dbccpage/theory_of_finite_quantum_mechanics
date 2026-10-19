@@ -1,0 +1,139 @@
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/homology/chain.rs",
+    "language": "Rust",
+    "sha256": "9713e4b716f7dd05f62433ea0dad249ee48b038afe995312bbfd4344e6639c32"
+  },
+  "evaluation_timestamp": "2026-10-19T01:37:47.842121+00:00",
+  "reviewer": "Codex explicit alias and public nominal-type review",
+  "gates": {
+    "G1": "A",
+    "G2": "A",
+    "G3": "A",
+    "G4": "A",
+    "G5": "A"
+  },
+  "formal_specification": {
+    "alias": "Chain is exactly crate::homology::graded_vector::GradedVector<ChainKind>. No wrapper, conversion, new constructor or new law is supplied here.",
+    "scope": "Nominal Rust alias identity and provider visibility only. Arithmetic, deserialization and scalar admission belong to separately assessed provider code. The sealed kind tag distinguishes chain and cochain provider types.",
+    "authority": "None. Alias import cannot validate a matrix or prove a complex law."
+  },
+  "symbol_map": {
+    "Chain": "Exact non-generic public type alias to GradedVector<ChainKind>.",
+    "tests": "Local examples call the actual shared provider; they do not add production methods or a separate arithmetic implementation."
+  },
+  "invariant_argument": [
+    "The sole production declaration is a type alias with an explicit concrete sealed kind parameter. Rust alias equality preserves exactly the named provider identity; there is no runtime conversion to fail or mutate data.",
+    "Compile and same-binary TypeId controls compare the named alias to the independently written fully qualified expected provider type. Replacing its kind with the opposite valid kind remains well typed but violates that nominal equality.",
+    "The provider exposes immutable borrowed data externally and fallible admission/arithmetic as its own contract. Its semantics and engineering grade are not silently inherited by this alias assessment."
+  ],
+  "failure_paths": {
+    "source": "Missing or inaccessible provider types fail compilation; no runtime or mutation score is awarded to such invalid candidates.",
+    "wrong_kind": "A valid opposite-kind alias compiles but fails the independent nominal identity control.",
+    "runtime": "No executable production statements, input conversions, indexing, allocation, mutation or error suppression occur in this file."
+  },
+  "trust_boundary": {
+    "compiler": "Pinned safe Rust compiler and standard nominal type equality in one binary; TypeId is not persisted or assumed stable across compiler versions.",
+    "provider": "Pinned actual GradedVector and sealed ChainKind/CochainKind definitions, independently graded for arithmetic and admission."
+  },
+  "consumer_review": [
+    "Boundary/complex and related homology consumers use this public alias as the concrete sealed coordinate type. The original homology suite executes those compositions before/after the two alias faults.",
+    "The nominal controls ensure the public name resolves to the intended kind; they do not claim that the entire homology namespace or shared provider earns A."
+  ],
+  "basis": {
+    "G1": [
+      "Subject SHA and exact provider/consumer context bind the only public declaration to its literal Rust type. AuthorityEffect None is explicit and no higher mathematical capability is inferred."
+    ],
+    "G2": [
+      "The alias has no numeric operation or representation conversion. Its explicit kind matches the stated chain/cochain type, checked against the fully qualified provider identity."
+    ],
+    "G3": [
+      "No executable production path can panic or bypass admission. Compiler rejection is the failure behavior for invalid wiring; all runtime constructor/arithmetic refusals remain in the declared provider boundary."
+    ],
+    "G4": [
+      "Canonical homology tests and unmutated alias namespaces pass before/after. The one independent valid opposite-kind substitution for this file is killed by a distinct TypeId equality test in its own namespace. The two-file outcome ledger retains every generated fault; compilation errors never count as kills."
+    ],
+    "G5": [
+      "The calibrated AST parses zero production functions, consistent with inspection of the only production type alias. There are no macros generating hidden production behavior, no runtime overhead, loops or allocation."
+    ]
+  },
+  "assurance_limits": [
+    "Capability L1 nominal glue. Shared provider semantics and unfinished gates are independently assessed.",
+    "Contracts pending; no independent compiler, crypto origin attestation, formal Rust/MIR refinement or whole-workspace pass."
+  ],
+  "open_findings": [],
+  "evidence": [
+    {
+      "path": "evidence/quality/category_homology/20261019T013813Z/summary.json",
+      "sha256": "ca6524a2ebb845c0eb302ddb54b4254577d40ac3419372b2645a4db6ea1e550f"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T013813Z/baseline.json",
+      "sha256": "553acbc43f013124907e0fadc3e198a8a595effff89ff6787a3b88c974e2e263"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T013813Z/restored.json",
+      "sha256": "c60b00a082a353f9e7287d27d3dc27cb1cc00ab8bdd46f4a083328443888f5b1"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T013813Z/mutations.json",
+      "sha256": "0da472b1f410ce59082cf043cad0344f59b8063992a233db3aab69d5b9c3fc0d"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T013813Z/builds.json",
+      "sha256": "4b2acbebd120d68b36853c6445ff5d5199bdfb5434c8b624f8fa7185164bd65d"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T013813Z/dependency_receipt.json",
+      "sha256": "df0d686d8a88a114f32373886ccf6a15964fee94beca99475aeeb7e30d01e034"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T013813Z/run_alias_challenges.py",
+      "sha256": "48034d2f810e08a7bc0ac5ccb247e6cf1f7f6e21b6f5a6aff9e188432d2eea22"
+    }
+  ],
+  "context_inputs": [
+    {
+      "path": "code/rust/src/homology/mod.rs",
+      "sha256": "b3412998bc0dba0f0203d5d305f50017ff151fa2c582f64e8c0b81adecd04f4d"
+    },
+    {
+      "path": "code/rust/src/homology/graded_vector.rs",
+      "sha256": "80a2c598049ad838ff219d1491d0d709c8116107afa49869b7fbd469a7c587b7"
+    },
+    {
+      "path": "code/rust/src/homology/exact_scalar.rs",
+      "sha256": "d6c7ebbbeea899412a96cf1f9a686e2fe2a7bf1b09d6eb34ed72f74a0562dc35"
+    },
+    {
+      "path": "code/rust/src/homology/hashing.rs",
+      "sha256": "96249ffaff860033e34b2c95b0932ee5eddd743f991f248010ac03a41389be34"
+    },
+    {
+      "path": "code/rust/src/homology/ids.rs",
+      "sha256": "0045aac4bd35a4d1479ac5fcff00a6b4d7964087a70c4e2dec303af0733b29e1"
+    },
+    {
+      "path": "code/rust/src/homology/errors.rs",
+      "sha256": "c099cb5ff8a727aca82019d75d4afc5be2bdf53ca080da2c08eb8130b84aa8e6"
+    },
+    {
+      "path": "code/rust/src/homology/boundary.rs",
+      "sha256": "9408d47116a07fee24a3d490c122b9d041dbf51b2f9018b929bf2de7ca96abba"
+    },
+    {
+      "path": "code/rust/src/homology/coboundary.rs",
+      "sha256": "3b4d98c6a891cb131294b1b671d1f5ff65b50c1d48bf9761d12e589afb1ee03a"
+    },
+    {
+      "path": "code/rust/src/homology/chain_complex.rs",
+      "sha256": "8de8868140dd9fbd98dae63e84239c28f0009b1bce552c3e12574cef465b8d42"
+    },
+    {
+      "path": "code/rust/src/homology/cochain_complex.rs",
+      "sha256": "e752e789bd8c3a76cf5adb08070548b459d3e1c735399d7b17f40b66b3a5354a"
+    }
+  ]
+}

@@ -4,6 +4,7 @@
 //! Natural-transformation-style record for the counit of an adjunction:
 //! ε : L ∘ R ⇒ Id_D.
 
+use omega_category_theory::errors::ArithmosError;
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeMap;
 
@@ -70,19 +71,19 @@ impl CounitShell {
         self
     }
 
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
         if self.source_functor.is_empty() {
-            return Err("empty source_functor".into());
+            return Err(ArithmosError::InvalidShape("empty source_functor".into()));
         }
         if self.target_functor.is_empty() {
-            return Err("empty target_functor".into());
+            return Err(ArithmosError::InvalidShape("empty target_functor".into()));
         }
         for (obj, mor) in &self.components {
             if obj.is_empty() || mor.is_empty() {
-                return Err("empty counit component key or value".into());
+                return Err(ArithmosError::InvalidShape("empty counit component key or value".into()));
             }
         }
         Ok(())

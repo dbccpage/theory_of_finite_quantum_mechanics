@@ -1,0 +1,27 @@
+
+running 8 tests
+test root_record_replay_13::subject::independent_profunctor_tests::boundary_reports_have_exact_scope_and_order ... ok
+test root_record_replay_13::subject::independent_profunctor_tests::exact_weights_refuse_invalid_without_mutation ... ok
+test root_record_replay_13::subject::independent_profunctor_tests::literal_aliases_and_raw_companion_conjoint ... FAILED
+test root_record_replay_13::subject::independent_profunctor_tests::raw_relations_preserve_metadata_order_and_queries ... ok
+test root_record_replay_13::subject::tests::profunctor_composition_collects_pairs ... ok
+test root_record_replay_13::subject::tests::relational_profunctor_tracks_witnesses ... ok
+test root_record_replay_13::subject::tests::weighted_profunctor_sums_weights ... ok
+test root_record_replay_13::subject::independent_profunctor_tests::all_two_by_two_multisets_discrete_middle ... ok
+
+failures:
+
+---- root_record_replay_13::subject::independent_profunctor_tests::literal_aliases_and_raw_companion_conjoint stdout ----
+
+thread 'root_record_replay_13::subject::independent_profunctor_tests::literal_aliases_and_raw_companion_conjoint' (17100) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\rr\261019T210710\src\category_theory\q\n13.rs:514:495:
+assertion `left == right` failed
+  left: {("", "a"): ["payload|X"], ("", "b"): ["payload|X"], ("", "c"): ["payload|"], ("X", "a"): ["payloadX|X"], ("X", "b"): ["payloadX|X"], ("X", "c"): ["payloadX|"], ("Y", "a"): ["payloadY|X"], ("Y", "b"): ["payloadY|X"], ("Y", "c"): ["payloadY|"]}
+ right: {("a", ""): ["payload|X"], ("a", "X"): ["payloadX|X"], ("a", "Y"): ["payloadY|X"], ("b", ""): ["payload|X"], ("b", "X"): ["payloadX|X"], ("b", "Y"): ["payloadY|X"], ("c", ""): ["payload|"], ("c", "X"): ["payloadX|"], ("c", "Y"): ["payloadY|"]}
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    root_record_replay_13::subject::independent_profunctor_tests::literal_aliases_and_raw_companion_conjoint
+
+test result: FAILED. 7 passed; 1 failed; 0 ignored; 0 measured; 675 filtered out; finished in 0.46s
+

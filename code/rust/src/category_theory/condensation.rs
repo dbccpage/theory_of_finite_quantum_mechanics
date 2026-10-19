@@ -1,17 +1,10 @@
-//! Condensation — Spec Section 21.
-//!
-//! In ∞-categories, idempotents are replaced by condensations:
-//! homotopy-coherent idempotent splittings.
-//!
-//! A condensation is data X →r Y →s X together with:
-//!   r ∘ s ≃ id_Y
-//!   s ∘ r ⇒ e (coherently associative homotopy)
-//!   higher coherence data at each level
-//!
-//! An (∞,1)-category C is ∞-Cauchy complete iff every condensation splits.
-//! Equivalently: every fully dualizable profunctor 1 ⊸ C is representable.
+//! Raw named splitting-equation observations and caller-supplied coherence flags.
+//! No higher cells,homotopies or infinity-category laws are checked. Historical
+//! InfinityCauchyStatus::Complete means only no supplied record emitted a diagnostic;
+//! it does not certify mathematical infinity-Cauchy completeness. AuthorityEffect: None.
 
 use std::collections::BTreeMap;
+use super::cat_functor::CompositionLookup;
 
 // ---------------------------------------------------------------------------
 // CoherenceWitness
@@ -29,7 +22,7 @@ pub struct CoherenceWitness {
     pub level: usize,
     /// Human-readable description of what this witness asserts.
     pub description: String,
-    /// Whether this witness has been verified.
+    /// Caller-supplied flag;the constructor/checker does not verify its description.
     pub verified: bool,
 }
 
@@ -55,14 +48,8 @@ impl CoherenceWitness {
 // Condensation
 // ---------------------------------------------------------------------------
 
-/// A condensation: homotopy-coherent idempotent splitting.
-///
-/// In the finite approximation used here, a condensation is represented
-/// by the splitting triple (r, s, carrier) plus coherence witnesses
-/// at each verified level.
-///
-/// The 1-categorical shadow of this is an `IdempotentSplitting` (see cauchy.rs).
-/// A condensation adds higher coherence data.
+/// Raw names,declared level counter and descriptive caller flags.
+/// Names are not admitted category arrows;witness descriptions carry no checked cells.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Condensation {
     /// The carrier object X (where the idempotent lives).
@@ -79,6 +66,10 @@ pub struct Condensation {
     pub witnesses: Vec<CoherenceWitness>,
 }
 
+/// Typed refusal of a next-level update before any metadata mutation.
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub struct CoherenceLevelOverflow;
+
 impl Condensation {
     /// Create a condensation with base splitting data (level 0).
     pub fn new(carrier: &str, retract: &str, section: &str, retraction: &str) -> Self {
@@ -92,18 +83,20 @@ impl Condensation {
         }
     }
 
-    /// Add a coherence witness at the next level.
-    pub fn add_witness(&mut self, description: &str, verified: bool) {
-        let level = self.coherence_level + 1;
+    /// Append one descriptive flag at checked next level;overflow leaves self unchanged.
+    /// No truth of the description or previous witness inventory is admitted.
+    pub fn add_witness(&mut self, description: &str, verified: bool) -> Result<(), CoherenceLevelOverflow> {
+        let level = self.coherence_level.checked_add(1).ok_or(CoherenceLevelOverflow)?;
         self.witnesses.push(CoherenceWitness {
             level,
             description: description.into(),
             verified,
         });
         self.coherence_level = level;
+        Ok(())
     }
 
-    /// The maximum verified coherence level.
+    /// Largest level among caller-flagged rows;0 also represents no flagged row.
     pub fn max_verified_level(&self) -> usize {
         self.witnesses
             .iter()
@@ -113,7 +106,7 @@ impl Condensation {
             .unwrap_or(0)
     }
 
-    /// Whether all declared witnesses are verified.
+    /// Whether every supplied flag is true,vacuously true on an empty list.
     pub fn fully_verified(&self) -> bool {
         self.witnesses.iter().all(|w| w.verified)
     }
@@ -123,14 +116,14 @@ impl Condensation {
 // InfinityCauchyStatus
 // ---------------------------------------------------------------------------
 
-/// Diagnostic: is the ∞-category Cauchy complete?
+/// Legacy names for the result of a finite supplied-record diagnostic inventory.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum InfinityCauchyStatus {
-    /// All condensations split. No phantom objects in Prof∞.
+    /// No supplied record emitted a diagnostic;empty inventory also returns this.
     Complete,
-    /// Some condensations do not split.
+    /// Supplied records emitted diagnostics,in input order.
     Incomplete { unsplit_condensations: Vec<String> },
-    /// Cannot determine: insufficient coherence data or infinite structure.
+    /// Raw compatibility variant;this inventory function does not produce it.
     Unknown { reason: String },
 }
 
@@ -138,90 +131,58 @@ pub enum InfinityCauchyStatus {
 // Condensation detection and checking
 // ---------------------------------------------------------------------------
 
-/// Check whether a condensation satisfies its base splitting laws.
-///
-/// Level 0 laws (same as idempotent splitting):
-///   r ∘ s = id_Y
-///   s ∘ r = e (some endomorphism of X)
-///
-/// Level 1 law:
-///   e ∘ e ≃ e (idempotent, up to homotopy witness)
+fn retraction_diagnostic(cond: &Condensation, table: &CompositionLookup<'_>, identities: &BTreeMap<String, String>) -> Option<String> {
+    match (table.compose(&cond.section, &cond.retraction), identities.get(&cond.retract).map(String::as_str)) {
+        (Some(v), Some(id)) if v == id => None,
+        (Some(v), Some(id)) => Some(format!("Condensation level 0: r ∘ s = {} but id_Y = {}", v, id)),
+        _ => Some("Condensation level 0: r ∘ s or id_Y not defined".into()),
+    }
+}
+
+fn idempotence_diagnostic(cond: &Condensation, table: &CompositionLookup<'_>) -> Option<String> {
+    let Some(e) = table.compose(&cond.retraction, &cond.section) else {
+        return Some("Condensation level 0: s ∘ r not defined".into());
+    };
+    match table.compose(e, e) {
+        Some(ee) if ee == e => None,
+        Some(ee) => Some(format!("Condensation level 1: e ∘ e = {} but e = {} (not idempotent)", ee, e)),
+        None => Some(format!("Condensation level 1: e ∘ e not defined for e = {}", e)),
+    }
+}
+
+fn validate_with_lookup(cond: &Condensation, table: &CompositionLookup<'_>, identity_map: &BTreeMap<String, String>) -> Vec<String> {
+    let mut violations: Vec<String> = [retraction_diagnostic(cond, table, identity_map), idempotence_diagnostic(cond, table)].into_iter().flatten().collect();
+    for w in &cond.witnesses {
+        if w.level > 0 && !w.verified {
+            violations.push(format!("Condensation level {}: witness '{}' not verified", w.level, w.description));
+        }
+    }
+    violations
+}
+
+/// Observe two defined-only named splitting/idempotence checks,then positive-level
+/// false flags. Base flags and level continuity are not tested;no category typing.
 pub fn validate_condensation(
     cond: &Condensation,
     compositions: &BTreeMap<(String, String), String>,
     identity_map: &BTreeMap<String, String>,
 ) -> Vec<String> {
-    let mut violations = Vec::new();
-
-    // Level 0: r ∘ s = id_Y
-    let rs_key = (cond.section.clone(), cond.retraction.clone());
-    let id_y = identity_map.get(&cond.retract);
-    match (compositions.get(&rs_key), id_y) {
-        (Some(v), Some(id)) if v == id => {}
-        (Some(v), Some(id)) => {
-            violations.push(format!(
-                "Condensation level 0: r ∘ s = {} but id_Y = {}",
-                v, id
-            ));
-        }
-        _ => {
-            violations.push("Condensation level 0: r ∘ s or id_Y not defined".into());
-        }
-    }
-
-    // Level 0: s ∘ r produces some endomorphism e of X
-    let sr_key = (cond.retraction.clone(), cond.section.clone());
-    let e = compositions.get(&sr_key);
-    match e {
-        Some(e_mor) => {
-            // Level 1: e ∘ e = e (idempotent)
-            let ee_key = (e_mor.clone(), e_mor.clone());
-            match compositions.get(&ee_key) {
-                Some(ee) if ee == e_mor => {}
-                Some(ee) => {
-                    violations.push(format!(
-                        "Condensation level 1: e ∘ e = {} but e = {} (not idempotent)",
-                        ee, e_mor
-                    ));
-                }
-                None => {
-                    violations.push(format!(
-                        "Condensation level 1: e ∘ e not defined for e = {}",
-                        e_mor
-                    ));
-                }
-            }
-        }
-        None => {
-            violations.push("Condensation level 0: s ∘ r not defined".into());
-        }
-    }
-
-    // Check coherence witnesses
-    for w in &cond.witnesses {
-        if w.level > 0 && !w.verified {
-            violations.push(format!(
-                "Condensation level {}: witness '{}' not verified",
-                w.level, w.description
-            ));
-        }
-    }
-
-    violations
+    let table = CompositionLookup::new(compositions);
+    validate_with_lookup(cond, &table, identity_map)
 }
 
-/// Check ∞-Cauchy completeness for a finite approximation.
-///
-/// Takes a list of condensations and checks whether all split.
+/// Ordered diagnostic inventory over supplied raw records;empty means Complete.
+/// Neither inventory completeness nor actual infinity-category splitting is checked.
 pub fn check_infinity_cauchy(
     condensations: &[Condensation],
     compositions: &BTreeMap<(String, String), String>,
     identity_map: &BTreeMap<String, String>,
 ) -> InfinityCauchyStatus {
     let mut unsplit = Vec::new();
+    let table = CompositionLookup::new(compositions);
 
     for cond in condensations {
-        let violations = validate_condensation(cond, compositions, identity_map);
+        let violations = validate_with_lookup(cond, &table, identity_map);
         if !violations.is_empty() {
             unsplit.push(format!(
                 "{} → {} ({})",
@@ -257,8 +218,8 @@ mod tests {
     fn condensation_with_witnesses() {
         let mut cond = Condensation::new("X", "Y", "s", "r");
         cond.witnesses[0].verified = true; // verify level 0
-        cond.add_witness("s ∘ r ⇒ e homotopy", true);
-        cond.add_witness("coherence of e-homotopy with composition", false);
+        cond.add_witness("s ∘ r ⇒ e homotopy", true).expect("small level");
+        cond.add_witness("coherence of e-homotopy with composition", false).expect("small level");
 
         assert_eq!(cond.coherence_level, 2);
         assert_eq!(cond.max_verified_level(), 1);

@@ -1,6 +1,7 @@
 //! set shell for omega_category_theory.
 //! AuthorityEffect: None. Not PROVED / GlobalGreen.
 
+use omega_category_theory::errors::ArithmosError;
 use serde::{Deserialize, Serialize};
 
 /// Best-effort shell for a labeled set (elements as string tags).
@@ -29,17 +30,18 @@ impl Set {
         }
     }
 
+    /// Number of stored tags, including repetitions; no distinct-set admission.
     pub fn cardinality(&self) -> usize {
         self.elements.len()
     }
 
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
         for (i, e) in self.elements.iter().enumerate() {
             if e.is_empty() {
-                return Err(format!("empty element tag at index {i}"));
+                return Err(ArithmosError::InvalidShape(format!("empty element tag at index {i}")));
             }
         }
         Ok(())

@@ -3,6 +3,7 @@
 //!
 //! c/C (objects under c): objects are morphisms c → x; morphisms are commuting triangles.
 
+use omega_category_theory::errors::ArithmosError;
 use serde::{Deserialize, Serialize};
 
 /// Best-effort coslice category shell base / under nadir.
@@ -42,19 +43,19 @@ impl CosliceCategoryShell {
         }
     }
 
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
         if self.base_label.is_empty() {
-            return Err("empty base_label".into());
+            return Err(ArithmosError::InvalidShape("empty base_label".into()));
         }
         if self.nadir.is_empty() {
-            return Err("empty nadir".into());
+            return Err(ArithmosError::InvalidShape("empty nadir".into()));
         }
         for (i, o) in self.objects.iter().enumerate() {
             if o.is_empty() {
-                return Err(format!("empty object tag at index {i}"));
+                return Err(ArithmosError::InvalidShape(format!("empty object tag at index {i}")));
             }
         }
         Ok(())

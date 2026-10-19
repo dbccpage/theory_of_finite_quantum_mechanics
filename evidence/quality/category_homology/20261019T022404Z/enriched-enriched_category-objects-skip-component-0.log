@@ -1,0 +1,21 @@
+
+running 4 tests
+test mutant_35::parameter_challenge::constructors_preserve_distinct_supplied_parameters ... ok
+test mutant_35::tests::validate_rejects_empty ... ok
+test mutant_35::tests::validate_ok ... ok
+test mutant_35::parameter_challenge::independent_schema_cases_and_first_error ... FAILED
+
+failures:
+
+---- mutant_35::parameter_challenge::independent_schema_cases_and_first_error stdout ----
+
+thread 'mutant_35::parameter_challenge::independent_schema_cases_and_first_error' (31244) panicked at metadata_challenge_1\mutant_35.rs:120:37:
+expected Some("empty object tag at index 0"), got Ok(()); raw={"base_monoidal_v":"base_monoidal_v:α\u0000","composition_ref":"","hom_objects":[{"codomain":"codomain:0","domain":"domain:0","hom_object":"hom_object:0"},{"codomain":"codomain:1","domain":"domain:1","hom_object":"hom_object:1"},{"codomain":"codomain:2","domain":"domain:2","hom_object":"hom_object:2"}],"identity_ref":"","label":"label:α\u0000","notes":[],"objects":["","entry:1:α\u0000","entry:2:α\u0000"]}
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    mutant_35::parameter_challenge::independent_schema_cases_and_first_error
+
+test result: FAILED. 3 passed; 1 failed; 0 ignored; 0 measured; 250 filtered out; finished in 0.00s
+

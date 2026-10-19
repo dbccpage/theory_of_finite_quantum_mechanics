@@ -1,0 +1,153 @@
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/category_theory/foundations/mod.rs",
+    "language": "Rust",
+    "sha256": "53151531b361acbff7b00fa2234f74b7d7440fe8b79415a9f6c8b804284c6187"
+  },
+  "reviewer": "Codex explicit public namespace/source identity review",
+  "evaluation_timestamp": "2026-10-19T02:17:15.729375+00:00",
+  "gates": {
+    "G1": "A",
+    "G2": "A",
+    "G3": "A",
+    "G4": "A",
+    "G5": "A"
+  },
+  "formal_specification": {
+    "domain": "Static Rust module and nominal type exports. There is no runtime mathematical input or admission operation in this file.",
+    "exports": {
+      "FiniteSet": "finite_set::FiniteSet",
+      "Function": "function::Function",
+      "HLevel": "hlevel::HLevel",
+      "Set": "set::Set",
+      "Truncation": "truncation::Truncation",
+      "Universe": "universe::Universe"
+    },
+    "module_exposure": "Every declared public child module is loaded by the canonical category crate from its source file. Exported aliases must identify exactly the separately specified provider types.",
+    "not_claimed": "No child algorithm, mathematical law, theorem, or engineering grade is inherited by reexporting its type."
+  },
+  "symbol_map": {
+    "FiniteSet": "Public alias of finite_set::FiniteSet",
+    "Function": "Public alias of function::Function",
+    "HLevel": "Public alias of hlevel::HLevel",
+    "Set": "Public alias of set::Set",
+    "Truncation": "Public alias of truncation::Truncation",
+    "Universe": "Public alias of universe::Universe"
+  },
+  "invariant_argument": [
+    "All noncomment source items were inspected and mechanically restricted to public child-module declarations, public use declarations and lint-only module-inception annotations. No initializer, macro-generated item, unsafe block, function or mutable state is present.",
+    "Under the pinned Rust module/type-resolution semantics, a pub use binds the original provider item and does not construct or validate a mathematical object. Canonical controls compare each actual public alias with its explicit original provider type in the real category crate.",
+    "The challenge adapter rebinds child declarations to those same actual canonical modules, splits grouped imports and omits only comments/lint-only attributes. Its normalized positive controls establish the same nominal identities. Each negative module changes one type binding while leaving that provider environment unchanged. No provider algorithm is cloned or reimplemented."
+  ],
+  "failure_paths": {
+    "unresolved_or_private_provider": "The Rust compiler rejects the external canonical control; no successful runtime/API receipt or completed grade follows.",
+    "wrong_valid_binding": "A syntactically valid peer type can compile but violates the declared nominal identity. Every designated peer replacement is detected by its isolated TypeId comparison.",
+    "runtime": "This file has no runtime operation, argument conversion, allocation, indexing, recursion or error recovery. Importing its namespace does not execute the providers functions."
+  },
+  "trust_boundary": {
+    "compiler": "Pinned Rust compiler, linker and standard nominal type identity within this one binary. TypeId values are not serialized, treated as cryptographic attestations or assumed stable across compiler versions.",
+    "providers": "Actual canonical crate child modules and the explicitly pinned source definitions. Their semantics, failure behavior and mathematical claims remain independently graded.",
+    "scope": "This is compiler/API-wiring verification, not a Lean theorem, Rust/MIR refinement, underlying category proof or source-origin attestation."
+  },
+  "consumer_review": [
+    "The actual category library exposes this hierarchy as a public module. Canonical external controls and the unchanged 459-test category suite validate the current public namespace before and after the challenges.",
+    "Known child types are still raw declarations or separately admitted implementations as their own files specify. A public facade cannot turn pending child score gates into completed ones."
+  ],
+  "basis": {
+    "G1": [
+      "Subject and every immediate provider source are SHA-bound; all public export names map to explicit provider paths. Docs already state shells/AuthorityEffect None. The actual crate and captured offline dependencies/compiler binaries anchor the API receipt.",
+      "Current provider delta: seven raw parameter metadata validators now return existing typed InvalidShape, preserving their predicates and diagnostic order. No declaration exported by this facade or its nominal identity changes. The only documentation change clarifies that ExactCategory also checks its optional positive bound. Changed pinned providers for this facade: code/rust/src/category_theory/foundations/hlevel.rs, code/rust/src/category_theory/foundations/truncation.rs, code/rust/src/category_theory/foundations/universe.rs. Fresh external TypeId controls and all 107 faults re-execute on that provider context.",
+      "Finite-set provider delta: concrete typed FiniteSetError plus Display/Error implementations replace String refusals in raw validation and admitted TryFrom, preserving label/member/cardinality predicates and old diagnostic texts. Private immutable admitted storage and nominal public FiniteSet type identity are unchanged. Fresh 021350Z external controls and all 107 export faults replay this context; the facade does not inherit the provider proof."
+    ],
+    "G2": [
+      "Canonical and normalized controls agree with the declared nominal identities for every public alias, including the two legacy adjunction exports. There is no semantic arithmetic or unadmitted numeric domain in this file."
+    ],
+    "G3": [
+      "There are no executable production paths or mutable state to violate an invariant. Invalid source/provider visibility is rejected by the trusted compiler; the current external controls compile and execute. All runtime behavior of provider functions remains outside this facade claim."
+    ],
+    "G4": [
+      "All 6 valid single-fault re-export replacements are killed by separate namespace dispatches; no survivor, invalid/equivalent, inconclusive or unrun result. R=1.0 for this file.",
+      "The full campaign detects 107 wrong bindings across nine module files. It separately passes 107 canonical public controls, 107 normalized positive controls and 459 actual category tests before and after. The adapter and exact observation are disclosed; invalid compiler failures are not counted as kills."
+    ],
+    "G5": [
+      "The parsed Rust source contains zero production functions and no item-generating macros. Declared source CCN, cognitive complexity and control nesting are zero because this is a facade, not an unsupported parser result.",
+      "Runtime re-export overhead and allocations are absent. The small explicit module/use lists follow source boundaries; imported provider operational costs are not concealed or awarded this file grade."
+    ]
+  },
+  "open_findings": [],
+  "assurance_limits": [
+    "Capability remains L1 namespace glue, not L5 mathematics.",
+    "No child mathematical validity or engineering grade is inherited.",
+    "Contracts stay pending. No A+, alternate compiler, MIR/allocator proof, cross-repository attestation or whole-workspace success is claimed."
+  ],
+  "evidence": [
+    {
+      "path": "code/rust/quality/category_homology/export_boundaries.json",
+      "sha256": "53abe84f0fc31e39d5de22443abf09f2c573d187fef5f876989a3b38767c4d3d"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T021350Z/summary.json",
+      "sha256": "675869aa2efa1431ffe81b58ee21cdc29da2667b6e796602a84aadb5d43d18e4"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T021350Z/baseline.json",
+      "sha256": "bc341e622a915e282fadda5b7c510e019ccd37838065fc037d749f372aaa2072"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T021350Z/restored.json",
+      "sha256": "4b8eb6da79f67d6f6a0aaed7b197f2466447f2255161566f3a006bcd8f07cabf"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T021350Z/mutations.json",
+      "sha256": "a2f338c34575a93627a889ef99cc1f8e72a03e683394c7195337ff3b26576e66"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T021350Z/builds.json",
+      "sha256": "ce1ea58b2a87b181fdc2d05dce11b6bd795af893c75d7646597b2a6d850b6232"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T021350Z/dependency_receipt.json",
+      "sha256": "634b96f6c8efd0d66744d48296342713c0024a9677f492009f63cf46e47b8640"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T021350Z/run_export_challenges.py",
+      "sha256": "7b282a18cdd40c3fa51761bc853b67e8821c5c0e5be5349e90fd0542b265cee9"
+    }
+  ],
+  "context_inputs": [
+    {
+      "path": "code/rust/src/category_theory/foundations/finite_set.rs",
+      "sha256": "6c154362ed87f04513aa3e3f705ca79a7fbda10be3e797fccf805b6b6ac81f5d"
+    },
+    {
+      "path": "code/rust/src/category_theory/foundations/function.rs",
+      "sha256": "bb13e62b3df2ad99cc9a1b73b34267f75a9b50ac5c9ac80634b9f1cae4e696c9"
+    },
+    {
+      "path": "code/rust/src/category_theory/foundations/hlevel.rs",
+      "sha256": "8aae3d6309558e52f2e3fe33bdc2661c68705191019a989cff9f393febd97c7d"
+    },
+    {
+      "path": "code/rust/src/category_theory/foundations/set.rs",
+      "sha256": "f4126d94d57d787133af959a0fabb7491820ee74b18cbcf9a3820ed60455cf5c"
+    },
+    {
+      "path": "code/rust/src/category_theory/foundations/truncation.rs",
+      "sha256": "7ace910166aaf4e002206faf80d518c835cca93e1e81c53e9ff383617376c853"
+    },
+    {
+      "path": "code/rust/src/category_theory/foundations/universe.rs",
+      "sha256": "f64c0b883d1f811461e9430066647f1c71fabe0df6cc17f07f7c05dbb1af80ec"
+    },
+    {
+      "path": "code/rust/src/category_theory/lib.rs",
+      "sha256": "b1535a921f4a69414e8b6636f85c8393f799bd2bc20da600e855864c2d3e8776"
+    },
+    {
+      "path": "code/rust/src/category_theory/Cargo.toml",
+      "sha256": "42378ba9d23fe5a5c97c844ebab457e9187c96b819c5b6a0fe3f9acaff1579a3"
+    }
+  ]
+}

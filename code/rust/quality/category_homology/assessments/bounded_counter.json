@@ -1,0 +1,163 @@
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/category_theory/bounded_counter.rs",
+    "language": "Rust",
+    "sha256": "0dd87ffb60cff60ef045771a539e8b87ecafb772f7751cc2171337b5dd7fc2c0"
+  },
+  "reviewer": "Codex bounded-counter quotient, invariant, source and consumer review",
+  "evaluation_timestamp": "2026-10-19T00:15:48.604610+00:00",
+  "gates": {
+    "G1": "A",
+    "G2": "A",
+    "G3": "A",
+    "G4": "A",
+    "G5": "A"
+  },
+  "formal_specification": {
+    "domain": "A finite horizon r:usize and a private clipped class c with 0<=c<=r. It represents min(n,r) for a conceptual unbounded nonnegative integer n; it does not execute a wrapping native integer counter.",
+    "admission": "from_count injects its bounded input count into this quotient. try_from_clip admits exactly c<=r; a larger integer owner is responsible for supplying its correct clip. Every admitted c has the native representative n=c.",
+    "transition": "At r=0 every event refuses ContextExhausted. Otherwise r decreases by one; increment is n->n+1, decrement refuses exactly n=0 and otherwise n->n-1. Successful reports are the clip at the new horizon.",
+    "observation": "Read the word left to right, stopping at the first typed refusal. An unexecuted long suffix cannot replace an earlier GuardRefusal with ContextExhausted.",
+    "separation": "At a shared horizon equal classes return None. Distinct classes return k=min(c,d)+1<=r, the minimal possible distinguishing continuation length for future legality. k decrements distinguish them; all shorter words are native-guard legal on both. Different horizons return DifferentDepths.",
+    "limits": "The conceptual r+1 class count is not allocated or computed as a machine-size integer. No unrestricted-continuation congruence or physical/native-state custody is claimed."
+  },
+  "symbol_map": {
+    "CounterEvent": "Closed increment/decrement alphabet.",
+    "CounterBoundary": "Exactly native guard refusal or exhausted context budget.",
+    "CounterReportError": "Exactly invalid clip or mismatched comparison horizons.",
+    "CounterReport": "Private Copy value carrying horizon and admitted clipped class.",
+    "from_count": "min(count,r) admits the invariant for every bounded input count.",
+    "try_from_clip": "Reject c>r before constructing the value.",
+    "remaining": "Read the private horizon without mutable exposure.",
+    "clipped": "Read the private admitted class without mutable exposure.",
+    "advance": "Budget guard, native zero/decrement guard, range-safe increment and clipped transition.",
+    "observe": "Standard Result::try_fold preserves order and first-error payload.",
+    "separating_removals": "Same-depth guard, lazy None for equality, otherwise a bounded positive minimal decrement length."
+  },
+  "invariant_argument": [
+    "clip_bound proves c<=r. Private fields, admitted constructors and Copy-only observation prevent safe callers from injecting c>r. There is no Deserialize implementation or mutable field/getter.",
+    "For r>0, guard_exact proves c=0 iff n=0. increment_step and decrement_step prove the clipped transition identities over Nat, independent of fixed-width arithmetic. The checked budget subtraction rules out r=0 before computing a successor report.",
+    "In the increment addition branch c<r-1, increment_branch_bound gives c+1<=r-1<=usize::MAX; the other branch returns r-1 without adding. Decrement uses checked_sub and min(new_budget). Every successful branch therefore preserves c<=r.",
+    "For distinct c,d<=r, separator_bound gives min(c,d)+1<=r; the arithmetic cannot overflow. Equality uses lazy bool::then, so MAX+1 is never evaluated for equal MAX classes.",
+    "A pure decrement prefix of length min(c,d)+1 reaches zero then refuses in the smaller native class and remains legal in the larger class. decrement_separator supplies the necessary bounds; short_words_legal proves every shorter event word is native-guard legal in both. Such words fit the shared horizon, so none can distinguish by budget refusal.",
+    "Left-to-right standard iterator/Result semantics compose the per-step invariant without mutation or partial state output after a refusal. Namespace/package identity is irrelevant to these production bodies: they use only their private value, closed enums, std operations and a borrowed slice."
+  ],
+  "failure_paths": {
+    "invalid_clip": "ClipExceedsDepth before any CounterReport construction.",
+    "zero_budget": "ContextExhausted before processing either event.",
+    "zero_decrement": "GuardRefusal at the first decrement of a zero class with positive budget.",
+    "comparison": "DifferentDepths before any separator arithmetic.",
+    "error_commit": "Result::Err returns no successor report. The original Copy input and external source owner remain unchanged."
+  },
+  "trust_boundary": {
+    "runtime": "Pinned safe Rust compiler/runtime, usize checked_sub/min, lazy bool::then and standard Result iterator contracts. No allocation, unsafe, user callback, serialization or production recursion occurs.",
+    "proof": "Eight checked Lean clipping/guard/transition/bound/separation/native-word lemmas under a clean pinned Mathlib. These are mathematical models plus source correspondence, not Rust/MIR extraction or crash-freedom verification.",
+    "owner": "try_from_clip checks its own class domain, not the accuracy of an unseen owner count. An owner mapping a BigInt must prove the clip relation before relying on the bounded answer."
+  },
+  "consumer_review": [
+    "The real category lib reexports this module; its crate manifest and source are pinned. Production declarations/bodies are unchanged from d266dbba after removing full-line comments/blank indentation; new material is tests and AuthorityEffect documentation.",
+    "The direct repository consumer is wdp/genesis_guard_report.rs. It obtains a same-cell nonnegative BigInt count, compares to BigInt(remaining) before bounded conversion, and forwards only matching AddAssertion/Remove events. It preserves typed report/boundary errors and rejects unsupported context events.",
+    "Its Source25State packet admission checks n*n with checked multiplication and both table lengths, and its AddAssertion guard checks x,y<n before reading the cell. Those consumer premises and files are reviewed/pinned; no full WDP execution or grade is inferred here."
+  ],
+  "basis": {
+    "G1": [
+      "Source digest, all eleven public type/function symbols, exact finite-horizon specification, compiler/std boundary, direct consumer sources and replay/proof receipts bind this component. There is no authority promotion or hidden original-count certificate."
+    ],
+    "G2": [
+      "The private-class invariant, exact Nat transition identities and arithmetic bounds align with every construction/transition branch. The executable oracle operates on independent u128 native counts including MAX+1, not clipped-update logic. No arithmetic saturates a claimed raw counter result."
+    ],
+    "G3": [
+      "All four distinct refusal paths are typed and exercised. There is no mutable external state or partial successful commit after failure. Checked budget/guard subtraction, proven addition bounds, and lazy equality handling exclude reachable machine overflow under the declared std/runtime boundary."
+    ],
+    "G4": [
+      "Four tests cover 11,557 native-word executions, all shared-horizon class pairs through depth five with exhaustive shorter-word challenges, every refusal kind and direct maximum-size witnesses. Both initial/restored scoped baselines pass.",
+      "All ten critical faults are killed: wrong clipping/admission/depth, increment overflow, missing decrement guard, premature suffix refusal, missing same-depth guard, wrong separator length, eager MAX overflow, and reversed events. No survivor, invalid/equivalent, inconclusive or unrun candidate remains; R=1.0.",
+      "The new audit scope compiles the exact source as an isolated std-only module. It explicitly lists compiled_subjects and cannot grade other category/homology files. Full category/WDP integration is not claimed from this isolated receipt.",
+      "A subsequent full category-package replay in 20261019T001337Z passes 459 tests before/after, including the same four counter tests in the real public category crate. This is composition evidence in addition to the isolated smallest-boundary replay, not a whole WDP/workspace pass."
+    ],
+    "G5": [
+      "Calibrated source AST covers seven production functions: maximum CCN 6, cognitive upper bound 4 and nesting 2, with no opaque function macro.",
+      "Construction, getters, advance and separator computation use constant space/time. observe uses O(min(word length,r+1)) steps and O(1) auxiliary space, returning at the first boundary. No word buffer is allocated for the separator, even at usize::MAX."
+    ]
+  },
+  "open_findings": [],
+  "assurance_limits": [
+    "The delivered capability is L3 bounded-domain quotient computation; no L5 promotion based on mathematical terminology.",
+    "The checked model is not mechanized Rust/MIR refinement, allocator/crash-freedom proof, cross-repository authorship attestation or a claim about a whole native WDP owner execution.",
+    "Contracts remain pending, and no whole-directory A or unrestricted-continuation result is inferred."
+  ],
+  "evidence": [
+    {
+      "path": "evidence/quality/category_homology/20261019T000943Z/summary.json",
+      "sha256": "021ca1c1ad7b5cdd06fcf2f431d69f1ef0b5f054c1b0105b73aee5ecc827f1d3"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T000943Z/mutations.json",
+      "sha256": "9b27f2b0edc626ac1fdd29084a8634ba0e3c77f956ca3b44d04f45dc2d7fd13c"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T000943Z/baseline.json",
+      "sha256": "166fd3d0301055f8da8f24473578e0875e2cc695d16e486db8218fd1f54b182a"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T000943Z/restored.json",
+      "sha256": "283606e274707bbaccb95b4cbdeb41cffb564186a85b3d74bfe0abe427909c34"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T000943Z/dependency_receipt.json",
+      "sha256": "5a20ed0a031ed7884fd30d6af3524fa38e2378e86acac3e532619f5166d2ae29"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T001039Z-metrics/receipt.json",
+      "sha256": "090c5563bf12d6c201ee00f4f01a36a7a15aa6698288c2221d3284b5a5c79757"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T000845Z-counter-proof/receipt.json",
+      "sha256": "81af7b1b7119695caa1f89d90ed924b42a97fc151badae9c8856a4c31e9d0174"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T001337Z/baseline.json",
+      "sha256": "c3e573cc1d12c2b341249ce35ace463edf23d2a9a3b9e8c6f557cad7fea51852"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T001337Z/restored.json",
+      "sha256": "fd79f93ec366982f59d6d31955536da9deb2080bad536ca3d6e878b10dd015f6"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T001337Z/summary.json",
+      "sha256": "251ac067807c2c82a9fb5f0d0be98abf1a04a0bf7a7b753d2926c8435fd891d4"
+    }
+  ],
+  "proof_receipts": [
+    {
+      "path": "evidence/quality/category_homology/20261019T000845Z-counter-proof/receipt.json",
+      "sha256": "81af7b1b7119695caa1f89d90ed924b42a97fc151badae9c8856a4c31e9d0174",
+      "proof": "code/rust/quality/category_homology/proofs/BoundedCounter.lean",
+      "mathlib_root": "lean4/.lake/packages/mathlib"
+    }
+  ],
+  "context_inputs": [
+    {
+      "path": "code/rust/src/category_theory/lib.rs",
+      "sha256": "b1535a921f4a69414e8b6636f85c8393f799bd2bc20da600e855864c2d3e8776"
+    },
+    {
+      "path": "code/rust/src/category_theory/Cargo.toml",
+      "sha256": "42378ba9d23fe5a5c97c844ebab457e9187c96b819c5b6a0fe3f9acaff1579a3"
+    },
+    {
+      "path": "code/rust/src/wdp/genesis_guard_report.rs",
+      "sha256": "4c68c14e84fe80aa5ef3ae69db368552f28aaf42174b8591dddb8fd0ba6ab6cc"
+    },
+    {
+      "path": "code/rust/src/wdp/genesis_source_execution.rs",
+      "sha256": "7897a9e78752a014b502519ca87514e07a8a6d9983a515483096ab68d25003a2"
+    },
+    {
+      "path": "code/rust/src/wdp/genesis_ongoing_adapter.rs",
+      "sha256": "3b36cf09efbbd1410ce0abf0dac41ad832f3bb37ef3fa7bfb3d63bc93915a35c"
+    }
+  ]
+}

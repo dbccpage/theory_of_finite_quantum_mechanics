@@ -3,48 +3,88 @@ schema_version: "2.0.0"
 artifact:
   path: "code/rust/src/category_theory/cat_functor.rs"
   language: "Rust"
-  sha256: "6b7ecf5ef8b5b4c8f7420fc9bd380a28e8be67b5a6fb0cfde57613abd423f1f5"
+  sha256: "73fb34edfa85a62b2ceee2423130cf88ba3d3744f628be8653753afc0f9a5960"
 profile: "Exact"
 level: "L5"
 level_basis: "Owned admitted endpoints and exhaustive finite functor-law admission."
 architecture_target: "L5"
 engineering_target: "A"
 gates:
-  G1: null
-  G2: null
-  G3: null
-  G4: null
-  G5: null
-composite_grade: null
-score_token: null
-is_complete: false
+  G1: "A"
+  G2: "A"
+  G3: "A"
+  G4: "A"
+  G5: "A"
+composite_grade: "A"
+score_token: "L5A"
+is_complete: true
 grade_ceiling: "A"
-evaluation_timestamp: "2026-10-18T18:42:03+00:00"
+evaluation_timestamp: "2026-10-19T18:28:15.527508+00:00"
 AuthorityEffect: "None"
 claim:
   urn: "urn:tfqm:rust:category_theory:cat_functor"
-  description: "CatFunctor, ContravariantFunctor, and DeclaredFiniteFunctor.  Spec references: Sections 1A, 1B, 1D, 3, 4.  Laws (CatFunctor): F(id_A) = id_{F(A)} F(g \u2218 f) = F(g) \u2218 F(f) source(F(f)) = F(source(f)) target(F(f)) = F(target(f))  Laws (ContravariantFunctor): F(id_A) = id_{F(A)} F(g \u2218 f) = F(f) \u2218 F(g)   \u2190 reversed"
+  description: "CatFunctor, ContravariantFunctor, and DeclaredFiniteFunctor.  Spec references: Sections 1A, 1B, 1D, 3, 4.  Laws (CatFunctor): F(id_A) = id_{F(A)} F(g \u2218 f) = F(g) \u2218 F(f) source(F(f)) = F(source(f)) target(F(f)) = F(target(f))  Laws (ContravariantFunctor): F(id_A) = id_{F(A)} F(g \u2218 f) = F(f) \u2218 F(g)   \u2190 reversed  Generic traits express caller obligations without checking laws. Only the immutable finite certificate constructor checks actual admitted endpoints. Legacy free diagnostic functions inspect supplied names/cases; in particular, check_identity_law assumes the literal id_ naming convention, not arbitrary identity labels. Empty supplied diagnostic domains pass vacuously."
   scope: "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified."
 contract:
   status: "pending"
   path: null
   note: "Reserved for a later user-requested contract; none created or asserted here."
 evidence:
-  - {"path": "evidence/quality/category_homology/20261018T184203Z/baseline.json", "sha256": "e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c", "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."}
-  - {"path": "evidence/quality/category_homology/20261018T184203Z/summary.json", "sha256": "ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67", "scope": "Source snapshot binding and complete six-outcome accounting."}
-  - {"path": "evidence/quality/category_homology/20261018T184203Z/mutations.json", "sha256": "c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5", "scope": "Designated critical faults only; outcomes for this file are enumerated below."}
-  - {"path": "evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json", "sha256": "86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1", "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."}
+  - {"path": "evidence/quality/category_homology/20261019T173227Z/baseline.json", "sha256": "c8c098ac2a5d41f455e4e1dc1bbf255c6d7571e468e1c7c4b9ce9cff5bfa2ea5", "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."}
+  - {"path": "evidence/quality/category_homology/20261019T173227Z/summary.json", "sha256": "2755b3036106ad45a8cff16adf64eb9857d76b4b2ee07224bd9a94c2de61b6b2", "scope": "Source snapshot binding and complete six-outcome accounting."}
+  - {"path": "evidence/quality/category_homology/20261019T173227Z/mutations.json", "sha256": "8ea8095ba6c457704659976837f63f4f0af7c6ab7ed44879dad3c9ae9deadba5", "scope": "Designated critical faults only; outcomes for this file are enumerated below."}
+  - {"path": "evidence/quality/category_homology/20261019T173501Z-metrics/receipt.json", "sha256": "44dd8af7ab9354eb6ad86f27a4fc8474d1df23d3a1683f4918170d73e88d59c1", "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."}
+  - {"path": "evidence/quality/category_homology/20261019T173227Z/dependency_receipt.json", "sha256": "416749ea84b5f31308abe284b901ea09633556395d0c8089e413b48106f33158", "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred."}
+  - {"path": "code/rust/quality/category_homology/assessments/natural_composition_provider_refresh/cat_functor.json", "sha256": "f09466ca2b00bdb2ce149038a606057ebbbcbf9dbf48e5b28968de9841d5d697", "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping."}
 verification:
   baseline_ok: true
   source_snapshot_unchanged: true
-  compiled_scope: "shared scoped crate build"
+  compiled_scope: "Actual category crate and one-fault copies inside their real parent scopes; no visibility widening or provider replacement"
   local_mutant_ids:
-    - "C01-functor-composition"
-    - "C02-functor-domain"
-    - "C03-functor-identity"
-    - "C04-functor-boundary"
+    - "RR-1-0"
+    - "RR-2-1"
+    - "RR-3-2"
+    - "RR-4-3"
+    - "RR-5-4"
+    - "RR-6-5"
+    - "RR-7-6"
+    - "RR-8-7"
+    - "RR-9-8"
+    - "RR-10-9"
+    - "RR-11-10"
+    - "RR-12-11"
+    - "RR-13-12"
+    - "RR-14-13"
+    - "RR-15-14"
+    - "RR-16-15"
+    - "RR-17-16"
+    - "RR-18-17"
+    - "RR-19-18"
+    - "RR-20-19"
+    - "RR-21-20"
+    - "RR-22-21"
+    - "RR-23-22"
+    - "RR-24-23"
+    - "RR-25-24"
+    - "RR-26-25"
+    - "RR-27-26"
+    - "RR-28-27"
+    - "RR-29-28"
+    - "RR-30-29"
+    - "RR-31-30"
+    - "RR-32-31"
+    - "RR-33-32"
+    - "RR-34-33"
+    - "RR-35-34"
+    - "RR-36-35"
+    - "RR-37-36"
+    - "RR-38-37"
+    - "RR-39-38"
+    - "RR-40-39"
+    - "RR-41-40"
+  dependency_contents_stable: true
 mutation_accounting:
-  killed: 4
+  killed: 41
   survived: 0
   demonstrably_equivalent: 0
   invalid: 0
@@ -55,15 +95,17 @@ structure:
   tool: "syn 3.0.9 source AST"
   source_ast_parsed: true
   expanded_ast: false
-  physical_lines: 495
-  parsed_production_functions: 22
+  physical_lines: 525
+  parsed_production_functions: 24
   max_production_ccn: 9
   cognitive_complexity_upper_bound: 13
   control_nesting: 2
   opaque_function_macros: []
   functions_exceeding_A: []
   scope: "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
-open_findings:
-  - "A complete five-gate semantic, failure and consumer audit has not been established for this file."
-  - "Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds."
-  - "External path dependency source contents have not received a separate origin/content attestation."
+open_findings: []
+assurance_limits:
+  - "L5 for the immutable owned finite functor-certificate architecture, not for arbitrary generic trait implementations or raw declarations. No whole-workspace/external application certification, physical theorem or authority promotion."
+  - "Mathlib model uses already admitted endpoint categories and typed total maps; Rust exact domain/image/boundary enumeration justifies that normalization by explicit source/native review. Model admission then proves identity/composition laws and constructs an actual Mathlib Functor. This is not mechanized String/BTreeMap/Rust/MIR extraction, crash-freedom, allocator totality or A+."
+  - "Legacy diagnostics have supplied-case/name-table scope, including literal id_ identities and vacuous empty domains. The crate-visible shared lookup is immutable with private fields; its runtime algorithms remain std/compiler trust. Contracts pending."
+  - "Pinned prior G5 B lookup-allocation finding is repaired. Earlier55/55 campaigns on pre-final prose/identity-allocation snapshots remain retained with exact source. Final receipt alone binds current production bytes."

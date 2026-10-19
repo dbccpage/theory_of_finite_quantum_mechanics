@@ -5,6 +5,7 @@
 //! a left adjoint (reflector) r : C → A, r ⊣ i.
 
 use serde::{Deserialize, Serialize};
+use omega_category_theory::errors::ArithmosError;
 
 /// Best-effort shell for a reflective subcategory declaration.
 ///
@@ -74,18 +75,18 @@ impl ReflectiveSubcategoryShell {
         self
     }
 
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
         if self.ambient_category.is_empty() {
-            return Err("empty ambient_category".into());
+            return Err(ArithmosError::InvalidShape("empty ambient_category".into()));
         }
         if self.subcategory.is_empty() {
-            return Err("empty subcategory".into());
+            return Err(ArithmosError::InvalidShape("empty subcategory".into()));
         }
         if self.reflector.is_empty() {
-            return Err("empty reflector".into());
+            return Err(ArithmosError::InvalidShape("empty reflector".into()));
         }
         Ok(())
     }

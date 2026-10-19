@@ -1,0 +1,24 @@
+
+running 7 tests
+test mutant_45::tests::validate_rejects_missing_functors ... ok
+test mutant_45::tests::rejects_empty_component_tag ... ok
+test mutant_45::tests::validate_rejects_empty ... ok
+test mutant_45::parameter_challenge::constructors_preserve_distinct_supplied_parameters ... ok
+test mutant_45::tests::with_components_ok ... ok
+test mutant_45::tests::validate_ok ... ok
+test mutant_45::parameter_challenge::independent_schema_cases_and_first_error ... FAILED
+
+failures:
+
+---- mutant_45::parameter_challenge::independent_schema_cases_and_first_error stdout ----
+
+thread 'mutant_45::parameter_challenge::independent_schema_cases_and_first_error' (18516) panicked at metadata_challenge_2\mutant_45.rs:120:37:
+expected Some("empty target_functor"), got Ok(()); raw={"components":[],"label":"label:α\u0000","notes":[],"source_functor":"source_functor:α\u0000","target_functor":""}
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    mutant_45::parameter_challenge::independent_schema_cases_and_first_error
+
+test result: FAILED. 6 passed; 1 failed; 0 ignored; 0 measured; 340 filtered out; finished in 0.00s
+

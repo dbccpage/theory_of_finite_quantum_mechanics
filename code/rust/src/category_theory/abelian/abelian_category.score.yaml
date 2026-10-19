@@ -3,23 +3,23 @@ schema_version: "2.0.0"
 artifact:
   path: "code/rust/src/category_theory/abelian/abelian_category.rs"
   language: "Rust"
-  sha256: "0ab0bf48e379b1174ed4b14592f9c6d062d6415e0cd6a7e017266c7169f66445"
+  sha256: "4a6d0b2acc539a2a3fb9da0170cbca2e492325bfe45ad3950366f8fada0285d7"
 profile: "Non-Numeric"
 level: "L2"
 level_basis: "Explicit metadata/shape shell; categorical titles do not establish mathematical capabilities."
 architecture_target: "L5"
 engineering_target: "A"
 gates:
-  G1: null
-  G2: null
-  G3: null
-  G4: null
-  G5: null
-composite_grade: null
-score_token: null
-is_complete: false
+  G1: "A"
+  G2: "A"
+  G3: "A"
+  G4: "A"
+  G5: "A"
+composite_grade: "A"
+score_token: "L2A"
+is_complete: true
 grade_ceiling: "A"
-evaluation_timestamp: "2026-10-18T18:42:03+00:00"
+evaluation_timestamp: "2026-10-19T00:18:50.744059+00:00"
 AuthorityEffect: "None"
 claim:
   urn: "urn:tfqm:rust:category_theory:abelian:abelian_category"
@@ -30,28 +30,39 @@ contract:
   path: null
   note: "Reserved for a later user-requested contract; none created or asserted here."
 evidence:
-  - {"path": "evidence/quality/category_homology/20261018T184203Z/baseline.json", "sha256": "e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c", "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."}
-  - {"path": "evidence/quality/category_homology/20261018T184203Z/summary.json", "sha256": "ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67", "scope": "Source snapshot binding and complete six-outcome accounting."}
-  - {"path": "evidence/quality/category_homology/20261018T184203Z/mutations.json", "sha256": "c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5", "scope": "Designated critical faults only; outcomes for this file are enumerated below."}
-  - {"path": "evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json", "sha256": "86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1", "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."}
+  - {"path": "evidence/quality/category_homology/20261019T001337Z/baseline.json", "sha256": "c3e573cc1d12c2b341249ce35ace463edf23d2a9a3b9e8c6f557cad7fea51852", "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."}
+  - {"path": "evidence/quality/category_homology/20261019T001337Z/summary.json", "sha256": "251ac067807c2c82a9fb5f0d0be98abf1a04a0bf7a7b753d2926c8435fd891d4", "scope": "Source snapshot binding and complete six-outcome accounting."}
+  - {"path": "evidence/quality/category_homology/20261019T001337Z/mutations.json", "sha256": "68bff066d84c80c37c4441c2d0014315eea16bbfb3f2f9b3ff7c88c5653defdf", "scope": "Designated critical faults only; outcomes for this file are enumerated below."}
+  - {"path": "evidence/quality/category_homology/20261019T001039Z-metrics/receipt.json", "sha256": "090c5563bf12d6c201ee00f4f01a36a7a15aa6698288c2221d3284b5a5c79757", "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."}
+  - {"path": "evidence/quality/category_homology/20261019T001337Z/dependency_receipt.json", "sha256": "369951c3cf7d063e8e96688f0582c6b305423412e75ec4bfc45f41b8d08513bf", "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred."}
+  - {"path": "code/rust/quality/category_homology/assessments/metadata_current/abelian/abelian_category.json", "sha256": "d0f7fe3f4b2069637e72f3be50cba8efc0a6ef3ed9c53915ab9f108e14c21ebc", "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping."}
 verification:
   baseline_ok: true
   source_snapshot_unchanged: true
   compiled_scope: "shared scoped crate build"
-  local_mutant_ids: []
+  local_mutant_ids:
+    - "abelian-abelian_category-label-skip"
+    - "abelian-abelian_category-label-diagnostic"
+    - "abelian-abelian_category-reject-valid"
+    - "abelian-abelian_category-drop-new-label"
+    - "abelian-abelian_category-checklist-additive"
+    - "abelian-abelian_category-checklist-kernels"
+    - "abelian-abelian_category-checklist-cokernels"
+    - "abelian-abelian_category-claimed-checklist"
+  dependency_contents_stable: true
 mutation_accounting:
-  killed: 0
+  killed: 8
   survived: 0
   demonstrably_equivalent: 0
   invalid: 0
   inconclusive: 0
   unrun: 0
-  conservative_ratio: null
+  conservative_ratio: 1.0
 structure:
   tool: "syn 3.0.9 source AST"
   source_ast_parsed: true
   expanded_ast: false
-  physical_lines: 103
+  physical_lines: 104
   parsed_production_functions: 6
   max_production_ccn: 3
   cognitive_complexity_upper_bound: 2
@@ -59,7 +70,9 @@ structure:
   opaque_function_macros: []
   functions_exceeding_A: []
   scope: "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
-open_findings:
-  - "A complete five-gate semantic, failure and consumer audit has not been established for this file."
-  - "Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds."
-  - "External path dependency source contents have not received a separate origin/content attestation."
+open_findings: []
+assurance_limits:
+  - "The capability remains L2 raw metadata; no underlying category-theoretic law is certified."
+  - "Contracts remain pending by user request."
+  - "No A+, alternate compiler, mechanized Rust/MIR refinement, allocator totality, cross-repository authorship attestation or whole-workspace pass is claimed."
+  - "Current compiled consumer scope is the category package and the isolated source challenge harness."

@@ -2,6 +2,7 @@
 //! AuthorityEffect: None. Not PROVED / GlobalGreen.
 
 use serde::{Deserialize, Serialize};
+use omega_category_theory::errors::ArithmosError;
 
 /// Best-effort symmetric monoidal functor shell.
 /// Monoidal functor that preserves braiding (symmetry) up to claimed coherence.
@@ -47,18 +48,18 @@ impl SymmetricMonoidalFunctor {
         }
     }
 
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
         if self.domain_symmetric.is_empty() {
-            return Err("empty domain_symmetric".into());
+            return Err(ArithmosError::InvalidShape("empty domain_symmetric".into()));
         }
         if self.codomain_symmetric.is_empty() {
-            return Err("empty codomain_symmetric".into());
+            return Err(ArithmosError::InvalidShape("empty codomain_symmetric".into()));
         }
         if self.monoidal_functor_ref.is_empty() {
-            return Err("empty monoidal_functor_ref".into());
+            return Err(ArithmosError::InvalidShape("empty monoidal_functor_ref".into()));
         }
         Ok(())
     }

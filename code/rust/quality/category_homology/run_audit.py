@@ -67,9 +67,9 @@ def bind_dependencies(work, output):
     command = ["cargo","metadata","--offline","--quiet","--format-version","1"]
     started = time.monotonic()
     run = subprocess.run(command,cwd=work,text=True,capture_output=True)
-    metadata_path = output/"cargo_metadata.json"
+    metadata_path = output/"cargo-metadata.json"
     metadata_path.write_text(run.stdout,encoding="utf-8")
-    (output/"cargo_metadata_stderr.log").write_text(run.stderr,encoding="utf-8")
+    (output/"cargo-metadata.stderr.log").write_text(run.stderr,encoding="utf-8")
     if run.returncode != 0: raise RuntimeError("Offline dependency metadata failed; see retained stderr")
     metadata = json.loads(run.stdout)
     packages = metadata["packages"]
@@ -93,7 +93,7 @@ def bind_dependencies(work, output):
              "RUSTC","RUSTC_WRAPPER","RUSTC_WORKSPACE_WRAPPER","RUSTUP_TOOLCHAIN")
     record = {"AuthorityEffect":"None","command":command,"cwd":str(work),"exit_code":run.returncode,
               "elapsed_seconds":round(time.monotonic()-started,3),"metadata_sha256":digest(metadata_path),
-              "stderr_sha256":digest(output/"cargo_metadata_stderr.log"),
+              "stderr_sha256":digest(output/"cargo-metadata.stderr.log"),
               "dependency_manifest_sha256":digest(output/"dependency_manifest.json"),
               "harness_sha256":digest(output/"run_audit.py"),"tool_binaries":tool_binaries,
               "rustc_verbose":subprocess.check_output(["rustc","-vV"],text=True).strip(),
@@ -115,8 +115,17 @@ def execute(command, cwd, log, timeout=300, environment_overlay=None):
             timed_out = False
         except subprocess.TimeoutExpired:
             # Stop the entire compiler/test process tree before restoring a snapshot.
-            subprocess.run(["taskkill", "/PID", str(process.pid), "/T", "/F"], capture_output=True)
-            process.wait()
+            try:
+                subprocess.run(["taskkill", "/PID", str(process.pid), "/T", "/F"], capture_output=True, timeout=15)
+            except subprocess.TimeoutExpired:
+                pass
+            # Sandboxed taskkill can fail for our own Popen child. The retained
+            # process handle still permits terminating that exact child.
+            try:
+                process.wait(timeout=5)
+            except subprocess.TimeoutExpired:
+                process.kill()
+                process.wait(timeout=15)
             code, timed_out = None, True
     return {"command": command, "cwd": str(cwd), "exit_code": code,
             "timed_out": timed_out, "elapsed_seconds": round(time.monotonic()-start, 3),
@@ -137,6 +146,13 @@ def execute_build(command, cwd, log, timeout=900):
 
 def snapshot(destination, scope="all"):
     destination.mkdir(parents=True)
+    if scope == "counter":
+        folder = destination/"src/category_theory"
+        folder.mkdir(parents=True)
+        shutil.copyfile(RUST/"src/category_theory/bounded_counter.rs", folder/"bounded_counter.rs")
+        (destination/"Cargo.toml").write_text('[workspace]\nmembers=["."]\nresolver="2"\n[package]\nname="tfqm_bounded_counter_audit"\nversion="0.0.0"\nedition="2021"\n[profile.dev]\ndebug=0\n[profile.test]\ndebug=0\n',encoding="utf-8")
+        (destination/"src/lib.rs").write_text('pub mod category_theory { pub mod bounded_counter; }\n',encoding="utf-8")
+        return
     if scope == "category":
         shutil.copytree(RUST/"src/category_theory", destination/"src/category_theory", copy_function=shutil.copyfile)
         (destination/"Cargo.toml").write_text('[workspace]\nmembers = ["src/category_theory"]\nresolver = "2"\n[profile.dev]\ndebug = 0\n[profile.test]\ndebug = 0\n',encoding="utf-8")
@@ -172,6 +188,24 @@ def mutations():
     h = "homology/"
     c = "category_theory/"
     return [
+        ("BC01-clip", c+"bounded_counter.rs", "clipped: count.min(remaining)", "clipped: count"),
+        ("BC02-admission", c+"bounded_counter.rs", "if clipped > remaining {", "if false {"),
+        ("BC03-depth", c+"bounded_counter.rs", ".remaining\n            .checked_sub(1)", ".remaining\n            .checked_sub(0)"),
+        ("BC04-increment-overflow", c+"bounded_counter.rs", "if self.clipped >= next {", "if false {"),
+        ("BC05-decrement-guard", c+"bounded_counter.rs", ".clipped\n                .checked_sub(1)", ".clipped\n                .checked_sub(0)"),
+        ("BC06-first-error", c+"bounded_counter.rs", "        word.iter()\n            .try_fold", "        if word.len() > self.remaining { return Err(CounterBoundary::ContextExhausted); }\n        word.iter()\n            .try_fold"),
+        ("BC07-same-depth", c+"bounded_counter.rs", "if self.remaining != other.remaining {", "if false {"),
+        ("BC08-separator", c+"bounded_counter.rs", ".then(|| self.clipped.min(other.clipped) + 1)", ".then(|| self.clipped.min(other.clipped))"),
+        ("BC09-lazy-addition", c+"bounded_counter.rs", ".then(|| self.clipped.min(other.clipped) + 1)", ".then_some(self.clipped.min(other.clipped) + 1)"),
+        ("BC10-event-order", c+"bounded_counter.rs", "        word.iter()\n            .try_fold", "        word.iter().rev()\n            .try_fold"),
+        ("DW01-signed-overflow", c+"abelian/chain_complex_category.rs", "Some(self.degree_max.abs_diff(self.degree_min))", "Some((self.degree_max - self.degree_min) as u32)"),
+        ("DW02-inverted-span", c+"abelian/chain_complex_category.rs", "if self.degree_min <= self.degree_max {", "if true {"),
+        ("DW03-inverted-admission", c+"abelian/chain_complex_category.rs", "if self.degree_min > self.degree_max {", "if false {"),
+        ("DW04-zero-span", c+"abelian/chain_complex_category.rs", "Some(self.degree_max.abs_diff(self.degree_min))", "Some(0)"),
+        ("DW09-typed-error-unique", c+"abelian/chain_complex_category.rs", 'return Err(ArithmosError::InvalidShape("empty label".into()));', 'return Err(ArithmosError::LawViolation("empty label".into()));'),
+        ("DW06-bound-binding", c+"abelian/chain_complex_category.rs", "            degree_min,\n", "            degree_min: 0,\n"),
+        ("DW07-empty-label", c+"abelian/chain_complex_category.rs", "if self.label.is_empty() {", "if false {"),
+        ("DW08-note-preservation", c+"abelian/chain_complex_category.rs", "        self.notes.push(note.into());", ""),
         ("H01-basis", h+"graded_vector.rs", "if self.basis_id != other.basis_id {", "if false {"),
         ("H02-degree-hash", h+"hashing.rs", "hasher.update(&degree.to_le_bytes());", "hasher.update(&0i32.to_le_bytes());"),
         ("H03-basis-hash", h+"hashing.rs", "hasher.update(basis.as_bytes());", 'hasher.update(b"fixed");'),
@@ -198,6 +232,7 @@ def mutations():
         ("RK06-empty-fast-path", h+"rank_certificate.rs", "if matrix.rows() == 0 || matrix.cols() == 0 {", "if false {"),
         ("RK07-typed-inverse", h+"rank_certificate.rs", ".map_err(|source| HomologicalError::RankInverseFailed { source })", ".map_err(|source| HomologicalError::UnsupportedOperation(source.to_string()))"),
         ("RK09-producer-domain-valid", h+"rank_certificate.rs", "    super::exact_scalar::admit_matrix(matrix)?;\n    if matrix.rows()", "    if matrix.rows()"),
+        ("RK10-public-replay-domain", h+"rank_certificate.rs", "        // Canonical input admission precedes hash normalization.\n        super::exact_scalar::admit_matrix(matrix)?;\n", ""),
         ("C01-functor-composition", c+"cat_functor.rs", "        candidate.check_compositions()?;", ""),
         ("C02-functor-domain", c+"cat_functor.rs", "        candidate.check_maps()?;", ""),
         ("C03-functor-identity", c+"cat_functor.rs", "        candidate.check_identities()?;", ""),
@@ -277,7 +312,7 @@ def clear_debug_outputs(build, work):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--mutations", action="store_true")
-    parser.add_argument("--scope", choices=("all","category","homology"), default="all")
+    parser.add_argument("--scope", choices=("all","category","homology","counter"), default="all")
     parser.add_argument("--mutation-prefix", default="")
     parser.add_argument("--build-timeout", type=int, default=900, help="Cargo process deadline in seconds (default: 900)")
     args = parser.parse_args()
@@ -301,20 +336,23 @@ def main():
     build = work / "target"
     def test(package, name, challenge=False):
         command = ["cargo","test","--target-dir",str(build),"-p",package,"--lib","--offline","--locked","--quiet"]
-        command.append("l5a_challenges" if challenge else ("homology" if package.endswith("audit") else ""))
+        command.append("l5a_challenges" if challenge else ("homology" if package == "tfqm_category_homology_audit" else ""))
         try:
             return execute_build([x for x in command if x], work, output / (name+".log"), timeout=args.build_timeout)
         finally:
             clear_debug_outputs(build, work)
-    packages = [] if args.scope == "homology" else [("tfqm_category_theory","category")]
-    if args.scope != "category": packages.append(("tfqm_category_homology_audit","homology"))
+    if args.scope == "counter":
+        packages = [("tfqm_bounded_counter_audit","counter")]
+    else:
+        packages = [] if args.scope == "homology" else [("tfqm_category_theory","category")]
+        if args.scope != "category": packages.append(("tfqm_category_homology_audit","homology"))
     baselines = [test(package,name+"-baseline") for package,name in packages]
     write_json(output / "baseline.json", {"tools":tools,"runs":baselines})
     print("baseline exits:",[r["exit_code"] for r in baselines],flush=True)
     if args.mutations:
         records = [{"id":i,"path":p,"outcome":"unrun","needle":a,"replacement":b}
                    for i,p,a,b in mutations() if i.startswith(args.mutation_prefix)
-                   and (args.scope == "all" or p.startswith("homology/" if args.scope == "homology" else "category_theory/"))]
+                   and (p == "category_theory/bounded_counter.rs" if args.scope == "counter" else args.scope == "all" or p.startswith("homology/" if args.scope == "homology" else "category_theory/"))]
         write_json(output / "mutations.json", records)
     baseline_ok = all(r["exit_code"] == 0 for r in baselines)
     for record in records if baseline_ok else []:
@@ -339,7 +377,7 @@ def main():
         try:
             path.write_bytes(mutant.encode("utf-8"))
             record["candidate_sha256"] = digest(path)
-            package = "tfqm_category_theory" if record["path"].startswith("category_theory/") else "tfqm_category_homology_audit"
+            package = "tfqm_bounded_counter_audit" if args.scope == "counter" else "tfqm_category_theory" if record["path"].startswith("category_theory/") else "tfqm_category_homology_audit"
             run = test(package,record["id"])
             log = (ROOT / run["log"]).read_text(encoding="utf-8",errors="replace")
             if run.get("resource_refused"):
@@ -375,8 +413,11 @@ def main():
              "all_files_L5A":False,"score_token":None,
              "scope":"Designated critical faults only; no inference of a whole-directory grade.",
              "source_scope":args.scope,"mutation_prefix":args.mutation_prefix}
+    if args.scope == "counter":
+        final["compiled_subjects"] = ["code/rust/src/category_theory/bounded_counter.rs"]
+        final["compiled_scope"] = "Isolated std-only bounded_counter source module; not the whole category package"
     write_json(output / "summary.json",final)
-    shutil.copy2(work / "Cargo.lock", output / "snapshot_cargo.lock")
+    shutil.copy2(work / "Cargo.lock", output / "snapshot-Cargo.lock")
     print(json.dumps(final,indent=2),flush=True)
     print("Receipt:",output,flush=True)
     # Only this run's derived binaries are disposable; preserve sources and logs.

@@ -1,0 +1,23 @@
+
+running 4 tests
+test mutant_14::schema_challenge::labels_are_literal_not_mathematical_certificates ... ok
+test mutant_14::tests::validate_ok ... ok
+test mutant_14::tests::validate_rejects_empty ... ok
+test mutant_14::schema_challenge::exhaustive_required_fields ... FAILED
+
+failures:
+
+---- mutant_14::schema_challenge::exhaustive_required_fields stdout ----
+
+thread 'mutant_14::schema_challenge::exhaustive_required_fields' (21092) panicked at metadata_challenge_7\mutant_14.rs:134:21:
+assertion `left == right` failed
+  left: "wrong field diagnostic"
+ right: "empty right_unitor_ref"
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    mutant_14::schema_challenge::exhaustive_required_fields
+
+test result: FAILED. 3 passed; 1 failed; 0 ignored; 0 measured; 268 filtered out; finished in 0.00s
+

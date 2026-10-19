@@ -4,6 +4,7 @@
 //! A discrete fibration p: E → B has unique cartesian lifts of morphisms
 //! into each object of E (equivalently: fibers are discrete categories).
 
+use omega_category_theory::errors::ArithmosError;
 use serde::{Deserialize, Serialize};
 
 /// Best-effort discrete fibration shell p: total → base.
@@ -42,19 +43,19 @@ impl DiscreteFibrationShell {
         }
     }
 
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
         if self.total_label.is_empty() {
-            return Err("empty total_label".into());
+            return Err(ArithmosError::InvalidShape("empty total_label".into()));
         }
         if self.base_label.is_empty() {
-            return Err("empty base_label".into());
+            return Err(ArithmosError::InvalidShape("empty base_label".into()));
         }
         for (i, (t, b)) in self.object_map.iter().enumerate() {
             if t.is_empty() || b.is_empty() {
-                return Err(format!("empty object_map entry at index {i}"));
+                return Err(ArithmosError::InvalidShape(format!("empty object_map entry at index {i}")));
             }
         }
         Ok(())

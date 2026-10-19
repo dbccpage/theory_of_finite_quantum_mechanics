@@ -1,0 +1,214 @@
+{
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/category_theory/context_reflection.rs",
+    "sha256": "80e89b85ee05567c04587f49521ec49e42524a05e5a4414238642b1768ecb476",
+    "language": "Rust"
+  },
+  "symbol_map": {
+    "ContextSystem::new": {
+      "line": 37,
+      "signature": "pub fn new(\n        profiles: Vec<usize>,\n        transitions: Vec<Vec<usize>>,\n        context_count: usize,\n    ) -> Result<Self, ContextError>",
+      "body": "{\n        Ok(Self {\n            model: FiniteMoore::new(profiles, transitions, context_count)\n                .map_err(ContextError::Carrier)?,\n        })\n    }",
+      "obligation": "Delegate to FiniteMoore admission: nonempty carrier, exactly one total in-range action row per state with the declared context count. Own the admitted model or return Carrier with the original typed error."
+    },
+    "state_count": {
+      "line": 47,
+      "signature": "pub fn state_count(&self) -> usize",
+      "body": "{\n        self.model.state_count()\n    }",
+      "obligation": "Return the positive admitted carrier size."
+    },
+    "context_count": {
+      "line": 50,
+      "signature": "pub fn context_count(&self) -> usize",
+      "body": "{\n        self.model.input_count()\n    }",
+      "obligation": "Return the fixed context alphabet size; zero is supported."
+    },
+    "profiles": {
+      "line": 53,
+      "signature": "pub fn profiles(&self) -> &[usize]",
+      "body": "{\n        self.model.reports()\n    }",
+      "obligation": "Borrow the exact stored numeric profile labels. Equality of labels defines the relation; sparse labels are legal."
+    },
+    "transitions": {
+      "line": 56,
+      "signature": "pub fn transitions(&self) -> &[Vec<usize>]",
+      "body": "{\n        self.model.transitions()\n    }",
+      "obligation": "Borrow the admitted total action table without mutation."
+    },
+    "related": {
+      "line": 59,
+      "signature": "pub fn related(&self, x: usize, y: usize) -> bool",
+      "body": "{\n        x < self.state_count() && y < self.state_count() && self.profiles()[x] == self.profiles()[y]\n    }",
+      "obligation": "Check both state indices before profile indexing, then compare literal profile labels. Any out-of-range state returns false."
+    },
+    "check_witness": {
+      "line": 62,
+      "signature": "pub fn check_witness(&self, witness: &ContextWitness) -> bool",
+      "body": "{\n        let (x, y, c) = (witness.left, witness.right, witness.context);\n        c < self.context_count()\n            && self.related(x, y)\n            && !self.related(self.transitions()[x][c], self.transitions()[y][c])\n    }",
+      "obligation": "Validate the context and related endpoints before action indexing; accept precisely a related pair whose action images are unrelated. Raw witness records confer no certificate status."
+    },
+    "obstruction": {
+      "line": 68,
+      "signature": "pub fn obstruction(&self) -> Option<ContextWitness>",
+      "body": "{\n        for x in 0..self.state_count() {\n            for y in 0..x {\n                if let Some(witness) = self.obstruction_for_pair(x, y) {\n                    return Some(witness);\n                }\n            }\n        }\n        None\n    }",
+      "obligation": "Search x ascending, y ascending below x, then context ascending. Return the first valid obstruction or None exactly for a congruent profile relation."
+    },
+    "obstruction_for_pair": {
+      "line": 78,
+      "signature": "fn obstruction_for_pair(&self, x: usize, y: usize) -> Option<ContextWitness>",
+      "body": "{\n        (0..self.context_count()).find_map(|context| {\n            let witness = ContextWitness {\n                left: x,\n                right: y,\n                context,\n            };\n            self.check_witness(&witness).then_some(witness)\n        })\n    }",
+      "obligation": "For privately valid endpoints, search contexts ascending and return the first checked obstruction. The helper preserves the original witness order."
+    },
+    "is_congruent": {
+      "line": 88,
+      "signature": "pub fn is_congruent(&self) -> bool",
+      "body": "{\n        self.obstruction().is_none()\n    }",
+      "obligation": "Return true exactly when no obstruction exists."
+    },
+    "ContextHom::new": {
+      "line": 101,
+      "signature": "pub fn new(\n        source: &'a ContextSystem,\n        target: &'a ContextSystem,\n        map: Vec<usize>,\n    ) -> Result<Self, ContextError>",
+      "body": "{\n        if source.context_count() != target.context_count() {\n            return Err(ContextError::ContextCountMismatch);\n        }\n        if map.len() != source.state_count() || map.iter().any(|&v| v >= target.state_count()) {\n            return Err(ContextError::InvalidMap);\n        }\n        for x in 0..source.state_count() {\n            for y in 0..source.state_count() {\n                if source.related(x, y) && !target.related(map[x], map[y]) {\n                    return Err(ContextError::ProfileNotPreserved);\n                }\n            }\n            for c in 0..source.context_count() {\n                if map[source.transitions()[x][c]] != target.transitions()[map[x]][c] {\n                    return Err(ContextError::ActionNotPreserved);\n                }\n            }\n        }\n        Ok(Self {\n            source,\n            target,\n            map,\n        })\n    }",
+      "obligation": "Check context-count equality first, then map length and target ranges. For each source x, check every ordered profile pair before its contexts. Reject the first ProfileNotPreserved or ActionNotPreserved in this original order. Privately own only a fully admitted map and immutable borrowed endpoints."
+    },
+    "ContextHom::source": {
+      "line": 130,
+      "signature": "pub fn source(&self) -> &ContextSystem",
+      "body": "{\n        self.source\n    }",
+      "obligation": "Borrow the exact immutable source endpoint."
+    },
+    "target": {
+      "line": 133,
+      "signature": "pub fn target(&self) -> &ContextSystem",
+      "body": "{\n        self.target\n    }",
+      "obligation": "Borrow the exact immutable target endpoint."
+    },
+    "map": {
+      "line": 136,
+      "signature": "pub fn map(&self) -> &[usize]",
+      "body": "{\n        &self.map\n    }",
+      "obligation": "Borrow the admitted state map without mutable access."
+    },
+    "identity": {
+      "line": 139,
+      "signature": "pub fn identity(system: &'a ContextSystem) -> Result<Self, ContextError>",
+      "body": "{\n        Self::new(system, system, (0..system.state_count()).collect())\n    }",
+      "obligation": "Construct the identity carrier map through full arrow admission; exact unit laws follow from pointwise identity."
+    },
+    "then": {
+      "line": 142,
+      "signature": "pub fn then(&self, next: &Self) -> Result<Self, ContextError>",
+      "body": "{\n        if self.target != next.source {\n            return Err(ContextError::WrongDomain);\n        }\n        Self::new(\n            self.source,\n            next.target,\n            self.map.iter().map(|&v| next.map[v]).collect(),\n        )\n    }",
+      "obligation": "Require exact value equality of middle objects, including numeric profiles, action table, and context count. Clone-equal objects are accepted. Compose next.map[self.map[x]] and re-admit every arrow law; otherwise WrongDomain."
+    },
+    "reflects_profiles": {
+      "line": 152,
+      "signature": "pub fn reflects_profiles(&self) -> bool",
+      "body": "{\n        (0..self.source.state_count()).all(|x| {\n            (0..self.source.state_count()).all(|y| {\n                !self.target.related(self.map[x], self.map[y]) || self.source.related(x, y)\n            })\n        })\n    }",
+      "obligation": "For every ordered source pair, test that related images imply related originals. This reflects profile equivalence and does not imply state injectivity."
+    },
+    "canonicalize": {
+      "line": 168,
+      "signature": "fn canonicalize(labels: &[usize]) -> Vec<usize>",
+      "body": "{\n    let mut representatives = BTreeMap::new();\n    labels\n        .iter()\n        .map(|label| {\n            let fresh = representatives.len();\n            *representatives.entry(*label).or_insert(fresh)\n        })\n        .collect()\n}",
+      "obligation": "Assign dense class IDs in first occurrence order using BTreeMap entries keyed by the original label. Preserve exactly the equality kernel, including sparse usize::MAX labels."
+    },
+    "merge": {
+      "line": 178,
+      "signature": "fn merge(labels: &mut [usize], x: usize, y: usize)",
+      "body": "{\n    let from = labels[y];\n    let to = labels[x];\n    for label in labels {\n        if *label == from {\n            *label = to;\n        }\n    }\n}",
+      "obligation": "Relabel every occurrence of the class containing y by the current class containing x. Preserve equivalence and coarsen only; valid private indices come from admitted actions."
+    },
+    "merge_round": {
+      "line": 188,
+      "signature": "fn merge_round(source: &ContextSystem, old: &[usize], labels: &mut [usize])",
+      "body": "{\n    for x in 0..source.state_count() {\n        for y in 0..x {\n            if old[x] == old[y] {\n                merge_pair(source, x, y, labels);\n            }\n        }\n    }\n}",
+      "obligation": "Visit every old-related unordered pair in original x/y order and merge its action images. Use the fixed old snapshot throughout the round; current labels determine only unions."
+    },
+    "merge_pair": {
+      "line": 198,
+      "signature": "fn merge_pair(source: &ContextSystem, x: usize, y: usize, labels: &mut [usize])",
+      "body": "{\n    for c in 0..source.context_count() {\n        merge(\n            labels,\n            source.transitions()[x][c],\n            source.transitions()[y][c],\n        );\n    }\n}",
+      "obligation": "For each context ascending, merge the two admitted action-image classes. No payload clone or allocation occurs in this helper."
+    },
+    "CongruenceReflection::new": {
+      "line": 211,
+      "signature": "pub fn new(source: &ContextSystem) -> Result<Self, ContextError>",
+      "body": "{\n        let mut labels = canonicalize(source.profiles());\n        let mut chain = vec![labels.clone()];\n        loop {\n            let old = labels.clone();\n            merge_round(source, &old, &mut labels);\n            labels = canonicalize(&labels);\n            if labels == old {\n                break;\n            }\n            chain.push(labels.clone());\n        }\n        let completed = ContextSystem::new(\n            labels,\n            source.transitions().to_vec(),\n            source.context_count(),\n        )?;\n        Ok(Self {\n            source: source.clone(),\n            completed,\n            chain,\n        })\n    }",
+      "obligation": "Start from the canonical original relation. Repeatedly close all old-related action pairs and canonicalize. Append only strict changes; each strict change merges classes, so at most n-1 strict rounds occur. Build the completed system with exactly the original actions and context count, and own the source clone and canonical chain."
+    },
+    "CongruenceReflection::source": {
+      "line": 234,
+      "signature": "pub fn source(&self) -> &ContextSystem",
+      "body": "{\n        &self.source\n    }",
+      "obligation": "Borrow the immutable original source clone."
+    },
+    "completed": {
+      "line": 237,
+      "signature": "pub fn completed(&self) -> &ContextSystem",
+      "body": "{\n        &self.completed\n    }",
+      "obligation": "Borrow the immutable completed system with the least congruent coarsening and unchanged actions/carrier."
+    },
+    "chain": {
+      "line": 240,
+      "signature": "pub fn chain(&self) -> &[Vec<usize>]",
+      "body": "{\n        &self.chain\n    }",
+      "obligation": "Borrow the canonical initial profile and each strict round; omit the repeated stable final round."
+    },
+    "unit": {
+      "line": 243,
+      "signature": "pub fn unit(&self) -> Result<ContextHom<'_>, ContextError>",
+      "body": "{\n        ContextHom::new(\n            &self.source,\n            &self.completed,\n            (0..self.source.state_count()).collect(),\n        )\n    }",
+      "obligation": "Admit the identity carrier map from original source to completed system. The original equivalence is included in its congruent closure."
+    },
+    "factor": {
+      "line": 253,
+      "signature": "pub fn factor<'a>(&'a self, arrow: &ContextHom<'a>) -> Result<ContextHom<'a>, ContextError>",
+      "body": "{\n        if arrow.source != &self.source {\n            return Err(ContextError::WrongDomain);\n        }\n        if !arrow.target.is_congruent() {\n            return Err(ContextError::TargetNotCongruent);\n        }\n        ContextHom::new(&self.completed, arrow.target, arrow.map.clone())\n    }",
+      "obligation": "Require exact original source equality, then an actually congruent target. Re-admit the same owned map from completed source to that target. Return WrongDomain or TargetNotCongruent before admission as specified."
+    },
+    "is_factor": {
+      "line": 264,
+      "signature": "pub fn is_factor(&self, arrow: &ContextHom<'_>, candidate: &ContextHom<'_>) -> bool",
+      "body": "{\n        arrow.source == &self.source\n            && arrow.target.is_congruent()\n            && candidate.source == &self.completed\n            && candidate.target == arrow.target\n            && candidate.map == arrow.map\n    }",
+      "obligation": "For typed already-admitted arrows, require the original source, congruent target, completed candidate source, identical candidate target, and identical carrier map. These are precisely the comma triangle conditions for an identity-carrier unit; accepted factors are unique."
+    },
+    "reflect_arrow": {
+      "line": 274,
+      "signature": "pub fn reflect_arrow<'a>(\n    source: &'a CongruenceReflection,\n    target: &'a CongruenceReflection,\n    arrow: &ContextHom<'_>,\n) -> Result<ContextHom<'a>, ContextError>",
+      "body": "{\n    if arrow.source != source.source() || arrow.target != target.source() {\n        return Err(ContextError::WrongDomain);\n    }\n    ContextHom::new(source.completed(), target.completed(), arrow.map.clone())\n}",
+      "obligation": "Require exact original endpoints against both reflections before re-admitting the same map between completed objects. Incorrect endpoints return WrongDomain; saturation preservation establishes success for admitted matching arrows."
+    }
+  },
+  "invariant_argument": [
+    "ContextSystem privately owns an admitted FiniteMoore with nonempty carrier and total range-checked actions. ContextHom privately owns its map and borrows immutable admitted endpoints. CongruenceReflection privately owns source, completion and chain. No public unchecked constructor, mutable endpoint accessor, Default or Deserialize bypass exists. Clone preserves admitted values. Raw ContextWitness fields are always rechecked.",
+    "Numeric profile equality is an equivalence relation, and each context is a fixed labelled total action. Arrow admission preserves that equivalence and commutes with every action. Rust rejects cross-alphabet arrows before map admission. Middle object equality is exact value equality, not pointer identity or isomorphism. The checked identity and composition implement the category with pointwise maps; the Lean model supplies an actual Mathlib Category at a fixed context type.",
+    "Canonicalization preserves precisely the input equality kernel and chooses class IDs by first occurrence. Each merge unions whole current classes, never splits them. Each round uses the previous relation to choose action constraints and monotonically unions current classes. Any congruent upper relation contains every merge by induction, proving leastness. At a stable canonical vector every related pair has related action images, proving congruence. A strict round decreases the finite number of blocks; canonical IDs prevent spurious label-only changes, giving at most n-1 strict rounds.",
+    "The completed object retains the same carrier, actions and context labels. Its profile relation is the least action-stable equivalence containing the original. The identity carrier unit is therefore an admitted arrow. For any admitted map to a congruent target, action compatibility transports every saturation generator and equivalence closure; thus the same map factors through completion. Since the unit is the identity on the carrier, the triangle fixes every factor value and yields uniqueness. reflect_arrow transports saturation and preserves identities and composition. The Lean model proves the actual reflector functor, natural unit, factor equivalence, its naturality and reflection idempotence.",
+    "The congruence reflection can merge previously distinct profiles. It is not a report-reflecting repair. A profile-reflecting arrow into a congruent target would force the original relation to be congruent; the explicit three-state noncongruence example therefore has no such arrow. Reflection means equality-kernel reflection, without any state-injectivity claim. The proof unit_reflects_iff records this boundary.",
+    "All public index paths have range checks or originate from admitted arrows and model tables. check_witness short circuits before indexing. ContextHom::new preserves the original per-x profile-then-action error priority, rather than collecting all profile failures first. All failure variants propagate as documented. No caller-supplied congruence or factor flag is trusted. Error order, canonical chain and endpoint distinctions are independently tested.",
+    "Canonicalization uses O(n log n) map work and O(n) storage. A conservative closure bound is O(n^4 k + n^2 log n), including up to n strict/final rounds, n squared pairs, k actions and an n-element class relabel scan. Stored chain uses O(n squared), with owned action tables O(nk). No explicit work or heap budget is promised. Required snapshots, owned source/actions, output maps and chain rows are retained; merge helpers allocate no per-pair buffers. Native small models and AST metrics do not establish a resource bound for arbitrary inputs.",
+    "Every one of the 29 production function bodies is mapped. The selected source has maximum calibrated CCN 10, cognitive 15 and nesting 3. Concrete standard-library constructors, iterator closures, indexing and derived Clone are reviewed; the AST tool does not expand library implementations or prove Rust/MIR. Formal proofs concern the abstract categorical model; source-to-model correspondence is a separate review obligation."
+  ],
+  "consumer_review": [
+    "No active completed assessment referenced this source before the edit. Public signatures and result/error types are preserved. The local category catalog and umbrella reexport remain unchanged. Actual FiniteMoore source and its completed assessment are pinned. Native replay passes 459 original category tests and three independent reflection controls.",
+    "WDP observer_world_adapter, legacy_observer_adapters, coda/diagnostic_routing and derivation_controls/test_finite_routing reference omega_category_theory; the pinned WDP Cargo manifest resolves that name to the external the_symbol_game provider. These contexts are reviewed, but this replay does not test WDP, that external provider or the entire workspace.",
+    "An independent oracle enumerates equivalence relations and intersects congruent upper bounds, rather than running the production merge closure. It checks 7,626 system cases, including zero contexts and sparse maximum labels. All 1,024 map-admission cases over 16 two-state systems are checked against direct laws, with all tested admitted composable pairs, identities, reflected maps, naturality and unique factors. Frozen original source separately checks exact chains, witnesses and typed error order."
+  ],
+  "assurance_limits": [
+    "Contracts pending; AuthorityEffect: None.",
+    "The abstract fixed-context Mathlib category and universal saturation proof are separate from Rust compilation, finite loop termination refinement and canonical chain order. No extracted Rust or MIR theorem is claimed.",
+    "Rust objects have nonempty finite carriers and dynamic finite context counts; the proof uses a fixed abstract context type. Cross-alphabet arrows are rejected.",
+    "Completion coarsens the profile relation and can erase distinctions; it confers no authority or profile-reflecting repair.",
+    "Allocator availability, compiler and standard libraries remain in the trust boundary. No arbitrary resource budget or external WDP/omega/whole-workspace result is inferred.",
+    "The designated 30 faults and finite enumeration are scoped native evidence; unsuccessful proof attempts remain retained without proof credit."
+  ],
+  "metrics": {
+    "receipt": "evidence/quality/category_homology/20261019T231454Z-metrics/receipt.json",
+    "functions": 29,
+    "max_ccn": 10,
+    "max_cognitive": 15,
+    "max_nesting": 3
+  }
+}

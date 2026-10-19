@@ -1,0 +1,63 @@
+
+running 12 tests
+test homology::degree_repair_replay_22::l5a_challenges::rank_inequality_does_not_replace_the_coboundary_law ... ok
+test homology::degree_repair_replay_22::l5a_challenges::graph_constructor_rejects_each_invalid_incidence_class ... ok
+test homology::degree_repair_replay_22::l5a_challenges::map_admission_and_application_reject_wrong_degrees ... ok
+test homology::degree_repair_replay_22::l5a_challenges::arithmetic_binds_basis_degree_and_vector_kind ... ok
+test homology::degree_repair_replay_22::l5a_challenges::serde_cannot_bypass_identifier_provenance_or_simplex_admission ... ok
+test homology::degree_repair_replay_22::l5a_challenges::unchecked_rationals_and_impossible_allocation_are_refused ... ok
+test homology::degree_repair_replay_22::l5a_challenges::all_two_by_two_ternary_matrix_ranks_match_determinant_oracle ... FAILED
+test homology::degree_repair_replay_22::l5a_challenges::graph_betti_numbers_match_combinatorial_component_oracle ... FAILED
+test homology::degree_repair_replay_22::l5a_challenges::rank_certificates_reject_independently_forged_identities_and_binding ... FAILED
+test homology::degree_repair_replay_22::l5a_challenges::exact_rank_fixture_exceeds_fixed_width_and_covers_empty_shapes ... FAILED
+test homology::degree_repair_replay_22::l5a_challenges::serialized_carrier_is_revalidated_and_hash_bound ... ok
+test homology::degree_repair_replay_22::l5a_challenges::simplicial_limits_roundtrip_and_known_topology ... FAILED
+
+failures:
+
+---- homology::degree_repair_replay_22::l5a_challenges::all_two_by_two_ternary_matrix_ranks_match_determinant_oracle stdout ----
+
+thread 'homology::degree_repair_replay_22::l5a_challenges::all_two_by_two_ternary_matrix_ranks_match_determinant_oracle' (40520) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\dr\261019T144113\src\homology\q\context_22\l5a_challenges.rs:202:9:
+assertion `left == right` failed
+  left: 0
+ right: 1
+
+---- homology::degree_repair_replay_22::l5a_challenges::graph_betti_numbers_match_combinatorial_component_oracle stdout ----
+
+thread 'homology::degree_repair_replay_22::l5a_challenges::graph_betti_numbers_match_combinatorial_component_oracle' (40256) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\dr\261019T144113\src\homology\q\context_22\l5a_challenges.rs:222:9:
+assertion `left == right` failed
+  left: 1
+ right: 0
+
+---- homology::degree_repair_replay_22::l5a_challenges::rank_certificates_reject_independently_forged_identities_and_binding stdout ----
+
+thread 'homology::degree_repair_replay_22::l5a_challenges::rank_certificates_reject_independently_forged_identities_and_binding' (17196) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\dr\261019T144113\src\homology\q\context_22\l5a_challenges.rs:142:5:
+assertion `left == right` failed
+  left: 0
+ right: 1
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- homology::degree_repair_replay_22::l5a_challenges::exact_rank_fixture_exceeds_fixed_width_and_covers_empty_shapes stdout ----
+
+thread 'homology::degree_repair_replay_22::l5a_challenges::exact_rank_fixture_exceeds_fixed_width_and_covers_empty_shapes' (37716) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\dr\261019T144113\src\homology\q\context_22\l5a_challenges.rs:179:5:
+assertion `left == right` failed
+  left: 0
+ right: 2
+
+---- homology::degree_repair_replay_22::l5a_challenges::simplicial_limits_roundtrip_and_known_topology stdout ----
+
+thread 'homology::degree_repair_replay_22::l5a_challenges::simplicial_limits_roundtrip_and_known_topology' (37472) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\dr\261019T144113\src\homology\q\context_22\l5a_challenges.rs:253:5:
+assertion `left == right` failed
+  left: [3, 3, 1]
+ right: [1, 0, 0]
+
+
+failures:
+    homology::degree_repair_replay_22::l5a_challenges::all_two_by_two_ternary_matrix_ranks_match_determinant_oracle
+    homology::degree_repair_replay_22::l5a_challenges::exact_rank_fixture_exceeds_fixed_width_and_covers_empty_shapes
+    homology::degree_repair_replay_22::l5a_challenges::graph_betti_numbers_match_combinatorial_component_oracle
+    homology::degree_repair_replay_22::l5a_challenges::rank_certificates_reject_independently_forged_identities_and_binding
+    homology::degree_repair_replay_22::l5a_challenges::simplicial_limits_roundtrip_and_known_topology
+
+test result: FAILED. 7 passed; 5 failed; 0 ignored; 0 measured; 3379 filtered out; finished in 0.00s
+

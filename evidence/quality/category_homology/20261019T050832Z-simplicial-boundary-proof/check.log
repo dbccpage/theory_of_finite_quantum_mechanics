@@ -1,0 +1,19 @@
+C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\quality\category_homology\proofs\SimplicialBoundary.lean:34:2: error: Tactic `rfl` failed: equality lhs
+  product (pair.2.castLT ⋯) pair.1.succ * ((-1) ^ ↑pair.1 * (-1) ^ ↑pair.2)
+is not definitionally equal to rhs
+  product (pair.2.castLT ⋯) pair.1.succ * ((-1) ^ ↑pair.2 * (-1) ^ ↑pair.1)
+
+n : ℕ
+product : Fin (n + 2) → Fin (n + 3) → ℚ
+faces :
+  ∀ (pair : Fin (n + 2) × Fin (n + 3)) (order : ↑pair.2 ≤ ↑pair.1),
+    product pair.1 pair.2 = product (swapFace pair order).1 (swapFace pair order).2
+pair : Fin (n + 2) × Fin (n + 3)
+order : ↑pair.2 ≤ ↑pair.1
+⊢ product (pair.2.castLT ⋯) pair.1.succ * ((-1) ^ ↑pair.1 * (-1) ^ ↑pair.2) =
+    product (pair.2.castLT ⋯) pair.1.succ * ((-1) ^ ↑pair.2 * (-1) ^ ↑pair.1)
+'TFQM.SimplicialBoundary.paired_term' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'TFQM.SimplicialBoundary.pair_cancellation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TFQM.SimplicialBoundary.signed_faces_cancel' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'TFQM.SimplicialBoundary.mapMatrix_comp' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TFQM.SimplicialBoundary.mapMatrix_identity' depends on axioms: [propext, Classical.choice, Quot.sound]

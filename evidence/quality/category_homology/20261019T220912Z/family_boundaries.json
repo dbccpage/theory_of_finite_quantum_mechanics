@@ -1,0 +1,146 @@
+{
+  "AuthorityEffect": "None",
+  "scope": "Literal lifecycle/severity parsers,raw constructors/name maps and stable ordered unique active-target observations;no category/functor-law or agent execution claim.",
+  "mutation_names": [
+    "wrong-critical-parse",
+    "wrong-high-parse",
+    "wrong-medium-parse",
+    "trim-severity",
+    "wrong-severity-display",
+    "wildcard-case",
+    "no-status-trim",
+    "exists-not-active",
+    "consolidated-is-deprecated",
+    "special-deprecation-target",
+    "unknown-exists",
+    "allow-source-target",
+    "allow-inactive-target",
+    "allow-duplicate-target",
+    "wrong-target-payload",
+    "inactive-source-allowed",
+    "reverse-rules",
+    "reverse-active-candidates",
+    "reverse-explicit-candidates",
+    "drop-last-rule",
+    "wrong-runtime-id",
+    "wrong-constraint-map-key",
+    "wrong-propagation-map-key",
+    "constraint-query-other-map",
+    "propagation-query-other-map",
+    "runtime-wrapper-wrong-source"
+  ],
+  "records": [
+    {
+      "family": "",
+      "path": "code/rust/src/category_theory/family_category.rs",
+      "sha256": "edb7d527b67b102a5b06876106d9ef8a5a4fab796cb1c45723c54716571ac42c",
+      "parent_aliases": [],
+      "faults": [
+        [
+          "\"CRITICAL\" => Severity::Critical",
+          "\"CRITICAL\" => Severity::Low"
+        ],
+        [
+          "\"HIGH\" => Severity::High",
+          "\"HIGH\" => Severity::Medium"
+        ],
+        [
+          "\"MEDIUM\" => Severity::Medium",
+          "\"MEDIUM\" => Severity::High"
+        ],
+        [
+          "match s.to_uppercase().as_str()",
+          "match s.trim().to_uppercase().as_str()"
+        ],
+        [
+          "Severity::Critical => write!(f, \"CRITICAL\")",
+          "Severity::Critical => write!(f, \"LOW\")"
+        ],
+        [
+          "self.targets.iter().any(|t| t == \"All members\")",
+          "self.targets.iter().any(|t| t == \"all members\")"
+        ],
+        [
+          "let s = s.trim();",
+          "let s = s;"
+        ],
+        [
+          "matches!(self, MemberStatus::Exists)",
+          "matches!(self, MemberStatus::Planned)"
+        ],
+        [
+          "        } else if let Some(target) = s.strip_prefix(\"CONSOLIDATED -> \") {\n            MemberStatus::Consolidated {",
+          "        } else if let Some(target) = s.strip_prefix(\"CONSOLIDATED -> \") {\n            MemberStatus::Deprecated {"
+        ],
+        [
+          "s.strip_prefix(\"DEPRECATED -> consolidated into \")",
+          "s.strip_prefix(\"DEPRECATED -> \")"
+        ],
+        [
+          "        } else {\n            MemberStatus::Planned\n        }",
+          "        } else {\n            MemberStatus::Exists\n        }"
+        ],
+        [
+          "if target != source && active.contains(target) && seen.insert(target) {",
+          "if active.contains(target) && seen.insert(target) {"
+        ],
+        [
+          "if target != source && active.contains(target) && seen.insert(target) {",
+          "if target != source && seen.insert(target) {"
+        ],
+        [
+          "if target != source && active.contains(target) && seen.insert(target) {",
+          "if target != source && active.contains(target) {"
+        ],
+        [
+          "targets.push(target.to_owned());",
+          "targets.push(source.to_owned());"
+        ],
+        [
+          "if !self.contains_active(string_id) {",
+          "if false && !self.contains_active(string_id) {"
+        ],
+        [
+          "for rule in &self.propagation_rules {",
+          "for rule in self.propagation_rules.iter().rev() {"
+        ],
+        [
+          "collect_targets(active_ids.iter().copied(), string_id",
+          "collect_targets(active_ids.iter().rev().copied(), string_id"
+        ],
+        [
+          "collect_targets(rule.targets.iter().map(String::as_str), string_id",
+          "collect_targets(rule.targets.iter().rev().map(String::as_str), string_id"
+        ],
+        [
+          "for rule in &self.propagation_rules {",
+          "for rule in self.propagation_rules.iter().take(self.propagation_rules.len().saturating_sub(1)) {"
+        ],
+        [
+          "        &self.family.id",
+          "        &self.family.description"
+        ],
+        [
+          ".entry(constraint_id.to_string())",
+          ".entry(\"wrong\".to_string())"
+        ],
+        [
+          ".entry(pattern.to_string())",
+          ".entry(\"wrong\".to_string())"
+        ],
+        [
+          "self.constraint_to_capabilities\n            .get(constraint_id)",
+          "self.propagation_to_strings\n            .get(constraint_id)"
+        ],
+        [
+          "self.propagation_to_strings\n            .get(pattern)",
+          "self.constraint_to_capabilities\n            .get(pattern)"
+        ],
+        [
+          "self.family.get_propagation_targets(string_id)",
+          "self.family.get_propagation_targets(\"missing\")"
+        ]
+      ]
+    }
+  ]
+}

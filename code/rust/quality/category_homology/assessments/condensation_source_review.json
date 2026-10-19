@@ -1,0 +1,95 @@
+{
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/category_theory/condensation.rs",
+    "sha256": "391ee7089b1c1e98286fd54806b88936402168cbd213941894d3f206dd13ada2"
+  },
+  "production_functions": {
+    "CoherenceWitness::new": {
+      "line": 30,
+      "signature": "pub fn new(level: usize, description: &str) -> Self",
+      "body": "{\n        Self {\n            level,\n            description: description.into(),\n            verified: false,\n        }\n    }",
+      "obligation": "Store exact arbitrary level/description with caller flag false;no semantic verification or numeric increment. Empty,Unicode/NUL and max-level metadata allowed."
+    },
+    "CoherenceWitness::verified": {
+      "line": 38,
+      "signature": "pub fn verified(level: usize, description: &str) -> Self",
+      "body": "{\n        Self {\n            level,\n            description: description.into(),\n            verified: true,\n        }\n    }",
+      "obligation": "Store exact arbitrary level/description with caller flag true;verified is a historical method name for asserting a flag,not executing a proof."
+    },
+    "Condensation::new": {
+      "line": 75,
+      "signature": "pub fn new(carrier: &str, retract: &str, section: &str, retraction: &str) -> Self",
+      "body": "{\n        Self {\n            carrier: carrier.into(),\n            retract: retract.into(),\n            section: section.into(),\n            retraction: retraction.into(),\n            coherence_level: 0,\n            witnesses: vec![CoherenceWitness::new(0, \"base splitting data: r, s, X, Y\")],\n        }\n    }",
+      "obligation": "Own exact four names,declared level0 and one false level0 descriptive base row. No arrow membership,typing,splitting or coherence checked."
+    },
+    "Condensation::add_witness": {
+      "line": 88,
+      "signature": "pub fn add_witness(&mut self, description: &str, verified: bool) -> Result<(), CoherenceLevelOverflow>",
+      "body": "{\n        let level = self.coherence_level.checked_add(1).ok_or(CoherenceLevelOverflow)?;\n        self.witnesses.push(CoherenceWitness {\n            level,\n            description: description.into(),\n            verified,\n        });\n        self.coherence_level = level;\n        Ok(())\n    }",
+      "obligation": "checked_add(1) before description allocation,Vec mutation or counter assignment. None returns typed CoherenceLevelOverflow with self byte/field value unchanged. Success appends exactly one row(level+1,input flag,input description),retains prefix,then updates declared counter and returns Ok. Does not infer counter from witness levels or require inventory continuity. Public return now Result;actual own callers handle it."
+    },
+    "Condensation::max_verified_level": {
+      "line": 100,
+      "signature": "pub fn max_verified_level(&self) -> usize",
+      "body": "{\n        self.witnesses\n            .iter()\n            .filter(|w| w.verified)\n            .map(|w| w.level)\n            .max()\n            .unwrap_or(0)\n    }",
+      "obligation": "Maximum level among true caller flags,or0 for none;0 is intentionally ambiguous with a true base flag. Arbitrary duplicate/out-of-order/max usize rows supported;no arithmetic or certification."
+    },
+    "Condensation::fully_verified": {
+      "line": 110,
+      "signature": "pub fn fully_verified(&self) -> bool",
+      "body": "{\n        self.witnesses.iter().all(|w| w.verified)\n    }",
+      "obligation": "Return conjunction of every supplied flag,including base row;empty list vacuously true. No relation to validation of named equations or truth of descriptions."
+    },
+    "retraction_diagnostic": {
+      "line": 134,
+      "signature": "fn retraction_diagnostic(cond: &Condensation, table: &CompositionLookup<'_>, identities: &BTreeMap<String, String>) -> Option<String>",
+      "body": "{\n    match (table.compose(&cond.section, &cond.retraction), identities.get(&cond.retract).map(String::as_str)) {\n        (Some(v), Some(id)) if v == id => None,\n        (Some(v), Some(id)) => Some(format!(\"Condensation level 0: r \u2218 s = {} but id_Y = {}\", v, id)),\n        _ => Some(\"Condensation level 0: r \u2218 s or id_Y not defined\".into()),\n    }\n}",
+      "obligation": "Borrowed defined table(section,retraction) and identity_map[retract]. Both Some and equal pass;defined unequal gives exact values;either missing yields exact undefined diagnostic. No absent-equality pass or object/arrow typing."
+    },
+    "idempotence_diagnostic": {
+      "line": 142,
+      "signature": "fn idempotence_diagnostic(cond: &Condensation, table: &CompositionLookup<'_>) -> Option<String>",
+      "body": "{\n    let Some(e) = table.compose(&cond.retraction, &cond.section) else {\n        return Some(\"Condensation level 0: s \u2218 r not defined\".into());\n    };\n    match table.compose(e, e) {\n        Some(ee) if ee == e => None,\n        Some(ee) => Some(format!(\"Condensation level 1: e \u2218 e = {} but e = {} (not idempotent)\", ee, e)),\n        None => Some(format!(\"Condensation level 1: e \u2218 e not defined for e = {}\", e)),\n    }\n}",
+      "obligation": "Require borrowed defined composition(retraction,section)=e first;missing emits sr-undefined. Then require defined table(e,e)=e;different or missing emits its exact distinct message. No category membership/endoboundary/homotopy check."
+    },
+    "validate_with_lookup": {
+      "line": 153,
+      "signature": "fn validate_with_lookup(cond: &Condensation, table: &CompositionLookup<'_>, identity_map: &BTreeMap<String, String>) -> Vec<String>",
+      "body": "{\n    let mut violations: Vec<String> = [retraction_diagnostic(cond, table, identity_map), idempotence_diagnostic(cond, table)].into_iter().flatten().collect();\n    for w in &cond.witnesses {\n        if w.level > 0 && !w.verified {\n            violations.push(format!(\"Condensation level {}: witness '{}' not verified\", w.level, w.description));\n        }\n    }\n    violations\n}",
+      "obligation": "Observe retraction before idempotence,flatten only successful None. Scan original witness order and append every positive-level false flag diagnostic,including duplicates. Base flags ignored by this function,not by fully_verified. Description/level inventory coherence and declared max counter are unchecked. Shared borrowed table immutable throughout."
+    },
+    "validate_condensation": {
+      "line": 165,
+      "signature": "pub fn validate_condensation(\n    cond: &Condensation,\n    compositions: &BTreeMap<(String, String), String>,\n    identity_map: &BTreeMap<String, String>,\n) -> Vec<String>",
+      "body": "{\n    let table = CompositionLookup::new(compositions);\n    validate_with_lookup(cond, &table, identity_map)\n}",
+      "obligation": "Build one borrowed CompositionLookup of supplied composition map,then invoke same ordered diagnostic helper. Return raw Vec<String>,not a certificate;unchecked carrier/name/flags may pass. All missing data failures accumulate in documented order."
+    },
+    "check_infinity_cauchy": {
+      "line": 176,
+      "signature": "pub fn check_infinity_cauchy(\n    condensations: &[Condensation],\n    compositions: &BTreeMap<(String, String), String>,\n    identity_map: &BTreeMap<String, String>,\n) -> InfinityCauchyStatus",
+      "body": "{\n    let mut unsplit = Vec::new();\n    let table = CompositionLookup::new(compositions);\n\n    for cond in condensations {\n        let violations = validate_with_lookup(cond, &table, identity_map);\n        if !violations.is_empty() {\n            unsplit.push(format!(\n                \"{} \u2192 {} ({})\",\n                cond.carrier,\n                cond.retract,\n                violations.join(\"; \")\n            ));\n        }\n    }\n\n    if unsplit.is_empty() {\n        InfinityCauchyStatus::Complete\n    } else {\n        InfinityCauchyStatus::Incomplete {\n            unsplit_condensations: unsplit,\n        }\n    }\n}",
+      "obligation": "Build one shared borrowed lookup outside supplied-record loop. For each record in original order,observe same diagnostics;nonempty errors create exact carrier\u2192retract(joined errors) output. Empty output is legacy Complete,including empty input;otherwise Incomplete with ordered duplicates. Unknown variant never produced. No enumeration completeness or actual infinity-Cauchy/higher-cell theorem."
+    }
+  },
+  "invariant_argument": [
+    "Raw names and descriptions are immutable inputs for checks;String equality only,not interpreted arrows/higher cells. Defined equality requires both sides present. No two missing cells can pass. Borrowed CompositionLookup compares tuple str keys in same lexicographic order as actual BTreeMap and returns original table values;no name normalization.",
+    "Append admission is ordered:checked increment first;overflow returns Err without allocating outputdescription or modifying any field. On success machine increment exactly fits,next level/flag/description row is appended and prior witness list/names preserved. Result signature forces callers to acknowledge refusal. No level-counter/witness-list consistency invariant is assumed because fields remain public;update uses the declared counter intentionally.",
+    "Retraction and idempotence diagnostic phases evaluate both,even when retraction failed. sr missing skips only ee lookup,then witness diagnostics still run. Positive-level false flags are errors,in original list order with duplicate descriptions retained;zero-level false flags and asserted true flags are ignored. fully_verified independently includes all flags,so it may be false while raw diagnostic succeeds. These different predicates are explicit and natively pinned.",
+    "Status aggregates exactly supplied record failures in input order;one borrowed table view reused across all. Empty diagnostic vector means no failure among supplied observations only. Empty inventory Complete,untyped carriers accepted by raw equality and Unknown never returned are documented ceilings,not proof of infinite-category completeness.",
+    "New Lean13 declarations model exact bounded next-level success/refusal,stored row append,ordered positive false flag filter and conjunction/vacuity. Source checked_add refines the Nat\u2264usize::MAX guard;standard String/borrowed-map equality and the source-phase induction connect diagnostics. Existing Cauchy defined-equality model is supporting literal-equality evidence,not a proof of Rust extraction or infinity-category interpretation."
+  ],
+  "cost_review": [
+    "Let C raw composition cells,I identity cells,N supplied condensations,W_i witness rows and L involved string byte lengths. Borrowed view stores O(C) references once per public validate/status call and performs O(log(C+1)) tuple comparisons per query;3 maximum composition queries per record plus one O(log(I+1)) identity lookup. Linear view setup is a stated tradeoff to remove repeated owned tuple-key allocations in status scans,not a universal speed claim.",
+    "validate costs O(C+log(C+1)+log(I+1)+W) comparisons/rows plus label/diagnostic formatting bytes;no owned String keys in inner witness/record loops. check_infinity costs O(C+N*(log(C+1)+log(I+1))+sumW_i) observations plus actual diagnostic/status output bytes. Per-record temporary diagnostic Vec and its at most W_i+2 Strings carry messages joined into required status text;they are not cloned input tables/candidates. Successful phases allocate no message Strings. No rebuild of borrowed view per record.",
+    "Constructors copy required input names/description and allocate base witness output. add_witness amortized Vec push plus required description clone,checked usize addition;overflow returns before these allocations. max_verified_level and fully_verified scan rows without allocation,max0 fallback/all vacuity explicit. Standard derives clone/debug/equal only stored raw strings/Vec rows and do not execute law checks.",
+    "11 fresh calibrated AST bodies,maxCCN6,cognitive5,nesting2. Helpers represent distinct raw equation checks and shared ordered validation,not split hidden combinatorial work. Finite maps/slices/standard iterators terminate with no source recursion,unchecked indices or unwrap. Error formatting/std allocator/compiler/byte sizes remain TCB;no allocator or arbitrary finite-input time/space budget claim."
+  ],
+  "consumer_review": [
+    "Actual source search finds no external Condensation/CoherenceWitness/check_infinity_cauchy caller except own four tests;other add_witness methods in hom_adjunction/finite_profunctor are unrelated. Root lib/mod expose module. Validation enum labels elsewhere are metadata only. Pre-edit completed-assessment context scan found no consumer context containing this source,so no dependent score refresh required;all-score audit required.",
+    "add_witness now returns Result<(),CoherenceLevelOverflow>;two own test calls handle success explicitly. This is an intentional API refusal repair. Other public signatures/fields and diagnostic messages/order preserved. Original raw validator captured exactly except pub function-name adapter and compared on observations/aliases;independent observations separately prevent reference-only correctness. Source docs withdraw unsupported actual infinity-Cauchy/coherent-homotopy claims and keep literal historical variant names."
+  ],
+  "data_trait_derive_macro_review": "Raw public CoherenceWitness/Condensation metadata,legacy InfinityCauchyStatus variants,and unit typedCoherenceLevelOverflow with standard Clone/Eq/Debug/Copy. No custom callbacks,unsafe,indexing or source recursion. The verified flag constructor does not verify descriptions. Shared CompositionLookup actual cat_functor provider unchanged and separately pinned.",
+  "source_change": "Checked next-level typed refusal before mutation,shared borrowed raw diagnostic phases,narrowed evidence scope. Overflow counterexample retained with G2/G3E on old source;new model/controls bind repaired bytes.",
+  "native_oracle": "256 independent4^4 defined observations with exact errors plus original differential;432 aliased-key table cases;216 three-row flag patterns;30 boundary updates including usize::MAX-1/MAX with snapshot preservation;literal labels and constructors. Ordered inventory at0/1/2/432 rows and explicit valid-untyped/base-false/empty Complete ceiling. Actual459category+8subject(4old4independent)pass;31/31faults killed."
+}

@@ -1,0 +1,47 @@
+
+running 6 tests
+test mutant_3::tests::claimed_abelian_sets_flags ... FAILED
+test mutant_3::schema_challenge::labels_are_literal_not_mathematical_certificates ... FAILED
+test mutant_3::schema_challenge::exhaustive_required_fields ... FAILED
+test mutant_3::tests::incomplete_checklist ... FAILED
+test mutant_3::tests::validate_ok ... FAILED
+test mutant_3::tests::validate_rejects_empty ... ok
+
+failures:
+
+---- mutant_3::tests::claimed_abelian_sets_flags stdout ----
+
+thread 'mutant_3::tests::claimed_abelian_sets_flags' (27500) panicked at metadata_challenge_0\mutant_3.rs:95:9:
+assertion failed: a.validate_shell().is_ok()
+
+---- mutant_3::schema_challenge::labels_are_literal_not_mathematical_certificates stdout ----
+
+thread 'mutant_3::schema_challenge::labels_are_literal_not_mathematical_certificates' (14724) panicked at metadata_challenge_0\mutant_3.rs:138:13:
+assertion failed: value.validate_shell().is_ok()
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- mutant_3::schema_challenge::exhaustive_required_fields stdout ----
+
+thread 'mutant_3::schema_challenge::exhaustive_required_fields' (31488) panicked at metadata_challenge_0\mutant_3.rs:123:34:
+mask 0, expected None, got Err(InvalidShape("reject valid"))
+
+---- mutant_3::tests::incomplete_checklist stdout ----
+
+thread 'mutant_3::tests::incomplete_checklist' (21476) panicked at metadata_challenge_0\mutant_3.rs:102:9:
+assertion failed: a.validate_shell().is_ok()
+
+---- mutant_3::tests::validate_ok stdout ----
+
+thread 'mutant_3::tests::validate_ok' (31280) panicked at metadata_challenge_0\mutant_3.rs:82:9:
+assertion failed: AbelianCategory::new("Mod_R").validate_shell().is_ok()
+
+
+failures:
+    mutant_3::schema_challenge::exhaustive_required_fields
+    mutant_3::schema_challenge::labels_are_literal_not_mathematical_certificates
+    mutant_3::tests::claimed_abelian_sets_flags
+    mutant_3::tests::incomplete_checklist
+    mutant_3::tests::validate_ok
+
+test result: FAILED. 1 passed; 5 failed; 0 ignored; 0 measured; 49 filtered out; finished in 0.00s
+

@@ -2,6 +2,7 @@
 //! AuthorityEffect: None. Not PROVED / GlobalGreen.
 
 use serde::{Deserialize, Serialize};
+use omega_category_theory::errors::ArithmosError;
 
 /// Best-effort weighted colimit shell W ★ D in a V-enriched setting.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize)]
@@ -51,21 +52,21 @@ impl WeightedColimit {
         }
     }
 
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
         if self.weight_ref.is_empty() {
-            return Err("empty weight_ref".into());
+            return Err(ArithmosError::InvalidShape("empty weight_ref".into()));
         }
         if self.diagram_ref.is_empty() {
-            return Err("empty diagram_ref".into());
+            return Err(ArithmosError::InvalidShape("empty diagram_ref".into()));
         }
         if self.ambient_enriched.is_empty() {
-            return Err("empty ambient_enriched".into());
+            return Err(ArithmosError::InvalidShape("empty ambient_enriched".into()));
         }
         if self.base_monoidal_v.is_empty() {
-            return Err("empty base_monoidal_v".into());
+            return Err(ArithmosError::InvalidShape("empty base_monoidal_v".into()));
         }
         Ok(())
     }

@@ -2,6 +2,7 @@
 //! AuthorityEffect: None. Not PROVED / GlobalGreen.
 
 use serde::{Deserialize, Serialize};
+use omega_category_theory::errors::ArithmosError;
 
 /// Best-effort shell for an equalizer of a parallel pair.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize)]
@@ -52,27 +53,27 @@ impl Equalizer {
         }
     }
 
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
         if self.equalizer_object.is_empty() {
-            return Err("empty equalizer_object".into());
+            return Err(ArithmosError::InvalidShape("empty equalizer_object".into()));
         }
         if self.source.is_empty() {
-            return Err("empty source".into());
+            return Err(ArithmosError::InvalidShape("empty source".into()));
         }
         if self.target.is_empty() {
-            return Err("empty target".into());
+            return Err(ArithmosError::InvalidShape("empty target".into()));
         }
         if self.morphism_f.is_empty() {
-            return Err("empty morphism_f".into());
+            return Err(ArithmosError::InvalidShape("empty morphism_f".into()));
         }
         if self.morphism_g.is_empty() {
-            return Err("empty morphism_g".into());
+            return Err(ArithmosError::InvalidShape("empty morphism_g".into()));
         }
         if self.equalizer_morphism.is_empty() {
-            return Err("empty equalizer_morphism".into());
+            return Err(ArithmosError::InvalidShape("empty equalizer_morphism".into()));
         }
         Ok(())
     }

@@ -2,6 +2,7 @@
 //! AuthorityEffect: None. Not PROVED / GlobalGreen.
 
 use serde::{Deserialize, Serialize};
+use omega_category_theory::errors::ArithmosError;
 
 /// Best-effort monoidal category shell.
 /// Tensor, unit object, and coherence iso refs are string labels only.
@@ -58,27 +59,27 @@ impl MonoidalCategory {
         }
     }
 
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
         if self.underlying_category.is_empty() {
-            return Err("empty underlying_category".into());
+            return Err(ArithmosError::InvalidShape("empty underlying_category".into()));
         }
         if self.tensor.is_empty() {
-            return Err("empty tensor".into());
+            return Err(ArithmosError::InvalidShape("empty tensor".into()));
         }
         if self.unit_object.is_empty() {
-            return Err("empty unit_object".into());
+            return Err(ArithmosError::InvalidShape("empty unit_object".into()));
         }
         if self.associator_ref.is_empty() {
-            return Err("empty associator_ref".into());
+            return Err(ArithmosError::InvalidShape("empty associator_ref".into()));
         }
         if self.left_unitor_ref.is_empty() {
-            return Err("empty left_unitor_ref".into());
+            return Err(ArithmosError::InvalidShape("empty left_unitor_ref".into()));
         }
         if self.right_unitor_ref.is_empty() {
-            return Err("empty right_unitor_ref".into());
+            return Err(ArithmosError::InvalidShape("empty right_unitor_ref".into()));
         }
         Ok(())
     }

@@ -2,6 +2,7 @@
 //! AuthorityEffect: None. Not PROVED / GlobalGreen.
 
 use serde::{Deserialize, Serialize};
+use omega_category_theory::errors::ArithmosError;
 
 /// Best-effort monoidal functor shell F : C → D with strength data refs.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize)]
@@ -54,18 +55,18 @@ impl MonoidalFunctor {
         }
     }
 
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
         if self.domain_monoidal.is_empty() {
-            return Err("empty domain_monoidal".into());
+            return Err(ArithmosError::InvalidShape("empty domain_monoidal".into()));
         }
         if self.codomain_monoidal.is_empty() {
-            return Err("empty codomain_monoidal".into());
+            return Err(ArithmosError::InvalidShape("empty codomain_monoidal".into()));
         }
         if self.functor_ref.is_empty() {
-            return Err("empty functor_ref".into());
+            return Err(ArithmosError::InvalidShape("empty functor_ref".into()));
         }
         Ok(())
     }

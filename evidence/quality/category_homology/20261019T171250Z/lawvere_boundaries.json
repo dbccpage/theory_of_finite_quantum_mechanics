@@ -1,0 +1,136 @@
+{
+  "AuthorityEffect": "None",
+  "records": [
+    {
+      "family": "",
+      "path": "code/rust/src/category_theory/lawvere.rs",
+      "sha256": "21f4521c5c9c99b186c0cb079860575ff08041665914b67bbe04f75ea0181709",
+      "faults": [
+        [
+          "name: name.into(),\n            input_sorts,",
+          "name: \"wrong\".into(),\n            input_sorts,"
+        ],
+        [
+          "self.input_sorts.len()",
+          "self.output_sorts.len()"
+        ],
+        [
+          "self.output_sorts.len()",
+          "self.input_sorts.len()"
+        ],
+        [
+          "lhs: lhs.into(),",
+          "lhs: rhs.into(),"
+        ],
+        [
+          "rhs: rhs.into(),",
+          "rhs: lhs.into(),"
+        ],
+        [
+          "sorts: Vec::new(),",
+          "sorts: vec![\"extra\".into()],"
+        ],
+        [
+          "self.sorts.push(sort.into());",
+          "self.sorts.insert(0,sort.into());"
+        ],
+        [
+          "self.operations.push(op);",
+          "self.operations.insert(0,op);"
+        ],
+        [
+          "self.equations.push(eq);",
+          "self.equations.clear();self.equations.push(eq);"
+        ],
+        [
+          ".insert((outer.into(), slot, inner.into()), result.into());",
+          ".insert((inner.into(), slot, outer.into()), result.into());"
+        ],
+        [
+          ".get(&(outer.into(), slot, inner.into()))",
+          ".get(&(inner.into(), slot, outer.into()))"
+        ],
+        [
+          ".filter(|op| op.arity() == arity)",
+          ".filter(|op| op.coarity() == arity)"
+        ],
+        [
+          "((outer.as_str(), *slot, inner.as_str()), value.as_str())",
+          "((inner.as_str(), *slot, outer.as_str()), value.as_str())"
+        ],
+        [
+          "binary_search_by_key(&(outer, slot, inner),",
+          "binary_search_by_key(&(inner, slot, outer),"
+        ],
+        [
+          "let Some(slot) = i.checked_add(j) else {",
+          "let Some(slot) = Some(i.wrapping_add(j)) else {"
+        ],
+        [
+          "lookup.get(g, j, h).and_then(|gh| lookup.get(f, i, gh))",
+          "lookup.get(g, i, h).and_then(|gh| lookup.get(f, i, gh))"
+        ],
+        [
+          "lookup.get(fg, slot, h)",
+          "lookup.get(fg, i, h)"
+        ],
+        [
+          "(Some(l), Some(r)) if l == r => {}",
+          "(Some(l), Some(r)) if l != r => {}"
+        ],
+        [
+          "Substitution not defined for f={}, g={}, h={}",
+          "Undefined f={}, g={}, h={}"
+        ],
+        [
+          "Substitution slot overflow: i={}, j={}",
+          "Substitution slot overflow: j={}, i={}"
+        ],
+        [
+          "    violations\n}",
+          "    violations.reverse();\n    violations\n}"
+        ],
+        [
+          "op.arity() == 1 && op.coarity() == 1 &&",
+          "op.arity() == 1 &&"
+        ],
+        [
+          "op.arity() == 1 && op.coarity() == 1 &&",
+          "op.coarity() == 1 &&"
+        ],
+        [
+          "== Some(op.name.as_str())",
+          "!= Some(op.name.as_str())"
+        ],
+        [
+          "lookup.get(&s.name, 0, &r.name) == Some(name)",
+          "lookup.get(&r.name, 0, &s.name) == Some(name)"
+        ],
+        [
+          "r.output_sorts.first()",
+          "r.output_sorts.last()"
+        ],
+        [
+          "lookup.get(&r.name, 0, &s.name) == Some(identity.as_str())",
+          "lookup.get(&s.name, 0, &r.name) == Some(identity.as_str())"
+        ],
+        [
+          "theory.operations.iter().any(|s| splitting_pair(theory, lookup, name, r, s))",
+          "theory.operations.iter().all(|s| splitting_pair(theory, lookup, name, r, s))"
+        ],
+        [
+          "&& !has_splitting(theory, &lookup, &op.name)",
+          "&& has_splitting(theory, &lookup, &op.name)"
+        ],
+        [
+          ".map(|op| op.name.clone()).collect();",
+          ".map(|op| op.name.clone()).collect::<std::collections::BTreeSet<_>>().into_iter().collect();"
+        ],
+        [
+          "        TheoryCauchyStatus::Complete\n    } else {",
+          "        theory.cauchy_status.clone()\n    } else {"
+        ]
+      ]
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+
+running 7 tests
+test mutant_22::tests::rejects_empty_map_tag ... ok
+test mutant_22::tests::validate_rejects_empty ... ok
+test mutant_22::tests::validate_ok ... ok
+test mutant_22::tests::with_maps_ok ... ok
+test mutant_22::parameter_challenge::constructors_preserve_distinct_supplied_parameters ... ok
+test mutant_22::tests::validate_rejects_missing_source ... ok
+test mutant_22::parameter_challenge::independent_schema_cases_and_first_error ... FAILED
+
+failures:
+
+---- mutant_22::parameter_challenge::independent_schema_cases_and_first_error stdout ----
+
+thread 'mutant_22::parameter_challenge::independent_schema_cases_and_first_error' (20576) panicked at metadata_challenge_2\mutant_22.rs:133:77:
+assertion `left == right` failed
+  left: "wrong collection diagnostic"
+ right: "empty object_map tag at index 0"
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    mutant_22::parameter_challenge::independent_schema_cases_and_first_error
+
+test result: FAILED. 6 passed; 1 failed; 0 ignored; 0 measured; 340 filtered out; finished in 0.00s
+

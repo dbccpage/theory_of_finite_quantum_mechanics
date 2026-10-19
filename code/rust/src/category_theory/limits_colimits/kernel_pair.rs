@@ -2,6 +2,7 @@
 //! AuthorityEffect: None. Not PROVED / GlobalGreen.
 
 use serde::{Deserialize, Serialize};
+use omega_category_theory::errors::ArithmosError;
 
 /// Best-effort shell for a kernel pair of a morphism f : A → B
 /// (pullback of f along itself).
@@ -56,27 +57,27 @@ impl KernelPair {
         }
     }
 
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
         if self.pair_object.is_empty() {
-            return Err("empty pair_object".into());
+            return Err(ArithmosError::InvalidShape("empty pair_object".into()));
         }
         if self.source.is_empty() {
-            return Err("empty source".into());
+            return Err(ArithmosError::InvalidShape("empty source".into()));
         }
         if self.target.is_empty() {
-            return Err("empty target".into());
+            return Err(ArithmosError::InvalidShape("empty target".into()));
         }
         if self.morphism_f.is_empty() {
-            return Err("empty morphism_f".into());
+            return Err(ArithmosError::InvalidShape("empty morphism_f".into()));
         }
         if self.projection_left.is_empty() {
-            return Err("empty projection_left".into());
+            return Err(ArithmosError::InvalidShape("empty projection_left".into()));
         }
         if self.projection_right.is_empty() {
-            return Err("empty projection_right".into());
+            return Err(ArithmosError::InvalidShape("empty projection_right".into()));
         }
         Ok(())
     }

@@ -1,0 +1,26 @@
+
+running 7 tests
+test mutant_2::checklist_challenge::every_raw_checklist_is_conjunction_without_law_promotion ... ok
+test mutant_2::schema_challenge::labels_are_literal_not_mathematical_certificates ... ok
+test mutant_2::tests::claimed_abelian_sets_flags ... ok
+test mutant_2::schema_challenge::exhaustive_required_fields ... FAILED
+test mutant_2::tests::incomplete_checklist ... ok
+test mutant_2::tests::validate_rejects_empty ... ok
+test mutant_2::tests::validate_ok ... ok
+
+failures:
+
+---- mutant_2::schema_challenge::exhaustive_required_fields stdout ----
+
+thread 'mutant_2::schema_challenge::exhaustive_required_fields' (27416) panicked at metadata_challenge_0\mutant_2.rs:121:21:
+assertion `left == right` failed
+  left: "wrong field diagnostic"
+ right: "empty label"
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    mutant_2::schema_challenge::exhaustive_required_fields
+
+test result: FAILED. 6 passed; 1 failed; 0 ignored; 0 measured; 92 filtered out; finished in 0.01s
+

@@ -1,0 +1,31 @@
+
+running 6 tests
+test mutant_13::checklist_challenge::each_raw_flag_combination_remains_a_declaration ... ok
+test mutant_13::schema_challenge::exhaustive_required_fields ... ok
+test mutant_13::schema_challenge::labels_are_literal_not_mathematical_certificates ... FAILED
+test mutant_13::tests::validate_ok ... FAILED
+test mutant_13::tests::validate_rejects_empty ... ok
+test mutant_13::tests::with_flags_sets_bools ... ok
+
+failures:
+
+---- mutant_13::schema_challenge::labels_are_literal_not_mathematical_certificates stdout ----
+
+thread 'mutant_13::schema_challenge::labels_are_literal_not_mathematical_certificates' (29728) panicked at metadata_challenge_0\mutant_13.rs:104:9:
+assertion `left == right` failed
+  left: ""
+ right: "literal-label"
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- mutant_13::tests::validate_ok stdout ----
+
+thread 'mutant_13::tests::validate_ok' (30900) panicked at metadata_challenge_0\mutant_13.rs:60:9:
+assertion failed: Additivity::new("Ab").validate_shell().is_ok()
+
+
+failures:
+    mutant_13::schema_challenge::labels_are_literal_not_mathematical_certificates
+    mutant_13::tests::validate_ok
+
+test result: FAILED. 4 passed; 2 failed; 0 ignored; 0 measured; 93 filtered out; finished in 0.02s
+

@@ -1,0 +1,38 @@
+
+running 11 tests
+test homology::degree_repair_replay_60::subject::tests::test_dimension_mismatch_d1 ... ok
+test homology::degree_repair_replay_60::subject::tests::test_coboundary_law_violation_rejected ... ok
+test homology::degree_repair_replay_60::subject::independent_degree_repair_tests::shape_and_rational_failure_order ... ok
+test homology::degree_repair_replay_60::subject::tests::test_coboundary_law_verified ... ok
+test homology::degree_repair_replay_60::subject::tests::dim_rejects_degree_outside_finite_support ... ok
+test homology::degree_repair_replay_60::subject::tests::test_trivial_cochain_complex ... ok
+test homology::degree_repair_replay_60::subject::tests::test_dimension_mismatch_d0 ... ok
+test homology::degree_repair_replay_60::subject::tests::test_empty_provenance_rejected ... ok
+test homology::degree_repair_replay_60::subject::independent_degree_repair_tests::zero_area_dimensions_and_full_index ... ok
+test homology::degree_repair_replay_60::subject::independent_degree_repair_tests::provenance_is_checked_label_only ... FAILED
+test homology::degree_repair_replay_60::subject::independent_degree_repair_tests::independent_dot_product_and_owned_context ... FAILED
+
+failures:
+
+---- homology::degree_repair_replay_60::subject::independent_degree_repair_tests::provenance_is_checked_label_only stdout ----
+
+thread 'homology::degree_repair_replay_60::subject::independent_degree_repair_tests::provenance_is_checked_label_only' (4704) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\dr\261019T040309\src\homology\q\n60.rs:319:77:
+assertion `left == right` failed
+  left: Hash256([127, 109, 20, 92, 162, 35, 215, 65, 132, 89, 98, 110, 91, 222, 158, 49, 99, 99, 90, 179, 148, 225, 233, 114, 185, 243, 174, 155, 195, 93, 130, 130])
+ right: Hash256([244, 127, 142, 230, 152, 20, 96, 3, 88, 95, 191, 51, 151, 83, 43, 171, 127, 8, 70, 160, 116, 122, 89, 55, 223, 241, 222, 132, 14, 114, 88, 90])
+
+---- homology::degree_repair_replay_60::subject::independent_degree_repair_tests::independent_dot_product_and_owned_context stdout ----
+
+thread 'homology::degree_repair_replay_60::subject::independent_degree_repair_tests::independent_dot_product_and_owned_context' (18056) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\dr\261019T040309\src\homology\q\n60.rs:296:285:
+assertion `left == right` failed
+  left: Hash256([127, 109, 20, 92, 162, 35, 215, 65, 132, 89, 98, 110, 91, 222, 158, 49, 99, 99, 90, 179, 148, 225, 233, 114, 185, 243, 174, 155, 195, 93, 130, 130])
+ right: Hash256([169, 2, 154, 104, 202, 106, 77, 119, 166, 125, 134, 65, 111, 123, 177, 248, 247, 56, 35, 62, 214, 232, 168, 98, 193, 131, 227, 7, 158, 73, 161, 222])
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    homology::degree_repair_replay_60::subject::independent_degree_repair_tests::independent_dot_product_and_owned_context
+    homology::degree_repair_replay_60::subject::independent_degree_repair_tests::provenance_is_checked_label_only
+
+test result: FAILED. 9 passed; 2 failed; 0 ignored; 0 measured; 997 filtered out; finished in 0.00s
+

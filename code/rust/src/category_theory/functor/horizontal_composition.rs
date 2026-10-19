@@ -4,6 +4,7 @@
 //! Horizontal (Godement) composition of natural transformations — shape only.
 
 use serde::{Deserialize, Serialize};
+use omega_category_theory::errors::ArithmosError;
 
 /// Best-effort shell for a horizontal composition claim on nat-trans refs.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize)]
@@ -41,15 +42,15 @@ impl HorizontalComposition {
         }
     }
 
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
         if self.left_nat_trans_ref.is_empty() {
-            return Err("empty left_nat_trans_ref".into());
+            return Err(ArithmosError::InvalidShape("empty left_nat_trans_ref".into()));
         }
         if self.right_nat_trans_ref.is_empty() {
-            return Err("empty right_nat_trans_ref".into());
+            return Err(ArithmosError::InvalidShape("empty right_nat_trans_ref".into()));
         }
         Ok(())
     }

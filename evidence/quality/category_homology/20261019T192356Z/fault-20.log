@@ -1,0 +1,29 @@
+
+running 2 tests
+test root_record_replay_21::subject::independent_trace_tests::scratch_restore_fifo_modes_and_refusals ... FAILED
+test root_record_replay_21::subject::independent_trace_tests::all_two_state_short_trace_graphs ... FAILED
+
+failures:
+
+---- root_record_replay_21::subject::independent_trace_tests::scratch_restore_fifo_modes_and_refusals stdout ----
+
+thread 'root_record_replay_21::subject::independent_trace_tests::scratch_restore_fifo_modes_and_refusals' (26080) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\rr\261019T192356\src\category_theory\q\n21.rs:251:60:
+assertion `left == right` failed
+  left: Ok(TraceComponent { start: 0, word: [0, 1], mode: ExactState, members: [[0, 1], [1, 0]], tree: [TraceLink { from: [0, 1], position: 0, swap: SwapCertificate { start: 0, a: 0, b: 1, outcome: Independent { ab: 3, ba: 4 } } }] })
+ right: Ok(TraceComponent { start: 0, word: [0, 1], mode: ExactState, members: [[0, 1]], tree: [] })
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- root_record_replay_21::subject::independent_trace_tests::all_two_state_short_trace_graphs stdout ----
+
+thread 'root_record_replay_21::subject::independent_trace_tests::all_two_state_short_trace_graphs' (30504) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\rr\261019T192356\src\category_theory\q\n21.rs:251:60:
+assertion `left == right` failed
+  left: Ok(TraceComponent { start: 0, word: [1, 0], mode: ExactState, members: [[0, 1], [1, 0]], tree: [TraceLink { from: [1, 0], position: 0, swap: SwapCertificate { start: 0, a: 1, b: 0, outcome: Independent { ab: 1, ba: 0 } } }] })
+ right: Ok(TraceComponent { start: 0, word: [1, 0], mode: ExactState, members: [[1, 0]], tree: [] })
+
+
+failures:
+    root_record_replay_21::subject::independent_trace_tests::all_two_state_short_trace_graphs
+    root_record_replay_21::subject::independent_trace_tests::scratch_restore_fifo_modes_and_refusals
+
+test result: FAILED. 0 passed; 2 failed; 0 ignored; 0 measured; 523 filtered out; finished in 0.28s
+

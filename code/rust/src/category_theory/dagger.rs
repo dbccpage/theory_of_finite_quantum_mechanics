@@ -2,6 +2,9 @@
 //! contravariant on arrows, involutive and composition-reversing. Validation
 //! checks every declared arrow and composite, after the canonical finite
 //! category checker. AuthorityEffect: None.
+//! The owned immutable result admits every dagger law; its raw map and category
+//! are never exposed mutably. Size refusal precedes category and dagger errors.
+use crate::cat_functor::CompositionLookup;
 use crate::finite_category::{DeclaredFiniteCategory, ValidatedFiniteCategory};
 use crate::validation::ValidationReport;
 use std::collections::BTreeMap;
@@ -29,6 +32,79 @@ pub struct DaggerStructure {
     category: ValidatedFiniteCategory,
     dagger: BTreeMap<String, String>,
 }
+
+fn admit_dagger_budget(category: &DeclaredFiniteCategory) -> Result<(), DaggerValidationError> {
+    if category.objects.len() > 64
+        || category.morphisms.len() > 64
+        || category.compositions.len() > 4096
+    {
+        return Err(DaggerValidationError::Budget);
+    }
+    Ok(())
+}
+
+fn check_dagger_domain(
+    category: &DeclaredFiniteCategory,
+    dagger: &BTreeMap<String, String>,
+) -> Result<(), DaggerValidationError> {
+    if dagger.len() != category.morphisms.len()
+        || dagger.keys().any(|f| !category.has_morphism(f))
+    {
+        return Err(DaggerValidationError::Domain);
+    }
+    Ok(())
+}
+
+fn check_dagger_arrows(
+    category: &DeclaredFiniteCategory,
+    dagger: &BTreeMap<String, String>,
+) -> Result<(), DaggerValidationError> {
+    for (f, morphism) in &category.morphisms {
+        let fd = dagger
+            .get(f)
+            .ok_or_else(|| DaggerValidationError::MissingImage { morphism: f.clone() })?;
+        let image = category
+            .morphisms
+            .get(fd)
+            .ok_or_else(|| DaggerValidationError::MissingImage { morphism: f.clone() })?;
+        if image.source != morphism.target || image.target != morphism.source {
+            return Err(DaggerValidationError::Boundary { morphism: f.clone() });
+        }
+        if dagger.get(fd) != Some(f) {
+            return Err(DaggerValidationError::Involution { morphism: f.clone() });
+        }
+    }
+    Ok(())
+}
+
+fn check_dagger_identities(
+    category: &DeclaredFiniteCategory,
+    dagger: &BTreeMap<String, String>,
+) -> Result<(), DaggerValidationError> {
+    for (object, identity) in &category.identities {
+        if dagger.get(identity) != Some(identity) {
+            return Err(DaggerValidationError::Identity { object: object.clone() });
+        }
+    }
+    Ok(())
+}
+
+fn check_dagger_compositions(
+    category: &DeclaredFiniteCategory,
+    dagger: &BTreeMap<String, String>,
+) -> Result<(), DaggerValidationError> {
+    let view = CompositionLookup::new(&category.compositions);
+    for ((first, second), composite) in &category.compositions {
+        let expected = view.compose(&dagger[second], &dagger[first]);
+        if expected != dagger.get(composite).map(String::as_str) {
+            return Err(DaggerValidationError::Composition {
+                first: first.clone(), second: second.clone(),
+            });
+        }
+    }
+    Ok(())
+}
+
 impl DaggerStructure {
     /// A total involutive contravariant dagger. The arrow bound protects the
     /// cubic associativity validation; there is no unchecked declaration mode.
@@ -36,60 +112,14 @@ impl DaggerStructure {
         category: DeclaredFiniteCategory,
         dagger: BTreeMap<String, String>,
     ) -> Result<Self, DaggerValidationError> {
-        if category.objects.len() > 64
-            || category.morphisms.len() > 64
-            || category.compositions.len() > 4096
-        {
-            return Err(DaggerValidationError::Budget);
-        }
+        admit_dagger_budget(&category)?;
         let category =
             ValidatedFiniteCategory::try_new(category).map_err(DaggerValidationError::Category)?;
         let declared = category.declared();
-        if dagger.len() != declared.morphisms.len()
-            || dagger.keys().any(|f| !declared.has_morphism(f))
-        {
-            return Err(DaggerValidationError::Domain);
-        }
-        for (f, morphism) in &declared.morphisms {
-            let fd = dagger
-                .get(f)
-                .ok_or_else(|| DaggerValidationError::MissingImage {
-                    morphism: f.clone(),
-                })?;
-            let image =
-                declared
-                    .morphisms
-                    .get(fd)
-                    .ok_or_else(|| DaggerValidationError::MissingImage {
-                        morphism: f.clone(),
-                    })?;
-            if image.source != morphism.target || image.target != morphism.source {
-                return Err(DaggerValidationError::Boundary {
-                    morphism: f.clone(),
-                });
-            }
-            if dagger.get(fd) != Some(f) {
-                return Err(DaggerValidationError::Involution {
-                    morphism: f.clone(),
-                });
-            }
-        }
-        for (object, identity) in &declared.identities {
-            if dagger.get(identity) != Some(identity) {
-                return Err(DaggerValidationError::Identity {
-                    object: object.clone(),
-                });
-            }
-        }
-        for ((first, second), composite) in &declared.compositions {
-            let expected = declared.compose(&dagger[second], &dagger[first]);
-            if expected != dagger.get(composite).map(String::as_str) {
-                return Err(DaggerValidationError::Composition {
-                    first: first.clone(),
-                    second: second.clone(),
-                });
-            }
-        }
+        check_dagger_domain(declared, &dagger)?;
+        check_dagger_arrows(declared, &dagger)?;
+        check_dagger_identities(declared, &dagger)?;
+        check_dagger_compositions(declared, &dagger)?;
         Ok(Self { category, dagger })
     }
     pub fn category(&self) -> &ValidatedFiniteCategory {

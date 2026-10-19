@@ -4,6 +4,7 @@
 //! Representable functor claim (≅ Hom(A, −) or Hom(−, A)) — shape only.
 
 use serde::{Deserialize, Serialize};
+use omega_category_theory::errors::ArithmosError;
 
 /// Best-effort shell for a representable functor on a category reference.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize)]
@@ -47,12 +48,12 @@ impl RepresentableFunctor {
         }
     }
 
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
         if self.category_ref.is_empty() {
-            return Err("empty category_ref".into());
+            return Err(ArithmosError::InvalidShape("empty category_ref".into()));
         }
         Ok(())
     }

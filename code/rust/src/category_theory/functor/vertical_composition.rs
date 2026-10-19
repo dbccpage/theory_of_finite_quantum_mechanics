@@ -4,6 +4,7 @@
 //! Vertical composition of natural transformations (β ∘ α) — shape only.
 
 use serde::{Deserialize, Serialize};
+use omega_category_theory::errors::ArithmosError;
 
 /// Best-effort shell for a vertical composition claim on nat-trans refs.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize)]
@@ -43,15 +44,15 @@ impl VerticalComposition {
         }
     }
 
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
         if self.outer_nat_trans_ref.is_empty() {
-            return Err("empty outer_nat_trans_ref".into());
+            return Err(ArithmosError::InvalidShape("empty outer_nat_trans_ref".into()));
         }
         if self.inner_nat_trans_ref.is_empty() {
-            return Err("empty inner_nat_trans_ref".into());
+            return Err(ArithmosError::InvalidShape("empty inner_nat_trans_ref".into()));
         }
         Ok(())
     }

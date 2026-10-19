@@ -1,0 +1,35 @@
+
+running 8 tests
+test root_record_replay_11::subject::tests::monoid_theory ... ok
+test root_record_replay_11::subject::independent_record_tests::overflowing_slot_is_reported_without_panicking_or_wrapping ... ok
+test root_record_replay_11::subject::independent_record_tests::raw_split_scope_order_duplicates_and_first_output_sort_are_literal ... ok
+test root_record_replay_11::subject::tests::trivial_theory_cauchy ... ok
+test root_record_replay_11::subject::independent_record_tests::supplied_associativity_cases_match_independent_presence_truth_table ... ok
+test root_record_replay_11::subject::independent_record_tests::raw_records_preserve_duplicates_overwrites_and_order ... FAILED
+test root_record_replay_11::subject::independent_record_tests::borrowed_lookup_matches_public_lookup_for_ordered_and_missing_keys ... FAILED
+test root_record_replay_11::subject::independent_record_tests::split_inventory_matches_independent_two_name_matrix_oracle ... ok
+
+failures:
+
+---- root_record_replay_11::subject::independent_record_tests::raw_records_preserve_duplicates_overwrites_and_order stdout ----
+
+thread 'root_record_replay_11::subject::independent_record_tests::raw_records_preserve_duplicates_overwrites_and_order' (30184) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\rr\261019T171250\src\category_theory\q\n11.rs:253:74:
+assertion `left == right` failed
+  left: None
+ right: Some("new")
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- root_record_replay_11::subject::independent_record_tests::borrowed_lookup_matches_public_lookup_for_ordered_and_missing_keys stdout ----
+
+thread 'root_record_replay_11::subject::independent_record_tests::borrowed_lookup_matches_public_lookup_for_ordered_and_missing_keys' (39276) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\rr\261019T171250\src\category_theory\q\n11.rs:257:231:
+assertion `left == right` failed
+  left: Some("aa")
+ right: Some("")
+
+
+failures:
+    root_record_replay_11::subject::independent_record_tests::borrowed_lookup_matches_public_lookup_for_ordered_and_missing_keys
+    root_record_replay_11::subject::independent_record_tests::raw_records_preserve_duplicates_overwrites_and_order
+
+test result: FAILED. 6 passed; 2 failed; 0 ignored; 0 measured; 707 filtered out; finished in 0.01s
+

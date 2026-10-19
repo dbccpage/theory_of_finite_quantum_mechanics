@@ -1,0 +1,166 @@
+{
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/category_theory/finite_history_context.rs",
+    "sha256": "188f1ce21af8140ee8083a7f00cc9d54be8d8093f0eaf43fa27ac8d0ff3dcb71",
+    "language": "Rust"
+  },
+  "symbol_map": {
+    "ProductSearch::new": {
+      "line": 50,
+      "signature": "fn new(first: ProductState) -> Self",
+      "body": "{\n        Self {\n            vertices: vec![ProductVertex {\n                state: first,\n                parent: None,\n            }],\n            ids: BTreeMap::from([(first, 0)]),\n            cursor: 0,\n        }\n    }",
+      "obligation": "Create the one root vertex with no parent, exact state-to-ID entry 0, and cursor 0. Private concrete product triples, without a public unchecked model constructor."
+    },
+    "pop": {
+      "line": 61,
+      "signature": "fn pop(&mut self) -> Option<(usize, ProductState)>",
+      "body": "{\n        let id = self.cursor;\n        let state = self.vertices.get(id)?.state;\n        self.cursor += 1;\n        Some((id, state))\n    }",
+      "obligation": "Read the current vertex with checked get; advance cursor once and return its stable ID and triple. Append-only vertex order is FIFO discovery order. None means every discovered vertex was processed."
+    },
+    "admit": {
+      "line": 68,
+      "signature": "fn admit(&mut self, state: ProductState, parent: usize, input: usize)",
+      "body": "{\n        if let std::collections::btree_map::Entry::Vacant(entry) = self.ids.entry(state) {\n            let id = self.vertices.len();\n            entry.insert(id);\n            self.vertices.push(ProductVertex {\n                state,\n                parent: Some((parent, input)),\n            });\n        }\n    }",
+      "obligation": "For a fresh product triple only, save the next dense ID and one earlier parent/input link. Existing triples keep their first discovery and parent. No full word is copied."
+    },
+    "word": {
+      "line": 79,
+      "signature": "fn word(&self, mut id: usize) -> Vec<usize>",
+      "body": "{\n        let mut reversed = Vec::new();\n        while let Some((parent, input)) = self.vertices[id].parent {\n            reversed.push(input);\n            id = parent;\n        }\n        reversed.reverse();\n        reversed\n    }",
+      "obligation": "Follow valid strictly decreasing predecessor IDs to the root, collect input labels backwards, and reverse once. Reconstruct exactly the first shortest lexicographic discovery word. Called only for returned collision witnesses."
+    },
+    "FiniteWordTransducer::new": {
+      "line": 91,
+      "signature": "pub fn new(\n        alphabet_size: usize,\n        initial: usize,\n        transitions: Vec<Vec<usize>>,\n        outputs: Vec<Vec<Vec<usize>>>,\n        initial_output: Vec<usize>,\n        final_outputs: Vec<Vec<usize>>,\n    ) -> Result<Self, HistoryError>",
+      "body": "{\n        let n = transitions.len();\n        if n == 0\n            || initial >= n\n            || outputs.len() != n\n            || final_outputs.len() != n\n            || transitions\n                .iter()\n                .any(|row| row.len() != alphabet_size || row.iter().any(|&x| x >= n))\n            || outputs.iter().any(|row| row.len() != alphabet_size)\n            || outputs\n                .iter()\n                .flatten()\n                .chain(final_outputs.iter())\n                .chain(std::iter::once(&initial_output))\n                .flatten()\n                .any(|&d| d >= alphabet_size)\n        {\n            return Err(HistoryError::InvalidTransducer);\n        }\n        Ok(Self {\n            alphabet_size,\n            initial,\n            transitions,\n            outputs,\n            initial_output,\n            final_outputs,\n        })\n    }",
+      "obligation": "Require nonempty control states, initial index in range, matching state arrays, total state/input transition and emission shapes, valid control destinations, and all emitted digits inside the declared alphabet. Alphabet zero is valid with empty emissions. Move and privately own all tables; otherwise InvalidTransducer."
+    },
+    "alphabet_size": {
+      "line": 127,
+      "signature": "pub fn alphabet_size(&self) -> usize",
+      "body": "{\n        self.alphabet_size\n    }",
+      "obligation": "Return the stored declared alphabet cardinality, including zero."
+    },
+    "state_count": {
+      "line": 130,
+      "signature": "pub fn state_count(&self) -> usize",
+      "body": "{\n        self.transitions.len()\n    }",
+      "obligation": "Return the positive control-transition row count."
+    },
+    "substitution": {
+      "line": 133,
+      "signature": "pub fn substitution(images: Vec<Vec<usize>>) -> Result<Self, HistoryError>",
+      "body": "{\n        let n = images.len();\n        Self::new(n, 0, vec![vec![0; n]], vec![images], vec![], vec![vec![]])\n    }",
+      "obligation": "Build a one-control-state transducer emitting the supplied image of each input, with no initial or final emission. Actual constructor checks every image; an empty alphabet is valid."
+    },
+    "prefix": {
+      "line": 137,
+      "signature": "pub fn prefix(alphabet_size: usize, prefix: Vec<usize>) -> Result<Self, HistoryError>",
+      "body": "{\n        Self::new(\n            alphabet_size,\n            0,\n            vec![vec![0; alphabet_size]],\n            vec![(0..alphabet_size).map(|d| vec![d]).collect()],\n            prefix,\n            vec![vec![]],\n        )\n    }",
+      "obligation": "Build a one-control-state identity emission transducer with the supplied initial prefix and no final suffix. Constructor checks prefix digits."
+    },
+    "suffix": {
+      "line": 147,
+      "signature": "pub fn suffix(alphabet_size: usize, suffix: Vec<usize>) -> Result<Self, HistoryError>",
+      "body": "{\n        Self::new(\n            alphabet_size,\n            0,\n            vec![vec![0; alphabet_size]],\n            vec![(0..alphabet_size).map(|d| vec![d]).collect()],\n            vec![],\n            vec![suffix],\n        )\n    }",
+      "obligation": "Build a one-control-state identity emission transducer with no initial prefix and the supplied final suffix. Constructor checks suffix digits."
+    },
+    "descend": {
+      "line": 161,
+      "signature": "pub fn descend(\n        &self,\n        memory: &FiniteMoore,\n        start: usize,\n    ) -> Result<HistoryDescent, HistoryError>",
+      "body": "{\n        let mut search = self.initial_search(memory, start)?;\n        let mut images = vec![None; memory.state_count()];\n        let mut representatives = vec![None; memory.state_count()];\n        while let Some((id, (source, control, output))) = search.pop() {\n            let final_state = run(memory, output, &self.final_outputs[control])?;\n            if let Some(previous) = images[source] {\n                if previous != final_state {\n                    let first = representatives[source].ok_or(HistoryError::InvalidCertificate)?;\n                    return Ok(HistoryDescent::Obstructed(HistoryCollision {\n                        first: search.word(first),\n                        second: search.word(id),\n                        source_state: source,\n                        first_image: previous,\n                        second_image: final_state,\n                    }));\n                }\n            } else {\n                images[source] = Some(final_state);\n                representatives[source] = Some(id);\n            }\n            self.expand_search(memory, (source, control, output), id, &mut search)?;\n        }\n        Ok(HistoryDescent::Descends(HistoryStateMap {\n            images,\n            reachable_product_states: search.vertices.len(),\n        }))\n    }",
+      "obligation": "Check alphabet then start. Explore the complete reachable (source memory, control, emitted-prefix memory) graph. Apply final emission only to the observation at each vertex. Save the first image and representative vertex per source state; return the first conflicting canonical word pair, or exact images with None only on unreachable source states and the full reachable-product count."
+    },
+    "profile_noncongruence": {
+      "line": 195,
+      "signature": "pub fn profile_noncongruence(\n        &self,\n        memory: &FiniteMoore,\n        start: usize,\n    ) -> Result<Option<ProfileNoncongruenceWitness>, HistoryError>",
+      "body": "{\n        let mut search = self.initial_search(memory, start)?;\n        let mut profile_images: BTreeMap<usize, (usize, usize)> = BTreeMap::new();\n        while let Some((id, (source, control, output))) = search.pop() {\n            let final_state = run(memory, output, &self.final_outputs[control])?;\n            let source_profile = memory.reports()[source];\n            let target_profile = memory.reports()[final_state];\n            if let Some(&(previous, representative)) = profile_images.get(&source_profile) {\n                if previous != target_profile {\n                    return Ok(Some((search.word(representative), search.word(id))));\n                }\n            } else {\n                profile_images.insert(source_profile, (target_profile, id));\n            }\n            self.expand_search(memory, (source, control, output), id, &mut search)?;\n        }\n        Ok(None)\n    }",
+      "obligation": "Explore the same complete product graph and final emissions. Compare literal memory reports of original and transformed states. Save the first target report and representative ID per source report; return the first pair with equal source reports and unequal target reports, or None. This differs from state-image descent."
+    },
+    "initial_search": {
+      "line": 218,
+      "signature": "fn initial_search(\n        &self,\n        memory: &FiniteMoore,\n        start: usize,\n    ) -> Result<ProductSearch, HistoryError>",
+      "body": "{\n        if memory.input_count() != self.alphabet_size {\n            return Err(HistoryError::InvalidAlphabet);\n        }\n        if start >= memory.state_count() {\n            return Err(HistoryError::InvalidInitialState);\n        }\n        Ok(ProductSearch::new((\n            start,\n            self.initial,\n            run(memory, start, &self.initial_output)?,\n        )))\n    }",
+      "obligation": "Reject alphabet mismatch before invalid start, then initialize source=start, control=declared initial, and output memory after initial emission. No final emission is carried into the search root."
+    },
+    "expand_search": {
+      "line": 236,
+      "signature": "fn expand_search(\n        &self,\n        memory: &FiniteMoore,\n        state: ProductState,\n        parent: usize,\n        search: &mut ProductSearch,\n    ) -> Result<(), HistoryError>",
+      "body": "{\n        let (source, control, output) = state;\n        for d in 0..self.alphabet_size {\n            let next = (\n                memory.transitions()[source][d],\n                self.transitions[control][d],\n                run(memory, output, &self.outputs[control][d])?,\n            );\n            search.admit(next, parent, d);\n        }\n        Ok(())\n    }",
+      "obligation": "For each input in ascending order update source memory, control state, and emitted-prefix memory using only that transition emission. Admit each fresh triple with its current parent ID. Final emissions never feed the next step."
+    },
+    "verify_descent": {
+      "line": 255,
+      "signature": "pub fn verify_descent(\n        &self,\n        memory: &FiniteMoore,\n        start: usize,\n        candidate: &HistoryDescent,\n    ) -> Result<(), HistoryError>",
+      "body": "{\n        if *candidate != self.descend(memory, start)? {\n            return Err(HistoryError::InvalidCertificate);\n        }\n        Ok(())\n    }",
+      "obligation": "Recompute the entire canonical descent result for self, memory, and start. Exact mismatch gives InvalidCertificate; admission errors propagate. This verifies a result without authenticating external context identity."
+    },
+    "FiniteWordTransducer::apply": {
+      "line": 268,
+      "signature": "fn apply(&self, word: &[usize]) -> Result<Vec<usize>, HistoryError>",
+      "body": "{\n        let mut output = self.initial_output.clone();\n        let mut state = self.initial;\n        for &d in word {\n            if d >= self.alphabet_size {\n                return Err(HistoryError::InvalidWord);\n            }\n            output.extend_from_slice(&self.outputs[state][d]);\n            state = self.transitions[state][d];\n        }\n        output.extend_from_slice(&self.final_outputs[state]);\n        Ok(output)\n    }",
+      "obligation": "Start with initial output, read input digits left to right, reject an invalid digit before indexing, append the old control state transition emission, advance control, and append the final control emission once. Preserve exact word order and multiplicities."
+    },
+    "run": {
+      "line": 283,
+      "signature": "pub fn run(memory: &FiniteMoore, start: usize, word: &[usize]) -> Result<usize, HistoryError>",
+      "body": "{\n    if start >= memory.state_count() {\n        return Err(HistoryError::InvalidInitialState);\n    }\n    let mut state = start;\n    for &d in word {\n        if d >= memory.input_count() {\n            return Err(HistoryError::InvalidWord);\n        }\n        state = memory.transitions()[state][d];\n    }\n    Ok(state)\n}",
+      "obligation": "Reject invalid initial memory state first, then process the word left to right with an alphabet check before each transition. Return the exact total action result, including empty-word identity."
+    },
+    "StateContextLift::new": {
+      "line": 326,
+      "signature": "pub fn new(\n        memory: FiniteMoore,\n        start: usize,\n        action: Vec<usize>,\n    ) -> Result<Self, HistoryError>",
+      "body": "{\n        let n = memory.state_count();\n        if start >= n {\n            return Err(HistoryError::InvalidInitialState);\n        }\n        if action.len() != n || action.iter().any(|&x| x >= n) {\n            return Err(HistoryError::InvalidTransducer);\n        }\n        let mut representatives = vec![None; n];\n        representatives[start] = Some(vec![]);\n        let mut pending = VecDeque::from([start]);\n        while let Some(x) = pending.pop_front() {\n            for d in 0..memory.input_count() {\n                let y = memory.transitions()[x][d];\n                if representatives[y].is_none() {\n                    let mut word = representatives[x]\n                        .clone()\n                        .ok_or(HistoryError::InvalidCertificate)?;\n                    word.push(d);\n                    representatives[y] = Some(word);\n                    pending.push_back(y);\n                }\n            }\n        }\n        if (0..n).any(|x| representatives[x].is_some() && representatives[action[x]].is_none()) {\n            return Err(HistoryError::UnavailableContext);\n        }\n        Ok(Self {\n            memory,\n            start,\n            action,\n            representatives,\n        })\n    }",
+      "obligation": "Require valid start and an in-range action of memory-state length. BFS computes first shortest lexicographic representative histories. Reject exactly when a reachable source state has an unreachable action image. Unreachable source states impose no closure requirement. Own the admitted memory, action, and required representative words."
+    },
+    "reachable_representatives": {
+      "line": 364,
+      "signature": "pub fn reachable_representatives(&self) -> &[Option<Vec<usize>>]",
+      "body": "{\n        &self.representatives\n    }",
+      "obligation": "Borrow exact canonical representative histories, with None precisely for unreachable states."
+    },
+    "action": {
+      "line": 367,
+      "signature": "pub fn action(&self) -> &[usize]",
+      "body": "{\n        &self.action\n    }",
+      "obligation": "Borrow the exact admitted state action."
+    },
+    "StateContextLift::apply": {
+      "line": 372,
+      "signature": "fn apply(&self, word: &[usize]) -> Result<Vec<usize>, HistoryError>",
+      "body": "{\n        let state = run(&self.memory, self.start, word)?;\n        self.representatives[self.action[state]]\n            .clone()\n            .ok_or(HistoryError::UnavailableContext)\n    }",
+      "obligation": "Run the valid input history to its reachable state and return an owned copy of the representative of its action image. Admission ensures that representative exists. Invalid words and initial-state errors propagate; unavailable lookup remains a defensive typed failure."
+    }
+  },
+  "invariant_argument": [
+    "FiniteWordTransducer privately owns a nonempty total control table, emission arrays, and initial/final words, all checked against the same alphabet. FiniteMoore supplies admitted nonempty total memory. Arbitrary caller-provided HistoryContext implementations have their own semantics; only the admitted finite transducer has this complete product algorithm. Empty alphabets are supported. Public construction and run/apply guards reject invalid indices and emitted symbols before indexing; no numeric approximation or hidden output normalization occurs.",
+    "For each input word w, the product vertex is (run(start,w), control after w, run(start, initial_output followed by transition emissions for w)). At the root this holds by construction. The source and control updates and emission run preserve it by induction. Final emissions are applied after the prefix to obtain exactly run(start, apply(w)); they are not fed back into a child product state. The Lean product_correct, final_correct, run_append, and coordinate lemmas prove this abstract all-word correspondence. Native expectations separately concatenate raw emissions and execute memory transitions.",
+    "The reachable product has at most memory_states squared times control_states vertices. Root inclusion and closure under every input cover every finite word; Lean closed_covers_all proves the universal closure argument. Every fresh triple gets one vertex and is queued once, so exhaustive exploration terminates on finite admitted tables, independent of word length. Arithmetic for this mathematical cardinality is not used as an unchecked Rust allocation size. Allocation availability remains standard-library TCB. The finite native oracle enumerates all words through the simple-path product bound for its small models; this is test evidence, rather than substituting a fixed cutoff for the implementation theorem.",
+    "Append-only vertex IDs and the processing cursor implement the same FIFO discovery order as the previous queue. Inputs are visited in ascending order. A fresh child records an already processed parent whose ID is strictly smaller; duplicate triples keep the first parent. Predecessor chains terminate, have at most the number of vertices minus one links, and reconstruct the same shortest lexicographic words previously stored in the map. This preserves first collision selection and both witnesses on all admitted inputs. Source comparison establishes the order correspondence; frozen-reference and direct non-palindromic reconstruction controls corroborate it.",
+    "For state descent, images[source] records the first final emitted-memory result for that source state, and its representative ID is initialized at the same time. A later unequal result returns two actual words with the same original state and different transformed states. If traversal closes without conflict, every reachable source state has one exact image and every unreachable state remains None. The reported product count is the complete distinct reachable vertex count. For profile noncongruence, the key is instead the literal source report and the value is the final target report. Thus state descent and report-kernel constancy are separate questions. The Lean realized-image factor theorem and collision refusal support both abstract kernels.",
+    "Verify_descent compares the full recomputed canonical result, including images/count or all collision fields and words. It does not assert an external declaration identity. Records are raw mutable reports and may be forged; exact replay rejects changed fields. Generic HistoryContext has no blanket totality or global descent guarantee. The actual finite transducer apply method emits precisely initial, per-step, and final words in order; free run implements the memory action with start validation before word validation.",
+    "StateContextLift performs the unchanged memory BFS. Each newly reached state receives its required owned first representative word, copied only at discovery; those words are exposed by the public API and cannot be elided. Closure is required only for reachable source states. Applying a valid history first reaches such a state, then returns the stored representative of its action image. This implements the state action on every history. Conversely any history lift makes each reachable action image reachable. Lean lifted_action, lift_requires_reachable, and lift_exists prove this boundary, without inventing chronology or identifying distinct states from equal reports.",
+    "Product searches now store triples and predecessor links, with one first-representative ID per source state or report. Successful searches copy no full history words; a collision materializes only the two required output words. Initial/final and per-transition emissions remain borrowed during product traversal. Required output images, maps, apply output words, and StateContextLift representative words remain owned. Concrete usize comparisons and library operations are the trust boundary; no arbitrary callback or macro algorithm is hidden. Cursor increments and parent indices are safe under append-only allocated-vector invariants. No explicit work or heap budget is promised for arbitrary models or output words."
+  ],
+  "consumer_review": [
+    "No active completed assessment referenced this source before editing. Public signatures remain unchanged; exact import search finds catalog exports and the umbrella local reexport. Actual local FiniteMoore source and its reviewed assessment are pinned. The current category package passes 459 tests plus three independent history controls.",
+    "The WDP genesis_observer and proposal_admission_bridge modules import omega_category_theory. Their Cargo manifest points to the external the_symbol_game provider. Those identity contexts are pinned; local replay does not establish an external, WDP, or whole-workspace test result.",
+    "Frozen previous source checks exact descent results, canonical witnesses, lifted representatives, apply values, and typed errors. Independent raw-emission execution and complete bounded product-state enumeration supply expected answers on 2,560 small transducer/memory/start cases, with separate zero-alphabet cases. All 672 small reachable-action combinations, helper constructions, malformed inputs, and a length-5,000 collision are also checked. The long case does not execute the old word-caching reference."
+  ],
+  "assurance_limits": [
+    "Contracts pending; AuthorityEffect: None.",
+    "Only admitted finite-state transducers support the complete product decision; arbitrary HistoryContext implementations retain their own semantics.",
+    "State-image descent and literal report-kernel noncongruence remain separate.",
+    "The abstract all-word model is separate from Rust admission, finite graph storage, predecessor ranks, and canonical BFS order; no MIR or extracted Rust proof.",
+    "No arbitrary heap, runtime, or emitted-word allocation budget is promised.",
+    "The finite corpus and 31 designated faults provide scoped evidence; no external omega or whole-workspace success is inferred."
+  ],
+  "metrics": {
+    "receipt": "evidence/quality/category_homology/20261019T230353Z-metrics/receipt.json",
+    "functions": 21,
+    "max_ccn": 10,
+    "max_cognitive": 11,
+    "max_nesting": 3
+  }
+}

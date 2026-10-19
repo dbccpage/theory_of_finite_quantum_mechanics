@@ -1,0 +1,1604 @@
+{
+  "AuthorityEffect": "None",
+  "scope": "Source review of all public methods of the 62 named raw metadata modules; explicit method bodies retained for review. Not mechanized Rust/MIR refinement.",
+  "records": [
+    {
+      "artifact": "code/rust/src/category_theory/abelian/abelian_category.rs",
+      "sha256": "4a6d0b2acc539a2a3fb9da0170cbca2e492325bfe45ad3950366f8fada0285d7",
+      "symbols": {
+        "new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), additive: false, has_kernels: false, has_cokernels: false, notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "with_flags": {
+          "signature": "pub fn with_flags( label: impl Into<String>, additive: bool, has_kernels: bool, has_cokernels: bool, ) -> Self",
+          "body": "{ Self { label: label.into(), additive, has_kernels, has_cokernels, notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "claimed_abelian": {
+          "signature": "pub fn claimed_abelian(label: impl Into<String>) -> Self",
+          "body": "{ Self::with_flags(label, true, true, true) }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "with_note": {
+          "signature": "pub fn with_note(mut self, note: impl Into<String>) -> Self",
+          "body": "{ self.notes.push(note.into()); self }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "checklist_complete": {
+          "signature": "pub fn checklist_complete(&self) -> bool",
+          "body": "{ self.additive && self.has_kernels && self.has_cokernels }",
+          "classification": "Boolean checklist over raw declaration flags only"
+        },
+        "validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } Ok(()) }",
+          "classification": "ordered nonempty-label admission and first InvalidShape refusal"
+        }
+      },
+      "invariant": "The validator reads each listed String length in the policy order and returns the first typed InvalidShape. Constructors and setters store raw declared values and can intentionally create an invalid candidate. No admitted mathematical wrapper is constructed.",
+      "cost": "Fixed field count: validation O(1) byte-length checks and at most one diagnostic allocation; no production recursion, indexing, multiplication or division. Constructors/setters move String values; with_note appends amortized O(1); terminal-category identity formatting and compact-closed dual cloning are linear in the copied label length. No inner-loop allocation exists.",
+      "representation": "Derived serde produces the same raw record type. It cannot create a mathematical certificate because this module defines no such type. Derived Clone/PartialEq/Eq and serde are within the pinned safe Rust/proc-macro trust boundary."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/abelian/additivity.rs",
+      "sha256": "96c0dca6c8f73fdc260c48bb8b9be994fe59e18d7d48cbc02fc7adc16d6a5603",
+      "symbols": {
+        "new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), has_biproducts: false, zero_object: false, notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "with_flags": {
+          "signature": "pub fn with_flags(label: impl Into<String>, has_biproducts: bool, zero_object: bool) -> Self",
+          "body": "{ Self { label: label.into(), has_biproducts, zero_object, notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "with_note": {
+          "signature": "pub fn with_note(mut self, note: impl Into<String>) -> Self",
+          "body": "{ self.notes.push(note.into()); self }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } Ok(()) }",
+          "classification": "ordered nonempty-label admission and first InvalidShape refusal"
+        }
+      },
+      "invariant": "The validator reads each listed String length in the policy order and returns the first typed InvalidShape. Constructors and setters store raw declared values and can intentionally create an invalid candidate. No admitted mathematical wrapper is constructed.",
+      "cost": "Fixed field count: validation O(1) byte-length checks and at most one diagnostic allocation; no production recursion, indexing, multiplication or division. Constructors/setters move String values; with_note appends amortized O(1); terminal-category identity formatting and compact-closed dual cloning are linear in the copied label length. No inner-loop allocation exists.",
+      "representation": "Derived serde produces the same raw record type. It cannot create a mathematical certificate because this module defines no such type. Derived Clone/PartialEq/Eq and serde are within the pinned safe Rust/proc-macro trust boundary."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/abelian/derived_category.rs",
+      "sha256": "5da95fba4030e2e09ca2a3d878470cd9df9249476a0fda1eef395483a152c2f4",
+      "symbols": {
+        "new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), base_abelian_label: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "of_abelian": {
+          "signature": "pub fn of_abelian(label: impl Into<String>, base_abelian_label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), base_abelian_label: base_abelian_label.into(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "with_note": {
+          "signature": "pub fn with_note(mut self, note: impl Into<String>) -> Self",
+          "body": "{ self.notes.push(note.into()); self }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.base_abelian_label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty base_abelian_label\".into())); } Ok(()) }",
+          "classification": "ordered nonempty-label admission and first InvalidShape refusal"
+        }
+      },
+      "invariant": "The validator reads each listed String length in the policy order and returns the first typed InvalidShape. Constructors and setters store raw declared values and can intentionally create an invalid candidate. No admitted mathematical wrapper is constructed.",
+      "cost": "Fixed field count: validation O(1) byte-length checks and at most one diagnostic allocation; no production recursion, indexing, multiplication or division. Constructors/setters move String values; with_note appends amortized O(1); terminal-category identity formatting and compact-closed dual cloning are linear in the copied label length. No inner-loop allocation exists.",
+      "representation": "Derived serde produces the same raw record type. It cannot create a mathematical certificate because this module defines no such type. Derived Clone/PartialEq/Eq and serde are within the pinned safe Rust/proc-macro trust boundary."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/abelian/homological_algebra.rs",
+      "sha256": "670955ed8ff63d1600b17dd119610ed972d96a550dddbb8d80ca9bd4c284c3ca",
+      "symbols": {
+        "new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), base_category_label: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "over_category": {
+          "signature": "pub fn over_category(label: impl Into<String>, base_category_label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), base_category_label: base_category_label.into(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "with_note": {
+          "signature": "pub fn with_note(mut self, note: impl Into<String>) -> Self",
+          "body": "{ self.notes.push(note.into()); self }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } Ok(()) }",
+          "classification": "ordered nonempty-label admission and first InvalidShape refusal"
+        }
+      },
+      "invariant": "The validator reads each listed String length in the policy order and returns the first typed InvalidShape. Constructors and setters store raw declared values and can intentionally create an invalid candidate. No admitted mathematical wrapper is constructed.",
+      "cost": "Fixed field count: validation O(1) byte-length checks and at most one diagnostic allocation; no production recursion, indexing, multiplication or division. Constructors/setters move String values; with_note appends amortized O(1); terminal-category identity formatting and compact-closed dual cloning are linear in the copied label length. No inner-loop allocation exists.",
+      "representation": "Derived serde produces the same raw record type. It cannot create a mathematical certificate because this module defines no such type. Derived Clone/PartialEq/Eq and serde are within the pinned safe Rust/proc-macro trust boundary."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/adjunction/adjunction.rs",
+      "sha256": "6f8e4375995f1968e53440dbe89707444aa70ffbbbb364301cfe8fac9a25d730",
+      "symbols": {
+        "new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), left_functor: String::new(), right_functor: String::new(), unit_ref: String::new(), counit_ref: String::new(), source_category: String::new(), target_category: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "between": {
+          "signature": "pub fn between( label: impl Into<String>, left_functor: impl Into<String>, right_functor: impl Into<String>, unit_ref: impl Into<String>, counit_ref: impl Into<String>, ) -> Self",
+          "body": "{ Self { label: label.into(), left_functor: left_functor.into(), right_functor: right_functor.into(), unit_ref: unit_ref.into(), counit_ref: counit_ref.into(), source_category: String::new(), target_category: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "with_categories": {
+          "signature": "pub fn with_categories( mut self, source_category: impl Into<String>, target_category: impl Into<String>, ) -> Self",
+          "body": "{ self.source_category = source_category.into(); self.target_category = target_category.into(); self }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "with_note": {
+          "signature": "pub fn with_note(mut self, note: impl Into<String>) -> Self",
+          "body": "{ self.notes.push(note.into()); self }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.left_functor.is_empty() { return Err(ArithmosError::InvalidShape(\"empty left_functor\".into())); } if self.right_functor.is_empty() { return Err(ArithmosError::InvalidShape(\"empty right_functor\".into())); } if self.unit_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty unit_ref\".into())); } if self.counit_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty counit_ref\".into())); } Ok(()) }",
+          "classification": "ordered nonempty-label admission and first InvalidShape refusal"
+        }
+      },
+      "invariant": "The validator reads each listed String length in the policy order and returns the first typed InvalidShape. Constructors and setters store raw declared values and can intentionally create an invalid candidate. No admitted mathematical wrapper is constructed.",
+      "cost": "Fixed field count: validation O(1) byte-length checks and at most one diagnostic allocation; no production recursion, indexing, multiplication or division. Constructors/setters move String values; with_note appends amortized O(1); terminal-category identity formatting and compact-closed dual cloning are linear in the copied label length. No inner-loop allocation exists.",
+      "representation": "Derived serde produces the same raw record type. It cannot create a mathematical certificate because this module defines no such type. Derived Clone/PartialEq/Eq and serde are within the pinned safe Rust/proc-macro trust boundary."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/adjunction/coreflective_subcategory.rs",
+      "sha256": "bda9c6c685bb6b6ff7e6b629c5fb2533be268d3213f7a606c5cd98c8b9281d89",
+      "symbols": {
+        "new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), ambient_category: String::new(), subcategory: String::new(), inclusion: String::new(), coreflector: String::new(), unit_ref: String::new(), counit_ref: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "with_labels": {
+          "signature": "pub fn with_labels( label: impl Into<String>, ambient_category: impl Into<String>, subcategory: impl Into<String>, coreflector: impl Into<String>, ) -> Self",
+          "body": "{ Self { label: label.into(), ambient_category: ambient_category.into(), subcategory: subcategory.into(), inclusion: String::new(), coreflector: coreflector.into(), unit_ref: String::new(), counit_ref: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "with_inclusion": {
+          "signature": "pub fn with_inclusion(mut self, inclusion: impl Into<String>) -> Self",
+          "body": "{ self.inclusion = inclusion.into(); self }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "with_unit_counit": {
+          "signature": "pub fn with_unit_counit( mut self, unit_ref: impl Into<String>, counit_ref: impl Into<String>, ) -> Self",
+          "body": "{ self.unit_ref = unit_ref.into(); self.counit_ref = counit_ref.into(); self }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.ambient_category.is_empty() { return Err(ArithmosError::InvalidShape(\"empty ambient_category\".into())); } if self.subcategory.is_empty() { return Err(ArithmosError::InvalidShape(\"empty subcategory\".into())); } if self.coreflector.is_empty() { return Err(ArithmosError::InvalidShape(\"empty coreflector\".into())); } Ok(()) }",
+          "classification": "ordered nonempty-label admission and first InvalidShape refusal"
+        }
+      },
+      "invariant": "The validator reads each listed String length in the policy order and returns the first typed InvalidShape. Constructors and setters store raw declared values and can intentionally create an invalid candidate. No admitted mathematical wrapper is constructed.",
+      "cost": "Fixed field count: validation O(1) byte-length checks and at most one diagnostic allocation; no production recursion, indexing, multiplication or division. Constructors/setters move String values; with_note appends amortized O(1); terminal-category identity formatting and compact-closed dual cloning are linear in the copied label length. No inner-loop allocation exists.",
+      "representation": "Derived serde produces the same raw record type. It cannot create a mathematical certificate because this module defines no such type. Derived Clone/PartialEq/Eq and serde are within the pinned safe Rust/proc-macro trust boundary."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/adjunction/reflective_subcategory.rs",
+      "sha256": "57e4c5bb67d83594fbe85b1d97fb98168ccbbfdd1e234316ea054da647b4c617",
+      "symbols": {
+        "new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), ambient_category: String::new(), subcategory: String::new(), inclusion: String::new(), reflector: String::new(), unit_ref: String::new(), counit_ref: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "with_labels": {
+          "signature": "pub fn with_labels( label: impl Into<String>, ambient_category: impl Into<String>, subcategory: impl Into<String>, reflector: impl Into<String>, ) -> Self",
+          "body": "{ Self { label: label.into(), ambient_category: ambient_category.into(), subcategory: subcategory.into(), inclusion: String::new(), reflector: reflector.into(), unit_ref: String::new(), counit_ref: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "with_inclusion": {
+          "signature": "pub fn with_inclusion(mut self, inclusion: impl Into<String>) -> Self",
+          "body": "{ self.inclusion = inclusion.into(); self }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "with_unit_counit": {
+          "signature": "pub fn with_unit_counit( mut self, unit_ref: impl Into<String>, counit_ref: impl Into<String>, ) -> Self",
+          "body": "{ self.unit_ref = unit_ref.into(); self.counit_ref = counit_ref.into(); self }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.ambient_category.is_empty() { return Err(ArithmosError::InvalidShape(\"empty ambient_category\".into())); } if self.subcategory.is_empty() { return Err(ArithmosError::InvalidShape(\"empty subcategory\".into())); } if self.reflector.is_empty() { return Err(ArithmosError::InvalidShape(\"empty reflector\".into())); } Ok(()) }",
+          "classification": "ordered nonempty-label admission and first InvalidShape refusal"
+        }
+      },
+      "invariant": "The validator reads each listed String length in the policy order and returns the first typed InvalidShape. Constructors and setters store raw declared values and can intentionally create an invalid candidate. No admitted mathematical wrapper is constructed.",
+      "cost": "Fixed field count: validation O(1) byte-length checks and at most one diagnostic allocation; no production recursion, indexing, multiplication or division. Constructors/setters move String values; with_note appends amortized O(1); terminal-category identity formatting and compact-closed dual cloning are linear in the copied label length. No inner-loop allocation exists.",
+      "representation": "Derived serde produces the same raw record type. It cannot create a mathematical certificate because this module defines no such type. Derived Clone/PartialEq/Eq and serde are within the pinned safe Rust/proc-macro trust boundary."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/category/terminal_category.rs",
+      "sha256": "9c0c1e3195dbd195747bca7a5efe6b583e8a8de9bc3dd1c4d1d4b740ce56c737",
+      "symbols": {
+        "new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), object: \"\u2217\".into(), identity: \"id\".into(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "with_object": {
+          "signature": "pub fn with_object(label: impl Into<String>, object: impl Into<String>) -> Self",
+          "body": "{ let object = object.into(); Self { label: label.into(), identity: format!(\"id_{object}\"), object, notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.object.is_empty() { return Err(ArithmosError::InvalidShape(\"empty object\".into())); } if self.identity.is_empty() { return Err(ArithmosError::InvalidShape(\"empty identity\".into())); } Ok(()) }",
+          "classification": "ordered nonempty-label admission and first InvalidShape refusal"
+        }
+      },
+      "invariant": "The validator reads each listed String length in the policy order and returns the first typed InvalidShape. Constructors and setters store raw declared values and can intentionally create an invalid candidate. No admitted mathematical wrapper is constructed.",
+      "cost": "Fixed field count: validation O(1) byte-length checks and at most one diagnostic allocation; no production recursion, indexing, multiplication or division. Constructors/setters move String values; with_note appends amortized O(1); terminal-category identity formatting and compact-closed dual cloning are linear in the copied label length. No inner-loop allocation exists.",
+      "representation": "Derived serde produces the same raw record type. It cannot create a mathematical certificate because this module defines no such type. Derived Clone/PartialEq/Eq and serde are within the pinned safe Rust/proc-macro trust boundary."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/enriched/base_category.rs",
+      "sha256": "dfb0f8f384206d8f9f234c9ae2cedd2f9e2042618b1470a0bdf16647a163923e",
+      "symbols": {
+        "new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), monoidal_ref: String::new(), closed_ref: String::new(), completeness_notes: Vec::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "from_monoidal": {
+          "signature": "pub fn from_monoidal(label: impl Into<String>, monoidal_ref: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), monoidal_ref: monoidal_ref.into(), closed_ref: String::new(), completeness_notes: Vec::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.monoidal_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty monoidal_ref\".into())); } Ok(()) }",
+          "classification": "ordered nonempty-label admission and first InvalidShape refusal"
+        }
+      },
+      "invariant": "The validator reads each listed String length in the policy order and returns the first typed InvalidShape. Constructors and setters store raw declared values and can intentionally create an invalid candidate. No admitted mathematical wrapper is constructed.",
+      "cost": "Fixed field count: validation O(1) byte-length checks and at most one diagnostic allocation; no production recursion, indexing, multiplication or division. Constructors/setters move String values; with_note appends amortized O(1); terminal-category identity formatting and compact-closed dual cloning are linear in the copied label length. No inner-loop allocation exists.",
+      "representation": "Derived serde produces the same raw record type. It cannot create a mathematical certificate because this module defines no such type. Derived Clone/PartialEq/Eq and serde are within the pinned safe Rust/proc-macro trust boundary."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/enriched/enriched_adjunction.rs",
+      "sha256": "1fbd59af210d93767e66d320838fd8dcbd95c9cef65a9041120bb87e0109c24e",
+      "symbols": {
+        "new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), left_adjoint: String::new(), right_adjoint: String::new(), base_monoidal_v: String::new(), hom_iso_ref: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "with_adjoints": {
+          "signature": "pub fn with_adjoints( label: impl Into<String>, left_adjoint: impl Into<String>, right_adjoint: impl Into<String>, base_monoidal_v: impl Into<String>, ) -> Self",
+          "body": "{ Self { label: label.into(), left_adjoint: left_adjoint.into(), right_adjoint: right_adjoint.into(), base_monoidal_v: base_monoidal_v.into(), hom_iso_ref: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.left_adjoint.is_empty() { return Err(ArithmosError::InvalidShape(\"empty left_adjoint\".into())); } if self.right_adjoint.is_empty() { return Err(ArithmosError::InvalidShape(\"empty right_adjoint\".into())); } if self.base_monoidal_v.is_empty() { return Err(ArithmosError::InvalidShape(\"empty base_monoidal_v\".into())); } Ok(()) }",
+          "classification": "ordered nonempty-label admission and first InvalidShape refusal"
+        }
+      },
+      "invariant": "The validator reads each listed String length in the policy order and returns the first typed InvalidShape. Constructors and setters store raw declared values and can intentionally create an invalid candidate. No admitted mathematical wrapper is constructed.",
+      "cost": "Fixed field count: validation O(1) byte-length checks and at most one diagnostic allocation; no production recursion, indexing, multiplication or division. Constructors/setters move String values; with_note appends amortized O(1); terminal-category identity formatting and compact-closed dual cloning are linear in the copied label length. No inner-loop allocation exists.",
+      "representation": "Derived serde produces the same raw record type. It cannot create a mathematical certificate because this module defines no such type. Derived Clone/PartialEq/Eq and serde are within the pinned safe Rust/proc-macro trust boundary."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/enriched/enriched_functor.rs",
+      "sha256": "a4abe237c01f3ad97e27533057a9fd6c52a233b3bebc97868903b97f523aa737",
+      "symbols": {
+        "new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), domain_enriched: String::new(), codomain_enriched: String::new(), base_monoidal_v: String::new(), object_map_ref: String::new(), hom_map_ref: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "between": {
+          "signature": "pub fn between( label: impl Into<String>, domain_enriched: impl Into<String>, codomain_enriched: impl Into<String>, base_monoidal_v: impl Into<String>, ) -> Self",
+          "body": "{ Self { label: label.into(), domain_enriched: domain_enriched.into(), codomain_enriched: codomain_enriched.into(), base_monoidal_v: base_monoidal_v.into(), object_map_ref: String::new(), hom_map_ref: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.domain_enriched.is_empty() { return Err(ArithmosError::InvalidShape(\"empty domain_enriched\".into())); } if self.codomain_enriched.is_empty() { return Err(ArithmosError::InvalidShape(\"empty codomain_enriched\".into())); } if self.base_monoidal_v.is_empty() { return Err(ArithmosError::InvalidShape(\"empty base_monoidal_v\".into())); } Ok(()) }",
+          "classification": "ordered nonempty-label admission and first InvalidShape refusal"
+        }
+      },
+      "invariant": "The validator reads each listed String length in the policy order and returns the first typed InvalidShape. Constructors and setters store raw declared values and can intentionally create an invalid candidate. No admitted mathematical wrapper is constructed.",
+      "cost": "Fixed field count: validation O(1) byte-length checks and at most one diagnostic allocation; no production recursion, indexing, multiplication or division. Constructors/setters move String values; with_note appends amortized O(1); terminal-category identity formatting and compact-closed dual cloning are linear in the copied label length. No inner-loop allocation exists.",
+      "representation": "Derived serde produces the same raw record type. It cannot create a mathematical certificate because this module defines no such type. Derived Clone/PartialEq/Eq and serde are within the pinned safe Rust/proc-macro trust boundary."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/enriched/enriched_natural_transformation.rs",
+      "sha256": "9163e429a472ee711f39795e16a63795ffe7c31e2a98c91c83552bd1e67b1445",
+      "symbols": {
+        "new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), source_functor: String::new(), target_functor: String::new(), base_monoidal_v: String::new(), components_ref: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "between": {
+          "signature": "pub fn between( label: impl Into<String>, source_functor: impl Into<String>, target_functor: impl Into<String>, base_monoidal_v: impl Into<String>, ) -> Self",
+          "body": "{ Self { label: label.into(), source_functor: source_functor.into(), target_functor: target_functor.into(), base_monoidal_v: base_monoidal_v.into(), components_ref: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.source_functor.is_empty() { return Err(ArithmosError::InvalidShape(\"empty source_functor\".into())); } if self.target_functor.is_empty() { return Err(ArithmosError::InvalidShape(\"empty target_functor\".into())); } if self.base_monoidal_v.is_empty() { return Err(ArithmosError::InvalidShape(\"empty base_monoidal_v\".into())); } Ok(()) }",
+          "classification": "ordered nonempty-label admission and first InvalidShape refusal"
+        }
+      },
+      "invariant": "The validator reads each listed String length in the policy order and returns the first typed InvalidShape. Constructors and setters store raw declared values and can intentionally create an invalid candidate. No admitted mathematical wrapper is constructed.",
+      "cost": "Fixed field count: validation O(1) byte-length checks and at most one diagnostic allocation; no production recursion, indexing, multiplication or division. Constructors/setters move String values; with_note appends amortized O(1); terminal-category identity formatting and compact-closed dual cloning are linear in the copied label length. No inner-loop allocation exists.",
+      "representation": "Derived serde produces the same raw record type. It cannot create a mathematical certificate because this module defines no such type. Derived Clone/PartialEq/Eq and serde are within the pinned safe Rust/proc-macro trust boundary."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/enriched/enriched_presheaf.rs",
+      "sha256": "8fae801c5723c57545381f3accca210e6dc4a0d05348789af8a9416b4dc244a8",
+      "symbols": {
+        "new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), domain_enriched: String::new(), base_monoidal_v: String::new(), object_map_ref: String::new(), action_ref: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "on": {
+          "signature": "pub fn on( label: impl Into<String>, domain_enriched: impl Into<String>, base_monoidal_v: impl Into<String>, ) -> Self",
+          "body": "{ Self { label: label.into(), domain_enriched: domain_enriched.into(), base_monoidal_v: base_monoidal_v.into(), object_map_ref: String::new(), action_ref: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.domain_enriched.is_empty() { return Err(ArithmosError::InvalidShape(\"empty domain_enriched\".into())); } if self.base_monoidal_v.is_empty() { return Err(ArithmosError::InvalidShape(\"empty base_monoidal_v\".into())); } Ok(()) }",
+          "classification": "ordered nonempty-label admission and first InvalidShape refusal"
+        }
+      },
+      "invariant": "The validator reads each listed String length in the policy order and returns the first typed InvalidShape. Constructors and setters store raw declared values and can intentionally create an invalid candidate. No admitted mathematical wrapper is constructed.",
+      "cost": "Fixed field count: validation O(1) byte-length checks and at most one diagnostic allocation; no production recursion, indexing, multiplication or division. Constructors/setters move String values; with_note appends amortized O(1); terminal-category identity formatting and compact-closed dual cloning are linear in the copied label length. No inner-loop allocation exists.",
+      "representation": "Derived serde produces the same raw record type. It cannot create a mathematical certificate because this module defines no such type. Derived Clone/PartialEq/Eq and serde are within the pinned safe Rust/proc-macro trust boundary."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/enriched/weighted_colimit.rs",
+      "sha256": "54de3a60cc2d40ac5d05a8ee4f0066635b00bf5c4f78a7962452e839b2bc2ea5",
+      "symbols": {
+        "new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), weight_ref: String::new(), diagram_ref: String::new(), ambient_enriched: String::new(), base_monoidal_v: String::new(), apex: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "of": {
+          "signature": "pub fn of( label: impl Into<String>, weight_ref: impl Into<String>, diagram_ref: impl Into<String>, ambient_enriched: impl Into<String>, base_monoidal_v: impl Into<String>, ) -> Self",
+          "body": "{ Self { label: label.into(), weight_ref: weight_ref.into(), diagram_ref: diagram_ref.into(), ambient_enriched: ambient_enriched.into(), base_monoidal_v: base_monoidal_v.into(), apex: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.weight_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty weight_ref\".into())); } if self.diagram_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty diagram_ref\".into())); } if self.ambient_enriched.is_empty() { return Err(ArithmosError::InvalidShape(\"empty ambient_enriched\".into())); } if self.base_monoidal_v.is_empty() { return Err(ArithmosError::InvalidShape(\"empty base_monoidal_v\".into())); } Ok(()) }",
+          "classification": "ordered nonempty-label admission and first InvalidShape refusal"
+        }
+      },
+      "invariant": "The validator reads each listed String length in the policy order and returns the first typed InvalidShape. Constructors and setters store raw declared values and can intentionally create an invalid candidate. No admitted mathematical wrapper is constructed.",
+      "cost": "Fixed field count: validation O(1) byte-length checks and at most one diagnostic allocation; no production recursion, indexing, multiplication or division. Constructors/setters move String values; with_note appends amortized O(1); terminal-category identity formatting and compact-closed dual cloning are linear in the copied label length. No inner-loop allocation exists.",
+      "representation": "Derived serde produces the same raw record type. It cannot create a mathematical certificate because this module defines no such type. Derived Clone/PartialEq/Eq and serde are within the pinned safe Rust/proc-macro trust boundary."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/enriched/weighted_limit.rs",
+      "sha256": "a5e2e0de9a3c63c903b42f10638f3a7d52ed452795f463e1e5496c9d85939477",
+      "symbols": {
+        "new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), weight_ref: String::new(), diagram_ref: String::new(), ambient_enriched: String::new(), base_monoidal_v: String::new(), apex: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "of": {
+          "signature": "pub fn of( label: impl Into<String>, weight_ref: impl Into<String>, diagram_ref: impl Into<String>, ambient_enriched: impl Into<String>, base_monoidal_v: impl Into<String>, ) -> Self",
+          "body": "{ Self { label: label.into(), weight_ref: weight_ref.into(), diagram_ref: diagram_ref.into(), ambient_enriched: ambient_enriched.into(), base_monoidal_v: base_monoidal_v.into(), apex: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.weight_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty weight_ref\".into())); } if self.diagram_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty diagram_ref\".into())); } if self.ambient_enriched.is_empty() { return Err(ArithmosError::InvalidShape(\"empty ambient_enriched\".into())); } if self.base_monoidal_v.is_empty() { return Err(ArithmosError::InvalidShape(\"empty base_monoidal_v\".into())); } Ok(()) }",
+          "classification": "ordered nonempty-label admission and first InvalidShape refusal"
+        }
+      },
+      "invariant": "The validator reads each listed String length in the policy order and returns the first typed InvalidShape. Constructors and setters store raw declared values and can intentionally create an invalid candidate. No admitted mathematical wrapper is constructed.",
+      "cost": "Fixed field count: validation O(1) byte-length checks and at most one diagnostic allocation; no production recursion, indexing, multiplication or division. Constructors/setters move String values; with_note appends amortized O(1); terminal-category identity formatting and compact-closed dual cloning are linear in the copied label length. No inner-loop allocation exists.",
+      "representation": "Derived serde produces the same raw record type. It cannot create a mathematical certificate because this module defines no such type. Derived Clone/PartialEq/Eq and serde are within the pinned safe Rust/proc-macro trust boundary."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/functor/constant_functor.rs",
+      "sha256": "10de3a759f98b396245f61f15058613f61ccd0e7684f6db171a3ed4fea2dc586",
+      "symbols": {
+        "new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), source_category: String::new(), target_category: String::new(), constant_object: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "constant": {
+          "signature": "pub fn constant( label: impl Into<String>, source_category: impl Into<String>, target_category: impl Into<String>, constant_object: impl Into<String>, ) -> Self",
+          "body": "{ Self { label: label.into(), source_category: source_category.into(), target_category: target_category.into(), constant_object: constant_object.into(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.source_category.is_empty() { return Err(ArithmosError::InvalidShape(\"empty source_category\".into())); } if self.target_category.is_empty() { return Err(ArithmosError::InvalidShape(\"empty target_category\".into())); } if self.constant_object.is_empty() { return Err(ArithmosError::InvalidShape(\"empty constant_object\".into())); } Ok(()) }",
+          "classification": "ordered nonempty-label admission and first InvalidShape refusal"
+        }
+      },
+      "invariant": "The validator reads each listed String length in the policy order and returns the first typed InvalidShape. Constructors and setters store raw declared values and can intentionally create an invalid candidate. No admitted mathematical wrapper is constructed.",
+      "cost": "Fixed field count: validation O(1) byte-length checks and at most one diagnostic allocation; no production recursion, indexing, multiplication or division. Constructors/setters move String values; with_note appends amortized O(1); terminal-category identity formatting and compact-closed dual cloning are linear in the copied label length. No inner-loop allocation exists.",
+      "representation": "Derived serde produces the same raw record type. It cannot create a mathematical certificate because this module defines no such type. Derived Clone/PartialEq/Eq and serde are within the pinned safe Rust/proc-macro trust boundary."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/functor/copresheaf.rs",
+      "sha256": "0e38478aa7d334ce3384812bfa0442c5f7fbcd068f977fd5fff8a7502effdc00",
+      "symbols": {
+        "new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), category_ref: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "on_category": {
+          "signature": "pub fn on_category(label: impl Into<String>, category_ref: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), category_ref: category_ref.into(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.category_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty category_ref\".into())); } Ok(()) }",
+          "classification": "ordered nonempty-label admission and first InvalidShape refusal"
+        }
+      },
+      "invariant": "The validator reads each listed String length in the policy order and returns the first typed InvalidShape. Constructors and setters store raw declared values and can intentionally create an invalid candidate. No admitted mathematical wrapper is constructed.",
+      "cost": "Fixed field count: validation O(1) byte-length checks and at most one diagnostic allocation; no production recursion, indexing, multiplication or division. Constructors/setters move String values; with_note appends amortized O(1); terminal-category identity formatting and compact-closed dual cloning are linear in the copied label length. No inner-loop allocation exists.",
+      "representation": "Derived serde produces the same raw record type. It cannot create a mathematical certificate because this module defines no such type. Derived Clone/PartialEq/Eq and serde are within the pinned safe Rust/proc-macro trust boundary."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/functor/equivalence_of_categories.rs",
+      "sha256": "c814c33b2d6b99ae4b30e93c437f485a24acd1127f0342fa5a5d4c3067b2736d",
+      "symbols": {
+        "new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), left_functor_ref: String::new(), right_functor_ref: String::new(), unit_nat_trans_ref: String::new(), counit_nat_trans_ref: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "between": {
+          "signature": "pub fn between( label: impl Into<String>, left_functor_ref: impl Into<String>, right_functor_ref: impl Into<String>, ) -> Self",
+          "body": "{ Self { label: label.into(), left_functor_ref: left_functor_ref.into(), right_functor_ref: right_functor_ref.into(), unit_nat_trans_ref: String::new(), counit_nat_trans_ref: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.left_functor_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty left_functor_ref\".into())); } if self.right_functor_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty right_functor_ref\".into())); } Ok(()) }",
+          "classification": "ordered nonempty-label admission and first InvalidShape refusal"
+        }
+      },
+      "invariant": "The validator reads each listed String length in the policy order and returns the first typed InvalidShape. Constructors and setters store raw declared values and can intentionally create an invalid candidate. No admitted mathematical wrapper is constructed.",
+      "cost": "Fixed field count: validation O(1) byte-length checks and at most one diagnostic allocation; no production recursion, indexing, multiplication or division. Constructors/setters move String values; with_note appends amortized O(1); terminal-category identity formatting and compact-closed dual cloning are linear in the copied label length. No inner-loop allocation exists.",
+      "representation": "Derived serde produces the same raw record type. It cannot create a mathematical certificate because this module defines no such type. Derived Clone/PartialEq/Eq and serde are within the pinned safe Rust/proc-macro trust boundary."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/functor/essentially_surjective.rs",
+      "sha256": "475075d3d88cc4816e306db8931f517509c30677ec023f68a3e2d3ec0c2e8f4f",
+      "symbols": {
+        "new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), functor_ref: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "on_functor": {
+          "signature": "pub fn on_functor(label: impl Into<String>, functor_ref: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), functor_ref: functor_ref.into(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.functor_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty functor_ref\".into())); } Ok(()) }",
+          "classification": "ordered nonempty-label admission and first InvalidShape refusal"
+        }
+      },
+      "invariant": "The validator reads each listed String length in the policy order and returns the first typed InvalidShape. Constructors and setters store raw declared values and can intentionally create an invalid candidate. No admitted mathematical wrapper is constructed.",
+      "cost": "Fixed field count: validation O(1) byte-length checks and at most one diagnostic allocation; no production recursion, indexing, multiplication or division. Constructors/setters move String values; with_note appends amortized O(1); terminal-category identity formatting and compact-closed dual cloning are linear in the copied label length. No inner-loop allocation exists.",
+      "representation": "Derived serde produces the same raw record type. It cannot create a mathematical certificate because this module defines no such type. Derived Clone/PartialEq/Eq and serde are within the pinned safe Rust/proc-macro trust boundary."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/functor/faithful_functor.rs",
+      "sha256": "bc8dff1b2e4d3e8460cfd6639fbdc2ae511048833999b2795cb3aa52a45cd277",
+      "symbols": {
+        "new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), functor_ref: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "on_functor": {
+          "signature": "pub fn on_functor(label: impl Into<String>, functor_ref: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), functor_ref: functor_ref.into(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.functor_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty functor_ref\".into())); } Ok(()) }",
+          "classification": "ordered nonempty-label admission and first InvalidShape refusal"
+        }
+      },
+      "invariant": "The validator reads each listed String length in the policy order and returns the first typed InvalidShape. Constructors and setters store raw declared values and can intentionally create an invalid candidate. No admitted mathematical wrapper is constructed.",
+      "cost": "Fixed field count: validation O(1) byte-length checks and at most one diagnostic allocation; no production recursion, indexing, multiplication or division. Constructors/setters move String values; with_note appends amortized O(1); terminal-category identity formatting and compact-closed dual cloning are linear in the copied label length. No inner-loop allocation exists.",
+      "representation": "Derived serde produces the same raw record type. It cannot create a mathematical certificate because this module defines no such type. Derived Clone/PartialEq/Eq and serde are within the pinned safe Rust/proc-macro trust boundary."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/functor/forgetful_functor.rs",
+      "sha256": "28662f63bd81f012cd2972ea12cbd72b5bacd6236a71b5c9549a618005d7f2b4",
+      "symbols": {
+        "new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), source_category: String::new(), target_category: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "between": {
+          "signature": "pub fn between( label: impl Into<String>, source_category: impl Into<String>, target_category: impl Into<String>, ) -> Self",
+          "body": "{ Self { label: label.into(), source_category: source_category.into(), target_category: target_category.into(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.source_category.is_empty() { return Err(ArithmosError::InvalidShape(\"empty source_category\".into())); } if self.target_category.is_empty() { return Err(ArithmosError::InvalidShape(\"empty target_category\".into())); } Ok(()) }",
+          "classification": "ordered nonempty-label admission and first InvalidShape refusal"
+        }
+      },
+      "invariant": "The validator reads each listed String length in the policy order and returns the first typed InvalidShape. Constructors and setters store raw declared values and can intentionally create an invalid candidate. No admitted mathematical wrapper is constructed.",
+      "cost": "Fixed field count: validation O(1) byte-length checks and at most one diagnostic allocation; no production recursion, indexing, multiplication or division. Constructors/setters move String values; with_note appends amortized O(1); terminal-category identity formatting and compact-closed dual cloning are linear in the copied label length. No inner-loop allocation exists.",
+      "representation": "Derived serde produces the same raw record type. It cannot create a mathematical certificate because this module defines no such type. Derived Clone/PartialEq/Eq and serde are within the pinned safe Rust/proc-macro trust boundary."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/functor/free_functor.rs",
+      "sha256": "0778df879ab12d7512acf32c591d46704eebf24078853d84b1e4e1cde5310f9a",
+      "symbols": {
+        "new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), source_category: String::new(), target_category: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "between": {
+          "signature": "pub fn between( label: impl Into<String>, source_category: impl Into<String>, target_category: impl Into<String>, ) -> Self",
+          "body": "{ Self { label: label.into(), source_category: source_category.into(), target_category: target_category.into(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.source_category.is_empty() { return Err(ArithmosError::InvalidShape(\"empty source_category\".into())); } if self.target_category.is_empty() { return Err(ArithmosError::InvalidShape(\"empty target_category\".into())); } Ok(()) }",
+          "classification": "ordered nonempty-label admission and first InvalidShape refusal"
+        }
+      },
+      "invariant": "The validator reads each listed String length in the policy order and returns the first typed InvalidShape. Constructors and setters store raw declared values and can intentionally create an invalid candidate. No admitted mathematical wrapper is constructed.",
+      "cost": "Fixed field count: validation O(1) byte-length checks and at most one diagnostic allocation; no production recursion, indexing, multiplication or division. Constructors/setters move String values; with_note appends amortized O(1); terminal-category identity formatting and compact-closed dual cloning are linear in the copied label length. No inner-loop allocation exists.",
+      "representation": "Derived serde produces the same raw record type. It cannot create a mathematical certificate because this module defines no such type. Derived Clone/PartialEq/Eq and serde are within the pinned safe Rust/proc-macro trust boundary."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/functor/full_functor.rs",
+      "sha256": "896cb9c6caa77db592e38348353a6c179e047b93dd291b8575250e606db60427",
+      "symbols": {
+        "new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), functor_ref: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "on_functor": {
+          "signature": "pub fn on_functor(label: impl Into<String>, functor_ref: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), functor_ref: functor_ref.into(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.functor_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty functor_ref\".into())); } Ok(()) }",
+          "classification": "ordered nonempty-label admission and first InvalidShape refusal"
+        }
+      },
+      "invariant": "The validator reads each listed String length in the policy order and returns the first typed InvalidShape. Constructors and setters store raw declared values and can intentionally create an invalid candidate. No admitted mathematical wrapper is constructed.",
+      "cost": "Fixed field count: validation O(1) byte-length checks and at most one diagnostic allocation; no production recursion, indexing, multiplication or division. Constructors/setters move String values; with_note appends amortized O(1); terminal-category identity formatting and compact-closed dual cloning are linear in the copied label length. No inner-loop allocation exists.",
+      "representation": "Derived serde produces the same raw record type. It cannot create a mathematical certificate because this module defines no such type. Derived Clone/PartialEq/Eq and serde are within the pinned safe Rust/proc-macro trust boundary."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/functor/functor_category.rs",
+      "sha256": "2bad09b6dceec4db40ed2377a9e1fbc1d9c2f9939900341bae0dab9194bef3cb",
+      "symbols": {
+        "new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), source_category: String::new(), target_category: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "between": {
+          "signature": "pub fn between( label: impl Into<String>, source_category: impl Into<String>, target_category: impl Into<String>, ) -> Self",
+          "body": "{ Self { label: label.into(), source_category: source_category.into(), target_category: target_category.into(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.source_category.is_empty() { return Err(ArithmosError::InvalidShape(\"empty source_category\".into())); } if self.target_category.is_empty() { return Err(ArithmosError::InvalidShape(\"empty target_category\".into())); } Ok(()) }",
+          "classification": "ordered nonempty-label admission and first InvalidShape refusal"
+        }
+      },
+      "invariant": "The validator reads each listed String length in the policy order and returns the first typed InvalidShape. Constructors and setters store raw declared values and can intentionally create an invalid candidate. No admitted mathematical wrapper is constructed.",
+      "cost": "Fixed field count: validation O(1) byte-length checks and at most one diagnostic allocation; no production recursion, indexing, multiplication or division. Constructors/setters move String values; with_note appends amortized O(1); terminal-category identity formatting and compact-closed dual cloning are linear in the copied label length. No inner-loop allocation exists.",
+      "representation": "Derived serde produces the same raw record type. It cannot create a mathematical certificate because this module defines no such type. Derived Clone/PartialEq/Eq and serde are within the pinned safe Rust/proc-macro trust boundary."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/functor/horizontal_composition.rs",
+      "sha256": "3b0470a03f65e569f17a3e17ca61be2d15e98222621cd5eebf7d7ceadf00ec3a",
+      "symbols": {
+        "new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), left_nat_trans_ref: String::new(), right_nat_trans_ref: String::new(), result_ref: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "of": {
+          "signature": "pub fn of( label: impl Into<String>, left_nat_trans_ref: impl Into<String>, right_nat_trans_ref: impl Into<String>, ) -> Self",
+          "body": "{ Self { label: label.into(), left_nat_trans_ref: left_nat_trans_ref.into(), right_nat_trans_ref: right_nat_trans_ref.into(), result_ref: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.left_nat_trans_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty left_nat_trans_ref\".into())); } if self.right_nat_trans_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty right_nat_trans_ref\".into())); } Ok(()) }",
+          "classification": "ordered nonempty-label admission and first InvalidShape refusal"
+        }
+      },
+      "invariant": "The validator reads each listed String length in the policy order and returns the first typed InvalidShape. Constructors and setters store raw declared values and can intentionally create an invalid candidate. No admitted mathematical wrapper is constructed.",
+      "cost": "Fixed field count: validation O(1) byte-length checks and at most one diagnostic allocation; no production recursion, indexing, multiplication or division. Constructors/setters move String values; with_note appends amortized O(1); terminal-category identity formatting and compact-closed dual cloning are linear in the copied label length. No inner-loop allocation exists.",
+      "representation": "Derived serde produces the same raw record type. It cannot create a mathematical certificate because this module defines no such type. Derived Clone/PartialEq/Eq and serde are within the pinned safe Rust/proc-macro trust boundary."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/functor/identity_functor.rs",
+      "sha256": "8a8c209702a73c15df864c57725cceb634e4818ab1d281913eec3a87041af1c8",
+      "symbols": {
+        "new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), category_ref: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "on_category": {
+          "signature": "pub fn on_category(label: impl Into<String>, category_ref: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), category_ref: category_ref.into(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.category_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty category_ref\".into())); } Ok(()) }",
+          "classification": "ordered nonempty-label admission and first InvalidShape refusal"
+        }
+      },
+      "invariant": "The validator reads each listed String length in the policy order and returns the first typed InvalidShape. Constructors and setters store raw declared values and can intentionally create an invalid candidate. No admitted mathematical wrapper is constructed.",
+      "cost": "Fixed field count: validation O(1) byte-length checks and at most one diagnostic allocation; no production recursion, indexing, multiplication or division. Constructors/setters move String values; with_note appends amortized O(1); terminal-category identity formatting and compact-closed dual cloning are linear in the copied label length. No inner-loop allocation exists.",
+      "representation": "Derived serde produces the same raw record type. It cannot create a mathematical certificate because this module defines no such type. Derived Clone/PartialEq/Eq and serde are within the pinned safe Rust/proc-macro trust boundary."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/functor/isomorphism_of_categories.rs",
+      "sha256": "7bd93ee8ae3152ae4d18a7c183a42e743ed5307e1a000a0bd18f0b953708154f",
+      "symbols": {
+        "new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), functor_ref: String::new(), inverse_functor_ref: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "between": {
+          "signature": "pub fn between( label: impl Into<String>, functor_ref: impl Into<String>, inverse_functor_ref: impl Into<String>, ) -> Self",
+          "body": "{ Self { label: label.into(), functor_ref: functor_ref.into(), inverse_functor_ref: inverse_functor_ref.into(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.functor_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty functor_ref\".into())); } if self.inverse_functor_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty inverse_functor_ref\".into())); } Ok(()) }",
+          "classification": "ordered nonempty-label admission and first InvalidShape refusal"
+        }
+      },
+      "invariant": "The validator reads each listed String length in the policy order and returns the first typed InvalidShape. Constructors and setters store raw declared values and can intentionally create an invalid candidate. No admitted mathematical wrapper is constructed.",
+      "cost": "Fixed field count: validation O(1) byte-length checks and at most one diagnostic allocation; no production recursion, indexing, multiplication or division. Constructors/setters move String values; with_note appends amortized O(1); terminal-category identity formatting and compact-closed dual cloning are linear in the copied label length. No inner-loop allocation exists.",
+      "representation": "Derived serde produces the same raw record type. It cannot create a mathematical certificate because this module defines no such type. Derived Clone/PartialEq/Eq and serde are within the pinned safe Rust/proc-macro trust boundary."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/functor/presheaf.rs",
+      "sha256": "4ede84da4e9f6d182cd07587a047c407f02d5605ab0cbdcb316c3b8d032b8362",
+      "symbols": {
+        "new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), category_ref: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "on_category": {
+          "signature": "pub fn on_category(label: impl Into<String>, category_ref: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), category_ref: category_ref.into(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.category_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty category_ref\".into())); } Ok(()) }",
+          "classification": "ordered nonempty-label admission and first InvalidShape refusal"
+        }
+      },
+      "invariant": "The validator reads each listed String length in the policy order and returns the first typed InvalidShape. Constructors and setters store raw declared values and can intentionally create an invalid candidate. No admitted mathematical wrapper is constructed.",
+      "cost": "Fixed field count: validation O(1) byte-length checks and at most one diagnostic allocation; no production recursion, indexing, multiplication or division. Constructors/setters move String values; with_note appends amortized O(1); terminal-category identity formatting and compact-closed dual cloning are linear in the copied label length. No inner-loop allocation exists.",
+      "representation": "Derived serde produces the same raw record type. It cannot create a mathematical certificate because this module defines no such type. Derived Clone/PartialEq/Eq and serde are within the pinned safe Rust/proc-macro trust boundary."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/functor/representable_functor.rs",
+      "sha256": "93d872461444aefab38325e91f01e78043b3743374070b534c3b1037b2a0aeeb",
+      "symbols": {
+        "new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), category_ref: String::new(), representing_object: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "on_category": {
+          "signature": "pub fn on_category(label: impl Into<String>, category_ref: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), category_ref: category_ref.into(), representing_object: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "represented_by": {
+          "signature": "pub fn represented_by( label: impl Into<String>, category_ref: impl Into<String>, representing_object: impl Into<String>, ) -> Self",
+          "body": "{ Self { label: label.into(), category_ref: category_ref.into(), representing_object: representing_object.into(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.category_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty category_ref\".into())); } Ok(()) }",
+          "classification": "ordered nonempty-label admission and first InvalidShape refusal"
+        }
+      },
+      "invariant": "The validator reads each listed String length in the policy order and returns the first typed InvalidShape. Constructors and setters store raw declared values and can intentionally create an invalid candidate. No admitted mathematical wrapper is constructed.",
+      "cost": "Fixed field count: validation O(1) byte-length checks and at most one diagnostic allocation; no production recursion, indexing, multiplication or division. Constructors/setters move String values; with_note appends amortized O(1); terminal-category identity formatting and compact-closed dual cloning are linear in the copied label length. No inner-loop allocation exists.",
+      "representation": "Derived serde produces the same raw record type. It cannot create a mathematical certificate because this module defines no such type. Derived Clone/PartialEq/Eq and serde are within the pinned safe Rust/proc-macro trust boundary."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/functor/vertical_composition.rs",
+      "sha256": "bf389825ff2a05dfc029d930700e6d1a5be352dd626f54a70631600ec6e70356",
+      "symbols": {
+        "new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), outer_nat_trans_ref: String::new(), inner_nat_trans_ref: String::new(), result_ref: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "of": {
+          "signature": "pub fn of( label: impl Into<String>, outer_nat_trans_ref: impl Into<String>, inner_nat_trans_ref: impl Into<String>, ) -> Self",
+          "body": "{ Self { label: label.into(), outer_nat_trans_ref: outer_nat_trans_ref.into(), inner_nat_trans_ref: inner_nat_trans_ref.into(), result_ref: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.outer_nat_trans_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty outer_nat_trans_ref\".into())); } if self.inner_nat_trans_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty inner_nat_trans_ref\".into())); } Ok(()) }",
+          "classification": "ordered nonempty-label admission and first InvalidShape refusal"
+        }
+      },
+      "invariant": "The validator reads each listed String length in the policy order and returns the first typed InvalidShape. Constructors and setters store raw declared values and can intentionally create an invalid candidate. No admitted mathematical wrapper is constructed.",
+      "cost": "Fixed field count: validation O(1) byte-length checks and at most one diagnostic allocation; no production recursion, indexing, multiplication or division. Constructors/setters move String values; with_note appends amortized O(1); terminal-category identity formatting and compact-closed dual cloning are linear in the copied label length. No inner-loop allocation exists.",
+      "representation": "Derived serde produces the same raw record type. It cannot create a mathematical certificate because this module defines no such type. Derived Clone/PartialEq/Eq and serde are within the pinned safe Rust/proc-macro trust boundary."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/functor/yoneda.rs",
+      "sha256": "88cd0ceb399f1d418d7115a35659faab3d75d596f4301c58d951562963b3a445",
+      "symbols": {
+        "new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), category_ref: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "on_category": {
+          "signature": "pub fn on_category(label: impl Into<String>, category_ref: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), category_ref: category_ref.into(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.category_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty category_ref\".into())); } Ok(()) }",
+          "classification": "ordered nonempty-label admission and first InvalidShape refusal"
+        }
+      },
+      "invariant": "The validator reads each listed String length in the policy order and returns the first typed InvalidShape. Constructors and setters store raw declared values and can intentionally create an invalid candidate. No admitted mathematical wrapper is constructed.",
+      "cost": "Fixed field count: validation O(1) byte-length checks and at most one diagnostic allocation; no production recursion, indexing, multiplication or division. Constructors/setters move String values; with_note appends amortized O(1); terminal-category identity formatting and compact-closed dual cloning are linear in the copied label length. No inner-loop allocation exists.",
+      "representation": "Derived serde produces the same raw record type. It cannot create a mathematical certificate because this module defines no such type. Derived Clone/PartialEq/Eq and serde are within the pinned safe Rust/proc-macro trust boundary."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/limits_colimits/coend.rs",
+      "sha256": "6eee2619b88cc078514e5d5f7452aa4cf378afec6fdc364c120c40b49470479c",
+      "symbols": {
+        "new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), bifunctor_ref: String::new(), indexing_category_ref: String::new(), coend_object: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "of_bifunctor": {
+          "signature": "pub fn of_bifunctor( label: impl Into<String>, bifunctor_ref: impl Into<String>, indexing_category_ref: impl Into<String>, coend_object: impl Into<String>, ) -> Self",
+          "body": "{ Self { label: label.into(), bifunctor_ref: bifunctor_ref.into(), indexing_category_ref: indexing_category_ref.into(), coend_object: coend_object.into(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.bifunctor_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty bifunctor_ref\".into())); } if self.indexing_category_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty indexing_category_ref\".into())); } if self.coend_object.is_empty() { return Err(ArithmosError::InvalidShape(\"empty coend_object\".into())); } Ok(()) }",
+          "classification": "ordered nonempty-label admission and first InvalidShape refusal"
+        }
+      },
+      "invariant": "The validator reads each listed String length in the policy order and returns the first typed InvalidShape. Constructors and setters store raw declared values and can intentionally create an invalid candidate. No admitted mathematical wrapper is constructed.",
+      "cost": "Fixed field count: validation O(1) byte-length checks and at most one diagnostic allocation; no production recursion, indexing, multiplication or division. Constructors/setters move String values; with_note appends amortized O(1); terminal-category identity formatting and compact-closed dual cloning are linear in the copied label length. No inner-loop allocation exists.",
+      "representation": "Derived serde produces the same raw record type. It cannot create a mathematical certificate because this module defines no such type. Derived Clone/PartialEq/Eq and serde are within the pinned safe Rust/proc-macro trust boundary."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/limits_colimits/coequalizer.rs",
+      "sha256": "49f7d6316099ccfe807d704b2a5860e4ee431630c577b46b88c39081353b2efd",
+      "symbols": {
+        "new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), coequalizer_object: String::new(), source: String::new(), target: String::new(), morphism_f: String::new(), morphism_g: String::new(), coequalizer_morphism: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "of_pair": {
+          "signature": "pub fn of_pair( label: impl Into<String>, coequalizer_object: impl Into<String>, source: impl Into<String>, target: impl Into<String>, morphism_f: impl Into<String>, morphism_g: impl Into<String>, coequalizer_morphism: impl Into<String>, ) -> Self",
+          "body": "{ Self { label: label.into(), coequalizer_object: coequalizer_object.into(), source: source.into(), target: target.into(), morphism_f: morphism_f.into(), morphism_g: morphism_g.into(), coequalizer_morphism: coequalizer_morphism.into(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.coequalizer_object.is_empty() { return Err(ArithmosError::InvalidShape(\"empty coequalizer_object\".into())); } if self.source.is_empty() { return Err(ArithmosError::InvalidShape(\"empty source\".into())); } if self.target.is_empty() { return Err(ArithmosError::InvalidShape(\"empty target\".into())); } if self.morphism_f.is_empty() { return Err(ArithmosError::InvalidShape(\"empty morphism_f\".into())); } if self.morphism_g.is_empty() { return Err(ArithmosError::InvalidShape(\"empty morphism_g\".into())); } if self.coequalizer_morphism.is_empty() { return Err(ArithmosError::InvalidShape(\"empty coequalizer_morphism\".into())); } Ok(()) }",
+          "classification": "ordered nonempty-label admission and first InvalidShape refusal"
+        }
+      },
+      "invariant": "The validator reads each listed String length in the policy order and returns the first typed InvalidShape. Constructors and setters store raw declared values and can intentionally create an invalid candidate. No admitted mathematical wrapper is constructed.",
+      "cost": "Fixed field count: validation O(1) byte-length checks and at most one diagnostic allocation; no production recursion, indexing, multiplication or division. Constructors/setters move String values; with_note appends amortized O(1); terminal-category identity formatting and compact-closed dual cloning are linear in the copied label length. No inner-loop allocation exists.",
+      "representation": "Derived serde produces the same raw record type. It cannot create a mathematical certificate because this module defines no such type. Derived Clone/PartialEq/Eq and serde are within the pinned safe Rust/proc-macro trust boundary."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/limits_colimits/cokernel_pair.rs",
+      "sha256": "1d4241d6fc5b4d01b97bc8c950842b90994fba7201ce384d0f4bab2e61d4acef",
+      "symbols": {
+        "new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), pair_object: String::new(), source: String::new(), target: String::new(), morphism_f: String::new(), injection_left: String::new(), injection_right: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "of_morphism": {
+          "signature": "pub fn of_morphism( label: impl Into<String>, pair_object: impl Into<String>, source: impl Into<String>, target: impl Into<String>, morphism_f: impl Into<String>, injection_left: impl Into<String>, injection_right: impl Into<String>, ) -> Self",
+          "body": "{ Self { label: label.into(), pair_object: pair_object.into(), source: source.into(), target: target.into(), morphism_f: morphism_f.into(), injection_left: injection_left.into(), injection_right: injection_right.into(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.pair_object.is_empty() { return Err(ArithmosError::InvalidShape(\"empty pair_object\".into())); } if self.source.is_empty() { return Err(ArithmosError::InvalidShape(\"empty source\".into())); } if self.target.is_empty() { return Err(ArithmosError::InvalidShape(\"empty target\".into())); } if self.morphism_f.is_empty() { return Err(ArithmosError::InvalidShape(\"empty morphism_f\".into())); } if self.injection_left.is_empty() { return Err(ArithmosError::InvalidShape(\"empty injection_left\".into())); } if self.injection_right.is_empty() { return Err(ArithmosError::InvalidShape(\"empty injection_right\".into())); } Ok(()) }",
+          "classification": "ordered nonempty-label admission and first InvalidShape refusal"
+        }
+      },
+      "invariant": "The validator reads each listed String length in the policy order and returns the first typed InvalidShape. Constructors and setters store raw declared values and can intentionally create an invalid candidate. No admitted mathematical wrapper is constructed.",
+      "cost": "Fixed field count: validation O(1) byte-length checks and at most one diagnostic allocation; no production recursion, indexing, multiplication or division. Constructors/setters move String values; with_note appends amortized O(1); terminal-category identity formatting and compact-closed dual cloning are linear in the copied label length. No inner-loop allocation exists.",
+      "representation": "Derived serde produces the same raw record type. It cannot create a mathematical certificate because this module defines no such type. Derived Clone/PartialEq/Eq and serde are within the pinned safe Rust/proc-macro trust boundary."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/limits_colimits/density_comonad.rs",
+      "sha256": "294f6749619265f6d3cbf63e26d8c64ba6ddccb58e715e9ffaf21818f0800f16",
+      "symbols": {
+        "new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), functor_k: String::new(), domain_category_ref: String::new(), codomain_category_ref: String::new(), comonad_ref: String::new(), lan_ref: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "of_functor": {
+          "signature": "pub fn of_functor( label: impl Into<String>, functor_k: impl Into<String>, domain_category_ref: impl Into<String>, codomain_category_ref: impl Into<String>, comonad_ref: impl Into<String>, ) -> Self",
+          "body": "{ Self { label: label.into(), functor_k: functor_k.into(), domain_category_ref: domain_category_ref.into(), codomain_category_ref: codomain_category_ref.into(), comonad_ref: comonad_ref.into(), lan_ref: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.functor_k.is_empty() { return Err(ArithmosError::InvalidShape(\"empty functor_k\".into())); } if self.domain_category_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty domain_category_ref\".into())); } if self.codomain_category_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty codomain_category_ref\".into())); } if self.comonad_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty comonad_ref\".into())); } Ok(()) }",
+          "classification": "ordered nonempty-label admission and first InvalidShape refusal"
+        }
+      },
+      "invariant": "The validator reads each listed String length in the policy order and returns the first typed InvalidShape. Constructors and setters store raw declared values and can intentionally create an invalid candidate. No admitted mathematical wrapper is constructed.",
+      "cost": "Fixed field count: validation O(1) byte-length checks and at most one diagnostic allocation; no production recursion, indexing, multiplication or division. Constructors/setters move String values; with_note appends amortized O(1); terminal-category identity formatting and compact-closed dual cloning are linear in the copied label length. No inner-loop allocation exists.",
+      "representation": "Derived serde produces the same raw record type. It cannot create a mathematical certificate because this module defines no such type. Derived Clone/PartialEq/Eq and serde are within the pinned safe Rust/proc-macro trust boundary."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/limits_colimits/end.rs",
+      "sha256": "20b2b06e6cc9717f43b229644f4c1dd090b703b8f218a5a7d0d4e01e6a766fe8",
+      "symbols": {
+        "new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), bifunctor_ref: String::new(), indexing_category_ref: String::new(), end_object: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "of_bifunctor": {
+          "signature": "pub fn of_bifunctor( label: impl Into<String>, bifunctor_ref: impl Into<String>, indexing_category_ref: impl Into<String>, end_object: impl Into<String>, ) -> Self",
+          "body": "{ Self { label: label.into(), bifunctor_ref: bifunctor_ref.into(), indexing_category_ref: indexing_category_ref.into(), end_object: end_object.into(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.bifunctor_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty bifunctor_ref\".into())); } if self.indexing_category_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty indexing_category_ref\".into())); } if self.end_object.is_empty() { return Err(ArithmosError::InvalidShape(\"empty end_object\".into())); } Ok(()) }",
+          "classification": "ordered nonempty-label admission and first InvalidShape refusal"
+        }
+      },
+      "invariant": "The validator reads each listed String length in the policy order and returns the first typed InvalidShape. Constructors and setters store raw declared values and can intentionally create an invalid candidate. No admitted mathematical wrapper is constructed.",
+      "cost": "Fixed field count: validation O(1) byte-length checks and at most one diagnostic allocation; no production recursion, indexing, multiplication or division. Constructors/setters move String values; with_note appends amortized O(1); terminal-category identity formatting and compact-closed dual cloning are linear in the copied label length. No inner-loop allocation exists.",
+      "representation": "Derived serde produces the same raw record type. It cannot create a mathematical certificate because this module defines no such type. Derived Clone/PartialEq/Eq and serde are within the pinned safe Rust/proc-macro trust boundary."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/limits_colimits/equalizer.rs",
+      "sha256": "6340f12bb14995760ca7ee37262f84d3b26fab79b09bfed7be03e99f1619dc06",
+      "symbols": {
+        "new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), equalizer_object: String::new(), source: String::new(), target: String::new(), morphism_f: String::new(), morphism_g: String::new(), equalizer_morphism: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "of_pair": {
+          "signature": "pub fn of_pair( label: impl Into<String>, equalizer_object: impl Into<String>, source: impl Into<String>, target: impl Into<String>, morphism_f: impl Into<String>, morphism_g: impl Into<String>, equalizer_morphism: impl Into<String>, ) -> Self",
+          "body": "{ Self { label: label.into(), equalizer_object: equalizer_object.into(), source: source.into(), target: target.into(), morphism_f: morphism_f.into(), morphism_g: morphism_g.into(), equalizer_morphism: equalizer_morphism.into(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.equalizer_object.is_empty() { return Err(ArithmosError::InvalidShape(\"empty equalizer_object\".into())); } if self.source.is_empty() { return Err(ArithmosError::InvalidShape(\"empty source\".into())); } if self.target.is_empty() { return Err(ArithmosError::InvalidShape(\"empty target\".into())); } if self.morphism_f.is_empty() { return Err(ArithmosError::InvalidShape(\"empty morphism_f\".into())); } if self.morphism_g.is_empty() { return Err(ArithmosError::InvalidShape(\"empty morphism_g\".into())); } if self.equalizer_morphism.is_empty() { return Err(ArithmosError::InvalidShape(\"empty equalizer_morphism\".into())); } Ok(()) }",
+          "classification": "ordered nonempty-label admission and first InvalidShape refusal"
+        }
+      },
+      "invariant": "The validator reads each listed String length in the policy order and returns the first typed InvalidShape. Constructors and setters store raw declared values and can intentionally create an invalid candidate. No admitted mathematical wrapper is constructed.",
+      "cost": "Fixed field count: validation O(1) byte-length checks and at most one diagnostic allocation; no production recursion, indexing, multiplication or division. Constructors/setters move String values; with_note appends amortized O(1); terminal-category identity formatting and compact-closed dual cloning are linear in the copied label length. No inner-loop allocation exists.",
+      "representation": "Derived serde produces the same raw record type. It cannot create a mathematical certificate because this module defines no such type. Derived Clone/PartialEq/Eq and serde are within the pinned safe Rust/proc-macro trust boundary."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/limits_colimits/initial_object.rs",
+      "sha256": "c0b132123a3ce6e33dd69a6080a7a0eaa77cac79314c4fb9ecf311551282952b",
+      "symbols": {
+        "new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), object: String::new(), category_ref: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "in_category": {
+          "signature": "pub fn in_category( label: impl Into<String>, object: impl Into<String>, category_ref: impl Into<String>, ) -> Self",
+          "body": "{ Self { label: label.into(), object: object.into(), category_ref: category_ref.into(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.object.is_empty() { return Err(ArithmosError::InvalidShape(\"empty object\".into())); } if self.category_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty category_ref\".into())); } Ok(()) }",
+          "classification": "ordered nonempty-label admission and first InvalidShape refusal"
+        }
+      },
+      "invariant": "The validator reads each listed String length in the policy order and returns the first typed InvalidShape. Constructors and setters store raw declared values and can intentionally create an invalid candidate. No admitted mathematical wrapper is constructed.",
+      "cost": "Fixed field count: validation O(1) byte-length checks and at most one diagnostic allocation; no production recursion, indexing, multiplication or division. Constructors/setters move String values; with_note appends amortized O(1); terminal-category identity formatting and compact-closed dual cloning are linear in the copied label length. No inner-loop allocation exists.",
+      "representation": "Derived serde produces the same raw record type. It cannot create a mathematical certificate because this module defines no such type. Derived Clone/PartialEq/Eq and serde are within the pinned safe Rust/proc-macro trust boundary."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/limits_colimits/kan_extension.rs",
+      "sha256": "5ad7347227fe7c72d7e7d2a85ff76a8c566ebf15497f545c5e4152eb8929b99f",
+      "symbols": {
+        "new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), kind: KanExtensionKind::Lan, functor_f: String::new(), along_k: String::new(), extension_functor: String::new(), unit_counit_ref: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "lan": {
+          "signature": "pub fn lan( label: impl Into<String>, functor_f: impl Into<String>, along_k: impl Into<String>, extension_functor: impl Into<String>, ) -> Self",
+          "body": "{ Self { label: label.into(), kind: KanExtensionKind::Lan, functor_f: functor_f.into(), along_k: along_k.into(), extension_functor: extension_functor.into(), unit_counit_ref: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "ran": {
+          "signature": "pub fn ran( label: impl Into<String>, functor_f: impl Into<String>, along_k: impl Into<String>, extension_functor: impl Into<String>, ) -> Self",
+          "body": "{ Self { label: label.into(), kind: KanExtensionKind::Ran, functor_f: functor_f.into(), along_k: along_k.into(), extension_functor: extension_functor.into(), unit_counit_ref: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.functor_f.is_empty() { return Err(ArithmosError::InvalidShape(\"empty functor_f\".into())); } if self.along_k.is_empty() { return Err(ArithmosError::InvalidShape(\"empty along_k\".into())); } if self.extension_functor.is_empty() { return Err(ArithmosError::InvalidShape(\"empty extension_functor\".into())); } Ok(()) }",
+          "classification": "ordered nonempty-label admission and first InvalidShape refusal"
+        }
+      },
+      "invariant": "The validator reads each listed String length in the policy order and returns the first typed InvalidShape. Constructors and setters store raw declared values and can intentionally create an invalid candidate. No admitted mathematical wrapper is constructed.",
+      "cost": "Fixed field count: validation O(1) byte-length checks and at most one diagnostic allocation; no production recursion, indexing, multiplication or division. Constructors/setters move String values; with_note appends amortized O(1); terminal-category identity formatting and compact-closed dual cloning are linear in the copied label length. No inner-loop allocation exists.",
+      "representation": "Derived serde produces the same raw record type. It cannot create a mathematical certificate because this module defines no such type. Derived Clone/PartialEq/Eq and serde are within the pinned safe Rust/proc-macro trust boundary."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/limits_colimits/kernel_pair.rs",
+      "sha256": "9127cbf6ffcbc2c200358b6d94968a7be5e644da0a7862eb4068db152b953882",
+      "symbols": {
+        "new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), pair_object: String::new(), source: String::new(), target: String::new(), morphism_f: String::new(), projection_left: String::new(), projection_right: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "of_morphism": {
+          "signature": "pub fn of_morphism( label: impl Into<String>, pair_object: impl Into<String>, source: impl Into<String>, target: impl Into<String>, morphism_f: impl Into<String>, projection_left: impl Into<String>, projection_right: impl Into<String>, ) -> Self",
+          "body": "{ Self { label: label.into(), pair_object: pair_object.into(), source: source.into(), target: target.into(), morphism_f: morphism_f.into(), projection_left: projection_left.into(), projection_right: projection_right.into(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.pair_object.is_empty() { return Err(ArithmosError::InvalidShape(\"empty pair_object\".into())); } if self.source.is_empty() { return Err(ArithmosError::InvalidShape(\"empty source\".into())); } if self.target.is_empty() { return Err(ArithmosError::InvalidShape(\"empty target\".into())); } if self.morphism_f.is_empty() { return Err(ArithmosError::InvalidShape(\"empty morphism_f\".into())); } if self.projection_left.is_empty() { return Err(ArithmosError::InvalidShape(\"empty projection_left\".into())); } if self.projection_right.is_empty() { return Err(ArithmosError::InvalidShape(\"empty projection_right\".into())); } Ok(()) }",
+          "classification": "ordered nonempty-label admission and first InvalidShape refusal"
+        }
+      },
+      "invariant": "The validator reads each listed String length in the policy order and returns the first typed InvalidShape. Constructors and setters store raw declared values and can intentionally create an invalid candidate. No admitted mathematical wrapper is constructed.",
+      "cost": "Fixed field count: validation O(1) byte-length checks and at most one diagnostic allocation; no production recursion, indexing, multiplication or division. Constructors/setters move String values; with_note appends amortized O(1); terminal-category identity formatting and compact-closed dual cloning are linear in the copied label length. No inner-loop allocation exists.",
+      "representation": "Derived serde produces the same raw record type. It cannot create a mathematical certificate because this module defines no such type. Derived Clone/PartialEq/Eq and serde are within the pinned safe Rust/proc-macro trust boundary."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/limits_colimits/pullback.rs",
+      "sha256": "3ddb48784b9b230b734f5d4749ab531b669d4f7fe55338cb4b5eeaa6af54a215",
+      "symbols": {
+        "new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), pullback_object: String::new(), left_source: String::new(), right_source: String::new(), cospan_apex: String::new(), morphism_f: String::new(), morphism_g: String::new(), projection_left: String::new(), projection_right: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "of_cospan": {
+          "signature": "pub fn of_cospan( label: impl Into<String>, pullback_object: impl Into<String>, left_source: impl Into<String>, right_source: impl Into<String>, cospan_apex: impl Into<String>, morphism_f: impl Into<String>, morphism_g: impl Into<String>, projection_left: impl Into<String>, projection_right: impl Into<String>, ) -> Self",
+          "body": "{ Self { label: label.into(), pullback_object: pullback_object.into(), left_source: left_source.into(), right_source: right_source.into(), cospan_apex: cospan_apex.into(), morphism_f: morphism_f.into(), morphism_g: morphism_g.into(), projection_left: projection_left.into(), projection_right: projection_right.into(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.pullback_object.is_empty() { return Err(ArithmosError::InvalidShape(\"empty pullback_object\".into())); } if self.left_source.is_empty() { return Err(ArithmosError::InvalidShape(\"empty left_source\".into())); } if self.right_source.is_empty() { return Err(ArithmosError::InvalidShape(\"empty right_source\".into())); } if self.cospan_apex.is_empty() { return Err(ArithmosError::InvalidShape(\"empty cospan_apex\".into())); } if self.morphism_f.is_empty() { return Err(ArithmosError::InvalidShape(\"empty morphism_f\".into())); } if self.morphism_g.is_empty() { return Err(ArithmosError::InvalidShape(\"empty morphism_g\".into())); } if self.projection_left.is_empty() { return Err(ArithmosError::InvalidShape(\"empty projection_left\".into())); } if self.projection_right.is_empty() { return Err(ArithmosError::InvalidShape(\"empty projection_right\".into())); } Ok(()) }",
+          "classification": "ordered nonempty-label admission and first InvalidShape refusal"
+        }
+      },
+      "invariant": "The validator reads each listed String length in the policy order and returns the first typed InvalidShape. Constructors and setters store raw declared values and can intentionally create an invalid candidate. No admitted mathematical wrapper is constructed.",
+      "cost": "Fixed field count: validation O(1) byte-length checks and at most one diagnostic allocation; no production recursion, indexing, multiplication or division. Constructors/setters move String values; with_note appends amortized O(1); terminal-category identity formatting and compact-closed dual cloning are linear in the copied label length. No inner-loop allocation exists.",
+      "representation": "Derived serde produces the same raw record type. It cannot create a mathematical certificate because this module defines no such type. Derived Clone/PartialEq/Eq and serde are within the pinned safe Rust/proc-macro trust boundary."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/limits_colimits/pushout.rs",
+      "sha256": "6fc65f41a4bcf13d776e0d20d2f21f3e1850123e7a4082a4ce357f802dc724ca",
+      "symbols": {
+        "new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), pushout_object: String::new(), left_target: String::new(), right_target: String::new(), span_base: String::new(), morphism_f: String::new(), morphism_g: String::new(), injection_left: String::new(), injection_right: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "of_span": {
+          "signature": "pub fn of_span( label: impl Into<String>, pushout_object: impl Into<String>, left_target: impl Into<String>, right_target: impl Into<String>, span_base: impl Into<String>, morphism_f: impl Into<String>, morphism_g: impl Into<String>, injection_left: impl Into<String>, injection_right: impl Into<String>, ) -> Self",
+          "body": "{ Self { label: label.into(), pushout_object: pushout_object.into(), left_target: left_target.into(), right_target: right_target.into(), span_base: span_base.into(), morphism_f: morphism_f.into(), morphism_g: morphism_g.into(), injection_left: injection_left.into(), injection_right: injection_right.into(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.pushout_object.is_empty() { return Err(ArithmosError::InvalidShape(\"empty pushout_object\".into())); } if self.left_target.is_empty() { return Err(ArithmosError::InvalidShape(\"empty left_target\".into())); } if self.right_target.is_empty() { return Err(ArithmosError::InvalidShape(\"empty right_target\".into())); } if self.span_base.is_empty() { return Err(ArithmosError::InvalidShape(\"empty span_base\".into())); } if self.morphism_f.is_empty() { return Err(ArithmosError::InvalidShape(\"empty morphism_f\".into())); } if self.morphism_g.is_empty() { return Err(ArithmosError::InvalidShape(\"empty morphism_g\".into())); } if self.injection_left.is_empty() { return Err(ArithmosError::InvalidShape(\"empty injection_left\".into())); } if self.injection_right.is_empty() { return Err(ArithmosError::InvalidShape(\"empty injection_right\".into())); } Ok(()) }",
+          "classification": "ordered nonempty-label admission and first InvalidShape refusal"
+        }
+      },
+      "invariant": "The validator reads each listed String length in the policy order and returns the first typed InvalidShape. Constructors and setters store raw declared values and can intentionally create an invalid candidate. No admitted mathematical wrapper is constructed.",
+      "cost": "Fixed field count: validation O(1) byte-length checks and at most one diagnostic allocation; no production recursion, indexing, multiplication or division. Constructors/setters move String values; with_note appends amortized O(1); terminal-category identity formatting and compact-closed dual cloning are linear in the copied label length. No inner-loop allocation exists.",
+      "representation": "Derived serde produces the same raw record type. It cannot create a mathematical certificate because this module defines no such type. Derived Clone/PartialEq/Eq and serde are within the pinned safe Rust/proc-macro trust boundary."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/limits_colimits/terminal_object.rs",
+      "sha256": "f72d2a7af96edccac86f043c2afd6d64b0abe062f6cac37409226515ca7d36a4",
+      "symbols": {
+        "new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), object: String::new(), category_ref: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "in_category": {
+          "signature": "pub fn in_category( label: impl Into<String>, object: impl Into<String>, category_ref: impl Into<String>, ) -> Self",
+          "body": "{ Self { label: label.into(), object: object.into(), category_ref: category_ref.into(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.object.is_empty() { return Err(ArithmosError::InvalidShape(\"empty object\".into())); } if self.category_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty category_ref\".into())); } Ok(()) }",
+          "classification": "ordered nonempty-label admission and first InvalidShape refusal"
+        }
+      },
+      "invariant": "The validator reads each listed String length in the policy order and returns the first typed InvalidShape. Constructors and setters store raw declared values and can intentionally create an invalid candidate. No admitted mathematical wrapper is constructed.",
+      "cost": "Fixed field count: validation O(1) byte-length checks and at most one diagnostic allocation; no production recursion, indexing, multiplication or division. Constructors/setters move String values; with_note appends amortized O(1); terminal-category identity formatting and compact-closed dual cloning are linear in the copied label length. No inner-loop allocation exists.",
+      "representation": "Derived serde produces the same raw record type. It cannot create a mathematical certificate because this module defines no such type. Derived Clone/PartialEq/Eq and serde are within the pinned safe Rust/proc-macro trust boundary."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/monad/algebra_for_monad.rs",
+      "sha256": "ac32de617e66f17a3bc9827c8f439617be4d4d105f1f3d47b88e7398b03a3bb3",
+      "symbols": {
+        "new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), carrier_label: String::new(), structure_map_label: String::new(), monad_ref: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "with_structure": {
+          "signature": "pub fn with_structure( label: impl Into<String>, carrier_label: impl Into<String>, structure_map_label: impl Into<String>, monad_ref: impl Into<String>, ) -> Self",
+          "body": "{ Self { label: label.into(), carrier_label: carrier_label.into(), structure_map_label: structure_map_label.into(), monad_ref: monad_ref.into(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "with_note": {
+          "signature": "pub fn with_note(mut self, note: impl Into<String>) -> Self",
+          "body": "{ self.notes.push(note.into()); self }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.carrier_label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty carrier_label\".into())); } if self.structure_map_label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty structure_map_label\".into())); } if self.monad_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty monad_ref\".into())); } Ok(()) }",
+          "classification": "ordered nonempty-label admission and first InvalidShape refusal"
+        }
+      },
+      "invariant": "The validator reads each listed String length in the policy order and returns the first typed InvalidShape. Constructors and setters store raw declared values and can intentionally create an invalid candidate. No admitted mathematical wrapper is constructed.",
+      "cost": "Fixed field count: validation O(1) byte-length checks and at most one diagnostic allocation; no production recursion, indexing, multiplication or division. Constructors/setters move String values; with_note appends amortized O(1); terminal-category identity formatting and compact-closed dual cloning are linear in the copied label length. No inner-loop allocation exists.",
+      "representation": "Derived serde produces the same raw record type. It cannot create a mathematical certificate because this module defines no such type. Derived Clone/PartialEq/Eq and serde are within the pinned safe Rust/proc-macro trust boundary."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/monad/coalgebra_for_comonad.rs",
+      "sha256": "2389638032ae9b86e4f302981cf12b6a0a41bd8b431ae409d2aff33d79f967c0",
+      "symbols": {
+        "new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), carrier_label: String::new(), structure_map_label: String::new(), comonad_ref: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "with_structure": {
+          "signature": "pub fn with_structure( label: impl Into<String>, carrier_label: impl Into<String>, structure_map_label: impl Into<String>, comonad_ref: impl Into<String>, ) -> Self",
+          "body": "{ Self { label: label.into(), carrier_label: carrier_label.into(), structure_map_label: structure_map_label.into(), comonad_ref: comonad_ref.into(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "with_note": {
+          "signature": "pub fn with_note(mut self, note: impl Into<String>) -> Self",
+          "body": "{ self.notes.push(note.into()); self }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.carrier_label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty carrier_label\".into())); } if self.structure_map_label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty structure_map_label\".into())); } if self.comonad_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty comonad_ref\".into())); } Ok(()) }",
+          "classification": "ordered nonempty-label admission and first InvalidShape refusal"
+        }
+      },
+      "invariant": "The validator reads each listed String length in the policy order and returns the first typed InvalidShape. Constructors and setters store raw declared values and can intentionally create an invalid candidate. No admitted mathematical wrapper is constructed.",
+      "cost": "Fixed field count: validation O(1) byte-length checks and at most one diagnostic allocation; no production recursion, indexing, multiplication or division. Constructors/setters move String values; with_note appends amortized O(1); terminal-category identity formatting and compact-closed dual cloning are linear in the copied label length. No inner-loop allocation exists.",
+      "representation": "Derived serde produces the same raw record type. It cannot create a mathematical certificate because this module defines no such type. Derived Clone/PartialEq/Eq and serde are within the pinned safe Rust/proc-macro trust boundary."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/monad/comonad.rs",
+      "sha256": "721712b09d47c0d97bd8241584911c8643974f480f511ad7986136346d65f836",
+      "symbols": {
+        "new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), endofunctor_ref: String::new(), counit_ref: String::new(), comultiply_ref: String::new(), category_ref: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "with_structure": {
+          "signature": "pub fn with_structure( label: impl Into<String>, endofunctor_ref: impl Into<String>, counit_ref: impl Into<String>, comultiply_ref: impl Into<String>, ) -> Self",
+          "body": "{ Self { label: label.into(), endofunctor_ref: endofunctor_ref.into(), counit_ref: counit_ref.into(), comultiply_ref: comultiply_ref.into(), category_ref: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "with_note": {
+          "signature": "pub fn with_note(mut self, note: impl Into<String>) -> Self",
+          "body": "{ self.notes.push(note.into()); self }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.endofunctor_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty endofunctor_ref\".into())); } if self.counit_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty counit_ref\".into())); } if self.comultiply_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty comultiply_ref\".into())); } Ok(()) }",
+          "classification": "ordered nonempty-label admission and first InvalidShape refusal"
+        }
+      },
+      "invariant": "The validator reads each listed String length in the policy order and returns the first typed InvalidShape. Constructors and setters store raw declared values and can intentionally create an invalid candidate. No admitted mathematical wrapper is constructed.",
+      "cost": "Fixed field count: validation O(1) byte-length checks and at most one diagnostic allocation; no production recursion, indexing, multiplication or division. Constructors/setters move String values; with_note appends amortized O(1); terminal-category identity formatting and compact-closed dual cloning are linear in the copied label length. No inner-loop allocation exists.",
+      "representation": "Derived serde produces the same raw record type. It cannot create a mathematical certificate because this module defines no such type. Derived Clone/PartialEq/Eq and serde are within the pinned safe Rust/proc-macro trust boundary."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/monad/distributive_law.rs",
+      "sha256": "65cf962f439e39d3f1b6e9e64eb7955df1d99decc4e1850377067e825889e157",
+      "symbols": {
+        "new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), monad_t_ref: String::new(), monad_g_ref: String::new(), transformation_ref: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "with_structure": {
+          "signature": "pub fn with_structure( label: impl Into<String>, monad_t_ref: impl Into<String>, monad_g_ref: impl Into<String>, transformation_ref: impl Into<String>, ) -> Self",
+          "body": "{ Self { label: label.into(), monad_t_ref: monad_t_ref.into(), monad_g_ref: monad_g_ref.into(), transformation_ref: transformation_ref.into(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "with_note": {
+          "signature": "pub fn with_note(mut self, note: impl Into<String>) -> Self",
+          "body": "{ self.notes.push(note.into()); self }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.monad_t_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty monad_t_ref\".into())); } if self.monad_g_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty monad_g_ref\".into())); } if self.transformation_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty transformation_ref\".into())); } Ok(()) }",
+          "classification": "ordered nonempty-label admission and first InvalidShape refusal"
+        }
+      },
+      "invariant": "The validator reads each listed String length in the policy order and returns the first typed InvalidShape. Constructors and setters store raw declared values and can intentionally create an invalid candidate. No admitted mathematical wrapper is constructed.",
+      "cost": "Fixed field count: validation O(1) byte-length checks and at most one diagnostic allocation; no production recursion, indexing, multiplication or division. Constructors/setters move String values; with_note appends amortized O(1); terminal-category identity formatting and compact-closed dual cloning are linear in the copied label length. No inner-loop allocation exists.",
+      "representation": "Derived serde produces the same raw record type. It cannot create a mathematical certificate because this module defines no such type. Derived Clone/PartialEq/Eq and serde are within the pinned safe Rust/proc-macro trust boundary."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/monad/eilenberg_moore.rs",
+      "sha256": "77d618f21c2e91c3f40c38f309cf5f5e2285142ff3c3d1b1f42fbff48817e06a",
+      "symbols": {
+        "new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), base_monad_ref: String::new(), base_category_ref: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "for_monad": {
+          "signature": "pub fn for_monad(label: impl Into<String>, base_monad_ref: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), base_monad_ref: base_monad_ref.into(), base_category_ref: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "with_note": {
+          "signature": "pub fn with_note(mut self, note: impl Into<String>) -> Self",
+          "body": "{ self.notes.push(note.into()); self }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.base_monad_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty base_monad_ref\".into())); } Ok(()) }",
+          "classification": "ordered nonempty-label admission and first InvalidShape refusal"
+        }
+      },
+      "invariant": "The validator reads each listed String length in the policy order and returns the first typed InvalidShape. Constructors and setters store raw declared values and can intentionally create an invalid candidate. No admitted mathematical wrapper is constructed.",
+      "cost": "Fixed field count: validation O(1) byte-length checks and at most one diagnostic allocation; no production recursion, indexing, multiplication or division. Constructors/setters move String values; with_note appends amortized O(1); terminal-category identity formatting and compact-closed dual cloning are linear in the copied label length. No inner-loop allocation exists.",
+      "representation": "Derived serde produces the same raw record type. It cannot create a mathematical certificate because this module defines no such type. Derived Clone/PartialEq/Eq and serde are within the pinned safe Rust/proc-macro trust boundary."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/monad/kleisli_category.rs",
+      "sha256": "cef2e81a72c7d6ba4e148f850b600a5ffddd255027a26aa6373e49b607e98dd0",
+      "symbols": {
+        "new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), base_monad_ref: String::new(), base_category_ref: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "for_monad": {
+          "signature": "pub fn for_monad(label: impl Into<String>, base_monad_ref: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), base_monad_ref: base_monad_ref.into(), base_category_ref: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "with_note": {
+          "signature": "pub fn with_note(mut self, note: impl Into<String>) -> Self",
+          "body": "{ self.notes.push(note.into()); self }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.base_monad_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty base_monad_ref\".into())); } Ok(()) }",
+          "classification": "ordered nonempty-label admission and first InvalidShape refusal"
+        }
+      },
+      "invariant": "The validator reads each listed String length in the policy order and returns the first typed InvalidShape. Constructors and setters store raw declared values and can intentionally create an invalid candidate. No admitted mathematical wrapper is constructed.",
+      "cost": "Fixed field count: validation O(1) byte-length checks and at most one diagnostic allocation; no production recursion, indexing, multiplication or division. Constructors/setters move String values; with_note appends amortized O(1); terminal-category identity formatting and compact-closed dual cloning are linear in the copied label length. No inner-loop allocation exists.",
+      "representation": "Derived serde produces the same raw record type. It cannot create a mathematical certificate because this module defines no such type. Derived Clone/PartialEq/Eq and serde are within the pinned safe Rust/proc-macro trust boundary."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/monad/monad.rs",
+      "sha256": "4d94d61644073aebe1603eca9e5ac8440f8285bac60d10c14923bf0fb0386a95",
+      "symbols": {
+        "new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), endofunctor_ref: String::new(), unit_ref: String::new(), multiply_ref: String::new(), category_ref: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "with_structure": {
+          "signature": "pub fn with_structure( label: impl Into<String>, endofunctor_ref: impl Into<String>, unit_ref: impl Into<String>, multiply_ref: impl Into<String>, ) -> Self",
+          "body": "{ Self { label: label.into(), endofunctor_ref: endofunctor_ref.into(), unit_ref: unit_ref.into(), multiply_ref: multiply_ref.into(), category_ref: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "with_note": {
+          "signature": "pub fn with_note(mut self, note: impl Into<String>) -> Self",
+          "body": "{ self.notes.push(note.into()); self }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.endofunctor_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty endofunctor_ref\".into())); } if self.unit_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty unit_ref\".into())); } if self.multiply_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty multiply_ref\".into())); } Ok(()) }",
+          "classification": "ordered nonempty-label admission and first InvalidShape refusal"
+        }
+      },
+      "invariant": "The validator reads each listed String length in the policy order and returns the first typed InvalidShape. Constructors and setters store raw declared values and can intentionally create an invalid candidate. No admitted mathematical wrapper is constructed.",
+      "cost": "Fixed field count: validation O(1) byte-length checks and at most one diagnostic allocation; no production recursion, indexing, multiplication or division. Constructors/setters move String values; with_note appends amortized O(1); terminal-category identity formatting and compact-closed dual cloning are linear in the copied label length. No inner-loop allocation exists.",
+      "representation": "Derived serde produces the same raw record type. It cannot create a mathematical certificate because this module defines no such type. Derived Clone/PartialEq/Eq and serde are within the pinned safe Rust/proc-macro trust boundary."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/monad/monad_transformer.rs",
+      "sha256": "214a19b3ebd8229afff35bb88eb9f854cdf156f6c34cbbe2149ae88f498e6934",
+      "symbols": {
+        "new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), outer_ref: String::new(), inner_monad_ref: String::new(), result_monad_ref: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "with_structure": {
+          "signature": "pub fn with_structure( label: impl Into<String>, outer_ref: impl Into<String>, inner_monad_ref: impl Into<String>, ) -> Self",
+          "body": "{ Self { label: label.into(), outer_ref: outer_ref.into(), inner_monad_ref: inner_monad_ref.into(), result_monad_ref: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "with_note": {
+          "signature": "pub fn with_note(mut self, note: impl Into<String>) -> Self",
+          "body": "{ self.notes.push(note.into()); self }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.outer_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty outer_ref\".into())); } if self.inner_monad_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty inner_monad_ref\".into())); } Ok(()) }",
+          "classification": "ordered nonempty-label admission and first InvalidShape refusal"
+        }
+      },
+      "invariant": "The validator reads each listed String length in the policy order and returns the first typed InvalidShape. Constructors and setters store raw declared values and can intentionally create an invalid candidate. No admitted mathematical wrapper is constructed.",
+      "cost": "Fixed field count: validation O(1) byte-length checks and at most one diagnostic allocation; no production recursion, indexing, multiplication or division. Constructors/setters move String values; with_note appends amortized O(1); terminal-category identity formatting and compact-closed dual cloning are linear in the copied label length. No inner-loop allocation exists.",
+      "representation": "Derived serde produces the same raw record type. It cannot create a mathematical certificate because this module defines no such type. Derived Clone/PartialEq/Eq and serde are within the pinned safe Rust/proc-macro trust boundary."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/monoidal/braided_monoidal.rs",
+      "sha256": "6452cff9896a83b5826aa8e5158011f989b94861507234af07d7f79e920314d6",
+      "symbols": {
+        "new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), monoidal_ref: String::new(), braiding_ref: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "with_braiding": {
+          "signature": "pub fn with_braiding( label: impl Into<String>, monoidal_ref: impl Into<String>, braiding_ref: impl Into<String>, ) -> Self",
+          "body": "{ Self { label: label.into(), monoidal_ref: monoidal_ref.into(), braiding_ref: braiding_ref.into(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.monoidal_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty monoidal_ref\".into())); } if self.braiding_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty braiding_ref\".into())); } Ok(()) }",
+          "classification": "ordered nonempty-label admission and first InvalidShape refusal"
+        }
+      },
+      "invariant": "The validator reads each listed String length in the policy order and returns the first typed InvalidShape. Constructors and setters store raw declared values and can intentionally create an invalid candidate. No admitted mathematical wrapper is constructed.",
+      "cost": "Fixed field count: validation O(1) byte-length checks and at most one diagnostic allocation; no production recursion, indexing, multiplication or division. Constructors/setters move String values; with_note appends amortized O(1); terminal-category identity formatting and compact-closed dual cloning are linear in the copied label length. No inner-loop allocation exists.",
+      "representation": "Derived serde produces the same raw record type. It cannot create a mathematical certificate because this module defines no such type. Derived Clone/PartialEq/Eq and serde are within the pinned safe Rust/proc-macro trust boundary."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/monoidal/cartesian_closed.rs",
+      "sha256": "c05e979a67ac48e03c43e2efda180a3ff7440506f4b072ed89a8f16f64c921a7",
+      "symbols": {
+        "new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), underlying_category: String::new(), product_ref: String::new(), terminal_object: String::new(), exponential_ref: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "with_structure": {
+          "signature": "pub fn with_structure( label: impl Into<String>, underlying_category: impl Into<String>, product_ref: impl Into<String>, terminal_object: impl Into<String>, exponential_ref: impl Into<String>, ) -> Self",
+          "body": "{ Self { label: label.into(), underlying_category: underlying_category.into(), product_ref: product_ref.into(), terminal_object: terminal_object.into(), exponential_ref: exponential_ref.into(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.underlying_category.is_empty() { return Err(ArithmosError::InvalidShape(\"empty underlying_category\".into())); } if self.product_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty product_ref\".into())); } if self.terminal_object.is_empty() { return Err(ArithmosError::InvalidShape(\"empty terminal_object\".into())); } if self.exponential_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty exponential_ref\".into())); } Ok(()) }",
+          "classification": "ordered nonempty-label admission and first InvalidShape refusal"
+        }
+      },
+      "invariant": "The validator reads each listed String length in the policy order and returns the first typed InvalidShape. Constructors and setters store raw declared values and can intentionally create an invalid candidate. No admitted mathematical wrapper is constructed.",
+      "cost": "Fixed field count: validation O(1) byte-length checks and at most one diagnostic allocation; no production recursion, indexing, multiplication or division. Constructors/setters move String values; with_note appends amortized O(1); terminal-category identity formatting and compact-closed dual cloning are linear in the copied label length. No inner-loop allocation exists.",
+      "representation": "Derived serde produces the same raw record type. It cannot create a mathematical certificate because this module defines no such type. Derived Clone/PartialEq/Eq and serde are within the pinned safe Rust/proc-macro trust boundary."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/monoidal/closed_monoidal.rs",
+      "sha256": "ed466e594de7efeab53079e75b0da35e7b14c944480ae871d11b7e7e828a2109",
+      "symbols": {
+        "new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), monoidal_ref: String::new(), internal_hom_ref: String::new(), evaluation_ref: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "with_internal_hom": {
+          "signature": "pub fn with_internal_hom( label: impl Into<String>, monoidal_ref: impl Into<String>, internal_hom_ref: impl Into<String>, ) -> Self",
+          "body": "{ Self { label: label.into(), monoidal_ref: monoidal_ref.into(), internal_hom_ref: internal_hom_ref.into(), evaluation_ref: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.monoidal_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty monoidal_ref\".into())); } if self.internal_hom_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty internal_hom_ref\".into())); } Ok(()) }",
+          "classification": "ordered nonempty-label admission and first InvalidShape refusal"
+        }
+      },
+      "invariant": "The validator reads each listed String length in the policy order and returns the first typed InvalidShape. Constructors and setters store raw declared values and can intentionally create an invalid candidate. No admitted mathematical wrapper is constructed.",
+      "cost": "Fixed field count: validation O(1) byte-length checks and at most one diagnostic allocation; no production recursion, indexing, multiplication or division. Constructors/setters move String values; with_note appends amortized O(1); terminal-category identity formatting and compact-closed dual cloning are linear in the copied label length. No inner-loop allocation exists.",
+      "representation": "Derived serde produces the same raw record type. It cannot create a mathematical certificate because this module defines no such type. Derived Clone/PartialEq/Eq and serde are within the pinned safe Rust/proc-macro trust boundary."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/monoidal/cohomology_in_monoidal.rs",
+      "sha256": "e374aa87d83a2367d6c80394bf8a6db6b119caa8ce0bb737fd608d05b015a0c6",
+      "symbols": {
+        "new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), monoidal_ref: String::new(), complex_ref: String::new(), degree: String::new(), cohomology_object: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "at_degree": {
+          "signature": "pub fn at_degree( label: impl Into<String>, monoidal_ref: impl Into<String>, complex_ref: impl Into<String>, degree: impl Into<String>, ) -> Self",
+          "body": "{ Self { label: label.into(), monoidal_ref: monoidal_ref.into(), complex_ref: complex_ref.into(), degree: degree.into(), cohomology_object: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.monoidal_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty monoidal_ref\".into())); } if self.complex_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty complex_ref\".into())); } if self.degree.is_empty() { return Err(ArithmosError::InvalidShape(\"empty degree\".into())); } Ok(()) }",
+          "classification": "ordered nonempty-label admission and first InvalidShape refusal"
+        }
+      },
+      "invariant": "The validator reads each listed String length in the policy order and returns the first typed InvalidShape. Constructors and setters store raw declared values and can intentionally create an invalid candidate. No admitted mathematical wrapper is constructed.",
+      "cost": "Fixed field count: validation O(1) byte-length checks and at most one diagnostic allocation; no production recursion, indexing, multiplication or division. Constructors/setters move String values; with_note appends amortized O(1); terminal-category identity formatting and compact-closed dual cloning are linear in the copied label length. No inner-loop allocation exists.",
+      "representation": "Derived serde produces the same raw record type. It cannot create a mathematical certificate because this module defines no such type. Derived Clone/PartialEq/Eq and serde are within the pinned safe Rust/proc-macro trust boundary."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/monoidal/compact_closed.rs",
+      "sha256": "2045c8b83a26fb870ee49dcdc8fe73b5c48232d9ddec4bcea97d6de0f953ae3c",
+      "symbols": {
+        "new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), monoidal_ref: String::new(), left_dual_ref: String::new(), right_dual_ref: String::new(), unit_ref: String::new(), counit_ref: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "with_duals": {
+          "signature": "pub fn with_duals( label: impl Into<String>, monoidal_ref: impl Into<String>, dual_ref: impl Into<String>, unit_ref: impl Into<String>, counit_ref: impl Into<String>, ) -> Self",
+          "body": "{ let d = dual_ref.into(); Self { label: label.into(), monoidal_ref: monoidal_ref.into(), left_dual_ref: d.clone(), right_dual_ref: d, unit_ref: unit_ref.into(), counit_ref: counit_ref.into(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.monoidal_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty monoidal_ref\".into())); } if self.left_dual_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty left_dual_ref\".into())); } if self.right_dual_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty right_dual_ref\".into())); } if self.unit_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty unit_ref\".into())); } if self.counit_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty counit_ref\".into())); } Ok(()) }",
+          "classification": "ordered nonempty-label admission and first InvalidShape refusal"
+        }
+      },
+      "invariant": "The validator reads each listed String length in the policy order and returns the first typed InvalidShape. Constructors and setters store raw declared values and can intentionally create an invalid candidate. No admitted mathematical wrapper is constructed.",
+      "cost": "Fixed field count: validation O(1) byte-length checks and at most one diagnostic allocation; no production recursion, indexing, multiplication or division. Constructors/setters move String values; with_note appends amortized O(1); terminal-category identity formatting and compact-closed dual cloning are linear in the copied label length. No inner-loop allocation exists.",
+      "representation": "Derived serde produces the same raw record type. It cannot create a mathematical certificate because this module defines no such type. Derived Clone/PartialEq/Eq and serde are within the pinned safe Rust/proc-macro trust boundary."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/monoidal/monoidal_category.rs",
+      "sha256": "4e72237bbeb598d85a8002fb2e05ae3bec97bc59c366c9e52419781ec1d42a02",
+      "symbols": {
+        "new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), underlying_category: String::new(), tensor: String::new(), unit_object: String::new(), associator_ref: String::new(), left_unitor_ref: String::new(), right_unitor_ref: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "with_structure": {
+          "signature": "pub fn with_structure( label: impl Into<String>, underlying_category: impl Into<String>, tensor: impl Into<String>, unit_object: impl Into<String>, associator_ref: impl Into<String>, left_unitor_ref: impl Into<String>, right_unitor_ref: impl Into<String>, ) -> Self",
+          "body": "{ Self { label: label.into(), underlying_category: underlying_category.into(), tensor: tensor.into(), unit_object: unit_object.into(), associator_ref: associator_ref.into(), left_unitor_ref: left_unitor_ref.into(), right_unitor_ref: right_unitor_ref.into(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.underlying_category.is_empty() { return Err(ArithmosError::InvalidShape(\"empty underlying_category\".into())); } if self.tensor.is_empty() { return Err(ArithmosError::InvalidShape(\"empty tensor\".into())); } if self.unit_object.is_empty() { return Err(ArithmosError::InvalidShape(\"empty unit_object\".into())); } if self.associator_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty associator_ref\".into())); } if self.left_unitor_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty left_unitor_ref\".into())); } if self.right_unitor_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty right_unitor_ref\".into())); } Ok(()) }",
+          "classification": "ordered nonempty-label admission and first InvalidShape refusal"
+        }
+      },
+      "invariant": "The validator reads each listed String length in the policy order and returns the first typed InvalidShape. Constructors and setters store raw declared values and can intentionally create an invalid candidate. No admitted mathematical wrapper is constructed.",
+      "cost": "Fixed field count: validation O(1) byte-length checks and at most one diagnostic allocation; no production recursion, indexing, multiplication or division. Constructors/setters move String values; with_note appends amortized O(1); terminal-category identity formatting and compact-closed dual cloning are linear in the copied label length. No inner-loop allocation exists.",
+      "representation": "Derived serde produces the same raw record type. It cannot create a mathematical certificate because this module defines no such type. Derived Clone/PartialEq/Eq and serde are within the pinned safe Rust/proc-macro trust boundary."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/monoidal/monoidal_functor.rs",
+      "sha256": "94ed7cb9b6cf38cfbb0e09264e4a5e0fa6c53671133b39779acd4ab7963a48f8",
+      "symbols": {
+        "new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), domain_monoidal: String::new(), codomain_monoidal: String::new(), functor_ref: String::new(), tensorator_ref: String::new(), unit_comparison_ref: String::new(), strong_claimed: false, notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "between": {
+          "signature": "pub fn between( label: impl Into<String>, domain_monoidal: impl Into<String>, codomain_monoidal: impl Into<String>, functor_ref: impl Into<String>, ) -> Self",
+          "body": "{ Self { label: label.into(), domain_monoidal: domain_monoidal.into(), codomain_monoidal: codomain_monoidal.into(), functor_ref: functor_ref.into(), tensorator_ref: String::new(), unit_comparison_ref: String::new(), strong_claimed: false, notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.domain_monoidal.is_empty() { return Err(ArithmosError::InvalidShape(\"empty domain_monoidal\".into())); } if self.codomain_monoidal.is_empty() { return Err(ArithmosError::InvalidShape(\"empty codomain_monoidal\".into())); } if self.functor_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty functor_ref\".into())); } Ok(()) }",
+          "classification": "ordered nonempty-label admission and first InvalidShape refusal"
+        }
+      },
+      "invariant": "The validator reads each listed String length in the policy order and returns the first typed InvalidShape. Constructors and setters store raw declared values and can intentionally create an invalid candidate. No admitted mathematical wrapper is constructed.",
+      "cost": "Fixed field count: validation O(1) byte-length checks and at most one diagnostic allocation; no production recursion, indexing, multiplication or division. Constructors/setters move String values; with_note appends amortized O(1); terminal-category identity formatting and compact-closed dual cloning are linear in the copied label length. No inner-loop allocation exists.",
+      "representation": "Derived serde produces the same raw record type. It cannot create a mathematical certificate because this module defines no such type. Derived Clone/PartialEq/Eq and serde are within the pinned safe Rust/proc-macro trust boundary."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/monoidal/rigid_category.rs",
+      "sha256": "91a29083fc738c32f4767cb79415d8f2feb3e5d0d92cfd00d504f3dbd7d17987",
+      "symbols": {
+        "new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), monoidal_ref: String::new(), left_dual_ref: String::new(), right_dual_ref: String::new(), left_unit_ref: String::new(), left_counit_ref: String::new(), right_unit_ref: String::new(), right_counit_ref: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "with_duals": {
+          "signature": "pub fn with_duals( label: impl Into<String>, monoidal_ref: impl Into<String>, left_dual_ref: impl Into<String>, right_dual_ref: impl Into<String>, ) -> Self",
+          "body": "{ Self { label: label.into(), monoidal_ref: monoidal_ref.into(), left_dual_ref: left_dual_ref.into(), right_dual_ref: right_dual_ref.into(), left_unit_ref: String::new(), left_counit_ref: String::new(), right_unit_ref: String::new(), right_counit_ref: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.monoidal_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty monoidal_ref\".into())); } if self.left_dual_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty left_dual_ref\".into())); } if self.right_dual_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty right_dual_ref\".into())); } Ok(()) }",
+          "classification": "ordered nonempty-label admission and first InvalidShape refusal"
+        }
+      },
+      "invariant": "The validator reads each listed String length in the policy order and returns the first typed InvalidShape. Constructors and setters store raw declared values and can intentionally create an invalid candidate. No admitted mathematical wrapper is constructed.",
+      "cost": "Fixed field count: validation O(1) byte-length checks and at most one diagnostic allocation; no production recursion, indexing, multiplication or division. Constructors/setters move String values; with_note appends amortized O(1); terminal-category identity formatting and compact-closed dual cloning are linear in the copied label length. No inner-loop allocation exists.",
+      "representation": "Derived serde produces the same raw record type. It cannot create a mathematical certificate because this module defines no such type. Derived Clone/PartialEq/Eq and serde are within the pinned safe Rust/proc-macro trust boundary."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/monoidal/symmetric_monoidal.rs",
+      "sha256": "c1ba2b518e02a679a820a03a9b5a73a92bcd1afdcc03f148022494a90929f3f7",
+      "symbols": {
+        "new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), monoidal_ref: String::new(), braiding_ref: String::new(), symmetric_claimed: true, notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "with_braiding": {
+          "signature": "pub fn with_braiding( label: impl Into<String>, monoidal_ref: impl Into<String>, braiding_ref: impl Into<String>, ) -> Self",
+          "body": "{ Self { label: label.into(), monoidal_ref: monoidal_ref.into(), braiding_ref: braiding_ref.into(), symmetric_claimed: true, notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.monoidal_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty monoidal_ref\".into())); } if self.braiding_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty braiding_ref\".into())); } Ok(()) }",
+          "classification": "ordered nonempty-label admission and first InvalidShape refusal"
+        }
+      },
+      "invariant": "The validator reads each listed String length in the policy order and returns the first typed InvalidShape. Constructors and setters store raw declared values and can intentionally create an invalid candidate. No admitted mathematical wrapper is constructed.",
+      "cost": "Fixed field count: validation O(1) byte-length checks and at most one diagnostic allocation; no production recursion, indexing, multiplication or division. Constructors/setters move String values; with_note appends amortized O(1); terminal-category identity formatting and compact-closed dual cloning are linear in the copied label length. No inner-loop allocation exists.",
+      "representation": "Derived serde produces the same raw record type. It cannot create a mathematical certificate because this module defines no such type. Derived Clone/PartialEq/Eq and serde are within the pinned safe Rust/proc-macro trust boundary."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/monoidal/symmetric_monoidal_functor.rs",
+      "sha256": "17e121ad578d272cadb56901e7befa088ebe5aae881c1a981bfb4c6d1c444a53",
+      "symbols": {
+        "new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), domain_symmetric: String::new(), codomain_symmetric: String::new(), monoidal_functor_ref: String::new(), braiding_preservation_ref: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "between": {
+          "signature": "pub fn between( label: impl Into<String>, domain_symmetric: impl Into<String>, codomain_symmetric: impl Into<String>, monoidal_functor_ref: impl Into<String>, ) -> Self",
+          "body": "{ Self { label: label.into(), domain_symmetric: domain_symmetric.into(), codomain_symmetric: codomain_symmetric.into(), monoidal_functor_ref: monoidal_functor_ref.into(), braiding_preservation_ref: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.domain_symmetric.is_empty() { return Err(ArithmosError::InvalidShape(\"empty domain_symmetric\".into())); } if self.codomain_symmetric.is_empty() { return Err(ArithmosError::InvalidShape(\"empty codomain_symmetric\".into())); } if self.monoidal_functor_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty monoidal_functor_ref\".into())); } Ok(()) }",
+          "classification": "ordered nonempty-label admission and first InvalidShape refusal"
+        }
+      },
+      "invariant": "The validator reads each listed String length in the policy order and returns the first typed InvalidShape. Constructors and setters store raw declared values and can intentionally create an invalid candidate. No admitted mathematical wrapper is constructed.",
+      "cost": "Fixed field count: validation O(1) byte-length checks and at most one diagnostic allocation; no production recursion, indexing, multiplication or division. Constructors/setters move String values; with_note appends amortized O(1); terminal-category identity formatting and compact-closed dual cloning are linear in the copied label length. No inner-loop allocation exists.",
+      "representation": "Derived serde produces the same raw record type. It cannot create a mathematical certificate because this module defines no such type. Derived Clone/PartialEq/Eq and serde are within the pinned safe Rust/proc-macro trust boundary."
+    },
+    {
+      "artifact": "code/rust/src/category_theory/monoidal/traced_monoidal.rs",
+      "sha256": "f3530b63c9c1ec368becfd20f5e68586ee026380a470e8ae864741d6c0549b19",
+      "symbols": {
+        "new": {
+          "signature": "pub fn new(label: impl Into<String>) -> Self",
+          "body": "{ Self { label: label.into(), monoidal_ref: String::new(), trace_ref: String::new(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "with_trace": {
+          "signature": "pub fn with_trace( label: impl Into<String>, monoidal_ref: impl Into<String>, trace_ref: impl Into<String>, ) -> Self",
+          "body": "{ Self { label: label.into(), monoidal_ref: monoidal_ref.into(), trace_ref: trace_ref.into(), notes: Vec::new(), } }",
+          "classification": "raw data constructor/setter; no mathematical admission claim"
+        },
+        "validate_shell": {
+          "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+          "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.monoidal_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty monoidal_ref\".into())); } if self.trace_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty trace_ref\".into())); } Ok(()) }",
+          "classification": "ordered nonempty-label admission and first InvalidShape refusal"
+        }
+      },
+      "invariant": "The validator reads each listed String length in the policy order and returns the first typed InvalidShape. Constructors and setters store raw declared values and can intentionally create an invalid candidate. No admitted mathematical wrapper is constructed.",
+      "cost": "Fixed field count: validation O(1) byte-length checks and at most one diagnostic allocation; no production recursion, indexing, multiplication or division. Constructors/setters move String values; with_note appends amortized O(1); terminal-category identity formatting and compact-closed dual cloning are linear in the copied label length. No inner-loop allocation exists.",
+      "representation": "Derived serde produces the same raw record type. It cannot create a mathematical certificate because this module defines no such type. Derived Clone/PartialEq/Eq and serde are within the pinned safe Rust/proc-macro trust boundary."
+    }
+  ]
+}

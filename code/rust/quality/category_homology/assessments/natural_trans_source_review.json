@@ -1,0 +1,148 @@
+{
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/category_theory/natural_trans.rs",
+    "sha256": "36d19c0bb75c782a7aec4d3f923945fd89437520ab066fc80954b9a78870f48b"
+  },
+  "production_functions": {
+    "new": {
+      "line": 67,
+      "signature": "pub fn new(name: &str, source_functor: &str, target_functor: &str) -> Self",
+      "body": "{\n        Self {\n            name: name.into(),\n            source_functor: source_functor.into(),\n            target_functor: target_functor.into(),\n            components: BTreeMap::new(),\n        }\n    }",
+      "obligation": "Own exact supplied natural-transformation/source-functor/target-functor names and initialize an independent empty component BTreeMap. This is an unchecked raw declaration, not a naturality witness."
+    },
+    "set_component": {
+      "line": 76,
+      "signature": "pub fn set_component(&mut self, object: &str, morphism: &str)",
+      "body": "{\n        self.components.insert(object.into(), morphism.into());\n    }",
+      "obligation": "Insert/overwrite exact owned object->morphism pair; preserve all other raw fields and permit malformed labels until complete admission."
+    },
+    "component": {
+      "line": 80,
+      "signature": "pub fn component(&self, object: &str) -> Option<&str>",
+      "body": "{\n        self.components.get(object).map(|s| s.as_str())\n    }",
+      "obligation": "Borrowed-key component lookup returns borrowed value or None without insertion/allocation. Outside-domain queries have no certificate meaning."
+    },
+    "try_new": {
+      "line": 99,
+      "signature": "pub fn try_new(\n        declared: DeclaredFiniteNatTrans,\n        source_category: &DeclaredFiniteCategory,\n        target_category: &DeclaredFiniteCategory,\n        source_functor: &DeclaredFiniteFunctor,\n        target_functor: &DeclaredFiniteFunctor,\n    ) -> Result<Self, ValidationReport>",
+      "body": "{\n        let report = validate_natural_transformation_between(\n            &declared,\n            source_category,\n            target_category,\n            source_functor,\n            target_functor,\n        );\n\n        if report.all_passed() {\n            Ok(Self {\n                declared,\n                source_category: source_category.clone(),\n                target_category: target_category.clone(),\n                source_functor: source_functor.clone(),\n                target_functor: target_functor.clone(),\n            })\n        } else {\n            Err(report)\n        }\n    }",
+      "obligation": "Compute fresh complete naturality report over supplied raw categories and F/G. Only internally created all-passed report releases a certificate owning the declaration plus independent plain category/F/G snapshots. Full endpoint category/functor laws, exact component domain/boundaries and every naturality square must pass. Any refusal returns full report, not a partial certificate. Safe immutable borrows of plain records prevent mutation between checking and cloning."
+    },
+    "declared": {
+      "line": 127,
+      "signature": "pub fn declared(&self) -> &DeclaredFiniteNatTrans",
+      "body": "{\n        &self.declared\n    }",
+      "obligation": "Borrow only immutable raw declaration inside the certificate; no mutable accessor or deserialization bypass."
+    },
+    "source_category": {
+      "line": 130,
+      "signature": "pub fn source_category(&self) -> &DeclaredFiniteCategory",
+      "body": "{\n        &self.source_category\n    }",
+      "obligation": "Borrow exact owned source category snapshot, not target."
+    },
+    "target_category": {
+      "line": 133,
+      "signature": "pub fn target_category(&self) -> &DeclaredFiniteCategory",
+      "body": "{\n        &self.target_category\n    }",
+      "obligation": "Borrow exact owned target category snapshot, not source."
+    },
+    "source_functor": {
+      "line": 136,
+      "signature": "pub fn source_functor(&self) -> &DeclaredFiniteFunctor",
+      "body": "{\n        &self.source_functor\n    }",
+      "obligation": "Borrow exact owned F snapshot, not G."
+    },
+    "target_functor": {
+      "line": 139,
+      "signature": "pub fn target_functor(&self) -> &DeclaredFiniteFunctor",
+      "body": "{\n        &self.target_functor\n    }",
+      "obligation": "Borrow exact owned G snapshot, not F."
+    },
+    "validate_natural_transformation_between": {
+      "line": 151,
+      "signature": "pub fn validate_natural_transformation_between(\n    nat: &DeclaredFiniteNatTrans,\n    source_category: &DeclaredFiniteCategory,\n    target_category: &DeclaredFiniteCategory,\n    source_functor: &DeclaredFiniteFunctor,\n    target_functor: &DeclaredFiniteFunctor,\n) -> ValidationReport",
+      "body": "{\n    let mut report = ValidationReport::new(&nat.name);\n    check_functor_endpoints(\n        &mut report,\n        source_category,\n        target_category,\n        source_functor,\n        target_functor,\n    );\n    add_nat_errors(&mut report, NatTransValidation::Name, check_nat_name(nat));\n    add_nat_errors(\n        &mut report,\n        NatTransValidation::FunctorBinding,\n        check_functor_binding(nat, source_functor, target_functor),\n    );\n    add_nat_errors(\n        &mut report,\n        NatTransValidation::ComponentDomain,\n        check_component_domain(nat, source_category),\n    );\n    add_nat_errors(\n        &mut report,\n        NatTransValidation::ComponentBoundary,\n        check_component_boundaries(\n            nat,\n            source_category,\n            target_category,\n            source_functor,\n            target_functor,\n        ),\n    );\n    add_nat_errors(\n        &mut report,\n        NatTransValidation::NaturalitySquare,\n        check_naturality_square(\n            nat,\n            source_category,\n            &source_functor.morphism_map,\n            &target_functor.morphism_map,\n            &target_category.compositions,\n        ),\n    );\n    report\n}",
+      "obligation": "Create a fresh nat-name report, include complete F/G endpoint admission, then name, functor-label binding, exact component source domain, component boundaries and all naturality squares in fixed phase order. Do not short-circuit later diagnostic phases or infer laws from only one supplied check. Whole-report gates constructor; raw standalone diagnostics retain partial/vacuous scope."
+    },
+    "check_functor_endpoints": {
+      "line": 202,
+      "signature": "fn check_functor_endpoints(\n    report: &mut ValidationReport,\n    source: &DeclaredFiniteCategory,\n    target: &DeclaredFiniteCategory,\n    f: &DeclaredFiniteFunctor,\n    g: &DeclaredFiniteFunctor,\n)",
+      "body": "{\n    let checked_f = super::functor_composition::validate_functor_between(f, source, target);\n    report.add_typed(\"nat::source_functor\", checked_f.typed_violations);\n    if f != g {\n        let checked_g = super::functor_composition::validate_functor_between(g, source, target);\n        report.add_typed(\"nat::target_functor\", checked_g.typed_violations);\n    }\n}",
+      "obligation": "Always call full functor/category validation on F, preserving its typed failures under nat::source_functor. Call it on G unless full raw F==G; same names alone cannot skip it. Closed producer reports are constructed entirely from typed failure phases, so projecting typed_violations retains every endpoint refusal; public report mutability is not attacker-controlled at this internal handoff."
+    },
+    "add_nat_errors": {
+      "line": 217,
+      "signature": "fn add_nat_errors(report: &mut ValidationReport, unit: NatTransValidation, errors: Vec<String>)",
+      "body": "{\n    let violations = errors\n        .into_iter()\n        .map(|message| {\n            ValidationViolation::new(\n                ValidationUnit::NatTrans(unit),\n                ValidationLocation::Global,\n                message,\n                ValidationSeverity::Error,\n            )\n        })\n        .collect();\n    report.add_typed(&format!(\"nat::{unit:?}\"), violations);\n}",
+      "obligation": "Convert every provided error string to NatTrans(unit)/Global/Error, preserving vector order/messages, and append the named typed phase with matching report flags. No external raw report injection or certificate claim from a label."
+    },
+    "check_nat_name": {
+      "line": 232,
+      "signature": "fn check_nat_name(nat: &DeclaredFiniteNatTrans) -> Vec<String>",
+      "body": "{\n    if nat.name.trim().is_empty() {\n        return vec![\"Empty natural transformation name\".into()];\n    }\n    Vec::new()\n}",
+      "obligation": "Reject whitespace-only nat name with exactly the declared empty-name error; otherwise empty."
+    },
+    "check_functor_binding": {
+      "line": 239,
+      "signature": "fn check_functor_binding(\n    nat: &DeclaredFiniteNatTrans,\n    f: &DeclaredFiniteFunctor,\n    g: &DeclaredFiniteFunctor,\n) -> Vec<String>",
+      "body": "{\n    if nat.source_functor != f.name || nat.target_functor != g.name {\n        return vec![format!(\n            \"Transformation {} names {} => {}, expected {} => {}\",\n            nat.name, nat.source_functor, nat.target_functor, f.name, g.name\n        )];\n    }\n    Vec::new()\n}",
+      "obligation": "Require both raw nat functor labels equal actual supplied F/G names; emit exact transformation/actual/expected labels on mismatch. Names alone do not establish functor lawfulness or context: complete owned endpoint admission is separate."
+    },
+    "check_component_domain": {
+      "line": 253,
+      "signature": "fn check_component_domain(\n    nat: &DeclaredFiniteNatTrans,\n    source: &DeclaredFiniteCategory,\n) -> Vec<String>",
+      "body": "{\n    if !nat.components.keys().eq(source.objects.iter()) {\n        return vec![\"Component domain differs from the source objects\".into()];\n    }\n    Vec::new()\n}",
+      "obligation": "Require sorted exact component-key equality to actual source object set, rejecting extras and omissions, including on empty domains."
+    },
+    "check_component_boundaries": {
+      "line": 263,
+      "signature": "pub fn check_component_boundaries(\n    nat: &DeclaredFiniteNatTrans,\n    source_category: &DeclaredFiniteCategory,\n    target_category: &DeclaredFiniteCategory,\n    source_functor: &DeclaredFiniteFunctor,\n    target_functor: &DeclaredFiniteFunctor,\n) -> Vec<String>",
+      "body": "{\n    let mut violations = Vec::new();\n\n    for obj in &source_category.objects {\n        let Some(component) = nat.component(obj) else {\n            violations.push(format!(\"Natural transformation: \u03b7_{} is not defined\", obj));\n            continue;\n        };\n\n        let Some(f_obj) = source_functor.object_map.get(obj) else {\n            violations.push(format!(\"Natural transformation: F({}) is not defined\", obj));\n            continue;\n        };\n\n        let Some(g_obj) = target_functor.object_map.get(obj) else {\n            violations.push(format!(\"Natural transformation: G({}) is not defined\", obj));\n            continue;\n        };\n\n        let Some(actual_mor) = target_category.morphisms.get(component) else {\n            violations.push(format!(\n                \"Natural transformation: component \u03b7_{} = {} is not a target morphism\",\n                obj, component\n            ));\n            continue;\n        };\n\n        if actual_mor.source != *f_obj || actual_mor.target != *g_obj {\n            violations.push(format!(\n                \"Natural transformation: \u03b7_{} = {} has boundary {} -> {}, expected {} -> {}\",\n                obj, component, actual_mor.source, actual_mor.target, f_obj, g_obj\n            ));\n        }\n    }\n\n    violations\n}",
+      "obligation": "For every supplied source object, require component, then F object map, then G object map, then actual target morphism; first missing prerequisite emits exactly one message and continues. When all exist, compare both endpoints and emit a mismatch with actual/expected values. Unrestricted raw tables may be partial; empty source object set is vacuous. Full constructor also validates categories/functors/domains."
+    },
+    "check_naturality_square": {
+      "line": 309,
+      "signature": "pub fn check_naturality_square(\n    nat: &DeclaredFiniteNatTrans,\n    source_category: &DeclaredFiniteCategory,\n    f_map: &BTreeMap<String, String>,\n    g_map: &BTreeMap<String, String>,\n    target_compositions: &BTreeMap<(String, String), String>,\n) -> Vec<String>",
+      "body": "{\n    let lookup = CompositionLookup::new(target_compositions);\n    source_category\n        .morphisms\n        .iter()\n        .filter_map(|(name, mor)| {\n            check_square_at(\n                nat,\n                name,\n                &mor.source,\n                &mor.target,\n                f_map,\n                g_map,\n                &lookup,\n            )\n            .err()\n        })\n        .collect()\n}",
+      "obligation": "Build one immutable borrowed target-table view, scan all supplied source morphism entries in sorted key order, and retain every private per-square Err string. Pass actual source/target boundary strings and key name with actual F/G arrow maps; no sampled source subset is substituted for the admitted domain. Partial raw diagnostic still refuses missing square data, and empty supplied arrows are vacuous."
+    },
+    "check_square_at": {
+      "line": 335,
+      "signature": "fn check_square_at(\n    nat: &DeclaredFiniteNatTrans,\n    mor: &str,\n    source: &str,\n    target: &str,\n    f_map: &BTreeMap<String, String>,\n    g_map: &BTreeMap<String, String>,\n    table: &CompositionLookup<'_>,\n) -> Result<(), String>",
+      "body": "{\n    let eta_a = nat\n        .component(source)\n        .ok_or_else(|| format!(\"Missing component at {source}\"))?;\n    let eta_b = nat\n        .component(target)\n        .ok_or_else(|| format!(\"Missing component at {target}\"))?;\n    let f_mor = f_map.get(mor).ok_or_else(|| format!(\"Missing F({mor})\"))?;\n    let g_mor = g_map.get(mor).ok_or_else(|| format!(\"Missing G({mor})\"))?;\n    let left = table\n        .compose(f_mor, eta_b)\n        .ok_or_else(|| format!(\"Missing eta_{target} after F({mor})\"))?;\n    let right = table\n        .compose(eta_a, g_mor)\n        .ok_or_else(|| format!(\"Missing G({mor}) after eta_{source}\"))?;\n    if left != right {\n        return Err(format!(\n            \"Naturality fails at {mor}: left {left}, right {right}\"\n        ));\n    }\n    Ok(())\n}",
+      "obligation": "Require source component, target component, F arrow image, G arrow image, left eta_target after F arrow, then right G arrow after eta_source in that exact order. Every missing input returns its exact first Err string. Compare defined target composite values; inequality fails with exact morphism/left/right values, equality succeeds. Shared borrowed table returns exact same Option str values as prior owned tuple lookup, without four temporary key Strings per square."
+    }
+  },
+  "data_trait_macro_review": "DeclaredFiniteNatTrans has public raw name/F/G labels and component map with standard structural Clone/PartialEq/Eq/Debug. ValidatedFiniteNatTrans has private owned raw declaration, both category snapshots and both functor snapshots with the same derives, no serde or mutable constructor/accessor bypass. NaturalTransformation has associated F/G constrained to equal Rust source/target interface types and one required component callback; it does not check naturality or callback purity/termination. NaturalIsomorphism has only three unbounded associated types and carries no isomorphism law. No trait callback is invoked by finite admission. Ordinary format!/derive only, no own arithmetic, float, unsafe, indexing, unwrap/expect/assert or external effect. Standard ownership/map/string/allocator/compiler behavior is explicit trust.",
+  "cost_review": [
+    "Let O_s,M_s be source objects/arrows, C_t target composition rows and K bound map sizes. Public naturality diagnostics build O(C_t) borrowed references once and make two component/map queries plus two table queries per source arrow: O(C_t+M_s log(K+1)) key comparisons, with string-length equality/comparison/format costs explicit. At most one required error string per square. No temporary owned query-key String in the repeated square checks.",
+    "Component boundary diagnostics scan O_s objects with up to four borrowed tree lookups and required output messages. Exact component-domain comparison is linear in map/set lengths without temporary collections. Raw constructor/setter own required strings/keys/values; borrowed component/certificate accessors allocate nothing.",
+    "Full admission includes one or two complete functor reports, hence their complete category checks and target views, plus component/naturality phases. Full F==G skips a duplicate report only on actual structural equality. Repeated named endpoint failures are retained intentionally. New certificate owns independent category/functor clones only after successful report, as required by its lifetime/API boundary.",
+    "Clone/Eq/Debug costs the visited/owned raw data and output bytes. Small target-index construction even on an empty supplied arrow domain remains an explicit O(C_t) setup cost; no work-budget, whole-constructor zero-allocation, capacity/layout compatibility, allocator-totality or benchmark claim."
+  ],
+  "consumer_review": "Local source search resolves finite natural-transformation identity/vertical/horizontal composition to this immutable certificate and its constructor. Generic abstract catalog interfaces and NaturalIsomorphism are separate markers. Three completed contexts reference this source (cat_functor, category validator, functor operations); they keep unchanged own bytes/primary/metrics with explicit preservation of lookup values, diagnostic payload/order, required/public signatures and certificate gating. Open natural-transformation composition consumers are compiled in original category tests but are not automatically graded. Local tfqm/nominal interface identity is distinct from external omega packages.",
+  "source_preservation": {
+    "all17_public_or_unchanged_signatures": true,
+    "unchanged16_bodies": [
+      "new",
+      "set_component",
+      "component",
+      "try_new",
+      "declared",
+      "source_category",
+      "target_category",
+      "source_functor",
+      "target_functor",
+      "validate_natural_transformation_between",
+      "check_functor_endpoints",
+      "add_nat_errors",
+      "check_nat_name",
+      "check_functor_binding",
+      "check_component_domain",
+      "check_component_boundaries"
+    ],
+    "private_signature_change": "check_square_at takes the shared borrowed view instead of the raw owned-key table. It has exactly one production caller, adapted to build one view. No public API or record/trait/derive definition changes.",
+    "semantic_argument": "BTreeMap<String,String> pair key order equals borrowed str pair order. Shared view copies every immutable key/value association without sorting/filtering and returns exact borrowed values via safe lookup. Existing prerequisite, left/right query order, defined-equality comparison and all Err messages/phase behavior remain unchanged."
+  }
+}

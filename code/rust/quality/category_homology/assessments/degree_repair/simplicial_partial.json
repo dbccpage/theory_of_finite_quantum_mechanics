@@ -1,0 +1,326 @@
+{
+  "AuthorityEffect": "None",
+  "artifact": {
+    "language": "Rust",
+    "path": "code/rust/src/homology/simplicial.rs",
+    "sha256": "c340b9486e1746fcc3d60a66affa61e206e1d4db3abcfd21a07ff690f2d3cdf4"
+  },
+  "assurance_limits": [
+    "Finite challenge/model evidence is scoped; no universal simplicial boundary, rank-nullity/Betti or Rust/MIR theorem, A+, whole-workspace pass or contract attachment."
+  ],
+  "basis": {
+    "G4": [
+      "All 16 designated current semantic faults compile and are killed independently. Current independent oracles enumerate 128 three-vertex families using subset masks and graph connectivity, all 873 permutations up to six vertices using cycle parity, signed direct faces/matrix entries/coboundary transposition, wire admission, input closure limits, ambient overflow and exact large-index rejection.",
+      "Current primary kills 74 total faults, with 40 controls and 99 original homology tests before/after. The previous sign survivor is retained with its actual outcome; direct-face assertions close the blind spot. Auxiliary native replay additionally checks the original 4294967296 input, without being usable as a primary grading receipt.",
+      "These finite semantic challenges do not themselves establish a universal boundary/Betti theorem, full failure invariant preservation or completed G1/G2/G3 review. Only index/parity models are kernel checked so far."
+    ],
+    "G5": [
+      "Calibrated declared-source metrics for 45 functions are within A ceilings, but close_faces clones a nonempty owned Vec before BTreeSet duplicate detection. Two overlapping input edges generate the same vertex, so the duplicate path performs an avoidable clone allocation inside the loop.",
+      "SCORING A requires zero redundant allocations in inner loops. The current operational ceiling is B until the duplicate path is repaired and replayed. No allocator-instrumented benchmark or exact allocation count is claimed."
+    ]
+  },
+  "context_inputs": [
+    {
+      "path": "code/rust/src/homology/errors.rs",
+      "sha256": "f694edbe3a30a18ba3dacc85f224bcb504992e73d635f110f0185686e29e4f1c"
+    },
+    {
+      "path": "code/rust/src/linear_algebra/basic_matrix.rs",
+      "sha256": "ce136b587d3ea3cfd533ccae3fcac3d371fb614ac7b48f6fdf496034b8da243e"
+    },
+    {
+      "path": "code/rust/src/linear_algebra/image_kernel.rs",
+      "sha256": "3bf9e616d17c96fac885f7f87b04cda945528b411b20967a0cfeec7852ee2eec"
+    }
+  ],
+  "evaluation_timestamp": "2026-10-19T04:33:45.835345+00:00",
+  "evidence": [
+    {
+      "path": "evidence/quality/category_homology/20261019T040851Z/summary.json",
+      "sha256": "f64ede30bf1b3e525b15df9d442c192687d7652c241c7fd75887ceabb459c7c5"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T040851Z/baseline.json",
+      "sha256": "5beead63adec7b81304183eb1d427e4f474612c68c4021b8233139970713c141"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T040851Z/restored.json",
+      "sha256": "aa1ae28328c9652ba6fc54041690066af0d6325327e28597dd98f6bcf048a5c9"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T040851Z/mutations.json",
+      "sha256": "5e765f8ec2c86e218f6e6c4077837b2a23feb7f83e97f8ef7f5e38434d9df7c8"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T040851Z/controls.json",
+      "sha256": "c2a583077964309eaff26df4bee8e1997d805e4617371ac59c3465d1a67683b9"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T041548Z/summary.json",
+      "sha256": "afd9206aeb4a3fc3a17fcf87c69ae75b7235012570dc7c239eef6853c12de725"
+    },
+    {
+      "path": "code/rust/quality/category_homology/assessments/degree_repair_source_review.json",
+      "sha256": "8732ad4becc1ac50beaef6b92e06208492bea1cd031f5665d8956b097f29db4c"
+    },
+    {
+      "path": "evidence/quality/category_homology/resume-20261019/degree-repair-source-delta.json",
+      "sha256": "06edbba9c313ef3c0b3c665cf199e2a221d5d28789965e224da2ebe9b95fcd20"
+    },
+    {
+      "path": "evidence/quality/category_homology/resume-20261019/degree-repair-challenge-correction.json",
+      "sha256": "c831114b65931c6fd52636670dfb7210ee4afa4559c661f0e718926e93e1ef66"
+    },
+    {
+      "path": "evidence/quality/category_homology/resume-20261019/simplicial-duplicate-allocation-finding.json",
+      "sha256": "e0a6a33ec358c79f2dcd9b65d4ffbb84b2a06e70d46d1ca54d9ac08314801ee2"
+    }
+  ],
+  "gates": {
+    "G4": "A",
+    "G5": "B"
+  },
+  "open_findings": [
+    "Known G5 B allocation ceiling: duplicate generated faces are cloned before set membership is known.",
+    "Whole-file mathematical claim/refinement and all-entry-point failure audit remain incomplete; G1/G2/G3 stay null and no completed token is emitted.",
+    "The three old large-index narrowing findings are resolved for the changed public paths by exact typed source, checked payload model and actual native replay of the original witness; historical E findings remain retained."
+  ],
+  "proof_receipts": [],
+  "reviewer": "Codex explicit native challenge review and duplicate-allocation finding",
+  "schema_version": "1.0.0",
+  "symbol_map": {
+    "data_declarations": {
+      "ComplexWire": "struct ComplexWire { simplices: Vec<Simplex>, }",
+      "OrientedSimplex": "pub struct OrientedSimplex { simplex: Simplex, orientation: i8, }",
+      "OrientedWire": "struct OrientedWire { simplex: Simplex, orientation: i8, }",
+      "Simplex": "pub struct Simplex { vertices: Vec<usize>, }",
+      "SimplexWire": "struct SimplexWire { vertices: Vec<usize>, }",
+      "SimplicialComplex": "pub struct SimplicialComplex { simplices_by_dim: Vec<Vec<Simplex>>, indices_by_dim: Vec<BTreeMap<Simplex, usize>>, num_vertices: usize, }"
+    },
+    "impl From<SimplicialComplex> for ComplexWire::from": {
+      "body": "{ Self { simplices: value.simplices_by_dim.into_iter().flatten().collect(), } }",
+      "obligation": "Source/body map retained for the pending full simplicial audit. Native bit-mask/cycle/graph oracles cover the declared finite challenge; only index/parity models are checked, not a general boundary or Betti theorem.",
+      "signature": "fn from(value: SimplicialComplex) -> Self"
+    },
+    "impl OrientedSimplex::dimension": {
+      "body": "{ self.simplex.dimension() }",
+      "obligation": "Source/body map retained for the pending full simplicial audit. Native bit-mask/cycle/graph oracles cover the declared finite challenge; only index/parity models are checked, not a general boundary or Betti theorem.",
+      "signature": "pub fn dimension(&self) -> usize"
+    },
+    "impl OrientedSimplex::faces": {
+      "body": "{ self.simplex .faces() .into_iter() .map(|(face, sign)| { ( OrientedSimplex { simplex: face, orientation: 1, }, sign * self.orientation, ) }) .collect() }",
+      "obligation": "Source/body map retained for the pending full simplicial audit. Native bit-mask/cycle/graph oracles cover the declared finite challenge; only index/parity models are checked, not a general boundary or Betti theorem.",
+      "signature": "pub fn faces(&self) -> Vec<(OrientedSimplex, i8)>"
+    },
+    "impl OrientedSimplex::from_ordered": {
+      "body": "{ let orientation = permutation_orientation(&vertices)?; Ok(Self { simplex: Simplex::from_unordered(vertices)?, orientation, }) }",
+      "obligation": "Source/body map retained for the pending full simplicial audit. Native bit-mask/cycle/graph oracles cover the declared finite challenge; only index/parity models are checked, not a general boundary or Betti theorem.",
+      "signature": "pub fn from_ordered(vertices: Vec<usize>) -> Result<Self, HomologicalError>"
+    },
+    "impl OrientedSimplex::from_unordered": {
+      "body": "{ Ok(Self { simplex: Simplex::from_unordered(vertices)?, orientation: 1, }) }",
+      "obligation": "Source/body map retained for the pending full simplicial audit. Native bit-mask/cycle/graph oracles cover the declared finite challenge; only index/parity models are checked, not a general boundary or Betti theorem.",
+      "signature": "pub fn from_unordered(vertices: Vec<usize>) -> Result<Self, HomologicalError>"
+    },
+    "impl OrientedSimplex::new": {
+      "body": "{ Ok(Self { simplex: Simplex::new(vertices)?, orientation: 1, }) }",
+      "obligation": "Source/body map retained for the pending full simplicial audit. Native bit-mask/cycle/graph oracles cover the declared finite challenge; only index/parity models are checked, not a general boundary or Betti theorem.",
+      "signature": "pub fn new(vertices: Vec<usize>) -> Result<Self, HomologicalError>"
+    },
+    "impl OrientedSimplex::num_vertices": {
+      "body": "{ self.simplex.num_vertices() }",
+      "obligation": "Source/body map retained for the pending full simplicial audit. Native bit-mask/cycle/graph oracles cover the declared finite challenge; only index/parity models are checked, not a general boundary or Betti theorem.",
+      "signature": "pub fn num_vertices(&self) -> usize"
+    },
+    "impl OrientedSimplex::orientation": {
+      "body": "{ self.orientation }",
+      "obligation": "Source/body map retained for the pending full simplicial audit. Native bit-mask/cycle/graph oracles cover the declared finite challenge; only index/parity models are checked, not a general boundary or Betti theorem.",
+      "signature": "pub fn orientation(&self) -> i8"
+    },
+    "impl OrientedSimplex::simplex": {
+      "body": "{ &self.simplex }",
+      "obligation": "Source/body map retained for the pending full simplicial audit. Native bit-mask/cycle/graph oracles cover the declared finite challenge; only index/parity models are checked, not a general boundary or Betti theorem.",
+      "signature": "pub fn simplex(&self) -> &Simplex"
+    },
+    "impl OrientedSimplex::vertices": {
+      "body": "{ self.simplex.vertices() }",
+      "obligation": "Source/body map retained for the pending full simplicial audit. Native bit-mask/cycle/graph oracles cover the declared finite challenge; only index/parity models are checked, not a general boundary or Betti theorem.",
+      "signature": "pub fn vertices(&self) -> &[usize]"
+    },
+    "impl Simplex::dimension": {
+      "body": "{ self.vertices.len() - 1 }",
+      "obligation": "Source/body map retained for the pending full simplicial audit. Native bit-mask/cycle/graph oracles cover the declared finite challenge; only index/parity models are checked, not a general boundary or Betti theorem.",
+      "signature": "pub fn dimension(&self) -> usize"
+    },
+    "impl Simplex::face": {
+      "body": "{ if removed_index >= self.vertices.len() { return Err(HomologicalError::invalid_degree_index(removed_index)); } if self.vertices.len() == 1 { return Err(HomologicalError::InvalidDegree(0)); } let mut vertices = self.vertices.clone(); vertices.remove(removed_index); let sign = if removed_index.is_multiple_of(2) { 1 } else { -1 }; Ok((Self { vertices }, sign)) }",
+      "obligation": "Source/body map retained for the pending full simplicial audit. Native bit-mask/cycle/graph oracles cover the declared finite challenge; only index/parity models are checked, not a general boundary or Betti theorem.",
+      "signature": "pub fn face(&self, removed_index: usize) -> Result<(Self, i8), HomologicalError>"
+    },
+    "impl Simplex::faces": {
+      "body": "{ if self.vertices.len() <= 1 { return Vec::new(); } (0..self.vertices.len()) .map(|i| { let mut vertices = self.vertices.clone(); vertices.remove(i); let sign = if i % 2 == 0 { 1 } else { -1 }; (Self { vertices }, sign) }) .collect() }",
+      "obligation": "Source/body map retained for the pending full simplicial audit. Native bit-mask/cycle/graph oracles cover the declared finite challenge; only index/parity models are checked, not a general boundary or Betti theorem.",
+      "signature": "pub fn faces(&self) -> Vec<(Self, i8)>"
+    },
+    "impl Simplex::from_unordered": {
+      "body": "{ let canonical = canonicalize_vertices(vertices)?; Ok(Self { vertices: canonical, }) }",
+      "obligation": "Source/body map retained for the pending full simplicial audit. Native bit-mask/cycle/graph oracles cover the declared finite challenge; only index/parity models are checked, not a general boundary or Betti theorem.",
+      "signature": "pub fn from_unordered(vertices: Vec<usize>) -> Result<Self, HomologicalError>"
+    },
+    "impl Simplex::new": {
+      "body": "{ validate_strict_vertices(&vertices)?; Ok(Self { vertices }) }",
+      "obligation": "Source/body map retained for the pending full simplicial audit. Native bit-mask/cycle/graph oracles cover the declared finite challenge; only index/parity models are checked, not a general boundary or Betti theorem.",
+      "signature": "pub fn new(vertices: Vec<usize>) -> Result<Self, HomologicalError>"
+    },
+    "impl Simplex::num_vertices": {
+      "body": "{ self.vertices.len() }",
+      "obligation": "Source/body map retained for the pending full simplicial audit. Native bit-mask/cycle/graph oracles cover the declared finite challenge; only index/parity models are checked, not a general boundary or Betti theorem.",
+      "signature": "pub fn num_vertices(&self) -> usize"
+    },
+    "impl Simplex::vertices": {
+      "body": "{ &self.vertices }",
+      "obligation": "Source/body map retained for the pending full simplicial audit. Native bit-mask/cycle/graph oracles cover the declared finite challenge; only index/parity models are checked, not a general boundary or Betti theorem.",
+      "signature": "pub fn vertices(&self) -> &[usize]"
+    },
+    "impl SimplicialComplex::boundary_composition": {
+      "body": "{ if k < 2 { return Err(HomologicalError::invalid_degree_index(k)); } let lower = self.boundary_matrix(k - 1)?; let upper = self.boundary_matrix(k)?; lower.mul(&upper).map_err(HomologicalError::MatrixError) }",
+      "obligation": "Source/body map retained for the pending full simplicial audit. Native bit-mask/cycle/graph oracles cover the declared finite challenge; only index/parity models are checked, not a general boundary or Betti theorem.",
+      "signature": "pub fn boundary_composition(&self, k: usize) -> Result<BasicMatrix<Q>, HomologicalError>"
+    },
+    "impl SimplicialComplex::boundary_matrix": {
+      "body": "{ if k == 0 { return BasicMatrix::zero(0, self.count(0)).map_err(HomologicalError::MatrixError); } let rows = self.count(k - 1); let cols = self.count(k); if cols == 0 { return BasicMatrix::zero(rows, 0).map_err(HomologicalError::MatrixError); } let face_indices = self .indices_by_dim .get(k - 1) .ok_or_else(|| HomologicalError::invalid_degree_index(k))?; let mut matrix = BasicMatrix::<Q>::zero(rows, cols)?; for (col, simplex) in self.simplices(k).iter().enumerate() { for (face, sign) in simplex.faces() { let row = face_indices.get(&face).ok_or_else(|| { HomologicalError::UnsupportedOperation(format!( \"simplicial closure missing face {:?}\", face.vertices() )) })?; matrix.set(*row, col, q(sign as i64))?; } } Ok(matrix) }",
+      "obligation": "Source/body map retained for the pending full simplicial audit. Native bit-mask/cycle/graph oracles cover the declared finite challenge; only index/parity models are checked, not a general boundary or Betti theorem.",
+      "signature": "pub fn boundary_matrix(&self, k: usize) -> Result<BasicMatrix<Q>, HomologicalError>"
+    },
+    "impl SimplicialComplex::coboundary_composition": {
+      "body": "{ if k < 1 { return Err(HomologicalError::invalid_degree_index(k)); } let lower = self.coboundary_matrix(k - 1)?; let upper = self.coboundary_matrix(k)?; upper.mul(&lower).map_err(HomologicalError::MatrixError) }",
+      "obligation": "Source/body map retained for the pending full simplicial audit. Native bit-mask/cycle/graph oracles cover the declared finite challenge; only index/parity models are checked, not a general boundary or Betti theorem.",
+      "signature": "pub fn coboundary_composition(&self, k: usize) -> Result<BasicMatrix<Q>, HomologicalError>"
+    },
+    "impl SimplicialComplex::coboundary_matrix": {
+      "body": "{ let next = k.checked_add(1).ok_or(HomologicalError::DegreeOverflow)?; let boundary = self.boundary_matrix(next)?; let mut matrix = BasicMatrix::<Q>::zero(boundary.cols(), boundary.rows())?; for row in 0..boundary.rows() { for col in 0..boundary.cols() { matrix.set(col, row, boundary.get(row, col)?)?; } } Ok(matrix) }",
+      "obligation": "Source/body map retained for the pending full simplicial audit. Native bit-mask/cycle/graph oracles cover the declared finite challenge; only index/parity models are checked, not a general boundary or Betti theorem.",
+      "signature": "pub fn coboundary_matrix(&self, k: usize) -> Result<BasicMatrix<Q>, HomologicalError>"
+    },
+    "impl SimplicialComplex::contains": {
+      "body": "{ self.indices_by_dim .get(simplex.dimension()) .is_some_and(|indices| indices.contains_key(simplex)) }",
+      "obligation": "Source/body map retained for the pending full simplicial audit. Native bit-mask/cycle/graph oracles cover the declared finite challenge; only index/parity models are checked, not a general boundary or Betti theorem.",
+      "signature": "pub fn contains(&self, simplex: &Simplex) -> bool"
+    },
+    "impl SimplicialComplex::count": {
+      "body": "{ self.simplices(dim).len() }",
+      "obligation": "Source/body map retained for the pending full simplicial audit. Native bit-mask/cycle/graph oracles cover the declared finite challenge; only index/parity models are checked, not a general boundary or Betti theorem.",
+      "signature": "pub fn count(&self, dim: usize) -> usize"
+    },
+    "impl SimplicialComplex::euler_characteristic": {
+      "body": "{ self.simplices_by_dim .iter() .enumerate() .map(|(k, simplices)| { if k % 2 == 0 { simplices.len() as i64 } else { -(simplices.len() as i64) } }) .sum() }",
+      "obligation": "Source/body map retained for the pending full simplicial audit. Native bit-mask/cycle/graph oracles cover the declared finite challenge; only index/parity models are checked, not a general boundary or Betti theorem.",
+      "signature": "pub fn euler_characteristic(&self) -> i64"
+    },
+    "impl SimplicialComplex::from_canonical_simplices": {
+      "body": "{ let all = close_faces(simplices)?; let max_dim = all.iter().map(Simplex::dimension).max().unwrap_or(0); let mut simplices_by_dim = vec![Vec::new(); max_dim + 1]; let mut max_vertex = None::<usize>; for simplex in all { if let Some(&v) = simplex.vertices().last() { max_vertex = Some(max_vertex.map_or(v, |m| m.max(v))); } // Every simplex dimension is <= max_dim, measured from this same set. simplices_by_dim .get_mut(simplex.dimension()) .ok_or(HomologicalError::ResourceLimit(\"simplex dimension\"))? .push(simplex); } let indices_by_dim = simplices_by_dim .iter() .map(|simplices| { simplices .iter() .cloned() .enumerate() .map(|(index, simplex)| (simplex, index)) .collect() }) .collect(); Ok(Self { simplices_by_dim, indices_by_dim, num_vertices: match max_vertex { None => 0, Some(v) => v .checked_add(1) .ok_or(HomologicalError::ResourceLimit(\"vertex label overflow\"))?, }, }) }",
+      "obligation": "Source/body map retained for the pending full simplicial audit. Native bit-mask/cycle/graph oracles cover the declared finite challenge; only index/parity models are checked, not a general boundary or Betti theorem.",
+      "signature": "fn from_canonical_simplices(simplices: Vec<Simplex>) -> Result<Self, HomologicalError>"
+    },
+    "impl SimplicialComplex::from_maximal_simplices": {
+      "body": "{ Self::from_canonical_simplices(maximal.into_iter().map(|s| s.simplex).collect()) }",
+      "obligation": "Source/body map retained for the pending full simplicial audit. Native bit-mask/cycle/graph oracles cover the declared finite challenge; only index/parity models are checked, not a general boundary or Betti theorem.",
+      "signature": "pub fn from_maximal_simplices(maximal: Vec<OrientedSimplex>) -> Result<Self, HomologicalError>"
+    },
+    "impl SimplicialComplex::from_simplices": {
+      "body": "{ Self::from_canonical_simplices(simplices) }",
+      "obligation": "Source/body map retained for the pending full simplicial audit. Native bit-mask/cycle/graph oracles cover the declared finite challenge; only index/parity models are checked, not a general boundary or Betti theorem.",
+      "signature": "pub fn from_simplices(simplices: Vec<Simplex>) -> Result<Self, HomologicalError>"
+    },
+    "impl SimplicialComplex::max_dimension": {
+      "body": "{ self.simplices_by_dim.len().saturating_sub(1) }",
+      "obligation": "Source/body map retained for the pending full simplicial audit. Native bit-mask/cycle/graph oracles cover the declared finite challenge; only index/parity models are checked, not a general boundary or Betti theorem.",
+      "signature": "pub fn max_dimension(&self) -> usize"
+    },
+    "impl SimplicialComplex::num_vertices": {
+      "body": "{ self.num_vertices }",
+      "obligation": "Source/body map retained for the pending full simplicial audit. Native bit-mask/cycle/graph oracles cover the declared finite challenge; only index/parity models are checked, not a general boundary or Betti theorem.",
+      "signature": "pub fn num_vertices(&self) -> usize"
+    },
+    "impl SimplicialComplex::rational_betti_numbers": {
+      "body": "{ let max_dim = self.max_dimension(); let rank = |k: usize| -> Result<usize, HomologicalError> { self.boundary_matrix(k)? .rank() .map_err(|e| HomologicalError::UnsupportedOperation(format!(\"{}\", e))) }; let mut betti = Vec::with_capacity(max_dim + 1); for k in 0..=max_dim { let ck_dim = self.count(k); if ck_dim == 0 { betti.push(0); continue; } let rank_dk = if k == 0 { 0 } else { rank(k)? }; let ker_dk = ck_dim .checked_sub(rank_dk) .ok_or(HomologicalError::BettiRankInconsistency { dimension: ck_dim, rank_sum: rank_dk, degree: k, })?; let rank_dk_plus_1 = if k == max_dim { 0 } else { rank(k + 1)? }; let bk = ker_dk.checked_sub(rank_dk_plus_1).ok_or( HomologicalError::BettiRankInconsistency { dimension: ker_dk, rank_sum: rank_dk_plus_1, degree: k, }, )?; betti.push(bk); } Ok(betti) }",
+      "obligation": "Source/body map retained for the pending full simplicial audit. Native bit-mask/cycle/graph oracles cover the declared finite challenge; only index/parity models are checked, not a general boundary or Betti theorem.",
+      "signature": "pub fn rational_betti_numbers(&self) -> Result<Vec<usize>, HomologicalError>"
+    },
+    "impl SimplicialComplex::simplices": {
+      "body": "{ self.simplices_by_dim .get(dim) .map(Vec::as_slice) .unwrap_or(&[]) }",
+      "obligation": "Source/body map retained for the pending full simplicial audit. Native bit-mask/cycle/graph oracles cover the declared finite challenge; only index/parity models are checked, not a general boundary or Betti theorem.",
+      "signature": "pub fn simplices(&self, dim: usize) -> &[Simplex]"
+    },
+    "impl SimplicialComplex::simplices_by_dim": {
+      "body": "{ &self.simplices_by_dim }",
+      "obligation": "Source/body map retained for the pending full simplicial audit. Native bit-mask/cycle/graph oracles cover the declared finite challenge; only index/parity models are checked, not a general boundary or Betti theorem.",
+      "signature": "pub fn simplices_by_dim(&self) -> &[Vec<Simplex>]"
+    },
+    "impl SimplicialComplex::standard_n_simplex": {
+      "body": "{ if n >= MAX_SIMPLEX_VERTICES { return Err(HomologicalError::ResourceLimit(\"simplex dimension\")); } Self::from_simplices(vec![Simplex::new((0..=n).collect())?]) }",
+      "obligation": "Source/body map retained for the pending full simplicial audit. Native bit-mask/cycle/graph oracles cover the declared finite challenge; only index/parity models are checked, not a general boundary or Betti theorem.",
+      "signature": "pub fn standard_n_simplex(n: usize) -> Result<Self, HomologicalError>"
+    },
+    "impl SimplicialComplex::total_simplices": {
+      "body": "{ self.simplices_by_dim.iter().map(Vec::len).sum() }",
+      "obligation": "Source/body map retained for the pending full simplicial audit. Native bit-mask/cycle/graph oracles cover the declared finite challenge; only index/parity models are checked, not a general boundary or Betti theorem.",
+      "signature": "pub fn total_simplices(&self) -> usize"
+    },
+    "impl SimplicialComplex::verify_boundary_law": {
+      "body": "{ let max_dim = self.max_dimension(); if max_dim < 2 { return Ok(true); } for k in 2..=max_dim { self.verify_boundary_law_at(k)?; } Ok(true) }",
+      "obligation": "Source/body map retained for the pending full simplicial audit. Native bit-mask/cycle/graph oracles cover the declared finite challenge; only index/parity models are checked, not a general boundary or Betti theorem.",
+      "signature": "pub fn verify_boundary_law(&self) -> Result<bool, HomologicalError>"
+    },
+    "impl SimplicialComplex::verify_boundary_law_at": {
+      "body": "{ let composed = self.boundary_composition(k)?; let is_zero = composed.as_slice().iter().all(|x| *x == q(0)); if is_zero { Ok(true) } else { Err(HomologicalError::BoundaryLawViolation { degree: (k - 1) as i32, }) } }",
+      "obligation": "Source/body map retained for the pending full simplicial audit. Native bit-mask/cycle/graph oracles cover the declared finite challenge; only index/parity models are checked, not a general boundary or Betti theorem.",
+      "signature": "pub fn verify_boundary_law_at(&self, k: usize) -> Result<bool, HomologicalError>"
+    },
+    "impl SimplicialComplex::verify_coboundary_law": {
+      "body": "{ let max_dim = self.max_dimension(); if max_dim < 2 { return Ok(true); } for k in 1..max_dim { self.verify_coboundary_law_at(k)?; } Ok(true) }",
+      "obligation": "Source/body map retained for the pending full simplicial audit. Native bit-mask/cycle/graph oracles cover the declared finite challenge; only index/parity models are checked, not a general boundary or Betti theorem.",
+      "signature": "pub fn verify_coboundary_law(&self) -> Result<bool, HomologicalError>"
+    },
+    "impl SimplicialComplex::verify_coboundary_law_at": {
+      "body": "{ let composed = self.coboundary_composition(k)?; let is_zero = composed.as_slice().iter().all(|x| *x == q(0)); if is_zero { Ok(true) } else { Err(HomologicalError::CoboundaryLawViolation { degree: k as i32 }) } }",
+      "obligation": "Source/body map retained for the pending full simplicial audit. Native bit-mask/cycle/graph oracles cover the declared finite challenge; only index/parity models are checked, not a general boundary or Betti theorem.",
+      "signature": "pub fn verify_coboundary_law_at(&self, k: usize) -> Result<bool, HomologicalError>"
+    },
+    "impl TryFrom<ComplexWire> for SimplicialComplex::try_from": {
+      "body": "{ Self::from_simplices(value.simplices) }",
+      "obligation": "Source/body map retained for the pending full simplicial audit. Native bit-mask/cycle/graph oracles cover the declared finite challenge; only index/parity models are checked, not a general boundary or Betti theorem.",
+      "signature": "fn try_from(value: ComplexWire) -> Result<Self, Self::Error>"
+    },
+    "impl TryFrom<OrientedWire> for OrientedSimplex::try_from": {
+      "body": "{ if value.orientation != 1 && value.orientation != -1 { return Err(HomologicalError::BasisMismatch { description: \"orientation must be +1 or -1\".into(), }); } Ok(Self { simplex: value.simplex, orientation: value.orientation, }) }",
+      "obligation": "Source/body map retained for the pending full simplicial audit. Native bit-mask/cycle/graph oracles cover the declared finite challenge; only index/parity models are checked, not a general boundary or Betti theorem.",
+      "signature": "fn try_from(value: OrientedWire) -> Result<Self, Self::Error>"
+    },
+    "impl TryFrom<SimplexWire> for Simplex::try_from": {
+      "body": "{ Self::new(value.vertices) }",
+      "obligation": "Source/body map retained for the pending full simplicial audit. Native bit-mask/cycle/graph oracles cover the declared finite challenge; only index/parity models are checked, not a general boundary or Betti theorem.",
+      "signature": "fn try_from(value: SimplexWire) -> Result<Self, Self::Error>"
+    },
+    "module::canonicalize_vertices": {
+      "body": "{ if vertices.is_empty() { return Err(HomologicalError::EmptyBasis); } vertices.sort_unstable(); for pair in vertices.windows(2) { if pair[1] == pair[0] { return Err(HomologicalError::BasisMismatch { description: \"simplex vertices must be distinct\".to_string(), }); } } Ok(vertices) }",
+      "obligation": "Source/body map retained for the pending full simplicial audit. Native bit-mask/cycle/graph oracles cover the declared finite challenge; only index/parity models are checked, not a general boundary or Betti theorem.",
+      "signature": "fn canonicalize_vertices(mut vertices: Vec<usize>) -> Result<Vec<usize>, HomologicalError>"
+    },
+    "module::close_faces": {
+      "body": "{ if simplices.len() > MAX_SIMPLICES || simplices .iter() .any(|s| s.num_vertices() > MAX_SIMPLEX_VERTICES) { return Err(HomologicalError::ResourceLimit(\"simplicial face closure\")); } let mut all: BTreeSet<Simplex> = BTreeSet::new(); let mut stack = simplices; while let Some(simplex) = stack.pop() { if all.insert(simplex.clone()) { if all.len() > MAX_SIMPLICES { return Err(HomologicalError::ResourceLimit(\"simplicial face closure\")); } for (face, _) in simplex.faces() { stack.push(face); } } } Ok(all) }",
+      "obligation": "Source/body map retained for the pending full simplicial audit. Native bit-mask/cycle/graph oracles cover the declared finite challenge; only index/parity models are checked, not a general boundary or Betti theorem.",
+      "signature": "fn close_faces(simplices: Vec<Simplex>) -> Result<BTreeSet<Simplex>, HomologicalError>"
+    },
+    "module::permutation_orientation": {
+      "body": "{ if vertices.is_empty() { return Err(HomologicalError::EmptyBasis); } let mut seen = BTreeSet::new(); for vertex in vertices { if !seen.insert(*vertex) { return Err(HomologicalError::BasisMismatch { description: \"oriented simplex vertices must be distinct\".to_string(), }); } } // Only inversion parity is needed. Keeping the parity avoids overflowing // a machine-sized total on a large standalone ordered simplex. let odd = vertices .iter() .enumerate() .fold(false, |parity, (i, left)| { vertices .iter() .skip(i + 1) .fold(parity, |prior, right| prior ^ (left > right)) }); Ok(if odd { -1 } else { 1 }) }",
+      "obligation": "Source/body map retained for the pending full simplicial audit. Native bit-mask/cycle/graph oracles cover the declared finite challenge; only index/parity models are checked, not a general boundary or Betti theorem.",
+      "signature": "fn permutation_orientation(vertices: &[usize]) -> Result<i8, HomologicalError>"
+    },
+    "module::validate_strict_vertices": {
+      "body": "{ if vertices.is_empty() { return Err(HomologicalError::EmptyBasis); } for pair in vertices.windows(2) { if pair[1] <= pair[0] { return Err(HomologicalError::BasisMismatch { description: format!(\"simplex vertices must be strictly ascending: {:?}\", pair), }); } } Ok(()) }",
+      "obligation": "Source/body map retained for the pending full simplicial audit. Native bit-mask/cycle/graph oracles cover the declared finite challenge; only index/parity models are checked, not a general boundary or Betti theorem.",
+      "signature": "fn validate_strict_vertices(vertices: &[usize]) -> Result<(), HomologicalError>"
+    }
+  }
+}

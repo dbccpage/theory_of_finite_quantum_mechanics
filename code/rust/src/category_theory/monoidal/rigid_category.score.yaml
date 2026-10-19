@@ -3,23 +3,23 @@ schema_version: "2.0.0"
 artifact:
   path: "code/rust/src/category_theory/monoidal/rigid_category.rs"
   language: "Rust"
-  sha256: "23298c7a4adb2a04adb1f1ee58caffc0065e4749afd002b463229786090184eb"
+  sha256: "91a29083fc738c32f4767cb79415d8f2feb3e5d0d92cfd00d504f3dbd7d17987"
 profile: "Non-Numeric"
 level: "L2"
 level_basis: "Explicit metadata/shape shell; categorical titles do not establish mathematical capabilities."
 architecture_target: "L5"
 engineering_target: "A"
 gates:
-  G1: null
-  G2: null
-  G3: null
-  G4: null
-  G5: null
-composite_grade: null
-score_token: null
-is_complete: false
+  G1: "A"
+  G2: "A"
+  G3: "A"
+  G4: "A"
+  G5: "A"
+composite_grade: "A"
+score_token: "L2A"
+is_complete: true
 grade_ceiling: "A"
-evaluation_timestamp: "2026-10-18T18:42:03+00:00"
+evaluation_timestamp: "2026-10-18T23:41:35.175003+00:00"
 AuthorityEffect: "None"
 claim:
   urn: "urn:tfqm:rust:category_theory:monoidal:rigid_category"
@@ -30,28 +30,41 @@ contract:
   path: null
   note: "Reserved for a later user-requested contract; none created or asserted here."
 evidence:
-  - {"path": "evidence/quality/category_homology/20261018T184203Z/baseline.json", "sha256": "e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c", "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."}
-  - {"path": "evidence/quality/category_homology/20261018T184203Z/summary.json", "sha256": "ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67", "scope": "Source snapshot binding and complete six-outcome accounting."}
-  - {"path": "evidence/quality/category_homology/20261018T184203Z/mutations.json", "sha256": "c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5", "scope": "Designated critical faults only; outcomes for this file are enumerated below."}
-  - {"path": "evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json", "sha256": "86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1", "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."}
+  - {"path": "evidence/quality/category_homology/20261018T233209Z/baseline.json", "sha256": "47197d38d88a1d5855148461640ab5f006c9beda948a9bb55bffb32c88c5f705", "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."}
+  - {"path": "evidence/quality/category_homology/20261018T233209Z/summary.json", "sha256": "6c7c22f7033964caab2e047c2cae35c4ee5bdbdd19ec88c8267be5098255d36a", "scope": "Source snapshot binding and complete six-outcome accounting."}
+  - {"path": "evidence/quality/category_homology/20261018T233209Z/mutations.json", "sha256": "d098246c853d6026c412dc94f07f3d3c0e2305a56acde10801934f6c4e5dc3ef", "scope": "Designated critical faults only; outcomes for this file are enumerated below."}
+  - {"path": "evidence/quality/category_homology/20261018T233820Z-metrics/receipt.json", "sha256": "2f92a028584500fa0f425d4946064123cf1113af6c644d9efcc45c05250849bd", "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."}
+  - {"path": "evidence/quality/category_homology/20261018T233209Z/dependency_receipt.json", "sha256": "14743e6b84c43849fba62981ce12f2a7239e56dfa6595ab64564671aa1b36042", "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred."}
+  - {"path": "code/rust/quality/category_homology/assessments/metadata/monoidal/rigid_category.json", "sha256": "7631b1d9e8dba5ca6c3ddb87f4c166841badbdc07e41d00cc3b99c009a35dc39", "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping."}
 verification:
   baseline_ok: true
   source_snapshot_unchanged: true
   compiled_scope: "shared scoped crate build"
-  local_mutant_ids: []
+  local_mutant_ids:
+    - "monoidal-rigid_category-label-skip"
+    - "monoidal-rigid_category-label-diagnostic"
+    - "monoidal-rigid_category-monoidal_ref-skip"
+    - "monoidal-rigid_category-monoidal_ref-diagnostic"
+    - "monoidal-rigid_category-left_dual_ref-skip"
+    - "monoidal-rigid_category-left_dual_ref-diagnostic"
+    - "monoidal-rigid_category-right_dual_ref-skip"
+    - "monoidal-rigid_category-right_dual_ref-diagnostic"
+    - "monoidal-rigid_category-reject-valid"
+    - "monoidal-rigid_category-drop-new-label"
+  dependency_contents_stable: true
 mutation_accounting:
-  killed: 0
+  killed: 10
   survived: 0
   demonstrably_equivalent: 0
   invalid: 0
   inconclusive: 0
   unrun: 0
-  conservative_ratio: null
+  conservative_ratio: 1.0
 structure:
   tool: "syn 3.0.9 source AST"
   source_ast_parsed: true
   expanded_ast: false
-  physical_lines: 92
+  physical_lines: 93
   parsed_production_functions: 3
   max_production_ccn: 5
   cognitive_complexity_upper_bound: 8
@@ -59,7 +72,9 @@ structure:
   opaque_function_macros: []
   functions_exceeding_A: []
   scope: "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
-open_findings:
-  - "A complete five-gate semantic, failure and consumer audit has not been established for this file."
-  - "Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds."
-  - "External path dependency source contents have not received a separate origin/content attestation."
+open_findings: []
+assurance_limits:
+  - "The capability remains L2 raw metadata; no underlying category-theoretic law is certified."
+  - "Contracts remain pending by user request."
+  - "No A+, alternate compiler, mechanized Rust/MIR refinement, allocator totality, cross-repository authorship attestation or whole-workspace pass is claimed."
+  - "Current compiled consumer scope is the category package and the isolated source challenge harness."

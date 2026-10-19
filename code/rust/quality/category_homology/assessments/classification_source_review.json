@@ -1,0 +1,203 @@
+{
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/category_theory/finite_functional_classification.rs",
+    "sha256": "0416e0936f9fb724f58bfb0a735751ca3db2e505dfc7b39c9ad09ef722f78375",
+    "language": "Rust"
+  },
+  "symbol_map": {
+    "singleton_is_realizable": {
+      "line": 28,
+      "signature": "fn singleton_is_realizable(self) -> bool",
+      "body": "{\n        self.reversible && self.observable && !self.tolerance && self.minimal && !self.active\n    }",
+      "obligation": "Private singleton Boolean case:V and O and K true,T and A false;called only when N false."
+    },
+    "RetentionSignature::is_realizable": {
+      "line": 36,
+      "signature": "pub fn is_realizable(self) -> bool",
+      "body": "{\n        if !self.nontrivial {\n            return self.singleton_is_realizable();\n        }\n        if self.observable && !self.tolerance && !self.minimal {\n            return false;\n        }\n        if !self.active {\n            return self.reversible && self.minimal == (self.observable && !self.tolerance);\n        }\n        true\n    }",
+      "obligation": "Necessary/sufficient signature criterion over all admitted total finite models and all finite input alphabets,some one-input witness per permitted signature. Singleton fixed flags;O and notT forceK;inactive requiresV and K iff O and notT;active otherwise unrestricted."
+    },
+    "FiniteRetentionModel::new": {
+      "line": 60,
+      "signature": "pub fn new(\n        raw_reports: Vec<usize>,\n        recognized: Vec<usize>,\n        transitions: Vec<Vec<usize>>,\n        inputs: usize,\n    ) -> Result<Self, ClassificationError>",
+      "body": "{\n        if raw_reports.len() != recognized.len() {\n            return Err(ClassificationError::InvalidModel);\n        }\n        let mut factor = BTreeMap::new();\n        for (&raw, &report) in raw_reports.iter().zip(&recognized) {\n            if let Some(previous) = factor.insert(raw, report) {\n                if previous != report {\n                    return Err(ClassificationError::InvalidModel);\n                }\n            }\n        }\n        let moore = FiniteMoore::new(recognized, transitions, inputs)\n            .map_err(|_| ClassificationError::InvalidModel)?;\n        Ok(Self { raw_reports, moore })\n    }",
+      "obligation": "First exact raw/recognized length,then raw-label fiber consistency in occurrence order,then actual FiniteMoore admission;all errors mapped InvalidModel. Own moved raw labels and immutable admitted Moore;empty/shape/out-of-range refused by provider. Zero input labels allowed."
+    },
+    "raw_reports": {
+      "line": 82,
+      "signature": "pub fn raw_reports(&self) -> &[usize]",
+      "body": "{\n        &self.raw_reports\n    }",
+      "obligation": "Borrow original raw report storage exactly;no clone or mutable access."
+    },
+    "moore": {
+      "line": 85,
+      "signature": "pub fn moore(&self) -> &FiniteMoore",
+      "body": "{\n        &self.moore\n    }",
+      "obligation": "Borrow the original admitted immutable Moore provider;no wrapper replacement or mutable access."
+    },
+    "FiniteRetentionModel::signature": {
+      "line": 89,
+      "signature": "pub fn signature(&self) -> RetentionSignature",
+      "body": "{\n        let n = self.moore.state_count();\n        let observable = self.raw_reports.iter().collect::<BTreeSet<_>>().len() == n;\n        let tolerance = has_tolerance(&self.raw_reports, self.moore.reports());\n        let reversible = permutation_columns(&self.moore);\n        let active = self\n            .moore\n            .transitions()\n            .iter()\n            .enumerate()\n            .any(|(x, row)| row.iter().any(|&y| x != y));\n        RetentionSignature {\n            nontrivial: n > 1,\n            reversible,\n            observable,\n            tolerance,\n            minimal: self.moore.behavioral_quotient().quotient.state_count() == n,\n            active,\n        }\n    }",
+      "obligation": "Compute N statecount>1,V every input permutation,O raw injective,T distinct raw recognized-equal pair,K recognized all-word behavioral minimality,A any state-moving transition. Actual provider quotient supplies K;no phenomenological labels inferred."
+    },
+    "has_tolerance": {
+      "line": 111,
+      "signature": "fn has_tolerance(raw: &[usize], recognized: &[usize]) -> bool",
+      "body": "{\n    let mut representatives = BTreeMap::new();\n    for (&r, &s) in raw.iter().zip(recognized) {\n        if let Some(previous) = representatives.insert(s, r) {\n            if previous != r {\n                return true;\n            }\n        }\n    }\n    false\n}",
+      "obligation": "Private equal-length raw/recognized arrays. Index first raw representative by recognized label;first different raw on same recognized key proves T. Map reused within scan;no state-pair allocation/quadratic scan."
+    },
+    "permutation_columns": {
+      "line": 123,
+      "signature": "fn permutation_columns(moore: &FiniteMoore) -> bool",
+      "body": "{\n    if moore.input_count() == 0 {\n        return true;\n    }\n    let mut seen = vec![false; moore.state_count()];\n    (0..moore.input_count()).all(|i| column_is_permutation(moore.transitions(), i, &mut seen))\n}",
+      "obligation": "Private admitted Moore. Zero inputs vacuously true before allocation;otherwise allocate one n-bit scratch and test every column with reset. No per-input set allocation."
+    },
+    "column_is_permutation": {
+      "line": 131,
+      "signature": "fn column_is_permutation(transitions: &[Vec<usize>], column: usize, seen: &mut [bool]) -> bool",
+      "body": "{\n    seen.fill(false);\n    for row in transitions {\n        if std::mem::replace(&mut seen[row[column]], true) {\n            return false;\n        }\n    }\n    true\n}",
+      "obligation": "Private n admitted rows/range/width and n scratch. Reset all bits,false on first repeated destination;with n values in0..n,absence of duplicate iff permutation. Checked provider invariants discharge every index."
+    },
+    "realize_retention": {
+      "line": 143,
+      "signature": "pub fn realize_retention(\n    signature: RetentionSignature,\n) -> Result<FiniteRetentionModel, ClassificationError>",
+      "body": "{\n    if !signature.is_realizable() {\n        return Err(ClassificationError::ImpossibleSignature);\n    }\n    let (raw, recognized) = retention_reports(signature)?;\n    let n = raw.len();\n    let transitions = (0..n)\n        .map(|x| vec![retention_successor(signature, x, n)])\n        .collect();\n    FiniteRetentionModel::new(raw, recognized, transitions, 1)\n}",
+      "obligation": "Refuse disallowed signature first. Choose exact raw/recognized witness data,one input transition per state through private successor,then actual constructor. Successful model realizes requested signature with1..4states."
+    },
+    "retention_reports": {
+      "line": 157,
+      "signature": "fn retention_reports(\n    signature: RetentionSignature,\n) -> Result<(Vec<usize>, Vec<usize>), ClassificationError>",
+      "body": "{\n    if !signature.nontrivial {\n        return Ok((vec![0], vec![0]));\n    }\n    if signature.minimal {\n        return Ok(minimal_retention_reports(\n            signature.observable,\n            signature.tolerance,\n        ));\n    }\n    match (signature.observable, signature.tolerance) {\n        (true, true) => Ok((vec![0, 1], vec![0, 0])),\n        (false, false) => Ok((vec![0, 0], vec![0, 0])),\n        (false, true) => Ok((vec![0, 0, 1], vec![0, 0, 0])),\n        (true, false) => Err(ClassificationError::ImpossibleSignature),\n    }\n}",
+      "obligation": "Private admitted signature. Singleton [0]/[0];minimal delegates four fixed informative report patterns;nonminimal uses constant recognized values and raw pattern matching O/T;otherwise private ImpossibleSignature fallback. Move owned vectors."
+    },
+    "minimal_retention_reports": {
+      "line": 177,
+      "signature": "fn minimal_retention_reports(observable: bool, tolerance: bool) -> (Vec<usize>, Vec<usize>)",
+      "body": "{\n    match (observable, tolerance) {\n        (true, false) => (vec![0, 1], vec![0, 1]),\n        (false, false) => (vec![0, 0, 1], vec![0, 0, 1]),\n        (true, true) => (vec![0, 1, 2], vec![0, 0, 1]),\n        (false, true) => (vec![0, 0, 1, 2], vec![0, 0, 0, 1]),\n    }\n}",
+      "obligation": "Four fixed raw/recognized patterns for(O,T). Recognized reports are injective two-state or0...01 markers on3/4states. Literal patterns preserve claimed raw injectivity/tolerance and support future distinguishability under cycle/chain."
+    },
+    "retention_successor": {
+      "line": 186,
+      "signature": "fn retention_successor(signature: RetentionSignature, x: usize, n: usize) -> usize",
+      "body": "{\n    if !signature.active {\n        x\n    } else if signature.reversible {\n        (x + 1) % n\n    } else if signature.minimal {\n        (x + 1).min(n - 1)\n    } else {\n        0\n    }\n}",
+      "obligation": "Private witness0<=x<n<=4. Inactive identity;active reversible successor cycle;active nonreversible minimal saturated chain;remaining constant0. x+1,n-1,modn safe because witness domain1..4."
+    },
+    "FunctionalSignature::is_realizable": {
+      "line": 215,
+      "signature": "pub fn is_realizable(self) -> bool",
+      "body": "{\n        (self.blind_spot || self.linked)\n            && !(self.linked && self.presentation_stable && !self.report_stable)\n    }",
+      "obligation": "Exactly no-blind-spot implies linked,and linked plus presentation-stable implies report-stable;calibration free. Boolean20allowedpatterns among32."
+    },
+    "FiniteFunctionalModel::new": {
+      "line": 233,
+      "signature": "pub fn new(\n        presentation: Vec<usize>,\n        report: Vec<usize>,\n        context: Vec<usize>,\n        target: Vec<usize>,\n    ) -> Result<Self, ClassificationError>",
+      "body": "{\n        let n = presentation.len();\n        if n == 0\n            || report.len() != n\n            || context.len() != n\n            || target.len() != n\n            || context.iter().any(|&x| x >= n)\n        {\n            return Err(ClassificationError::InvalidModel);\n        }\n        Ok(Self {\n            presentation,\n            report,\n            context,\n            target,\n        })\n    }",
+      "obligation": "Require nonempty presentation,equal report/context/target lengths and context values<n. Only context values are state indices;presentation/report/target are arbitrary exact usize labels includingMAX. Move all arrays;InvalidModel on any shape/range failure."
+    },
+    "presentation": {
+      "line": 255,
+      "signature": "pub fn presentation(&self) -> &[usize]",
+      "body": "{\n        &self.presentation\n    }",
+      "obligation": "Borrow exact presentation label array;no state-index restriction or copy."
+    },
+    "report": {
+      "line": 258,
+      "signature": "pub fn report(&self) -> &[usize]",
+      "body": "{\n        &self.report\n    }",
+      "obligation": "Borrow exact independent report label array;factorization not presumed."
+    },
+    "context": {
+      "line": 261,
+      "signature": "pub fn context(&self) -> &[usize]",
+      "body": "{\n        &self.context\n    }",
+      "obligation": "Borrow exact admitted total context transition indices."
+    },
+    "target": {
+      "line": 264,
+      "signature": "pub fn target(&self) -> &[usize]",
+      "body": "{\n        &self.target\n    }",
+      "obligation": "Borrow exact target label array;calibration separately compared."
+    },
+    "report_factor": {
+      "line": 270,
+      "signature": "pub fn report_factor(&self) -> Option<BTreeMap<usize, usize>>",
+      "body": "{\n        let mut factor = BTreeMap::new();\n        for (&q, &s) in self.presentation.iter().zip(&self.report) {\n            if let Some(old) = factor.insert(q, s) {\n                if old != s {\n                    return None;\n                }\n            }\n        }\n        Some(factor)\n    }",
+      "obligation": "Construct exact partial decoder on realized q labels only. Equal-q different-s yieldsNone;otherwise one sorted map entry per realized label with exact report. No total decoder outside image or guessed extension."
+    },
+    "FiniteFunctionalModel::signature": {
+      "line": 281,
+      "signature": "pub fn signature(&self) -> FunctionalSignature",
+      "body": "{\n        FunctionalSignature {\n            linked: self.report_factor().is_some(),\n            presentation_stable: self\n                .context\n                .iter()\n                .enumerate()\n                .all(|(x, &tx)| self.presentation[x] == self.presentation[tx]),\n            report_stable: self\n                .context\n                .iter()\n                .enumerate()\n                .all(|(x, &tx)| self.report[x] == self.report[tx]),\n            calibrated: self.report == self.target,\n            blind_spot: self.presentation.iter().collect::<BTreeSet<_>>().len()\n                < self.presentation.len(),\n        }\n    }",
+      "obligation": "Linked iff report_factor exists;P/S invariant under context for each state,C exact whole-array equality,B a repeated presentation. Safe indices from constructor."
+    },
+    "realize_functional": {
+      "line": 303,
+      "signature": "pub fn realize_functional(\n    signature: FunctionalSignature,\n) -> Result<FiniteFunctionalModel, ClassificationError>",
+      "body": "{\n    if !signature.is_realizable() {\n        return Err(ClassificationError::ImpossibleSignature);\n    }\n    let (q, s, t) = functional_witness_data(signature);\n    let mut target = s.clone();\n    if !signature.calibrated {\n        target[0] += 1;\n    }\n    FiniteFunctionalModel::new(q, s, t, target)\n}",
+      "obligation": "Refuse disallowed flags;choose fixed q/s/t arrays of2/3states,clone s once because both report and independent target owned,increment target0 from known literal0 to1 only if uncalibrated,then actual admission. No arbitrary usize increment."
+    },
+    "functional_witness_data": {
+      "line": 317,
+      "signature": "fn functional_witness_data(signature: FunctionalSignature) -> (Vec<usize>, Vec<usize>, Vec<usize>)",
+      "body": "{\n    if !signature.blind_spot {\n        let (s, t) = linked_functional_data(signature, false);\n        return (vec![0, 1], s, t);\n    }\n    let q = vec![0, 0, 1];\n    let (s, t) = if signature.linked {\n        linked_functional_data(signature, true)\n    } else {\n        unlinked_functional_data(signature.presentation_stable, signature.report_stable)\n    };\n    (q, s, t)\n}",
+      "obligation": "Private allowed signature. Injective q=[0,1] with linked table;otherwise q=[0,0,1] with linked/unlinked table. Branching does not alter original constructor data."
+    },
+    "linked_functional_data": {
+      "line": 331,
+      "signature": "fn linked_functional_data(signature: FunctionalSignature, blind: bool) -> (Vec<usize>, Vec<usize>)",
+      "body": "{\n    if blind {\n        return match (signature.presentation_stable, signature.report_stable) {\n            (true, _) => (vec![0, 0, 1], vec![0, 1, 2]),\n            (false, true) => (vec![0, 0, 0], vec![2, 1, 2]),\n            (false, false) => (vec![0, 0, 1], vec![2, 1, 2]),\n        };\n    }\n    match (signature.presentation_stable, signature.report_stable) {\n        (true, _) => (vec![0, 1], vec![0, 1]),\n        (false, true) => (vec![0, 0], vec![1, 1]),\n        (false, false) => (vec![0, 1], vec![1, 1]),\n    }\n}",
+      "obligation": "Fixed2state/3state s/t cases for injective/blind q,then P/S. Allowed P=true requires S=true;match wildcard on S only under that admission. Report constant or q-equivalent exactly;context ranges valid."
+    },
+    "unlinked_functional_data": {
+      "line": 346,
+      "signature": "fn unlinked_functional_data(\n    presentation_stable: bool,\n    report_stable: bool,\n) -> (Vec<usize>, Vec<usize>)",
+      "body": "{\n    match (presentation_stable, report_stable) {\n        (true, true) => (vec![0, 1, 0], vec![0, 1, 2]),\n        (true, false) => (vec![0, 1, 0], vec![1, 1, 2]),\n        (false, true) => (vec![0, 1, 0], vec![2, 1, 2]),\n        (false, false) => (vec![0, 1, 2], vec![2, 1, 2]),\n    }\n}",
+      "obligation": "Four explicit P/S cases on q=[0,0,1];s separates first two states so unlinked,context row fixed to realize precisely selected P/S. Nonempty3state arrays."
+    },
+    "retention_implication_countermodel": {
+      "line": 370,
+      "signature": "pub fn retention_implication_countermodel(\n    premises: &[PropertyLiteral],\n    conclusion: PropertyLiteral,\n) -> Result<Option<FiniteRetentionModel>, ClassificationError>",
+      "body": "{\n    if conclusion.index >= 6 || premises.iter().any(|literal| literal.index >= 6) {\n        return Err(ClassificationError::InvalidModel);\n    }\n    for bits in 0_usize..64 {\n        let flags: [bool; 6] = std::array::from_fn(|i| bits & (1 << i) != 0);\n        if flags[conclusion.index] == conclusion.value\n            || premises\n                .iter()\n                .any(|literal| flags[literal.index] != literal.value)\n        {\n            continue;\n        }\n        let signature = RetentionSignature {\n            nontrivial: flags[0],\n            reversible: flags[1],\n            observable: flags[2],\n            tolerance: flags[3],\n            minimal: flags[4],\n            active: flags[5],\n        };\n        if signature.is_realizable() {\n            return realize_retention(signature).map(Some);\n        }\n    }\n    Ok(None)\n}",
+      "obligation": "Validate all premise/conclusion indices<6 before indexing. Enumerate64flags in increasingbit order N,V,O,T,K,A;skip true conclusion or violated premise. Construct first admissible countermodel;None iff every classified signature satisfies implication. Contradictory premises vacuous. Arbitrary premise-list length inspected,not bounded by64."
+    },
+    "functional_implication_countermodel": {
+      "line": 404,
+      "signature": "pub fn functional_implication_countermodel(\n    premises: &[PropertyLiteral],\n    conclusion: PropertyLiteral,\n) -> Result<Option<FiniteFunctionalModel>, ClassificationError>",
+      "body": "{\n    if conclusion.index >= 5 || premises.iter().any(|literal| literal.index >= 5) {\n        return Err(ClassificationError::InvalidModel);\n    }\n    for bits in 0_usize..32 {\n        let flags: [bool; 5] = std::array::from_fn(|i| bits & (1 << i) != 0);\n        if flags[conclusion.index] == conclusion.value\n            || premises\n                .iter()\n                .any(|literal| flags[literal.index] != literal.value)\n        {\n            continue;\n        }\n        let signature = FunctionalSignature {\n            linked: flags[0],\n            presentation_stable: flags[1],\n            report_stable: flags[2],\n            calibrated: flags[3],\n            blind_spot: flags[4],\n        };\n        if signature.is_realizable() {\n            return realize_functional(signature).map(Some);\n        }\n    }\n    Ok(None)\n}",
+      "obligation": "Validate indices<5 before indexing. Enumerate32flags increasing F,P,S,C,B;skip true conclusion or violated premise;construct first realizable countermodel. Complete classification plus universal necessities gives unrestricted-carrier implication result;no finite model search bound assumed."
+    }
+  },
+  "invariant_argument": [
+    "Both model structs own private immutable vectors,derive value-preserving Clone/Eq and expose only borrowed getters. Retention enforces equal report lengths and q(raw)-fiber recognized equality before actual Moore constructor validates nonempty/range/shape. Functional enforces common nonempty carrier and only context index range;other arrays are labels. Arbitrary MAX labels are legitimate. Signature booleans are raw observations,not proof objects. Level3 reflects exact finite classification algorithms,not certificate promotion by theorem vocabulary.",
+    "Universal functional necessity:linked is exactly fiber constancy. Injective presentation makes each fiber singleton,hence factorization on realized labels. Linked maps inherit presentation stability by applying the fiber law to x,t(x). No other constraint involves calibration. Lean factor_iff,functional_necessary and linked_stable prove these abstract map statements,including partial decoder domain. Native explicit fiber-pair oracle checks report_factor and all5predicates independently;sorted map output is compared exactly.",
+    "Universal retention necessity:singleton states forceV/O/K true and T/A false. Recognition factors raw equality. Recognized report injectivity iff raw injective and no tolerance:one direction uses factorization;the other says any two equal recognized outputs with distinct raw would witness tolerance. Injective recognized reports distinguish at empty word,so K. Inactive means every transition identity;all words then fix each state,so future equality exactly recognized equality,K iff O and notT,and each input identity is bijective. Lean proves all these universally,with arbitrary state/input/label types,including empty input alphabets. Nonempty finite admitted carrier turns notN into singleton. Actual Moore all-word quotient/K correspondence uses already reviewed current provider and retained model,not a new finite-depth claim.",
+    "Witness sufficiency is explicit case analysis over booleans,not inference from all small carriers. Singleton fixed tuple realizes its only allowed signature. Nontrivial minimal patterns are[0,1],or0...01 with3/4states,with raw patterns fixing O/T exactly. Active reversible cycles distinguish any two states by their different positions relative to the unique1;active nonreversible saturated chains distinguish by distinct first hitting times of1. The latter have a repeated terminal successor and are not bijective;cycles are bijections. Permitted inactive minimal case has injective recognized reports and identity dynamics. Nonminimal patterns have constant recognized reports and n>=2,so every future is equal;identity,cycle or constant0 dynamics supply exact activity/reversibility flags. Every raw pattern factors recognition and n1..4. Therefore all allowed retention signatures occur. Literal constructor output is identical to frozen pre-refactor source on every allowed Boolean case.",
+    "Functional witness sufficiency:injective q=[0,1] forces linked;P=true uses identity t and distinct reports,S=true withP=false uses constant reports and moving t,S=false uses distinct reports and moving t. Blind linked q=[0,0,1] uses q or constant s with identity/moving t for same3P/S cases. Blind unlinked q=[0,0,1] uses s=[0,1,0] or[0,1,2] to separate its first fiber;the4literal context tables realize all4P/S cases. All use2/3states,alltransitionentriesinrange. Every s[0] is0;copy to independent target then changeonlytarget0 to1 for notC. No overflow,no effect on F/P/S/B. These cases give all20functional patterns and are verified directly by independent predicate oracles,with universal necessity separate. Lean20pattern count does not itself prove Rust witness construction.",
+    "Given necessity and fixed witness sufficiency,implication countermodels reduce exactly to finite signature truth tables,for every carrier size. Index guards run before flags array access;from_fn shift indices0..5/4 are safe. Each enumerator returns lowest bit-coded admissible signature satisfying every premise and negated conclusion. Absent candidate is universal implication including contradictory premises. Premise duplicates/order do not change truth,but user list length is arbitrary and cost includes its scan. Native all729/243ternary premise sets with12/10conclusions compare exact first witness signatures,not just Some/None. Lean countermodel duality is propositional model evidence,not execution extraction.",
+    "Tolerance indexing invariant:for each recognized label without a found collision,the saved raw is the raw for every prior occurrence. Inserting same raw preserves invariant;different raw proves required pair and returns true. Conversely any such pair eventually collides. Permutation scratch invariant within each column:seen contains exactly previous destinations,allindicesvalid from Moore. n unique values in0..n iff set cardinalityn,matching oldBTreeSet criterion. fill(false) beforeeverycolumn prevents stale marks;zero inputs returnvacuoustrue beforeallocation. All-input equivalence to old nested tolerance and per-column sets follows,while native40242retention constructor attempts cover0/1/2inputs and sparse-label cases. No unnecessary inner-loop allocation;one new map node per fresh recognized label,one reusable boolean buffer,borrowed raw uniqueness setonce. Provider quotient allocations have their separate reviewed boundary.",
+    "All public signatures and errors preserved;constructors still actual admission. Private witness helpers operate only under allowed flags and literal n1..4. Source macros vec! contain literal scalar lists or one primitive boolean repeat scratch;all other closures/control explicit,no hidden custom macro algorithm. Functional target clone is necessary because2independent owned arrays are returned;getter/index/predicate paths copy no payload records. Std/compiler and actual Moore are TCB. Arbitrary model n/input/premise size,payload memory/allocator failures and total runtime are not bounded by the small witness sizes or native corpus."
+  ],
+  "consumer_review": [
+    "No active completed assessment context referenced this target before edits. Rust consumer search and module catalogs bind actual package exports;public APIs remain unchanged. Actual459category tests plus4independent controls run on finalsource with actual FiniteMoore provider. Other score gates remain explicit/incomplete.",
+    "FiniteMoore source and current reviewed assessment are context/evidence pins. Provider constructor/admitted range and behavioral quotient underpin this target. Its independently reviewed all-word fixed point is reused with its original frozen receipts;this checkpoint does not rerun provider mutation campaign or claim new provider-level kills.",
+    "Frozen classification implementation included verbatim in controls confirms exact constructor arrays and error behavior. Independent finite-product reachability and pairwise raw/presentation fibers do not call production signature,report_factor or normalization for expected answers. Small-model enumeration is corroboration;universal arguments and fixed witness case completeness justify unbounded-carrier classification.",
+    "Same-named WDP adapter under code/rust/src/wdp/functional_classification.rs imports omega_category_theory. Its Cargo.toml resolves that name to external the_symbol_game/omega_engine/crates_rs/omega_category_theory,not this tfqm_category_theory crate. Retain adapter/Cargo identity pins as source-review context;do not claim it was validated or changed by local category tests. Actual local umbrella code/rust/src/lib.rs reexports tfqm_category_theory. No external provider/workspace build is inferred."
+  ],
+  "metrics": {
+    "receipt": "evidence/quality/category_homology/20261019T223433Z-metrics/receipt.json",
+    "functions": 27,
+    "max_ccn": 8,
+    "max_cognitive": 9,
+    "max_nesting": 3
+  },
+  "assurance_limits": [
+    "Contracts pending;AuthorityEffectNone.",
+    "Predicates depend on declared exact equality,recognition and context;no phenomenology,nontransitive tolerance or subjective report semantics.",
+    "Label codomains are arbitrary usize values;only context is state-indexed.",
+    "Universal necessity model separate from source-case witness sufficiency;no extracted Rust theorem or MIR/allocator totality.",
+    "Bounded generated corpus and36designatedfaults are scoped evidence;whole-workspace suite not run.",
+    "Models and premise lists have no explicit resource budget;small witness sizes do not bound arbitrary user models."
+  ]
+}

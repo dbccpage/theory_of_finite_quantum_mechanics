@@ -17,6 +17,11 @@
 //! Boundary preservation (validation obligation, not compiler-enforced):
 //!   For 1-cells:  src₁(F(f)) = F(src₁(f)),  tgt₁(F(f)) = F(tgt₁(f))
 //!   For 2-cells:  src₂(F(α)) = F(src₂(α)),  tgt₂(F(α)) = F(tgt₂(α))
+//!
+//! Delivered checks inspect supplied boundary tables and coherence-name membership.
+//! They do not admit a 2-functor, inverse laws, coherence or complete map domains.
+//! Empty supplied tables pass vacuously. Trait names express caller obligations;
+//! public records and forward/inverse pairs carry no checked certificate.
 
 use super::higher::TwoCategory;
 use std::collections::BTreeMap;
@@ -25,7 +30,7 @@ use std::collections::BTreeMap;
 // Invertible 2-cell witness
 // ===========================================================================
 
-/// An invertible 2-cell, used by pseudofunctors to witness coherence.
+/// An unchecked forward/inverse pair supplied by a pseudofunctor implementation.
 ///
 /// A plain `TwoMor` cannot express invertibility. This wrapper pairs a
 /// forward 2-cell with its inverse so that the finite validator can
@@ -138,7 +143,7 @@ pub trait LaxFunctor: TwoFunctorMapping {
 // Finite declared 2-functors (kernel-auditable data)
 // ===========================================================================
 
-/// Finite invertible 2-cell witness for audit tables.
+/// Unchecked forward/inverse name pair for raw audit tables.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct DeclaredFiniteInvertibleTwoMor {
     pub forward: String,
@@ -316,7 +321,7 @@ pub fn check_two_functor_two_boundaries(
     violations
 }
 
-/// Validate pseudofunctor coherence cell invertibility.
+/// Check declared coherence names for membership only.
 ///
 /// For each declared composition coherence cell (f, g) → (forward, inverse),
 /// checks that both forward and inverse exist in the target 2-morphism set.

@@ -1,0 +1,28 @@
+
+running 5 tests
+test mutant_6::tests::validate_ok ... ok
+test mutant_6::tests::with_flags_sets_bools ... ok
+test mutant_6::schema_challenge::labels_are_literal_not_mathematical_certificates ... ok
+test mutant_6::tests::validate_rejects_empty ... FAILED
+test mutant_6::schema_challenge::exhaustive_required_fields ... FAILED
+
+failures:
+
+---- mutant_6::tests::validate_rejects_empty stdout ----
+
+thread 'mutant_6::tests::validate_rejects_empty' (22960) panicked at metadata_challenge_0\mutant_6.rs:65:9:
+assertion failed: Additivity::new("").validate_shell().is_err()
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- mutant_6::schema_challenge::exhaustive_required_fields stdout ----
+
+thread 'mutant_6::schema_challenge::exhaustive_required_fields' (21240) panicked at metadata_challenge_0\mutant_6.rs:93:34:
+mask 1, expected Some(0), got Ok(())
+
+
+failures:
+    mutant_6::schema_challenge::exhaustive_required_fields
+    mutant_6::tests::validate_rejects_empty
+
+test result: FAILED. 3 passed; 2 failed; 0 ignored; 0 measured; 365 filtered out; finished in 0.00s
+

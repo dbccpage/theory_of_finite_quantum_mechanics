@@ -34,6 +34,9 @@ pub(super) fn admit_shaped_matrix(
     admit_matrix(matrix)
 }
 
+/// Check a product of already admitted canonical-Q matrices.
+/// Both production callers admit shape and coefficients before this helper.
+/// This internal operation does not normalize or admit raw ratios itself.
 pub(super) fn admit_zero_product(
     first: &BasicMatrix<Q>,
     second: &BasicMatrix<Q>,

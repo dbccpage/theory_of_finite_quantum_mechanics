@@ -4,6 +4,7 @@
 //! Constant functor Δ_d : C → D with value d — shape only.
 
 use serde::{Deserialize, Serialize};
+use omega_category_theory::errors::ArithmosError;
 
 /// Best-effort shell for a constant functor between labeled categories.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize)]
@@ -42,18 +43,18 @@ impl ConstantFunctor {
         }
     }
 
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
         if self.source_category.is_empty() {
-            return Err("empty source_category".into());
+            return Err(ArithmosError::InvalidShape("empty source_category".into()));
         }
         if self.target_category.is_empty() {
-            return Err("empty target_category".into());
+            return Err(ArithmosError::InvalidShape("empty target_category".into()));
         }
         if self.constant_object.is_empty() {
-            return Err("empty constant_object".into());
+            return Err(ArithmosError::InvalidShape("empty constant_object".into()));
         }
         Ok(())
     }

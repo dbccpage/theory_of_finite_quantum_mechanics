@@ -3,47 +3,95 @@ schema_version: "2.0.0"
 artifact:
   path: "code/rust/src/category_theory/natural_trans.rs"
   language: "Rust"
-  sha256: "d668e667c7072bfc4de45f0b1f8aeb992d6ae6a7897e925a152e512d9f699700"
+  sha256: "36d19c0bb75c782a7aec4d3f923945fd89437520ab066fc80954b9a78870f48b"
 profile: "Exact"
 level: "L5"
 level_basis: "Immutable natural-transformation certificates own lawful endpoint categories and functors and check every naturality square."
 architecture_target: "L5"
 engineering_target: "A"
 gates:
-  G1: null
-  G2: null
-  G3: null
-  G4: null
-  G5: null
-composite_grade: null
-score_token: null
-is_complete: false
+  G1: "A"
+  G2: "A"
+  G3: "A"
+  G4: "A"
+  G5: "A"
+composite_grade: "A"
+score_token: "L5A"
+is_complete: true
 grade_ceiling: "A"
-evaluation_timestamp: "2026-10-18T18:59:04+00:00"
+evaluation_timestamp: "2026-10-19T18:28:15.527508+00:00"
 AuthorityEffect: "None"
 claim:
   urn: "urn:tfqm:rust:category_theory:natural_trans"
-  description: "Natural Transformations \u2014 Spec Section 2.  A natural transformation \u03b7 : F \u21d2 G between functors F, G : C \u2192 D assigns to each object A in C a morphism \u03b7_A : F(A) \u2192 G(A) in D, such that the naturality square commutes:  For all f: A \u2192 B in C: \u03b7_B \u2218 F(f) = G(f) \u2218 \u03b7_A"
+  description: "Natural Transformations \u2014 Spec Section 2.  A natural transformation \u03b7 : F \u21d2 G between functors F, G : C \u2192 D assigns to each object A in C a morphism \u03b7_A : F(A) \u2192 G(A) in D, such that the naturality square commutes:  For all f: A \u2192 B in C: \u03b7_B \u2218 F(f) = G(f) \u2218 \u03b7_A  Only the immutable owned finite certificate checks complete endpoint functors, component domains/boundaries and all squares. Generic traits and public raw records are caller contracts; separate diagnostics inspect supplied tables and are vacuous on empty supplied domains. AuthorityEffect: None."
   scope: "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified."
 contract:
   status: "pending"
   path: null
   note: "Reserved for a later user-requested contract; none created or asserted here."
 evidence:
-  - {"path": "evidence/quality/category_homology/20261018T185904Z/baseline.json", "sha256": "85191d420cd7e6db714582b74bb35257c4baaaf7a1faa08e4b34fdd32a40c175", "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."}
-  - {"path": "evidence/quality/category_homology/20261018T185904Z/summary.json", "sha256": "8289dbfb4f0900a69f9e37e0b43f673efd182a66c691d97626804d4b0cf67864", "scope": "Source snapshot binding and complete six-outcome accounting."}
-  - {"path": "evidence/quality/category_homology/20261018T185904Z/mutations.json", "sha256": "cdbf19eb38b81d4c1482bcaf6d03e40b86316e6d71e771206da73ac7f4a3dc30", "scope": "Designated critical faults only; outcomes for this file are enumerated below."}
-  - {"path": "evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json", "sha256": "86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1", "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."}
+  - {"path": "evidence/quality/category_homology/20261019T175919Z/baseline.json", "sha256": "e48bd319d2a611cf5957655ad8825cd7008a1994452967e21317adf9ab57c00c", "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."}
+  - {"path": "evidence/quality/category_homology/20261019T175919Z/summary.json", "sha256": "e828f759bce33491fb3d37f6c5cd5ee04326617acce1c8d34349cf5758f6adb9", "scope": "Source snapshot binding and complete six-outcome accounting."}
+  - {"path": "evidence/quality/category_homology/20261019T175919Z/mutations.json", "sha256": "fd4dfeb841a64f4362a48896367ae81f40830c2b53225314d43bcd1d59e1ade8", "scope": "Designated critical faults only; outcomes for this file are enumerated below."}
+  - {"path": "evidence/quality/category_homology/20261019T180027Z-metrics/receipt.json", "sha256": "4ac72bcfd6e7e97e051c65b98675f919e37e51226352d8acfd0fc90c0d031225", "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."}
+  - {"path": "evidence/quality/category_homology/20261019T175919Z/dependency_receipt.json", "sha256": "7c23c9a759ec3a178a11e5e3cb3b8f3fd332027ac4adf92003244856278e39a5", "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred."}
+  - {"path": "code/rust/quality/category_homology/assessments/natural_composition_provider_refresh/natural_trans.json", "sha256": "a64e27841d66d9b850c0c1a8f4be8e42bdbab83e4260fb30ef81eff046ed0733", "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping."}
 verification:
   baseline_ok: true
   source_snapshot_unchanged: true
-  compiled_scope: "shared scoped crate build"
+  compiled_scope: "Actual category crate and one-fault copies inside their real parent scopes; no visibility widening or provider replacement"
   local_mutant_ids:
-    - "NT01-square-equality"
-    - "NT02-component-domain"
-    - "NT03-functor-laws"
+    - "RR-1-0"
+    - "RR-2-1"
+    - "RR-3-2"
+    - "RR-4-3"
+    - "RR-5-4"
+    - "RR-6-5"
+    - "RR-7-6"
+    - "RR-8-7"
+    - "RR-9-8"
+    - "RR-10-9"
+    - "RR-11-10"
+    - "RR-12-11"
+    - "RR-13-12"
+    - "RR-14-13"
+    - "RR-15-14"
+    - "RR-16-15"
+    - "RR-17-16"
+    - "RR-18-17"
+    - "RR-19-18"
+    - "RR-20-19"
+    - "RR-21-20"
+    - "RR-22-21"
+    - "RR-23-22"
+    - "RR-24-23"
+    - "RR-25-24"
+    - "RR-26-25"
+    - "RR-27-26"
+    - "RR-28-27"
+    - "RR-29-28"
+    - "RR-30-29"
+    - "RR-31-30"
+    - "RR-32-31"
+    - "RR-33-32"
+    - "RR-34-33"
+    - "RR-35-34"
+    - "RR-36-35"
+    - "RR-37-36"
+    - "RR-38-37"
+    - "RR-39-38"
+    - "RR-40-39"
+    - "RR-41-40"
+    - "RR-42-41"
+    - "RR-43-42"
+    - "RR-44-43"
+    - "RR-45-44"
+    - "RR-46-45"
+    - "RR-47-46"
+    - "RR-48-47"
+  dependency_contents_stable: true
 mutation_accounting:
-  killed: 3
+  killed: 48
   survived: 0
   demonstrably_equivalent: 0
   invalid: 0
@@ -54,7 +102,7 @@ structure:
   tool: "syn 3.0.9 source AST"
   source_ast_parsed: true
   expanded_ast: false
-  physical_lines: 553
+  physical_lines: 559
   parsed_production_functions: 18
   max_production_ccn: 8
   cognitive_complexity_upper_bound: 12
@@ -62,7 +110,9 @@ structure:
   opaque_function_macros: []
   functions_exceeding_A: []
   scope: "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
-open_findings:
-  - "A complete five-gate semantic, failure and consumer audit has not been established for this file."
-  - "Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds."
-  - "External path dependency source contents have not received a separate origin/content attestation."
+open_findings: []
+assurance_limits:
+  - "L5 is the immutable owned complete finite naturality-certificate architecture. It does not certify arbitrary NaturalTransformation callbacks, NaturalIsomorphism markers, raw component labels, sampled squares or an external category package. No whole-system grade or authority promotion."
+  - "Formal model uses already admitted categories/functors and typed total components; runtime normalization, exact shared lookup association and diagnostic order are separate explicit source/native refinement. No A+, Rust/MIR extraction, machine-checked crash/allocator totality or benchmark. Contracts pending."
+  - "Initial policy materialization refused before candidate files/build because Windows decoding misread four whole-body/Greek needles; preserved snapshot/ledger is not native mutation evidence. Subsequent common build failed on a named-field syntax fault in a positional call: all48 coarse native outcomes remain unrun, with the one known malformed candidate identified separately. It is repaired to the intended valid empty-message fault; final policy retains all48 cases and excludes none."
+  - "First FiniteNaturality model had implicit-binder elaboration errors and Lean emitted sorryAx for failed declarations; it is retained as unsuccessful, not supporting evidence. Packaging the law in an explicit structure and lambda checks cleanly; only the final eight clean declarations support this score. Pinned prior G5 B scratch-key finding is repaired and remains historical."

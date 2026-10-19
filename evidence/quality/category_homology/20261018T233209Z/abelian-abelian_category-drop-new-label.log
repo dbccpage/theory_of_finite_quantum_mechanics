@@ -1,0 +1,31 @@
+
+running 6 tests
+test mutant_4::tests::claimed_abelian_sets_flags ... ok
+test mutant_4::tests::incomplete_checklist ... ok
+test mutant_4::schema_challenge::labels_are_literal_not_mathematical_certificates ... FAILED
+test mutant_4::tests::validate_ok ... FAILED
+test mutant_4::tests::validate_rejects_empty ... ok
+test mutant_4::schema_challenge::exhaustive_required_fields ... ok
+
+failures:
+
+---- mutant_4::schema_challenge::labels_are_literal_not_mathematical_certificates stdout ----
+
+thread 'mutant_4::schema_challenge::labels_are_literal_not_mathematical_certificates' (17024) panicked at metadata_challenge_0\mutant_4.rs:134:9:
+assertion `left == right` failed
+  left: ""
+ right: "literal-label"
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- mutant_4::tests::validate_ok stdout ----
+
+thread 'mutant_4::tests::validate_ok' (27952) panicked at metadata_challenge_0\mutant_4.rs:82:9:
+assertion failed: AbelianCategory::new("Mod_R").validate_shell().is_ok()
+
+
+failures:
+    mutant_4::schema_challenge::labels_are_literal_not_mathematical_certificates
+    mutant_4::tests::validate_ok
+
+test result: FAILED. 4 passed; 2 failed; 0 ignored; 0 measured; 364 filtered out; finished in 0.00s
+

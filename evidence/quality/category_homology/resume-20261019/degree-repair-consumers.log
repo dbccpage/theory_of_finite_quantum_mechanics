@@ -1,0 +1,252 @@
+code/rust/src\higher_category_theory\bounded_derived.rs:8:use crate::derived::ChainComplex;
+code/rust/src\higher_category_theory\bounded_derived.rs:13:    pub complex: ChainComplex,
+code/rust/src\higher_category_theory\bounded_derived.rs:19:    pub fn new(complex: ChainComplex, lower: i32, upper: i32) -> Result<Self, HigherCategoryError> {
+code/rust/src\higher_category_theory\bounded_derived.rs:39:        complex: &ChainComplex,
+code/rust/src\higher_category_theory\bounded_derived.rs:113:        let mut new_comp = ChainComplex::new(&trunc_id);
+code/rust/src\category_theory\abelian\mod.rs:16:pub use chain_complex_category::ChainComplexCategory;
+code/rust/src\higher_category_theory\derived.rs:12:pub struct ChainComplex {
+code/rust/src\higher_category_theory\derived.rs:18:impl ChainComplex {
+code/rust/src\higher_category_theory\derived.rs:142:        x: &ChainComplex,
+code/rust/src\higher_category_theory\derived.rs:143:        y: &ChainComplex,
+code/rust/src\higher_category_theory\derived.rs:182:    pub cone_complex: ChainComplex,
+code/rust/src\higher_category_theory\derived.rs:189:        x: &ChainComplex,
+code/rust/src\higher_category_theory\derived.rs:190:        y: &ChainComplex,
+code/rust/src\higher_category_theory\derived.rs:198:        let mut cone = ChainComplex::new(&cone_id);
+code/rust/src\higher_category_theory\derived.rs:299:    pub complexes: BTreeMap<String, ChainComplex>,
+code/rust/src\higher_category_theory\derived.rs:320:    pub fn add_complex(&mut self, complex: ChainComplex) -> Result<(), HigherCategoryError> {
+code/rust/src\fsp\lib.rs:14:pub use bqnf::{route_packet, CochainComplex, SignPacketMetrics, TerminalRoute};
+code/rust/src\category_theory\abelian\chain_complex_category.rs:13:pub struct ChainComplexCategory {
+code/rust/src\category_theory\abelian\chain_complex_category.rs:22:impl ChainComplexCategory {
+code/rust/src\category_theory\abelian\chain_complex_category.rs:76:        let c = ChainComplexCategory::with_degree_bounds("Ch(Ab)", 0, 2);
+code/rust/src\category_theory\abelian\chain_complex_category.rs:83:        assert_eq!(ChainComplexCategory::new("").validate_shell(),
+code/rust/src\category_theory\abelian\chain_complex_category.rs:89:        let c = ChainComplexCategory::with_degree_bounds("bad", 3, 1);
+code/rust/src\category_theory\abelian\chain_complex_category.rs:99:                let declaration = ChainComplexCategory::with_degree_bounds("window", lower, upper);
+code/rust/src\category_theory\abelian\chain_complex_category.rs:109:            ChainComplexCategory::with_degree_bounds("all", i32::MIN, i32::MAX).degree_span(),
+code/rust/src\category_theory\abelian\chain_complex_category.rs:116:        let original = ChainComplexCategory::with_degree_bounds("window", -3, 4);
+code/rust/src\fsp\bqnf.rs:74:pub struct CochainComplex {
+code/rust/src\fsp\bqnf.rs:82:impl CochainComplex {
+code/rust/src\fsp\bqnf.rs:241:        let complex = CochainComplex::new(1, 2, 1, d0, d1).unwrap();
+code/rust/src\higher_category_theory\lib.rs:33:    ChainComplex, ChainMap, ConeDifferentialMatrix, DerivedCategory, MappingCone, QuasiIsomorphism,
+code/rust/src\higher_category_theory\lib.rs:65:pub use unbounded_derived::{ChainComplexChain, ResolutionStrategy, UnboundedDerivedCategory};
+code/rust/src\higher_category_theory\mod.rs:32:    ChainComplex, ChainMap, ConeDifferentialMatrix, DerivedCategory, MappingCone, QuasiIsomorphism,
+code/rust/src\higher_category_theory\mod.rs:64:pub use unbounded_derived::{ChainComplexChain, ResolutionStrategy, UnboundedDerivedCategory};
+code/rust/src\functional\factory.rs:9:    DegreeOneResidualQ, ExactCochainComplexQ, ExactGamma2Error, ExactGamma2Result, Gamma2Functional,
+code/rust/src\functional\factory.rs:120:    Gamma2(ExactCochainComplexQ),
+code/rust/src\functional\factory.rs:138:    pub fn gamma2(complex: ExactCochainComplexQ) -> Self {
+code/rust/src\functional\factory.rs:314:    fn complex(scale: i64) -> ExactCochainComplexQ {
+code/rust/src\functional\factory.rs:316:        ExactCochainComplexQ::try_new(
+code/rust/src\functional\factory.rs:475:        let equivalent = ExactCochainComplexQ::try_new(
+code/rust/src\higher_category_theory\unbounded_derived.rs:8:use crate::derived::ChainComplex;
+code/rust/src\higher_category_theory\unbounded_derived.rs:21:pub struct ChainComplexChain {
+code/rust/src\higher_category_theory\unbounded_derived.rs:23:    pub stages: BTreeMap<i32, ChainComplex>,
+code/rust/src\higher_category_theory\unbounded_derived.rs:27:impl ChainComplexChain {
+code/rust/src\higher_category_theory\unbounded_derived.rs:36:    pub fn add_stage(&mut self, stage: i32, complex: ChainComplex) {
+code/rust/src\higher_category_theory\unbounded_derived.rs:44:    pub complexes: BTreeMap<String, ChainComplex>,
+code/rust/src\higher_category_theory\unbounded_derived.rs:45:    pub chains: BTreeMap<String, ChainComplexChain>,
+code/rust/src\higher_category_theory\unbounded_derived.rs:63:    pub fn add_complex(&mut self, complex: ChainComplex) -> Result<(), HigherCategoryError> {
+code/rust/src\higher_category_theory\unbounded_derived.rs:78:    pub fn add_chain(&mut self, chain: ChainComplexChain) -> Result<(), HigherCategoryError> {
+code/rust/src\higher_category_theory\unbounded_derived.rs:96:    ) -> Result<ChainComplex, HigherCategoryError> {
+code/rust/src\higher_category_theory\unbounded_derived.rs:105:        let mut resolved = ChainComplex::new(&resolved_id);
+code/rust/src\functional\gamma2.rs:18:#[serde(try_from = "UntrustedCochainComplexWire")]
+code/rust/src\functional\gamma2.rs:19:pub struct ExactCochainComplexQ {
+code/rust/src\functional\gamma2.rs:29:pub struct UntrustedCochainComplexWire {
+code/rust/src\functional\gamma2.rs:37:impl TryFrom<UntrustedCochainComplexWire> for ExactCochainComplexQ {
+code/rust/src\functional\gamma2.rs:40:    fn try_from(wire: UntrustedCochainComplexWire) -> Result<Self, Self::Error> {
+code/rust/src\functional\gamma2.rs:45:impl ExactCochainComplexQ {
+code/rust/src\functional\gamma2.rs:77:impl ExactCochainComplexQ {
+code/rust/src\functional\gamma2.rs:208:    complex: &'a ExactCochainComplexQ,
+code/rust/src\functional\gamma2.rs:214:        complex: &'a ExactCochainComplexQ,
+code/rust/src\functional\gamma2.rs:224:    pub fn complex(&self) -> &ExactCochainComplexQ {
+code/rust/src\functional\gamma2.rs:234:    complex: &ExactCochainComplexQ,
+code/rust/src\functional\gamma2.rs:275:    complex: ExactCochainComplexQ,
+code/rust/src\functional\gamma2.rs:289:    pub fn complex(&self) -> &ExactCochainComplexQ {
+code/rust/src\functional\gamma2.rs:470:            ExactCochainComplexQ::try_new(c0_dim, c1_dim, c2_dim, d0.to_vec(), d1.to_vec())?;
+code/rust/src\functional\gamma2.rs:494:            ExactCochainComplexQ::try_new_with_complex2(
+code/rust/src\functional\gamma2.rs:503:        let complex = ExactCochainComplexQ::try_new_with_complex2(
+code/rust/src\functional\gamma2.rs:519:        let complex = ExactCochainComplexQ {
+code/rust/src\functional\gamma2.rs:539:        let complex = ExactCochainComplexQ {
+code/rust/src\functional\gamma2.rs:655:                ExactCochainComplexQ::try_new(c0, c1, c2, d0, d1),
+code/rust/src\functional\gamma2.rs:659:        let complex = ExactCochainComplexQ::try_new(0, 2, 0, vec![vec![], vec![]], vec![]).unwrap();
+code/rust/src\functional\gamma2.rs:678:            ExactCochainComplexQ::try_new(1, 1, 0, vec![vec![invalid()]], vec![]),
+code/rust/src\functional\gamma2.rs:682:            ExactCochainComplexQ::try_new(0, 1, 1, vec![vec![]], vec![vec![invalid()]]),
+code/rust/src\functional\gamma2.rs:685:        let empty_d1 = ExactCochainComplexQ::try_new(0, 1, 0, vec![vec![]], vec![]).unwrap();
+code/rust/src\functional\gamma2.rs:711:        let complex = ExactCochainComplexQ::try_new(
+code/rust/src\functional\gamma2.rs:722:        let canonical = ExactCochainComplexQ::try_new(
+code/rust/src\functional\gamma2.rs:781:            ExactCochainComplexQ::try_new(1_000_000, 0, 2, vec![], vec![vec![], vec![]]).unwrap();
+code/rust/src\functional\gamma2.rs:883:        let forged_wire = UntrustedCochainComplexWire {
+code/rust/src\functional\gamma2.rs:892:        serde_json::from_str::<UntrustedCochainComplexWire>(&json)
+code/rust/src\functional\gamma2.rs:895:        let result: Result<ExactCochainComplexQ, _> = serde_json::from_str(&json);
+code/rust/src\functional\gamma2.rs:904:        let complex = ExactCochainComplexQ::try_new(1, 1, 1, vec![vec![r(0)]], vec![vec![r(0)]])
+code/rust/src\functional\gamma2.rs:908:        let restored: ExactCochainComplexQ = serde_json::from_str(&json).expect("round-trips");
+code/rust/src\functional\gamma2.rs:916:        let complex = ExactCochainComplexQ::try_new(0, 0, 0, vec![], vec![]).unwrap();
+code/rust/src\functional\gamma2.rs:919:        let error = serde_json::from_str::<ExactCochainComplexQ>(&unknown)
+code/rust/src\functional\gamma2.rs:927:        let error = serde_json::from_str::<ExactCochainComplexQ>(&duplicate)
+code/rust/src\functional\gamma2.rs:932:            serde_json::from_str::<ExactCochainComplexQ>(&valid).unwrap(),
+code/rust/src\functional\gamma2.rs:939:        let mut wire = UntrustedCochainComplexWire {
+code/rust/src\functional\gamma2.rs:947:        serde_json::from_str::<ExactCochainComplexQ>(&valid).unwrap();
+code/rust/src\functional\gamma2.rs:950:        let error = serde_json::from_str::<ExactCochainComplexQ>(&invalid)
+code/rust/src\homology\witness.rs:14:pub struct ChainComplexWitness {
+code/rust/src\homology\witness.rs:24:impl ChainComplexWitness {
+code/rust/src\homology\witness.rs:49:pub struct CochainComplexWitness {
+code/rust/src\homology\witness.rs:59:impl CochainComplexWitness {
+code/rust/src\homology\witness.rs:187:        let w = CochainComplexWitness::new(
+code/rust/src\homology\simplicial.rs:72:            return Err(HomologicalError::invalid_degree_index(removed_index));
+code/rust/src\homology\simplicial.rs:377:            .ok_or_else(|| HomologicalError::invalid_degree_index(k))?;
+code/rust/src\homology\simplicial.rs:416:            return Err(HomologicalError::invalid_degree_index(k));
+code/rust/src\homology\simplicial.rs:456:            return Err(HomologicalError::invalid_degree_index(k));
+code/rust/src\homology\mod.rs:77:            cochain_complex::TheoremProvenance::new("runtime exact d1*d0 verification".into())?;
+code/rust/src\homology\l5a_challenges.rs:8:use cochain_complex::{CochainComplex, TheoremProvenance};
+code/rust/src\homology\l5a_challenges.rs:16:fn provenance() -> TheoremProvenance {
+code/rust/src\homology\l5a_challenges.rs:17:    TheoremProvenance::new("independent fixtures".into()).unwrap()
+code/rust/src\homology\l5a_challenges.rs:75:        chain_complex::ChainComplex::new(usize::MAX, 2, 0, empty.clone(), empty.clone()).is_err()
+code/rust/src\homology\l5a_challenges.rs:77:    assert!(CochainComplex::new(usize::MAX, 2, 0, empty.clone(), empty, provenance()).is_err());
+code/rust/src\homology\l5a_challenges.rs:84:    assert!(serde_json::from_str::<TheoremProvenance>("\"\"").is_err());
+code/rust/src\homology\ids.rs:89:    ChainComplexId
+code/rust/src\homology\ids.rs:93:    CochainComplexId
+code/rust/src\homology\ids.rs:249:        ChainComplexId::new(1)?.to_string(),
+code/rust/src\homology\ids.rs:250:        CochainComplexId::new(1)?.to_string(),
+code/rust/src\homology\hashing.rs:116:    hasher.update(b"OMEGA.ChainComplexManifest.v1");
+code/rust/src\homology\hashing.rs:134:    hasher.update(b"OMEGA.CochainComplexManifest.v1");
+code/rust/src\homology\hashing.rs:182:    hasher.update(b"MSSN.TheoremProvenance.v1");
+code/rust/src\homology\hashing.rs:194:    hasher.update(b"MSSN.CochainComplexWitness.v1");
+code/rust/src\homology\exact_carrier.rs:5:use super::cochain_complex::TheoremProvenance;
+code/rust/src\homology\exact_carrier.rs:33:        let provenance = TheoremProvenance::new("runtime exact d1*d0 verification".into())?;
+code/rust/src\homology\errors.rs:168:    pub(super) fn invalid_degree_index(degree: usize) -> Self {
+code/rust/src\homology\cochain_complex.rs:8:use crate::homology::witness::CochainComplexWitness;
+code/rust/src\homology\cochain_complex.rs:19:pub struct TheoremProvenance {
+code/rust/src\homology\cochain_complex.rs:23:impl TheoremProvenance {
+code/rust/src\homology\cochain_complex.rs:49:impl TryFrom<String> for TheoremProvenance {
+code/rust/src\homology\cochain_complex.rs:55:impl From<TheoremProvenance> for String {
+code/rust/src\homology\cochain_complex.rs:56:    fn from(value: TheoremProvenance) -> String {
+code/rust/src\homology\cochain_complex.rs:66:pub struct CochainComplex {
+code/rust/src\homology\cochain_complex.rs:78:    pub(super) witness: CochainComplexWitness,
+code/rust/src\homology\cochain_complex.rs:81:impl CochainComplex {
+code/rust/src\homology\cochain_complex.rs:104:        provenance: TheoremProvenance,
+code/rust/src\homology\cochain_complex.rs:121:        let witness = CochainComplexWitness::new(
+code/rust/src\homology\cochain_complex.rs:151:    pub fn witness(&self) -> &CochainComplexWitness {
+code/rust/src\homology\cochain_complex.rs:165:            _ => Err(HomologicalError::invalid_degree_index(degree)),
+code/rust/src\homology\cochain_complex.rs:183:    fn test_provenance() -> TheoremProvenance {
+code/rust/src\homology\cochain_complex.rs:184:        TheoremProvenance::new("unit_test".to_string()).expect("provenance")
+code/rust/src\homology\cochain_complex.rs:194:        let complex = CochainComplex::new(1, 0, 0, d0, d1, test_provenance());
+code/rust/src\homology\cochain_complex.rs:208:        let complex = CochainComplex::new(1, 2, 1, d0, d1, test_provenance());
+code/rust/src\homology\cochain_complex.rs:221:        let complex = CochainComplex::new(1, 2, 1, d0, d1, test_provenance());
+code/rust/src\homology\cochain_complex.rs:234:        let complex = CochainComplex::new(1, 2, 1, d0, d1, test_provenance());
+code/rust/src\homology\cochain_complex.rs:247:        let complex = CochainComplex::new(1, 2, 1, d0, d1, test_provenance());
+code/rust/src\homology\cochain_complex.rs:256:        let result = TheoremProvenance::new("   ".to_string());
+code/rust/src\homology\cochain_complex.rs:267:        let complex = CochainComplex::new(1, 0, 0, d0, d1, test_provenance())
+code/rust/src\local_green_global_red_lggr\matrix_path_kernel.rs:8:use omega_homology::finite_directed_graph::{DirectedGraphBuilder, TheoremProvenance};
+code/rust/src\local_green_global_red_lggr\matrix_path_kernel.rs:138:            TheoremProvenance {
+code/rust/src\homology\chain_complex.rs:8:use crate::homology::witness::ChainComplexWitness;
+code/rust/src\homology\chain_complex.rs:17:pub struct ChainComplex {
+code/rust/src\homology\chain_complex.rs:29:    pub(super) witness: ChainComplexWitness,
+code/rust/src\homology\chain_complex.rs:34:impl ChainComplex {
+code/rust/src\homology\chain_complex.rs:77:        let witness = ChainComplexWitness::new(
+code/rust/src\homology\chain_complex.rs:108:    pub fn witness(&self) -> &ChainComplexWitness {
+code/rust/src\homology\chain_complex.rs:122:            _ => Err(HomologicalError::invalid_degree_index(degree)),
+code/rust/src\homology\chain_complex.rs:127:impl omega_homology::chain_map::FiniteChainComplexView<Q> for ChainComplex {
+code/rust/src\homology\chain_complex.rs:156:        let complex = ChainComplex::new(1, 0, 0, d1, d2);
+code/rust/src\homology\chain_complex.rs:170:        let complex = ChainComplex::new(1, 2, 1, d1, d2);
+code/rust/src\homology\chain_complex.rs:183:        let complex = ChainComplex::new(1, 2, 1, d1, d2);
+code/rust/src\homology\chain_complex.rs:196:        let complex = ChainComplex::new(1, 2, 1, d1, d2);
+code/rust/src\homology\chain_complex.rs:209:        let complex = ChainComplex::new(1, 2, 1, d1, d2);
+code/rust/src\homology\chain_complex.rs:220:        let complex = ChainComplex::new(1, 0, 0, d1, d2).expect("trivial complex");
+code/rust/src\majorana\holonomy.rs:2:use crate::complexes::ChainComplexGf2;
+code/rust/src\majorana\holonomy.rs:57:    complex: &ChainComplexGf2,
+code/rust/src\majorana\holonomy.rs:125:    complex: &ChainComplexGf2,
+code/rust/src\majorana\holonomy.rs:155:    complex: &ChainComplexGf2,
+code/rust/src\majorana\dual_observer.rs:2:use crate::complexes::ChainComplexGf2;
+code/rust/src\majorana\dual_observer.rs:39:pub fn observer_face_syndrome(complex: &ChainComplexGf2) -> ObservationMap {
+code/rust/src\majorana\dual_observer.rs:46:pub fn observer_first_face_only(complex: &ChainComplexGf2) -> Result<ObservationMap, String> {
+code/rust/src\majorana\dual_observer.rs:87:    complex: &ChainComplexGf2,
+code/rust/src\majorana\tetron.rs:2:use crate::complexes::ChainComplexGf2;
+code/rust/src\majorana\tetron.rs:81:) -> Result<(ChainComplexGf2, TetronReport), String> {
+code/rust/src\majorana\tetron.rs:152:    let complex = ChainComplexGf2 {
+code/rust/src\majorana\complexes.rs:5:pub struct ChainComplexGf2 {
+code/rust/src\majorana\complexes.rs:14:impl ChainComplexGf2 {
+code/rust/src\majorana\complexes.rs:20:pub fn triangle() -> ChainComplexGf2 {
+code/rust/src\majorana\complexes.rs:23:    ChainComplexGf2 {
+code/rust/src\majorana\complexes.rs:33:pub fn plaquette() -> ChainComplexGf2 {
+code/rust/src\majorana\complexes.rs:41:    ChainComplexGf2 {
+code/rust/src\majorana\complexes.rs:51:pub fn prism() -> ChainComplexGf2 {
+code/rust/src\majorana\complexes.rs:70:    ChainComplexGf2 {
+code/rust/src\majorana\complexes.rs:93:pub fn surface_grid_2x2_planar() -> ChainComplexGf2 {
+code/rust/src\majorana\complexes.rs:97:pub fn surface_grid_2x2_torus() -> ChainComplexGf2 {
+code/rust/src\majorana\complexes.rs:101:pub fn surface_grid(m: usize, n: usize, periodic: bool) -> ChainComplexGf2 {
+code/rust/src\majorana\complexes.rs:185:    ChainComplexGf2 {
+code/rust/src\homology\carrier.rs:13:use crate::homology::cochain_complex::{CochainComplex, TheoremProvenance};
+code/rust/src\homology\carrier.rs:24:    complex: CochainComplex,
+code/rust/src\homology\carrier.rs:44:        provenance: TheoremProvenance,
+code/rust/src\homology\carrier.rs:63:        let complex = CochainComplex::new(c0_dim, c1_dim, c2_dim, d0, d1, provenance)?;
+code/rust/src\homology\carrier.rs:107:    pub fn complex(&self) -> &CochainComplex {
+code/rust/src\majorana\hard_invariants.rs:8:        triangle, ChainComplexGf2,
+code/rust/src\majorana\hard_invariants.rs:17:    fn stock_complexes() -> Vec<ChainComplexGf2> {
+code/rust/src\majorana\hard_invariants.rs:232:            ChainComplexGf2,
+code/rust/src\majorana\repair_limit.rs:2:use crate::complexes::{surface_grid_2x2_torus, torus_logical_x_example, ChainComplexGf2};
+code/rust/src\majorana\repair_limit.rs:148:pub fn homology_distance(complex: &ChainComplexGf2) -> Result<HomologyDistanceReport, String> {
+code/rust/src\majorana\repair_limit.rs:196:    complex: &ChainComplexGf2,
+code/rust/src\majorana\repair_limit.rs:229:    complex: &ChainComplexGf2,
+code/rust/src\majorana\repair_limit.rs:238:    complex: &ChainComplexGf2,
+code/rust/src\majorana\repair_limit.rs:332:pub fn lggr_demo_on(complex: &ChainComplexGf2, omega: &[u8]) -> Result<LggrDemoReport, String> {
+code/rust/src\local_green_global_red_lggr\residual_families\signature.rs:6:use omega_functional::gamma2::ExactCochainComplexQ;
+code/rust/src\local_green_global_red_lggr\residual_families\signature.rs:94:    complex: &ExactCochainComplexQ,
+code/rust/src\local_green_global_red_lggr\residual_families\signature.rs:146:    use omega_homology::cochain_complex::{CochainComplex, TheoremProvenance};
+code/rust/src\local_green_global_red_lggr\residual_families\signature.rs:161:    fn path_complex() -> CochainComplex {
+code/rust/src\local_green_global_red_lggr\residual_families\signature.rs:164:        CochainComplex::new(
+code/rust/src\local_green_global_red_lggr\residual_families\signature.rs:170:            TheoremProvenance::new("signature_test".to_string()).expect("prov"),
+code/rust/src\local_green_global_red_lggr\residual_families\signature.rs:202:        let a = ExactCochainComplexQ::try_new(
+code/rust/src\local_green_global_red_lggr\residual_families\signature.rs:210:        let b = ExactCochainComplexQ::try_new(
+code/rust/src\majorana\mod.rs:41:    torus_logical_z_example, triangle, ChainComplexGf2,
+code/rust/src\majorana\packet_wall.rs:4:use crate::complexes::ChainComplexGf2;
+code/rust/src\majorana\packet_wall.rs:45:    pub complex: Option<ChainComplexGf2>,
+code/rust/src\majorana\packet_wall.rs:52:    pub fn complete(complex: ChainComplexGf2, residual: Vec<u8>) -> Self {
+code/rust/src\majorana\packet_wall.rs:239:    complex: &ChainComplexGf2,
+code/rust/src\majorana\lib.rs:42:    torus_logical_z_example, triangle, ChainComplexGf2,
+code/rust/src\mub\runtime_adapter.rs:7:use omega_functional::gamma2::{ExactCochainComplexQ, ExactGamma2Error};
+code/rust/src\mub\runtime_adapter.rs:150:) -> Result<(ExactPhi1Certificate, ExactCochainComplexQ, Vec<BigRational>), ExactGamma2Error> {
+code/rust/src\mub\runtime_adapter.rs:187:    let complex = ExactCochainComplexQ::try_new(1, 3, 1, d0, d1)?;
+code/rust/src\wdp\guarded_chain_transport.rs:6:use omega_homology::integral_chain_complex::{IntegralChainComplex, SparseIntegerMatrix};
+code/rust/src\wdp\guarded_chain_transport.rs:254:) -> Result<IntegralChainComplex> {
+code/rust/src\wdp\guarded_chain_transport.rs:263:    Ok(IntegralChainComplex::new(
+code/rust/src\holonomy\gauge_quotient.rs:8:    FiniteRationalChainComplex, RationalHomologyQuotient,
+code/rust/src\holonomy\gauge_quotient.rs:157:        let all_one_cochains = FiniteRationalChainComplex::new(
+code/rust/src\holonomy\gauge_quotient.rs:163:        let reversed = FiniteRationalChainComplex::new(
+code/rust/src\wdp\coda\layer1_foc.rs:7:    DegreeOneResidualQ, ExactCochainComplexQ, ExactGamma2Error, Gamma2Functional,
+code/rust/src\wdp\coda\layer1_foc.rs:61:        match ExactCochainComplexQ::try_new(
+code/rust/src\wdp\coda\diagnostic_routing.rs:6:    DegreeOneResidualQ, ExactCochainComplexQ, ExactGamma2Error, Gamma2Functional,
+code/rust/src\wdp\coda\diagnostic_routing.rs:52:        let complex = ExactCochainComplexQ::try_new(
+code/rust/src\wdp\coda\coda_gtla.rs:11:    DegreeOneResidualQ, ExactCochainComplexQ, ExactGamma2Error, ExactGamma2Result, Gamma2Functional,
+code/rust/src\wdp\coda\coda_gtla.rs:182:    complex: ExactCochainComplexQ,
+code/rust/src\wdp\coda\coda_gtla.rs:191:        complex: ExactCochainComplexQ,
+code/rust/src\wdp\coda\coda_gtla.rs:374:            ExactCochainComplexQ::try_new(1, 1, 1, phi1.d0.clone(), vec![vec![r(0)]]).unwrap();
+code/rust/src\wdp\coda\coda_gtla.rs:389:            ExactCochainComplexQ::try_new(1, 1, 1, phi1.d0.clone(), vec![vec![r(0)]]).unwrap();
+code/rust/src\wdp\coda\coda_gtla.rs:494:        input.complex = ExactCochainComplexQ::try_new(1, 1, 1, vec![vec![r(0)]], vec![vec![r(0)]])
+code/rust/src\wdp\solver_of_solvers.rs:13:use omega_functional::gamma2::ExactCochainComplexQ;
+code/rust/src\wdp\solver_of_solvers.rs:629:    complex: ExactCochainComplexQ,
+code/rust/src\wdp\solver_of_solvers.rs:681:    let complex = ExactCochainComplexQ::try_new(
+code/rust/src\wdp\cochains.rs:10:use omega_homology::cochain_complex::TheoremProvenance;
+code/rust/src\wdp\cochains.rs:202:        finite_directed_graph::TheoremProvenance {
+code/rust/src\wdp\cochains.rs:223:        TheoremProvenance::new(source.to_string())?,
+code/rust/src\wdp\carrier_binding.rs:8:use omega_homology::cochain_complex::TheoremProvenance;
+code/rust/src\wdp\carrier_binding.rs:103:    let provenance = TheoremProvenance::new(BINDING_PROVENANCE.to_string())?;
+code/rust/src\wdp\genesis_guarded_history.rs:8:use linear_algebra::proof::{ReplayHash, TheoremId, TheoremProvenance};
+code/rust/src\wdp\genesis_guarded_history.rs:1468:        let provenance = TheoremProvenance::DerivedFromFiniteVerification {
+code/rust/src\wdp\coda\q\mod.rs:33:    Enclosure, FdaPacket, FocSignature, CodaGtlaOutcome, IntoCochainComplex, LossEntry, LossLedger,
+code/rust/src\wdp\primitive_axiomatics.rs:8:    DegreeOneResidualQ, ExactCochainComplexQ, ExactGamma2Result, Gamma2Functional,
+code/rust/src\wdp\primitive_axiomatics.rs:213:        let complex = ExactCochainComplexQ::try_new(
+code/rust/src\wdp\coda\q\coda_stack.rs:60:pub trait IntoCochainComplex {
+code/rust/src\wdp\phi1_coda_adapter.rs:9:use omega_functional::gamma2::{ExactCochainComplexQ, ExactGamma2Error};
+code/rust/src\wdp\phi1_coda_adapter.rs:165:    let complex = ExactCochainComplexQ::try_new(
+code/rust/src\wdp\ddc\mub_cochain.rs:4:    DegreeOneResidualQ, ExactCochainComplexQ, ExactGamma2Error, ExactGamma2Result, Gamma2Functional,
+code/rust/src\wdp\ddc\mub_cochain.rs:1085:        let complex = ExactCochainComplexQ::try_new(
+code/rust/src\wdp\covering_edge_descent.rs:255:pub struct CochainComplexCED {
+code/rust/src\wdp\covering_edge_descent.rs:259:impl CochainComplexCED {
+code/rust/src\qm\report_fiber.rs:157:    let _complex = omega_homology::chain_complex::ChainComplex::new(
+code/rust/src\qm\packet_protocol.rs:9:use omega_functional::gamma2::ExactCochainComplexQ;
+code/rust/src\qm\packet_protocol.rs:277:    ExactCochainComplexQ::try_new(c0, c1, d1.len(), d0.clone(), d1.clone())
+code/rust/src\qm\campaigns\finite_geometry_host.rs:82:    omega_homology::chain_complex::ChainComplex::new(4, 5, 2, b1.clone(), b2.clone())
+code/rust/src\qm\campaigns\lattice_gauge.rs:5:use omega_homology::f2_cohomology::F2ChainComplex;
+code/rust/src\qm\campaigns\lattice_gauge.rs:81:        F2ChainComplex::new(vec![4, 4, 1], vec![incidence, boundary])
+code/rust/src\qm\campaigns\phase_fiber.rs:132:    use omega_homology::finite_directed_graph::{DirectedGraphBuilder, TheoremProvenance};
+code/rust/src\qm\campaigns\phase_fiber.rs:255:            TheoremProvenance {
+code/rust/src\qm\campaigns\phase_fiber.rs:275:            TheoremProvenance {
+code/rust/src\qm\campaigns\phase_fiber.rs:298:            TheoremProvenance {

@@ -1,0 +1,32 @@
+
+running 9 tests
+test homology::degree_repair_replay_47::subject::tests::test_dimension_mismatch_d2 ... ok
+test homology::degree_repair_replay_47::subject::tests::test_boundary_law_violation_rejected ... ok
+test homology::degree_repair_replay_47::subject::tests::test_boundary_law_verified ... ok
+test homology::degree_repair_replay_47::subject::tests::dim_rejects_degree_outside_finite_support ... ok
+test homology::degree_repair_replay_47::subject::tests::test_trivial_chain_complex ... ok
+test homology::degree_repair_replay_47::subject::tests::test_dimension_mismatch_d1 ... FAILED
+test homology::degree_repair_replay_47::subject::independent_degree_repair_tests::shape_and_rational_failure_order ... FAILED
+test homology::degree_repair_replay_47::subject::independent_degree_repair_tests::zero_area_dimensions_and_full_index ... ok
+test homology::degree_repair_replay_47::subject::independent_degree_repair_tests::independent_dot_product_and_owned_context ... ok
+
+failures:
+
+---- homology::degree_repair_replay_47::subject::tests::test_dimension_mismatch_d1 stdout ----
+
+thread 'homology::degree_repair_replay_47::subject::tests::test_dimension_mismatch_d1' (18380) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\dr\261019T040309\src\homology\q\n47.rs:195:9:
+assertion failed: matches!(complex, Err(HomologicalError::ShapeMismatch { .. }))
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- homology::degree_repair_replay_47::subject::independent_degree_repair_tests::shape_and_rational_failure_order stdout ----
+
+thread 'homology::degree_repair_replay_47::subject::independent_degree_repair_tests::shape_and_rational_failure_order' (9244) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\dr\261019T040309\src\homology\q\n47.rs:253:74:
+called `Result::unwrap_err()` on an `Ok` value: ChainComplex { c0_dim: 1, c1_dim: 2, c2_dim: 1, boundary_1: BoundaryMap { from_degree: Degree(1), to_degree: Degree(0), matrix: BasicMatrix { rows: 2, cols: 2, data: [Ratio { numer: 0, denom: 1 }, Ratio { numer: 0, denom: 1 }, Ratio { numer: 0, denom: 1 }, Ratio { numer: 0, denom: 1 }] }, map_hash: Hash256([89, 71, 115, 186, 20, 44, 69, 188, 77, 240, 181, 56, 130, 159, 90, 246, 237, 94, 239, 145, 199, 161, 95, 249, 158, 231, 66, 159, 52, 16, 87, 136]) }, boundary_2: BoundaryMap { from_degree: Degree(2), to_degree: Degree(1), matrix: BasicMatrix { rows: 2, cols: 1, data: [Ratio { numer: 0, denom: 1 }, Ratio { numer: 0, denom: 1 }] }, map_hash: Hash256([69, 106, 213, 130, 177, 174, 184, 222, 170, 105, 183, 178, 231, 148, 158, 167, 98, 0, 162, 145, 54, 141, 19, 103, 129, 231, 199, 78, 49, 93, 66, 87]) }, witness: ChainComplexWitness { complex_hash: Hash256([61, 48, 248, 140, 195, 10, 235, 249, 23, 142, 21, 217, 119, 1, 191, 26, 25, 210, 40, 231, 65, 71, 201, 107, 65, 253, 219, 15, 22, 112, 89, 188]), boundary_1_hash: Hash256([89, 71, 115, 186, 20, 44, 69, 188, 77, 240, 181, 56, 130, 159, 90, 246, 237, 94, 239, 145, 199, 161, 95, 249, 158, 231, 66, 159, 52, 16, 87, 136]), boundary_2_hash: Hash256([69, 106, 213, 130, 177, 174, 184, 222, 170, 105, 183, 178, 231, 148, 158, 167, 98, 0, 162, 145, 54, 141, 19, 103, 129, 231, 199, 78, 49, 93, 66, 87]), c0_dim: 1, c1_dim: 2, c2_dim: 1, _private: () }, boundaries: [BasicMatrix { rows: 2, cols: 2, data: [Ratio { numer: 0, denom: 1 }, Ratio { numer: 0, denom: 1 }, Ratio { numer: 0, denom: 1 }, Ratio { numer: 0, denom: 1 }] }, BasicMatrix { rows: 2, cols: 1, data: [Ratio { numer: 0, denom: 1 }, Ratio { numer: 0, denom: 1 }] }] }
+
+
+failures:
+    homology::degree_repair_replay_47::subject::independent_degree_repair_tests::shape_and_rational_failure_order
+    homology::degree_repair_replay_47::subject::tests::test_dimension_mismatch_d1
+
+test result: FAILED. 7 passed; 2 failed; 0 ignored; 0 measured; 999 filtered out; finished in 0.00s
+

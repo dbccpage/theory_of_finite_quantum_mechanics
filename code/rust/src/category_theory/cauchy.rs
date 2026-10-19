@@ -1,25 +1,17 @@
-//! Cauchy Completeness — Spec Section 17.
-//!
-//! A category C is Cauchy complete (Karoubi complete, idempotent complete) iff
-//! every idempotent e : A → A splits:
-//!
-//!   ∃ R, s: R → A, r: A → R such that r ∘ s = id_R and s ∘ r = e.
-//!
-//! Bicategorically: every profunctor-retract of a representable is representable.
-//!
-//! This module provides:
-//! - IdempotentSplitting: a witness that an idempotent splits
-//! - CauchyStatus: diagnostic for whether a category is Cauchy complete
-//! - CauchyCompletion: explicitly split all unsplit idempotents
-//! - Validation functions for splitting laws
+//! Raw finite idempotent-name inventories and splitting-equation diagnostics.
+//! In an admitted category, Cauchy completeness means every idempotent splits.
+//! Here the supplied tables and boundary/identity flags are caller premises;
+//! no category admission, complete-inventory check or Karoubi construction occurs.
+//! AuthorityEffect: None.
 
+use crate::cat_functor::CompositionLookup;
 use std::collections::BTreeMap;
 
 // ---------------------------------------------------------------------------
 // IdempotentSplitting
 // ---------------------------------------------------------------------------
 
-/// A witness that an idempotent e : A → A splits via a retract R.
+/// Declared names for an intended splitting; boundaries are not admitted here.
 ///
 /// Laws:
 ///   r ∘ s = id_R   (retraction ∘ section = identity on retract)
@@ -42,12 +34,12 @@ pub struct IdempotentSplitting {
 // CauchyStatus
 // ---------------------------------------------------------------------------
 
-/// Diagnostic: is the category Cauchy complete?
+/// Outcome for the supplied nonidentity-flagged candidate inventory only.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum CauchyStatus {
-    /// All idempotents split. No phantom objects in Prof.
+    /// Every retained candidate has a supplied pair satisfying both equations.
     Complete,
-    /// Some idempotents do not split.
+    /// Retained candidates without a matching supplied pair, in original order.
     Incomplete {
         /// Names of the unsplit idempotents.
         unsplit_idempotents: Vec<String>,
@@ -58,8 +50,7 @@ pub enum CauchyStatus {
 // CauchyCompletion
 // ---------------------------------------------------------------------------
 
-/// The Cauchy completion of a finite category: the original category
-/// augmented with splitting objects for every unsplit idempotent.
+/// Caller-assembled object/splitting metadata, without a category construction.
 #[derive(Debug, Clone)]
 pub struct CauchyCompletion {
     /// Objects of the original category.
@@ -74,206 +65,173 @@ pub struct CauchyCompletion {
 // Detection: find idempotents and check if they split
 // ---------------------------------------------------------------------------
 
-/// Find all idempotents in a finite category.
-///
-/// An idempotent is a morphism e : A → A with e ∘ e = e.
-///
-/// `endomorphisms`: list of (morphism_name, object, is_identity).
-/// `compositions`: (f, g) → g∘f.
+/// Preserve ordered, repeated nonidentity-flagged entries with defined e;e=e.
+/// Supplied object labels and identity flags are not checked against a category.
 pub fn find_idempotents(
     endomorphisms: &[(&str, &str, bool)],
     compositions: &BTreeMap<(String, String), String>,
 ) -> Vec<(String, String)> {
+    let view = CompositionLookup::new(compositions);
+    find_idempotents_in(endomorphisms, &view)
+}
+
+fn find_idempotents_in(
+    endomorphisms: &[(&str, &str, bool)],
+    view: &CompositionLookup<'_>,
+) -> Vec<(String, String)> {
     let mut idempotents = Vec::new();
     for &(mor, obj, is_id) in endomorphisms {
         if is_id {
-            continue; // Identities are trivially idempotent, skip.
+            continue;
         }
-        let key = (mor.to_string(), mor.to_string());
-        if let Some(composed) = compositions.get(&key) {
-            if composed == mor {
-                idempotents.push((mor.to_string(), obj.to_string()));
-            }
+        if view.compose(mor, mor) == Some(mor) {
+            idempotents.push((mor.to_string(), obj.to_string()));
         }
     }
     idempotents
 }
 
-/// Check whether a specific idempotent splits in the given category.
-///
-/// An idempotent e : A → A splits if there exist morphisms
-/// s : R → A and r : A → R such that:
-///   r ∘ s = id_R
-///   s ∘ r = e
-///
-/// `identity_map`: object → identity morphism name.
-pub fn check_idempotent_splits(
+fn first_retraction<'a>(
+    section: &str,
+    retract: &str,
     idempotent: &str,
-    carrier: &str,
-    morphisms_to_carrier: &[(&str, &str)], // (morphism_name, source_object)
-    morphisms_from_carrier: &[(&str, &str)], // (morphism_name, target_object)
-    compositions: &BTreeMap<(String, String), String>,
+    from: impl Iterator<Item = (&'a str, &'a str)>,
+    view: &CompositionLookup<'_>,
     identity_map: &BTreeMap<String, String>,
-) -> Option<IdempotentSplitting> {
-    // Search for a splitting pair (s, r).
-    for &(s, r_obj) in morphisms_to_carrier {
-        for &(r, s_obj) in morphisms_from_carrier {
-            if r_obj != s_obj {
-                continue; // s and r must share the retract object R.
-            }
-            let retract = r_obj;
-
-            // Check r ∘ s = id_R
-            let rs_key = (s.to_string(), r.to_string());
-            let id_r = identity_map.get(retract);
-            let rs_ok = compositions
-                .get(&rs_key)
-                .and_then(|v| id_r.map(|id| v == id))
-                .unwrap_or(false);
-
-            // Check s ∘ r = e
-            let sr_key = (r.to_string(), s.to_string());
-            let sr_ok = compositions
-                .get(&sr_key)
-                .map(|v| v == idempotent)
-                .unwrap_or(false);
-
-            if rs_ok && sr_ok {
-                return Some(IdempotentSplitting {
-                    carrier: carrier.to_string(),
-                    idempotent: idempotent.to_string(),
-                    retract: retract.to_string(),
-                    section: s.to_string(),
-                    retraction: r.to_string(),
-                });
-            }
+) -> Option<&'a str> {
+    let identity = identity_map.get(retract)?;
+    for (retraction, target) in from {
+        if target != retract {
+            continue;
+        }
+        if view.compose(section, retraction) == Some(identity.as_str())
+            && view.compose(retraction, section) == Some(idempotent)
+        {
+            return Some(retraction);
         }
     }
     None
 }
 
-/// Check Cauchy completeness of a finite category.
-///
-/// Returns Complete if all non-identity idempotents split,
-/// Incomplete otherwise.
+fn first_splitting<'a>(
+    idempotent: &str,
+    to: impl Iterator<Item = (&'a str, &'a str)>,
+    from: impl Iterator<Item = (&'a str, &'a str)> + Clone,
+    view: &CompositionLookup<'_>,
+    identity_map: &BTreeMap<String, String>,
+) -> Option<(&'a str, &'a str, &'a str)> {
+    for (section, retract) in to {
+        if let Some(retraction) = first_retraction(
+            section, retract, idempotent, from.clone(), view, identity_map,
+        ) {
+            return Some((section, retract, retraction));
+        }
+    }
+    None
+}
+
+/// First supplied pair with the same declared retract and both defined equations.
+/// This search does not separately check e;e=e, actual boundaries or completeness.
+pub fn check_idempotent_splits(
+    idempotent: &str,
+    carrier: &str,
+    morphisms_to_carrier: &[(&str, &str)],
+    morphisms_from_carrier: &[(&str, &str)],
+    compositions: &BTreeMap<(String, String), String>,
+    identity_map: &BTreeMap<String, String>,
+) -> Option<IdempotentSplitting> {
+    let view = CompositionLookup::new(compositions);
+    first_splitting(idempotent, morphisms_to_carrier.iter().copied(),
+        morphisms_from_carrier.iter().copied(), &view, identity_map)
+        .map(|(section, retract, retraction)| IdempotentSplitting {
+            carrier: carrier.to_string(), idempotent: idempotent.to_string(),
+            retract: retract.to_string(), section: section.to_string(),
+            retraction: retraction.to_string(),
+        })
+}
+
+/// Report unsplit names in the supplied inventory, including order/duplicates.
+/// Missing boundary inventories are empty; this is not full category admission.
 pub fn check_cauchy_completeness(
     endomorphisms: &[(&str, &str, bool)],
     compositions: &BTreeMap<(String, String), String>,
-    morphisms_to: &BTreeMap<String, Vec<(String, String)>>, // target → [(mor, source)]
-    morphisms_from: &BTreeMap<String, Vec<(String, String)>>, // source → [(mor, target)]
+    morphisms_to: &BTreeMap<String, Vec<(String, String)>>,
+    morphisms_from: &BTreeMap<String, Vec<(String, String)>>,
     identity_map: &BTreeMap<String, String>,
 ) -> CauchyStatus {
-    let idempotents = find_idempotents(endomorphisms, compositions);
+    let view = CompositionLookup::new(compositions);
     let mut unsplit = Vec::new();
-
-    for (idem, carrier) in &idempotents {
-        let to_carrier: Vec<(&str, &str)> = morphisms_to
-            .get(carrier)
-            .map(|v| v.iter().map(|(m, s)| (m.as_str(), s.as_str())).collect())
-            .unwrap_or_default();
-        let from_carrier: Vec<(&str, &str)> = morphisms_from
-            .get(carrier)
-            .map(|v| v.iter().map(|(m, t)| (m.as_str(), t.as_str())).collect())
-            .unwrap_or_default();
-
-        if check_idempotent_splits(
-            idem,
-            carrier,
-            &to_carrier,
-            &from_carrier,
-            compositions,
-            identity_map,
-        )
-        .is_none()
-        {
-            unsplit.push(idem.clone());
+    for &(idem, carrier, is_id) in endomorphisms {
+        if is_id || view.compose(idem, idem) != Some(idem) {
+            continue;
+        }
+        let to = morphisms_to.get(carrier).into_iter()
+            .flat_map(|rows| rows.iter().map(|(m, s)| (m.as_str(), s.as_str())));
+        let from = morphisms_from.get(carrier).into_iter()
+            .flat_map(|rows| rows.iter().map(|(m, t)| (m.as_str(), t.as_str())));
+        if first_splitting(idem, to, from, &view, identity_map).is_none() {
+            unsplit.push(idem.to_string());
         }
     }
-
-    if unsplit.is_empty() {
-        CauchyStatus::Complete
-    } else {
-        CauchyStatus::Incomplete {
-            unsplit_idempotents: unsplit,
-        }
-    }
+    if unsplit.is_empty() { CauchyStatus::Complete }
+    else { CauchyStatus::Incomplete { unsplit_idempotents: unsplit } }
 }
 
 // ---------------------------------------------------------------------------
 // Validation: splitting law checker
 // ---------------------------------------------------------------------------
 
-/// Validate a proposed idempotent splitting.
-///
-/// Checks:
-/// 1. e ∘ e = e (idempotent)
-/// 2. r ∘ s = id_R (retraction section law)
-/// 3. s ∘ r = e (section retraction law)
+// Individual observations preserve the original three diagnostic phases.
+fn idempotence_diagnostic(splitting: &IdempotentSplitting, compositions: &BTreeMap<(String, String), String>) -> Option<String> {
+    let key = (splitting.idempotent.clone(), splitting.idempotent.clone());
+    match compositions.get(&key).map(String::as_str) {
+        Some(v) if v == splitting.idempotent.as_str() => None,
+        Some(v) => Some(format!("Not idempotent: {} ∘ {} = {} ≠ {}", splitting.idempotent, splitting.idempotent, v, splitting.idempotent)),
+        None => Some(format!("Composition {} ∘ {} not defined", splitting.idempotent, splitting.idempotent)),
+    }
+}
+
+fn retraction_diagnostic(
+    splitting: &IdempotentSplitting,
+    compositions: &BTreeMap<(String, String), String>,
+    identity_map: &BTreeMap<String, String>,
+) -> Option<String> {
+    let key = (splitting.section.clone(), splitting.retraction.clone());
+    match (compositions.get(&key).map(String::as_str), identity_map.get(&splitting.retract)) {
+        (Some(v), Some(id)) if v == id.as_str() => None,
+        (Some(v), Some(id)) => Some(format!("Retraction law failed: r ∘ s = {} but id_R = {}", v, id)),
+        _ => Some("Retraction law: composition r ∘ s or id_R not defined".into()),
+    }
+}
+
+fn section_diagnostic(splitting: &IdempotentSplitting, compositions: &BTreeMap<(String, String), String>) -> Option<String> {
+    let key = (splitting.retraction.clone(), splitting.section.clone());
+    match compositions.get(&key).map(String::as_str) {
+        Some(v) if v == splitting.idempotent.as_str() => None,
+        Some(v) => Some(format!("Section law failed: s ∘ r = {} but e = {}", v, splitting.idempotent)),
+        None => Some("Section law: composition s ∘ r not defined".into()),
+    }
+}
+
+/// Check exactly three defined-name equalities, retaining all failures in order.
+/// Carrier typing and category identity/composition laws are not checked.
 pub fn validate_splitting(
     splitting: &IdempotentSplitting,
     compositions: &BTreeMap<(String, String), String>,
     identity_map: &BTreeMap<String, String>,
 ) -> Vec<String> {
-    let mut violations = Vec::new();
-
-    // Check e ∘ e = e
-    let ee_key = (splitting.idempotent.clone(), splitting.idempotent.clone());
-    match compositions.get(&ee_key) {
-        Some(v) if v == &splitting.idempotent => {}
-        Some(v) => {
-            violations.push(format!(
-                "Not idempotent: {} ∘ {} = {} ≠ {}",
-                splitting.idempotent, splitting.idempotent, v, splitting.idempotent
-            ));
-        }
-        None => {
-            violations.push(format!(
-                "Composition {} ∘ {} not defined",
-                splitting.idempotent, splitting.idempotent
-            ));
-        }
-    }
-
-    // Check r ∘ s = id_R
-    let rs_key = (splitting.section.clone(), splitting.retraction.clone());
-    let expected_id = identity_map.get(&splitting.retract);
-    match (compositions.get(&rs_key), expected_id) {
-        (Some(v), Some(id)) if v == id => {}
-        (Some(v), Some(id)) => {
-            violations.push(format!(
-                "Retraction law failed: r ∘ s = {} but id_R = {}",
-                v, id
-            ));
-        }
-        _ => {
-            violations.push("Retraction law: composition r ∘ s or id_R not defined".into());
-        }
-    }
-
-    // Check s ∘ r = e
-    let sr_key = (splitting.retraction.clone(), splitting.section.clone());
-    match compositions.get(&sr_key) {
-        Some(v) if v == &splitting.idempotent => {}
-        Some(v) => {
-            violations.push(format!(
-                "Section law failed: s ∘ r = {} but e = {}",
-                v, splitting.idempotent
-            ));
-        }
-        None => {
-            violations.push("Section law: composition s ∘ r not defined".into());
-        }
-    }
-
-    violations
+    [idempotence_diagnostic(splitting, compositions),
+     retraction_diagnostic(splitting, compositions, identity_map),
+     section_diagnostic(splitting, compositions)].into_iter().flatten().collect()
 }
 
-/// A wrapper proving that an idempotent splitting has passed structural validation.
+/// Records that three equalities passed at construction against borrowed tables.
+/// Those tables are not retained; this is not an admitted-category certificate.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct ValidatedIdempotentSplitting(IdempotentSplitting);
 
 impl ValidatedIdempotentSplitting {
-    /// Validates and wraps a splitting.
+    /// Check the three stated equalities and own the unchanged raw declaration.
     pub fn try_new(
         splitting: IdempotentSplitting,
         compositions: &BTreeMap<(String, String), String>,

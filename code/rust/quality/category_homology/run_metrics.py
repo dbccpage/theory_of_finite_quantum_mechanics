@@ -1,6 +1,7 @@
 """Source-bound Rust AST metric replay, with per-build disposal. Python 3.11+."""
 
 from datetime import datetime, timezone
+import argparse
 import json
 from pathlib import Path
 import shutil
@@ -10,6 +11,13 @@ from run_audit import ROOT, RUST, clear_debug_outputs, digest, execute, execute_
 
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--jobs", type=int, default=2)
+    parser.add_argument("--test-body-view", type=Path,
+        help="Also measure a source-bound test file with only standalone #[test] attributes blanked; never compile this view.")
+    args = parser.parse_args()
+    if args.jobs < 1:
+        parser.error("positive compiler job count required")
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     receipt = ROOT / "evidence/quality/category_homology" / (stamp + "-metrics")
     receipt.mkdir(parents=True)
@@ -19,7 +27,7 @@ def main():
     tool = Path(__file__).resolve().parent / "rust_metrics"
     sources = inventory()
     write_json(receipt / "source_manifest.json", sources)
-    common = ["--manifest-path", str(tool / "Cargo.toml"), "--target-dir", str(build), "--offline", "--quiet"]
+    common = ["--manifest-path", str(tool / "Cargo.toml"), "--target-dir", str(build), "--offline", "--quiet", "--jobs", str(args.jobs)]
     runs = []
     copied_binary = work / "metrics.exe"
     try:
@@ -38,6 +46,26 @@ def main():
         if runs[-1]["exit_code"] != 0:
             raise RuntimeError("AST metric build failed")
         paths = sorted(key for key in sources if key.endswith(".rs"))
+        if args.test_body_view:
+            original = args.test_body_view.resolve()
+            if original.relative_to(ROOT).as_posix() not in sources:
+                raise RuntimeError("Test view must name an inventoried Rust source")
+            data = original.read_text(encoding="utf-8")
+            lines = data.splitlines(keepends=True)
+            count = sum(line.strip() == "#[test]" for line in lines)
+            if not count:
+                raise RuntimeError("No standalone test attributes in requested view")
+            view = receipt/"test-body-view.rs"
+            # Preserve every body, line number and all other attributes. This is
+            # an explicit AST view, never an alternate compiled implementation.
+            view.write_text("".join(line.replace("#[test]"," "*7) if line.strip() == "#[test]" else line
+                                    for line in lines),encoding="utf-8",newline="\n")
+            write_json(receipt/"test-body-view.json",{
+                "original":original.relative_to(ROOT).as_posix(),"original_sha256":digest(original),
+                "view":view.relative_to(ROOT).as_posix(),"view_sha256":digest(view),
+                "blanked_test_attributes":count,
+                "scope":"Standalone #[test] attributes blanked, every body/line/other attribute preserved; AST metrics only, no compilation or cfg expansion."})
+            paths.append(view.relative_to(ROOT).as_posix())
         # Relative paths keep the output portable; the execution cwd is bound.
         runs.append(execute([str(copied_binary), *paths], ROOT, receipt / "metrics.json"))
         if runs[-1]["exit_code"] != 0:
@@ -59,7 +87,7 @@ def main():
             for function in functions:
                 if function["ccn"] > 10 or function["cognitive_upper_bound"] > 15 or function["control_nesting"] > 3:
                     exceeded.append({"path": path, **function})
-        write_json(receipt / "exceeding_a.json", exceeded)
+        write_json(receipt / "exceeding_A.json", exceeded)
         print(len(records), "files parsed;", len(exceeded), "functions exceed at least one A structural ceiling")
     finally:
         # Only this run's resolved child is disposable; never delete arbitrary target trees.

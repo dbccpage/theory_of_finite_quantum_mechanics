@@ -1,0 +1,77 @@
+# SCORING.md v2; incomplete gates deliberately remain null.
+schema_version: "2.0.0"
+artifact:
+  path: "code/rust/src/category_theory/finite_category_validation.rs"
+  language: "Rust"
+  sha256: "3ea0e696b41cb5ab361541206ab5f03b257f2040b387fb3ea06bb224170e891d"
+profile: "Exact"
+level: "L3"
+level_basis: "Conservative bounded-domain classification; no upgrade based solely on terminology or module size."
+architecture_target: "L5"
+engineering_target: "A"
+gates:
+  G1: "A"
+  G2: "A"
+  G3: "A"
+  G4: "A"
+  G5: "A"
+composite_grade: "A"
+score_token: "L3A"
+is_complete: true
+grade_ceiling: "A"
+evaluation_timestamp: "2026-10-18T21:31:02.719060+00:00"
+AuthorityEffect: "None"
+claim:
+  urn: "urn:tfqm:rust:category_theory:finite_category_validation"
+  description: "Finite category validation.  The checks here validate the shared `DeclaredFiniteCategory` model: object references, morphism boundaries, identities, composition totality, closure, boundary compatibility, and associativity."
+  scope: "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified."
+contract:
+  status: "pending"
+  path: null
+  note: "Reserved for a later user-requested contract; none created or asserted here."
+evidence:
+  - {"path": "evidence/quality/category_homology/20261018T211047Z/baseline.json", "sha256": "02e9abb5e3fdb94f76fa238407e064031a97ac5e9436c082a0f23ddaa0e2e290", "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."}
+  - {"path": "evidence/quality/category_homology/20261018T211047Z/summary.json", "sha256": "748a82c496c586f11554c4e3c89070f0dc61793bde926d7776163451875c9155", "scope": "Source snapshot binding and complete six-outcome accounting."}
+  - {"path": "evidence/quality/category_homology/20261018T211047Z/mutations.json", "sha256": "2588f75197213ba80b0e18532a2f847946a3a9d19564a986c3391835fd6e58fa", "scope": "Designated critical faults only; outcomes for this file are enumerated below."}
+  - {"path": "evidence/quality/category_homology/20261018T211112Z-metrics/receipt.json", "sha256": "cc0505b71484b2f5c17349b1dbbc6e17c92105b8a5671e770f985df663d25aaf", "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."}
+  - {"path": "evidence/quality/category_homology/20261018T211047Z/dependency_receipt.json", "sha256": "394a42fdbe864d8e2e823425cb28d4d234fc18aeac77f358d795e5e4900e886f", "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred."}
+  - {"path": "code/rust/quality/category_homology/assessments/finite_category_validation.json", "sha256": "567d4f33ded633f7be8a31ec28548043b290839076e4bff2f05be4b5033508ae", "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping."}
+verification:
+  baseline_ok: true
+  source_snapshot_unchanged: true
+  compiled_scope: "shared scoped crate build"
+  local_mutant_ids:
+    - "FC01-names"
+    - "FC02-object-domain"
+    - "FC03-identities"
+    - "FC04-unit-laws"
+    - "FC05-totality-report"
+    - "FC06-closure"
+    - "FC07-boundaries"
+    - "FC08-associativity"
+    - "FC13-table-view"
+  dependency_contents_stable: true
+mutation_accounting:
+  killed: 9
+  survived: 0
+  demonstrably_equivalent: 0
+  invalid: 0
+  inconclusive: 0
+  unrun: 0
+  conservative_ratio: 1.0
+structure:
+  tool: "syn 3.0.9 source AST"
+  source_ast_parsed: true
+  expanded_ast: false
+  physical_lines: 569
+  parsed_production_functions: 15
+  max_production_ccn: 8
+  cognitive_complexity_upper_bound: 12
+  control_nesting: 3
+  opaque_function_macros: []
+  functions_exceeding_A: []
+  scope: "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
+open_findings: []
+assurance_limits:
+  - "Contracts remain pending at the user request."
+  - "No mechanized Rust/MIR equivalence, allocator totality, machine-checked crash freedom, exact compiler file-read trace, cross-repository origin attestation or whole-directory A grade is inferred."

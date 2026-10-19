@@ -1,0 +1,78 @@
+
+running 8 tests
+test root_record_replay_1::subject::tests::quotient_composition_preserves_actual_operations_and_predicates ... FAILED
+test root_record_replay_1::subject::tests::partial_definedness_and_values_are_independent_obstructions ... FAILED
+test root_record_replay_1::subject::tests::nullary_empty_and_non_surjective_boundaries ... FAILED
+test root_record_replay_1::subject::tests::exhaustive_binary_partial_factorization_criterion ... FAILED
+test root_record_replay_1::subject::independent_partial_structure_tests::typed_admission_prefix_overflow_and_bad_receipts ... FAILED
+test root_record_replay_1::subject::tests::predicates_require_reflection_not_only_positive_preservation ... FAILED
+test root_record_replay_1::subject::independent_partial_structure_tests::multisort_tuple_order_nullary_and_first_conflict ... FAILED
+test root_record_replay_1::subject::independent_partial_structure_tests::exhaustive_binary_operations_predicates_and_sort_maps ... FAILED
+
+failures:
+
+---- root_record_replay_1::subject::tests::quotient_composition_preserves_actual_operations_and_predicates stdout ----
+
+thread 'root_record_replay_1::subject::tests::quotient_composition_preserves_actual_operations_and_predicates' (13408) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\rr\261019T214257\src\category_theory\q\n1.rs:303:42:
+called `Result::unwrap()` on an `Err` value: InvalidTable
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- root_record_replay_1::subject::tests::partial_definedness_and_values_are_independent_obstructions stdout ----
+
+thread 'root_record_replay_1::subject::tests::partial_definedness_and_values_are_independent_obstructions' (43928) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\rr\261019T214257\src\category_theory\q\n1.rs:192:9:
+assertion failed: matches!(descend(&source(vec![None, Some(0), Some(1)]), &quotient()),
+    Err(DescentError::OperationConflict
+    { left_image: None, right_image: Some(0), .. }))
+
+---- root_record_replay_1::subject::tests::nullary_empty_and_non_surjective_boundaries stdout ----
+
+thread 'root_record_replay_1::subject::tests::nullary_empty_and_non_surjective_boundaries' (34248) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\rr\261019T214257\src\category_theory\q\n1.rs:290:36:
+called `Result::unwrap()` on an `Err` value: InvalidTable
+
+---- root_record_replay_1::subject::tests::exhaustive_binary_partial_factorization_criterion stdout ----
+
+thread 'root_record_replay_1::subject::tests::exhaustive_binary_partial_factorization_criterion' (46940) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\rr\261019T214257\src\category_theory\q\n1.rs:264:17:
+assertion `left == right` failed
+  left: false
+ right: true
+
+---- root_record_replay_1::subject::independent_partial_structure_tests::typed_admission_prefix_overflow_and_bad_receipts stdout ----
+
+thread 'root_record_replay_1::subject::independent_partial_structure_tests::typed_admission_prefix_overflow_and_bad_receipts' (27820) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\rr\261019T214257\src\category_theory\q\n1.rs:421:132:
+assertion `left == right` failed
+  left: Err(CardinalityOverflow)
+ right: Ok(0)
+
+---- root_record_replay_1::subject::tests::predicates_require_reflection_not_only_positive_preservation stdout ----
+
+thread 'root_record_replay_1::subject::tests::predicates_require_reflection_not_only_positive_preservation' (37668) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\rr\261019T214257\src\category_theory\q\n1.rs:221:9:
+assertion failed: matches!(descend(&s, &quotient()),
+    Err(DescentError::PredicateConflict { .. }))
+
+---- root_record_replay_1::subject::independent_partial_structure_tests::multisort_tuple_order_nullary_and_first_conflict stdout ----
+
+thread 'root_record_replay_1::subject::independent_partial_structure_tests::multisort_tuple_order_nullary_and_first_conflict' (19768) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\rr\261019T214257\src\category_theory\q\n1.rs:403:104:
+assertion `left == right` failed
+  left: Err(InvalidSortMap)
+ right: Ok(FinitePartialStructure { sizes: [2, 2], operations: [PartialOperation { inputs: [0, 1], output: 1, values: [None, None, None, None] }], predicates: [Predicate { inputs: [0, 1], values: [false, false, false, false] }] })
+
+---- root_record_replay_1::subject::independent_partial_structure_tests::exhaustive_binary_operations_predicates_and_sort_maps stdout ----
+
+thread 'root_record_replay_1::subject::independent_partial_structure_tests::exhaustive_binary_operations_predicates_and_sort_maps' (32128) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\rr\261019T214257\src\category_theory\q\n1.rs:403:104:
+assertion `left == right` failed
+  left: Err(InvalidTable)
+ right: Ok(FinitePartialStructure { sizes: [1], operations: [PartialOperation { inputs: [0, 0], output: 0, values: [None] }], predicates: [Predicate { inputs: [0, 0], values: [false] }] })
+
+
+failures:
+    root_record_replay_1::subject::independent_partial_structure_tests::exhaustive_binary_operations_predicates_and_sort_maps
+    root_record_replay_1::subject::independent_partial_structure_tests::multisort_tuple_order_nullary_and_first_conflict
+    root_record_replay_1::subject::independent_partial_structure_tests::typed_admission_prefix_overflow_and_bad_receipts
+    root_record_replay_1::subject::tests::exhaustive_binary_partial_factorization_criterion
+    root_record_replay_1::subject::tests::nullary_empty_and_non_surjective_boundaries
+    root_record_replay_1::subject::tests::partial_definedness_and_values_are_independent_obstructions
+    root_record_replay_1::subject::tests::predicates_require_reflection_not_only_positive_preservation
+    root_record_replay_1::subject::tests::quotient_composition_preserves_actual_operations_and_predicates
+
+test result: FAILED. 0 passed; 8 failed; 0 ignored; 0 measured; 691 filtered out; finished in 0.00s
+

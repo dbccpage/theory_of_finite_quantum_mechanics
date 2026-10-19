@@ -1,8 +1,8 @@
-//! Morphism abstraction in Category Theory (omega_category_theory).
-//!
-//! Aligned with URN contract: `urn:omega:math:morphism:v0.1.0`.
-//! A morphism `f: A -> B` represents a structure-preserving arrow between objects
-//! `A` (domain) and `B` (codomain) within a category.
+//! Raw skill-arrow records and an abstract mapping interface. AuthorityEffect: None.
+//! Trait implementers supply their own behavior; no category laws are enforced.
+//! String contract/governance/evidence fields are declarations, not attached contracts or grants.
+//! Composition joins matching literal boundary and category tags and constructs descriptive metadata.
+//! Its formatted identifiers do not supply associative categorical composition.
 
 use std::fmt::Debug;
 
@@ -17,7 +17,7 @@ pub trait MorphismTrait<Dom, Cod>: Debug {
     fn evaluate(&self, input: &Dom) -> Cod;
 }
 
-/// Abstract representation of a typed Skill Morphism mapping states between domains.
+/// Mutable string metadata for a proposed skill arrow; no state mapping or law witness.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct SkillMorphism {
     pub contract_id: String,
@@ -54,7 +54,7 @@ impl SkillMorphism {
 
     /// Compose two skill morphisms `g . f` if `f.codomain_id == g.domain_id` and category matches.
     pub fn compose(&self, next: &SkillMorphism) -> Option<SkillMorphism> {
-        if self.codomain_id == next.domain_id {
+        if self.codomain_id == next.domain_id && self.category_id == next.category_id {
             Some(SkillMorphism {
                 contract_id: MORPHISM_CONTRACT_ID.to_string(),
                 morphism_id: format!("{} >> {}", self.morphism_id, next.morphism_id),

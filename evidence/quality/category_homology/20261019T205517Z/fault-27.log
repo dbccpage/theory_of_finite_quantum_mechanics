@@ -1,0 +1,27 @@
+
+running 8 tests
+test root_record_replay_28::subject::tests::condensation_base_construction ... ok
+test root_record_replay_28::subject::independent_condensation_tests::checked_updates_and_caller_flags ... ok
+test root_record_replay_28::subject::independent_condensation_tests::independent_defined_observations_and_order ... FAILED
+test root_record_replay_28::subject::tests::valid_condensation ... ok
+test root_record_replay_28::subject::tests::infinity_cauchy_complete ... ok
+test root_record_replay_28::subject::tests::condensation_with_witnesses ... ok
+test root_record_replay_28::subject::independent_condensation_tests::declared_max_level_is_refused_without_mutation_or_panic ... ok
+test root_record_replay_28::subject::independent_condensation_tests::literal_aliases_and_inventory_not_completeness ... ok
+
+failures:
+
+---- root_record_replay_28::subject::independent_condensation_tests::independent_defined_observations_and_order stdout ----
+
+thread 'root_record_replay_28::subject::independent_condensation_tests::independent_defined_observations_and_order' (36748) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\rr\261019T205517\src\category_theory\q\n28.rs:355:37:
+assertion `left == right` failed
+  left: ["Condensation level 0: r ∘ s or id_Y not defined", "Condensation level 0: s ∘ r not defined", "Condensation level 8: witness 'unchecked-carrier' not verified", "Condensation level 8: witness 'unchecked-carrier' not verified"]
+ right: ["Condensation level 0: r ∘ s or id_Y not defined", "Condensation level 0: s ∘ r not defined", "Condensation level 8: witness 'λ\0' not verified", "Condensation level 8: witness 'duplicate' not verified"]
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    root_record_replay_28::subject::independent_condensation_tests::independent_defined_observations_and_order
+
+test result: FAILED. 7 passed; 1 failed; 0 ignored; 0 measured; 707 filtered out; finished in 0.00s
+

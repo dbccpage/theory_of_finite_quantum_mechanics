@@ -2,6 +2,7 @@
 //! AuthorityEffect: None. Not PROVED / GlobalGreen.
 
 use serde::{Deserialize, Serialize};
+use omega_category_theory::errors::ArithmosError;
 
 /// Best-effort enriched adjunction shell F ⊣ G (V-enriched).
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize)]
@@ -46,18 +47,18 @@ impl EnrichedAdjunction {
         }
     }
 
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
         if self.left_adjoint.is_empty() {
-            return Err("empty left_adjoint".into());
+            return Err(ArithmosError::InvalidShape("empty left_adjoint".into()));
         }
         if self.right_adjoint.is_empty() {
-            return Err("empty right_adjoint".into());
+            return Err(ArithmosError::InvalidShape("empty right_adjoint".into()));
         }
         if self.base_monoidal_v.is_empty() {
-            return Err("empty base_monoidal_v".into());
+            return Err(ArithmosError::InvalidShape("empty base_monoidal_v".into()));
         }
         Ok(())
     }

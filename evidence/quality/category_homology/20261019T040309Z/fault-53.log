@@ -1,0 +1,36 @@
+
+running 11 tests
+test homology::degree_repair_replay_56::subject::tests::dim_rejects_degree_outside_finite_support ... ok
+test homology::degree_repair_replay_56::subject::tests::test_coboundary_law_violation_rejected ... ok
+test homology::degree_repair_replay_56::subject::tests::test_coboundary_law_verified ... ok
+test homology::degree_repair_replay_56::subject::tests::test_dimension_mismatch_d1 ... ok
+test homology::degree_repair_replay_56::subject::independent_degree_repair_tests::provenance_is_checked_label_only ... ok
+test homology::degree_repair_replay_56::subject::tests::test_dimension_mismatch_d0 ... FAILED
+test homology::degree_repair_replay_56::subject::independent_degree_repair_tests::shape_and_rational_failure_order ... FAILED
+test homology::degree_repair_replay_56::subject::independent_degree_repair_tests::zero_area_dimensions_and_full_index ... ok
+test homology::degree_repair_replay_56::subject::tests::test_empty_provenance_rejected ... ok
+test homology::degree_repair_replay_56::subject::tests::test_trivial_cochain_complex ... ok
+test homology::degree_repair_replay_56::subject::independent_degree_repair_tests::independent_dot_product_and_owned_context ... ok
+
+failures:
+
+---- homology::degree_repair_replay_56::subject::tests::test_dimension_mismatch_d0 stdout ----
+
+thread 'homology::degree_repair_replay_56::subject::tests::test_dimension_mismatch_d0' (29160) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\dr\261019T040309\src\homology\q\n56.rs:233:9:
+assertion failed: matches!(complex, Err(HomologicalError::ShapeMismatch { .. }))
+
+---- homology::degree_repair_replay_56::subject::independent_degree_repair_tests::shape_and_rational_failure_order stdout ----
+
+thread 'homology::degree_repair_replay_56::subject::independent_degree_repair_tests::shape_and_rational_failure_order' (11052) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\dr\261019T040309\src\homology\q\n56.rs:304:2:
+assertion `left == right` failed
+  left: MatrixError(DimensionMismatch { left: (1, 2), right: (3, 1) })
+ right: ShapeMismatch { expected: (2, 1), got: (3, 1) }
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    homology::degree_repair_replay_56::subject::independent_degree_repair_tests::shape_and_rational_failure_order
+    homology::degree_repair_replay_56::subject::tests::test_dimension_mismatch_d0
+
+test result: FAILED. 9 passed; 2 failed; 0 ignored; 0 measured; 997 filtered out; finished in 0.00s
+

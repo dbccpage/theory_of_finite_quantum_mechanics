@@ -1,4 +1,8 @@
 //! Coboundary maps in a cochain complex: d^n : C^n -> C^{n+1}.
+//! AuthorityEffect: None. These are canonical coordinate matrices with a
+//! checked degree rise, not independent certificates of a whole complex law.
+//! Basis-family labels are supplied by the caller and preserved on application;
+//! the map itself does not bind a family identifier.
 
 use crate::homology::cochain::Cochain;
 use crate::homology::errors::HomologicalError;
@@ -64,7 +68,11 @@ impl CoboundaryMap {
             .matrix
             .mul_vec(&cochain.coefficients)
             .map_err(HomologicalError::MatrixError)?;
-        Cochain::new(self.to_degree, cochain.basis_id.clone(), result)
+        Ok(Cochain::from_canonical(
+            self.to_degree,
+            cochain.basis_id.clone(),
+            result,
+        ))
     }
 
     pub fn from_degree(&self) -> Degree {

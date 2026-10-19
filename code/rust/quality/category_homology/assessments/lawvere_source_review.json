@@ -1,0 +1,129 @@
+{
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/category_theory/lawvere.rs",
+    "sha256": "21f4521c5c9c99b186c0cb079860575ff08041665914b67bbe04f75ea0181709"
+  },
+  "production_functions": {
+    "OperationDecl::new": {
+      "line": 20,
+      "signature": "pub fn new(name: &str, input_sorts: Vec<String>, output_sorts: Vec<String>) -> Self",
+      "body": "{\n        Self {\n            name: name.into(),\n            input_sorts,\n            output_sorts,\n        }\n    }",
+      "obligation": "Own exact name and supplied ordered input/output sort vectors, without type/membership/uniqueness admission."
+    },
+    "OperationDecl::arity": {
+      "line": 28,
+      "signature": "pub fn arity(&self) -> usize",
+      "body": "{\n        self.input_sorts.len()\n    }",
+      "obligation": "Return the actual input vector length, not output length or a mathematical sort exponent."
+    },
+    "OperationDecl::coarity": {
+      "line": 32,
+      "signature": "pub fn coarity(&self) -> usize",
+      "body": "{\n        self.output_sorts.len()\n    }",
+      "obligation": "Return actual output vector length."
+    },
+    "EquationDecl::new": {
+      "line": 46,
+      "signature": "pub fn new(name: &str, lhs: &str, rhs: &str) -> Self",
+      "body": "{\n        Self {\n            name: name.into(),\n            lhs: lhs.into(),\n            rhs: rhs.into(),\n        }\n    }",
+      "obligation": "Own exact name/lhs/rhs strings without parsing, normalization or equation-law validation."
+    },
+    "LawvereTheory::new": {
+      "line": 76,
+      "signature": "pub fn new(name: &str) -> Self",
+      "body": "{\n        Self {\n            name: name.into(),\n            sorts: Vec::new(),\n            operations: Vec::new(),\n            equations: Vec::new(),\n            substitution_table: BTreeMap::new(),\n            identities: BTreeMap::new(),\n            cauchy_status: TheoryCauchyStatus::Complete,\n        }\n    }",
+      "obligation": "Own supplied name; empty vectors/maps and literal Complete status. This default is untrusted inventory metadata, not a theorem."
+    },
+    "LawvereTheory::add_sort": {
+      "line": 88,
+      "signature": "pub fn add_sort(&mut self, sort: &str)",
+      "body": "{\n        self.sorts.push(sort.into());\n    }",
+      "obligation": "Append the exact sort name, preserving input order and duplicates."
+    },
+    "LawvereTheory::add_operation": {
+      "line": 91,
+      "signature": "pub fn add_operation(&mut self, op: OperationDecl)",
+      "body": "{\n        self.operations.push(op);\n    }",
+      "obligation": "Append the entire supplied record, preserving order, duplicate names and unchecked sort lists."
+    },
+    "LawvereTheory::add_equation": {
+      "line": 94,
+      "signature": "pub fn add_equation(&mut self, eq: EquationDecl)",
+      "body": "{\n        self.equations.push(eq);\n    }",
+      "obligation": "Append exact uninterpreted equation record, preserving duplicates and order."
+    },
+    "LawvereTheory::add_substitution": {
+      "line": 98,
+      "signature": "pub fn add_substitution(&mut self, outer: &str, slot: usize, inner: &str, result: &str)",
+      "body": "{\n        self.substitution_table\n            .insert((outer.into(), slot, inner.into()), result.into());\n    }",
+      "obligation": "Insert exact owned outer/slot/inner key and result, replacing only an equal key; no arity, membership or sort admission."
+    },
+    "LawvereTheory::substitute": {
+      "line": 103,
+      "signature": "pub fn substitute(&self, outer: &str, slot: usize, inner: &str) -> Option<&str>",
+      "body": "{\n        self.substitution_table\n            .get(&(outer.into(), slot, inner.into()))\n            .map(|s| s.as_str())\n    }",
+      "obligation": "Exact BTreeMap tuple lookup of outer/slot/inner with borrowed returned str lifetime tied to self. It constructs two temporary String key copies for this public isolated lookup; diagnostics use their once-built borrowed index."
+    },
+    "LawvereTheory::operations_of_arity": {
+      "line": 109,
+      "signature": "pub fn operations_of_arity(&self, arity: usize) -> Vec<&OperationDecl>",
+      "body": "{\n        self.operations\n            .iter()\n            .filter(|op| op.arity() == arity)\n            .collect()\n    }",
+      "obligation": "Collect borrowed references with matching actual input length, in original order including duplicates; other fields and stored status untouched."
+    },
+    "SubstitutionLookup::new": {
+      "line": 124,
+      "signature": "fn new(theory: &'a LawvereTheory) -> Self",
+      "body": "{\n        Self {\n            entries: theory.substitution_table.iter()\n                .map(|((outer, slot, inner), value)| ((outer.as_str(), *slot, inner.as_str()), value.as_str()))\n                .collect(),\n        }\n    }",
+      "obligation": "Collect one borrowed tuple/value per map entry. BTreeMap order by owned String/usize/String equals lexicographic str/usize/str order; no sort, filtering or owned key copy changes the key-value association. Snapshot borrows self, so mutation cannot invalidate the view during the diagnostic."
+    },
+    "SubstitutionLookup::get": {
+      "line": 132,
+      "signature": "fn get(&self, outer: &str, slot: usize, inner: &str) -> Option<&'a str>",
+      "body": "{\n        self.entries.binary_search_by_key(&(outer, slot, inner), |(key, _)| *key)\n            .ok().and_then(|index| self.entries.get(index)).map(|(_, value)| *value)\n    }",
+      "obligation": "Search the exact borrowed outer/slot/inner tuple in the sorted unique view. Successful index comes from std binary search, and checked Vec::get returns the associated borrowed value; absent keys return None. No ad-hoc key hashing, insertion or string allocation in lookup."
+    },
+    "check_substitution_associativity": {
+      "line": 143,
+      "signature": "pub fn check_substitution_associativity(\n    theory: &LawvereTheory,\n    cases: &[(&str, usize, &str, usize, &str)],\n) -> Vec<String>",
+      "body": "{\n    let mut violations = Vec::new();\n    let lookup = SubstitutionLookup::new(theory);\n    for &(f, i, g, j, h) in cases {\n        let Some(slot) = i.checked_add(j) else {\n            violations.push(format!(\"Substitution slot overflow: i={}, j={}\", i, j));\n            continue;\n        };\n        let left = lookup.get(g, j, h).and_then(|gh| lookup.get(f, i, gh));\n        let right = lookup.get(f, i, g).and_then(|fg| lookup.get(fg, slot, h));\n        match (left, right) {\n            (Some(l), Some(r)) if l == r => {}\n            (Some(l), Some(r)) => violations.push(format!(\n                \"Substitution not associative: f={}, g={}, h={}: {}\u2260{}\",\n                f, g, h, l, r\n            )),\n            _ => violations.push(format!(\n                \"Substitution not defined for f={}, g={}, h={}\",\n                f, g, h\n            )),\n        }\n    }\n    violations\n}",
+      "obligation": "For each supplied case, checked usize i+j is admitted before lookups; overflow emits exactly one ordered i/j diagnostic and continues. Otherwise compare g[j]h then f[i]result with f[i]g then result[i+j]h. Both defined/equal succeeds; both defined/different emits exact mismatch payload, and either absent emits undefined, including both absent. Preserve all failing-case order/multiplicity. Empty list is vacuous; do not admit arbitrary operations or infer universal associativity."
+    },
+    "is_declared_idempotent": {
+      "line": 171,
+      "signature": "fn is_declared_idempotent(lookup: &SubstitutionLookup<'_>, op: &OperationDecl) -> bool",
+      "body": "{\n    op.arity() == 1 && op.coarity() == 1 && lookup.get(&op.name, 0, &op.name) == Some(op.name.as_str())\n}",
+      "obligation": "Conjoin actual one-input/one-output shape and the explicit slot-zero own-name/own-name table result equal to the own name. Absence or differing result fails; no mathematical idempotence beyond this raw entry."
+    },
+    "splitting_pair": {
+      "line": 175,
+      "signature": "fn splitting_pair(theory: &LawvereTheory, lookup: &SubstitutionLookup<'_>, name: &str,\n                  r: &OperationDecl, s: &OperationDecl) -> bool",
+      "body": "{\n    lookup.get(&s.name, 0, &r.name) == Some(name)\n        && r.output_sorts.first().and_then(|sort| theory.identities.get(sort))\n            .is_some_and(|identity| lookup.get(&r.name, 0, &s.name) == Some(identity.as_str()))\n}",
+      "obligation": "Conjoin explicit s[0]r=e with r[0]s equal to the identity recorded at r first output sort. Missing first sort/identity/table entry fails. No unary/typing/membership requirement is added for candidate r,s, preserving the legacy raw split diagnostic rather than silently changing its domain."
+    },
+    "has_splitting": {
+      "line": 182,
+      "signature": "fn has_splitting(theory: &LawvereTheory, lookup: &SubstitutionLookup<'_>, name: &str) -> bool",
+      "body": "{\n    theory.operations.iter().any(|r| {\n        theory.operations.iter().any(|s| splitting_pair(theory, lookup, name, r, s))\n    })\n}",
+      "obligation": "Existentially search every ordered declared r,s pair for the literal predicate. Short-circuiting affects only pure lookups. Duplicate names remain records; an empty candidate list has no pair."
+    },
+    "check_theory_cauchy": {
+      "line": 194,
+      "signature": "pub fn check_theory_cauchy(theory: &LawvereTheory) -> TheoryCauchyStatus",
+      "body": "{\n    let lookup = SubstitutionLookup::new(theory);\n    let unsplit: Vec<String> = theory.operations.iter()\n        .filter(|op| is_declared_idempotent(&lookup, op) && !has_splitting(theory, &lookup, &op.name))\n        .map(|op| op.name.clone()).collect();\n    if unsplit.is_empty() {\n        TheoryCauchyStatus::Complete\n    } else {\n        TheoryCauchyStatus::Incomplete {\n            unsplit_operations: unsplit,\n        }\n    }\n}",
+      "obligation": "Build one borrowed index, retain exactly each unary/co-unary self-idempotent record for which no declared literal split exists, and clone its name in original operation order. Duplicates remain. Empty retained list returns Complete; otherwise retain exact names. Neither result authenticates a category nor mutates independent cauchy_status."
+    }
+  },
+  "data_derive_macro_review": {
+    "records": "OperationDecl and EquationDecl own exact raw strings/vectors, deriving structural Clone/PartialEq/Eq/Debug; LawvereTheory derives deep structural Clone/Debug over raw vectors/maps, and its public fields remain freely mutable. TheoryCauchyStatus is a literal Complete/ordered-unsplit-names enum with structural derives. No serial/hash/authentication or hidden constructor invariant.",
+    "derive_and_macros": "Standard derive implementations recursively use owned String/Vec/BTreeMap operations; format! creates diagnostics only, with captured exact names/results or decimal usize values. No custom procedural macro, unsafe, unchecked index, narrowing, floating operation, hidden numeric extension, callback or production assert.",
+    "failure": "Slot overflow is an explicit ordinary diagnostic, before lookup; undefined/mismatch are ordinary diagnostics. Missing split evidence becomes an unsplit name. Empty inventory is vacuous. All diagnostic calls borrow the raw theory immutably, including stored status. Allocation failure, formatting/stdlib/compiler defects and resource exhaustion remain runtime trust boundaries; no catch-all or allocator-totality claim."
+  },
+  "cost_review": [
+    "Let S be substitution entries, N operation records, I identity entries and C supplied cases. Borrowed index is O(S) references built once in BTreeMap key order. Each query makes O(log(S+1)) lexicographic key comparisons, with String comparison byte cost explicit. No temporary owned String lookup keys occur in nested diagnostics.",
+    "Associativity uses at most four substitution queries per admitted case, O(S+C log(S+1)) comparison count plus input/result-string lengths and allocation of at most C diagnostic strings. Overflow paths skip lookup; finite iteration increments remain std slice bounds, and only own slot arithmetic uses checked_add.",
+    "Cauchy inventory scans N records; worst case N*N*N pair tests. Each uses up to two substitution queries and one identity lookup: O(S+N^3*(log(S+1)+log(I+1))) key comparisons, with string-length cost. Storage O(S+N) references/retained names plus cloned output-name bytes. This is not a resource budget or a polynomial-time claim in an unencoded mathematical category.",
+    "Raw append/constructor/derive operations allocate proportional to newly owned strings/vectors; BTreeMap insert and isolated substitute use logarithmic map access plus tuple string copies; operations_of_arity scans N and allocates at most N references. No zero-allocation, allocator capacity/layout guarantee or benchmark claim."
+  ],
+  "consumer_review": "Live search of local Rust sources finds only lib.rs/mod.rs module exports; no external callsite invokes the raw diagnostics. Canonical category native tests exercise package identity. No consumer claims a certified Lawvere category. Conservative scan of all complete assessment context_inputs finds zero Lawvere dependencies, so no completed provider refresh is needed. Separate external omega packages are not this local subject."
+}

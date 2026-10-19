@@ -1,0 +1,22 @@
+
+running 5 tests
+test mutant_36::tests::validate_ok ... ok
+test mutant_36::parameter_challenge::constructors_preserve_distinct_supplied_parameters ... ok
+test mutant_36::tests::validate_rejects_empty ... ok
+test mutant_36::tests::validate_rejects_missing_ref ... ok
+test mutant_36::parameter_challenge::independent_schema_cases_and_first_error ... FAILED
+
+failures:
+
+---- mutant_36::parameter_challenge::independent_schema_cases_and_first_error stdout ----
+
+thread 'mutant_36::parameter_challenge::independent_schema_cases_and_first_error' (18084) panicked at metadata_challenge_2\mutant_36.rs:94:37:
+expected Some("empty component tag at index 0"), got Ok(()); raw={"components":[["","mor:0"],["obj:1","mor:1"],["obj:2","mor:2"]],"label":"label:α\u0000","nat_trans_ref":"nat_trans_ref:α\u0000","notes":[]}
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    mutant_36::parameter_challenge::independent_schema_cases_and_first_error
+
+test result: FAILED. 4 passed; 1 failed; 0 ignored; 0 measured; 342 filtered out; finished in 0.00s
+

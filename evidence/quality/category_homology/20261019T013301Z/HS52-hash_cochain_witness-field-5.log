@@ -1,0 +1,33 @@
+
+running 14 tests
+test homology::hash_replay_52::hashing::tests::test_hash256_display ... ok
+test homology::hash_replay_52::hashing::tests::test_hash_provenance_deterministic ... ok
+test homology::hash_replay_52::hashing::tests::all_defined_fraction_representations_keep_value_normalization ... ok
+test homology::hash_replay_52::hashing::tests::test_hash_provenance_different_sources ... ok
+test homology::hash_replay_52::hashing::tests::test_hash256_to_hex ... ok
+test homology::hash_replay_52::hashing::tests::test_hash_vector_deterministic ... ok
+test homology::hash_replay_52::hashing::tests::test_hash_vector_different_values ... ok
+test homology::hash_replay_52::hashing::tests::test_hash_weights_deterministic ... ok
+test homology::hash_replay_52::hashing::tests::undefined_raw_ratios_have_opaque_fingerprints_without_admission ... ok
+test homology::hash_replay_52::hashing::wire_specification::digest_views_and_wire_roundtrip_preserve_every_byte ... ok
+test homology::hash_replay_52::hashing::wire_specification::rational_and_integer_wires ... ok
+test homology::hash_replay_52::hashing::wire_specification::undefined_pairs_are_stored_without_rational_arithmetic ... ok
+test homology::hash_replay_52::hashing::wire_specification::manifest_fields_have_the_declared_order_and_domains ... FAILED
+test homology::hash_replay_52::hashing::wire_specification::graded_identifiers_use_byte_lengths_and_signed_degrees ... ok
+
+failures:
+
+---- homology::hash_replay_52::hashing::wire_specification::manifest_fields_have_the_declared_order_and_domains stdout ----
+
+thread 'homology::hash_replay_52::hashing::wire_specification::manifest_fields_have_the_declared_order_and_domains' (4208) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\hc\261019T013301\hash-52.rs:402:9:
+assertion `left == right` failed
+  left: [5, 149, 18, 140, 229, 213, 116, 196, 56, 78, 255, 144, 115, 143, 191, 107, 138, 47, 54, 174, 1, 103, 41, 27, 0, 239, 8, 247, 156, 233, 174, 229]
+ right: [71, 174, 228, 43, 3, 190, 51, 172, 21, 138, 160, 228, 45, 70, 60, 12, 172, 168, 180, 91, 189, 231, 126, 71, 131, 145, 179, 162, 185, 213, 239, 173]
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    homology::hash_replay_52::hashing::wire_specification::manifest_fields_have_the_declared_order_and_domains
+
+test result: FAILED. 13 passed; 1 failed; 0 ignored; 0 measured; 1119 filtered out; finished in 0.00s
+

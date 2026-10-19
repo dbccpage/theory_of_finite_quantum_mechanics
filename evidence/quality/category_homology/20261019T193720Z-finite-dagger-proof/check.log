@@ -1,0 +1,67 @@
+C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\quality\category_homology\proofs\FiniteDagger.lean:93:83: error: unsolved goals
+C : Type
+inst✝ : Category.{u_1, 0} C
+d : Data C
+laws : Laws d
+X : C
+⊢ d.map (𝟙 X) = 𝟙 X
+C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\quality\category_homology\proofs\FiniteDagger.lean:94:17: warning: This simp argument is unused:
+  laws.identity
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [Unitary]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\quality\category_homology\proofs\FiniteDagger.lean:109:30: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  ?f ≫ 𝟙 ?m.96
+in the target expression
+  f ≫ 𝟙 Y ≫ d.map f = 𝟙 X
+
+C : Type
+inst✝ : Category.{u_1, 0} C
+d : Data C
+laws : Laws d
+X Y Z : C
+f : X ⟶ Y
+g : Y ⟶ Z
+hf : Unitary d f
+hg : Unitary d g
+⊢ f ≫ 𝟙 Y ≫ d.map f = 𝟙 X
+C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\quality\category_homology\proofs\FiniteDagger.lean:113:30: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  ?f ≫ 𝟙 ?m.164
+in the target expression
+  d.map g ≫ 𝟙 Y ≫ g = 𝟙 Z
+
+C : Type
+inst✝ : Category.{u_1, 0} C
+d : Data C
+laws : Laws d
+X Y Z : C
+f : X ⟶ Y
+g : Y ⟶ Z
+hf : Unitary d f
+hg : Unitary d g
+⊢ d.map g ≫ 𝟙 Y ≫ g = 𝟙 Z
+C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\quality\category_homology\proofs\FiniteDagger.lean:120:57: error: unexpected token ';'; expected '{' or tactic
+C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\quality\category_homology\proofs\FiniteDagger.lean:120:45: error: unsolved goals
+C : Type
+inst✝ : Category.{u_1, 0} C
+d : Data C
+X Y : C
+f : X ⟶ Y
+⊢ unitaryCheck d f = true ↔ Unitary d f
+'TFQM.FiniteDagger.checks_true_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TFQM.FiniteDagger.admit_preserves_data' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TFQM.FiniteDagger.admit_success_laws' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TFQM.FiniteDagger.failed_guard' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TFQM.FiniteDagger.certifiedOfAdmitted' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TFQM.FiniteDagger.certified_arrow' depends on axioms: [propext, Classical.choice, Quot.sound]
+'TFQM.FiniteDagger.dagger_involutive' does not depend on any axioms
+'TFQM.FiniteDagger.dagger_injective' does not depend on any axioms
+'TFQM.FiniteDagger.dagger_surjective' does not depend on any axioms
+'TFQM.FiniteDagger.dagger_identity' does not depend on any axioms
+'TFQM.FiniteDagger.dagger_composition' does not depend on any axioms
+'TFQM.FiniteDagger.unitary_identity' depends on axioms: [propext, sorryAx]
+'TFQM.FiniteDagger.unitary_dagger' does not depend on any axioms
+'TFQM.FiniteDagger.unitary_composite' depends on axioms: [propext, sorryAx]
+'TFQM.FiniteDagger.unitary_check_iff' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

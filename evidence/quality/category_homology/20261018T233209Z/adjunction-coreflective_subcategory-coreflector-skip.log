@@ -1,0 +1,29 @@
+
+running 6 tests
+test mutant_42::schema_challenge::labels_are_literal_not_mathematical_certificates ... ok
+test mutant_42::tests::validate_rejects_empty ... ok
+test mutant_42::tests::rejects_missing_coreflector ... FAILED
+test mutant_42::tests::with_inclusion_and_unit_ok ... ok
+test mutant_42::tests::validate_ok ... ok
+test mutant_42::schema_challenge::exhaustive_required_fields ... FAILED
+
+failures:
+
+---- mutant_42::tests::rejects_missing_coreflector stdout ----
+
+thread 'mutant_42::tests::rejects_missing_coreflector' (30548) panicked at metadata_challenge_0\mutant_42.rs:126:9:
+assertion failed: c.validate_shell().is_err()
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- mutant_42::schema_challenge::exhaustive_required_fields stdout ----
+
+thread 'mutant_42::schema_challenge::exhaustive_required_fields' (21560) panicked at metadata_challenge_0\mutant_42.rs:153:34:
+mask 8, expected Some(3), got Ok(())
+
+
+failures:
+    mutant_42::schema_challenge::exhaustive_required_fields
+    mutant_42::tests::rejects_missing_coreflector
+
+test result: FAILED. 4 passed; 2 failed; 0 ignored; 0 measured; 364 filtered out; finished in 0.00s
+

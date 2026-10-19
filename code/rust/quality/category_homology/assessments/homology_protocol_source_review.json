@@ -1,0 +1,184 @@
+{
+  "AuthorityEffect": "None",
+  "errors": {
+    "all_37_variants": [
+      "InvalidRational",
+      "CertificateMismatch",
+      "ShapeMismatch",
+      "DegreeMismatch",
+      "DegreeOverflow",
+      "ResourceLimit",
+      "DimensionMismatch",
+      "BoundaryLawViolation",
+      "CoboundaryLawViolation",
+      "InvalidDegree",
+      "MatrixError",
+      "RankReductionFailed",
+      "RankInverseFailed",
+      "NonExactDivision",
+      "BasisMismatch",
+      "NotCycle",
+      "NotCocycle",
+      "NotBoundary",
+      "NotCoboundary",
+      "HomologyDimensionUnderflow",
+      "EmptyBasis",
+      "InvalidManifest",
+      "HashMismatch",
+      "MissingWitness",
+      "BettiRankInconsistency",
+      "NonIntegralBoundaryMap",
+      "SmithNormalFormFailed",
+      "UnsupportedOperation",
+      "NonPositiveWeight",
+      "WeightDimensionMismatch",
+      "EmptyVerificationSource",
+      "EdgeSourceOutOfRange",
+      "EdgeTargetOutOfRange",
+      "SelfLoopNotAllowed",
+      "TriangleVertexOutOfRange",
+      "TriangleMissingEdge",
+      "SerializationError"
+    ],
+    "declarative_source": "//! Error types for homological algebra operations.\n\nuse crate::linear_algebra::basic_matrix::MatrixError;\nuse crate::linear_algebra::smith_form::SmithError;\nuse thiserror::Error;\n\n#[derive(Debug, Error, Clone, PartialEq, Eq)]\npub enum HomologicalError {\n    #[error(\"noncanonical or undefined rational at coefficient {index}\")]\n    InvalidRational { index: usize },\n    #[error(\"certificate identity failed: {identity}\")]\n    CertificateMismatch { identity: &'static str },\n    #[error(\"matrix shape mismatch: expected {expected:?}, got {got:?}\")]\n    ShapeMismatch {\n        expected: (usize, usize),\n        got: (usize, usize),\n    },\n\n    #[error(\"degree mismatch: expected {expected}, got {got}\")]\n    DegreeMismatch { expected: i32, got: i32 },\n\n    #[error(\"degree shift overflows its representation\")]\n    DegreeOverflow,\n\n    #[error(\"resource limit exceeded: {0}\")]\n    ResourceLimit(&'static str),\n    #[error(\"dimension mismatch: expected {expected}, got {got}\")]\n    DimensionMismatch { expected: usize, got: usize },\n\n    #[error(\"boundary law violated: d_(k) * d_(k+1) != 0 at degree {degree}\")]\n    BoundaryLawViolation { degree: i32 },\n\n    #[error(\"coboundary law violated: d^(k+1) * d^(k) != 0 at degree {degree}\")]\n    CoboundaryLawViolation { degree: i32 },\n\n    #[error(\"invalid degree: {0}\")]\n    InvalidDegree(i32),\n\n    #[error(\"matrix error: {0}\")]\n    MatrixError(#[from] MatrixError),\n\n    #[error(\"rank factorization row reduction failed\")]\n    RankReductionFailed {\n        #[source]\n        source: crate::linear_algebra::image_kernel::ExactLinearAlgebraError,\n    },\n\n    #[error(\"rank factorization inverse failed\")]\n    RankInverseFailed {\n        #[source]\n        source: crate::linear_algebra::ExactFieldError,\n    },\n\n    #[error(\"non-exact division encountered\")]\n    NonExactDivision,\n\n    #[error(\"basis mismatch: {description}\")]\n    BasisMismatch { description: String },\n\n    #[error(\"element is not a cycle: boundary is non-zero\")]\n    NotCycle,\n\n    #[error(\"element is not a cocycle: coboundary is non-zero\")]\n    NotCocycle,\n\n    #[error(\"element is not a boundary\")]\n    NotBoundary,\n\n    #[error(\"element is not a coboundary\")]\n    NotCoboundary,\n\n    #[error(\"homology dimension underflow: ker_dim={ker_dim}, im_dim={im_dim}\")]\n    HomologyDimensionUnderflow { ker_dim: usize, im_dim: usize },\n\n    #[error(\"empty basis\")]\n    EmptyBasis,\n\n    #[error(\"invalid manifest: {reason}\")]\n    InvalidManifest { reason: String },\n\n    #[error(\"hash mismatch: expected {expected}, got {got}\")]\n    HashMismatch { expected: String, got: String },\n\n    #[error(\"missing witness\")]\n    MissingWitness,\n    /// A Smith-normal-form rank exceeds the dimension it is subtracted from, which\n    /// would make a Betti number negative. Reported rather than clamped to zero:\n    /// clamping would emit a plausible Betti number for an inconsistent carrier.\n    #[error(\n        \"Betti rank inconsistency at degree {degree}: rank sum {rank_sum} exceeds dimension {dimension}\"\n    )]\n    BettiRankInconsistency {\n        dimension: usize,\n        rank_sum: usize,\n        degree: usize,\n    },\n\n    /// A boundary map has a non-integer entry in the carrier's coordinate lattice,\n    /// so it has no Smith normal form over \u2124 and no integral rank or torsion can be\n    /// reported for it.\n    ///\n    /// Typed rather than folded into [`Self::UnsupportedOperation`]: a caller must be\n    /// able to distinguish \"this carrier is rational, not integral\" \u2014 a fact about\n    /// the input that a different lattice could change \u2014 from \"the SNF algorithm\n    /// failed\", which is a fact about this implementation.\n    #[error(\n        \"boundary map {map} is not integral in the carrier's coordinate lattice: \\\n         non-integer entry at row {row}, column {col}\"\n    )]\n    NonIntegralBoundaryMap {\n        map: &'static str,\n        row: usize,\n        col: usize,\n    },\n\n    /// Smith normal form of a boundary map failed. The underlying [`SmithError`] is\n    /// preserved as the source rather than stringified, so a caller can match on\n    /// `Overflow` / `DivisibilityViolation` / `VerificationFailed` separately.\n    #[error(\"Smith normal form of boundary map {map} failed\")]\n    SmithNormalFormFailed {\n        map: &'static str,\n        #[source]\n        source: SmithError,\n    },\n\n    #[error(\"unsupported operation: {0}\")]\n    UnsupportedOperation(String),\n\n    #[error(\"non-positive weight at index {index}\")]\n    NonPositiveWeight { index: usize },\n\n    #[error(\"weight dimension mismatch: expected {expected}, got {got}\")]\n    WeightDimensionMismatch { expected: usize, got: usize },\n\n    #[error(\"empty verification source\")]\n    EmptyVerificationSource,\n\n    #[error(\"edge source out of range: edge {edge}, source {src}\")]\n    EdgeSourceOutOfRange { edge: usize, src: usize },\n\n    #[error(\"edge target out of range: edge {edge}, target {tgt}\")]\n    EdgeTargetOutOfRange { edge: usize, tgt: usize },\n\n    #[error(\"self-loop not allowed: node {node}\")]\n    SelfLoopNotAllowed { node: usize },\n\n    #[error(\"triangle vertex out of range: triangle {triangle}, vertex {vertex}\")]\n    TriangleVertexOutOfRange { triangle: usize, vertex: usize },\n\n    #[error(\"triangle missing required edge: triangle {triangle}, edge ({src}, {tgt})\")]\n    TriangleMissingEdge {\n        triangle: usize,\n        src: usize,\n        tgt: usize,\n    },\n\n    #[error(\"serialization error: {0}\")]\n    SerializationError(String),\n}\n\n",
+    "explicit_functions": 0,
+    "generated_protocols": {
+      "Clone/Debug/PartialEq/Eq": "Standard generated structural protocols, no mathematical evidence or error recovery inferred.",
+      "Display": "Declared error templates delegate to captured thiserror derive/std formatting; every one of 37 variants has an exact independent diagnostic case. Formatting propagates fmt::Error. Message size is linear in payload rendering, with no semantic arithmetic.",
+      "Error::source": "MatrixError From derives its typed source; rank-reduction, rank-inverse and Smith failures retain their three declared typed source fields. Every other variant has no source. Tests downcast actual nested payloads, including three distinct Smith errors.",
+      "From<MatrixError>": "Only generated conversion wraps the exact owned MatrixError, not a String."
+    },
+    "path": "code/rust/src/homology/errors.rs",
+    "sha256": "c099cb5ff8a727aca82019d75d4afc5be2bdf53ca080da2c08eb8130b84aa8e6",
+    "structure_scope": "This declarative enum has 37 finite data cases and no authored control-flow function, not zero compiler-expanded code. Standard library/thiserror generated dispatch is the pinned runtime protocol; its compiler-expanded CCN is not claimed. Source A structural review does not certify external macro implementation internals."
+  },
+  "ids": {
+    "macro_invocations": [
+      "ChainId",
+      "CochainId",
+      "CycleId",
+      "CocycleId",
+      "BoundaryId",
+      "CoboundaryId",
+      "ChainComplexId",
+      "CochainComplexId",
+      "HomologyClassId",
+      "CohomologyClassId",
+      "CarrierId",
+      "MatrixId",
+      "ManifestId",
+      "WitnessId"
+    ],
+    "macro_structure": "Exactly five authored methods per invocation. Constructor has one zero branch; accessor/conversion/Display are linear. No hidden authored loop or unchecked scalar conversion. Serde enters TryFrom<u64>. Rust private tuple payload prevents external bypass.",
+    "path": "code/rust/src/homology/ids.rs",
+    "refinement": "The degree checked operations map to the bounded-Int model under the i32 type range. Successful predecessor followed by successor restores the same degree and exact checked difference 1. The two defensive mismatch returns are unreachable under those checked primitive contracts. Whole u64 parsing and decimal display are standard runtime protocols, exercised at zero and maximum.",
+    "sha256": "a50af254a6ea02531a2fbb24350705e67ad67f0a1a992d61f227b31402aa1aa9",
+    "symbols": {
+      "impl $name::get": {
+        "body": "{ self.0 }",
+        "scope": "Authored explicit function or five-function define_id macro template; nominal invocations separately enumerated.",
+        "signature": "pub fn get(self) -> u64"
+      },
+      "impl $name::new": {
+        "body": "{ if id == 0 { Err(IdError::ZeroId) } else { Ok(Self(id)) } }",
+        "scope": "Authored explicit function or five-function define_id macro template; nominal invocations separately enumerated.",
+        "signature": "pub fn new(id: u64) -> Result<Self, IdError>"
+      },
+      "impl BasisId::as_str": {
+        "body": "{ &self.0 }",
+        "scope": "Authored explicit function or five-function define_id macro template; nominal invocations separately enumerated.",
+        "signature": "pub fn as_str(&self) -> &str"
+      },
+      "impl BasisId::new": {
+        "body": "{ Self::try_new(&name.into()) }",
+        "scope": "Authored explicit function or five-function define_id macro template; nominal invocations separately enumerated.",
+        "signature": "pub fn new(name: impl Into<String>) -> Result<Self, IdError>"
+      },
+      "impl BasisId::try_new": {
+        "body": "{ if name.trim().is_empty() { Err(IdError::EmptyBasis) } else { Ok(Self(name.to_string())) } }",
+        "scope": "Authored explicit function or five-function define_id macro template; nominal invocations separately enumerated.",
+        "signature": "pub fn try_new(name: &str) -> Result<Self, IdError>"
+      },
+      "impl Degree::checked_pred": {
+        "body": "{ self.0 .checked_sub(1) .map(Self) .ok_or(IdError::DegreeOverflow) }",
+        "scope": "Authored explicit function or five-function define_id macro template; nominal invocations separately enumerated.",
+        "signature": "pub fn checked_pred(self) -> Result<Self, IdError>"
+      },
+      "impl Degree::checked_succ": {
+        "body": "{ self.0 .checked_add(1) .map(Self) .ok_or(IdError::DegreeOverflow) }",
+        "scope": "Authored explicit function or five-function define_id macro template; nominal invocations separately enumerated.",
+        "signature": "pub fn checked_succ(self) -> Result<Self, IdError>"
+      },
+      "impl Degree::new": {
+        "body": "{ Self(n) }",
+        "scope": "Authored explicit function or five-function define_id macro template; nominal invocations separately enumerated.",
+        "signature": "pub fn new(n: i32) -> Self"
+      },
+      "impl Degree::value": {
+        "body": "{ self.0 }",
+        "scope": "Authored explicit function or five-function define_id macro template; nominal invocations separately enumerated.",
+        "signature": "pub fn value(self) -> i32"
+      },
+      "impl From<$name> for u64::from": {
+        "body": "{ value.0 }",
+        "scope": "Authored explicit function or five-function define_id macro template; nominal invocations separately enumerated.",
+        "signature": "fn from(value: $name) -> u64"
+      },
+      "impl From<BasisId> for String::from": {
+        "body": "{ value.0 }",
+        "scope": "Authored explicit function or five-function define_id macro template; nominal invocations separately enumerated.",
+        "signature": "fn from(value: BasisId) -> String"
+      },
+      "impl TryFrom<String> for BasisId::try_from": {
+        "body": "{ Self::new(value) }",
+        "scope": "Authored explicit function or five-function define_id macro template; nominal invocations separately enumerated.",
+        "signature": "fn try_from(value: String) -> Result<Self, IdError>"
+      },
+      "impl TryFrom<u64> for $name::try_from": {
+        "body": "{ Self::new(value) }",
+        "scope": "Authored explicit function or five-function define_id macro template; nominal invocations separately enumerated.",
+        "signature": "fn try_from(value: u64) -> Result<Self, IdError>"
+      },
+      "impl std::fmt::Display for $name::fmt": {
+        "body": "{ write!(f, \"{}({})\", stringify!($name), self.0) }",
+        "scope": "Authored explicit function or five-function define_id macro template; nominal invocations separately enumerated.",
+        "signature": "fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result"
+      },
+      "impl std::fmt::Display for BasisId::fmt": {
+        "body": "{ write!(f, \"BasisId({})\", self.0) }",
+        "scope": "Authored explicit function or five-function define_id macro template; nominal invocations separately enumerated.",
+        "signature": "fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result"
+      },
+      "impl std::fmt::Display for Degree::fmt": {
+        "body": "{ write!(f, \"deg({})\", self.0) }",
+        "scope": "Authored explicit function or five-function define_id macro template; nominal invocations separately enumerated.",
+        "signature": "fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result"
+      },
+      "module::boundary_lowers_degree_by_one": {
+        "body": "{ let target = source.checked_pred()?; let restored = target.checked_succ()?; if restored != source { return Err(IdError::DegreeOverflow); } if restored.value().checked_sub(target.value()) != Some(1) { return Err(IdError::DegreeOverflow); } Ok(()) }",
+        "scope": "Authored explicit function or five-function define_id macro template; nominal invocations separately enumerated.",
+        "signature": "pub fn boundary_lowers_degree_by_one(source: Degree) -> Result<(), IdError>"
+      },
+      "module::element_kind_prefixes": {
+        "body": ";",
+        "scope": "Authored explicit function or five-function define_id macro template; nominal invocations separately enumerated.",
+        "signature": "fn element_kind_prefixes() -> Result<[String"
+      },
+      "module::identifier_kinds_round_trip": {
+        "body": "{ let chain = ChainId::new(id)?; let rendered = chain.to_string(); let payload = parse_parenthesized(&rendered, \"ChainId\")?; if payload != id { return Err(IdError::ZeroId); } let mut prefixes = element_kind_prefixes()?.to_vec(); prefixes.extend(structure_kind_prefixes()?); for (index, prefix) in prefixes.iter().enumerate() { let head = prefix.split('(').next().unwrap_or(\"\"); if head.is_empty() { return Err(IdError::EmptyBasis); } for earlier in prefixes.iter().take(index) { let other = earlier.split('(').next().unwrap_or(\"\"); if head == other { return Err(IdError::ZeroId); } } } Ok(()) }",
+        "scope": "Authored explicit function or five-function define_id macro template; nominal invocations separately enumerated.",
+        "signature": "pub fn identifier_kinds_round_trip(id: u64) -> Result<(), IdError>"
+      },
+      "module::parse_parenthesized": {
+        "body": "{ let Some(rest) = text.strip_prefix(kind) else { return Err(IdError::EmptyBasis); }; let Some(inner) = rest .strip_prefix('(') .and_then(|body| body.strip_suffix(')')) else { return Err(IdError::EmptyBasis); }; let value: u64 = inner.parse().map_err(|_| IdError::ZeroId)?; if value == 0 { Err(IdError::ZeroId) } else { Ok(value) } }",
+        "scope": "Authored explicit function or five-function define_id macro template; nominal invocations separately enumerated.",
+        "signature": "fn parse_parenthesized(text: &str, kind: &str) -> Result<u64, IdError>"
+      },
+      "module::structure_kind_prefixes": {
+        "body": ";",
+        "scope": "Authored explicit function or five-function define_id macro template; nominal invocations separately enumerated.",
+        "signature": "fn structure_kind_prefixes() -> Result<[String"
+      }
+    }
+  }
+}

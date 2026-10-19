@@ -103,7 +103,7 @@ pub struct SuccessionClassification {
     pub component_strict_order: Vec<Vec<bool>>,
 }
 
-fn normalize<T: Ord>(values: Vec<T>) -> Vec<usize> {
+fn normalize<T: Ord>(values: impl IntoIterator<Item = T>) -> Vec<usize> {
     let mut classes = BTreeMap::new();
     values
         .into_iter()
@@ -112,6 +112,44 @@ fn normalize<T: Ord>(values: Vec<T>) -> Vec<usize> {
             *classes.entry(value).or_insert(fresh)
         })
         .collect()
+}
+
+type BlockSignature = (usize, Vec<Vec<usize>>);
+
+fn fill_blocks(next: &[usize], partition: &[usize], blocks: &mut Vec<usize>) {
+    blocks.clear();
+    blocks.extend(next.iter().map(|&state| partition[state]));
+    blocks.sort_unstable();
+    blocks.dedup();
+}
+
+fn intern_blocks(ids: &mut BTreeMap<BlockSignature, usize>, signature: &BlockSignature) -> usize {
+    if let Some(&existing) = ids.get(signature) {
+        return existing;
+    }
+    let fresh = ids.len();
+    ids.insert(signature.clone(), fresh);
+    fresh
+}
+
+fn factor_blocks(
+    map: &[usize],
+    stable: &[usize],
+    target_size: usize,
+) -> Result<Vec<usize>, RelationalError> {
+    let mut factor = vec![None; target_size];
+    for state in 0..map.len() {
+        match factor[map[state]] {
+            Some(block) if block != stable[state] => {
+                return Err(RelationalError::InvalidBoundedMap)
+            }
+            _ => factor[map[state]] = Some(stable[state]),
+        }
+    }
+    Ok(factor
+        .into_iter()
+        .map(|block| block.expect("surjective map"))
+        .collect())
 }
 
 impl FiniteRelational {
@@ -156,26 +194,28 @@ impl FiniteRelational {
         self.reports.len()
     }
 
-    fn block_successors(&self, state: usize, label: usize, partition: &[usize]) -> BTreeSet<usize> {
-        self.successors[state][label]
-            .iter()
-            .map(|&next| partition[next])
-            .collect()
+    fn block_successors(&self, state: usize, label: usize, partition: &[usize]) -> Vec<usize> {
+        let mut blocks = Vec::new();
+        fill_blocks(&self.successors[state][label], partition, &mut blocks);
+        blocks
+    }
+
+    fn fill_signature(&self, state: usize, partition: &[usize], signature: &mut BlockSignature) {
+        signature.0 = partition[state];
+        for (label, blocks) in signature.1.iter_mut().enumerate() {
+            fill_blocks(&self.successors[state][label], partition, blocks);
+        }
     }
 
     fn refine(&self, partition: &[usize]) -> Vec<usize> {
-        normalize(
-            (0..self.state_count())
-                .map(|state| {
-                    (
-                        partition[state],
-                        (0..self.label_count)
-                            .map(|label| self.block_successors(state, label, partition))
-                            .collect::<Vec<_>>(),
-                    )
-                })
-                .collect(),
-        )
+        let mut signatures = BTreeMap::new();
+        let mut scratch = (0, vec![Vec::new(); self.label_count]);
+        (0..self.state_count())
+            .map(|state| {
+                self.fill_signature(state, partition, &mut scratch);
+                intern_blocks(&mut signatures, &scratch)
+            })
+            .collect()
     }
 
     /// Equality partitions are bisimulations exactly when related states have
@@ -184,29 +224,26 @@ impl FiniteRelational {
         if partition.len() != self.state_count() {
             return false;
         }
+        let refined = self.refine(partition);
         for x in 0..self.state_count() {
-            for y in 0..self.state_count() {
-                if partition[x] == partition[y] {
-                    if self.reports[x] != self.reports[y] {
-                        return false;
-                    }
-                    for label in 0..self.label_count {
-                        if self.block_successors(x, label, partition)
-                            != self.block_successors(y, label, partition)
-                        {
-                            return false;
-                        }
-                    }
+            for y in 0..x {
+                if !self.pair_compatible(x, y, partition, &refined) {
+                    return false;
                 }
             }
         }
         true
     }
 
+    fn pair_compatible(&self, x: usize, y: usize, partition: &[usize], refined: &[usize]) -> bool {
+        partition[x] != partition[y]
+            || (self.reports[x] == self.reports[y] && refined[x] == refined[y])
+    }
+
     /// Every strict round splits at least one block. At most n-1 strict
     /// rounds occur; the repeated stable partition is not stored twice.
     pub fn bisimulation_quotient(&self) -> RelationalQuotient {
-        let mut partition = normalize(self.reports.clone());
+        let mut partition = normalize(self.reports.iter().copied());
         let mut partitions = vec![partition.clone()];
         loop {
             let next = self.refine(&partition);
@@ -229,11 +266,7 @@ impl FiniteRelational {
             .iter()
             .map(|&state| {
                 (0..self.label_count)
-                    .map(|label| {
-                        self.block_successors(state, label, &partition)
-                            .into_iter()
-                            .collect()
-                    })
+                    .map(|label| self.block_successors(state, label, &partition))
                     .collect()
             })
             .collect();
@@ -291,38 +324,33 @@ impl FiniteRelational {
         {
             return Err(RelationalError::InvalidBoundedMap);
         }
+        let mut image = Vec::new();
         for state in 0..self.state_count() {
-            if self.reports[state] != target.reports[map[state]] {
+            if !self.bounded_state(target, map, state, &mut image) {
                 return Err(RelationalError::InvalidBoundedMap);
-            }
-            for label in 0..self.label_count {
-                let image: BTreeSet<_> = self.successors[state][label]
-                    .iter()
-                    .map(|&next| map[next])
-                    .collect();
-                let expected: BTreeSet<_> = target.successors[map[state]][label]
-                    .iter()
-                    .copied()
-                    .collect();
-                if image != expected {
-                    return Err(RelationalError::InvalidBoundedMap);
-                }
             }
         }
         let stable = self.bisimulation_quotient().state_to_block;
-        let mut factor = vec![None; target.state_count()];
-        for state in 0..self.state_count() {
-            match factor[map[state]] {
-                Some(block) if block != stable[state] => {
-                    return Err(RelationalError::InvalidBoundedMap)
-                }
-                _ => factor[map[state]] = Some(stable[state]),
+        factor_blocks(map, &stable, target.state_count())
+    }
+
+    fn bounded_state(
+        &self,
+        target: &Self,
+        map: &[usize],
+        state: usize,
+        image: &mut Vec<usize>,
+    ) -> bool {
+        if self.reports[state] != target.reports[map[state]] {
+            return false;
+        }
+        for label in 0..self.label_count {
+            fill_blocks(&self.successors[state][label], map, image);
+            if *image != target.successors[map[state]][label] {
+                return false;
             }
         }
-        Ok(factor
-            .into_iter()
-            .map(|block| block.expect("surjective map"))
-            .collect())
+        true
     }
 
     /// Classify the union of *declared* labelled transitions without selecting

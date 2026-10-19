@@ -1,0 +1,166 @@
+{
+  "AuthorityEffect": "None",
+  "scope": "Private admitted contextual systems and checked arrows,least congruent coarsening,identity unit,unique comma factors and reflector action;no profile-reflecting or authority completion.",
+  "mutation_names": [
+    "related-left-range",
+    "witness-context-range",
+    "witness-obstruction-reversed",
+    "obstruction-row-order",
+    "obstruction-context-order",
+    "congruence-reversed",
+    "hom-context-guard",
+    "hom-range",
+    "hom-profile-law",
+    "hom-action-law",
+    "composition-domain",
+    "composition-map-order",
+    "profile-reflection-reversed",
+    "canonical-all-merged",
+    "merge-disabled",
+    "merge-unrelated-basis",
+    "merge-no-action",
+    "reflection-premature",
+    "reflection-chain-missing",
+    "reflection-action-replaced",
+    "reflection-source-replaced",
+    "unit-map-constant",
+    "factor-source-guard",
+    "factor-congruence-guard",
+    "factor-map-constant",
+    "factor-check-source",
+    "factor-check-domain",
+    "factor-check-target",
+    "factor-check-map",
+    "reflect-arrow-endpoints"
+  ],
+  "records": [
+    {
+      "family": "",
+      "path": "code/rust/src/category_theory/context_reflection.rs",
+      "sha256": "80e89b85ee05567c04587f49521ec49e42524a05e5a4414238642b1768ecb476",
+      "parent_aliases": [],
+      "faults": [
+        [
+          "x < self.state_count()",
+          "x <= self.state_count()"
+        ],
+        [
+          "c < self.context_count()",
+          "c <= self.context_count()"
+        ],
+        [
+          "&& !self.related(self.transitions()[x][c], self.transitions()[y][c])",
+          "&& self.related(self.transitions()[x][c], self.transitions()[y][c])"
+        ],
+        [
+          "for x in 0..self.state_count() {",
+          "for x in (0..self.state_count()).rev() {"
+        ],
+        [
+          "(0..self.context_count()).find_map",
+          "(0..self.context_count()).rev().find_map"
+        ],
+        [
+          "self.obstruction().is_none()",
+          "self.obstruction().is_some()"
+        ],
+        [
+          "source.context_count() != target.context_count()",
+          "source.context_count() == target.context_count()"
+        ],
+        [
+          "v >= target.state_count()",
+          "v > target.state_count()"
+        ],
+        [
+          "source.related(x, y) && !target.related(map[x], map[y])",
+          "source.related(x, y) && target.related(map[x], map[y])"
+        ],
+        [
+          "map[source.transitions()[x][c]] != target.transitions()[map[x]][c]",
+          "map[source.transitions()[x][c]] == target.transitions()[map[x]][c]"
+        ],
+        [
+          "if self.target != next.source {",
+          "if false {"
+        ],
+        [
+          "self.map.iter().map(|&v| next.map[v]).collect()",
+          "self.map.iter().enumerate().map(|(i,&_v)|self.map[next.map[i]]).collect()"
+        ],
+        [
+          "!self.target.related(self.map[x], self.map[y]) || self.source.related(x, y)",
+          "!self.target.related(self.map[x], self.map[y]) && self.source.related(x, y)"
+        ],
+        [
+          "representatives.entry(*label).or_insert(fresh)",
+          "representatives.entry(*label).or_insert(0)"
+        ],
+        [
+          "if *label == from {",
+          "if *label == to {"
+        ],
+        [
+          "if old[x] == old[y] {",
+          "if old[x] != old[y] {"
+        ],
+        [
+          "            source.transitions()[x][c],\n            source.transitions()[y][c],",
+          "            x,\n            y,"
+        ],
+        [
+          "if labels == old {",
+          "if labels == old || chain.len()==1 {"
+        ],
+        [
+          "chain.push(labels.clone());",
+          "let _ = &chain;"
+        ],
+        [
+          "source.transitions().to_vec(),",
+          "vec![vec![0;source.context_count()];source.state_count()],"
+        ],
+        [
+          "source: source.clone(),",
+          "source: completed.clone(),"
+        ],
+        [
+          "(0..self.source.state_count()).collect()",
+          "vec![0;self.source.state_count()]"
+        ],
+        [
+          "if arrow.source != &self.source {",
+          "if false {"
+        ],
+        [
+          "if !arrow.target.is_congruent() {",
+          "if arrow.target.is_congruent() {"
+        ],
+        [
+          "ContextHom::new(&self.completed, arrow.target, arrow.map.clone())",
+          "ContextHom::new(&self.completed, arrow.target, vec![0;arrow.map.len()])"
+        ],
+        [
+          "arrow.source == &self.source\n            && arrow.target.is_congruent()",
+          "true\n            && arrow.target.is_congruent()"
+        ],
+        [
+          "&& candidate.source == &self.completed",
+          "&& true"
+        ],
+        [
+          "&& candidate.target == arrow.target",
+          "&& true"
+        ],
+        [
+          "&& candidate.map == arrow.map",
+          "&& true"
+        ],
+        [
+          "if arrow.source != source.source() || arrow.target != target.source() {",
+          "if false {"
+        ]
+      ]
+    }
+  ]
+}

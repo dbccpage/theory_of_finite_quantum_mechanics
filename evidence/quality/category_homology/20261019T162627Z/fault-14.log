@@ -1,0 +1,37 @@
+
+running 4 tests
+test root_record_replay_15::subject::independent_record_tests::raw_fluent_routes_and_checked_identity_boundaries ... ok
+test root_record_replay_15::subject::independent_record_tests::walking_recipe_and_fresh_admission_keep_context ... FAILED
+test root_record_replay_15::subject::independent_record_tests::identity_completion_matches_independent_snapshot_update_rules ... FAILED
+test root_record_replay_15::subject::tests::builder_can_validate_walking_arrow ... FAILED
+
+failures:
+
+---- root_record_replay_15::subject::independent_record_tests::walking_recipe_and_fresh_admission_keep_context stdout ----
+
+thread 'root_record_replay_15::subject::independent_record_tests::walking_recipe_and_fresh_admission_keep_context' (25012) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\rr\261019T162627\src\category_theory\q\n15.rs:158:283:
+assertion `left == right` failed
+  left: {("id_A", "f"): "f", ("id_A", "id_A"): "id_A", ("id_B", "id_B"): "id_B"}
+ right: {("f", "id_B"): "f", ("id_A", "f"): "f", ("id_A", "id_A"): "id_A", ("id_B", "id_B"): "id_B"}
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- root_record_replay_15::subject::independent_record_tests::identity_completion_matches_independent_snapshot_update_rules stdout ----
+
+thread 'root_record_replay_15::subject::independent_record_tests::identity_completion_matches_independent_snapshot_update_rules' (36240) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\rr\261019T162627\src\category_theory\q\n15.rs:151:252:
+assertion `left == right` failed
+  left: {("iA", "iA"): "iA", ("iA", "p"): "p", ("iA", "q"): "wrong", ("unrelated", "pair"): "keep"}
+ right: {("iA", "iA"): "iA", ("iA", "p"): "p", ("iA", "q"): "wrong", ("p", "iA"): "p", ("unrelated", "pair"): "keep"}
+
+---- root_record_replay_15::subject::tests::builder_can_validate_walking_arrow stdout ----
+
+thread 'root_record_replay_15::subject::tests::builder_can_validate_walking_arrow' (43512) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\rr\261019T162627\src\category_theory\q\n15.rs:126:9:
+assertion failed: category.is_ok()
+
+
+failures:
+    root_record_replay_15::subject::independent_record_tests::identity_completion_matches_independent_snapshot_update_rules
+    root_record_replay_15::subject::independent_record_tests::walking_recipe_and_fresh_admission_keep_context
+    root_record_replay_15::subject::tests::builder_can_validate_walking_arrow
+
+test result: FAILED. 1 passed; 3 failed; 0 ignored; 0 measured; 539 filtered out; finished in 0.00s
+

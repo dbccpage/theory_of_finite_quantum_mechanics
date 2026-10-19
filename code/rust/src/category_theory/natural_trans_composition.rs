@@ -5,7 +5,7 @@
 //! complete category/functor contexts, then replay output admission. Both paths
 //! for horizontal composition must agree. No sampled or infinite claim is made.
 
-use super::cat_functor::DeclaredFiniteFunctor;
+use super::cat_functor::{CompositionLookup, DeclaredFiniteFunctor};
 use super::finite_category::DeclaredFiniteCategory;
 use super::functor_composition::{compose_declared_functors, ValidatedFiniteFunctor};
 use super::natural_trans::{DeclaredFiniteNatTrans, ValidatedFiniteNatTrans};
@@ -97,12 +97,12 @@ fn mapped_object<'a>(
         })
 }
 fn compose_at<'a>(
-    category: &'a DeclaredFiniteCategory,
+    table: &CompositionLookup<'a>,
     object: &str,
     first: &str,
     second: &str,
 ) -> Result<&'a str, CompositionError> {
-    category
+    table
         .compose(first, second)
         .ok_or_else(|| CompositionError::Undefined {
             object: object.into(),
@@ -150,10 +150,11 @@ pub fn vertical_compose_nat_trans(
         &beta.source_functor,
     )?;
     let mut nat = DeclaredFiniteNatTrans::new(name, &alpha.source_functor, &beta.target_functor);
+    let lookup = CompositionLookup::new(&target_category.compositions);
     for object in &source_category.objects {
         let first = component(alpha, object)?;
         let second = component(beta, object)?;
-        nat.set_component(object, compose_at(target_category, object, first, second)?);
+        nat.set_component(object, compose_at(&lookup, object, first, second)?);
     }
     Ok(nat)
 }
@@ -223,10 +224,10 @@ impl HorizontalContext<'_> {
         same("beta source", &self.h.name, &self.beta.source_functor)?;
         same("beta target", &self.k.name, &self.beta.target_functor)
     }
-    fn component_at(&self, object: &str) -> Result<String, CompositionError> {
+    fn component_at<'a>(&self, lookup: &CompositionLookup<'a>, object: &str) -> Result<&'a str, CompositionError> {
         let alpha = component(self.alpha, object)?;
-        let left = self.left_path(object, alpha)?;
-        let right = self.right_path(object, alpha)?;
+        let left = self.left_path(lookup, object, alpha)?;
+        let right = self.right_path(lookup, object, alpha)?;
         if left != right {
             return Err(CompositionError::Interchange {
                 object: object.into(),
@@ -234,23 +235,23 @@ impl HorizontalContext<'_> {
                 right: right.into(),
             });
         }
-        Ok(left.into())
+        Ok(left)
     }
-    fn left_path<'a>(&'a self, object: &str, alpha: &str) -> Result<&'a str, CompositionError> {
+    fn left_path<'a>(&self, lookup: &CompositionLookup<'a>, object: &str, alpha: &str) -> Result<&'a str, CompositionError> {
         let h_alpha = mapped_morphism(self.h, alpha)?;
         let g_object = mapped_object(self.g, object)?;
         compose_at(
-            self.target,
+            lookup,
             object,
             h_alpha,
             component(self.beta, g_object)?,
         )
     }
-    fn right_path<'a>(&'a self, object: &str, alpha: &str) -> Result<&'a str, CompositionError> {
+    fn right_path<'a>(&self, lookup: &CompositionLookup<'a>, object: &str, alpha: &str) -> Result<&'a str, CompositionError> {
         let k_alpha = mapped_morphism(self.k, alpha)?;
         let f_object = mapped_object(self.f, object)?;
         compose_at(
-            self.target,
+            lookup,
             object,
             component(self.beta, f_object)?,
             k_alpha,
@@ -294,13 +295,14 @@ pub fn horizontal_compose_nat_trans(
         target: target_category,
     };
     context.check_binding()?;
+    let lookup = CompositionLookup::new(&target_category.compositions);
     let mut nat = DeclaredFiniteNatTrans::new(
         name,
         &composite_name(&h.name, &f.name),
         &composite_name(&k.name, &g.name),
     );
     for object in f.object_map.keys() {
-        nat.set_component(object, &context.component_at(object)?);
+        nat.set_component(object, context.component_at(&lookup, object)?);
     }
     Ok(nat)
 }

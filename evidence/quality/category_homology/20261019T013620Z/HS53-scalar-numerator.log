@@ -1,0 +1,39 @@
+
+running 14 tests
+test homology::hash_replay_53::hashing::tests::test_hash_weights_deterministic ... ok
+test homology::hash_replay_53::hashing::tests::all_defined_fraction_representations_keep_value_normalization ... ok
+test homology::hash_replay_53::hashing::wire_specification::manifest_fields_have_the_declared_order_and_domains ... ok
+test homology::hash_replay_53::hashing::tests::test_hash_vector_deterministic ... ok
+test homology::hash_replay_53::hashing::tests::test_hash_vector_different_values ... ok
+test homology::hash_replay_53::hashing::tests::test_hash_provenance_deterministic ... ok
+test homology::hash_replay_53::hashing::tests::undefined_raw_ratios_have_opaque_fingerprints_without_admission ... FAILED
+test homology::hash_replay_53::hashing::wire_specification::digest_views_and_wire_roundtrip_preserve_every_byte ... ok
+test homology::hash_replay_53::hashing::wire_specification::rational_and_integer_wires ... ok
+test homology::hash_replay_53::hashing::tests::test_hash_provenance_different_sources ... ok
+test homology::hash_replay_53::hashing::wire_specification::graded_identifiers_use_byte_lengths_and_signed_degrees ... ok
+test homology::hash_replay_53::hashing::wire_specification::undefined_pairs_are_stored_without_rational_arithmetic ... FAILED
+test homology::hash_replay_53::hashing::tests::test_hash256_display ... ok
+test homology::hash_replay_53::hashing::tests::test_hash256_to_hex ... ok
+
+failures:
+
+---- homology::hash_replay_53::hashing::tests::undefined_raw_ratios_have_opaque_fingerprints_without_admission stdout ----
+
+thread 'homology::hash_replay_53::hashing::tests::undefined_raw_ratios_have_opaque_fingerprints_without_admission' (23856) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\hc\261019T013620\hash-53.rs:275:13:
+assertion failed: !fingerprints.contains(&fingerprint)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- homology::hash_replay_53::hashing::wire_specification::undefined_pairs_are_stored_without_rational_arithmetic stdout ----
+
+thread 'homology::hash_replay_53::hashing::wire_specification::undefined_pairs_are_stored_without_rational_arithmetic' (21472) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\hc\261019T013620\hash-53.rs:357:17:
+assertion `left == right` failed
+  left: [126, 205, 28, 102, 57, 242, 127, 149, 192, 189, 228, 149, 236, 199, 217, 148, 252, 60, 127, 173, 226, 112, 82, 54, 252, 13, 209, 208, 164, 252, 11, 44]
+ right: [136, 34, 0, 48, 186, 153, 49, 67, 118, 225, 97, 93, 15, 170, 98, 132, 55, 72, 29, 0, 197, 4, 248, 237, 76, 233, 217, 65, 101, 168, 187, 160]
+
+
+failures:
+    homology::hash_replay_53::hashing::tests::undefined_raw_ratios_have_opaque_fingerprints_without_admission
+    homology::hash_replay_53::hashing::wire_specification::undefined_pairs_are_stored_without_rational_arithmetic
+
+test result: FAILED. 12 passed; 2 failed; 0 ignored; 0 measured; 1120 filtered out; finished in 0.00s
+

@@ -32,6 +32,42 @@ pub struct DistinguishingWord {
     pub right_answer: Option<usize>,
 }
 
+type StatePair = (usize, usize);
+
+// Each discovered pair has exactly one earlier predecessor;the root has none.
+struct PairFrontier {
+    parents: BTreeMap<StatePair, Option<(StatePair, usize)>>,
+    queue: VecDeque<StatePair>,
+}
+
+impl PairFrontier {
+    fn new(root: StatePair) -> Self {
+        Self { parents: BTreeMap::from([(root, None)]), queue: VecDeque::from([root]) }
+    }
+
+    fn discover(&mut self, parent: StatePair, next: StatePair, input: usize, maximum: usize) -> Result<(), ContinuationError> {
+        if self.parents.contains_key(&next) {
+            return Ok(());
+        }
+        if self.parents.len() >= maximum {
+            return Err(ContinuationError::WorkLimit);
+        }
+        self.parents.insert(next, Some((parent, input)));
+        self.queue.push_back(next);
+        Ok(())
+    }
+
+    fn word(&self, mut pair: StatePair) -> Vec<usize> {
+        let mut reversed = Vec::new();
+        while let Some(Some((previous, input))) = self.parents.get(&pair) {
+            reversed.push(*input);
+            pair = *previous;
+        }
+        reversed.reverse();
+        reversed
+    }
+}
+
 impl PartialDynamics {
     pub fn new(
         reports: Vec<usize>,
@@ -125,8 +161,9 @@ impl PartialDynamics {
             .collect()
     }
 
-    /// BFS on ordered state pairs. A completed empty result shows in this model equivalence
+    /// BFS on ordered state pairs. A completed empty result proves equivalence
     /// in THIS finite machine; exceeding `max_pairs` is a resource refusal.
+    /// Predecessors retain first discovery;only a successful word is materialized.
     pub fn distinguish(
         &self,
         left: usize,
@@ -139,39 +176,37 @@ impl PartialDynamics {
         if max_pairs == 0 {
             return Err(ContinuationError::WorkLimit);
         }
-        let mut paths = BTreeMap::from([((left, right), Vec::new())]);
-        let mut queue = VecDeque::from([(left, right)]);
-        while let Some((l, r)) = queue.pop_front() {
-            let word = paths[&(l, r)].clone();
-            if self.machine.reports()[l] != self.machine.reports()[r] {
-                return Ok(Some(DistinguishingWord {
-                    left,
-                    right,
-                    word,
-                    left_answer: self.reports.get(l).copied(),
-                    right_answer: self.reports.get(r).copied(),
-                }));
+        let mut frontier = PairFrontier::new((left, right));
+        while let Some(pair) = frontier.queue.pop_front() {
+            if let Some(witness) = self.distinction_at(left, right, pair, &frontier) {
+                return Ok(Some(witness));
             }
-            for a in 0..self.machine.input_count() {
-                let pair = (
-                    self.machine.transitions()[l][a],
-                    self.machine.transitions()[r][a],
-                );
-                if !paths.contains_key(&pair) {
-                    if paths.len() >= max_pairs {
-                        return Err(ContinuationError::WorkLimit);
-                    }
-                    let mut next = word.clone();
-                    next.push(a);
-                    paths.insert(pair, next);
-                    queue.push_back(pair);
-                }
-            }
+            self.enqueue_successors(pair, max_pairs, &mut frontier)?;
         }
         Ok(None)
     }
 
+    fn distinction_at(&self, left: usize, right: usize, (l, r): StatePair, frontier: &PairFrontier) -> Option<DistinguishingWord> {
+        if self.machine.reports()[l] == self.machine.reports()[r] {
+            return None;
+        }
+        Some(DistinguishingWord {
+            left, right, word: frontier.word((l, r)),
+            left_answer: self.reports.get(l).copied(),
+            right_answer: self.reports.get(r).copied(),
+        })
+    }
+
+    fn enqueue_successors(&self, parent: StatePair, maximum: usize, frontier: &mut PairFrontier) -> Result<(), ContinuationError> {
+        for input in 0..self.machine.input_count() {
+            let next = (self.machine.transitions()[parent.0][input], self.machine.transitions()[parent.1][input]);
+            frontier.discover(parent, next, input, maximum)?;
+        }
+        Ok(())
+    }
+
     /// Replay the claimed distinction without trusting its saved answers.
+    /// Validates self-described endpoints/answers,not shortestness or an external query.
     pub fn verify_distinction(&self, c: &DistinguishingWord) -> Result<(), ContinuationError> {
         let l = self.run(c.left, &c.word)?.map(|s| self.reports[s]);
         let r = self.run(c.right, &c.word)?.map(|s| self.reports[s]);

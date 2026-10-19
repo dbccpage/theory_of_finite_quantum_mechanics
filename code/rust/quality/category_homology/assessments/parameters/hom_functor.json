@@ -1,0 +1,187 @@
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/category_theory/functor/hom_functor.rs",
+    "language": "Rust",
+    "sha256": "59ab554b4ff222872b3968c3c7f3b6b159382d04dd93a04c60ce01d67f435e5e"
+  },
+  "reviewer": "Codex explicit numeric/tag schema, source and consumer review",
+  "evaluation_timestamp": "2026-10-19T01:49:58.324424+00:00",
+  "gates": {
+    "G1": "A",
+    "G2": "A",
+    "G3": "A",
+    "G4": "A",
+    "G5": "A"
+  },
+  "formal_specification": {
+    "domain": "Raw mutable metadata with literal UTF-8 String fields, exactly represented primitive integers/options, and raw notes/flags. Constructors and serde are candidate transport; validation observes without mutation.",
+    "ordered_labels": [
+      "label",
+      "category_ref",
+      "fixed_object",
+      "variance"
+    ],
+    "parameter_rule": "After all four required labels, variance must equal exactly covariant or contravariant. No Hom-set mapping, category law or variance theorem is computed.",
+    "failure": "The first empty required label returns ArithmosError::InvalidShape(empty FIELD); then the stated parameter check returns its exact source-bound diagnostic. No successful mathematical certificate exists in this module.",
+    "profile": "Exact primitive integer comparisons for levels, arity and bounds; literal string matching for tag-only metadata. No arithmetic, rounding, float conversion or normalization."
+  },
+  "symbol_map": {
+    "new": {
+      "signature": "pub fn new(label: impl Into<String>) -> Self",
+      "body": "{ Self { label: label.into(), category_ref: String::new(), fixed_object: String::new(), variance: String::new(), notes: Vec::new(), } }",
+      "classification": "Raw constructor or note setter; never mathematical admission"
+    },
+    "covariant": {
+      "signature": "pub fn covariant( label: impl Into<String>, category_ref: impl Into<String>, fixed_object: impl Into<String>, ) -> Self",
+      "body": "{ Self { label: label.into(), category_ref: category_ref.into(), fixed_object: fixed_object.into(), variance: \"covariant\".into(), notes: Vec::new(), } }",
+      "classification": "Raw constructor or note setter; never mathematical admission"
+    },
+    "contravariant": {
+      "signature": "pub fn contravariant( label: impl Into<String>, category_ref: impl Into<String>, fixed_object: impl Into<String>, ) -> Self",
+      "body": "{ Self { label: label.into(), category_ref: category_ref.into(), fixed_object: fixed_object.into(), variance: \"contravariant\".into(), notes: Vec::new(), } }",
+      "classification": "Raw constructor or note setter; never mathematical admission"
+    },
+    "validate_shell": {
+      "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+      "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.category_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty category_ref\".into())); } if self.fixed_object.is_empty() { return Err(ArithmosError::InvalidShape(\"empty fixed_object\".into())); } if self.variance.is_empty() { return Err(ArithmosError::InvalidShape(\"empty variance\".into())); } match self.variance.as_str() { \"covariant\" | \"contravariant\" => Ok(()), other => Err(ArithmosError::InvalidShape(format!(\"unknown variance tag: {other}\"))), } }",
+      "classification": "Ordered literal parameter/tag/label refusal"
+    }
+  },
+  "invariant_argument": [
+    "All public production bodies are mapped above. Constructors move explicit supplied values and store documented defaults; with_note appends only a raw note. They intentionally may construct a candidate that fails validation.",
+    "validate_shell reads required String lengths in the recorded order and then the declared threshold/tag predicate, changing no data. Every failed guard returns the existing typed InvalidShape variant with the original payload; every accepted path returns unit only.",
+    "The ordered-label proof applies to the finite label prefix. ParameterMetadata.variance supplies the threshold/tag result where applicable; the first_error/accepted_prefix lemmas preserve the label-before-parameter refusal order. These are models plus a reviewed source relation, not extracted Rust or a law of the named mathematical concept.",
+    "Signed levels stay i32, unsigned level/arity stay u32, and the optional bound stays usize on the captured 64-bit target. Comparisons with constants do not overflow or divide. String operations/formatting preserve literal bytes, including whitespace, NUL and Unicode. No partial indexing, recursion, mathematical division or unchecked cast exists."
+  ],
+  "failure_paths": {
+    "labels": "First exact typed InvalidShape, no mutation or successful artifact.",
+    "parameters": "After all four required labels, variance must equal exactly covariant or contravariant. No Hom-set mapping, category law or variance theorem is computed.",
+    "construction": "Standard String/&str conversions, derived serde/Clone/Eq and allocator behavior are declared trusted library/runtime contracts; arbitrary caller Into implementations remain external. Validation invokes no caller callback.",
+    "representation": "Primitive integer wire decoding enforces fixed-width ranges; raw candidate serde roundtrips do not certify semantic validity."
+  },
+  "trust_boundary": {
+    "math": "Only literal metadata thresholds and tags; no categorical or HoTT premise is silently imported.",
+    "runtime": "Pinned Rust compiler/std, serde derives and the existing errors::ArithmosError exposed through the canonical crate self-alias. Challenge namespaces import that same actual category crate type. Standard conversion/allocator contracts apply.",
+    "model": "Pinned Lean/Mathlib kernel checks for ordered labels and separate threshold/tag programs. Source predicate/payload correspondence is explicit source review; no MIR equivalence."
+  },
+  "consumer_review": [
+    "The public hierarchy module re-exports this raw type; its nominal identity is checked again in the current 107-fault export replay. The candidate source import adapter for PointwiseKanExtension binds its real current KanExtensionKind provider without cloning algorithms.",
+    "Lexical Rust-src consumer search finds local constructor tests, and all 459 actual category tests pass before/after. The typed Result API change is deliberate; no external or whole-workspace consumer pass is claimed."
+  ],
+  "basis": {
+    "G1": [
+      "Source SHA, complete public-symbol map, independently written schema, parent/crate context, dependency receipt and authority ceiling bind every claim. Original source and the error-carrier-only delta are retained."
+    ],
+    "G2": [
+      "After all four required labels, variance must equal exactly covariant or contravariant. No Hom-set mapping, category law or variance theorem is computed.",
+      "Independent parameter endpoints include applicable signed MIN/MAX, unsigned/usize MAX, absent/zero bounds and exact tag alternatives, crossed with all required-label emptiness masks. No parameter value is synthesized from a runtime source guard."
+    ],
+    "G3": [
+      "Checked ordered and parameter models plus source review cover all validation returns and raw observation. The finite primitive comparisons cannot overflow; errors retain exact payloads without catch-all recovery, and constructors make no validity promise."
+    ],
+    "G4": [
+      "115 independent schema cases and distinct constructor bindings execute for each baseline namespace. All 13 single-fault candidates for this file compile and are killed separately; zero other outcomes. The seven-file campaign accounts for 57 faults, 41 unmutated local/challenge tests and 459 original category tests before/after.",
+      "Source snapshots, policy, helper, runner, logs and tool/dependency pins are retained. Shared compilation is disclosed; no compiler failure counts as a semantic kill. The failed initial Lean attempt remains failed and is excluded from grading."
+    ],
+    "G5": [
+      "Fixed field count and bounded comparisons, no loops/recursion in validation. Threshold diagnostics have bounded primitive width; unknown-variance diagnostics are linear in the provided string length. Constructors move strings; notes append amortized O(1). Source AST ceilings are independently checked, with no opaque production function macros."
+    ]
+  },
+  "open_findings": [],
+  "assurance_limits": [
+    "Capability remains L2 raw metadata, not the mathematics suggested by the name.",
+    "Contracts pending. No A+, independent compiler, Rust/MIR refinement, allocator totality, author attestation or whole-workspace pass."
+  ],
+  "evidence": [
+    {
+      "path": "evidence/quality/category_homology/20261018T233729Z-metadata-proof/receipt.json",
+      "sha256": "71187f438fb571fd2e7339b19be871c3b5882e3b2e34e3a1df0b62e637c6f0ea"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T014738Z-parameters-proof/receipt.json",
+      "sha256": "52734dddb31b18adb9fa9b7085081bff94b6102e072e2b1a6bdac19db99a4077"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T014554Z/summary.json",
+      "sha256": "c723cd52f6aef31a15b76ba80184224f88dec53f66dab0efe09f8fa72470b577"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T014554Z/baseline.json",
+      "sha256": "b2a4964add00245e07d4345c2fe7ca8111a306be0ccd620e60b0b40d5ad7d6f6"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T014554Z/restored.json",
+      "sha256": "326f502cb977abb1c6ec2f2ed126a566a2eb3aa58965f613664f40ca83769c74"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T014554Z/mutations.json",
+      "sha256": "3554f2a1666cc93fe8c22c8d6d30ae032aae81a6a72dd4be8add9addc8573bb4"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T014554Z/builds.json",
+      "sha256": "7784fe55798cb1a888a666b4174ff57650f4e7be4faaa278a5efd3a568d24c01"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T014554Z/dependency_receipt.json",
+      "sha256": "6d8d4bf61e4d6e33576428360d72234ca3d8f25bca2ace321d8f52b041d3ab07"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T014554Z/parameter_boundaries.json",
+      "sha256": "034b6ff2c306ec5ad940eb9f7f50e26e04f65948b33a6b02b4e08939a526b0c1"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T014554Z/parameter_metadata.py",
+      "sha256": "6bd819560ea43f441e3bccbbd2a4f437a1d36e0029059b9278a969701583fe89"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T014554Z/run_metadata_challenges.py",
+      "sha256": "1c30b77eec4784f43265a217efa489f515a8a48f7bdffc63999a1a7554e2fcd5"
+    },
+    {
+      "path": "evidence/quality/category_homology/resume-20261019/parameter-consumers.json",
+      "sha256": "ed4cf608d4f9bb031a5ba75f2abebeeb0f3fb4ac5f555506abf2a7db940f5318"
+    },
+    {
+      "path": "evidence/quality/category_homology/resume-20261019/numeric-metadata-changes.json",
+      "sha256": "62e049ddfb5962987c9a950d56fbb8a2d54a134240e66c02e40f00126f3fbfa6"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T014754Z/summary.json",
+      "sha256": "b09c23195140a0c6d9efafe6914ba3ddf500a965faf5b3d853ee44af4281a526"
+    },
+    {
+      "path": "evidence/quality/category_homology/resume-20261019/parameter-consumers.log",
+      "sha256": "75d77199124f3001fb57692bb0d8077380a8502b5af834c4725144881d717b99"
+    }
+  ],
+  "proof_receipts": [
+    {
+      "path": "evidence/quality/category_homology/20261018T233729Z-metadata-proof/receipt.json",
+      "sha256": "71187f438fb571fd2e7339b19be871c3b5882e3b2e34e3a1df0b62e637c6f0ea",
+      "proof": "code/rust/quality/category_homology/proofs/MetadataValidation.lean",
+      "mathlib_root": "lean4/.lake/packages/mathlib"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T014738Z-parameters-proof/receipt.json",
+      "sha256": "52734dddb31b18adb9fa9b7085081bff94b6102e072e2b1a6bdac19db99a4077",
+      "proof": "code/rust/quality/category_homology/proofs/ParameterMetadata.lean",
+      "mathlib_root": "lean4/.lake/packages/mathlib"
+    }
+  ],
+  "context_inputs": [
+    {
+      "path": "code/rust/src/category_theory/functor/mod.rs",
+      "sha256": "9b576dba40c5e99c50d85793e0103fe76e6af63247831ffc9ee4c31708028781"
+    },
+    {
+      "path": "code/rust/src/category_theory/lib.rs",
+      "sha256": "b1535a921f4a69414e8b6636f85c8393f799bd2bc20da600e855864c2d3e8776"
+    },
+    {
+      "path": "code/rust/src/category_theory/Cargo.toml",
+      "sha256": "42378ba9d23fe5a5c97c844ebab457e9187c96b819c5b6a0fe3f9acaff1579a3"
+    }
+  ]
+}

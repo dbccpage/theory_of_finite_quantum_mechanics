@@ -1,3 +1,9 @@
+//! Family registry metadata, literal lifecycle parsing and ordered propagation targets.
+//! Historical category/functor terms below are descriptive record labels;no
+//! category or functor laws are checked and no AgentFunctor reference is stored.
+//! The retained YAML path/hash are unverified source annotations,not current
+//! verified provenance. AuthorityEffect: None.
+//!
 //! --- yaml
 //! title: family_category
 //! file_name: family_category.rs
@@ -12,17 +18,17 @@
 //! version: 1
 //! ---
 //!
-//! # Family Category — String Families as Functors
+//! # Historical family/category terminology
 //!
 //! Agent families are functors `F: Constraint -> String`.
 //! Strings are morphisms `String -> String`.
 //! Meta-Strings (autoString, cartographer, review-Strings) are natural
 //! transformations `eta: F => G` between family functors.
 //!
-//! This module defines the categorical types for String families,
-//! composing with (never replacing) `AgentFunctor` from `agent_functor.rs`.
+//! The runtime implementation stores String records and name-indexed lists.
+//! The following categorical analogies are not admitted mathematical structures.
 
-use std::collections::HashMap;
+use std::collections::{HashMap, BTreeSet};
 
 // use crate::ascent::lambdas::l161::agent_functor::{String};
 
@@ -210,6 +216,18 @@ pub struct StringFamily {
     pub related_strings: Vec<String>,
 }
 
+// Keep rule/candidate encounter order;sets are only borrowed membership indices.
+fn collect_targets<'a>(
+    candidates: impl IntoIterator<Item = &'a str>, source: &str,
+    active: &BTreeSet<&str>, seen: &mut BTreeSet<&'a str>, targets: &mut Vec<String>,
+) {
+    for target in candidates {
+        if target != source && active.contains(target) && seen.insert(target) {
+            targets.push(target.to_owned());
+        }
+    }
+}
+
 impl StringFamily {
     pub fn new(id: &str, description: &str) -> Self {
         Self {
@@ -251,26 +269,15 @@ impl StringFamily {
         if !self.contains_active(string_id) {
             return Vec::new();
         }
-        let active_ids: Vec<String> = self
-            .active_member_ids()
-            .iter()
-            .map(|s| s.to_string())
-            .collect();
+        let active_ids = self.active_member_ids();
+        let active: BTreeSet<&str> = active_ids.iter().copied().collect();
+        let mut seen = BTreeSet::new();
         let mut targets = Vec::new();
         for rule in &self.propagation_rules {
             if rule.targets_all() {
-                // "All members" means all active members except source
-                for m in &active_ids {
-                    if m != string_id && !targets.contains(m) {
-                        targets.push(m.clone());
-                    }
-                }
+                collect_targets(active_ids.iter().copied(), string_id, &active, &mut seen, &mut targets);
             } else {
-                for t in &rule.targets {
-                    if t != string_id && !targets.contains(t) && active_ids.contains(t) {
-                        targets.push(t.clone());
-                    }
-                }
+                collect_targets(rule.targets.iter().map(String::as_str), string_id, &active, &mut seen, &mut targets);
             }
         }
         targets
@@ -281,11 +288,8 @@ impl StringFamily {
 // 6. FamilyFunctor — Runtime functor instance
 // ---------------------------------------------------------------------------
 
-/// Runtime functor `F: Constraint -> String` for a String family.
-///
-/// Composes with `AgentFunctor` — it does NOT replace it.
-/// A `FamilyFunctor` holds references to `String` and `String`
-/// from `agent_functor.rs`.
+/// Raw family descriptor plus name-indexed capability/propagation lists.
+/// Historical Functor name does not imply a checked functor or stored agent object.
 #[derive(Debug)]
 pub struct FamilyFunctor {
     /// The underlying family descriptor

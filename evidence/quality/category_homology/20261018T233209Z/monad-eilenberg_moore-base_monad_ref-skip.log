@@ -1,0 +1,27 @@
+
+running 4 tests
+test mutant_98::schema_challenge::labels_are_literal_not_mathematical_certificates ... ok
+test mutant_98::tests::validate_ok ... ok
+test mutant_98::tests::validate_rejects_empty ... FAILED
+test mutant_98::schema_challenge::exhaustive_required_fields ... FAILED
+
+failures:
+
+---- mutant_98::tests::validate_rejects_empty stdout ----
+
+thread 'mutant_98::tests::validate_rejects_empty' (19044) panicked at metadata_challenge_5\mutant_98.rs:70:9:
+assertion failed: EilenbergMoore::new("EM").validate_shell().is_err()
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- mutant_98::schema_challenge::exhaustive_required_fields stdout ----
+
+thread 'mutant_98::schema_challenge::exhaustive_required_fields' (7108) panicked at metadata_challenge_5\mutant_98.rs:93:34:
+mask 2, expected Some(1), got Ok(())
+
+
+failures:
+    mutant_98::schema_challenge::exhaustive_required_fields
+    mutant_98::tests::validate_rejects_empty
+
+test result: FAILED. 2 passed; 2 failed; 0 ignored; 0 measured; 466 filtered out; finished in 0.00s
+

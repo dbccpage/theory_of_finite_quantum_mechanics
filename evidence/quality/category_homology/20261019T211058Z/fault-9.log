@@ -1,0 +1,43 @@
+
+running 8 tests
+test root_record_replay_10::subject::independent_profunctor_tests::boundary_reports_have_exact_scope_and_order ... ok
+test root_record_replay_10::subject::independent_profunctor_tests::literal_aliases_and_raw_companion_conjoint ... FAILED
+test root_record_replay_10::subject::independent_profunctor_tests::all_two_by_two_multisets_discrete_middle ... FAILED
+test root_record_replay_10::subject::tests::relational_profunctor_tracks_witnesses ... ok
+test root_record_replay_10::subject::independent_profunctor_tests::raw_relations_preserve_metadata_order_and_queries ... ok
+test root_record_replay_10::subject::tests::profunctor_composition_collects_pairs ... FAILED
+test root_record_replay_10::subject::independent_profunctor_tests::exact_weights_refuse_invalid_without_mutation ... ok
+test root_record_replay_10::subject::tests::weighted_profunctor_sums_weights ... ok
+
+failures:
+
+---- root_record_replay_10::subject::independent_profunctor_tests::literal_aliases_and_raw_companion_conjoint stdout ----
+
+thread 'root_record_replay_10::subject::independent_profunctor_tests::literal_aliases_and_raw_companion_conjoint' (33856) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\rr\261019T211058\src\category_theory\q\n10.rs:513:288:
+assertion `left == right` failed
+  left: []
+ right: ["((x,y)@z,)@λ\0", "((x,y)@z,)@λ\0"]
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- root_record_replay_10::subject::independent_profunctor_tests::all_two_by_two_multisets_discrete_middle stdout ----
+
+thread 'root_record_replay_10::subject::independent_profunctor_tests::all_two_by_two_multisets_discrete_middle' (34152) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\rr\261019T211058\src\category_theory\q\n10.rs:507:4:
+assertion `left == right` failed
+  left: {("a0", "c0"): [], ("a0", "c1"): [], ("a1", "c0"): [], ("a1", "c1"): []}
+ right: {}
+
+---- root_record_replay_10::subject::tests::profunctor_composition_collects_pairs stdout ----
+
+thread 'root_record_replay_10::subject::tests::profunctor_composition_collects_pairs' (14524) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\rr\261019T211058\src\category_theory\q\n10.rs:399:9:
+assertion `left == right` failed
+  left: 0
+ right: 2
+
+
+failures:
+    root_record_replay_10::subject::independent_profunctor_tests::all_two_by_two_multisets_discrete_middle
+    root_record_replay_10::subject::independent_profunctor_tests::literal_aliases_and_raw_companion_conjoint
+    root_record_replay_10::subject::tests::profunctor_composition_collects_pairs
+
+test result: FAILED. 5 passed; 3 failed; 0 ignored; 0 measured; 731 filtered out; finished in 0.01s
+

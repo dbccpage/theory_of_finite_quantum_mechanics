@@ -1,6 +1,7 @@
 //! function shell for omega_category_theory.
 //! AuthorityEffect: None. Not PROVED / GlobalGreen.
 
+use omega_category_theory::errors::ArithmosError;
 use serde::{Deserialize, Serialize};
 
 /// A single domain→codomain pair tag (not a formal graph).
@@ -57,19 +58,19 @@ impl Function {
         });
     }
 
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
         if self.domain_label.is_empty() {
-            return Err("empty domain_label".into());
+            return Err(ArithmosError::InvalidShape("empty domain_label".into()));
         }
         if self.codomain_label.is_empty() {
-            return Err("empty codomain_label".into());
+            return Err(ArithmosError::InvalidShape("empty codomain_label".into()));
         }
         for (i, p) in self.pairs.iter().enumerate() {
             if p.domain_element.is_empty() || p.codomain_element.is_empty() {
-                return Err(format!("empty mapping tag at pair index {i}"));
+                return Err(ArithmosError::InvalidShape(format!("empty mapping tag at pair index {i}")));
             }
         }
         Ok(())

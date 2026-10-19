@@ -1,0 +1,152 @@
+{
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/category_theory/finite_functional_dependencies.rs",
+    "sha256": "661b018027f21c6d360b90b757583ab9f1b99f1e1ffbab75fbe7cb1f2cc9f6d8",
+    "language": "Rust"
+  },
+  "symbol_map": {
+    "FdRefusal::fmt": {
+      "line": 38,
+      "signature": "fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result",
+      "body": "{\n        write!(f, \"{self:?}\")\n    }",
+      "obligation": "Standard Debug formatting of typed refusal,including all saved violation indices;no hidden mathematical decision."
+    },
+    "Work::spend": {
+      "line": 69,
+      "signature": "fn spend(&mut self) -> Result<(), FdRefusal>",
+      "body": "{\n        if self.used == self.limit {\n            return Err(FdRefusal::BudgetUnknown);\n        }\n        self.used += 1;\n        Ok(())\n    }",
+      "obligation": "Private invariant 0<=used<=limit. Refuse at equality before increment; otherwise charge exactly one FD/subset inspection. limit=MAX safe because used<limit before addition."
+    },
+    "heading": {
+      "line": 79,
+      "signature": "pub fn heading(&self) -> Result<u16, FdRefusal>",
+      "body": "{\n        if self.arity == 0 || self.arity > 8 || self.dependencies.len() > 128 {\n            return Err(FdRefusal::UnsupportedHeading);\n        }\n        let heading = (1u16 << self.arity) - 1;\n        if self\n            .dependencies\n            .iter()\n            .any(|fd| (fd.determinant | fd.dependent) & !heading != 0)\n        {\n            return Err(FdRefusal::AttributeOutsideHeading);\n        }\n        Ok(heading)\n    }",
+      "obligation": "First reject arity outside1..8 or original cover>128 as UnsupportedHeading; only then shift. Refuse any determinant/dependent bit outside heading. Empty and duplicate covers valid."
+    },
+    "close": {
+      "line": 94,
+      "signature": "fn close(&self, input: u16, work: &mut Work) -> Result<ClosureWitness, FdRefusal>",
+      "body": "{\n        let heading = self.heading()?;\n        if input & !heading != 0 {\n            return Err(FdRefusal::AttributeOutsideHeading);\n        }\n        let mut result = input;\n        let mut applications = Vec::new();\n        loop {\n            let before = result;\n            for (i, fd) in self.dependencies.iter().enumerate() {\n                work.spend()?;\n                if fd.determinant & !result == 0 && fd.dependent & !result != 0 {\n                    result |= fd.dependent;\n                    applications.push(i);\n                }\n            }\n            if result == before {\n                break;\n            }\n        }\n        Ok(ClosureWitness {\n            input,\n            result,\n            applications,\n        })\n    }",
+      "obligation": "Validate heading/input. Start exactly input. Each ordered full scan charges every FD, applies only enabled strictly growing dependency,and saves its original index. Include final stable scan. <=8strict attribute additions;return least closed superset or BudgetUnknown without partial result."
+    },
+    "closure": {
+      "line": 121,
+      "signature": "pub fn closure(&self, input: u16, budget: u64) -> Result<ClosureWitness, FdRefusal>",
+      "body": "{\n        self.close(\n            input,\n            &mut Work {\n                used: 0,\n                limit: budget,\n            },\n        )\n    }",
+      "obligation": "Create private zero-used budget and delegate close. Empty FD cover has zero-cost stable pass and succeeds even budget0."
+    },
+    "verify_closure": {
+      "line": 133,
+      "signature": "pub fn verify_closure(&self, witness: &ClosureWitness) -> bool",
+      "body": "{\n        let Ok(heading) = self.heading() else {\n            return false;\n        };\n        if (witness.input | witness.result) & !heading != 0 {\n            return false;\n        }\n        let mut result = witness.input;\n        for &index in &witness.applications {\n            let Some(fd) = self.dependencies.get(index) else {\n                return false;\n            };\n            if fd.determinant & !result != 0 || fd.dependent & !result == 0 {\n                return false;\n            }\n            result |= fd.dependent;\n        }\n        result == witness.result\n            && self\n                .dependencies\n                .iter()\n                .all(|fd| fd.determinant & !result != 0 || fd.dependent & !result == 0)\n    }",
+      "obligation": "Validate heading and both masks. Replay only in-range enabled strictly growing applications from input;require saved result equality and closure under every FD. Alternate valid strict derivations accepted;no requirement of canonical producer order,external query binding or trusted serde."
+    },
+    "projection": {
+      "line": 157,
+      "signature": "fn projection(\n        &self,\n        component: u16,\n        work: &mut Work,\n    ) -> Result<(Vec<FunctionalDependency>, Vec<FunctionalDependency>), FdRefusal>",
+      "body": "{\n        let mut projected = Vec::new();\n        let mut violations = Vec::new();\n        let mut subset = component;\n        loop {\n            work.spend()?;\n            let closure = self.close(subset, work)?.result & component;\n            let dependent = closure & !subset;\n            if dependent != 0 {\n                let fd = FunctionalDependency {\n                    determinant: subset,\n                    dependent,\n                };\n                if closure != component {\n                    violations.push(fd.clone());\n                }\n                projected.push(fd);\n            }\n            if subset == 0 {\n                break;\n            }\n            subset = (subset - 1) & component;\n        }\n        Ok((projected, violations))\n    }",
+      "obligation": "Private admitted component:visit all subsets once in descending bitset order including0. Charge subset then original-cover closure with shared budget. Intersect closure with component;emit exact nontrivial dependent difference;mark BCNF violation iff this closure is not entire component. Only clone record when needed in both owned output lists."
+    },
+    "binary_decomposition": {
+      "line": 189,
+      "signature": "pub fn binary_decomposition(\n        &self,\n        components: [u16; 2],\n        budget: u64,\n    ) -> Result<BinaryDecompositionReport, FdRefusal>",
+      "body": "{\n        let heading = self.heading()?;\n        if components.iter().any(|&c| c == 0 || c & !heading != 0)\n            || components[0] | components[1] != heading\n        {\n            return Err(FdRefusal::InvalidDecomposition);\n        }\n        let mut work = Work {\n            used: 0,\n            limit: budget,\n        };\n        let intersection_closure = self.close(components[0] & components[1], &mut work)?;\n        let determined_component = components\n            .iter()\n            .position(|&c| c & !intersection_closure.result == 0);\n        let (_, original_bcnf_violations) = self.projection(heading, &mut work)?;\n        let (p0, v0) = self.projection(components[0], &mut work)?;\n        let (p1, v1) = self.projection(components[1], &mut work)?;\n        // The projected cover can exceed the input cover's size. This is internal,\n        // bounded by 2*(2^8); close it directly without the public input-cover cap.\n        let projected = p0.iter().chain(&p1).collect::<Vec<_>>();\n        let lost_dependencies = self.lost_dependencies(&projected, &mut work)?;\n        Ok(BinaryDecompositionReport {\n            intersection_closure,\n            determined_component,\n            original_bcnf_violations,\n            component_bcnf_violations: [v0, v1],\n            projected_dependencies: [p0, p1],\n            lost_dependencies,\n            work_used: work.used,\n        })\n    }",
+      "obligation": "Validate schema before nonempty in-heading covering components. Shared budget,intersection closure and first determined component,originalBCNF and both complete projections,then original cover implications under both projected lists. Return ordered report and literal work_used. Internal projected cover may exceed128;no public input-cover guard reused."
+    },
+    "lost_dependencies": {
+      "line": 226,
+      "signature": "fn lost_dependencies(\n        &self,\n        projected: &[&FunctionalDependency],\n        work: &mut Work,\n    ) -> Result<Vec<FunctionalDependency>, FdRefusal>",
+      "body": "{\n        let mut lost = Vec::new();\n        for fd in &self.dependencies {\n            let closure = close_projected(fd.determinant, projected, work)?;\n            if fd.dependent & !closure != 0 {\n                lost.push(fd.clone());\n            }\n        }\n        Ok(lost)\n    }",
+      "obligation": "For each original FD in occurrence order use private close_projected under shared work. Copy FD iff its dependent not contained in reached closure;retain duplicate original records and exact order."
+    },
+    "check_instance": {
+      "line": 241,
+      "signature": "pub fn check_instance<T: Ord>(&self, rows: &[Vec<T>]) -> Result<(), FdRefusal>",
+      "body": "{\n        self.heading()?;\n        if rows.len() > 128 || rows.iter().any(|r| r.len() != self.arity) {\n            return Err(FdRefusal::InstanceShape);\n        }\n        if rows.iter().collect::<BTreeSet<_>>().len() != rows.len() {\n            return Err(FdRefusal::DuplicateTuple);\n        }\n        for (dependency, fd) in self.dependencies.iter().enumerate() {\n            if let Some((first, second)) = first_violation(rows, fd) {\n                return Err(FdRefusal::InstanceDependencyViolation {\n                    dependency,\n                    first,\n                    second,\n                });\n            }\n        }\n        Ok(())\n    }",
+      "obligation": "Heading before <=128 exact-arity shape,before set-duplicate refusal,before dependency then first-row then earlier-second-row search. Return exact earliest dependency,first,second;no schema inferred from one successful instance."
+    },
+    "project": {
+      "line": 262,
+      "signature": "pub fn project<T: Ord + Clone>(\n    rows: &[Vec<T>],\n    arity: usize,\n    component: u16,\n) -> Result<BTreeSet<Vec<T>>, FdRefusal>",
+      "body": "{\n    if arity == 0\n        || arity > 8\n        || component == 0\n        || component >> arity != 0\n        || rows.len() > 128\n        || rows.iter().any(|r| r.len() != arity)\n    {\n        return Err(FdRefusal::InstanceShape);\n    }\n    Ok(rows\n        .iter()\n        .map(|row| {\n            (0..arity)\n                .filter(|&i| component & (1 << i) != 0)\n                .map(|i| row[i].clone())\n                .collect()\n        })\n        .collect())\n}",
+      "obligation": "Guard arity before shifting;nonempty in-heading mask,<=128 exact-width rows elseInstanceShape. Clone exactly selected coordinates in original heading order;BTreeSet collapses duplicate projections/input rows. Lawful generic Ord/Eq/Clone TCB."
+    },
+    "close_projected": {
+      "line": 289,
+      "signature": "fn close_projected(\n    input: u16,\n    projected: &[&FunctionalDependency],\n    work: &mut Work,\n) -> Result<u16, FdRefusal>",
+      "body": "{\n    let mut closure = input;\n    loop {\n        let before = closure;\n        for local in projected {\n            work.spend()?;\n            if local.determinant & !closure == 0 {\n                closure |= local.dependent;\n            }\n        }\n        if closure == before {\n            return Ok(closure);\n        }\n    }\n}",
+      "obligation": "Private admitted determinant/projected masks inside original heading;all cover entries charged in order even disabled or no-growth,including final stable pass. Monotone union,at most8strict passes. No input-cover128 cap on internally generated cover."
+    },
+    "rows_agree": {
+      "line": 309,
+      "signature": "fn rows_agree<T: Eq>(first: &[T], second: &[T], mask: u16) -> bool",
+      "body": "{\n    (0..first.len()).all(|i| mask & (1 << i) == 0 || first[i] == second[i])\n}",
+      "obligation": "Private validated equal-width rows,arity<=8. Selected-coordinate conjunction with short-circuit Eq order ascending heading;vacuous empty determinant true."
+    },
+    "first_violation": {
+      "line": 313,
+      "signature": "fn first_violation<T: Eq>(rows: &[Vec<T>], fd: &FunctionalDependency) -> Option<(usize, usize)>",
+      "body": "{\n    for first in 0..rows.len() {\n        for second in 0..first {\n            if rows_agree(&rows[first], &rows[second], fd.determinant)\n                && !rows_agree(&rows[first], &rows[second], fd.dependent)\n            {\n                return Some((first, second));\n            }\n        }\n    }\n    None\n}",
+      "obligation": "Private validated rows and dependency masks. Visit first ascending then second<first ascending;test determinant agreement before negated dependent agreement. Return earliest pair exactly orNone. No row or mask copies."
+    },
+    "JoinLayout::new": {
+      "line": 338,
+      "signature": "fn new(arity: usize, components: [u16; 2], counts: [usize; 2]) -> Result<Self, FdRefusal>",
+      "body": "{\n        if arity == 0\n            || arity > 8\n            || components.iter().any(|&c| c == 0 || c >> arity != 0)\n            || components[0] | components[1] != (1 << arity) - 1\n            || counts.iter().any(|&count| count > 128)\n        {\n            return Err(FdRefusal::InvalidDecomposition);\n        }\n        let indices = components.map(|c| {\n            (0..arity)\n                .filter(|&i| c & (1 << i) != 0)\n                .collect::<Vec<_>>()\n        });\n        let shared = indices[0]\n            .iter()\n            .enumerate()\n            .filter_map(|(j, i)| indices[1].iter().position(|k| k == i).map(|k| (j, k)))\n            .collect();\n        let output = (0..arity)\n            .map(|i| Self::column(i, &indices))\n            .collect::<Result<_, _>>()?;\n        Ok(Self {\n            widths: indices.each_ref().map(Vec::len),\n            shared,\n            output,\n        })\n    }",
+      "obligation": "JoinLayout private constructor:arity before shifts,nonempty in-heading components,cover and<=128 input counts elseInvalidDecomposition. Compute pure usize indices/shared pairs/original-heading output exactly once;left values preferred on intersection. No arbitrary T callbacks or per-row-pair layout allocation."
+    },
+    "JoinLayout::column": {
+      "line": 367,
+      "signature": "fn column(attribute: usize, indices: &[Vec<usize>; 2]) -> Result<JoinColumn, FdRefusal>",
+      "body": "{\n        if let Some(j) = indices[0].iter().position(|&k| k == attribute) {\n            return Ok(JoinColumn::Left(j));\n        }\n        indices[1]\n            .iter()\n            .position(|&k| k == attribute)\n            .map(JoinColumn::Right)\n            .ok_or(FdRefusal::InvalidDecomposition)\n    }",
+      "obligation": "Find first original attribute index in left;otherwise checked right lookup. Cover guarantees existence on constructor path;private direct missing case still returnsInvalidDecomposition rather than unwrap panic."
+    },
+    "JoinLayout::matches": {
+      "line": 378,
+      "signature": "fn matches<T: Eq>(&self, left: &[T], right: &[T]) -> bool",
+      "body": "{\n        self.shared.iter().all(|&(j, k)| left[j] == right[k])\n    }",
+      "obligation": "Private shape-admitted rows:compare exactly shared column pairs in ascending left attribute order. Empty intersection true. No copies or allocations."
+    },
+    "JoinLayout::row": {
+      "line": 382,
+      "signature": "fn row<T: Clone>(&self, left: &[T], right: &[T]) -> Vec<T>",
+      "body": "{\n        self.output\n            .iter()\n            .map(|column| match *column {\n                JoinColumn::Left(j) => left[j].clone(),\n                JoinColumn::Right(k) => right[k].clone(),\n            })\n            .collect()\n    }",
+      "obligation": "Private shape-admitted rows:clone exactly one chosen value per original attribute,ascending heading,left preferred. Owned Vec is required output. Match has only two finite branch variants;no payload conversion or arithmetic."
+    },
+    "natural_join": {
+      "line": 395,
+      "signature": "pub fn natural_join<T: Ord + Clone>(\n    left: &BTreeSet<Vec<T>>,\n    right: &BTreeSet<Vec<T>>,\n    arity: usize,\n    components: [u16; 2],\n) -> Result<BTreeSet<Vec<T>>, FdRefusal>",
+      "body": "{\n    let layout = JoinLayout::new(arity, components, [left.len(), right.len()])?;\n    if left.iter().any(|r| r.len() != layout.widths[0])\n        || right.iter().any(|r| r.len() != layout.widths[1])\n    {\n        return Err(FdRefusal::InstanceShape);\n    }\n    let mut joined = BTreeSet::new();\n    for a in left {\n        for b in right {\n            if layout.matches(a, b) {\n                joined.insert(layout.row(a, b));\n            }\n        }\n    }\n    Ok(joined)\n}",
+      "obligation": "Preflight layout then both row widths,including empty opposing relation;shape refusal InstanceShape. Left-major/right-minor at most128*128 pairs;compare cached shared positions,materialize only matching rows,insert into result set. No repeated position scans or redundant T/output Vec clones in pair loop."
+    }
+  },
+  "invariant_argument": [
+    "Raw serde schemas/reports/witnesses are not admitted certificates. FdSchema is revalidated by each public decision. deny_unknown_fields only restricts serialized structure;closure verify replays all derivations. Level3 reflects bounded FD/set algorithms,not a database/category architecture.",
+    "After heading admission every bitset lies in 8-bit finite heading. Public closure input and witness input/result are checked. A close application has determinant subset current and adds at least one bit. Induction gives input subset current subset every closed superset of input;terminal full stable scan makes current closed,so it is the least closure. Saved indices strictly grow,at most8. Verifier derives the same two inclusions for any accepted strict index sequence,not just producer order. Lean accepted_exact proves this abstract replay theorem;Rust bitwise/serde/storage mapping is this source argument and independent closed-superset native enumeration.",
+    "Projection descending subset iteration is exact:for nonzero subset,(subset-1)&component visits the next lower component subset;0 is processed before stopping,so no underflow. For each subset X,closureF(X) intersect component supplies all newly implied component attributes. Nontrivial projection entry iff difference nonempty;BCNF violation iff that closure is not entire component. These exact projected entries form a complete equivalent cover for component-restricted implications because the entry for each determinant contains all its implied component attributes. A determinant whose entire closure equals itself needs no entry.",
+    "For binary FD losslessness,the intersection closure determines a component exactly by subset test;first component is selected on ties. Sufficiency is Lean lossless_left/right under cover and row FD assumptions. Necessity source argument over unrestricted two-value relations:if neither component lies in C=closure(intersection),use all-zero row a and row b equal0 on C and1 elsewhere. Closedness of C makes every original FD hold for the pair. A join row choosing a on component0 and b on component1 is well-defined because intersection subset C,and differs from both original rows because each component has a coordinate outside C. Thus some satisfying instance has a spurious join tuple. Empty/current instances do not establish schema membership,and no arbitrary current finite value domain guarantees the counterexample values exist.",
+    "Every projected implication follows from original closure,so the union projected cover is entailed by original. It preserves original FD theory iff every original generator dependent is contained in its determinant closure under that union. That is exactly lost_dependencies;duplicate generators and order remain raw report data. Internal cover can have510nontrivial entries and must not use public128 cap. Shared Work charges subset admission plus each original/internal FD inspection including terminal scans,regardless of enabledness. Source extraction only moves old loops into helpers,leaving exact call and charge order;frozen reference/native budgets compare full reports and every tested refusal. At each spend,used<=limit;successful used<limit makes u64increment safe even MAX. Failure drops only temporary local state.",
+    "Instance shape ensures every indexed row has arity<=8;original dependency masks already admitted. Set duplicate test uses lawful Ord consistent with Eq. Pair traversal is dependency,first,second ascending;rows_agree preserves original selected Eq order. Projection and join preserve exact original coordinate order and set semantics. Join preflight computes indices in0..arity and validates cover,both row widths before all pair indexing. Shared layout pairs point within admitted widths,and output columns cover each original attribute once. Attribute lookup chooses left on overlaps and checked right otherwise. Generic Eq/Ord must be equivalence/total order compatible and Clone value-preserving;callbacks/allocations can panic and no arbitrary-T purity/crash guarantee is made.",
+    "All old public signatures and result/error variants remain unchanged. Source changes are docs,loop extraction and pure cached usize join layout. Old and new calls to T equality/clone occur in the same row/coordinate order under these lawful trait assumptions;standard usize layout computations have no user T callbacks. No redundant row/payload clones or position scans occur within pair loops. Required projected-record clone feeds two distinct owned outputs;lost original FD clones and required T row clones remain. Max output16384rows of <=8values;payload byte size and allocator/runtime bound are not inferred. fmt write! has one formatting delegation and no hidden domain branch. Derived serde/Debug/Clone/Eq code is compiler/library TCB,not counted as expanded AST."
+  ],
+  "consumer_review": [
+    "No active completed assessment context referenced this source before editing. Current Rust symbol search found only the module declarations in category lib.rs/mod.rs and definitions here;no target caller migration needed. Original459category tests plus3independent subject tests run on the actual updated category package. Whole workspace is not tested or inferred.",
+    "Frozen pre-refactor source is embedded verbatim in independent test module for exact work/error/report preservation. Its hash is retained separately. Independent closed-superset intersection and full-tuple set-membership join oracles do not share the production closure loop or cached column layout. Source reference covers all inputs under stated trait laws;bounded native cases supplement it."
+  ],
+  "metrics": {
+    "receipt": "evidence/quality/category_homology/20261019T222347Z-metrics/receipt.json",
+    "functions": 19,
+    "max_ccn": 10,
+    "max_cognitive": 10,
+    "max_nesting": 3
+  },
+  "known_limits": [
+    "Contracts pending.",
+    "No admitted immutable schema/report certificate;raw serde is untrusted.",
+    "No extracted Rust proof,MIR verification or allocator totality.",
+    "FD-only criterion on arbitrary exact set relations;no SQL NULL/bags/MVD/domain-specific authorization.",
+    "Generic lawful Ord/Eq/value-preserving Clone are caller TCB.",
+    "Finite designated mutation and independent generated corpora are scoped evidence;not all possible faults or full-workspace success."
+  ]
+}

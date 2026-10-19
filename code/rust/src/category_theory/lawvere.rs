@@ -1,12 +1,15 @@
-//! Lawvere Theory — Spec Section 25.
+//! Raw operation/equation declarations and literal partial-table diagnostics.
 //!
-//! A Lawvere theory is a Cauchy-complete monoid in Prof.
-//! Operations are profunctor elements, substitution is composition,
-//! and equations are 2-cells.
+//! These records do not admit a Lawvere theory, profunctor, typed substitution
+//! calculus or equation semantics. Names, sorts and stored status are caller data.
+//! Associativity checks only the supplied cases under the documented slot formula;
+//! the Cauchy diagnostic searches declared names for the two literal split entries.
+//! Neither result establishes completeness of an underlying mathematical category.
 
 use std::collections::BTreeMap;
 
 #[derive(Debug, Clone, PartialEq, Eq)]
+/// An unchecked name and two ordered sort lists; duplicates are retained.
 pub struct OperationDecl {
     pub name: String,
     pub input_sorts: Vec<String>,
@@ -32,6 +35,7 @@ impl OperationDecl {
 }
 
 #[derive(Debug, Clone, PartialEq, Eq)]
+/// Uninterpreted equation strings, not parsed or enforced equations.
 pub struct EquationDecl {
     pub name: String,
     pub lhs: String,
@@ -49,12 +53,15 @@ impl EquationDecl {
 }
 
 #[derive(Debug, Clone, PartialEq, Eq)]
+/// Result of the declared-name split inventory, not a category-law certificate.
 pub enum TheoryCauchyStatus {
     Complete,
     Incomplete { unsplit_operations: Vec<String> },
 }
 
 #[derive(Debug, Clone)]
+/// Mutable raw records. Appends retain duplicates; table inserts overwrite keys.
+/// `cauchy_status` is independent caller metadata, never updated by the checkers.
 pub struct LawvereTheory {
     pub name: String,
     pub sorts: Vec<String>,
@@ -107,18 +114,45 @@ impl LawvereTheory {
     }
 }
 
+// BTreeMap iteration already orders these borrowed keys. Build once per diagnostic
+// so nested searches avoid allocating two temporary String keys per lookup.
+struct SubstitutionLookup<'a> {
+    entries: Vec<((&'a str, usize, &'a str), &'a str)>,
+}
+
+impl<'a> SubstitutionLookup<'a> {
+    fn new(theory: &'a LawvereTheory) -> Self {
+        Self {
+            entries: theory.substitution_table.iter()
+                .map(|((outer, slot, inner), value)| ((outer.as_str(), *slot, inner.as_str()), value.as_str()))
+                .collect(),
+        }
+    }
+
+    fn get(&self, outer: &str, slot: usize, inner: &str) -> Option<&'a str> {
+        self.entries.binary_search_by_key(&(outer, slot, inner), |(key, _)| *key)
+            .ok().and_then(|index| self.entries.get(index)).map(|(_, value)| *value)
+    }
+}
+
+/// Check h-in-g-in-f at slots j and i against g-in-f followed by h at i+j.
+/// Each supplied case emits at most one diagnostic, in input order. Overflow is
+/// refused before table lookup; absent entries (including both absent) fail.
+/// No arity/sort admission is implied. O(S) borrowed index storage, O(C log S)
+/// lookups for S table entries and C cases, plus returned diagnostic strings.
 pub fn check_substitution_associativity(
     theory: &LawvereTheory,
     cases: &[(&str, usize, &str, usize, &str)],
 ) -> Vec<String> {
     let mut violations = Vec::new();
+    let lookup = SubstitutionLookup::new(theory);
     for &(f, i, g, j, h) in cases {
-        let left = theory
-            .substitute(g, j, h)
-            .and_then(|gh| theory.substitute(f, i, gh));
-        let right = theory
-            .substitute(f, i, g)
-            .and_then(|fg| theory.substitute(fg, i + j, h));
+        let Some(slot) = i.checked_add(j) else {
+            violations.push(format!("Substitution slot overflow: i={}, j={}", i, j));
+            continue;
+        };
+        let left = lookup.get(g, j, h).and_then(|gh| lookup.get(f, i, gh));
+        let right = lookup.get(f, i, g).and_then(|fg| lookup.get(fg, slot, h));
         match (left, right) {
             (Some(l), Some(r)) if l == r => {}
             (Some(l), Some(r)) => violations.push(format!(
@@ -134,45 +168,34 @@ pub fn check_substitution_associativity(
     violations
 }
 
+fn is_declared_idempotent(lookup: &SubstitutionLookup<'_>, op: &OperationDecl) -> bool {
+    op.arity() == 1 && op.coarity() == 1 && lookup.get(&op.name, 0, &op.name) == Some(op.name.as_str())
+}
+
+fn splitting_pair(theory: &LawvereTheory, lookup: &SubstitutionLookup<'_>, name: &str,
+                  r: &OperationDecl, s: &OperationDecl) -> bool {
+    lookup.get(&s.name, 0, &r.name) == Some(name)
+        && r.output_sorts.first().and_then(|sort| theory.identities.get(sort))
+            .is_some_and(|identity| lookup.get(&r.name, 0, &s.name) == Some(identity.as_str()))
+}
+
+fn has_splitting(theory: &LawvereTheory, lookup: &SubstitutionLookup<'_>, name: &str) -> bool {
+    theory.operations.iter().any(|r| {
+        theory.operations.iter().any(|s| splitting_pair(theory, lookup, name, r, s))
+    })
+}
+
+/// Inventory unary/co-unary self-idempotent names without a declared split pair.
+/// Search all declared r,s, using only r's first output sort for its identity;
+/// this deliberately retains raw-table behavior, not typed splitting admission.
+/// Duplicates and input order are retained. No detected unsplit name is vacuous
+/// `Complete`; neither this function nor its result updates stored status.
+/// O(S) borrowed index plus O(N^3 log S) worst-case lookups for N operations.
 pub fn check_theory_cauchy(theory: &LawvereTheory) -> TheoryCauchyStatus {
-    let mut unsplit = Vec::new();
-    for op in &theory.operations {
-        if op.arity() != 1 || op.coarity() != 1 {
-            continue;
-        }
-        let is_idempotent = theory
-            .substitute(&op.name, 0, &op.name)
-            .map(|r| r == op.name)
-            .unwrap_or(false);
-        if !is_idempotent {
-            continue;
-        }
-        // Search for splitting pair
-        let splits = theory.operations.iter().any(|r_op| {
-            theory.operations.iter().any(|s_op| {
-                let sr_is_e = theory
-                    .substitute(&s_op.name, 0, &r_op.name)
-                    .map(|v| v == op.name)
-                    .unwrap_or(false);
-
-                let rs_is_id = theory
-                    .substitute(&r_op.name, 0, &s_op.name)
-                    .map(|v| {
-                        r_op.output_sorts
-                            .first()
-                            .and_then(|sort| theory.identities.get(sort))
-                            .map(|id| id == v)
-                            .unwrap_or(false)
-                    })
-                    .unwrap_or(false);
-
-                sr_is_e && rs_is_id
-            })
-        });
-        if !splits {
-            unsplit.push(op.name.clone());
-        }
-    }
+    let lookup = SubstitutionLookup::new(theory);
+    let unsplit: Vec<String> = theory.operations.iter()
+        .filter(|op| is_declared_idempotent(&lookup, op) && !has_splitting(theory, &lookup, &op.name))
+        .map(|op| op.name.clone()).collect();
     if unsplit.is_empty() {
         TheoryCauchyStatus::Complete
     } else {

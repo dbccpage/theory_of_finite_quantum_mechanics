@@ -1,0 +1,161 @@
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/category_theory/enriched/mod.rs",
+    "language": "Rust",
+    "sha256": "abda487b764f6a6bce9ebc6f8ae57011862e7a49a81792dd0b8ab5c55bd4625b"
+  },
+  "reviewer": "Codex explicit public namespace/source identity review",
+  "evaluation_timestamp": "2026-10-19T01:22:37.007160+00:00",
+  "gates": {
+    "G1": "A",
+    "G2": "A",
+    "G3": "A",
+    "G4": "A",
+    "G5": "A"
+  },
+  "formal_specification": {
+    "domain": "Static Rust module and nominal type exports. There is no runtime mathematical input or admission operation in this file.",
+    "exports": {
+      "BaseCategory": "base_category::BaseCategory",
+      "EnrichedAdjunction": "enriched_adjunction::EnrichedAdjunction",
+      "EnrichedCategory": "enriched_category::EnrichedCategory",
+      "HomObjectEntry": "enriched_category::HomObjectEntry",
+      "EnrichedFunctor": "enriched_functor::EnrichedFunctor",
+      "EnrichedNaturalTransformation": "enriched_natural_transformation::EnrichedNaturalTransformation",
+      "EnrichedPresheaf": "enriched_presheaf::EnrichedPresheaf",
+      "WeightedColimit": "weighted_colimit::WeightedColimit",
+      "WeightedLimit": "weighted_limit::WeightedLimit"
+    },
+    "module_exposure": "Every declared public child module is loaded by the canonical category crate from its source file. Exported aliases must identify exactly the separately specified provider types.",
+    "not_claimed": "No child algorithm, mathematical law, theorem, or engineering grade is inherited by reexporting its type."
+  },
+  "symbol_map": {
+    "BaseCategory": "Public alias of base_category::BaseCategory",
+    "EnrichedAdjunction": "Public alias of enriched_adjunction::EnrichedAdjunction",
+    "EnrichedCategory": "Public alias of enriched_category::EnrichedCategory",
+    "HomObjectEntry": "Public alias of enriched_category::HomObjectEntry",
+    "EnrichedFunctor": "Public alias of enriched_functor::EnrichedFunctor",
+    "EnrichedNaturalTransformation": "Public alias of enriched_natural_transformation::EnrichedNaturalTransformation",
+    "EnrichedPresheaf": "Public alias of enriched_presheaf::EnrichedPresheaf",
+    "WeightedColimit": "Public alias of weighted_colimit::WeightedColimit",
+    "WeightedLimit": "Public alias of weighted_limit::WeightedLimit"
+  },
+  "invariant_argument": [
+    "All noncomment source items were inspected and mechanically restricted to public child-module declarations, public use declarations and lint-only module-inception annotations. No initializer, macro-generated item, unsafe block, function or mutable state is present.",
+    "Under the pinned Rust module/type-resolution semantics, a pub use binds the original provider item and does not construct or validate a mathematical object. Canonical controls compare each actual public alias with its explicit original provider type in the real category crate.",
+    "The challenge adapter rebinds child declarations to those same actual canonical modules, splits grouped imports and omits only comments/lint-only attributes. Its normalized positive controls establish the same nominal identities. Each negative module changes one type binding while leaving that provider environment unchanged. No provider algorithm is cloned or reimplemented."
+  ],
+  "failure_paths": {
+    "unresolved_or_private_provider": "The Rust compiler rejects the external canonical control; no successful runtime/API receipt or completed grade follows.",
+    "wrong_valid_binding": "A syntactically valid peer type can compile but violates the declared nominal identity. Every designated peer replacement is detected by its isolated TypeId comparison.",
+    "runtime": "This file has no runtime operation, argument conversion, allocation, indexing, recursion or error recovery. Importing its namespace does not execute the providers functions."
+  },
+  "trust_boundary": {
+    "compiler": "Pinned Rust compiler, linker and standard nominal type identity within this one binary. TypeId values are not serialized, treated as cryptographic attestations or assumed stable across compiler versions.",
+    "providers": "Actual canonical crate child modules and the explicitly pinned source definitions. Their semantics, failure behavior and mathematical claims remain independently graded.",
+    "scope": "This is compiler/API-wiring verification, not a Lean theorem, Rust/MIR refinement, underlying category proof or source-origin attestation."
+  },
+  "consumer_review": [
+    "The actual category library exposes this hierarchy as a public module. Canonical external controls and the unchanged 459-test category suite validate the current public namespace before and after the challenges.",
+    "Known child types are still raw declarations or separately admitted implementations as their own files specify. A public facade cannot turn pending child score gates into completed ones."
+  ],
+  "basis": {
+    "G1": [
+      "Subject and every immediate provider source are SHA-bound; all public export names map to explicit provider paths. Docs already state shells/AuthorityEffect None. The actual crate and captured offline dependencies/compiler binaries anchor the API receipt."
+    ],
+    "G2": [
+      "Canonical and normalized controls agree with the declared nominal identities for every public alias, including the two legacy adjunction exports. There is no semantic arithmetic or unadmitted numeric domain in this file."
+    ],
+    "G3": [
+      "There are no executable production paths or mutable state to violate an invariant. Invalid source/provider visibility is rejected by the trusted compiler; the current external controls compile and execute. All runtime behavior of provider functions remains outside this facade claim."
+    ],
+    "G4": [
+      "All 9 valid single-fault re-export replacements are killed by separate namespace dispatches; no survivor, invalid/equivalent, inconclusive or unrun result. R=1.0 for this file.",
+      "The full campaign detects 107 wrong bindings across nine module files. It separately passes 107 canonical public controls, 107 normalized positive controls and 459 actual category tests before and after. The adapter and exact observation are disclosed; invalid compiler failures are not counted as kills."
+    ],
+    "G5": [
+      "The parsed Rust source contains zero production functions and no item-generating macros. Declared source CCN, cognitive complexity and control nesting are zero because this is a facade, not an unsupported parser result.",
+      "Runtime re-export overhead and allocations are absent. The small explicit module/use lists follow source boundaries; imported provider operational costs are not concealed or awarded this file grade."
+    ]
+  },
+  "open_findings": [],
+  "assurance_limits": [
+    "Capability remains L1 namespace glue, not L5 mathematics.",
+    "No child mathematical validity or engineering grade is inherited.",
+    "Contracts stay pending. No A+, alternate compiler, MIR/allocator proof, cross-repository attestation or whole-workspace success is claimed."
+  ],
+  "evidence": [
+    {
+      "path": "code/rust/quality/category_homology/export_boundaries.json",
+      "sha256": "53abe84f0fc31e39d5de22443abf09f2c573d187fef5f876989a3b38767c4d3d"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T003819Z/summary.json",
+      "sha256": "2718bda7f6bf2f3b3108adf045884f32a3ce9c0f91b8c281fb030e4474d338d3"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T003819Z/mutations.json",
+      "sha256": "2442605cd814bfb6a86e38d68c7955e14fd2d20191ab22daf2a1e1748a940b6b"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T003819Z/baseline.json",
+      "sha256": "7dd3e741e551001f2418b2dd6b599dfa1965cb07e1e1bfe9e5c2e7b71f6b6674"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T003819Z/restored.json",
+      "sha256": "91d060c822367eb16b0579a1d9313b77df494bc92dbbfe0fe25c1cf094f27c02"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T003819Z/builds.json",
+      "sha256": "988646c7a83d4ef5967db314fbad2ffa9bc4fa7a7c7fc8a550f8d9055b5a0c74"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T003819Z/run_export_challenges.py",
+      "sha256": "2c89c6df319fc87e3aae3d781675b556ad9bed23f0285cd378aa31ce6794327f"
+    }
+  ],
+  "context_inputs": [
+    {
+      "path": "code/rust/src/category_theory/enriched/base_category.rs",
+      "sha256": "dfb0f8f384206d8f9f234c9ae2cedd2f9e2042618b1470a0bdf16647a163923e"
+    },
+    {
+      "path": "code/rust/src/category_theory/enriched/enriched_adjunction.rs",
+      "sha256": "1fbd59af210d93767e66d320838fd8dcbd95c9cef65a9041120bb87e0109c24e"
+    },
+    {
+      "path": "code/rust/src/category_theory/enriched/enriched_category.rs",
+      "sha256": "9fe7c7db28a3fc737c55c1f10c41305d88429c5106a47b72a71c29b745f114d4"
+    },
+    {
+      "path": "code/rust/src/category_theory/enriched/enriched_functor.rs",
+      "sha256": "a4abe237c01f3ad97e27533057a9fd6c52a233b3bebc97868903b97f523aa737"
+    },
+    {
+      "path": "code/rust/src/category_theory/enriched/enriched_natural_transformation.rs",
+      "sha256": "9163e429a472ee711f39795e16a63795ffe7c31e2a98c91c83552bd1e67b1445"
+    },
+    {
+      "path": "code/rust/src/category_theory/enriched/enriched_presheaf.rs",
+      "sha256": "8fae801c5723c57545381f3accca210e6dc4a0d05348789af8a9416b4dc244a8"
+    },
+    {
+      "path": "code/rust/src/category_theory/enriched/weighted_colimit.rs",
+      "sha256": "54de3a60cc2d40ac5d05a8ee4f0066635b00bf5c4f78a7962452e839b2bc2ea5"
+    },
+    {
+      "path": "code/rust/src/category_theory/enriched/weighted_limit.rs",
+      "sha256": "a5e2e0de9a3c63c903b42f10638f3a7d52ed452795f463e1e5496c9d85939477"
+    },
+    {
+      "path": "code/rust/src/category_theory/lib.rs",
+      "sha256": "b1535a921f4a69414e8b6636f85c8393f799bd2bc20da600e855864c2d3e8776"
+    },
+    {
+      "path": "code/rust/src/category_theory/Cargo.toml",
+      "sha256": "42378ba9d23fe5a5c97c844ebab457e9187c96b819c5b6a0fe3f9acaff1579a3"
+    }
+  ]
+}

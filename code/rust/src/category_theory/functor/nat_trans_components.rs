@@ -3,6 +3,7 @@
 //!
 //! Explicit component inventory for a natural transformation (shape only).
 
+use omega_category_theory::errors::ArithmosError;
 use serde::{Deserialize, Serialize};
 
 /// Best-effort shell for component data attached to a nat-trans reference.
@@ -38,16 +39,16 @@ impl NatTransComponents {
         }
     }
 
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
         if self.nat_trans_ref.is_empty() {
-            return Err("empty nat_trans_ref".into());
+            return Err(ArithmosError::InvalidShape("empty nat_trans_ref".into()));
         }
         for (i, (obj, mor)) in self.components.iter().enumerate() {
             if obj.is_empty() || mor.is_empty() {
-                return Err(format!("empty component tag at index {i}"));
+                return Err(ArithmosError::InvalidShape(format!("empty component tag at index {i}")));
             }
         }
         Ok(())

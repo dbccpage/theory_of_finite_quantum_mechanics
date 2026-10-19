@@ -1,0 +1,35 @@
+
+running 8 tests
+test root_record_replay_20::subject::tests::monoid_theory ... ok
+test root_record_replay_20::subject::independent_record_tests::borrowed_lookup_matches_public_lookup_for_ordered_and_missing_keys ... ok
+test root_record_replay_20::subject::tests::trivial_theory_cauchy ... ok
+test root_record_replay_20::subject::independent_record_tests::raw_records_preserve_duplicates_overwrites_and_order ... ok
+test root_record_replay_20::subject::independent_record_tests::overflowing_slot_is_reported_without_panicking_or_wrapping ... FAILED
+test root_record_replay_20::subject::independent_record_tests::raw_split_scope_order_duplicates_and_first_output_sort_are_literal ... ok
+test root_record_replay_20::subject::independent_record_tests::supplied_associativity_cases_match_independent_presence_truth_table ... FAILED
+test root_record_replay_20::subject::independent_record_tests::split_inventory_matches_independent_two_name_matrix_oracle ... ok
+
+failures:
+
+---- root_record_replay_20::subject::independent_record_tests::overflowing_slot_is_reported_without_panicking_or_wrapping stdout ----
+
+thread 'root_record_replay_20::subject::independent_record_tests::overflowing_slot_is_reported_without_panicking_or_wrapping' (46060) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\rr\261019T171250\src\category_theory\q\n20.rs:243:2:
+assertion `left == right` failed
+  left: ["Substitution slot overflow: j=18446744073709551615, i=1"]
+ right: ["Substitution slot overflow: i=18446744073709551615, j=1"]
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- root_record_replay_20::subject::independent_record_tests::supplied_associativity_cases_match_independent_presence_truth_table stdout ----
+
+thread 'root_record_replay_20::subject::independent_record_tests::supplied_associativity_cases_match_independent_presence_truth_table' (46248) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\rr\261019T171250\src\category_theory\q\n20.rs:264:152:
+assertion `left == right` failed
+  left: ["Substitution not defined for f=x, g=y, h=z", "Substitution slot overflow: j=18446744073709551615, i=2", "Substitution slot overflow: j=18446744073709551615, i=2"]
+ right: ["Substitution not defined for f=x, g=y, h=z", "Substitution slot overflow: i=18446744073709551615, j=2", "Substitution slot overflow: i=18446744073709551615, j=2"]
+
+
+failures:
+    root_record_replay_20::subject::independent_record_tests::overflowing_slot_is_reported_without_panicking_or_wrapping
+    root_record_replay_20::subject::independent_record_tests::supplied_associativity_cases_match_independent_presence_truth_table
+
+test result: FAILED. 6 passed; 2 failed; 0 ignored; 0 measured; 707 filtered out; finished in 0.01s
+

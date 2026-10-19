@@ -74,6 +74,9 @@ impl Carrier {
 /// Triangles (a,b,c) require edges a->b, b->c and a->c. Missing edges,
 /// repeated vertices, parallel edges and self loops are rejected explicitly.
 /// Construction costs O(E log E + T log E) table work, plus exact law/rank checks.
+/// Opposite directed edges are distinct; duplicate directed edges are refused.
+/// Triangle rows may repeat. Only repeated vertices within one triangle are
+/// refused; each supplied triangle contributes its own signed row.
 pub fn graph_carrier(
     num_nodes: usize,
     edges: &[(usize, usize)],

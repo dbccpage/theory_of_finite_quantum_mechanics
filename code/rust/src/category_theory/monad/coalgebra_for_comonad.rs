@@ -5,6 +5,7 @@
 //! Shell holds carrier + structure-map labels and a comonad ref.
 
 use serde::{Deserialize, Serialize};
+use omega_category_theory::errors::ArithmosError;
 
 /// Best-effort shell for a labeled W-coalgebra (A, k).
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize)]
@@ -51,18 +52,18 @@ impl CoalgebraForComonad {
     }
 
     /// Validate structural emptiness only (shell gate).
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
         if self.carrier_label.is_empty() {
-            return Err("empty carrier_label".into());
+            return Err(ArithmosError::InvalidShape("empty carrier_label".into()));
         }
         if self.structure_map_label.is_empty() {
-            return Err("empty structure_map_label".into());
+            return Err(ArithmosError::InvalidShape("empty structure_map_label".into()));
         }
         if self.comonad_ref.is_empty() {
-            return Err("empty comonad_ref".into());
+            return Err(ArithmosError::InvalidShape("empty comonad_ref".into()));
         }
         Ok(())
     }

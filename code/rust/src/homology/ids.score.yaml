@@ -3,23 +3,23 @@ schema_version: "2.0.0"
 artifact:
   path: "code/rust/src/homology/ids.rs"
   language: "Rust"
-  sha256: "0045aac4bd35a4d1479ac5fcff00a6b4d7964087a70c4e2dec303af0733b29e1"
+  sha256: "a50af254a6ea02531a2fbb24350705e67ad67f0a1a992d61f227b31402aa1aa9"
 profile: "Exact"
 level: "L2"
 level_basis: "Structured data, identifiers, hashes, adapters or declarations; no independent foundational theorem is inferred."
 architecture_target: "L5"
 engineering_target: "A"
 gates:
-  G1: null
-  G2: null
-  G3: null
-  G4: null
-  G5: null
-composite_grade: null
-score_token: null
-is_complete: false
-grade_ceiling: "D"
-evaluation_timestamp: "2026-10-18T18:42:03+00:00"
+  G1: "A"
+  G2: "A"
+  G3: "A"
+  G4: "A"
+  G5: "A"
+composite_grade: "A"
+score_token: "L2A"
+is_complete: true
+grade_ceiling: "A"
+evaluation_timestamp: "2026-10-19T06:53:37.203593+00:00"
 AuthorityEffect: "None"
 claim:
   urn: "urn:tfqm:rust:homology:ids"
@@ -30,18 +30,42 @@ contract:
   path: null
   note: "Reserved for a later user-requested contract; none created or asserted here."
 evidence:
-  - {"path": "evidence/quality/category_homology/20261018T184203Z/baseline.json", "sha256": "e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c", "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."}
-  - {"path": "evidence/quality/category_homology/20261018T184203Z/summary.json", "sha256": "ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67", "scope": "Source snapshot binding and complete six-outcome accounting."}
-  - {"path": "evidence/quality/category_homology/20261018T184203Z/mutations.json", "sha256": "c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5", "scope": "Designated critical faults only; outcomes for this file are enumerated below."}
-  - {"path": "evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json", "sha256": "86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1", "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."}
+  - {"path": "evidence/quality/category_homology/20261019T033051Z/baseline.json", "sha256": "843840ab84fc6528912d202a56ab18f064e06cd99d151f28bf29f4e3c517955c", "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."}
+  - {"path": "evidence/quality/category_homology/20261019T033051Z/summary.json", "sha256": "5f95c474a421f178cf3df3dc7f8537ffe6643314c8a43277b50366461fb9f19f", "scope": "Source snapshot binding and complete six-outcome accounting."}
+  - {"path": "evidence/quality/category_homology/20261019T033051Z/mutations.json", "sha256": "8cef4e3d8beb8361824e344ec2734c031025f9102be491c07b99e946c1d03c5a", "scope": "Designated critical faults only; outcomes for this file are enumerated below."}
+  - {"path": "evidence/quality/category_homology/20261019T033632Z-metrics/receipt.json", "sha256": "88fc36b7e4d283dd2d27df21d3e0f9847cd1c5d4edca3eb264708cfbcc1b9cf8", "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."}
+  - {"path": "evidence/quality/category_homology/20261019T033051Z/dependency_receipt.json", "sha256": "81c929bcb35be1d674999ed0c9ea0b4193fc5dd4d5110e44c8914694d560bb1d", "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred."}
+  - {"path": "code/rust/quality/category_homology/assessments/carrier_facade_provider_refresh/ids.json", "sha256": "7c8e54d0b4b69f811932f6c74233c3685da181ee5f4ee1bcccf53ad0eb8d8360", "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping."}
 verification:
   baseline_ok: true
   source_snapshot_unchanged: true
-  compiled_scope: "shared scoped crate build"
+  compiled_scope: "Actual homology namespace and one-fault copies inside their real parent scopes; no visibility widening or provider replacement"
   local_mutant_ids:
-    - "H08-zero-id"
+    - "HP-1-0"
+    - "HP-2-1"
+    - "HP-3-2"
+    - "HP-4-3"
+    - "HP-5-4"
+    - "HP-6-5"
+    - "HP-7-6"
+    - "HP-8-7"
+    - "HP-9-8"
+    - "HP-10-9"
+    - "HP-11-10"
+    - "HP-12-11"
+    - "HP-13-12"
+    - "HP-14-13"
+    - "HP-15-14"
+    - "HP-16-15"
+    - "HP-17-16"
+    - "HP-18-17"
+    - "HP-19-18"
+    - "HP-20-19"
+    - "HP-21-20"
+    - "HP-22-21"
+  dependency_contents_stable: true
 mutation_accounting:
-  killed: 1
+  killed: 22
   survived: 0
   demonstrably_equivalent: 0
   invalid: 0
@@ -52,17 +76,16 @@ structure:
   tool: "syn 3.0.9 source AST"
   source_ast_parsed: true
   expanded_ast: false
-  physical_lines: 303
-  parsed_production_functions: 14
-  max_production_ccn: 22
+  physical_lines: 313
+  parsed_production_functions: 16
+  max_production_ccn: 10
   cognitive_complexity_upper_bound: 9
   control_nesting: 3
   opaque_function_macros: []
-  functions_exceeding_A:
-    - {"ccn": 22, "cognitive_upper_bound": 9, "control_nesting": 3, "line": 212, "name": "identifier_kinds_round_trip", "opaque_macros": []}
+  functions_exceeding_A: []
   scope: "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
-open_findings:
-  - "A complete five-gate semantic, failure and consumer audit has not been established for this file."
-  - "Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds."
-  - "External path dependency source contents have not received a separate origin/content attestation."
-  - "Declared source metrics impose a conservative D ceiling; exceeding functions are listed in structure. Cognitive values are upper bounds, not counterexamples to semantic correctness."
+open_findings: []
+assurance_limits:
+  - "L2 typed IDs/error data; no foundational mathematics inferred from type names or diagnostic text."
+  - "No global ID generation/uniqueness, attached contracts, A+, expanded compiler/MIR proof, dependency-origin attestation, allocator totality or whole-workspace green."
+  - "Historical own-source primary mutations remain historical; current provider correspondence uses the pinned facade source/model audit and fresh concrete composition."

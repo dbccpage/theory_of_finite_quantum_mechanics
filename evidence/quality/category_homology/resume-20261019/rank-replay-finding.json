@@ -1,0 +1,17 @@
+{
+  "AuthorityEffect": "None",
+  "subject": "code/rust/src/homology/rank_certificate.rs",
+  "original_source_sha256": "d10f292c869981053835b0afa088be72e2084b33abc7a9af153621281a5f7e2f",
+  "current_regression_source_sha256": "f14f541e8590665165c4b85994868dddb1ab2ca497a60a8ad151f2bfd65c0dca",
+  "witness": "Construct an admitted rank certificate for [1], then replay against BasicMatrix containing Q::new_raw(1,0). verify_against calls hash_matrix before scalar admission; hash_matrix imports linear_algebra::scalars::hash_rational, which calls Ratio::reduced and panics on denominator zero.",
+  "prior_review_correction": "The earlier provider review incorrectly stated that homology hashing uses its own scalar encoder. The import at hashing.rs:7 and call at hashing.rs:42 use the shared normalizing provider. The prior rank assessment is superseded for current failure assurance.",
+  "established_gates": {
+    "G2": "D",
+    "G3": "E"
+  },
+  "trace_status": "Reproduced: 95 existing tests pass and the new public-replay regression panics with denominator == 0 in num-rational 0.4.2. The namespace control fails identically; all eight old fault candidates remain unrun.",
+  "trace": {
+    "path": "evidence/quality/category_homology/20261019T004721Z/homology-baseline.log",
+    "sha256": "5bdf43312e451224eff3cee911b9f4f025dd9006cec02fe25c57410809ad4d6d"
+  }
+}

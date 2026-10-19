@@ -1,0 +1,81 @@
+{
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/category_theory/finite_joint_carrier.rs",
+    "sha256": "c5b0adbdbf585dfc546676ad9e9bc516e7c9626ccf069571ef5ffa9c86eb3044"
+  },
+  "production_functions": {
+    "refinement_cost": {
+      "line": 42,
+      "signature": "fn refinement_cost(m: &PartialDynamics) -> Option<usize>",
+      "body": "{\n    let n = m.reports().len().checked_add(1)?;\n    n.checked_mul(n)?\n        .checked_mul(m.transitions()[0].len().checked_add(1)?)\n}",
+      "obligation": "From an admitted nonempty PartialDynamics compute checked (states+1)^2*(alphabet+1); every overflow returns None. Constructor invariants give a nonempty rectangular transitions table, so [0] is safe. This is a conservative cell estimate, not elapsed operations, bytes, allocation or time admission."
+    },
+    "new": {
+      "line": 50,
+      "signature": "pub fn new(\n        left: &PartialDynamics,\n        right: &PartialDynamics,\n        pairs: Vec<(usize, usize)>,\n        answers: Vec<usize>,\n        max_cells: usize,\n    ) -> Result<Self, JointError>",
+      "body": "{\n        let cost = refinement_cost(left)\n            .and_then(|l| refinement_cost(right).and_then(|r| l.checked_add(r)))\n            .and_then(|n| pairs.len().checked_mul(3).and_then(|p| n.checked_add(p)));\n        if cost.is_none_or(|c| c > max_cells) {\n            return Err(JointError::WorkLimit);\n        }\n        if pairs.len() != answers.len()\n            || pairs.iter().copied().collect::<BTreeSet<_>>().len() != pairs.len()\n            || pairs\n                .iter()\n                .any(|&(l, r)| l >= left.reports().len() || r >= right.reports().len())\n        {\n            return Err(JointError::InvalidRelation);\n        }\n        let mut lc = left.quotient().state_to_block;\n        lc.truncate(left.reports().len());\n        let mut rc = right.quotient().state_to_block;\n        rc.truncate(right.reports().len());\n        let reports = pairs.iter().map(|&(l, r)| (lc[l], rc[r])).collect();\n        Ok(Self {\n            pairs,\n            left_classes: lc,\n            right_classes: rc,\n            reports,\n            answers,\n        })\n    }",
+      "obligation": "Compute both component estimates plus three cells per relation row using checked addition/multiplication; overflow or cost>limit returns WorkLimit FIRST. Then reject answer length mismatch, duplicate raw pairs (even equal answers), or either component index outside carrier. Complete local quotients include a fresh unavailable sink; truncate only the state map suffix before collecting reports. Save exact original pairs/order, local class maps, reports and answers privately. Empty relation is admitted; no product closure or independent preparation inferred."
+    },
+    "pairs": {
+      "line": 84,
+      "signature": "pub fn pairs(&self) -> &[(usize, usize)]",
+      "body": "{\n        &self.pairs\n    }",
+      "obligation": "Borrow exact immutable caller-supplied relation row order, without reordering, normalization, reconstruction or allocation."
+    },
+    "analyze": {
+      "line": 87,
+      "signature": "pub fn analyze(&self) -> Result<JointAnalysis, JointError>",
+      "body": "{\n        let problem =\n            factor_tables(&self.reports, &self.answers).map_err(|_| JointError::InvalidRelation)?;\n        let family = FiniteQuestionFamily::new(\n            3,\n            self.reports\n                .iter()\n                .zip(&self.answers)\n                .map(|(&(l, r), &a)| vec![l, r, a])\n                .collect(),\n        )\n        .map_err(|_| JointError::InvalidRelation)?;\n        Ok(JointAnalysis {\n            reports: self.reports.clone(),\n            decision: problem.decide(),\n            refinement: family.quotient(),\n        })\n    }",
+      "obligation": "Admit the total row-indexed reports/answers through factor_tables, then decide by first representative per realized report pair and first later unequal answer. Build the three-question (left class,right class,answer) family and lexicographically ordered distinct profiles, class_of preserving source order. Equal classes iff both local classes and answer agree: the coarsest common refinement. Clone the report pair vector as required returned data. No original pair identity or context digest in the receipt."
+    },
+    "verify_analysis": {
+      "line": 105,
+      "signature": "pub fn verify_analysis(&self, c: &JointAnalysis) -> Result<(), JointError>",
+      "body": "{\n        if self.analyze()? == *c {\n            Ok(())\n        } else {\n            Err(JointError::CertificateMismatch)\n        }\n    }",
+      "obligation": "Recompute full expected analysis and require structural equality of reports, exact decision (including deterministic representatives/collision) and all refinement data. Any discrepancy is CertificateMismatch; any analyze error propagates. This is canonical replay, not acceptance of every mathematically valid alternate collision/representative. Distinct raw relations with identical indexed report/answer data can share a receipt."
+    },
+    "fiber": {
+      "line": 115,
+      "signature": "pub fn fiber(&self, locals: (usize, usize)) -> Result<JointFiber, JointError>",
+      "body": "{\n        if !self.left_classes.contains(&locals.0) || !self.right_classes.contains(&locals.1) {\n            return Err(JointError::UnknownLocalClass);\n        }\n        let rows: Vec<_> = self\n            .reports\n            .iter()\n            .enumerate()\n            .filter_map(|(i, &r)| (r == locals).then_some(i))\n            .collect();\n        let answers = rows.iter().map(|&i| self.answers[i]).collect();\n        Ok(JointFiber {\n            locals,\n            rows,\n            answers,\n        })\n    }",
+      "obligation": "Require each requested local class to occur in its actual truncated component carrier, or UnknownLocalClass. Select ALL original relation row indices whose report pair equals the requested pair, preserving row order; answers are the distinct sorted labels on those rows. Locally available classes can have an empty join; a nonempty fiber may have several rows and several answers. Copy requested pair unchanged."
+    },
+    "verify_fiber": {
+      "line": 132,
+      "signature": "pub fn verify_fiber(&self, locals: (usize, usize), c: &JointFiber) -> Result<(), JointError>",
+      "body": "{\n        if self.fiber(locals)? == *c {\n            Ok(())\n        } else {\n            Err(JointError::CertificateMismatch)\n        }\n    }",
+      "obligation": "Recompute fiber for requested pair; UnknownLocalClass propagates before certificate comparison. Require full structural equality of locals, complete ordered row list and answer set, else CertificateMismatch. This verifies a projection of the private problem, not the original raw relation or authority."
+    }
+  },
+  "provider_refinement": {
+    "finite_continuation.rs": "PartialDynamics has private reports/transitions/machine, new rejects empty carrier, row/column mismatch and all out-of-range targets; getters borrow immutable slices, Clone/structural Eq preserve invariants. Intern Option<label> with a distinct None sentinel, append absorbing state, quotient calls owned FiniteMoore. No public mutator/default/deserializer bypass. usize::MAX labels are valid; None is distinct. Sink cannot equal real states at zero-length readout.",
+    "finite_moore.rs": "FiniteMoore::new admits nonempty rectangular total closed tables. normalize assigns first-encounter class IDs. Refinement signatures contain previous class plus successors, so split-only and at most N-1 strict splits; equal normalized map terminates. Induction on word length gives stable congruence\u21d2all-word equality; every all-word-equal pair remains in each iteration by induction, so fixed point is exact kernel. Total sink remains observationally distinct. Every lookup is in admitted range; nonempty partitions, representatives and block IDs justify internal unwrap/expect in this call path. Allocator/compiler remain TCB. Independent product-graph language oracle checks delivered maps on all four fixture machines; this does not grade this entire provider.",
+    "finite_question_family.rs": "factor_tables checks equal lengths, creates contiguous unique row indices and sorted distinct report/query codomains from the very same values, enumerates exactly one row for every index, then uses ReportQueryProblem admission. Family::new checks every row has question_count=3. quotient sorts distinct complete vectors and creates an ID for each, so ids[row] exists and class_of preserves every original row. Empty table yields empty profiles/classes without panic. Type A here is concrete usize, so order/equality/clone are standard total primitives.",
+    "finite_report_query.rs": "ReportQueryProblem::new checks carrier uniqueness and total typed maps including duplicate/extraneous/missing rows. On the factor_tables-generated inputs every check succeeds, so the defensive missing-query continue in decide cannot occur. decide scans source-index BTreeMap; decoder/representative keys are created together, stored answer is that first representative answer. Later unequal answer returns a typed same-report collision. Otherwise decoder defined exactly on realized report pairs is total there and satisfies every row; any other decoder on that image agrees by each realized representative. No uniqueness outside image is claimed."
+  },
+  "data_trait_derive_macro_review": "Four JointError tags; JointAnalysis/Fiber public mutable data are untrusted inputs; JointCarrierProblem private fields can only be admitted by new or standard Clone. Derived Debug/Clone/PartialEq/Eq are standard concrete-vector/set/enum comparisons with no custom callbacks or numeric coercion. No unsafe, floats, unchecked narrowing, external effects or deserialization. BTreeSet ordering is numeric or lexicographic integer-pair order. vec! produces three required owned scalar entries per row.",
+  "cost_review": [
+    "Let nL,nR be local real-state counts, aL,aR alphabets, m relation rows, f selected fiber rows. Checked estimate is (nL+1)^2(aL+1)+(nR+1)^2(aR+1)+3m and refuses overflow before quotienting/admission. It bounds declared cell work, not tree comparisons/allocator overhead or time. Already supplied Vec storage and caller construction are outside this admission.",
+    "Each local quotient does at most N-1 strict splits plus a fixed-point step; N=n+1. Each refinement builds N signatures of width a+1 and performs ordered-map interning, so a safe comparison-work bound is O(N^2*(a+1)*log(N+1)) including worst-case signature comparisons, and O(N^2+N*(a+1)) retained/scratch elements plus tree overhead. Owned quotient tables/maps and partitions are required by that provider API. Constructor performs one quotient per component, drops only the internal sink map entry, and allocates one necessary report pair per admitted row. No component quotient or transition table is recomputed inside the relation loop.",
+    "Relation deduplication is O(m log(m+1)) fixed-width pair comparisons; validation/pair report building O(m). factor_tables/decide and width-three profile interning cost O(m log(m+1)) fixed-width integer comparisons and O(m) output/intermediate entries. Three-element Vec rows are required owned family inputs; there are no cloned local quotient snapshots or temporary String tuple keys per row.",
+    "fiber membership is O(nL+nR), row scan O(m), answer-set construction O(f log(f+1)), required output O(f). verify_analysis and verify_fiber intentionally reconstruct these outputs and compare fully, with the same asymptotic bounds, rather than trusting a caller receipt. pairs borrows O(1). Standard Clone/Eq/Debug derive costs are proportional to visited stored/output structure; no hidden law or resource certification.",
+    "Fresh calibrated source AST metrics cover all seven production bodies: max CCN6, cognitive5, nesting2, no opaque function macro. Vec!, checked arithmetic, built-in indexing/derives and instantiated usize/pair orders receive separate source review. No MIR, allocator totality or independent compiler claim."
+  ],
+  "consumer_review": [
+    "Only lib.rs/mod.rs module declarations expose this local subject; source search finds no external symbol consumer. No currently completed assessment context refers to this provider, so no provider refresh is required. Native controls compile the actual category package with original local provider types, not external omega crates.",
+    "Only four documentation lines changed. All seven production bodies, data shapes, derives, visibility, signatures and noncomment lines match parent bytes. Existing behavioral/cost semantics are retained; contracts remain pending."
+  ],
+  "source_change": {
+    "all_noncomment_lines_unchanged": true,
+    "previous_source": {
+      "path": "evidence/quality/category_homology/resume-20261019/joint-carrier-previous/finite_joint_carrier.rs",
+      "sha256": "a11760f8a84ef0fe9bb5ec3843795c5e352246975fb3a5f98187e5d0e918a19f"
+    },
+    "previous_score": {
+      "path": "evidence/quality/category_homology/resume-20261019/joint-carrier-previous/finite_joint_carrier.score.yaml",
+      "sha256": "5530780e1544e700009ba4360b8bbb29ebfc8ce07aef6c21336f895bcdaaff93"
+    }
+  },
+  "native_oracle": "16 ordered pairs of four two/three-state machines times81 absent/0/MAX assignments on four candidate pairs, in both row orders =2592 admitted relation analyses; explicit third-state/different-size and context tests added. Independent BFS explores reachable paired Option states, comparing all words without refinement iterations. Exact row/profile/decoder/collision/fiber checks and tamper refusal; MAX is a valid answer. This is bounded evidence, not exhaustive proof of all machines."
+}

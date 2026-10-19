@@ -11,6 +11,12 @@
 //! Laws (ContravariantFunctor):
 //!   F(id_A) = id_{F(A)}
 //!   F(g ∘ f) = F(f) ∘ F(g)   ← reversed
+//!
+//! Generic traits express caller obligations without checking laws. Only the
+//! immutable finite certificate constructor checks actual admitted endpoints.
+//! Legacy free diagnostic functions inspect supplied names/cases; in particular,
+//! check_identity_law assumes the literal id_ naming convention, not arbitrary
+//! identity labels. Empty supplied diagnostic domains pass vacuously.
 
 use super::finite_category::ValidatedFiniteCategory;
 use std::collections::BTreeMap;
@@ -142,9 +148,10 @@ impl ValidatedFiniteFunctor {
     }
 
     fn check_compositions(&self) -> Result<(), FunctorAdmissionError> {
+        let lookup = CompositionLookup::new(&self.target.declared().compositions);
         for ((first, second), result) in &self.source.declared().compositions {
             let pair = self.on_morphism(first).zip(self.on_morphism(second));
-            let expected = pair.and_then(|(f, g)| self.target.declared().compose(f, g));
+            let expected = pair.and_then(|(f, g)| lookup.compose(f, g));
             if self.on_morphism(result) != expected || expected.is_none() {
                 return Err(FunctorAdmissionError::Composition {
                     first: first.clone(),
@@ -175,14 +182,36 @@ fn check_images(
 /// Composition table convention:
 /// compositions[(f, g)] = g ∘ f
 pub type CompositionTable = BTreeMap<(String, String), String>;
+
+/// Shared sorted borrowed view for repeated table queries in admission phases.
+/// O(C) references once; O(log(C+1)) key comparisons per query, including string
+/// comparison costs. Returned values borrow the immutable original table.
+pub(crate) struct CompositionLookup<'a> {
+    rows: Vec<((&'a str, &'a str), &'a str)>,
+}
+
+impl<'a> CompositionLookup<'a> {
+    pub(crate) fn new(table: &'a CompositionTable) -> Self {
+        Self {
+            rows: table.iter().map(|((first, second), composite)| {
+                ((first.as_str(), second.as_str()), composite.as_str())
+            }).collect(),
+        }
+    }
+
+    pub(crate) fn compose(&self, first: &str, second: &str) -> Option<&'a str> {
+        let index = self.rows.binary_search_by_key(&(first, second), |(key, _)| *key).ok()?;
+        self.rows.get(index).map(|(_, composite)| *composite)
+    }
+}
 // ---------------------------------------------------------------------------
 // Trait: CatFunctor (covariant)
 // ---------------------------------------------------------------------------
 
 /// A covariant functor F : C → D between categories.
 ///
-/// This is the mathematical functor. It maps objects to objects and
-/// morphisms to morphisms, preserving identity and composition.
+/// Implementations are required to preserve identity and composition; this
+/// signature alone does not check those laws or callback purity/termination.
 pub trait CatFunctor {
     type Source: Category;
     type Target: Category;
@@ -263,11 +292,13 @@ impl DeclaredFiniteFunctor {
 }
 
 // ---------------------------------------------------------------------------
-// Category trait (re-stated here for self-containment; canonical is
-// algebra/category/category.rs)
+// Local root Category interface used by finite-certificate implementations.
+// Other catalog/legacy Category traits are distinct nominal Rust interfaces.
 // ---------------------------------------------------------------------------
 
-/// A category: objects, morphisms, identity, source, target, composition.
+/// Caller contract for objects, morphisms and partial identifier lookups.
+/// The trait itself does not admit laws; ValidatedFiniteCategory supplies a
+/// separately checked finite implementation of this particular Rust interface.
 pub trait Category {
     type Ob: Clone + Eq + std::fmt::Debug;
     type Mor: Clone + Eq + std::fmt::Debug;
@@ -284,25 +315,24 @@ pub trait Category {
 // Validation: finite functor law checkers (spec §3, §4)
 // ---------------------------------------------------------------------------
 
-/// Check identity law: F(id_A) = id_{F(A)} for all mapped objects.
+/// Check the literal id_ name rule on all supplied object mappings.
+/// This is a legacy naming diagnostic, not arbitrary-category law admission.
 ///
 /// Missing identity mappings produce violations, not silent skips (spec §3).
 pub fn check_identity_law(functor: &DeclaredFiniteFunctor) -> Vec<String> {
     let mut violations = Vec::new();
     for (src_obj, tgt_obj) in &functor.object_map {
         let src_id = format!("id_{}", src_obj);
+        let Some(mapped) = functor.morphism_map.get(&src_id) else {
+            violations.push(format!("Identity law: F(id_{}) is not defined", src_obj));
+            continue;
+        };
         let expected_tgt_id = format!("id_{}", tgt_obj);
-        match functor.morphism_map.get(&src_id) {
-            Some(mapped) if mapped == &expected_tgt_id => {}
-            Some(mapped) => {
-                violations.push(format!(
-                    "Identity law violated at {}: F(id_{}) = {} but expected {}",
-                    src_obj, src_obj, mapped, expected_tgt_id
-                ));
-            }
-            None => {
-                violations.push(format!("Identity law: F(id_{}) is not defined", src_obj));
-            }
+        if mapped != &expected_tgt_id {
+            violations.push(format!(
+                "Identity law violated at {}: F(id_{}) = {} but expected {}",
+                src_obj, src_obj, mapped, expected_tgt_id
+            ));
         }
     }
     violations
@@ -317,6 +347,7 @@ pub fn check_composition_law(
     target_compositions: &CompositionTable,     // (f, g) → g∘f in target
 ) -> Vec<String> {
     let mut violations = Vec::new();
+    let lookup = CompositionLookup::new(target_compositions);
     for &(f, g, gf) in source_compositions {
         let Some(f_img) = functor.on_morphism(f) else {
             violations.push(format!("Composition law: F({}) is not defined", f));
@@ -331,8 +362,7 @@ pub fn check_composition_law(
             continue;
         };
 
-        let key = (f_img.to_string(), g_img.to_string());
-        match target_compositions.get(&key) {
+        match lookup.compose(f_img, g_img) {
             Some(composed) if composed == gf_img => {}
             Some(composed) => {
                 violations.push(format!(

@@ -2,6 +2,7 @@
 //! AuthorityEffect: None. Not PROVED / GlobalGreen.
 
 use serde::{Deserialize, Serialize};
+use omega_category_theory::errors::ArithmosError;
 
 /// Best-effort shell for a coend ∫^c F(c,c) of a bifunctor.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize)]
@@ -42,18 +43,18 @@ impl Coend {
         }
     }
 
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
         if self.bifunctor_ref.is_empty() {
-            return Err("empty bifunctor_ref".into());
+            return Err(ArithmosError::InvalidShape("empty bifunctor_ref".into()));
         }
         if self.indexing_category_ref.is_empty() {
-            return Err("empty indexing_category_ref".into());
+            return Err(ArithmosError::InvalidShape("empty indexing_category_ref".into()));
         }
         if self.coend_object.is_empty() {
-            return Err("empty coend_object".into());
+            return Err(ArithmosError::InvalidShape("empty coend_object".into()));
         }
         Ok(())
     }

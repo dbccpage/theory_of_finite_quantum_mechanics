@@ -1,0 +1,1258 @@
+[
+  {
+    "candidate_path": "code/rust/target/dr/261019T064912/src/homology/q/context_1/mod.rs",
+    "candidate_sha256": "e5aa51d7572de7f3f84c9046fac9e8e22c136ecfaa35022947727b135c7417ce",
+    "id": "DR-1-0",
+    "module": "homology::degree_repair_replay_1::independent_carrier_facades::",
+    "native_context": {
+      "manifest": "evidence/quality/category_homology/20261019T064912Z/context-1.json",
+      "rename_from": "crate::homology::",
+      "rename_to": "crate::homology::degree_repair_replay_1::",
+      "scope": "Complete same-source homology context, reversible uniform crate path rename; one designated fault, no provider/visibility replacement. Control runs all context tests; mutant runs its independent subject fixtures.",
+      "sha256": "4eec511a77fed008036e6ec940fe16fc2882ff97897e05321262662072681305",
+      "unrenamed_candidate_sha256": "5bd651052f31e7d066a9fc7b045bc86c4f923a95b708e3d4774c33f1690f50b9"
+    },
+    "needle": "hasher.update(b\"TheoryOfFiniteQM.ExactMatrix<Q>.v1\");",
+    "outcome": "killed",
+    "path": "homology/mod.rs",
+    "replacement": "hasher.update(b\"WrongMatrix.v1\");",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912\\degree-repair-tests.exe",
+        "homology::degree_repair_replay_1::independent_carrier_facades::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912",
+      "elapsed_seconds": 0.016,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T064912Z\\fault-0.log",
+      "log_sha256": "ac621a43b814915742bda13025728806c1b08d0432049d90dd206a7d3468df2a",
+      "timed_out": false
+    },
+    "subject_sha256": "40f163fb350b95b3438b530a28e11b9f9e3df2c59849dc905a8f0457d4b2e579"
+  },
+  {
+    "candidate_path": "code/rust/target/dr/261019T064912/src/homology/q/context_2/mod.rs",
+    "candidate_sha256": "5429a6d9656537deff6590f3ec3e678b013e4c0d2a497d68c440093d95a019be",
+    "id": "DR-2-1",
+    "module": "homology::degree_repair_replay_2::independent_carrier_facades::",
+    "native_context": {
+      "manifest": "evidence/quality/category_homology/20261019T064912Z/context-2.json",
+      "rename_from": "crate::homology::",
+      "rename_to": "crate::homology::degree_repair_replay_2::",
+      "scope": "Complete same-source homology context, reversible uniform crate path rename; one designated fault, no provider/visibility replacement. Control runs all context tests; mutant runs its independent subject fixtures.",
+      "sha256": "4fd4951e5af6ff25210615e09bb8c0868d611c069a97c3a4b36adcbf44a98e5b",
+      "unrenamed_candidate_sha256": "0ee2e5676cb300ac588b1447f1f8645fee9bd509ed989a6e5e5f738b687c1454"
+    },
+    "needle": "&(m.rows() as u64).to_le_bytes()",
+    "outcome": "killed",
+    "path": "homology/mod.rs",
+    "replacement": "&(m.cols() as u64).to_le_bytes()",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912\\degree-repair-tests.exe",
+        "homology::degree_repair_replay_2::independent_carrier_facades::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912",
+      "elapsed_seconds": 0.032,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T064912Z\\fault-1.log",
+      "log_sha256": "92933cb535760334271f98901b47ff8c62c03271a97d3b1ed9e3cf4e112ebb26",
+      "timed_out": false
+    },
+    "subject_sha256": "40f163fb350b95b3438b530a28e11b9f9e3df2c59849dc905a8f0457d4b2e579"
+  },
+  {
+    "candidate_path": "code/rust/target/dr/261019T064912/src/homology/q/context_3/mod.rs",
+    "candidate_sha256": "893468054c85a4293b38011229829eab223ccbb63e2e0dc0a7a6a56a55e1eaf7",
+    "id": "DR-3-2",
+    "module": "homology::degree_repair_replay_3::independent_carrier_facades::",
+    "native_context": {
+      "manifest": "evidence/quality/category_homology/20261019T064912Z/context-3.json",
+      "rename_from": "crate::homology::",
+      "rename_to": "crate::homology::degree_repair_replay_3::",
+      "scope": "Complete same-source homology context, reversible uniform crate path rename; one designated fault, no provider/visibility replacement. Control runs all context tests; mutant runs its independent subject fixtures.",
+      "sha256": "a98e3141a2239c6836bdfbfca0ad3e18d14fee182741ccfc1e4a5446e7f002f0",
+      "unrenamed_candidate_sha256": "ccc5c7dab6427e4d6722f74e80d22b2a24704536a32bf276d04f44694efd8e0a"
+    },
+    "needle": "hashing::hash_stored_rational(&mut hasher, val);",
+    "outcome": "killed",
+    "path": "homology/mod.rs",
+    "replacement": "hashing::hash_stored_rational(&mut hasher, &crate::linear_algebra::scalars::q(0));",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912\\degree-repair-tests.exe",
+        "homology::degree_repair_replay_3::independent_carrier_facades::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912",
+      "elapsed_seconds": 0.031,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T064912Z\\fault-2.log",
+      "log_sha256": "70f379f4d4a8b24a43084f02214886aaa68f3e3103eba0995d6da2a1364384e6",
+      "timed_out": false
+    },
+    "subject_sha256": "40f163fb350b95b3438b530a28e11b9f9e3df2c59849dc905a8f0457d4b2e579"
+  },
+  {
+    "candidate_path": "code/rust/target/dr/261019T064912/src/homology/q/context_4/mod.rs",
+    "candidate_sha256": "2144687ab482424e984dd1360eb03f48652cbe5a8be5a5b13360370decebabe6",
+    "id": "DR-4-3",
+    "module": "homology::degree_repair_replay_4::independent_carrier_facades::",
+    "native_context": {
+      "manifest": "evidence/quality/category_homology/20261019T064912Z/context-4.json",
+      "rename_from": "crate::homology::",
+      "rename_to": "crate::homology::degree_repair_replay_4::",
+      "scope": "Complete same-source homology context, reversible uniform crate path rename; one designated fault, no provider/visibility replacement. Control runs all context tests; mutant runs its independent subject fixtures.",
+      "sha256": "c598fc5db5a60480a052b97dc8f7b7d89874e00009915e5d5ce7ba002238b58a",
+      "unrenamed_candidate_sha256": "770a0443640669f259f8ea0c654af6565260935ea7bc6e5836fe00a596fa23bb"
+    },
+    "needle": "#[serde(rename = \"CarrierWire\")]",
+    "outcome": "killed",
+    "path": "homology/mod.rs",
+    "replacement": "#[serde(rename = \"WrongCarrierWire\")]",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912\\degree-repair-tests.exe",
+        "homology::degree_repair_replay_4::independent_carrier_facades::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912",
+      "elapsed_seconds": 0.016,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T064912Z\\fault-3.log",
+      "log_sha256": "ed4d778d4f8ff99687232ccc077ff918716029f615b592aab4b881929d6fbc2a",
+      "timed_out": false
+    },
+    "subject_sha256": "40f163fb350b95b3438b530a28e11b9f9e3df2c59849dc905a8f0457d4b2e579"
+  },
+  {
+    "candidate_path": "code/rust/target/dr/261019T064912/src/homology/q/context_5/mod.rs",
+    "candidate_sha256": "1cc7634cded7d60fc521ed526a02939c9ea5739c98bcf9530dec720a21e936ea",
+    "id": "DR-5-4",
+    "module": "homology::degree_repair_replay_5::independent_carrier_facades::",
+    "native_context": {
+      "manifest": "evidence/quality/category_homology/20261019T064912Z/context-5.json",
+      "rename_from": "crate::homology::",
+      "rename_to": "crate::homology::degree_repair_replay_5::",
+      "scope": "Complete same-source homology context, reversible uniform crate path rename; one designated fault, no provider/visibility replacement. Control runs all context tests; mutant runs its independent subject fixtures.",
+      "sha256": "da487c39ac89d5fca634c54b25dbbcd72d7c1dd9f3680e4601085bccf019e754",
+      "unrenamed_candidate_sha256": "64b3f5e0ba34faed4a7a7032caa17d2fb62f9e9cf34c82d2c25f4aef2cdb9271"
+    },
+    "needle": "serialize_newtype_struct(\"ExactMatrix\", *matrix)",
+    "outcome": "killed",
+    "path": "homology/mod.rs",
+    "replacement": "serialize_newtype_struct(\"WrongMatrix\", *matrix)",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912\\degree-repair-tests.exe",
+        "homology::degree_repair_replay_5::independent_carrier_facades::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912",
+      "elapsed_seconds": 0.015,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T064912Z\\fault-4.log",
+      "log_sha256": "bb4cb6cdde98948e77fcd4f7fb2b4c7fdc0e1a16129dfb534f29f5f78ad1ee1d",
+      "timed_out": false
+    },
+    "subject_sha256": "40f163fb350b95b3438b530a28e11b9f9e3df2c59849dc905a8f0457d4b2e579"
+  },
+  {
+    "candidate_path": "code/rust/target/dr/261019T064912/src/homology/q/context_6/mod.rs",
+    "candidate_sha256": "a1ba3f556adc43bc6f2ae3c334aa30ad17b70354f9761aec7f4e10eba295c4c0",
+    "id": "DR-6-5",
+    "module": "homology::degree_repair_replay_6::independent_carrier_facades::",
+    "native_context": {
+      "manifest": "evidence/quality/category_homology/20261019T064912Z/context-6.json",
+      "rename_from": "crate::homology::",
+      "rename_to": "crate::homology::degree_repair_replay_6::",
+      "scope": "Complete same-source homology context, reversible uniform crate path rename; one designated fault, no provider/visibility replacement. Control runs all context tests; mutant runs its independent subject fixtures.",
+      "sha256": "09ea585824f5e7c89866ed664b825e7376e0c453828e1a1f43d4a583f79934a4",
+      "unrenamed_candidate_sha256": "9929a42eb275087efee4204c9dd06d6bfcc6fbb6fc96416452c6d67eeef6744a"
+    },
+    "needle": "serializer.serialize_newtype_struct(\"ExactMatrix\", *matrix)",
+    "outcome": "killed",
+    "path": "homology/mod.rs",
+    "replacement": "(*matrix).serialize(serializer)",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912\\degree-repair-tests.exe",
+        "homology::degree_repair_replay_6::independent_carrier_facades::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912",
+      "elapsed_seconds": 0.031,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T064912Z\\fault-5.log",
+      "log_sha256": "9cab35bd9ff1805ce30f3a47687c1950e9aa831fc054beee5746af8b84a040a9",
+      "timed_out": false
+    },
+    "subject_sha256": "40f163fb350b95b3438b530a28e11b9f9e3df2c59849dc905a8f0457d4b2e579"
+  },
+  {
+    "candidate_path": "code/rust/target/dr/261019T064912/src/homology/q/context_7/mod.rs",
+    "candidate_sha256": "1d67069e1f5818ce62b595618aab28b93869d44dc12573431a9ca5cc655e6753",
+    "id": "DR-7-6",
+    "module": "homology::degree_repair_replay_7::independent_carrier_facades::",
+    "native_context": {
+      "manifest": "evidence/quality/category_homology/20261019T064912Z/context-7.json",
+      "rename_from": "crate::homology::",
+      "rename_to": "crate::homology::degree_repair_replay_7::",
+      "scope": "Complete same-source homology context, reversible uniform crate path rename; one designated fault, no provider/visibility replacement. Control runs all context tests; mutant runs its independent subject fixtures.",
+      "sha256": "c162ba9f4f00e68b3de9ec990b11314d4cce468a4fb6d576c146902fe6fbc760",
+      "unrenamed_candidate_sha256": "f9fd1b66cd36f3be0d38512fa6c6527e41d7aeca7d9442a06f20f4ac6fe65690"
+    },
+    "needle": "c0_dim: self.c0_dim(),",
+    "outcome": "killed",
+    "path": "homology/mod.rs",
+    "replacement": "c0_dim: self.c1_dim(),",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912\\degree-repair-tests.exe",
+        "homology::degree_repair_replay_7::independent_carrier_facades::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912",
+      "elapsed_seconds": 0.016,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T064912Z\\fault-6.log",
+      "log_sha256": "91a7269d5087b040c78a0ae738f9d4c6119c5d557a6e19881d9c6c239acceab1",
+      "timed_out": false
+    },
+    "subject_sha256": "40f163fb350b95b3438b530a28e11b9f9e3df2c59849dc905a8f0457d4b2e579"
+  },
+  {
+    "candidate_path": "code/rust/target/dr/261019T064912/src/homology/q/context_8/mod.rs",
+    "candidate_sha256": "9d8af7bbf08f45eef786916a5c1b37b6608e997c2bf134e203a07db3f4ccc37f",
+    "id": "DR-8-7",
+    "module": "homology::degree_repair_replay_8::independent_carrier_facades::",
+    "native_context": {
+      "manifest": "evidence/quality/category_homology/20261019T064912Z/context-8.json",
+      "rename_from": "crate::homology::",
+      "rename_to": "crate::homology::degree_repair_replay_8::",
+      "scope": "Complete same-source homology context, reversible uniform crate path rename; one designated fault, no provider/visibility replacement. Control runs all context tests; mutant runs its independent subject fixtures.",
+      "sha256": "d28c9ce4a89afea1ca25a009cedfbb2caab8ab59b591b17d496163192c5ad2ce",
+      "unrenamed_candidate_sha256": "7741248ee6b7e227d51d5966767cdf41642649052d7eca73bb542f908f8cbdfe"
+    },
+    "needle": "c2_dim: self.c2_dim(),",
+    "outcome": "killed",
+    "path": "homology/mod.rs",
+    "replacement": "c2_dim: self.c0_dim(),",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912\\degree-repair-tests.exe",
+        "homology::degree_repair_replay_8::independent_carrier_facades::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912",
+      "elapsed_seconds": 0.031,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T064912Z\\fault-7.log",
+      "log_sha256": "94ac88aa0536054ed9cdf8ed66395d6a45be53e7f3d820d679b1bce524c67c26",
+      "timed_out": false
+    },
+    "subject_sha256": "40f163fb350b95b3438b530a28e11b9f9e3df2c59849dc905a8f0457d4b2e579"
+  },
+  {
+    "candidate_path": "code/rust/target/dr/261019T064912/src/homology/q/context_9/mod.rs",
+    "candidate_sha256": "146e72ef3c8870c1302961eac3239f6e99cf39498e91fb8742bdd433880529a8",
+    "id": "DR-9-8",
+    "module": "homology::degree_repair_replay_9::independent_carrier_facades::",
+    "native_context": {
+      "manifest": "evidence/quality/category_homology/20261019T064912Z/context-9.json",
+      "rename_from": "crate::homology::",
+      "rename_to": "crate::homology::degree_repair_replay_9::",
+      "scope": "Complete same-source homology context, reversible uniform crate path rename; one designated fault, no provider/visibility replacement. Control runs all context tests; mutant runs its independent subject fixtures.",
+      "sha256": "f7a614fa7842eae4b370ef23bbbb379fa32f14e4350c0f626caf0ae50bdd32c7",
+      "unrenamed_candidate_sha256": "6d9de5acbbadaf6bb56ad658ddd592a057945128d25d13c588892cdf9ef50dbb"
+    },
+    "needle": "d0: self.d0(),",
+    "outcome": "killed",
+    "path": "homology/mod.rs",
+    "replacement": "d0: self.d1(),",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912\\degree-repair-tests.exe",
+        "homology::degree_repair_replay_9::independent_carrier_facades::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912",
+      "elapsed_seconds": 0.016,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T064912Z\\fault-8.log",
+      "log_sha256": "ede1479c40006613aa3c7c8978f853fa869bdf89298fe6cbfde13c2ac940184b",
+      "timed_out": false
+    },
+    "subject_sha256": "40f163fb350b95b3438b530a28e11b9f9e3df2c59849dc905a8f0457d4b2e579"
+  },
+  {
+    "candidate_path": "code/rust/target/dr/261019T064912/src/homology/q/context_10/mod.rs",
+    "candidate_sha256": "ea3f4a34b623f5ff51535147e042a5d91534c16a36940dbfca6137243c90ac60",
+    "id": "DR-10-9",
+    "module": "homology::degree_repair_replay_10::independent_carrier_facades::",
+    "native_context": {
+      "manifest": "evidence/quality/category_homology/20261019T064912Z/context-10.json",
+      "rename_from": "crate::homology::",
+      "rename_to": "crate::homology::degree_repair_replay_10::",
+      "scope": "Complete same-source homology context, reversible uniform crate path rename; one designated fault, no provider/visibility replacement. Control runs all context tests; mutant runs its independent subject fixtures.",
+      "sha256": "c6e53c3a9c029a448551586c319c4713660c0d1d5c6b4b35b6ed07b6ae649455",
+      "unrenamed_candidate_sha256": "d8d7e4ebcd16580ea216c78a8205773ecc90159feb2ea679b02fd5f97e64eae9"
+    },
+    "needle": "weights: self.weights(),",
+    "outcome": "killed",
+    "path": "homology/mod.rs",
+    "replacement": "weights: &[], ",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912\\degree-repair-tests.exe",
+        "homology::degree_repair_replay_10::independent_carrier_facades::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912",
+      "elapsed_seconds": 0.016,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T064912Z\\fault-9.log",
+      "log_sha256": "834ca4525b81df1a3f79ecc12fcfd008d2145e90f59c19db596dcf80abb0d8e3",
+      "timed_out": false
+    },
+    "subject_sha256": "40f163fb350b95b3438b530a28e11b9f9e3df2c59849dc905a8f0457d4b2e579"
+  },
+  {
+    "candidate_path": "code/rust/target/dr/261019T064912/src/homology/q/context_11/mod.rs",
+    "candidate_sha256": "1e4e47912fe40b14a850e22421daeef2e5cfc062feec4e88954eae7687b00288",
+    "id": "DR-11-10",
+    "module": "homology::degree_repair_replay_11::independent_carrier_facades::",
+    "native_context": {
+      "manifest": "evidence/quality/category_homology/20261019T064912Z/context-11.json",
+      "rename_from": "crate::homology::",
+      "rename_to": "crate::homology::degree_repair_replay_11::",
+      "scope": "Complete same-source homology context, reversible uniform crate path rename; one designated fault, no provider/visibility replacement. Control runs all context tests; mutant runs its independent subject fixtures.",
+      "sha256": "d8a3bf217502f897467f4ebdeb793235e4b8639d02b1ba424de72bc2ed7eba5d",
+      "unrenamed_candidate_sha256": "1a1bf324670c41deb0d041aa581d70faea9d096b9f5458f0ef51641c690a8948"
+    },
+    "needle": "d0_hash: hash_legacy_matrix(self.d0()),",
+    "outcome": "killed",
+    "path": "homology/mod.rs",
+    "replacement": "d0_hash: hash_legacy_matrix(self.d1()),",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912\\degree-repair-tests.exe",
+        "homology::degree_repair_replay_11::independent_carrier_facades::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912",
+      "elapsed_seconds": 0.031,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T064912Z\\fault-10.log",
+      "log_sha256": "ec5b7774229357beb3a10a25350a072cec8022b96de6ac37b51f0baefffaedb0",
+      "timed_out": false
+    },
+    "subject_sha256": "40f163fb350b95b3438b530a28e11b9f9e3df2c59849dc905a8f0457d4b2e579"
+  },
+  {
+    "candidate_path": "code/rust/target/dr/261019T064912/src/homology/q/context_12/mod.rs",
+    "candidate_sha256": "20f2d254dc48a81cbaa7d8033591cc107132e22586615729078d20c40e436bd4",
+    "id": "DR-12-11",
+    "module": "homology::degree_repair_replay_12::independent_carrier_facades::",
+    "native_context": {
+      "manifest": "evidence/quality/category_homology/20261019T064912Z/context-12.json",
+      "rename_from": "crate::homology::",
+      "rename_to": "crate::homology::degree_repair_replay_12::",
+      "scope": "Complete same-source homology context, reversible uniform crate path rename; one designated fault, no provider/visibility replacement. Control runs all context tests; mutant runs its independent subject fixtures.",
+      "sha256": "6d0cb0ec3e47667fa55785565710cc4befe862b4e2bcbb6c1c572faa92229405",
+      "unrenamed_candidate_sha256": "d8e778123c7037ee171df8a75964b442964bfc5143f6ed875fd9d03fbb74ba33"
+    },
+    "needle": "carrier::Carrier::new(c0_dim, c1_dim, c2_dim, d0.0, d1.0, weights, provenance)?",
+    "outcome": "killed",
+    "path": "homology/mod.rs",
+    "replacement": "carrier::Carrier::new(c1_dim, c0_dim, c2_dim, d0.0, d1.0, weights, provenance)?",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912\\degree-repair-tests.exe",
+        "homology::degree_repair_replay_12::independent_carrier_facades::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912",
+      "elapsed_seconds": 0.0,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T064912Z\\fault-11.log",
+      "log_sha256": "1378bcd45711cf473ef490d7cb4f5f5f96400d56ed93530c44822f758950a75b",
+      "timed_out": false
+    },
+    "subject_sha256": "40f163fb350b95b3438b530a28e11b9f9e3df2c59849dc905a8f0457d4b2e579"
+  },
+  {
+    "candidate_path": "code/rust/target/dr/261019T064912/src/homology/q/context_13/mod.rs",
+    "candidate_sha256": "fd2266f4be4b296ad108c90c025f1b49525575e172e790fd99375f5196f6bffb",
+    "id": "DR-13-12",
+    "module": "homology::degree_repair_replay_13::independent_carrier_facades::",
+    "native_context": {
+      "manifest": "evidence/quality/category_homology/20261019T064912Z/context-13.json",
+      "rename_from": "crate::homology::",
+      "rename_to": "crate::homology::degree_repair_replay_13::",
+      "scope": "Complete same-source homology context, reversible uniform crate path rename; one designated fault, no provider/visibility replacement. Control runs all context tests; mutant runs its independent subject fixtures.",
+      "sha256": "e8d0b7e2325958d2b79d1ae2573463f348a35d9c2bc3b80703cfa733a17c5ead",
+      "unrenamed_candidate_sha256": "4cb3a35cc2ddaa4d4d4d3076b3fbc984a097d560c535982f1479f00fa68454da"
+    },
+    "needle": "self.inner.c0_dim()",
+    "outcome": "killed",
+    "path": "homology/mod.rs",
+    "replacement": "self.inner.c1_dim()",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912\\degree-repair-tests.exe",
+        "homology::degree_repair_replay_13::independent_carrier_facades::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912",
+      "elapsed_seconds": 0.031,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T064912Z\\fault-12.log",
+      "log_sha256": "2707bb6346ff30d3ef5924e6bdc4c075d62c57bde58bfdd42ae1d3a8eb888353",
+      "timed_out": false
+    },
+    "subject_sha256": "40f163fb350b95b3438b530a28e11b9f9e3df2c59849dc905a8f0457d4b2e579"
+  },
+  {
+    "candidate_path": "code/rust/target/dr/261019T064912/src/homology/q/context_14/mod.rs",
+    "candidate_sha256": "f71f746c4b78d3ec867021ef824100a112dba84a669ca06e84c09830d039bd1c",
+    "id": "DR-14-13",
+    "module": "homology::degree_repair_replay_14::independent_carrier_facades::",
+    "native_context": {
+      "manifest": "evidence/quality/category_homology/20261019T064912Z/context-14.json",
+      "rename_from": "crate::homology::",
+      "rename_to": "crate::homology::degree_repair_replay_14::",
+      "scope": "Complete same-source homology context, reversible uniform crate path rename; one designated fault, no provider/visibility replacement. Control runs all context tests; mutant runs its independent subject fixtures.",
+      "sha256": "9ddf9fb5df1be26c28e390f65f9085fac0ccdfce7e56e97b690d819112e87849",
+      "unrenamed_candidate_sha256": "6c70d2dd3507de71410071a4c4cf2e6c0f3a757963f13ad0616620bdb7934e21"
+    },
+    "needle": "self.inner.rank_d0()",
+    "outcome": "killed",
+    "path": "homology/mod.rs",
+    "replacement": "self.inner.rank_d1()",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912\\degree-repair-tests.exe",
+        "homology::degree_repair_replay_14::independent_carrier_facades::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912",
+      "elapsed_seconds": 0.0,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T064912Z\\fault-13.log",
+      "log_sha256": "f9412df119fe1154d7159456db407f22de07a765c3d80b03cf8ca4c1855fc107",
+      "timed_out": false
+    },
+    "subject_sha256": "40f163fb350b95b3438b530a28e11b9f9e3df2c59849dc905a8f0457d4b2e579"
+  },
+  {
+    "candidate_path": "code/rust/target/dr/261019T064912/src/homology/q/context_15/mod.rs",
+    "candidate_sha256": "8fafad479539cef3954009fb8623b2756662b70800bf3fba8a64da764460ce7f",
+    "id": "DR-15-14",
+    "module": "homology::degree_repair_replay_15::independent_carrier_facades::",
+    "native_context": {
+      "manifest": "evidence/quality/category_homology/20261019T064912Z/context-15.json",
+      "rename_from": "crate::homology::",
+      "rename_to": "crate::homology::degree_repair_replay_15::",
+      "scope": "Complete same-source homology context, reversible uniform crate path rename; one designated fault, no provider/visibility replacement. Control runs all context tests; mutant runs its independent subject fixtures.",
+      "sha256": "fbb71d1886667efeb4b1c15fd2ba1b2e215e78596353c3f0bfdf9bf2fcc202f2",
+      "unrenamed_candidate_sha256": "6d6ba9bfe404aa88d1d83c5c32cf2b39553c529b3fb6fb846694d8626df00f49"
+    },
+    "needle": "self.c1_dim() - self.rank_d0()",
+    "outcome": "killed",
+    "path": "homology/mod.rs",
+    "replacement": "self.c1_dim() + self.rank_d0()",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912\\degree-repair-tests.exe",
+        "homology::degree_repair_replay_15::independent_carrier_facades::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912",
+      "elapsed_seconds": 0.031,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T064912Z\\fault-14.log",
+      "log_sha256": "b37f7a5c1bd517885a7f9db9afb6bce74da0ce3ae0b59410afd803cfb728f1b2",
+      "timed_out": false
+    },
+    "subject_sha256": "40f163fb350b95b3438b530a28e11b9f9e3df2c59849dc905a8f0457d4b2e579"
+  },
+  {
+    "candidate_path": "code/rust/target/dr/261019T064912/src/homology/q/context_16/mod.rs",
+    "candidate_sha256": "254661c0e944bd832bc4231868730418b4566ace4eb57835f6bbcb49a6f541cb",
+    "id": "DR-16-15",
+    "module": "homology::degree_repair_replay_16::independent_carrier_facades::",
+    "native_context": {
+      "manifest": "evidence/quality/category_homology/20261019T064912Z/context-16.json",
+      "rename_from": "crate::homology::",
+      "rename_to": "crate::homology::degree_repair_replay_16::",
+      "scope": "Complete same-source homology context, reversible uniform crate path rename; one designated fault, no provider/visibility replacement. Control runs all context tests; mutant runs its independent subject fixtures.",
+      "sha256": "0707fff3a40369139a9f49c8d3ee4070f1e54f4f703c82b86b4632cd27a88a02",
+      "unrenamed_candidate_sha256": "611dbdee67f37e43371caccd83e3bf699a48995d39d418a4abd130ce58bf54dd"
+    },
+    "needle": "self.inner.dim_h1()",
+    "outcome": "killed",
+    "path": "homology/mod.rs",
+    "replacement": "Ok(0)",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912\\degree-repair-tests.exe",
+        "homology::degree_repair_replay_16::independent_carrier_facades::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912",
+      "elapsed_seconds": 0.032,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T064912Z\\fault-15.log",
+      "log_sha256": "64d4fc85524350e107e30e347476169df48be2b23d66ebce054cc1b35cb33baf",
+      "timed_out": false
+    },
+    "subject_sha256": "40f163fb350b95b3438b530a28e11b9f9e3df2c59849dc905a8f0457d4b2e579"
+  },
+  {
+    "candidate_path": "code/rust/target/dr/261019T064912/src/homology/q/context_17/mod.rs",
+    "candidate_sha256": "d908e450c1d2eb8275599489bfb7637f300c4d3610977bc8a9ef46da3e6b138b",
+    "id": "DR-17-16",
+    "module": "homology::degree_repair_replay_17::independent_carrier_facades::",
+    "native_context": {
+      "manifest": "evidence/quality/category_homology/20261019T064912Z/context-17.json",
+      "rename_from": "crate::homology::",
+      "rename_to": "crate::homology::degree_repair_replay_17::",
+      "scope": "Complete same-source homology context, reversible uniform crate path rename; one designated fault, no provider/visibility replacement. Control runs all context tests; mutant runs its independent subject fixtures.",
+      "sha256": "5f96875adb6e29c062db9198f30b1d5a8711c20a714abf5c173ecbd582fcfcb9",
+      "unrenamed_candidate_sha256": "c54371f26ab48cca07b7a789be077b9807ecfb1553a7f408684cb733c5371000"
+    },
+    "needle": "if expected != got {",
+    "outcome": "killed",
+    "path": "homology/mod.rs",
+    "replacement": "if false {",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912\\degree-repair-tests.exe",
+        "homology::degree_repair_replay_17::independent_carrier_facades::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912",
+      "elapsed_seconds": 0.015,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T064912Z\\fault-16.log",
+      "log_sha256": "75865b13624390bfce62812258d05f9c73d8789eb778f790468d77cd1c4ed0e6",
+      "timed_out": false
+    },
+    "subject_sha256": "40f163fb350b95b3438b530a28e11b9f9e3df2c59849dc905a8f0457d4b2e579"
+  },
+  {
+    "candidate_path": "code/rust/target/dr/261019T064912/src/homology/q/context_18/mod.rs",
+    "candidate_sha256": "f02159122f25ab91f2b4139b42f88bf8219e444fa2bab912075f677db8b565e4",
+    "id": "DR-18-17",
+    "module": "homology::degree_repair_replay_18::independent_carrier_facades::",
+    "native_context": {
+      "manifest": "evidence/quality/category_homology/20261019T064912Z/context-18.json",
+      "rename_from": "crate::homology::",
+      "rename_to": "crate::homology::degree_repair_replay_18::",
+      "scope": "Complete same-source homology context, reversible uniform crate path rename; one designated fault, no provider/visibility replacement. Control runs all context tests; mutant runs its independent subject fixtures.",
+      "sha256": "fa2d38e7aa3f4a9ce55cd975cc6d16be984749c67c0d135ae4044a0870193f24",
+      "unrenamed_candidate_sha256": "b7fb34d2335e9366b9b57e7d192c174521d4d60e92a0911097b642b03503a730"
+    },
+    "needle": "expected: expected.to_hex(),",
+    "outcome": "killed",
+    "path": "homology/mod.rs",
+    "replacement": "expected: got.to_hex(),",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912\\degree-repair-tests.exe",
+        "homology::degree_repair_replay_18::independent_carrier_facades::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912",
+      "elapsed_seconds": 0.016,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T064912Z\\fault-17.log",
+      "log_sha256": "3f306ade3c3466a489e79fcb0eac4c01d07fa1b44f5ad2ea975bd891024bf72c",
+      "timed_out": false
+    },
+    "subject_sha256": "40f163fb350b95b3438b530a28e11b9f9e3df2c59849dc905a8f0457d4b2e579"
+  },
+  {
+    "candidate_path": "code/rust/target/dr/261019T064912/src/homology/q/context_19/mod.rs",
+    "candidate_sha256": "78042894dbd5515b3766ed9add3219195ca1e54d07ba6bfd230f83648cd52278",
+    "id": "DR-19-18",
+    "module": "homology::degree_repair_replay_19::independent_carrier_facades::",
+    "native_context": {
+      "manifest": "evidence/quality/category_homology/20261019T064912Z/context-19.json",
+      "rename_from": "crate::homology::",
+      "rename_to": "crate::homology::degree_repair_replay_19::",
+      "scope": "Complete same-source homology context, reversible uniform crate path rename; one designated fault, no provider/visibility replacement. Control runs all context tests; mutant runs its independent subject fixtures.",
+      "sha256": "1480b57e3c78b33612baa71bf4ea887cbcedac8640379a51df493c41cb692fe5",
+      "unrenamed_candidate_sha256": "3ca514830519bec236fa185857fd5e460407f7635a8c3cb1b7ac4869ba22134e"
+    },
+    "needle": "verify_hash(&value.d0_hash, &hash_exact_matrix(&value.d0))?;",
+    "outcome": "killed",
+    "path": "homology/mod.rs",
+    "replacement": "",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912\\degree-repair-tests.exe",
+        "homology::degree_repair_replay_19::independent_carrier_facades::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912",
+      "elapsed_seconds": 0.016,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T064912Z\\fault-18.log",
+      "log_sha256": "b5cfe8b410bd7c878a96087f9009de907884ba2b32eb0070045123ad25934d08",
+      "timed_out": false
+    },
+    "subject_sha256": "40f163fb350b95b3438b530a28e11b9f9e3df2c59849dc905a8f0457d4b2e579"
+  },
+  {
+    "candidate_path": "code/rust/target/dr/261019T064912/src/homology/q/context_20/mod.rs",
+    "candidate_sha256": "fd01d23fa0627e8c6e31c53c98aefc6dbcd85553b9154308df70d7524ce62676",
+    "id": "DR-20-19",
+    "module": "homology::degree_repair_replay_20::independent_carrier_facades::",
+    "native_context": {
+      "manifest": "evidence/quality/category_homology/20261019T064912Z/context-20.json",
+      "rename_from": "crate::homology::",
+      "rename_to": "crate::homology::degree_repair_replay_20::",
+      "scope": "Complete same-source homology context, reversible uniform crate path rename; one designated fault, no provider/visibility replacement. Control runs all context tests; mutant runs its independent subject fixtures.",
+      "sha256": "4fce35e1a9fe76608c54c1e96fe4fe0a1aa65857a10d9db3949785a52b4cbbe4",
+      "unrenamed_candidate_sha256": "ed2073d86594dbd1a6465dc6c6a1fe2f4f7bd2b637448a3895dd87e694bae674"
+    },
+    "needle": "verify_hash(&value.d1_hash, &hash_exact_matrix(&value.d1))?;",
+    "outcome": "killed",
+    "path": "homology/mod.rs",
+    "replacement": "",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912\\degree-repair-tests.exe",
+        "homology::degree_repair_replay_20::independent_carrier_facades::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912",
+      "elapsed_seconds": 0.031,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T064912Z\\fault-19.log",
+      "log_sha256": "4420f63a3f2cef2dd340c12a0025ba5b3a74a030ee0ec622a5756a9abb2c4202",
+      "timed_out": false
+    },
+    "subject_sha256": "40f163fb350b95b3438b530a28e11b9f9e3df2c59849dc905a8f0457d4b2e579"
+  },
+  {
+    "candidate_path": "code/rust/target/dr/261019T064912/src/homology/q/context_21/mod.rs",
+    "candidate_sha256": "3c77f2c4c56ef27c9302d73c3a9936d11421984c3b07dc8b3eb7baeff08a6988",
+    "id": "DR-21-20",
+    "module": "homology::degree_repair_replay_21::independent_carrier_facades::",
+    "native_context": {
+      "manifest": "evidence/quality/category_homology/20261019T064912Z/context-21.json",
+      "rename_from": "crate::homology::",
+      "rename_to": "crate::homology::degree_repair_replay_21::",
+      "scope": "Complete same-source homology context, reversible uniform crate path rename; one designated fault, no provider/visibility replacement. Control runs all context tests; mutant runs its independent subject fixtures.",
+      "sha256": "42c010a92fa95d41b071bf2b2981f8a7f102db400ce5bbf6b91c0ca8883b703e",
+      "unrenamed_candidate_sha256": "2b69f362c7bd1215055b98c352952e94f4afd9f1ea11690c9ab8eb23ac78e781"
+    },
+    "needle": "            value.weights,",
+    "outcome": "killed",
+    "path": "homology/mod.rs",
+    "replacement": "            vec![crate::linear_algebra::scalars::q(1); value.c1_dim],",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912\\degree-repair-tests.exe",
+        "homology::degree_repair_replay_21::independent_carrier_facades::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912",
+      "elapsed_seconds": 0.032,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T064912Z\\fault-20.log",
+      "log_sha256": "2990991e6f50876f65d90d7c7ce1b002001b693a86ce4da931be378cb1e393e9",
+      "timed_out": false
+    },
+    "subject_sha256": "40f163fb350b95b3438b530a28e11b9f9e3df2c59849dc905a8f0457d4b2e579"
+  },
+  {
+    "candidate_path": "code/rust/target/dr/261019T064912/src/homology/q/context_22/mod.rs",
+    "candidate_sha256": "3537626a0f5fb1ef257421bda879c6ec007ed8d71929018ea7674c0a22aa9f63",
+    "id": "DR-22-21",
+    "module": "homology::degree_repair_replay_22::independent_carrier_facades::",
+    "native_context": {
+      "manifest": "evidence/quality/category_homology/20261019T064912Z/context-22.json",
+      "rename_from": "crate::homology::",
+      "rename_to": "crate::homology::degree_repair_replay_22::",
+      "scope": "Complete same-source homology context, reversible uniform crate path rename; one designated fault, no provider/visibility replacement. Control runs all context tests; mutant runs its independent subject fixtures.",
+      "sha256": "26f3e99f44ca4afe16465d09c24eec6381c0e5e9d447398abb9819d652f9144b",
+      "unrenamed_candidate_sha256": "68e00f5ece31e65b104e77b86db7d06dc7409593d79425aff86f7e8a859f27a3"
+    },
+    "needle": "self.inner.d0()",
+    "outcome": "killed",
+    "path": "homology/mod.rs",
+    "replacement": "self.inner.d1()",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912\\degree-repair-tests.exe",
+        "homology::degree_repair_replay_22::independent_carrier_facades::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912",
+      "elapsed_seconds": 0.031,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T064912Z\\fault-21.log",
+      "log_sha256": "f9bc38013305c8f13035a88095fb266882b515b9217bccbae157f393dcb68312",
+      "timed_out": false
+    },
+    "subject_sha256": "40f163fb350b95b3438b530a28e11b9f9e3df2c59849dc905a8f0457d4b2e579"
+  },
+  {
+    "candidate_path": "code/rust/target/dr/261019T064912/src/homology/q/n24.rs",
+    "candidate_sha256": "f91753a01783e2a755beb074271b0c0986535a872c024812f672efe317f1696b",
+    "id": "DR-24-0",
+    "module": "homology::degree_repair_replay_24::",
+    "needle": "c0_dim, c1_dim, c2_dim, d0, d1, weights, provenance,",
+    "outcome": "killed",
+    "path": "homology/exact_carrier.rs",
+    "replacement": "c1_dim, c0_dim, c2_dim, d0, d1, weights, provenance,",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912\\degree-repair-tests.exe",
+        "homology::degree_repair_replay_24::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912",
+      "elapsed_seconds": 0.016,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T064912Z\\fault-22.log",
+      "log_sha256": "2b1a955e2a2fef8662801474d2c22ea3039b333609f270291ef8127a70e2cac4",
+      "timed_out": false
+    },
+    "subject_sha256": "bc877f6f429ad97519c0104f86f634da6a8a059fb74bde44bc6b864b4395a360"
+  },
+  {
+    "candidate_path": "code/rust/target/dr/261019T064912/src/homology/q/n25.rs",
+    "candidate_sha256": "cfee90c5dde1310e6459ac05bb120d58dfba100f82dcad324cf992e89e7fadf1",
+    "id": "DR-25-1",
+    "module": "homology::degree_repair_replay_25::",
+    "needle": "self.inner.c0_dim()",
+    "outcome": "killed",
+    "path": "homology/exact_carrier.rs",
+    "replacement": "self.inner.c1_dim()",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912\\degree-repair-tests.exe",
+        "homology::degree_repair_replay_25::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912",
+      "elapsed_seconds": 0.047,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T064912Z\\fault-23.log",
+      "log_sha256": "73371e51b0de3d2cc5bcfeff8a2c07e5ed4d1920fcd496de023187cd36688b4b",
+      "timed_out": false
+    },
+    "subject_sha256": "bc877f6f429ad97519c0104f86f634da6a8a059fb74bde44bc6b864b4395a360"
+  },
+  {
+    "candidate_path": "code/rust/target/dr/261019T064912/src/homology/q/n26.rs",
+    "candidate_sha256": "262ca3d15fea8da04d1218ed9f049a9794820e2d54803538051ef12269336701",
+    "id": "DR-26-2",
+    "module": "homology::degree_repair_replay_26::",
+    "needle": "self.inner.d0()",
+    "outcome": "killed",
+    "path": "homology/exact_carrier.rs",
+    "replacement": "self.inner.d1()",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912\\degree-repair-tests.exe",
+        "homology::degree_repair_replay_26::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912",
+      "elapsed_seconds": 0.031,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T064912Z\\fault-24.log",
+      "log_sha256": "51dd5bf3d5bb2f473ea5c86814ddcbbcc1fdb18a198d651af17d85023360c515",
+      "timed_out": false
+    },
+    "subject_sha256": "bc877f6f429ad97519c0104f86f634da6a8a059fb74bde44bc6b864b4395a360"
+  },
+  {
+    "candidate_path": "code/rust/target/dr/261019T064912/src/homology/q/n27.rs",
+    "candidate_sha256": "5c390d3b2e80e03e3205ebeea7b1cc12d66eb557904165b422b32ba35353b8a6",
+    "id": "DR-27-3",
+    "module": "homology::degree_repair_replay_27::",
+    "needle": "self.inner.rank_d0()",
+    "outcome": "killed",
+    "path": "homology/exact_carrier.rs",
+    "replacement": "self.inner.rank_d1()",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912\\degree-repair-tests.exe",
+        "homology::degree_repair_replay_27::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912",
+      "elapsed_seconds": 0.031,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T064912Z\\fault-25.log",
+      "log_sha256": "920235cc77fe3d36fc13d1873e8e3b839663d9786c226e2722b7ee90ab6e9fdb",
+      "timed_out": false
+    },
+    "subject_sha256": "bc877f6f429ad97519c0104f86f634da6a8a059fb74bde44bc6b864b4395a360"
+  },
+  {
+    "candidate_path": "code/rust/target/dr/261019T064912/src/homology/q/n28.rs",
+    "candidate_sha256": "fa5c268c5173f5c20003c5c81ff78fbcba5b9201bdf699a08ab1448ab6679d43",
+    "id": "DR-28-4",
+    "module": "homology::degree_repair_replay_28::",
+    "needle": "self.c1_dim() - self.rank_d0()",
+    "outcome": "killed",
+    "path": "homology/exact_carrier.rs",
+    "replacement": "self.c1_dim() + self.rank_d0()",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912\\degree-repair-tests.exe",
+        "homology::degree_repair_replay_28::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912",
+      "elapsed_seconds": 0.204,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T064912Z\\fault-26.log",
+      "log_sha256": "ef4c4ed1a17cc973315be3932b8f83165d73cac700e0693caf351fd97461c4e3",
+      "timed_out": false
+    },
+    "subject_sha256": "bc877f6f429ad97519c0104f86f634da6a8a059fb74bde44bc6b864b4395a360"
+  },
+  {
+    "candidate_path": "code/rust/target/dr/261019T064912/src/homology/q/n29.rs",
+    "candidate_sha256": "6437637016f260fdec00f8f4fa4833f475a7bc51548c847d0d7f7bd9a212bf0f",
+    "id": "DR-29-5",
+    "module": "homology::degree_repair_replay_29::",
+    "needle": "self.c1_dim() - self.rank_d1() - self.rank_d0()",
+    "outcome": "killed",
+    "path": "homology/exact_carrier.rs",
+    "replacement": "self.c1_dim() + self.rank_d1() - self.rank_d0()",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912\\degree-repair-tests.exe",
+        "homology::degree_repair_replay_29::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912",
+      "elapsed_seconds": 0.031,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T064912Z\\fault-27.log",
+      "log_sha256": "db31e8d8b9c821a87ef3779688898130d099a482a804ac04a75bea4575602abf",
+      "timed_out": false
+    },
+    "subject_sha256": "bc877f6f429ad97519c0104f86f634da6a8a059fb74bde44bc6b864b4395a360"
+  },
+  {
+    "candidate_path": "code/rust/target/dr/261019T064912/src/homology/q/n30.rs",
+    "candidate_sha256": "5201f5b9a23673080dad825fa45ea78068c55281cf04a5dc33b92be4134af032",
+    "id": "DR-30-6",
+    "module": "homology::degree_repair_replay_30::",
+    "needle": "d0.set(i, src, q(-1))?;",
+    "outcome": "killed",
+    "path": "homology/exact_carrier.rs",
+    "replacement": "d0.set(i, src, q(1))?;",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912\\degree-repair-tests.exe",
+        "homology::degree_repair_replay_30::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912",
+      "elapsed_seconds": 0.031,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T064912Z\\fault-28.log",
+      "log_sha256": "b0160dcd795e81267c5c34242c34d3be59dc81ccc382cbb77fb5a43ebae4383b",
+      "timed_out": false
+    },
+    "subject_sha256": "bc877f6f429ad97519c0104f86f634da6a8a059fb74bde44bc6b864b4395a360"
+  },
+  {
+    "candidate_path": "code/rust/target/dr/261019T064912/src/homology/q/n31.rs",
+    "candidate_sha256": "368ae7b55b900ecabb1f0fea927ce035776b8a05f8be27e5c8326c735b54d975",
+    "id": "DR-31-7",
+    "module": "homology::degree_repair_replay_31::",
+    "needle": "d0.set(i, tgt, q(1))?;",
+    "outcome": "killed",
+    "path": "homology/exact_carrier.rs",
+    "replacement": "d0.set(i, tgt, q(-1))?;",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912\\degree-repair-tests.exe",
+        "homology::degree_repair_replay_31::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912",
+      "elapsed_seconds": 0.016,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T064912Z\\fault-29.log",
+      "log_sha256": "b8777881d771d482d2aa5745f9741b80c102eaba79fc691219885e8398db5885",
+      "timed_out": false
+    },
+    "subject_sha256": "bc877f6f429ad97519c0104f86f634da6a8a059fb74bde44bc6b864b4395a360"
+  },
+  {
+    "candidate_path": "code/rust/target/dr/261019T064912/src/homology/q/n32.rs",
+    "candidate_sha256": "50b1f448fd50d7243d69d510be36178f2df017c55d2157869fff1e7c1e8c7594",
+    "id": "DR-32-8",
+    "module": "homology::degree_repair_replay_32::",
+    "needle": "(a, c, -1)",
+    "outcome": "killed",
+    "path": "homology/exact_carrier.rs",
+    "replacement": "(a, c, 1)",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912\\degree-repair-tests.exe",
+        "homology::degree_repair_replay_32::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912",
+      "elapsed_seconds": 0.016,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T064912Z\\fault-30.log",
+      "log_sha256": "df880a53d71ccb6b5e1ab5a95d0f2161ce870cad143d70f48442db0f85409343",
+      "timed_out": false
+    },
+    "subject_sha256": "bc877f6f429ad97519c0104f86f634da6a8a059fb74bde44bc6b864b4395a360"
+  },
+  {
+    "candidate_path": "code/rust/target/dr/261019T064912/src/homology/q/n33.rs",
+    "candidate_sha256": "c5dadf06a83e26ef0b96e269e2d12deabc416d4e273c2d4ea1da10097de81043",
+    "id": "DR-33-9",
+    "module": "homology::degree_repair_replay_33::",
+    "needle": "if indices.insert((src, tgt), i).is_some() {",
+    "outcome": "killed",
+    "path": "homology/exact_carrier.rs",
+    "replacement": "if indices.insert((src, tgt), i).is_some() && false {",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912\\degree-repair-tests.exe",
+        "homology::degree_repair_replay_33::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912",
+      "elapsed_seconds": 0.156,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T064912Z\\fault-31.log",
+      "log_sha256": "f27e29e65d16e9b3f2b65f8f262b0812e7dcd9c012fe1394160fd7e85f91b1af",
+      "timed_out": false
+    },
+    "subject_sha256": "bc877f6f429ad97519c0104f86f634da6a8a059fb74bde44bc6b864b4395a360"
+  },
+  {
+    "candidate_path": "code/rust/target/dr/261019T064912/src/homology/q/n34.rs",
+    "candidate_sha256": "4f53f6ca14526a94d2939c193cf54b77cb2266bff78f83a0f7f4c7d5495e6632",
+    "id": "DR-34-10",
+    "module": "homology::degree_repair_replay_34::",
+    "needle": "if src >= n {",
+    "outcome": "killed",
+    "path": "homology/exact_carrier.rs",
+    "replacement": "if src > n {",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912\\degree-repair-tests.exe",
+        "homology::degree_repair_replay_34::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912",
+      "elapsed_seconds": 0.157,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T064912Z\\fault-32.log",
+      "log_sha256": "c76261630f2dfbbca60069824e85787e6e8922b091bd2b5ad6558c7c323eb826",
+      "timed_out": false
+    },
+    "subject_sha256": "bc877f6f429ad97519c0104f86f634da6a8a059fb74bde44bc6b864b4395a360"
+  },
+  {
+    "candidate_path": "code/rust/target/dr/261019T064912/src/homology/q/n35.rs",
+    "candidate_sha256": "249b655d35ac769184f1c8093e4ee5928d4308732646731bbc6fc6d4f9319427",
+    "id": "DR-35-11",
+    "module": "homology::degree_repair_replay_35::",
+    "needle": "if tgt >= n {",
+    "outcome": "killed",
+    "path": "homology/exact_carrier.rs",
+    "replacement": "if tgt > n {",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912\\degree-repair-tests.exe",
+        "homology::degree_repair_replay_35::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912",
+      "elapsed_seconds": 0.156,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T064912Z\\fault-33.log",
+      "log_sha256": "3636da44640c98c67719ec10953401023176bbd03e8d9500518ca77ef921782f",
+      "timed_out": false
+    },
+    "subject_sha256": "bc877f6f429ad97519c0104f86f634da6a8a059fb74bde44bc6b864b4395a360"
+  },
+  {
+    "candidate_path": "code/rust/target/dr/261019T064912/src/homology/q/n36.rs",
+    "candidate_sha256": "169210fe4a49ae8db29425963ce3551293d802e49bdcfc963fb9f3f41f957931",
+    "id": "DR-36-12",
+    "module": "homology::degree_repair_replay_36::",
+    "needle": "if src == tgt {",
+    "outcome": "killed",
+    "path": "homology/exact_carrier.rs",
+    "replacement": "if false {",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912\\degree-repair-tests.exe",
+        "homology::degree_repair_replay_36::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912",
+      "elapsed_seconds": 0.172,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T064912Z\\fault-34.log",
+      "log_sha256": "1f686df4e7ab6375efe3d54a650fd94371f2f464ba851952afcd89a81299cbed",
+      "timed_out": false
+    },
+    "subject_sha256": "bc877f6f429ad97519c0104f86f634da6a8a059fb74bde44bc6b864b4395a360"
+  },
+  {
+    "candidate_path": "code/rust/target/dr/261019T064912/src/homology/q/n37.rs",
+    "candidate_sha256": "6f2d95283e0cede1f3e1018ecfdf0b349b09f2b0a7e4d06cc479a0dc70d3b2ce",
+    "id": "DR-37-13",
+    "module": "homology::degree_repair_replay_37::",
+    "needle": "if vertex >= n {",
+    "outcome": "killed",
+    "path": "homology/exact_carrier.rs",
+    "replacement": "if vertex > n {",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912\\degree-repair-tests.exe",
+        "homology::degree_repair_replay_37::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912",
+      "elapsed_seconds": 0.156,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T064912Z\\fault-35.log",
+      "log_sha256": "ef9e039cc3dfbe8bcfdfe5d7f5c787de3b8a421a5d8bcec3ceb3e190cbd4ab08",
+      "timed_out": false
+    },
+    "subject_sha256": "bc877f6f429ad97519c0104f86f634da6a8a059fb74bde44bc6b864b4395a360"
+  },
+  {
+    "candidate_path": "code/rust/target/dr/261019T064912/src/homology/q/n38.rs",
+    "candidate_sha256": "49989ec8351775f7b7a2d64cd4ad5a76232c689f133810b9264df6bbf9f7fadb",
+    "id": "DR-38-14",
+    "module": "homology::degree_repair_replay_38::",
+    "needle": "if a == b || b == c || a == c {",
+    "outcome": "killed",
+    "path": "homology/exact_carrier.rs",
+    "replacement": "if a == b && b == c && a == c {",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912\\degree-repair-tests.exe",
+        "homology::degree_repair_replay_38::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912",
+      "elapsed_seconds": 0.156,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T064912Z\\fault-36.log",
+      "log_sha256": "bcd1167bf16d67168edd59ec7f1cfeddbe5511228c25d91b93458721652ba90c",
+      "timed_out": false
+    },
+    "subject_sha256": "bc877f6f429ad97519c0104f86f634da6a8a059fb74bde44bc6b864b4395a360"
+  },
+  {
+    "candidate_path": "code/rust/target/dr/261019T064912/src/homology/q/n39.rs",
+    "candidate_sha256": "dc2010d057733689335d8e1052e02ae3e8206f08d9284ae79c0d2ac9ca8e9ec7",
+    "id": "DR-39-15",
+    "module": "homology::degree_repair_replay_39::",
+    "needle": "                    src,\n                    tgt,",
+    "outcome": "killed",
+    "path": "homology/exact_carrier.rs",
+    "replacement": "                    src: tgt,\n                    tgt: src,",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912\\degree-repair-tests.exe",
+        "homology::degree_repair_replay_39::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912",
+      "elapsed_seconds": 0.156,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T064912Z\\fault-37.log",
+      "log_sha256": "2818f8830c3c3dcc26d5f25f1ccaa2e4f0cba3c15394c4e9d70918a7e12132ce",
+      "timed_out": false
+    },
+    "subject_sha256": "bc877f6f429ad97519c0104f86f634da6a8a059fb74bde44bc6b864b4395a360"
+  },
+  {
+    "candidate_path": "code/rust/target/dr/261019T064912/src/homology/q/n40.rs",
+    "candidate_sha256": "35a37c43685a149e4a4310e3975c5c41443dc6c109f9998717eccd08f345fdbd",
+    "id": "DR-40-16",
+    "module": "homology::degree_repair_replay_40::",
+    "needle": "d1.set(i, *col, q(sign))?;",
+    "outcome": "killed",
+    "path": "homology/exact_carrier.rs",
+    "replacement": "d1.set(i, *col, q(-sign))?;",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912\\degree-repair-tests.exe",
+        "homology::degree_repair_replay_40::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912",
+      "elapsed_seconds": 0.016,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T064912Z\\fault-38.log",
+      "log_sha256": "008fadf6973ad9b39c4f8d349877a30afec5f88dad25e8f2575841e423806dc4",
+      "timed_out": false
+    },
+    "subject_sha256": "bc877f6f429ad97519c0104f86f634da6a8a059fb74bde44bc6b864b4395a360"
+  },
+  {
+    "candidate_path": "code/rust/target/dr/261019T064912/src/homology/q/n41.rs",
+    "candidate_sha256": "25d515b33710f631c59ed92da26d6cc485ac9b6b910d739fc0cfa54d4e4009a5",
+    "id": "DR-41-17",
+    "module": "homology::degree_repair_replay_41::",
+    "needle": "BasicMatrix::<Q>::zero(edges.len(), num_nodes)?",
+    "outcome": "killed",
+    "path": "homology/exact_carrier.rs",
+    "replacement": "BasicMatrix::<Q>::zero(num_nodes, edges.len())?",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912\\degree-repair-tests.exe",
+        "homology::degree_repair_replay_41::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\dr\\261019T064912",
+      "elapsed_seconds": 0.016,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T064912Z\\fault-39.log",
+      "log_sha256": "2eb2d81e924bc93b7a5c9af60c3017e631e8f6fb98e09ac60bbd1ad61e3fef2b",
+      "timed_out": false
+    },
+    "subject_sha256": "bc877f6f429ad97519c0104f86f634da6a8a059fb74bde44bc6b864b4395a360"
+  }
+]

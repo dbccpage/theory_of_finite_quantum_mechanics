@@ -1,0 +1,201 @@
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/category_theory/limits_colimits/coproduct.rs",
+    "language": "Rust",
+    "sha256": "4f7aec81569672d6cd61326a10ac2c4a4f7e5069dc30b493c60c55f85ed5b0c7"
+  },
+  "reviewer": "Codex explicit nested-shape, typed-failure, source/representation and consumer review",
+  "evaluation_timestamp": "2026-10-19T03:10:09.276472+00:00",
+  "gates": {
+    "G1": "A",
+    "G2": "A",
+    "G3": "A",
+    "G4": "A",
+    "G5": "A"
+  },
+  "formal_specification": {
+    "domain": "Raw mutable literal String/collection metadata. Byte-nonempty labels permit whitespace/NUL/Unicode without normalization. Constructors, Default and serde emit raw candidates, never mathematical law certificates.",
+    "acceptance": "Nonempty label/coproduct_object, nonempty summands, every summand/injection tag nonempty, then injections are absent (length zero) or exactly as numerous as summands. No categorical coproduct universal property is checked.",
+    "failure": "Required own fields precede ordered child/inventory checks, which precede conditional label/length constraints. The first exact typed error returns without subject mutation. Shape context alone may prefix detail; other typed tags/payloads remain intact.",
+    "construction": "The complete owner-qualified body map specifies direct field moves, explicit raw defaults, identity-tag generation, list appends and borrowed getters. No admitted category/cone/product type is constructed."
+  },
+  "symbol_map": {
+    "Coproduct::new": {
+      "signature": "pub fn new(label: impl Into<String>) -> Self",
+      "body": "{ Self { label: label.into(), coproduct_object: String::new(), summands: Vec::new(), injections: Vec::new(), notes: Vec::new(), } }",
+      "scope": "Literal shape/typed context or raw-data construction/observation only; not a category/universal-property admission."
+    },
+    "Coproduct::binary": {
+      "signature": "pub fn binary( label: impl Into<String>, coproduct_object: impl Into<String>, left: impl Into<String>, right: impl Into<String>, injection_left: impl Into<String>, injection_right: impl Into<String>, ) -> Self",
+      "body": "{ Self { label: label.into(), coproduct_object: coproduct_object.into(), summands: vec![left.into(), right.into()], injections: vec![injection_left.into(), injection_right.into()], notes: Vec::new(), } }",
+      "scope": "Literal shape/typed context or raw-data construction/observation only; not a category/universal-property admission."
+    },
+    "Coproduct::validate_shell": {
+      "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+      "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.coproduct_object.is_empty() { return Err(ArithmosError::InvalidShape(\"empty coproduct_object\".into())); } if self.summands.is_empty() { return Err(ArithmosError::InvalidShape(\"empty summands\".into())); } for (i, s) in self.summands.iter().enumerate() { if s.is_empty() { return Err(ArithmosError::InvalidShape(format!( \"empty summand at index {i}\" ))); } } for (i, j) in self.injections.iter().enumerate() { if j.is_empty() { return Err(ArithmosError::InvalidShape(format!( \"empty injection at index {i}\" ))); } } if !self.injections.is_empty() && self.injections.len() != self.summands.len() { return Err(ArithmosError::InvalidShape( \"injections length must match summands length\".into(), )); } Ok(()) }",
+      "scope": "Literal shape/typed context or raw-data construction/observation only; not a category/universal-property admission."
+    }
+  },
+  "invariant_argument": [
+    "The explicit policy and body map distinguish literal metadata predicates from the mathematical concepts named by the file. Ordered finite String checks map to MetadataValidation; ShapeInventory separately checks boundary equality, positive/optional counts, conditional label binding and all typed context variants. No mathematical category or universal-property hypothesis is silently assumed.",
+    "Each iterator borrows a finite actual Vec/BTreeMap; the prefix invariant preserves prior field/entry checks and returns the first failure. Category splits these three ordered inventories into cohesive private helpers, preserving call order and propagating every typed refusal with ?. No validator changes the raw record or returns a retained proof token.",
+    "Nested parent checks run own fields first, then the actual child, then later constraints. Limit/Colimit use the actual same-parent Cone shape-context helper. Its match exhaustively maps InvalidShape detail while forwarding every other enum variant unchanged. The checked contextualize model proves no child error becomes success.",
+    "Std String equality/is_empty, Vec/BTreeMap iteration/length and formatting implement the declared primitive relation. Product/Coproduct use only exact usize lengths/comparisons, no arithmetic/narrowing. No unchecked production index, division, recursion or user callback occurs in validation. Standard constructor conversion/allocator behavior remains the explicit runtime boundary.",
+    "Native test namespaces compile inside the actual Rust parent modules, retaining original visibility and actual peer providers. Only the isolated snapshot gains serde_json as a test dependency for case decoding. Candidate files live under that package and are included in dependency-content binding; no production visibility is widened."
+  ],
+  "failure_paths": {
+    "own_labels": "First exact InvalidShape(empty FIELD).",
+    "nested_or_entries": "Nonempty label/coproduct_object, nonempty summands, every summand/injection tag nonempty, then injections are absent (length zero) or exactly as numerous as summands. No categorical coproduct universal property is checked.",
+    "context": "Shape tags retain location-prefixed detail; law/precondition tags remain exact. The helper is directly tested with all three variants, including variants not emitted by current child shape guards.",
+    "raw_transport": "Serde preserves rejected candidates; raw default/new/setters can intentionally fail subsequent validation. Unit success is a current shape observation, not immutable mathematical evidence.",
+    "runtime": "Typed failures propagate without broad recovery. Standard String/&str conversions, arbitrary caller Into implementations and allocator/serde/collection internals retain their explicitly declared trusted-runtime contracts."
+  },
+  "trust_boundary": {
+    "math": "Only the stated raw shape/inventory rules. No category identity, smallness, cone law, representability or universal property is proved.",
+    "formal": "Pinned kernel-checked ordered-predicate and ShapeInventory models; source/data/stdlib correspondence is reviewed separately, not extracted Rust or MIR.",
+    "runtime": "Captured safe Rust/compiler/std, actual category error enum, serde/json, collection and String behavior and ordinary conversion/allocator contracts.",
+    "adapter": "Original same-parent lexical scopes and real providers; isolated serde_json test-dependency addition is recorded in the Cargo snapshot/dependency receipt."
+  },
+  "consumer_review": [
+    "The retained qualified Rust-src inventory and full current category suite cover current visible compositions. The fresh public export campaign checks nominal bindings on these exact provider versions, without inheriting mathematical grades.",
+    "MorphismTriple fields, derive list and constructor impl remain unchanged, so Arrow/Opposite data-provider paths receive a separate explicit delta review. Parent-child validations here are freshly replayed against the actual changed providers. No external or whole-workspace compatibility pass is claimed."
+  ],
+  "basis": {
+    "G1": [
+      "Source SHA, complete public/private production-symbol map, independently stated nested rules and diagnostics, peer/consumer context, compiled-subject restriction and current Cargo/runtime receipts bind the claim. AuthorityEffect is None and all contracts remain pending."
+    ],
+    "G2": [
+      "Nonempty label/coproduct_object, nonempty summands, every summand/injection tag nonempty, then injections are absent (length zero) or exactly as numerous as summands. No categorical coproduct universal property is checked.",
+      "The model acceptance programs match the stated primitive conditions, with exact String identity and usize count behavior. No real-valued arithmetic, float, lossful conversion or hidden mathematical assumption is admitted. Constructors remain raw; the discrete diagnostic now accurately describes endomorphism boundaries."
+    ],
+    "G3": [
+      "Checked ordered and typed-error models plus explicit source refinement cover every validation exit, helper delegation and no-success-after-error property. Borrowed raw data remains unchanged. Nested context preserves exact error tag/payload; no default admitted state or hidden catch-all success exists."
+    ],
+    "G4": [
+      "295 independent schema cases plus distinct raw constructors/getters/typed-context checks execute for this file. All 16 valid one-fault copies compile and are killed separately. Helper-call bypass, entry predicates, child delegation, label/length binding and relevant constructor/observer faults are included.",
+      "Final native campaign 025937Z kills all 118 faults, with zero other outcomes. Eight unmutated namespaces pass 49 tests and the unchanged actual category suite passes 459 tests before/after. The first harness missed a test decoder dependency and its 118 candidates remain unrun; a SHA-matched correction ledger ties the same candidate bytes to the successful retry, without counting that compiler failure as a kill.",
+      "All nine ShapeInventory lemmas are kernel checked with only standard foundational axioms, as are the unchanged ordered-predicate lemmas. The namespace harness shares compilation, not state, widens no production visibility, and refuses empty test selections as positive evidence."
+    ],
+    "G5": [
+      "One summands and one injections traversal, followed by exact usize comparisons. Binary construction moves two tags per inventory; no arithmetic, recursion or dimension-driven allocation.",
+      "Fresh calibrated AST metrics enforce each production function ceiling, including the private helpers and typed context function. Cohesive splitting does not hide logic in macros. Standard generated serde internals and allocation limits remain explicitly trusted, without MIR/benchmark or allocator-totality claims."
+    ]
+  },
+  "assurance_limits": [
+    "Capability L2 raw metadata/shape implementation, not L5 mathematics inferred from a type name.",
+    "Contracts pending. No A+, alternate compiler, Rust/MIR equivalence, global allocator totality, origin attestation, whole-workspace pass or mathematical category/universal-property admission."
+  ],
+  "open_findings": [],
+  "evidence": [
+    {
+      "path": "evidence/quality/category_homology/20261018T233729Z-metadata-proof/receipt.json",
+      "sha256": "71187f438fb571fd2e7339b19be871c3b5882e3b2e34e3a1df0b62e637c6f0ea"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T025904Z-shape-inventory-proof/receipt.json",
+      "sha256": "fbe19322a695340f926ab749f1608006b4490794ebf5b1cd063f943b6f5b78dc"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T025937Z/summary.json",
+      "sha256": "f2f81493492e988b8b9e4c12654c29d1bb8582a575322295ad6df2026011ae04"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T025937Z/baseline.json",
+      "sha256": "9fed40cb6f708ef01987297b87d532ab9a53a6d5781a1debc680ff84c5c7345b"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T025937Z/restored.json",
+      "sha256": "902a63a53314ff179f2b75b68fd721a4b3fe424496e095987c06dea50e224bae"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T025937Z/mutations.json",
+      "sha256": "0c5e4a88f8d1d6dcf7adf275057dabf094f59f3077717a672cb12a37fec34abf"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T025937Z/controls.json",
+      "sha256": "637ceaebf016eaa9f78488e8162589b3d34e57b4763ffe819d55ffc5202ee10f"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T025937Z/builds.json",
+      "sha256": "7ceedb44d0fe27ed8f1189c0daf56268c45d49fe9fe03a5d790d0498b0c6b5a4"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T025937Z/dependency_receipt.json",
+      "sha256": "22d9552a220f56f7b3d09c72e76f8fabad292888a623fdc0c86b52f9b0e55f14"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T025937Z/run_nested_inventory.py",
+      "sha256": "213273b629196bbaa20ff4921d55a7e6ea31efe843a26347c21e8c5938693e7e"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T025937Z/nested_inventory.py",
+      "sha256": "7d2e0a8732627acfd7e9362682eb7c29c1fe6fa8bc7d278ea83dba1872595d09"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T025937Z/nested_inventory_boundaries.json",
+      "sha256": "175edbd5890fd259348e32247440fa09036cc56ddef145c795dfa0c10a1420a4"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T025937Z/collection_metadata.py",
+      "sha256": "3654e8abd99a6b93ee373817ecd3e902ece05205343d29763f8f4744fbaa23b9"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T025937Z/parameter_metadata.py",
+      "sha256": "3a8b26ecd39e61cb15bf6e54eae95c87780dcda7e0ff4883d3926c015b6ec518"
+    },
+    {
+      "path": "code/rust/quality/category_homology/assessments/nested_inventory_source_review.json",
+      "sha256": "3d1717ca70935b3811724da2979a579e9558ff10228060e2f7e03ab61ed82ec0"
+    },
+    {
+      "path": "evidence/quality/category_homology/resume-20261019/nested-inventory-changes.json",
+      "sha256": "f9cbabfa0ba62b45ec30ddd03d111621dab5478f904bba76deec691001d3099f"
+    },
+    {
+      "path": "evidence/quality/category_homology/resume-20261019/nested-inventory-consumers.json",
+      "sha256": "99f01027c39f0a29a97be334745d6453f120d685e8d2902fbb860a65492418ef"
+    },
+    {
+      "path": "evidence/quality/category_homology/resume-20261019/nested-inventory-consumers.log",
+      "sha256": "bfb83979d4abd73d81a3157ef9b49245551ca2b72c9bc6e68983af8b8bb9dc1f"
+    },
+    {
+      "path": "evidence/quality/category_homology/resume-20261019/nested-harness-correction.json",
+      "sha256": "df2315a21ef6d8529042407eb438e662fae025551d03c16438fd7729a5a35d76"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T030441Z/summary.json",
+      "sha256": "9c9fcef9ce07c0c53ca5bf0e31b3f71454a0775f6ea4ba740b025defac124406"
+    }
+  ],
+  "proof_receipts": [
+    {
+      "path": "evidence/quality/category_homology/20261018T233729Z-metadata-proof/receipt.json",
+      "sha256": "71187f438fb571fd2e7339b19be871c3b5882e3b2e34e3a1df0b62e637c6f0ea",
+      "proof": "code/rust/quality/category_homology/proofs/MetadataValidation.lean",
+      "mathlib_root": "lean4/.lake/packages/mathlib"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T025904Z-shape-inventory-proof/receipt.json",
+      "sha256": "fbe19322a695340f926ab749f1608006b4490794ebf5b1cd063f943b6f5b78dc",
+      "proof": "code/rust/quality/category_homology/proofs/ShapeInventory.lean",
+      "mathlib_root": "lean4/.lake/packages/mathlib"
+    }
+  ],
+  "context_inputs": [
+    {
+      "path": "code/rust/src/category_theory/limits_colimits/mod.rs",
+      "sha256": "dff35bbea251d6d7cb535d9104bcf27ffdc15f41c8baa9dfb44ac4b83ed68a5d"
+    },
+    {
+      "path": "code/rust/src/category_theory/lib.rs",
+      "sha256": "b1535a921f4a69414e8b6636f85c8393f799bd2bc20da600e855864c2d3e8776"
+    },
+    {
+      "path": "code/rust/src/category_theory/Cargo.toml",
+      "sha256": "42378ba9d23fe5a5c97c844ebab457e9187c96b819c5b6a0fe3f9acaff1579a3"
+    }
+  ]
+}

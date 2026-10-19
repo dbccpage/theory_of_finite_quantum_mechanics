@@ -64,9 +64,9 @@ def main():
     write_json(output/"environment.json",{"lean_binary":str(binary),"environment":environment,"excluded_main_project_outputs":True})
     common = [str(binary),"--root="+str(proof.parent)]
     dependencies = execute([*common,"--deps",str(proof)],proof.parent,output/"dependencies.log",timeout=60,environment_overlay=environment)
-    sources = execute([*common,"--src-deps",str(proof)],proof.parent,output/"dependency_sources.log",timeout=60,environment_overlay=environment)
+    sources = execute([*common,"--src-deps",str(proof)],proof.parent,output/"dependency-sources.log",timeout=60,environment_overlay=environment)
     paths = set()
-    for log in ("dependencies.log","dependency_sources.log"):
+    for log in ("dependencies.log","dependency-sources.log"):
         for line in (output/log).read_text(encoding="utf-8").splitlines():
             candidate = Path(line.strip())
             if not candidate.is_absolute(): candidate = project/candidate

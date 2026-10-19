@@ -1,0 +1,34 @@
+
+running 5 tests
+test mutant_30::tests::validate_rejects_empty ... ok
+test mutant_30::tests::validate_rejects_missing_ref ... ok
+test mutant_30::tests::validate_ok ... FAILED
+test mutant_30::schema_challenge::labels_are_literal_not_mathematical_certificates ... FAILED
+test mutant_30::schema_challenge::exhaustive_required_fields ... FAILED
+
+failures:
+
+---- mutant_30::tests::validate_ok stdout ----
+
+thread 'mutant_30::tests::validate_ok' (20044) panicked at metadata_challenge_3\mutant_30.rs:51:9:
+assertion failed: Presheaf::on_category("P", "C").validate_shell().is_ok()
+
+---- mutant_30::schema_challenge::labels_are_literal_not_mathematical_certificates stdout ----
+
+thread 'mutant_30::schema_challenge::labels_are_literal_not_mathematical_certificates' (13492) panicked at metadata_challenge_3\mutant_30.rs:100:13:
+assertion failed: value.validate_shell().is_ok()
+
+---- mutant_30::schema_challenge::exhaustive_required_fields stdout ----
+
+thread 'mutant_30::schema_challenge::exhaustive_required_fields' (23600) panicked at metadata_challenge_3\mutant_30.rs:84:34:
+mask 0, expected None, got Err(InvalidShape("reject valid"))
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    mutant_30::schema_challenge::exhaustive_required_fields
+    mutant_30::schema_challenge::labels_are_literal_not_mathematical_certificates
+    mutant_30::tests::validate_ok
+
+test result: FAILED. 2 passed; 3 failed; 0 ignored; 0 measured; 332 filtered out; finished in 0.00s
+

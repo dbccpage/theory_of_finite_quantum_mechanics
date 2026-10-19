@@ -4,6 +4,7 @@
 //! Order-theoretic adjunction: monotone maps f ⊣ g between posets
 //! with f(x) ≤ y ⇔ x ≤ g(y). Diagnostic pair tags only.
 
+use omega_category_theory::errors::ArithmosError;
 use serde::{Deserialize, Serialize};
 
 /// A single ordered pair tag (x, y) used as a monotone-map edge.
@@ -87,24 +88,24 @@ impl GaloisConnectionShell {
         self
     }
 
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
         if self.poset_left.is_empty() {
-            return Err("empty poset_left".into());
+            return Err(ArithmosError::InvalidShape("empty poset_left".into()));
         }
         if self.poset_right.is_empty() {
-            return Err("empty poset_right".into());
+            return Err(ArithmosError::InvalidShape("empty poset_right".into()));
         }
         for (i, p) in self.lower.iter().enumerate() {
             if p.domain_element.is_empty() || p.codomain_element.is_empty() {
-                return Err(format!("empty lower pair tag at index {i}"));
+                return Err(ArithmosError::InvalidShape(format!("empty lower pair tag at index {i}")));
             }
         }
         for (i, p) in self.upper.iter().enumerate() {
             if p.domain_element.is_empty() || p.codomain_element.is_empty() {
-                return Err(format!("empty upper pair tag at index {i}"));
+                return Err(ArithmosError::InvalidShape(format!("empty upper pair tag at index {i}")));
             }
         }
         Ok(())

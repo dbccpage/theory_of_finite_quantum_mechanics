@@ -3,7 +3,6 @@
 //! Runtime certificates establish finite algebraic identities only. The canonical
 //! carrier admits shapes, d1*d0=0, positive weights and rank inclusion before use.
 
-use crate::linear_algebra::scalars::hash_rational;
 use crate::linear_algebra::{ExactMatrix, Q};
 use serde::{Deserialize, Serialize};
 
@@ -31,22 +30,27 @@ mod l5a_challenges;
 pub use errors::HomologicalError;
 pub use hashing::Hash256;
 
-/// Legacy root matrix digest; its tag is retained for existing receipts.
+/// Legacy root matrix fingerprint; its tag is retained for existing receipts.
+/// Undefined raw ratios are opaque stored pairs, never admitted rational values.
 pub fn hash_exact_matrix(m: &ExactMatrix<Q>) -> Hash256 {
+    hash_legacy_matrix(&m.0)
+}
+
+fn hash_legacy_matrix(m: &crate::linear_algebra::BasicMatrix<Q>) -> Hash256 {
     let mut hasher = blake3::Hasher::new();
     hasher.update(b"TheoryOfFiniteQM.ExactMatrix<Q>.v1");
     hasher.update(&(m.rows() as u64).to_le_bytes());
     hasher.update(&(m.cols() as u64).to_le_bytes());
     for val in m.as_slice() {
-        hash_rational(&mut hasher, val);
+        hashing::hash_stored_rational(&mut hasher, val);
     }
     Hash256(*hasher.finalize().as_bytes())
 }
 
 /// Compatibility facade over the single admitted carrier. Serialization is data;
 /// deserialization recomputes the law, ranks and hashes instead of trusting bytes.
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
-#[serde(try_from = "CarrierWire", into = "CarrierWire")]
+#[derive(Debug, Clone, PartialEq, Eq, Deserialize)]
+#[serde(try_from = "CarrierWire")]
 pub struct Carrier {
     inner: carrier::Carrier,
 }
@@ -62,6 +66,46 @@ struct CarrierWire {
     weights: Vec<Q>,
     d0_hash: Hash256,
     d1_hash: Hash256,
+}
+
+/// Borrow the existing wire fields without cloning the carrier's certificates
+/// or coefficient buffers. Preserve both Serde struct and newtype identities.
+#[derive(Serialize)]
+#[serde(rename = "CarrierWire")]
+struct CarrierWireRef<'a> {
+    c0_dim: usize,
+    c1_dim: usize,
+    c2_dim: usize,
+    #[serde(serialize_with = "serialize_matrix_ref")]
+    d0: &'a crate::linear_algebra::BasicMatrix<Q>,
+    #[serde(serialize_with = "serialize_matrix_ref")]
+    d1: &'a crate::linear_algebra::BasicMatrix<Q>,
+    weights: &'a [Q],
+    d0_hash: Hash256,
+    d1_hash: Hash256,
+}
+
+fn serialize_matrix_ref<S: serde::Serializer>(
+    matrix: &&crate::linear_algebra::BasicMatrix<Q>,
+    serializer: S,
+) -> Result<S::Ok, S::Error> {
+    serializer.serialize_newtype_struct("ExactMatrix", *matrix)
+}
+
+impl Serialize for Carrier {
+    fn serialize<S: serde::Serializer>(&self, serializer: S) -> Result<S::Ok, S::Error> {
+        CarrierWireRef {
+            c0_dim: self.c0_dim(),
+            c1_dim: self.c1_dim(),
+            c2_dim: self.c2_dim(),
+            d0: self.d0(),
+            d1: self.d1(),
+            weights: self.weights(),
+            d0_hash: hash_legacy_matrix(self.d0()),
+            d1_hash: hash_legacy_matrix(self.d1()),
+        }
+        .serialize(serializer)
+    }
 }
 
 impl Carrier {
@@ -117,23 +161,6 @@ impl AsRef<carrier::Carrier> for Carrier {
     }
 }
 
-impl From<Carrier> for CarrierWire {
-    fn from(value: Carrier) -> Self {
-        let d0 = ExactMatrix(value.d0().clone());
-        let d1 = ExactMatrix(value.d1().clone());
-        Self {
-            c0_dim: value.c0_dim(),
-            c1_dim: value.c1_dim(),
-            c2_dim: value.c2_dim(),
-            d0_hash: hash_exact_matrix(&d0),
-            d1_hash: hash_exact_matrix(&d1),
-            d0,
-            d1,
-            weights: value.weights().to_vec(),
-        }
-    }
-}
-
 impl TryFrom<CarrierWire> for Carrier {
     type Error = HomologicalError;
     fn try_from(value: CarrierWire) -> Result<Self, Self::Error> {
@@ -164,6 +191,36 @@ fn verify_hash(expected: &Hash256, got: &Hash256) -> Result<(), HomologicalError
 mod tests {
     use super::*;
     use crate::linear_algebra::scalars::q;
+
+    #[test]
+    fn legacy_fingerprint_keeps_its_wire_format_and_accepts_raw_data() {
+        use crate::linear_algebra::BasicMatrix;
+        use num_bigint::BigInt;
+        // Independently build the legacy wire for one stored scalar.
+        for (n, d, encoded_n, encoded_d) in [
+            (1, 2, 1, 2),
+            (2, 4, 1, 2),
+            (1, -2, -1, 2),
+            (0, 7, 0, 1),
+            (0, 0, 0, 0),
+            (1, 0, 1, 0),
+        ] {
+            let raw = Q::new_raw(BigInt::from(n), BigInt::from(d));
+            let matrix = ExactMatrix(BasicMatrix::from_row_major(1, 1, vec![raw]).unwrap());
+            let mut bytes = b"TheoryOfFiniteQM.ExactMatrix<Q>.v1".to_vec();
+            bytes.extend(1u64.to_le_bytes());
+            bytes.extend(1u64.to_le_bytes());
+            for integer in [encoded_n, encoded_d] {
+                let data = BigInt::from(integer).to_signed_bytes_le();
+                bytes.extend((data.len() as u64).to_le_bytes());
+                bytes.extend(data);
+            }
+            assert_eq!(
+                hash_exact_matrix(&matrix).0,
+                *blake3::hash(&bytes).as_bytes()
+            );
+        }
+    }
 
     #[test]
     fn test_triangle_carrier_homology() {

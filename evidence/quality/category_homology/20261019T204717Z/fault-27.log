@@ -1,0 +1,33 @@
+
+running 8 tests
+test root_record_replay_28::subject::tests::coend_with_identification ... ok
+test root_record_replay_28::subject::independent_coend_tests::class_labels_address_the_returned_partition ... FAILED
+test root_record_replay_28::subject::independent_coend_tests::payload_callbacks_only_required_clones ... ok
+test root_record_replay_28::subject::tests::trivial_coend_single_object ... ok
+test root_record_replay_28::subject::independent_coend_tests::diagnostics_compare_labels_only_and_presence_order ... FAILED
+test root_record_replay_28::subject::independent_coend_tests::matched_slots_duplicates_unknown_tags_and_metadata ... ok
+test root_record_replay_28::subject::independent_coend_tests::all_five_vertex_graphs_and_direction_orders ... ok
+test root_record_replay_28::subject::independent_coend_tests::iterative_long_reverse_chain ... ok
+
+failures:
+
+---- root_record_replay_28::subject::independent_coend_tests::class_labels_address_the_returned_partition stdout ----
+
+thread 'root_record_replay_28::subject::independent_coend_tests::class_labels_address_the_returned_partition' (26236) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\rr\261019T204717\src\category_theory\q\n28.rs:329:2:
+assertion failed: validate_coend_input(&input).is_empty()
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- root_record_replay_28::subject::independent_coend_tests::diagnostics_compare_labels_only_and_presence_order stdout ----
+
+thread 'root_record_replay_28::subject::independent_coend_tests::diagnostics_compare_labels_only_and_presence_order' (11148) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\rr\261019T204717\src\category_theory\q\n28.rs:378:2:
+assertion `left == right` failed
+  left: ["Missing diagonal contribution for object missing", "Missing diagonal contribution for object missing", "Missing forward action for morphism z", "Missing backward action for morphism z"]
+ right: ["Missing diagonal contribution for object missing", "Missing diagonal contribution for object missing", "Missing forward action for morphism z", "Missing backward action for morphism y"]
+
+
+failures:
+    root_record_replay_28::subject::independent_coend_tests::class_labels_address_the_returned_partition
+    root_record_replay_28::subject::independent_coend_tests::diagnostics_compare_labels_only_and_presence_order
+
+test result: FAILED. 6 passed; 2 failed; 0 ignored; 0 measured; 715 filtered out; finished in 0.06s
+

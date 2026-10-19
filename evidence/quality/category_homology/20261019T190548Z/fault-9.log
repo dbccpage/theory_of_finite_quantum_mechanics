@@ -1,0 +1,36 @@
+
+running 3 tests
+test root_record_replay_10::subject::independent_simulation_tests::admission_precedence_and_two_event_order ... FAILED
+test root_record_replay_10::subject::independent_simulation_tests::checked_budget_overflow_without_allocating_carrier ... FAILED
+test root_record_replay_10::subject::independent_simulation_tests::all_two_state_one_event_simulations ... FAILED
+
+failures:
+
+---- root_record_replay_10::subject::independent_simulation_tests::admission_precedence_and_two_event_order stdout ----
+
+thread 'root_record_replay_10::subject::independent_simulation_tests::admission_precedence_and_two_event_order' (41508) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\rr\261019T190548\src\category_theory\q\n10.rs:231:2:
+assertion `left == right` failed
+  left: Err(WorkLimit)
+ right: Ok(Checked { added_availability: [] })
+
+---- root_record_replay_10::subject::independent_simulation_tests::checked_budget_overflow_without_allocating_carrier stdout ----
+
+thread 'root_record_replay_10::subject::independent_simulation_tests::checked_budget_overflow_without_allocating_carrier' (11220) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\rr\261019T190548\src\category_theory\q\n10.rs:248:2:
+assertion `left == right` failed
+  left: Err(WorkLimit)
+ right: Ok(())
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- root_record_replay_10::subject::independent_simulation_tests::all_two_state_one_event_simulations stdout ----
+
+thread 'root_record_replay_10::subject::independent_simulation_tests::all_two_state_one_event_simulations' (43804) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\rr\261019T190548\src\category_theory\q\n10.rs:211:120:
+called `Result::unwrap()` on an `Err` value: WorkLimit
+
+
+failures:
+    root_record_replay_10::subject::independent_simulation_tests::admission_precedence_and_two_event_order
+    root_record_replay_10::subject::independent_simulation_tests::all_two_state_one_event_simulations
+    root_record_replay_10::subject::independent_simulation_tests::checked_budget_overflow_without_allocating_carrier
+
+test result: FAILED. 0 passed; 3 failed; 0 ignored; 0 measured; 561 filtered out; finished in 0.00s
+

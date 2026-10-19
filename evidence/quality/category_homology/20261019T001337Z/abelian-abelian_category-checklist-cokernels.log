@@ -1,0 +1,32 @@
+
+running 7 tests
+test mutant_7::checklist_challenge::every_raw_checklist_is_conjunction_without_law_promotion ... FAILED
+test mutant_7::schema_challenge::exhaustive_required_fields ... ok
+test mutant_7::schema_challenge::labels_are_literal_not_mathematical_certificates ... ok
+test mutant_7::tests::claimed_abelian_sets_flags ... ok
+test mutant_7::tests::incomplete_checklist ... FAILED
+test mutant_7::tests::validate_ok ... ok
+test mutant_7::tests::validate_rejects_empty ... ok
+
+failures:
+
+---- mutant_7::checklist_challenge::every_raw_checklist_is_conjunction_without_law_promotion stdout ----
+
+thread 'mutant_7::checklist_challenge::every_raw_checklist_is_conjunction_without_law_promotion' (29556) panicked at metadata_challenge_0\mutant_7.rs:150:13:
+assertion `left == right` failed
+  left: true
+ right: false
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- mutant_7::tests::incomplete_checklist stdout ----
+
+thread 'mutant_7::tests::incomplete_checklist' (4456) panicked at metadata_challenge_0\mutant_7.rs:101:9:
+assertion failed: !a.checklist_complete()
+
+
+failures:
+    mutant_7::checklist_challenge::every_raw_checklist_is_conjunction_without_law_promotion
+    mutant_7::tests::incomplete_checklist
+
+test result: FAILED. 5 passed; 2 failed; 0 ignored; 0 measured; 92 filtered out; finished in 0.02s
+

@@ -1,0 +1,196 @@
+{
+  "AuthorityEffect": "None",
+  "scope": "Strong report-respecting greatest bisimulation,exact bounded quotients/unpointed behavior sets,reflexive preorders and separate nonempty reachability/SCC strict order.",
+  "mutation_names": [
+    "preorder-not-reflexive",
+    "preorder-edge-reversed",
+    "preorder-closure-missing",
+    "reachability-and-replaced-or",
+    "preorder-antisymmetry-reversed",
+    "preorder-range",
+    "empty-carrier-admitted",
+    "successor-range",
+    "duplicate-successor-admitted",
+    "successor-order-not-canonical",
+    "scratch-not-cleared",
+    "block-image-not-deduplicated",
+    "block-image-wrong-order",
+    "initial-report-partition",
+    "premature-quotient",
+    "refinement-history-missing",
+    "partition-shape",
+    "partition-report-agreement",
+    "partition-ignores-successors",
+    "quotient-report-payload",
+    "verify-only-stability",
+    "cross-label-check",
+    "cross-offset",
+    "cross-coverage-reversed",
+    "bounded-map-range",
+    "bounded-map-onto",
+    "bounded-report",
+    "bounded-only-forward",
+    "bounded-factor-payload",
+    "succession-edge-reversed",
+    "succession-no-closure",
+    "acyclic-reversed",
+    "scc-one-direction",
+    "scc-skip-root",
+    "condensation-reflexive",
+    "condensation-reversed"
+  ],
+  "records": [
+    {
+      "family": "",
+      "path": "code/rust/src/category_theory/finite_relational.rs",
+      "sha256": "5360b3eedcf666da3181d93585e044290594ba42f68a5f1343d783c9764da846",
+      "parent_aliases": [],
+      "faults": [
+        [
+          "row[i] = true;",
+          "row[i] = false;"
+        ],
+        [
+          "relation[x][y] = true;",
+          "relation[y][x] = true;"
+        ],
+        [
+          "close_transitively(&mut relation);",
+          "let _ = &relation;"
+        ],
+        [
+          "relation[x][via] && relation[via][y]",
+          "relation[x][via] || relation[via][y]"
+        ],
+        [
+          "!(self.relation[x][y] && self.relation[y][x])",
+          "self.relation[x][y] && self.relation[y][x]"
+        ],
+        [
+          "x >= size || y >= size",
+          "x > size || y >= size"
+        ],
+        [
+          "if n == 0 {",
+          "if false {"
+        ],
+        [
+          "state >= n",
+          "state > n"
+        ],
+        [
+          "if next.windows(2).any(|pair| pair[0] == pair[1]) {",
+          "if false {"
+        ],
+        [
+          "next.sort_unstable();",
+          "let _ = &next;"
+        ],
+        [
+          "blocks.clear();",
+          "let _ = &blocks;"
+        ],
+        [
+          "blocks.dedup();",
+          "let _ = &blocks;"
+        ],
+        [
+          "blocks.sort_unstable();",
+          "blocks.sort_unstable_by(|a,b| b.cmp(a));"
+        ],
+        [
+          "normalize(self.reports.iter().copied())",
+          "normalize(self.reports.iter().map(|_|0usize))"
+        ],
+        [
+          "if next == partition {",
+          "if next == partition || partitions.len() == 1 {"
+        ],
+        [
+          "partitions.push(partition.clone());",
+          "let _ = &partitions;"
+        ],
+        [
+          "if partition.len() != self.state_count() {",
+          "if partition.len() > self.state_count() {"
+        ],
+        [
+          "self.reports[x] == self.reports[y] && refined[x] == refined[y]",
+          "self.reports[x] != self.reports[y] && refined[x] == refined[y]"
+        ],
+        [
+          "self.reports[x] == self.reports[y] && refined[x] == refined[y]",
+          "self.reports[x] == self.reports[y]"
+        ],
+        [
+          ".map(|&state| self.reports[state])",
+          ".map(|&_state| 0usize)"
+        ],
+        [
+          "&self.bisimulation_quotient() == receipt",
+          "self.is_report_bisimulation_partition(&receipt.state_to_block)"
+        ],
+        [
+          "if self.label_count != other.label_count {",
+          "if false {"
+        ],
+        [
+          "next.iter().map(|state| state + offset)",
+          "next.iter().map(|state| *state)"
+        ],
+        [
+          "== classes[offset..].iter().copied().collect::<BTreeSet<_>>()",
+          "!= classes[offset..].iter().copied().collect::<BTreeSet<_>>()"
+        ],
+        [
+          "state >= target.state_count()",
+          "state > target.state_count()"
+        ],
+        [
+          "map.iter().copied().collect::<BTreeSet<_>>().len() != target.state_count()",
+          "map.iter().copied().collect::<BTreeSet<_>>().len() > target.state_count()"
+        ],
+        [
+          "self.reports[state] != target.reports[map[state]]",
+          "self.reports[state] == target.reports[map[state]]"
+        ],
+        [
+          "if *image != target.successors[map[state]][label] {",
+          "if image.iter().any(|v| !target.successors[map[state]][label].contains(v)) {"
+        ],
+        [
+          "_ => factor[map[state]] = Some(stable[state]),",
+          "_ => factor[map[state]] = Some(0),"
+        ],
+        [
+          "reach[state][next] = true;",
+          "reach[next][state] = true;"
+        ],
+        [
+          "close_transitively(&mut reach);",
+          "let _ = &reach;"
+        ],
+        [
+          "(0..n).all(|state| !reach[state][state])",
+          "(0..n).all(|state| reach[state][state])"
+        ],
+        [
+          "x == y || (reach[x][y] && reach[y][x])",
+          "x == y || reach[x][y]"
+        ],
+        [
+          "x == y || (reach[x][y] && reach[y][x])",
+          "x != y && reach[x][y] && reach[y][x]"
+        ],
+        [
+          "i != j && reach[x][y]",
+          "i == j || reach[x][y]"
+        ],
+        [
+          "i != j && reach[x][y]",
+          "i != j && reach[y][x]"
+        ]
+      ]
+    }
+  ]
+}

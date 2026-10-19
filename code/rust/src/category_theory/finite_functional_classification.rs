@@ -25,17 +25,17 @@ pub struct RetentionSignature {
 }
 
 impl RetentionSignature {
+    fn singleton_is_realizable(self) -> bool {
+        self.reversible && self.observable && !self.tolerance && self.minimal && !self.active
+    }
+
     /// Complete necessary/sufficient criterion for these SIX predicates.
     /// Singleton maps force reversible/injective/minimal and no activity/tolerance.
     /// Injective recognized reports force minimality. Identity dynamics have no
     /// future distinguishing power, so minimal iff raw-injective and no tolerance.
     pub fn is_realizable(self) -> bool {
         if !self.nontrivial {
-            return self.reversible
-                && self.observable
-                && !self.tolerance
-                && self.minimal
-                && !self.active;
+            return self.singleton_is_realizable();
         }
         if self.observable && !self.tolerance && !self.minimal {
             return false;
@@ -89,21 +89,8 @@ impl FiniteRetentionModel {
     pub fn signature(&self) -> RetentionSignature {
         let n = self.moore.state_count();
         let observable = self.raw_reports.iter().collect::<BTreeSet<_>>().len() == n;
-        let tolerance = (0..n).any(|x| {
-            (0..n).any(|y| {
-                self.raw_reports[x] != self.raw_reports[y]
-                    && self.moore.reports()[x] == self.moore.reports()[y]
-            })
-        });
-        let reversible = (0..self.moore.input_count()).all(|i| {
-            self.moore
-                .transitions()
-                .iter()
-                .map(|row| row[i])
-                .collect::<BTreeSet<_>>()
-                .len()
-                == n
-        });
+        let tolerance = has_tolerance(&self.raw_reports, self.moore.reports());
+        let reversible = permutation_columns(&self.moore);
         let active = self
             .moore
             .transitions()
@@ -121,6 +108,36 @@ impl FiniteRetentionModel {
     }
 }
 
+fn has_tolerance(raw: &[usize], recognized: &[usize]) -> bool {
+    let mut representatives = BTreeMap::new();
+    for (&r, &s) in raw.iter().zip(recognized) {
+        if let Some(previous) = representatives.insert(s, r) {
+            if previous != r {
+                return true;
+            }
+        }
+    }
+    false
+}
+
+fn permutation_columns(moore: &FiniteMoore) -> bool {
+    if moore.input_count() == 0 {
+        return true;
+    }
+    let mut seen = vec![false; moore.state_count()];
+    (0..moore.input_count()).all(|i| column_is_permutation(moore.transitions(), i, &mut seen))
+}
+
+fn column_is_permutation(transitions: &[Vec<usize>], column: usize, seen: &mut [bool]) -> bool {
+    seen.fill(false);
+    for row in transitions {
+        if std::mem::replace(&mut seen[row[column]], true) {
+            return false;
+        }
+    }
+    true
+}
+
 /// Construct every realizable signature; exhaustive checks are corroboration,
 /// while the construction and universal implications prove completeness.
 pub fn realize_retention(
@@ -129,38 +146,53 @@ pub fn realize_retention(
     if !signature.is_realizable() {
         return Err(ClassificationError::ImpossibleSignature);
     }
-    let (raw, recognized) = if !signature.nontrivial {
-        (vec![0], vec![0])
-    } else if signature.minimal {
-        match (signature.observable, signature.tolerance) {
-            (true, false) => (vec![0, 1], vec![0, 1]),
-            (false, false) => (vec![0, 0, 1], vec![0, 0, 1]),
-            (true, true) => (vec![0, 1, 2], vec![0, 0, 1]),
-            (false, true) => (vec![0, 0, 1, 2], vec![0, 0, 0, 1]),
-        }
-    } else {
-        match (signature.observable, signature.tolerance) {
-            (true, true) => (vec![0, 1], vec![0, 0]),
-            (false, false) => (vec![0, 0], vec![0, 0]),
-            (false, true) => (vec![0, 0, 1], vec![0, 0, 0]),
-            (true, false) => return Err(ClassificationError::ImpossibleSignature),
-        }
-    };
+    let (raw, recognized) = retention_reports(signature)?;
     let n = raw.len();
     let transitions = (0..n)
-        .map(|x| {
-            vec![if !signature.active {
-                x
-            } else if signature.reversible {
-                (x + 1) % n
-            } else if signature.minimal {
-                (x + 1).min(n - 1)
-            } else {
-                0
-            }]
-        })
+        .map(|x| vec![retention_successor(signature, x, n)])
         .collect();
     FiniteRetentionModel::new(raw, recognized, transitions, 1)
+}
+
+fn retention_reports(
+    signature: RetentionSignature,
+) -> Result<(Vec<usize>, Vec<usize>), ClassificationError> {
+    if !signature.nontrivial {
+        return Ok((vec![0], vec![0]));
+    }
+    if signature.minimal {
+        return Ok(minimal_retention_reports(
+            signature.observable,
+            signature.tolerance,
+        ));
+    }
+    match (signature.observable, signature.tolerance) {
+        (true, true) => Ok((vec![0, 1], vec![0, 0])),
+        (false, false) => Ok((vec![0, 0], vec![0, 0])),
+        (false, true) => Ok((vec![0, 0, 1], vec![0, 0, 0])),
+        (true, false) => Err(ClassificationError::ImpossibleSignature),
+    }
+}
+
+fn minimal_retention_reports(observable: bool, tolerance: bool) -> (Vec<usize>, Vec<usize>) {
+    match (observable, tolerance) {
+        (true, false) => (vec![0, 1], vec![0, 1]),
+        (false, false) => (vec![0, 0, 1], vec![0, 0, 1]),
+        (true, true) => (vec![0, 1, 2], vec![0, 0, 1]),
+        (false, true) => (vec![0, 0, 1, 2], vec![0, 0, 0, 1]),
+    }
+}
+
+fn retention_successor(signature: RetentionSignature, x: usize, n: usize) -> usize {
+    if !signature.active {
+        x
+    } else if signature.reversible {
+        (x + 1) % n
+    } else if signature.minimal {
+        (x + 1).min(n - 1)
+    } else {
+        0
+    }
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -186,8 +218,9 @@ impl FunctionalSignature {
     }
 }
 
-/// Total finite maps q,s,t,b on a nonempty common carrier. Accessible self-state
-/// is identified with that carrier. No report factorization is presumed.
+/// Exact finite presentation/report/target labels and a total context action
+/// on a nonempty common state carrier. Label values need not be state indices.
+/// No report factorization is presumed; factors are defined on realized labels.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct FiniteFunctionalModel {
     presentation: Vec<usize>,
@@ -273,43 +306,53 @@ pub fn realize_functional(
     if !signature.is_realizable() {
         return Err(ClassificationError::ImpossibleSignature);
     }
-    let (q, s, t) = if !signature.blind_spot {
-        let q = vec![0, 1];
-        if signature.presentation_stable {
-            (q, vec![0, 1], vec![0, 1])
-        } else if signature.report_stable {
-            (q, vec![0, 0], vec![1, 1])
-        } else {
-            (q, vec![0, 1], vec![1, 1])
-        }
-    } else if signature.linked {
-        let q = vec![0, 0, 1];
-        if signature.presentation_stable {
-            (q, vec![0, 0, 1], vec![0, 1, 2])
-        } else if signature.report_stable {
-            (q, vec![0, 0, 0], vec![2, 1, 2])
-        } else {
-            (q, vec![0, 0, 1], vec![2, 1, 2])
-        }
-    } else {
-        let q = vec![0, 0, 1];
-        if signature.presentation_stable {
-            if signature.report_stable {
-                (q, vec![0, 1, 0], vec![0, 1, 2])
-            } else {
-                (q, vec![0, 1, 0], vec![1, 1, 2])
-            }
-        } else if signature.report_stable {
-            (q, vec![0, 1, 0], vec![2, 1, 2])
-        } else {
-            (q, vec![0, 1, 2], vec![2, 1, 2])
-        }
-    };
+    let (q, s, t) = functional_witness_data(signature);
     let mut target = s.clone();
     if !signature.calibrated {
         target[0] += 1;
     }
     FiniteFunctionalModel::new(q, s, t, target)
+}
+
+fn functional_witness_data(signature: FunctionalSignature) -> (Vec<usize>, Vec<usize>, Vec<usize>) {
+    if !signature.blind_spot {
+        let (s, t) = linked_functional_data(signature, false);
+        return (vec![0, 1], s, t);
+    }
+    let q = vec![0, 0, 1];
+    let (s, t) = if signature.linked {
+        linked_functional_data(signature, true)
+    } else {
+        unlinked_functional_data(signature.presentation_stable, signature.report_stable)
+    };
+    (q, s, t)
+}
+
+fn linked_functional_data(signature: FunctionalSignature, blind: bool) -> (Vec<usize>, Vec<usize>) {
+    if blind {
+        return match (signature.presentation_stable, signature.report_stable) {
+            (true, _) => (vec![0, 0, 1], vec![0, 1, 2]),
+            (false, true) => (vec![0, 0, 0], vec![2, 1, 2]),
+            (false, false) => (vec![0, 0, 1], vec![2, 1, 2]),
+        };
+    }
+    match (signature.presentation_stable, signature.report_stable) {
+        (true, _) => (vec![0, 1], vec![0, 1]),
+        (false, true) => (vec![0, 0], vec![1, 1]),
+        (false, false) => (vec![0, 1], vec![1, 1]),
+    }
+}
+
+fn unlinked_functional_data(
+    presentation_stable: bool,
+    report_stable: bool,
+) -> (Vec<usize>, Vec<usize>) {
+    match (presentation_stable, report_stable) {
+        (true, true) => (vec![0, 1, 0], vec![0, 1, 2]),
+        (true, false) => (vec![0, 1, 0], vec![1, 1, 2]),
+        (false, true) => (vec![0, 1, 0], vec![2, 1, 2]),
+        (false, false) => (vec![0, 1, 2], vec![2, 1, 2]),
+    }
 }
 
 /// A positive or negative literal in the documented signature field order.

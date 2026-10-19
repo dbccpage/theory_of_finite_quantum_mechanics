@@ -1,0 +1,31 @@
+
+running 6 tests
+test mutant_20::tests::untruncated_ok ... ok
+test mutant_20::parameter_challenge::constructors_preserve_distinct_supplied_parameters ... FAILED
+test mutant_20::tests::validate_ok ... ok
+test mutant_20::tests::rejects_below_minus_two ... FAILED
+test mutant_20::tests::validate_rejects_empty ... ok
+test mutant_20::parameter_challenge::independent_schema_cases_and_first_error ... ok
+
+failures:
+
+---- mutant_20::parameter_challenge::constructors_preserve_distinct_supplied_parameters stdout ----
+
+thread 'mutant_20::parameter_challenge::constructors_preserve_distinct_supplied_parameters' (24076) panicked at metadata_challenge_0\mutant_20.rs:109:43:
+assertion `left == right` failed
+  left: ("t", Some(0))
+ right: ("t", Some(2147483647))
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- mutant_20::tests::rejects_below_minus_two stdout ----
+
+thread 'mutant_20::tests::rejects_below_minus_two' (29968) panicked at metadata_challenge_0\mutant_20.rs:84:9:
+assertion failed: Truncation::at_level("bad", -3).validate_shell().is_err()
+
+
+failures:
+    mutant_20::parameter_challenge::constructors_preserve_distinct_supplied_parameters
+    mutant_20::tests::rejects_below_minus_two
+
+test result: FAILED. 4 passed; 2 failed; 0 ignored; 0 measured; 372 filtered out; finished in 0.00s
+

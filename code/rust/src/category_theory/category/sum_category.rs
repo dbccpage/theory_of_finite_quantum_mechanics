@@ -3,6 +3,7 @@
 //!
 //! C + D: disjoint union of objects and morphisms; no cross morphisms.
 
+use omega_category_theory::errors::ArithmosError;
 use serde::{Deserialize, Serialize};
 
 /// Best-effort sum (coproduct) category shell C + D.
@@ -45,24 +46,24 @@ impl SumCategoryShell {
         }
     }
 
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
         if self.left_summand_label.is_empty() {
-            return Err("empty left_summand_label".into());
+            return Err(ArithmosError::InvalidShape("empty left_summand_label".into()));
         }
         if self.right_summand_label.is_empty() {
-            return Err("empty right_summand_label".into());
+            return Err(ArithmosError::InvalidShape("empty right_summand_label".into()));
         }
         for (i, o) in self.left_objects.iter().enumerate() {
             if o.is_empty() {
-                return Err(format!("empty left_objects tag at index {i}"));
+                return Err(ArithmosError::InvalidShape(format!("empty left_objects tag at index {i}")));
             }
         }
         for (i, o) in self.right_objects.iter().enumerate() {
             if o.is_empty() {
-                return Err(format!("empty right_objects tag at index {i}"));
+                return Err(ArithmosError::InvalidShape(format!("empty right_objects tag at index {i}")));
             }
         }
         Ok(())

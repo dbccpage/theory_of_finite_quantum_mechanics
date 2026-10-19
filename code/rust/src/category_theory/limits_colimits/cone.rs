@@ -1,7 +1,18 @@
 //! cone / cocone shells for omega_category_theory.
 //! AuthorityEffect: None. Not PROVED / GlobalGreen.
 
+use omega_category_theory::errors::ArithmosError;
 use serde::{Deserialize, Serialize};
+
+/// Add shape location while preserving every other typed failure unchanged.
+pub(super) fn shape_context(location: &str, error: ArithmosError) -> ArithmosError {
+    match error {
+        ArithmosError::InvalidShape(detail) => {
+            ArithmosError::InvalidShape(format!("{location}: {detail}"))
+        }
+        other => other,
+    }
+}
 
 /// One cone/cocone leg: diagram index → morphism label.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize)]
@@ -46,16 +57,18 @@ impl Cone {
         });
     }
 
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
         if self.apex.is_empty() {
-            return Err("empty apex".into());
+            return Err(ArithmosError::InvalidShape("empty apex".into()));
         }
         for (i, leg) in self.legs.iter().enumerate() {
             if leg.index.is_empty() || leg.morphism_label.is_empty() {
-                return Err(format!("empty leg tag at index {i}"));
+                return Err(ArithmosError::InvalidShape(format!(
+                    "empty leg tag at index {i}"
+                )));
             }
         }
         Ok(())
@@ -98,16 +111,18 @@ impl Cocone {
         });
     }
 
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
         if self.nadir.is_empty() {
-            return Err("empty nadir".into());
+            return Err(ArithmosError::InvalidShape("empty nadir".into()));
         }
         for (i, leg) in self.legs.iter().enumerate() {
             if leg.index.is_empty() || leg.morphism_label.is_empty() {
-                return Err(format!("empty leg tag at index {i}"));
+                return Err(ArithmosError::InvalidShape(format!(
+                    "empty leg tag at index {i}"
+                )));
             }
         }
         Ok(())

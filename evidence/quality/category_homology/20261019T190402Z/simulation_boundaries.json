@@ -1,0 +1,150 @@
+{
+  "AuthorityEffect": "None",
+  "scope": "Map/encoding/budget/ordered state-step simulation admission and exact versus injective resource-extension truth tables.",
+  "records": [
+    {
+      "family": "",
+      "path": "code/rust/src/category_theory/finite_simulation.rs",
+      "sha256": "503da98d73a0680e1615d7e754da00357f6c85be8a28aea8e553d28853138d12",
+      "parent_aliases": [],
+      "faults": [
+        [
+          "map.len() != source.reports().len()",
+          "false"
+        ],
+        [
+          "t >= target.reports().len()",
+          "t > target.reports().len()"
+        ],
+        [
+          "mode == SimulationMode::ResourceExtension\n            && map.iter().collect::<BTreeSet<_>>().len() != map.len()",
+          "false"
+        ],
+        [
+          "mode == SimulationMode::ResourceExtension\n            && map.iter().collect::<BTreeSet<_>>().len() != map.len()",
+          "map.iter().collect::<BTreeSet<_>>().len() != map.len()"
+        ],
+        [
+          "words.len() != source.transitions()[0].len()",
+          "false"
+        ],
+        [
+          "a >= target.transitions()[0].len()",
+          "a > target.transitions()[0].len()"
+        ],
+        [
+          "try_fold(1usize,",
+          "try_fold(0usize,"
+        ],
+        [
+          "w.len().checked_add(1)?",
+          "w.len().checked_add(0)?"
+        ],
+        [
+          "n.checked_mul(states)",
+          "Some(n.wrapping_mul(states))"
+        ],
+        [
+          "n > max_cells",
+          "n >= max_cells"
+        ],
+        [
+          "expected.is_none() && actual.is_some() && mode == SimulationMode::ResourceExtension",
+          "false"
+        ],
+        [
+          "expected.is_none() && actual.is_some() && mode == SimulationMode::ResourceExtension",
+          "expected.is_none() && actual.is_some()"
+        ],
+        [
+          "added.push(coordinate);",
+          "added.insert(0,coordinate);"
+        ],
+        [
+          "expected != actual",
+          "expected == actual"
+        ],
+        [
+          "state: coordinate.0,",
+          "state: coordinate.1,"
+        ],
+        [
+          "input: coordinate.1,",
+          "input: coordinate.0,"
+        ],
+        [
+          "            expected,\n            actual,",
+          "            expected: actual,\n            actual: expected,"
+        ],
+        [
+          "let t = map[state];",
+          "let t = state;"
+        ],
+        [
+          "source.reports()[state] != target.reports()[t]",
+          "false"
+        ],
+        [
+          "source_report: source.reports()[state],",
+          "source_report: target.reports()[t],"
+        ],
+        [
+          "target_report: target.reports()[t],",
+          "target_report: source.reports()[state],"
+        ],
+        [
+          "words.iter().enumerate()",
+          "words.iter().enumerate().rev()"
+        ],
+        [
+          "source.transitions()[state][a].map(|s| map[s])",
+          "source.transitions()[state][a]"
+        ],
+        [
+          ".run(t, w)",
+          ".run(state, w)"
+        ],
+        [
+          "return Ok(Some(mismatch));",
+          "return Ok(None);"
+        ],
+        [
+          "    admit_map(source, target, map, mode)?;",
+          "    // omit map admission"
+        ],
+        [
+          "    admit_encoding(source, target, words)?;",
+          "    // omit word admission"
+        ],
+        [
+          "    admit_budget(map.len(), words, max_cells)?;",
+          "    // omit work admission"
+        ],
+        [
+          "0..map.len()",
+          "1..map.len()"
+        ],
+        [
+          "            return Ok(mismatch);",
+          "            continue;"
+        ],
+        [
+          "added_availability: added,",
+          "added_availability: vec![],"
+        ],
+        [
+          "if check_simulation(source, target, map, words, mode, max_cells)? == *c",
+          "if check_simulation(source, target, map, words, mode, max_cells).is_ok()"
+        ],
+        [
+          "    admit_map(source, target, map, mode)?;\n    admit_encoding(source, target, words)?;",
+          "    admit_encoding(source, target, words)?;\n    admit_map(source, target, map, mode)?;"
+        ],
+        [
+          "    admit_encoding(source, target, words)?;\n    admit_budget(map.len(), words, max_cells)?;",
+          "    admit_budget(map.len(), words, max_cells)?;\n    admit_encoding(source, target, words)?;"
+        ]
+      ]
+    }
+  ]
+}

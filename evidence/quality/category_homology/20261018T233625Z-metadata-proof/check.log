@@ -1,0 +1,38 @@
+C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\quality\category_homology\proofs\MetadataValidation.lean:34:31: error: unexpected token 'prefix'; expected '_' or identifier
+C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\quality\category_homology\proofs\MetadataValidation.lean:34:39: error: unexpected identifier; expected prec
+C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\quality\category_homology\proofs\MetadataValidation.lean:35:33: error: unexpected token ','; expected ':'
+C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\quality\category_homology\proofs\MetadataValidation.lean:37:20: error: unexpected token '++'; expected ':'
+C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\quality\category_homology\proofs\MetadataValidation.lean:38:18: error: unexpected token 'with'; expected ':'
+C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\quality\category_homology\proofs\MetadataValidation.lean:52:77: error: unsolved goals
+case error
+α : Type u_1
+raw : α
+fields : List (String × Bool)
+value : α
+a✝ : String
+accepted : Except.map (fun x => raw) (Except.error a✝) = Except.ok value
+result : validate fields = Except.error a✝
+⊢ value = raw
+
+case ok
+α : Type u_1
+raw : α
+fields : List (String × Bool)
+value : α
+a✝ : Unit
+accepted : Except.map (fun x => raw) (Except.ok a✝) = Except.ok value
+result : validate fields = Except.ok a✝
+⊢ value = raw
+C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\quality\category_homology\proofs\MetadataValidation.lean:58:40: error: unsolved goals
+α : Type u_1
+raw : α
+fields : List (String × Bool)
+name : String
+failed : validate fields = Except.error name
+⊢ Except.map (fun x => raw) (Except.error name) = Except.error name
+'TFQM.MetadataValidation.success_iff' depends on axioms: [propext, Quot.sound]
+'TFQM.MetadataValidation.failed_head' depends on axioms: [propext]
+'TFQM.MetadataValidation.valid_head' depends on axioms: [propext]
+C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\quality\category_homology\proofs\MetadataValidation.lean:64:14: error(lean.unknownIdentifier): Unknown constant `first_error_preserved`
+'TFQM.MetadataValidation.inspect_preserves_raw' depends on axioms: [sorryAx]
+'TFQM.MetadataValidation.failed_check_returns_no_value' depends on axioms: [sorryAx]

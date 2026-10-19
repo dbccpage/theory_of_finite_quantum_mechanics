@@ -1,6 +1,7 @@
 //! category shell (finite presentation) for omega_category_theory.
 //! AuthorityEffect: None. Not PROVED / GlobalGreen.
 
+use omega_category_theory::errors::ArithmosError;
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeMap;
 
@@ -68,23 +69,43 @@ impl FiniteCategoryShell {
         }
     }
 
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
+        self.validate_object_tags()?;
+        self.validate_morphism_tags()?;
+        self.validate_identity_tags()
+    }
+
+    fn validate_object_tags(&self) -> Result<(), ArithmosError> {
         for (i, o) in self.objects.iter().enumerate() {
             if o.is_empty() {
-                return Err(format!("empty object tag at index {i}"));
+                return Err(ArithmosError::InvalidShape(format!(
+                    "empty object tag at index {i}"
+                )));
             }
         }
+        Ok(())
+    }
+
+    fn validate_morphism_tags(&self) -> Result<(), ArithmosError> {
         for (i, m) in self.morphisms.iter().enumerate() {
             if m.source.is_empty() || m.target.is_empty() || m.name.is_empty() {
-                return Err(format!("empty morphism field at index {i}"));
+                return Err(ArithmosError::InvalidShape(format!(
+                    "empty morphism field at index {i}"
+                )));
             }
         }
+        Ok(())
+    }
+
+    fn validate_identity_tags(&self) -> Result<(), ArithmosError> {
         for (obj, id_name) in &self.identity_map {
             if obj.is_empty() || id_name.is_empty() {
-                return Err("empty identity_map key or value".into());
+                return Err(ArithmosError::InvalidShape(
+                    "empty identity_map key or value".into(),
+                ));
             }
         }
         Ok(())

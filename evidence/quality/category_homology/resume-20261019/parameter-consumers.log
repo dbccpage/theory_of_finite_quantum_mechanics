@@ -1,0 +1,27 @@
+code/rust/src\category_theory\abelian\exact_category.rs:60:        assert!(ExactCategory::new("exact").validate_shell().is_ok());
+code/rust/src\category_theory\abelian\exact_category.rs:65:        assert!(ExactCategory::new("").validate_shell().is_err());
+code/rust/src\category_theory\abelian\exact_category.rs:70:        let e = ExactCategory::with_max_exact_sequences("Ex", 3);
+code/rust/src\category_theory\abelian\exact_category.rs:77:        let e = ExactCategory::with_max_exact_sequences("Ex", 0);
+code/rust/src\category_theory\limits_colimits\pointwise_kan_extension.rs:100:        let p = PointwiseKanExtension::lan_pointwise("pLan", "F", "K", "Lan", "coend");
+code/rust/src\category_theory\limits_colimits\pointwise_kan_extension.rs:107:        let p = PointwiseKanExtension::ran_pointwise("pRan", "F", "K", "Ran", "end");
+code/rust/src\category_theory\limits_colimits\pointwise_kan_extension.rs:114:        assert!(PointwiseKanExtension::new("").validate_shell().is_err());
+code/rust/src\category_theory\limits_colimits\pointwise_kan_extension.rs:119:        assert!(PointwiseKanExtension::new("p").validate_shell().is_err());
+code/rust/src\category_theory\functor\hom_functor.rs:86:        assert!(HomFunctor::covariant("HomA", "C", "A")
+code/rust/src\category_theory\functor\hom_functor.rs:93:        assert!(HomFunctor::new("").validate_shell().is_err());
+code/rust/src\category_theory\functor\hom_functor.rs:98:        let mut h = HomFunctor::covariant("h", "C", "A");
+code/rust/src\category_theory\functor\hom_functor.rs:105:        assert!(HomFunctor::contravariant("Hom_A", "C", "A")
+code/rust/src\category_theory\functor\diagonal_functor.rs:71:        assert!(DiagonalFunctor::on_category("Delta", "C")
+code/rust/src\category_theory\functor\diagonal_functor.rs:78:        assert!(DiagonalFunctor::new("").validate_shell().is_err());
+code/rust/src\category_theory\functor\diagonal_functor.rs:83:        assert!(DiagonalFunctor::new("D").validate_shell().is_err());
+code/rust/src\category_theory\functor\diagonal_functor.rs:88:        let d = DiagonalFunctor::with_arity("D", "C", 1);
+code/rust/src\category_theory\foundations\universe.rs:54:        assert!(Universe::new("x").validate_shell().is_ok());
+code/rust/src\category_theory\foundations\universe.rs:59:        assert!(Universe::new("").validate_shell().is_err());
+code/rust/src\category_theory\foundations\universe.rs:64:        let u = Universe::at_level("U", 2);
+code/rust/src\category_theory\foundations\truncation.rs:69:        assert!(Truncation::new("x").validate_shell().is_ok());
+code/rust/src\category_theory\foundations\truncation.rs:74:        assert!(Truncation::new("").validate_shell().is_err());
+code/rust/src\category_theory\foundations\truncation.rs:79:        assert!(Truncation::untruncated("∞").validate_shell().is_ok());
+code/rust/src\category_theory\foundations\truncation.rs:84:        assert!(Truncation::at_level("bad", -3).validate_shell().is_err());
+code/rust/src\category_theory\foundations\hlevel.rs:59:        assert!(HLevel::new("x").validate_shell().is_ok());
+code/rust/src\category_theory\foundations\hlevel.rs:64:        assert!(HLevel::new("").validate_shell().is_err());
+code/rust/src\category_theory\foundations\hlevel.rs:69:        let h = HLevel::for_type("bad", "A", -3);
+code/rust/src\category_theory\foundations\hlevel.rs:75:        let h = HLevel::for_type("contr", "A", -2);

@@ -1,0 +1,164 @@
+{
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/category_theory/family_category.rs",
+    "sha256": "edb7d527b67b102a5b06876106d9ef8a5a4fab796cb1c45723c54716571ac42c"
+  },
+  "production_functions": {
+    "Constraint::new": {
+      "line": 52,
+      "signature": "pub fn new(id: &str, description: &str, severity: Severity) -> Self",
+      "body": "{\n        Self {\n            id: id.to_string(),\n            description: description.to_string(),\n            severity,\n        }\n    }",
+      "obligation": "Store exact id, description and severity without validation. Empty/duplicate identifiers are permitted raw metadata; no constraint satisfaction is checked."
+    },
+    "Severity::parse": {
+      "line": 72,
+      "signature": "pub fn parse(s: &str) -> Self",
+      "body": "{\n        match s.to_uppercase().as_str() {\n            \"CRITICAL\" => Severity::Critical,\n            \"HIGH\" => Severity::High,\n            \"MEDIUM\" => Severity::Medium,\n            _ => Severity::Low,\n        }\n    }",
+      "obligation": "Apply Rust Unicode uppercase, then exact CRITICAL/HIGH/MEDIUM matching; every other value becomes Low. No trim. Dotless-i spellings can normalize to matching ASCII; whitespace and other lookalike scripts are not silently normalized."
+    },
+    "Severity::fmt": {
+      "line": 83,
+      "signature": "fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result",
+      "body": "{\n        match self {\n            Severity::Critical => write!(f, \"CRITICAL\"),\n            Severity::High => write!(f, \"HIGH\"),\n            Severity::Medium => write!(f, \"MEDIUM\"),\n            Severity::Low => write!(f, \"LOW\"),\n        }\n    }",
+      "obligation": "Return exact uppercase display label for each enum variant through standard formatter. Derived order is declaration order Critical<High<Medium<Low."
+    },
+    "PropagationRule::new": {
+      "line": 110,
+      "signature": "pub fn new(pattern: &str, example: &str, targets: Vec<String>) -> Self",
+      "body": "{\n        Self {\n            pattern: pattern.to_string(),\n            example: example.to_string(),\n            targets,\n        }\n    }",
+      "obligation": "Store exact pattern/example and move target list unchanged, including duplicates and reserved labels."
+    },
+    "PropagationRule::targets_all": {
+      "line": 119,
+      "signature": "pub fn targets_all(&self) -> bool",
+      "body": "{\n        self.targets.iter().any(|t| t == \"All members\")\n    }",
+      "obligation": "True iff any target equals exact case-sensitive All members sentinel. Other targets are ignored by propagation expansion when sentinel present; no trimming/case normalization."
+    },
+    "MemberStatus::parse": {
+      "line": 143,
+      "signature": "pub fn parse(s: &str) -> Self",
+      "body": "{\n        let s = s.trim();\n        if s == \"EXISTS\" {\n            MemberStatus::Exists\n        } else if s == \"PLANNED\" {\n            MemberStatus::Planned\n        } else if let Some(target) = s.strip_prefix(\"CONSOLIDATED -> \") {\n            MemberStatus::Consolidated {\n                target: target.to_string(),\n            }\n        } else if let Some(target) = s.strip_prefix(\"DEPRECATED -> consolidated into \") {\n            MemberStatus::Deprecated {\n                target: target.to_string(),\n            }\n        } else if let Some(target) = s.strip_prefix(\"DEPRECATED -> \") {\n            MemberStatus::Deprecated {\n                target: target.to_string(),\n            }\n        } else {\n            MemberStatus::Planned\n        }\n    }",
+      "obligation": "Trim outer Rust Unicode whitespace, then case-sensitive EXISTS/PLANNED, CONSOLIDATED -> prefix, specialized DEPRECATED -> consolidated into prefix before general DEPRECATED -> prefix. Copy remaining target exactly; internal leading spaces retained. Unmatched input becomes Planned. Whole-string trim can remove a required trailing prefix space, so prefix-only forms follow literal matching/fallback."
+    },
+    "MemberStatus::is_active": {
+      "line": 166,
+      "signature": "pub fn is_active(&self) -> bool",
+      "body": "{\n        matches!(self, MemberStatus::Exists)\n    }",
+      "obligation": "Only Exists is active. matches! expands to one pure two-arm enum match; Consolidated/Deprecated/Planned are inactive, regardless of target label."
+    },
+    "FamilyMember::new": {
+      "line": 185,
+      "signature": "pub fn new(string_id: &str, status: MemberStatus) -> Self",
+      "body": "{\n        Self {\n            string_id: string_id.to_string(),\n            status,\n        }\n    }",
+      "obligation": "Store exact String identifier and supplied lifecycle enum; no uniqueness/admission."
+    },
+    "FamilyMember::active": {
+      "line": 192,
+      "signature": "pub fn active(string_id: &str) -> Self",
+      "body": "{\n        Self::new(string_id, MemberStatus::Exists)\n    }",
+      "obligation": "Delegate exact id to new with Exists, not an external activation action."
+    },
+    "collect_targets": {
+      "line": 220,
+      "signature": "fn collect_targets<'a>(\n    candidates: impl IntoIterator<Item = &'a str>, source: &str,\n    active: &BTreeSet<&str>, seen: &mut BTreeSet<&'a str>, targets: &mut Vec<String>,\n)",
+      "body": "{\n    for target in candidates {\n        if target != source && active.contains(target) && seen.insert(target) {\n            targets.push(target.to_owned());\n        }\n    }\n}",
+      "obligation": "Private finite standard iterator of borrowed family/rule names. In encounter order, require candidate!=source, active membership and first insertion into seen; only then copy one required owned output String. Sets are membership indices only, never output order. Generic iterator has no public arbitrary callback entry."
+    },
+    "StringFamily::new": {
+      "line": 232,
+      "signature": "pub fn new(id: &str, description: &str) -> Self",
+      "body": "{\n        Self {\n            id: id.to_string(),\n            description: description.to_string(),\n            members: Vec::new(),\n            constraints: Vec::new(),\n            propagation_rules: Vec::new(),\n            related_strings: Vec::new(),\n        }\n    }",
+      "obligation": "Store exact id/description and empty members/constraints/rules/related lists. No mathematical functor or family consistency certificate."
+    },
+    "StringFamily::active_members": {
+      "line": 244,
+      "signature": "pub fn active_members(&self) -> Vec<&FamilyMember>",
+      "body": "{\n        self.members\n            .iter()\n            .filter(|m| m.status.is_active())\n            .collect()\n    }",
+      "obligation": "Borrow original Exists member records in original occurrence order, retaining duplicate IDs. No detached copies."
+    },
+    "StringFamily::active_member_ids": {
+      "line": 252,
+      "signature": "pub fn active_member_ids(&self) -> Vec<&str>",
+      "body": "{\n        self.members\n            .iter()\n            .filter(|m| m.status.is_active())\n            .map(|m| m.string_id.as_str())\n            .collect()\n    }",
+      "obligation": "Borrow exact identifiers of Exists rows in occurrence order, including duplicates."
+    },
+    "StringFamily::contains_active": {
+      "line": 261,
+      "signature": "pub fn contains_active(&self, string_id: &str) -> bool",
+      "body": "{\n        self.members\n            .iter()\n            .any(|m| m.string_id == string_id && m.status.is_active())\n    }",
+      "obligation": "True iff at least one row has exact queried id and Exists status; inactive duplicate rows do not veto an active occurrence."
+    },
+    "StringFamily::get_propagation_targets": {
+      "line": 268,
+      "signature": "pub fn get_propagation_targets(&self, string_id: &str) -> Vec<String>",
+      "body": "{\n        if !self.contains_active(string_id) {\n            return Vec::new();\n        }\n        let active_ids = self.active_member_ids();\n        let active: BTreeSet<&str> = active_ids.iter().copied().collect();\n        let mut seen = BTreeSet::new();\n        let mut targets = Vec::new();\n        for rule in &self.propagation_rules {\n            if rule.targets_all() {\n                collect_targets(active_ids.iter().copied(), string_id, &active, &mut seen, &mut targets);\n            } else {\n                collect_targets(rule.targets.iter().map(String::as_str), string_id, &active, &mut seen, &mut targets);\n            }\n        }\n        targets\n    }",
+      "obligation": "Inactive/missing source returns empty. Otherwise create borrowed active-ID vector and set once. Visit rules in original order; wildcard expands active occurrences, otherwise explicit targets in original order. Shared seen set removes name duplicates across rules, source is excluded, and inactive/unknown names are excluded. Return first eligible encounter order. No propagation or agent execution occurs."
+    },
+    "FamilyFunctor::from_family": {
+      "line": 307,
+      "signature": "pub fn from_family(family: StringFamily) -> Self",
+      "body": "{\n        Self {\n            family,\n            constraint_to_capabilities: HashMap::new(),\n            propagation_to_strings: HashMap::new(),\n        }\n    }",
+      "obligation": "Move raw family descriptor unchanged and create two empty, independent name-to-list HashMaps. No AgentFunctor references or law admission."
+    },
+    "FamilyFunctor::map_constraint": {
+      "line": 316,
+      "signature": "pub fn map_constraint(&mut self, constraint_id: &str, string: String)",
+      "body": "{\n        self.constraint_to_capabilities\n            .entry(constraint_id.to_string())\n            .or_default()\n            .push(string);\n    }",
+      "obligation": "Append supplied owned String to exact raw constraint-name key, creating list if absent. Unknown keys and duplicates allowed; does not enforce family constraints."
+    },
+    "FamilyFunctor::map_propagation": {
+      "line": 324,
+      "signature": "pub fn map_propagation(&mut self, pattern: &str, string: String)",
+      "body": "{\n        self.propagation_to_strings\n            .entry(pattern.to_string())\n            .or_default()\n            .push(string);\n    }",
+      "obligation": "Append supplied owned String to exact raw propagation-pattern key in independent map; preserve duplicates/order, no action executed."
+    },
+    "FamilyFunctor::apply_constraint": {
+      "line": 332,
+      "signature": "pub fn apply_constraint(&self, constraint_id: &str) -> Vec<&String>",
+      "body": "{\n        self.constraint_to_capabilities\n            .get(constraint_id)\n            .map(|v| v.iter().collect())\n            .unwrap_or_default()\n    }",
+      "obligation": "Borrow stored String entries for exact key in insertion order, or empty reference vector if missing. No execution or capability checking."
+    },
+    "FamilyFunctor::apply_propagation": {
+      "line": 340,
+      "signature": "pub fn apply_propagation(&self, pattern: &str) -> Vec<&String>",
+      "body": "{\n        self.propagation_to_strings\n            .get(pattern)\n            .map(|v| v.iter().collect())\n            .unwrap_or_default()\n    }",
+      "obligation": "Borrow exact independent propagation list in order, or empty vector if absent. No execution."
+    },
+    "FamilyFunctor::id": {
+      "line": 348,
+      "signature": "pub fn id(&self) -> &str",
+      "body": "{\n        &self.family.id\n    }",
+      "obligation": "Borrow current raw family.id. Public family mutation intentionally changes future observations."
+    },
+    "FamilyFunctor::get_propagation_targets": {
+      "line": 353,
+      "signature": "pub fn get_propagation_targets(&self, string_id: &str) -> Vec<String>",
+      "body": "{\n        self.family.get_propagation_targets(string_id)\n    }",
+      "obligation": "Delegate current query to current raw family descriptor, preserving source filtering/order. No stored certificate or automatic activation."
+    }
+  },
+  "invariant_argument": [
+    "All data are raw owned strings, enums, lists and HashMaps. Historical categorical/provenance annotations are explicitly unverified analogies, not a checked category, functor, agent reference or current file/hash receipt. Constructors preserve all supplied metadata; no empty-name, duplicate-ID or family-map consistency admission is promised.",
+    "Parser semantics are exact standard Rust string operations. Severity uppercases Unicode and does not trim, then uses three exact labels with Low fallback. Status trims outer Unicode whitespace but remains case-sensitive; specialized deprecation prefix precedes general prefix. Remaining target text is copied without a second trim. Unicode/NUL/spacing and prefix-only fallbacks are explicitly pinned in native cases. No numeric casts or approximate matching.",
+    "Only Exists rows contribute active occurrences. An identifier may occur in several lifecycle states; any Exists occurrence makes source/membership active, while active lists preserve exactly those rows and their order. Borrowed sets use the same literal str equality as the old owned String scans. They do not normalize, sort output, or collapse the active occurrence list.",
+    "Target accumulation invariant:seen contains exactly previously emitted names, each emitted once and active, never the source. Candidate order is rule order then wildcard active-member order or explicit target order. A wildcard is triggered by any exact All members item and overrides explicit targets in that rule. Passing a fresh eligible candidate appends one owned output copy; rejection leaves prefix and seen unchanged. By induction, final output is the stable first eligible union. Private standard iterator clones no records and borrowed names remain valid for the immutable family borrow.",
+    "Old and new propagation observations coincide for every raw family/query:source gate unchanged;active occurrences unchanged;old linear membership/dedup and new borrowed sets implement identical predicates;both append at the same first eligible encounter. Only transient active String clones and repeated linear scans disappear. The frozen old method is secondary evidence;an independent direct status/sentinel/member oracle checks the contract.",
+    "Runtime maps are separate raw key-list stores. Registration moves one input String and appends without deduplication. Queries borrow original stored entries, not lookalike copies. Unknown keys are valid raw registrations;unknown queries are empty. HashMap iteration order is not exposed because only exact-key lookup and Vec order are observed. Public metadata can change between calls;no persistent context certificate is claimed.",
+    "The matches! site in is_active expands to one pure match with Exists=true and wildcard=false. Its expanded source branch bound remains below A ceilings;the calibrated tool records the macro as opaque and does not certify MIR. All statuses are independently exercised. Other derives and formatting are standard String/enum/Vec operations. There is no source indexing, arithmetic, unsafe, recursion or unchecked unwrap.",
+    "Lean proves raw eligible append/rejection/prefix and sequential collection laws, inactive-source/empty behavior, and exact key-list registration order. It does not prove Rust Unicode implementation, a category/functor law, agent execution or provenance. Rust parser, borrowing/set/order and metadata field refinement is reviewed separately and tested against exact native cases."
+  ],
+  "cost_review": [
+    "Let M member occurrences,A active occurrences,U distinct emitted names,T total explicit target entries,and I expanded candidate occurrences (wildcards contribute A each). Source check and borrowed active vector cost O(M). Building the active membership set costs O(A log(A+1)). Each expanded candidate uses active/seen tree queries at O(log(A+1)+log(U+1)) string comparisons. Sentinel scans cost O(T). Include compared/copied string bytes;only U required output names are cloned.",
+    "Working storage is O(A+U) borrowed vector/set entries plus required output bytes. The old method cloned all active names and used repeated linear membership/duplicate scans. New sets retain input references only and are never iterated to produce output order. All helper iterators are concrete finite slice/copied/map adapters;no user callback work is hidden.",
+    "Active list APIs allocate required vectors of references in O(M);contains_active scans until a matching Exists row. Constructors copy required metadata strings and move owned lists/status values. Runtime registration creates one owned key for HashMap entry and moves the value;even an existing key may incur that fixed-call key allocation,not an inner propagation-loop copy. Queries cost expected hash lookup plus required list-reference output;HashMap hashing/allocation costs remain standard-library assumptions.",
+    "Severity parsing costs input plus Unicode-uppercase output length and allocates that temporary normalization String. Status trim borrows slices;matched target copy costs its bytes. Display/derive Clone/Debug/Eq/Hash/Ord cost visited/stored String and container data. No finite-size or latency budget is claimed for arbitrary raw metadata, and no allocator totality is inferred.",
+    "Calibrated source metrics cover all22 bodies:maximum CCN6,cognitive10,nesting2. The old propagation method11/22/4 is archived. The one opaque matches! source expansion was inspected separately and remains a two-arm enum observation. Full candidate count/tree/string work is explicit;no macro-expanded/MIR/benchmark claim."
+  ],
+  "consumer_review": [
+    "Before editing, no active completed assessment context referenced this source;no consumer score refresh is required. Actual459category tests and the original6family tests pass with current source. Other same-named functor/agent modules are not called or stored here. No external package or whole-workspace result is inferred.",
+    "All public signatures and non-propagation bodies remain unchanged. Header/docs now identify raw metadata and unverified source annotations. Propagation uses borrowed membership indices with the all-family source correspondence above. Native controls include exact borrowed-record/string pointer identity and separate raw name-map order;this is data observation,not propagation execution."
+  ],
+  "data_trait_derive_macro_review": "Constraint/PropagationRule/FamilyMember/StringFamily/FamilyFunctor are public raw metadata;Severity/MemberStatus derive ordinary value traits. FamilyFunctor stores StringFamily and two HashMaps only. matches! expansion and write! formatting reviewed separately;private collect iterator is concretely finite,with standard str ordering and no external callbacks. No law or provenance certificate is hidden in labels.",
+  "native_oracle": "12288 generated status/rule/query cases,with four lifecycle variants,duplicate IDs and eight rule lists;independent direct member/sentinel oracle plus old propagation differential. Reserved wildcard labels,empty/NUL/Unicode names and explicit three-name/two-rule priority expose true output order. Exact Unicode severity/status parsing,all display/order variants,constructor fields,unknown-key/duplicate registration/query order and borrowed pointer identity.459category+9subject(6old3independent)pass;final26/26faults."
+}

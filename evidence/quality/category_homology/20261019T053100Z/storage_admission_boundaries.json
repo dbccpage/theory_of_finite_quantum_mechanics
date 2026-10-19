@@ -1,0 +1,221 @@
+{
+  "AuthorityEffect": "None",
+  "records": [
+    {
+      "family": "",
+      "path": "code/rust/src/homology/exact_scalar.rs",
+      "sha256": "e72bfd4433941e63a4e2e42e6009929f7d2e4200ff4920ddfbabceb56faed737",
+      "parent_aliases": [
+        "errors"
+      ],
+      "faults": [
+        [
+          "value.denom() <= &num_bigint::BigInt::zero()",
+          "value.denom() < &num_bigint::BigInt::zero()"
+        ],
+        [
+          "|| !value.numer().gcd(value.denom()).is_one()",
+          "|| false"
+        ],
+        [
+          "values.iter().enumerate()",
+          "values.iter().enumerate().skip(1)"
+        ],
+        [
+          "HomologicalError::InvalidRational { index }",
+          "HomologicalError::InvalidRational { index: index + 1 }"
+        ],
+        [
+          "    admit_coefficients(matrix.as_slice())",
+          "    Ok(())"
+        ],
+        [
+          "matrix.shape() != expected",
+          "matrix.shape() == expected"
+        ],
+        [
+          "let product = first.mul(second)?;",
+          "let product = first.mul(first)?;"
+        ],
+        [
+          "if !product.as_slice().iter().all(Zero::is_zero) {",
+          "if false {"
+        ],
+        [
+          "return Err(violation);",
+          "return Err(HomologicalError::NotCycle);"
+        ]
+      ]
+    },
+    {
+      "family": "",
+      "path": "code/rust/src/homology/witness.rs",
+      "sha256": "26f03cbc07956cce92fd635d35800d0a914e426930fac3b53bf9719887378fb6",
+      "parent_aliases": [],
+      "faults": [
+        [
+          "            boundary_1_hash,\n            boundary_2_hash,",
+          "            boundary_1_hash: Hash256([0;32]),\n            boundary_2_hash,"
+        ],
+        [
+          "            c0_dim,\n            c1_dim,\n            c2_dim,",
+          "            c0_dim: c1_dim,\n            c1_dim,\n            c2_dim,"
+        ],
+        [
+          "            d0_hash,\n            d1_hash,",
+          "            d0_hash: Hash256([0;32]),\n            d1_hash,"
+        ],
+        [
+          "            d0_shape,\n            d1_shape,",
+          "            d0_shape: d1_shape,\n            d1_shape,"
+        ],
+        [
+          "            provenance_hash,\n            _private: (),",
+          "            provenance_hash: Hash256([0;32]),\n            _private: (),"
+        ],
+        [
+          "        self.d0_shape\n",
+          "        self.d1_shape\n"
+        ],
+        [
+          "        self.d1_shape\n",
+          "        self.d0_shape\n"
+        ],
+        [
+          "            boundary_map_hash,\n",
+          "            boundary_map_hash: None,\n"
+        ],
+        [
+          "            coboundary_map_hash,\n",
+          "            coboundary_map_hash: None,\n"
+        ],
+        [
+          "    pub(super) boundary_zero: BoundaryZeroWitness,",
+          "    #[serde(skip_serializing)]\n    pub(super) boundary_zero: BoundaryZeroWitness,"
+        ],
+        [
+          "    pub(super) homology_dim: usize,",
+          "    #[serde(rename=\"wrong_dimension\")]\n    pub(super) homology_dim: usize,"
+        ],
+        [
+          "    pub(super) cohomology_dim: usize,",
+          "    #[serde(rename=\"wrong_dimension\")]\n    pub(super) cohomology_dim: usize,"
+        ]
+      ]
+    },
+    {
+      "family": "",
+      "path": "code/rust/src/homology/carrier.rs",
+      "sha256": "8c3cd15da1e2446854173c303752f26ca8fedc5dc92c4cc78d15cebd17a15ef8",
+      "parent_aliases": [
+        "rank_certificate",
+        "exact_scalar"
+      ],
+      "faults": [
+        [
+          "        super::exact_scalar::admit_coefficients(&weights)?;",
+          ""
+        ],
+        [
+          "weights.len() != c1_dim",
+          "weights.len() == c1_dim"
+        ],
+        [
+          "if *w <= Q::zero() {",
+          "if *w < Q::zero() {"
+        ],
+        [
+          "let certificate_d0 = certify_rank(&complex.d0.matrix)?;",
+          "let certificate_d0 = certify_rank(&complex.d1.matrix)?;"
+        ],
+        [
+          "let certificate_d1 = certify_rank(&complex.d1.matrix)?;",
+          "let certificate_d1 = certify_rank(&complex.d0.matrix)?;"
+        ],
+        [
+          "        self.ranks.0.rank()\n",
+          "        self.ranks.1.rank()\n"
+        ],
+        [
+          "        self.ranks.1.rank()\n",
+          "        self.ranks.0.rank()\n"
+        ],
+        [
+          "Ok(self.c1_dim() - self.rank_d0())",
+          "Ok(self.c1_dim() + self.rank_d0())"
+        ],
+        [
+          ".checked_sub(im_d0_dim)",
+          ".checked_add(im_d0_dim)"
+        ],
+        [
+          "        &self.weights\n",
+          "        &self.weights[..0]\n"
+        ],
+        [
+          "(&self.ranks.0, &self.ranks.1)",
+          "(&self.ranks.0, &self.ranks.0)"
+        ]
+      ]
+    },
+    {
+      "family": "",
+      "path": "code/rust/src/homology/carrier_manifest.rs",
+      "sha256": "56c31afcee6f0c8af9362395fd7813e7060f7cdc438cbcac060c26cb7e766c02",
+      "parent_aliases": [
+        "carrier",
+        "hashing"
+      ],
+      "faults": [
+        [
+          "CARRIER_MANIFEST_VERSION: u32 = 1",
+          "CARRIER_MANIFEST_VERSION: u32 = 2"
+        ],
+        [
+          "COEFFICIENT_DOMAIN: &str = \"Q\"",
+          "COEFFICIENT_DOMAIN: &str = \"R\""
+        ],
+        [
+          "COEFFICIENT_REPRESENTATION: &str = \"BigRational\"",
+          "COEFFICIENT_REPRESENTATION: &str = \"Rational64\""
+        ],
+        [
+          "(carrier.c0_dim(), carrier.c1_dim(), carrier.c2_dim())",
+          "(carrier.c1_dim(), carrier.c0_dim(), carrier.c2_dim())"
+        ],
+        [
+          "let d0_hash = hash_matrix(carrier.d0());",
+          "let d0_hash = hash_matrix(carrier.d1());"
+        ],
+        [
+          "let d1_hash = hash_matrix(carrier.d1());",
+          "let d1_hash = hash_matrix(carrier.d0());"
+        ],
+        [
+          "let weights_hash = hash_weights(carrier.weights());",
+          "let weights_hash = hash_weights(&[]);"
+        ],
+        [
+          "(carrier.rank_d0(), carrier.rank_d1())",
+          "(carrier.rank_d1(), carrier.rank_d0())"
+        ],
+        [
+          "        &self.d0_hash\n",
+          "        &self.d1_hash\n"
+        ],
+        [
+          "        &self.d1_hash\n",
+          "        &self.d0_hash\n"
+        ],
+        [
+          "self == &Self::from_carrier(carrier)",
+          "true"
+        ],
+        [
+          "        self.ranks\n",
+          "        (0,0)\n"
+        ]
+      ]
+    }
+  ]
+}

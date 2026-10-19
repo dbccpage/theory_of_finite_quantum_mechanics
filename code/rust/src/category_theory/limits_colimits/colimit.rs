@@ -1,6 +1,7 @@
 //! colimit shell for omega_category_theory.
 //! AuthorityEffect: None. Not PROVED / GlobalGreen.
 
+use omega_category_theory::errors::ArithmosError;
 use serde::{Deserialize, Serialize};
 
 use super::cone::Cocone;
@@ -38,16 +39,16 @@ impl Colimit {
         }
     }
 
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
         if self.diagram_ref.is_empty() {
-            return Err("empty diagram_ref".into());
+            return Err(ArithmosError::InvalidShape("empty diagram_ref".into()));
         }
         self.cocone
             .validate_shell()
-            .map_err(|e| format!("cocone: {e}"))?;
+            .map_err(|error| super::cone::shape_context("cocone", error))?;
         Ok(())
     }
 }

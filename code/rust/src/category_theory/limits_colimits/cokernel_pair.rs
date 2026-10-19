@@ -2,6 +2,7 @@
 //! AuthorityEffect: None. Not PROVED / GlobalGreen.
 
 use serde::{Deserialize, Serialize};
+use omega_category_theory::errors::ArithmosError;
 
 /// Best-effort shell for a cokernel pair of a morphism f : A → B
 /// (pushout of f along itself).
@@ -56,27 +57,27 @@ impl CokernelPair {
         }
     }
 
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
         if self.pair_object.is_empty() {
-            return Err("empty pair_object".into());
+            return Err(ArithmosError::InvalidShape("empty pair_object".into()));
         }
         if self.source.is_empty() {
-            return Err("empty source".into());
+            return Err(ArithmosError::InvalidShape("empty source".into()));
         }
         if self.target.is_empty() {
-            return Err("empty target".into());
+            return Err(ArithmosError::InvalidShape("empty target".into()));
         }
         if self.morphism_f.is_empty() {
-            return Err("empty morphism_f".into());
+            return Err(ArithmosError::InvalidShape("empty morphism_f".into()));
         }
         if self.injection_left.is_empty() {
-            return Err("empty injection_left".into());
+            return Err(ArithmosError::InvalidShape("empty injection_left".into()));
         }
         if self.injection_right.is_empty() {
-            return Err("empty injection_right".into());
+            return Err(ArithmosError::InvalidShape("empty injection_right".into()));
         }
         Ok(())
     }

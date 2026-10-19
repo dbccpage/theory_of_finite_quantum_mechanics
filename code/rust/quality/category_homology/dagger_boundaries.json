@@ -1,0 +1,126 @@
+{
+  "AuthorityEffect": "None",
+  "scope": "Owned admitted finite dagger, typed domain/boundary/involution/identity/composition phases and both unitary equations.",
+  "records": [
+    {
+      "family": "",
+      "path": "code/rust/src/category_theory/dagger.rs",
+      "sha256": "9ac82f5c6a8537cc9455b789dcdcdd1c726ae6a641c632e1be7e580d291c4f92",
+      "parent_aliases": [],
+      "faults": [
+        [
+          "category.objects.len() > 64",
+          "category.objects.len() > 63"
+        ],
+        [
+          "category.morphisms.len() > 64",
+          "category.morphisms.len() > 65"
+        ],
+        [
+          "category.compositions.len() > 4096",
+          "category.compositions.len() > 4097"
+        ],
+        [
+          "dagger.len() != category.morphisms.len()",
+          "false"
+        ],
+        [
+          "dagger.keys().any(|f| !category.has_morphism(f))",
+          "false"
+        ],
+        [
+          "image.source != morphism.target",
+          "false"
+        ],
+        [
+          "image.target != morphism.source",
+          "false"
+        ],
+        [
+          "dagger.get(fd) != Some(f)",
+          "false"
+        ],
+        [
+          "dagger.get(identity) != Some(identity)",
+          "false"
+        ],
+        [
+          "view.compose(&dagger[second], &dagger[first])",
+          "view.compose(&dagger[first], &dagger[second])"
+        ],
+        [
+          "expected != dagger.get(composite).map(String::as_str)",
+          "expected == dagger.get(composite).map(String::as_str)"
+        ],
+        [
+          "expected != dagger.get(composite).map(String::as_str)",
+          "false"
+        ],
+        [
+          "first: first.clone(), second: second.clone(),",
+          "first: second.clone(), second: first.clone(),"
+        ],
+        [
+          "        admit_dagger_budget(&category)?;",
+          "        // omit size admission"
+        ],
+        [
+          ".map_err(DaggerValidationError::Category)?",
+          ".map_err(|_| DaggerValidationError::Domain)?"
+        ],
+        [
+          "        check_dagger_domain(declared, &dagger)?;",
+          "        // omit domain phase"
+        ],
+        [
+          "        check_dagger_arrows(declared, &dagger)?;",
+          "        // omit arrow phase"
+        ],
+        [
+          "        check_dagger_identities(declared, &dagger)?;",
+          "        // omit identity phase"
+        ],
+        [
+          "        check_dagger_compositions(declared, &dagger)?;",
+          "        // omit composition phase"
+        ],
+        [
+          "        check_dagger_domain(declared, &dagger)?;\n        check_dagger_arrows(declared, &dagger)?;",
+          "        check_dagger_arrows(declared, &dagger)?;\n        check_dagger_domain(declared, &dagger)?;"
+        ],
+        [
+          "        check_dagger_identities(declared, &dagger)?;\n        check_dagger_compositions(declared, &dagger)?;",
+          "        check_dagger_compositions(declared, &dagger)?;\n        check_dagger_identities(declared, &dagger)?;"
+        ],
+        [
+          "Ok(Self { category, dagger })",
+          "Ok(Self { category, dagger: BTreeMap::new() })"
+        ],
+        [
+          "self.dagger.get(morphism).map(String::as_str)",
+          "self.dagger.get(\"p0\").map(String::as_str)"
+        ],
+        [
+          "c.compose(morphism, fd) == c.identity_of(source)",
+          "true"
+        ],
+        [
+          "c.compose(fd, morphism) == c.identity_of(target)",
+          "true"
+        ],
+        [
+          "c.compose(morphism, fd) == c.identity_of(source)",
+          "c.compose(morphism, fd) == c.identity_of(target)"
+        ],
+        [
+          "c.compose(fd, morphism) == c.identity_of(target)",
+          "c.compose(fd, morphism) == c.identity_of(source)"
+        ],
+        [
+          "\"finite dagger validation refused: {self:?}\"",
+          "\"dagger admitted: {self:?}\""
+        ]
+      ]
+    }
+  ]
+}

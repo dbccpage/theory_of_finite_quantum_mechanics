@@ -2,6 +2,7 @@
 //! AuthorityEffect: None. Not PROVED / GlobalGreen.
 
 use serde::{Deserialize, Serialize};
+use omega_category_theory::errors::ArithmosError;
 
 /// Best-effort cartesian closed category shell (CCC).
 /// Product as tensor; exponential as internal-hom.
@@ -48,21 +49,21 @@ impl CartesianClosed {
         }
     }
 
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
         if self.underlying_category.is_empty() {
-            return Err("empty underlying_category".into());
+            return Err(ArithmosError::InvalidShape("empty underlying_category".into()));
         }
         if self.product_ref.is_empty() {
-            return Err("empty product_ref".into());
+            return Err(ArithmosError::InvalidShape("empty product_ref".into()));
         }
         if self.terminal_object.is_empty() {
-            return Err("empty terminal_object".into());
+            return Err(ArithmosError::InvalidShape("empty terminal_object".into()));
         }
         if self.exponential_ref.is_empty() {
-            return Err("empty exponential_ref".into());
+            return Err(ArithmosError::InvalidShape("empty exponential_ref".into()));
         }
         Ok(())
     }

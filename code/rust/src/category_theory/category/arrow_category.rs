@@ -3,6 +3,7 @@
 //!
 //! Arr(C): objects are morphisms of C; morphisms are commutative squares.
 
+use omega_category_theory::errors::ArithmosError;
 use serde::{Deserialize, Serialize};
 
 use super::category::MorphismTriple;
@@ -36,16 +37,16 @@ impl ArrowCategoryShell {
         }
     }
 
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
         if self.base_label.is_empty() {
-            return Err("empty base_label".into());
+            return Err(ArithmosError::InvalidShape("empty base_label".into()));
         }
         for (i, m) in self.arrow_objects.iter().enumerate() {
             if m.source.is_empty() || m.target.is_empty() || m.name.is_empty() {
-                return Err(format!("empty arrow_object field at index {i}"));
+                return Err(ArithmosError::InvalidShape(format!("empty arrow_object field at index {i}")));
             }
         }
         Ok(())

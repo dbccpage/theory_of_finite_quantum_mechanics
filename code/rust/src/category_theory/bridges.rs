@@ -1,20 +1,12 @@
-//! Bridges — Spec Section 8.
-//!
-//! The StructurePreservingMap base trait enables cross-discipline
-//! functor-like maps without requiring full categorical infrastructure.
+//! Raw cross-discipline mapping interfaces and declarations. AuthorityEffect: None.
+//! The trait requires only a map operation. BridgeEvidence stores caller-supplied
+//! law labels; it performs no law checking and confers no mathematical evidence.
 
 // ---------------------------------------------------------------------------
 // Trait: StructurePreservingMap
 // ---------------------------------------------------------------------------
 
-/// Base trait for all structure-preserving maps across disciplines.
-///
-/// Specialized by: CatFunctor, GroupHomomorphism, ContinuousMap,
-/// LinearMap, MeasurableMap, etc.
-///
-/// CatFunctor implements StructurePreservingMap automatically.
-/// Other disciplines can implement the base without being forced
-/// into full category infrastructure.
+/// A map signature; preservation obligations belong to each implementation.
 pub trait StructurePreservingMap {
     type Domain;
     type Codomain;
@@ -22,7 +14,7 @@ pub trait StructurePreservingMap {
     fn map(&self, x: &Self::Domain) -> Self::Codomain;
 }
 
-/// Evidence emitted when a bridge performs a structural transformation.
+/// Unchecked declarations associated with a proposed bridge.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct BridgeEvidence {
     pub source_discipline: String,

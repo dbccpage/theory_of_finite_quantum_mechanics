@@ -4,6 +4,7 @@
 //! 1: one object, one identity morphism (terminal object of Cat).
 
 use serde::{Deserialize, Serialize};
+use omega_category_theory::errors::ArithmosError;
 
 /// Best-effort terminal category shell (one object, one id).
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize)]
@@ -36,15 +37,15 @@ impl TerminalCategoryShell {
         }
     }
 
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
         if self.object.is_empty() {
-            return Err("empty object".into());
+            return Err(ArithmosError::InvalidShape("empty object".into()));
         }
         if self.identity.is_empty() {
-            return Err("empty identity".into());
+            return Err(ArithmosError::InvalidShape("empty identity".into()));
         }
         Ok(())
     }
