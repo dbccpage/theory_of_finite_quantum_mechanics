@@ -3,10 +3,10 @@ node_id: DS-QM032-CONTINUUM-LIMIT-CONDITIONAL
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: If finite shadows are compatible under declared refinement maps and converge, a limit object
-    is defined; without a convergence certificate the result is OracleNeeded and cannot be promoted.
+  source_statement: If finite shadows are compatible under declared refinement maps and converge, a limit
+    object is defined; without a convergence certificate the result is OracleNeeded and cannot be promoted.
   statement_status: source_claim_to_scope_check_not_accepted_result
-  declared_assumptions: &id001 []
+  declared_assumptions: []
   source_bottleneck: None (derived from parent DS-QM032-FINITE-FEYNMAN-SHADOW and upstream import DS-CONTINUOUS-TIME-EXP-GENERATOR
     via ds_qm032_feynman_refinement_compatibility_terminalizer_and_two_slice_action and ds_qm063_032_034_destructive_interference_and_cayley_vs_euler_norm).
   source_refs:
@@ -15,8 +15,8 @@ target:
   paper_refs:
   - dag/derivations/11_finite_qm_dynamics/tfq_0243_finite_feynman_history_shadow.md
   source_claim_label: PROVED_LEAN
-  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports before
-    reusing a result.
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
   historical_paper_refs:
   - papers/derivations/11_finite_qm_dynamics/tfq_0243_finite_feynman_history_shadow.md
   paper_relocations:
@@ -61,41 +61,45 @@ relation_candidates:
   name: ds_qm030_032_033_041_043_dynamics_and_heisenberg_duality
   line: 632
   signature_excerpt: "theorem ds_qm030_032_033_041_043_dynamics_and_heisenberg_duality\n    (A B C : Mat2Int)\
-    \ (e a0 a1 : Int) (he : e ≠ 0) :\n    (Mat2Int.mul (Mat2Int.mul A B) C = Mat2Int.mul A (Mat2Int.mul B C))\
-    \ ∧\n    (1 < 1 + e * e) ∧\n    (Mat2Int.trace (Mat2Int.mul A B) = Mat2Int.trace (Mat2Int.mul B A)) ∧\n  \
-    \  ((a0 + a1) * (a0 + a1) = (a0 * a0 + a1 * a1) + 2 * (a0 * a1))"
+    \ (e a0 a1 : Int) (he : e ≠ 0) :\n    (Mat2Int.mul (Mat2Int.mul A B) C = Mat2Int.mul A (Mat2Int.mul\
+    \ B C)) ∧\n    (1 < 1 + e * e) ∧\n    (Mat2Int.trace (Mat2Int.mul A B) = Mat2Int.trace (Mat2Int.mul\
+    \ B A)) ∧\n    ((a0 + a1) * (a0 + a1) = (a0 * a0 + a1 * a1) + 2 * (a0 * a1))"
   source: lean4/DerivationDagQMClosure.lean
   repository: this_repository
   source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
   status: source_candidate_requires_semantic_review
-  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 - kind: theorem
   name: ds_qm063_032_034_destructive_interference_and_cayley_vs_euler_norm
   line: 992
-  signature_excerpt: "theorem ds_qm063_032_034_destructive_interference_and_cayley_vs_euler_norm\n    (a b : Int)\
-    \ (p1 p2 : Nat) (hp1 : 0 < p1) :\n    (((a + (-a)) * (a + (-a)) + (b + (-b)) * (b + (-b)) = 0) ∧\n     ((a\
-    \ + a) * (a + a) + (b + b) * (b + b) = 4 * (a * a + b * b))) ∧\n    (0 < p1 + p2) ∧\n    ((1 + 1 * 1 = (2\
-    \ : Nat)) ∧ (1 < 2))"
+  signature_excerpt: "theorem ds_qm063_032_034_destructive_interference_and_cayley_vs_euler_norm\n   \
+    \ (a b : Int) (p1 p2 : Nat) (hp1 : 0 < p1) :\n    (((a + (-a)) * (a + (-a)) + (b + (-b)) * (b + (-b))\
+    \ = 0) ∧\n     ((a + a) * (a + a) + (b + b) * (b + b) = 4 * (a * a + b * b))) ∧\n    (0 < p1 + p2)\
+    \ ∧\n    ((1 + 1 * 1 = (2 : Nat)) ∧ (1 < 2))"
   source: lean4/DerivationDagQMClosure.lean
   repository: this_repository
   source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
   status: source_candidate_requires_semantic_review
-  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 - kind: theorem
   name: ds_qm032_feynman_refinement_compatibility_terminalizer_and_two_slice_action
   line: 1561
-  signature_excerpt: "theorem ds_qm032_feynman_refinement_compatibility_terminalizer_and_two_slice_action\n  \
-    \  (u0 u1 u2 v0 v1 v2 k_coarse : Int) (refinementCompat convergenceCert : Bool) :\n    (((-1 - 0) * (-1 -\
-    \ 0) + (0 - (-1)) * (0 - (-1)) = (2 : Int)) ∧\n     ((0 - 0) * (0 - 0) + (0 - 0) * (0 - 0) = (0 : Int)) ∧\n\
-    \     ((1 - 0) * (1 - 0) + (0 - 1) * (0 - 1) = (2 : Int)) ∧\n     ((2 : Int) ≠ 0)) ∧\n    ((u0 * v0 + u1 *\
-    \ v1 + u2 * v2 = k_coarse) ↔\n      ((u0 * v0 + u1 * v1 + u2 * v2) - k_coarse = 0)) ∧\n    (((refinementCompat\
-    \ && convergenceCert) = true ↔\n        (refinementCompat = true ∧ convergenceCert = true)) ∧\n     ((true\
-    \ && false) = false) ∧\n     ((false && convergenceCert) = false))"
+  signature_excerpt: "theorem ds_qm032_feynman_refinement_compatibility_terminalizer_and_two_slice_action\n\
+    \    (u0 u1 u2 v0 v1 v2 k_coarse : Int) (refinementCompat convergenceCert : Bool) :\n    (((-1 - 0)\
+    \ * (-1 - 0) + (0 - (-1)) * (0 - (-1)) = (2 : Int)) ∧\n     ((0 - 0) * (0 - 0) + (0 - 0) * (0 - 0)\
+    \ = (0 : Int)) ∧\n     ((1 - 0) * (1 - 0) + (0 - 1) * (0 - 1) = (2 : Int)) ∧\n     ((2 : Int) ≠ 0))\
+    \ ∧\n    ((u0 * v0 + u1 * v1 + u2 * v2 = k_coarse) ↔\n      ((u0 * v0 + u1 * v1 + u2 * v2) - k_coarse\
+    \ = 0)) ∧\n    (((refinementCompat && convergenceCert) = true ↔\n        (refinementCompat = true\
+    \ ∧ convergenceCert = true)) ∧\n     ((true && false) = false) ∧\n     ((false && convergenceCert)\
+    \ = false))"
   source: lean4/DerivationDagQMClosure.lean
   repository: this_repository
   source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
   status: source_candidate_requires_semantic_review
-  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 source_bindings:
 - original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm030_032_033_041_043_dynamics_and_heisenberg_duality
   availability: local
@@ -179,44 +183,725 @@ source_bindings:
   line: 1823
   role: source_lead_only
 presentation:
-  colours: []
-  generators: []
-  relations: []
-  compositions: []
-  identities: []
+  status: scoped_stage_result_reviewed
+  scope: Affine restriction maps compose and the singleton states are compatible; retained ambient separations
+    show that this bookkeeping alone supplies no convergence bound.
+  colours:
+  - id: AmbientRationalPoint
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: NaturalLevel
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: SingletonLevelK
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: SingletonLevelN
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  generators:
+  - id: singleton_state
+    ordered_inputs:
+    - NaturalLevel
+    output: SingletonLevelK
+    arity: 1
+    carrier: Declared NaturalLevel
+    coefficient_ring: Exact Q, Q(i), or Q(sqrt5) as declared; real embedding only in the named Lean conditional
+    hypotheses:
+    - Native integer levels; singleton finite carriers and fixed affine maps. No limit topology is selected.
+    semantic_predicate: Return the sole point k at the fixed source level.
+    source_pins:
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_DYNAMICS__DS-QM032-CONTINUUM-LIMIT-CONDITIONAL__PROVED_LEAN.yaml
+      sha256: 8ad457780e771c94af93e0624601839083397e824c77541fde16685006d14598
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/inputs/this_repository/dag/operads/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL.yaml
+      sha256: a6ab1f26a8ca1205c1c02ff8ea1abd9648878f1443b098bf58aeef69d7ad36e0
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs
+      sha256: 38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/inputs/this_repository/dag/derivations/11_finite_qm_dynamics/TFQ-0243_finite_feynman_history_shadow.md
+      sha256: 97131789a75a510df53d6f3ad689c0394d3ad3ff6cd4b56826ecbce4d30ba330
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/dynamics_exact.py
+      sha256: 972d81f099b957e0ab23329750bb35d0aaac05cc439abd8b418dde6e4841143f
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/code/python/tests/test_dynamics_exact.py
+      sha256: a1d63f1d0bcbfed2c4e62e2b99b87ee0b92a3c864b92cb311583175d9e8c241b
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/dynamics_exact.rs
+      sha256: 309d04e2a142468c66c2294ae926cf736de7420d265e0645aa78f81e06289232
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/dynamics_exact_replay.rs
+      sha256: ae9f6b1d81b9477f0ccf844d243f58f4e58e1245814780c5381d5cef1d9d16f6
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/dynamics_checker.py
+      sha256: 40f56c58f205899bb19b42204c55f0290befa655349aad80228f0250fe8242c9
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/prepare.py
+      sha256: 0705bc29d8320b12190e2a54ef38909796b2033703ce098894a492e45996d6ce
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/structure_exact.py
+      sha256: 0a35a5782b47e06167fc768320ee7fbf90c99fbdf336cbfaf2d2e1b93f9ca89d
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/structure_exact.rs
+      sha256: 9c714e91517144cf0fa614c8195bcf2f56fc32c0b4959750a4515f75fd5b6d28
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/structure_checker.py
+      sha256: 554c0811b794c03ce8badba12075ccb8b12165f6837acff805af0ceba3b3fea7
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/specs.py
+      sha256: 5587e78cec43d2c37dd52fd6fdbfede93420211b879a5be97997fb4b9403f6cc
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/check_candidate.py
+      sha256: e89c0aac2f0cc406abc4213dcfafd009d6deff9f7447a6dc0fbf7906d420192e
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/format_certificate.py
+      sha256: a27c7f52b89293b2b8c5077091a7c418b2b0ca3a4f123b1159801e8e4795a2b8
+    evidence_status: Reviewed exact finite native records; literal named kernel statements supply only
+      their own universal scopes. Full refined-carrier operad/coherence remains open.
+    latest_host_check: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p2/host_check.json
+  - id: affine_restriction
+    ordered_inputs:
+    - SingletonLevelK
+    output: SingletonLevelN
+    arity: 1
+    carrier: Declared SingletonLevelK
+    coefficient_ring: Exact Q, Q(i), or Q(sqrt5) as declared; real embedding only in the named Lean conditional
+    hypotheses:
+    - Native integer levels; singleton finite carriers and fixed affine maps. No limit topology is selected.
+    semantic_predicate: Send u to u+n-k with fixed source and target levels.
+    source_pins:
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_DYNAMICS__DS-QM032-CONTINUUM-LIMIT-CONDITIONAL__PROVED_LEAN.yaml
+      sha256: 8ad457780e771c94af93e0624601839083397e824c77541fde16685006d14598
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/inputs/this_repository/dag/operads/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL.yaml
+      sha256: a6ab1f26a8ca1205c1c02ff8ea1abd9648878f1443b098bf58aeef69d7ad36e0
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs
+      sha256: 38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/inputs/this_repository/dag/derivations/11_finite_qm_dynamics/TFQ-0243_finite_feynman_history_shadow.md
+      sha256: 97131789a75a510df53d6f3ad689c0394d3ad3ff6cd4b56826ecbce4d30ba330
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/dynamics_exact.py
+      sha256: 972d81f099b957e0ab23329750bb35d0aaac05cc439abd8b418dde6e4841143f
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/code/python/tests/test_dynamics_exact.py
+      sha256: a1d63f1d0bcbfed2c4e62e2b99b87ee0b92a3c864b92cb311583175d9e8c241b
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/dynamics_exact.rs
+      sha256: 309d04e2a142468c66c2294ae926cf736de7420d265e0645aa78f81e06289232
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/dynamics_exact_replay.rs
+      sha256: ae9f6b1d81b9477f0ccf844d243f58f4e58e1245814780c5381d5cef1d9d16f6
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/dynamics_checker.py
+      sha256: 40f56c58f205899bb19b42204c55f0290befa655349aad80228f0250fe8242c9
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/prepare.py
+      sha256: 0705bc29d8320b12190e2a54ef38909796b2033703ce098894a492e45996d6ce
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/structure_exact.py
+      sha256: 0a35a5782b47e06167fc768320ee7fbf90c99fbdf336cbfaf2d2e1b93f9ca89d
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/structure_exact.rs
+      sha256: 9c714e91517144cf0fa614c8195bcf2f56fc32c0b4959750a4515f75fd5b6d28
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/structure_checker.py
+      sha256: 554c0811b794c03ce8badba12075ccb8b12165f6837acff805af0ceba3b3fea7
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/specs.py
+      sha256: 5587e78cec43d2c37dd52fd6fdbfede93420211b879a5be97997fb4b9403f6cc
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/check_candidate.py
+      sha256: e89c0aac2f0cc406abc4213dcfafd009d6deff9f7447a6dc0fbf7906d420192e
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/format_certificate.py
+      sha256: a27c7f52b89293b2b8c5077091a7c418b2b0ca3a4f123b1159801e8e4795a2b8
+    evidence_status: Reviewed exact finite native records; literal named kernel statements supply only
+      their own universal scopes. Full refined-carrier operad/coherence remains open.
+    latest_host_check: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p2/host_check.json
+  - id: ambient_embedding
+    ordered_inputs:
+    - SingletonLevelN
+    output: AmbientRationalPoint
+    arity: 1
+    carrier: Declared SingletonLevelN
+    coefficient_ring: Exact Q, Q(i), or Q(sqrt5) as declared; real embedding only in the named Lean conditional
+    hypotheses:
+    - Native integer levels; singleton finite carriers and fixed affine maps. No limit topology is selected.
+    semantic_predicate: Embed the resulting point into Q with its usual absolute separation.
+    source_pins:
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_DYNAMICS__DS-QM032-CONTINUUM-LIMIT-CONDITIONAL__PROVED_LEAN.yaml
+      sha256: 8ad457780e771c94af93e0624601839083397e824c77541fde16685006d14598
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/inputs/this_repository/dag/operads/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL.yaml
+      sha256: a6ab1f26a8ca1205c1c02ff8ea1abd9648878f1443b098bf58aeef69d7ad36e0
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs
+      sha256: 38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/inputs/this_repository/dag/derivations/11_finite_qm_dynamics/TFQ-0243_finite_feynman_history_shadow.md
+      sha256: 97131789a75a510df53d6f3ad689c0394d3ad3ff6cd4b56826ecbce4d30ba330
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/dynamics_exact.py
+      sha256: 972d81f099b957e0ab23329750bb35d0aaac05cc439abd8b418dde6e4841143f
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/code/python/tests/test_dynamics_exact.py
+      sha256: a1d63f1d0bcbfed2c4e62e2b99b87ee0b92a3c864b92cb311583175d9e8c241b
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/dynamics_exact.rs
+      sha256: 309d04e2a142468c66c2294ae926cf736de7420d265e0645aa78f81e06289232
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/dynamics_exact_replay.rs
+      sha256: ae9f6b1d81b9477f0ccf844d243f58f4e58e1245814780c5381d5cef1d9d16f6
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/dynamics_checker.py
+      sha256: 40f56c58f205899bb19b42204c55f0290befa655349aad80228f0250fe8242c9
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/prepare.py
+      sha256: 0705bc29d8320b12190e2a54ef38909796b2033703ce098894a492e45996d6ce
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/structure_exact.py
+      sha256: 0a35a5782b47e06167fc768320ee7fbf90c99fbdf336cbfaf2d2e1b93f9ca89d
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/structure_exact.rs
+      sha256: 9c714e91517144cf0fa614c8195bcf2f56fc32c0b4959750a4515f75fd5b6d28
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/structure_checker.py
+      sha256: 554c0811b794c03ce8badba12075ccb8b12165f6837acff805af0ceba3b3fea7
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/specs.py
+      sha256: 5587e78cec43d2c37dd52fd6fdbfede93420211b879a5be97997fb4b9403f6cc
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/check_candidate.py
+      sha256: e89c0aac2f0cc406abc4213dcfafd009d6deff9f7447a6dc0fbf7906d420192e
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/format_certificate.py
+      sha256: a27c7f52b89293b2b8c5077091a7c418b2b0ca3a4f123b1159801e8e4795a2b8
+    evidence_status: Reviewed exact finite native records; literal named kernel statements supply only
+      their own universal scopes. Full refined-carrier operad/coherence remains open.
+    latest_host_check: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p2/host_check.json
+  relations:
+  - id: refinement_relation_0
+    equation_or_predicate: r(n,m)(r(m,k)(u))=r(n,k)(u), and r(n,k)(k)=n.
+    typing_conditions: Literal declared operation domains; Specify compatible approximation spaces, a
+      common embedding/topology, quantitative error and a real convergence proof before any continuum
+      limit. This example does not refute a correctly hypothesized convergence theorem.
+    evidence_status: Accepted P2 plus executed P4; consult literal named Lean signatures and retained
+      matrix/coordinate transport obligations rather than treating the whole relation prose as a theorem.
+    scope: Affine restriction maps compose and the singleton states are compatible; retained ambient separations
+      show that this bookkeeping alone supplies no convergence bound.
+    source_pins:
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_DYNAMICS__DS-QM032-CONTINUUM-LIMIT-CONDITIONAL__PROVED_LEAN.yaml
+      sha256: 8ad457780e771c94af93e0624601839083397e824c77541fde16685006d14598
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/inputs/this_repository/dag/operads/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL.yaml
+      sha256: a6ab1f26a8ca1205c1c02ff8ea1abd9648878f1443b098bf58aeef69d7ad36e0
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs
+      sha256: 38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/inputs/this_repository/dag/derivations/11_finite_qm_dynamics/TFQ-0243_finite_feynman_history_shadow.md
+      sha256: 97131789a75a510df53d6f3ad689c0394d3ad3ff6cd4b56826ecbce4d30ba330
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/dynamics_exact.py
+      sha256: 972d81f099b957e0ab23329750bb35d0aaac05cc439abd8b418dde6e4841143f
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/code/python/tests/test_dynamics_exact.py
+      sha256: a1d63f1d0bcbfed2c4e62e2b99b87ee0b92a3c864b92cb311583175d9e8c241b
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/dynamics_exact.rs
+      sha256: 309d04e2a142468c66c2294ae926cf736de7420d265e0645aa78f81e06289232
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/dynamics_exact_replay.rs
+      sha256: ae9f6b1d81b9477f0ccf844d243f58f4e58e1245814780c5381d5cef1d9d16f6
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/dynamics_checker.py
+      sha256: 40f56c58f205899bb19b42204c55f0290befa655349aad80228f0250fe8242c9
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/prepare.py
+      sha256: 0705bc29d8320b12190e2a54ef38909796b2033703ce098894a492e45996d6ce
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/structure_exact.py
+      sha256: 0a35a5782b47e06167fc768320ee7fbf90c99fbdf336cbfaf2d2e1b93f9ca89d
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/structure_exact.rs
+      sha256: 9c714e91517144cf0fa614c8195bcf2f56fc32c0b4959750a4515f75fd5b6d28
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/structure_checker.py
+      sha256: 554c0811b794c03ce8badba12075ccb8b12165f6837acff805af0ceba3b3fea7
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/specs.py
+      sha256: 5587e78cec43d2c37dd52fd6fdbfede93420211b879a5be97997fb4b9403f6cc
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/check_candidate.py
+      sha256: e89c0aac2f0cc406abc4213dcfafd009d6deff9f7447a6dc0fbf7906d420192e
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/format_certificate.py
+      sha256: a27c7f52b89293b2b8c5077091a7c418b2b0ca3a4f123b1159801e8e4795a2b8
+    latest_host_check: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p2/host_check.json
+    historical_evidence_annotation: P1 candidate; independent native and named kernel gates remain required.
+  - id: refinement_relation_1
+    equation_or_predicate: Compatibility alone contains no rate or common-space convergence certificate.
+    typing_conditions: Literal declared operation domains; Specify compatible approximation spaces, a
+      common embedding/topology, quantitative error and a real convergence proof before any continuum
+      limit. This example does not refute a correctly hypothesized convergence theorem.
+    evidence_status: Accepted P2 plus executed P4; consult literal named Lean signatures and retained
+      matrix/coordinate transport obligations rather than treating the whole relation prose as a theorem.
+    scope: Affine restriction maps compose and the singleton states are compatible; retained ambient separations
+      show that this bookkeeping alone supplies no convergence bound.
+    source_pins:
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_DYNAMICS__DS-QM032-CONTINUUM-LIMIT-CONDITIONAL__PROVED_LEAN.yaml
+      sha256: 8ad457780e771c94af93e0624601839083397e824c77541fde16685006d14598
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/inputs/this_repository/dag/operads/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL.yaml
+      sha256: a6ab1f26a8ca1205c1c02ff8ea1abd9648878f1443b098bf58aeef69d7ad36e0
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs
+      sha256: 38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/inputs/this_repository/dag/derivations/11_finite_qm_dynamics/TFQ-0243_finite_feynman_history_shadow.md
+      sha256: 97131789a75a510df53d6f3ad689c0394d3ad3ff6cd4b56826ecbce4d30ba330
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/dynamics_exact.py
+      sha256: 972d81f099b957e0ab23329750bb35d0aaac05cc439abd8b418dde6e4841143f
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/code/python/tests/test_dynamics_exact.py
+      sha256: a1d63f1d0bcbfed2c4e62e2b99b87ee0b92a3c864b92cb311583175d9e8c241b
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/dynamics_exact.rs
+      sha256: 309d04e2a142468c66c2294ae926cf736de7420d265e0645aa78f81e06289232
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/dynamics_exact_replay.rs
+      sha256: ae9f6b1d81b9477f0ccf844d243f58f4e58e1245814780c5381d5cef1d9d16f6
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/dynamics_checker.py
+      sha256: 40f56c58f205899bb19b42204c55f0290befa655349aad80228f0250fe8242c9
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/prepare.py
+      sha256: 0705bc29d8320b12190e2a54ef38909796b2033703ce098894a492e45996d6ce
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/structure_exact.py
+      sha256: 0a35a5782b47e06167fc768320ee7fbf90c99fbdf336cbfaf2d2e1b93f9ca89d
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/structure_exact.rs
+      sha256: 9c714e91517144cf0fa614c8195bcf2f56fc32c0b4959750a4515f75fd5b6d28
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/structure_checker.py
+      sha256: 554c0811b794c03ce8badba12075ccb8b12165f6837acff805af0ceba3b3fea7
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/specs.py
+      sha256: 5587e78cec43d2c37dd52fd6fdbfede93420211b879a5be97997fb4b9403f6cc
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/check_candidate.py
+      sha256: e89c0aac2f0cc406abc4213dcfafd009d6deff9f7447a6dc0fbf7906d420192e
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/format_certificate.py
+      sha256: a27c7f52b89293b2b8c5077091a7c418b2b0ca3a4f123b1159801e8e4795a2b8
+    latest_host_check: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p2/host_check.json
+    historical_evidence_annotation: P1 candidate; independent native and named kernel gates remain required.
+  compositions: &id001
+  - outer_operation: affine_restriction
+    input_slot: 0
+    inner_operation: singleton_state
+    colour_match: SingletonLevelK -> SingletonLevelK
+    hypothesis_match: Same declared coordinates, coefficients and context; all operation hypotheses must
+      be carried into the graft.
+    licensing_relations:
+    - refinement_relation_0
+    - refinement_relation_1
+    evidence_status: Semantic substitution supported by the retained finite operation traces and separately
+      scoped named kernel statements. A complete refined-carrier operad is not asserted.
+  - outer_operation: ambient_embedding
+    input_slot: 0
+    inner_operation: affine_restriction
+    colour_match: SingletonLevelN -> SingletonLevelN
+    hypothesis_match: Same declared coordinates, coefficients and context; all operation hypotheses must
+      be carried into the graft.
+    licensing_relations:
+    - refinement_relation_0
+    - refinement_relation_1
+    evidence_status: Semantic substitution supported by the retained finite operation traces and separately
+      scoped named kernel statements. A complete refined-carrier operad is not asserted.
+  identities:
+  - colour: AmbientRationalPoint
+    proposed_operation: id_AmbientRationalPoint
+    signature: AmbientRationalPoint -> AmbientRationalPoint
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: NaturalLevel
+    proposed_operation: id_NaturalLevel
+    signature: NaturalLevel -> NaturalLevel
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: SingletonLevelK
+    proposed_operation: id_SingletonLevelK
+    signature: SingletonLevelK -> SingletonLevelK
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: SingletonLevelN
+    proposed_operation: id_SingletonLevelN
+    signature: SingletonLevelN -> SingletonLevelN
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
   symmetric_actions: []
-  coherence_obligations:
-  - identity_operations
-  - unit_laws
-  - partial_composition_associativity
-  - symmetric_action_if_claimed
-  - relations_stable_under_grafting
+  coherence_obligations: &id002
+  - Specify compatible approximation spaces, a common embedding/topology, quantitative error and a real
+    convergence proof before any continuum limit. This example does not refute a correctly hypothesized
+    convergence theorem.
+  - Prove the full refined-carrier operad identity, substitution, symmetry and coherence laws; mere colour
+    matches do not instantiate that formal structure.
+  - No inference from a source flag, declared census label, finite sample, quotient carrier or coordinate
+    name to a stronger mathematical/physical authority claim.
+  failed_compositions:
+  - proposal: Promote the selected step to the unrestricted original target
+    reason: Specify compatible approximation spaces, a common embedding/topology, quantitative error and
+      a real convergence proof before any continuum limit. This example does not refute a correctly hypothesized
+      convergence theorem.
+  counterexamples:
+  - id: retained_actual_domain_controls
+    records:
+    - input:
+      - '0'
+      - '1'
+      - '3'
+      - '3'
+      output:
+      - '0'
+      - '0'
+      - '0'
+      - '3'
+      - '3'
+    - input:
+      - '1'
+      - '2'
+      - '8'
+      - '8'
+      output:
+      - '1'
+      - '1'
+      - '1'
+      - '7'
+      - '7'
+    - input:
+      - '0'
+      - '3'
+      - '20'
+      - '20'
+      output:
+      - '0'
+      - '0'
+      - '0'
+      - '20'
+      - '20'
+    scope: Computed values, with the source/kernel/native distinctions retained in claim_boundary.
 operad_slots:
   slot_m1_layer0_ambient_carrier:
-    mining_status: UNREVIEWED
-    carrier: null
-    coefficient_ring: null
-    assumptions: *id001
-    source_pins: []
-    public_input: {}
+    mining_status: FILLED
+    carrier: Literal per-operation finite or admitted scalar carriers
+    coefficient_ring: Exact Z, Q, Q(i), Q(sqrt5); admitted a real root only under the stated Lean hypotheses
+    source_pins:
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_DYNAMICS__DS-QM032-CONTINUUM-LIMIT-CONDITIONAL__PROVED_LEAN.yaml
+      sha256: 8ad457780e771c94af93e0624601839083397e824c77541fde16685006d14598
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/inputs/this_repository/dag/operads/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL.yaml
+      sha256: a6ab1f26a8ca1205c1c02ff8ea1abd9648878f1443b098bf58aeef69d7ad36e0
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs
+      sha256: 38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/inputs/this_repository/dag/derivations/11_finite_qm_dynamics/TFQ-0243_finite_feynman_history_shadow.md
+      sha256: 97131789a75a510df53d6f3ad689c0394d3ad3ff6cd4b56826ecbce4d30ba330
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/dynamics_exact.py
+      sha256: 972d81f099b957e0ab23329750bb35d0aaac05cc439abd8b418dde6e4841143f
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/code/python/tests/test_dynamics_exact.py
+      sha256: a1d63f1d0bcbfed2c4e62e2b99b87ee0b92a3c864b92cb311583175d9e8c241b
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/dynamics_exact.rs
+      sha256: 309d04e2a142468c66c2294ae926cf736de7420d265e0645aa78f81e06289232
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/dynamics_exact_replay.rs
+      sha256: ae9f6b1d81b9477f0ccf844d243f58f4e58e1245814780c5381d5cef1d9d16f6
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/dynamics_checker.py
+      sha256: 40f56c58f205899bb19b42204c55f0290befa655349aad80228f0250fe8242c9
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/prepare.py
+      sha256: 0705bc29d8320b12190e2a54ef38909796b2033703ce098894a492e45996d6ce
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/structure_exact.py
+      sha256: 0a35a5782b47e06167fc768320ee7fbf90c99fbdf336cbfaf2d2e1b93f9ca89d
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/structure_exact.rs
+      sha256: 9c714e91517144cf0fa614c8195bcf2f56fc32c0b4959750a4515f75fd5b6d28
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/structure_checker.py
+      sha256: 554c0811b794c03ce8badba12075ccb8b12165f6837acff805af0ceba3b3fea7
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/specs.py
+      sha256: 5587e78cec43d2c37dd52fd6fdbfede93420211b879a5be97997fb4b9403f6cc
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/check_candidate.py
+      sha256: e89c0aac2f0cc406abc4213dcfafd009d6deff9f7447a6dc0fbf7906d420192e
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/format_certificate.py
+      sha256: a27c7f52b89293b2b8c5077091a7c418b2b0ca3a4f123b1159801e8e4795a2b8
+    public_input:
+      kind: refinement
+      cases:
+      - - '0'
+        - '1'
+        - '3'
+        - '3'
+      - - '1'
+        - '2'
+        - '8'
+        - '8'
+      - - '0'
+        - '3'
+        - '20'
+        - '20'
+      scope: Affine restriction maps compose and the singleton states are compatible; retained ambient
+        separations show that this bookkeeping alone supplies no convergence bound.
+      unpaid_target: Specify compatible approximation spaces, a common embedding/topology, quantitative
+        error and a real convergence proof before any continuum limit. This example does not refute a
+        correctly hypothesized convergence theorem.
+    original_target: If finite shadows are compatible under declared refinement maps and converge, a limit
+      object is defined; without a convergence certificate the result is OracleNeeded and cannot be promoted.
+    source_scope_review: Source Bool refinementCompat && convergenceCert is a record of assumptions, not
+      their proof; the source empty assumptions list is incomplete for the continuum target. This finite
+      control uses singleton carrier {k} at level k, affine restriction r(n,k)(u)=u+n-k and ambient embedding
+      k↦k. Compatibility is exact while ambient separations grow. No common metric/projective-limit topology
+      is imposed.
+    admitted_assumptions: []
   slot_m2_layer1_forward_morphisms:
-    mining_status: UNREVIEWED
-    operations: []
-    composition_plan: []
+    mining_status: FILLED
+    operations:
+    - catalog_id: singleton_state
+      inputs:
+      - NaturalLevel
+      output: SingletonLevelK
+      semantic_predicate: Return the sole point k at the fixed source level.
+    - catalog_id: affine_restriction
+      inputs:
+      - SingletonLevelK
+      output: SingletonLevelN
+      semantic_predicate: Send u to u+n-k with fixed source and target levels.
+    - catalog_id: ambient_embedding
+      inputs:
+      - SingletonLevelN
+      output: AmbientRationalPoint
+      semantic_predicate: Embed the resulting point into Q with its usual absolute separation.
+    composition_plan: *id001
+    tree:
+    - r(n,m)(r(m,k)(u))=r(n,k)(u), and r(n,k)(k)=n.
+    - Compatibility alone contains no rate or common-space convergence certificate.
   slot_m3_layer2_ideals_and_annihilators:
-    mining_status: UNREVIEWED
-    algebraic_relations: []
-    rejection_predicates: []
-    negative_control_plan: []
+    mining_status: FILLED
+    algebraic_relations:
+    - id: refinement_relation_0
+      equation_or_predicate: r(n,m)(r(m,k)(u))=r(n,k)(u), and r(n,k)(k)=n.
+      typing_conditions: Literal declared operation domains; Specify compatible approximation spaces,
+        a common embedding/topology, quantitative error and a real convergence proof before any continuum
+        limit. This example does not refute a correctly hypothesized convergence theorem.
+      evidence_status: P1 candidate; independent native and named kernel gates remain required.
+      scope: Affine restriction maps compose and the singleton states are compatible; retained ambient
+        separations show that this bookkeeping alone supplies no convergence bound.
+      source_pins:
+      - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_DYNAMICS__DS-QM032-CONTINUUM-LIMIT-CONDITIONAL__PROVED_LEAN.yaml
+        sha256: 8ad457780e771c94af93e0624601839083397e824c77541fde16685006d14598
+      - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/inputs/this_repository/dag/operads/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL.yaml
+        sha256: a6ab1f26a8ca1205c1c02ff8ea1abd9648878f1443b098bf58aeef69d7ad36e0
+      - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+        sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+      - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs
+        sha256: 38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a
+      - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/inputs/this_repository/dag/derivations/11_finite_qm_dynamics/TFQ-0243_finite_feynman_history_shadow.md
+        sha256: 97131789a75a510df53d6f3ad689c0394d3ad3ff6cd4b56826ecbce4d30ba330
+      - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/dynamics_exact.py
+        sha256: 972d81f099b957e0ab23329750bb35d0aaac05cc439abd8b418dde6e4841143f
+      - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/code/python/tests/test_dynamics_exact.py
+        sha256: a1d63f1d0bcbfed2c4e62e2b99b87ee0b92a3c864b92cb311583175d9e8c241b
+      - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/dynamics_exact.rs
+        sha256: 309d04e2a142468c66c2294ae926cf736de7420d265e0645aa78f81e06289232
+      - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/dynamics_exact_replay.rs
+        sha256: ae9f6b1d81b9477f0ccf844d243f58f4e58e1245814780c5381d5cef1d9d16f6
+      - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/dynamics_checker.py
+        sha256: 40f56c58f205899bb19b42204c55f0290befa655349aad80228f0250fe8242c9
+      - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+        sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+      - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/prepare.py
+        sha256: 0705bc29d8320b12190e2a54ef38909796b2033703ce098894a492e45996d6ce
+      - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/structure_exact.py
+        sha256: 0a35a5782b47e06167fc768320ee7fbf90c99fbdf336cbfaf2d2e1b93f9ca89d
+      - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/structure_exact.rs
+        sha256: 9c714e91517144cf0fa614c8195bcf2f56fc32c0b4959750a4515f75fd5b6d28
+      - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/structure_checker.py
+        sha256: 554c0811b794c03ce8badba12075ccb8b12165f6837acff805af0ceba3b3fea7
+      - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/specs.py
+        sha256: 5587e78cec43d2c37dd52fd6fdbfede93420211b879a5be97997fb4b9403f6cc
+      - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/check_candidate.py
+        sha256: e89c0aac2f0cc406abc4213dcfafd009d6deff9f7447a6dc0fbf7906d420192e
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/format_certificate.py
+        sha256: a27c7f52b89293b2b8c5077091a7c418b2b0ca3a4f123b1159801e8e4795a2b8
+    - id: refinement_relation_1
+      equation_or_predicate: Compatibility alone contains no rate or common-space convergence certificate.
+      typing_conditions: Literal declared operation domains; Specify compatible approximation spaces,
+        a common embedding/topology, quantitative error and a real convergence proof before any continuum
+        limit. This example does not refute a correctly hypothesized convergence theorem.
+      evidence_status: P1 candidate; independent native and named kernel gates remain required.
+      scope: Affine restriction maps compose and the singleton states are compatible; retained ambient
+        separations show that this bookkeeping alone supplies no convergence bound.
+      source_pins:
+      - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_DYNAMICS__DS-QM032-CONTINUUM-LIMIT-CONDITIONAL__PROVED_LEAN.yaml
+        sha256: 8ad457780e771c94af93e0624601839083397e824c77541fde16685006d14598
+      - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/inputs/this_repository/dag/operads/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL.yaml
+        sha256: a6ab1f26a8ca1205c1c02ff8ea1abd9648878f1443b098bf58aeef69d7ad36e0
+      - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+        sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+      - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs
+        sha256: 38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a
+      - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/inputs/this_repository/dag/derivations/11_finite_qm_dynamics/TFQ-0243_finite_feynman_history_shadow.md
+        sha256: 97131789a75a510df53d6f3ad689c0394d3ad3ff6cd4b56826ecbce4d30ba330
+      - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/dynamics_exact.py
+        sha256: 972d81f099b957e0ab23329750bb35d0aaac05cc439abd8b418dde6e4841143f
+      - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/code/python/tests/test_dynamics_exact.py
+        sha256: a1d63f1d0bcbfed2c4e62e2b99b87ee0b92a3c864b92cb311583175d9e8c241b
+      - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/dynamics_exact.rs
+        sha256: 309d04e2a142468c66c2294ae926cf736de7420d265e0645aa78f81e06289232
+      - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/dynamics_exact_replay.rs
+        sha256: ae9f6b1d81b9477f0ccf844d243f58f4e58e1245814780c5381d5cef1d9d16f6
+      - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/dynamics_checker.py
+        sha256: 40f56c58f205899bb19b42204c55f0290befa655349aad80228f0250fe8242c9
+      - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+        sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+      - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/prepare.py
+        sha256: 0705bc29d8320b12190e2a54ef38909796b2033703ce098894a492e45996d6ce
+      - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/structure_exact.py
+        sha256: 0a35a5782b47e06167fc768320ee7fbf90c99fbdf336cbfaf2d2e1b93f9ca89d
+      - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/structure_exact.rs
+        sha256: 9c714e91517144cf0fa614c8195bcf2f56fc32c0b4959750a4515f75fd5b6d28
+      - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/structure_checker.py
+        sha256: 554c0811b794c03ce8badba12075ccb8b12165f6837acff805af0ceba3b3fea7
+      - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/specs.py
+        sha256: 5587e78cec43d2c37dd52fd6fdbfede93420211b879a5be97997fb4b9403f6cc
+      - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/check_candidate.py
+        sha256: e89c0aac2f0cc406abc4213dcfafd009d6deff9f7447a6dc0fbf7906d420192e
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/format_certificate.py
+        sha256: a27c7f52b89293b2b8c5077091a7c418b2b0ca3a4f123b1159801e8e4795a2b8
+    rejection_predicates:
+    - Independent domain equations and actual matrix/graph/quotient arrays recompute every output.
+    - Exact public input, canonical rational primitive types, complete source pins and exact sealed request
+      bytes.
+    - Full native cross-language output equality and actual named Lean axiom reports; no label-based target
+      promotion.
+    negative_control_plan: Alter every output coordinate, input identity, primitive types, source set
+      and sealed request.
   slot_m4_tri_language_witness_anchors:
-    mining_status: UNREVIEWED
-    certificate_predicates: []
-    anchors: []
-    unpaid_imports: *id001
-stage_history: []
-open_obligations:
-- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
-- Select and semantically check the generators needed by one useful next step.
-- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
-- Bind independent certificate predicates and real checker anchors before P1.
+    mining_status: FILLED
+    certificate_predicates:
+    - Independent domain equations and actual matrix/graph/quotient arrays recompute every output.
+    - Exact public input, canonical rational primitive types, complete source pins and exact sealed request
+      bytes.
+    - Full native cross-language output equality and actual named Lean axiom reports; no label-based target
+      promotion.
+    anchors:
+    - code/python/src/qm/dynamics_exact.py
+    - code/python/tests/test_dynamics_exact.py
+    - code/rust/src/finite_probability/dynamics_exact.rs
+    - code/rust/src/finite_probability/examples/dynamics_exact_replay.rs
+    - dag/pfp/dynamics_checker.py
+    - dag/pfp/exact_json.py
+    - dag/pfp/review_exact_json.py
+    - lean4/PrimitiveDifference.lean
+    - lean4/HWKernel.lean
+    - lean4/H004FreeLinearization.lean
+    - lean4/H005InnerProductAdmission.lean
+    - lean4/H003ReversibilityGate.lean
+    - lean4/H006PermutationUnitary.lean
+    - lean4/H007Complexification.lean
+    - lean4/H017MatrixFiniteRecovery.lean
+    - lean4/H017Fin.lean
+    - lean4/H016ContinuousDynamicsFork.lean
+    - lean4/H008PhaseBlindPresentation.lean
+    - lean4/Core.lean
+    - lean4/H009PhaseFiber.lean
+    - lean4/H010InterferenceNonDescent.lean
+    - lean4/H011U1SelectorBoundary.lean
+    - lean4/H011Circle.lean
+    - lean4/H014TensorCompositionBoundary.lean
+    - lean4/H014BilinearProduct.lean
+    - lean4/H014Interface.lean
+    - lean4/H015IrreversibleFork.lean
+    - lean4/H013BornPairingBoundary.lean
+    - lean4/H013SameContract.lean
+    - lean4/H017Gleason.lean
+    - lean4/H017Extras.lean
+    - lean4/H017ExtrasDropone.lean
+    - lean4/E003_projection_fiber_primitive_difference.lean
+    - lean4/E005_fiber_quotient_equivalence.lean
+    - lean4/H000FinitePresentedCarrier.lean
+    - lean4/H055DiscreteDynamicsStone.lean
+    - lean4/PromptStructure.lean
+    - lean4/H061DynamicsDichotomy.lean
+    - lean4/H059RationalSector.lean
+    - lean4/PromptDynamics.lean
+    - dag/results/batches/20261019T164251Z_prompts_32_51/tools/prepare.py
+    - code/python/src/qm/structure_exact.py
+    - code/rust/src/finite_probability/structure_exact.rs
+    - dag/pfp/structure_checker.py
+    - dag/results/batches/20261019T164251Z_prompts_32_51/tools/specs.py
+    - QuantumMechanics.PromptDynamics.refinement_composition
+    - QuantumMechanics.PromptDynamics.refinement_singleton_compatible
+    unpaid_imports:
+    - Specify compatible approximation spaces, a common embedding/topology, quantitative error and a real
+      convergence proof before any continuum limit. This example does not refute a correctly hypothesized
+      convergence theorem.
+    - Prove the full refined-carrier operad identity, substitution, symmetry and coherence laws; mere
+      colour matches do not instantiate that formal structure.
+    anchor_status: New Lean anchors are candidate declarations until the retained P2 compiler runs; compiled
+      source leads retain their literal scope.
+stage_history:
+- stage: P0_MINE_OPERAD
+  attempt: p0
+  run: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged
+  operad_delta: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/operad_delta.yaml
+  host_check: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/host_check.json
+- stage: P1_DERIVE
+  attempt: p1
+  run: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged
+  operad_delta: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p1/operad_delta.yaml
+  host_check: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p1/host_check.json
+- stage: P2_VERIFY
+  attempt: p2
+  run: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged
+  operad_delta: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p2/operad_delta.yaml
+  host_check: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p2/host_check.json
+- stage: P4_CHALLENGE
+  attempt: p4
+  run: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged
+  operad_delta: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p4/operad_delta.yaml
+  host_check: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p4/host_check.json
+- stage: P5_RECORD
+  attempt: p5
+  run: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged
+  operad_delta: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p5/operad_delta.yaml
+  host_check: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p5/host_check.json
+open_obligations: *id002
 excluded_relation_leads: []
+operad_slots_scope:
+  work_unit: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged/p0/reviewed_missions.json
+  scope: FILLED means reviewed prerequisites for this selected step; original target and unpaid imports
+    retained.
+  review_refinement: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/reviews/20261019_dynamics_audit/scope_review.json
+latest_run:
+  path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/runs/20261019T164251Z_staged
+  stage: P5_RECORD
+  status: scoped_result_or_obstruction_reviewed
+scope_notes:
+- Source Bool refinementCompat && convergenceCert is a record of assumptions, not their proof; the source
+  empty assumptions list is incomplete for the continuum target. This finite control uses singleton carrier
+  {k} at level k, affine restriction r(n,k)(u)=u+n-k and ambient embedding k↦k. Compatibility is exact
+  while ambient separations grow. No common metric/projective-limit topology is imposed.
+latest_review:
+  path: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/reviews/20261019_dynamics_audit
+  status: reviewed_with_targeted_native_integration_global_baseline_failures_retained
+  operad_delta: dag/results/DS-QM032-CONTINUUM-LIMIT-CONDITIONAL/reviews/20261019_dynamics_audit/operad_delta.yaml

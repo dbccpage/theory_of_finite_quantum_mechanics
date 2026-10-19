@@ -1,0 +1,289 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: DS-QM033-SCHRODINGER-DISCRETE-COCHAIN
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: The graph equation i*hbar dpsi_v/dt = sum_w H_vw psi_w with Hermitian H conserves sum |psi_v|^2.
+    The equation is posited from a Hermitian H; the quantity called L1 mass is the L2 norm squared. Not a derivation
+    of the equation from the finite transport layer.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: &id001 []
+  source_bottleneck: None (derived from parent DS-QM030-TRANSFER-OPERATOR-SHADOW and upstream imports DS-CONTINUOUS-TIME-EXP-GENERATOR
+    and DS-QM062-U1-RESIDUES-IMPORT via ds_qm033_hermitian_graph_schrodinger_mass_conservation_and_lggr_holonomy
+    and ds_qm033_skew_hermitian_l2_norm_conservation_and_stochastic_separation).
+  source_refs:
+  - omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/033_schrodinger_finite_shadow/qm_033_schrodinger_finite_shadow_claim_ledger.md#QM_033-C1
+  - omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/033_schrodinger_finite_shadow/qm_033_schrodinger_finite_shadow_claim_ledger.md#QM_033-C2
+  - omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/033_schrodinger_finite_shadow/schrodinger_finite_shadow.md
+  paper_refs:
+  - dag/derivations/11_finite_qm_dynamics/TFQ-0244_discrete_schrodinger_cochain_on_a_finite_graph.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports before
+    reusing a result.
+  historical_paper_refs:
+  - papers/derivations/11_finite_qm_dynamics/TFQ-0244_discrete_schrodinger_cochain_on_a_finite_graph.md
+  paper_relocations:
+  - from: papers/derivations/11_finite_qm_dynamics/TFQ-0244_discrete_schrodinger_cochain_on_a_finite_graph.md
+    to: dag/derivations/11_finite_qm_dynamics/TFQ-0244_discrete_schrodinger_cochain_on_a_finite_graph.md
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/11_finite_qm_dynamics/TFQ-0244_discrete_schrodinger_cochain_on_a_finite_graph.md
+    sha256: 357c42b8b8b3d294cb94a455a0d831cc8c615722c5cf99f3c4072906dfa64ff7
+source_provenance:
+  repository: this_repository
+  commit: 642f5b95a116da6df805adbd745a4826c6739c2b
+  path: dag/prompts/FINITE_QM_DYNAMICS__DS-QM033-SCHRODINGER-DISCRETE-COCHAIN__PROVED_LEAN.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: Mat2Int.trace
+  line: 315
+  signature_excerpt: 'def Mat2Int.trace (A : Mat2Int) : Int'
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: Mat2Int
+  line: 177
+  signature_excerpt: structure Mat2Int
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: Mat2Int.mul
+  line: 184
+  signature_excerpt: 'def Mat2Int.mul (A B : Mat2Int) : Mat2Int'
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: ds_qm030_032_033_041_043_dynamics_and_heisenberg_duality
+  line: 632
+  signature_excerpt: "theorem ds_qm030_032_033_041_043_dynamics_and_heisenberg_duality\n    (A B C : Mat2Int)\
+    \ (e a0 a1 : Int) (he : e ≠ 0) :\n    (Mat2Int.mul (Mat2Int.mul A B) C = Mat2Int.mul A (Mat2Int.mul B C))\
+    \ ∧\n    (1 < 1 + e * e) ∧\n    (Mat2Int.trace (Mat2Int.mul A B) = Mat2Int.trace (Mat2Int.mul B A)) ∧\n  \
+    \  ((a0 + a1) * (a0 + a1) = (a0 * a0 + a1 * a1) + 2 * (a0 * a1))"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+- kind: theorem
+  name: ds_qm033_skew_hermitian_l2_norm_conservation_and_stochastic_separation
+  line: 786
+  signature_excerpt: "theorem ds_qm033_skew_hermitian_l2_norm_conservation_and_stochastic_separation\n    (x0\
+    \ y0 x1 y1 : Int) :\n    (2 * (x0 * y1 + y0 * (-x1) + x1 * y0 + y1 * (-x0)) = 0) ∧\n    ((-2 : Int) + 2 =\
+    \ 0 ∧ 2 * (3 * (-2 : Int) + 1 * 2) = -8 ∧ (-8 : Int) < 0)"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+- kind: theorem
+  name: conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure
+  line: 1311
+  signature_excerpt: "theorem conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure\n    (s imp : Bool)\
+    \ :\n    (((s && imp) = true ↔ (s = true ∧ imp = true)) ∧ ((true && false) = false)) ∧\n    (∀ r : Fin 16,\n\
+    \      let f (j : Fin 16) : Bool"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion follows
+    automatically.
+- kind: theorem
+  name: ds_qm033_hermitian_graph_schrodinger_mass_conservation_and_lggr_holonomy
+  line: 1575
+  signature_excerpt: "theorem ds_qm033_hermitian_graph_schrodinger_mass_conservation_and_lggr_holonomy\n    (d0\
+    \ d1 a0 b0 a1 b1 th01 th12 th20 al0 al1 al2 : Int) :\n    (((d0 * a0) * b0 + (d0 * b0) * (-a0)) +\n     (a0\
+    \ * b1 + b0 * (-a1) + a1 * b0 + b1 * (-a0)) +\n     ((d1 * a1) * b1 + (d1 * b1) * (-a1)) = 0) ∧\n    (((th01\
+    \ + (al1 - al0)) + (th12 + (al2 - al1)) + (th20 + (al0 - al2)) = th01 + th12 + th20) ∧\n     ((al1 - al0)\
+    \ + (al2 - al1) + (al0 - al2) = 0) ∧\n     ((1 + 0 + 0 : Int) = 1 ∧ (1 : Int) ≠ 0))"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+source_bindings:
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm030_032_033_041_043_dynamics_and_heisenberg_duality
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.ds_qm030_032_033_041_043_dynamics_and_heisenberg_duality
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 632
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm033_skew_hermitian_l2_norm_conservation_and_stochastic_separation
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.ds_qm033_skew_hermitian_l2_norm_conservation_and_stochastic_separation
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 786
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 1311
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm033_hermitian_graph_schrodinger_mass_conservation_and_lggr_holonomy
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.ds_qm033_hermitian_graph_schrodinger_mass_conservation_and_lggr_holonomy
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 1575
+  role: source_lead_only
+- original_ref: omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/lean/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm033_hermitian_graph_schrodinger_mass_conservation_and_lggr_holonomy
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.ds_qm033_hermitian_graph_schrodinger_mass_conservation_and_lggr_holonomy
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 1575
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_quantum_physics/src/finite_schrodinger_step.rs::euler_propagator
+  availability: external
+  symbol: euler_propagator
+  path: omega_engine/crates_rs/omega_quantum_physics/src/finite_schrodinger_step.rs
+  repository: the_symbol_game
+  sha256: 345de3bea489f1de439be8e4f89e7bedb96828bb771170d5f70f71d13cadcd5d
+  declaration_status: declaration_found_not_executed
+  line: 69
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_quantum_physics/src/finite_schrodinger_step.rs::norm_rate
+  availability: external
+  symbol: norm_rate
+  path: omega_engine/crates_rs/omega_quantum_physics/src/finite_schrodinger_step.rs
+  repository: the_symbol_game
+  sha256: 345de3bea489f1de439be8e4f89e7bedb96828bb771170d5f70f71d13cadcd5d
+  declaration_status: declaration_found_not_executed
+  line: 58
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_quantum_physics/src/finite_schrodinger_step.rs::cycle_product
+  availability: external
+  symbol: cycle_product
+  path: omega_engine/crates_rs/omega_quantum_physics/src/finite_schrodinger_step.rs
+  repository: the_symbol_game
+  sha256: 345de3bea489f1de439be8e4f89e7bedb96828bb771170d5f70f71d13cadcd5d
+  declaration_status: declaration_found_not_executed
+  line: 94
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_quantum_physics/src/dynamics.rs::cayley_transform_toggle
+  availability: external
+  symbol: cayley_transform_toggle
+  path: omega_engine/crates_rs/omega_quantum_physics/src/dynamics.rs
+  repository: the_symbol_game
+  sha256: a644bfa3e7b7d29bac592964dda7883b35b37634632a5112f5374e4fee16945b
+  declaration_status: declaration_found_not_executed
+  line: 32
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche3_emergence_dynamics_heisenberg_and_qec_witness
+  availability: external
+  symbol: verify_tranche3_emergence_dynamics_heisenberg_and_qec_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 619
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche6_conditional_and_open_boundary_certificates_witness
+  availability: external
+  symbol: verify_tranche6_conditional_and_open_boundary_certificates_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 833
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness
+  availability: external
+  symbol: verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 1489
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche20_ds_qm032_033_073_090_207_feynman_schrodinger_exchange_and_five_import_cascade_witness
+  availability: external
+  symbol: verify_tranche20_ds_qm032_033_073_090_207_feynman_schrodinger_exchange_and_five_import_cascade_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 1823
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs::verify_tranche20_ds_qm032_033_073_090_207_feynman_schrodinger_exchange_and_five_import_cascade_witness
+  availability: external
+  symbol: verify_tranche20_ds_qm032_033_073_090_207_feynman_schrodinger_exchange_and_five_import_cascade_witness
+  path: omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 1823
+  role: source_lead_only
+- original_ref: omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs::verify_tranche20_ds_qm032_033_073_090_207_feynman_schrodinger_exchange_and_five_import_cascade_witness
+  availability: external
+  symbol: verify_tranche20_ds_qm032_033_073_090_207_feynman_schrodinger_exchange_and_five_import_cascade_witness
+  path: omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: 38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a
+  declaration_status: declaration_found_not_executed
+  line: 1823
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: *id001
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: *id001
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

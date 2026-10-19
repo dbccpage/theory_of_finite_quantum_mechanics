@@ -1,0 +1,218 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: FQ-COMMUTATOR-TRACE-OBSTRUCTION
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: 'In nonzero finite dimension, trace cyclicity gives tr[A,B] = 0 while tr(lambda I) = n lambda,
+    so [A,B] = lambda I forces lambda = 0: canonical [X,P] = i hbar I has no finite-dimensional representation.
+    Lean covers 2x2 integer matrices; Rust covers d=3 over Q(zeta_24).'
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: &id001
+  - finite dimension (assumption)
+  source_bottleneck: General n is prose; Lean is 2x2 (integer/rational entries).
+  source_refs:
+  - omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/claims/gap_register.yaml:159
+  - omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md:1332
+  paper_refs:
+  - dag/derivations/20_continuum_interface/TFQ-0122_filename_continuum_rs_does_not_discharge_the_continuum_limit_or_the_einstein_equation.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports before
+    reusing a result.
+  historical_paper_refs:
+  - papers/derivations/20_continuum_interface/TFQ-0122_filename_continuum_rs_does_not_discharge_the_continuum_limit_or_the_einstein_equation.md
+  paper_relocations:
+  - from: papers/derivations/20_continuum_interface/TFQ-0122_filename_continuum_rs_does_not_discharge_the_continuum_limit_or_the_einstein_equation.md
+    to: dag/derivations/20_continuum_interface/TFQ-0122_filename_continuum_rs_does_not_discharge_the_continuum_limit_or_the_einstein_equation.md
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/20_continuum_interface/TFQ-0122_filename_continuum_rs_does_not_discharge_the_continuum_limit_or_the_einstein_equation.md
+    sha256: cc8079cf41f7110a054a29c83dd597e000e5b34358a96ad4e83f582f983fa4d6
+source_provenance:
+  repository: this_repository
+  commit: 642f5b95a116da6df805adbd745a4826c6739c2b
+  path: dag/prompts/FINITE_QM_DYNAMICS__FQ-COMMUTATOR-TRACE-OBSTRUCTION__PROVED_LEAN.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: structure
+  name: Mat2Rat
+  line: 151
+  signature_excerpt: '@[ext]
+
+    structure Mat2Rat'
+  source: lean4/FiniteQM.lean
+  repository: this_repository
+  source_sha256: 3c6fc7be1d9e59d8164539387be851fef52ef4c8becfcedd5b0b24253a445cfa
+  status: source_candidate_requires_semantic_review
+- kind: abbrev
+  name: comm
+  line: 187
+  signature_excerpt: 'abbrev comm (A B : Mat2Rat) : Mat2Rat'
+  source: lean4/FiniteQM.lean
+  repository: this_repository
+  source_sha256: 3c6fc7be1d9e59d8164539387be851fef52ef4c8becfcedd5b0b24253a445cfa
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: Mat2Z
+  line: 5
+  signature_excerpt: structure Mat2Z
+  source: lean4/H056ContinuumLiftBoundary.lean
+  repository: this_repository
+  source_sha256: a8d242b75d4eed947a529ffde1af7d22c90db879d3acfcd452bf4f53794990e1
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: comm2
+  line: 28
+  signature_excerpt: 'def comm2 (A B : Mat2) : Mat2'
+  source: lean4/H068WeylCcrResidual.lean
+  repository: this_repository
+  source_sha256: 1bd6a7c35371c625f88f9600cc1f7e9b76c0ffcaf5089bc24d5eee4014e416d9
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: sub2
+  line: 21
+  signature_excerpt: 'def sub2 (A B : Mat2) : Mat2'
+  source: lean4/H068WeylCcrResidual.lean
+  repository: this_repository
+  source_sha256: 1bd6a7c35371c625f88f9600cc1f7e9b76c0ffcaf5089bc24d5eee4014e416d9
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: Mat2
+  line: 6
+  signature_excerpt: structure Mat2
+  source: lean4/H068WeylCcrResidual.lean
+  repository: this_repository
+  source_sha256: 1bd6a7c35371c625f88f9600cc1f7e9b76c0ffcaf5089bc24d5eee4014e416d9
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: mul2
+  line: 15
+  signature_excerpt: 'def mul2 (A B : Mat2) : Mat2'
+  source: lean4/H068WeylCcrResidual.lean
+  repository: this_repository
+  source_sha256: 1bd6a7c35371c625f88f9600cc1f7e9b76c0ffcaf5089bc24d5eee4014e416d9
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: tr2
+  line: 13
+  signature_excerpt: 'def tr2 (A : Mat2) : Int'
+  source: lean4/H068WeylCcrResidual.lean
+  repository: this_repository
+  source_sha256: 1bd6a7c35371c625f88f9600cc1f7e9b76c0ffcaf5089bc24d5eee4014e416d9
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: weyl_heisenberg_finite_trace_obstruction
+  line: 861
+  signature_excerpt: "theorem weyl_heisenberg_finite_trace_obstruction (x p : Mat2Rat) :\n    let comm"
+  source: lean4/FiniteQM.lean
+  repository: this_repository
+  source_sha256: 3c6fc7be1d9e59d8164539387be851fef52ef4c8becfcedd5b0b24253a445cfa
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+- kind: theorem
+  name: wintner_wielandt_dim2_obstruction
+  line: 54
+  signature_excerpt: "theorem wintner_wielandt_dim2_obstruction (A B : Mat2Z) (k : Int)\n    (h : Mat2Z.sub (Mat2Z.mul\
+    \ A B) (Mat2Z.mul B A) = Mat2Z.smul k Mat2Z.one) :\n    k = 0"
+  source: lean4/H056ContinuumLiftBoundary.lean
+  repository: this_repository
+  source_sha256: a8d242b75d4eed947a529ffde1af7d22c90db879d3acfcd452bf4f53794990e1
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+- kind: theorem
+  name: tr_comm2_vanishes
+  line: 40
+  signature_excerpt: 'theorem tr_comm2_vanishes (Q P : Mat2) : tr2 (comm2 Q P) = 0'
+  source: lean4/H068WeylCcrResidual.lean
+  repository: this_repository
+  source_sha256: 1bd6a7c35371c625f88f9600cc1f7e9b76c0ffcaf5089bc24d5eee4014e416d9
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+source_bindings:
+- original_ref: lean4/quantum_mechanics/FiniteQM.lean::weyl_heisenberg_finite_trace_obstruction
+  availability: local
+  symbol: weyl_heisenberg_finite_trace_obstruction
+  path: lean4/FiniteQM.lean
+  repository: this_repository
+  sha256: 3c6fc7be1d9e59d8164539387be851fef52ef4c8becfcedd5b0b24253a445cfa
+  declaration_status: declaration_found_not_proof_checked
+  line: 861
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/H056ContinuumLiftBoundary.lean::wintner_wielandt_dim2_obstruction
+  availability: local
+  symbol: wintner_wielandt_dim2_obstruction
+  path: lean4/H056ContinuumLiftBoundary.lean
+  repository: this_repository
+  sha256: a8d242b75d4eed947a529ffde1af7d22c90db879d3acfcd452bf4f53794990e1
+  declaration_status: declaration_found_not_proof_checked
+  line: 54
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/H068WeylCcrResidual.lean::tr_comm2_vanishes
+  availability: local
+  symbol: tr_comm2_vanishes
+  path: lean4/H068WeylCcrResidual.lean
+  repository: this_repository
+  sha256: 1bd6a7c35371c625f88f9600cc1f7e9b76c0ffcaf5089bc24d5eee4014e416d9
+  declaration_status: declaration_found_not_proof_checked
+  line: 40
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_quantum_physics/src/commutator.rs::verify_trace_cyclicity_d3
+  availability: external
+  symbol: verify_trace_cyclicity_d3
+  path: omega_engine/crates_rs/omega_quantum_physics/src/commutator.rs
+  repository: the_symbol_game
+  sha256: f5c4f79511c0a7e163728022617995c33a55f163e762fd451a315cedee0f415d
+  declaration_status: declaration_found_not_executed
+  line: 52
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_quantum_physics/src/continuum.rs::canonical_commutator_obstruction
+  availability: external
+  symbol: canonical_commutator_obstruction
+  path: omega_engine/crates_rs/omega_quantum_physics/src/continuum.rs
+  repository: the_symbol_game
+  sha256: 66e89fd359b23abd638b35a802a158523b21508d2198cad7a35a5316813304e6
+  declaration_status: declaration_found_not_executed
+  line: 15
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: *id001
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: *id001
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

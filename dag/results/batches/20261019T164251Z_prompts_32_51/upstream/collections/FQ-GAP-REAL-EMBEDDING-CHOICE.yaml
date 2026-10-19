@@ -1,0 +1,284 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: FQ-GAP-REAL-EMBEDDING-CHOICE
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: Positivity of a mixed-state witness depends on the real embedding of Q(zeta_n)^+ (phi(n)/2
+    embeddings; 16 at n=120). Pure-state Gram matrices are totally positive in dimension 2 (pure_state_totally_positive_2d),
+    but the mixed witness diag(sqrt5-2, 3-sqrt5) at conductor 5 is PSD under one embedding and indefinite under
+    another. Choice of embedding is an external declaration.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: &id001 []
+  source_bottleneck: None (derived from parent FQ-FINITE-DYNAMICS-EXACT-ROOTS-OF-UNITY and upstream import GP-IMPORT-REAL-EMBEDDING
+    via fq_embedding_relativity_and_entropy_baker_dichotomy_closure and fq_gap_real_embedding_conductor5_mixed_witness_sign_flip).
+  source_refs:
+  - omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/claims/gap_register.yaml:411
+  paper_refs:
+  - dag/derivations/11_finite_qm_dynamics/tfq_0008_finite_dynamics_instruments_and_channels.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports before
+    reusing a result.
+  historical_paper_refs:
+  - papers/derivations/11_finite_qm_dynamics/tfq_0008_finite_dynamics_instruments_and_channels.md
+  paper_relocations:
+  - from: papers/derivations/11_finite_qm_dynamics/tfq_0008_finite_dynamics_instruments_and_channels.md
+    to: dag/derivations/11_finite_qm_dynamics/tfq_0008_finite_dynamics_instruments_and_channels.md
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/11_finite_qm_dynamics/tfq_0008_finite_dynamics_instruments_and_channels.md
+    sha256: 138a29feb1f368ac28ce2149a44666da2bae9059c8661c59225650e0478c12d7
+source_provenance:
+  repository: this_repository
+  commit: 642f5b95a116da6df805adbd745a4826c6739c2b
+  path: dag/prompts/finite_qm_dynamics_fq_gap_real_embedding_choice_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: diag0
+  line: 55
+  signature_excerpt: 'def diag0 (psi : PureGram2) : Int'
+  source: lean4/H060EmbeddingRelativity.lean
+  repository: this_repository
+  source_sha256: 007106d36a4b1e5ff395a6c23d3c7eb970c5f74e0c884361c4655b7b4ffbd666
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: PureGram2
+  line: 50
+  signature_excerpt: structure PureGram2
+  source: lean4/H060EmbeddingRelativity.lean
+  repository: this_repository
+  source_sha256: 007106d36a4b1e5ff395a6c23d3c7eb970c5f74e0c884361c4655b7b4ffbd666
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: diag1
+  line: 56
+  signature_excerpt: 'def diag1 (psi : PureGram2) : Int'
+  source: lean4/H060EmbeddingRelativity.lean
+  repository: this_repository
+  source_sha256: 007106d36a4b1e5ff395a6c23d3c7eb970c5f74e0c884361c4655b7b4ffbd666
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: det
+  line: 58
+  signature_excerpt: 'def det (psi : PureGram2) : Int'
+  source: lean4/H060EmbeddingRelativity.lean
+  repository: this_repository
+  source_sha256: 007106d36a4b1e5ff395a6c23d3c7eb970c5f74e0c884361c4655b7b4ffbd666
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: 'off'
+  line: 57
+  signature_excerpt: 'def off (psi : PureGram2) : Int'
+  source: lean4/H060EmbeddingRelativity.lean
+  repository: this_repository
+  source_sha256: 007106d36a4b1e5ff395a6c23d3c7eb970c5f74e0c884361c4655b7b4ffbd666
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: pure_state_totally_positive_2d
+  line: 92
+  signature_excerpt: "theorem pure_state_totally_positive_2d (psi : PureGram2) :\n    0 ≤ diag0 psi ∧ 0 ≤ diag1\
+    \ psi ∧ 0 ≤ det psi"
+  source: lean4/H060EmbeddingRelativity.lean
+  repository: this_repository
+  source_sha256: 007106d36a4b1e5ff395a6c23d3c7eb970c5f74e0c884361c4655b7b4ffbd666
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+- kind: theorem
+  name: galois_conjugate_negativity_vs_sos_total_positivity
+  line: 1009
+  signature_excerpt: "theorem galois_conjugate_negativity_vs_sos_total_positivity :\n    let twist_tr_a : Rat"
+  source: lean4/FiniteQM.lean
+  repository: this_repository
+  source_sha256: 3c6fc7be1d9e59d8164539387be851fef52ef4c8becfcedd5b0b24253a445cfa
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+- kind: theorem
+  name: fq_gap_stone_aliasing_and_real_embedding_conjugate
+  line: 624
+  signature_excerpt: "theorem fq_gap_stone_aliasing_and_real_embedding_conjugate (k N : Nat) (a b : Int) :\n \
+    \   ((k + N) % N = k % N) ∧\n    (1 * 1 - 2 * (1 * 1) = (-1 : Int)) ∧\n    (0 ≤ a * a + b * b)"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+- kind: theorem
+  name: fq_gap_real_embedding_conductor5_mixed_witness_sign_flip
+  line: 920
+  signature_excerpt: "theorem fq_gap_real_embedding_conductor5_mixed_witness_sign_flip :\n    (223 * 223 = 49729\
+    \ ∧ 5 * 100 * 100 = 50000 ∧ 224 * 224 = 50176 ∧ 49729 < 50000 ∧ 50000 < 50176) ∧\n    (223 - 200 = 23 ∧ 300\
+    \ - 223 = 77 ∧ 5 * 5 * 5 = 125 ∧ 11 * 11 = 121 ∧ 125 > 121) ∧\n    ((-223 : Int) - 200 = -423 ∧ (-423 : Int)\
+    \ < 0)"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+- kind: theorem
+  name: fq_embedding_relativity_and_entropy_baker_dichotomy_closure
+  line: 1701
+  signature_excerpt: "theorem fq_embedding_relativity_and_entropy_baker_dichotomy_closure\n    (c0 c1 d p b :\
+    \ Int) (bakerImported : Bool) :\n    (((3 * 3 : Int) = 9 ∧ (-5 * -5 : Int) = 25 ∧ c0 * c0 * (c1 * c1) - (c0\
+    \ * c1) * (c0 * c1) = 0) ∧\n     ((-2 + 3 : Int) = 1 ∧ (1 + (-1) : Int) = 0 ∧\n      (-2 * 4 + 9 : Int) =\
+    \ 1 ∧ (3 * 4 - 9 : Int) = 3 ∧\n      (-2 * 4 + (-9) : Int) = -17 ∧ (3 * 4 - (-9) : Int) = 21 ∧\n      (1 :\
+    \ Int) > 0 ∧ (3 : Int) > 0 ∧ (-17 : Int) < 0) ∧\n     (32 / 2 = 16)) ∧\n    ((d * d - (p * p + (d - p) * (d\
+    \ - p)) = 2 * (d * p - p * p)) ∧\n     (d * b - d * b = 0) ∧\n     ((4 * 2 - 1 * 2 : Int) = 6 ∧ (6 : Int)\
+    \ ≠ 0) ∧\n     (((bakerImported && decide ((6 : Int) ≠ 0)) = true ↔ bakerImported = true) ∧\n      ((false\
+    \ && decide ((6 : Int) ≠ 0)) = false)))"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+source_bindings:
+- original_ref: lean4/quantum_mechanics/H060EmbeddingRelativity.lean::pure_state_totally_positive_2d
+  availability: local
+  symbol: pure_state_totally_positive_2d
+  path: lean4/H060EmbeddingRelativity.lean
+  repository: this_repository
+  sha256: 007106d36a4b1e5ff395a6c23d3c7eb970c5f74e0c884361c4655b7b4ffbd666
+  declaration_status: declaration_found_not_proof_checked
+  line: 92
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/FiniteQM.lean::galois_conjugate_negativity_vs_sos_total_positivity
+  availability: local
+  symbol: galois_conjugate_negativity_vs_sos_total_positivity
+  path: lean4/FiniteQM.lean
+  repository: this_repository
+  sha256: 3c6fc7be1d9e59d8164539387be851fef52ef4c8becfcedd5b0b24253a445cfa
+  declaration_status: declaration_found_not_proof_checked
+  line: 1009
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_gap_stone_aliasing_and_real_embedding_conjugate
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.fq_gap_stone_aliasing_and_real_embedding_conjugate
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 624
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_gap_real_embedding_conductor5_mixed_witness_sign_flip
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.fq_gap_real_embedding_conductor5_mixed_witness_sign_flip
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 920
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_embedding_relativity_and_entropy_baker_dichotomy_closure
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.fq_embedding_relativity_and_entropy_baker_dichotomy_closure
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 1701
+  role: source_lead_only
+- original_ref: omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/lean/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_embedding_relativity_and_entropy_baker_dichotomy_closure
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.fq_embedding_relativity_and_entropy_baker_dichotomy_closure
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 1701
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_quantum_physics/src/embedding_relativity.rs::positivity_under_embeddings
+  availability: external
+  symbol: positivity_under_embeddings
+  path: omega_engine/crates_rs/omega_quantum_physics/src/embedding_relativity.rs
+  repository: the_symbol_game
+  sha256: 2b355881b876b0bc2d0c2fb9661e2d2df06bd0fb813837148b0052d453d58c6c
+  declaration_status: declaration_found_not_executed
+  line: 37
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche3_emergence_dynamics_heisenberg_and_qec_witness
+  availability: external
+  symbol: verify_tranche3_emergence_dynamics_heisenberg_and_qec_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 619
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche8_tensor_stone_continuum_embedding_and_leftover_mnc_witness
+  availability: external
+  symbol: verify_tranche8_tensor_stone_continuum_embedding_and_leftover_mnc_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 983
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche21_pg_wdp_bridge_sector_weights_qm122_finish_embedding_and_baker_witness
+  availability: external
+  symbol: verify_tranche21_pg_wdp_bridge_sector_weights_qm122_finish_embedding_and_baker_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 1899
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs::verify_tranche21_pg_wdp_bridge_sector_weights_qm122_finish_embedding_and_baker_witness
+  availability: external
+  symbol: verify_tranche21_pg_wdp_bridge_sector_weights_qm122_finish_embedding_and_baker_witness
+  path: omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 1899
+  role: source_lead_only
+- original_ref: omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs::verify_tranche21_pg_wdp_bridge_sector_weights_qm122_finish_embedding_and_baker_witness
+  availability: external
+  symbol: verify_tranche21_pg_wdp_bridge_sector_weights_qm122_finish_embedding_and_baker_witness
+  path: omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/native/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: 38c6a37e816f4f73e2a152eb2b657dfec6d350375f624886b0a45f613a20005a
+  declaration_status: declaration_found_not_executed
+  line: 1899
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: *id001
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: *id001
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

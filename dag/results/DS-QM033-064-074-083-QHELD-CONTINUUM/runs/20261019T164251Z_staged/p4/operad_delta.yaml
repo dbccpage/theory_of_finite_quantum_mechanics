@@ -1,0 +1,284 @@
+add_or_refine_generators:
+- id: signed_lift
+  ordered_inputs:
+  - PhaseBlindPairWithSignChoice
+  output: RationalAmplitudePair
+  arity: 1
+  carrier: Declared PhaseBlindPairWithSignChoice
+  coefficient_ring: Exact Q, Q(i), or Q(sqrt5) as declared; real embedding only in the named Lean conditional
+  hypotheses:
+  - Same two coordinates, explicitly supplied lift sign and mixing.
+  semantic_predicate: Return the supplied sign choice (a,±b).
+  source_pins:
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_DYNAMICS__DS-QM033-064-074-083-QHELD-CONTINUUM__IMPORTED_ASSUMPTION.yaml
+    sha256: 1c187521b98a9839ccaad0dafa6a8764e61a068c572feaa2bd17264a63fa7724
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/inputs/this_repository/dag/operads/DS-QM033-064-074-083-QHELD-CONTINUUM.yaml
+    sha256: 9a7d2d890ac92f0c042ae8c032ef5a49763293451368333dc916e8500f827917
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/inputs/this_repository/dag/derivations/20_continuum_interface/TFQ-0122_filename_continuum_rs_does_not_discharge_the_continuum_limit_or_the_einstein_equation.md
+    sha256: cc8079cf41f7110a054a29c83dd597e000e5b34358a96ad4e83f582f983fa4d6
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/inputs/this_repository/dag/derivations/20_continuum_interface/TFQ-0124_gap_continuum_limit_einstein_equation_physical_cosmological_constant_and_smooth-manifold.md
+    sha256: 392de8197010a04ff70f9cb3c355eabc1240d8dab2cffbe2b4ffca91086ca39d
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/dynamics_exact.py
+    sha256: 972d81f099b957e0ab23329750bb35d0aaac05cc439abd8b418dde6e4841143f
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/p0/operation_sources/code/python/tests/test_dynamics_exact.py
+    sha256: a1d63f1d0bcbfed2c4e62e2b99b87ee0b92a3c864b92cb311583175d9e8c241b
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/dynamics_exact.rs
+    sha256: 309d04e2a142468c66c2294ae926cf736de7420d265e0645aa78f81e06289232
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/dynamics_exact_replay.rs
+    sha256: ae9f6b1d81b9477f0ccf844d243f58f4e58e1245814780c5381d5cef1d9d16f6
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/dynamics_checker.py
+    sha256: 40f56c58f205899bb19b42204c55f0290befa655349aad80228f0250fe8242c9
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+    sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/prepare.py
+    sha256: 0705bc29d8320b12190e2a54ef38909796b2033703ce098894a492e45996d6ce
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/structure_exact.py
+    sha256: 0a35a5782b47e06167fc768320ee7fbf90c99fbdf336cbfaf2d2e1b93f9ca89d
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/structure_exact.rs
+    sha256: 9c714e91517144cf0fa614c8195bcf2f56fc32c0b4959750a4515f75fd5b6d28
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/structure_checker.py
+    sha256: 554c0811b794c03ce8badba12075ccb8b12165f6837acff805af0ceba3b3fea7
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/specs.py
+    sha256: 5587e78cec43d2c37dd52fd6fdbfede93420211b879a5be97997fb4b9403f6cc
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/check_candidate.py
+    sha256: 2248530592625c4b242bef54a9f1ae7da3acacd33d0ea26b4a3301f374011212
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/format_certificate.py
+    sha256: 686b48ae0bfe071740b18f8a60442face4432778e6bd1eb6888838d625c5395f
+  evidence_status: Source semantics reviewed; actual native and candidate kernel acceptance remain P2
+    gates.
+- id: declared_mixing
+  ordered_inputs:
+  - RationalAmplitudePair
+  output: RationalAmplitude
+  arity: 1
+  carrier: Declared RationalAmplitudePair
+  coefficient_ring: Exact Q, Q(i), or Q(sqrt5) as declared; real embedding only in the named Lean conditional
+  hypotheses:
+  - Same two coordinates, explicitly supplied lift sign and mixing.
+  semantic_predicate: Apply the supplied row (1,1).
+  source_pins:
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_DYNAMICS__DS-QM033-064-074-083-QHELD-CONTINUUM__IMPORTED_ASSUMPTION.yaml
+    sha256: 1c187521b98a9839ccaad0dafa6a8764e61a068c572feaa2bd17264a63fa7724
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/inputs/this_repository/dag/operads/DS-QM033-064-074-083-QHELD-CONTINUUM.yaml
+    sha256: 9a7d2d890ac92f0c042ae8c032ef5a49763293451368333dc916e8500f827917
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/inputs/this_repository/dag/derivations/20_continuum_interface/TFQ-0122_filename_continuum_rs_does_not_discharge_the_continuum_limit_or_the_einstein_equation.md
+    sha256: cc8079cf41f7110a054a29c83dd597e000e5b34358a96ad4e83f582f983fa4d6
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/inputs/this_repository/dag/derivations/20_continuum_interface/TFQ-0124_gap_continuum_limit_einstein_equation_physical_cosmological_constant_and_smooth-manifold.md
+    sha256: 392de8197010a04ff70f9cb3c355eabc1240d8dab2cffbe2b4ffca91086ca39d
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/dynamics_exact.py
+    sha256: 972d81f099b957e0ab23329750bb35d0aaac05cc439abd8b418dde6e4841143f
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/p0/operation_sources/code/python/tests/test_dynamics_exact.py
+    sha256: a1d63f1d0bcbfed2c4e62e2b99b87ee0b92a3c864b92cb311583175d9e8c241b
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/dynamics_exact.rs
+    sha256: 309d04e2a142468c66c2294ae926cf736de7420d265e0645aa78f81e06289232
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/dynamics_exact_replay.rs
+    sha256: ae9f6b1d81b9477f0ccf844d243f58f4e58e1245814780c5381d5cef1d9d16f6
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/dynamics_checker.py
+    sha256: 40f56c58f205899bb19b42204c55f0290befa655349aad80228f0250fe8242c9
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+    sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/prepare.py
+    sha256: 0705bc29d8320b12190e2a54ef38909796b2033703ce098894a492e45996d6ce
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/structure_exact.py
+    sha256: 0a35a5782b47e06167fc768320ee7fbf90c99fbdf336cbfaf2d2e1b93f9ca89d
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/structure_exact.rs
+    sha256: 9c714e91517144cf0fa614c8195bcf2f56fc32c0b4959750a4515f75fd5b6d28
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/structure_checker.py
+    sha256: 554c0811b794c03ce8badba12075ccb8b12165f6837acff805af0ceba3b3fea7
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/specs.py
+    sha256: 5587e78cec43d2c37dd52fd6fdbfede93420211b879a5be97997fb4b9403f6cc
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/check_candidate.py
+    sha256: 2248530592625c4b242bef54a9f1ae7da3acacd33d0ea26b4a3301f374011212
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/format_certificate.py
+    sha256: 686b48ae0bfe071740b18f8a60442face4432778e6bd1eb6888838d625c5395f
+  evidence_status: Source semantics reviewed; actual native and candidate kernel acceptance remain P2
+    gates.
+- id: mixed_square
+  ordered_inputs:
+  - RationalAmplitude
+  output: NonnegativeRationalReadout
+  arity: 1
+  carrier: Declared RationalAmplitude
+  coefficient_ring: Exact Q, Q(i), or Q(sqrt5) as declared; real embedding only in the named Lean conditional
+  hypotheses:
+  - Same two coordinates, explicitly supplied lift sign and mixing.
+  semantic_predicate: Square the mixed amplitude.
+  source_pins:
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_DYNAMICS__DS-QM033-064-074-083-QHELD-CONTINUUM__IMPORTED_ASSUMPTION.yaml
+    sha256: 1c187521b98a9839ccaad0dafa6a8764e61a068c572feaa2bd17264a63fa7724
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/inputs/this_repository/dag/operads/DS-QM033-064-074-083-QHELD-CONTINUUM.yaml
+    sha256: 9a7d2d890ac92f0c042ae8c032ef5a49763293451368333dc916e8500f827917
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/inputs/this_repository/dag/derivations/20_continuum_interface/TFQ-0122_filename_continuum_rs_does_not_discharge_the_continuum_limit_or_the_einstein_equation.md
+    sha256: cc8079cf41f7110a054a29c83dd597e000e5b34358a96ad4e83f582f983fa4d6
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/inputs/this_repository/dag/derivations/20_continuum_interface/TFQ-0124_gap_continuum_limit_einstein_equation_physical_cosmological_constant_and_smooth-manifold.md
+    sha256: 392de8197010a04ff70f9cb3c355eabc1240d8dab2cffbe2b4ffca91086ca39d
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/dynamics_exact.py
+    sha256: 972d81f099b957e0ab23329750bb35d0aaac05cc439abd8b418dde6e4841143f
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/p0/operation_sources/code/python/tests/test_dynamics_exact.py
+    sha256: a1d63f1d0bcbfed2c4e62e2b99b87ee0b92a3c864b92cb311583175d9e8c241b
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/dynamics_exact.rs
+    sha256: 309d04e2a142468c66c2294ae926cf736de7420d265e0645aa78f81e06289232
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/dynamics_exact_replay.rs
+    sha256: ae9f6b1d81b9477f0ccf844d243f58f4e58e1245814780c5381d5cef1d9d16f6
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/dynamics_checker.py
+    sha256: 40f56c58f205899bb19b42204c55f0290befa655349aad80228f0250fe8242c9
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+    sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/prepare.py
+    sha256: 0705bc29d8320b12190e2a54ef38909796b2033703ce098894a492e45996d6ce
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/structure_exact.py
+    sha256: 0a35a5782b47e06167fc768320ee7fbf90c99fbdf336cbfaf2d2e1b93f9ca89d
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/structure_exact.rs
+    sha256: 9c714e91517144cf0fa614c8195bcf2f56fc32c0b4959750a4515f75fd5b6d28
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/structure_checker.py
+    sha256: 554c0811b794c03ce8badba12075ccb8b12165f6837acff805af0ceba3b3fea7
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/specs.py
+    sha256: 5587e78cec43d2c37dd52fd6fdbfede93420211b879a5be97997fb4b9403f6cc
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/check_candidate.py
+    sha256: 2248530592625c4b242bef54a9f1ae7da3acacd33d0ea26b4a3301f374011212
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/format_certificate.py
+    sha256: 686b48ae0bfe071740b18f8a60442face4432778e6bd1eb6888838d625c5395f
+  evidence_status: Source semantics reviewed; actual native and candidate kernel acceptance remain P2
+    gates.
+add_or_refine_relations:
+- id: held_relation_0
+  equation_or_predicate: b²=(-b)² but (a+b)²-(a-b)²=4ab.
+  typing_conditions: Literal declared operation domains; Choose and justify an amplitude lift, admissible
+    mixing operations and any continuum closure. Fixed presentation data do not select these.
+  evidence_status: P1 candidate; independent native and named kernel gates remain required.
+  scope: Exact phase-blind data agree while the declared mixed readouts differ by 4ab, with a zero-amplitude
+    control.
+  source_pins:
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_DYNAMICS__DS-QM033-064-074-083-QHELD-CONTINUUM__IMPORTED_ASSUMPTION.yaml
+    sha256: 1c187521b98a9839ccaad0dafa6a8764e61a068c572feaa2bd17264a63fa7724
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/inputs/this_repository/dag/operads/DS-QM033-064-074-083-QHELD-CONTINUUM.yaml
+    sha256: 9a7d2d890ac92f0c042ae8c032ef5a49763293451368333dc916e8500f827917
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/inputs/this_repository/dag/derivations/20_continuum_interface/TFQ-0122_filename_continuum_rs_does_not_discharge_the_continuum_limit_or_the_einstein_equation.md
+    sha256: cc8079cf41f7110a054a29c83dd597e000e5b34358a96ad4e83f582f983fa4d6
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/inputs/this_repository/dag/derivations/20_continuum_interface/TFQ-0124_gap_continuum_limit_einstein_equation_physical_cosmological_constant_and_smooth-manifold.md
+    sha256: 392de8197010a04ff70f9cb3c355eabc1240d8dab2cffbe2b4ffca91086ca39d
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/dynamics_exact.py
+    sha256: 972d81f099b957e0ab23329750bb35d0aaac05cc439abd8b418dde6e4841143f
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/p0/operation_sources/code/python/tests/test_dynamics_exact.py
+    sha256: a1d63f1d0bcbfed2c4e62e2b99b87ee0b92a3c864b92cb311583175d9e8c241b
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/dynamics_exact.rs
+    sha256: 309d04e2a142468c66c2294ae926cf736de7420d265e0645aa78f81e06289232
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/dynamics_exact_replay.rs
+    sha256: ae9f6b1d81b9477f0ccf844d243f58f4e58e1245814780c5381d5cef1d9d16f6
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/dynamics_checker.py
+    sha256: 40f56c58f205899bb19b42204c55f0290befa655349aad80228f0250fe8242c9
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+    sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/prepare.py
+    sha256: 0705bc29d8320b12190e2a54ef38909796b2033703ce098894a492e45996d6ce
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/structure_exact.py
+    sha256: 0a35a5782b47e06167fc768320ee7fbf90c99fbdf336cbfaf2d2e1b93f9ca89d
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/structure_exact.rs
+    sha256: 9c714e91517144cf0fa614c8195bcf2f56fc32c0b4959750a4515f75fd5b6d28
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/structure_checker.py
+    sha256: 554c0811b794c03ce8badba12075ccb8b12165f6837acff805af0ceba3b3fea7
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/specs.py
+    sha256: 5587e78cec43d2c37dd52fd6fdbfede93420211b879a5be97997fb4b9403f6cc
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/check_candidate.py
+    sha256: 2248530592625c4b242bef54a9f1ae7da3acacd33d0ea26b4a3301f374011212
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/DS-QM033-064-074-083-QHELD-CONTINUUM/runs/20261019T164251Z_staged/format_certificate.py
+    sha256: 686b48ae0bfe071740b18f8a60442face4432778e6bd1eb6888838d625c5395f
+checked_compositions:
+- outer_operation: declared_mixing
+  input_slot: 0
+  inner_operation: signed_lift
+  colour_match: RationalAmplitudePair -> RationalAmplitudePair
+  hypothesis_match: Same declared coordinates, coefficients and context; all operation hypotheses must
+    be carried into the graft.
+  licensing_relations:
+  - held_relation_0
+  evidence_status: Semantic substitution supported by the retained finite operation traces and separately
+    scoped named kernel statements. A complete refined-carrier operad is not asserted.
+- outer_operation: mixed_square
+  input_slot: 0
+  inner_operation: declared_mixing
+  colour_match: RationalAmplitude -> RationalAmplitude
+  hypothesis_match: Same declared coordinates, coefficients and context; all operation hypotheses must
+    be carried into the graft.
+  licensing_relations:
+  - held_relation_0
+  evidence_status: Semantic substitution supported by the retained finite operation traces and separately
+    scoped named kernel statements. A complete refined-carrier operad is not asserted.
+failed_compositions:
+- proposal: Promote the selected step to the unrestricted original target
+  reason: Choose and justify an amplitude lift, admissible mixing operations and any continuum closure.
+    Fixed presentation data do not select these.
+counterexamples:
+- id: retained_actual_domain_controls
+  records:
+  - input:
+    - '1'
+    - '2'
+    output:
+    - '1'
+    - '4'
+    - '1'
+    - '4'
+    - '9'
+    - '1'
+    - '8'
+  - input:
+    - '0'
+    - '2'
+    output:
+    - '0'
+    - '4'
+    - '0'
+    - '4'
+    - '4'
+    - '4'
+    - '0'
+  - input:
+    - 1/2
+    - -1/3
+    output:
+    - 1/4
+    - 1/9
+    - 1/4
+    - 1/9
+    - 1/36
+    - 25/36
+    - -2/3
+  scope: Computed values, with the source/kernel/native distinctions retained in claim_boundary.
+open_obligations:
+- Choose and justify an amplitude lift, admissible mixing operations and any continuum closure. Fixed
+  presentation data do not select these.
+- Prove the full refined-carrier operad identity, substitution, symmetry and coherence laws; mere colour
+  matches do not instantiate that formal structure.
