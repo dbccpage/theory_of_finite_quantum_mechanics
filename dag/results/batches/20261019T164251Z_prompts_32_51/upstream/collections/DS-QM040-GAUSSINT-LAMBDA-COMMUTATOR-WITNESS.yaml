@@ -1,0 +1,170 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: DS-QM040-GAUSSINT-LAMBDA-COMMUTATOR-WITNESS
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: 'Over Gaussian-integer 3x3 coordinate matrices the displayed P0, P1 are idempotent, Lambda1..3
+    are trace zero with [L1,L2]=2i L3 (cyclic), so trace zero holds while the commutator is nonzero: a finite
+    local-green global-red witness. Representation choice is matrix form.'
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: &id001
+  - Gaussian integer entries Z[i] (assumption); Z[i] is not a field
+  source_bottleneck: LEAN_BOUND file not verified by me.
+  source_refs:
+  - omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/040_matrix_vs_diffeq_representation/qm_040_matrix_vs_diffeq_representation_claim_ledger.md#QM_040-C3
+  - omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/040_matrix_vs_diffeq_representation/qm_040_matrix_vs_diffeq_representation_claim_ledger.md#QM_040-C4
+  - omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/040_matrix_vs_diffeq_representation/qm_040_matrix_vs_diffeq_representation_claim_ledger.md#QM_040-C5
+  paper_refs:
+  - dag/derivations/12_finite_qm_structure/tfq_0249_trace_zero_summaries_do_not_fix_commutation.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports before
+    reusing a result.
+  historical_paper_refs:
+  - papers/derivations/12_finite_qm_structure/tfq_0249_trace_zero_summaries_do_not_fix_commutation.md
+  paper_relocations:
+  - from: papers/derivations/12_finite_qm_structure/tfq_0249_trace_zero_summaries_do_not_fix_commutation.md
+    to: dag/derivations/12_finite_qm_structure/tfq_0249_trace_zero_summaries_do_not_fix_commutation.md
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/12_finite_qm_structure/tfq_0249_trace_zero_summaries_do_not_fix_commutation.md
+    sha256: 7afd75f34255347a5b50d7be2825520eb31f2b725e7ed5e69b4cc1c4cf323d5b
+source_provenance:
+  repository: this_repository
+  commit: 642f5b95a116da6df805adbd745a4826c6739c2b
+  path: dag/prompts/finite_qm_dynamics_ds_qm040_gaussint_lambda_commutator_witness_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: Mat2Int.sub
+  line: 312
+  signature_excerpt: 'def Mat2Int.sub (A B : Mat2Int) : Mat2Int'
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: Mat2Int
+  line: 177
+  signature_excerpt: structure Mat2Int
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: Mat2Int.trace
+  line: 315
+  signature_excerpt: 'def Mat2Int.trace (A : Mat2Int) : Int'
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: Mat2Int.mul
+  line: 184
+  signature_excerpt: 'def Mat2Int.mul (A B : Mat2Int) : Mat2Int'
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: qm040_commutator_nonzero_and_trace_zero
+  line: 317
+  signature_excerpt: "theorem qm040_commutator_nonzero_and_trace_zero :\n    let X : Mat2Int"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+- kind: theorem
+  name: ds_qm021_040_041_043_commutator_heisenberg_global_weight_and_conditioning
+  line: 1230
+  signature_excerpt: "theorem ds_qm021_040_041_043_commutator_heisenberg_global_weight_and_conditioning\n    (r00a\
+    \ r01b r10c r11d d11 d12 d22 w0 w1 : Int) :\n    (((0 + 0 = (0 : Int)) ∧ (1 + (-1 : Int) = 0)) ∧\n      ((1\
+    \ * (-1 : Int) - 1 * 1 = -2) ∧ (1 * 1 - (-1 : Int) * 1 = 2) ∧ (-2 ≠ (0 : Int)))) ∧\n    (r11d + r10c + r01b\
+    \ + r00a = r00a + r01b + r10c + r11d) ∧\n    ((d11 + 2 * d12 + d22) - (d11 + d22) = 2 * d12) ∧\n    (((w0,\
+    \ w1, (0 : Int)) = (w0, w1, (0 : Int))) ∧ ((1 + 0, 1) ≠ (1 + 1, 0)))"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+source_bindings:
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.qm040_commutator_nonzero_and_trace_zero
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.qm040_commutator_nonzero_and_trace_zero
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 317
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm021_040_041_043_commutator_heisenberg_global_weight_and_conditioning
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.ds_qm021_040_041_043_commutator_heisenberg_global_weight_and_conditioning
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 1230
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_ds_qm_dynamics_structure_and_majorana_witness
+  availability: external
+  symbol: verify_ds_qm_dynamics_structure_and_majorana_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 402
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche13_ds_qm_final_16_second_witness_closure_witness
+  availability: external
+  symbol: verify_tranche13_ds_qm_final_16_second_witness_closure_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 1343
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: *id001
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: *id001
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

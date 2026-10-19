@@ -1,0 +1,173 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: DS-QM041-HEISENBERG-PICTURE-FINITE
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: For a declared unitary U(t), A(t)=U^dagger A U satisfies dA/dt = i[H,A] on finite matrices.
+    Depends on the unitary family and generator being given.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: &id001
+  - unitary family U(t) and generator H (assumption)
+  - complex matrices (assumption)
+  source_bottleneck: U(t) and H not produced by anything upstream.
+  source_refs:
+  - omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/041_heisenberg_picture_shadow/qm_041_heisenberg_picture_shadow_claim_ledger.md#QM_041-C3
+  - omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/041_heisenberg_picture_shadow/qm_041_heisenberg_picture_shadow_claim_ledger.md#QM_041-C4
+  paper_refs:
+  - dag/derivations/11_finite_qm_dynamics/tfq_0247_heisenberg_picture_on_a_finite_carrier.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports before
+    reusing a result.
+  historical_paper_refs:
+  - papers/derivations/11_finite_qm_dynamics/tfq_0247_heisenberg_picture_on_a_finite_carrier.md
+  paper_relocations:
+  - from: papers/derivations/11_finite_qm_dynamics/tfq_0247_heisenberg_picture_on_a_finite_carrier.md
+    to: dag/derivations/11_finite_qm_dynamics/tfq_0247_heisenberg_picture_on_a_finite_carrier.md
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/11_finite_qm_dynamics/tfq_0247_heisenberg_picture_on_a_finite_carrier.md
+    sha256: e4793af94ade63519f1a5e883079d0f99eaf03eb13c59c6e70439edf187c573b
+source_provenance:
+  repository: this_repository
+  commit: 642f5b95a116da6df805adbd745a4826c6739c2b
+  path: dag/prompts/finite_qm_dynamics_ds_qm041_heisenberg_picture_finite_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: Mat2Int.trace
+  line: 315
+  signature_excerpt: 'def Mat2Int.trace (A : Mat2Int) : Int'
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: Mat2Int
+  line: 177
+  signature_excerpt: structure Mat2Int
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: Mat2Int.mul
+  line: 184
+  signature_excerpt: 'def Mat2Int.mul (A B : Mat2Int) : Mat2Int'
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: ds_qm030_032_033_041_043_dynamics_and_heisenberg_duality
+  line: 632
+  signature_excerpt: "theorem ds_qm030_032_033_041_043_dynamics_and_heisenberg_duality\n    (A B C : Mat2Int)\
+    \ (e a0 a1 : Int) (he : e ≠ 0) :\n    (Mat2Int.mul (Mat2Int.mul A B) C = Mat2Int.mul A (Mat2Int.mul B C))\
+    \ ∧\n    (1 < 1 + e * e) ∧\n    (Mat2Int.trace (Mat2Int.mul A B) = Mat2Int.trace (Mat2Int.mul B A)) ∧\n  \
+    \  ((a0 + a1) * (a0 + a1) = (a0 * a0 + a1 * a1) + 2 * (a0 * a1))"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+- kind: theorem
+  name: ds_qm021_040_041_043_commutator_heisenberg_global_weight_and_conditioning
+  line: 1230
+  signature_excerpt: "theorem ds_qm021_040_041_043_commutator_heisenberg_global_weight_and_conditioning\n    (r00a\
+    \ r01b r10c r11d d11 d12 d22 w0 w1 : Int) :\n    (((0 + 0 = (0 : Int)) ∧ (1 + (-1 : Int) = 0)) ∧\n      ((1\
+    \ * (-1 : Int) - 1 * 1 = -2) ∧ (1 * 1 - (-1 : Int) * 1 = 2) ∧ (-2 ≠ (0 : Int)))) ∧\n    (r11d + r10c + r01b\
+    \ + r00a = r00a + r01b + r10c + r11d) ∧\n    ((d11 + 2 * d12 + d22) - (d11 + d22) = 2 * d12) ∧\n    (((w0,\
+    \ w1, (0 : Int)) = (w0, w1, (0 : Int))) ∧ ((1 + 0, 1) ≠ (1 + 1, 0)))"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+source_bindings:
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm030_032_033_041_043_dynamics_and_heisenberg_duality
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.ds_qm030_032_033_041_043_dynamics_and_heisenberg_duality
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 632
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm021_040_041_043_commutator_heisenberg_global_weight_and_conditioning
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.ds_qm021_040_041_043_commutator_heisenberg_global_weight_and_conditioning
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 1230
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_quantum_physics/src/heisenberg_picture.rs::heisenberg_observable
+  availability: external
+  symbol: heisenberg_observable
+  path: omega_engine/crates_rs/omega_quantum_physics/src/heisenberg_picture.rs
+  repository: the_symbol_game
+  sha256: 6a62b9bf91caab4d73a8da61d45d718b4f7194f01f2f10ac0468ea039048938c
+  declaration_status: declaration_found_not_executed
+  line: 142
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche3_emergence_dynamics_heisenberg_and_qec_witness
+  availability: external
+  symbol: verify_tranche3_emergence_dynamics_heisenberg_and_qec_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 619
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche13_ds_qm_final_16_second_witness_closure_witness
+  availability: external
+  symbol: verify_tranche13_ds_qm_final_16_second_witness_closure_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 1343
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: *id001
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: *id001
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

@@ -1,0 +1,456 @@
+{
+  "task_id": "DS-QM030-UNGRADED-OVERCOUNT",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "p0",
+  "input_sha256": "2ae976c3e89deb99bd93deca25dd4369aece551276d9ec6c2712fa1846617067",
+  "candidate_sha256": "8f5699aeca7d161310fea98630ba3c35db6e3289e1decd2a13bacf94e57813c4",
+  "status": "reviewed_for_next_step",
+  "predicate_results": {
+    "source_scope_review": "The old two-term arithmetic witness does not count graph paths. Here T is an actual acyclic three-vertex weighted adjacency and Z=I+T+T². For the length-two path, Z² counts three split points; the direct edge is counted twice. Mixed lengths prevent a common factor three.",
+    "reviewed_sha256": "26ecea944a9e97423b00c69129f88fe1d8dbb1b66c64d12be222760719f8f50d"
+  },
+  "bounded_failure_codes": [],
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "acyclic_adjacency",
+        "ordered_inputs": [
+          "ThreeEdgeWeights"
+        ],
+        "output": "NilpotentAdjacency3",
+        "arity": 1,
+        "carrier": "Declared ThreeEdgeWeights",
+        "coefficient_ring": "Exact Q, Q(i), or Q(sqrt5) as declared; real embedding only in the named Lean conditional",
+        "hypotheses": [
+          "Declared acyclic graph and endpoint ordering; empty paths included."
+        ],
+        "semantic_predicate": "Place a,b,d on 0→1,1→2,0→2.",
+        "source_pins": [
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_DYNAMICS__DS-QM030-UNGRADED-OVERCOUNT__PROVED_LEAN.yaml",
+            "sha256": "8680d932abe47e0afc8bf6bee621af00a8a22c65b58f58aa3d07f99a5e176801"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/inputs/this_repository/dag/operads/DS-QM030-UNGRADED-OVERCOUNT.yaml",
+            "sha256": "2d9597f09bf7d70d5e8d9ee223c1f1888bff37b46c8f7eef9e837a99dabc513e"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/graded_path_sum.rs",
+            "sha256": "429ff01665c607e12bf720acf5f651c7171d707979b1317d8bd0fbd53708ea1a"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/inputs/this_repository/dag/derivations/11_finite_qm_dynamics/TFQ-0239_finite_path_sum_on_a_unique_intermediate_cut.md",
+            "sha256": "1913563bfcc427359cc08c8d4ea8e988fdd9a6907d5e5c994e32b894d93b06a2"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/dynamics_exact.py",
+            "sha256": "972d81f099b957e0ab23329750bb35d0aaac05cc439abd8b418dde6e4841143f"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/p0/operation_sources/code/python/tests/test_dynamics_exact.py",
+            "sha256": "a1d63f1d0bcbfed2c4e62e2b99b87ee0b92a3c864b92cb311583175d9e8c241b"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/dynamics_exact.rs",
+            "sha256": "309d04e2a142468c66c2294ae926cf736de7420d265e0645aa78f81e06289232"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/dynamics_exact_replay.rs",
+            "sha256": "ae9f6b1d81b9477f0ccf844d243f58f4e58e1245814780c5381d5cef1d9d16f6"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/dynamics_checker.py",
+            "sha256": "40f56c58f205899bb19b42204c55f0290befa655349aad80228f0250fe8242c9"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py",
+            "sha256": "c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/prepare.py",
+            "sha256": "0705bc29d8320b12190e2a54ef38909796b2033703ce098894a492e45996d6ce"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/structure_exact.py",
+            "sha256": "0a35a5782b47e06167fc768320ee7fbf90c99fbdf336cbfaf2d2e1b93f9ca89d"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/structure_exact.rs",
+            "sha256": "9c714e91517144cf0fa614c8195bcf2f56fc32c0b4959750a4515f75fd5b6d28"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/structure_checker.py",
+            "sha256": "554c0811b794c03ce8badba12075ccb8b12165f6837acff805af0ceba3b3fea7"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/specs.py",
+            "sha256": "5587e78cec43d2c37dd52fd6fdbfede93420211b879a5be97997fb4b9403f6cc"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/check_candidate.py",
+            "sha256": "20928c5ac6764ec2088cfb0dfab1ea2160d9a1e0cbc6ae677c88365ec85ee38f"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/format_certificate.py",
+            "sha256": "4c5b146a952d7c31692c24e7cdfcd4e0baac5f721ad4ca4a754a8e8c794558d4"
+          }
+        ],
+        "evidence_status": "Source semantics reviewed; actual native and candidate kernel acceptance remain P2 gates."
+      },
+      {
+        "id": "all_length_sum",
+        "ordered_inputs": [
+          "NilpotentAdjacency3"
+        ],
+        "output": "AllLengthTransfer3",
+        "arity": 1,
+        "carrier": "Declared NilpotentAdjacency3",
+        "coefficient_ring": "Exact Q, Q(i), or Q(sqrt5) as declared; real embedding only in the named Lean conditional",
+        "hypotheses": [
+          "Declared acyclic graph and endpoint ordering; empty paths included."
+        ],
+        "semantic_predicate": "Compute I+T+T²; T³=0 on this declared graph.",
+        "source_pins": [
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_DYNAMICS__DS-QM030-UNGRADED-OVERCOUNT__PROVED_LEAN.yaml",
+            "sha256": "8680d932abe47e0afc8bf6bee621af00a8a22c65b58f58aa3d07f99a5e176801"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/inputs/this_repository/dag/operads/DS-QM030-UNGRADED-OVERCOUNT.yaml",
+            "sha256": "2d9597f09bf7d70d5e8d9ee223c1f1888bff37b46c8f7eef9e837a99dabc513e"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/graded_path_sum.rs",
+            "sha256": "429ff01665c607e12bf720acf5f651c7171d707979b1317d8bd0fbd53708ea1a"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/inputs/this_repository/dag/derivations/11_finite_qm_dynamics/TFQ-0239_finite_path_sum_on_a_unique_intermediate_cut.md",
+            "sha256": "1913563bfcc427359cc08c8d4ea8e988fdd9a6907d5e5c994e32b894d93b06a2"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/dynamics_exact.py",
+            "sha256": "972d81f099b957e0ab23329750bb35d0aaac05cc439abd8b418dde6e4841143f"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/p0/operation_sources/code/python/tests/test_dynamics_exact.py",
+            "sha256": "a1d63f1d0bcbfed2c4e62e2b99b87ee0b92a3c864b92cb311583175d9e8c241b"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/dynamics_exact.rs",
+            "sha256": "309d04e2a142468c66c2294ae926cf736de7420d265e0645aa78f81e06289232"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/dynamics_exact_replay.rs",
+            "sha256": "ae9f6b1d81b9477f0ccf844d243f58f4e58e1245814780c5381d5cef1d9d16f6"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/dynamics_checker.py",
+            "sha256": "40f56c58f205899bb19b42204c55f0290befa655349aad80228f0250fe8242c9"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py",
+            "sha256": "c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/prepare.py",
+            "sha256": "0705bc29d8320b12190e2a54ef38909796b2033703ce098894a492e45996d6ce"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/structure_exact.py",
+            "sha256": "0a35a5782b47e06167fc768320ee7fbf90c99fbdf336cbfaf2d2e1b93f9ca89d"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/structure_exact.rs",
+            "sha256": "9c714e91517144cf0fa614c8195bcf2f56fc32c0b4959750a4515f75fd5b6d28"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/structure_checker.py",
+            "sha256": "554c0811b794c03ce8badba12075ccb8b12165f6837acff805af0ceba3b3fea7"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/specs.py",
+            "sha256": "5587e78cec43d2c37dd52fd6fdbfede93420211b879a5be97997fb4b9403f6cc"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/check_candidate.py",
+            "sha256": "20928c5ac6764ec2088cfb0dfab1ea2160d9a1e0cbc6ae677c88365ec85ee38f"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/format_certificate.py",
+            "sha256": "4c5b146a952d7c31692c24e7cdfcd4e0baac5f721ad4ca4a754a8e8c794558d4"
+          }
+        ],
+        "evidence_status": "Source semantics reviewed; actual native and candidate kernel acceptance remain P2 gates."
+      },
+      {
+        "id": "ungraded_square",
+        "ordered_inputs": [
+          "AllLengthTransfer3"
+        ],
+        "output": "AllLengthTransfer3",
+        "arity": 1,
+        "carrier": "Declared AllLengthTransfer3",
+        "coefficient_ring": "Exact Q, Q(i), or Q(sqrt5) as declared; real embedding only in the named Lean conditional",
+        "hypotheses": [
+          "Declared acyclic graph and endpoint ordering; empty paths included."
+        ],
+        "semantic_predicate": "Multiply Z by itself and retain every entry.",
+        "source_pins": [
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_DYNAMICS__DS-QM030-UNGRADED-OVERCOUNT__PROVED_LEAN.yaml",
+            "sha256": "8680d932abe47e0afc8bf6bee621af00a8a22c65b58f58aa3d07f99a5e176801"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/inputs/this_repository/dag/operads/DS-QM030-UNGRADED-OVERCOUNT.yaml",
+            "sha256": "2d9597f09bf7d70d5e8d9ee223c1f1888bff37b46c8f7eef9e837a99dabc513e"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/graded_path_sum.rs",
+            "sha256": "429ff01665c607e12bf720acf5f651c7171d707979b1317d8bd0fbd53708ea1a"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/inputs/this_repository/dag/derivations/11_finite_qm_dynamics/TFQ-0239_finite_path_sum_on_a_unique_intermediate_cut.md",
+            "sha256": "1913563bfcc427359cc08c8d4ea8e988fdd9a6907d5e5c994e32b894d93b06a2"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/dynamics_exact.py",
+            "sha256": "972d81f099b957e0ab23329750bb35d0aaac05cc439abd8b418dde6e4841143f"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/p0/operation_sources/code/python/tests/test_dynamics_exact.py",
+            "sha256": "a1d63f1d0bcbfed2c4e62e2b99b87ee0b92a3c864b92cb311583175d9e8c241b"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/dynamics_exact.rs",
+            "sha256": "309d04e2a142468c66c2294ae926cf736de7420d265e0645aa78f81e06289232"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/dynamics_exact_replay.rs",
+            "sha256": "ae9f6b1d81b9477f0ccf844d243f58f4e58e1245814780c5381d5cef1d9d16f6"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/dynamics_checker.py",
+            "sha256": "40f56c58f205899bb19b42204c55f0290befa655349aad80228f0250fe8242c9"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py",
+            "sha256": "c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/prepare.py",
+            "sha256": "0705bc29d8320b12190e2a54ef38909796b2033703ce098894a492e45996d6ce"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/structure_exact.py",
+            "sha256": "0a35a5782b47e06167fc768320ee7fbf90c99fbdf336cbfaf2d2e1b93f9ca89d"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/structure_exact.rs",
+            "sha256": "9c714e91517144cf0fa614c8195bcf2f56fc32c0b4959750a4515f75fd5b6d28"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/structure_checker.py",
+            "sha256": "554c0811b794c03ce8badba12075ccb8b12165f6837acff805af0ceba3b3fea7"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/specs.py",
+            "sha256": "5587e78cec43d2c37dd52fd6fdbfede93420211b879a5be97997fb4b9403f6cc"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/check_candidate.py",
+            "sha256": "20928c5ac6764ec2088cfb0dfab1ea2160d9a1e0cbc6ae677c88365ec85ee38f"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/format_certificate.py",
+            "sha256": "4c5b146a952d7c31692c24e7cdfcd4e0baac5f721ad4ca4a754a8e8c794558d4"
+          }
+        ],
+        "evidence_status": "Source semantics reviewed; actual native and candidate kernel acceptance remain P2 gates."
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "overcount_relation_0",
+        "equation_or_predicate": "Z²20-3Z20=-d, so the 3:1 factor fails for a nonzero direct edge.",
+        "typing_conditions": "Literal declared operation domains; Grading is one sufficient bookkeeping choice. Do not claim that every possible ungraded formulation is impossible or that the old arithmetic identity was a path-count theorem.",
+        "evidence_status": "P1 candidate; independent native and named kernel gates remain required.",
+        "scope": "Actual acyclic arrays give Z20=d+ab and (Z²)20=2d+3ab, with pure and mixed-length controls.",
+        "source_pins": [
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/inputs/this_repository/dag/prompts/FINITE_QM_DYNAMICS__DS-QM030-UNGRADED-OVERCOUNT__PROVED_LEAN.yaml",
+            "sha256": "8680d932abe47e0afc8bf6bee621af00a8a22c65b58f58aa3d07f99a5e176801"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/inputs/this_repository/dag/operads/DS-QM030-UNGRADED-OVERCOUNT.yaml",
+            "sha256": "2d9597f09bf7d70d5e8d9ee223c1f1888bff37b46c8f7eef9e837a99dabc513e"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/graded_path_sum.rs",
+            "sha256": "429ff01665c607e12bf720acf5f651c7171d707979b1317d8bd0fbd53708ea1a"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/inputs/this_repository/dag/derivations/11_finite_qm_dynamics/TFQ-0239_finite_path_sum_on_a_unique_intermediate_cut.md",
+            "sha256": "1913563bfcc427359cc08c8d4ea8e988fdd9a6907d5e5c994e32b894d93b06a2"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/dynamics_exact.py",
+            "sha256": "972d81f099b957e0ab23329750bb35d0aaac05cc439abd8b418dde6e4841143f"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/p0/operation_sources/code/python/tests/test_dynamics_exact.py",
+            "sha256": "a1d63f1d0bcbfed2c4e62e2b99b87ee0b92a3c864b92cb311583175d9e8c241b"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/dynamics_exact.rs",
+            "sha256": "309d04e2a142468c66c2294ae926cf736de7420d265e0645aa78f81e06289232"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/dynamics_exact_replay.rs",
+            "sha256": "ae9f6b1d81b9477f0ccf844d243f58f4e58e1245814780c5381d5cef1d9d16f6"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/dynamics_checker.py",
+            "sha256": "40f56c58f205899bb19b42204c55f0290befa655349aad80228f0250fe8242c9"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py",
+            "sha256": "c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/prepare.py",
+            "sha256": "0705bc29d8320b12190e2a54ef38909796b2033703ce098894a492e45996d6ce"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/p0/operation_sources/code/python/src/qm/structure_exact.py",
+            "sha256": "0a35a5782b47e06167fc768320ee7fbf90c99fbdf336cbfaf2d2e1b93f9ca89d"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/p0/operation_sources/code/rust/src/finite_probability/structure_exact.rs",
+            "sha256": "9c714e91517144cf0fa614c8195bcf2f56fc32c0b4959750a4515f75fd5b6d28"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/p0/operation_sources/dag/pfp/structure_checker.py",
+            "sha256": "554c0811b794c03ce8badba12075ccb8b12165f6837acff805af0ceba3b3fea7"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/p0/operation_sources/dag/results/batches/20261019T164251Z_prompts_32_51/tools/specs.py",
+            "sha256": "5587e78cec43d2c37dd52fd6fdbfede93420211b879a5be97997fb4b9403f6cc"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/check_candidate.py",
+            "sha256": "20928c5ac6764ec2088cfb0dfab1ea2160d9a1e0cbc6ae677c88365ec85ee38f"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/DS-QM030-UNGRADED-OVERCOUNT/runs/20261019T164251Z_staged/format_certificate.py",
+            "sha256": "4c5b146a952d7c31692c24e7cdfcd4e0baac5f721ad4ca4a754a8e8c794558d4"
+          }
+        ]
+      }
+    ],
+    "checked_compositions": [
+      {
+        "outer_operation": "all_length_sum",
+        "input_slot": 0,
+        "inner_operation": "acyclic_adjacency",
+        "colour_match": "NilpotentAdjacency3 -> NilpotentAdjacency3",
+        "hypothesis_match": "Same declared coordinates, coefficients and context; all operation hypotheses must be carried into the graft.",
+        "licensing_relations": [
+          "overcount_relation_0"
+        ],
+        "evidence_status": "Semantic substitution supported by the retained finite operation traces and separately scoped named kernel statements. A complete refined-carrier operad is not asserted."
+      },
+      {
+        "outer_operation": "ungraded_square",
+        "input_slot": 0,
+        "inner_operation": "all_length_sum",
+        "colour_match": "AllLengthTransfer3 -> AllLengthTransfer3",
+        "hypothesis_match": "Same declared coordinates, coefficients and context; all operation hypotheses must be carried into the graft.",
+        "licensing_relations": [
+          "overcount_relation_0"
+        ],
+        "evidence_status": "Semantic substitution supported by the retained finite operation traces and separately scoped named kernel statements. A complete refined-carrier operad is not asserted."
+      }
+    ],
+    "failed_compositions": [
+      {
+        "proposal": "Promote the selected step to the unrestricted original target",
+        "reason": "Grading is one sufficient bookkeeping choice. Do not claim that every possible ungraded formulation is impossible or that the old arithmetic identity was a path-count theorem."
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "Grading is one sufficient bookkeeping choice. Do not claim that every possible ungraded formulation is impossible or that the old arithmetic identity was a path-count theorem.",
+      "Prove the full refined-carrier operad identity, substitution, symmetry and coherence laws; mere colour matches do not instantiate that formal structure."
+    ]
+  },
+  "claim_boundary": {
+    "supports": "Actual acyclic arrays give Z20=d+ab and (Z²)20=2d+3ab, with pure and mixed-length controls.",
+    "does_not_support": "Grading is one sufficient bookkeeping choice. Do not claim that every possible ungraded formulation is impossible or that the old arithmetic identity was a path-count theorem.",
+    "narrowest_claim": "Actual acyclic arrays give Z20=d+ab and (Z²)20=2d+3ab, with pure and mixed-length controls.",
+    "next_test": "Challenge every output coordinate and strict custody/type boundary, then address the explicit unpaid mathematical bridge."
+  }
+}
