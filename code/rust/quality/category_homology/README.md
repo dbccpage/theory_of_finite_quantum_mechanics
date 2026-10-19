@@ -1102,3 +1102,5 @@ retained separately from final bytes.12 functions max CCN6/cognitive8/nesting3.
 20261019T202322Z-score-verification passes158 completed records,192 source/score
 digests and43 groups;cleanup158 has no owned compiled/debug/tmp outputs.
 34 category files,contracts and full goal remain;PR draft.
+
+Checkpoint159:Coend L3A repairs class_of root IDs outside returned classes. Final32/32 faults,459 original category and8 subject tests,19 clean tagged-relation quotient declarations,12 A structural bodies. Failed common build32unrun,prior31/32 survivor and refused proof retained. All-score audit159A/33incomplete;no owned debug/tmp/copied binaries. Raw graph quotient and local-label diagnostics do not admit a category/bifunctor or universal coend.

@@ -18,7 +18,7 @@ from run_audit import ROOT, digest, execute, write_json
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model",choices=("rank","category","metadata","degree","counter","parameters","finite-set","literal-reversal","shape-inventory","root-records","homology-protocols","degree-repair","two-step-complex","simplicial-closure","simplicial-boundary","simplicial-homology","scalar-admission","carrier-dimensions","vector-maps","graph-incidence","validation-inventory","arrow-effects","finite-builder","em-samples","lawvere-inventory","higher-functor-inventory","finite-functor","functor-operations","finite-naturality","natural-composition","joint-carrier","finite-simulation","finite-independence","finite-trace","finite-dagger","finite-groupoid","cauchy-inventory"),default="rank")
+    parser.add_argument("--model",choices=("rank","category","metadata","degree","counter","parameters","finite-set","literal-reversal","shape-inventory","root-records","homology-protocols","degree-repair","two-step-complex","simplicial-closure","simplicial-boundary","simplicial-homology","scalar-admission","carrier-dimensions","vector-maps","graph-incidence","validation-inventory","arrow-effects","finite-builder","em-samples","lawvere-inventory","higher-functor-inventory","finite-functor","functor-operations","finite-naturality","natural-composition","joint-carrier","finite-simulation","finite-independence","finite-trace","finite-dagger","finite-groupoid","cauchy-inventory","tagged-coend"),default="rank")
     parser.add_argument("--memory-mb", type=int, default=1024,
         help="Explicit Lean memory limit, from 256 to 2048 MiB; default remains 1024.")
     args = parser.parse_args()
@@ -46,6 +46,10 @@ def main():
         proof_name, import_name, namespace = "DegreeWindow", "Data/Int/Basic", "TFQM.DegreeWindow."
         declarations = ("ordered_span_fits_u32", "same_endpoint_zero", "inverted_span_negative")
         scope = "Exact i32 endpoint difference bounds, zero span and inverted-window refusal premise; no category-law claim."
+    elif model == "tagged-coend":
+        proof_name, import_name, namespace = "TaggedCoend", "Logic/Relation", "TFQM.TaggedCoend."
+        declarations = ("connected_refl", "connected_symm", "connected_trans", "supplied_pair", "project", "projection_exact", "respects_closure", "factor", "factor_projection", "factor_unique", "closed_contains_component", "frontier_fresh_sound", "frontier_reverse_sound", "labels_exact", "dense_nonempty", "range_after_increment", "new_root_fits", "component_increment_fits", "local_equal_no_range")
+        scope = "Actual equivalence closure/quotient of supplied tagged relation,factorization/uniqueness,worklist soundness/closure and dense-label range/counter obligations. No category/bifunctor or general coend theorem;Rust traversal/storage/order refinement separate."
     elif model == "cauchy-inventory":
         proof_name, import_name, namespace = "CauchyInventory", "Data/List/Basic", "TFQM.CauchyInventory."
         declarations = ("equal_defined", "missing_left", "missing_right", "pair_checks", "first_empty", "first_head", "first_skip", "first_sound", "first_exists", "first_append", "inventory_member", "inventory_append", "inventory_duplicates", "three_checks", "admit_preserves_raw", "admit_success_flags", "failed_flag")

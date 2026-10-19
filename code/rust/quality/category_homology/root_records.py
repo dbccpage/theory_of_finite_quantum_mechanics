@@ -118,6 +118,9 @@ struct Echo; impl StructurePreservingMap for Echo {type Domain=String;type Codom
 
 
 def challenge(subject):
+    if Path(subject['path']).stem == 'coend':
+        from finite_coend_challenges import challenge as coend_challenge
+        return coend_challenge(subject)
     if Path(subject['path']).stem == 'cauchy':
         from finite_cauchy_challenges import challenge as cauchy_challenge
         return cauchy_challenge(subject)
