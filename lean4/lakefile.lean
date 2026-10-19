@@ -211,6 +211,7 @@ lean_lib «FiniteQuantum» where
     `PromptCechF2,
     `PromptC500Ledger,
     `PromptBornGap,
+    `PromptPhaseScope,
     `PromptEntropyExact,
     `PromptDeclaredInterface,
     `LggrFiniteResults,

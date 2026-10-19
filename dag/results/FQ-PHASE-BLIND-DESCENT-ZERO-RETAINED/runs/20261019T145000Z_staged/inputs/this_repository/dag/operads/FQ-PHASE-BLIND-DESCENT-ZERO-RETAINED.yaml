@@ -1,0 +1,236 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: FQ-PHASE-BLIND-DESCENT-ZERO-RETAINED
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: A matrix A descends through the phase-blind population report iff every row has at most one
+    nonzero entry, provided the quotient retains the zero vector as a distinct output; without the retained zero
+    point the claim is false on projective space (A = [[1,1],[1,1]]).
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: &id001
+  - sector basis and quadratic readout (assumption)
+  source_bottleneck: General-n 2-sparse probe separation ((a+b)^2 - (a-b)^2 = 4ab != 0), 1-sparse phase-blind
+    invariance, and projective-zero counterexample mechanized in DerivationDagQMClosure.lean.
+  source_refs:
+  - omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md:550
+  paper_refs:
+  - dag/derivations/12_finite_qm_structure/TFQ-0252_interference_as_a_resource_outside_l1_bookkeeping.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports before
+    reusing a result.
+  historical_paper_refs:
+  - papers/derivations/12_finite_qm_structure/TFQ-0252_interference_as_a_resource_outside_l1_bookkeeping.md
+  paper_relocations:
+  - from: papers/derivations/12_finite_qm_structure/TFQ-0252_interference_as_a_resource_outside_l1_bookkeeping.md
+    to: dag/derivations/12_finite_qm_structure/TFQ-0252_interference_as_a_resource_outside_l1_bookkeeping.md
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/12_finite_qm_structure/TFQ-0252_interference_as_a_resource_outside_l1_bookkeeping.md
+    sha256: 021a2abdb5c808cc64c4faaeb29b798f4f5fcc15b1a4ce8a995b44581e150b22
+source_provenance:
+  repository: this_repository
+  commit: 642f5b95a116da6df805adbd745a4826c6739c2b
+  path: dag/prompts/FINITE_QM_CORE__FQ-PHASE-BLIND-DESCENT-ZERO-RETAINED__PROVED_LEAN.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: RowSparse
+  line: 220
+  signature_excerpt: 'def RowSparse (M : Mat2) : Prop'
+  source: lean4/BornRedundancy.lean
+  repository: this_repository
+  source_sha256: 8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: Mat2
+  line: 197
+  signature_excerpt: structure Mat2
+  source: lean4/BornRedundancy.lean
+  repository: this_repository
+  source_sha256: 8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: DescentCompatible
+  line: 217
+  signature_excerpt: 'def DescentCompatible (M : Mat2) : Prop'
+  source: lean4/BornRedundancy.lean
+  repository: this_repository
+  source_sha256: 8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: Vec2
+  line: 203
+  signature_excerpt: structure Vec2
+  source: lean4/BornRedundancy.lean
+  repository: this_repository
+  source_sha256: 8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: PhaseEquiv
+  line: 214
+  signature_excerpt: 'def PhaseEquiv (v1 v2 : Vec2) : Prop'
+  source: lean4/BornRedundancy.lean
+  repository: this_repository
+  source_sha256: 8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: sqNorm
+  line: 211
+  signature_excerpt: 'def sqNorm (v : Vec2) : Vec2'
+  source: lean4/BornRedundancy.lean
+  repository: this_repository
+  source_sha256: 8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: applyMat2
+  line: 208
+  signature_excerpt: 'def applyMat2 (M : Mat2) (v : Vec2) : Vec2'
+  source: lean4/BornRedundancy.lean
+  repository: this_repository
+  source_sha256: 8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: listSum
+  line: 8
+  signature_excerpt: 'def listSum : List Rat → Rat'
+  source: lean4/BornRedundancy.lean
+  repository: this_repository
+  source_sha256: 8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: smul
+  line: 12
+  signature_excerpt: 'def smul (c : Rat) : List Rat → List Rat'
+  source: lean4/BornRedundancy.lean
+  repository: this_repository
+  source_sha256: 8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: normalize
+  line: 43
+  signature_excerpt: 'def normalize (w : List Rat) : List Rat'
+  source: lean4/BornRedundancy.lean
+  repository: this_repository
+  source_sha256: 8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: descent_compatible_iff_row_sparse
+  line: 299
+  signature_excerpt: "theorem descent_compatible_iff_row_sparse (M : Mat2) :\n    DescentCompatible M ↔ RowSparse\
+    \ M"
+  source: lean4/BornRedundancy.lean
+  repository: this_repository
+  source_sha256: 8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+- kind: theorem
+  name: ray_quotient_classification
+  line: 93
+  signature_excerpt: "theorem ray_quotient_classification (w1 w2 : List Rat)\n    (hw1 : 0 < listSum w1) (hw2\
+    \ : 0 < listSum w2) :\n    normalize w1 = normalize w2 ↔ ∃ c : Rat, 0 < c ∧ w2 = smul c w1"
+  source: lean4/BornRedundancy.lean
+  repository: this_repository
+  source_sha256: 8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+- kind: theorem
+  name: fq_phase_blind_descent_general_n_row_sparsity
+  line: 425
+  signature_excerpt: "theorem fq_phase_blind_descent_general_n_row_sparsity\n    (a b : Int) (ha : a ≠ 0) (hb\
+    \ : b ≠ 0)\n    (u v : Nat → Int) (c : Nat) (h_sq : u c * u c = v c * v c) :\n    ((a + b) * (a + b) - (a\
+    \ - b) * (a - b) = 4 * (a * b)) ∧\n    ((a + b) * (a + b) ≠ (a - b) * (a - b)) ∧\n    ((a * u c) * (a * u\
+    \ c) = (a * v c) * (a * v c)) ∧\n    (1 * (1 : Int) + 1 * (-1 : Int) = 0)"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+source_bindings:
+- original_ref: lean4/quantum_mechanics/BornRedundancy.lean::descent_compatible_iff_row_sparse
+  availability: local
+  symbol: descent_compatible_iff_row_sparse
+  path: lean4/BornRedundancy.lean
+  repository: this_repository
+  sha256: 8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b
+  declaration_status: declaration_found_not_proof_checked
+  line: 299
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/BornRedundancy.lean::ray_quotient_classification
+  availability: local
+  symbol: ray_quotient_classification
+  path: lean4/BornRedundancy.lean
+  repository: this_repository
+  sha256: 8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b
+  declaration_status: declaration_found_not_proof_checked
+  line: 93
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_phase_blind_descent_general_n_row_sparsity
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.fq_phase_blind_descent_general_n_row_sparsity
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 425
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_quantum_physics/src/phase_blind_quotient.rs::phase_equivalent
+  availability: external
+  symbol: phase_equivalent
+  path: omega_engine/crates_rs/omega_quantum_physics/src/phase_blind_quotient.rs
+  repository: the_symbol_game
+  sha256: ff2874e2584f1df73fcee4976cabb826aace1b22ae81dea8d4ab2319a7de244b
+  declaration_status: declaration_found_not_executed
+  line: 99
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche2_row_sparsity_bell_torsion_and_structure_witness
+  availability: external
+  symbol: verify_tranche2_row_sparsity_bell_torsion_and_structure_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 518
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: *id001
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: *id001
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []
