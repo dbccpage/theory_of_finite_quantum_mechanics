@@ -65,3 +65,5 @@ pub mod born_gap;
 pub mod c500_ledger;
 
 pub mod phase_scope;
+
+pub mod structure_exact;

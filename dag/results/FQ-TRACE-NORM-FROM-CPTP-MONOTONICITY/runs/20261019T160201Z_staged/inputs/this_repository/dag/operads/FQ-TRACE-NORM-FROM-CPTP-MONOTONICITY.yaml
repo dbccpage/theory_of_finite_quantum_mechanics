@@ -1,0 +1,208 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: 'If norms N_n on Herm_0(n,C) satisfy N_m(Phi(X)) <= N_n(X) for every CPTP map Phi : M_n(C)
+    -> M_m(C), then there is one c > 0 with N_n = c ||.||_1 on every nonzero space. Holds on the full stated channel
+    and matrix domain; not a selection of that domain from primitive difference.'
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions: &id001
+  - complex matrices and full CPTP class (assumption)
+  source_bottleneck: No Lean statement of the uniqueness-up-to-scale theorem found; TraceZeroDuality.lean item
+    3 states only that c||.||_1 is monotone for every c > 0. Rust certifies trace norms of given Hermitian matrices
+    over Q(i), not the theorem.
+  source_refs:
+  - omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md:619
+  paper_refs:
+  - dag/derivations/12_finite_qm_structure/TFQ-0263_trace_norm_under_a_supplied_cptp_family.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports before
+    reusing a result.
+  historical_paper_refs:
+  - papers/derivations/12_finite_qm_structure/TFQ-0263_trace_norm_under_a_supplied_cptp_family.md
+  paper_relocations:
+  - from: papers/derivations/12_finite_qm_structure/TFQ-0263_trace_norm_under_a_supplied_cptp_family.md
+    to: dag/derivations/12_finite_qm_structure/TFQ-0263_trace_norm_under_a_supplied_cptp_family.md
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/12_finite_qm_structure/TFQ-0263_trace_norm_under_a_supplied_cptp_family.md
+    sha256: 0e8dfb0fb3571b6de9ca9073ed9bbcba654962b3885db445df20bd3695402fa5
+source_provenance:
+  repository: this_repository
+  commit: 642f5b95a116da6df805adbd745a4826c6739c2b
+  path: dag/prompts/FINITE_QM_CORE__FQ-TRACE-NORM-FROM-CPTP-MONOTONICITY__PROVED_LEAN.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: pairing
+  line: 41
+  signature_excerpt: 'def pairing (L : Eig2) (x : TraceZeroVec2) : Int'
+  source: lean4/TraceZeroDuality.lean
+  repository: this_repository
+  source_sha256: faafda639fbe1ea89ef890d9fe55577695627a4062e33127a749aee1cb0ce091
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: TraceZeroVec2
+  line: 28
+  signature_excerpt: structure TraceZeroVec2
+  source: lean4/TraceZeroDuality.lean
+  repository: this_repository
+  source_sha256: faafda639fbe1ea89ef890d9fe55577695627a4062e33127a749aee1cb0ce091
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: iabs
+  line: 8
+  signature_excerpt: 'def iabs (x : Int) : Int'
+  source: lean4/TraceZeroDuality.lean
+  repository: this_repository
+  source_sha256: faafda639fbe1ea89ef890d9fe55577695627a4062e33127a749aee1cb0ce091
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: Eig2
+  line: 17
+  signature_excerpt: structure Eig2
+  source: lean4/TraceZeroDuality.lean
+  repository: this_repository
+  source_sha256: faafda639fbe1ea89ef890d9fe55577695627a4062e33127a749aee1cb0ce091
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: optimalVec2
+  line: 56
+  signature_excerpt: 'def optimalVec2 (L : Eig2) : TraceZeroVec2'
+  source: lean4/TraceZeroDuality.lean
+  repository: this_repository
+  source_sha256: faafda639fbe1ea89ef890d9fe55577695627a4062e33127a749aee1cb0ce091
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: optimalShift
+  line: 70
+  signature_excerpt: 'def optimalShift (L : Eig2) : Int'
+  source: lean4/TraceZeroDuality.lean
+  repository: this_repository
+  source_sha256: faafda639fbe1ea89ef890d9fe55577695627a4062e33127a749aee1cb0ce091
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: opNorm
+  line: 67
+  signature_excerpt: 'def opNorm (L : Eig2) (c : Int) : Int'
+  source: lean4/TraceZeroDuality.lean
+  repository: this_repository
+  source_sha256: faafda639fbe1ea89ef890d9fe55577695627a4062e33127a749aee1cb0ce091
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: max2
+  line: 11
+  signature_excerpt: 'def max2 (a b : Int) : Int'
+  source: lean4/TraceZeroDuality.lean
+  repository: this_repository
+  source_sha256: faafda639fbe1ea89ef890d9fe55577695627a4062e33127a749aee1cb0ce091
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: traceZeroDetNeg
+  line: 247
+  signature_excerpt: 'def traceZeroDetNeg (a b : Int) : Int'
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: trace_zero_duality_gap_zero
+  line: 83
+  signature_excerpt: "theorem trace_zero_duality_gap_zero (L : Eig2) :\n    pairing L (optimalVec2 L) = opNorm\
+    \ L (optimalShift L)"
+  source: lean4/TraceZeroDuality.lean
+  repository: this_repository
+  source_sha256: faafda639fbe1ea89ef890d9fe55577695627a4062e33127a749aee1cb0ce091
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+- kind: theorem
+  name: trace_zero_pinching_contraction
+  line: 249
+  signature_excerpt: "theorem trace_zero_pinching_contraction (a b : Int) :\n    traceZeroDetNeg a 0 ≤ traceZeroDetNeg\
+    \ a b ∧\n    (traceZeroDetNeg a 0 = traceZeroDetNeg a b ↔ b = 0)"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+source_bindings:
+- original_ref: lean4/quantum_mechanics/TraceZeroDuality.lean::trace_zero_duality_gap_zero
+  availability: local
+  symbol: trace_zero_duality_gap_zero
+  path: lean4/TraceZeroDuality.lean
+  repository: this_repository
+  sha256: faafda639fbe1ea89ef890d9fe55577695627a4062e33127a749aee1cb0ce091
+  declaration_status: declaration_found_not_proof_checked
+  line: 83
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.trace_zero_pinching_contraction
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.trace_zero_pinching_contraction
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 249
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_quantum_physics/src/trace_norm_certificate.rs::TraceNormCertificate
+  availability: external
+  symbol: TraceNormCertificate
+  path: omega_engine/crates_rs/omega_quantum_physics/src/trace_norm_certificate.rs
+  repository: the_symbol_game
+  sha256: 5e4b1765b7914b98dfd7237710c59730253bb7ae6ba9ecc1c3c8104dc50104b1
+  declaration_status: declaration_found_not_executed
+  line: 171
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_fq_core_and_k23_duality_witness
+  availability: external
+  symbol: verify_fq_core_and_k23_duality_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 338
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions: *id001
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports: *id001
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []
