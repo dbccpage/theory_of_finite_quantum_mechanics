@@ -18,7 +18,7 @@ from run_audit import ROOT, digest, execute, write_json
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model",choices=("rank","category","metadata","degree","counter","parameters","finite-set","literal-reversal","shape-inventory","root-records","homology-protocols","degree-repair","two-step-complex","simplicial-closure","simplicial-boundary","simplicial-homology","scalar-admission","carrier-dimensions","vector-maps","graph-incidence","validation-inventory","arrow-effects","finite-builder","em-samples"),default="rank")
+    parser.add_argument("--model",choices=("rank","category","metadata","degree","counter","parameters","finite-set","literal-reversal","shape-inventory","root-records","homology-protocols","degree-repair","two-step-complex","simplicial-closure","simplicial-boundary","simplicial-homology","scalar-admission","carrier-dimensions","vector-maps","graph-incidence","validation-inventory","arrow-effects","finite-builder","em-samples","lawvere-inventory"),default="rank")
     parser.add_argument("--memory-mb", type=int, default=1024,
         help="Explicit Lean memory limit, from 256 to 2048 MiB; default remains 1024.")
     args = parser.parse_args()
@@ -46,6 +46,10 @@ def main():
         proof_name, import_name, namespace = "DegreeWindow", "Data/Int/Basic", "TFQM.DegreeWindow."
         declarations = ("ordered_span_fits_u32", "same_endpoint_zero", "inverted_span_negative")
         scope = "Exact i32 endpoint difference bounds, zero span and inverted-window refusal premise; no category-law claim."
+    elif model == "lawvere-inventory":
+        proof_name, import_name, namespace = "LawvereInventory", "Data/List/Basic", "TFQM.LawvereInventory."
+        declarations = ("slot_fits", "slot_refused", "slot_exact", "slot_max_zero", "slot_max_positive", "equal_defined", "absent_left", "absent_right", "pair_iff", "unsplit_member", "unsplit_empty", "unsplit_append", "unsplit_duplicate", "split_excluded")
+        scope = "Exact bounded slot admission and pure raw declared-name pair/unsplit inventory, with defined-only equality, ordered duplicates and empty scope; no typed Lawvere or Cauchy category theorem."
     elif model == "em-samples":
         proof_name, import_name, namespace = "EMSamples", "Data/List/Basic", "TFQM.EMSamples."
         declarations = ("bind_left", "bind_right", "bind_associative", "map_identity", "map_composition", "join_spec", "free_unit", "free_associativity", "clone_first", "law_after_clone", "step_pass", "scan_empty", "scan_ok_iff", "algebra_empty", "unit_before_associativity", "observed_counts")

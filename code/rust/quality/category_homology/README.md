@@ -752,3 +752,29 @@ all 192 source/score records. Lawvere remains incomplete with explicit G2/G3 E
 for unchecked slot addition, under repair. Contracts and the full goal remain
 unfinished; this PR remains draft. Owned build outputs are removed after builds;
 small exact source/dependency snapshots used by receipts remain.
+
+Lawvere checkpoint: 145 completed A assessments and 47 incomplete files.
+Lawvere is L3A for exact bounded raw-table diagnostics, not an admitted Lawvere
+category, profunctor or Cauchy-completeness certificate. Overflow in i+j is now
+an ordinary diagnostic before lookup. Ordered failure cases and raw duplicate
+operation names remain observable; stored cauchy_status is independent metadata.
+A once-built borrowed tuple view eliminates allocating String keys in nested
+lookups; factored predicates preserve the old literal first-output-sort split
+search. Costs include string lengths, identity lookups and cubic operation pairs.
+
+Native 20261019T171250Z detects all 31 designated faults. Original 459 category
+and eight subject/control tests pass before/after. The first campaign detected
+30/31: identical sort names missed an ordering mutation; adding a distinct sort
+closed that blind spot, with the earlier outcome retained. Independent controls
+cover all 3888 two-name partial-table/identity/shape inventories, 32 supplied-case
+presence/equality combinations, duplicate order, first output sort, missing/blank/
+Unicode lookup keys and usize maxima. Original overflow source and failing native
+counterexample remain pinned. LawvereInventory checks fourteen clean exact-slot,
+defined-equality, pair-existential and arbitrary-full-record filter statements.
+An unavailable unnecessary import and unused typeclass warnings remain as failed
+proof receipts; only the final clean proof supports this score. All eighteen
+production functions fit A metrics. No complete assessment depends on Lawvere.
+
+20261019T171624Z-score-verification passes all 145 completed assessments,
+all 192 source/score digests and 30 groups. Cleanup checkpoint 145 finds no owned
+debug/tmp/compiled outputs. Contracts/full goal remain unfinished; PR draft.

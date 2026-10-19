@@ -56,6 +56,8 @@ def capability(path, source):
         return "L2", "Fluent raw declarations and a loop-boundary guard; complete law admission delegates to the canonical category certificate constructor."
     if key == "category_theory/eilenberg_moore.rs":
         return "L3", "Concrete Maybe transport and typed finite observations; generic Monad/marker records do not certify universal algebra or category laws."
+    if key == "category_theory/lawvere.rs":
+        return "L3", "Exact slot admission and finite raw-table diagnostics with borrowed lookup indexing; no admitted Lawvere theory or mathematical Cauchy-completeness certificate."
     if key in foundational:
         return "L5", foundational[key]
     if "#![cfg(any())]" in source:

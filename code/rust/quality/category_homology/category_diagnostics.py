@@ -161,12 +161,48 @@ LAWVERE_COUNTER=r'''
 #[test]fn overflowing_slot_is_reported_without_panicking_or_wrapping(){
  let mut t=LawvereTheory::new("raw");t.add_substitution("f",usize::MAX,"g","fg");
  let errors=check_substitution_associativity(&t,&[("f",usize::MAX,"g",1,"h")]);
- assert_eq!(errors,vec!["Substitution slot overflow: i=18446744073709551615, j=1".to_string()]);
+ assert_eq!(errors,vec![format!("Substitution slot overflow: i={}, j=1",usize::MAX)]);
+}
+'''
+
+LAWVERE_SAMPLES=LAWVERE_COUNTER+r'''
+fn unary(name:&str)->OperationDecl{OperationDecl::new(name,vec!["S".into()],vec!["S".into()])}
+#[test]fn raw_records_preserve_duplicates_overwrites_and_order(){
+ let mut t=LawvereTheory::new("raw");assert_eq!(t.name,"raw");assert!(t.sorts.is_empty()&&t.operations.is_empty()&&t.equations.is_empty()&&t.substitution_table.is_empty()&&t.identities.is_empty());assert_eq!(t.cauchy_status,TheoryCauchyStatus::Complete);
+ t.add_sort("S");t.add_sort("S");t.add_sort("Q");assert_eq!(t.sorts,vec!["S","S","Q"]);
+ let op=unary("e");assert_eq!(op.name,"e");assert_eq!(op.input_sorts,vec!["S"]);assert_eq!(op.output_sorts,vec!["S"]);assert_eq!(op.arity(),1);assert_eq!(op.coarity(),1);assert_eq!(op,op.clone());assert_ne!(op,unary("other"));
+ t.add_operation(op.clone());t.add_operation(op.clone());t.add_operation(OperationDecl::new("z",vec![],vec!["S".into(),"Q".into()]));assert_eq!(t.operations.len(),3);assert_eq!(t.operations_of_arity(1),vec![&op,&op]);assert_eq!(t.operations_of_arity(0)[0].name,"z");assert_eq!(t.operations[2].coarity(),2);assert!(t.operations_of_arity(2).is_empty());
+ let eq=EquationDecl::new("eq","a","b");assert_eq!((eq.name.as_str(),eq.lhs.as_str(),eq.rhs.as_str()),("eq","a","b"));assert_eq!(eq,eq.clone());t.add_equation(eq.clone());t.add_equation(eq.clone());assert_eq!(t.equations,vec![eq.clone(),eq]);
+ t.add_substitution("a",2,"b","old");t.add_substitution("a",2,"b","new");assert_eq!(t.substitute("a",2,"b"),Some("new"));assert_eq!(t.substitution_table.len(),1);assert_eq!(t.substitute("b",2,"a"),None);assert_eq!(t.substitute("a",1,"b"),None);let copy=t.clone();assert_eq!(copy.name,t.name);assert_eq!(copy.sorts,t.sorts);assert_eq!(copy.operations,t.operations);assert_eq!(copy.equations,t.equations);assert_eq!(copy.substitution_table,t.substitution_table);assert_eq!(copy.identities,t.identities);assert_eq!(copy.cauchy_status,t.cauchy_status);assert!(format!("{:?}",t).contains("raw"));
+}
+#[test]fn borrowed_lookup_matches_public_lookup_for_ordered_and_missing_keys(){
+ let mut t=LawvereTheory::new("index");let names=["","a","aa","z","é"];for (n,outer) in names.iter().enumerate(){for (m,inner) in names.iter().enumerate(){for slot in [0,1,usize::MAX]{if (n+m)%2==0{t.add_substitution(outer,slot,inner,inner);}}}}
+ let lookup=SubstitutionLookup::new(&t);assert_eq!(lookup.entries.len(),t.substitution_table.len());for outer in names.into_iter().chain(["missing"]){for inner in names.into_iter().chain(["absent"]){for slot in [0,1,2,usize::MAX]{assert_eq!(lookup.get(outer,slot,inner),t.substitute(outer,slot,inner));}}}
+ assert_eq!(SubstitutionLookup::new(&LawvereTheory::new("empty")).get("",0,""),None);
+}
+#[test]fn supplied_associativity_cases_match_independent_presence_truth_table(){
+ for mask in 0..16{for different in [false,true]{let mut t=LawvereTheory::new("cases");if mask&1!=0{t.add_substitution("g",3,"h","gh");}if mask&2!=0{t.add_substitution("f",2,"gh","L");}if mask&4!=0{t.add_substitution("f",2,"g","fg");}if mask&8!=0{t.add_substitution("fg",5,"h",if different{"R"}else{"L"});}
+ let expected=if mask!=15{vec!["Substitution not defined for f=f, g=g, h=h".to_string()]}else if different{vec!["Substitution not associative: f=f, g=g, h=h: L≠R".to_string()]}else{vec![]};assert_eq!(check_substitution_associativity(&t,&[("f",2,"g",3,"h")]),expected,"mask={mask},different={different}");assert!(check_substitution_associativity(&t,&[]).is_empty());}}
+ let mut t=LawvereTheory::new("max");t.add_substitution("g",0,"h","gh");t.add_substitution("f",usize::MAX,"gh","ok");t.add_substitution("f",usize::MAX,"g","fg");t.add_substitution("fg",usize::MAX,"h","ok");assert!(check_substitution_associativity(&t,&[("f",usize::MAX,"g",0,"h")]).is_empty());
+ let errors=check_substitution_associativity(&t,&[("x",0,"y",0,"z"),("a",usize::MAX,"b",2,"c"),("f",usize::MAX,"g",0,"h"),("a",usize::MAX,"b",2,"c")]);assert_eq!(errors,vec!["Substitution not defined for f=x, g=y, h=z".to_string(),format!("Substitution slot overflow: i={}, j=2",usize::MAX),format!("Substitution slot overflow: i={}, j=2",usize::MAX)]);
+}
+#[test]fn split_inventory_matches_independent_two_name_matrix_oracle(){
+ let names=["e","k"];for encoded in 0..81{let mut n=encoded;let mut table=[0usize;4];for value in &mut table{*value=n%3;n/=3;}
+ for identity in 0..3{for shapes in 0..16{let shape=[shapes%4,shapes/4];let mut t=LawvereTheory::new("raw matrix");for e in 0..2{let (input,output)=match shape[e]{0=>(1,1),1=>(0,1),2=>(1,0),_=>(2,2)};t.add_operation(OperationDecl::new(names[e],vec!["S".into();input],vec!["S".into();output]));}if identity!=0{t.identities.insert("S".into(),names[identity-1].into());}
+ for outer in 0..2{for inner in 0..2{let result=table[2*outer+inner];if result!=0{t.add_substitution(names[outer],0,names[inner],names[result-1]);}}}
+ let mut expected=vec![];for e in 0..2{if shape[e]!=0||table[2*e+e]!=e+1{continue;}let mut split=false;for r in 0..2{for s in 0..2{if shape[r]!=2&&identity!=0&&table[2*s+r]==e+1&&table[2*r+s]==identity{split=true;}}}if !split{expected.push(names[e].to_string());}}
+ let expected=if expected.is_empty(){TheoryCauchyStatus::Complete}else{TheoryCauchyStatus::Incomplete{unsplit_operations:expected}};assert_eq!(check_theory_cauchy(&t),expected,"table={encoded},id={identity},shapes={shapes}");assert_eq!(t.cauchy_status,TheoryCauchyStatus::Complete);
+ }}}
+}
+#[test]fn raw_split_scope_order_duplicates_and_first_output_sort_are_literal(){
+ let mut t=LawvereTheory::new("duplicates");t.add_operation(unary("z"));t.add_operation(unary("a"));t.add_operation(unary("z"));t.add_substitution("z",0,"z","z");t.add_substitution("a",0,"a","a");assert_eq!(check_theory_cauchy(&t),TheoryCauchyStatus::Incomplete{unsplit_operations:vec!["z".into(),"a".into(),"z".into()]});
+ t.cauchy_status=TheoryCauchyStatus::Incomplete{unsplit_operations:vec!["stored".into()]};let before=t.cauchy_status.clone();t.operations.clear();assert_eq!(check_theory_cauchy(&t),TheoryCauchyStatus::Complete);assert_eq!(t.cauchy_status,before);
+ let mut t=LawvereTheory::new("first output");t.add_operation(unary("e"));t.add_operation(OperationDecl::new("r",vec![],vec!["first".into(),"second".into()]));t.add_operation(OperationDecl::new("s",vec![],vec![]));t.add_substitution("e",0,"e","e");t.add_substitution("s",0,"r","e");t.add_substitution("r",0,"s","id");t.identities.insert("second".into(),"id".into());assert_eq!(check_theory_cauchy(&t),TheoryCauchyStatus::Incomplete{unsplit_operations:vec!["e".into()]});t.identities.insert("first".into(),"id".into());assert_eq!(check_theory_cauchy(&t),TheoryCauchyStatus::Complete);
 }
 '''
 
 def challenge(subject):
     name=Path(subject['path']).stem
-    body=LAWVERE_COUNTER if name=='lawvere' else (EM_COUNTER if subject.get('mode')=='counterexample' else EM_SAMPLES) if name=='eilenberg_moore' else VALIDATION if name=='validation' else BUILDER if name=='finite_category_builder' else ARROW
+    body=(LAWVERE_COUNTER if subject.get('mode')=='counterexample' else LAWVERE_SAMPLES) if name=='lawvere' else (EM_COUNTER if subject.get('mode')=='counterexample' else EM_SAMPLES) if name=='eilenberg_moore' else VALIDATION if name=='validation' else BUILDER if name=='finite_category_builder' else ARROW
     allow='#[allow(deprecated)]' if name=='eilenberg_moore' else ''
     return '\n#[cfg(test)] '+allow+' mod independent_record_tests { use super::*;\n'+body+'\n}\n'
