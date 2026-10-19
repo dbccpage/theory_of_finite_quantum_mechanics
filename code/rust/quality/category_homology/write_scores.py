@@ -252,7 +252,10 @@ def make_record(path, receipt, summary, mutations, metrics, metric_receipt):
                     {"path":(metric_receipt/"receipt.json").relative_to(ROOT).as_posix(),"sha256":sha(metric_receipt/"receipt.json"),"scope":"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."}],
         "verification":{"baseline_ok":summary["baseline_ok"],"source_snapshot_unchanged":summary["source_unchanged"],
                         "compiled_scope":"excluded by cfg(any())" if disabled else "compatibility root not independently built" if key == "category_theory/mod.rs" else summary.get("compiled_scope","shared scoped crate build"),
-                        "local_mutant_ids":[m["id"] for m in local_mutants]},
+                        "local_mutant_ids":[m["id"] for m in local_mutants],
+                        **({"fault_injection_scope":"Production providers named below are mutated; assessed consumer bodies remain unchanged in each native copy. These are sensitivity challenges of this test artifact, not test-source mutations.",
+                            "provider_faults":[{"id":m["id"],"provider":m["provider_fault"],"unchanged_consumer":m["unchanged_consumer"]} for m in local_mutants]}
+                           if local_mutants and all("provider_fault" in m and "unchanged_consumer" in m for m in local_mutants) else {})},
         "mutation_accounting":outcomes,
         "structure":structure,
         "open_findings":findings,

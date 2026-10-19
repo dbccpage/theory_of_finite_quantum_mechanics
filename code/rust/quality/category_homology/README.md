@@ -625,3 +625,43 @@ Fresh metrics and all 35 explicit function/data/derive obligations fit A.
 all current source/score digests and 25 receipt groups. Cleanup checkpoint 139
 finds zero owned debug/tmp/compiled outputs. Exact small source snapshots remain
 for receipt custody. Contracts and the full goal remain unfinished; PR is draft.
+
+Challenge-consumer checkpoint: 140 completed A assessments and 52 incomplete.
+All 19 homology files now have completed A assessments at their delivered
+L1/L2/L3/L4/L5 levels; l5a_challenges.rs is L3A. All remaining files are in
+category theory. Eleven production-own-source assessments retain original
+primary/metric evidence with explicit current test-consumer preservation.
+
+A source-only AST view blanks exactly twelve standalone #[test] attributes,
+preserving all bodies and line numbers; it is never compiled. The initial
+20261019T143443Z view exposes nesting four in the graph oracle, which ordinary
+helper-only metrics omit. Extracting its existing four-label loop reduces
+current nesting to three without removing cases. A separate Fraction row
+reduction and transitive closure audit checks all 81 ternary matrices and all
+64 four-vertex graph expectations; this is finite mathematical evidence and
+reviewed source correspondence, not native Rust execution or a general theorem.
+All sixteen current bodies and assertion macro obligations are audited.
+
+The initial 20261019T143733Z consumer campaign detects 20/21 provider faults.
+Coboundary target-guard bypass survives because the old negative constructor
+case overflows before that guard. A new non-overflow 0->0 refusal assertion
+closes the blind spot. Final 20261019T144113Z detects all 21 designated valid
+faults across ten actual production providers, with no unresolved outcomes.
+Each copied namespace retains the assessed consumer unchanged and runs only
+its twelve tests, including controls before/after; the original 99 homology
+tests also pass before/after. The adjacent score explicitly identifies the
+mutated provider and unchanged consumer for every fault: no mutation of the
+test artifact itself or exhaustive production-provider coverage is claimed.
+Thirteen preceding function bodies remain unchanged; production sources do not
+change. Current models retain exact rank/scalar/vector/incidence/simplicial
+statements, with runtime and fixture correspondence explicitly source-reviewed.
+
+20261019T144511Z-score-verification passes all 140 completed assessments,
+all current source/score digests and 26 receipt groups. Cleanup checkpoint 140
+finds no owned debug/tmp/compiled outputs. Historical source snapshots, both
+initial findings and source-only metric views are retained. Contracts and the
+full category/homology goal remain unfinished; the PR remains draft.
+
+The retained test-body metric views intentionally contain seven-space lines
+where test attributes were blanked. Their exact evidence bytes are preserved;
+whitespace-only diff checks exclude these views as well as execution logs.

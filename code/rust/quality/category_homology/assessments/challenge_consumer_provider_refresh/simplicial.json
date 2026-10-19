@@ -1,0 +1,523 @@
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "reviewer": "Codex explicit finite simplicial, failure, certificate and consumer review",
+  "evaluation_timestamp": "2026-10-19T14:44:58.997112+00:00",
+  "artifact": {
+    "path": "code/rust/src/homology/simplicial.rs",
+    "sha256": "41168fedb6093f4d25ab9828009a03a60c8adf42fd390903876f2692d26b4a01",
+    "language": "Rust"
+  },
+  "gates": {
+    "G1": "A",
+    "G2": "A",
+    "G3": "A",
+    "G4": "A",
+    "G5": "A"
+  },
+  "basis": {
+    "G1": [
+      "SHA-256 binds the current source, actual native peers/dependencies, 45-function body map, final challenge/metrics receipts and five checked mathematical models. Claims are finite canonical unaugmented simplicial closure, exact rational matrices and rational Betti numbers, without authority or integral-torsion claims.",
+      "All public/private explicit functions and private wire/data declarations are mapped. Source/consumer boundaries and conditional hypotheses are explicit. Oriented wire signs are chosen +/-1 even for a singleton; ambient size is maximum label plus one.",
+      "Current exact_scalar/witness revisions alter only full-line comments; every non-comment source line is independently compared to the retained preceding files. Own-source bytes, public signatures, data declarations and every called algorithm remain unchanged. Current source/consumer composition and corrected local/external package identities are explicitly captured; old mathematical/mutation receipts remain their actual historical executions.",
+      "The local/external consumer attribution error in the preceding review is explicitly corrected without changing the local mathematical claim, source, proof assumptions or finite native behavior. Current review does not rely on behavior of the separate omega_homology package.",
+      "Production source and original primary/metrics are unchanged. Only test consumer context changed through the explicitly reviewed loop extraction; the exact consumer delta and current mathematical/native evidence bind preservation."
+    ],
+    "G2": [
+      "Private fields, constructor and serde try_from gates enforce nonempty ascending distinct vertices and complex resource limits. List erasure preserves these properties; borrowed membership and owned insertion preserve the closure invariant. Canonical finite bases identify runtime arrays with the Fin-indexed matrix model.",
+      "Erase_commute gives each two-face identity. For an input of dimension n+2, the two steps have index ranges Fin(n+3) and Fin(n+2); mapMatrix_comp composes the indicator matrices, and paired_term/pair_cancellation prove cancellation of all double removals with opposite signs. Distinct removed vertices ensure distinct direct faces, justifying matrix set instead of addition. Dimension 0/1 and outside-support matrices have zero compositions directly. Transposition reverses products, giving the coboundary law.",
+      "Each nonzero differential rank is obtained through the existing separate split-map checker. Its three exact identities imply Matrix.rank equals the reported rank (RankCertificate.valid_rank), so elimination is a candidate producer rather than trusted rank output. SimplicialHomology proves image lies in kernel, the rank sum bound and quotient dimension formula. The cache carries the identical next rank forward; contiguous occupied dimensions follow closure. Two checked subtractions refuse inconsistent ranks instead of clamping.",
+      "All signs are +/-1; orientation retains Boolean parity; Q is canonical BigRational, with no float or fixed-width rational conversion. Count sums are at most 65535 and Euler partial sums have that absolute bound. Checked label/degree increments and full-index diagnostic payloads prevent wrap or narrowing."
+    ],
+    "G3": [
+      "Every admitted object owns private immutable state; safe public constructors/wires enter the same gates. The worklist models preserve seed coverage, successor frontier and soundness on duplicate/fresh steps; fresh cardinality and potential lemmas prove bounded admission and termination. A failed size/label/degree/matrix/certificate check returns no public partial result.",
+      "Expected failures remain typed, including rank producer/checker errors now preserved directly. Concrete list/matrix indexing follows checked bounds and exact cached indices. Failure/cost assumptions for compiler/std, allocator and exact libraries are declared separately from the kernel-checked finite algebra, with only standard foundational axioms.",
+      "No source or proof claims Rust/MIR extraction, total recovery from OOM, crash-freedom of the runtime or correctness of unrelated external callers."
+    ],
+    "G4": [
+      "Final native campaign 051112Z compiles all 21 designated faults and detects each independently with a positive selected-test count. The full namespace control and all 99 original homology tests pass before and after, with source/dependency contents stable and compiled outputs removed.",
+      "Independent expected values enumerate 128 three-vertex families using subset masks and graph connectivity, 873 permutations up to size six using cycle parity, exact direct face signs and matrix entries/transposes, full-index/wire/domain failures, the complete 16-vertex Boolean lattice, duplicate/overlapping seeds and the distinct-face cap. New faults cover rank transfer and ignoring the certified rank.",
+      "The initial 18-kill/one-timeout campaign is retained as historical and excluded from grading. Its runner hash-at-end discrepancy is recorded against the retained start snapshot. New dispatch uses the smallest decisive fixture and full controls; changed candidate/harness bytes are not called an identical replay.",
+      "Three new models have 23 clean declarations: closure/erasure 15, signed pairing/matrix composition 5 and rational homology 3. Existing index/parity and split-rank proofs supply their separate corresponding obligations. Failed/warning/memory receipts are retained and never counted as completed proofs.",
+      "Current 053739Z passes 99 original local homology tests before/after, all four native controls, 101 tests in the fully copied Carrier context control and all 44 designated storage/admission faults. It does not claim rerunning this unchanged artifact own older mutation campaign; its primary retains original providers with this full non-comment-line delta and current composition evidence.",
+      "New canonical 99-test before/after composition and 21 provider-fault detections support the current consumer. Do not interpret this as rerunning all prior provider-own mutants."
+    ],
+    "G5": [
+      "Calibrated current syn AST parses all 45 explicit production functions, maximum CCN 9, conservative cognitive 9 and nesting 3. Macro dispatch is separately delegated; no algorithm is hidden in a macro.",
+      "For S<=65535 admitted faces and width v<=16, each fresh face is expanded once, pushing at most v children; total pops are at most input_count+v*S. List-copy work is O(S*v^2), tree comparison work O((input_count+v*S)*v*log S), with bounded retained owned keys and pending faces. Duplicate detection borrows its key; accepted keys are moved without a redundant parent clone. Owned child Vecs and reverse-index keys serve distinct required representations.",
+      "Boundary matrices have checked dense area; cost is linear in allocated entries plus direct-face lookups. Composition uses dense products; exact rational bit growth is separate. Betti computes each needed rank certificate once, carrying the result forward, with polynomial dense producer/checker work and separately declared rational growth. No allocator benchmark or universal constant-time claim is made."
+    ]
+  },
+  "formal_specification": {
+    "domain": "Finite nonempty distinct usize label lists as standalone simplices; complex admission limits each list to 16 vertices and seed/distinct-face counts to 65535. The empty complex has max_dimension 0 and Betti output [0]. Oriented wire stores a chosen +/-1 sign on a canonical simplex.",
+    "delivered_behavior": "The least set containing the seeds and all their nonempty faces, grouped in deterministic lexicographic order by dimension, with exact reverse indices. Ambient size is max label+1 with typed overflow refusal. Boundary coefficient is (-1)^removed-index, coboundary is its next-degree transpose, and compositions vanish. Rational Betti numbers are dimensions of kernel modulo image, computed from independently certified exact ranks.",
+    "failure": "Constructor/serde domain refusal precedes public object construction. Duplicate faces at the count limit are ignored; a fresh face at that limit is refused before expansion. All matrix and rank certificate errors propagate without a partial return. Degree/label increments and rejected index payloads are checked; no clamping or narrowed exact result."
+  },
+  "symbol_map": {
+    "impl From<SimplicialComplex> for ComplexWire::from": {
+      "body": "{ Self { simplices: value.simplices_by_dim.into_iter().flatten().collect(), } }",
+      "obligation": "Simplex and complex wires re-enter their corresponding constructor gates; oriented wire admits exactly +/-1 on an already admitted simplex. Unknown fields are denied. Complex serialization flattens canonical grouped bases, and deserialization re-closes/re-indexes them, never deserializing private invariant caches. A negative sign on a singleton wire is an admitted chosen orientation, not a claim about an ordering.",
+      "signature": "fn from(value: SimplicialComplex) -> Self"
+    },
+    "impl OrientedSimplex::dimension": {
+      "body": "{ self.simplex.dimension() }",
+      "obligation": "Nonempty strictly ascending stored vertices make length minus one safe. Erasing an in-range position preserves order and distinctness, decrements length and uses the exact alternating sign; singleton has no unaugmented face. Oriented output uses canonical positive face records and multiplies two +/-1 values. Full rejected indices preserve their usize payload. SimplicialClosure erasure lemmas and DegreeRepair parity/payload lemmas supply the discrete model.",
+      "signature": "pub fn dimension(&self) -> usize"
+    },
+    "impl OrientedSimplex::faces": {
+      "body": "{ self.simplex .faces() .into_iter() .map(|(face, sign)| { ( OrientedSimplex { simplex: face, orientation: 1, }, sign * self.orientation, ) }) .collect() }",
+      "obligation": "Nonempty strictly ascending stored vertices make length minus one safe. Erasing an in-range position preserves order and distinctness, decrements length and uses the exact alternating sign; singleton has no unaugmented face. Oriented output uses canonical positive face records and multiplies two +/-1 values. Full rejected indices preserve their usize payload. SimplicialClosure erasure lemmas and DegreeRepair parity/payload lemmas supply the discrete model.",
+      "signature": "pub fn faces(&self) -> Vec<(OrientedSimplex, i8)>"
+    },
+    "impl OrientedSimplex::from_ordered": {
+      "body": "{ let orientation = permutation_orientation(&vertices)?; Ok(Self { simplex: Simplex::from_unordered(vertices)?, orientation, }) }",
+      "obligation": "Nonempty distinct arbitrary standalone labels; no complex arity ceiling is implied. XOR over pair comparisons preserves inversion parity without a machine-sized inversion count (DegreeRepair scan_count/orientation_sign); cycle-parity oracle independently checks all permutations through size 6. Sorting copies preserves the sign relative to canonical ascending order.",
+      "signature": "pub fn from_ordered(vertices: Vec<usize>) -> Result<Self, HomologicalError>"
+    },
+    "impl OrientedSimplex::from_unordered": {
+      "body": "{ Ok(Self { simplex: Simplex::from_unordered(vertices)?, orientation: 1, }) }",
+      "obligation": "Nonempty strictly ascending or sorted-distinct list admission; failures return EmptyBasis/BasisMismatch before a public record is returned. Standalone records retain arbitrary finite label lists; complex budgets are enforced only on complex admission. Immutable fields preserve admission under safe public observations/clones.",
+      "signature": "pub fn from_unordered(vertices: Vec<usize>) -> Result<Self, HomologicalError>"
+    },
+    "impl OrientedSimplex::new": {
+      "body": "{ Ok(Self { simplex: Simplex::new(vertices)?, orientation: 1, }) }",
+      "obligation": "Nonempty strictly ascending or sorted-distinct list admission; failures return EmptyBasis/BasisMismatch before a public record is returned. Standalone records retain arbitrary finite label lists; complex budgets are enforced only on complex admission. Immutable fields preserve admission under safe public observations/clones.",
+      "signature": "pub fn new(vertices: Vec<usize>) -> Result<Self, HomologicalError>"
+    },
+    "impl OrientedSimplex::num_vertices": {
+      "body": "{ self.simplex.num_vertices() }",
+      "obligation": "Immutable borrowed/copy observation of admitted canonical storage; indexed dimension lookup uses get with empty fallback. Cached ambient size is maximum label plus one; empty maximum dimension is storage convention 0. Cardinal sums are bounded by the admitted 65535 distinct faces and no observer can mutate a private field.",
+      "signature": "pub fn num_vertices(&self) -> usize"
+    },
+    "impl OrientedSimplex::orientation": {
+      "body": "{ self.orientation }",
+      "obligation": "Immutable borrowed/copy observation of admitted canonical storage; indexed dimension lookup uses get with empty fallback. Cached ambient size is maximum label plus one; empty maximum dimension is storage convention 0. Cardinal sums are bounded by the admitted 65535 distinct faces and no observer can mutate a private field.",
+      "signature": "pub fn orientation(&self) -> i8"
+    },
+    "impl OrientedSimplex::simplex": {
+      "body": "{ &self.simplex }",
+      "obligation": "Immutable borrowed/copy observation of admitted canonical storage; indexed dimension lookup uses get with empty fallback. Cached ambient size is maximum label plus one; empty maximum dimension is storage convention 0. Cardinal sums are bounded by the admitted 65535 distinct faces and no observer can mutate a private field.",
+      "signature": "pub fn simplex(&self) -> &Simplex"
+    },
+    "impl OrientedSimplex::vertices": {
+      "body": "{ self.simplex.vertices() }",
+      "obligation": "Immutable borrowed/copy observation of admitted canonical storage; indexed dimension lookup uses get with empty fallback. Cached ambient size is maximum label plus one; empty maximum dimension is storage convention 0. Cardinal sums are bounded by the admitted 65535 distinct faces and no observer can mutate a private field.",
+      "signature": "pub fn vertices(&self) -> &[usize]"
+    },
+    "impl Simplex::dimension": {
+      "body": "{ self.vertices.len() - 1 }",
+      "obligation": "Nonempty strictly ascending stored vertices make length minus one safe. Erasing an in-range position preserves order and distinctness, decrements length and uses the exact alternating sign; singleton has no unaugmented face. Oriented output uses canonical positive face records and multiplies two +/-1 values. Full rejected indices preserve their usize payload. SimplicialClosure erasure lemmas and DegreeRepair parity/payload lemmas supply the discrete model.",
+      "signature": "pub fn dimension(&self) -> usize"
+    },
+    "impl Simplex::face": {
+      "body": "{ if removed_index >= self.vertices.len() { return Err(HomologicalError::invalid_degree_index(removed_index)); } if self.vertices.len() == 1 { return Err(HomologicalError::InvalidDegree(0)); } let mut vertices = self.vertices.clone(); vertices.remove(removed_index); let sign = if removed_index.is_multiple_of(2) { 1 } else { -1 }; Ok((Self { vertices }, sign)) }",
+      "obligation": "Nonempty strictly ascending stored vertices make length minus one safe. Erasing an in-range position preserves order and distinctness, decrements length and uses the exact alternating sign; singleton has no unaugmented face. Oriented output uses canonical positive face records and multiplies two +/-1 values. Full rejected indices preserve their usize payload. SimplicialClosure erasure lemmas and DegreeRepair parity/payload lemmas supply the discrete model.",
+      "signature": "pub fn face(&self, removed_index: usize) -> Result<(Self, i8), HomologicalError>"
+    },
+    "impl Simplex::faces": {
+      "body": "{ if self.vertices.len() <= 1 { return Vec::new(); } (0..self.vertices.len()) .map(|i| { let mut vertices = self.vertices.clone(); vertices.remove(i); let sign = if i % 2 == 0 { 1 } else { -1 }; (Self { vertices }, sign) }) .collect() }",
+      "obligation": "Nonempty strictly ascending stored vertices make length minus one safe. Erasing an in-range position preserves order and distinctness, decrements length and uses the exact alternating sign; singleton has no unaugmented face. Oriented output uses canonical positive face records and multiplies two +/-1 values. Full rejected indices preserve their usize payload. SimplicialClosure erasure lemmas and DegreeRepair parity/payload lemmas supply the discrete model.",
+      "signature": "pub fn faces(&self) -> Vec<(Self, i8)>"
+    },
+    "impl Simplex::from_unordered": {
+      "body": "{ let canonical = canonicalize_vertices(vertices)?; Ok(Self { vertices: canonical, }) }",
+      "obligation": "Nonempty strictly ascending or sorted-distinct list admission; failures return EmptyBasis/BasisMismatch before a public record is returned. Standalone records retain arbitrary finite label lists; complex budgets are enforced only on complex admission. Immutable fields preserve admission under safe public observations/clones.",
+      "signature": "pub fn from_unordered(vertices: Vec<usize>) -> Result<Self, HomologicalError>"
+    },
+    "impl Simplex::new": {
+      "body": "{ validate_strict_vertices(&vertices)?; Ok(Self { vertices }) }",
+      "obligation": "Nonempty strictly ascending or sorted-distinct list admission; failures return EmptyBasis/BasisMismatch before a public record is returned. Standalone records retain arbitrary finite label lists; complex budgets are enforced only on complex admission. Immutable fields preserve admission under safe public observations/clones.",
+      "signature": "pub fn new(vertices: Vec<usize>) -> Result<Self, HomologicalError>"
+    },
+    "impl Simplex::num_vertices": {
+      "body": "{ self.vertices.len() }",
+      "obligation": "Immutable borrowed/copy observation of admitted canonical storage; indexed dimension lookup uses get with empty fallback. Cached ambient size is maximum label plus one; empty maximum dimension is storage convention 0. Cardinal sums are bounded by the admitted 65535 distinct faces and no observer can mutate a private field.",
+      "signature": "pub fn num_vertices(&self) -> usize"
+    },
+    "impl Simplex::vertices": {
+      "body": "{ &self.vertices }",
+      "obligation": "Immutable borrowed/copy observation of admitted canonical storage; indexed dimension lookup uses get with empty fallback. Cached ambient size is maximum label plus one; empty maximum dimension is storage convention 0. Cardinal sums are bounded by the admitted 65535 distinct faces and no observer can mutate a private field.",
+      "signature": "pub fn vertices(&self) -> &[usize]"
+    },
+    "impl SimplicialComplex::boundary_composition": {
+      "body": "{ if k < 2 { return Err(HomologicalError::invalid_degree_index(k)); } let lower = self.boundary_matrix(k - 1)?; let upper = self.boundary_matrix(k)?; lower.mul(&upper).map_err(HomologicalError::MatrixError) }",
+      "obligation": "Canonical degree bases give exact Fin-indexed indicator face matrices with coefficient (-1)^removed-index. Distinct vertices make each direct face distinct, so set equals sum at each matrix entry. Two erasures commute with the shifted index (SimplicialClosure.erase_commute), indicator matrices compose (SimplicialBoundary.mapMatrix_comp), and signed_faces_cancel pairs all double-face paths. At degrees 0/1 and outside support, zero-area matrices give the same unaugmented law. Coboundary is the exact transpose, reversing composition; checked degree increment and BasicMatrix errors propagate before output. A nonzero-law diagnostic can occur only within the 0..15 degree support, where its signed payload fits.",
+      "signature": "pub fn boundary_composition(&self, k: usize) -> Result<BasicMatrix<Q>, HomologicalError>"
+    },
+    "impl SimplicialComplex::boundary_matrix": {
+      "body": "{ if k == 0 { return BasicMatrix::zero(0, self.count(0)).map_err(HomologicalError::MatrixError); } let rows = self.count(k - 1); let cols = self.count(k); if cols == 0 { return BasicMatrix::zero(rows, 0).map_err(HomologicalError::MatrixError); } let face_indices = self .indices_by_dim .get(k - 1) .ok_or_else(|| HomologicalError::invalid_degree_index(k))?; let mut matrix = BasicMatrix::<Q>::zero(rows, cols)?; for (col, simplex) in self.simplices(k).iter().enumerate() { for (face, sign) in simplex.faces() { let row = face_indices.get(&face).ok_or_else(|| { HomologicalError::UnsupportedOperation(format!( \"simplicial closure missing face {:?}\", face.vertices() )) })?; matrix.set(*row, col, q(sign as i64))?; } } Ok(matrix) }",
+      "obligation": "Canonical degree bases give exact Fin-indexed indicator face matrices with coefficient (-1)^removed-index. Distinct vertices make each direct face distinct, so set equals sum at each matrix entry. Two erasures commute with the shifted index (SimplicialClosure.erase_commute), indicator matrices compose (SimplicialBoundary.mapMatrix_comp), and signed_faces_cancel pairs all double-face paths. At degrees 0/1 and outside support, zero-area matrices give the same unaugmented law. Coboundary is the exact transpose, reversing composition; checked degree increment and BasicMatrix errors propagate before output. A nonzero-law diagnostic can occur only within the 0..15 degree support, where its signed payload fits.",
+      "signature": "pub fn boundary_matrix(&self, k: usize) -> Result<BasicMatrix<Q>, HomologicalError>"
+    },
+    "impl SimplicialComplex::coboundary_composition": {
+      "body": "{ if k < 1 { return Err(HomologicalError::invalid_degree_index(k)); } let lower = self.coboundary_matrix(k - 1)?; let upper = self.coboundary_matrix(k)?; upper.mul(&lower).map_err(HomologicalError::MatrixError) }",
+      "obligation": "Canonical degree bases give exact Fin-indexed indicator face matrices with coefficient (-1)^removed-index. Distinct vertices make each direct face distinct, so set equals sum at each matrix entry. Two erasures commute with the shifted index (SimplicialClosure.erase_commute), indicator matrices compose (SimplicialBoundary.mapMatrix_comp), and signed_faces_cancel pairs all double-face paths. At degrees 0/1 and outside support, zero-area matrices give the same unaugmented law. Coboundary is the exact transpose, reversing composition; checked degree increment and BasicMatrix errors propagate before output. A nonzero-law diagnostic can occur only within the 0..15 degree support, where its signed payload fits.",
+      "signature": "pub fn coboundary_composition(&self, k: usize) -> Result<BasicMatrix<Q>, HomologicalError>"
+    },
+    "impl SimplicialComplex::coboundary_matrix": {
+      "body": "{ let next = k.checked_add(1).ok_or(HomologicalError::DegreeOverflow)?; let boundary = self.boundary_matrix(next)?; let mut matrix = BasicMatrix::<Q>::zero(boundary.cols(), boundary.rows())?; for row in 0..boundary.rows() { for col in 0..boundary.cols() { matrix.set(col, row, boundary.get(row, col)?)?; } } Ok(matrix) }",
+      "obligation": "Canonical degree bases give exact Fin-indexed indicator face matrices with coefficient (-1)^removed-index. Distinct vertices make each direct face distinct, so set equals sum at each matrix entry. Two erasures commute with the shifted index (SimplicialClosure.erase_commute), indicator matrices compose (SimplicialBoundary.mapMatrix_comp), and signed_faces_cancel pairs all double-face paths. At degrees 0/1 and outside support, zero-area matrices give the same unaugmented law. Coboundary is the exact transpose, reversing composition; checked degree increment and BasicMatrix errors propagate before output. A nonzero-law diagnostic can occur only within the 0..15 degree support, where its signed payload fits.",
+      "signature": "pub fn coboundary_matrix(&self, k: usize) -> Result<BasicMatrix<Q>, HomologicalError>"
+    },
+    "impl SimplicialComplex::contains": {
+      "body": "{ self.indices_by_dim .get(simplex.dimension()) .is_some_and(|indices| indices.contains_key(simplex)) }",
+      "obligation": "Immutable borrowed/copy observation of admitted canonical storage; indexed dimension lookup uses get with empty fallback. Cached ambient size is maximum label plus one; empty maximum dimension is storage convention 0. Cardinal sums are bounded by the admitted 65535 distinct faces and no observer can mutate a private field.",
+      "signature": "pub fn contains(&self, simplex: &Simplex) -> bool"
+    },
+    "impl SimplicialComplex::count": {
+      "body": "{ self.simplices(dim).len() }",
+      "obligation": "Immutable borrowed/copy observation of admitted canonical storage; indexed dimension lookup uses get with empty fallback. Cached ambient size is maximum label plus one; empty maximum dimension is storage convention 0. Cardinal sums are bounded by the admitted 65535 distinct faces and no observer can mutate a private field.",
+      "signature": "pub fn count(&self, dim: usize) -> usize"
+    },
+    "impl SimplicialComplex::euler_characteristic": {
+      "body": "{ self.simplices_by_dim .iter() .enumerate() .map(|(k, simplices)| { if k % 2 == 0 { simplices.len() as i64 } else { -(simplices.len() as i64) } }) .sum() }",
+      "obligation": "Alternating dimension counts; sum of absolute terms is at most 65535, so every usize-to-i64 term conversion, sign and partial/final sum is exact.",
+      "signature": "pub fn euler_characteristic(&self) -> i64"
+    },
+    "impl SimplicialComplex::from_canonical_simplices": {
+      "body": "{ let all = close_faces(simplices)?; let max_dim = all.iter().map(Simplex::dimension).max().unwrap_or(0); let mut simplices_by_dim = vec![Vec::new(); max_dim + 1]; let mut max_vertex = None::<usize>; for simplex in all { if let Some(&v) = simplex.vertices().last() { max_vertex = Some(max_vertex.map_or(v, |m| m.max(v))); } // Every simplex dimension is <= max_dim, measured from this same set. simplices_by_dim .get_mut(simplex.dimension()) .ok_or(HomologicalError::ResourceLimit(\"simplex dimension\"))? .push(simplex); } let indices_by_dim = simplices_by_dim .iter() .map(|simplices| { simplices .iter() .cloned() .enumerate() .map(|(index, simplex)| (simplex, index)) .collect() }) .collect(); Ok(Self { simplices_by_dim, indices_by_dim, num_vertices: match max_vertex { None => 0, Some(v) => v .checked_add(1) .ok_or(HomologicalError::ResourceLimit(\"vertex label overflow\"))?, }, }) }",
+      "obligation": "Admit at most 16 vertices per simplex, 65535 seeds/faces; move unique owned keys after borrowed duplicate checks. Covers/Frontier/soundness, cardinal and decreasing-potential lemmas apply to every pop/insert step. Finite list erasure generates every direct nonempty face, so repeated closure gives exactly the nonempty seed subsets. Sorted unique BTreeSet traversal gives canonical grouped bases and complete reverse indices; checked maximum label plus one supplies ambient size, not number of occurring labels.",
+      "signature": "fn from_canonical_simplices(simplices: Vec<Simplex>) -> Result<Self, HomologicalError>"
+    },
+    "impl SimplicialComplex::from_maximal_simplices": {
+      "body": "{ Self::from_canonical_simplices(maximal.into_iter().map(|s| s.simplex).collect()) }",
+      "obligation": "Admit at most 16 vertices per simplex, 65535 seeds/faces; move unique owned keys after borrowed duplicate checks. Covers/Frontier/soundness, cardinal and decreasing-potential lemmas apply to every pop/insert step. Finite list erasure generates every direct nonempty face, so repeated closure gives exactly the nonempty seed subsets. Sorted unique BTreeSet traversal gives canonical grouped bases and complete reverse indices; checked maximum label plus one supplies ambient size, not number of occurring labels.",
+      "signature": "pub fn from_maximal_simplices(maximal: Vec<OrientedSimplex>) -> Result<Self, HomologicalError>"
+    },
+    "impl SimplicialComplex::from_simplices": {
+      "body": "{ Self::from_canonical_simplices(simplices) }",
+      "obligation": "Admit at most 16 vertices per simplex, 65535 seeds/faces; move unique owned keys after borrowed duplicate checks. Covers/Frontier/soundness, cardinal and decreasing-potential lemmas apply to every pop/insert step. Finite list erasure generates every direct nonempty face, so repeated closure gives exactly the nonempty seed subsets. Sorted unique BTreeSet traversal gives canonical grouped bases and complete reverse indices; checked maximum label plus one supplies ambient size, not number of occurring labels.",
+      "signature": "pub fn from_simplices(simplices: Vec<Simplex>) -> Result<Self, HomologicalError>"
+    },
+    "impl SimplicialComplex::max_dimension": {
+      "body": "{ self.simplices_by_dim.len().saturating_sub(1) }",
+      "obligation": "Immutable borrowed/copy observation of admitted canonical storage; indexed dimension lookup uses get with empty fallback. Cached ambient size is maximum label plus one; empty maximum dimension is storage convention 0. Cardinal sums are bounded by the admitted 65535 distinct faces and no observer can mutate a private field.",
+      "signature": "pub fn max_dimension(&self) -> usize"
+    },
+    "impl SimplicialComplex::num_vertices": {
+      "body": "{ self.num_vertices }",
+      "obligation": "Immutable borrowed/copy observation of admitted canonical storage; indexed dimension lookup uses get with empty fallback. Cached ambient size is maximum label plus one; empty maximum dimension is storage convention 0. Cardinal sums are bounded by the admitted 65535 distinct faces and no observer can mutate a private field.",
+      "signature": "pub fn num_vertices(&self) -> usize"
+    },
+    "impl SimplicialComplex::rational_betti_numbers": {
+      "body": "{ let max_dim = self.max_dimension(); let rank = |k: usize| -> Result<usize, HomologicalError> { let matrix = self.boundary_matrix(k)?; Ok(certify_rank(&matrix)?.rank()) }; let mut betti = Vec::with_capacity(max_dim + 1); let mut rank_dk = 0; for k in 0..=max_dim { let ck_dim = self.count(k); if ck_dim == 0 { betti.push(0); continue; } let ker_dk = ck_dim .checked_sub(rank_dk) .ok_or(HomologicalError::BettiRankInconsistency { dimension: ck_dim, rank_sum: rank_dk, degree: k, })?; let rank_dk_plus_1 = if k == max_dim { 0 } else { rank(k + 1)? }; let bk = ker_dk.checked_sub(rank_dk_plus_1).ok_or( HomologicalError::BettiRankInconsistency { dimension: ker_dk, rank_sum: rank_dk_plus_1, degree: k, }, )?; betti.push(bk); rank_dk = rank_dk_plus_1; } Ok(betti) }",
+      "obligation": "For each nonempty chain degree use the exact rank certificate (M=UV, LU=I, VR=I), carry the previous upper rank into the next iteration, and use two checked subtractions. Closure makes the occupied degrees contiguous, so the zero-count branch is only the empty complex and cannot skip a nonzero rank transfer. Rank_sum_bound/betti_dimension identify cycles modulo image with this result; empty convention returns [0]. Producer/checker refusal returns no partial vector.",
+      "signature": "pub fn rational_betti_numbers(&self) -> Result<Vec<usize>, HomologicalError>"
+    },
+    "impl SimplicialComplex::simplices": {
+      "body": "{ self.simplices_by_dim .get(dim) .map(Vec::as_slice) .unwrap_or(&[]) }",
+      "obligation": "Immutable borrowed/copy observation of admitted canonical storage; indexed dimension lookup uses get with empty fallback. Cached ambient size is maximum label plus one; empty maximum dimension is storage convention 0. Cardinal sums are bounded by the admitted 65535 distinct faces and no observer can mutate a private field.",
+      "signature": "pub fn simplices(&self, dim: usize) -> &[Simplex]"
+    },
+    "impl SimplicialComplex::simplices_by_dim": {
+      "body": "{ &self.simplices_by_dim }",
+      "obligation": "Immutable borrowed/copy observation of admitted canonical storage; indexed dimension lookup uses get with empty fallback. Cached ambient size is maximum label plus one; empty maximum dimension is storage convention 0. Cardinal sums are bounded by the admitted 65535 distinct faces and no observer can mutate a private field.",
+      "signature": "pub fn simplices_by_dim(&self) -> &[Vec<Simplex>]"
+    },
+    "impl SimplicialComplex::standard_n_simplex": {
+      "body": "{ if n >= MAX_SIMPLEX_VERTICES { return Err(HomologicalError::ResourceLimit(\"simplex dimension\")); } Self::from_simplices(vec![Simplex::new((0..=n).collect())?]) }",
+      "obligation": "Admit at most 16 vertices per simplex, 65535 seeds/faces; move unique owned keys after borrowed duplicate checks. Covers/Frontier/soundness, cardinal and decreasing-potential lemmas apply to every pop/insert step. Finite list erasure generates every direct nonempty face, so repeated closure gives exactly the nonempty seed subsets. Sorted unique BTreeSet traversal gives canonical grouped bases and complete reverse indices; checked maximum label plus one supplies ambient size, not number of occurring labels.",
+      "signature": "pub fn standard_n_simplex(n: usize) -> Result<Self, HomologicalError>"
+    },
+    "impl SimplicialComplex::total_simplices": {
+      "body": "{ self.simplices_by_dim.iter().map(Vec::len).sum() }",
+      "obligation": "Immutable borrowed/copy observation of admitted canonical storage; indexed dimension lookup uses get with empty fallback. Cached ambient size is maximum label plus one; empty maximum dimension is storage convention 0. Cardinal sums are bounded by the admitted 65535 distinct faces and no observer can mutate a private field.",
+      "signature": "pub fn total_simplices(&self) -> usize"
+    },
+    "impl SimplicialComplex::verify_boundary_law": {
+      "body": "{ let max_dim = self.max_dimension(); if max_dim < 2 { return Ok(true); } for k in 2..=max_dim { self.verify_boundary_law_at(k)?; } Ok(true) }",
+      "obligation": "Canonical degree bases give exact Fin-indexed indicator face matrices with coefficient (-1)^removed-index. Distinct vertices make each direct face distinct, so set equals sum at each matrix entry. Two erasures commute with the shifted index (SimplicialClosure.erase_commute), indicator matrices compose (SimplicialBoundary.mapMatrix_comp), and signed_faces_cancel pairs all double-face paths. At degrees 0/1 and outside support, zero-area matrices give the same unaugmented law. Coboundary is the exact transpose, reversing composition; checked degree increment and BasicMatrix errors propagate before output. A nonzero-law diagnostic can occur only within the 0..15 degree support, where its signed payload fits.",
+      "signature": "pub fn verify_boundary_law(&self) -> Result<bool, HomologicalError>"
+    },
+    "impl SimplicialComplex::verify_boundary_law_at": {
+      "body": "{ let composed = self.boundary_composition(k)?; let is_zero = composed.as_slice().iter().all(|x| *x == q(0)); if is_zero { Ok(true) } else { Err(HomologicalError::BoundaryLawViolation { degree: (k - 1) as i32, }) } }",
+      "obligation": "Canonical degree bases give exact Fin-indexed indicator face matrices with coefficient (-1)^removed-index. Distinct vertices make each direct face distinct, so set equals sum at each matrix entry. Two erasures commute with the shifted index (SimplicialClosure.erase_commute), indicator matrices compose (SimplicialBoundary.mapMatrix_comp), and signed_faces_cancel pairs all double-face paths. At degrees 0/1 and outside support, zero-area matrices give the same unaugmented law. Coboundary is the exact transpose, reversing composition; checked degree increment and BasicMatrix errors propagate before output. A nonzero-law diagnostic can occur only within the 0..15 degree support, where its signed payload fits.",
+      "signature": "pub fn verify_boundary_law_at(&self, k: usize) -> Result<bool, HomologicalError>"
+    },
+    "impl SimplicialComplex::verify_coboundary_law": {
+      "body": "{ let max_dim = self.max_dimension(); if max_dim < 2 { return Ok(true); } for k in 1..max_dim { self.verify_coboundary_law_at(k)?; } Ok(true) }",
+      "obligation": "Canonical degree bases give exact Fin-indexed indicator face matrices with coefficient (-1)^removed-index. Distinct vertices make each direct face distinct, so set equals sum at each matrix entry. Two erasures commute with the shifted index (SimplicialClosure.erase_commute), indicator matrices compose (SimplicialBoundary.mapMatrix_comp), and signed_faces_cancel pairs all double-face paths. At degrees 0/1 and outside support, zero-area matrices give the same unaugmented law. Coboundary is the exact transpose, reversing composition; checked degree increment and BasicMatrix errors propagate before output. A nonzero-law diagnostic can occur only within the 0..15 degree support, where its signed payload fits.",
+      "signature": "pub fn verify_coboundary_law(&self) -> Result<bool, HomologicalError>"
+    },
+    "impl SimplicialComplex::verify_coboundary_law_at": {
+      "body": "{ let composed = self.coboundary_composition(k)?; let is_zero = composed.as_slice().iter().all(|x| *x == q(0)); if is_zero { Ok(true) } else { Err(HomologicalError::CoboundaryLawViolation { degree: k as i32 }) } }",
+      "obligation": "Canonical degree bases give exact Fin-indexed indicator face matrices with coefficient (-1)^removed-index. Distinct vertices make each direct face distinct, so set equals sum at each matrix entry. Two erasures commute with the shifted index (SimplicialClosure.erase_commute), indicator matrices compose (SimplicialBoundary.mapMatrix_comp), and signed_faces_cancel pairs all double-face paths. At degrees 0/1 and outside support, zero-area matrices give the same unaugmented law. Coboundary is the exact transpose, reversing composition; checked degree increment and BasicMatrix errors propagate before output. A nonzero-law diagnostic can occur only within the 0..15 degree support, where its signed payload fits.",
+      "signature": "pub fn verify_coboundary_law_at(&self, k: usize) -> Result<bool, HomologicalError>"
+    },
+    "impl TryFrom<ComplexWire> for SimplicialComplex::try_from": {
+      "body": "{ Self::from_simplices(value.simplices) }",
+      "obligation": "Simplex and complex wires re-enter their corresponding constructor gates; oriented wire admits exactly +/-1 on an already admitted simplex. Unknown fields are denied. Complex serialization flattens canonical grouped bases, and deserialization re-closes/re-indexes them, never deserializing private invariant caches. A negative sign on a singleton wire is an admitted chosen orientation, not a claim about an ordering.",
+      "signature": "fn try_from(value: ComplexWire) -> Result<Self, Self::Error>"
+    },
+    "impl TryFrom<OrientedWire> for OrientedSimplex::try_from": {
+      "body": "{ if value.orientation != 1 && value.orientation != -1 { return Err(HomologicalError::BasisMismatch { description: \"orientation must be +1 or -1\".into(), }); } Ok(Self { simplex: value.simplex, orientation: value.orientation, }) }",
+      "obligation": "Simplex and complex wires re-enter their corresponding constructor gates; oriented wire admits exactly +/-1 on an already admitted simplex. Unknown fields are denied. Complex serialization flattens canonical grouped bases, and deserialization re-closes/re-indexes them, never deserializing private invariant caches. A negative sign on a singleton wire is an admitted chosen orientation, not a claim about an ordering.",
+      "signature": "fn try_from(value: OrientedWire) -> Result<Self, Self::Error>"
+    },
+    "impl TryFrom<SimplexWire> for Simplex::try_from": {
+      "body": "{ Self::new(value.vertices) }",
+      "obligation": "Simplex and complex wires re-enter their corresponding constructor gates; oriented wire admits exactly +/-1 on an already admitted simplex. Unknown fields are denied. Complex serialization flattens canonical grouped bases, and deserialization re-closes/re-indexes them, never deserializing private invariant caches. A negative sign on a singleton wire is an admitted chosen orientation, not a claim about an ordering.",
+      "signature": "fn try_from(value: SimplexWire) -> Result<Self, Self::Error>"
+    },
+    "module::canonicalize_vertices": {
+      "body": "{ if vertices.is_empty() { return Err(HomologicalError::EmptyBasis); } vertices.sort_unstable(); for pair in vertices.windows(2) { if pair[1] == pair[0] { return Err(HomologicalError::BasisMismatch { description: \"simplex vertices must be distinct\".to_string(), }); } } Ok(vertices) }",
+      "obligation": "Nonempty strictly ascending or sorted-distinct list admission; failures return EmptyBasis/BasisMismatch before a public record is returned. Standalone records retain arbitrary finite label lists; complex budgets are enforced only on complex admission. Immutable fields preserve admission under safe public observations/clones.",
+      "signature": "fn canonicalize_vertices(mut vertices: Vec<usize>) -> Result<Vec<usize>, HomologicalError>"
+    },
+    "module::close_faces": {
+      "body": "{ if simplices.len() > MAX_SIMPLICES || simplices .iter() .any(|s| s.num_vertices() > MAX_SIMPLEX_VERTICES) { return Err(HomologicalError::ResourceLimit(\"simplicial face closure\")); } let mut all: BTreeSet<Simplex> = BTreeSet::new(); let mut stack = simplices; while let Some(simplex) = stack.pop() { if all.contains(&simplex) { continue; } if all.len() == MAX_SIMPLICES { return Err(HomologicalError::ResourceLimit(\"simplicial face closure\")); } for (face, _) in simplex.faces() { stack.push(face); } all.insert(simplex); } Ok(all) }",
+      "obligation": "Admit at most 16 vertices per simplex, 65535 seeds/faces; move unique owned keys after borrowed duplicate checks. Covers/Frontier/soundness, cardinal and decreasing-potential lemmas apply to every pop/insert step. Finite list erasure generates every direct nonempty face, so repeated closure gives exactly the nonempty seed subsets. Sorted unique BTreeSet traversal gives canonical grouped bases and complete reverse indices; checked maximum label plus one supplies ambient size, not number of occurring labels.",
+      "signature": "fn close_faces(simplices: Vec<Simplex>) -> Result<BTreeSet<Simplex>, HomologicalError>"
+    },
+    "module::permutation_orientation": {
+      "body": "{ if vertices.is_empty() { return Err(HomologicalError::EmptyBasis); } let mut seen = BTreeSet::new(); for vertex in vertices { if !seen.insert(*vertex) { return Err(HomologicalError::BasisMismatch { description: \"oriented simplex vertices must be distinct\".to_string(), }); } } // Only inversion parity is needed. Keeping the parity avoids overflowing // a machine-sized total on a large standalone ordered simplex. let odd = vertices .iter() .enumerate() .fold(false, |parity, (i, left)| { vertices .iter() .skip(i + 1) .fold(parity, |prior, right| prior ^ (left > right)) }); Ok(if odd { -1 } else { 1 }) }",
+      "obligation": "Nonempty distinct arbitrary standalone labels; no complex arity ceiling is implied. XOR over pair comparisons preserves inversion parity without a machine-sized inversion count (DegreeRepair scan_count/orientation_sign); cycle-parity oracle independently checks all permutations through size 6. Sorting copies preserves the sign relative to canonical ascending order.",
+      "signature": "fn permutation_orientation(vertices: &[usize]) -> Result<i8, HomologicalError>"
+    },
+    "module::validate_strict_vertices": {
+      "body": "{ if vertices.is_empty() { return Err(HomologicalError::EmptyBasis); } for pair in vertices.windows(2) { if pair[1] <= pair[0] { return Err(HomologicalError::BasisMismatch { description: format!(\"simplex vertices must be strictly ascending: {:?}\", pair), }); } } Ok(()) }",
+      "obligation": "Nonempty strictly ascending or sorted-distinct list admission; failures return EmptyBasis/BasisMismatch before a public record is returned. Standalone records retain arbitrary finite label lists; complex budgets are enforced only on complex admission. Immutable fields preserve admission under safe public observations/clones.",
+      "signature": "fn validate_strict_vertices(vertices: &[usize]) -> Result<(), HomologicalError>"
+    },
+    "data_declarations": {
+      "ComplexWire": "struct ComplexWire { simplices: Vec<Simplex>, }",
+      "OrientedSimplex": "pub struct OrientedSimplex { simplex: Simplex, orientation: i8, }",
+      "OrientedWire": "struct OrientedWire { simplex: Simplex, orientation: i8, }",
+      "Simplex": "pub struct Simplex { vertices: Vec<usize>, }",
+      "SimplexWire": "struct SimplexWire { vertices: Vec<usize>, }",
+      "SimplicialComplex": "pub struct SimplicialComplex { simplices_by_dim: Vec<Vec<Simplex>>, indices_by_dim: Vec<BTreeMap<Simplex, usize>>, num_vertices: usize, }"
+    }
+  },
+  "invariant_argument": [
+    "Read the Vec worklist from its pop end: the abstract successor list is the reverse of faces(), so membership and length equal the model. Covers and Frontier preserve required seed membership and eventual face closure; fresh_sound with the seed-subset predicate excludes extraneous simplices. The Nat work potential decreases for every pop while count stays below the cap; cap failure emits no object. Each accepted simplex expands once and all direct nonempty removals are enqueued, giving all nonempty subsets. Private sorting/index construction preserves one-to-one canonical bases.",
+    "List erase order/distinctness and shifted-erasure commutation discharge the premises of the signed-face pairing model for each concrete basis coefficient. Finite indicator multiplication sums over the same intermediate faces as BasicMatrix.mul; uniqueness of direct faces justifies stored +/-1 entries. Generic cancellation proves arbitrary admitted higher degrees, not just the finite tested examples.",
+    "For each boundary matrix, canonical signed Q entries satisfy rank checker admission; passed identities instantiate the split-rank theorem. The signed-face theorem supplies zero composition, so image-in-kernel and the quotient dimension proof apply with the same finite chain dimension. The carried rank is immutable numerical data from the previous identical differential and no occupied dimension can be skipped."
+  ],
+  "failure_paths": {
+    "simplex_wire": "EmptyBasis, BasisMismatch, invalid orientation and denied unknown fields are rejected through the same constructor/try_from gates; face singleton and out-of-range errors are explicit. Derived serialization emits admitted owned data.",
+    "closure": "Input cap/arity refusal, distinct-face cap refusal and checked ambient-label overflow happen with only private temporary state. Rust ownership drops that state on returned errors. Library allocator failure/abort is an environment trust contract, not promised recoverable behavior.",
+    "matrices": "Checked area/reservation, index, shape and exact arithmetic errors propagate through the declared MatrixError wrapper; certificate producer and identity errors retain HomologicalError types. No output object or partial Betti vector escapes an error.",
+    "observations": "Borrowed slices/records and clones preserve private state. Out-of-support count/simplices are empty; boundary is zero-area there; checked coboundary next-degree overflow is typed. A nonzero-law diagnostic would require an in-support nonzero product, so its small signed degree payload is representable."
+  },
+  "context_inputs": [
+    {
+      "path": "code/rust/src/homology/rank_certificate.rs",
+      "sha256": "a2145d42c3278ed447eb0b05aae2f20d91c6965634ec68348e79fa16fa52d086"
+    },
+    {
+      "path": "code/rust/src/homology/errors.rs",
+      "sha256": "f694edbe3a30a18ba3dacc85f224bcb504992e73d635f110f0185686e29e4f1c"
+    },
+    {
+      "path": "code/rust/src/homology/exact_scalar.rs",
+      "sha256": "e72bfd4433941e63a4e2e42e6009929f7d2e4200ff4920ddfbabceb56faed737"
+    },
+    {
+      "path": "code/rust/src/homology/hashing.rs",
+      "sha256": "96249ffaff860033e34b2c95b0932ee5eddd743f991f248010ac03a41389be34"
+    },
+    {
+      "path": "code/rust/src/linear_algebra/basic_matrix.rs",
+      "sha256": "ce136b587d3ea3cfd533ccae3fcac3d371fb614ac7b48f6fdf496034b8da243e"
+    },
+    {
+      "path": "code/rust/src/linear_algebra/image_kernel.rs",
+      "sha256": "3bf9e616d17c96fac885f7f87b04cda945528b411b20967a0cfeec7852ee2eec"
+    },
+    {
+      "path": "code/rust/src/linear_algebra/scalars.rs",
+      "sha256": "8ed39bae489f031e3f03f632fadbe3a5112fe1ec1c5b61e9ba7d5af184334b82"
+    },
+    {
+      "path": "code/rust/src/linear_algebra/elimination.rs",
+      "sha256": "e3abf62974017597647ce438fc1d203242df0232e68b23d6b864e23a3cd316b6"
+    },
+    {
+      "path": "code/rust/src/homology/l5a_challenges.rs",
+      "sha256": "14c63502bcecb1e48b2783c28d180b6603222fe6febf2f411cf89931b487de4f"
+    },
+    {
+      "path": "code/rust/src/lib.rs",
+      "sha256": "06c94a48399e77727edc334bd6746accf01a1b3a5fc89f4bfc1db9ebc636c252"
+    },
+    {
+      "path": "code/rust/Cargo.toml",
+      "sha256": "3085a37668527cbaddeeb087b4be204f22983a85ac6fb8657e6f2d3e2bf020d2"
+    }
+  ],
+  "evidence": [
+    {
+      "path": "evidence/quality/category_homology/20261019T051112Z/summary.json",
+      "sha256": "7766a49ff178928fa14267d1b5bda7662aaf6cb7717e73b6d4b06f2c32fa0bb7"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T051112Z/baseline.json",
+      "sha256": "df3b58c283444ffdf47fc1fda2f5859a514c6a5afbdaacd7e92f4b7bc17ae5ad"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T051112Z/restored.json",
+      "sha256": "515f68f9bf8700e2ca6fbe35444e7e25bb0207e25ca82ba38d65fa62fc894c61"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T051112Z/mutations.json",
+      "sha256": "0462cdfb6bafe98305da7e354ac30261a341da713211ded792b1324687566cce"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T051112Z/controls.json",
+      "sha256": "aad932d43742c999e09899c92b86e3f01aa05c99be3e46220ee326a6775aa9d2"
+    },
+    {
+      "path": "code/rust/quality/category_homology/assessments/simplicial_source_review.json",
+      "sha256": "123ccbd2ab9f0f5038c98590476475bc2bb7550b4b9b9ddc0c80c7cefa141f1d"
+    },
+    {
+      "path": "evidence/quality/category_homology/resume-20261019/simplicial-owned-insert-source-delta.json",
+      "sha256": "77a3cb36ac04ef8bbfcf2d9e6f7ecbd55411fbe40fe92fb1a2a41b2b6d0247cd"
+    },
+    {
+      "path": "evidence/quality/category_homology/resume-20261019/simplicial-challenge-correction.json",
+      "sha256": "360a7e63ab4b7b5b44324af26bfb21bad74d7ad0e031dc85345279cd83e02707"
+    },
+    {
+      "path": "evidence/quality/category_homology/resume-20261019/simplicial-current-consumers.log",
+      "sha256": "a16b9b0141d9c2b252974e3466146e3d466d05dff4ebd7b12442f11b86164898"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T050809Z-simplicial-closure-proof/receipt.json",
+      "sha256": "7d01e2aa6c7ef7ce4b55eb1e230eeaa882bcb63267179c940d7315c4187f84a8"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T051010Z-simplicial-boundary-proof/receipt.json",
+      "sha256": "087c2f8eb1833e6a7b0a0c76475b2625d9964701223d3d8605e97b5aee552bc2"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T051607Z-simplicial-homology-proof/receipt.json",
+      "sha256": "eb2fac5671802bd934ffc4f55b0fdc70964df2740c7100f450ab1e658397fa0b"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T040229Z-degree-repair-proof/receipt.json",
+      "sha256": "b78ed6c1239913307973554a1f3d3b9f849d6c770ef1d9fcc7c6e063ecbf4014"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261018T204626Z-rank-proof/receipt.json",
+      "sha256": "5deb8c4ff5f3190bb6f1d2b0df31029bddc2f4e8f15b50874f39a112e9b4dfea"
+    },
+    {
+      "path": "evidence/quality/category_homology/resume-20261019/admission-record-doc-delta.json",
+      "sha256": "f7014dacc0759985e27e85608d1ab0b27d552acd3c021ab2ae248bf3ff593354"
+    },
+    {
+      "path": "evidence/quality/category_homology/resume-20261019/homology-package-identity-correction.json",
+      "sha256": "6347a899100240fd6c643be9d7aa61a7110f9ba9634c4e7f10b537fa4a9ec8cf"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T053739Z/summary.json",
+      "sha256": "4a6f1c52ba447f448920f3ee8e54600206c9121a33c10f241d60dfaf6b7277a6"
+    },
+    {
+      "path": "evidence/quality/category_homology/resume-20261019/storage-admission-context-correction.json",
+      "sha256": "90590295e92f090a6bdc6de8ad0866c8eedba41fc843389f03c26f4418632ab2"
+    },
+    {
+      "path": "code/rust/quality/category_homology/assessments/challenge_consumer_source_review.json",
+      "sha256": "4bfc3a9256a6e077930417de66e50e343f20e53b5d7398a048c6cd2057c576b3"
+    },
+    {
+      "path": "evidence/quality/category_homology/resume-20261019/challenge-consumer-provider-delta.json",
+      "sha256": "3f89c7cfd39317f2c764276ffdea07c331cd0065ba9c5af01c9b32f97e6ea8a8"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T144113Z/summary.json",
+      "sha256": "926cf8bd96caa638604ef654492e406ca1324841cc119b83a7857222024da96b"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T144113Z/baseline.json",
+      "sha256": "e7ae5bd5014c77a2d7e19f5e67adbe8143f74c636a7464effc03cf5bdaf342ff"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T144113Z/restored.json",
+      "sha256": "420eed5339edbb03de6374f286de1f7acd10e0b02a017468f233d7887d5178ed"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T144113Z/dependency_receipt.json",
+      "sha256": "b4b28c3612637d8212d197409228acdc4617b520e6404b47a205191fdc45f5f3"
+    }
+  ],
+  "proof_receipts": [
+    {
+      "path": "evidence/quality/category_homology/20261019T050809Z-simplicial-closure-proof/receipt.json",
+      "sha256": "7d01e2aa6c7ef7ce4b55eb1e230eeaa882bcb63267179c940d7315c4187f84a8",
+      "proof": "code/rust/quality/category_homology/proofs/SimplicialClosure.lean",
+      "mathlib_root": "lean4/.lake/packages/mathlib"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T051010Z-simplicial-boundary-proof/receipt.json",
+      "sha256": "087c2f8eb1833e6a7b0a0c76475b2625d9964701223d3d8605e97b5aee552bc2",
+      "proof": "code/rust/quality/category_homology/proofs/SimplicialBoundary.lean",
+      "mathlib_root": "lean4/.lake/packages/mathlib"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T051607Z-simplicial-homology-proof/receipt.json",
+      "sha256": "eb2fac5671802bd934ffc4f55b0fdc70964df2740c7100f450ab1e658397fa0b",
+      "proof": "code/rust/quality/category_homology/proofs/SimplicialHomology.lean",
+      "mathlib_root": "lean4/.lake/packages/mathlib"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T040229Z-degree-repair-proof/receipt.json",
+      "sha256": "b78ed6c1239913307973554a1f3d3b9f849d6c770ef1d9fcc7c6e063ecbf4014",
+      "proof": "code/rust/quality/category_homology/proofs/DegreeRepair.lean",
+      "mathlib_root": "lean4/.lake/packages/mathlib"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261018T204626Z-rank-proof/receipt.json",
+      "sha256": "5deb8c4ff5f3190bb6f1d2b0df31029bddc2f4e8f15b50874f39a112e9b4dfea",
+      "proof": "code/rust/quality/category_homology/proofs/RankCertificate.lean",
+      "mathlib_root": "lean4/.lake/packages/mathlib"
+    }
+  ],
+  "trust_boundary": {
+    "formal": "Lean kernel, pinned clean Mathlib, propext/Classical.choice/Quot.sound only. The homology model required an explicit 1536 MiB cap after two 1024 MiB memory failures; no failed proof is admitted.",
+    "runtime": "Captured rustc/std and crate dependencies, serde derive/try_from, safe BTreeSet/BTreeMap/Vec contracts, checked BasicMatrix storage/arithmetic, canonical arbitrary-precision Q, and the separately assessed rank checker. Rust/source-to-finite-matrix representation is explicitly reviewed, not compiler extracted.",
+    "scope": "Standalone library component and its actual peer/native composition boundary. Whole external application execution, runtime crash-freedom and allocator totality are not claimed."
+  },
+  "consumer_review": [
+    "The root local crate declares pub mod homology and the native campaign preserves its parent-scope/data contracts. Local l5a_challenges and direct local code use these immutable canonical types and constructor gates; no public field/wire-cache bypass exists.",
+    "GR, sheaf and WDP imports of omega_homology resolve to a separate dependency with different source. The prior assertion that this local 16-vertex cap caused an external DiscreteSpacetime panic is withdrawn. No external runtime result or grade is claimed; corrected package identities are explicitly pinned."
+  ],
+  "assurance_limits": [
+    "A for this component is source/model/native-bound evidence under the declared runtime trust; no A+, Rust/MIR theorem, allocator benchmark/totality, formal AST bijection, external caller-grade or whole-workspace green.",
+    "Finite native challenges support the source/proof correspondence but are not an exhaustive arbitrary-complex enumeration. Rational ranks/Betti dimensions do not compute integral torsion or confer physical/publication authority.",
+    "Contracts remain pending and are not attached by this assessment."
+  ],
+  "open_findings": [],
+  "consumer_delta_review": {
+    "previous_assessment": {
+      "path": "code/rust/quality/category_homology/assessments/storage_provider_refresh/simplicial.json",
+      "sha256": "cecfe5c35479a07df15a6f017855055e08685d4dd04fc5f4f3fee66a5370a0c4"
+    },
+    "changed": [
+      {
+        "previous": {
+          "path": "code/rust/src/homology/l5a_challenges.rs",
+          "sha256": "0cf95ea5101a91630317a8b76065c71d9b8db01d4846d0169cf87df7a2f01ca6"
+        },
+        "current": {
+          "path": "code/rust/src/homology/l5a_challenges.rs",
+          "sha256": "14c63502bcecb1e48b2783c28d180b6603222fe6febf2f411cf89931b487de4f"
+        }
+      }
+    ],
+    "argument": {
+      "AuthorityEffect": "None",
+      "source_review": {
+        "path": "code/rust/quality/category_homology/assessments/challenge_consumer_source_review.json",
+        "sha256": "4bfc3a9256a6e077930417de66e50e343f20e53b5d7398a048c6cd2057c576b3"
+      },
+      "new_primary": {
+        "path": "evidence/quality/category_homology/20261019T144113Z/summary.json",
+        "sha256": "926cf8bd96caa638604ef654492e406ca1324841cc119b83a7857222024da96b"
+      },
+      "scope": "Only assessed test file changes: extract identical four-label merge loop and add one non-overflow coboundary mismatch assertion; thirteen preceding bodies remain equal. Production sources unchanged. Fresh full baseline and consumer provider-fault sensitivity are current composition evidence, not a rerun of every historical provider-own mutant."
+    }
+  }
+}

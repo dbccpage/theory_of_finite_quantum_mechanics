@@ -48,6 +48,7 @@ fn map_admission_and_application_reject_wrong_degrees() {
     use boundary::BoundaryMap;
     use coboundary::CoboundaryMap;
     assert!(BoundaryMap::new(Degree(0), Degree(1), matrix(1, 1, &[1])).is_err());
+    assert!(CoboundaryMap::new(Degree(0), Degree(0), matrix(1, 1, &[1])).is_err());
     assert!(CoboundaryMap::new(Degree(i32::MAX), Degree(0), matrix(1, 1, &[1])).is_err());
     assert!(BoundaryMap::new(Degree(i32::MIN), Degree(0), matrix(1, 1, &[1])).is_err());
     let down = BoundaryMap::new(Degree(1), Degree(0), matrix(1, 1, &[1])).unwrap();
@@ -216,24 +217,29 @@ fn graph_betti_numbers_match_combinatorial_component_oracle() {
             .filter(|(i, _)| bits & (1 << i) != 0)
             .map(|(_, e)| *e)
             .collect();
-        let mut labels = [0, 1, 2, 3];
-        for &(a, b) in &edges {
-            let from = labels[b];
-            let to = labels[a];
-            for label in &mut labels {
-                if *label == from {
-                    *label = to;
-                }
-            }
-        }
-        let components = labels
-            .into_iter()
-            .collect::<std::collections::BTreeSet<_>>()
-            .len();
+        let components = four_vertex_components(&edges);
         let c = exact_carrier::graph_carrier(4, &edges, &[], vec![q(1); edges.len()]).unwrap();
         assert_eq!(c.dim_h1(), edges.len() + components - 4);
         assert!(carrier_manifest::CarrierManifest::from_carrier(&c).verifies(c.as_ref()));
     }
+}
+
+// Only the six fixed in-range pairs above feed this independent test oracle.
+fn four_vertex_components(edges: &[(usize, usize)]) -> usize {
+    let mut labels = [0, 1, 2, 3];
+    for &(a, b) in edges {
+        let from = labels[b];
+        let to = labels[a];
+        for label in &mut labels {
+            if *label == from {
+                *label = to;
+            }
+        }
+    }
+    labels
+        .into_iter()
+        .collect::<std::collections::BTreeSet<_>>()
+        .len()
 }
 
 #[test]

@@ -52,15 +52,22 @@ def main():
     subjects = json.loads(policy.read_text(encoding="utf-8"))["records"]
     declarations, controls, records = {}, [], []
     for subject in subjects:
-        path = ROOT/subject["path"]
-        if digest(path) != subject["sha256"]:
+        artifact = ROOT/subject["path"]
+        if digest(artifact) != subject["sha256"]:
             raise ValueError("Policy source drift: " + subject["path"])
+        consumer = subject.get("consumer_challenge",False)
+        path = ROOT/subject["provider_path"] if consumer else artifact
+        if consumer and (subject.get("native_context") != "homology" or
+                         artifact.name != "l5a_challenges.rs" or
+                         digest(path) != subject["provider_sha256"] or
+                         path.parent != artifact.parent):
+            raise ValueError("Consumer challenge needs a pinned same-module provider and full native context")
         source = path.read_text(encoding="utf-8")
         copies = [("control",source,"",""),*([] if args.controls_only else variants(subject,source))]
         for tag, candidate, needle, replacement in copies:
             index = len(controls)+len(records)
             module = "degree_repair_replay_"+str(index)
-            raw_candidate=candidate+challenge(subject)
+            raw_candidate=candidate if consumer else candidate+challenge(subject)
             context=None
             if subject.get("native_context") == "homology":
                 # The Carrier/manifest nominal types refer back to one another
@@ -82,7 +89,9 @@ def main():
                 declarations.setdefault(subject["family"],[]).append(
                     f'#[cfg(test)]\n#[allow(dead_code, unused_imports, unused_variables)]\n#[path={quoted}] mod {module};')
                 nested="" if path.name=="mod.rs" else path.stem+"::"
-                selected="homology::"+module+"::"+("" if tag=="control" else nested+subject.get("independent_module","independent_storage_admission")+"::")
+                selected="homology::"+module+"::"+(
+                    "l5a_challenges::" if consumer else
+                    "" if tag=="control" else nested+subject.get("independent_module","independent_storage_admission")+"::")
             else:
                 file = generated/("n"+str(index)+".rs")
                 file.write_text(raw_candidate,encoding="utf-8")
@@ -102,6 +111,15 @@ def main():
                     "rename_from":"crate::homology::","rename_to":prefix,
                     "unrenamed_candidate_sha256":hashlib.sha256(raw_candidate.encode("utf-8")).hexdigest(),
                     "scope":"Complete same-source homology context, reversible uniform crate path rename; one designated fault, no provider/visibility replacement. Control runs all context tests; mutant runs its independent subject fixtures."}
+                if consumer:
+                    consumer_file=context/artifact.name
+                    if consumer_file.read_text(encoding="utf-8").replace(prefix,"crate::homology::") != artifact.read_text(encoding="utf-8"):
+                        raise ValueError("Consumer challenge changed the assessed test source")
+                    record["provider_fault"]={"path":subject["provider_path"],"original_sha256":subject["provider_sha256"],
+                        "candidate_path":file.relative_to(ROOT).as_posix(),"candidate_sha256":digest(file)}
+                    record["unchanged_consumer"]={"path":subject["path"],"sha256":subject["sha256"],
+                        "context_path":consumer_file.relative_to(ROOT).as_posix(),"context_sha256":digest(consumer_file)}
+                    record["native_context"]["scope"]="Complete same-source homology; reversible crate-path rename. Fault injected only into the explicitly recorded production provider; assessed consumer test bodies unchanged. Control and mutant execute only that consumer's tests. Not a mutation of the test artifact itself."
             if tag == "control":
                 controls.append(record)
             else:

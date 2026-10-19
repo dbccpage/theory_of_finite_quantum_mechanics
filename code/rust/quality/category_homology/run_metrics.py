@@ -13,6 +13,8 @@ from run_audit import ROOT, RUST, clear_debug_outputs, digest, execute, execute_
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--jobs", type=int, default=2)
+    parser.add_argument("--test-body-view", type=Path,
+        help="Also measure a source-bound test file with only standalone #[test] attributes blanked; never compile this view.")
     args = parser.parse_args()
     if args.jobs < 1:
         parser.error("positive compiler job count required")
@@ -44,6 +46,26 @@ def main():
         if runs[-1]["exit_code"] != 0:
             raise RuntimeError("AST metric build failed")
         paths = sorted(key for key in sources if key.endswith(".rs"))
+        if args.test_body_view:
+            original = args.test_body_view.resolve()
+            if original.relative_to(ROOT).as_posix() not in sources:
+                raise RuntimeError("Test view must name an inventoried Rust source")
+            data = original.read_text(encoding="utf-8")
+            lines = data.splitlines(keepends=True)
+            count = sum(line.strip() == "#[test]" for line in lines)
+            if not count:
+                raise RuntimeError("No standalone test attributes in requested view")
+            view = receipt/"test-body-view.rs"
+            # Preserve every body, line number and all other attributes. This is
+            # an explicit AST view, never an alternate compiled implementation.
+            view.write_text("".join(line.replace("#[test]"," "*7) if line.strip() == "#[test]" else line
+                                    for line in lines),encoding="utf-8",newline="\n")
+            write_json(receipt/"test-body-view.json",{
+                "original":original.relative_to(ROOT).as_posix(),"original_sha256":digest(original),
+                "view":view.relative_to(ROOT).as_posix(),"view_sha256":digest(view),
+                "blanked_test_attributes":count,
+                "scope":"Standalone #[test] attributes blanked, every body/line/other attribute preserved; AST metrics only, no compilation or cfg expansion."})
+            paths.append(view.relative_to(ROOT).as_posix())
         # Relative paths keep the output portable; the execution cwd is bound.
         runs.append(execute([str(copied_binary), *paths], ROOT, receipt / "metrics.json"))
         if runs[-1]["exit_code"] != 0:
