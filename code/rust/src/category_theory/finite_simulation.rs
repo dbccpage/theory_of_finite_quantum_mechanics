@@ -1,6 +1,10 @@
 //! Checked simulations and conservative resource extensions of finite dynamics.
 //! A successful exact check reflects availability. An extension preserves every
 //! old defined step but may add availability, which is listed explicitly.
+//! Replay accepts the exact computed decision, including mismatch diagnostics;
+//! only `Checked` establishes simulation. Map/encoding refusals precede the
+//! checked cell estimate, which is not a byte/time/allocator bound.
+//! AuthorityEffect: None.
 use crate::finite_continuation::PartialDynamics;
 use std::collections::BTreeSet;
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -34,14 +38,12 @@ pub enum SimulationDecision {
 }
 /// All maps and event macros are explicit. Readout labels must share one declared
 /// interpretation; mere numerical equality does not supply a semantic dictionary.
-pub fn check_simulation(
+fn admit_map(
     source: &PartialDynamics,
     target: &PartialDynamics,
     map: &[usize],
-    words: &[Vec<usize>],
     mode: SimulationMode,
-    max_cells: usize,
-) -> Result<SimulationDecision, SimulationError> {
+) -> Result<(), SimulationError> {
     if map.len() != source.reports().len()
         || map.iter().any(|&t| t >= target.reports().len())
         || (mode == SimulationMode::ResourceExtension
@@ -49,6 +51,14 @@ pub fn check_simulation(
     {
         return Err(SimulationError::InvalidMap);
     }
+    Ok(())
+}
+
+fn admit_encoding(
+    source: &PartialDynamics,
+    target: &PartialDynamics,
+    words: &[Vec<usize>],
+) -> Result<(), SimulationError> {
     if words.len() != source.transitions()[0].len()
         || words
             .iter()
@@ -57,39 +67,95 @@ pub fn check_simulation(
     {
         return Err(SimulationError::InvalidEncoding);
     }
+    Ok(())
+}
+
+fn admit_budget(
+    states: usize,
+    words: &[Vec<usize>],
+    max_cells: usize,
+) -> Result<(), SimulationError> {
     let width = words
         .iter()
         .try_fold(1usize, |n, w| n.checked_add(w.len().checked_add(1)?));
     if width
-        .and_then(|n| n.checked_mul(map.len()))
+        .and_then(|n| n.checked_mul(states))
         .is_none_or(|n| n > max_cells)
     {
         return Err(SimulationError::WorkLimit);
     }
-    let mut added = Vec::new();
-    for (s, &t) in map.iter().enumerate() {
-        if source.reports()[s] != target.reports()[t] {
-            return Ok(SimulationDecision::ReportMismatch {
-                state: s,
-                source_report: source.reports()[s],
-                target_report: target.reports()[t],
-            });
+    Ok(())
+}
+
+fn compare_step(
+    expected: Option<usize>,
+    actual: Option<usize>,
+    mode: SimulationMode,
+    coordinate: (usize, usize),
+    added: &mut Vec<(usize, usize)>,
+) -> Option<SimulationDecision> {
+    if expected.is_none() && actual.is_some() && mode == SimulationMode::ResourceExtension {
+        added.push(coordinate);
+        None
+    } else if expected != actual {
+        Some(SimulationDecision::StepMismatch {
+            state: coordinate.0,
+            input: coordinate.1,
+            expected,
+            actual,
+        })
+    } else {
+        None
+    }
+}
+
+/// Called only after map/encoding admission, in source-state order.
+fn check_state(
+    source: &PartialDynamics,
+    target: &PartialDynamics,
+    map: &[usize],
+    words: &[Vec<usize>],
+    mode: SimulationMode,
+    state: usize,
+    added: &mut Vec<(usize, usize)>,
+) -> Result<Option<SimulationDecision>, SimulationError> {
+    let t = map[state];
+    if source.reports()[state] != target.reports()[t] {
+        return Ok(Some(SimulationDecision::ReportMismatch {
+            state,
+            source_report: source.reports()[state],
+            target_report: target.reports()[t],
+        }));
+    }
+    for (a, w) in words.iter().enumerate() {
+        let expected = source.transitions()[state][a].map(|s| map[s]);
+        let actual = target
+            .run(t, w)
+            .map_err(|_| SimulationError::InvalidEncoding)?;
+        if let Some(mismatch) = compare_step(expected, actual, mode, (state, a), added) {
+            return Ok(Some(mismatch));
         }
-        for (a, w) in words.iter().enumerate() {
-            let expected = source.transitions()[s][a].map(|s| map[s]);
-            let actual = target
-                .run(t, w)
-                .map_err(|_| SimulationError::InvalidEncoding)?;
-            if expected.is_none() && actual.is_some() && mode == SimulationMode::ResourceExtension {
-                added.push((s, a));
-            } else if expected != actual {
-                return Ok(SimulationDecision::StepMismatch {
-                    state: s,
-                    input: a,
-                    expected,
-                    actual,
-                });
-            }
+    }
+    Ok(None)
+}
+
+/// All maps and event macros are explicit. Readout labels must share one declared
+/// interpretation; mere numerical equality does not supply a semantic dictionary.
+pub fn check_simulation(
+    source: &PartialDynamics,
+    target: &PartialDynamics,
+    map: &[usize],
+    words: &[Vec<usize>],
+    mode: SimulationMode,
+    max_cells: usize,
+) -> Result<SimulationDecision, SimulationError> {
+    admit_map(source, target, map, mode)?;
+    admit_encoding(source, target, words)?;
+    admit_budget(map.len(), words, max_cells)?;
+    let mut added = Vec::new();
+    for state in 0..map.len() {
+        if let Some(mismatch) = check_state(source, target, map, words, mode, state, &mut added)? {
+            return Ok(mismatch);
         }
     }
     Ok(SimulationDecision::Checked {

@@ -981,3 +981,21 @@ remain retained without mutation success credit.
 20261019T190022Z-score-verification passes 152 completed records, 192 source/score
 digests and 37 groups. Cleanup checkpoint152 has zero owned compiled/debug/tmp
 outputs. Forty category files and contracts remain; full goal open and PR draft.
+
+
+Checkpoint 153: finite simulation L3A
+
+Separate map, encoding, checked-budget and ordered state/step phases preserve
+public signatures, exact diagnostic precedence and extension availability order.
+Seven bodies now have max CCN7/cognitive6/nesting2; original17/21/3 ceiling and
+source are retained. All34 compiler-valid faults are detected. Native controls
+cover31104 bounded two-state/one-event combinations (23328 admitted), plus two-
+event order, empty alphabets, range/shape refusal and scalar overflow cases.
+Sixteen clean Lean statements include exact simulation for every encoded word.
+Replay verifies the complete decision, including a mismatch; only Checked
+establishes compatibility. Readout dictionaries and cell/time/byte limits remain
+explicit premises/boundaries. Initial two-event expected-value typo/control
+failure remains recorded with34 unrun, not successful mutation credit.
+20261019T190759Z-score-verification passes all153 completed records and192 source/
+score digests in38 groups. Cleanup checkpoint153 has no owned compiled/debug/tmp
+outputs.39 category files, contracts and full goal remain; PR draft.

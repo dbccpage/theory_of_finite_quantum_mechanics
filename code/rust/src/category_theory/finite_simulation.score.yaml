@@ -3,65 +3,102 @@ schema_version: "2.0.0"
 artifact:
   path: "code/rust/src/category_theory/finite_simulation.rs"
   language: "Rust"
-  sha256: "214451d78b39398794d6a1b8a878b0e8c373f3a0d750a7f6c031fa3c0832c1c2"
+  sha256: "503da98d73a0680e1615d7e754da00357f6c85be8a28aea8e553d28853138d12"
 profile: "Exact"
 level: "L3"
 level_basis: "Conservative bounded-domain classification; no upgrade based solely on terminology or module size."
 architecture_target: "L5"
 engineering_target: "A"
 gates:
-  G1: null
-  G2: null
-  G3: null
-  G4: null
-  G5: null
-composite_grade: null
-score_token: null
-is_complete: false
-grade_ceiling: "C"
-evaluation_timestamp: "2026-10-18T18:42:03+00:00"
+  G1: "A"
+  G2: "A"
+  G3: "A"
+  G4: "A"
+  G5: "A"
+composite_grade: "A"
+score_token: "L3A"
+is_complete: true
+grade_ceiling: "A"
+evaluation_timestamp: "2026-10-19T19:07:52.739522+00:00"
 AuthorityEffect: "None"
 claim:
   urn: "urn:tfqm:rust:category_theory:finite_simulation"
-  description: "Checked simulations and conservative resource extensions of finite dynamics. A successful exact check reflects availability. An extension preserves every old defined step but may add availability, which is listed explicitly."
+  description: "Checked simulations and conservative resource extensions of finite dynamics. A successful exact check reflects availability. An extension preserves every old defined step but may add availability, which is listed explicitly. Replay accepts the exact computed decision, including mismatch diagnostics; only `Checked` establishes simulation. Map/encoding refusals precede the checked cell estimate, which is not a byte/time/allocator bound. AuthorityEffect: None."
   scope: "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified."
 contract:
   status: "pending"
   path: null
   note: "Reserved for a later user-requested contract; none created or asserted here."
 evidence:
-  - {"path": "evidence/quality/category_homology/20261018T184203Z/baseline.json", "sha256": "e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c", "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."}
-  - {"path": "evidence/quality/category_homology/20261018T184203Z/summary.json", "sha256": "ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67", "scope": "Source snapshot binding and complete six-outcome accounting."}
-  - {"path": "evidence/quality/category_homology/20261018T184203Z/mutations.json", "sha256": "c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5", "scope": "Designated critical faults only; outcomes for this file are enumerated below."}
-  - {"path": "evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json", "sha256": "86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1", "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."}
+  - {"path": "evidence/quality/category_homology/20261019T190548Z/baseline.json", "sha256": "c6ad607ad546df01fdec3afa24d816af7e1fee8dc81ba77ebabbe26445211c1c", "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."}
+  - {"path": "evidence/quality/category_homology/20261019T190548Z/summary.json", "sha256": "8de38d1111036b8ad3e158d2cbcd7b520452647076162fc1a12a235b070646e3", "scope": "Source snapshot binding and complete six-outcome accounting."}
+  - {"path": "evidence/quality/category_homology/20261019T190548Z/mutations.json", "sha256": "63716af05bca7b48648208c66960b16f116947db029a570f86b3bd7793a76d77", "scope": "Designated critical faults only; outcomes for this file are enumerated below."}
+  - {"path": "evidence/quality/category_homology/20261019T190412Z-metrics/receipt.json", "sha256": "5ec367dc99fc0f662caeeebc424b160f7845db3c4cdee82c04b0d785cd329b47", "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."}
+  - {"path": "evidence/quality/category_homology/20261019T190548Z/dependency_receipt.json", "sha256": "f8f264c6c020ea56d10a2ef62b7151467037f5af501543ac250d8c1b27239ec0", "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred."}
+  - {"path": "code/rust/quality/category_homology/assessments/finite_simulation.json", "sha256": "019dd1db51ba958be673041c0fbf813345352ae59f22a5be85bea29d36ac9cfc", "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping."}
 verification:
   baseline_ok: true
   source_snapshot_unchanged: true
-  compiled_scope: "shared scoped crate build"
-  local_mutant_ids: []
+  compiled_scope: "Actual category crate and one-fault copies inside their real parent scopes; no visibility widening or provider replacement"
+  local_mutant_ids:
+    - "RR-1-0"
+    - "RR-2-1"
+    - "RR-3-2"
+    - "RR-4-3"
+    - "RR-5-4"
+    - "RR-6-5"
+    - "RR-7-6"
+    - "RR-8-7"
+    - "RR-9-8"
+    - "RR-10-9"
+    - "RR-11-10"
+    - "RR-12-11"
+    - "RR-13-12"
+    - "RR-14-13"
+    - "RR-15-14"
+    - "RR-16-15"
+    - "RR-17-16"
+    - "RR-18-17"
+    - "RR-19-18"
+    - "RR-20-19"
+    - "RR-21-20"
+    - "RR-22-21"
+    - "RR-23-22"
+    - "RR-24-23"
+    - "RR-25-24"
+    - "RR-26-25"
+    - "RR-27-26"
+    - "RR-28-27"
+    - "RR-29-28"
+    - "RR-30-29"
+    - "RR-31-30"
+    - "RR-32-31"
+    - "RR-33-32"
+    - "RR-34-33"
+  dependency_contents_stable: true
 mutation_accounting:
-  killed: 0
+  killed: 34
   survived: 0
   demonstrably_equivalent: 0
   invalid: 0
   inconclusive: 0
   unrun: 0
-  conservative_ratio: null
+  conservative_ratio: 1.0
 structure:
   tool: "syn 3.0.9 source AST"
   source_ast_parsed: true
   expanded_ast: false
-  physical_lines: 113
-  parsed_production_functions: 2
-  max_production_ccn: 17
-  cognitive_complexity_upper_bound: 21
-  control_nesting: 3
+  physical_lines: 179
+  parsed_production_functions: 7
+  max_production_ccn: 7
+  cognitive_complexity_upper_bound: 6
+  control_nesting: 2
   opaque_function_macros: []
-  functions_exceeding_A:
-    - {"ccn": 17, "cognitive_upper_bound": 21, "control_nesting": 3, "line": 37, "name": "check_simulation", "opaque_macros": []}
+  functions_exceeding_A: []
   scope: "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
-open_findings:
-  - "A complete five-gate semantic, failure and consumer audit has not been established for this file."
-  - "Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds."
-  - "External path dependency source contents have not received a separate origin/content attestation."
-  - "Declared source metrics impose a conservative C ceiling; exceeding functions are listed in structure. Cognitive values are upper bounds, not counterexamples to semantic correctness."
+open_findings: []
+assurance_limits:
+  - "L3 bounded-domain algorithm and typed complete decision replay; no upgrade to L5 certificate-carrying architecture merely from verifying an enum. All other category/homology file grades remain independent."
+  - "Only Checked establishes step compatibility. verify_simulation Ok can also authenticate a canonical incompatibility decision; callers must inspect variant. Exact accepts noninjective maps, extension requires injection, neither requires surjectivity. Empty target macros are valid."
+  - "Readout labels must already share a semantic dictionary; numeric equality does not construct one. No physical resource theorem, causality, infinite machine, global step bound or availability inference outside admitted tables. Extension may introduce new availability; it is not exact reflection."
+  - "Pure Lean partial functions prove encoded-word lifting from exact pointwise step compatibility. Rust admission, map/refusal order, finite storage and first diagnostic refinement use source/native evidence; no Rust extraction or independent compiler/MIR/A+ assurance. Cell estimate is not bytes/time/allocator admission. Contracts pending."
