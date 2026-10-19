@@ -89,6 +89,7 @@ pub fn names() -> Vec<String> {
         "real-field-compositum-degrees",
         "quintic-splitting-algebras",
         "spectral-factor-binding",
+        "textbook-atlas",
     ]
     .into_iter()
     .map(str::to_owned)
@@ -173,6 +174,7 @@ pub fn run(name: &str, input: &Value) -> Result<Value, String> {
         }
         "quintic-splitting-algebras" => crate::linear_algebra::quintic_split::evaluate_request(value),
         "spectral-factor-binding" => crate::linear_algebra::entropy_dichotomy::cyclotomic_density::spectral_factor_binding::evaluate_request(input),
+        "textbook-atlas" => crate::qm::textbook_problems::run_textbook_atlas(),
         _ if name.starts_with("target-") || name.starts_with("c500-b") => {
             crate::legacy_suites::run_legacy_target(&format!("--{name}"))
         }

@@ -1,0 +1,98 @@
+"""Tests for the 65-question QM Problem & Proof Atlas and textbook problem solvers (Q58-Q65)."""
+from __future__ import annotations
+
+from pathlib import Path
+import sys
+
+REPO_ROOT = Path(__file__).resolve().parents[3]
+if str(REPO_ROOT / "code" / "python") not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT / "code" / "python"))
+if str(REPO_ROOT / "scripts") not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT / "scripts"))
+
+from src.qm.textbook_problems import (  # noqa: E402
+    build_qm_question_atlas,
+    run_textbook_atlas,
+    solve_q58_infinite_square_well,
+    solve_q59_harmonic_oscillator_fock,
+    solve_q60_potential_barrier_transfer,
+    solve_q61_stern_gerlach_and_rabi,
+    solve_q62_clebsch_gordan_two_spins,
+    solve_q63_perturbation_and_stark,
+    solve_q64_pancharatnam_berry_phase,
+    solve_q65_fermi_golden_rule_and_revival,
+)
+from verify_qm_atlas_loc import verify_qm_atlas_loc  # noqa: E402
+
+
+def test_textbook_problems_q58_to_q65_exact_invariants() -> None:
+    q58 = solve_q58_infinite_square_well()
+    assert q58["trace_l3"] == "6"
+    assert q58["det_l3"] == "4"
+    assert q58["mode_node_counts"] == [0, 1, 2]
+    assert q58["sturm_oscillation_verified"] is True
+
+    q59 = solve_q59_harmonic_oscillator_fock()
+    assert q59["interior_energies"] == ["1/2", "3/2", "5/2"]
+    assert q59["commutator_diagonal"] == ["1", "1", "1", "-3"]
+    assert q59["commutator_trace"] == "0"
+    assert q59["interior_canonical_spacing_verified"] is True
+
+    q60 = solve_q60_potential_barrier_transfer()
+    assert q60["transfer_det"] == "1"
+    assert q60["sub_barrier_transmission"] == "16/25"
+    assert q60["sub_barrier_reflection"] == "9/25"
+    assert q60["flux_conservation_verified"] is True
+
+    q61 = solve_q61_stern_gerlach_and_rabi()
+    assert q61["two_filter_prob"] == "0"
+    assert q61["three_filter_regeneration_prob"] == "1/4"
+    assert q61["rabi_survival_prob"] == "49/625"
+    assert q61["rabi_flip_prob"] == "576/625"
+    assert q61["regeneration_and_unitarity_verified"] is True
+
+    q62 = solve_q62_clebsch_gordan_two_spins()
+    assert q62["singlet_projector_trace"] == "1"
+    assert q62["triplet_projector_trace"] == "3"
+    assert q62["singlet_casimir"] == "0"
+    assert q62["triplet_casimir"] == "2"
+    assert q62["decomposition_verified"] is True
+
+    q63 = solve_q63_perturbation_and_stark()
+    assert q63["rs_second_order_e1"] == "7/8"
+    assert q63["rs_second_order_e2"] == "25/8"
+    assert q63["stark_linear_splitting"] == "3/5"
+    assert q63["secular_diagonalization_verified"] is True
+
+    q64 = solve_q64_pancharatnam_berry_phase()
+    assert q64["gauge_loop_factor_re"] == "1"
+    assert q64["gauge_loop_factor_im"] == "0"
+    assert q64["octant_bargmann_re"] == "1"
+    assert q64["octant_bargmann_im"] == "1"
+    assert q64["u1_rephasing_invariance_verified"] is True
+    assert q64["octant_phase_tan_eq_one_verified"] is True
+
+    q65 = solve_q65_fermi_golden_rule_and_revival()
+    assert q65["short_time_exact_cayley"] == "400/10201"
+    assert q65["short_time_fgr_quadratic"] == "1/25"
+    assert q65["turnover_transition_prob"] == "1"
+    assert q65["revival_survival_prob"] == "1"
+    assert q65["onset_and_heisenberg_revival_verified"] is True
+
+
+def test_qm_atlas_all_65_questions_and_loc_verifier() -> None:
+    atlas = build_qm_question_atlas()
+    assert len(atlas) == 65
+
+    suite_report = run_textbook_atlas()
+    assert suite_report["total_questions"] == 65
+    assert suite_report["all_textbook_problems_verified"] is True
+    assert suite_report["all_65_verified"] is True
+
+    loc_report = verify_qm_atlas_loc(REPO_ROOT)
+    assert loc_report["all_passed"] is True, f"LOC verifier errors: {loc_report}"
+    assert loc_report["verified_links"] >= 400
+    assert loc_report["missing_q_ids"] == []
+    assert loc_report["loc_errors"] == []
+    assert loc_report["symbol_errors"] == []
+    assert loc_report["forbidden_hits"] == []

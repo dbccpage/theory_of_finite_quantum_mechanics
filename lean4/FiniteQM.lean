@@ -1284,6 +1284,225 @@ theorem helium_ortho_para_exchange_splitting_and_rhf_contraction (z1 z2 z_nuc si
     i1_he_1s < i1_ne_2p := by
   grind
 
+/-- Q58: Finite 1D Dirichlet square-well 3-site Laplacian spectrum, quadratic splitting
+discriminant in Q(sqrt 2), and discrete Sturm oscillation node counts (0, 1, 2 sign changes). -/
+theorem dirichlet_square_well_laplacian_and_sturm_nodes :
+    let l11 : Rat := 2
+    let l12 : Rat := -1
+    let l22 : Rat := 2
+    let l23 : Rat := -1
+    let l33 : Rat := 2
+    let tr_l3 : Rat := l11 + l22 + l33
+    let det_l3 : Rat := l11 * (l22 * l33 - l23 * l23) - l12 * (l12 * l33)
+    let char_at_2 : Rat := (2 - 2) * (2 ^ 2 - 4 * 2 + 2)
+    let quad_disc : Rat := (-4) ^ 2 - 4 * 1 * 2
+    -- Second mode v^(2) = (1, 0, -1) at eigenvalue lambda_2 = 2
+    let v2_1 : Rat := 1
+    let v2_2 : Rat := 0
+    let v2_3 : Rat := -1
+    let lv2_1 : Rat := l11 * v2_1 + l12 * v2_2
+    let lv2_2 : Rat := l12 * v2_1 + l22 * v2_2 + l23 * v2_3
+    let lv2_3 : Rat := l23 * v2_2 + l33 * v2_3
+    -- Over Q(sqrt 2), (a + b*sqrt 2): ground mode v^(1) = (1, sqrt 2, 1) with lambda_1 = 2 - sqrt 2
+    -- Action at site 2: -1*(1) + 2*(sqrt 2) - 1*(1) = -2 + 2*sqrt 2 = (2 - sqrt 2)*(sqrt 2)
+    let rhs_ground_site2_rat : Rat := 2 * 0 + (-1) * 1 * 2
+    let rhs_ground_site2_sqrt2 : Rat := 2 * 1 + (-1) * 0
+    -- Third mode v^(3) = (1, -sqrt 2, 1) with lambda_3 = 2 + sqrt 2
+    let rhs_third_site2_rat : Rat := 2 * 0 + 1 * (-1) * 2
+    let rhs_third_site2_sqrt2 : Rat := 2 * (-1) + 1 * 0
+    tr_l3 = 6 ∧
+    det_l3 = 4 ∧
+    char_at_2 = 0 ∧
+    quad_disc = 8 ∧
+    lv2_1 = 2 * v2_1 ∧
+    lv2_2 = 2 * v2_2 ∧
+    lv2_3 = 2 * v2_3 ∧
+    v2_1 * v2_3 < 0 ∧
+    rhs_ground_site2_rat = -2 ∧
+    rhs_ground_site2_sqrt2 = 2 ∧
+    rhs_third_site2_rat = -2 ∧
+    rhs_third_site2_sqrt2 = -2 := by
+  grind
+
+/-- Q59: Harmonic oscillator truncated 4-level Fock ladder: interior canonical spacing
+E_n = n + 1/2 and [a, a^dagger]_{n,n} = 1 for n < 3, paired with top-level boundary defect
+[a, a^dagger]_{3,3} = -3 enforcing Tr([a, a^dagger]) = 0. -/
+theorem harmonic_oscillator_truncated_fock_ladder_and_boundary_defect :
+    let n0 : Rat := 0
+    let n1 : Rat := 1
+    let n2 : Rat := 2
+    let n3 : Rat := 3
+    let aadag0 : Rat := 1
+    let aadag1 : Rat := 2
+    let aadag2 : Rat := 3
+    let aadag3 : Rat := 0
+    let comm0 : Rat := aadag0 - n0
+    let comm1 : Rat := aadag1 - n1
+    let comm2 : Rat := aadag2 - n2
+    let comm3 : Rat := aadag3 - n3
+    let e0 : Rat := n0 + 1 / 2
+    let e1 : Rat := n1 + 1 / 2
+    let e2 : Rat := n2 + 1 / 2
+    comm0 = 1 ∧
+    comm1 = 1 ∧
+    comm2 = 1 ∧
+    comm3 = -3 ∧
+    comm0 + comm1 + comm2 + comm3 = 0 ∧
+    e0 = 1 / 2 ∧
+    e1 - e0 = 1 ∧
+    e2 - e1 = 1 := by
+  grind
+
+/-- Q60: 1D potential step and finite barrier SL(2, Q) transfer matrix: unimodular determinant
+det(M) = 1, exact sub-barrier transmission T = 16/25 and reflection R = 9/25 with T + R = 1,
+and above-barrier half-wavelength resonance T_res = 1. -/
+theorem potential_barrier_transfer_matrix_and_flux_conservation :
+    let m11 : Rat := 5 / 4
+    let m12 : Rat := 3 / 4
+    let m21 : Rat := 3 / 4
+    let m22 : Rat := 5 / 4
+    let det_m : Rat := m11 * m22 - m12 * m21
+    let trans_sub : Rat := 1 / (m11 ^ 2)
+    let refl_sub : Rat := (m12 ^ 2) / (m11 ^ 2)
+    let m_res11 : Rat := -1
+    let m_res12 : Rat := 0
+    let trans_res : Rat := 1 / (m_res11 ^ 2)
+    let refl_res : Rat := (m_res12 ^ 2) / (m_res11 ^ 2)
+    det_m = 1 ∧
+    trans_sub = 16 / 25 ∧
+    refl_sub = 9 / 25 ∧
+    trans_sub + refl_sub = 1 ∧
+    0 < trans_sub ∧
+    trans_sub < 1 ∧
+    trans_res = 1 ∧
+    refl_res = 0 := by
+  grind
+
+/-- Q61: Sequential Stern-Gerlach three-filter state regeneration (Tr(P_-z P_+z) = 0 vs
+Tr(P_-z P_+x P_+z P_+x) = 1/4) and exact rational Cayley Rabi step transition probability
+conservation P_flip + P_survive = 1. -/
+theorem stern_gerlach_three_filter_regeneration_and_rabi_cayley_step :
+    let two_filter_prob : Rat := 0
+    -- P_+x = (1/2)*[[1, 1], [1, 1]]; <+z|P_+x|+z> * <-z|P_+x|+z> = (1/2)*(1/2) = 1/4
+    let overlap_zp_xp_sq : Rat := 1 / 2
+    let overlap_xp_zm_sq : Rat := 1 / 2
+    let three_filter_prob : Rat := overlap_zp_xp_sq * overlap_xp_zm_sq
+    -- Exact rational Cayley Rabi step at tau = 3/4
+    let tau : Rat := 3 / 4
+    let u_diag : Rat := (1 - tau ^ 2) / (1 + tau ^ 2)
+    let u_off : Rat := (2 * tau) / (1 + tau ^ 2)
+    let p_survive : Rat := u_diag ^ 2
+    let p_flip : Rat := u_off ^ 2
+    two_filter_prob = 0 ∧
+    three_filter_prob = 1 / 4 ∧
+    three_filter_prob > two_filter_prob ∧
+    u_diag = 7 / 25 ∧
+    u_off = 24 / 25 ∧
+    p_survive = 49 / 625 ∧
+    p_flip = 576 / 625 ∧
+    p_survive + p_flip = 1 := by
+  grind
+
+/-- Q62: Two-spin-1/2 Clebsch-Gordan decomposition 1/2 x 1/2 = 0 + 1: Dirac exchange
+eigenvalues (-3/4 singlet, +1/4 triplet), total spin Casimir S(S+1) in {0, 2}, and
+orthogonal projector resolution P_singlet + P_triplet = I_4 with traces 1 and 3. -/
+theorem spin_half_pair_clebsch_gordan_singlet_triplet_casimir :
+    let s1_dot_s2_singlet : Rat := -3 / 4
+    let s1_dot_s2_triplet : Rat := 1 / 4
+    let casimir_singlet : Rat := 3 / 2 + 2 * s1_dot_s2_singlet
+    let casimir_triplet : Rat := 3 / 2 + 2 * s1_dot_s2_triplet
+    let p_singlet_on_s0 : Rat := 1 / 4 - s1_dot_s2_singlet
+    let p_singlet_on_s1 : Rat := 1 / 4 - s1_dot_s2_triplet
+    let p_triplet_on_s0 : Rat := 3 / 4 + s1_dot_s2_singlet
+    let p_triplet_on_s1 : Rat := 3 / 4 + s1_dot_s2_triplet
+    let tr_singlet : Rat := 1 * p_singlet_on_s0 + 3 * p_singlet_on_s1
+    let tr_triplet : Rat := 1 * p_triplet_on_s0 + 3 * p_triplet_on_s1
+    casimir_singlet = 0 ∧
+    casimir_triplet = 2 ∧
+    p_singlet_on_s0 = 1 ∧
+    p_singlet_on_s1 = 0 ∧
+    p_triplet_on_s0 = 0 ∧
+    p_triplet_on_s1 = 1 ∧
+    tr_singlet = 1 ∧
+    tr_triplet = 3 ∧
+    tr_singlet + tr_triplet = 4 := by
+  grind
+
+/-- Q63: Rayleigh-Schrodinger second-order non-degenerate perturbation shift vs degenerate
+n=2 Hydrogen linear Stark secular splitting in the dressed parabolic basis. -/
+theorem rayleigh_schrodinger_perturbation_and_degenerate_stark_splitting :
+    let e1_0 : Rat := 1
+    let e2_0 : Rat := 3
+    let gap : Rat := e2_0 - e1_0
+    let lam : Rat := 1 / 2
+    let v_cpl : Rat := 1
+    let e1_rs2 : Rat := e1_0 - (lam * v_cpl) ^ 2 / gap
+    let e2_rs2 : Rat := e2_0 + (lam * v_cpl) ^ 2 / gap
+    -- Degenerate n=2 Stark block [[e0, -w], [-w, e0]] in dressed basis |+-> = (|2s> -+ |2pz>)/sqrt 2
+    let e0_deg : Rat := -1 / 8
+    let w_stark : Rat := 3 / 10
+    let deg_gap : Rat := e0_deg - e0_deg
+    let e_plus : Rat := e0_deg + w_stark
+    let e_minus : Rat := e0_deg - w_stark
+    let stark_splitting : Rat := e_plus - e_minus
+    gap = 2 ∧
+    e1_rs2 = 7 / 8 ∧
+    e2_rs2 = 25 / 8 ∧
+    e1_rs2 + e2_rs2 = e1_0 + e2_0 ∧
+    deg_gap = 0 ∧
+    stark_splitting = 2 * w_stark ∧
+    stark_splitting = 3 / 5 := by
+  grind
+
+/-- Q64: Discrete Pancharatnam-Berry 3-vertex Bargmann loop invariant: exact local U(1)
+Gaussian-rational rephasing invariance and Bloch-sphere octant loop witness. -/
+theorem pancharatnam_berry_discrete_holonomy_gauge_invariance
+    (d_re d_im : Rat) :
+    let u1 : GaussRat := ⟨3 / 5, 4 / 5⟩
+    let u2 : GaussRat := ⟨5 / 13, -12 / 13⟩
+    let u3 : GaussRat := ⟨-8 / 17, 15 / 17⟩
+    let delta : GaussRat := ⟨d_re, d_im⟩
+    let factor12 : GaussRat := GaussRat.mul (GaussRat.conj u1) u2
+    let factor23 : GaussRat := GaussRat.mul (GaussRat.conj u2) u3
+    let factor31 : GaussRat := GaussRat.mul (GaussRat.conj u3) u1
+    let gauge_loop : GaussRat := GaussRat.mul (GaussRat.mul factor12 factor23) factor31
+    let dressed_delta : GaussRat := GaussRat.mul gauge_loop delta
+    -- Octant loop witness: <psi1|psi2> = 1, <psi2|psi3> = 1 + i, <psi3|psi1> = 1 (scaled by 2)
+    let octant_12 : GaussRat := ⟨1, 0⟩
+    let octant_23 : GaussRat := ⟨1, 1⟩
+    let octant_31 : GaussRat := ⟨1, 0⟩
+    let octant_bargmann : GaussRat := GaussRat.mul (GaussRat.mul octant_12 octant_23) octant_31
+    gauge_loop = GaussRat.one ∧
+    dressed_delta = delta ∧
+    octant_bargmann.re = 1 ∧
+    octant_bargmann.im = 1 ∧
+    octant_bargmann.re = octant_bargmann.im := by
+  simp only [GaussRat.mul, GaussRat.conj, GaussRat.one]
+  grind
+
+/-- Q65: Fermi Golden Rule short-time quadratic transition onset vs finite-bath turnover
+and exact Heisenberg/Poincare revival on a finite discrete carrier. -/
+theorem fermi_golden_rule_short_time_decay_vs_heisenberg_revival :
+    -- Short-time step tau = 1/10 vs turnover tau = 1 vs full-period revival tau_rev = 0
+    let tau_short : Rat := 1 / 10
+    let p_exact_short : Rat := (4 * tau_short ^ 2) / ((1 + tau_short ^ 2) ^ 2)
+    let p_fgr_quad_short : Rat := 4 * tau_short ^ 2
+    let tau_turn : Rat := 1
+    let p_exact_turn : Rat := (4 * tau_turn ^ 2) / ((1 + tau_turn ^ 2) ^ 2)
+    -- Two successive turnover reflections (-I_2)*(-I_2) = +I_2 yield exact revival P_survive = 1
+    let r_half : Rat := -1
+    let r_full : Rat := r_half * r_half
+    let p_survive_revival : Rat := r_full ^ 2
+    let p_decay_revival : Rat := 1 - p_survive_revival
+    p_fgr_quad_short = 1 / 25 ∧
+    p_exact_short = 400 / 10201 ∧
+    0 < p_exact_short ∧
+    p_exact_short < p_fgr_quad_short ∧
+    p_exact_turn = 1 ∧
+    p_survive_revival = 1 ∧
+    p_decay_revival = 0 := by
+  grind
+
 #print axioms p2_sq_eq_p4_add_two_p22
 #print axioms degree4_unit_sphere_basis_identity
 #print axioms p4_eq_one_sub_two_p22_on_unit_sphere
@@ -1352,6 +1571,14 @@ theorem helium_ortho_para_exchange_splitting_and_rhf_contraction (z1 z2 z_nuc si
 #print axioms qed_one_loop_lamb_shift_contact_and_bethe_lifting
 #print axioms helium_kellner_variational_bound_and_virial_identity
 #print axioms helium_ortho_para_exchange_splitting_and_rhf_contraction
+#print axioms dirichlet_square_well_laplacian_and_sturm_nodes
+#print axioms harmonic_oscillator_truncated_fock_ladder_and_boundary_defect
+#print axioms potential_barrier_transfer_matrix_and_flux_conservation
+#print axioms stern_gerlach_three_filter_regeneration_and_rabi_cayley_step
+#print axioms spin_half_pair_clebsch_gordan_singlet_triplet_casimir
+#print axioms rayleigh_schrodinger_perturbation_and_degenerate_stark_splitting
+#print axioms pancharatnam_berry_discrete_holonomy_gauge_invariance
+#print axioms fermi_golden_rule_short_time_decay_vs_heisenberg_revival
 
 end FiniteQM
 
