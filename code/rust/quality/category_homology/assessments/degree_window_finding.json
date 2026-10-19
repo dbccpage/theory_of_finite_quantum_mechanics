@@ -1,0 +1,37 @@
+{
+  "AuthorityEffect": "None",
+  "artifact": "code/rust/src/category_theory/abelian/chain_complex_category.rs",
+  "violated_rules": [
+    "G2 integer overflow in an exact arithmetic path",
+    "G3 reachable checked-build panic"
+  ],
+  "historical_grade_findings": {
+    "G2": "E",
+    "G3": "E"
+  },
+  "witness": {
+    "degree_min": -2147483648,
+    "degree_max": 2147483647,
+    "exact_span": 4294967295,
+    "old_operation": "(degree_max-degree_min) as u32",
+    "failure": "The i32 subtraction overflows before the cast in checked builds. Release wrapping does not make a checked-build panic acceptable."
+  },
+  "original_source": "evidence/quality/category_homology/resume-20261018/original-degree-window.rs",
+  "original_sha256": "0a83e9a8ed8f7f251551ce599890fa8d375587977ad433d8e414d641e6a24331",
+  "repair": "Use i32::abs_diff only after checking ordered endpoints; no signed subtraction is evaluated. Regression tests compare all 49 extreme endpoint pairs to an i64 oracle.",
+  "repaired_sha256": "94400fe1cb180f575b519cbbe057c591a20ff69f5e4386bbfa1b7e5ec8e6b98d",
+  "verification_status": "455-test initial/restored baselines passed. Old signed subtraction is killed by the concrete overflow regression. The unique typed-error candidate is killed in its successful replay.",
+  "original_git_revision": "64d2452fe6993463963fd8495f6b6522e7cdb3a2",
+  "overflow_trace": {
+    "path": "evidence/quality/category_homology/20261018T234208Z/DW01-signed-overflow.log",
+    "sha256": "1700004f14a427acd2f41b366f0c736c48aa2ccb9b5c3930e18c5cd29f8494ca"
+  },
+  "refused_attempt_resolution": {
+    "historical_receipt": "evidence/quality/category_homology/20261018T234704Z",
+    "resolved_by": "evidence/quality/category_homology/20261018T235018Z",
+    "identical_candidate_sha256": "195f9da81718d75540c3f9a0e2a319e64b212b5e2b6310ee23a77d3dda1a806d",
+    "historical_outcome": "unrun",
+    "later_outcome": "killed",
+    "note": "The failed historical receipt is retained unchanged; its refusal is not counted as a kill."
+  }
+}

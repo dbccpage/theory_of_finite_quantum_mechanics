@@ -1,0 +1,29 @@
+
+running 6 tests
+test mutant_35::tests::represented_by_sets_object ... ok
+test mutant_35::schema_challenge::exhaustive_required_fields ... FAILED
+test mutant_35::tests::validate_ok ... ok
+test mutant_35::tests::validate_rejects_empty ... ok
+test mutant_35::tests::validate_rejects_missing_ref ... FAILED
+test mutant_35::schema_challenge::labels_are_literal_not_mathematical_certificates ... ok
+
+failures:
+
+---- mutant_35::schema_challenge::exhaustive_required_fields stdout ----
+
+thread 'mutant_35::schema_challenge::exhaustive_required_fields' (30024) panicked at metadata_challenge_3\mutant_35.rs:110:34:
+mask 2, expected Some(1), got Ok(())
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- mutant_35::tests::validate_rejects_missing_ref stdout ----
+
+thread 'mutant_35::tests::validate_rejects_missing_ref' (14452) panicked at metadata_challenge_3\mutant_35.rs:80:9:
+assertion failed: RepresentableFunctor::new("x").validate_shell().is_err()
+
+
+failures:
+    mutant_35::schema_challenge::exhaustive_required_fields
+    mutant_35::tests::validate_rejects_missing_ref
+
+test result: FAILED. 4 passed; 2 failed; 0 ignored; 0 measured; 331 filtered out; finished in 0.00s
+

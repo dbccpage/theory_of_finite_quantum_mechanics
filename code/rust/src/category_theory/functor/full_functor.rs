@@ -4,6 +4,7 @@
 //! Fullness claim (surjective on Hom-sets) — shape only, not a proof.
 
 use serde::{Deserialize, Serialize};
+use omega_category_theory::errors::ArithmosError;
 
 /// Best-effort shell for a fullness claim on a functor reference.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize)]
@@ -30,12 +31,12 @@ impl FullFunctor {
         }
     }
 
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
         if self.functor_ref.is_empty() {
-            return Err("empty functor_ref".into());
+            return Err(ArithmosError::InvalidShape("empty functor_ref".into()));
         }
         Ok(())
     }

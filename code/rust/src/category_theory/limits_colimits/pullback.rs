@@ -2,6 +2,7 @@
 //! AuthorityEffect: None. Not PROVED / GlobalGreen.
 
 use serde::{Deserialize, Serialize};
+use omega_category_theory::errors::ArithmosError;
 
 /// Best-effort shell for a pullback of a cospan A → C ← B.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize)]
@@ -65,33 +66,33 @@ impl Pullback {
         }
     }
 
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
         if self.pullback_object.is_empty() {
-            return Err("empty pullback_object".into());
+            return Err(ArithmosError::InvalidShape("empty pullback_object".into()));
         }
         if self.left_source.is_empty() {
-            return Err("empty left_source".into());
+            return Err(ArithmosError::InvalidShape("empty left_source".into()));
         }
         if self.right_source.is_empty() {
-            return Err("empty right_source".into());
+            return Err(ArithmosError::InvalidShape("empty right_source".into()));
         }
         if self.cospan_apex.is_empty() {
-            return Err("empty cospan_apex".into());
+            return Err(ArithmosError::InvalidShape("empty cospan_apex".into()));
         }
         if self.morphism_f.is_empty() {
-            return Err("empty morphism_f".into());
+            return Err(ArithmosError::InvalidShape("empty morphism_f".into()));
         }
         if self.morphism_g.is_empty() {
-            return Err("empty morphism_g".into());
+            return Err(ArithmosError::InvalidShape("empty morphism_g".into()));
         }
         if self.projection_left.is_empty() {
-            return Err("empty projection_left".into());
+            return Err(ArithmosError::InvalidShape("empty projection_left".into()));
         }
         if self.projection_right.is_empty() {
-            return Err("empty projection_right".into());
+            return Err(ArithmosError::InvalidShape("empty projection_right".into()));
         }
         Ok(())
     }

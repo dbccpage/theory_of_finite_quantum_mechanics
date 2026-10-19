@@ -1,0 +1,28 @@
+
+running 5 tests
+test mutant_13::tests::validate_ok ... ok
+test mutant_13::tests::validate_rejects_empty_label ... ok
+test mutant_13::tests::validate_rejects_empty_base ... FAILED
+test mutant_13::schema_challenge::labels_are_literal_not_mathematical_certificates ... ok
+test mutant_13::schema_challenge::exhaustive_required_fields ... FAILED
+
+failures:
+
+---- mutant_13::tests::validate_rejects_empty_base stdout ----
+
+thread 'mutant_13::tests::validate_rejects_empty_base' (29860) panicked at metadata_challenge_0\mutant_13.rs:73:9:
+assertion failed: d.validate_shell().is_err()
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- mutant_13::schema_challenge::exhaustive_required_fields stdout ----
+
+thread 'mutant_13::schema_challenge::exhaustive_required_fields' (24704) panicked at metadata_challenge_0\mutant_13.rs:96:34:
+mask 2, expected Some(1), got Ok(())
+
+
+failures:
+    mutant_13::schema_challenge::exhaustive_required_fields
+    mutant_13::tests::validate_rejects_empty_base
+
+test result: FAILED. 3 passed; 2 failed; 0 ignored; 0 measured; 365 filtered out; finished in 0.00s
+

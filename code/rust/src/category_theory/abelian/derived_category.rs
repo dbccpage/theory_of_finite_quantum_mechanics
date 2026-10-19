@@ -6,6 +6,7 @@
 //! Computational homology of complexes is owned by `omega_homology` (docs link).
 
 use serde::{Deserialize, Serialize};
+use omega_category_theory::errors::ArithmosError;
 
 /// Best-effort shell for a derived-category claim.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize)]
@@ -39,12 +40,12 @@ impl DerivedCategory {
     }
 
     /// Validate structural emptiness only (shell gate).
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
         if self.base_abelian_label.is_empty() {
-            return Err("empty base_abelian_label".into());
+            return Err(ArithmosError::InvalidShape("empty base_abelian_label".into()));
         }
         Ok(())
     }

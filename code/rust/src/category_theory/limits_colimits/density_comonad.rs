@@ -2,6 +2,7 @@
 //! AuthorityEffect: None. Not PROVED / GlobalGreen.
 
 use serde::{Deserialize, Serialize};
+use omega_category_theory::errors::ArithmosError;
 
 /// Best-effort shell for the density comonad Lan_K K (or denseness data for K).
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize)]
@@ -51,21 +52,21 @@ impl DensityComonad {
         }
     }
 
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
         if self.functor_k.is_empty() {
-            return Err("empty functor_k".into());
+            return Err(ArithmosError::InvalidShape("empty functor_k".into()));
         }
         if self.domain_category_ref.is_empty() {
-            return Err("empty domain_category_ref".into());
+            return Err(ArithmosError::InvalidShape("empty domain_category_ref".into()));
         }
         if self.codomain_category_ref.is_empty() {
-            return Err("empty codomain_category_ref".into());
+            return Err(ArithmosError::InvalidShape("empty codomain_category_ref".into()));
         }
         if self.comonad_ref.is_empty() {
-            return Err("empty comonad_ref".into());
+            return Err(ArithmosError::InvalidShape("empty comonad_ref".into()));
         }
         Ok(())
     }

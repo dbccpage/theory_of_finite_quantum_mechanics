@@ -18,7 +18,7 @@ from run_audit import ROOT, digest, execute, write_json
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model",choices=("rank","category"),default="rank")
+    parser.add_argument("--model",choices=("rank","category","metadata","degree"),default="rank")
     model = parser.parse_args().model
     if model == "rank":
         proof_name, import_name, namespace = "RankCertificate", "LinearAlgebra/Matrix/Rank", "TFQM.RankCertificate."
@@ -26,12 +26,21 @@ def main():
             "producer_failure","explicit_failure","failed_predicate","first_error_preserved",
             "row_major_index_lt","pivot_increment_fits","augmented_column_lt","identity_area_le")
         scope = "Exact Q-matrix rank theorem and explicit-refusal model."
-    else:
+    elif model == "category":
         proof_name, import_name, namespace = "FiniteCategory", "CategoryTheory/Category/Basic", "TFQM.FiniteCategory."
         declarations = ("checks_true_iff","admit_preserves_data","admit_success_laws","failed_guard",
             "composite_spec","composeArrow_spec","identity_compose","compose_identity",
             "compose_associative","categoryOfAdmitted")
         scope = "Finite table admission realizes Mathlib Category; explicit guard refusal and data preservation."
+    elif model == "metadata":
+        proof_name, import_name, namespace = "MetadataValidation", "Data/List/Basic", "TFQM.MetadataValidation."
+        declarations = ("success_iff", "failed_head", "valid_head", "first_error_preserved",
+                        "inspect_preserves_raw", "failed_check_returns_no_value")
+        scope = "Ordered metadata predicates, exact first-error preservation and raw-value observation; no mathematical law certification."
+    else:
+        proof_name, import_name, namespace = "DegreeWindow", "Data/Int/Basic", "TFQM.DegreeWindow."
+        declarations = ("ordered_span_fits_u32", "same_endpoint_zero", "inverted_span_negative")
+        scope = "Exact i32 endpoint difference bounds, zero span and inverted-window refusal premise; no category-law claim."
     project = ROOT/"lean4"
     proof = Path(__file__).resolve().parent/"proofs"/(proof_name+".lean")
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")+"-"+model+"-proof"

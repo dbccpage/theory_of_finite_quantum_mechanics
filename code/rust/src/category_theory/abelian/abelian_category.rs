@@ -5,6 +5,7 @@
 //! verify that every mono is a kernel or that coimage ≅ image.
 
 use serde::{Deserialize, Serialize};
+use omega_category_theory::errors::ArithmosError;
 
 /// Best-effort shell for an abelian-category claim.
 ///
@@ -64,9 +65,9 @@ impl AbelianCategory {
     }
 
     /// Validate structural emptiness only (shell gate).
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
         Ok(())
     }

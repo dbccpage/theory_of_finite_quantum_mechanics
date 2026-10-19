@@ -1,0 +1,28 @@
+
+running 5 tests
+test mutant_28::schema_challenge::labels_are_literal_not_mathematical_certificates ... ok
+test mutant_28::tests::validate_ok ... ok
+test mutant_28::tests::validate_rejects_empty ... ok
+test mutant_28::tests::validate_rejects_missing_ref ... FAILED
+test mutant_28::schema_challenge::exhaustive_required_fields ... FAILED
+
+failures:
+
+---- mutant_28::tests::validate_rejects_missing_ref stdout ----
+
+thread 'mutant_28::tests::validate_rejects_missing_ref' (28384) panicked at metadata_challenge_3\mutant_28.rs:61:9:
+assertion failed: Presheaf::new("P").validate_shell().is_err()
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- mutant_28::schema_challenge::exhaustive_required_fields stdout ----
+
+thread 'mutant_28::schema_challenge::exhaustive_required_fields' (16248) panicked at metadata_challenge_3\mutant_28.rs:84:34:
+mask 2, expected Some(1), got Ok(())
+
+
+failures:
+    mutant_28::schema_challenge::exhaustive_required_fields
+    mutant_28::tests::validate_rejects_missing_ref
+
+test result: FAILED. 3 passed; 2 failed; 0 ignored; 0 measured; 332 filtered out; finished in 0.00s
+

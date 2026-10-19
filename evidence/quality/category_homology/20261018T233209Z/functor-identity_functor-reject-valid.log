@@ -1,0 +1,34 @@
+
+running 5 tests
+test mutant_14::tests::validate_ok ... FAILED
+test mutant_14::schema_challenge::labels_are_literal_not_mathematical_certificates ... FAILED
+test mutant_14::schema_challenge::exhaustive_required_fields ... FAILED
+test mutant_14::tests::validate_rejects_empty ... ok
+test mutant_14::tests::validate_rejects_missing_ref ... ok
+
+failures:
+
+---- mutant_14::tests::validate_ok stdout ----
+
+thread 'mutant_14::tests::validate_ok' (27656) panicked at metadata_challenge_3\mutant_14.rs:51:9:
+assertion failed: IdentityFunctor::on_category("Id_C", "C").validate_shell().is_ok()
+
+---- mutant_14::schema_challenge::labels_are_literal_not_mathematical_certificates stdout ----
+
+thread 'mutant_14::schema_challenge::labels_are_literal_not_mathematical_certificates' (27012) panicked at metadata_challenge_3\mutant_14.rs:102:13:
+assertion failed: value.validate_shell().is_ok()
+
+---- mutant_14::schema_challenge::exhaustive_required_fields stdout ----
+
+thread 'mutant_14::schema_challenge::exhaustive_required_fields' (24308) panicked at metadata_challenge_3\mutant_14.rs:86:34:
+mask 0, expected None, got Err(InvalidShape("reject valid"))
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    mutant_14::schema_challenge::exhaustive_required_fields
+    mutant_14::schema_challenge::labels_are_literal_not_mathematical_certificates
+    mutant_14::tests::validate_ok
+
+test result: FAILED. 2 passed; 3 failed; 0 ignored; 0 measured; 332 filtered out; finished in 0.00s
+

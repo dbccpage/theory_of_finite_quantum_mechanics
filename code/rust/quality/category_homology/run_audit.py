@@ -172,6 +172,14 @@ def mutations():
     h = "homology/"
     c = "category_theory/"
     return [
+        ("DW01-signed-overflow", c+"abelian/chain_complex_category.rs", "Some(self.degree_max.abs_diff(self.degree_min))", "Some((self.degree_max - self.degree_min) as u32)"),
+        ("DW02-inverted-span", c+"abelian/chain_complex_category.rs", "if self.degree_min <= self.degree_max {", "if true {"),
+        ("DW03-inverted-admission", c+"abelian/chain_complex_category.rs", "if self.degree_min > self.degree_max {", "if false {"),
+        ("DW04-zero-span", c+"abelian/chain_complex_category.rs", "Some(self.degree_max.abs_diff(self.degree_min))", "Some(0)"),
+        ("DW09-typed-error-unique", c+"abelian/chain_complex_category.rs", 'return Err(ArithmosError::InvalidShape("empty label".into()));', 'return Err(ArithmosError::LawViolation("empty label".into()));'),
+        ("DW06-bound-binding", c+"abelian/chain_complex_category.rs", "            degree_min,\n", "            degree_min: 0,\n"),
+        ("DW07-empty-label", c+"abelian/chain_complex_category.rs", "if self.label.is_empty() {", "if false {"),
+        ("DW08-note-preservation", c+"abelian/chain_complex_category.rs", "        self.notes.push(note.into());", ""),
         ("H01-basis", h+"graded_vector.rs", "if self.basis_id != other.basis_id {", "if false {"),
         ("H02-degree-hash", h+"hashing.rs", "hasher.update(&degree.to_le_bytes());", "hasher.update(&0i32.to_le_bytes());"),
         ("H03-basis-hash", h+"hashing.rs", "hasher.update(basis.as_bytes());", 'hasher.update(b"fixed");'),

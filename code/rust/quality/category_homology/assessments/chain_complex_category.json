@@ -1,0 +1,154 @@
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/category_theory/abelian/chain_complex_category.rs",
+    "language": "Rust",
+    "sha256": "94400fe1cb180f575b519cbbe057c591a20ff69f5e4386bbfa1b7e5ec8e6b98d"
+  },
+  "reviewer": "Codex exact degree-window, failure and source review",
+  "evaluation_timestamp": "2026-10-18T23:57:36.190688+00:00",
+  "gates": {
+    "G1": "A",
+    "G2": "A",
+    "G3": "A",
+    "G4": "A",
+    "G5": "A"
+  },
+  "formal_specification": {
+    "domain": "Raw metadata label, i32 lower and upper endpoints, and arbitrary notes. No category or differential law is represented.",
+    "degree_span": "Returns Some(u32(upper-lower)) iff lower<=upper; otherwise None. The span is a difference, not inclusive cardinality.",
+    "validation": "Return first InvalidShape for an empty byte-string label, then for inverted endpoints; otherwise Ok. Validation borrows the raw record without changing it.",
+    "construction": "new sets both endpoints to zero. with_degree_bounds stores the exact supplied endpoints. with_note appends without changing any existing field."
+  },
+  "symbol_map": {
+    "new": "Raw label, zero endpoints and empty notes.",
+    "with_degree_bounds": "Store both i32 endpoints unchanged.",
+    "with_note": "Append one converted note; retain the label and both endpoints.",
+    "degree_span": "Ordered guard followed by exact standard-library unsigned abs_diff, or None for inversion.",
+    "validate_shell": "Ordered, typed label/bounds guards followed by the sole Ok return."
+  },
+  "invariant_argument": [
+    "For i32 endpoints, lower>=-2^31 and upper<=2^31-1. On the ordered branch, 0<=upper-lower<=2^32-1; the checked DegreeWindow Lean model proves this bound. std i32::abs_diff represents that nonnegative integer in u32 without performing a signed subtraction.",
+    "On inversion the query returns None and shape validation returns the second typed error, unless the empty-label guard already returned the first. The separately checked ordered-predicate model and direct source-stage mapping establish no successful result after a required validation refusal.",
+    "All constructors return raw metadata, so invalid raw declarations are not silently promoted. No field is an admitted category or chain-complex certificate."
+  ],
+  "failure_paths": {
+    "empty_label": "InvalidShape(\"empty label\"), tested as an exact typed payload.",
+    "inverted_bounds": "degree_span None; validator InvalidShape with the actual signed endpoints in their original order.",
+    "overflow": "The pre-fix checked i32 subtraction panicked for MIN..MAX. It is retained as an E-level historical witness. The replacement uses abs_diff after the order check.",
+    "allocation_and_conversion": "Ordinary String/Vec allocation and caller-owned Into behavior are declared runtime boundaries; the arithmetic query itself allocates nothing."
+  },
+  "trust_boundary": {
+    "numeric": "i32 and u32 representation and the exact std abs_diff contract under the pinned Rust compiler/runtime. No float, saturating approximation or narrowing signed subtraction is used.",
+    "proof": "Lean kernel, pinned Mathlib, standard foundational axioms only. The arithmetic/refusal models are not Rust/MIR refinement proofs.",
+    "runtime": "Safe Rust, standard String/Vec operations and serde-derived raw representation. No unsafe, production indexing or recursion."
+  },
+  "consumer_review": [
+    "The parent abelian module reexports a raw metadata type; its source, crate lib and Cargo manifest are pinned. No computed homology or category-law consumer may treat this shell as a mathematical certificate.",
+    "The compiled category package passes all 455 tests before and after the successful replays. Public validation now returns the crate existing typed ArithmosError rather than String."
+  ],
+  "basis": {
+    "G1": [
+      "Source SHA, all five public symbols, exact numeric/metadata domain, current crate context, original witness and bound replay/proof receipts directly map the finite claim. AuthorityEffect remains None."
+    ],
+    "G2": [
+      "All 49 pairs from signed extrema and near-zero endpoints agree with an independent i64 subtraction oracle; MIN..MAX returns u32::MAX. The Lean theorem proves the entire declared signed-domain span bound. Raw constructors preserve supplied endpoints and do not claim admission."
+    ],
+    "G3": [
+      "The source contains no unchecked signed arithmetic in the repaired span path. Inverted bounds and empty labels are explicitly refused; validation preserves first typed errors and raw state. Checked arithmetic/refusal models and the source-stage argument cover every production exit under the declared std/runtime trust boundary."
+    ],
+    "G4": [
+      "Seven designated semantic faults were killed in 20261018T234208Z. Its ambiguous DW05 text recipe remains invalid with the nonunique-site reason; it is never a kill.",
+      "The corrected DW09 unique-site candidate is killed in 20261018T235018Z. An earlier disk-refused DW09 attempt remains unrun; its candidate SHA equals the later killed candidate, explicitly resolving the missing execution without rewriting history.",
+      "Across the eight distinct eligible fault classes the conservative final detection fraction is 1.0: overflow, inverted span, inverted admission, false zero span, wrong typed error, changed endpoint binding, empty label bypass and lost note. All 455-test initial/restored baselines used for grading pass."
+    ],
+    "G5": [
+      "All five production methods have bounded straight-line/branch structure within calibrated A source ceilings. The span/shape query is constant-time and nonrecursive, without allocation in an inner loop. Constructors move values, and note append has the ordinary amortized Vec bound. No benchmark or A+ resource contract is claimed."
+    ]
+  },
+  "open_findings": [],
+  "assurance_limits": [
+    "Capability is L2 metadata and a bounded integer query, not a category of chain complexes.",
+    "Contracts remain pending.",
+    "No A+, extracted program, mechanized Rust/MIR equivalence, global allocator/crash-freedom proof, cross-repository attestation or whole-workspace pass is claimed."
+  ],
+  "evidence": [
+    {
+      "path": "evidence/quality/category_homology/20261018T234208Z/summary.json",
+      "sha256": "49df80dae3c59e817190a2cdf52fe5d0f6cb075a5007225230ee105857e631ca"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261018T234208Z/mutations.json",
+      "sha256": "279cbd36f670df9844160953d0e73bd02363198ab706fbd013a9e38e86bd8975"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261018T234208Z/DW01-signed-overflow.log",
+      "sha256": "1700004f14a427acd2f41b366f0c736c48aa2ccb9b5c3930e18c5cd29f8494ca"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261018T235018Z/summary.json",
+      "sha256": "a3246644bf62c100818326339cf9f6a679b71ed393978256f7a2e11a64d9104b"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261018T235018Z/mutations.json",
+      "sha256": "a9dd7dca2cca92be2aba8095238337fbcb5c42cf135e1c672d38e9170ff86752"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261018T235018Z/baseline.json",
+      "sha256": "54ed59e78637eae2f78a83557d1c7a532dab518cc86c915cdced0a55d8e3633d"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261018T235018Z/restored.json",
+      "sha256": "e6f91d6f718ee5ff73ca5b805c7f036317e46161c6e0ebc2874078647c0e5536"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261018T234704Z/summary.json",
+      "sha256": "18a84b3af89800d9613c8e42ba97b32e1078cfd7b209396d73762e28260e7283"
+    },
+    {
+      "path": "code/rust/quality/category_homology/assessments/degree_window_finding.json",
+      "sha256": "8b4d1d2d374db80b93d7262aca3cdc15bcdf54e46111b624ed994be15a254307"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261018T235510Z-degree-proof/receipt.json",
+      "sha256": "634e86dfba9b4a3542a9e3d7644ad4f7d7c16c360df6772c8f4cad1060cce5b5"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261018T233729Z-metadata-proof/receipt.json",
+      "sha256": "71187f438fb571fd2e7339b19be871c3b5882e3b2e34e3a1df0b62e637c6f0ea"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261018T233820Z-metrics/receipt.json",
+      "sha256": "2f92a028584500fa0f425d4946064123cf1113af6c644d9efcc45c05250849bd"
+    }
+  ],
+  "proof_receipts": [
+    {
+      "path": "evidence/quality/category_homology/20261018T235510Z-degree-proof/receipt.json",
+      "sha256": "634e86dfba9b4a3542a9e3d7644ad4f7d7c16c360df6772c8f4cad1060cce5b5",
+      "proof": "code/rust/quality/category_homology/proofs/DegreeWindow.lean",
+      "mathlib_root": "lean4/.lake/packages/mathlib"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261018T233729Z-metadata-proof/receipt.json",
+      "sha256": "71187f438fb571fd2e7339b19be871c3b5882e3b2e34e3a1df0b62e637c6f0ea",
+      "proof": "code/rust/quality/category_homology/proofs/MetadataValidation.lean",
+      "mathlib_root": "lean4/.lake/packages/mathlib"
+    }
+  ],
+  "context_inputs": [
+    {
+      "path": "code/rust/src/category_theory/abelian/mod.rs",
+      "sha256": "1ed8f8c20eede918af9ffb4d1fab16bda712d3df0f9d99e30df84fcf72967b48"
+    },
+    {
+      "path": "code/rust/src/category_theory/lib.rs",
+      "sha256": "b1535a921f4a69414e8b6636f85c8393f799bd2bc20da600e855864c2d3e8776"
+    },
+    {
+      "path": "code/rust/src/category_theory/Cargo.toml",
+      "sha256": "42378ba9d23fe5a5c97c844ebab457e9187c96b819c5b6a0fe3f9acaff1579a3"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+
+running 7 tests
+test mutant_89::schema_challenge::labels_are_literal_not_mathematical_certificates ... ok
+test mutant_89::tests::kind_default_is_lan ... ok
+test mutant_89::tests::ran_validate_ok ... ok
+test mutant_89::tests::validate_rejects_empty ... ok
+test mutant_89::tests::validate_rejects_missing_functors ... ok
+test mutant_89::tests::lan_validate_ok ... ok
+test mutant_89::schema_challenge::exhaustive_required_fields ... FAILED
+
+failures:
+
+---- mutant_89::schema_challenge::exhaustive_required_fields stdout ----
+
+thread 'mutant_89::schema_challenge::exhaustive_required_fields' (31216) panicked at metadata_challenge_4\mutant_89.rs:156:34:
+mask 4, expected Some(2), got Ok(())
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    mutant_89::schema_challenge::exhaustive_required_fields
+
+test result: FAILED. 6 passed; 1 failed; 0 ignored; 0 measured; 575 filtered out; finished in 0.00s
+

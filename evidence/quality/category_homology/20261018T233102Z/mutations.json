@@ -1,0 +1,226 @@
+[
+  {
+    "candidate_path": "code\\rust\\target\\ms\\261018T233102\\metadata_challenge_0\\mutant_1.rs",
+    "candidate_sha256": "7e163a9128156f185b851c68d7ee84dcce6e24c029435fcf92671bacd238b987",
+    "failure_class": "label-skip",
+    "id": "abelian-abelian_category-label-skip",
+    "module": "mutant_1",
+    "needle": "if self.label.is_empty() {",
+    "outcome": "killed",
+    "path": "category_theory/abelian/abelian_category.rs",
+    "replacement": "if false {",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\ms\\261018T233102\\metadata-tests.exe",
+        "mutant_1::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\ms\\261018T233102",
+      "elapsed_seconds": 0.015,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261018T233102Z\\abelian-abelian_category-label-skip.log",
+      "log_sha256": "f8e3208d3fc12467351b06cddd2a7f954a5c3078b32c323afc7e660e7f4d1a8e",
+      "timed_out": false
+    },
+    "subject_sha256": "4a6d0b2acc539a2a3fb9da0170cbca2e492325bfe45ad3950366f8fada0285d7"
+  },
+  {
+    "candidate_path": "code\\rust\\target\\ms\\261018T233102\\metadata_challenge_0\\mutant_2.rs",
+    "candidate_sha256": "2665df9e72b8b32a2b6c87fe02e93799093cad16478619615ec03d1d50852917",
+    "failure_class": "label-diagnostic",
+    "id": "abelian-abelian_category-label-diagnostic",
+    "module": "mutant_2",
+    "needle": "\"empty label\".into()",
+    "outcome": "killed",
+    "path": "category_theory/abelian/abelian_category.rs",
+    "replacement": "\"wrong field diagnostic\".into()",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\ms\\261018T233102\\metadata-tests.exe",
+        "mutant_2::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\ms\\261018T233102",
+      "elapsed_seconds": 0.031,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261018T233102Z\\abelian-abelian_category-label-diagnostic.log",
+      "log_sha256": "a61eb90008a3d6db2a99673a9c61c4435e6e2e09c6847370835a2dd87d342a03",
+      "timed_out": false
+    },
+    "subject_sha256": "4a6d0b2acc539a2a3fb9da0170cbca2e492325bfe45ad3950366f8fada0285d7"
+  },
+  {
+    "candidate_path": "code\\rust\\target\\ms\\261018T233102\\metadata_challenge_0\\mutant_3.rs",
+    "candidate_sha256": "3983071558cd4c3d35e852481859c6eed3cb388561d24df09d4a980c0d3d0ee3",
+    "failure_class": "reject-valid",
+    "id": "abelian-abelian_category-reject-valid",
+    "module": "mutant_3",
+    "needle": "        Ok(())",
+    "outcome": "killed",
+    "path": "category_theory/abelian/abelian_category.rs",
+    "replacement": "        Err(ArithmosError::InvalidShape(\"reject valid\".into()))",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\ms\\261018T233102\\metadata-tests.exe",
+        "mutant_3::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\ms\\261018T233102",
+      "elapsed_seconds": 0.016,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261018T233102Z\\abelian-abelian_category-reject-valid.log",
+      "log_sha256": "8b01507aef6a5a10b84299f1328498eba31d1cc32960259098a86bc103711df4",
+      "timed_out": false
+    },
+    "subject_sha256": "4a6d0b2acc539a2a3fb9da0170cbca2e492325bfe45ad3950366f8fada0285d7"
+  },
+  {
+    "candidate_path": "code\\rust\\target\\ms\\261018T233102\\metadata_challenge_0\\mutant_4.rs",
+    "candidate_sha256": "5dd9484a44b442203fc4fe5858aee82ea330b2bb130a71575e67e8715a76feae",
+    "failure_class": "drop-new-label",
+    "id": "abelian-abelian_category-drop-new-label",
+    "module": "mutant_4",
+    "needle": "label: label.into()",
+    "outcome": "killed",
+    "path": "category_theory/abelian/abelian_category.rs",
+    "replacement": "label: String::new()",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\ms\\261018T233102\\metadata-tests.exe",
+        "mutant_4::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\ms\\261018T233102",
+      "elapsed_seconds": 0.031,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261018T233102Z\\abelian-abelian_category-drop-new-label.log",
+      "log_sha256": "5006a461de84fd6b1d767b49002441fcb346aab4e5fb8b87c0ef0e830c988c10",
+      "timed_out": false
+    },
+    "subject_sha256": "4a6d0b2acc539a2a3fb9da0170cbca2e492325bfe45ad3950366f8fada0285d7"
+  },
+  {
+    "candidate_path": "code\\rust\\target\\ms\\261018T233102\\metadata_challenge_0\\mutant_6.rs",
+    "candidate_sha256": "5bdb07e6c569c73ffeb4732d5092718a89aa4e2d14d3debfeae39cb3ad20a584",
+    "failure_class": "label-skip",
+    "id": "abelian-additivity-label-skip",
+    "module": "mutant_6",
+    "needle": "if self.label.is_empty() {",
+    "outcome": "killed",
+    "path": "category_theory/abelian/additivity.rs",
+    "replacement": "if false {",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\ms\\261018T233102\\metadata-tests.exe",
+        "mutant_6::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\ms\\261018T233102",
+      "elapsed_seconds": 0.016,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261018T233102Z\\abelian-additivity-label-skip.log",
+      "log_sha256": "ff4c5caae6375876165552023085c47ea4a525fe7f30f078c9212d798c9207d3",
+      "timed_out": false
+    },
+    "subject_sha256": "96c0dca6c8f73fdc260c48bb8b9be994fe59e18d7d48cbc02fc7adc16d6a5603"
+  },
+  {
+    "candidate_path": "code\\rust\\target\\ms\\261018T233102\\metadata_challenge_0\\mutant_7.rs",
+    "candidate_sha256": "40c8abb5ccb0b47e06280f629bf4bf6d6cbd38715fe5a875e4e081e55d7b14cf",
+    "failure_class": "label-diagnostic",
+    "id": "abelian-additivity-label-diagnostic",
+    "module": "mutant_7",
+    "needle": "\"empty label\".into()",
+    "outcome": "killed",
+    "path": "category_theory/abelian/additivity.rs",
+    "replacement": "\"wrong field diagnostic\".into()",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\ms\\261018T233102\\metadata-tests.exe",
+        "mutant_7::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\ms\\261018T233102",
+      "elapsed_seconds": 0.016,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261018T233102Z\\abelian-additivity-label-diagnostic.log",
+      "log_sha256": "7067884ae9bc145dda9470a4debea66e5de1743d8076de4542bb32be57c7b641",
+      "timed_out": false
+    },
+    "subject_sha256": "96c0dca6c8f73fdc260c48bb8b9be994fe59e18d7d48cbc02fc7adc16d6a5603"
+  },
+  {
+    "candidate_path": "code\\rust\\target\\ms\\261018T233102\\metadata_challenge_0\\mutant_8.rs",
+    "candidate_sha256": "949adef38dd087bea78e023436e1ffc79e2780418a41d34af6ee5cf4b4875d39",
+    "failure_class": "reject-valid",
+    "id": "abelian-additivity-reject-valid",
+    "module": "mutant_8",
+    "needle": "        Ok(())",
+    "outcome": "killed",
+    "path": "category_theory/abelian/additivity.rs",
+    "replacement": "        Err(ArithmosError::InvalidShape(\"reject valid\".into()))",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\ms\\261018T233102\\metadata-tests.exe",
+        "mutant_8::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\ms\\261018T233102",
+      "elapsed_seconds": 0.031,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261018T233102Z\\abelian-additivity-reject-valid.log",
+      "log_sha256": "5b864f01ab52727b5beca5edcfb8bdbd873fca483256116ab80cf6654b43a6f1",
+      "timed_out": false
+    },
+    "subject_sha256": "96c0dca6c8f73fdc260c48bb8b9be994fe59e18d7d48cbc02fc7adc16d6a5603"
+  },
+  {
+    "candidate_path": "code\\rust\\target\\ms\\261018T233102\\metadata_challenge_0\\mutant_9.rs",
+    "candidate_sha256": "8432c7e364c6edbb4510eb36cdbc9d3d86aa9f1ba35ee447f0958bd88f8f2032",
+    "failure_class": "drop-new-label",
+    "id": "abelian-additivity-drop-new-label",
+    "module": "mutant_9",
+    "needle": "label: label.into()",
+    "outcome": "killed",
+    "path": "category_theory/abelian/additivity.rs",
+    "replacement": "label: String::new()",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\ms\\261018T233102\\metadata-tests.exe",
+        "mutant_9::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\ms\\261018T233102",
+      "elapsed_seconds": 0.015,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261018T233102Z\\abelian-additivity-drop-new-label.log",
+      "log_sha256": "2306fd83ea8085a1308df9d14763e41acd9146d6bce2259c03186775ed4450cc",
+      "timed_out": false
+    },
+    "subject_sha256": "96c0dca6c8f73fdc260c48bb8b9be994fe59e18d7d48cbc02fc7adc16d6a5603"
+  }
+]

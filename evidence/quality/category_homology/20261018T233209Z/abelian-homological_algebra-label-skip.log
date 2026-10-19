@@ -1,0 +1,28 @@
+
+running 5 tests
+test mutant_18::tests::with_note_appends ... ok
+test mutant_18::tests::validate_ok ... ok
+test mutant_18::schema_challenge::labels_are_literal_not_mathematical_certificates ... ok
+test mutant_18::tests::validate_rejects_empty ... FAILED
+test mutant_18::schema_challenge::exhaustive_required_fields ... FAILED
+
+failures:
+
+---- mutant_18::tests::validate_rejects_empty stdout ----
+
+thread 'mutant_18::tests::validate_rejects_empty' (30308) panicked at metadata_challenge_0\mutant_18.rs:64:9:
+assertion failed: HomologicalAlgebra::new("").validate_shell().is_err()
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- mutant_18::schema_challenge::exhaustive_required_fields stdout ----
+
+thread 'mutant_18::schema_challenge::exhaustive_required_fields' (9796) panicked at metadata_challenge_0\mutant_18.rs:92:34:
+mask 1, expected Some(0), got Ok(())
+
+
+failures:
+    mutant_18::schema_challenge::exhaustive_required_fields
+    mutant_18::tests::validate_rejects_empty
+
+test result: FAILED. 3 passed; 2 failed; 0 ignored; 0 measured; 365 filtered out; finished in 0.00s
+

@@ -1,0 +1,25 @@
+
+running 6 tests
+test mutant_43::tests::with_inclusion_and_unit_ok ... ok
+test mutant_43::tests::validate_ok ... ok
+test mutant_43::schema_challenge::labels_are_literal_not_mathematical_certificates ... ok
+test mutant_43::tests::validate_rejects_empty ... ok
+test mutant_43::schema_challenge::exhaustive_required_fields ... FAILED
+test mutant_43::tests::rejects_missing_coreflector ... ok
+
+failures:
+
+---- mutant_43::schema_challenge::exhaustive_required_fields stdout ----
+
+thread 'mutant_43::schema_challenge::exhaustive_required_fields' (23920) panicked at metadata_challenge_0\mutant_43.rs:151:21:
+assertion `left == right` failed
+  left: "wrong field diagnostic"
+ right: "empty coreflector"
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    mutant_43::schema_challenge::exhaustive_required_fields
+
+test result: FAILED. 5 passed; 1 failed; 0 ignored; 0 measured; 364 filtered out; finished in 0.00s
+

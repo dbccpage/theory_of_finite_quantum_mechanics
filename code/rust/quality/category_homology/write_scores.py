@@ -232,7 +232,7 @@ def make_record(path, receipt, summary, mutations, metrics, metric_receipt):
     return {
         "schema_version":"2.0.0",
         "artifact":{"path":path.relative_to(ROOT).as_posix(),"language":"Rust","sha256":sha(path)},
-        "profile":"Non-Numeric" if "shell" in source.split("#[cfg(test)]")[0].lower() else "Exact",
+        "profile":"Exact" if key == "category_theory/abelian/chain_complex_category.rs" else "Non-Numeric" if "shell" in source.split("#[cfg(test)]")[0].lower() else "Exact",
         "level":level,"level_basis":basis,"architecture_target":"L5","engineering_target":"A",
         "gates":gates,"composite_grade":None,"score_token":None,"is_complete":False,
         "grade_ceiling":grade_ceiling,"evaluation_timestamp":timestamp,"AuthorityEffect":"None",
@@ -257,9 +257,12 @@ def main():
     parser.add_argument("--receipt",type=Path,required=True)
     parser.add_argument("--metrics",type=Path,required=True)
     parser.add_argument("--assessment",type=Path,help="Explicit gate review for a single --only artifact; no automatic grade promotion.")
+    parser.add_argument("--assessment-map",type=Path,help="JSON map from each selected artifact path to its explicit reviewed assessment; never infers gates.")
     parser.add_argument("--check",action="store_true")
     parser.add_argument("--only",nargs="+",help="Repository-relative Rust paths; update only these source-bound records.")
     args = parser.parse_args()
+    if args.assessment and args.assessment_map:
+        parser.error("Select either --assessment or --assessment-map")
     receipt = args.receipt.resolve()
     metric_receipt = args.metrics.resolve()
     metric_summary = json.loads((metric_receipt/"receipt.json").read_text())
@@ -310,6 +313,14 @@ def main():
         raise SystemExit("Homology-only execution cannot support category score records; use --only")
     if args.assessment and len(paths) != 1:
         raise SystemExit("An explicit gate assessment must select exactly one artifact")
+    assessment_map = {}
+    if args.assessment_map:
+        assessment_map = json.loads(args.assessment_map.read_text(encoding="utf-8"))
+        selected_keys = {path.relative_to(ROOT).as_posix() for path in paths}
+        if not isinstance(assessment_map,dict) or set(assessment_map) != selected_keys:
+            raise SystemExit("Assessment map must cover exactly the selected artifacts")
+        if any(not isinstance(value,str) or not (ROOT/value).is_file() for value in assessment_map.values()):
+            raise SystemExit("Assessment map references a missing review")
     manifest, failures = {}, []
     for path in paths:
         key = path.relative_to(ROOT).as_posix()
@@ -324,6 +335,8 @@ def main():
             record["verification"]["dependency_contents_stable"] = summary["dependencies_unchanged"]
         if args.assessment:
             apply_assessment(record,args.assessment.resolve())
+        elif args.assessment_map:
+            apply_assessment(record,(ROOT/assessment_map[key]).resolve())
         text = "# SCORING.md v2; incomplete gates deliberately remain null.\n"+yaml(record)+"\n"
         destination = path.with_suffix(".score.yaml")
         if args.check:

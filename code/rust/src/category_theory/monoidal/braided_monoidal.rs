@@ -2,6 +2,7 @@
 //! AuthorityEffect: None. Not PROVED / GlobalGreen.
 
 use serde::{Deserialize, Serialize};
+use omega_category_theory::errors::ArithmosError;
 
 /// Best-effort braided monoidal category shell (braiding ref only).
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize)]
@@ -37,15 +38,15 @@ impl BraidedMonoidal {
         }
     }
 
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
         if self.monoidal_ref.is_empty() {
-            return Err("empty monoidal_ref".into());
+            return Err(ArithmosError::InvalidShape("empty monoidal_ref".into()));
         }
         if self.braiding_ref.is_empty() {
-            return Err("empty braiding_ref".into());
+            return Err(ArithmosError::InvalidShape("empty braiding_ref".into()));
         }
         Ok(())
     }

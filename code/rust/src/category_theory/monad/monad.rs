@@ -5,6 +5,7 @@
 //! This shell holds label refs only; law discharge is external.
 
 use serde::{Deserialize, Serialize};
+use omega_category_theory::errors::ArithmosError;
 
 /// Best-effort shell for a labeled monad (T, η, μ).
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize)]
@@ -55,18 +56,18 @@ impl Monad {
     }
 
     /// Validate structural emptiness only (shell gate).
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
         if self.endofunctor_ref.is_empty() {
-            return Err("empty endofunctor_ref".into());
+            return Err(ArithmosError::InvalidShape("empty endofunctor_ref".into()));
         }
         if self.unit_ref.is_empty() {
-            return Err("empty unit_ref".into());
+            return Err(ArithmosError::InvalidShape("empty unit_ref".into()));
         }
         if self.multiply_ref.is_empty() {
-            return Err("empty multiply_ref".into());
+            return Err(ArithmosError::InvalidShape("empty multiply_ref".into()));
         }
         Ok(())
     }

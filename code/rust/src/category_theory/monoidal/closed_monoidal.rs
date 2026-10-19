@@ -2,6 +2,7 @@
 //! AuthorityEffect: None. Not PROVED / GlobalGreen.
 
 use serde::{Deserialize, Serialize};
+use omega_category_theory::errors::ArithmosError;
 
 /// Best-effort closed monoidal category shell (internal-hom ref).
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize)]
@@ -41,15 +42,15 @@ impl ClosedMonoidal {
         }
     }
 
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
         if self.monoidal_ref.is_empty() {
-            return Err("empty monoidal_ref".into());
+            return Err(ArithmosError::InvalidShape("empty monoidal_ref".into()));
         }
         if self.internal_hom_ref.is_empty() {
-            return Err("empty internal_hom_ref".into());
+            return Err(ArithmosError::InvalidShape("empty internal_hom_ref".into()));
         }
         Ok(())
     }

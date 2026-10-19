@@ -2,6 +2,7 @@
 //! AuthorityEffect: None. Not PROVED / GlobalGreen.
 
 use serde::{Deserialize, Serialize};
+use omega_category_theory::errors::ArithmosError;
 
 /// Best-effort shell for a terminal object (limit of the empty diagram).
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize)]
@@ -37,15 +38,15 @@ impl TerminalObject {
         }
     }
 
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
         if self.object.is_empty() {
-            return Err("empty object".into());
+            return Err(ArithmosError::InvalidShape("empty object".into()));
         }
         if self.category_ref.is_empty() {
-            return Err("empty category_ref".into());
+            return Err(ArithmosError::InvalidShape("empty category_ref".into()));
         }
         Ok(())
     }

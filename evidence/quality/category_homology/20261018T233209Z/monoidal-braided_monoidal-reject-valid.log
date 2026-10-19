@@ -1,0 +1,33 @@
+
+running 4 tests
+test mutant_34::tests::validate_rejects_empty ... ok
+test mutant_34::schema_challenge::labels_are_literal_not_mathematical_certificates ... FAILED
+test mutant_34::tests::validate_ok ... FAILED
+test mutant_34::schema_challenge::exhaustive_required_fields ... FAILED
+
+failures:
+
+---- mutant_34::schema_challenge::labels_are_literal_not_mathematical_certificates stdout ----
+
+thread 'mutant_34::schema_challenge::labels_are_literal_not_mathematical_certificates' (30980) panicked at metadata_challenge_6\mutant_34.rs:110:13:
+assertion failed: value.validate_shell().is_ok()
+
+---- mutant_34::tests::validate_ok stdout ----
+
+thread 'mutant_34::tests::validate_ok' (29992) panicked at metadata_challenge_6\mutant_34.rs:61:9:
+assertion failed: BraidedMonoidal::with_braiding("Braid", "Mon", "c").validate_shell().is_ok()
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- mutant_34::schema_challenge::exhaustive_required_fields stdout ----
+
+thread 'mutant_34::schema_challenge::exhaustive_required_fields' (14104) panicked at metadata_challenge_6\mutant_34.rs:93:34:
+mask 0, expected None, got Err(InvalidShape("reject valid"))
+
+
+failures:
+    mutant_34::schema_challenge::exhaustive_required_fields
+    mutant_34::schema_challenge::labels_are_literal_not_mathematical_certificates
+    mutant_34::tests::validate_ok
+
+test result: FAILED. 1 passed; 3 failed; 0 ignored; 0 measured; 354 filtered out; finished in 0.00s
+

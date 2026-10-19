@@ -1,0 +1,155 @@
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/category_theory/functor/essentially_surjective.rs",
+    "language": "Rust",
+    "sha256": "475075d3d88cc4816e306db8931f517509c30677ec023f68a3e2d3ec0c2e8f4f"
+  },
+  "reviewer": "Codex explicit source, finite-schema and challenge review",
+  "evaluation_timestamp": "2026-10-18T23:41:34.904216+00:00",
+  "gates": {
+    "G1": "A",
+    "G2": "A",
+    "G3": "A",
+    "G4": "A",
+    "G5": "A"
+  },
+  "formal_specification": {
+    "domain": "A raw mutable metadata record. validate_shell checks only the listed nonempty byte strings in order; whitespace and arbitrary Unicode labels are allowed. Optional declarations never establish the named mathematical laws.",
+    "acceptance": "AND of nonempty String byte lengths for the ordered required_fields; no law claim is admitted.",
+    "required_fields": [
+      "label",
+      "functor_ref"
+    ],
+    "failure": "First empty field returns ArithmosError::InvalidShape(\"empty FIELD\"). The raw record is read without mutation.",
+    "construction": "Raw data constructors and setters intentionally do not certify a valid record. Boolean flags, notes and other optional fields remain declarations."
+  },
+  "symbol_map": {
+    "new": {
+      "signature": "pub fn new(label: impl Into<String>) -> Self",
+      "body": "{ Self { label: label.into(), functor_ref: String::new(), notes: Vec::new(), } }",
+      "classification": "raw data constructor/setter; no mathematical admission claim"
+    },
+    "on_functor": {
+      "signature": "pub fn on_functor(label: impl Into<String>, functor_ref: impl Into<String>) -> Self",
+      "body": "{ Self { label: label.into(), functor_ref: functor_ref.into(), notes: Vec::new(), } }",
+      "classification": "raw data constructor/setter; no mathematical admission claim"
+    },
+    "validate_shell": {
+      "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+      "body": "{ if self.label.is_empty() { return Err(ArithmosError::InvalidShape(\"empty label\".into())); } if self.functor_ref.is_empty() { return Err(ArithmosError::InvalidShape(\"empty functor_ref\".into())); } Ok(()) }",
+      "classification": "ordered nonempty-label admission and first InvalidShape refusal"
+    }
+  },
+  "invariant_argument": [
+    "The validator reads each listed String length in the policy order and returns the first typed InvalidShape. Constructors and setters store raw declared values and can intentionally create an invalid candidate. No admitted mathematical wrapper is constructed.",
+    "All listed public constructors/setters were reviewed as direct moves, explicit constant defaults, String formatting/cloning or raw Boolean checklist conjunction. None constructs an admitted mathematical value.",
+    "The finite Boolean model proves exact acceptance, first-failure preservation, absence of a success value after refusal and observation without changing the raw value. The source relation maps each concrete .is_empty guard and sole Ok return to that model. This relation is source reviewed, not Rust/MIR mechanized."
+  ],
+  "failure_paths": {
+    "required_labels": {
+      "label": "First InvalidShape(\"empty label\") when all earlier required labels are nonempty.",
+      "functor_ref": "First InvalidShape(\"empty functor_ref\") when all earlier required labels are nonempty."
+    },
+    "conversion_and_allocation": "Constructors accept standard String/&str conversions; arbitrary caller-supplied Into implementations and process-level allocator failure remain the ordinary external Rust runtime boundary. Validation itself invokes no user-supplied conversion.",
+    "serde": "Derived deserialization returns the raw metadata type. Callers must explicitly validate it before relying even on the shape predicate; it cannot mint a mathematical certificate."
+  },
+  "trust_boundary": {
+    "runtime": "Pinned safe Rust compiler, std String/Vec, serde and its derive macro. No unsafe, indexing, division, recursion or mutable validation state occurs in the reviewed production bodies.",
+    "proof_model": "Lean kernel and pinned clean Mathlib; axiom reports contain propext and Quot.sound only. No unfinished obligations.",
+    "claim": "All category, functor, adjunction, limit and monoidal names here are references or flags. No corresponding law, existence theorem or physical authority is established."
+  },
+  "consumer_review": [
+    "The immediate parent module reexports the raw record. Current lib.rs and Cargo.toml are pinned. The compiled original category package supplies namespace/composition evidence.",
+    "Repository call sites were reviewed at the raw-metadata boundary; no certificate-producing consumer exists for this type in the reviewed module. All legacy local tests also execute for the independently namespaced source copies.",
+    "The error type changes from String to the crate existing ArithmosError::InvalidShape. No public mathematical-certificate API is introduced. A whole-workspace compatibility pass is not claimed."
+  ],
+  "basis": {
+    "G1": [
+      "Source SHA, explicit ordered schema, full public-symbol source map, current parent/crate context and dependency receipt bind this assessment. AuthorityEffect is None; there are no hidden mathematical hypotheses."
+    ],
+    "G2": [
+      "Each declared required String is checked in order, and only those fields are admission premises. Exhaustive empty/nonempty masks, literal whitespace/Unicode labels and serde roundtrips agree with the independently recorded schema. Optional declarations do not turn into facts."
+    ],
+    "G3": [
+      "The checked ordered-predicate/refusal model and source relation cover every validation exit. Borrowed validation changes no raw state and returns a typed InvalidShape at the first failed guard. Constructors return raw candidates; standard conversion/allocator contracts are explicitly trusted."
+    ],
+    "G4": [
+      "All 6 designated single-fault candidates were killed in separate namespace dispatches; no survivor, invalid, equivalent, inconclusive or unrun candidate. R=1.0. Required-field bypass, field-diagnostic substitution, false rejection and new-label erasure are all challenged.",
+      "Expected decisions and first field names come from the separately reviewed schema, not from the validator guards. The original 453-test category package and each unchanged namespace pass before and after the campaign. Sharing compilation does not combine faults in an assessed module."
+    ],
+    "G5": [
+      "Fixed field count: validation O(1) byte-length checks and at most one diagnostic allocation; no production recursion, indexing, multiplication or division. Constructors/setters move String values; with_note appends amortized O(1); terminal-category identity formatting and compact-closed dual cloning are linear in the copied label length. No inner-loop allocation exists.",
+      "Calibrated source AST: max CCN 3, cognitive upper bound 2, nesting 1; no opaque function macro. All public method bodies and the finite nonrecursive field shapes were reviewed. Serde expansion and runtime internals remain pinned trusted dependencies."
+    ]
+  },
+  "open_findings": [],
+  "assurance_limits": [
+    "The capability remains L2 raw metadata; no underlying category-theoretic law is certified.",
+    "Contracts remain pending by user request.",
+    "No A+, alternate compiler, mechanized Rust/MIR refinement, allocator totality, cross-repository authorship attestation or whole-workspace pass is claimed.",
+    "Current compiled consumer scope is the category package and the isolated source challenge harness."
+  ],
+  "unassessed": {},
+  "evidence": [
+    {
+      "path": "evidence/quality/category_homology/20261018T233209Z/summary.json",
+      "sha256": "6c7c22f7033964caab2e047c2cae35c4ee5bdbdd19ec88c8267be5098255d36a"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261018T233209Z/mutations.json",
+      "sha256": "d098246c853d6026c412dc94f07f3d3c0e2305a56acde10801934f6c4e5dc3ef"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261018T233209Z/builds.json",
+      "sha256": "a9d852612f3d6bb161d9140971acc84c78c95d881e455cd486853f110efdb0a6"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261018T233209Z/run_metadata_challenges.py",
+      "sha256": "2177134b5d1d8a6cae49bcae20e83c9db30ea66a91937eb2426b95715bd2d765"
+    },
+    {
+      "path": "code/rust/quality/category_homology/metadata_boundaries.json",
+      "sha256": "a4b457e68682f7fbc006403fb8545f942c9aaca899860b3ef144da92124ba443"
+    },
+    {
+      "path": "code/rust/quality/category_homology/assessments/metadata_source_review.json",
+      "sha256": "343277f76ec5c0a813272d7023a42c27d19b93ad46cea9ff607d4c6747cd6879"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261018T233820Z-metrics/receipt.json",
+      "sha256": "2f92a028584500fa0f425d4946064123cf1113af6c644d9efcc45c05250849bd"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261018T233729Z-metadata-proof/receipt.json",
+      "sha256": "71187f438fb571fd2e7339b19be871c3b5882e3b2e34e3a1df0b62e637c6f0ea"
+    },
+    {
+      "path": "evidence/quality/category_homology/resume-20261018/metadata-consumer-search.json",
+      "sha256": "18e255e8a8b267efda47f03d190848be045564cb7367397a74d2006f5059ef2b"
+    }
+  ],
+  "proof_receipts": [
+    {
+      "path": "evidence/quality/category_homology/20261018T233729Z-metadata-proof/receipt.json",
+      "sha256": "71187f438fb571fd2e7339b19be871c3b5882e3b2e34e3a1df0b62e637c6f0ea",
+      "proof": "code/rust/quality/category_homology/proofs/MetadataValidation.lean",
+      "mathlib_root": "lean4/.lake/packages/mathlib"
+    }
+  ],
+  "context_inputs": [
+    {
+      "path": "code/rust/src/category_theory/functor/mod.rs",
+      "sha256": "9b576dba40c5e99c50d85793e0103fe76e6af63247831ffc9ee4c31708028781"
+    },
+    {
+      "path": "code/rust/src/category_theory/lib.rs",
+      "sha256": "b1535a921f4a69414e8b6636f85c8393f799bd2bc20da600e855864c2d3e8776"
+    },
+    {
+      "path": "code/rust/src/category_theory/Cargo.toml",
+      "sha256": "42378ba9d23fe5a5c97c844ebab457e9187c96b819c5b6a0fe3f9acaff1579a3"
+    }
+  ]
+}

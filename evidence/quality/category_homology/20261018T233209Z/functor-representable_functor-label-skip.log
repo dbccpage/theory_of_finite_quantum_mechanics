@@ -1,0 +1,23 @@
+
+running 6 tests
+test mutant_33::schema_challenge::labels_are_literal_not_mathematical_certificates ... ok
+test mutant_33::tests::validate_ok ... ok
+test mutant_33::tests::validate_rejects_empty ... ok
+test mutant_33::tests::validate_rejects_missing_ref ... ok
+test mutant_33::tests::represented_by_sets_object ... ok
+test mutant_33::schema_challenge::exhaustive_required_fields ... FAILED
+
+failures:
+
+---- mutant_33::schema_challenge::exhaustive_required_fields stdout ----
+
+thread 'mutant_33::schema_challenge::exhaustive_required_fields' (15760) panicked at metadata_challenge_3\mutant_33.rs:110:34:
+mask 1, expected Some(0), got Ok(())
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    mutant_33::schema_challenge::exhaustive_required_fields
+
+test result: FAILED. 5 passed; 1 failed; 0 ignored; 0 measured; 331 filtered out; finished in 0.00s
+

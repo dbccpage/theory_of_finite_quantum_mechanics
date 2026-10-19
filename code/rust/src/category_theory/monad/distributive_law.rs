@@ -5,6 +5,7 @@
 //! Shell holds monad refs and a transformation label; law discharge is external.
 
 use serde::{Deserialize, Serialize};
+use omega_category_theory::errors::ArithmosError;
 
 /// Best-effort shell for a labeled distributive law between two monads.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize)]
@@ -51,18 +52,18 @@ impl DistributiveLaw {
     }
 
     /// Validate structural emptiness only (shell gate).
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
         if self.monad_t_ref.is_empty() {
-            return Err("empty monad_t_ref".into());
+            return Err(ArithmosError::InvalidShape("empty monad_t_ref".into()));
         }
         if self.monad_g_ref.is_empty() {
-            return Err("empty monad_g_ref".into());
+            return Err(ArithmosError::InvalidShape("empty monad_g_ref".into()));
         }
         if self.transformation_ref.is_empty() {
-            return Err("empty transformation_ref".into());
+            return Err(ArithmosError::InvalidShape("empty transformation_ref".into()));
         }
         Ok(())
     }

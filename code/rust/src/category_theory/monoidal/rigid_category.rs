@@ -2,6 +2,7 @@
 //! AuthorityEffect: None. Not PROVED / GlobalGreen.
 
 use serde::{Deserialize, Serialize};
+use omega_category_theory::errors::ArithmosError;
 
 /// Best-effort rigid (autonomous) monoidal category shell.
 /// Left and right duals with zig-zag (snake) identities claimed via refs.
@@ -57,18 +58,18 @@ impl RigidCategory {
         }
     }
 
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
         if self.monoidal_ref.is_empty() {
-            return Err("empty monoidal_ref".into());
+            return Err(ArithmosError::InvalidShape("empty monoidal_ref".into()));
         }
         if self.left_dual_ref.is_empty() {
-            return Err("empty left_dual_ref".into());
+            return Err(ArithmosError::InvalidShape("empty left_dual_ref".into()));
         }
         if self.right_dual_ref.is_empty() {
-            return Err("empty right_dual_ref".into());
+            return Err(ArithmosError::InvalidShape("empty right_dual_ref".into()));
         }
         Ok(())
     }

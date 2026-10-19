@@ -5,6 +5,7 @@
 //! Shell holds label refs only; lift/law discharge is external.
 
 use serde::{Deserialize, Serialize};
+use omega_category_theory::errors::ArithmosError;
 
 /// Best-effort shell for a labeled monad transformer.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize)]
@@ -50,15 +51,15 @@ impl MonadTransformer {
     }
 
     /// Validate structural emptiness only (shell gate).
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
         if self.outer_ref.is_empty() {
-            return Err("empty outer_ref".into());
+            return Err(ArithmosError::InvalidShape("empty outer_ref".into()));
         }
         if self.inner_monad_ref.is_empty() {
-            return Err("empty inner_monad_ref".into());
+            return Err(ArithmosError::InvalidShape("empty inner_monad_ref".into()));
         }
         Ok(())
     }

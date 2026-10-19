@@ -2,6 +2,7 @@
 //! AuthorityEffect: None. Not PROVED / GlobalGreen.
 
 use serde::{Deserialize, Serialize};
+use omega_category_theory::errors::ArithmosError;
 
 /// Best-effort traced monoidal category shell.
 /// Trace operator family Tr^X_{A,B} : C(A⊗X, B⊗X) → C(A,B) as a ref.
@@ -38,15 +39,15 @@ impl TracedMonoidal {
         }
     }
 
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
         if self.monoidal_ref.is_empty() {
-            return Err("empty monoidal_ref".into());
+            return Err(ArithmosError::InvalidShape("empty monoidal_ref".into()));
         }
         if self.trace_ref.is_empty() {
-            return Err("empty trace_ref".into());
+            return Err(ArithmosError::InvalidShape("empty trace_ref".into()));
         }
         Ok(())
     }

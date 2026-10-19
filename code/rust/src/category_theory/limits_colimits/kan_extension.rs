@@ -2,6 +2,7 @@
 //! AuthorityEffect: None. Not PROVED / GlobalGreen.
 
 use serde::{Deserialize, Serialize};
+use omega_category_theory::errors::ArithmosError;
 
 /// Left or right Kan extension kind.
 #[derive(Debug, Clone, Copy, Default, PartialEq, Eq, Serialize, Deserialize)]
@@ -78,18 +79,18 @@ impl KanExtension {
         }
     }
 
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
         if self.functor_f.is_empty() {
-            return Err("empty functor_f".into());
+            return Err(ArithmosError::InvalidShape("empty functor_f".into()));
         }
         if self.along_k.is_empty() {
-            return Err("empty along_k".into());
+            return Err(ArithmosError::InvalidShape("empty along_k".into()));
         }
         if self.extension_functor.is_empty() {
-            return Err("empty extension_functor".into());
+            return Err(ArithmosError::InvalidShape("empty extension_functor".into()));
         }
         Ok(())
     }

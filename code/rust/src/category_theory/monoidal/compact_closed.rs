@@ -2,6 +2,7 @@
 //! AuthorityEffect: None. Not PROVED / GlobalGreen.
 
 use serde::{Deserialize, Serialize};
+use omega_category_theory::errors::ArithmosError;
 
 /// Best-effort compact closed category shell.
 /// Duals + unit/counit (cup/cap) refs; typically symmetric monoidal.
@@ -53,24 +54,24 @@ impl CompactClosed {
         }
     }
 
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
         if self.monoidal_ref.is_empty() {
-            return Err("empty monoidal_ref".into());
+            return Err(ArithmosError::InvalidShape("empty monoidal_ref".into()));
         }
         if self.left_dual_ref.is_empty() {
-            return Err("empty left_dual_ref".into());
+            return Err(ArithmosError::InvalidShape("empty left_dual_ref".into()));
         }
         if self.right_dual_ref.is_empty() {
-            return Err("empty right_dual_ref".into());
+            return Err(ArithmosError::InvalidShape("empty right_dual_ref".into()));
         }
         if self.unit_ref.is_empty() {
-            return Err("empty unit_ref".into());
+            return Err(ArithmosError::InvalidShape("empty unit_ref".into()));
         }
         if self.counit_ref.is_empty() {
-            return Err("empty counit_ref".into());
+            return Err(ArithmosError::InvalidShape("empty counit_ref".into()));
         }
         Ok(())
     }

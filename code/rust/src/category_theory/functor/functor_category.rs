@@ -4,6 +4,7 @@
 //! Functor category [C, D] (objects = functors, morphisms = nat-trans) — shape only.
 
 use serde::{Deserialize, Serialize};
+use omega_category_theory::errors::ArithmosError;
 
 /// Best-effort shell for a labeled functor category [source, target].
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize)]
@@ -37,15 +38,15 @@ impl FunctorCategory {
         }
     }
 
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
         if self.source_category.is_empty() {
-            return Err("empty source_category".into());
+            return Err(ArithmosError::InvalidShape("empty source_category".into()));
         }
         if self.target_category.is_empty() {
-            return Err("empty target_category".into());
+            return Err(ArithmosError::InvalidShape("empty target_category".into()));
         }
         Ok(())
     }

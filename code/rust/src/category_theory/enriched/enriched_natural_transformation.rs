@@ -2,6 +2,7 @@
 //! AuthorityEffect: None. Not PROVED / GlobalGreen.
 
 use serde::{Deserialize, Serialize};
+use omega_category_theory::errors::ArithmosError;
 
 /// Best-effort enriched natural transformation shell α : F ⇒ G.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize)]
@@ -46,18 +47,18 @@ impl EnrichedNaturalTransformation {
         }
     }
 
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
         if self.source_functor.is_empty() {
-            return Err("empty source_functor".into());
+            return Err(ArithmosError::InvalidShape("empty source_functor".into()));
         }
         if self.target_functor.is_empty() {
-            return Err("empty target_functor".into());
+            return Err(ArithmosError::InvalidShape("empty target_functor".into()));
         }
         if self.base_monoidal_v.is_empty() {
-            return Err("empty base_monoidal_v".into());
+            return Err(ArithmosError::InvalidShape("empty base_monoidal_v".into()));
         }
         Ok(())
     }

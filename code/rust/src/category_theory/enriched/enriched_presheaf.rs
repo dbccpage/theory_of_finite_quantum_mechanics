@@ -2,6 +2,7 @@
 //! AuthorityEffect: None. Not PROVED / GlobalGreen.
 
 use serde::{Deserialize, Serialize};
+use omega_category_theory::errors::ArithmosError;
 
 /// Best-effort enriched presheaf shell F : C^op → V (V-enriched).
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize)]
@@ -45,15 +46,15 @@ impl EnrichedPresheaf {
         }
     }
 
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
         if self.domain_enriched.is_empty() {
-            return Err("empty domain_enriched".into());
+            return Err(ArithmosError::InvalidShape("empty domain_enriched".into()));
         }
         if self.base_monoidal_v.is_empty() {
-            return Err("empty base_monoidal_v".into());
+            return Err(ArithmosError::InvalidShape("empty base_monoidal_v".into()));
         }
         Ok(())
     }

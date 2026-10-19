@@ -5,6 +5,7 @@
 //! Shape validation only — not triangle-identity PROVED.
 
 use serde::{Deserialize, Serialize};
+use omega_category_theory::errors::ArithmosError;
 
 /// Best-effort shell for an adjunction L ⊣ R.
 ///
@@ -77,21 +78,21 @@ impl AdjunctionShell {
     }
 
     /// Validate structural emptiness only (shell gate).
-    pub fn validate_shell(&self) -> Result<(), String> {
+    pub fn validate_shell(&self) -> Result<(), ArithmosError> {
         if self.label.is_empty() {
-            return Err("empty label".into());
+            return Err(ArithmosError::InvalidShape("empty label".into()));
         }
         if self.left_functor.is_empty() {
-            return Err("empty left_functor".into());
+            return Err(ArithmosError::InvalidShape("empty left_functor".into()));
         }
         if self.right_functor.is_empty() {
-            return Err("empty right_functor".into());
+            return Err(ArithmosError::InvalidShape("empty right_functor".into()));
         }
         if self.unit_ref.is_empty() {
-            return Err("empty unit_ref".into());
+            return Err(ArithmosError::InvalidShape("empty unit_ref".into()));
         }
         if self.counit_ref.is_empty() {
-            return Err("empty counit_ref".into());
+            return Err(ArithmosError::InvalidShape("empty counit_ref".into()));
         }
         Ok(())
     }

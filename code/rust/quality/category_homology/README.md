@@ -173,3 +173,40 @@ limitation; it does not replace the earlier category-only grading receipt.
 Cargo deadlines are configurable with `--build-timeout SECONDS` (default 900).
 The deadline covers the whole Cargo process, including compilation and exit.
 A printed test-success line never overrides a timed-out process result.
+
+The resumed 2026-10-18 checkpoint has 66 completed engineering-A records and
+126 incomplete records, with a current source digest beside all 192 Rust files.
+The 62 reviewed constant-length label schemas remain L2A. Their validation
+returns the existing typed `ArithmosError::InvalidShape`; constructors and serde
+still return raw declarations, never a proof of the named mathematical laws.
+The separate schema specification, all public-method source mappings, checked
+ordered-refusal model and 586 single-fault challenges support those narrow
+assessments. Independent module namespaces share compilation; each candidate
+contains one fault and executes its own tests. This is not an alternate compiler.
+
+The current-provider rank replay restores `rank_certificate.rs` to L5A after
+an explicit provider-delta review, 95 ordinary homology tests before/after and
+eight separately dispatched rank faults. The degree-window metadata file is
+L2A after repairing its reachable signed-subtraction overflow. Its 49 extreme
+endpoint pairs, checked integer-bound model and eight eligible semantic faults
+cover the repaired boundary. The original overflow source, ambiguous invalid
+recipe and disk-refused attempt remain visible; the latter is explicitly tied
+by candidate SHA to its later successful challenge. No failed execution is a
+passing receipt. The final category replay passes 455 tests before and after.
+
+Replay the additional scoped challenges and verify the checkpoint with:
+
+```powershell
+python code/rust/quality/category_homology/run_metadata_challenges.py
+python code/rust/quality/category_homology/run_rank_context_replay.py
+python code/rust/quality/category_homology/run_rank_proof.py --model metadata
+python code/rust/quality/category_homology/run_rank_proof.py --model degree
+python evidence/quality/category_homology/resume-20261018/verify_scores.py
+```
+
+The score writer accepts an explicit `--assessment-map` for an exact selected
+batch. Missing reviews are refused before any adjacent record is written;
+this option does not infer gates or promote an unreviewed file. The progress
+inventory and per-file remaining work are in
+`evidence/quality/category_homology/resume-20261018/progress.json`.
+The broader architecture/engineering goal and all pending contracts remain open.

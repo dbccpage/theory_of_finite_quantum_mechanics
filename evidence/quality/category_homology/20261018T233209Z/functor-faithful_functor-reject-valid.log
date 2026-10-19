@@ -1,0 +1,34 @@
+
+running 5 tests
+test mutant_28::schema_challenge::exhaustive_required_fields ... FAILED
+test mutant_28::tests::validate_ok ... FAILED
+test mutant_28::tests::validate_rejects_empty ... ok
+test mutant_28::schema_challenge::labels_are_literal_not_mathematical_certificates ... FAILED
+test mutant_28::tests::validate_rejects_missing_ref ... ok
+
+failures:
+
+---- mutant_28::schema_challenge::exhaustive_required_fields stdout ----
+
+thread 'mutant_28::schema_challenge::exhaustive_required_fields' (17416) panicked at metadata_challenge_2\mutant_28.rs:86:34:
+mask 0, expected None, got Err(InvalidShape("reject valid"))
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- mutant_28::tests::validate_ok stdout ----
+
+thread 'mutant_28::tests::validate_ok' (6096) panicked at metadata_challenge_2\mutant_28.rs:51:9:
+assertion failed: FaithfulFunctor::on_functor("faithful", "F").validate_shell().is_ok()
+
+---- mutant_28::schema_challenge::labels_are_literal_not_mathematical_certificates stdout ----
+
+thread 'mutant_28::schema_challenge::labels_are_literal_not_mathematical_certificates' (15756) panicked at metadata_challenge_2\mutant_28.rs:102:13:
+assertion failed: value.validate_shell().is_ok()
+
+
+failures:
+    mutant_28::schema_challenge::exhaustive_required_fields
+    mutant_28::schema_challenge::labels_are_literal_not_mathematical_certificates
+    mutant_28::tests::validate_ok
+
+test result: FAILED. 2 passed; 3 failed; 0 ignored; 0 measured; 315 filtered out; finished in 0.00s
+

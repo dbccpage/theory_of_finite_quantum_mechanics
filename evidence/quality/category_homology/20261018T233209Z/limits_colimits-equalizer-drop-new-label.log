@@ -1,0 +1,24 @@
+
+running 5 tests
+test mutant_74::tests::validate_rejects_empty ... ok
+test mutant_74::tests::validate_ok ... ok
+test mutant_74::tests::validate_rejects_missing_morphism ... ok
+test mutant_74::schema_challenge::labels_are_literal_not_mathematical_certificates ... FAILED
+test mutant_74::schema_challenge::exhaustive_required_fields ... ok
+
+failures:
+
+---- mutant_74::schema_challenge::labels_are_literal_not_mathematical_certificates stdout ----
+
+thread 'mutant_74::schema_challenge::labels_are_literal_not_mathematical_certificates' (13020) panicked at metadata_challenge_4\mutant_74.rs:143:9:
+assertion `left == right` failed
+  left: ""
+ right: "literal-label"
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    mutant_74::schema_challenge::labels_are_literal_not_mathematical_certificates
+
+test result: FAILED. 4 passed; 1 failed; 0 ignored; 0 measured; 577 filtered out; finished in 0.00s
+
