@@ -71,6 +71,8 @@ impl RankCertificate {
 
     /// Replaying against another matrix requires both its binding and its identities.
     pub fn verify_against(&self, matrix: &BasicMatrix<Q>) -> Result<(), HomologicalError> {
+        // Canonical input admission precedes hash normalization.
+        super::exact_scalar::admit_matrix(matrix)?;
         if self.matrix_hash != hash_matrix(matrix) {
             return Err(HomologicalError::CertificateMismatch {
                 identity: "matrix binding",
@@ -359,5 +361,21 @@ mod tests {
                 identity: "rank dimension"
             })
         ));
+    }
+
+    #[test]
+    fn replay_rejects_raw_scalar_domains_before_hashing() {
+        let certificate = certify_rank(&matrix(1, 1, vec![q(1)])).unwrap();
+        for bad in [
+            Q::new_raw(1.into(), 0.into()),
+            Q::new_raw(0.into(), 0.into()),
+            Q::new_raw(2.into(), 4.into()),
+            Q::new_raw(1.into(), (-2).into()),
+            Q::new_raw(0.into(), 2.into()),
+        ] {
+            let candidate = matrix(1, 1, vec![bad]);
+            assert!(matches!(certificate.verify_against(&candidate),
+                Err(HomologicalError::InvalidRational { index: 0 })));
+        }
     }
 }

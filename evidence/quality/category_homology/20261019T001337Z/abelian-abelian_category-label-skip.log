@@ -1,0 +1,30 @@
+
+running 7 tests
+test mutant_1::checklist_challenge::every_raw_checklist_is_conjunction_without_law_promotion ... ok
+test mutant_1::schema_challenge::exhaustive_required_fields ... FAILED
+test mutant_1::schema_challenge::labels_are_literal_not_mathematical_certificates ... ok
+test mutant_1::tests::claimed_abelian_sets_flags ... ok
+test mutant_1::tests::incomplete_checklist ... ok
+test mutant_1::tests::validate_ok ... ok
+test mutant_1::tests::validate_rejects_empty ... FAILED
+
+failures:
+
+---- mutant_1::schema_challenge::exhaustive_required_fields stdout ----
+
+thread 'mutant_1::schema_challenge::exhaustive_required_fields' (19104) panicked at metadata_challenge_0\mutant_1.rs:123:34:
+mask 1, expected Some(0), got Ok(())
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- mutant_1::tests::validate_rejects_empty stdout ----
+
+thread 'mutant_1::tests::validate_rejects_empty' (29864) panicked at metadata_challenge_0\mutant_1.rs:87:9:
+assertion failed: AbelianCategory::new("").validate_shell().is_err()
+
+
+failures:
+    mutant_1::schema_challenge::exhaustive_required_fields
+    mutant_1::tests::validate_rejects_empty
+
+test result: FAILED. 5 passed; 2 failed; 0 ignored; 0 measured; 92 filtered out; finished in 0.02s
+

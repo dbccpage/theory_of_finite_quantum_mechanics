@@ -1,0 +1,1541 @@
+[
+  {
+    "candidate_path": "code/rust/target/hc/261019T013620/hash-1.rs",
+    "candidate_sha256": "8f12e50a1fd3a32e7fddce969037ad8c3d58166ea57418d6253a351db81b5c4a",
+    "id": "HS01-undefined-domain",
+    "module": "hash_replay_1",
+    "needle": "if value.denom().is_zero() {",
+    "outcome": "killed",
+    "path": "homology/hashing.rs",
+    "replacement": "if false {",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620\\hash-tests.exe",
+        "homology::hash_replay_1::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620",
+      "elapsed_seconds": 0.016,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T013620Z\\HS01-undefined-domain.log",
+      "log_sha256": "34627397b27e3a24b444e2ba5c931e00592bc53f14a446ebd72850e7c1f0b97e",
+      "timed_out": false
+    },
+    "subject_sha256": "96249ffaff860033e34b2c95b0932ee5eddd743f991f248010ac03a41389be34"
+  },
+  {
+    "candidate_path": "code/rust/target/hc/261019T013620/hash-2.rs",
+    "candidate_sha256": "79db76193344ff3cbd1b7778fc95de7f2a84064ae1d739bd252aeee1e48f0fab",
+    "id": "HS02-defined-normalization",
+    "module": "hash_replay_2",
+    "needle": "hash_rational(hasher, value);",
+    "outcome": "killed",
+    "path": "homology/hashing.rs",
+    "replacement": "hash_bigint(hasher, value.numer()); hash_bigint(hasher, value.denom());",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620\\hash-tests.exe",
+        "homology::hash_replay_2::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620",
+      "elapsed_seconds": 0.016,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T013620Z\\HS02-defined-normalization.log",
+      "log_sha256": "c7407330e167498bdaa804ac0097a28cfc55f11f13ef8dcbffd71c9acf2d0495",
+      "timed_out": false
+    },
+    "subject_sha256": "96249ffaff860033e34b2c95b0932ee5eddd743f991f248010ac03a41389be34"
+  },
+  {
+    "candidate_path": "code/rust/target/hc/261019T013620/hash-3.rs",
+    "candidate_sha256": "6299365ff2f7b043db5ffa0ba561ed4b7515110dd8109a7dcc4ca99e01322370",
+    "id": "HS03-hash_matrix-field-0",
+    "module": "hash_replay_3",
+    "needle": "pub fn hash_matrix(m: &BasicMatrix<Q>) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"MSSN.BasicMatrix<BigRational>.v2\");\n    hasher.update(&(m.rows() as u64).to_le_bytes());\n    hasher.update(&(m.cols() as u64).to_le_bytes());\n    for val in m.as_slice() {\n        hash_stored_rational(&mut hasher, val);\n    }\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "outcome": "killed",
+    "path": "homology/hashing.rs",
+    "replacement": "pub fn hash_matrix(m: &BasicMatrix<Q>) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n\n    hasher.update(&(m.rows() as u64).to_le_bytes());\n    hasher.update(&(m.cols() as u64).to_le_bytes());\n    for val in m.as_slice() {\n        hash_stored_rational(&mut hasher, val);\n    }\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620\\hash-tests.exe",
+        "homology::hash_replay_3::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620",
+      "elapsed_seconds": 0.047,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T013620Z\\HS03-hash_matrix-field-0.log",
+      "log_sha256": "8701e70cb99d41615a8ab2639525e9269ea1511f7f234b4f36ccf6a6f0d84243",
+      "timed_out": false
+    },
+    "subject_sha256": "96249ffaff860033e34b2c95b0932ee5eddd743f991f248010ac03a41389be34"
+  },
+  {
+    "candidate_path": "code/rust/target/hc/261019T013620/hash-4.rs",
+    "candidate_sha256": "ff8b1faf0080a05979697e24e1ad78df90de00803d1c3320474359e20e63d705",
+    "id": "HS04-hash_matrix-field-1",
+    "module": "hash_replay_4",
+    "needle": "pub fn hash_matrix(m: &BasicMatrix<Q>) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"MSSN.BasicMatrix<BigRational>.v2\");\n    hasher.update(&(m.rows() as u64).to_le_bytes());\n    hasher.update(&(m.cols() as u64).to_le_bytes());\n    for val in m.as_slice() {\n        hash_stored_rational(&mut hasher, val);\n    }\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "outcome": "killed",
+    "path": "homology/hashing.rs",
+    "replacement": "pub fn hash_matrix(m: &BasicMatrix<Q>) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"MSSN.BasicMatrix<BigRational>.v2\");\n\n    hasher.update(&(m.cols() as u64).to_le_bytes());\n    for val in m.as_slice() {\n        hash_stored_rational(&mut hasher, val);\n    }\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620\\hash-tests.exe",
+        "homology::hash_replay_4::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620",
+      "elapsed_seconds": 0.047,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T013620Z\\HS04-hash_matrix-field-1.log",
+      "log_sha256": "53f757f08ff144e14deee1eef198cd5f2c16158c8da73f0d48a961893e4447b2",
+      "timed_out": false
+    },
+    "subject_sha256": "96249ffaff860033e34b2c95b0932ee5eddd743f991f248010ac03a41389be34"
+  },
+  {
+    "candidate_path": "code/rust/target/hc/261019T013620/hash-5.rs",
+    "candidate_sha256": "85da9851440c55d61505be141675c9fb9ecb1e71cb9a12331215f55c42627748",
+    "id": "HS05-hash_matrix-field-2",
+    "module": "hash_replay_5",
+    "needle": "pub fn hash_matrix(m: &BasicMatrix<Q>) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"MSSN.BasicMatrix<BigRational>.v2\");\n    hasher.update(&(m.rows() as u64).to_le_bytes());\n    hasher.update(&(m.cols() as u64).to_le_bytes());\n    for val in m.as_slice() {\n        hash_stored_rational(&mut hasher, val);\n    }\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "outcome": "killed",
+    "path": "homology/hashing.rs",
+    "replacement": "pub fn hash_matrix(m: &BasicMatrix<Q>) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"MSSN.BasicMatrix<BigRational>.v2\");\n    hasher.update(&(m.rows() as u64).to_le_bytes());\n\n    for val in m.as_slice() {\n        hash_stored_rational(&mut hasher, val);\n    }\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620\\hash-tests.exe",
+        "homology::hash_replay_5::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620",
+      "elapsed_seconds": 0.031,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T013620Z\\HS05-hash_matrix-field-2.log",
+      "log_sha256": "2ab97b491a6008e412cf03bde26934cf2ad9531b6348590918e9e6eda999257d",
+      "timed_out": false
+    },
+    "subject_sha256": "96249ffaff860033e34b2c95b0932ee5eddd743f991f248010ac03a41389be34"
+  },
+  {
+    "candidate_path": "code/rust/target/hc/261019T013620/hash-6.rs",
+    "candidate_sha256": "7c9da7ff5c47859200b515e3bed6519816a52f75000f5fe3fa084610bc38de4d",
+    "id": "HS06-hash_matrix-scalar-payload",
+    "module": "hash_replay_6",
+    "needle": "pub fn hash_matrix(m: &BasicMatrix<Q>) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"MSSN.BasicMatrix<BigRational>.v2\");\n    hasher.update(&(m.rows() as u64).to_le_bytes());\n    hasher.update(&(m.cols() as u64).to_le_bytes());\n    for val in m.as_slice() {\n        hash_stored_rational(&mut hasher, val);\n    }\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "outcome": "killed",
+    "path": "homology/hashing.rs",
+    "replacement": "pub fn hash_matrix(m: &BasicMatrix<Q>) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"MSSN.BasicMatrix<BigRational>.v2\");\n    hasher.update(&(m.rows() as u64).to_le_bytes());\n    hasher.update(&(m.cols() as u64).to_le_bytes());\n    for val in m.as_slice() {\n\n    }\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620\\hash-tests.exe",
+        "homology::hash_replay_6::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620",
+      "elapsed_seconds": 0.016,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T013620Z\\HS06-hash_matrix-scalar-payload.log",
+      "log_sha256": "1fec101d2935c61bb05a0bedabe5ab6a5b4b2b68fef4dd079766174bb5bcdd60",
+      "timed_out": false
+    },
+    "subject_sha256": "96249ffaff860033e34b2c95b0932ee5eddd743f991f248010ac03a41389be34"
+  },
+  {
+    "candidate_path": "code/rust/target/hc/261019T013620/hash-7.rs",
+    "candidate_sha256": "60b53695019e4641106dbfac71f58788787dd93d416b3b9266db4ba1dfde6846",
+    "id": "HS07-hash_integer_matrix-field-0",
+    "module": "hash_replay_7",
+    "needle": "pub fn hash_integer_matrix(m: &BasicMatrix<BigInt>) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"MSSN.BasicMatrix<BigInt>.lattice.v1\");\n    hasher.update(&(m.rows() as u64).to_le_bytes());\n    hasher.update(&(m.cols() as u64).to_le_bytes());\n    for val in m.as_slice() {\n        hash_bigint(&mut hasher, val);\n    }\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "outcome": "killed",
+    "path": "homology/hashing.rs",
+    "replacement": "pub fn hash_integer_matrix(m: &BasicMatrix<BigInt>) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n\n    hasher.update(&(m.rows() as u64).to_le_bytes());\n    hasher.update(&(m.cols() as u64).to_le_bytes());\n    for val in m.as_slice() {\n        hash_bigint(&mut hasher, val);\n    }\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620\\hash-tests.exe",
+        "homology::hash_replay_7::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620",
+      "elapsed_seconds": 0.031,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T013620Z\\HS07-hash_integer_matrix-field-0.log",
+      "log_sha256": "70865937482116d7193914e07c5c2a892935b400f029ed0285f2242e2a685762",
+      "timed_out": false
+    },
+    "subject_sha256": "96249ffaff860033e34b2c95b0932ee5eddd743f991f248010ac03a41389be34"
+  },
+  {
+    "candidate_path": "code/rust/target/hc/261019T013620/hash-8.rs",
+    "candidate_sha256": "b732fb1b5762512a9a21ac4bb0944ffef8e2fbd068d3ee4952b9deaa545a64c8",
+    "id": "HS08-hash_integer_matrix-field-1",
+    "module": "hash_replay_8",
+    "needle": "pub fn hash_integer_matrix(m: &BasicMatrix<BigInt>) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"MSSN.BasicMatrix<BigInt>.lattice.v1\");\n    hasher.update(&(m.rows() as u64).to_le_bytes());\n    hasher.update(&(m.cols() as u64).to_le_bytes());\n    for val in m.as_slice() {\n        hash_bigint(&mut hasher, val);\n    }\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "outcome": "killed",
+    "path": "homology/hashing.rs",
+    "replacement": "pub fn hash_integer_matrix(m: &BasicMatrix<BigInt>) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"MSSN.BasicMatrix<BigInt>.lattice.v1\");\n\n    hasher.update(&(m.cols() as u64).to_le_bytes());\n    for val in m.as_slice() {\n        hash_bigint(&mut hasher, val);\n    }\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620\\hash-tests.exe",
+        "homology::hash_replay_8::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620",
+      "elapsed_seconds": 0.015,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T013620Z\\HS08-hash_integer_matrix-field-1.log",
+      "log_sha256": "4aa2abbf092b2378c96734bddd4ea244be0bbf9982e21ff26f9732713834500b",
+      "timed_out": false
+    },
+    "subject_sha256": "96249ffaff860033e34b2c95b0932ee5eddd743f991f248010ac03a41389be34"
+  },
+  {
+    "candidate_path": "code/rust/target/hc/261019T013620/hash-9.rs",
+    "candidate_sha256": "18c36e8d42d84909e34f8526c99922f5f4991518473459dde825122589bf1c56",
+    "id": "HS09-hash_integer_matrix-field-2",
+    "module": "hash_replay_9",
+    "needle": "pub fn hash_integer_matrix(m: &BasicMatrix<BigInt>) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"MSSN.BasicMatrix<BigInt>.lattice.v1\");\n    hasher.update(&(m.rows() as u64).to_le_bytes());\n    hasher.update(&(m.cols() as u64).to_le_bytes());\n    for val in m.as_slice() {\n        hash_bigint(&mut hasher, val);\n    }\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "outcome": "killed",
+    "path": "homology/hashing.rs",
+    "replacement": "pub fn hash_integer_matrix(m: &BasicMatrix<BigInt>) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"MSSN.BasicMatrix<BigInt>.lattice.v1\");\n    hasher.update(&(m.rows() as u64).to_le_bytes());\n\n    for val in m.as_slice() {\n        hash_bigint(&mut hasher, val);\n    }\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620\\hash-tests.exe",
+        "homology::hash_replay_9::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620",
+      "elapsed_seconds": 0.032,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T013620Z\\HS09-hash_integer_matrix-field-2.log",
+      "log_sha256": "946a7deef256c285400c099158c493ca53fdae978b8a1c3a8c58c4993ed75220",
+      "timed_out": false
+    },
+    "subject_sha256": "96249ffaff860033e34b2c95b0932ee5eddd743f991f248010ac03a41389be34"
+  },
+  {
+    "candidate_path": "code/rust/target/hc/261019T013620/hash-10.rs",
+    "candidate_sha256": "8b6b79c6c3245eac000460bfc4bc9c09220779ae59310bdc617c1baa5f010cbb",
+    "id": "HS10-hash_vector-field-0",
+    "module": "hash_replay_10",
+    "needle": "pub fn hash_vector(v: &[Q]) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"OMEGA.Vector<BigRational>.v2\");\n    hasher.update(&(v.len() as u64).to_le_bytes());\n    for val in v {\n        hash_stored_rational(&mut hasher, val);\n    }\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "outcome": "killed",
+    "path": "homology/hashing.rs",
+    "replacement": "pub fn hash_vector(v: &[Q]) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n\n    hasher.update(&(v.len() as u64).to_le_bytes());\n    for val in v {\n        hash_stored_rational(&mut hasher, val);\n    }\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620\\hash-tests.exe",
+        "homology::hash_replay_10::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620",
+      "elapsed_seconds": 0.031,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T013620Z\\HS10-hash_vector-field-0.log",
+      "log_sha256": "1ccdba5f711214a5742a1656a7505c9496e2ba6f4ab113166966101683c7d714",
+      "timed_out": false
+    },
+    "subject_sha256": "96249ffaff860033e34b2c95b0932ee5eddd743f991f248010ac03a41389be34"
+  },
+  {
+    "candidate_path": "code/rust/target/hc/261019T013620/hash-11.rs",
+    "candidate_sha256": "e6fa6bc92ba9ef8fd7a1371a3e327275831a37dc36b2076246d7695e7d4c2385",
+    "id": "HS11-hash_vector-field-1",
+    "module": "hash_replay_11",
+    "needle": "pub fn hash_vector(v: &[Q]) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"OMEGA.Vector<BigRational>.v2\");\n    hasher.update(&(v.len() as u64).to_le_bytes());\n    for val in v {\n        hash_stored_rational(&mut hasher, val);\n    }\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "outcome": "killed",
+    "path": "homology/hashing.rs",
+    "replacement": "pub fn hash_vector(v: &[Q]) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"OMEGA.Vector<BigRational>.v2\");\n\n    for val in v {\n        hash_stored_rational(&mut hasher, val);\n    }\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620\\hash-tests.exe",
+        "homology::hash_replay_11::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620",
+      "elapsed_seconds": 0.016,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T013620Z\\HS11-hash_vector-field-1.log",
+      "log_sha256": "8faea8d053c64b89a13e90777d68aafc2e3d4f0b654a12a1e58e0b66d9170ebc",
+      "timed_out": false
+    },
+    "subject_sha256": "96249ffaff860033e34b2c95b0932ee5eddd743f991f248010ac03a41389be34"
+  },
+  {
+    "candidate_path": "code/rust/target/hc/261019T013620/hash-12.rs",
+    "candidate_sha256": "7adef74d9309db146a5a86d29626ab3ef55fc7cf3c459a608fad2d5cc2ad74f3",
+    "id": "HS12-hash_vector-scalar-payload",
+    "module": "hash_replay_12",
+    "needle": "pub fn hash_vector(v: &[Q]) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"OMEGA.Vector<BigRational>.v2\");\n    hasher.update(&(v.len() as u64).to_le_bytes());\n    for val in v {\n        hash_stored_rational(&mut hasher, val);\n    }\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "outcome": "killed",
+    "path": "homology/hashing.rs",
+    "replacement": "pub fn hash_vector(v: &[Q]) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"OMEGA.Vector<BigRational>.v2\");\n    hasher.update(&(v.len() as u64).to_le_bytes());\n    for val in v {\n\n    }\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620\\hash-tests.exe",
+        "homology::hash_replay_12::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620",
+      "elapsed_seconds": 0.016,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T013620Z\\HS12-hash_vector-scalar-payload.log",
+      "log_sha256": "7017a2462bea3973fd4b9d79d4f3557a6574abd27b460932ae161e49e8e8d7f6",
+      "timed_out": false
+    },
+    "subject_sha256": "96249ffaff860033e34b2c95b0932ee5eddd743f991f248010ac03a41389be34"
+  },
+  {
+    "candidate_path": "code/rust/target/hc/261019T013620/hash-13.rs",
+    "candidate_sha256": "cb0efa39eff0c677ed2e19cf3f3b7c7c04254a8e1d59866001a4b50c9f7b8cc7",
+    "id": "HS13-hash_graded_vector-field-0",
+    "module": "hash_replay_13",
+    "needle": "pub fn hash_graded_vector(kind: &[u8], degree: i32, basis: &str, v: &[Q]) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"TFQM.GradedVector.v1\");\n    hasher.update(&(kind.len() as u64).to_le_bytes());\n    hasher.update(kind);\n    hasher.update(&degree.to_le_bytes());\n    hasher.update(&(basis.len() as u64).to_le_bytes());\n    hasher.update(basis.as_bytes());\n    hasher.update(hash_vector(v).as_bytes());\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "outcome": "killed",
+    "path": "homology/hashing.rs",
+    "replacement": "pub fn hash_graded_vector(kind: &[u8], degree: i32, basis: &str, v: &[Q]) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n\n    hasher.update(&(kind.len() as u64).to_le_bytes());\n    hasher.update(kind);\n    hasher.update(&degree.to_le_bytes());\n    hasher.update(&(basis.len() as u64).to_le_bytes());\n    hasher.update(basis.as_bytes());\n    hasher.update(hash_vector(v).as_bytes());\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620\\hash-tests.exe",
+        "homology::hash_replay_13::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620",
+      "elapsed_seconds": 0.015,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T013620Z\\HS13-hash_graded_vector-field-0.log",
+      "log_sha256": "135fc559866c213f5dc133424bd5b4392b7c3dd16bdb8aec61342f1977b41743",
+      "timed_out": false
+    },
+    "subject_sha256": "96249ffaff860033e34b2c95b0932ee5eddd743f991f248010ac03a41389be34"
+  },
+  {
+    "candidate_path": "code/rust/target/hc/261019T013620/hash-14.rs",
+    "candidate_sha256": "671dfa408595997c810b9386425709018354ecb4c252518447e22900d86e18b1",
+    "id": "HS14-hash_graded_vector-field-1",
+    "module": "hash_replay_14",
+    "needle": "pub fn hash_graded_vector(kind: &[u8], degree: i32, basis: &str, v: &[Q]) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"TFQM.GradedVector.v1\");\n    hasher.update(&(kind.len() as u64).to_le_bytes());\n    hasher.update(kind);\n    hasher.update(&degree.to_le_bytes());\n    hasher.update(&(basis.len() as u64).to_le_bytes());\n    hasher.update(basis.as_bytes());\n    hasher.update(hash_vector(v).as_bytes());\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "outcome": "killed",
+    "path": "homology/hashing.rs",
+    "replacement": "pub fn hash_graded_vector(kind: &[u8], degree: i32, basis: &str, v: &[Q]) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"TFQM.GradedVector.v1\");\n\n    hasher.update(kind);\n    hasher.update(&degree.to_le_bytes());\n    hasher.update(&(basis.len() as u64).to_le_bytes());\n    hasher.update(basis.as_bytes());\n    hasher.update(hash_vector(v).as_bytes());\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620\\hash-tests.exe",
+        "homology::hash_replay_14::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620",
+      "elapsed_seconds": 0.016,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T013620Z\\HS14-hash_graded_vector-field-1.log",
+      "log_sha256": "72f01cd16b91e4cb4e10371098b7cd69190f7a86f8481edb3b421bc09f6a67d3",
+      "timed_out": false
+    },
+    "subject_sha256": "96249ffaff860033e34b2c95b0932ee5eddd743f991f248010ac03a41389be34"
+  },
+  {
+    "candidate_path": "code/rust/target/hc/261019T013620/hash-15.rs",
+    "candidate_sha256": "d1d65d04ac49e26b82bc0d77294f13371e79d0e2b36500594a612aa4f7dffa85",
+    "id": "HS15-hash_graded_vector-field-2",
+    "module": "hash_replay_15",
+    "needle": "pub fn hash_graded_vector(kind: &[u8], degree: i32, basis: &str, v: &[Q]) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"TFQM.GradedVector.v1\");\n    hasher.update(&(kind.len() as u64).to_le_bytes());\n    hasher.update(kind);\n    hasher.update(&degree.to_le_bytes());\n    hasher.update(&(basis.len() as u64).to_le_bytes());\n    hasher.update(basis.as_bytes());\n    hasher.update(hash_vector(v).as_bytes());\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "outcome": "killed",
+    "path": "homology/hashing.rs",
+    "replacement": "pub fn hash_graded_vector(kind: &[u8], degree: i32, basis: &str, v: &[Q]) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"TFQM.GradedVector.v1\");\n    hasher.update(&(kind.len() as u64).to_le_bytes());\n\n    hasher.update(&degree.to_le_bytes());\n    hasher.update(&(basis.len() as u64).to_le_bytes());\n    hasher.update(basis.as_bytes());\n    hasher.update(hash_vector(v).as_bytes());\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620\\hash-tests.exe",
+        "homology::hash_replay_15::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620",
+      "elapsed_seconds": 0.031,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T013620Z\\HS15-hash_graded_vector-field-2.log",
+      "log_sha256": "1c1ba9861624deb3b0294f76cb478e491bd4499696852e3b28566bfe3bc60018",
+      "timed_out": false
+    },
+    "subject_sha256": "96249ffaff860033e34b2c95b0932ee5eddd743f991f248010ac03a41389be34"
+  },
+  {
+    "candidate_path": "code/rust/target/hc/261019T013620/hash-16.rs",
+    "candidate_sha256": "c6a04f87b2c7faa4c23272dd817a3cb5c3d645f18e4ef9396a106838ba191296",
+    "id": "HS16-hash_graded_vector-field-3",
+    "module": "hash_replay_16",
+    "needle": "pub fn hash_graded_vector(kind: &[u8], degree: i32, basis: &str, v: &[Q]) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"TFQM.GradedVector.v1\");\n    hasher.update(&(kind.len() as u64).to_le_bytes());\n    hasher.update(kind);\n    hasher.update(&degree.to_le_bytes());\n    hasher.update(&(basis.len() as u64).to_le_bytes());\n    hasher.update(basis.as_bytes());\n    hasher.update(hash_vector(v).as_bytes());\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "outcome": "killed",
+    "path": "homology/hashing.rs",
+    "replacement": "pub fn hash_graded_vector(kind: &[u8], degree: i32, basis: &str, v: &[Q]) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"TFQM.GradedVector.v1\");\n    hasher.update(&(kind.len() as u64).to_le_bytes());\n    hasher.update(kind);\n\n    hasher.update(&(basis.len() as u64).to_le_bytes());\n    hasher.update(basis.as_bytes());\n    hasher.update(hash_vector(v).as_bytes());\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620\\hash-tests.exe",
+        "homology::hash_replay_16::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620",
+      "elapsed_seconds": 0.047,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T013620Z\\HS16-hash_graded_vector-field-3.log",
+      "log_sha256": "3a011d64ba96c91b2d8c2be6bf1d883f228572b82768af31221db4908c9d178d",
+      "timed_out": false
+    },
+    "subject_sha256": "96249ffaff860033e34b2c95b0932ee5eddd743f991f248010ac03a41389be34"
+  },
+  {
+    "candidate_path": "code/rust/target/hc/261019T013620/hash-17.rs",
+    "candidate_sha256": "b6a347294d2410891229e985a82c5a4702f8215d8cfe96f1ba922964fc36bcec",
+    "id": "HS17-hash_graded_vector-field-4",
+    "module": "hash_replay_17",
+    "needle": "pub fn hash_graded_vector(kind: &[u8], degree: i32, basis: &str, v: &[Q]) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"TFQM.GradedVector.v1\");\n    hasher.update(&(kind.len() as u64).to_le_bytes());\n    hasher.update(kind);\n    hasher.update(&degree.to_le_bytes());\n    hasher.update(&(basis.len() as u64).to_le_bytes());\n    hasher.update(basis.as_bytes());\n    hasher.update(hash_vector(v).as_bytes());\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "outcome": "killed",
+    "path": "homology/hashing.rs",
+    "replacement": "pub fn hash_graded_vector(kind: &[u8], degree: i32, basis: &str, v: &[Q]) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"TFQM.GradedVector.v1\");\n    hasher.update(&(kind.len() as u64).to_le_bytes());\n    hasher.update(kind);\n    hasher.update(&degree.to_le_bytes());\n\n    hasher.update(basis.as_bytes());\n    hasher.update(hash_vector(v).as_bytes());\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620\\hash-tests.exe",
+        "homology::hash_replay_17::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620",
+      "elapsed_seconds": 0.016,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T013620Z\\HS17-hash_graded_vector-field-4.log",
+      "log_sha256": "b0e6917b3ad62b1d4bd5c230689836f57de189c3de0062a0eeb073105056a5bd",
+      "timed_out": false
+    },
+    "subject_sha256": "96249ffaff860033e34b2c95b0932ee5eddd743f991f248010ac03a41389be34"
+  },
+  {
+    "candidate_path": "code/rust/target/hc/261019T013620/hash-18.rs",
+    "candidate_sha256": "e4fa103002717197f411b32d2084fce8e96d8996e9381e6b190ce7cda23cdb9a",
+    "id": "HS18-hash_graded_vector-field-5",
+    "module": "hash_replay_18",
+    "needle": "pub fn hash_graded_vector(kind: &[u8], degree: i32, basis: &str, v: &[Q]) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"TFQM.GradedVector.v1\");\n    hasher.update(&(kind.len() as u64).to_le_bytes());\n    hasher.update(kind);\n    hasher.update(&degree.to_le_bytes());\n    hasher.update(&(basis.len() as u64).to_le_bytes());\n    hasher.update(basis.as_bytes());\n    hasher.update(hash_vector(v).as_bytes());\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "outcome": "killed",
+    "path": "homology/hashing.rs",
+    "replacement": "pub fn hash_graded_vector(kind: &[u8], degree: i32, basis: &str, v: &[Q]) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"TFQM.GradedVector.v1\");\n    hasher.update(&(kind.len() as u64).to_le_bytes());\n    hasher.update(kind);\n    hasher.update(&degree.to_le_bytes());\n    hasher.update(&(basis.len() as u64).to_le_bytes());\n\n    hasher.update(hash_vector(v).as_bytes());\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620\\hash-tests.exe",
+        "homology::hash_replay_18::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620",
+      "elapsed_seconds": 0.031,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T013620Z\\HS18-hash_graded_vector-field-5.log",
+      "log_sha256": "b1378dcddd8fd2bddf1cc59b45ec135a7c4b81c337b0bfca9feb11db85f51c79",
+      "timed_out": false
+    },
+    "subject_sha256": "96249ffaff860033e34b2c95b0932ee5eddd743f991f248010ac03a41389be34"
+  },
+  {
+    "candidate_path": "code/rust/target/hc/261019T013620/hash-19.rs",
+    "candidate_sha256": "185094f44eff69015f7d28d240148b04ac886651a525abc0d201d31ee009acb1",
+    "id": "HS19-hash_graded_vector-field-6",
+    "module": "hash_replay_19",
+    "needle": "pub fn hash_graded_vector(kind: &[u8], degree: i32, basis: &str, v: &[Q]) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"TFQM.GradedVector.v1\");\n    hasher.update(&(kind.len() as u64).to_le_bytes());\n    hasher.update(kind);\n    hasher.update(&degree.to_le_bytes());\n    hasher.update(&(basis.len() as u64).to_le_bytes());\n    hasher.update(basis.as_bytes());\n    hasher.update(hash_vector(v).as_bytes());\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "outcome": "killed",
+    "path": "homology/hashing.rs",
+    "replacement": "pub fn hash_graded_vector(kind: &[u8], degree: i32, basis: &str, v: &[Q]) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"TFQM.GradedVector.v1\");\n    hasher.update(&(kind.len() as u64).to_le_bytes());\n    hasher.update(kind);\n    hasher.update(&degree.to_le_bytes());\n    hasher.update(&(basis.len() as u64).to_le_bytes());\n    hasher.update(basis.as_bytes());\n\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620\\hash-tests.exe",
+        "homology::hash_replay_19::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620",
+      "elapsed_seconds": 0.016,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T013620Z\\HS19-hash_graded_vector-field-6.log",
+      "log_sha256": "1b3804c8915670493ea0eeb3e54d93259978478650d354bb679b8552999507cf",
+      "timed_out": false
+    },
+    "subject_sha256": "96249ffaff860033e34b2c95b0932ee5eddd743f991f248010ac03a41389be34"
+  },
+  {
+    "candidate_path": "code/rust/target/hc/261019T013620/hash-20.rs",
+    "candidate_sha256": "20d498358e0646c425fbce34d4a9775eed3ef7ff7ed4b93702da0ea5efe50227",
+    "id": "HS20-hash_chain_complex_manifest-field-0",
+    "module": "hash_replay_20",
+    "needle": "pub fn hash_chain_complex_manifest(\n    c0_dim: usize,\n    c1_dim: usize,\n    c2_dim: usize,\n    boundary_1_hash: &Hash256,\n    boundary_2_hash: &Hash256,\n) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"OMEGA.ChainComplexManifest.v1\");\n    hasher.update(&(c0_dim as u64).to_le_bytes());\n    hasher.update(&(c1_dim as u64).to_le_bytes());\n    hasher.update(&(c2_dim as u64).to_le_bytes());\n    hasher.update(boundary_1_hash.as_bytes());\n    hasher.update(boundary_2_hash.as_bytes());\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "outcome": "killed",
+    "path": "homology/hashing.rs",
+    "replacement": "pub fn hash_chain_complex_manifest(\n    c0_dim: usize,\n    c1_dim: usize,\n    c2_dim: usize,\n    boundary_1_hash: &Hash256,\n    boundary_2_hash: &Hash256,\n) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n\n    hasher.update(&(c0_dim as u64).to_le_bytes());\n    hasher.update(&(c1_dim as u64).to_le_bytes());\n    hasher.update(&(c2_dim as u64).to_le_bytes());\n    hasher.update(boundary_1_hash.as_bytes());\n    hasher.update(boundary_2_hash.as_bytes());\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620\\hash-tests.exe",
+        "homology::hash_replay_20::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620",
+      "elapsed_seconds": 0.016,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T013620Z\\HS20-hash_chain_complex_manifest-field-0.log",
+      "log_sha256": "05ae8ee543428c296e26d4cb299aab839fa8da12b874f3b1da1ae37829e8570f",
+      "timed_out": false
+    },
+    "subject_sha256": "96249ffaff860033e34b2c95b0932ee5eddd743f991f248010ac03a41389be34"
+  },
+  {
+    "candidate_path": "code/rust/target/hc/261019T013620/hash-21.rs",
+    "candidate_sha256": "8deb10d231839877691ba9e9c286c6228c6107976cb18fa44ef289a26866920d",
+    "id": "HS21-hash_chain_complex_manifest-field-1",
+    "module": "hash_replay_21",
+    "needle": "pub fn hash_chain_complex_manifest(\n    c0_dim: usize,\n    c1_dim: usize,\n    c2_dim: usize,\n    boundary_1_hash: &Hash256,\n    boundary_2_hash: &Hash256,\n) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"OMEGA.ChainComplexManifest.v1\");\n    hasher.update(&(c0_dim as u64).to_le_bytes());\n    hasher.update(&(c1_dim as u64).to_le_bytes());\n    hasher.update(&(c2_dim as u64).to_le_bytes());\n    hasher.update(boundary_1_hash.as_bytes());\n    hasher.update(boundary_2_hash.as_bytes());\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "outcome": "killed",
+    "path": "homology/hashing.rs",
+    "replacement": "pub fn hash_chain_complex_manifest(\n    c0_dim: usize,\n    c1_dim: usize,\n    c2_dim: usize,\n    boundary_1_hash: &Hash256,\n    boundary_2_hash: &Hash256,\n) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"OMEGA.ChainComplexManifest.v1\");\n\n    hasher.update(&(c1_dim as u64).to_le_bytes());\n    hasher.update(&(c2_dim as u64).to_le_bytes());\n    hasher.update(boundary_1_hash.as_bytes());\n    hasher.update(boundary_2_hash.as_bytes());\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620\\hash-tests.exe",
+        "homology::hash_replay_21::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620",
+      "elapsed_seconds": 0.016,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T013620Z\\HS21-hash_chain_complex_manifest-field-1.log",
+      "log_sha256": "883dd60f40952605a269f6bec3bff67d2553651cbe3ad0b4277b2c96969f2c29",
+      "timed_out": false
+    },
+    "subject_sha256": "96249ffaff860033e34b2c95b0932ee5eddd743f991f248010ac03a41389be34"
+  },
+  {
+    "candidate_path": "code/rust/target/hc/261019T013620/hash-22.rs",
+    "candidate_sha256": "46c73deeb03b9d736877617bb820908fb2206e09d60f9b4222b518bbc1d529d7",
+    "id": "HS22-hash_chain_complex_manifest-field-2",
+    "module": "hash_replay_22",
+    "needle": "pub fn hash_chain_complex_manifest(\n    c0_dim: usize,\n    c1_dim: usize,\n    c2_dim: usize,\n    boundary_1_hash: &Hash256,\n    boundary_2_hash: &Hash256,\n) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"OMEGA.ChainComplexManifest.v1\");\n    hasher.update(&(c0_dim as u64).to_le_bytes());\n    hasher.update(&(c1_dim as u64).to_le_bytes());\n    hasher.update(&(c2_dim as u64).to_le_bytes());\n    hasher.update(boundary_1_hash.as_bytes());\n    hasher.update(boundary_2_hash.as_bytes());\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "outcome": "killed",
+    "path": "homology/hashing.rs",
+    "replacement": "pub fn hash_chain_complex_manifest(\n    c0_dim: usize,\n    c1_dim: usize,\n    c2_dim: usize,\n    boundary_1_hash: &Hash256,\n    boundary_2_hash: &Hash256,\n) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"OMEGA.ChainComplexManifest.v1\");\n    hasher.update(&(c0_dim as u64).to_le_bytes());\n\n    hasher.update(&(c2_dim as u64).to_le_bytes());\n    hasher.update(boundary_1_hash.as_bytes());\n    hasher.update(boundary_2_hash.as_bytes());\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620\\hash-tests.exe",
+        "homology::hash_replay_22::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620",
+      "elapsed_seconds": 0.031,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T013620Z\\HS22-hash_chain_complex_manifest-field-2.log",
+      "log_sha256": "6fc3b0d9ef11431ba74d32bfa51e7ca58d2722c1900fe3bdd67e33b677afe655",
+      "timed_out": false
+    },
+    "subject_sha256": "96249ffaff860033e34b2c95b0932ee5eddd743f991f248010ac03a41389be34"
+  },
+  {
+    "candidate_path": "code/rust/target/hc/261019T013620/hash-23.rs",
+    "candidate_sha256": "2106dce63042a8bfd60fc28aba0f57fc1ed4b18f416037d05653509ca9829d97",
+    "id": "HS23-hash_chain_complex_manifest-field-3",
+    "module": "hash_replay_23",
+    "needle": "pub fn hash_chain_complex_manifest(\n    c0_dim: usize,\n    c1_dim: usize,\n    c2_dim: usize,\n    boundary_1_hash: &Hash256,\n    boundary_2_hash: &Hash256,\n) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"OMEGA.ChainComplexManifest.v1\");\n    hasher.update(&(c0_dim as u64).to_le_bytes());\n    hasher.update(&(c1_dim as u64).to_le_bytes());\n    hasher.update(&(c2_dim as u64).to_le_bytes());\n    hasher.update(boundary_1_hash.as_bytes());\n    hasher.update(boundary_2_hash.as_bytes());\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "outcome": "killed",
+    "path": "homology/hashing.rs",
+    "replacement": "pub fn hash_chain_complex_manifest(\n    c0_dim: usize,\n    c1_dim: usize,\n    c2_dim: usize,\n    boundary_1_hash: &Hash256,\n    boundary_2_hash: &Hash256,\n) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"OMEGA.ChainComplexManifest.v1\");\n    hasher.update(&(c0_dim as u64).to_le_bytes());\n    hasher.update(&(c1_dim as u64).to_le_bytes());\n\n    hasher.update(boundary_1_hash.as_bytes());\n    hasher.update(boundary_2_hash.as_bytes());\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620\\hash-tests.exe",
+        "homology::hash_replay_23::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620",
+      "elapsed_seconds": 0.016,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T013620Z\\HS23-hash_chain_complex_manifest-field-3.log",
+      "log_sha256": "f0d40afb0f2563269cd90aa3ddd53e149e3c9099db739014220d9ec69d4d09e8",
+      "timed_out": false
+    },
+    "subject_sha256": "96249ffaff860033e34b2c95b0932ee5eddd743f991f248010ac03a41389be34"
+  },
+  {
+    "candidate_path": "code/rust/target/hc/261019T013620/hash-24.rs",
+    "candidate_sha256": "30a283e4e6766101ed0217926364e8ae4032517671e375f3a246e704cee48742",
+    "id": "HS24-hash_chain_complex_manifest-field-4",
+    "module": "hash_replay_24",
+    "needle": "pub fn hash_chain_complex_manifest(\n    c0_dim: usize,\n    c1_dim: usize,\n    c2_dim: usize,\n    boundary_1_hash: &Hash256,\n    boundary_2_hash: &Hash256,\n) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"OMEGA.ChainComplexManifest.v1\");\n    hasher.update(&(c0_dim as u64).to_le_bytes());\n    hasher.update(&(c1_dim as u64).to_le_bytes());\n    hasher.update(&(c2_dim as u64).to_le_bytes());\n    hasher.update(boundary_1_hash.as_bytes());\n    hasher.update(boundary_2_hash.as_bytes());\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "outcome": "killed",
+    "path": "homology/hashing.rs",
+    "replacement": "pub fn hash_chain_complex_manifest(\n    c0_dim: usize,\n    c1_dim: usize,\n    c2_dim: usize,\n    boundary_1_hash: &Hash256,\n    boundary_2_hash: &Hash256,\n) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"OMEGA.ChainComplexManifest.v1\");\n    hasher.update(&(c0_dim as u64).to_le_bytes());\n    hasher.update(&(c1_dim as u64).to_le_bytes());\n    hasher.update(&(c2_dim as u64).to_le_bytes());\n\n    hasher.update(boundary_2_hash.as_bytes());\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620\\hash-tests.exe",
+        "homology::hash_replay_24::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620",
+      "elapsed_seconds": 0.015,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T013620Z\\HS24-hash_chain_complex_manifest-field-4.log",
+      "log_sha256": "66fae92bff6d448a1ced8d1cb2ec0a2a3b75539623560f914ba1367296eef9de",
+      "timed_out": false
+    },
+    "subject_sha256": "96249ffaff860033e34b2c95b0932ee5eddd743f991f248010ac03a41389be34"
+  },
+  {
+    "candidate_path": "code/rust/target/hc/261019T013620/hash-25.rs",
+    "candidate_sha256": "4d214eb0b45ed4bab6a9e803916626e4de847583d5e2d2001c82b00ba786d816",
+    "id": "HS25-hash_chain_complex_manifest-field-5",
+    "module": "hash_replay_25",
+    "needle": "pub fn hash_chain_complex_manifest(\n    c0_dim: usize,\n    c1_dim: usize,\n    c2_dim: usize,\n    boundary_1_hash: &Hash256,\n    boundary_2_hash: &Hash256,\n) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"OMEGA.ChainComplexManifest.v1\");\n    hasher.update(&(c0_dim as u64).to_le_bytes());\n    hasher.update(&(c1_dim as u64).to_le_bytes());\n    hasher.update(&(c2_dim as u64).to_le_bytes());\n    hasher.update(boundary_1_hash.as_bytes());\n    hasher.update(boundary_2_hash.as_bytes());\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "outcome": "killed",
+    "path": "homology/hashing.rs",
+    "replacement": "pub fn hash_chain_complex_manifest(\n    c0_dim: usize,\n    c1_dim: usize,\n    c2_dim: usize,\n    boundary_1_hash: &Hash256,\n    boundary_2_hash: &Hash256,\n) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"OMEGA.ChainComplexManifest.v1\");\n    hasher.update(&(c0_dim as u64).to_le_bytes());\n    hasher.update(&(c1_dim as u64).to_le_bytes());\n    hasher.update(&(c2_dim as u64).to_le_bytes());\n    hasher.update(boundary_1_hash.as_bytes());\n\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620\\hash-tests.exe",
+        "homology::hash_replay_25::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620",
+      "elapsed_seconds": 0.016,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T013620Z\\HS25-hash_chain_complex_manifest-field-5.log",
+      "log_sha256": "1d283b00216a110b39ff5c9b1f5047fbd3ee37c644fc07257c902de33036c444",
+      "timed_out": false
+    },
+    "subject_sha256": "96249ffaff860033e34b2c95b0932ee5eddd743f991f248010ac03a41389be34"
+  },
+  {
+    "candidate_path": "code/rust/target/hc/261019T013620/hash-26.rs",
+    "candidate_sha256": "a9fe96d3ebaa6b37a0e7fdfc256e046878b907bae2001fbb03f8061d44fdd4a1",
+    "id": "HS26-hash_cochain_complex_manifest-field-0",
+    "module": "hash_replay_26",
+    "needle": "pub fn hash_cochain_complex_manifest(\n    c0_dim: usize,\n    c1_dim: usize,\n    c2_dim: usize,\n    d0_hash: &Hash256,\n    d1_hash: &Hash256,\n) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"OMEGA.CochainComplexManifest.v1\");\n    hasher.update(&(c0_dim as u64).to_le_bytes());\n    hasher.update(&(c1_dim as u64).to_le_bytes());\n    hasher.update(&(c2_dim as u64).to_le_bytes());\n    hasher.update(d0_hash.as_bytes());\n    hasher.update(d1_hash.as_bytes());\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "outcome": "killed",
+    "path": "homology/hashing.rs",
+    "replacement": "pub fn hash_cochain_complex_manifest(\n    c0_dim: usize,\n    c1_dim: usize,\n    c2_dim: usize,\n    d0_hash: &Hash256,\n    d1_hash: &Hash256,\n) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n\n    hasher.update(&(c0_dim as u64).to_le_bytes());\n    hasher.update(&(c1_dim as u64).to_le_bytes());\n    hasher.update(&(c2_dim as u64).to_le_bytes());\n    hasher.update(d0_hash.as_bytes());\n    hasher.update(d1_hash.as_bytes());\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620\\hash-tests.exe",
+        "homology::hash_replay_26::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620",
+      "elapsed_seconds": 0.015,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T013620Z\\HS26-hash_cochain_complex_manifest-field-0.log",
+      "log_sha256": "331179453545d5f8ef3e9b0137f7073c3c0fd17023ad3ecc2aa0df739d8873b7",
+      "timed_out": false
+    },
+    "subject_sha256": "96249ffaff860033e34b2c95b0932ee5eddd743f991f248010ac03a41389be34"
+  },
+  {
+    "candidate_path": "code/rust/target/hc/261019T013620/hash-27.rs",
+    "candidate_sha256": "aa0c87fcdb7d444c476c92029288473bc866c7e07c617bb344fc58b218d01f2b",
+    "id": "HS27-hash_cochain_complex_manifest-field-1",
+    "module": "hash_replay_27",
+    "needle": "pub fn hash_cochain_complex_manifest(\n    c0_dim: usize,\n    c1_dim: usize,\n    c2_dim: usize,\n    d0_hash: &Hash256,\n    d1_hash: &Hash256,\n) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"OMEGA.CochainComplexManifest.v1\");\n    hasher.update(&(c0_dim as u64).to_le_bytes());\n    hasher.update(&(c1_dim as u64).to_le_bytes());\n    hasher.update(&(c2_dim as u64).to_le_bytes());\n    hasher.update(d0_hash.as_bytes());\n    hasher.update(d1_hash.as_bytes());\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "outcome": "killed",
+    "path": "homology/hashing.rs",
+    "replacement": "pub fn hash_cochain_complex_manifest(\n    c0_dim: usize,\n    c1_dim: usize,\n    c2_dim: usize,\n    d0_hash: &Hash256,\n    d1_hash: &Hash256,\n) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"OMEGA.CochainComplexManifest.v1\");\n\n    hasher.update(&(c1_dim as u64).to_le_bytes());\n    hasher.update(&(c2_dim as u64).to_le_bytes());\n    hasher.update(d0_hash.as_bytes());\n    hasher.update(d1_hash.as_bytes());\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620\\hash-tests.exe",
+        "homology::hash_replay_27::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620",
+      "elapsed_seconds": 0.015,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T013620Z\\HS27-hash_cochain_complex_manifest-field-1.log",
+      "log_sha256": "048d9325c1698a58cd5607a1ab935274b819ae09f79c6b090287b776511ecea8",
+      "timed_out": false
+    },
+    "subject_sha256": "96249ffaff860033e34b2c95b0932ee5eddd743f991f248010ac03a41389be34"
+  },
+  {
+    "candidate_path": "code/rust/target/hc/261019T013620/hash-28.rs",
+    "candidate_sha256": "a91a2afb3ff8a81e32287aa5b20c0284dfa64c3c2157669fc72289eddb9800ca",
+    "id": "HS28-hash_cochain_complex_manifest-field-2",
+    "module": "hash_replay_28",
+    "needle": "pub fn hash_cochain_complex_manifest(\n    c0_dim: usize,\n    c1_dim: usize,\n    c2_dim: usize,\n    d0_hash: &Hash256,\n    d1_hash: &Hash256,\n) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"OMEGA.CochainComplexManifest.v1\");\n    hasher.update(&(c0_dim as u64).to_le_bytes());\n    hasher.update(&(c1_dim as u64).to_le_bytes());\n    hasher.update(&(c2_dim as u64).to_le_bytes());\n    hasher.update(d0_hash.as_bytes());\n    hasher.update(d1_hash.as_bytes());\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "outcome": "killed",
+    "path": "homology/hashing.rs",
+    "replacement": "pub fn hash_cochain_complex_manifest(\n    c0_dim: usize,\n    c1_dim: usize,\n    c2_dim: usize,\n    d0_hash: &Hash256,\n    d1_hash: &Hash256,\n) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"OMEGA.CochainComplexManifest.v1\");\n    hasher.update(&(c0_dim as u64).to_le_bytes());\n\n    hasher.update(&(c2_dim as u64).to_le_bytes());\n    hasher.update(d0_hash.as_bytes());\n    hasher.update(d1_hash.as_bytes());\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620\\hash-tests.exe",
+        "homology::hash_replay_28::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620",
+      "elapsed_seconds": 0.016,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T013620Z\\HS28-hash_cochain_complex_manifest-field-2.log",
+      "log_sha256": "804235c9f4fe68c54a0fed0f80c3fe51b364567fc306278215d9e162bd8a0174",
+      "timed_out": false
+    },
+    "subject_sha256": "96249ffaff860033e34b2c95b0932ee5eddd743f991f248010ac03a41389be34"
+  },
+  {
+    "candidate_path": "code/rust/target/hc/261019T013620/hash-29.rs",
+    "candidate_sha256": "51dca3fd573c468b9f63e63851d17937fbe9ea868b7ba89d815a1791e6ed5c19",
+    "id": "HS29-hash_cochain_complex_manifest-field-3",
+    "module": "hash_replay_29",
+    "needle": "pub fn hash_cochain_complex_manifest(\n    c0_dim: usize,\n    c1_dim: usize,\n    c2_dim: usize,\n    d0_hash: &Hash256,\n    d1_hash: &Hash256,\n) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"OMEGA.CochainComplexManifest.v1\");\n    hasher.update(&(c0_dim as u64).to_le_bytes());\n    hasher.update(&(c1_dim as u64).to_le_bytes());\n    hasher.update(&(c2_dim as u64).to_le_bytes());\n    hasher.update(d0_hash.as_bytes());\n    hasher.update(d1_hash.as_bytes());\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "outcome": "killed",
+    "path": "homology/hashing.rs",
+    "replacement": "pub fn hash_cochain_complex_manifest(\n    c0_dim: usize,\n    c1_dim: usize,\n    c2_dim: usize,\n    d0_hash: &Hash256,\n    d1_hash: &Hash256,\n) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"OMEGA.CochainComplexManifest.v1\");\n    hasher.update(&(c0_dim as u64).to_le_bytes());\n    hasher.update(&(c1_dim as u64).to_le_bytes());\n\n    hasher.update(d0_hash.as_bytes());\n    hasher.update(d1_hash.as_bytes());\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620\\hash-tests.exe",
+        "homology::hash_replay_29::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620",
+      "elapsed_seconds": 0.016,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T013620Z\\HS29-hash_cochain_complex_manifest-field-3.log",
+      "log_sha256": "9077ee9d017fcbcdd2bc5b20836eb300f270f7821f536d3ffb278dc2c064c136",
+      "timed_out": false
+    },
+    "subject_sha256": "96249ffaff860033e34b2c95b0932ee5eddd743f991f248010ac03a41389be34"
+  },
+  {
+    "candidate_path": "code/rust/target/hc/261019T013620/hash-30.rs",
+    "candidate_sha256": "148c961278d4beb7c7d9e715adac581cc811e5d007721371d9ece0682f79f4c9",
+    "id": "HS30-hash_cochain_complex_manifest-field-4",
+    "module": "hash_replay_30",
+    "needle": "pub fn hash_cochain_complex_manifest(\n    c0_dim: usize,\n    c1_dim: usize,\n    c2_dim: usize,\n    d0_hash: &Hash256,\n    d1_hash: &Hash256,\n) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"OMEGA.CochainComplexManifest.v1\");\n    hasher.update(&(c0_dim as u64).to_le_bytes());\n    hasher.update(&(c1_dim as u64).to_le_bytes());\n    hasher.update(&(c2_dim as u64).to_le_bytes());\n    hasher.update(d0_hash.as_bytes());\n    hasher.update(d1_hash.as_bytes());\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "outcome": "killed",
+    "path": "homology/hashing.rs",
+    "replacement": "pub fn hash_cochain_complex_manifest(\n    c0_dim: usize,\n    c1_dim: usize,\n    c2_dim: usize,\n    d0_hash: &Hash256,\n    d1_hash: &Hash256,\n) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"OMEGA.CochainComplexManifest.v1\");\n    hasher.update(&(c0_dim as u64).to_le_bytes());\n    hasher.update(&(c1_dim as u64).to_le_bytes());\n    hasher.update(&(c2_dim as u64).to_le_bytes());\n\n    hasher.update(d1_hash.as_bytes());\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620\\hash-tests.exe",
+        "homology::hash_replay_30::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620",
+      "elapsed_seconds": 0.016,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T013620Z\\HS30-hash_cochain_complex_manifest-field-4.log",
+      "log_sha256": "3fd7811d3f52f069d103e8c473b45810bd07fb787088f7d40c772d120a4addb0",
+      "timed_out": false
+    },
+    "subject_sha256": "96249ffaff860033e34b2c95b0932ee5eddd743f991f248010ac03a41389be34"
+  },
+  {
+    "candidate_path": "code/rust/target/hc/261019T013620/hash-31.rs",
+    "candidate_sha256": "2e110a3e3c7c4de9c4f9d1cbb191d7fb394b4a2b7865417a6a2e8a462819540a",
+    "id": "HS31-hash_cochain_complex_manifest-field-5",
+    "module": "hash_replay_31",
+    "needle": "pub fn hash_cochain_complex_manifest(\n    c0_dim: usize,\n    c1_dim: usize,\n    c2_dim: usize,\n    d0_hash: &Hash256,\n    d1_hash: &Hash256,\n) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"OMEGA.CochainComplexManifest.v1\");\n    hasher.update(&(c0_dim as u64).to_le_bytes());\n    hasher.update(&(c1_dim as u64).to_le_bytes());\n    hasher.update(&(c2_dim as u64).to_le_bytes());\n    hasher.update(d0_hash.as_bytes());\n    hasher.update(d1_hash.as_bytes());\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "outcome": "killed",
+    "path": "homology/hashing.rs",
+    "replacement": "pub fn hash_cochain_complex_manifest(\n    c0_dim: usize,\n    c1_dim: usize,\n    c2_dim: usize,\n    d0_hash: &Hash256,\n    d1_hash: &Hash256,\n) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"OMEGA.CochainComplexManifest.v1\");\n    hasher.update(&(c0_dim as u64).to_le_bytes());\n    hasher.update(&(c1_dim as u64).to_le_bytes());\n    hasher.update(&(c2_dim as u64).to_le_bytes());\n    hasher.update(d0_hash.as_bytes());\n\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620\\hash-tests.exe",
+        "homology::hash_replay_31::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620",
+      "elapsed_seconds": 0.016,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T013620Z\\HS31-hash_cochain_complex_manifest-field-5.log",
+      "log_sha256": "23f482e865d9d6a0e4b982af0795e76d419d3b4cb2054f08b7ab54a3758a1b48",
+      "timed_out": false
+    },
+    "subject_sha256": "96249ffaff860033e34b2c95b0932ee5eddd743f991f248010ac03a41389be34"
+  },
+  {
+    "candidate_path": "code/rust/target/hc/261019T013620/hash-32.rs",
+    "candidate_sha256": "a1c7c000ffde06e7af819940c8aa3cbee32e20614024b5d0eae36f9e2cf20255",
+    "id": "HS32-hash_carrier_manifest-field-0",
+    "module": "hash_replay_32",
+    "needle": "pub fn hash_carrier_manifest(\n    c0_dim: usize,\n    c1_dim: usize,\n    c2_dim: usize,\n    d0_hash: &Hash256,\n    d1_hash: &Hash256,\n    weights_hash: &Hash256,\n) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    // Bind the same version emitted by the current manifest struct.\n    hasher.update(b\"TFQM.CarrierManifest.v1\");\n    hasher.update(&crate::homology::carrier_manifest::CARRIER_MANIFEST_VERSION.to_le_bytes());\n    hasher.update(d0_hash.as_bytes());\n    hasher.update(d1_hash.as_bytes());\n    hasher.update(weights_hash.as_bytes());\n    hasher.update(&(c0_dim as u64).to_le_bytes());\n    hasher.update(&(c1_dim as u64).to_le_bytes());\n    hasher.update(&(c2_dim as u64).to_le_bytes());\n    // Bind both declared scalar identifiers from that same manifest module.\n    hasher.update(crate::homology::carrier_manifest::COEFFICIENT_DOMAIN.as_bytes());\n    hasher.update(crate::homology::carrier_manifest::COEFFICIENT_REPRESENTATION.as_bytes());\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "outcome": "killed",
+    "path": "homology/hashing.rs",
+    "replacement": "pub fn hash_carrier_manifest(\n    c0_dim: usize,\n    c1_dim: usize,\n    c2_dim: usize,\n    d0_hash: &Hash256,\n    d1_hash: &Hash256,\n    weights_hash: &Hash256,\n) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    // Bind the same version emitted by the current manifest struct.\n\n    hasher.update(&crate::homology::carrier_manifest::CARRIER_MANIFEST_VERSION.to_le_bytes());\n    hasher.update(d0_hash.as_bytes());\n    hasher.update(d1_hash.as_bytes());\n    hasher.update(weights_hash.as_bytes());\n    hasher.update(&(c0_dim as u64).to_le_bytes());\n    hasher.update(&(c1_dim as u64).to_le_bytes());\n    hasher.update(&(c2_dim as u64).to_le_bytes());\n    // Bind both declared scalar identifiers from that same manifest module.\n    hasher.update(crate::homology::carrier_manifest::COEFFICIENT_DOMAIN.as_bytes());\n    hasher.update(crate::homology::carrier_manifest::COEFFICIENT_REPRESENTATION.as_bytes());\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620\\hash-tests.exe",
+        "homology::hash_replay_32::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620",
+      "elapsed_seconds": 0.031,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T013620Z\\HS32-hash_carrier_manifest-field-0.log",
+      "log_sha256": "064eb699b44a2c209f3c077d5a258e5d84c62bcd5852e23d4fe8f061bf3c684f",
+      "timed_out": false
+    },
+    "subject_sha256": "96249ffaff860033e34b2c95b0932ee5eddd743f991f248010ac03a41389be34"
+  },
+  {
+    "candidate_path": "code/rust/target/hc/261019T013620/hash-33.rs",
+    "candidate_sha256": "4a2012062354ad8f475ce6f0e4f5e476fe487d607e049a184d956905cfd65dc0",
+    "id": "HS33-hash_carrier_manifest-field-1",
+    "module": "hash_replay_33",
+    "needle": "pub fn hash_carrier_manifest(\n    c0_dim: usize,\n    c1_dim: usize,\n    c2_dim: usize,\n    d0_hash: &Hash256,\n    d1_hash: &Hash256,\n    weights_hash: &Hash256,\n) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    // Bind the same version emitted by the current manifest struct.\n    hasher.update(b\"TFQM.CarrierManifest.v1\");\n    hasher.update(&crate::homology::carrier_manifest::CARRIER_MANIFEST_VERSION.to_le_bytes());\n    hasher.update(d0_hash.as_bytes());\n    hasher.update(d1_hash.as_bytes());\n    hasher.update(weights_hash.as_bytes());\n    hasher.update(&(c0_dim as u64).to_le_bytes());\n    hasher.update(&(c1_dim as u64).to_le_bytes());\n    hasher.update(&(c2_dim as u64).to_le_bytes());\n    // Bind both declared scalar identifiers from that same manifest module.\n    hasher.update(crate::homology::carrier_manifest::COEFFICIENT_DOMAIN.as_bytes());\n    hasher.update(crate::homology::carrier_manifest::COEFFICIENT_REPRESENTATION.as_bytes());\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "outcome": "killed",
+    "path": "homology/hashing.rs",
+    "replacement": "pub fn hash_carrier_manifest(\n    c0_dim: usize,\n    c1_dim: usize,\n    c2_dim: usize,\n    d0_hash: &Hash256,\n    d1_hash: &Hash256,\n    weights_hash: &Hash256,\n) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    // Bind the same version emitted by the current manifest struct.\n    hasher.update(b\"TFQM.CarrierManifest.v1\");\n\n    hasher.update(d0_hash.as_bytes());\n    hasher.update(d1_hash.as_bytes());\n    hasher.update(weights_hash.as_bytes());\n    hasher.update(&(c0_dim as u64).to_le_bytes());\n    hasher.update(&(c1_dim as u64).to_le_bytes());\n    hasher.update(&(c2_dim as u64).to_le_bytes());\n    // Bind both declared scalar identifiers from that same manifest module.\n    hasher.update(crate::homology::carrier_manifest::COEFFICIENT_DOMAIN.as_bytes());\n    hasher.update(crate::homology::carrier_manifest::COEFFICIENT_REPRESENTATION.as_bytes());\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620\\hash-tests.exe",
+        "homology::hash_replay_33::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620",
+      "elapsed_seconds": 0.015,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T013620Z\\HS33-hash_carrier_manifest-field-1.log",
+      "log_sha256": "f48741f58307a51fee753dd118075c4fbd4c13710d5d12fae188a38a6fd07fe5",
+      "timed_out": false
+    },
+    "subject_sha256": "96249ffaff860033e34b2c95b0932ee5eddd743f991f248010ac03a41389be34"
+  },
+  {
+    "candidate_path": "code/rust/target/hc/261019T013620/hash-34.rs",
+    "candidate_sha256": "05862a793735f657a23639b3eb564ff876cdb030268a9797e2829777acdc49fc",
+    "id": "HS34-hash_carrier_manifest-field-2",
+    "module": "hash_replay_34",
+    "needle": "pub fn hash_carrier_manifest(\n    c0_dim: usize,\n    c1_dim: usize,\n    c2_dim: usize,\n    d0_hash: &Hash256,\n    d1_hash: &Hash256,\n    weights_hash: &Hash256,\n) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    // Bind the same version emitted by the current manifest struct.\n    hasher.update(b\"TFQM.CarrierManifest.v1\");\n    hasher.update(&crate::homology::carrier_manifest::CARRIER_MANIFEST_VERSION.to_le_bytes());\n    hasher.update(d0_hash.as_bytes());\n    hasher.update(d1_hash.as_bytes());\n    hasher.update(weights_hash.as_bytes());\n    hasher.update(&(c0_dim as u64).to_le_bytes());\n    hasher.update(&(c1_dim as u64).to_le_bytes());\n    hasher.update(&(c2_dim as u64).to_le_bytes());\n    // Bind both declared scalar identifiers from that same manifest module.\n    hasher.update(crate::homology::carrier_manifest::COEFFICIENT_DOMAIN.as_bytes());\n    hasher.update(crate::homology::carrier_manifest::COEFFICIENT_REPRESENTATION.as_bytes());\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "outcome": "killed",
+    "path": "homology/hashing.rs",
+    "replacement": "pub fn hash_carrier_manifest(\n    c0_dim: usize,\n    c1_dim: usize,\n    c2_dim: usize,\n    d0_hash: &Hash256,\n    d1_hash: &Hash256,\n    weights_hash: &Hash256,\n) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    // Bind the same version emitted by the current manifest struct.\n    hasher.update(b\"TFQM.CarrierManifest.v1\");\n    hasher.update(&crate::homology::carrier_manifest::CARRIER_MANIFEST_VERSION.to_le_bytes());\n\n    hasher.update(d1_hash.as_bytes());\n    hasher.update(weights_hash.as_bytes());\n    hasher.update(&(c0_dim as u64).to_le_bytes());\n    hasher.update(&(c1_dim as u64).to_le_bytes());\n    hasher.update(&(c2_dim as u64).to_le_bytes());\n    // Bind both declared scalar identifiers from that same manifest module.\n    hasher.update(crate::homology::carrier_manifest::COEFFICIENT_DOMAIN.as_bytes());\n    hasher.update(crate::homology::carrier_manifest::COEFFICIENT_REPRESENTATION.as_bytes());\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620\\hash-tests.exe",
+        "homology::hash_replay_34::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620",
+      "elapsed_seconds": 0.016,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T013620Z\\HS34-hash_carrier_manifest-field-2.log",
+      "log_sha256": "3bea7f729807f72c8a96b080586d93e6d4ecd6b996fbc39028b341a75ca7a76d",
+      "timed_out": false
+    },
+    "subject_sha256": "96249ffaff860033e34b2c95b0932ee5eddd743f991f248010ac03a41389be34"
+  },
+  {
+    "candidate_path": "code/rust/target/hc/261019T013620/hash-35.rs",
+    "candidate_sha256": "d3271e20f5f3fc89c9c3202bdc2e2cf6faac463afff90a4a5ecde43d49ca746d",
+    "id": "HS35-hash_carrier_manifest-field-3",
+    "module": "hash_replay_35",
+    "needle": "pub fn hash_carrier_manifest(\n    c0_dim: usize,\n    c1_dim: usize,\n    c2_dim: usize,\n    d0_hash: &Hash256,\n    d1_hash: &Hash256,\n    weights_hash: &Hash256,\n) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    // Bind the same version emitted by the current manifest struct.\n    hasher.update(b\"TFQM.CarrierManifest.v1\");\n    hasher.update(&crate::homology::carrier_manifest::CARRIER_MANIFEST_VERSION.to_le_bytes());\n    hasher.update(d0_hash.as_bytes());\n    hasher.update(d1_hash.as_bytes());\n    hasher.update(weights_hash.as_bytes());\n    hasher.update(&(c0_dim as u64).to_le_bytes());\n    hasher.update(&(c1_dim as u64).to_le_bytes());\n    hasher.update(&(c2_dim as u64).to_le_bytes());\n    // Bind both declared scalar identifiers from that same manifest module.\n    hasher.update(crate::homology::carrier_manifest::COEFFICIENT_DOMAIN.as_bytes());\n    hasher.update(crate::homology::carrier_manifest::COEFFICIENT_REPRESENTATION.as_bytes());\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "outcome": "killed",
+    "path": "homology/hashing.rs",
+    "replacement": "pub fn hash_carrier_manifest(\n    c0_dim: usize,\n    c1_dim: usize,\n    c2_dim: usize,\n    d0_hash: &Hash256,\n    d1_hash: &Hash256,\n    weights_hash: &Hash256,\n) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    // Bind the same version emitted by the current manifest struct.\n    hasher.update(b\"TFQM.CarrierManifest.v1\");\n    hasher.update(&crate::homology::carrier_manifest::CARRIER_MANIFEST_VERSION.to_le_bytes());\n    hasher.update(d0_hash.as_bytes());\n\n    hasher.update(weights_hash.as_bytes());\n    hasher.update(&(c0_dim as u64).to_le_bytes());\n    hasher.update(&(c1_dim as u64).to_le_bytes());\n    hasher.update(&(c2_dim as u64).to_le_bytes());\n    // Bind both declared scalar identifiers from that same manifest module.\n    hasher.update(crate::homology::carrier_manifest::COEFFICIENT_DOMAIN.as_bytes());\n    hasher.update(crate::homology::carrier_manifest::COEFFICIENT_REPRESENTATION.as_bytes());\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620\\hash-tests.exe",
+        "homology::hash_replay_35::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620",
+      "elapsed_seconds": 0.016,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T013620Z\\HS35-hash_carrier_manifest-field-3.log",
+      "log_sha256": "0f062d802c7e03e5c8a1adef45d19049d5aa948eadc03ef91d4b2310127c9bfc",
+      "timed_out": false
+    },
+    "subject_sha256": "96249ffaff860033e34b2c95b0932ee5eddd743f991f248010ac03a41389be34"
+  },
+  {
+    "candidate_path": "code/rust/target/hc/261019T013620/hash-36.rs",
+    "candidate_sha256": "e49d15607868bc0b48c852205c558fc3ed494052182e88d67fb265792392a3e8",
+    "id": "HS36-hash_carrier_manifest-field-4",
+    "module": "hash_replay_36",
+    "needle": "pub fn hash_carrier_manifest(\n    c0_dim: usize,\n    c1_dim: usize,\n    c2_dim: usize,\n    d0_hash: &Hash256,\n    d1_hash: &Hash256,\n    weights_hash: &Hash256,\n) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    // Bind the same version emitted by the current manifest struct.\n    hasher.update(b\"TFQM.CarrierManifest.v1\");\n    hasher.update(&crate::homology::carrier_manifest::CARRIER_MANIFEST_VERSION.to_le_bytes());\n    hasher.update(d0_hash.as_bytes());\n    hasher.update(d1_hash.as_bytes());\n    hasher.update(weights_hash.as_bytes());\n    hasher.update(&(c0_dim as u64).to_le_bytes());\n    hasher.update(&(c1_dim as u64).to_le_bytes());\n    hasher.update(&(c2_dim as u64).to_le_bytes());\n    // Bind both declared scalar identifiers from that same manifest module.\n    hasher.update(crate::homology::carrier_manifest::COEFFICIENT_DOMAIN.as_bytes());\n    hasher.update(crate::homology::carrier_manifest::COEFFICIENT_REPRESENTATION.as_bytes());\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "outcome": "killed",
+    "path": "homology/hashing.rs",
+    "replacement": "pub fn hash_carrier_manifest(\n    c0_dim: usize,\n    c1_dim: usize,\n    c2_dim: usize,\n    d0_hash: &Hash256,\n    d1_hash: &Hash256,\n    weights_hash: &Hash256,\n) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    // Bind the same version emitted by the current manifest struct.\n    hasher.update(b\"TFQM.CarrierManifest.v1\");\n    hasher.update(&crate::homology::carrier_manifest::CARRIER_MANIFEST_VERSION.to_le_bytes());\n    hasher.update(d0_hash.as_bytes());\n    hasher.update(d1_hash.as_bytes());\n\n    hasher.update(&(c0_dim as u64).to_le_bytes());\n    hasher.update(&(c1_dim as u64).to_le_bytes());\n    hasher.update(&(c2_dim as u64).to_le_bytes());\n    // Bind both declared scalar identifiers from that same manifest module.\n    hasher.update(crate::homology::carrier_manifest::COEFFICIENT_DOMAIN.as_bytes());\n    hasher.update(crate::homology::carrier_manifest::COEFFICIENT_REPRESENTATION.as_bytes());\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620\\hash-tests.exe",
+        "homology::hash_replay_36::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620",
+      "elapsed_seconds": 0.032,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T013620Z\\HS36-hash_carrier_manifest-field-4.log",
+      "log_sha256": "583ee3de8b21020901dd044b9bae1250393e39bc198c1b1d72f0a902571784da",
+      "timed_out": false
+    },
+    "subject_sha256": "96249ffaff860033e34b2c95b0932ee5eddd743f991f248010ac03a41389be34"
+  },
+  {
+    "candidate_path": "code/rust/target/hc/261019T013620/hash-37.rs",
+    "candidate_sha256": "ba60cdda0373298628e5eec497312abe153a439e737364b5b22cc6ba1198422c",
+    "id": "HS37-hash_carrier_manifest-field-5",
+    "module": "hash_replay_37",
+    "needle": "pub fn hash_carrier_manifest(\n    c0_dim: usize,\n    c1_dim: usize,\n    c2_dim: usize,\n    d0_hash: &Hash256,\n    d1_hash: &Hash256,\n    weights_hash: &Hash256,\n) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    // Bind the same version emitted by the current manifest struct.\n    hasher.update(b\"TFQM.CarrierManifest.v1\");\n    hasher.update(&crate::homology::carrier_manifest::CARRIER_MANIFEST_VERSION.to_le_bytes());\n    hasher.update(d0_hash.as_bytes());\n    hasher.update(d1_hash.as_bytes());\n    hasher.update(weights_hash.as_bytes());\n    hasher.update(&(c0_dim as u64).to_le_bytes());\n    hasher.update(&(c1_dim as u64).to_le_bytes());\n    hasher.update(&(c2_dim as u64).to_le_bytes());\n    // Bind both declared scalar identifiers from that same manifest module.\n    hasher.update(crate::homology::carrier_manifest::COEFFICIENT_DOMAIN.as_bytes());\n    hasher.update(crate::homology::carrier_manifest::COEFFICIENT_REPRESENTATION.as_bytes());\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "outcome": "killed",
+    "path": "homology/hashing.rs",
+    "replacement": "pub fn hash_carrier_manifest(\n    c0_dim: usize,\n    c1_dim: usize,\n    c2_dim: usize,\n    d0_hash: &Hash256,\n    d1_hash: &Hash256,\n    weights_hash: &Hash256,\n) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    // Bind the same version emitted by the current manifest struct.\n    hasher.update(b\"TFQM.CarrierManifest.v1\");\n    hasher.update(&crate::homology::carrier_manifest::CARRIER_MANIFEST_VERSION.to_le_bytes());\n    hasher.update(d0_hash.as_bytes());\n    hasher.update(d1_hash.as_bytes());\n    hasher.update(weights_hash.as_bytes());\n\n    hasher.update(&(c1_dim as u64).to_le_bytes());\n    hasher.update(&(c2_dim as u64).to_le_bytes());\n    // Bind both declared scalar identifiers from that same manifest module.\n    hasher.update(crate::homology::carrier_manifest::COEFFICIENT_DOMAIN.as_bytes());\n    hasher.update(crate::homology::carrier_manifest::COEFFICIENT_REPRESENTATION.as_bytes());\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620\\hash-tests.exe",
+        "homology::hash_replay_37::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620",
+      "elapsed_seconds": 0.031,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T013620Z\\HS37-hash_carrier_manifest-field-5.log",
+      "log_sha256": "bc0a071496141000c656646cec8569bd820039fc74aa1750eb3a149228a168d8",
+      "timed_out": false
+    },
+    "subject_sha256": "96249ffaff860033e34b2c95b0932ee5eddd743f991f248010ac03a41389be34"
+  },
+  {
+    "candidate_path": "code/rust/target/hc/261019T013620/hash-38.rs",
+    "candidate_sha256": "6009c680f63f3ec603e562108a476f70f8ecd7fe9a678f58a955619e350a8760",
+    "id": "HS38-hash_carrier_manifest-field-6",
+    "module": "hash_replay_38",
+    "needle": "pub fn hash_carrier_manifest(\n    c0_dim: usize,\n    c1_dim: usize,\n    c2_dim: usize,\n    d0_hash: &Hash256,\n    d1_hash: &Hash256,\n    weights_hash: &Hash256,\n) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    // Bind the same version emitted by the current manifest struct.\n    hasher.update(b\"TFQM.CarrierManifest.v1\");\n    hasher.update(&crate::homology::carrier_manifest::CARRIER_MANIFEST_VERSION.to_le_bytes());\n    hasher.update(d0_hash.as_bytes());\n    hasher.update(d1_hash.as_bytes());\n    hasher.update(weights_hash.as_bytes());\n    hasher.update(&(c0_dim as u64).to_le_bytes());\n    hasher.update(&(c1_dim as u64).to_le_bytes());\n    hasher.update(&(c2_dim as u64).to_le_bytes());\n    // Bind both declared scalar identifiers from that same manifest module.\n    hasher.update(crate::homology::carrier_manifest::COEFFICIENT_DOMAIN.as_bytes());\n    hasher.update(crate::homology::carrier_manifest::COEFFICIENT_REPRESENTATION.as_bytes());\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "outcome": "killed",
+    "path": "homology/hashing.rs",
+    "replacement": "pub fn hash_carrier_manifest(\n    c0_dim: usize,\n    c1_dim: usize,\n    c2_dim: usize,\n    d0_hash: &Hash256,\n    d1_hash: &Hash256,\n    weights_hash: &Hash256,\n) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    // Bind the same version emitted by the current manifest struct.\n    hasher.update(b\"TFQM.CarrierManifest.v1\");\n    hasher.update(&crate::homology::carrier_manifest::CARRIER_MANIFEST_VERSION.to_le_bytes());\n    hasher.update(d0_hash.as_bytes());\n    hasher.update(d1_hash.as_bytes());\n    hasher.update(weights_hash.as_bytes());\n    hasher.update(&(c0_dim as u64).to_le_bytes());\n\n    hasher.update(&(c2_dim as u64).to_le_bytes());\n    // Bind both declared scalar identifiers from that same manifest module.\n    hasher.update(crate::homology::carrier_manifest::COEFFICIENT_DOMAIN.as_bytes());\n    hasher.update(crate::homology::carrier_manifest::COEFFICIENT_REPRESENTATION.as_bytes());\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620\\hash-tests.exe",
+        "homology::hash_replay_38::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620",
+      "elapsed_seconds": 0.015,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T013620Z\\HS38-hash_carrier_manifest-field-6.log",
+      "log_sha256": "a39c202e4dfc55a5413cc646c06fbb1d820f9749b045b6dc45577b31d81140fe",
+      "timed_out": false
+    },
+    "subject_sha256": "96249ffaff860033e34b2c95b0932ee5eddd743f991f248010ac03a41389be34"
+  },
+  {
+    "candidate_path": "code/rust/target/hc/261019T013620/hash-39.rs",
+    "candidate_sha256": "de81f6496d095c4643ade3afc8cb12db77c56b26a046c0bfbe693112596938b8",
+    "id": "HS39-hash_carrier_manifest-field-7",
+    "module": "hash_replay_39",
+    "needle": "pub fn hash_carrier_manifest(\n    c0_dim: usize,\n    c1_dim: usize,\n    c2_dim: usize,\n    d0_hash: &Hash256,\n    d1_hash: &Hash256,\n    weights_hash: &Hash256,\n) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    // Bind the same version emitted by the current manifest struct.\n    hasher.update(b\"TFQM.CarrierManifest.v1\");\n    hasher.update(&crate::homology::carrier_manifest::CARRIER_MANIFEST_VERSION.to_le_bytes());\n    hasher.update(d0_hash.as_bytes());\n    hasher.update(d1_hash.as_bytes());\n    hasher.update(weights_hash.as_bytes());\n    hasher.update(&(c0_dim as u64).to_le_bytes());\n    hasher.update(&(c1_dim as u64).to_le_bytes());\n    hasher.update(&(c2_dim as u64).to_le_bytes());\n    // Bind both declared scalar identifiers from that same manifest module.\n    hasher.update(crate::homology::carrier_manifest::COEFFICIENT_DOMAIN.as_bytes());\n    hasher.update(crate::homology::carrier_manifest::COEFFICIENT_REPRESENTATION.as_bytes());\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "outcome": "killed",
+    "path": "homology/hashing.rs",
+    "replacement": "pub fn hash_carrier_manifest(\n    c0_dim: usize,\n    c1_dim: usize,\n    c2_dim: usize,\n    d0_hash: &Hash256,\n    d1_hash: &Hash256,\n    weights_hash: &Hash256,\n) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    // Bind the same version emitted by the current manifest struct.\n    hasher.update(b\"TFQM.CarrierManifest.v1\");\n    hasher.update(&crate::homology::carrier_manifest::CARRIER_MANIFEST_VERSION.to_le_bytes());\n    hasher.update(d0_hash.as_bytes());\n    hasher.update(d1_hash.as_bytes());\n    hasher.update(weights_hash.as_bytes());\n    hasher.update(&(c0_dim as u64).to_le_bytes());\n    hasher.update(&(c1_dim as u64).to_le_bytes());\n\n    // Bind both declared scalar identifiers from that same manifest module.\n    hasher.update(crate::homology::carrier_manifest::COEFFICIENT_DOMAIN.as_bytes());\n    hasher.update(crate::homology::carrier_manifest::COEFFICIENT_REPRESENTATION.as_bytes());\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620\\hash-tests.exe",
+        "homology::hash_replay_39::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620",
+      "elapsed_seconds": 0.016,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T013620Z\\HS39-hash_carrier_manifest-field-7.log",
+      "log_sha256": "d765899ae88426d36c7aca39613423ffcce428a2c71066e118fc1d8eed8244f0",
+      "timed_out": false
+    },
+    "subject_sha256": "96249ffaff860033e34b2c95b0932ee5eddd743f991f248010ac03a41389be34"
+  },
+  {
+    "candidate_path": "code/rust/target/hc/261019T013620/hash-40.rs",
+    "candidate_sha256": "75021c427d6b5524bf75604c74ac94db1a13e80eaa464708dad5a5549d183127",
+    "id": "HS40-hash_carrier_manifest-field-8",
+    "module": "hash_replay_40",
+    "needle": "pub fn hash_carrier_manifest(\n    c0_dim: usize,\n    c1_dim: usize,\n    c2_dim: usize,\n    d0_hash: &Hash256,\n    d1_hash: &Hash256,\n    weights_hash: &Hash256,\n) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    // Bind the same version emitted by the current manifest struct.\n    hasher.update(b\"TFQM.CarrierManifest.v1\");\n    hasher.update(&crate::homology::carrier_manifest::CARRIER_MANIFEST_VERSION.to_le_bytes());\n    hasher.update(d0_hash.as_bytes());\n    hasher.update(d1_hash.as_bytes());\n    hasher.update(weights_hash.as_bytes());\n    hasher.update(&(c0_dim as u64).to_le_bytes());\n    hasher.update(&(c1_dim as u64).to_le_bytes());\n    hasher.update(&(c2_dim as u64).to_le_bytes());\n    // Bind both declared scalar identifiers from that same manifest module.\n    hasher.update(crate::homology::carrier_manifest::COEFFICIENT_DOMAIN.as_bytes());\n    hasher.update(crate::homology::carrier_manifest::COEFFICIENT_REPRESENTATION.as_bytes());\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "outcome": "killed",
+    "path": "homology/hashing.rs",
+    "replacement": "pub fn hash_carrier_manifest(\n    c0_dim: usize,\n    c1_dim: usize,\n    c2_dim: usize,\n    d0_hash: &Hash256,\n    d1_hash: &Hash256,\n    weights_hash: &Hash256,\n) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    // Bind the same version emitted by the current manifest struct.\n    hasher.update(b\"TFQM.CarrierManifest.v1\");\n    hasher.update(&crate::homology::carrier_manifest::CARRIER_MANIFEST_VERSION.to_le_bytes());\n    hasher.update(d0_hash.as_bytes());\n    hasher.update(d1_hash.as_bytes());\n    hasher.update(weights_hash.as_bytes());\n    hasher.update(&(c0_dim as u64).to_le_bytes());\n    hasher.update(&(c1_dim as u64).to_le_bytes());\n    hasher.update(&(c2_dim as u64).to_le_bytes());\n    // Bind both declared scalar identifiers from that same manifest module.\n\n    hasher.update(crate::homology::carrier_manifest::COEFFICIENT_REPRESENTATION.as_bytes());\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620\\hash-tests.exe",
+        "homology::hash_replay_40::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620",
+      "elapsed_seconds": 0.015,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T013620Z\\HS40-hash_carrier_manifest-field-8.log",
+      "log_sha256": "6b68198c37cb25cb886d41582bdbf7bf6b9b1c11c92114a47d3a808951be2981",
+      "timed_out": false
+    },
+    "subject_sha256": "96249ffaff860033e34b2c95b0932ee5eddd743f991f248010ac03a41389be34"
+  },
+  {
+    "candidate_path": "code/rust/target/hc/261019T013620/hash-41.rs",
+    "candidate_sha256": "975f316cf7b7fa55aac679da67d2b1188c722aa9be805c45eb51739dee974c7f",
+    "id": "HS41-hash_carrier_manifest-field-9",
+    "module": "hash_replay_41",
+    "needle": "pub fn hash_carrier_manifest(\n    c0_dim: usize,\n    c1_dim: usize,\n    c2_dim: usize,\n    d0_hash: &Hash256,\n    d1_hash: &Hash256,\n    weights_hash: &Hash256,\n) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    // Bind the same version emitted by the current manifest struct.\n    hasher.update(b\"TFQM.CarrierManifest.v1\");\n    hasher.update(&crate::homology::carrier_manifest::CARRIER_MANIFEST_VERSION.to_le_bytes());\n    hasher.update(d0_hash.as_bytes());\n    hasher.update(d1_hash.as_bytes());\n    hasher.update(weights_hash.as_bytes());\n    hasher.update(&(c0_dim as u64).to_le_bytes());\n    hasher.update(&(c1_dim as u64).to_le_bytes());\n    hasher.update(&(c2_dim as u64).to_le_bytes());\n    // Bind both declared scalar identifiers from that same manifest module.\n    hasher.update(crate::homology::carrier_manifest::COEFFICIENT_DOMAIN.as_bytes());\n    hasher.update(crate::homology::carrier_manifest::COEFFICIENT_REPRESENTATION.as_bytes());\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "outcome": "killed",
+    "path": "homology/hashing.rs",
+    "replacement": "pub fn hash_carrier_manifest(\n    c0_dim: usize,\n    c1_dim: usize,\n    c2_dim: usize,\n    d0_hash: &Hash256,\n    d1_hash: &Hash256,\n    weights_hash: &Hash256,\n) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    // Bind the same version emitted by the current manifest struct.\n    hasher.update(b\"TFQM.CarrierManifest.v1\");\n    hasher.update(&crate::homology::carrier_manifest::CARRIER_MANIFEST_VERSION.to_le_bytes());\n    hasher.update(d0_hash.as_bytes());\n    hasher.update(d1_hash.as_bytes());\n    hasher.update(weights_hash.as_bytes());\n    hasher.update(&(c0_dim as u64).to_le_bytes());\n    hasher.update(&(c1_dim as u64).to_le_bytes());\n    hasher.update(&(c2_dim as u64).to_le_bytes());\n    // Bind both declared scalar identifiers from that same manifest module.\n    hasher.update(crate::homology::carrier_manifest::COEFFICIENT_DOMAIN.as_bytes());\n\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620\\hash-tests.exe",
+        "homology::hash_replay_41::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620",
+      "elapsed_seconds": 0.032,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T013620Z\\HS41-hash_carrier_manifest-field-9.log",
+      "log_sha256": "4b6a94ce7c05aaefbf638396bf4e9c9d831d54bedab97fcf0a27d88d071f1efd",
+      "timed_out": false
+    },
+    "subject_sha256": "96249ffaff860033e34b2c95b0932ee5eddd743f991f248010ac03a41389be34"
+  },
+  {
+    "candidate_path": "code/rust/target/hc/261019T013620/hash-42.rs",
+    "candidate_sha256": "9a93d91ab9eb589b8bcc4378887187dde561d2bcfefc4bed71653619ac38bae1",
+    "id": "HS42-hash_weights-field-0",
+    "module": "hash_replay_42",
+    "needle": "pub fn hash_weights(weights: &[Q]) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"MSSN.CarrierWeights<BigRational>.v2\");\n    hasher.update(&(weights.len() as u64).to_le_bytes());\n    for w in weights {\n        hash_stored_rational(&mut hasher, w);\n    }\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "outcome": "killed",
+    "path": "homology/hashing.rs",
+    "replacement": "pub fn hash_weights(weights: &[Q]) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n\n    hasher.update(&(weights.len() as u64).to_le_bytes());\n    for w in weights {\n        hash_stored_rational(&mut hasher, w);\n    }\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620\\hash-tests.exe",
+        "homology::hash_replay_42::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620",
+      "elapsed_seconds": 0.015,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T013620Z\\HS42-hash_weights-field-0.log",
+      "log_sha256": "f330a1b924680ae523be3afa726cc868af9c859ccca61b34df6b3e9598819b0a",
+      "timed_out": false
+    },
+    "subject_sha256": "96249ffaff860033e34b2c95b0932ee5eddd743f991f248010ac03a41389be34"
+  },
+  {
+    "candidate_path": "code/rust/target/hc/261019T013620/hash-43.rs",
+    "candidate_sha256": "b895d37baf6138dc73b9e258bf5b68bdd63ab48a2c4cc01cc98635ea4e9765a2",
+    "id": "HS43-hash_weights-field-1",
+    "module": "hash_replay_43",
+    "needle": "pub fn hash_weights(weights: &[Q]) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"MSSN.CarrierWeights<BigRational>.v2\");\n    hasher.update(&(weights.len() as u64).to_le_bytes());\n    for w in weights {\n        hash_stored_rational(&mut hasher, w);\n    }\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "outcome": "killed",
+    "path": "homology/hashing.rs",
+    "replacement": "pub fn hash_weights(weights: &[Q]) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"MSSN.CarrierWeights<BigRational>.v2\");\n\n    for w in weights {\n        hash_stored_rational(&mut hasher, w);\n    }\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620\\hash-tests.exe",
+        "homology::hash_replay_43::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620",
+      "elapsed_seconds": 0.016,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T013620Z\\HS43-hash_weights-field-1.log",
+      "log_sha256": "3b8f2c22422673bbf3a9c6bca4b5b2343fcf5872c12d854be1344603ba1d8cd1",
+      "timed_out": false
+    },
+    "subject_sha256": "96249ffaff860033e34b2c95b0932ee5eddd743f991f248010ac03a41389be34"
+  },
+  {
+    "candidate_path": "code/rust/target/hc/261019T013620/hash-44.rs",
+    "candidate_sha256": "edb96d4b6adcba45610dcefccebd4a629f4c292c20b937be7d0b16056ad3d2b8",
+    "id": "HS44-hash_weights-scalar-payload",
+    "module": "hash_replay_44",
+    "needle": "pub fn hash_weights(weights: &[Q]) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"MSSN.CarrierWeights<BigRational>.v2\");\n    hasher.update(&(weights.len() as u64).to_le_bytes());\n    for w in weights {\n        hash_stored_rational(&mut hasher, w);\n    }\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "outcome": "killed",
+    "path": "homology/hashing.rs",
+    "replacement": "pub fn hash_weights(weights: &[Q]) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"MSSN.CarrierWeights<BigRational>.v2\");\n    hasher.update(&(weights.len() as u64).to_le_bytes());\n    for w in weights {\n\n    }\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620\\hash-tests.exe",
+        "homology::hash_replay_44::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620",
+      "elapsed_seconds": 0.016,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T013620Z\\HS44-hash_weights-scalar-payload.log",
+      "log_sha256": "d118d909eccfa4a294cb9360a46f5d80428eadfaed3da8b36aa6c4b807549160",
+      "timed_out": false
+    },
+    "subject_sha256": "96249ffaff860033e34b2c95b0932ee5eddd743f991f248010ac03a41389be34"
+  },
+  {
+    "candidate_path": "code/rust/target/hc/261019T013620/hash-45.rs",
+    "candidate_sha256": "e8ddb7316b81226505ef5b8c44ffa8d9a7fd7b958bb506ad3b552a18076a4d2d",
+    "id": "HS45-hash_provenance-field-0",
+    "module": "hash_replay_45",
+    "needle": "pub fn hash_provenance(verification_source: &str) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"MSSN.TheoremProvenance.v1\");\n    hasher.update(verification_source.as_bytes());\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "outcome": "killed",
+    "path": "homology/hashing.rs",
+    "replacement": "pub fn hash_provenance(verification_source: &str) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n\n    hasher.update(verification_source.as_bytes());\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620\\hash-tests.exe",
+        "homology::hash_replay_45::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620",
+      "elapsed_seconds": 0.016,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T013620Z\\HS45-hash_provenance-field-0.log",
+      "log_sha256": "862fc3f31da2bdcb45f4f9dc99305f8e9775a8b8a616e99f47527612e6104e19",
+      "timed_out": false
+    },
+    "subject_sha256": "96249ffaff860033e34b2c95b0932ee5eddd743f991f248010ac03a41389be34"
+  },
+  {
+    "candidate_path": "code/rust/target/hc/261019T013620/hash-46.rs",
+    "candidate_sha256": "c818552cdb6192f965dd09ca0a5efa5b8b17fd9ff1f7b1453dae9770f4c47ea9",
+    "id": "HS46-hash_provenance-field-1",
+    "module": "hash_replay_46",
+    "needle": "pub fn hash_provenance(verification_source: &str) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"MSSN.TheoremProvenance.v1\");\n    hasher.update(verification_source.as_bytes());\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "outcome": "killed",
+    "path": "homology/hashing.rs",
+    "replacement": "pub fn hash_provenance(verification_source: &str) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"MSSN.TheoremProvenance.v1\");\n\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620\\hash-tests.exe",
+        "homology::hash_replay_46::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620",
+      "elapsed_seconds": 0.031,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T013620Z\\HS46-hash_provenance-field-1.log",
+      "log_sha256": "913c60ee247d377a2df4e408398117c52a71968ed1f36337c830db5b32de3f17",
+      "timed_out": false
+    },
+    "subject_sha256": "96249ffaff860033e34b2c95b0932ee5eddd743f991f248010ac03a41389be34"
+  },
+  {
+    "candidate_path": "code/rust/target/hc/261019T013620/hash-47.rs",
+    "candidate_sha256": "e0b470962ecc25797d47f33975843d767777beb1bc3dd41611c99387ae0b180e",
+    "id": "HS47-hash_cochain_witness-field-0",
+    "module": "hash_replay_47",
+    "needle": "pub fn hash_cochain_witness(\n    d0_shape: (usize, usize),\n    d1_shape: (usize, usize),\n    provenance_hash: &Hash256,\n) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"MSSN.CochainComplexWitness.v1\");\n    hasher.update(&(d0_shape.0 as u64).to_le_bytes());\n    hasher.update(&(d0_shape.1 as u64).to_le_bytes());\n    hasher.update(&(d1_shape.0 as u64).to_le_bytes());\n    hasher.update(&(d1_shape.1 as u64).to_le_bytes());\n    hasher.update(provenance_hash.as_bytes());\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "outcome": "killed",
+    "path": "homology/hashing.rs",
+    "replacement": "pub fn hash_cochain_witness(\n    d0_shape: (usize, usize),\n    d1_shape: (usize, usize),\n    provenance_hash: &Hash256,\n) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n\n    hasher.update(&(d0_shape.0 as u64).to_le_bytes());\n    hasher.update(&(d0_shape.1 as u64).to_le_bytes());\n    hasher.update(&(d1_shape.0 as u64).to_le_bytes());\n    hasher.update(&(d1_shape.1 as u64).to_le_bytes());\n    hasher.update(provenance_hash.as_bytes());\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620\\hash-tests.exe",
+        "homology::hash_replay_47::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620",
+      "elapsed_seconds": 0.016,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T013620Z\\HS47-hash_cochain_witness-field-0.log",
+      "log_sha256": "9ae428c65cd1b50f5f87763ac0f031527a71b971d0e56850d29c35e1f7a501f9",
+      "timed_out": false
+    },
+    "subject_sha256": "96249ffaff860033e34b2c95b0932ee5eddd743f991f248010ac03a41389be34"
+  },
+  {
+    "candidate_path": "code/rust/target/hc/261019T013620/hash-48.rs",
+    "candidate_sha256": "e7132d6b39978215cf561de843f9498a6fee171bb9a1929a7d7a2660dcd64065",
+    "id": "HS48-hash_cochain_witness-field-1",
+    "module": "hash_replay_48",
+    "needle": "pub fn hash_cochain_witness(\n    d0_shape: (usize, usize),\n    d1_shape: (usize, usize),\n    provenance_hash: &Hash256,\n) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"MSSN.CochainComplexWitness.v1\");\n    hasher.update(&(d0_shape.0 as u64).to_le_bytes());\n    hasher.update(&(d0_shape.1 as u64).to_le_bytes());\n    hasher.update(&(d1_shape.0 as u64).to_le_bytes());\n    hasher.update(&(d1_shape.1 as u64).to_le_bytes());\n    hasher.update(provenance_hash.as_bytes());\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "outcome": "killed",
+    "path": "homology/hashing.rs",
+    "replacement": "pub fn hash_cochain_witness(\n    d0_shape: (usize, usize),\n    d1_shape: (usize, usize),\n    provenance_hash: &Hash256,\n) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"MSSN.CochainComplexWitness.v1\");\n\n    hasher.update(&(d0_shape.1 as u64).to_le_bytes());\n    hasher.update(&(d1_shape.0 as u64).to_le_bytes());\n    hasher.update(&(d1_shape.1 as u64).to_le_bytes());\n    hasher.update(provenance_hash.as_bytes());\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620\\hash-tests.exe",
+        "homology::hash_replay_48::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620",
+      "elapsed_seconds": 0.015,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T013620Z\\HS48-hash_cochain_witness-field-1.log",
+      "log_sha256": "410230301090ded3b48351fb66251d74bfd7bbf8bb55e1070e0cbd1285434bdc",
+      "timed_out": false
+    },
+    "subject_sha256": "96249ffaff860033e34b2c95b0932ee5eddd743f991f248010ac03a41389be34"
+  },
+  {
+    "candidate_path": "code/rust/target/hc/261019T013620/hash-49.rs",
+    "candidate_sha256": "ef31d15303f6ce7cbc17893bee6fb6651a8555d00005fc8ac06bb5b5a84ad96d",
+    "id": "HS49-hash_cochain_witness-field-2",
+    "module": "hash_replay_49",
+    "needle": "pub fn hash_cochain_witness(\n    d0_shape: (usize, usize),\n    d1_shape: (usize, usize),\n    provenance_hash: &Hash256,\n) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"MSSN.CochainComplexWitness.v1\");\n    hasher.update(&(d0_shape.0 as u64).to_le_bytes());\n    hasher.update(&(d0_shape.1 as u64).to_le_bytes());\n    hasher.update(&(d1_shape.0 as u64).to_le_bytes());\n    hasher.update(&(d1_shape.1 as u64).to_le_bytes());\n    hasher.update(provenance_hash.as_bytes());\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "outcome": "killed",
+    "path": "homology/hashing.rs",
+    "replacement": "pub fn hash_cochain_witness(\n    d0_shape: (usize, usize),\n    d1_shape: (usize, usize),\n    provenance_hash: &Hash256,\n) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"MSSN.CochainComplexWitness.v1\");\n    hasher.update(&(d0_shape.0 as u64).to_le_bytes());\n\n    hasher.update(&(d1_shape.0 as u64).to_le_bytes());\n    hasher.update(&(d1_shape.1 as u64).to_le_bytes());\n    hasher.update(provenance_hash.as_bytes());\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620\\hash-tests.exe",
+        "homology::hash_replay_49::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620",
+      "elapsed_seconds": 0.015,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T013620Z\\HS49-hash_cochain_witness-field-2.log",
+      "log_sha256": "b43df81497b0abe26350f6bb9215ed310fc9a677a04a9a0f843984140d62250e",
+      "timed_out": false
+    },
+    "subject_sha256": "96249ffaff860033e34b2c95b0932ee5eddd743f991f248010ac03a41389be34"
+  },
+  {
+    "candidate_path": "code/rust/target/hc/261019T013620/hash-50.rs",
+    "candidate_sha256": "afb30212e1c5561a63e29c4b1c8b3cf976ebc570b893ddf2155ee7a5153829a4",
+    "id": "HS50-hash_cochain_witness-field-3",
+    "module": "hash_replay_50",
+    "needle": "pub fn hash_cochain_witness(\n    d0_shape: (usize, usize),\n    d1_shape: (usize, usize),\n    provenance_hash: &Hash256,\n) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"MSSN.CochainComplexWitness.v1\");\n    hasher.update(&(d0_shape.0 as u64).to_le_bytes());\n    hasher.update(&(d0_shape.1 as u64).to_le_bytes());\n    hasher.update(&(d1_shape.0 as u64).to_le_bytes());\n    hasher.update(&(d1_shape.1 as u64).to_le_bytes());\n    hasher.update(provenance_hash.as_bytes());\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "outcome": "killed",
+    "path": "homology/hashing.rs",
+    "replacement": "pub fn hash_cochain_witness(\n    d0_shape: (usize, usize),\n    d1_shape: (usize, usize),\n    provenance_hash: &Hash256,\n) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"MSSN.CochainComplexWitness.v1\");\n    hasher.update(&(d0_shape.0 as u64).to_le_bytes());\n    hasher.update(&(d0_shape.1 as u64).to_le_bytes());\n\n    hasher.update(&(d1_shape.1 as u64).to_le_bytes());\n    hasher.update(provenance_hash.as_bytes());\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620\\hash-tests.exe",
+        "homology::hash_replay_50::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620",
+      "elapsed_seconds": 0.016,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T013620Z\\HS50-hash_cochain_witness-field-3.log",
+      "log_sha256": "0e7e60b3325fe865beb7c7aa6a2bbe0f80f7f2f3efd4a5fb7ffff79e3c227903",
+      "timed_out": false
+    },
+    "subject_sha256": "96249ffaff860033e34b2c95b0932ee5eddd743f991f248010ac03a41389be34"
+  },
+  {
+    "candidate_path": "code/rust/target/hc/261019T013620/hash-51.rs",
+    "candidate_sha256": "1e0689b340807ea298bcc47a6f396965426c586408b9e13dcb8890171000125c",
+    "id": "HS51-hash_cochain_witness-field-4",
+    "module": "hash_replay_51",
+    "needle": "pub fn hash_cochain_witness(\n    d0_shape: (usize, usize),\n    d1_shape: (usize, usize),\n    provenance_hash: &Hash256,\n) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"MSSN.CochainComplexWitness.v1\");\n    hasher.update(&(d0_shape.0 as u64).to_le_bytes());\n    hasher.update(&(d0_shape.1 as u64).to_le_bytes());\n    hasher.update(&(d1_shape.0 as u64).to_le_bytes());\n    hasher.update(&(d1_shape.1 as u64).to_le_bytes());\n    hasher.update(provenance_hash.as_bytes());\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "outcome": "killed",
+    "path": "homology/hashing.rs",
+    "replacement": "pub fn hash_cochain_witness(\n    d0_shape: (usize, usize),\n    d1_shape: (usize, usize),\n    provenance_hash: &Hash256,\n) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"MSSN.CochainComplexWitness.v1\");\n    hasher.update(&(d0_shape.0 as u64).to_le_bytes());\n    hasher.update(&(d0_shape.1 as u64).to_le_bytes());\n    hasher.update(&(d1_shape.0 as u64).to_le_bytes());\n\n    hasher.update(provenance_hash.as_bytes());\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620\\hash-tests.exe",
+        "homology::hash_replay_51::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620",
+      "elapsed_seconds": 0.031,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T013620Z\\HS51-hash_cochain_witness-field-4.log",
+      "log_sha256": "d8a50d29cc12f2add0587faa0d0f3055fef6a399671b451bd5a109ac63961d83",
+      "timed_out": false
+    },
+    "subject_sha256": "96249ffaff860033e34b2c95b0932ee5eddd743f991f248010ac03a41389be34"
+  },
+  {
+    "candidate_path": "code/rust/target/hc/261019T013620/hash-52.rs",
+    "candidate_sha256": "26e463d9db9bf51acca85b4059f41d900e409b71446f548eb7dfc14a157e1355",
+    "id": "HS52-hash_cochain_witness-field-5",
+    "module": "hash_replay_52",
+    "needle": "pub fn hash_cochain_witness(\n    d0_shape: (usize, usize),\n    d1_shape: (usize, usize),\n    provenance_hash: &Hash256,\n) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"MSSN.CochainComplexWitness.v1\");\n    hasher.update(&(d0_shape.0 as u64).to_le_bytes());\n    hasher.update(&(d0_shape.1 as u64).to_le_bytes());\n    hasher.update(&(d1_shape.0 as u64).to_le_bytes());\n    hasher.update(&(d1_shape.1 as u64).to_le_bytes());\n    hasher.update(provenance_hash.as_bytes());\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "outcome": "killed",
+    "path": "homology/hashing.rs",
+    "replacement": "pub fn hash_cochain_witness(\n    d0_shape: (usize, usize),\n    d1_shape: (usize, usize),\n    provenance_hash: &Hash256,\n) -> Hash256 {\n    let mut hasher = blake3::Hasher::new();\n    hasher.update(b\"MSSN.CochainComplexWitness.v1\");\n    hasher.update(&(d0_shape.0 as u64).to_le_bytes());\n    hasher.update(&(d0_shape.1 as u64).to_le_bytes());\n    hasher.update(&(d1_shape.0 as u64).to_le_bytes());\n    hasher.update(&(d1_shape.1 as u64).to_le_bytes());\n\n    Hash256(*hasher.finalize().as_bytes())\n}",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620\\hash-tests.exe",
+        "homology::hash_replay_52::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620",
+      "elapsed_seconds": 0.016,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T013620Z\\HS52-hash_cochain_witness-field-5.log",
+      "log_sha256": "bdc125d255863cdaee18f0bdf7dadee01a428b62d651382bead22863f35c7c74",
+      "timed_out": false
+    },
+    "subject_sha256": "96249ffaff860033e34b2c95b0932ee5eddd743f991f248010ac03a41389be34"
+  },
+  {
+    "candidate_path": "code/rust/target/hc/261019T013620/hash-53.rs",
+    "candidate_sha256": "eb497c06c77f02f6caacbb4fe81c265b6869e83238ba9c913e8fbecbdb585a62",
+    "id": "HS53-scalar-numerator",
+    "module": "hash_replay_53",
+    "needle": "hash_bigint(hasher, value.numer());",
+    "outcome": "killed",
+    "path": "homology/hashing.rs",
+    "replacement": "hash_bigint(hasher, &BigInt::from(0));",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620\\hash-tests.exe",
+        "homology::hash_replay_53::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620",
+      "elapsed_seconds": 0.016,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T013620Z\\HS53-scalar-numerator.log",
+      "log_sha256": "5c49b02c41a441e48e49ba0460cad39da50064f12575d7bd3c3860ec0b902879",
+      "timed_out": false
+    },
+    "subject_sha256": "96249ffaff860033e34b2c95b0932ee5eddd743f991f248010ac03a41389be34"
+  },
+  {
+    "candidate_path": "code/rust/target/hc/261019T013620/hash-54.rs",
+    "candidate_sha256": "5bc6fa815d98aca96e6cb4a8325a03281d1e4e513d7af15dbb440ecca61d11ea",
+    "id": "HS54-scalar-denominator",
+    "module": "hash_replay_54",
+    "needle": "hash_bigint(hasher, value.denom());",
+    "outcome": "killed",
+    "path": "homology/hashing.rs",
+    "replacement": "hash_bigint(hasher, &BigInt::from(1));",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620\\hash-tests.exe",
+        "homology::hash_replay_54::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620",
+      "elapsed_seconds": 0.016,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T013620Z\\HS54-scalar-denominator.log",
+      "log_sha256": "1abe4f79b3c7cd41a17b4ef4d29ba5dcfff0566b71438957941a3785ebdc7adb",
+      "timed_out": false
+    },
+    "subject_sha256": "96249ffaff860033e34b2c95b0932ee5eddd743f991f248010ac03a41389be34"
+  },
+  {
+    "candidate_path": "code/rust/target/hc/261019T013620/hash-55.rs",
+    "candidate_sha256": "ebe41c599fb67c0afda571127052de12117f723f94117179280046f47d3d831e",
+    "id": "HS55-integer-payload",
+    "module": "hash_replay_55",
+    "needle": "hash_bigint(&mut hasher, val);",
+    "outcome": "killed",
+    "path": "homology/hashing.rs",
+    "replacement": "hash_bigint(&mut hasher, &BigInt::from(0));",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620\\hash-tests.exe",
+        "homology::hash_replay_55::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620",
+      "elapsed_seconds": 0.015,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T013620Z\\HS55-integer-payload.log",
+      "log_sha256": "ff9935a4ccf554c2a1bc1fb02a9357ada6692fd643bcb231d2fa9dbc699234d2",
+      "timed_out": false
+    },
+    "subject_sha256": "96249ffaff860033e34b2c95b0932ee5eddd743f991f248010ac03a41389be34"
+  },
+  {
+    "candidate_path": "code/rust/target/hc/261019T013620/hash-56.rs",
+    "candidate_sha256": "1c5b8b4c76abd64672f024f5d5ebb03ee8cbd6e57857096cdcd60a70dca493f0",
+    "id": "HS56-digest-hex",
+    "module": "hash_replay_56",
+    "needle": "hex::encode(self.0)",
+    "outcome": "killed",
+    "path": "homology/hashing.rs",
+    "replacement": "hex::encode([0u8; 32])",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620\\hash-tests.exe",
+        "homology::hash_replay_56::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620",
+      "elapsed_seconds": 0.016,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T013620Z\\HS56-digest-hex.log",
+      "log_sha256": "aa5b9d1852c89340a0c30f32c47a8578c128a16f19ca5f1a3b6c965c08cd501f",
+      "timed_out": false
+    },
+    "subject_sha256": "96249ffaff860033e34b2c95b0932ee5eddd743f991f248010ac03a41389be34"
+  },
+  {
+    "candidate_path": "code/rust/target/hc/261019T013620/hash-57.rs",
+    "candidate_sha256": "6c12f0da5144abd6accb6deca284c90885b272928858bc69dcac86582937b7e7",
+    "id": "HS57-digest-display",
+    "module": "hash_replay_57",
+    "needle": "&self.0[28..]",
+    "outcome": "killed",
+    "path": "homology/hashing.rs",
+    "replacement": "&self.0[..4]",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620\\hash-tests.exe",
+        "homology::hash_replay_57::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\hc\\261019T013620",
+      "elapsed_seconds": 0.015,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\category_homology\\20261019T013620Z\\HS57-digest-display.log",
+      "log_sha256": "19ac216bd671ca6b5dc6ffc24bc6903cf4bff0631a3d72a855bde557b0c3e820",
+      "timed_out": false
+    },
+    "subject_sha256": "96249ffaff860033e34b2c95b0932ee5eddd743f991f248010ac03a41389be34"
+  }
+]

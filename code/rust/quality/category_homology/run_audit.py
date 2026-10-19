@@ -137,6 +137,13 @@ def execute_build(command, cwd, log, timeout=900):
 
 def snapshot(destination, scope="all"):
     destination.mkdir(parents=True)
+    if scope == "counter":
+        folder = destination/"src/category_theory"
+        folder.mkdir(parents=True)
+        shutil.copyfile(RUST/"src/category_theory/bounded_counter.rs", folder/"bounded_counter.rs")
+        (destination/"Cargo.toml").write_text('[workspace]\nmembers=["."]\nresolver="2"\n[package]\nname="tfqm_bounded_counter_audit"\nversion="0.0.0"\nedition="2021"\n[profile.dev]\ndebug=0\n[profile.test]\ndebug=0\n',encoding="utf-8")
+        (destination/"src/lib.rs").write_text('pub mod category_theory { pub mod bounded_counter; }\n',encoding="utf-8")
+        return
     if scope == "category":
         shutil.copytree(RUST/"src/category_theory", destination/"src/category_theory", copy_function=shutil.copyfile)
         (destination/"Cargo.toml").write_text('[workspace]\nmembers = ["src/category_theory"]\nresolver = "2"\n[profile.dev]\ndebug = 0\n[profile.test]\ndebug = 0\n',encoding="utf-8")
@@ -172,6 +179,16 @@ def mutations():
     h = "homology/"
     c = "category_theory/"
     return [
+        ("BC01-clip", c+"bounded_counter.rs", "clipped: count.min(remaining)", "clipped: count"),
+        ("BC02-admission", c+"bounded_counter.rs", "if clipped > remaining {", "if false {"),
+        ("BC03-depth", c+"bounded_counter.rs", ".remaining\n            .checked_sub(1)", ".remaining\n            .checked_sub(0)"),
+        ("BC04-increment-overflow", c+"bounded_counter.rs", "if self.clipped >= next {", "if false {"),
+        ("BC05-decrement-guard", c+"bounded_counter.rs", ".clipped\n                .checked_sub(1)", ".clipped\n                .checked_sub(0)"),
+        ("BC06-first-error", c+"bounded_counter.rs", "        word.iter()\n            .try_fold", "        if word.len() > self.remaining { return Err(CounterBoundary::ContextExhausted); }\n        word.iter()\n            .try_fold"),
+        ("BC07-same-depth", c+"bounded_counter.rs", "if self.remaining != other.remaining {", "if false {"),
+        ("BC08-separator", c+"bounded_counter.rs", ".then(|| self.clipped.min(other.clipped) + 1)", ".then(|| self.clipped.min(other.clipped))"),
+        ("BC09-lazy-addition", c+"bounded_counter.rs", ".then(|| self.clipped.min(other.clipped) + 1)", ".then_some(self.clipped.min(other.clipped) + 1)"),
+        ("BC10-event-order", c+"bounded_counter.rs", "        word.iter()\n            .try_fold", "        word.iter().rev()\n            .try_fold"),
         ("DW01-signed-overflow", c+"abelian/chain_complex_category.rs", "Some(self.degree_max.abs_diff(self.degree_min))", "Some((self.degree_max - self.degree_min) as u32)"),
         ("DW02-inverted-span", c+"abelian/chain_complex_category.rs", "if self.degree_min <= self.degree_max {", "if true {"),
         ("DW03-inverted-admission", c+"abelian/chain_complex_category.rs", "if self.degree_min > self.degree_max {", "if false {"),
@@ -206,6 +223,7 @@ def mutations():
         ("RK06-empty-fast-path", h+"rank_certificate.rs", "if matrix.rows() == 0 || matrix.cols() == 0 {", "if false {"),
         ("RK07-typed-inverse", h+"rank_certificate.rs", ".map_err(|source| HomologicalError::RankInverseFailed { source })", ".map_err(|source| HomologicalError::UnsupportedOperation(source.to_string()))"),
         ("RK09-producer-domain-valid", h+"rank_certificate.rs", "    super::exact_scalar::admit_matrix(matrix)?;\n    if matrix.rows()", "    if matrix.rows()"),
+        ("RK10-public-replay-domain", h+"rank_certificate.rs", "        // Canonical input admission precedes hash normalization.\n        super::exact_scalar::admit_matrix(matrix)?;\n", ""),
         ("C01-functor-composition", c+"cat_functor.rs", "        candidate.check_compositions()?;", ""),
         ("C02-functor-domain", c+"cat_functor.rs", "        candidate.check_maps()?;", ""),
         ("C03-functor-identity", c+"cat_functor.rs", "        candidate.check_identities()?;", ""),
@@ -285,7 +303,7 @@ def clear_debug_outputs(build, work):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--mutations", action="store_true")
-    parser.add_argument("--scope", choices=("all","category","homology"), default="all")
+    parser.add_argument("--scope", choices=("all","category","homology","counter"), default="all")
     parser.add_argument("--mutation-prefix", default="")
     parser.add_argument("--build-timeout", type=int, default=900, help="Cargo process deadline in seconds (default: 900)")
     args = parser.parse_args()
@@ -309,20 +327,23 @@ def main():
     build = work / "target"
     def test(package, name, challenge=False):
         command = ["cargo","test","--target-dir",str(build),"-p",package,"--lib","--offline","--locked","--quiet"]
-        command.append("l5a_challenges" if challenge else ("homology" if package.endswith("audit") else ""))
+        command.append("l5a_challenges" if challenge else ("homology" if package == "tfqm_category_homology_audit" else ""))
         try:
             return execute_build([x for x in command if x], work, output / (name+".log"), timeout=args.build_timeout)
         finally:
             clear_debug_outputs(build, work)
-    packages = [] if args.scope == "homology" else [("tfqm_category_theory","category")]
-    if args.scope != "category": packages.append(("tfqm_category_homology_audit","homology"))
+    if args.scope == "counter":
+        packages = [("tfqm_bounded_counter_audit","counter")]
+    else:
+        packages = [] if args.scope == "homology" else [("tfqm_category_theory","category")]
+        if args.scope != "category": packages.append(("tfqm_category_homology_audit","homology"))
     baselines = [test(package,name+"-baseline") for package,name in packages]
     write_json(output / "baseline.json", {"tools":tools,"runs":baselines})
     print("baseline exits:",[r["exit_code"] for r in baselines],flush=True)
     if args.mutations:
         records = [{"id":i,"path":p,"outcome":"unrun","needle":a,"replacement":b}
                    for i,p,a,b in mutations() if i.startswith(args.mutation_prefix)
-                   and (args.scope == "all" or p.startswith("homology/" if args.scope == "homology" else "category_theory/"))]
+                   and (p == "category_theory/bounded_counter.rs" if args.scope == "counter" else args.scope == "all" or p.startswith("homology/" if args.scope == "homology" else "category_theory/"))]
         write_json(output / "mutations.json", records)
     baseline_ok = all(r["exit_code"] == 0 for r in baselines)
     for record in records if baseline_ok else []:
@@ -347,7 +368,7 @@ def main():
         try:
             path.write_bytes(mutant.encode("utf-8"))
             record["candidate_sha256"] = digest(path)
-            package = "tfqm_category_theory" if record["path"].startswith("category_theory/") else "tfqm_category_homology_audit"
+            package = "tfqm_bounded_counter_audit" if args.scope == "counter" else "tfqm_category_theory" if record["path"].startswith("category_theory/") else "tfqm_category_homology_audit"
             run = test(package,record["id"])
             log = (ROOT / run["log"]).read_text(encoding="utf-8",errors="replace")
             if run.get("resource_refused"):
@@ -383,6 +404,9 @@ def main():
              "all_files_L5A":False,"score_token":None,
              "scope":"Designated critical faults only; no inference of a whole-directory grade.",
              "source_scope":args.scope,"mutation_prefix":args.mutation_prefix}
+    if args.scope == "counter":
+        final["compiled_subjects"] = ["code/rust/src/category_theory/bounded_counter.rs"]
+        final["compiled_scope"] = "Isolated std-only bounded_counter source module; not the whole category package"
     write_json(output / "summary.json",final)
     shutil.copy2(work / "Cargo.lock", output / "snapshot-Cargo.lock")
     print(json.dumps(final,indent=2),flush=True)

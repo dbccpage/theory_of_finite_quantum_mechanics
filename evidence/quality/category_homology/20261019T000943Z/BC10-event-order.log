@@ -1,0 +1,31 @@
+
+running 4 tests
+category_theory::bounded_counter::tests::admission_and_cross_depth_comparison_are_explicit_refusals --- FAILED
+.. 3/4
+category_theory::bounded_counter::tests::every_short_word_matches_native_count_and_first_boundary --- FAILED
+
+failures:
+
+---- category_theory::bounded_counter::tests::admission_and_cross_depth_comparison_are_explicit_refusals stdout ----
+
+thread 'category_theory::bounded_counter::tests::admission_and_cross_depth_comparison_are_explicit_refusals' (17152) panicked at src\category_theory\bounded_counter.rs:165:9:
+assertion `left == right` failed
+  left: Err(ContextExhausted)
+ right: Err(GuardRefusal)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- category_theory::bounded_counter::tests::every_short_word_matches_native_count_and_first_boundary stdout ----
+
+thread 'category_theory::bounded_counter::tests::every_short_word_matches_native_count_and_first_boundary' (920) panicked at src\category_theory\bounded_counter.rs:149:25:
+assertion `left == right` failed: depth=1, count=0, word=[Decrement, Increment]
+  left: Err(ContextExhausted)
+ right: Err(GuardRefusal)
+
+
+failures:
+    category_theory::bounded_counter::tests::admission_and_cross_depth_comparison_are_explicit_refusals
+    category_theory::bounded_counter::tests::every_short_word_matches_native_count_and_first_boundary
+
+test result: FAILED. 2 passed; 2 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+error: test failed, to rerun pass `-p tfqm_bounded_counter_audit --lib`

@@ -1,0 +1,29 @@
+
+running 4 tests
+. 1/4
+category_theory::bounded_counter::tests::every_short_word_matches_native_count_and_first_boundary --- FAILED
+category_theory::bounded_counter::tests::maximum_native_depth_needs_no_word_allocation_or_wrapping --- FAILED
+.
+failures:
+
+---- category_theory::bounded_counter::tests::every_short_word_matches_native_count_and_first_boundary stdout ----
+
+thread 'category_theory::bounded_counter::tests::every_short_word_matches_native_count_and_first_boundary' (27368) panicked at src\category_theory\bounded_counter.rs:149:25:
+assertion `left == right` failed: depth=1, count=0, word=[Increment]
+  left: Ok((0, 1))
+ right: Ok((0, 0))
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- category_theory::bounded_counter::tests::maximum_native_depth_needs_no_word_allocation_or_wrapping stdout ----
+
+thread 'category_theory::bounded_counter::tests::maximum_native_depth_needs_no_word_allocation_or_wrapping' (3576) panicked at src\category_theory\bounded_counter.rs:70:21:
+attempt to add with overflow
+
+
+failures:
+    category_theory::bounded_counter::tests::every_short_word_matches_native_count_and_first_boundary
+    category_theory::bounded_counter::tests::maximum_native_depth_needs_no_word_allocation_or_wrapping
+
+test result: FAILED. 2 passed; 2 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+error: test failed, to rerun pass `-p tfqm_bounded_counter_audit --lib`

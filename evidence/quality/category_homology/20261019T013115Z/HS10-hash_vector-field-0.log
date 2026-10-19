@@ -1,0 +1,49 @@
+
+running 14 tests
+test homology::hash_replay_10::hashing::tests::test_hash_provenance_deterministic ... ok
+test homology::hash_replay_10::hashing::tests::test_hash_vector_different_values ... ok
+test homology::hash_replay_10::hashing::tests::all_defined_fraction_representations_keep_value_normalization ... ok
+test homology::hash_replay_10::hashing::tests::test_hash_provenance_different_sources ... ok
+test homology::hash_replay_10::hashing::tests::test_hash256_to_hex ... ok
+test homology::hash_replay_10::hashing::tests::test_hash256_display ... ok
+test homology::hash_replay_10::hashing::tests::test_hash_weights_deterministic ... ok
+test homology::hash_replay_10::hashing::wire_specification::digest_views_and_wire_roundtrip_preserve_every_byte ... ok
+test homology::hash_replay_10::hashing::wire_specification::manifest_fields_have_the_declared_order_and_domains ... ok
+test homology::hash_replay_10::hashing::wire_specification::graded_identifiers_use_byte_lengths_and_signed_degrees ... FAILED
+test homology::hash_replay_10::hashing::wire_specification::rational_and_integer_wires ... FAILED
+test homology::hash_replay_10::hashing::wire_specification::undefined_pairs_are_stored_without_rational_arithmetic ... FAILED
+test homology::hash_replay_10::hashing::tests::test_hash_vector_deterministic ... ok
+test homology::hash_replay_10::hashing::tests::undefined_raw_ratios_have_opaque_fingerprints_without_admission ... ok
+
+failures:
+
+---- homology::hash_replay_10::hashing::wire_specification::graded_identifiers_use_byte_lengths_and_signed_degrees stdout ----
+
+thread 'homology::hash_replay_10::hashing::wire_specification::graded_identifiers_use_byte_lengths_and_signed_degrees' (24292) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\hc\261019T013115\hash-10.rs:381:21:
+assertion `left == right` failed
+  left: [187, 163, 212, 150, 53, 29, 140, 204, 37, 155, 109, 240, 134, 239, 102, 88, 38, 60, 238, 197, 37, 165, 115, 241, 74, 145, 244, 39, 244, 206, 54, 146]
+ right: [216, 223, 25, 158, 52, 186, 216, 166, 241, 63, 203, 147, 215, 251, 15, 133, 135, 5, 144, 82, 9, 192, 115, 194, 68, 207, 215, 255, 195, 231, 95, 143]
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- homology::hash_replay_10::hashing::wire_specification::rational_and_integer_wires stdout ----
+
+thread 'homology::hash_replay_10::hashing::wire_specification::rational_and_integer_wires' (25472) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\hc\261019T013115\hash-10.rs:330:9:
+assertion `left == right` failed
+  left: [236, 255, 61, 32, 134, 124, 91, 2, 48, 173, 54, 27, 236, 33, 247, 10, 222, 225, 96, 132, 149, 170, 106, 67, 207, 85, 252, 62, 61, 112, 251, 19]
+ right: [123, 195, 152, 228, 171, 164, 138, 99, 18, 38, 106, 232, 210, 52, 125, 116, 151, 145, 11, 150, 189, 121, 33, 230, 51, 9, 142, 92, 69, 206, 21, 146]
+
+---- homology::hash_replay_10::hashing::wire_specification::undefined_pairs_are_stored_without_rational_arithmetic stdout ----
+
+thread 'homology::hash_replay_10::hashing::wire_specification::undefined_pairs_are_stored_without_rational_arithmetic' (24204) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\hc\261019T013115\hash-10.rs:362:17:
+assertion `left == right` failed
+  left: [227, 13, 66, 242, 60, 42, 232, 158, 159, 114, 218, 72, 24, 23, 244, 175, 68, 89, 165, 246, 244, 170, 138, 98, 76, 83, 113, 205, 217, 1, 187, 110]
+ right: [126, 205, 28, 102, 57, 242, 127, 149, 192, 189, 228, 149, 236, 199, 217, 148, 252, 60, 127, 173, 226, 112, 82, 54, 252, 13, 209, 208, 164, 252, 11, 44]
+
+
+failures:
+    homology::hash_replay_10::hashing::wire_specification::graded_identifiers_use_byte_lengths_and_signed_degrees
+    homology::hash_replay_10::hashing::wire_specification::rational_and_integer_wires
+    homology::hash_replay_10::hashing::wire_specification::undefined_pairs_are_stored_without_rational_arithmetic
+
+test result: FAILED. 11 passed; 3 failed; 0 ignored; 0 measured; 1119 filtered out; finished in 0.00s
+

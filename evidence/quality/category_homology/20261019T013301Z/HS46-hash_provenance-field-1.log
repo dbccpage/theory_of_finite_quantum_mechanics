@@ -1,0 +1,41 @@
+
+running 14 tests
+test homology::hash_replay_46::hashing::tests::test_hash_provenance_different_sources ... FAILED
+test homology::hash_replay_46::hashing::tests::test_hash_vector_different_values ... ok
+test homology::hash_replay_46::hashing::tests::test_hash256_to_hex ... ok
+test homology::hash_replay_46::hashing::tests::test_hash_provenance_deterministic ... ok
+test homology::hash_replay_46::hashing::tests::all_defined_fraction_representations_keep_value_normalization ... ok
+test homology::hash_replay_46::hashing::tests::test_hash256_display ... ok
+test homology::hash_replay_46::hashing::tests::test_hash_weights_deterministic ... ok
+test homology::hash_replay_46::hashing::tests::undefined_raw_ratios_have_opaque_fingerprints_without_admission ... ok
+test homology::hash_replay_46::hashing::wire_specification::digest_views_and_wire_roundtrip_preserve_every_byte ... ok
+test homology::hash_replay_46::hashing::wire_specification::manifest_fields_have_the_declared_order_and_domains ... FAILED
+test homology::hash_replay_46::hashing::wire_specification::undefined_pairs_are_stored_without_rational_arithmetic ... ok
+test homology::hash_replay_46::hashing::wire_specification::rational_and_integer_wires ... ok
+test homology::hash_replay_46::hashing::tests::test_hash_vector_deterministic ... ok
+test homology::hash_replay_46::hashing::wire_specification::graded_identifiers_use_byte_lengths_and_signed_degrees ... ok
+
+failures:
+
+---- homology::hash_replay_46::hashing::tests::test_hash_provenance_different_sources stdout ----
+
+thread 'homology::hash_replay_46::hashing::tests::test_hash_provenance_different_sources' (23920) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\hc\261019T013301\hash-46.rs:253:9:
+assertion `left != right` failed
+  left: Hash256([235, 124, 236, 48, 102, 151, 136, 124, 91, 245, 46, 94, 173, 88, 33, 27, 35, 73, 42, 2, 80, 161, 113, 133, 162, 121, 185, 15, 21, 91, 38, 246])
+ right: Hash256([235, 124, 236, 48, 102, 151, 136, 124, 91, 245, 46, 94, 173, 88, 33, 27, 35, 73, 42, 2, 80, 161, 113, 133, 162, 121, 185, 15, 21, 91, 38, 246])
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- homology::hash_replay_46::hashing::wire_specification::manifest_fields_have_the_declared_order_and_domains stdout ----
+
+thread 'homology::hash_replay_46::hashing::wire_specification::manifest_fields_have_the_declared_order_and_domains' (18048) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\hc\261019T013301\hash-46.rs:404:9:
+assertion `left == right` failed
+  left: [235, 124, 236, 48, 102, 151, 136, 124, 91, 245, 46, 94, 173, 88, 33, 27, 35, 73, 42, 2, 80, 161, 113, 133, 162, 121, 185, 15, 21, 91, 38, 246]
+ right: [147, 232, 6, 25, 248, 57, 8, 128, 117, 176, 246, 18, 16, 206, 93, 159, 196, 181, 26, 232, 195, 148, 72, 178, 161, 217, 163, 211, 190, 156, 110, 125]
+
+
+failures:
+    homology::hash_replay_46::hashing::tests::test_hash_provenance_different_sources
+    homology::hash_replay_46::hashing::wire_specification::manifest_fields_have_the_declared_order_and_domains
+
+test result: FAILED. 12 passed; 2 failed; 0 ignored; 0 measured; 1119 filtered out; finished in 0.00s
+

@@ -18,7 +18,7 @@ from run_audit import ROOT, digest, execute, write_json
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model",choices=("rank","category","metadata","degree"),default="rank")
+    parser.add_argument("--model",choices=("rank","category","metadata","degree","counter"),default="rank")
     model = parser.parse_args().model
     if model == "rank":
         proof_name, import_name, namespace = "RankCertificate", "LinearAlgebra/Matrix/Rank", "TFQM.RankCertificate."
@@ -37,10 +37,15 @@ def main():
         declarations = ("success_iff", "failed_head", "valid_head", "first_error_preserved",
                         "inspect_preserves_raw", "failed_check_returns_no_value")
         scope = "Ordered metadata predicates, exact first-error preservation and raw-value observation; no mathematical law certification."
-    else:
+    elif model == "degree":
         proof_name, import_name, namespace = "DegreeWindow", "Data/Int/Basic", "TFQM.DegreeWindow."
         declarations = ("ordered_span_fits_u32", "same_endpoint_zero", "inverted_span_negative")
         scope = "Exact i32 endpoint difference bounds, zero span and inverted-window refusal premise; no category-law claim."
+    else:
+        proof_name, import_name, namespace = "BoundedCounter", "Data/Nat/Basic", "TFQM.BoundedCounter."
+        declarations = ("clip_bound", "guard_exact", "increment_step", "decrement_step",
+                        "increment_branch_bound", "separator_bound", "decrement_separator", "short_words_legal")
+        scope = "Finite-depth clipping quotient, native guard correspondence, exact event steps and minimal decrement separators."
     project = ROOT/"lean4"
     proof = Path(__file__).resolve().parent/"proofs"/(proof_name+".lean")
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")+"-"+model+"-proof"

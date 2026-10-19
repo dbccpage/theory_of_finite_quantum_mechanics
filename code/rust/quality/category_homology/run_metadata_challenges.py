@@ -29,7 +29,7 @@ def challenge(record):
     clear = "\n".join(f'            if mask & (1 << {i}) != 0 {{ value.{f}.clear(); }}'
                        for i, f in enumerate(fields))
     field_names = ", ".join(json.dumps(f) for f in fields)
-    return '''
+    generated = '''
 #[cfg(test)]
 mod schema_challenge {
     use super::*;
@@ -69,6 +69,40 @@ LITERAL_ASSIGNMENTS
 '''.replace("FIELD_NAMES", field_names).replace("TYPE", kind).replace(
         "ASSIGNMENTS", assignments).replace("CLEAR", clear).replace(
         "LITERAL_" + assignments, "\n".join(f'            value.{f} = text.into();' for f in fields))
+    if record["type"] == "AbelianCategory":
+        generated += '''
+#[cfg(test)]
+mod checklist_challenge {
+    use super::*;
+    #[test]
+    fn every_raw_checklist_is_conjunction_without_law_promotion() {
+        for mask in 0u8..8 {
+            let value = AbelianCategory::with_flags("raw", mask & 1 != 0, mask & 2 != 0, mask & 4 != 0);
+            assert_eq!(value.checklist_complete(), mask == 7);
+            assert_eq!((value.additive, value.has_kernels, value.has_cokernels),
+                (mask & 1 != 0, mask & 2 != 0, mask & 4 != 0));
+            assert!(value.validate_shell().is_ok(), "raw shape admission is not a law claim");
+        }
+        assert!(AbelianCategory::claimed_abelian("declared").checklist_complete());
+    }
+}
+'''
+    elif record["type"] == "Additivity":
+        generated += '''
+#[cfg(test)]
+mod checklist_challenge {
+    use super::*;
+    #[test]
+    fn each_raw_flag_combination_remains_a_declaration() {
+        for mask in 0u8..4 {
+            let value = Additivity::with_flags("raw", mask & 1 != 0, mask & 2 != 0);
+            assert_eq!((value.has_biproducts, value.zero_object), (mask & 1 != 0, mask & 2 != 0));
+            assert!(value.validate_shell().is_ok());
+        }
+    }
+}
+'''
+    return generated
 
 
 def variants(record, source):
@@ -91,6 +125,20 @@ def variants(record, source):
         raise ValueError("Missing new-label assignment: " + record["path"])
     replacement = "label: String::new()"
     rows.append(("drop-new-label", source.replace(needle, replacement, 1), needle, replacement))
+    extras = []
+    if record["type"] == "AbelianCategory":
+        extras = [
+            ("checklist-additive", "self.additive &&", "true &&"),
+            ("checklist-kernels", "&& self.has_kernels &&", "&& true &&"),
+            ("checklist-cokernels", "&& self.has_cokernels", "&& true"),
+            ("claimed-checklist", "Self::with_flags(label, true, true, true)", "Self::with_flags(label, false, true, true)"),
+        ]
+    elif record["type"] == "Additivity":
+        extras = [("distinct-flag-bindings", "            has_biproducts,\n            zero_object,", "            has_biproducts: zero_object,\n            zero_object: has_biproducts,")]
+    for tag, needle, replacement in extras:
+        if source.count(needle) != 1:
+            raise ValueError("Nonunique checklist fault: " + record["path"] + ":" + tag)
+        rows.append((tag,source.replace(needle,replacement,1),needle,replacement))
     return rows
 
 

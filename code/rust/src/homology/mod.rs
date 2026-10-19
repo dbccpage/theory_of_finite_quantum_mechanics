@@ -3,7 +3,6 @@
 //! Runtime certificates establish finite algebraic identities only. The canonical
 //! carrier admits shapes, d1*d0=0, positive weights and rank inclusion before use.
 
-use crate::linear_algebra::scalars::hash_rational;
 use crate::linear_algebra::{ExactMatrix, Q};
 use serde::{Deserialize, Serialize};
 
@@ -31,14 +30,15 @@ mod l5a_challenges;
 pub use errors::HomologicalError;
 pub use hashing::Hash256;
 
-/// Legacy root matrix digest; its tag is retained for existing receipts.
+/// Legacy root matrix fingerprint; its tag is retained for existing receipts.
+/// Undefined raw ratios are opaque stored pairs, never admitted rational values.
 pub fn hash_exact_matrix(m: &ExactMatrix<Q>) -> Hash256 {
     let mut hasher = blake3::Hasher::new();
     hasher.update(b"TheoryOfFiniteQM.ExactMatrix<Q>.v1");
     hasher.update(&(m.rows() as u64).to_le_bytes());
     hasher.update(&(m.cols() as u64).to_le_bytes());
     for val in m.as_slice() {
-        hash_rational(&mut hasher, val);
+        hashing::hash_stored_rational(&mut hasher, val);
     }
     Hash256(*hasher.finalize().as_bytes())
 }
@@ -164,6 +164,27 @@ fn verify_hash(expected: &Hash256, got: &Hash256) -> Result<(), HomologicalError
 mod tests {
     use super::*;
     use crate::linear_algebra::scalars::q;
+
+    #[test]
+    fn legacy_fingerprint_keeps_its_wire_format_and_accepts_raw_data() {
+        use crate::linear_algebra::BasicMatrix;
+        use num_bigint::BigInt;
+        // Independently build the legacy wire for one stored scalar.
+        for (n, d, encoded_n, encoded_d) in [
+            (1, 2, 1, 2), (2, 4, 1, 2), (1, -2, -1, 2),
+            (0, 7, 0, 1), (0, 0, 0, 0), (1, 0, 1, 0),
+        ] {
+            let raw = Q::new_raw(BigInt::from(n), BigInt::from(d));
+            let matrix = ExactMatrix(BasicMatrix::from_row_major(1, 1, vec![raw]).unwrap());
+            let mut bytes = b"TheoryOfFiniteQM.ExactMatrix<Q>.v1".to_vec();
+            bytes.extend(1u64.to_le_bytes()); bytes.extend(1u64.to_le_bytes());
+            for integer in [encoded_n, encoded_d] {
+                let data = BigInt::from(integer).to_signed_bytes_le();
+                bytes.extend((data.len() as u64).to_le_bytes()); bytes.extend(data);
+            }
+            assert_eq!(hash_exact_matrix(&matrix).0, *blake3::hash(&bytes).as_bytes());
+        }
+    }
 
     #[test]
     fn test_triangle_carrier_homology() {

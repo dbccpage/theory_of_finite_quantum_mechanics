@@ -244,7 +244,7 @@ def make_record(path, receipt, summary, mutations, metrics, metric_receipt):
                     {"path":mutation_path.relative_to(ROOT).as_posix(),"sha256":sha(mutation_path),"scope":"Designated critical faults only; outcomes for this file are enumerated below."},
                     {"path":(metric_receipt/"receipt.json").relative_to(ROOT).as_posix(),"sha256":sha(metric_receipt/"receipt.json"),"scope":"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."}],
         "verification":{"baseline_ok":summary["baseline_ok"],"source_snapshot_unchanged":summary["source_unchanged"],
-                        "compiled_scope":"excluded by cfg(any())" if disabled else "compatibility root not independently built" if key == "category_theory/mod.rs" else "shared scoped crate build",
+                        "compiled_scope":"excluded by cfg(any())" if disabled else "compatibility root not independently built" if key == "category_theory/mod.rs" else summary.get("compiled_scope","shared scoped crate build"),
                         "local_mutant_ids":[m["id"] for m in local_mutants]},
         "mutation_accounting":outcomes,
         "structure":structure,
@@ -311,6 +311,8 @@ def main():
         raise SystemExit("Category-only execution cannot support homology score records; use --only")
     if summary.get("source_scope", "all") == "homology" and any("category_theory" in path.parts for path in paths):
         raise SystemExit("Homology-only execution cannot support category score records; use --only")
+    if "compiled_subjects" in summary and any(path.relative_to(ROOT).as_posix() not in summary["compiled_subjects"] for path in paths):
+        raise SystemExit("Selected artifact was not compiled by this scoped receipt")
     if args.assessment and len(paths) != 1:
         raise SystemExit("An explicit gate assessment must select exactly one artifact")
     assessment_map = {}

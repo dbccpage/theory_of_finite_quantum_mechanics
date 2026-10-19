@@ -1,0 +1,166 @@
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/homology/hashing.rs",
+    "language": "Rust",
+    "sha256": "96249ffaff860033e34b2c95b0932ee5eddd743f991f248010ac03a41389be34"
+  },
+  "reviewer": "Codex explicit wire, scalar-domain, source and consumer review",
+  "evaluation_timestamp": "2026-10-19T01:34:31.747720+00:00",
+  "gates": {
+    "G1": "A",
+    "G2": "A",
+    "G3": "A",
+    "G4": "A",
+    "G5": "A"
+  },
+  "formal_specification": {
+    "domain": "Opaque content fingerprints of stored candidate data. Every BigRational representation, including denominator zero, is in the fingerprint input domain. Hash256 is arbitrary 32 bytes and is not admission or authentication.",
+    "scalars": "For denominator != 0 encode the value-normalized numerator/positive denominator pair using length-prefixed signed little-endian BigInt bytes. For denominator == 0 encode the stored numerator and zero with the same framing, without rational arithmetic. No undefined pair becomes Q, infinity, or an admitted matrix.",
+    "framing": "Every literal tag and field order is specified in hash_protocol_oracle.rs. Matrix dimensions/vector/string byte lengths use u64 little endian on this 64-bit target, degrees i32 little endian, manifest version u32 little endian. Graded kind and basis are length-prefixed, followed by a nested vector digest; chain/cochain manifests bind three dimensions and two ordered digests. Carrier binds version, d0,d1,weights, dimensions, Q and BigRational constants. Witness binds four ordered dimensions and provenance digest. Provenance binds all UTF-8 bytes after its tag.",
+    "views": "as_bytes returns all 32 bytes; to_hex is 64 lowercase hexadecimal characters; Display contains first and last four bytes separated by two dots. Serde transports bytes without claiming mathematical validity.",
+    "authority": "None. No theorem admission, signature, author identity, provenance authentication or mathematical collision impossibility is exported."
+  },
+  "symbol_map": {
+    "hash_stored_rational": "Guard zero denominator before the shared normalizer; encode undefined raw pairs directly. Its visibility is restricted to the homology parent so the legacy root fingerprint can share that guard.",
+    "Hash256::as_bytes": "Borrow the full fixed-size digest.",
+    "Hash256::to_hex": "Encode all 32 bytes.",
+    "Hash256::fmt": "Write fixed bounded prefix and suffix slices, propagating fmt::Error.",
+    "hash_matrix": "Rational-matrix tag, rows, columns, and row-major stored scalar encodings.",
+    "hash_integer_matrix": "Distinct integer-lattice tag, rows, columns, length-prefixed integer coefficients.",
+    "hash_vector": "Vector tag, coefficient count, normalized-or-raw scalar encodings.",
+    "hash_graded_vector": "Graded tag, framed kind, signed degree, framed basis, nested vector digest.",
+    "hash_chain_complex_manifest": "Chain-manifest tag, c0,c1,c2,ordered boundary digests.",
+    "hash_cochain_complex_manifest": "Cochain-manifest tag, c0,c1,c2,ordered differential digests.",
+    "hash_carrier_manifest": "Carrier tag and the exact version/scalar constants emitted by carrier_manifest, with ordered fields.",
+    "hash_weights": "Weights domain tag, count, stored scalar encodings.",
+    "hash_provenance": "Provenance domain tag and full source bytes; content identity only.",
+    "hash_cochain_witness": "Witness tag, ordered d0/d1 shapes and provenance digest."
+  },
+  "invariant_argument": [
+    "The helper divides the stored-ratio domain into disjoint denominator-zero and nonzero cases before any normalization. The zero case only reads arbitrary-precision integers. The nonzero case invokes Ratio::reduced, whose sole denominator-zero panic condition is excluded. Canonical Q and all defined noncanonical ratios retain their previous value encoding.",
+    "Each hasher appends exactly the fields in its explicit wire specification. Finite slices/strings bound all loops; dimension metadata is observed without allocating matrices. Length framing and fixed-width fields disambiguate these encodings within each stated fixed tag/version. This is a preimage-format argument, not a BLAKE3 collision proof.",
+    "Hash256 slice boundaries 0..4 and 28..32 are statically within its 32-byte array. Serialization admits opaque bytes only. Public tuple construction cannot construct a rank/category/carrier certificate.",
+    "The target has usize width 64, so all usize-to-u64 lengths and dimensions are exact. Degree and version encode their declared fixed-width values without narrowing. BigInt coefficient encoding uses no fixed-width coefficient conversion.",
+    "Hasher update/finalize, BigInt byte storage, num-rational reduction on a nonzero denominator, hex, serde and allocation retain the declared safe library/runtime contracts. There is no recursion, partial index, rational arithmetic on undefined values or swallowed error in this module."
+  ],
+  "failure_paths": {
+    "undefined_ratio": "Total opaque encoding, never a successful mathematical admission. The old reachable zero-denominator panic is retained in the rank-replay finding and failing trace.",
+    "format": "Formatting errors propagate through write! as fmt::Result; no unwrap.",
+    "serde": "Derived fixed-array serde rejects malformed types/lengths via serde errors; it does not admit any mathematical law.",
+    "resources": "Finite input/bit size determines work and temporary storage; standard allocator and crypto-library runtime contracts apply. No process-wide memory reservation or recovery from allocator abort is claimed."
+  },
+  "trust_boundary": {
+    "crypto": "Pinned BLAKE3 primitive, without independent crypto implementation or injectivity claim. Domain tags provide different preimage formats, not a collision impossibility theorem.",
+    "scalar": "Pinned BigInt storage and Ratio::reduced only after denominator !=0. Rank/graded-vector/complex/carrier mathematical boundaries must separately enforce canonical Q.",
+    "verification": "Safe Rust compiler, fixed-width target, serde/hex, current source/provider/dependency hashes, local Windows replay. Namespace mutants share compilation but not mutable state."
+  },
+  "consumer_review": [
+    "RankCertificate::verify_against now admits canonical Q before any hash. It checks digest equality AND replays split identities; a hash match cannot replace the matrix proof.",
+    "GradedVector admission validates coefficients before construction and its hash binds sealed kind, degree and basis. Chain/cochain aliases inherit that provider behavior, whose wider grade is not awarded here.",
+    "Chain/cochain complexes and CarrierManifest derive hashes from their owned data. Hash256 is raw public data; callers cannot infer theorem or author authority from it.",
+    "CarrierManifest version is currently 1 with Q and BigRational scalar identifiers. The outdated v2 history comment was removed; no wire format or constant was silently migrated.",
+    "Legacy homology::hash_exact_matrix shares the guarded stored-ratio encoding, retaining its original domain tag. Its canonical and undefined wire regression passes in the 99-test ordinary homology namespace. The rest of the compatibility root remains independently incomplete."
+  ],
+  "basis": {
+    "G1": [
+      "Every production function and byte framing claim is mapped above and bound to the source SHA. The separately constructed wire oracle and fresh replay pin exact content, providers, compiler and tool inputs. AuthorityEffect is None."
+    ],
+    "G2": [
+      "The exact encoding contract covers malformed candidates without admitting them mathematically. Undefined denominator paths avoid partial rational normalization, and defined values retain normalized encoding. Fixed-input independent expected streams cover large signed integers, unreduced and negative-denominator rationals, huge empty metadata, Unicode/NUL identifiers and signed degree extremes."
+    ],
+    "G3": [
+      "The explicit branch and bounds argument covers every production path and fmt refusal, relative to pinned safe-Rust/library/allocator contracts. The old failure is retained; the new tests reach raw 0/0 and n/0 through all rational fingerprints without panic. No assumption of canonical Q is hidden in this raw API."
+    ],
+    "G4": [
+      "Fifty-seven independent single-fault namespaces remove every hashed field/tag/payload or break normalization, undefined-domain handling and digest views. Each candidate compiles and runs its own nine local tests plus five independent wire/transport tests. All outcomes and original homology composition runs are retained in the final source-bound receipt; compiler failures never count as kills.",
+      "The final 20261019T013620Z receipt passes 99 ordinary homology tests and all 14 baseline wire/local tests before/after, with all 57 faults killed and zero other outcomes."
+    ],
+    "G5": [
+      "Calibrated source AST ceilings are checked separately. All loops are linear in supplied coefficients or bytes; no dimension-proportional allocation occurs for empty matrix metadata. Each coefficient reduction has ordinary arbitrary-precision gcd cost, and BigInt encoding/hash cost follows coefficient bit lengths. Hashing allocates only finite scalar encodings and returned textual views; no repeated matrix copy or nested dense operation is performed."
+    ]
+  },
+  "assurance_limits": [
+    "Contract attachment pending.",
+    "No independent BLAKE3 implementation, cryptographic injectivity theorem, external-origin attestation, mechanized Rust/MIR proof, global allocator totality, portable CI attestation or whole-workspace pass.",
+    "This is an L2 encoding utility within a certificate architecture. Hashes alone carry no mathematical certificate."
+  ],
+  "open_findings": [],
+  "evidence": [
+    {
+      "path": "evidence/quality/category_homology/resume-20261019/rank-replay-finding.json",
+      "sha256": "7aec77cc646f053a19a6f50b0d0cffed8cc6403d5400bc1b16be9da8ec5886f9"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T013620Z/summary.json",
+      "sha256": "8514cafbd4388ede5f1e259e4e6d483d07c9e656a56199d3c49ec15dc7cd19e7"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T013620Z/baseline.json",
+      "sha256": "83cf31e8bad88938f47be7d18a7f391f672b24ea7cb3a4b9206fb631d1bfc09e"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T013620Z/restored.json",
+      "sha256": "cd831f52163459e9aba00d180c834e03b7135026854df2291bcb55c66c4d0ac4"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T013620Z/mutations.json",
+      "sha256": "3f00855cdcd9e7b950db6288a5db150c9a69a8fa7ba7badbb1be9a9f187a1aee"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T013620Z/builds.json",
+      "sha256": "33957441c5afa56b4ea64977a2ea713c4b44e456e4d52703d331bc35caa7097d"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T013620Z/dependency_receipt.json",
+      "sha256": "f56928af34b26b35d65c5712a7ba0d1bdfc936d0cbdb902722746ff7896e1b47"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T013620Z/run_hash_context_replay.py",
+      "sha256": "9f5d22fc9c8e1d3421a07b00c4d0d857ad5a0318c6b14b509e9fd535df4a65c7"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T013620Z/hash_protocol_oracle.rs",
+      "sha256": "67fb41552dbf69a41c651f65a8a8578ba4d0f0f0198b6ffbd97916b398be493d"
+    }
+  ],
+  "context_inputs": [
+    {
+      "path": "code/rust/src/linear_algebra/scalars.rs",
+      "sha256": "8ed39bae489f031e3f03f632fadbe3a5112fe1ec1c5b61e9ba7d5af184334b82"
+    },
+    {
+      "path": "code/rust/src/linear_algebra/basic_matrix.rs",
+      "sha256": "ce136b587d3ea3cfd533ccae3fcac3d371fb614ac7b48f6fdf496034b8da243e"
+    },
+    {
+      "path": "code/rust/src/homology/carrier_manifest.rs",
+      "sha256": "56c31afcee6f0c8af9362395fd7813e7060f7cdc438cbcac060c26cb7e766c02"
+    },
+    {
+      "path": "code/rust/src/homology/rank_certificate.rs",
+      "sha256": "a2145d42c3278ed447eb0b05aae2f20d91c6965634ec68348e79fa16fa52d086"
+    },
+    {
+      "path": "code/rust/src/homology/exact_scalar.rs",
+      "sha256": "d6c7ebbbeea899412a96cf1f9a686e2fe2a7bf1b09d6eb34ed72f74a0562dc35"
+    },
+    {
+      "path": "code/rust/src/homology/graded_vector.rs",
+      "sha256": "80a2c598049ad838ff219d1491d0d709c8116107afa49869b7fbd469a7c587b7"
+    },
+    {
+      "path": "code/rust/src/homology/chain_complex.rs",
+      "sha256": "8de8868140dd9fbd98dae63e84239c28f0009b1bce552c3e12574cef465b8d42"
+    },
+    {
+      "path": "code/rust/src/homology/cochain_complex.rs",
+      "sha256": "e752e789bd8c3a76cf5adb08070548b459d3e1c735399d7b17f40b66b3a5354a"
+    },
+    {
+      "path": "code/rust/quality/category_homology/hash_protocol_oracle.rs",
+      "sha256": "67fb41552dbf69a41c651f65a8a8578ba4d0f0f0198b6ffbd97916b398be493d"
+    }
+  ]
+}

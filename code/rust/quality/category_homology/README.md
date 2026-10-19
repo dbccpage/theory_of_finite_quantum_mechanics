@@ -184,7 +184,7 @@ ordered-refusal model and 586 single-fault challenges support those narrow
 assessments. Independent module namespaces share compilation; each candidate
 contains one fault and executes its own tests. This is not an alternate compiler.
 
-The current-provider rank replay restores `rank_certificate.rs` to L5A after
+The historical 66-file checkpoint rank replay restored `rank_certificate.rs` to L5A after
 an explicit provider-delta review, 95 ordinary homology tests before/after and
 eight separately dispatched rank faults. The degree-window metadata file is
 L2A after repairing its reachable signed-subtraction overflow. Its 49 extreme
@@ -210,3 +210,46 @@ this option does not infer gates or promote an unreviewed file. The progress
 inventory and per-file remaining work are in
 `evidence/quality/category_homology/resume-20261018/progress.json`.
 The broader architecture/engineering goal and all pending contracts remain open.
+
+
+The 2026-10-19 checkpoint supersedes that rank failure review: 79 of 192
+records have completed engineering A assessments; 113 remain incomplete.
+All 192 source digests and all 79 completed evidence chains pass
+`20261019T014040Z-score-verification`. The per-file inventory and remaining gates
+are in `evidence/quality/category_homology/resume-20261019/progress.json`.
+New assessments cover the bounded counter (L3A), nine public hierarchy facades
+and two coordinate aliases (L1A), and raw hashing (L2A). None inherits its
+providers' mathematical grade. The additional Boolean checklist challenge
+covers mixed flags without promoting raw declarations to mathematical laws.
+
+A missed public rank replay panic was found after the earlier checkpoint:
+the shared rational hasher normalized a zero-denominator candidate before
+scalar admission. The failing regression and correction of the earlier provider
+review remain in `resume-20261019/rank-replay-finding.json`. Replay now admits
+canonical Q first. Raw matrix/vector/weight fingerprints and the legacy root
+fingerprint encode undefined stored pairs without admitting them as Q.
+Defined-value encodings and all existing tags remain unchanged. Rank is L5A
+only under the new explicit admission-first assessment; the wider compatibility
+root remains incomplete. No failed campaign is used as passing evidence.
+
+The repaired rank replay catches nine designated faults. Final hash replay
+catches 57 faults against independently assembled expected wire encodings;
+BLAKE3 and BigInt storage remain trusted. Alias replay catches both wrong-kind
+bindings with same-binary nominal type controls. Each final homology composition
+run passes 99 tests before and after. Counter replay catches ten faults and
+its checked Nat model has eight lemmas. The namespace and proof scopes are
+explicit; none claims a whole-workspace or machine-checked Rust/MIR proof.
+
+```powershell
+python code/rust/quality/category_homology/run_hash_context_replay.py
+python code/rust/quality/category_homology/run_alias_challenges.py
+python code/rust/quality/category_homology/run_audit.py --scope counter --mutations --mutation-prefix BC
+python code/rust/quality/category_homology/verify_current_scores.py
+```
+
+Every completed compiler invocation still removes its debug/tmp outputs,
+including failures. Owned remaining build trees and copied executables are
+removed at campaign completion; small source snapshots and receipts are retained.
+The inactive registered-worktree cache cleanup is separately recorded in
+`resume-20261019/registered-worktree-cleanup.json`. This goal remains open and
+contracts remain pending.

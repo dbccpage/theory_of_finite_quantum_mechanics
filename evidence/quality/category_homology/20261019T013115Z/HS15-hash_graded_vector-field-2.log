@@ -1,0 +1,33 @@
+
+running 14 tests
+test homology::hash_replay_15::hashing::tests::all_defined_fraction_representations_keep_value_normalization ... ok
+test homology::hash_replay_15::hashing::tests::test_hash_weights_deterministic ... ok
+test homology::hash_replay_15::hashing::tests::undefined_raw_ratios_have_opaque_fingerprints_without_admission ... ok
+test homology::hash_replay_15::hashing::wire_specification::digest_views_and_wire_roundtrip_preserve_every_byte ... ok
+test homology::hash_replay_15::hashing::wire_specification::manifest_fields_have_the_declared_order_and_domains ... ok
+test homology::hash_replay_15::hashing::wire_specification::undefined_pairs_are_stored_without_rational_arithmetic ... ok
+test homology::hash_replay_15::hashing::tests::test_hash256_display ... ok
+test homology::hash_replay_15::hashing::wire_specification::graded_identifiers_use_byte_lengths_and_signed_degrees ... FAILED
+test homology::hash_replay_15::hashing::tests::test_hash256_to_hex ... ok
+test homology::hash_replay_15::hashing::tests::test_hash_provenance_deterministic ... ok
+test homology::hash_replay_15::hashing::tests::test_hash_provenance_different_sources ... ok
+test homology::hash_replay_15::hashing::tests::test_hash_vector_deterministic ... ok
+test homology::hash_replay_15::hashing::tests::test_hash_vector_different_values ... ok
+test homology::hash_replay_15::hashing::wire_specification::rational_and_integer_wires ... ok
+
+failures:
+
+---- homology::hash_replay_15::hashing::wire_specification::graded_identifiers_use_byte_lengths_and_signed_degrees stdout ----
+
+thread 'homology::hash_replay_15::hashing::wire_specification::graded_identifiers_use_byte_lengths_and_signed_degrees' (25232) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\hc\261019T013115\hash-15.rs:381:21:
+assertion `left == right` failed
+  left: [190, 215, 205, 187, 155, 170, 51, 14, 2, 47, 173, 220, 245, 197, 214, 234, 165, 13, 83, 114, 141, 102, 63, 17, 61, 204, 22, 146, 143, 230, 218, 238]
+ right: [216, 223, 25, 158, 52, 186, 216, 166, 241, 63, 203, 147, 215, 251, 15, 133, 135, 5, 144, 82, 9, 192, 115, 194, 68, 207, 215, 255, 195, 231, 95, 143]
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    homology::hash_replay_15::hashing::wire_specification::graded_identifiers_use_byte_lengths_and_signed_degrees
+
+test result: FAILED. 13 passed; 1 failed; 0 ignored; 0 measured; 1119 filtered out; finished in 0.01s
+

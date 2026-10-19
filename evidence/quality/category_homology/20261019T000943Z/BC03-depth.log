@@ -1,0 +1,39 @@
+
+running 4 tests
+category_theory::bounded_counter::tests::admission_and_cross_depth_comparison_are_explicit_refusals --- FAILED
+category_theory::bounded_counter::tests::every_short_word_matches_native_count_and_first_boundary --- FAILED
+category_theory::bounded_counter::tests::maximum_native_depth_needs_no_word_allocation_or_wrapping --- FAILED
+.
+failures:
+
+---- category_theory::bounded_counter::tests::admission_and_cross_depth_comparison_are_explicit_refusals stdout ----
+
+thread 'category_theory::bounded_counter::tests::admission_and_cross_depth_comparison_are_explicit_refusals' (29168) panicked at src\category_theory\bounded_counter.rs:167:9:
+assertion `left == right` failed
+  left: Err(GuardRefusal)
+ right: Err(ContextExhausted)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- category_theory::bounded_counter::tests::every_short_word_matches_native_count_and_first_boundary stdout ----
+
+thread 'category_theory::bounded_counter::tests::every_short_word_matches_native_count_and_first_boundary' (25808) panicked at src\category_theory\bounded_counter.rs:149:25:
+assertion `left == right` failed: depth=0, count=0, word=[Increment]
+  left: Ok((0, 0))
+ right: Err(ContextExhausted)
+
+---- category_theory::bounded_counter::tests::maximum_native_depth_needs_no_word_allocation_or_wrapping stdout ----
+
+thread 'category_theory::bounded_counter::tests::maximum_native_depth_needs_no_word_allocation_or_wrapping' (21316) panicked at src\category_theory\bounded_counter.rs:205:9:
+assertion `left == right` failed
+  left: 18446744073709551615
+ right: 18446744073709551614
+
+
+failures:
+    category_theory::bounded_counter::tests::admission_and_cross_depth_comparison_are_explicit_refusals
+    category_theory::bounded_counter::tests::every_short_word_matches_native_count_and_first_boundary
+    category_theory::bounded_counter::tests::maximum_native_depth_needs_no_word_allocation_or_wrapping
+
+test result: FAILED. 1 passed; 3 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+error: test failed, to rerun pass `-p tfqm_bounded_counter_audit --lib`
