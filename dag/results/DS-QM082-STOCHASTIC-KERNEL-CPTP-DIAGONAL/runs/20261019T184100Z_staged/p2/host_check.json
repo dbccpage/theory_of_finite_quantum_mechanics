@@ -1,0 +1,460 @@
+{
+  "task_id": "DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL",
+  "stage_id": "P2_VERIFY",
+  "attempt_id": "p2",
+  "input_sha256": "96447d8738d958854be524b37d7e985c4d9acf36fa080f4209b772ba37ea3a02",
+  "candidate_sha256": "96447d8738d958854be524b37d7e985c4d9acf36fa080f4209b772ba37ea3a02",
+  "status": "accepted_candidate_for_challenge",
+  "checker_pins": [
+    {
+      "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/check_candidate.py",
+      "sha256": "80beed413ded85634cecdfdf4ca719c10e5fba03c434c2e1bb2a91ffd8e53f1b"
+    },
+    {
+      "path": "dag/pfp/exact_json.py",
+      "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+    }
+  ],
+  "predicate_results": {
+    "native_exit_codes": {
+      "certificate": 0,
+      "python": 0,
+      "rust": 0,
+      "lean": 0,
+      "rust_replay": 0
+    },
+    "required_named_Lean_reports": true,
+    "exact_cross_language_full_output": true,
+    "nonempty_test_coverage": true,
+    "Python_tests": 10,
+    "Rust_tests": 1,
+    "scope": {
+      "supports": "Exact Kraus completeness, channel outputs, stochastic kernel and same-diagonal distinct-output controls are retained; scalar Cayley and population conservation are kernel checked.",
+      "does_not_support": "Formalize all matrix/Kraus/tensor positivity transports and physical channel admission. Basis-relative stochastic shadows do not select a unique quantum channel.",
+      "narrowest_claim": "Exact Kraus completeness, channel outputs, stochastic kernel and same-diagonal distinct-output controls are retained; scalar Cayley and population conservation are kernel checked.",
+      "next_test": "Challenge every output coordinate and strict custody/type boundary, then address the explicit unpaid mathematical bridge."
+    }
+  },
+  "bounded_failure_codes": [],
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "kraus_channel_action",
+        "ordered_inputs": [
+          "SuppliedRationalDensity2"
+        ],
+        "output": "RationalDensity2",
+        "arity": 1,
+        "carrier": "Declared SuppliedRationalDensity2",
+        "coefficient_ring": "Exact Q (Gaussian pairs where stated), integers and literal Boolean fields only",
+        "hypotheses": [
+          "Fixed basis, fixed four Kraus matrices with retained completeness check, supplied positive real-symmetric density."
+        ],
+        "semantic_predicate": "Sum the four supplied KρKᵀ terms.",
+        "source_pins": [
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_ds_qm082_stochastic_kernel_cptp_diagonal_proved_lean.yaml",
+            "sha256": "afc23f79183db8ce5bc4272b8ffe3d8067c945d0c834cee7c50f21ce5baac0d4"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/inputs/this_repository/dag/operads/ds_qm082_stochastic_kernel_cptp_diagonal.yaml",
+            "sha256": "fa2ce566710286d5a686d1007c0b83d0dd853bdb32d32135a8cb1c479ecc652d"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/inputs/this_repository/lean4/H018Channel.lean",
+            "sha256": "159240e630391d183b9a471093131aaf5eeb4b58c1632b19b0d2bb80d78927e3"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/tfq_0265_stochastic_population_shadow_of_a_channel.md",
+            "sha256": "2d9b455b4987fec79de8d3cf90fac11d6191df9101791239e797027089c833e0"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/p0/operation_sources/code/python/src/qm/resources_exact.py",
+            "sha256": "11ef2d70fa824b51335b881564ab0bc87227c1b43f1fea26ebb87c283c81349f"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/p0/operation_sources/code/python/tests/test_resources_exact.py",
+            "sha256": "9e299e3dff3f975f3a770e3a940ad8f6969ab02b72545ac5d583c5738ddc9fe7"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/resources_exact.rs",
+            "sha256": "74c77661e2030c2b37634dd449b164e696ebb7fb318019291719d56436cac1cc"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/resources_exact_replay.rs",
+            "sha256": "3a2f999edc029ff914fd12dbe3516510ae3aaa9b9104b46a3f2168d9820092c9"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/resources_checker.py",
+            "sha256": "0c9fcef66b088ab515dc5b1998a8bdad39f7ef2e230552245fccbb184cbac01c"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py",
+            "sha256": "c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/prepare.py",
+            "sha256": "7a8161d3b86651ba01b76e4bf6d940ca18597301b2bd99e0c75235bb9376fbc7"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/specs.py",
+            "sha256": "56bea147f8ccf6b6c0e919dba2489878517b5e722a9284ffab51216119d6d4cb"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/custody.py",
+            "sha256": "cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/filename_custody.json",
+            "sha256": "20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/check_candidate.py",
+            "sha256": "80beed413ded85634cecdfdf4ca719c10e5fba03c434c2e1bb2a91ffd8e53f1b"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/format_certificate.py",
+            "sha256": "f21bfdf59802f49c213ef073880607c3d3d374c19da3d9bf1fb7d60cbcb7b9fb"
+          }
+        ],
+        "evidence_status": "Source semantics reviewed; actual native and candidate kernel acceptance remain P2 gates."
+      },
+      {
+        "id": "diagonal_read",
+        "ordered_inputs": [
+          "RationalDensity2"
+        ],
+        "output": "RationalPopulationVector2",
+        "arity": 1,
+        "carrier": "Declared RationalDensity2",
+        "coefficient_ring": "Exact Q (Gaussian pairs where stated), integers and literal Boolean fields only",
+        "hypotheses": [
+          "Fixed basis, fixed four Kraus matrices with retained completeness check, supplied positive real-symmetric density."
+        ],
+        "semantic_predicate": "Read the diagonal in the fixed basis.",
+        "source_pins": [
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_ds_qm082_stochastic_kernel_cptp_diagonal_proved_lean.yaml",
+            "sha256": "afc23f79183db8ce5bc4272b8ffe3d8067c945d0c834cee7c50f21ce5baac0d4"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/inputs/this_repository/dag/operads/ds_qm082_stochastic_kernel_cptp_diagonal.yaml",
+            "sha256": "fa2ce566710286d5a686d1007c0b83d0dd853bdb32d32135a8cb1c479ecc652d"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/inputs/this_repository/lean4/H018Channel.lean",
+            "sha256": "159240e630391d183b9a471093131aaf5eeb4b58c1632b19b0d2bb80d78927e3"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/tfq_0265_stochastic_population_shadow_of_a_channel.md",
+            "sha256": "2d9b455b4987fec79de8d3cf90fac11d6191df9101791239e797027089c833e0"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/p0/operation_sources/code/python/src/qm/resources_exact.py",
+            "sha256": "11ef2d70fa824b51335b881564ab0bc87227c1b43f1fea26ebb87c283c81349f"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/p0/operation_sources/code/python/tests/test_resources_exact.py",
+            "sha256": "9e299e3dff3f975f3a770e3a940ad8f6969ab02b72545ac5d583c5738ddc9fe7"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/resources_exact.rs",
+            "sha256": "74c77661e2030c2b37634dd449b164e696ebb7fb318019291719d56436cac1cc"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/resources_exact_replay.rs",
+            "sha256": "3a2f999edc029ff914fd12dbe3516510ae3aaa9b9104b46a3f2168d9820092c9"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/resources_checker.py",
+            "sha256": "0c9fcef66b088ab515dc5b1998a8bdad39f7ef2e230552245fccbb184cbac01c"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py",
+            "sha256": "c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/prepare.py",
+            "sha256": "7a8161d3b86651ba01b76e4bf6d940ca18597301b2bd99e0c75235bb9376fbc7"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/specs.py",
+            "sha256": "56bea147f8ccf6b6c0e919dba2489878517b5e722a9284ffab51216119d6d4cb"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/custody.py",
+            "sha256": "cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/filename_custody.json",
+            "sha256": "20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/check_candidate.py",
+            "sha256": "80beed413ded85634cecdfdf4ca719c10e5fba03c434c2e1bb2a91ffd8e53f1b"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/format_certificate.py",
+            "sha256": "f21bfdf59802f49c213ef073880607c3d3d374c19da3d9bf1fb7d60cbcb7b9fb"
+          }
+        ],
+        "evidence_status": "Source semantics reviewed; actual native and candidate kernel acceptance remain P2 gates."
+      },
+      {
+        "id": "classical_bit_flip",
+        "ordered_inputs": [
+          "RationalPopulationVector2"
+        ],
+        "output": "RationalPopulationVector2",
+        "arity": 1,
+        "carrier": "Declared RationalPopulationVector2",
+        "coefficient_ring": "Exact Q (Gaussian pairs where stated), integers and literal Boolean fields only",
+        "hypotheses": [
+          "Fixed basis, fixed four Kraus matrices with retained completeness check, supplied positive real-symmetric density."
+        ],
+        "semantic_predicate": "Swap the two populations.",
+        "source_pins": [
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_ds_qm082_stochastic_kernel_cptp_diagonal_proved_lean.yaml",
+            "sha256": "afc23f79183db8ce5bc4272b8ffe3d8067c945d0c834cee7c50f21ce5baac0d4"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/inputs/this_repository/dag/operads/ds_qm082_stochastic_kernel_cptp_diagonal.yaml",
+            "sha256": "fa2ce566710286d5a686d1007c0b83d0dd853bdb32d32135a8cb1c479ecc652d"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/inputs/this_repository/lean4/H018Channel.lean",
+            "sha256": "159240e630391d183b9a471093131aaf5eeb4b58c1632b19b0d2bb80d78927e3"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/tfq_0265_stochastic_population_shadow_of_a_channel.md",
+            "sha256": "2d9b455b4987fec79de8d3cf90fac11d6191df9101791239e797027089c833e0"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/p0/operation_sources/code/python/src/qm/resources_exact.py",
+            "sha256": "11ef2d70fa824b51335b881564ab0bc87227c1b43f1fea26ebb87c283c81349f"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/p0/operation_sources/code/python/tests/test_resources_exact.py",
+            "sha256": "9e299e3dff3f975f3a770e3a940ad8f6969ab02b72545ac5d583c5738ddc9fe7"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/resources_exact.rs",
+            "sha256": "74c77661e2030c2b37634dd449b164e696ebb7fb318019291719d56436cac1cc"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/resources_exact_replay.rs",
+            "sha256": "3a2f999edc029ff914fd12dbe3516510ae3aaa9b9104b46a3f2168d9820092c9"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/resources_checker.py",
+            "sha256": "0c9fcef66b088ab515dc5b1998a8bdad39f7ef2e230552245fccbb184cbac01c"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py",
+            "sha256": "c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/prepare.py",
+            "sha256": "7a8161d3b86651ba01b76e4bf6d940ca18597301b2bd99e0c75235bb9376fbc7"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/specs.py",
+            "sha256": "56bea147f8ccf6b6c0e919dba2489878517b5e722a9284ffab51216119d6d4cb"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/custody.py",
+            "sha256": "cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/filename_custody.json",
+            "sha256": "20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/check_candidate.py",
+            "sha256": "80beed413ded85634cecdfdf4ca719c10e5fba03c434c2e1bb2a91ffd8e53f1b"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/format_certificate.py",
+            "sha256": "f21bfdf59802f49c213ef073880607c3d3d374c19da3d9bf1fb7d60cbcb7b9fb"
+          }
+        ],
+        "evidence_status": "Source semantics reviewed; actual native and candidate kernel acceptance remain P2 gates."
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "channel_relation_0",
+        "equation_or_predicate": "Cayley squares sum1 and output populations conserve mass; identity and dephasing share the identity kernel while coherent outputs differ.",
+        "typing_conditions": "Literal declared operation domains; Formalize all matrix/Kraus/tensor positivity transports and physical channel admission. Basis-relative stochastic shadows do not select a unique quantum channel.",
+        "evidence_status": "P1 candidate; independent native and named kernel gates remain required.",
+        "scope": "Exact Kraus completeness, channel outputs, stochastic kernel and same-diagonal distinct-output controls are retained; scalar Cayley and population conservation are kernel checked.",
+        "source_pins": [
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_ds_qm082_stochastic_kernel_cptp_diagonal_proved_lean.yaml",
+            "sha256": "afc23f79183db8ce5bc4272b8ffe3d8067c945d0c834cee7c50f21ce5baac0d4"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/inputs/this_repository/dag/operads/ds_qm082_stochastic_kernel_cptp_diagonal.yaml",
+            "sha256": "fa2ce566710286d5a686d1007c0b83d0dd853bdb32d32135a8cb1c479ecc652d"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/inputs/this_repository/lean4/H018Channel.lean",
+            "sha256": "159240e630391d183b9a471093131aaf5eeb4b58c1632b19b0d2bb80d78927e3"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/tfq_0265_stochastic_population_shadow_of_a_channel.md",
+            "sha256": "2d9b455b4987fec79de8d3cf90fac11d6191df9101791239e797027089c833e0"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/p0/operation_sources/code/python/src/qm/resources_exact.py",
+            "sha256": "11ef2d70fa824b51335b881564ab0bc87227c1b43f1fea26ebb87c283c81349f"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/p0/operation_sources/code/python/tests/test_resources_exact.py",
+            "sha256": "9e299e3dff3f975f3a770e3a940ad8f6969ab02b72545ac5d583c5738ddc9fe7"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/resources_exact.rs",
+            "sha256": "74c77661e2030c2b37634dd449b164e696ebb7fb318019291719d56436cac1cc"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/resources_exact_replay.rs",
+            "sha256": "3a2f999edc029ff914fd12dbe3516510ae3aaa9b9104b46a3f2168d9820092c9"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/resources_checker.py",
+            "sha256": "0c9fcef66b088ab515dc5b1998a8bdad39f7ef2e230552245fccbb184cbac01c"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py",
+            "sha256": "c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/prepare.py",
+            "sha256": "7a8161d3b86651ba01b76e4bf6d940ca18597301b2bd99e0c75235bb9376fbc7"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/specs.py",
+            "sha256": "56bea147f8ccf6b6c0e919dba2489878517b5e722a9284ffab51216119d6d4cb"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/custody.py",
+            "sha256": "cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/filename_custody.json",
+            "sha256": "20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/check_candidate.py",
+            "sha256": "80beed413ded85634cecdfdf4ca719c10e5fba03c434c2e1bb2a91ffd8e53f1b"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/DS-QM082-STOCHASTIC-KERNEL-CPTP-DIAGONAL/runs/20261019T184100Z_staged/format_certificate.py",
+            "sha256": "f21bfdf59802f49c213ef073880607c3d3d374c19da3d9bf1fb7d60cbcb7b9fb"
+          }
+        ]
+      }
+    ],
+    "checked_compositions": [
+      {
+        "outer_operation": "diagonal_read",
+        "input_slot": 0,
+        "inner_operation": "kraus_channel_action",
+        "colour_match": "RationalDensity2 -> RationalDensity2",
+        "hypothesis_match": "Same declared coordinates, coefficients and context; all operation hypotheses must be carried into the graft.",
+        "licensing_relations": [
+          "channel_relation_0"
+        ],
+        "evidence_status": "Semantic substitution supported by the retained finite operation traces and separately scoped named kernel statements. A complete refined-carrier operad is not asserted."
+      },
+      {
+        "outer_operation": "classical_bit_flip",
+        "input_slot": 0,
+        "inner_operation": "diagonal_read",
+        "colour_match": "RationalPopulationVector2 -> RationalPopulationVector2",
+        "hypothesis_match": "Same declared coordinates, coefficients and context; all operation hypotheses must be carried into the graft.",
+        "licensing_relations": [
+          "channel_relation_0"
+        ],
+        "evidence_status": "Semantic substitution supported by the retained finite operation traces and separately scoped named kernel statements. A complete refined-carrier operad is not asserted."
+      }
+    ],
+    "failed_compositions": [
+      {
+        "proposal": "Promote the selected step to the unrestricted original target",
+        "reason": "Formalize all matrix/Kraus/tensor positivity transports and physical channel admission. Basis-relative stochastic shadows do not select a unique quantum channel."
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "Formalize all matrix/Kraus/tensor positivity transports and physical channel admission. Basis-relative stochastic shadows do not select a unique quantum channel.",
+      "Prove the full refined-carrier operad identity, substitution, symmetry and coherence laws; mere colour matches do not instantiate that formal structure."
+    ]
+  }
+}

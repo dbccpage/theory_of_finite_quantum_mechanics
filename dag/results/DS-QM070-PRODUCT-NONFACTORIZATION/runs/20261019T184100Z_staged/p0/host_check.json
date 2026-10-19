@@ -1,0 +1,456 @@
+{
+  "task_id": "DS-QM070-PRODUCT-NONFACTORIZATION",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "p0",
+  "input_sha256": "db8d9acf9e0efd7217a6cd4f96b256d515a7d2342e7e9eaeca2890e8f69268bb",
+  "candidate_sha256": "30427a00c5fcb8c60399e98b98b6c8d8c581ecd8ed58a16d08f2b3e285920ea0",
+  "status": "reviewed_for_next_step",
+  "predicate_results": {
+    "source_scope_review": "For a nonnegative 2x2 table with positive total W, every scaled marginal residual equals ±det(w). Phi=sum residual²=4det². Division by W² gives the actual product probabilities. This is classical basis-relative product factorization, not entanglement: both the Bell density and its dephased mixture share the same correlated diagonal.",
+    "reviewed_sha256": "5044c686517d7440d6aa348e70eba40ec980bf01770ca8442323cddc8cc22ba2"
+  },
+  "bounded_failure_codes": [],
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "joint_marginals",
+        "ordered_inputs": [
+          "NonnegativeJointTable2WithPositiveMass"
+        ],
+        "output": "RowColumnMarginalsAndMass",
+        "arity": 1,
+        "carrier": "Declared NonnegativeJointTable2WithPositiveMass",
+        "coefficient_ring": "Exact Q (Gaussian pairs where stated), integers and literal Boolean fields only",
+        "hypotheses": [
+          "Nonnegative finite table, W>0, same table at comparison, fixed product coordinates."
+        ],
+        "semantic_predicate": "Sum rows, columns and total.",
+        "source_pins": [
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_ds_qm070_product_nonfactorization_proved_lean.yaml",
+            "sha256": "9c96a3864a45e14f0779c31123d958e1807c10db771d926b69cb9e944230c378"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/inputs/this_repository/dag/operads/ds_qm070_product_nonfactorization.yaml",
+            "sha256": "0843c31c0bcc040292863dd73ff412c1a299d1257a38ce8e2abaa1d5cd19c061"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/inputs/this_repository/lean4/H014TensorCompositionBoundary.lean",
+            "sha256": "0754fd419711de9caf9e47d901c467db8f95dd38bfd570fefb305d0e9ad9386a"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/entanglement.rs",
+            "sha256": "0b648ec2d4fa7c1c414461af6ee28f8d579a7285c23808588241f53ddad5ced5"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/tfq_0256_product_defect_on_a_bipartite_weight_table.md",
+            "sha256": "a8b8186f85a093a61bdcc4104959393ada8fa99ca487b667229e7f3d35694789"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/code/python/src/qm/resources_exact.py",
+            "sha256": "11ef2d70fa824b51335b881564ab0bc87227c1b43f1fea26ebb87c283c81349f"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/code/python/tests/test_resources_exact.py",
+            "sha256": "9e299e3dff3f975f3a770e3a940ad8f6969ab02b72545ac5d583c5738ddc9fe7"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/resources_exact.rs",
+            "sha256": "74c77661e2030c2b37634dd449b164e696ebb7fb318019291719d56436cac1cc"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/resources_exact_replay.rs",
+            "sha256": "3a2f999edc029ff914fd12dbe3516510ae3aaa9b9104b46a3f2168d9820092c9"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/resources_checker.py",
+            "sha256": "0c9fcef66b088ab515dc5b1998a8bdad39f7ef2e230552245fccbb184cbac01c"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py",
+            "sha256": "c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/prepare.py",
+            "sha256": "7a8161d3b86651ba01b76e4bf6d940ca18597301b2bd99e0c75235bb9376fbc7"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/specs.py",
+            "sha256": "56bea147f8ccf6b6c0e919dba2489878517b5e722a9284ffab51216119d6d4cb"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/custody.py",
+            "sha256": "cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/filename_custody.json",
+            "sha256": "20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/check_candidate.py",
+            "sha256": "84787d4ac683d5e4a00d3e1cffc151d2db70d81453d7b4ed7933d8f7fbb92ac4"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/format_certificate.py",
+            "sha256": "d9d2a250970b3a53968b7787465ed297d85569c2d7d83a4f650ca283fa7af9c1"
+          }
+        ],
+        "evidence_status": "Source semantics reviewed; actual native and candidate kernel acceptance remain P2 gates."
+      },
+      {
+        "id": "outer_marginal_product",
+        "ordered_inputs": [
+          "RowColumnMarginalsAndMass"
+        ],
+        "output": "ProductProbabilityTable2",
+        "arity": 1,
+        "carrier": "Declared RowColumnMarginalsAndMass",
+        "coefficient_ring": "Exact Q (Gaussian pairs where stated), integers and literal Boolean fields only",
+        "hypotheses": [
+          "Nonnegative finite table, W>0, same table at comparison, fixed product coordinates."
+        ],
+        "semantic_predicate": "Divide the marginal outer product by W².",
+        "source_pins": [
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_ds_qm070_product_nonfactorization_proved_lean.yaml",
+            "sha256": "9c96a3864a45e14f0779c31123d958e1807c10db771d926b69cb9e944230c378"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/inputs/this_repository/dag/operads/ds_qm070_product_nonfactorization.yaml",
+            "sha256": "0843c31c0bcc040292863dd73ff412c1a299d1257a38ce8e2abaa1d5cd19c061"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/inputs/this_repository/lean4/H014TensorCompositionBoundary.lean",
+            "sha256": "0754fd419711de9caf9e47d901c467db8f95dd38bfd570fefb305d0e9ad9386a"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/entanglement.rs",
+            "sha256": "0b648ec2d4fa7c1c414461af6ee28f8d579a7285c23808588241f53ddad5ced5"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/tfq_0256_product_defect_on_a_bipartite_weight_table.md",
+            "sha256": "a8b8186f85a093a61bdcc4104959393ada8fa99ca487b667229e7f3d35694789"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/code/python/src/qm/resources_exact.py",
+            "sha256": "11ef2d70fa824b51335b881564ab0bc87227c1b43f1fea26ebb87c283c81349f"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/code/python/tests/test_resources_exact.py",
+            "sha256": "9e299e3dff3f975f3a770e3a940ad8f6969ab02b72545ac5d583c5738ddc9fe7"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/resources_exact.rs",
+            "sha256": "74c77661e2030c2b37634dd449b164e696ebb7fb318019291719d56436cac1cc"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/resources_exact_replay.rs",
+            "sha256": "3a2f999edc029ff914fd12dbe3516510ae3aaa9b9104b46a3f2168d9820092c9"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/resources_checker.py",
+            "sha256": "0c9fcef66b088ab515dc5b1998a8bdad39f7ef2e230552245fccbb184cbac01c"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py",
+            "sha256": "c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/prepare.py",
+            "sha256": "7a8161d3b86651ba01b76e4bf6d940ca18597301b2bd99e0c75235bb9376fbc7"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/specs.py",
+            "sha256": "56bea147f8ccf6b6c0e919dba2489878517b5e722a9284ffab51216119d6d4cb"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/custody.py",
+            "sha256": "cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/filename_custody.json",
+            "sha256": "20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/check_candidate.py",
+            "sha256": "84787d4ac683d5e4a00d3e1cffc151d2db70d81453d7b4ed7933d8f7fbb92ac4"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/format_certificate.py",
+            "sha256": "d9d2a250970b3a53968b7787465ed297d85569c2d7d83a4f650ca283fa7af9c1"
+          }
+        ],
+        "evidence_status": "Source semantics reviewed; actual native and candidate kernel acceptance remain P2 gates."
+      },
+      {
+        "id": "compare_joint_probability",
+        "ordered_inputs": [
+          "ProductProbabilityTable2"
+        ],
+        "output": "RationalFactorizationResidual2",
+        "arity": 1,
+        "carrier": "Declared ProductProbabilityTable2",
+        "coefficient_ring": "Exact Q (Gaussian pairs where stated), integers and literal Boolean fields only",
+        "hypotheses": [
+          "Nonnegative finite table, W>0, same table at comparison, fixed product coordinates."
+        ],
+        "semantic_predicate": "Subtract the fixed joint probabilities w/W.",
+        "source_pins": [
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_ds_qm070_product_nonfactorization_proved_lean.yaml",
+            "sha256": "9c96a3864a45e14f0779c31123d958e1807c10db771d926b69cb9e944230c378"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/inputs/this_repository/dag/operads/ds_qm070_product_nonfactorization.yaml",
+            "sha256": "0843c31c0bcc040292863dd73ff412c1a299d1257a38ce8e2abaa1d5cd19c061"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/inputs/this_repository/lean4/H014TensorCompositionBoundary.lean",
+            "sha256": "0754fd419711de9caf9e47d901c467db8f95dd38bfd570fefb305d0e9ad9386a"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/entanglement.rs",
+            "sha256": "0b648ec2d4fa7c1c414461af6ee28f8d579a7285c23808588241f53ddad5ced5"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/tfq_0256_product_defect_on_a_bipartite_weight_table.md",
+            "sha256": "a8b8186f85a093a61bdcc4104959393ada8fa99ca487b667229e7f3d35694789"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/code/python/src/qm/resources_exact.py",
+            "sha256": "11ef2d70fa824b51335b881564ab0bc87227c1b43f1fea26ebb87c283c81349f"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/code/python/tests/test_resources_exact.py",
+            "sha256": "9e299e3dff3f975f3a770e3a940ad8f6969ab02b72545ac5d583c5738ddc9fe7"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/resources_exact.rs",
+            "sha256": "74c77661e2030c2b37634dd449b164e696ebb7fb318019291719d56436cac1cc"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/resources_exact_replay.rs",
+            "sha256": "3a2f999edc029ff914fd12dbe3516510ae3aaa9b9104b46a3f2168d9820092c9"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/resources_checker.py",
+            "sha256": "0c9fcef66b088ab515dc5b1998a8bdad39f7ef2e230552245fccbb184cbac01c"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py",
+            "sha256": "c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/prepare.py",
+            "sha256": "7a8161d3b86651ba01b76e4bf6d940ca18597301b2bd99e0c75235bb9376fbc7"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/specs.py",
+            "sha256": "56bea147f8ccf6b6c0e919dba2489878517b5e722a9284ffab51216119d6d4cb"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/custody.py",
+            "sha256": "cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/filename_custody.json",
+            "sha256": "20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/check_candidate.py",
+            "sha256": "84787d4ac683d5e4a00d3e1cffc151d2db70d81453d7b4ed7933d8f7fbb92ac4"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/format_certificate.py",
+            "sha256": "d9d2a250970b3a53968b7787465ed297d85569c2d7d83a4f650ca283fa7af9c1"
+          }
+        ],
+        "evidence_status": "Source semantics reviewed; actual native and candidate kernel acceptance remain P2 gates."
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "product_relation_0",
+        "equation_or_predicate": "Scaled residuals are (det,-det,-det,det); Phi=4det² vanishes iff det=0.",
+        "typing_conditions": "Literal declared operation domains; Formalize arbitrary finite table reconstruction and justify any tensor/basis/quantum coherence lift; a product defect of diagonals does not test entanglement.",
+        "evidence_status": "P1 candidate; independent native and named kernel gates remain required.",
+        "scope": "Actual marginals, normalized product reconstruction, signed residuals and Phi are checked; residual and zero-defect polynomials are universal over Q in Lean.",
+        "source_pins": [
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/inputs/this_repository/dag/prompts/finite_qm_structure_ds_qm070_product_nonfactorization_proved_lean.yaml",
+            "sha256": "9c96a3864a45e14f0779c31123d958e1807c10db771d926b69cb9e944230c378"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/inputs/this_repository/dag/operads/ds_qm070_product_nonfactorization.yaml",
+            "sha256": "0843c31c0bcc040292863dd73ff412c1a299d1257a38ce8e2abaa1d5cd19c061"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/inputs/this_repository/lean4/H014TensorCompositionBoundary.lean",
+            "sha256": "0754fd419711de9caf9e47d901c467db8f95dd38bfd570fefb305d0e9ad9386a"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/entanglement.rs",
+            "sha256": "0b648ec2d4fa7c1c414461af6ee28f8d579a7285c23808588241f53ddad5ced5"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/inputs/this_repository/dag/derivations/12_finite_qm_structure/tfq_0256_product_defect_on_a_bipartite_weight_table.md",
+            "sha256": "a8b8186f85a093a61bdcc4104959393ada8fa99ca487b667229e7f3d35694789"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/code/python/src/qm/resources_exact.py",
+            "sha256": "11ef2d70fa824b51335b881564ab0bc87227c1b43f1fea26ebb87c283c81349f"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/code/python/tests/test_resources_exact.py",
+            "sha256": "9e299e3dff3f975f3a770e3a940ad8f6969ab02b72545ac5d583c5738ddc9fe7"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/resources_exact.rs",
+            "sha256": "74c77661e2030c2b37634dd449b164e696ebb7fb318019291719d56436cac1cc"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/resources_exact_replay.rs",
+            "sha256": "3a2f999edc029ff914fd12dbe3516510ae3aaa9b9104b46a3f2168d9820092c9"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/resources_checker.py",
+            "sha256": "0c9fcef66b088ab515dc5b1998a8bdad39f7ef2e230552245fccbb184cbac01c"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py",
+            "sha256": "c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/prepare.py",
+            "sha256": "7a8161d3b86651ba01b76e4bf6d940ca18597301b2bd99e0c75235bb9376fbc7"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/dag/results/batches/20261019T184100Z_prompts_52_71/tools/specs.py",
+            "sha256": "56bea147f8ccf6b6c0e919dba2489878517b5e722a9284ffab51216119d6d4cb"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/custody.py",
+            "sha256": "cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/p0/operation_sources/dag/pfp/filename_custody.json",
+            "sha256": "20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/check_candidate.py",
+            "sha256": "84787d4ac683d5e4a00d3e1cffc151d2db70d81453d7b4ed7933d8f7fbb92ac4"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/DS-QM070-PRODUCT-NONFACTORIZATION/runs/20261019T184100Z_staged/format_certificate.py",
+            "sha256": "d9d2a250970b3a53968b7787465ed297d85569c2d7d83a4f650ca283fa7af9c1"
+          }
+        ]
+      }
+    ],
+    "checked_compositions": [
+      {
+        "outer_operation": "outer_marginal_product",
+        "input_slot": 0,
+        "inner_operation": "joint_marginals",
+        "colour_match": "RowColumnMarginalsAndMass -> RowColumnMarginalsAndMass",
+        "hypothesis_match": "Same declared coordinates, coefficients and context; all operation hypotheses must be carried into the graft.",
+        "licensing_relations": [
+          "product_relation_0"
+        ],
+        "evidence_status": "Semantic substitution supported by the retained finite operation traces and separately scoped named kernel statements. A complete refined-carrier operad is not asserted."
+      },
+      {
+        "outer_operation": "compare_joint_probability",
+        "input_slot": 0,
+        "inner_operation": "outer_marginal_product",
+        "colour_match": "ProductProbabilityTable2 -> ProductProbabilityTable2",
+        "hypothesis_match": "Same declared coordinates, coefficients and context; all operation hypotheses must be carried into the graft.",
+        "licensing_relations": [
+          "product_relation_0"
+        ],
+        "evidence_status": "Semantic substitution supported by the retained finite operation traces and separately scoped named kernel statements. A complete refined-carrier operad is not asserted."
+      }
+    ],
+    "failed_compositions": [
+      {
+        "proposal": "Promote the selected step to the unrestricted original target",
+        "reason": "Formalize arbitrary finite table reconstruction and justify any tensor/basis/quantum coherence lift; a product defect of diagonals does not test entanglement."
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "Formalize arbitrary finite table reconstruction and justify any tensor/basis/quantum coherence lift; a product defect of diagonals does not test entanglement.",
+      "Prove the full refined-carrier operad identity, substitution, symmetry and coherence laws; mere colour matches do not instantiate that formal structure."
+    ]
+  },
+  "claim_boundary": {
+    "supports": "Actual marginals, normalized product reconstruction, signed residuals and Phi are checked; residual and zero-defect polynomials are universal over Q in Lean.",
+    "does_not_support": "Formalize arbitrary finite table reconstruction and justify any tensor/basis/quantum coherence lift; a product defect of diagonals does not test entanglement.",
+    "narrowest_claim": "Actual marginals, normalized product reconstruction, signed residuals and Phi are checked; residual and zero-defect polynomials are universal over Q in Lean.",
+    "next_test": "Challenge every output coordinate and strict custody/type boundary, then address the explicit unpaid mathematical bridge."
+  }
+}
