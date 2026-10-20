@@ -5673,13 +5673,13 @@ Obligation: Lean constructs complete rectangular Schmidt bases, local unitaries 
 
 - UUID: `a3dcdee6-32e4-5ed0-a614-dd0d65142ee8`
 - Parent: `TFQ-0412`
-- Status: `PROVED_PROSE`
+- Status: `PROVED_LEAN`
 - DAG node: `TENSOR-ASSUMPTION-COUNTERMODELS`
 - Paper: [derivation](derivations/27_tensor_composition/tfq_0413_tensor_assumption_countermodels.md)
 
-SEP, BP and the partially transposed quantum cone distinguish local tomography and local reversibility from calibrated interaction. A doubled quantum carrier shows why tomography is required. Complete coherent calibration separates an ordinary controlled shift from a twisted interaction and a dephasing mutation that share its classical truth table.
+Full SEP/BP duality, local preservation and binary-product tomography do not select PSD: exact Bell/partial-transpose separations embed into every n,m>=2. Two-qubit ordinary, twisted and dephased controlled shifts separate calibrated preservation, coherent calibration and reversibility despite matching classical tables. A doubled positive carrier has distinct normalized states with identical product statistics.
 
-Obligation: Countermodels delimit the sufficient package; no minimality theorem or arbitrary-GPT classification is claimed. The identical-qubit reconstruction cited in the paper is an external theorem with additional composition assumptions.
+Obligation: Countermodels delimit weakened hypotheses, not logical minimality of the sufficient package. No primitive derivation, arbitrary-GPT classification, operational saturation, or new proof of SEP closedness is claimed. The identical-qubit family classification remains external.
 
 ### TFQ-0414 Generated operational effect cone
 

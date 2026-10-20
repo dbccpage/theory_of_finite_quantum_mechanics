@@ -2528,7 +2528,7 @@
       "id": "FQ-GAP-TENSOR-UNIQUENESS",
       "stage": "FINITE_QM_CORE",
       "status": "CONDITIONAL",
-      "source_status": "The 20261019 scope audit remains a determinant obstruction on a supplied rational host. TFQ-0410--TFQ-0412 verify general Lean tomography, Schmidt reachability and operational state-cone reconstruction. TFQ-0414--TFQ-0416 verify the generated effect cone, saturated binary interval and finite POVM corollaries. TFQ-0413 retains its prose scope.",
+      "source_status": "The 20261019 scope audit remains a determinant obstruction on a supplied rational host. TFQ-0410--TFQ-0412 verify general Lean tomography, Schmidt reachability and operational state-cone reconstruction. TFQ-0414--TFQ-0416 verify the generated effect cone, saturated binary interval and finite POVM corollaries. TFQ-0413 verifies assumption countermodels in Lean: full-cone duality, all-dimension cone separations, exact two-qubit calibration failures and hidden-coordinate tomography failure; external classification and primitive selection remain outside scope.",
       "statement": "General finite-dimensional quantum composition follows from supplied local complex QM, independent preparation and testing, local tomography, local unitaries, and a fully calibrated reversible controlled shift. The state and generated effect cones are PSD; full effect and POVM availability has explicit saturation assumptions. Primitive difference has not supplied these operational premises.",
       "source": [
         "omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/claims/gap_register.yaml:255",
@@ -2540,7 +2540,8 @@
         "dag/research/tensor_measurement_validation.json",
         "dag/derivations/27_tensor_composition/tfq_0414_tensor_generated_effect_cone.md",
         "dag/derivations/27_tensor_composition/tfq_0415_tensor_binary_effect_interval.md",
-        "dag/derivations/27_tensor_composition/tfq_0416_tensor_finite_povm_availability.md"
+        "dag/derivations/27_tensor_composition/tfq_0416_tensor_finite_povm_availability.md",
+        "dag/research/tensor_countermodel_validation.json"
       ],
       "lean": [
         "lean4/quantum_mechanics/CoupledRelationalProjectors.lean::QuantumMechanics.CoupledRelationalProjectors.coupled_bipartite_and_tripartite_relational_master_certificate",
@@ -5479,26 +5480,67 @@
     {
       "id": "TENSOR-ASSUMPTION-COUNTERMODELS",
       "stage": "TENSOR_COMPOSITION",
-      "status": "PROVED_PROSE",
-      "source_status": "General finite-dimensional proof; Lean scope distinguished from prose and finite fixtures.",
-      "statement": "SEP, BP and the partially transposed quantum cone distinguish local tomography and local reversibility from calibrated interaction. A doubled quantum carrier shows why tomography is required. Complete coherent calibration separates an ordinary controlled shift from a twisted interaction and a dephasing mutation that share its classical truth table.",
+      "status": "PROVED_LEAN",
+      "source_status": "Lean 4.33.1 with pinned Mathlib verifies the full-cone algebra, exact two-qubit calibration failures, all-dimension cone embeddings, and hidden-coordinate tomography failure. The countermodel receipt records the precise scope and standard-axiom audits.",
+      "statement": "Full SEP/BP duality, local preservation and binary-product tomography do not select PSD: exact Bell/partial-transpose separations embed into every n,m>=2. Two-qubit ordinary, twisted and dephased controlled shifts separate calibrated preservation, coherent calibration and reversibility despite matching classical tables. A doubled positive carrier has distinct normalized states with identical product statistics.",
       "source": [
         "dag/derivations/27_tensor_composition/tfq_0413_tensor_assumption_countermodels.md",
         "code/python/src/qm/tensor_composition.py",
-        "code/python/tests/test_tensor_composition.py"
+        "code/python/tests/test_tensor_composition.py",
+        "dag/research/tensor_countermodel_validation.json"
       ],
-      "lean": [],
+      "lean": [
+        "lean4/TensorPartialTranspose.lean::gamma",
+        "lean4/TensorPartialTranspose.lean::pairing_gamma_gamma",
+        "lean4/TensorPartialTranspose.lean::gamma_conjMap_product",
+        "lean4/TensorPartialTranspose.lean::conjMap_inverse",
+        "lean4/TensorCountermodelCones.lean::blockPositive_iff_dual_sep",
+        "lean4/TensorCountermodelCones.lean::sep_ppt",
+        "lean4/TensorCountermodelCones.lean::twisted_self_dual",
+        "lean4/TensorCountermodelCones.lean::sep_local",
+        "lean4/TensorCountermodelCones.lean::bp_local",
+        "lean4/TensorCountermodelCones.lean::twisted_local",
+        "lean4/TensorCountermodelCones.lean::twist_reversible",
+        "lean4/TensorCountermodelCones.lean::twist_trace",
+        "lean4/TensorCountermodelCones.lean::twist_path_continuous",
+        "lean4/TensorCountermodelCones.lean::binary_product_statistics_separate",
+        "lean4/TensorCountermodelCones.lean::bp_salient",
+        "lean4/TensorCountermodelWitnesses.lean::sep_fails_controlled_shift",
+        "lean4/TensorCountermodelWitnesses.lean::bp_fails_inverse_controlled_shift",
+        "lean4/TensorCountermodelWitnesses.lean::twisted_fails_ordinary_calibration",
+        "lean4/TensorCountermodelWitnesses.lean::twisted_same_classical_table",
+        "lean4/TensorCountermodelWitnesses.lean::imaginary_effect_binary",
+        "lean4/TensorCountermodelWitnesses.lean::coherent_calibration_separates",
+        "lean4/TensorCountermodelWitnesses.lean::dephased_same_classical_table",
+        "lean4/TensorCountermodelWitnesses.lean::dephased_controlled_shift_not_injective",
+        "lean4/TensorCountermodelWitnesses.lean::dephased_coherent_calibration_separates",
+        "lean4/TensorCountermodelWitnesses.lean::plus_binary",
+        "lean4/TensorCountermodelWitnesses.lean::seed_normalized",
+        "lean4/TensorCountermodelEmbeddings.lean::cone_separations_all_dimensions",
+        "lean4/TensorHiddenCoordinates.lean::independent_probabilities",
+        "lean4/TensorHiddenCoordinates.lean::doubledConj_inverse",
+        "lean4/TensorHiddenCoordinates.lean::hidden_normalized_states",
+        "lean4/TensorHiddenCoordinates.lean::no_local_tomography",
+        "lean4/TensorHiddenCoordinates.lean::dimension_doubled",
+        "lean4/TensorHiddenCoordinates.lean::basis_state_normalized"
+      ],
       "rust": [],
       "imported_structure": [
-        "finite-dimensional ordered real vector spaces",
-        "local quantum state and effect spaces"
+        "finite complex Hermitian matrix carriers with the real trace pairing",
+        "full local positive and binary matrix tests; operational availability is not inferred",
+        "dimensions n,m>=2 for cone separations; exact two-qubit gate witnesses",
+        "supplied unitary transformations; supplied continuous paths for the continuity theorem",
+        "positive trace-one state for normalized doubled-carrier witnesses; a basis index constructs one"
       ],
-      "bottleneck": "Countermodels delimit the sufficient package; no minimality theorem or arbitrary-GPT classification is claimed. The identical-qubit reconstruction cited in the paper is an external theorem with additional composition assumptions.",
+      "bottleneck": "Countermodels delimit weakened hypotheses, not logical minimality of the sufficient package. No primitive derivation, arbitrary-GPT classification, operational saturation, or new proof of SEP closedness is claimed. The identical-qubit family classification remains external.",
       "tags": [
         "application-branch",
         "TFQ-0413"
       ],
-      "see_also": []
+      "see_also": [
+        "TENSOR-CONTROLLED-SHIFT-RECONSTRUCTION",
+        "TENSOR-BINARY-EFFECT-INTERVAL"
+      ]
     },
     {
       "id": "TENSOR-GENERATED-EFFECT-CONE",
@@ -8147,13 +8189,16 @@
     {
       "id": "APP-R-TENSOR-ASSUMPTION-COUNTERMODELS",
       "inputs": [
-        "TENSOR-TOMOGRAPHIC-COORDINATES"
+        "TENSOR-TOMOGRAPHIC-COORDINATES",
+        "TENSOR-CONTROLLED-SHIFT-RECONSTRUCTION",
+        "TENSOR-BINARY-EFFECT-INTERVAL"
       ],
       "output": "TENSOR-ASSUMPTION-COUNTERMODELS",
-      "status": "DERIVED_PROSE",
-      "mechanism": "Countermodels delimit the sufficient package; no minimality theorem or arbitrary-GPT classification is claimed. The identical-qubit reconstruction cited in the paper is an external theorem with additional composition assumptions.",
+      "status": "DERIVED_LEAN",
+      "mechanism": "Full-cone duality and partial-transpose covariance; exact calibrated-gate witnesses; isometric two-level embeddings; a doubled carrier with indistinguishable normalized states. Only the stated matrix and path premises are used.",
       "source": [
-        "dag/derivations/27_tensor_composition/tfq_0413_tensor_assumption_countermodels.md"
+        "dag/derivations/27_tensor_composition/tfq_0413_tensor_assumption_countermodels.md",
+        "dag/research/tensor_countermodel_validation.json"
       ]
     },
     {

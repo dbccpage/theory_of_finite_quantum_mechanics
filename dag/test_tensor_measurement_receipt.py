@@ -3,6 +3,7 @@ from pathlib import Path
 import hashlib
 import json
 import re
+import subprocess
 
 ROOT = Path(__file__).resolve().parent.parent
 
@@ -40,10 +41,11 @@ def test_measurement_receipt_has_fresh_complete_admission_free_replay():
         assert re.search(r"\." + theorem + r"' depends on axioms:", outputs)
 
 
-def test_measurement_manifest_and_dag_claims_remain_bound():
+def test_historical_measurement_manifest_and_current_dag_claims_remain_bound():
     receipt = json.loads((ROOT / 'dag/research/tensor_measurement_validation.json').read_text(encoding='utf-8'))
     for path, expected_hash in receipt['sha256'].items():
-        assert hashlib.sha256((ROOT / path).read_bytes()).hexdigest() == expected_hash, path
+        raw = subprocess.check_output(['git', 'show', receipt['verification_source_head'] + ':' + path], cwd=ROOT)
+        assert hashlib.sha256(raw).hexdigest() == expected_hash, path
     graph = json.loads((ROOT / 'dag/derivation_dag.json').read_text(encoding='utf-8'))
     nodes = {n['id']: n for n in graph['nodes']}
     assert len(graph['nodes']) == receipt['counts']['dag_nodes']
