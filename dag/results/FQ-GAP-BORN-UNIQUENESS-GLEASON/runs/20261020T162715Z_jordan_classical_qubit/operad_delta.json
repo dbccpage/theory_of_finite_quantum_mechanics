@@ -1,0 +1,1099 @@
+{
+  "schema_version": 2,
+  "namespace": "JC-CONCRETE-CLASSICAL-QUBIT",
+  "records": [
+    {
+      "id": "JC-01",
+      "name": "Affine combinations and unique maxima",
+      "inputs": "Real affine functional; two coefficients summing to one; unique maximizer on a state set",
+      "output_or_relation": "Affine preservation; unique maxima are extreme",
+      "status": "KERNEL_CHECKED_TYPED_OPERATION",
+      "admissible_substitution": "Only substitute matching carrier/affine-space types and supply all displayed signature premises. Jordan multiplication is not assumed associative.",
+      "proofs": [
+        {
+          "name": "FiniteQM.CatalogueGeometry.affine_combo",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "CatalogueGeometry.lean",
+          "source_sha256": "67bffa6e13dbad293308bf7bffb70b19302d604c32918e37f3599eb0685e9553",
+          "receipt": "verification/helpers_02/receipt.json",
+          "formal_signature": "@FiniteQM.CatalogueGeometry.affine_combo : ∀ {n : ℕ} (f : FiniteQM.ReconstructionGeometry.Space n →ᵃ[ℝ] ℝ)\n  (x y : FiniteQM.ReconstructionGeometry.Space n) (a b : ℝ), a + b = 1 → f (a • x + b • y) = a * f x + b * f y",
+          "signature_output": "verification/signatures_01/stdout.txt",
+          "signature_output_sha256": "2083e1988bd7fc6676cdfca817f44e2fa7c67318fe7ad0886fd30569dad97c32",
+          "premise_rule": "Every explicit and implicit binder remains a requirement; a clean axiom report does not discharge theorem parameters."
+        },
+        {
+          "name": "FiniteQM.CatalogueGeometry.extreme_of_unique_affine_max",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "CatalogueGeometry.lean",
+          "source_sha256": "67bffa6e13dbad293308bf7bffb70b19302d604c32918e37f3599eb0685e9553",
+          "receipt": "verification/helpers_02/receipt.json",
+          "formal_signature": "@FiniteQM.CatalogueGeometry.extreme_of_unique_affine_max : ∀ {n : ℕ} (S : Set (FiniteQM.ReconstructionGeometry.Space n))\n  (f : FiniteQM.ReconstructionGeometry.Space n →ᵃ[ℝ] ℝ),\n  ∀ z ∈ S, (∀ x ∈ S, f x ≤ f z) → (∀ x ∈ S, f x = f z → x = z) → z ∈ Set.extremePoints ℝ S",
+          "signature_output": "verification/signatures_01/stdout.txt",
+          "signature_output_sha256": "2083e1988bd7fc6676cdfca817f44e2fa7c67318fe7ad0886fd30569dad97c32",
+          "premise_rule": "Every explicit and implicit binder remains a requirement; a clean axiom report does not discharge theorem parameters."
+        }
+      ]
+    },
+    {
+      "id": "JC-02",
+      "name": "Central reflection capacity bound",
+      "inputs": "Origin-containing centrally symmetric states; normalized affine measurement distinguishing a finite frame",
+      "output_or_relation": "Reflection equation and frame size <=2",
+      "status": "KERNEL_CHECKED_TYPED_OPERATION",
+      "admissible_substitution": "Only substitute matching carrier/affine-space types and supply all displayed signature premises. Jordan multiplication is not assumed associative.",
+      "proofs": [
+        {
+          "name": "FiniteQM.CatalogueGeometry.affine_reflection",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "CatalogueGeometry.lean",
+          "source_sha256": "67bffa6e13dbad293308bf7bffb70b19302d604c32918e37f3599eb0685e9553",
+          "receipt": "verification/helpers_02/receipt.json",
+          "formal_signature": "@FiniteQM.CatalogueGeometry.affine_reflection : ∀ {n : ℕ} (f : FiniteQM.ReconstructionGeometry.Space n →ᵃ[ℝ] ℝ)\n  (x : FiniteQM.ReconstructionGeometry.Space n), f (-x) + f x = 2 * f 0",
+          "signature_output": "verification/signatures_01/stdout.txt",
+          "signature_output_sha256": "2083e1988bd7fc6676cdfca817f44e2fa7c67318fe7ad0886fd30569dad97c32",
+          "premise_rule": "Every explicit and implicit binder remains a requirement; a clean axiom report does not discharge theorem parameters."
+        },
+        {
+          "name": "FiniteQM.CatalogueGeometry.symmetric_frame_bound",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "CatalogueGeometry.lean",
+          "source_sha256": "67bffa6e13dbad293308bf7bffb70b19302d604c32918e37f3599eb0685e9553",
+          "receipt": "verification/helpers_02/receipt.json",
+          "formal_signature": "@FiniteQM.CatalogueGeometry.symmetric_frame_bound : ∀ {n m : ℕ} (S : Set (FiniteQM.ReconstructionGeometry.Space n)),\n  0 ∈ S →\n    (∀ x ∈ S, -x ∈ S) →\n      ∀ (f : Fin m → FiniteQM.ReconstructionGeometry.Space n), FiniteQM.ReconstructionGeometry.Frame S f → m ≤ 2",
+          "signature_output": "verification/signatures_01/stdout.txt",
+          "signature_output_sha256": "2083e1988bd7fc6676cdfca817f44e2fa7c67318fe7ad0886fd30569dad97c32",
+          "premise_rule": "Every explicit and implicit binder remains a requirement; a clean axiom report does not discharge theorem parameters."
+        }
+      ]
+    },
+    {
+      "id": "JC-03",
+      "name": "Classical Jordan product",
+      "inputs": "Finite real coordinate vectors",
+      "output_or_relation": "Commutative unital bilinear product; Jordan relation; positive squares; trace normalization",
+      "status": "KERNEL_CHECKED_TYPED_OPERATION",
+      "admissible_substitution": "Only substitute matching carrier/affine-space types and supply all displayed signature premises. Jordan multiplication is not assumed associative.",
+      "proofs": [
+        {
+          "name": "FiniteQM.ConcreteJordanProducts.classical_add_left",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "ConcreteJordanProducts.lean",
+          "source_sha256": "e1ef3eae7cbcb4bfd885ad3368a9804ec3b031a849e845ecf7b5f405a849e3b7",
+          "receipt": "verification/products_04/receipt.json",
+          "formal_signature": "@FiniteQM.ConcreteJordanProducts.classical_add_left : ∀ {r : ℕ} (a b c : Fin r → ℝ),\n  FiniteQM.ConcreteJordanProducts.classicalMul (a + b) c =\n    FiniteQM.ConcreteJordanProducts.classicalMul a c + FiniteQM.ConcreteJordanProducts.classicalMul b c",
+          "signature_output": "verification/signatures_01/stdout.txt",
+          "signature_output_sha256": "2083e1988bd7fc6676cdfca817f44e2fa7c67318fe7ad0886fd30569dad97c32",
+          "premise_rule": "Every explicit and implicit binder remains a requirement; a clean axiom report does not discharge theorem parameters."
+        },
+        {
+          "name": "FiniteQM.ConcreteJordanProducts.classical_smul_left",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "ConcreteJordanProducts.lean",
+          "source_sha256": "e1ef3eae7cbcb4bfd885ad3368a9804ec3b031a849e845ecf7b5f405a849e3b7",
+          "receipt": "verification/products_04/receipt.json",
+          "formal_signature": "@FiniteQM.ConcreteJordanProducts.classical_smul_left : ∀ {r : ℕ} (t : ℝ) (a b : Fin r → ℝ),\n  FiniteQM.ConcreteJordanProducts.classicalMul (t • a) b = t • FiniteQM.ConcreteJordanProducts.classicalMul a b",
+          "signature_output": "verification/signatures_01/stdout.txt",
+          "signature_output_sha256": "2083e1988bd7fc6676cdfca817f44e2fa7c67318fe7ad0886fd30569dad97c32",
+          "premise_rule": "Every explicit and implicit binder remains a requirement; a clean axiom report does not discharge theorem parameters."
+        },
+        {
+          "name": "FiniteQM.ConcreteJordanProducts.classical_comm",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "ConcreteJordanProducts.lean",
+          "source_sha256": "e1ef3eae7cbcb4bfd885ad3368a9804ec3b031a849e845ecf7b5f405a849e3b7",
+          "receipt": "verification/products_04/receipt.json",
+          "formal_signature": "@FiniteQM.ConcreteJordanProducts.classical_comm : ∀ {r : ℕ} (a b : Fin r → ℝ),\n  FiniteQM.ConcreteJordanProducts.classicalMul a b = FiniteQM.ConcreteJordanProducts.classicalMul b a",
+          "signature_output": "verification/signatures_01/stdout.txt",
+          "signature_output_sha256": "2083e1988bd7fc6676cdfca817f44e2fa7c67318fe7ad0886fd30569dad97c32",
+          "premise_rule": "Every explicit and implicit binder remains a requirement; a clean axiom report does not discharge theorem parameters."
+        },
+        {
+          "name": "FiniteQM.ConcreteJordanProducts.classical_unit",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "ConcreteJordanProducts.lean",
+          "source_sha256": "e1ef3eae7cbcb4bfd885ad3368a9804ec3b031a849e845ecf7b5f405a849e3b7",
+          "receipt": "verification/products_04/receipt.json",
+          "formal_signature": "@FiniteQM.ConcreteJordanProducts.classical_unit : ∀ {r : ℕ} (a : Fin r → ℝ),\n  FiniteQM.ConcreteJordanProducts.classicalMul (FiniteQM.ConcreteJordanProducts.classicalUnit r) a = a",
+          "signature_output": "verification/signatures_01/stdout.txt",
+          "signature_output_sha256": "2083e1988bd7fc6676cdfca817f44e2fa7c67318fe7ad0886fd30569dad97c32",
+          "premise_rule": "Every explicit and implicit binder remains a requirement; a clean axiom report does not discharge theorem parameters."
+        },
+        {
+          "name": "FiniteQM.ConcreteJordanProducts.classical_jordan_identity",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "ConcreteJordanProducts.lean",
+          "source_sha256": "e1ef3eae7cbcb4bfd885ad3368a9804ec3b031a849e845ecf7b5f405a849e3b7",
+          "receipt": "verification/products_04/receipt.json",
+          "formal_signature": "@FiniteQM.ConcreteJordanProducts.classical_jordan_identity : ∀ {r : ℕ} (a b : Fin r → ℝ),\n  FiniteQM.ConcreteJordanProducts.classicalMul a\n      (FiniteQM.ConcreteJordanProducts.classicalMul (FiniteQM.ConcreteJordanProducts.classicalMul a a) b) =\n    FiniteQM.ConcreteJordanProducts.classicalMul (FiniteQM.ConcreteJordanProducts.classicalMul a a)\n      (FiniteQM.ConcreteJordanProducts.classicalMul a b)",
+          "signature_output": "verification/signatures_01/stdout.txt",
+          "signature_output_sha256": "2083e1988bd7fc6676cdfca817f44e2fa7c67318fe7ad0886fd30569dad97c32",
+          "premise_rule": "Every explicit and implicit binder remains a requirement; a clean axiom report does not discharge theorem parameters."
+        },
+        {
+          "name": "FiniteQM.ConcreteJordanProducts.classical_square_positive",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "ConcreteJordanProducts.lean",
+          "source_sha256": "e1ef3eae7cbcb4bfd885ad3368a9804ec3b031a849e845ecf7b5f405a849e3b7",
+          "receipt": "verification/products_04/receipt.json",
+          "formal_signature": "@FiniteQM.ConcreteJordanProducts.classical_square_positive : ∀ {r : ℕ} (a : Fin r → ℝ),\n  FiniteQM.ConcreteJordanProducts.classicalPositive (FiniteQM.ConcreteJordanProducts.classicalMul a a)",
+          "signature_output": "verification/signatures_01/stdout.txt",
+          "signature_output_sha256": "2083e1988bd7fc6676cdfca817f44e2fa7c67318fe7ad0886fd30569dad97c32",
+          "premise_rule": "Every explicit and implicit binder remains a requirement; a clean axiom report does not discharge theorem parameters."
+        },
+        {
+          "name": "FiniteQM.ConcreteJordanProducts.classical_normalized",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "ConcreteJordanProducts.lean",
+          "source_sha256": "e1ef3eae7cbcb4bfd885ad3368a9804ec3b031a849e845ecf7b5f405a849e3b7",
+          "receipt": "verification/products_04/receipt.json",
+          "formal_signature": "@FiniteQM.ConcreteJordanProducts.classical_normalized : ∀ {r : ℕ} (a : Fin r → ℝ),\n  FiniteQM.ConcreteJordanProducts.classicalPositive a ∧ FiniteQM.ConcreteJordanProducts.classicalTrace a = 1 ↔\n    a ∈ stdSimplex ℝ (Fin r)",
+          "signature_output": "verification/signatures_01/stdout.txt",
+          "signature_output_sha256": "2083e1988bd7fc6676cdfca817f44e2fa7c67318fe7ad0886fd30569dad97c32",
+          "premise_rule": "Every explicit and implicit binder remains a requirement; a clean axiom report does not discharge theorem parameters."
+        }
+      ]
+    },
+    {
+      "id": "JC-04",
+      "name": "Spin product and normalized states",
+      "inputs": "Real scalar plus real three-vector; named spinMul product and Lorentz cone",
+      "output_or_relation": "Unital commutative bilinear Jordan product identities; positive squares; exact normalized Bloch correspondence",
+      "status": "KERNEL_CHECKED_TYPED_OPERATION",
+      "admissible_substitution": "Only substitute matching carrier/affine-space types and supply all displayed signature premises. Jordan multiplication is not assumed associative.",
+      "proofs": [
+        {
+          "name": "FiniteQM.ConcreteJordanProducts.spin_add_left",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "ConcreteJordanProducts.lean",
+          "source_sha256": "e1ef3eae7cbcb4bfd885ad3368a9804ec3b031a849e845ecf7b5f405a849e3b7",
+          "receipt": "verification/products_04/receipt.json",
+          "formal_signature": "FiniteQM.ConcreteJordanProducts.spin_add_left : ∀ (a b c : FiniteQM.ConcreteJordanProducts.Spin3),\n  FiniteQM.ConcreteJordanProducts.spinMul (a + b) c =\n    FiniteQM.ConcreteJordanProducts.spinMul a c + FiniteQM.ConcreteJordanProducts.spinMul b c",
+          "signature_output": "verification/signatures_01/stdout.txt",
+          "signature_output_sha256": "2083e1988bd7fc6676cdfca817f44e2fa7c67318fe7ad0886fd30569dad97c32",
+          "premise_rule": "Every explicit and implicit binder remains a requirement; a clean axiom report does not discharge theorem parameters."
+        },
+        {
+          "name": "FiniteQM.ConcreteJordanProducts.spin_smul_left",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "ConcreteJordanProducts.lean",
+          "source_sha256": "e1ef3eae7cbcb4bfd885ad3368a9804ec3b031a849e845ecf7b5f405a849e3b7",
+          "receipt": "verification/products_04/receipt.json",
+          "formal_signature": "FiniteQM.ConcreteJordanProducts.spin_smul_left : ∀ (t : ℝ) (a b : FiniteQM.ConcreteJordanProducts.Spin3),\n  FiniteQM.ConcreteJordanProducts.spinMul (t • a) b = t • FiniteQM.ConcreteJordanProducts.spinMul a b",
+          "signature_output": "verification/signatures_01/stdout.txt",
+          "signature_output_sha256": "2083e1988bd7fc6676cdfca817f44e2fa7c67318fe7ad0886fd30569dad97c32",
+          "premise_rule": "Every explicit and implicit binder remains a requirement; a clean axiom report does not discharge theorem parameters."
+        },
+        {
+          "name": "FiniteQM.ConcreteJordanProducts.normalized_spin_iff",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "ConcreteJordanProducts.lean",
+          "source_sha256": "e1ef3eae7cbcb4bfd885ad3368a9804ec3b031a849e845ecf7b5f405a849e3b7",
+          "receipt": "verification/products_04/receipt.json",
+          "formal_signature": "FiniteQM.ConcreteJordanProducts.normalized_spin_iff : ∀ (a : FiniteQM.ConcreteJordanProducts.Spin3),\n  FiniteQM.ConcreteJordanProducts.spinPositive a ∧ FiniteQM.ConcreteJordanProducts.spinTrace a = 1 ↔\n    ∃ x, ‖x‖ ≤ 1 ∧ FiniteQM.ConcreteJordanProducts.blochState x = a",
+          "signature_output": "verification/signatures_01/stdout.txt",
+          "signature_output_sha256": "2083e1988bd7fc6676cdfca817f44e2fa7c67318fe7ad0886fd30569dad97c32",
+          "premise_rule": "Every explicit and implicit binder remains a requirement; a clean axiom report does not discharge theorem parameters."
+        },
+        {
+          "name": "FiniteQM.ConcreteJordanProducts.spin_comm",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "ConcreteJordanProducts.lean",
+          "source_sha256": "e1ef3eae7cbcb4bfd885ad3368a9804ec3b031a849e845ecf7b5f405a849e3b7",
+          "receipt": "verification/products_04/receipt.json",
+          "formal_signature": "FiniteQM.ConcreteJordanProducts.spin_comm : ∀ (a b : FiniteQM.ConcreteJordanProducts.Spin3),\n  FiniteQM.ConcreteJordanProducts.spinMul a b = FiniteQM.ConcreteJordanProducts.spinMul b a",
+          "signature_output": "verification/signatures_01/stdout.txt",
+          "signature_output_sha256": "2083e1988bd7fc6676cdfca817f44e2fa7c67318fe7ad0886fd30569dad97c32",
+          "premise_rule": "Every explicit and implicit binder remains a requirement; a clean axiom report does not discharge theorem parameters."
+        },
+        {
+          "name": "FiniteQM.ConcreteJordanProducts.spin_unit",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "ConcreteJordanProducts.lean",
+          "source_sha256": "e1ef3eae7cbcb4bfd885ad3368a9804ec3b031a849e845ecf7b5f405a849e3b7",
+          "receipt": "verification/products_04/receipt.json",
+          "formal_signature": "FiniteQM.ConcreteJordanProducts.spin_unit : ∀ (a : FiniteQM.ConcreteJordanProducts.Spin3),\n  FiniteQM.ConcreteJordanProducts.spinMul FiniteQM.ConcreteJordanProducts.spinUnit a = a",
+          "signature_output": "verification/signatures_01/stdout.txt",
+          "signature_output_sha256": "2083e1988bd7fc6676cdfca817f44e2fa7c67318fe7ad0886fd30569dad97c32",
+          "premise_rule": "Every explicit and implicit binder remains a requirement; a clean axiom report does not discharge theorem parameters."
+        },
+        {
+          "name": "FiniteQM.ConcreteJordanProducts.spin_jordan_identity",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "ConcreteJordanProducts.lean",
+          "source_sha256": "e1ef3eae7cbcb4bfd885ad3368a9804ec3b031a849e845ecf7b5f405a849e3b7",
+          "receipt": "verification/products_04/receipt.json",
+          "formal_signature": "FiniteQM.ConcreteJordanProducts.spin_jordan_identity : ∀ (a b : FiniteQM.ConcreteJordanProducts.Spin3),\n  FiniteQM.ConcreteJordanProducts.spinMul a\n      (FiniteQM.ConcreteJordanProducts.spinMul (FiniteQM.ConcreteJordanProducts.spinMul a a) b) =\n    FiniteQM.ConcreteJordanProducts.spinMul (FiniteQM.ConcreteJordanProducts.spinMul a a)\n      (FiniteQM.ConcreteJordanProducts.spinMul a b)",
+          "signature_output": "verification/signatures_01/stdout.txt",
+          "signature_output_sha256": "2083e1988bd7fc6676cdfca817f44e2fa7c67318fe7ad0886fd30569dad97c32",
+          "premise_rule": "Every explicit and implicit binder remains a requirement; a clean axiom report does not discharge theorem parameters."
+        },
+        {
+          "name": "FiniteQM.ConcreteJordanProducts.spin_square_positive",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "ConcreteJordanProducts.lean",
+          "source_sha256": "e1ef3eae7cbcb4bfd885ad3368a9804ec3b031a849e845ecf7b5f405a849e3b7",
+          "receipt": "verification/products_04/receipt.json",
+          "formal_signature": "FiniteQM.ConcreteJordanProducts.spin_square_positive : ∀ (a : FiniteQM.ConcreteJordanProducts.Spin3),\n  FiniteQM.ConcreteJordanProducts.spinPositive (FiniteQM.ConcreteJordanProducts.spinMul a a)",
+          "signature_output": "verification/signatures_01/stdout.txt",
+          "signature_output_sha256": "2083e1988bd7fc6676cdfca817f44e2fa7c67318fe7ad0886fd30569dad97c32",
+          "premise_rule": "Every explicit and implicit binder remains a requirement; a clean axiom report does not discharge theorem parameters."
+        },
+        {
+          "name": "FiniteQM.ConcreteJordanProducts.bloch_trace",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "ConcreteJordanProducts.lean",
+          "source_sha256": "e1ef3eae7cbcb4bfd885ad3368a9804ec3b031a849e845ecf7b5f405a849e3b7",
+          "receipt": "verification/products_04/receipt.json",
+          "formal_signature": "FiniteQM.ConcreteJordanProducts.bloch_trace : ∀ (x : EuclideanSpace ℝ (Fin 3)),\n  FiniteQM.ConcreteJordanProducts.spinTrace (FiniteQM.ConcreteJordanProducts.blochState x) = 1",
+          "signature_output": "verification/signatures_01/stdout.txt",
+          "signature_output_sha256": "2083e1988bd7fc6676cdfca817f44e2fa7c67318fe7ad0886fd30569dad97c32",
+          "premise_rule": "Every explicit and implicit binder remains a requirement; a clean axiom report does not discharge theorem parameters."
+        },
+        {
+          "name": "FiniteQM.ConcreteJordanProducts.bloch_positive_iff",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "ConcreteJordanProducts.lean",
+          "source_sha256": "e1ef3eae7cbcb4bfd885ad3368a9804ec3b031a849e845ecf7b5f405a849e3b7",
+          "receipt": "verification/products_04/receipt.json",
+          "formal_signature": "FiniteQM.ConcreteJordanProducts.bloch_positive_iff : ∀ (x : EuclideanSpace ℝ (Fin 3)),\n  FiniteQM.ConcreteJordanProducts.spinPositive (FiniteQM.ConcreteJordanProducts.blochState x) ↔ ‖x‖ ≤ 1",
+          "signature_output": "verification/signatures_01/stdout.txt",
+          "signature_output_sha256": "2083e1988bd7fc6676cdfca817f44e2fa7c67318fe7ad0886fd30569dad97c32",
+          "premise_rule": "Every explicit and implicit binder remains a requirement; a clean axiom report does not discharge theorem parameters."
+        }
+      ]
+    },
+    {
+      "id": "JC-05",
+      "name": "Classical probability chart and vertices",
+      "inputs": "n>=0, a fixed affine basis with n+1 vertices, state membership where required",
+      "output_or_relation": "Exact normalized probability chart, reconstruction and extreme vertices",
+      "status": "KERNEL_CHECKED_TYPED_OPERATION",
+      "admissible_substitution": "Only substitute matching carrier/affine-space types and supply all displayed signature premises. Jordan multiplication is not assumed associative.",
+      "proofs": [
+        {
+          "name": "FiniteQM.ClassicalModel.basis",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "ClassicalModel.lean",
+          "source_sha256": "61783d97c1bb5ce10f0c221a9439659d2ff1e0dc11bbd131b498e19decedcf64",
+          "receipt": "verification/classical_03/receipt.json",
+          "formal_signature": "FiniteQM.ClassicalModel.basis : (n : ℕ) → AffineBasis (Fin (n + 1)) ℝ (FiniteQM.ReconstructionGeometry.Space n)",
+          "signature_output": "verification/signatures_01/stdout.txt",
+          "signature_output_sha256": "2083e1988bd7fc6676cdfca817f44e2fa7c67318fe7ad0886fd30569dad97c32",
+          "premise_rule": "Every explicit and implicit binder remains a requirement; a clean axiom report does not discharge theorem parameters."
+        },
+        {
+          "name": "FiniteQM.ClassicalModel.coord_nonneg",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "ClassicalModel.lean",
+          "source_sha256": "61783d97c1bb5ce10f0c221a9439659d2ff1e0dc11bbd131b498e19decedcf64",
+          "receipt": "verification/classical_03/receipt.json",
+          "formal_signature": "@FiniteQM.ClassicalModel.coord_nonneg : ∀ {n : ℕ} {x : FiniteQM.ReconstructionGeometry.Space n},\n  x ∈ FiniteQM.ClassicalModel.states n → ∀ (i : Fin (n + 1)), 0 ≤ ((FiniteQM.ClassicalModel.basis n).coord i) x",
+          "signature_output": "verification/signatures_01/stdout.txt",
+          "signature_output_sha256": "2083e1988bd7fc6676cdfca817f44e2fa7c67318fe7ad0886fd30569dad97c32",
+          "premise_rule": "Every explicit and implicit binder remains a requirement; a clean axiom report does not discharge theorem parameters."
+        },
+        {
+          "name": "FiniteQM.ClassicalModel.coord_le_one",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "ClassicalModel.lean",
+          "source_sha256": "61783d97c1bb5ce10f0c221a9439659d2ff1e0dc11bbd131b498e19decedcf64",
+          "receipt": "verification/classical_03/receipt.json",
+          "formal_signature": "@FiniteQM.ClassicalModel.coord_le_one : ∀ {n : ℕ} {x : FiniteQM.ReconstructionGeometry.Space n},\n  x ∈ FiniteQM.ClassicalModel.states n → ∀ (i : Fin (n + 1)), ((FiniteQM.ClassicalModel.basis n).coord i) x ≤ 1",
+          "signature_output": "verification/signatures_01/stdout.txt",
+          "signature_output_sha256": "2083e1988bd7fc6676cdfca817f44e2fa7c67318fe7ad0886fd30569dad97c32",
+          "premise_rule": "Every explicit and implicit binder remains a requirement; a clean axiom report does not discharge theorem parameters."
+        },
+        {
+          "name": "FiniteQM.ClassicalModel.coord_one_unique",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "ClassicalModel.lean",
+          "source_sha256": "61783d97c1bb5ce10f0c221a9439659d2ff1e0dc11bbd131b498e19decedcf64",
+          "receipt": "verification/classical_03/receipt.json",
+          "formal_signature": "@FiniteQM.ClassicalModel.coord_one_unique : ∀ {n : ℕ} {x : FiniteQM.ReconstructionGeometry.Space n},\n  x ∈ FiniteQM.ClassicalModel.states n →\n    ∀ (i : Fin (n + 1)), ((FiniteQM.ClassicalModel.basis n).coord i) x = 1 → x = (FiniteQM.ClassicalModel.basis n) i",
+          "signature_output": "verification/signatures_01/stdout.txt",
+          "signature_output_sha256": "2083e1988bd7fc6676cdfca817f44e2fa7c67318fe7ad0886fd30569dad97c32",
+          "premise_rule": "Every explicit and implicit binder remains a requirement; a clean axiom report does not discharge theorem parameters."
+        },
+        {
+          "name": "FiniteQM.ClassicalModel.vertex_extreme",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "ClassicalModel.lean",
+          "source_sha256": "61783d97c1bb5ce10f0c221a9439659d2ff1e0dc11bbd131b498e19decedcf64",
+          "receipt": "verification/classical_03/receipt.json",
+          "formal_signature": "FiniteQM.ClassicalModel.vertex_extreme : ∀ (n : ℕ) (i : Fin (n + 1)),\n  (FiniteQM.ClassicalModel.basis n) i ∈ Set.extremePoints ℝ (FiniteQM.ClassicalModel.states n)",
+          "signature_output": "verification/signatures_01/stdout.txt",
+          "signature_output_sha256": "2083e1988bd7fc6676cdfca817f44e2fa7c67318fe7ad0886fd30569dad97c32",
+          "premise_rule": "Every explicit and implicit binder remains a requirement; a clean axiom report does not discharge theorem parameters."
+        },
+        {
+          "name": "FiniteQM.ClassicalModel.pure_eq_vertices",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "ClassicalModel.lean",
+          "source_sha256": "61783d97c1bb5ce10f0c221a9439659d2ff1e0dc11bbd131b498e19decedcf64",
+          "receipt": "verification/classical_03/receipt.json",
+          "formal_signature": "FiniteQM.ClassicalModel.pure_eq_vertices : ∀ (n : ℕ),\n  Set.extremePoints ℝ (FiniteQM.ClassicalModel.states n) = Set.range ⇑(FiniteQM.ClassicalModel.basis n)",
+          "signature_output": "verification/signatures_01/stdout.txt",
+          "signature_output_sha256": "2083e1988bd7fc6676cdfca817f44e2fa7c67318fe7ad0886fd30569dad97c32",
+          "premise_rule": "Every explicit and implicit binder remains a requirement; a clean axiom report does not discharge theorem parameters."
+        },
+        {
+          "name": "FiniteQM.ClassicalModel.coords_probability",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "ClassicalModel.lean",
+          "source_sha256": "61783d97c1bb5ce10f0c221a9439659d2ff1e0dc11bbd131b498e19decedcf64",
+          "receipt": "verification/classical_03/receipt.json",
+          "formal_signature": "@FiniteQM.ClassicalModel.coords_probability : ∀ {n : ℕ} {x : FiniteQM.ReconstructionGeometry.Space n},\n  x ∈ (FiniteQM.ClassicalModel.system n).states →\n    (FiniteQM.ClassicalModel.basis n).coords x ∈ stdSimplex ℝ (Fin (n + 1))",
+          "signature_output": "verification/signatures_01/stdout.txt",
+          "signature_output_sha256": "2083e1988bd7fc6676cdfca817f44e2fa7c67318fe7ad0886fd30569dad97c32",
+          "premise_rule": "Every explicit and implicit binder remains a requirement; a clean axiom report does not discharge theorem parameters."
+        },
+        {
+          "name": "FiniteQM.ClassicalModel.coords_reconstruct",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "ClassicalModel.lean",
+          "source_sha256": "61783d97c1bb5ce10f0c221a9439659d2ff1e0dc11bbd131b498e19decedcf64",
+          "receipt": "verification/classical_03/receipt.json",
+          "formal_signature": "FiniteQM.ClassicalModel.coords_reconstruct : ∀ (n : ℕ) (x : FiniteQM.ReconstructionGeometry.Space n),\n  ∑ i, ((FiniteQM.ClassicalModel.basis n).coord i) x • (FiniteQM.ClassicalModel.basis n) i = x",
+          "signature_output": "verification/signatures_01/stdout.txt",
+          "signature_output_sha256": "2083e1988bd7fc6676cdfca817f44e2fa7c67318fe7ad0886fd30569dad97c32",
+          "premise_rule": "Every explicit and implicit binder remains a requirement; a clean axiom report does not discharge theorem parameters."
+        },
+        {
+          "name": "FiniteQM.ClassicalModel.coords_image",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "ClassicalModel.lean",
+          "source_sha256": "61783d97c1bb5ce10f0c221a9439659d2ff1e0dc11bbd131b498e19decedcf64",
+          "receipt": "verification/classical_03/receipt.json",
+          "formal_signature": "FiniteQM.ClassicalModel.coords_image : ∀ (n : ℕ),\n  ⇑(FiniteQM.ClassicalModel.basis n).coords '' FiniteQM.ClassicalModel.states n = stdSimplex ℝ (Fin (n + 1))",
+          "signature_output": "verification/signatures_01/stdout.txt",
+          "signature_output_sha256": "2083e1988bd7fc6676cdfca817f44e2fa7c67318fe7ad0886fd30569dad97c32",
+          "premise_rule": "Every explicit and implicit binder remains a requirement; a clean axiom report does not discharge theorem parameters."
+        }
+      ]
+    },
+    {
+      "id": "JC-06",
+      "name": "Calibrated classical System",
+      "inputs": "The constructed simplex and coordinate effects",
+      "output_or_relation": "Attained capacity n+1, homogenized dimension n+1, finite polytope and spectrality",
+      "status": "KERNEL_CHECKED_TYPED_OPERATION",
+      "admissible_substitution": "Only substitute matching carrier/affine-space types and supply all displayed signature premises. Jordan multiplication is not assumed associative.",
+      "proofs": [
+        {
+          "name": "FiniteQM.ClassicalModel.vertex_frame",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "ClassicalModel.lean",
+          "source_sha256": "61783d97c1bb5ce10f0c221a9439659d2ff1e0dc11bbd131b498e19decedcf64",
+          "receipt": "verification/classical_03/receipt.json",
+          "formal_signature": "FiniteQM.ClassicalModel.vertex_frame : ∀ (n : ℕ),\n  FiniteQM.ReconstructionGeometry.Frame (FiniteQM.ClassicalModel.states n) ⇑(FiniteQM.ClassicalModel.basis n)",
+          "signature_output": "verification/signatures_01/stdout.txt",
+          "signature_output_sha256": "2083e1988bd7fc6676cdfca817f44e2fa7c67318fe7ad0886fd30569dad97c32",
+          "premise_rule": "Every explicit and implicit binder remains a requirement; a clean axiom report does not discharge theorem parameters."
+        },
+        {
+          "name": "FiniteQM.ClassicalModel.frame_bound",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "ClassicalModel.lean",
+          "source_sha256": "61783d97c1bb5ce10f0c221a9439659d2ff1e0dc11bbd131b498e19decedcf64",
+          "receipt": "verification/classical_03/receipt.json",
+          "formal_signature": "@FiniteQM.ClassicalModel.frame_bound : ∀ {n m : ℕ} (f : Fin m → FiniteQM.ReconstructionGeometry.Space n),\n  FiniteQM.ReconstructionGeometry.Frame (FiniteQM.ClassicalModel.states n) f → m ≤ n + 1",
+          "signature_output": "verification/signatures_01/stdout.txt",
+          "signature_output_sha256": "2083e1988bd7fc6676cdfca817f44e2fa7c67318fe7ad0886fd30569dad97c32",
+          "premise_rule": "Every explicit and implicit binder remains a requirement; a clean axiom report does not discharge theorem parameters."
+        },
+        {
+          "name": "FiniteQM.ClassicalModel.system",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "ClassicalModel.lean",
+          "source_sha256": "61783d97c1bb5ce10f0c221a9439659d2ff1e0dc11bbd131b498e19decedcf64",
+          "receipt": "verification/classical_03/receipt.json",
+          "formal_signature": "FiniteQM.ClassicalModel.system : (n : ℕ) → FiniteQM.ReconstructionGeometry.System n",
+          "signature_output": "verification/signatures_01/stdout.txt",
+          "signature_output_sha256": "2083e1988bd7fc6676cdfca817f44e2fa7c67318fe7ad0886fd30569dad97c32",
+          "premise_rule": "Every explicit and implicit binder remains a requirement; a clean axiom report does not discharge theorem parameters."
+        },
+        {
+          "name": "FiniteQM.ClassicalModel.rank_eq",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "ClassicalModel.lean",
+          "source_sha256": "61783d97c1bb5ce10f0c221a9439659d2ff1e0dc11bbd131b498e19decedcf64",
+          "receipt": "verification/classical_03/receipt.json",
+          "formal_signature": "FiniteQM.ClassicalModel.rank_eq : ∀ (n : ℕ), (FiniteQM.ClassicalModel.system n).rank = n + 1",
+          "signature_output": "verification/signatures_01/stdout.txt",
+          "signature_output_sha256": "2083e1988bd7fc6676cdfca817f44e2fa7c67318fe7ad0886fd30569dad97c32",
+          "premise_rule": "Every explicit and implicit binder remains a requirement; a clean axiom report does not discharge theorem parameters."
+        },
+        {
+          "name": "FiniteQM.ClassicalModel.dim_eq",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "ClassicalModel.lean",
+          "source_sha256": "61783d97c1bb5ce10f0c221a9439659d2ff1e0dc11bbd131b498e19decedcf64",
+          "receipt": "verification/classical_03/receipt.json",
+          "formal_signature": "FiniteQM.ClassicalModel.dim_eq : ∀ (n : ℕ), (FiniteQM.ClassicalModel.system n).dim = n + 1",
+          "signature_output": "verification/signatures_01/stdout.txt",
+          "signature_output_sha256": "2083e1988bd7fc6676cdfca817f44e2fa7c67318fe7ad0886fd30569dad97c32",
+          "premise_rule": "Every explicit and implicit binder remains a requirement; a clean axiom report does not discharge theorem parameters."
+        },
+        {
+          "name": "FiniteQM.ClassicalModel.finite_polytope",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "ClassicalModel.lean",
+          "source_sha256": "61783d97c1bb5ce10f0c221a9439659d2ff1e0dc11bbd131b498e19decedcf64",
+          "receipt": "verification/classical_03/receipt.json",
+          "formal_signature": "FiniteQM.ClassicalModel.finite_polytope : ∀ (n : ℕ),\n  FiniteQM.ClassicalExclusion.FinitePolytope (FiniteQM.ClassicalModel.system n).states",
+          "signature_output": "verification/signatures_01/stdout.txt",
+          "signature_output_sha256": "2083e1988bd7fc6676cdfca817f44e2fa7c67318fe7ad0886fd30569dad97c32",
+          "premise_rule": "Every explicit and implicit binder remains a requirement; a clean axiom report does not discharge theorem parameters."
+        },
+        {
+          "name": "FiniteQM.ClassicalModel.spectral",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "ClassicalModel.lean",
+          "source_sha256": "61783d97c1bb5ce10f0c221a9439659d2ff1e0dc11bbd131b498e19decedcf64",
+          "receipt": "verification/classical_03/receipt.json",
+          "formal_signature": "FiniteQM.ClassicalModel.spectral : ∀ (n : ℕ), (FiniteQM.ClassicalModel.system n).Spectral",
+          "signature_output": "verification/signatures_01/stdout.txt",
+          "signature_output_sha256": "2083e1988bd7fc6676cdfca817f44e2fa7c67318fe7ad0886fd30569dad97c32",
+          "premise_rule": "Every explicit and implicit binder remains a requirement; a clean axiom report does not discharge theorem parameters."
+        }
+      ]
+    },
+    {
+      "id": "JC-07",
+      "name": "Antipodal qubit test",
+      "inputs": "Unit real three-vector; state in the ball for effect bounds",
+      "output_or_relation": "Bounded normalized affine effects and a pure antipodal frame",
+      "status": "KERNEL_CHECKED_TYPED_OPERATION",
+      "admissible_substitution": "Only substitute matching carrier/affine-space types and supply all displayed signature premises. Jordan multiplication is not assumed associative.",
+      "proofs": [
+        {
+          "name": "FiniteQM.QubitModel.axisFunctional_apply",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "QubitModel.lean",
+          "source_sha256": "8711e7595e0720731491e98d649ba5cb3148c6d6f1f2101ddcbda7580fcfdde0",
+          "receipt": "verification/qubit_03/receipt.json",
+          "formal_signature": "FiniteQM.QubitModel.axisFunctional_apply : ∀ (u x : FiniteQM.ReconstructionGeometry.Space 3),\n  (FiniteQM.QubitModel.axisFunctional u) x = (1 + inner ℝ u x) / 2",
+          "signature_output": "verification/signatures_01/stdout.txt",
+          "signature_output_sha256": "2083e1988bd7fc6676cdfca817f44e2fa7c67318fe7ad0886fd30569dad97c32",
+          "premise_rule": "Every explicit and implicit binder remains a requirement; a clean axiom report does not discharge theorem parameters."
+        },
+        {
+          "name": "FiniteQM.QubitModel.inner_bounds",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "QubitModel.lean",
+          "source_sha256": "8711e7595e0720731491e98d649ba5cb3148c6d6f1f2101ddcbda7580fcfdde0",
+          "receipt": "verification/qubit_03/receipt.json",
+          "formal_signature": "@FiniteQM.QubitModel.inner_bounds : ∀ {u x : FiniteQM.ReconstructionGeometry.Space 3},\n  ‖u‖ = 1 → x ∈ FiniteQM.ClassicalExclusion.ball3 → -1 ≤ inner ℝ u x ∧ inner ℝ u x ≤ 1",
+          "signature_output": "verification/signatures_01/stdout.txt",
+          "signature_output_sha256": "2083e1988bd7fc6676cdfca817f44e2fa7c67318fe7ad0886fd30569dad97c32",
+          "premise_rule": "Every explicit and implicit binder remains a requirement; a clean axiom report does not discharge theorem parameters."
+        },
+        {
+          "name": "FiniteQM.QubitModel.axisEffect",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "QubitModel.lean",
+          "source_sha256": "8711e7595e0720731491e98d649ba5cb3148c6d6f1f2101ddcbda7580fcfdde0",
+          "receipt": "verification/qubit_03/receipt.json",
+          "formal_signature": "FiniteQM.QubitModel.axisEffect : (u : FiniteQM.ReconstructionGeometry.Space 3) →\n  ‖u‖ = 1 → FiniteQM.ReconstructionGeometry.Effect FiniteQM.ClassicalExclusion.ball3",
+          "signature_output": "verification/signatures_01/stdout.txt",
+          "signature_output_sha256": "2083e1988bd7fc6676cdfca817f44e2fa7c67318fe7ad0886fd30569dad97c32",
+          "premise_rule": "Every explicit and implicit binder remains a requirement; a clean axiom report does not discharge theorem parameters."
+        },
+        {
+          "name": "FiniteQM.QubitModel.unit_ne_neg",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "QubitModel.lean",
+          "source_sha256": "8711e7595e0720731491e98d649ba5cb3148c6d6f1f2101ddcbda7580fcfdde0",
+          "receipt": "verification/qubit_03/receipt.json",
+          "formal_signature": "@FiniteQM.QubitModel.unit_ne_neg : ∀ {u : FiniteQM.ReconstructionGeometry.Space 3}, ‖u‖ = 1 → u ≠ -u",
+          "signature_output": "verification/signatures_01/stdout.txt",
+          "signature_output_sha256": "2083e1988bd7fc6676cdfca817f44e2fa7c67318fe7ad0886fd30569dad97c32",
+          "premise_rule": "Every explicit and implicit binder remains a requirement; a clean axiom report does not discharge theorem parameters."
+        },
+        {
+          "name": "FiniteQM.QubitModel.unit_pair_frame",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "QubitModel.lean",
+          "source_sha256": "8711e7595e0720731491e98d649ba5cb3148c6d6f1f2101ddcbda7580fcfdde0",
+          "receipt": "verification/qubit_03/receipt.json",
+          "formal_signature": "FiniteQM.QubitModel.unit_pair_frame : ∀ (u : FiniteQM.ReconstructionGeometry.Space 3),\n  ‖u‖ = 1 → FiniteQM.ReconstructionGeometry.Frame FiniteQM.ClassicalExclusion.ball3 ![u, -u]",
+          "signature_output": "verification/signatures_01/stdout.txt",
+          "signature_output_sha256": "2083e1988bd7fc6676cdfca817f44e2fa7c67318fe7ad0886fd30569dad97c32",
+          "premise_rule": "Every explicit and implicit binder remains a requirement; a clean axiom report does not discharge theorem parameters."
+        }
+      ]
+    },
+    {
+      "id": "JC-08",
+      "name": "Calibrated qubit System",
+      "inputs": "Constructed real unit ball; diameter parameter in [-1,1]",
+      "output_or_relation": "Capacity2, dimension4, pure sphere, state chart and spectral decomposition",
+      "status": "KERNEL_CHECKED_TYPED_OPERATION",
+      "admissible_substitution": "Only substitute matching carrier/affine-space types and supply all displayed signature premises. Jordan multiplication is not assumed associative.",
+      "proofs": [
+        {
+          "name": "FiniteQM.QubitModel.pure_eq_sphere",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "QubitModel.lean",
+          "source_sha256": "8711e7595e0720731491e98d649ba5cb3148c6d6f1f2101ddcbda7580fcfdde0",
+          "receipt": "verification/qubit_03/receipt.json",
+          "formal_signature": "FiniteQM.QubitModel.pure_eq_sphere : Set.extremePoints ℝ FiniteQM.QubitModel.system.states = Metric.sphere 0 1",
+          "signature_output": "verification/signatures_01/stdout.txt",
+          "signature_output_sha256": "2083e1988bd7fc6676cdfca817f44e2fa7c67318fe7ad0886fd30569dad97c32",
+          "premise_rule": "Every explicit and implicit binder remains a requirement; a clean axiom report does not discharge theorem parameters."
+        },
+        {
+          "name": "FiniteQM.QubitModel.frame_bound",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "QubitModel.lean",
+          "source_sha256": "8711e7595e0720731491e98d649ba5cb3148c6d6f1f2101ddcbda7580fcfdde0",
+          "receipt": "verification/qubit_03/receipt.json",
+          "formal_signature": "@FiniteQM.QubitModel.frame_bound : ∀ {m : ℕ} (f : Fin m → FiniteQM.ReconstructionGeometry.Space 3),\n  FiniteQM.ReconstructionGeometry.Frame FiniteQM.ClassicalExclusion.ball3 f → m ≤ 2",
+          "signature_output": "verification/signatures_01/stdout.txt",
+          "signature_output_sha256": "2083e1988bd7fc6676cdfca817f44e2fa7c67318fe7ad0886fd30569dad97c32",
+          "premise_rule": "Every explicit and implicit binder remains a requirement; a clean axiom report does not discharge theorem parameters."
+        },
+        {
+          "name": "FiniteQM.QubitModel.system",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "QubitModel.lean",
+          "source_sha256": "8711e7595e0720731491e98d649ba5cb3148c6d6f1f2101ddcbda7580fcfdde0",
+          "receipt": "verification/qubit_03/receipt.json",
+          "formal_signature": "FiniteQM.QubitModel.system : FiniteQM.ReconstructionGeometry.System 3",
+          "signature_output": "verification/signatures_01/stdout.txt",
+          "signature_output_sha256": "2083e1988bd7fc6676cdfca817f44e2fa7c67318fe7ad0886fd30569dad97c32",
+          "premise_rule": "Every explicit and implicit binder remains a requirement; a clean axiom report does not discharge theorem parameters."
+        },
+        {
+          "name": "FiniteQM.QubitModel.rank_eq",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "QubitModel.lean",
+          "source_sha256": "8711e7595e0720731491e98d649ba5cb3148c6d6f1f2101ddcbda7580fcfdde0",
+          "receipt": "verification/qubit_03/receipt.json",
+          "formal_signature": "FiniteQM.QubitModel.rank_eq : FiniteQM.QubitModel.system.rank = 2",
+          "signature_output": "verification/signatures_01/stdout.txt",
+          "signature_output_sha256": "2083e1988bd7fc6676cdfca817f44e2fa7c67318fe7ad0886fd30569dad97c32",
+          "premise_rule": "Every explicit and implicit binder remains a requirement; a clean axiom report does not discharge theorem parameters."
+        },
+        {
+          "name": "FiniteQM.QubitModel.dim_eq",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "QubitModel.lean",
+          "source_sha256": "8711e7595e0720731491e98d649ba5cb3148c6d6f1f2101ddcbda7580fcfdde0",
+          "receipt": "verification/qubit_03/receipt.json",
+          "formal_signature": "FiniteQM.QubitModel.dim_eq : FiniteQM.QubitModel.system.dim = 4",
+          "signature_output": "verification/signatures_01/stdout.txt",
+          "signature_output_sha256": "2083e1988bd7fc6676cdfca817f44e2fa7c67318fe7ad0886fd30569dad97c32",
+          "premise_rule": "Every explicit and implicit binder remains a requirement; a clean axiom report does not discharge theorem parameters."
+        },
+        {
+          "name": "FiniteQM.QubitModel.state_chart",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "QubitModel.lean",
+          "source_sha256": "8711e7595e0720731491e98d649ba5cb3148c6d6f1f2101ddcbda7580fcfdde0",
+          "receipt": "verification/qubit_03/receipt.json",
+          "formal_signature": "FiniteQM.QubitModel.state_chart : ⇑(AffineEquiv.refl ℝ (FiniteQM.ReconstructionGeometry.Space 3)) ''\n    FiniteQM.QubitModel.system.states =\n  FiniteQM.ClassicalExclusion.ball3",
+          "signature_output": "verification/signatures_01/stdout.txt",
+          "signature_output_sha256": "2083e1988bd7fc6676cdfca817f44e2fa7c67318fe7ad0886fd30569dad97c32",
+          "premise_rule": "Every explicit and implicit binder remains a requirement; a clean axiom report does not discharge theorem parameters."
+        },
+        {
+          "name": "FiniteQM.QubitModel.diameter_mem",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "QubitModel.lean",
+          "source_sha256": "8711e7595e0720731491e98d649ba5cb3148c6d6f1f2101ddcbda7580fcfdde0",
+          "receipt": "verification/qubit_03/receipt.json",
+          "formal_signature": "FiniteQM.QubitModel.diameter_mem : ∀ (u : FiniteQM.ReconstructionGeometry.Space 3) (r : ℝ),\n  -1 ≤ r → r ≤ 1 → r • u ∈ (convexHull ℝ) (Set.range ![u, -u])",
+          "signature_output": "verification/signatures_01/stdout.txt",
+          "signature_output_sha256": "2083e1988bd7fc6676cdfca817f44e2fa7c67318fe7ad0886fd30569dad97c32",
+          "premise_rule": "Every explicit and implicit binder remains a requirement; a clean axiom report does not discharge theorem parameters."
+        },
+        {
+          "name": "FiniteQM.QubitModel.spectral",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "QubitModel.lean",
+          "source_sha256": "8711e7595e0720731491e98d649ba5cb3148c6d6f1f2101ddcbda7580fcfdde0",
+          "receipt": "verification/qubit_03/receipt.json",
+          "formal_signature": "FiniteQM.QubitModel.spectral : FiniteQM.QubitModel.system.Spectral",
+          "signature_output": "verification/signatures_01/stdout.txt",
+          "signature_output_sha256": "2083e1988bd7fc6676cdfca817f44e2fa7c67318fe7ad0886fd30569dad97c32",
+          "premise_rule": "Every explicit and implicit binder remains a requirement; a clean axiom report does not discharge theorem parameters."
+        }
+      ]
+    },
+    {
+      "id": "JC-09",
+      "name": "Exact square-cone witnesses",
+      "inputs": "Coordinatewise nonnegative tuple or Lorentz-positive spin element",
+      "output_or_relation": "Positivity iff existence of a Jordan square; zero and boundary cases included",
+      "status": "KERNEL_CHECKED_TYPED_OPERATION",
+      "admissible_substitution": "Only substitute matching carrier/affine-space types and supply all displayed signature premises. Jordan multiplication is not assumed associative.",
+      "proofs": [
+        {
+          "name": "FiniteQM.JordanConeSquares.classical_positive_iff_square",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "JordanConeSquares.lean",
+          "source_sha256": "898fc112c561fca1ed77d6ad1bcb5c157c49b8673bc5933305ce8588368b2ec2",
+          "receipt": "verification/cones_03/receipt.json",
+          "formal_signature": "@FiniteQM.JordanConeSquares.classical_positive_iff_square : ∀ {r : ℕ} (a : Fin r → ℝ),\n  FiniteQM.ConcreteJordanProducts.classicalPositive a ↔ ∃ b, FiniteQM.ConcreteJordanProducts.classicalMul b b = a",
+          "signature_output": "verification/signatures_01/stdout.txt",
+          "signature_output_sha256": "2083e1988bd7fc6676cdfca817f44e2fa7c67318fe7ad0886fd30569dad97c32",
+          "premise_rule": "Every explicit and implicit binder remains a requirement; a clean axiom report does not discharge theorem parameters."
+        },
+        {
+          "name": "FiniteQM.JordanConeSquares.spin_positive_iff_square",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "JordanConeSquares.lean",
+          "source_sha256": "898fc112c561fca1ed77d6ad1bcb5c157c49b8673bc5933305ce8588368b2ec2",
+          "receipt": "verification/cones_03/receipt.json",
+          "formal_signature": "FiniteQM.JordanConeSquares.spin_positive_iff_square : ∀ (a : FiniteQM.ConcreteJordanProducts.Spin3),\n  FiniteQM.ConcreteJordanProducts.spinPositive a ↔ ∃ b, FiniteQM.ConcreteJordanProducts.spinMul b b = a",
+          "signature_output": "verification/signatures_01/stdout.txt",
+          "signature_output_sha256": "2083e1988bd7fc6676cdfca817f44e2fa7c67318fe7ad0886fd30569dad97c32",
+          "premise_rule": "Every explicit and implicit binder remains a requirement; a clean axiom report does not discharge theorem parameters."
+        }
+      ]
+    },
+    {
+      "id": "JC-10",
+      "name": "Supported catalogue entry construction",
+      "inputs": "A well-formed arithmetic tag satisfying IsClassical or a singleton qubit-tag witness",
+      "output_or_relation": "Actual calibrated Entry on precisely the supported subset",
+      "status": "KERNEL_CHECKED_TYPED_OPERATION",
+      "admissible_substitution": "Only substitute matching carrier/affine-space types and supply all displayed signature premises. Jordan multiplication is not assumed associative.",
+      "proofs": [
+        {
+          "name": "FiniteQM.SupportedJordanCatalogue.qubit_invariants",
+          "axioms": [
+            "propext"
+          ],
+          "source": "SupportedJordanCatalogue.lean",
+          "source_sha256": "3ced60a85406324680be8ff2907e94ed943633d26c6308686061d807ed2c47c4",
+          "receipt": "verification/catalogue_02/receipt.json",
+          "formal_signature": "FiniteQM.SupportedJordanCatalogue.qubit_invariants : ∀ (J : FiniteQM.ReconstructionArithmetic.EJA)\n  (s : FiniteQM.ReconstructionArithmetic.SimpleEJA), J.summands = [s] → s.IsQubitAlgebra → J.rank = 2 ∧ J.dim = 4",
+          "signature_output": "verification/signatures_01/stdout.txt",
+          "signature_output_sha256": "2083e1988bd7fc6676cdfca817f44e2fa7c67318fe7ad0886fd30569dad97c32",
+          "premise_rule": "Every explicit and implicit binder remains a requirement; a clean axiom report does not discharge theorem parameters."
+        },
+        {
+          "name": "FiniteQM.SupportedJordanCatalogue.qubit_not_classical",
+          "axioms": [
+            "propext"
+          ],
+          "source": "SupportedJordanCatalogue.lean",
+          "source_sha256": "3ced60a85406324680be8ff2907e94ed943633d26c6308686061d807ed2c47c4",
+          "receipt": "verification/catalogue_02/receipt.json",
+          "formal_signature": "FiniteQM.SupportedJordanCatalogue.qubit_not_classical : ∀ (J : FiniteQM.ReconstructionArithmetic.EJA)\n  (s : FiniteQM.ReconstructionArithmetic.SimpleEJA), J.summands = [s] → s.IsQubitAlgebra → ¬J.IsClassical",
+          "signature_output": "verification/signatures_01/stdout.txt",
+          "signature_output_sha256": "2083e1988bd7fc6676cdfca817f44e2fa7c67318fe7ad0886fd30569dad97c32",
+          "premise_rule": "Every explicit and implicit binder remains a requirement; a clean axiom report does not discharge theorem parameters."
+        },
+        {
+          "name": "FiniteQM.SupportedJordanCatalogue.classicalEntry",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SupportedJordanCatalogue.lean",
+          "source_sha256": "3ced60a85406324680be8ff2907e94ed943633d26c6308686061d807ed2c47c4",
+          "receipt": "verification/catalogue_02/receipt.json",
+          "formal_signature": "FiniteQM.SupportedJordanCatalogue.classicalEntry : (J : FiniteQM.ReconstructionArithmetic.EJA) →\n  J.IsClassical → FiniteQM.SupportedJordanCatalogue.Entry J",
+          "signature_output": "verification/signatures_01/stdout.txt",
+          "signature_output_sha256": "2083e1988bd7fc6676cdfca817f44e2fa7c67318fe7ad0886fd30569dad97c32",
+          "premise_rule": "Every explicit and implicit binder remains a requirement; a clean axiom report does not discharge theorem parameters."
+        },
+        {
+          "name": "FiniteQM.SupportedJordanCatalogue.qubitEntry",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SupportedJordanCatalogue.lean",
+          "source_sha256": "3ced60a85406324680be8ff2907e94ed943633d26c6308686061d807ed2c47c4",
+          "receipt": "verification/catalogue_02/receipt.json",
+          "formal_signature": "FiniteQM.SupportedJordanCatalogue.qubitEntry : (J : FiniteQM.ReconstructionArithmetic.EJA) →\n  (s : FiniteQM.ReconstructionArithmetic.SimpleEJA) →\n    J.summands = [s] → s.IsQubitAlgebra → FiniteQM.SupportedJordanCatalogue.Entry J",
+          "signature_output": "verification/signatures_01/stdout.txt",
+          "signature_output_sha256": "2083e1988bd7fc6676cdfca817f44e2fa7c67318fe7ad0886fd30569dad97c32",
+          "premise_rule": "Every explicit and implicit binder remains a requirement; a clean axiom report does not discharge theorem parameters."
+        },
+        {
+          "name": "FiniteQM.SupportedJordanCatalogue.entry",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SupportedJordanCatalogue.lean",
+          "source_sha256": "3ced60a85406324680be8ff2907e94ed943633d26c6308686061d807ed2c47c4",
+          "receipt": "verification/catalogue_02/receipt.json",
+          "formal_signature": "FiniteQM.SupportedJordanCatalogue.entry : (J : FiniteQM.ReconstructionArithmetic.EJA) →\n  FiniteQM.SupportedJordanCatalogue.Supported J → FiniteQM.SupportedJordanCatalogue.Entry J",
+          "signature_output": "verification/signatures_01/stdout.txt",
+          "signature_output_sha256": "2083e1988bd7fc6676cdfca817f44e2fa7c67318fe7ad0886fd30569dad97c32",
+          "premise_rule": "Every explicit and implicit binder remains a requirement; a clean axiom report does not discharge theorem parameters."
+        },
+        {
+          "name": "FiniteQM.SupportedJordanCatalogue.classical_entry_calibrated",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SupportedJordanCatalogue.lean",
+          "source_sha256": "3ced60a85406324680be8ff2907e94ed943633d26c6308686061d807ed2c47c4",
+          "receipt": "verification/catalogue_02/receipt.json",
+          "formal_signature": "FiniteQM.SupportedJordanCatalogue.classical_entry_calibrated : ∀ (J : FiniteQM.ReconstructionArithmetic.EJA)\n  (hc : J.IsClassical),\n  (FiniteQM.SupportedJordanCatalogue.classicalEntry J hc).model.rank = J.rank ∧\n    (FiniteQM.SupportedJordanCatalogue.classicalEntry J hc).model.dim = J.dim",
+          "signature_output": "verification/signatures_01/stdout.txt",
+          "signature_output_sha256": "2083e1988bd7fc6676cdfca817f44e2fa7c67318fe7ad0886fd30569dad97c32",
+          "premise_rule": "Every explicit and implicit binder remains a requirement; a clean axiom report does not discharge theorem parameters."
+        },
+        {
+          "name": "FiniteQM.SupportedJordanCatalogue.supported_entry_calibrated",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SupportedJordanCatalogue.lean",
+          "source_sha256": "3ced60a85406324680be8ff2907e94ed943633d26c6308686061d807ed2c47c4",
+          "receipt": "verification/catalogue_02/receipt.json",
+          "formal_signature": "FiniteQM.SupportedJordanCatalogue.supported_entry_calibrated : ∀ (J : FiniteQM.ReconstructionArithmetic.EJA)\n  (h : FiniteQM.SupportedJordanCatalogue.Supported J),\n  (FiniteQM.SupportedJordanCatalogue.entry J h).model.rank = J.rank ∧\n    (FiniteQM.SupportedJordanCatalogue.entry J h).model.dim = J.dim",
+          "signature_output": "verification/signatures_01/stdout.txt",
+          "signature_output_sha256": "2083e1988bd7fc6676cdfca817f44e2fa7c67318fe7ad0886fd30569dad97c32",
+          "premise_rule": "Every explicit and implicit binder remains a requirement; a clean axiom report does not discharge theorem parameters."
+        },
+        {
+          "name": "FiniteQM.SupportedJordanCatalogue.complexQubit_supported",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SupportedJordanCatalogue.lean",
+          "source_sha256": "3ced60a85406324680be8ff2907e94ed943633d26c6308686061d807ed2c47c4",
+          "receipt": "verification/catalogue_02/receipt.json",
+          "formal_signature": "FiniteQM.SupportedJordanCatalogue.complexQubit_supported : FiniteQM.SupportedJordanCatalogue.Supported\n  FiniteQM.SupportedJordanCatalogue.complexQubitTag",
+          "signature_output": "verification/signatures_01/stdout.txt",
+          "signature_output_sha256": "2083e1988bd7fc6676cdfca817f44e2fa7c67318fe7ad0886fd30569dad97c32",
+          "premise_rule": "Every explicit and implicit binder remains a requirement; a clean axiom report does not discharge theorem parameters."
+        },
+        {
+          "name": "FiniteQM.SupportedJordanCatalogue.spinQubit_supported",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SupportedJordanCatalogue.lean",
+          "source_sha256": "3ced60a85406324680be8ff2907e94ed943633d26c6308686061d807ed2c47c4",
+          "receipt": "verification/catalogue_02/receipt.json",
+          "formal_signature": "FiniteQM.SupportedJordanCatalogue.spinQubit_supported : FiniteQM.SupportedJordanCatalogue.Supported\n  FiniteQM.SupportedJordanCatalogue.spinQubitTag",
+          "signature_output": "verification/signatures_01/stdout.txt",
+          "signature_output_sha256": "2083e1988bd7fc6676cdfca817f44e2fa7c67318fe7ad0886fd30569dad97c32",
+          "premise_rule": "Every explicit and implicit binder remains a requirement; a clean axiom report does not discharge theorem parameters."
+        }
+      ]
+    },
+    {
+      "id": "JC-11",
+      "name": "Conditional catalogue extension",
+      "inputs": "REQUIRES an Entry for every unsupported tag; no such remaining argument is supplied",
+      "output_or_relation": "Assembles a full catalogue only when the remaining entries are provided; agreement on supported tags",
+      "status": "CONDITIONAL_EXTENSION_NOT_INSTANTIATED",
+      "admissible_substitution": "Only substitute matching carrier/affine-space types and supply all displayed signature premises. Jordan multiplication is not assumed associative.",
+      "proofs": [
+        {
+          "name": "FiniteQM.SupportedJordanCatalogue.completeCatalogue",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SupportedJordanCatalogue.lean",
+          "source_sha256": "3ced60a85406324680be8ff2907e94ed943633d26c6308686061d807ed2c47c4",
+          "receipt": "verification/catalogue_02/receipt.json",
+          "formal_signature": "FiniteQM.SupportedJordanCatalogue.completeCatalogue : ((J : FiniteQM.ReconstructionArithmetic.EJA) →\n    ¬FiniteQM.SupportedJordanCatalogue.Supported J → FiniteQM.SupportedJordanCatalogue.Entry J) →\n  FiniteQM.ReconstructionGeometry.JordanStateCatalogue",
+          "signature_output": "verification/signatures_01/stdout.txt",
+          "signature_output_sha256": "2083e1988bd7fc6676cdfca817f44e2fa7c67318fe7ad0886fd30569dad97c32",
+          "premise_rule": "Every explicit and implicit binder remains a requirement; a clean axiom report does not discharge theorem parameters."
+        },
+        {
+          "name": "FiniteQM.SupportedJordanCatalogue.extension_agrees",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "SupportedJordanCatalogue.lean",
+          "source_sha256": "3ced60a85406324680be8ff2907e94ed943633d26c6308686061d807ed2c47c4",
+          "receipt": "verification/catalogue_02/receipt.json",
+          "formal_signature": "FiniteQM.SupportedJordanCatalogue.extension_agrees : ∀\n  (remaining :\n    (J : FiniteQM.ReconstructionArithmetic.EJA) →\n      ¬FiniteQM.SupportedJordanCatalogue.Supported J → FiniteQM.SupportedJordanCatalogue.Entry J)\n  (J : FiniteQM.ReconstructionArithmetic.EJA) (h : FiniteQM.SupportedJordanCatalogue.Supported J),\n  FiniteQM.SupportedJordanCatalogue.completeEntry remaining J = FiniteQM.SupportedJordanCatalogue.entry J h",
+          "signature_output": "verification/signatures_01/stdout.txt",
+          "signature_output_sha256": "2083e1988bd7fc6676cdfca817f44e2fa7c67318fe7ad0886fd30569dad97c32",
+          "premise_rule": "Every explicit and implicit binder remains a requirement; a clean axiom report does not discharge theorem parameters."
+        }
+      ]
+    },
+    {
+      "id": "JC-12",
+      "name": "Concrete state/algebra applications",
+      "inputs": "Constructed models; Composite laws for the exclusion application",
+      "output_or_relation": "No classical composite with a concrete qubit marginal; state membership equals normalized Jordan-square conditions",
+      "status": "KERNEL_CHECKED_TYPED_OPERATION",
+      "admissible_substitution": "Only substitute matching carrier/affine-space types and supply all displayed signature premises. Jordan multiplication is not assumed associative.",
+      "proofs": [
+        {
+          "name": "FiniteQM.CatalogueApplications.no_classical_composite",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "CatalogueApplications.lean",
+          "source_sha256": "366c5eda6c760ade38be49e662886d52b0c2eba6e262ccbc51ddf590ee0137b4",
+          "receipt": "verification/applications_02/receipt.json",
+          "formal_signature": "FiniteQM.CatalogueApplications.no_classical_composite : ∀ (n k : ℕ),\n  ¬Nonempty\n      (FiniteQM.ReconstructionGeometry.Composite (FiniteQM.ClassicalModel.system n) FiniteQM.QubitModel.system\n        (FiniteQM.ClassicalModel.system k))",
+          "signature_output": "verification/signatures_01/stdout.txt",
+          "signature_output_sha256": "2083e1988bd7fc6676cdfca817f44e2fa7c67318fe7ad0886fd30569dad97c32",
+          "premise_rule": "Every explicit and implicit binder remains a requirement; a clean axiom report does not discharge theorem parameters."
+        },
+        {
+          "name": "FiniteQM.CatalogueApplications.classical_states_are_normalized_squares",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "CatalogueApplications.lean",
+          "source_sha256": "366c5eda6c760ade38be49e662886d52b0c2eba6e262ccbc51ddf590ee0137b4",
+          "receipt": "verification/applications_02/receipt.json",
+          "formal_signature": "FiniteQM.CatalogueApplications.classical_states_are_normalized_squares : ∀ (n : ℕ)\n  (x : FiniteQM.ReconstructionGeometry.Space n),\n  x ∈ (FiniteQM.ClassicalModel.system n).states ↔\n    (∃ b, FiniteQM.ConcreteJordanProducts.classicalMul b b = (FiniteQM.ClassicalModel.basis n).coords x) ∧\n      FiniteQM.ConcreteJordanProducts.classicalTrace ((FiniteQM.ClassicalModel.basis n).coords x) = 1",
+          "signature_output": "verification/signatures_01/stdout.txt",
+          "signature_output_sha256": "2083e1988bd7fc6676cdfca817f44e2fa7c67318fe7ad0886fd30569dad97c32",
+          "premise_rule": "Every explicit and implicit binder remains a requirement; a clean axiom report does not discharge theorem parameters."
+        },
+        {
+          "name": "FiniteQM.CatalogueApplications.qubit_states_are_normalized_squares",
+          "axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "source": "CatalogueApplications.lean",
+          "source_sha256": "366c5eda6c760ade38be49e662886d52b0c2eba6e262ccbc51ddf590ee0137b4",
+          "receipt": "verification/applications_02/receipt.json",
+          "formal_signature": "FiniteQM.CatalogueApplications.qubit_states_are_normalized_squares : ∀ (x : FiniteQM.ReconstructionGeometry.Space 3),\n  x ∈ FiniteQM.QubitModel.system.states ↔\n    ∃ b, FiniteQM.ConcreteJordanProducts.spinMul b b = FiniteQM.ConcreteJordanProducts.blochState x",
+          "signature_output": "verification/signatures_01/stdout.txt",
+          "signature_output_sha256": "2083e1988bd7fc6676cdfca817f44e2fa7c67318fe7ad0886fd30569dad97c32",
+          "premise_rule": "Every explicit and implicit binder remains a requirement; a clean axiom report does not discharge theorem parameters."
+        }
+      ]
+    }
+  ],
+  "formal_operad_claim": "Scoped typed algebra, affine and catalogue operations with checked relations and exact signatures; no complete higher-arity operad is claimed.",
+  "authority_effect": "None"
+}

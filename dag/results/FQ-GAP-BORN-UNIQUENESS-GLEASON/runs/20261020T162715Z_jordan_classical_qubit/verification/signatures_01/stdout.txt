@@ -1,0 +1,311 @@
+FiniteQM.ReconstructionArithmetic.two_dvd_mul_succ : ∀ (n : ℕ), 2 ∣ n * (n + 1)
+FiniteQM.ReconstructionArithmetic.SimpleEJA.wf_rank_pos : ∀ (s : FiniteQM.ReconstructionArithmetic.SimpleEJA),
+  s.wf → 1 ≤ s.rank
+FiniteQM.ReconstructionArithmetic.SimpleEJA.rank_one_dim_one : ∀ (s : FiniteQM.ReconstructionArithmetic.SimpleEJA),
+  s.wf → s.rank = 1 → s.dim = 1
+FiniteQM.ReconstructionArithmetic.SimpleEJA.rank_one_complexType : ∀ (s : FiniteQM.ReconstructionArithmetic.SimpleEJA),
+  s.wf → s.rank = 1 → s.IsComplexType
+FiniteQM.ReconstructionArithmetic.SimpleEJA.complexType_dim : ∀ (s : FiniteQM.ReconstructionArithmetic.SimpleEJA),
+  s.IsComplexType → s.dim = s.rank * s.rank
+FiniteQM.ReconstructionArithmetic.sumDim_eq_sumRank : ∀ (l : List FiniteQM.ReconstructionArithmetic.SimpleEJA),
+  (∀ s ∈ l, s.wf) →
+    (∀ s ∈ l, s.rank = 1) → FiniteQM.ReconstructionArithmetic.sumDim l = FiniteQM.ReconstructionArithmetic.sumRank l
+FiniteQM.ReconstructionArithmetic.EJA.classical_dim_eq_rank : ∀ (J : FiniteQM.ReconstructionArithmetic.EJA),
+  J.IsClassical → J.dim = J.rank
+FiniteQM.ReconstructionArithmetic.complex_dim_mul : ∀ (n k : ℕ),
+  (FiniteQM.ReconstructionArithmetic.SimpleEJA.complexHerm (n * k)).dim =
+    (FiniteQM.ReconstructionArithmetic.SimpleEJA.complexHerm n).dim *
+      (FiniteQM.ReconstructionArithmetic.SimpleEJA.complexHerm k).dim
+FiniteQM.ReconstructionArithmetic.real_not_multiplicative : (FiniteQM.ReconstructionArithmetic.SimpleEJA.realHerm
+      (2 * 2)).dim ≠
+  (FiniteQM.ReconstructionArithmetic.SimpleEJA.realHerm 2).dim *
+    (FiniteQM.ReconstructionArithmetic.SimpleEJA.realHerm 2).dim
+FiniteQM.ReconstructionArithmetic.quat_not_multiplicative : (FiniteQM.ReconstructionArithmetic.SimpleEJA.quatHerm
+      (2 * 2)).dim ≠
+  (FiniteQM.ReconstructionArithmetic.SimpleEJA.quatHerm 2).dim *
+    (FiniteQM.ReconstructionArithmetic.SimpleEJA.quatHerm 2).dim
+FiniteQM.ReconstructionArithmetic.no_simple_dim4m_rank2m : ∀ (m : ℕ),
+  2 ≤ m → ∀ (s : FiniteQM.ReconstructionArithmetic.SimpleEJA), s.wf → s.dim = 4 * m → 2 * m ≤ s.rank → False
+FiniteQM.ReconstructionArithmetic.qubit_algebra : ∀ (J : FiniteQM.ReconstructionArithmetic.EJA),
+  J.rank = 2 → J.dim = 4 → ∃ s, J.summands = [s] ∧ s.IsQubitAlgebra
+FiniteQM.ReconstructionArithmetic.EJA.rank_pos : ∀ (J : FiniteQM.ReconstructionArithmetic.EJA), 1 ≤ J.rank
+FiniteQM.ReconstructionArithmetic.EJA.classical_rank_one_single : ∀ (J : FiniteQM.ReconstructionArithmetic.EJA),
+  J.rank = 1 → ∃ s, J.summands = [s]
+FiniteQM.ReconstructionArithmetic.classical_two_tag_dim_two : FiniteQM.ReconstructionArithmetic.sumDim
+    [FiniteQM.ReconstructionArithmetic.SimpleEJA.realHerm 1, FiniteQM.ReconstructionArithmetic.SimpleEJA.realHerm 1] =
+  2
+FiniteQM.ReconstructionArithmetic.real_rank_two_dim_three : (FiniteQM.ReconstructionArithmetic.SimpleEJA.realHerm
+      2).dim =
+  3
+FiniteQM.ReconstructionArithmetic.quaternionic_rank_two_dim_six : (FiniteQM.ReconstructionArithmetic.SimpleEJA.quatHerm
+      2).dim =
+  6
+FiniteQM.ReconstructionArithmetic.spin_no_composite : ∀ (d : ℕ),
+  ¬4 ≤ (FiniteQM.ReconstructionArithmetic.SimpleEJA.spin d).rank
+FiniteQM.ReconstructionArithmetic.albert_no_composite : ¬4 ≤ FiniteQM.ReconstructionArithmetic.SimpleEJA.albert.rank
+@FiniteQM.ClassicalExclusion.affine_image_finite_polytope : ∀ {E : Type u_1} {F : Type u_2} [inst : AddCommGroup E]
+  [inst_1 : Module ℝ E] [inst_2 : AddCommGroup F] [inst_3 : Module ℝ F] (f : E →ᵃ[ℝ] F) {S : Set E},
+  FiniteQM.ClassicalExclusion.FinitePolytope S → FiniteQM.ClassicalExclusion.FinitePolytope (⇑f '' S)
+@FiniteQM.ClassicalExclusion.image_eq_of_section : ∀ {E : Type u_1} {F : Type u_2} {S : Set E} {T : Set F} (f : E → F),
+  Set.MapsTo f S T → ∀ (sectionMap : F → E), (∀ y ∈ T, sectionMap y ∈ S) → (∀ y ∈ T, f (sectionMap y) = y) → f '' S = T
+@FiniteQM.ClassicalExclusion.finite_extremePoints : ∀ {E : Type u_1} [inst : AddCommGroup E] [inst_1 : Module ℝ E]
+  {S : Set E}, FiniteQM.ClassicalExclusion.FinitePolytope S → (Set.extremePoints ℝ S).Finite
+FiniteQM.ClassicalExclusion.circlePoint_norm : ∀ (t : ℝ), ‖FiniteQM.ClassicalExclusion.circlePoint t‖ = 1
+FiniteQM.ClassicalExclusion.circlePoint_recover : ∀ (t : ℝ),
+  (FiniteQM.ClassicalExclusion.circlePoint t).ofLp 1 / (1 + (FiniteQM.ClassicalExclusion.circlePoint t).ofLp 0) = t
+FiniteQM.ClassicalExclusion.circlePoint_injective : Function.Injective FiniteQM.ClassicalExclusion.circlePoint
+@FiniteQM.ClassicalExclusion.unit_support_unique : ∀ {u x : FiniteQM.ClassicalExclusion.R3},
+  ‖u‖ = 1 → x ∈ FiniteQM.ClassicalExclusion.ball3 → inner ℝ u x = 1 → x = u
+@FiniteQM.ClassicalExclusion.unit_isExposed : ∀ {u : FiniteQM.ClassicalExclusion.R3},
+  ‖u‖ = 1 → IsExposed ℝ FiniteQM.ClassicalExclusion.ball3 {u}
+FiniteQM.ClassicalExclusion.ball3_infinite_extremePoints : (Set.extremePoints ℝ
+    FiniteQM.ClassicalExclusion.ball3).Infinite
+FiniteQM.ClassicalExclusion.ball3_not_finite_polytope : ¬FiniteQM.ClassicalExclusion.FinitePolytope
+    FiniteQM.ClassicalExclusion.ball3
+@FiniteQM.ClassicalExclusion.no_polytope_with_ball_marginal : ∀ {E : Type u_1} [inst : AddCommGroup E]
+  [inst_1 : Module ℝ E] {S : Set E} (marginal : E →ᵃ[ℝ] FiniteQM.ClassicalExclusion.R3),
+  Set.MapsTo (⇑marginal) S FiniteQM.ClassicalExclusion.ball3 →
+    ∀ (sectionMap : FiniteQM.ClassicalExclusion.R3 → E),
+      (∀ b ∈ FiniteQM.ClassicalExclusion.ball3, sectionMap b ∈ S) →
+        (∀ b ∈ FiniteQM.ClassicalExclusion.ball3, marginal (sectionMap b) = b) →
+          ¬FiniteQM.ClassicalExclusion.FinitePolytope S
+@FiniteQM.ReconstructionGeometry.System.Reversible.identity : {n : ℕ} →
+  (A : FiniteQM.ReconstructionGeometry.System n) → A.Reversible
+@FiniteQM.ReconstructionGeometry.System.Reversible.inverse : {n : ℕ} →
+  {A : FiniteQM.ReconstructionGeometry.System n} → A.Reversible → A.Reversible
+@FiniteQM.ReconstructionGeometry.System.Reversible.compose : {n : ℕ} →
+  {A : FiniteQM.ReconstructionGeometry.System n} → A.Reversible → A.Reversible → A.Reversible
+@FiniteQM.ReconstructionGeometry.System.dim_pos : ∀ {n : ℕ} (A : FiniteQM.ReconstructionGeometry.System n), 0 < A.dim
+@FiniteQM.ReconstructionGeometry.System.subsingleton_dim_one : ∀ {n : ℕ} (A : FiniteQM.ReconstructionGeometry.System n),
+  A.states.Subsingleton → A.dim = 1
+@FiniteQM.ReconstructionGeometry.System.rank_one_pure : ∀ {n : ℕ} (A : FiniteQM.ReconstructionGeometry.System n),
+  A.Spectral → A.rank = 1 → ∀ {x : FiniteQM.ReconstructionGeometry.Space n}, x ∈ A.states → A.Pure x
+@FiniteQM.ReconstructionGeometry.System.rank_one_dim_one : ∀ {n : ℕ} (A : FiniteQM.ReconstructionGeometry.System n),
+  A.Spectral → A.rank = 1 → A.dim = 1
+@FiniteQM.ReconstructionGeometry.Composite.marginal_image : ∀ {a b c : ℕ} {A : FiniteQM.ReconstructionGeometry.System a}
+  {B : FiniteQM.ReconstructionGeometry.System b} {AB : FiniteQM.ReconstructionGeometry.System c}
+  (C : FiniteQM.ReconstructionGeometry.Composite A B AB), ⇑C.margB '' AB.states = B.states
+@FiniteQM.ReconstructionGeometry.Composite.marginal_finite_polytope : ∀ {a b c : ℕ}
+  {A : FiniteQM.ReconstructionGeometry.System a} {B : FiniteQM.ReconstructionGeometry.System b}
+  {AB : FiniteQM.ReconstructionGeometry.System c} (C : FiniteQM.ReconstructionGeometry.Composite A B AB),
+  FiniteQM.ClassicalExclusion.FinitePolytope AB.states → FiniteQM.ClassicalExclusion.FinitePolytope B.states
+@FiniteQM.ReconstructionGeometry.Composite.no_polytope_composite_with_ball : ∀ {a b c : ℕ}
+  {A : FiniteQM.ReconstructionGeometry.System a} {B : FiniteQM.ReconstructionGeometry.System b}
+  {AB : FiniteQM.ReconstructionGeometry.System c} (C : FiniteQM.ReconstructionGeometry.Composite A B AB)
+  (e : FiniteQM.ReconstructionGeometry.Space b ≃ᵃ[ℝ] FiniteQM.ClassicalExclusion.R3),
+  ⇑e '' B.states = FiniteQM.ClassicalExclusion.ball3 → ¬FiniteQM.ClassicalExclusion.FinitePolytope AB.states
+@FiniteQM.ReconstructionGeometry.Representation.dim_eq : ∀
+  {catalogue : FiniteQM.ReconstructionGeometry.JordanStateCatalogue} {n : ℕ}
+  {A : FiniteQM.ReconstructionGeometry.System n} (R : FiniteQM.ReconstructionGeometry.Representation catalogue A),
+  A.dim = R.tag.dim
+@FiniteQM.ReconstructionGeometry.Representation.inverse_image_states : ∀
+  {catalogue : FiniteQM.ReconstructionGeometry.JordanStateCatalogue} {n : ℕ}
+  {A : FiniteQM.ReconstructionGeometry.System n} (R : FiniteQM.ReconstructionGeometry.Representation catalogue A),
+  ⇑R.equivalence.symm '' (catalogue.model R.tag).states = A.states
+@FiniteQM.ReconstructionGeometry.Representation.classical_polytope : ∀
+  {catalogue : FiniteQM.ReconstructionGeometry.JordanStateCatalogue} {n : ℕ}
+  {A : FiniteQM.ReconstructionGeometry.System n} (R : FiniteQM.ReconstructionGeometry.Representation catalogue A),
+  R.tag.IsClassical → FiniteQM.ClassicalExclusion.FinitePolytope A.states
+@FiniteQM.ReconstructionGeometry.Representation.qubit_ball : ∀
+  {catalogue : FiniteQM.ReconstructionGeometry.JordanStateCatalogue} {n : ℕ}
+  {A : FiniteQM.ReconstructionGeometry.System n} (R : FiniteQM.ReconstructionGeometry.Representation catalogue A)
+  {s : FiniteQM.ReconstructionArithmetic.SimpleEJA},
+  R.tag.summands = [s] → s.IsQubitAlgebra → ∃ e, ⇑e '' A.states = FiniteQM.ClassicalExclusion.ball3
+@FiniteQM.ReconstructionGeometry.no_classical_composite_with_qubit : ∀
+  {catalogue : FiniteQM.ReconstructionGeometry.JordanStateCatalogue} {a b c : ℕ}
+  {A : FiniteQM.ReconstructionGeometry.System a} {B : FiniteQM.ReconstructionGeometry.System b}
+  {AB : FiniteQM.ReconstructionGeometry.System c} (C : FiniteQM.ReconstructionGeometry.Composite A B AB)
+  (RAB : FiniteQM.ReconstructionGeometry.Representation catalogue AB)
+  (RB : FiniteQM.ReconstructionGeometry.Representation catalogue B) {s : FiniteQM.ReconstructionArithmetic.SimpleEJA},
+  RB.tag.summands = [s] → s.IsQubitAlgebra → ¬RAB.tag.IsClassical
+@FiniteQM.ReconstructionGeometry.rank_two_dim_four_ball : ∀
+  {catalogue : FiniteQM.ReconstructionGeometry.JordanStateCatalogue} {n : ℕ}
+  {A : FiniteQM.ReconstructionGeometry.System n} (R : FiniteQM.ReconstructionGeometry.Representation catalogue A),
+  A.rank = 2 → A.dim = 4 → ∃ e, ⇑e '' A.states = FiniteQM.ClassicalExclusion.ball3
+@FiniteQM.ReconstructionGeometry.no_classical_factor_with_qubit : ∀
+  {catalogue : FiniteQM.ReconstructionGeometry.JordanStateCatalogue} {a b c : ℕ}
+  {A : FiniteQM.ReconstructionGeometry.System a} {B : FiniteQM.ReconstructionGeometry.System b}
+  {AB : FiniteQM.ReconstructionGeometry.System c} (C : FiniteQM.ReconstructionGeometry.Composite A B AB)
+  (RA : FiniteQM.ReconstructionGeometry.Representation catalogue A)
+  (RB : FiniteQM.ReconstructionGeometry.Representation catalogue B)
+  (RAB : FiniteQM.ReconstructionGeometry.Representation catalogue AB),
+  RAB.tag.IsSimple ∨ RAB.tag.IsClassical →
+    AB.dim = A.dim * B.dim → A.rank * B.rank ≤ AB.rank → 2 ≤ A.rank → B.rank = 2 → B.dim = 4 → ¬RA.tag.IsClassical
+@FiniteQM.CatalogueGeometry.affine_combo : ∀ {n : ℕ} (f : FiniteQM.ReconstructionGeometry.Space n →ᵃ[ℝ] ℝ)
+  (x y : FiniteQM.ReconstructionGeometry.Space n) (a b : ℝ), a + b = 1 → f (a • x + b • y) = a * f x + b * f y
+@FiniteQM.CatalogueGeometry.extreme_of_unique_affine_max : ∀ {n : ℕ} (S : Set (FiniteQM.ReconstructionGeometry.Space n))
+  (f : FiniteQM.ReconstructionGeometry.Space n →ᵃ[ℝ] ℝ),
+  ∀ z ∈ S, (∀ x ∈ S, f x ≤ f z) → (∀ x ∈ S, f x = f z → x = z) → z ∈ Set.extremePoints ℝ S
+@FiniteQM.CatalogueGeometry.affine_reflection : ∀ {n : ℕ} (f : FiniteQM.ReconstructionGeometry.Space n →ᵃ[ℝ] ℝ)
+  (x : FiniteQM.ReconstructionGeometry.Space n), f (-x) + f x = 2 * f 0
+@FiniteQM.CatalogueGeometry.symmetric_frame_bound : ∀ {n m : ℕ} (S : Set (FiniteQM.ReconstructionGeometry.Space n)),
+  0 ∈ S →
+    (∀ x ∈ S, -x ∈ S) →
+      ∀ (f : Fin m → FiniteQM.ReconstructionGeometry.Space n), FiniteQM.ReconstructionGeometry.Frame S f → m ≤ 2
+@FiniteQM.ConcreteJordanProducts.classical_add_left : ∀ {r : ℕ} (a b c : Fin r → ℝ),
+  FiniteQM.ConcreteJordanProducts.classicalMul (a + b) c =
+    FiniteQM.ConcreteJordanProducts.classicalMul a c + FiniteQM.ConcreteJordanProducts.classicalMul b c
+@FiniteQM.ConcreteJordanProducts.classical_smul_left : ∀ {r : ℕ} (t : ℝ) (a b : Fin r → ℝ),
+  FiniteQM.ConcreteJordanProducts.classicalMul (t • a) b = t • FiniteQM.ConcreteJordanProducts.classicalMul a b
+FiniteQM.ConcreteJordanProducts.spin_add_left : ∀ (a b c : FiniteQM.ConcreteJordanProducts.Spin3),
+  FiniteQM.ConcreteJordanProducts.spinMul (a + b) c =
+    FiniteQM.ConcreteJordanProducts.spinMul a c + FiniteQM.ConcreteJordanProducts.spinMul b c
+FiniteQM.ConcreteJordanProducts.spin_smul_left : ∀ (t : ℝ) (a b : FiniteQM.ConcreteJordanProducts.Spin3),
+  FiniteQM.ConcreteJordanProducts.spinMul (t • a) b = t • FiniteQM.ConcreteJordanProducts.spinMul a b
+FiniteQM.ConcreteJordanProducts.normalized_spin_iff : ∀ (a : FiniteQM.ConcreteJordanProducts.Spin3),
+  FiniteQM.ConcreteJordanProducts.spinPositive a ∧ FiniteQM.ConcreteJordanProducts.spinTrace a = 1 ↔
+    ∃ x, ‖x‖ ≤ 1 ∧ FiniteQM.ConcreteJordanProducts.blochState x = a
+@FiniteQM.ConcreteJordanProducts.classical_comm : ∀ {r : ℕ} (a b : Fin r → ℝ),
+  FiniteQM.ConcreteJordanProducts.classicalMul a b = FiniteQM.ConcreteJordanProducts.classicalMul b a
+@FiniteQM.ConcreteJordanProducts.classical_unit : ∀ {r : ℕ} (a : Fin r → ℝ),
+  FiniteQM.ConcreteJordanProducts.classicalMul (FiniteQM.ConcreteJordanProducts.classicalUnit r) a = a
+@FiniteQM.ConcreteJordanProducts.classical_jordan_identity : ∀ {r : ℕ} (a b : Fin r → ℝ),
+  FiniteQM.ConcreteJordanProducts.classicalMul a
+      (FiniteQM.ConcreteJordanProducts.classicalMul (FiniteQM.ConcreteJordanProducts.classicalMul a a) b) =
+    FiniteQM.ConcreteJordanProducts.classicalMul (FiniteQM.ConcreteJordanProducts.classicalMul a a)
+      (FiniteQM.ConcreteJordanProducts.classicalMul a b)
+@FiniteQM.ConcreteJordanProducts.classical_square_positive : ∀ {r : ℕ} (a : Fin r → ℝ),
+  FiniteQM.ConcreteJordanProducts.classicalPositive (FiniteQM.ConcreteJordanProducts.classicalMul a a)
+@FiniteQM.ConcreteJordanProducts.classical_normalized : ∀ {r : ℕ} (a : Fin r → ℝ),
+  FiniteQM.ConcreteJordanProducts.classicalPositive a ∧ FiniteQM.ConcreteJordanProducts.classicalTrace a = 1 ↔
+    a ∈ stdSimplex ℝ (Fin r)
+FiniteQM.ConcreteJordanProducts.spin_comm : ∀ (a b : FiniteQM.ConcreteJordanProducts.Spin3),
+  FiniteQM.ConcreteJordanProducts.spinMul a b = FiniteQM.ConcreteJordanProducts.spinMul b a
+FiniteQM.ConcreteJordanProducts.spin_unit : ∀ (a : FiniteQM.ConcreteJordanProducts.Spin3),
+  FiniteQM.ConcreteJordanProducts.spinMul FiniteQM.ConcreteJordanProducts.spinUnit a = a
+FiniteQM.ConcreteJordanProducts.spin_jordan_identity : ∀ (a b : FiniteQM.ConcreteJordanProducts.Spin3),
+  FiniteQM.ConcreteJordanProducts.spinMul a
+      (FiniteQM.ConcreteJordanProducts.spinMul (FiniteQM.ConcreteJordanProducts.spinMul a a) b) =
+    FiniteQM.ConcreteJordanProducts.spinMul (FiniteQM.ConcreteJordanProducts.spinMul a a)
+      (FiniteQM.ConcreteJordanProducts.spinMul a b)
+FiniteQM.ConcreteJordanProducts.spin_square_positive : ∀ (a : FiniteQM.ConcreteJordanProducts.Spin3),
+  FiniteQM.ConcreteJordanProducts.spinPositive (FiniteQM.ConcreteJordanProducts.spinMul a a)
+FiniteQM.ConcreteJordanProducts.bloch_trace : ∀ (x : EuclideanSpace ℝ (Fin 3)),
+  FiniteQM.ConcreteJordanProducts.spinTrace (FiniteQM.ConcreteJordanProducts.blochState x) = 1
+FiniteQM.ConcreteJordanProducts.bloch_positive_iff : ∀ (x : EuclideanSpace ℝ (Fin 3)),
+  FiniteQM.ConcreteJordanProducts.spinPositive (FiniteQM.ConcreteJordanProducts.blochState x) ↔ ‖x‖ ≤ 1
+FiniteQM.ClassicalModel.pure_eq_vertices : ∀ (n : ℕ),
+  Set.extremePoints ℝ (FiniteQM.ClassicalModel.states n) = Set.range ⇑(FiniteQM.ClassicalModel.basis n)
+FiniteQM.ClassicalModel.coords_image : ∀ (n : ℕ),
+  ⇑(FiniteQM.ClassicalModel.basis n).coords '' FiniteQM.ClassicalModel.states n = stdSimplex ℝ (Fin (n + 1))
+FiniteQM.ClassicalModel.basis : (n : ℕ) → AffineBasis (Fin (n + 1)) ℝ (FiniteQM.ReconstructionGeometry.Space n)
+@FiniteQM.ClassicalModel.coord_nonneg : ∀ {n : ℕ} {x : FiniteQM.ReconstructionGeometry.Space n},
+  x ∈ FiniteQM.ClassicalModel.states n → ∀ (i : Fin (n + 1)), 0 ≤ ((FiniteQM.ClassicalModel.basis n).coord i) x
+@FiniteQM.ClassicalModel.coord_le_one : ∀ {n : ℕ} {x : FiniteQM.ReconstructionGeometry.Space n},
+  x ∈ FiniteQM.ClassicalModel.states n → ∀ (i : Fin (n + 1)), ((FiniteQM.ClassicalModel.basis n).coord i) x ≤ 1
+@FiniteQM.ClassicalModel.coord_one_unique : ∀ {n : ℕ} {x : FiniteQM.ReconstructionGeometry.Space n},
+  x ∈ FiniteQM.ClassicalModel.states n →
+    ∀ (i : Fin (n + 1)), ((FiniteQM.ClassicalModel.basis n).coord i) x = 1 → x = (FiniteQM.ClassicalModel.basis n) i
+FiniteQM.ClassicalModel.vertex_extreme : ∀ (n : ℕ) (i : Fin (n + 1)),
+  (FiniteQM.ClassicalModel.basis n) i ∈ Set.extremePoints ℝ (FiniteQM.ClassicalModel.states n)
+FiniteQM.ClassicalModel.vertex_frame : ∀ (n : ℕ),
+  FiniteQM.ReconstructionGeometry.Frame (FiniteQM.ClassicalModel.states n) ⇑(FiniteQM.ClassicalModel.basis n)
+@FiniteQM.ClassicalModel.frame_bound : ∀ {n m : ℕ} (f : Fin m → FiniteQM.ReconstructionGeometry.Space n),
+  FiniteQM.ReconstructionGeometry.Frame (FiniteQM.ClassicalModel.states n) f → m ≤ n + 1
+FiniteQM.ClassicalModel.system : (n : ℕ) → FiniteQM.ReconstructionGeometry.System n
+FiniteQM.ClassicalModel.rank_eq : ∀ (n : ℕ), (FiniteQM.ClassicalModel.system n).rank = n + 1
+FiniteQM.ClassicalModel.dim_eq : ∀ (n : ℕ), (FiniteQM.ClassicalModel.system n).dim = n + 1
+FiniteQM.ClassicalModel.finite_polytope : ∀ (n : ℕ),
+  FiniteQM.ClassicalExclusion.FinitePolytope (FiniteQM.ClassicalModel.system n).states
+FiniteQM.ClassicalModel.spectral : ∀ (n : ℕ), (FiniteQM.ClassicalModel.system n).Spectral
+@FiniteQM.ClassicalModel.coords_probability : ∀ {n : ℕ} {x : FiniteQM.ReconstructionGeometry.Space n},
+  x ∈ (FiniteQM.ClassicalModel.system n).states →
+    (FiniteQM.ClassicalModel.basis n).coords x ∈ stdSimplex ℝ (Fin (n + 1))
+FiniteQM.ClassicalModel.coords_reconstruct : ∀ (n : ℕ) (x : FiniteQM.ReconstructionGeometry.Space n),
+  ∑ i, ((FiniteQM.ClassicalModel.basis n).coord i) x • (FiniteQM.ClassicalModel.basis n) i = x
+FiniteQM.QubitModel.pure_eq_sphere : Set.extremePoints ℝ FiniteQM.QubitModel.system.states = Metric.sphere 0 1
+FiniteQM.QubitModel.axisFunctional_apply : ∀ (u x : FiniteQM.ReconstructionGeometry.Space 3),
+  (FiniteQM.QubitModel.axisFunctional u) x = (1 + inner ℝ u x) / 2
+@FiniteQM.QubitModel.inner_bounds : ∀ {u x : FiniteQM.ReconstructionGeometry.Space 3},
+  ‖u‖ = 1 → x ∈ FiniteQM.ClassicalExclusion.ball3 → -1 ≤ inner ℝ u x ∧ inner ℝ u x ≤ 1
+FiniteQM.QubitModel.axisEffect : (u : FiniteQM.ReconstructionGeometry.Space 3) →
+  ‖u‖ = 1 → FiniteQM.ReconstructionGeometry.Effect FiniteQM.ClassicalExclusion.ball3
+@FiniteQM.QubitModel.unit_ne_neg : ∀ {u : FiniteQM.ReconstructionGeometry.Space 3}, ‖u‖ = 1 → u ≠ -u
+FiniteQM.QubitModel.unit_pair_frame : ∀ (u : FiniteQM.ReconstructionGeometry.Space 3),
+  ‖u‖ = 1 → FiniteQM.ReconstructionGeometry.Frame FiniteQM.ClassicalExclusion.ball3 ![u, -u]
+@FiniteQM.QubitModel.frame_bound : ∀ {m : ℕ} (f : Fin m → FiniteQM.ReconstructionGeometry.Space 3),
+  FiniteQM.ReconstructionGeometry.Frame FiniteQM.ClassicalExclusion.ball3 f → m ≤ 2
+FiniteQM.QubitModel.system : FiniteQM.ReconstructionGeometry.System 3
+FiniteQM.QubitModel.rank_eq : FiniteQM.QubitModel.system.rank = 2
+FiniteQM.QubitModel.dim_eq : FiniteQM.QubitModel.system.dim = 4
+FiniteQM.QubitModel.state_chart : ⇑(AffineEquiv.refl ℝ (FiniteQM.ReconstructionGeometry.Space 3)) ''
+    FiniteQM.QubitModel.system.states =
+  FiniteQM.ClassicalExclusion.ball3
+FiniteQM.QubitModel.diameter_mem : ∀ (u : FiniteQM.ReconstructionGeometry.Space 3) (r : ℝ),
+  -1 ≤ r → r ≤ 1 → r • u ∈ (convexHull ℝ) (Set.range ![u, -u])
+FiniteQM.QubitModel.spectral : FiniteQM.QubitModel.system.Spectral
+FiniteQM.SupportedJordanCatalogue.qubit_invariants : ∀ (J : FiniteQM.ReconstructionArithmetic.EJA)
+  (s : FiniteQM.ReconstructionArithmetic.SimpleEJA), J.summands = [s] → s.IsQubitAlgebra → J.rank = 2 ∧ J.dim = 4
+FiniteQM.SupportedJordanCatalogue.qubit_not_classical : ∀ (J : FiniteQM.ReconstructionArithmetic.EJA)
+  (s : FiniteQM.ReconstructionArithmetic.SimpleEJA), J.summands = [s] → s.IsQubitAlgebra → ¬J.IsClassical
+FiniteQM.SupportedJordanCatalogue.classicalEntry : (J : FiniteQM.ReconstructionArithmetic.EJA) →
+  J.IsClassical → FiniteQM.SupportedJordanCatalogue.Entry J
+FiniteQM.SupportedJordanCatalogue.qubitEntry : (J : FiniteQM.ReconstructionArithmetic.EJA) →
+  (s : FiniteQM.ReconstructionArithmetic.SimpleEJA) →
+    J.summands = [s] → s.IsQubitAlgebra → FiniteQM.SupportedJordanCatalogue.Entry J
+FiniteQM.SupportedJordanCatalogue.entry : (J : FiniteQM.ReconstructionArithmetic.EJA) →
+  FiniteQM.SupportedJordanCatalogue.Supported J → FiniteQM.SupportedJordanCatalogue.Entry J
+FiniteQM.SupportedJordanCatalogue.classical_entry_calibrated : ∀ (J : FiniteQM.ReconstructionArithmetic.EJA)
+  (hc : J.IsClassical),
+  (FiniteQM.SupportedJordanCatalogue.classicalEntry J hc).model.rank = J.rank ∧
+    (FiniteQM.SupportedJordanCatalogue.classicalEntry J hc).model.dim = J.dim
+FiniteQM.SupportedJordanCatalogue.supported_entry_calibrated : ∀ (J : FiniteQM.ReconstructionArithmetic.EJA)
+  (h : FiniteQM.SupportedJordanCatalogue.Supported J),
+  (FiniteQM.SupportedJordanCatalogue.entry J h).model.rank = J.rank ∧
+    (FiniteQM.SupportedJordanCatalogue.entry J h).model.dim = J.dim
+FiniteQM.SupportedJordanCatalogue.complexQubit_supported : FiniteQM.SupportedJordanCatalogue.Supported
+  FiniteQM.SupportedJordanCatalogue.complexQubitTag
+FiniteQM.SupportedJordanCatalogue.spinQubit_supported : FiniteQM.SupportedJordanCatalogue.Supported
+  FiniteQM.SupportedJordanCatalogue.spinQubitTag
+FiniteQM.SupportedJordanCatalogue.completeCatalogue : ((J : FiniteQM.ReconstructionArithmetic.EJA) →
+    ¬FiniteQM.SupportedJordanCatalogue.Supported J → FiniteQM.SupportedJordanCatalogue.Entry J) →
+  FiniteQM.ReconstructionGeometry.JordanStateCatalogue
+FiniteQM.SupportedJordanCatalogue.extension_agrees : ∀
+  (remaining :
+    (J : FiniteQM.ReconstructionArithmetic.EJA) →
+      ¬FiniteQM.SupportedJordanCatalogue.Supported J → FiniteQM.SupportedJordanCatalogue.Entry J)
+  (J : FiniteQM.ReconstructionArithmetic.EJA) (h : FiniteQM.SupportedJordanCatalogue.Supported J),
+  FiniteQM.SupportedJordanCatalogue.completeEntry remaining J = FiniteQM.SupportedJordanCatalogue.entry J h
+@FiniteQM.JordanConeSquares.classical_positive_iff_square : ∀ {r : ℕ} (a : Fin r → ℝ),
+  FiniteQM.ConcreteJordanProducts.classicalPositive a ↔ ∃ b, FiniteQM.ConcreteJordanProducts.classicalMul b b = a
+FiniteQM.JordanConeSquares.spin_positive_iff_square : ∀ (a : FiniteQM.ConcreteJordanProducts.Spin3),
+  FiniteQM.ConcreteJordanProducts.spinPositive a ↔ ∃ b, FiniteQM.ConcreteJordanProducts.spinMul b b = a
+FiniteQM.CatalogueApplications.no_classical_composite : ∀ (n k : ℕ),
+  ¬Nonempty
+      (FiniteQM.ReconstructionGeometry.Composite (FiniteQM.ClassicalModel.system n) FiniteQM.QubitModel.system
+        (FiniteQM.ClassicalModel.system k))
+FiniteQM.CatalogueApplications.classical_states_are_normalized_squares : ∀ (n : ℕ)
+  (x : FiniteQM.ReconstructionGeometry.Space n),
+  x ∈ (FiniteQM.ClassicalModel.system n).states ↔
+    (∃ b, FiniteQM.ConcreteJordanProducts.classicalMul b b = (FiniteQM.ClassicalModel.basis n).coords x) ∧
+      FiniteQM.ConcreteJordanProducts.classicalTrace ((FiniteQM.ClassicalModel.basis n).coords x) = 1
+FiniteQM.CatalogueApplications.qubit_states_are_normalized_squares : ∀ (x : FiniteQM.ReconstructionGeometry.Space 3),
+  x ∈ FiniteQM.QubitModel.system.states ↔
+    ∃ b, FiniteQM.ConcreteJordanProducts.spinMul b b = FiniteQM.ConcreteJordanProducts.blochState x
+FiniteQM.SupportedJordanCatalogue.Entry : FiniteQM.ReconstructionArithmetic.EJA → Type
+@FiniteQM.SupportedJordanCatalogue.Entry.model_dim : ∀ {J : FiniteQM.ReconstructionArithmetic.EJA}
+  (self : FiniteQM.SupportedJordanCatalogue.Entry J), self.model.dim = J.dim
+@FiniteQM.SupportedJordanCatalogue.Entry.model_rank : ∀ {J : FiniteQM.ReconstructionArithmetic.EJA}
+  (self : FiniteQM.SupportedJordanCatalogue.Entry J), self.model.rank = J.rank
+@FiniteQM.SupportedJordanCatalogue.Entry.classical_geometry : ∀ {J : FiniteQM.ReconstructionArithmetic.EJA}
+  (self : FiniteQM.SupportedJordanCatalogue.Entry J),
+  J.IsClassical → FiniteQM.ClassicalExclusion.FinitePolytope self.model.states
+@FiniteQM.SupportedJordanCatalogue.Entry.qubit_geometry : ∀ {J : FiniteQM.ReconstructionArithmetic.EJA}
+  (self : FiniteQM.SupportedJordanCatalogue.Entry J) (s : FiniteQM.ReconstructionArithmetic.SimpleEJA),
+  J.summands = [s] → s.IsQubitAlgebra → ∃ e, ⇑e '' self.model.states = FiniteQM.ClassicalExclusion.ball3
+FiniteQM.SupportedJordanCatalogue.Supported : FiniteQM.ReconstructionArithmetic.EJA → Prop
+@FiniteQM.ConcreteJordanProducts.classicalMul : {r : ℕ} → (Fin r → ℝ) → (Fin r → ℝ) → Fin r → ℝ
+FiniteQM.ConcreteJordanProducts.classicalUnit : (r : ℕ) → Fin r → ℝ
+@FiniteQM.ConcreteJordanProducts.classicalTrace : {r : ℕ} → (Fin r → ℝ) → ℝ
+@FiniteQM.ConcreteJordanProducts.classicalPositive : {r : ℕ} → (Fin r → ℝ) → Prop
+FiniteQM.ConcreteJordanProducts.spinMul : FiniteQM.ConcreteJordanProducts.Spin3 →
+  FiniteQM.ConcreteJordanProducts.Spin3 → FiniteQM.ConcreteJordanProducts.Spin3
+FiniteQM.ConcreteJordanProducts.spinUnit : FiniteQM.ConcreteJordanProducts.Spin3
+FiniteQM.ConcreteJordanProducts.spinTrace : FiniteQM.ConcreteJordanProducts.Spin3 → ℝ
+FiniteQM.ConcreteJordanProducts.spinPositive : FiniteQM.ConcreteJordanProducts.Spin3 → Prop
+FiniteQM.ConcreteJordanProducts.blochState : EuclideanSpace ℝ (Fin 3) → FiniteQM.ConcreteJordanProducts.Spin3
+@FiniteQM.ReconstructionGeometry.JordanBridge.classify : ∀
+  {catalogue : FiniteQM.ReconstructionGeometry.JordanStateCatalogue},
+  FiniteQM.ReconstructionGeometry.JordanBridge catalogue →
+    ∀ {n : ℕ} (A : FiniteQM.ReconstructionGeometry.System n),
+      A.Spectral → A.StronglySymmetric → ∃ R, R.tag.IsSimple ∨ R.tag.IsClassical

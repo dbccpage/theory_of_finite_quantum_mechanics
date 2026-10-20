@@ -1,0 +1,1 @@
+previous_task_readme.md is an exact historical discovery-index snapshot; its relative links resolve from the FQ-GAP-BORN-UNIQUENESS-GLEASON result root. SystemAudit.lean is a preserved predecessor witness for context and is not counted among this run's accepted source compilations.
