@@ -238,20 +238,24 @@ impl FusionTable {
         })
     }
 
+    fn unique_dual(&self, a: usize) -> Result<usize, usize> {
+        let mut found = None;
+        for b in 0..self.rank {
+            let multiplicity = self.at(a, b, 0);
+            if multiplicity > 0 {
+                if found.is_some() || multiplicity != 1 {
+                    return Err(a);
+                }
+                found = Some(b);
+            }
+        }
+        found.ok_or(a)
+    }
+
     fn dual_labels(&self) -> Result<Vec<usize>, usize> {
         let mut dual = Vec::with_capacity(self.rank);
         for a in 0..self.rank {
-            let mut found = None;
-            for b in 0..self.rank {
-                let multiplicity = self.at(a, b, 0);
-                if multiplicity > 0 {
-                    if found.is_some() || multiplicity != 1 {
-                        return Err(a);
-                    }
-                    found = Some(b);
-                }
-            }
-            dual.push(found.ok_or(a)?);
+            dual.push(self.unique_dual(a)?);
         }
         for a in 0..self.rank {
             let back = dual.get(dual.get(a).copied().unwrap_or(a)).copied();
@@ -282,29 +286,43 @@ impl FusionTable {
             .map(|(left, right)| RingDefect::Commutativity { left, right })
     }
 
+    fn associativity_defect_at(
+        &self,
+        a: usize,
+        b: usize,
+        c: usize,
+        d: usize,
+    ) -> Option<RingDefect> {
+        let left = self.associativity_sum(|e| (self.at(a, b, e), self.at(e, c, d)));
+        let right = self.associativity_sum(|f| (self.at(b, c, f), self.at(a, f, d)));
+        match (left, right) {
+            (Some(left), Some(right)) if left != right => Some(RingDefect::Associativity {
+                labels: (a, b, c),
+                outcome: d,
+                left,
+                right,
+            }),
+            (Some(_), Some(_)) => None,
+            _ => Some(RingDefect::Overflow { labels: (a, b, c) }),
+        }
+    }
+
+    fn associativity_defect_for_pair(&self, a: usize, b: usize) -> Option<RingDefect> {
+        for c in 0..self.rank {
+            for d in 0..self.rank {
+                if let Some(defect) = self.associativity_defect_at(a, b, c, d) {
+                    return Some(defect);
+                }
+            }
+        }
+        None
+    }
+
     fn first_associativity_defect(&self) -> Option<RingDefect> {
         for a in 0..self.rank {
             for b in 0..self.rank {
-                for c in 0..self.rank {
-                    for d in 0..self.rank {
-                        let left = self.associativity_sum(|e| (self.at(a, b, e), self.at(e, c, d)));
-                        let right =
-                            self.associativity_sum(|f| (self.at(b, c, f), self.at(a, f, d)));
-                        match (left, right) {
-                            (Some(left), Some(right)) if left != right => {
-                                return Some(RingDefect::Associativity {
-                                    labels: (a, b, c),
-                                    outcome: d,
-                                    left,
-                                    right,
-                                });
-                            }
-                            (Some(_), Some(_)) => {}
-                            _ => {
-                                return Some(RingDefect::Overflow { labels: (a, b, c) });
-                            }
-                        }
-                    }
+                if let Some(defect) = self.associativity_defect_for_pair(a, b) {
+                    return Some(defect);
                 }
             }
         }
@@ -317,16 +335,20 @@ impl FusionTable {
             .map(|label| RingDefect::Duality { label })
     }
 
+    fn reciprocity_defect_for_pair(&self, dual: &[usize], a: usize, b: usize) -> Option<usize> {
+        let a_star = dual.get(a).copied().unwrap_or(a);
+        let b_star = dual.get(b).copied().unwrap_or(b);
+        (0..self.rank).find(|&c| {
+            let here = self.at(a, b, c);
+            here != self.at(a_star, c, b) || here != self.at(c, b_star, a)
+        })
+    }
+
     fn first_reciprocity_defect(&self, dual: &[usize]) -> Option<RingDefect> {
         for a in 0..self.rank {
             for b in 0..self.rank {
-                for c in 0..self.rank {
-                    let here = self.at(a, b, c);
-                    let a_star = dual.get(a).copied().unwrap_or(a);
-                    let b_star = dual.get(b).copied().unwrap_or(b);
-                    if here != self.at(a_star, c, b) || here != self.at(c, b_star, a) {
-                        return Some(RingDefect::Reciprocity { labels: (a, b, c) });
-                    }
+                if let Some(c) = self.reciprocity_defect_for_pair(dual, a, b) {
+                    return Some(RingDefect::Reciprocity { labels: (a, b, c) });
                 }
             }
         }
@@ -535,21 +557,29 @@ impl FusionRing {
             .collect())
     }
 
+    fn rational_fusion_matrix(
+        &self,
+        a: usize,
+    ) -> Result<BasicMatrix<omega_number_theory::rational::Rational>, FusionError> {
+        matrix::from_rows(
+            self.fusion_matrix(a)?
+                .into_iter()
+                .map(|row| {
+                    row.into_iter()
+                        .map(omega_number_theory::rational::Rational::from_integer)
+                        .collect()
+                })
+                .collect(),
+        )
+        .map_err(FusionError::from)
+    }
+
     pub fn characteristic_polynomial(&self, a: usize) -> Result<Vec<BigInt>, FusionError> {
         Ok(
-            characteristic_polynomial::characteristic_polynomial(&matrix::from_rows(
-                self.fusion_matrix(a)?
-                    .into_iter()
-                    .map(|r| {
-                        r.into_iter()
-                            .map(omega_number_theory::rational::Rational::from_integer)
-                            .collect()
-                    })
-                    .collect(),
-            )?)?
-            .into_iter()
-            .map(|q| q.to_integer())
-            .collect(),
+            characteristic_polynomial::characteristic_polynomial(&self.rational_fusion_matrix(a)?)?
+                .into_iter()
+                .map(|q| q.to_integer())
+                .collect(),
         )
     }
 
@@ -562,26 +592,8 @@ impl FusionRing {
         let mut total = matrix::zeros::<omega_number_theory::rational::Rational>(r, r)?;
         for a in 0..r {
             let a_star = self.dual(a)?;
-            let left = matrix::from_rows(
-                self.fusion_matrix(a)?
-                    .into_iter()
-                    .map(|row| {
-                        row.into_iter()
-                            .map(omega_number_theory::rational::Rational::from_integer)
-                            .collect()
-                    })
-                    .collect(),
-            )?;
-            let right = matrix::from_rows(
-                self.fusion_matrix(a_star)?
-                    .into_iter()
-                    .map(|row| {
-                        row.into_iter()
-                            .map(omega_number_theory::rational::Rational::from_integer)
-                            .collect()
-                    })
-                    .collect(),
-            )?;
+            let left = self.rational_fusion_matrix(a)?;
+            let right = self.rational_fusion_matrix(a_star)?;
             total = matrix::add(&total, &matrix::multiply(&left, &right)?)?;
         }
         largest_real_root(
@@ -618,31 +630,61 @@ impl FusionRing {
         let mut defects = Vec::new();
         for a in 0..r {
             for b in 0..r {
-                for c in 0..r {
-                    let mut total = K::zero();
-                    for (x, weight) in first_row_inverse.iter().enumerate() {
-                        let term = s_tilde
-                            .get_ref(a, x)?
-                            .mul(s_tilde.get_ref(b, x)?)
-                            .mul(&s_tilde.get_ref(c, x)?.conjugate())
-                            .mul(weight);
-                        total = total.add(&term);
-                    }
-                    let value = total.mul(&d_inverse);
-                    let expected = omega_number_theory::scalar::from_i64::<K>(
-                        i64::try_from(self.table.at(a, b, c)).map_err(|_| {
-                            FusionError::Overflow {
-                                context: "embedding a fusion coefficient",
-                            }
-                        })?,
-                    );
-                    if value != expected {
-                        defects.push([a, b, c]);
-                    }
-                }
+                self.collect_verlinde_pair(
+                    s_tilde,
+                    &first_row_inverse,
+                    &d_inverse,
+                    a,
+                    b,
+                    &mut defects,
+                )?;
             }
         }
         Ok(defects)
+    }
+
+    fn verlinde_value<K: FusionScalar>(
+        &self,
+        s_tilde: &BasicMatrix<K>,
+        weights: &[K],
+        d_inverse: &K,
+        a: usize,
+        b: usize,
+        c: usize,
+    ) -> Result<K, FusionError> {
+        let mut total = K::zero();
+        for (x, weight) in weights.iter().enumerate() {
+            let term = s_tilde
+                .get_ref(a, x)?
+                .mul(s_tilde.get_ref(b, x)?)
+                .mul(&s_tilde.get_ref(c, x)?.conjugate())
+                .mul(weight);
+            total = total.add(&term);
+        }
+        Ok(total.mul(d_inverse))
+    }
+
+    fn collect_verlinde_pair<K: FusionScalar>(
+        &self,
+        s_tilde: &BasicMatrix<K>,
+        weights: &[K],
+        d_inverse: &K,
+        a: usize,
+        b: usize,
+        defects: &mut Vec<[usize; 3]>,
+    ) -> Result<(), FusionError> {
+        for c in 0..self.rank() {
+            let value = self.verlinde_value(s_tilde, weights, d_inverse, a, b, c)?;
+            let expected = omega_number_theory::scalar::from_i64::<K>(
+                i64::try_from(self.table.at(a, b, c)).map_err(|_| FusionError::Overflow {
+                    context: "embedding a fusion coefficient",
+                })?,
+            );
+            if value != expected {
+                defects.push([a, b, c]);
+            }
+        }
+        Ok(())
     }
 
     pub fn z_n(n: usize) -> Result<Self, FusionError> {
@@ -710,19 +752,23 @@ impl FusionRing {
         let mut n = vec![0u64; rank * rank * rank];
         for i in 0..rank {
             for j in 0..rank {
-                let low = i.abs_diff(j);
-                let high = (i + j).min((2 * k) - (i + j));
-                for l in low..=high {
-                    if (i + j + l) % 2 == 0 {
-                        if let Some(slot) = n.get_mut((i * rank + j) * rank + l) {
-                            *slot = 1;
-                        }
-                    }
-                }
+                Self::fill_su2_product(&mut n, rank, k, i, j);
             }
         }
         let names = (0..rank).map(|i| format!("j={i}/2")).collect();
         Self::try_new(FusionTable::with_names(rank, names, n)?)
+    }
+
+    fn fill_su2_product(n: &mut [u64], rank: usize, k: usize, i: usize, j: usize) {
+        let low = i.abs_diff(j);
+        let high = (i + j).min((2 * k) - (i + j));
+        for l in low..=high {
+            if (i + j + l) % 2 == 0 {
+                if let Some(slot) = n.get_mut((i * rank + j) * rank + l) {
+                    *slot = 1;
+                }
+            }
+        }
     }
 
     pub fn rep_s3() -> Result<Self, FusionError> {

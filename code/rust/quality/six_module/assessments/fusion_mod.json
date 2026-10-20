@@ -1,0 +1,243 @@
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/fusion_categories/mod.rs",
+    "sha256": "ee0714484ee8dde3d8101b737b1d086ec0fac2d59442bbc1a99d1ab1eee33d7b",
+    "language": "Rust"
+  },
+  "rubric_sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de",
+  "evaluation_timestamp": "2026-10-20T01:58:28.615490+00:00",
+  "reviewer": "Codex exact rational aggregate and malformed-domain review",
+  "level": "L1",
+  "level_basis": "One pure rational predicate plus literal module declarations/re-export framing; no production category architecture is delivered by this small helper file.",
+  "gates": {
+    "G1": "A",
+    "G2": "A",
+    "G3": "A",
+    "G4": "A",
+    "G5": "A"
+  },
+  "context_inputs": [
+    {
+      "path": "code/rust/src/fusion_categories/mod.rs",
+      "sha256": "ee0714484ee8dde3d8101b737b1d086ec0fac2d59442bbc1a99d1ab1eee33d7b"
+    },
+    {
+      "path": "code/rust/src/fusion_categories/Cargo.toml",
+      "sha256": "d68660b699c301e6d482ea910972e58e5ef9243a68b7ea9749b3de660809b5e9"
+    },
+    {
+      "path": "code/rust/Cargo.toml",
+      "sha256": "3085a37668527cbaddeeb087b4be204f22983a85ac6fb8657e6f2d3e2bf020d2"
+    },
+    {
+      "path": "code/rust/src/lib.rs",
+      "sha256": "06c94a48399e77727edc334bd6746accf01a1b3a5fc89f4bfc1db9ebc636c252"
+    }
+  ],
+  "formal_specification": {
+    "profile": "Exact",
+    "domain": "Finite raw Ratio<i64> values, including signed/noncanonical records. Malformed denominators refuse. Only aggregate equality to a positive total is certified; individual physical dimensions are outside the claim.",
+    "behavior": [
+      "Accept iff every used raw denominator is nonzero and the exact rational sum equals the strictly positive exact total; refuse malformed ratios before quotient construction and preserve arbitrary signed cancellation. This does not certify individual physical dimension values."
+    ],
+    "capability": "L1 exact aggregate utility; exported provider implementations have separate scopes."
+  },
+  "symbol_map": {
+    "verify_fusion_global_dimension": {
+      "line": 19,
+      "signature": "pub fn verify_fusion_global_dimension(\n    dims_squared: &[Ratio<i64>],\n    total_dim_sq: Ratio<i64>,\n) -> bool",
+      "body": "{\n    if *total_dim_sq.denom() == 0 {\n        return false;\n    }\n    let total = BigRational::new(\n        BigInt::from(*total_dim_sq.numer()),\n        BigInt::from(*total_dim_sq.denom()),\n    );\n    if total <= BigRational::zero() {\n        return false;\n    }\n    let mut sum = BigRational::zero();\n    for value in dims_squared {\n        if *value.denom() == 0 {\n            return false;\n        }\n        sum += BigRational::new(BigInt::from(*value.numer()), BigInt::from(*value.denom()));\n    }\n    sum == total\n}",
+      "obligation": "Accept iff every used raw denominator is nonzero and the exact rational sum equals the strictly positive exact total; refuse malformed ratios before quotient construction and preserve arbitrary signed cancellation. This does not certify individual physical dimension values."
+    }
+  },
+  "invariant_argument": [
+    "Both helpers implement only a finite rational-aggregate predicate. The Ratio<i64> signature excludes floating point but permits noncanonical raw numerator/denominator records, including zero denominators. Reject the total zero denominator first, lift both signed components separately into BigInt then BigRational, reject a nonpositive exact total, then check every used entry denominator before constructing its rational.",
+    "BigInt exactly embeds the complete signed-i64 domain, including i64::MIN. BigRational normalization handles either sign and reduces the quotient exactly after the nonzero-denominator guard. No intermediate addition, multiplication, negation or absolute value is performed in i64. The dependency versions and actual package/tool contents are bound in the native receipt, not assumed from a floating approximation.",
+    "At each successful prefix, sum equals the mathematical rational sum of all preceding values, starting at zero. One exact lift and one arbitrary-precision += step preserve that invariant. The final equality tests the exact admitted total. Negative entries and large cancellation remain admitted; the helper makes no physical positivity assertion about individual squared dimensions. Empty and zero/nonpositive totals are rejected by the same exact predicate.",
+    "Malformed raw input returns false before its invalid rational construction. No partial sum or mutation of borrowed input escapes, and the consumed scalar total has no external mutation. Standard allocation availability, Rust/compiler and the pinned exact-integer/rational implementations remain TCB; no OS out-of-memory recovery or verified Rust extraction is asserted.",
+    "The independent oracle uses unreduced signed-i128 numerator/denominator cross-products on a deliberately small corpus, independently of BigRational operations. It checks 8000 signed raw-ratio pair/total cases, 40 empty/singleton cases, 4096 triples and distinct malformed-total/entry cases. Separate identities cover i64::MAX cancellation, i64::MIN denominators/numerators and a raw positive value above i64::MAX. Every designated fault has a distinct failing native test; both subjects kill 8/8 faults with zero in the other five outcomes.",
+    "Each file has one production body, measured CCN 5, cognitive 5 and nesting 2. The helper creates no input-list copy and normalizes one exact scalar per input entry, keeping one accumulator. There are O(N) rational additions with arbitrary-precision bit costs: denominators divide a product of N magnitudes <=2^63, so at most O(63N) denominator bits are needed and numerator growth adds O(log N) bits. This is not constant-time or byte-precise memory admission; owned arithmetic intermediates are necessary and no redundant source-level loop allocation/clone is introduced."
+  ],
+  "failure_paths": {
+    "verify_fusion_global_dimension": "Accept iff every used raw denominator is nonzero and the exact rational sum equals the strictly positive exact total; refuse malformed ratios before quotient construction and preserve arbitrary signed cancellation. This does not certify individual physical dimension values."
+  },
+  "trust_boundary": "Malformed raw input returns false before its invalid rational construction. No partial sum or mutation of borrowed input escapes, and the consumed scalar total has no external mutation. Standard allocation availability, Rust/compiler and the pinned exact-integer/rational implementations remain TCB; no OS out-of-memory recovery or verified Rust extraction is asserted. Lean checks the rational lift, aggregate, cancellation/permutation and step model; the same receipt also contains rank/level facts used by the separate partial ring review. Only the rational statements support this helper. Full Rust/MIR, allocator and third-party arithmetic correctness remain explicit trusted correspondence, not extracted proof.",
+  "consumer_review": [
+    "Repository Cargo.toml declares the local tfqm_fusion_categories path and src/lib.rs re-exports that crate as fusion_categories. Exact search finds no direct aggregate caller beyond the two source tests; there is no adapter changing input/result semantics.",
+    "Each source declares the same ten provider modules; those declarations are compiled in actual package variants, without projection or stubs. The aggregate calls only the pinned exact integer/rational dependencies. Provider mathematical implementations are independently scoped and do not receive grades from this review."
+  ],
+  "assurance_limits": [
+    "AuthorityEffect: None. Engineering A applies to the aggregate helper and its literal module declarations, not to all exported providers. This does not validate a fusion ring, a category, simple-object dimensions, or a physical global-dimension theorem.",
+    "Actual full package variants retain all support modules with exact source pins, and both complete canonical crate roots pass 52 tests each. Only the pure aggregate fixture runs in each fault variant. Root-main re-export is inspected; no main-workspace build or cross-repository authority/attestation is inferred.",
+    "Lean checks the rational lift, aggregate, cancellation/permutation and step model; the same receipt also contains rank/level facts used by the separate partial ring review. Only the rational statements support this helper. Full Rust/MIR, allocator and third-party arithmetic correctness remain explicit trusted correspondence, not extracted proof.",
+    "The larger ring has all A structural ceilings after refactoring but its complete 68-body invariant/provider/cost and mutation review remains pending. Re-exporting that module does not inherit a completed ring grade.",
+    "Mutation campaigns cover eight declared critical semantic faults per source and preserve all six literal outcomes. Tests, parser ceilings and sidecar generation do not author the gate judgments."
+  ],
+  "proof_correspondence": {
+    "zero_denominator_refused": "Both total and entry guards exclude d=0 before constructing the actual quotient.",
+    "exact_lift": "Every admitted signed raw pair denotes exactly its integer quotient in the rational field.",
+    "aggregate_exact": "The boolean accepts precisely exact sum equality with a positive total.",
+    "aggregate_nonpositive": "Nonpositive totals cannot be accepted, regardless of the list.",
+    "aggregate_permutation": "Exact aggregate meaning is independent of input order; there is no fixed-width overflow path.",
+    "cancellation_preserves_aggregate": "Exact signed cancellation is preserved beyond i64 intermediate ranges.",
+    "sum_step": "The accumulator prefix advances by exact rational addition."
+  },
+  "open_findings": [],
+  "basis": {
+    "G1": [
+      "Repository Cargo.toml declares the local tfqm_fusion_categories path and src/lib.rs re-exports that crate as fusion_categories. Exact search finds no direct aggregate caller beyond the two source tests; there is no adapter changing input/result semantics.",
+      "Each source declares the same ten provider modules; those declarations are compiled in actual package variants, without projection or stubs. The aggregate calls only the pinned exact integer/rational dependencies. Provider mathematical implementations are independently scoped and do not receive grades from this review.",
+      "AuthorityEffect: None. Engineering A applies to the aggregate helper and its literal module declarations, not to all exported providers. This does not validate a fusion ring, a category, simple-object dimensions, or a physical global-dimension theorem.",
+      "Actual full package variants retain all support modules with exact source pins, and both complete canonical crate roots pass 52 tests each. Only the pure aggregate fixture runs in each fault variant. Root-main re-export is inspected; no main-workspace build or cross-repository authority/attestation is inferred.",
+      "Lean checks the rational lift, aggregate, cancellation/permutation and step model; the same receipt also contains rank/level facts used by the separate partial ring review. Only the rational statements support this helper. Full Rust/MIR, allocator and third-party arithmetic correctness remain explicit trusted correspondence, not extracted proof.",
+      "The sole production body/signature is mapped exactly and every rational model premise is enforced by a source guard or exact dependency representation."
+    ],
+    "G2": [
+      "Both helpers implement only a finite rational-aggregate predicate. The Ratio<i64> signature excludes floating point but permits noncanonical raw numerator/denominator records, including zero denominators. Reject the total zero denominator first, lift both signed components separately into BigInt then BigRational, reject a nonpositive exact total, then check every used entry denominator before constructing its rational.",
+      "BigInt exactly embeds the complete signed-i64 domain, including i64::MIN. BigRational normalization handles either sign and reduces the quotient exactly after the nonzero-denominator guard. No intermediate addition, multiplication, negation or absolute value is performed in i64. The dependency versions and actual package/tool contents are bound in the native receipt, not assumed from a floating approximation.",
+      "At each successful prefix, sum equals the mathematical rational sum of all preceding values, starting at zero. One exact lift and one arbitrary-precision += step preserve that invariant. The final equality tests the exact admitted total. Negative entries and large cancellation remain admitted; the helper makes no physical positivity assertion about individual squared dimensions. Empty and zero/nonpositive totals are rejected by the same exact predicate.",
+      "AuthorityEffect: None. Engineering A applies to the aggregate helper and its literal module declarations, not to all exported providers. This does not validate a fusion ring, a category, simple-object dimensions, or a physical global-dimension theorem.",
+      "Lean checks the rational lift, aggregate, cancellation/permutation and step model; the same receipt also contains rank/level facts used by the separate partial ring review. Only the rational statements support this helper. Full Rust/MIR, allocator and third-party arithmetic correctness remain explicit trusted correspondence, not extracted proof."
+    ],
+    "G3": [
+      "Both helpers implement only a finite rational-aggregate predicate. The Ratio<i64> signature excludes floating point but permits noncanonical raw numerator/denominator records, including zero denominators. Reject the total zero denominator first, lift both signed components separately into BigInt then BigRational, reject a nonpositive exact total, then check every used entry denominator before constructing its rational.",
+      "BigInt exactly embeds the complete signed-i64 domain, including i64::MIN. BigRational normalization handles either sign and reduces the quotient exactly after the nonzero-denominator guard. No intermediate addition, multiplication, negation or absolute value is performed in i64. The dependency versions and actual package/tool contents are bound in the native receipt, not assumed from a floating approximation.",
+      "At each successful prefix, sum equals the mathematical rational sum of all preceding values, starting at zero. One exact lift and one arbitrary-precision += step preserve that invariant. The final equality tests the exact admitted total. Negative entries and large cancellation remain admitted; the helper makes no physical positivity assertion about individual squared dimensions. Empty and zero/nonpositive totals are rejected by the same exact predicate.",
+      "Malformed raw input returns false before its invalid rational construction. No partial sum or mutation of borrowed input escapes, and the consumed scalar total has no external mutation. Standard allocation availability, Rust/compiler and the pinned exact-integer/rational implementations remain TCB; no OS out-of-memory recovery or verified Rust extraction is asserted.",
+      "Lean checks the rational lift, aggregate, cancellation/permutation and step model; the same receipt also contains rank/level facts used by the separate partial ring review. Only the rational statements support this helper. Full Rust/MIR, allocator and third-party arithmetic correctness remain explicit trusted correspondence, not extracted proof."
+    ],
+    "G4": [
+      "The independent oracle uses unreduced signed-i128 numerator/denominator cross-products on a deliberately small corpus, independently of BigRational operations. It checks 8000 signed raw-ratio pair/total cases, 40 empty/singleton cases, 4096 triples and distinct malformed-total/entry cases. Separate identities cover i64::MAX cancellation, i64::MIN denominators/numerators and a raw positive value above i64::MAX. Every designated fault has a distinct failing native test; both subjects kill 8/8 faults with zero in the other five outcomes.",
+      "Actual full package variants retain all support modules with exact source pins, and both complete canonical crate roots pass 52 tests each. Only the pure aggregate fixture runs in each fault variant. Root-main re-export is inspected; no main-workspace build or cross-repository authority/attestation is inferred.",
+      "Mutation campaigns cover eight declared critical semantic faults per source and preserve all six literal outcomes. Tests, parser ceilings and sidecar generation do not author the gate judgments."
+    ],
+    "G5": [
+      "Each file has one production body, measured CCN 5, cognitive 5 and nesting 2. The helper creates no input-list copy and normalizes one exact scalar per input entry, keeping one accumulator. There are O(N) rational additions with arbitrary-precision bit costs: denominators divide a product of N magnitudes <=2^63, so at most O(63N) denominator bits are needed and numerator growth adds O(log N) bits. This is not constant-time or byte-precise memory admission; owned arithmetic intermediates are necessary and no redundant source-level loop allocation/clone is introduced.",
+      "AuthorityEffect: None. Engineering A applies to the aggregate helper and its literal module declarations, not to all exported providers. This does not validate a fusion ring, a category, simple-object dimensions, or a physical global-dimension theorem."
+    ]
+  },
+  "proof_receipts": [
+    {
+      "path": "evidence/quality/category_homology/20261020T013747Z-fusion-admission-proof/receipt.json",
+      "sha256": "7f8f7cfb78034273a278df1eb220406c5c838a03bff84f1710bc0301c9b4122e",
+      "proof": "code/rust/quality/category_homology/proofs/FusionAdmission.lean",
+      "mathlib_root": "lean4/.lake/packages/mathlib"
+    }
+  ],
+  "native_summary": {
+    "path": "evidence/quality/six_module/20261020T015248Z-fusion-mod/summary.json",
+    "sha256": "61f5e7ac2776947519a1cf2dbb021f1b25effeef09f163837b1dcb63b956abae"
+  },
+  "native_mutations": {
+    "path": "evidence/quality/six_module/20261020T015248Z-fusion-mod/mutations.json",
+    "sha256": "57b48217c4cfcb1e664b953df53ba5117f81258ae2ba5ebd13fc9daf99932b44"
+  },
+  "native_dependencies": {
+    "path": "evidence/quality/six_module/20261020T015248Z-fusion-mod/dependency_receipt.json",
+    "sha256": "33b2bc1b260271d98cb0a48b18ec7b44c33de892ec7b5e781c29c18a039c7ed4"
+  },
+  "native_sources": {
+    "path": "evidence/quality/six_module/20261020T015248Z-fusion-mod/source_manifest.json",
+    "sha256": "a2132e72a9f53aae3252e5e4daf2b04b19e278f0fcf01bba0a0dde241514fe04"
+  },
+  "native_policy": {
+    "path": "evidence/quality/six_module/20261020T015248Z-fusion-mod/fusion_mod_boundaries.json",
+    "sha256": "abdde33704f3fcfab98dac8f94909486f616eaef528f0b6727a83e97629636aa"
+  },
+  "native_fixture": {
+    "path": "evidence/quality/six_module/20261020T015248Z-fusion-mod/fusion_root_challenges.rs",
+    "sha256": "c5d5b9d97e5e03491f3ef4b023832853beb1717e0a2bb5908167a44743d80fa4"
+  },
+  "native_runner": {
+    "path": "evidence/quality/six_module/20261020T015248Z-fusion-mod/run_fusion_roots.py",
+    "sha256": "27ccce60e28a200550fec872c161fa11ac3de04a26af09931a6a031bfef166e1"
+  },
+  "native_support_sources": {
+    "path": "evidence/quality/six_module/20261020T015248Z-fusion-mod/support_sources.json",
+    "sha256": "0ccec311063e1225946a1d83138bf5f3f429a9706c7315067efa963c17e628cf"
+  },
+  "metric_receipt": {
+    "path": "evidence/quality/category_homology/20261020T014925Z-metrics/receipt.json",
+    "sha256": "2a0a1475ac7cd71fb6ebdb0063c6bc8c24aa2688e1863c0635df4ada1234f42e"
+  },
+  "metric_output": {
+    "path": "evidence/quality/category_homology/20261020T014925Z-metrics/metrics.json",
+    "sha256": "28ce84e5dd23e7436f882de23ad481e1af1ff8dc8ec54538cd9596efde6bbdc4"
+  },
+  "metric_sources": {
+    "path": "evidence/quality/category_homology/20261020T014925Z-metrics/source_manifest.json",
+    "sha256": "226548ede89ce2f15d290fb2f1f7f37371055f86cd135c58e302926837254a31"
+  },
+  "evidence": [
+    {
+      "path": "code/rust/quality/six_module/fusion_mod_source_review.json",
+      "sha256": "c9aaf1711aa309aad404a93b1bc52f019fa308b497383f8bcbbcf79ea2bfc4d0"
+    },
+    {
+      "path": "evidence/quality/six_module/20261020T015248Z-fusion-mod/summary.json",
+      "sha256": "61f5e7ac2776947519a1cf2dbb021f1b25effeef09f163837b1dcb63b956abae"
+    },
+    {
+      "path": "evidence/quality/six_module/20261020T015248Z-fusion-mod/support_sources.json",
+      "sha256": "0ccec311063e1225946a1d83138bf5f3f429a9706c7315067efa963c17e628cf"
+    },
+    {
+      "path": "evidence/quality/six_module/20261020T014925Z-fusion-audit/receipt.json",
+      "sha256": "f0d0c42c80b5aeeeabe39b523ba06ad7c88e20cafd05422211c6ea4c7fa2b6ea"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261020T013747Z-fusion-admission-proof/receipt.json",
+      "sha256": "7f8f7cfb78034273a278df1eb220406c5c838a03bff84f1710bc0301c9b4122e"
+    },
+    {
+      "path": "evidence/quality/six_module/checkpoint-007/repair-history.json",
+      "sha256": "bef8747e9d45d68beedceeb37d519b754c1806dfb98e4930b7558ed2c45b603d"
+    },
+    {
+      "path": "evidence/quality/six_module/20261020T015248Z-fusion-mod/summary.json",
+      "sha256": "61f5e7ac2776947519a1cf2dbb021f1b25effeef09f163837b1dcb63b956abae"
+    },
+    {
+      "path": "evidence/quality/six_module/20261020T015248Z-fusion-mod/mutations.json",
+      "sha256": "57b48217c4cfcb1e664b953df53ba5117f81258ae2ba5ebd13fc9daf99932b44"
+    },
+    {
+      "path": "evidence/quality/six_module/20261020T015248Z-fusion-mod/dependency_receipt.json",
+      "sha256": "33b2bc1b260271d98cb0a48b18ec7b44c33de892ec7b5e781c29c18a039c7ed4"
+    },
+    {
+      "path": "evidence/quality/six_module/20261020T015248Z-fusion-mod/source_manifest.json",
+      "sha256": "a2132e72a9f53aae3252e5e4daf2b04b19e278f0fcf01bba0a0dde241514fe04"
+    },
+    {
+      "path": "evidence/quality/six_module/20261020T015248Z-fusion-mod/fusion_mod_boundaries.json",
+      "sha256": "abdde33704f3fcfab98dac8f94909486f616eaef528f0b6727a83e97629636aa"
+    },
+    {
+      "path": "evidence/quality/six_module/20261020T015248Z-fusion-mod/fusion_root_challenges.rs",
+      "sha256": "c5d5b9d97e5e03491f3ef4b023832853beb1717e0a2bb5908167a44743d80fa4"
+    },
+    {
+      "path": "evidence/quality/six_module/20261020T015248Z-fusion-mod/run_fusion_roots.py",
+      "sha256": "27ccce60e28a200550fec872c161fa11ac3de04a26af09931a6a031bfef166e1"
+    },
+    {
+      "path": "evidence/quality/six_module/20261020T015248Z-fusion-mod/support_sources.json",
+      "sha256": "0ccec311063e1225946a1d83138bf5f3f429a9706c7315067efa963c17e628cf"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261020T014925Z-metrics/receipt.json",
+      "sha256": "2a0a1475ac7cd71fb6ebdb0063c6bc8c24aa2688e1863c0635df4ada1234f42e"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261020T014925Z-metrics/metrics.json",
+      "sha256": "28ce84e5dd23e7436f882de23ad481e1af1ff8dc8ec54538cd9596efde6bbdc4"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261020T014925Z-metrics/source_manifest.json",
+      "sha256": "226548ede89ce2f15d290fb2f1f7f37371055f86cd135c58e302926837254a31"
+    }
+  ]
+}

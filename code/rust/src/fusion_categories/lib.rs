@@ -46,7 +46,7 @@ mod fusion_tests {
     use super::*;
 
     #[test]
-    fn test_fibonacci_dimension() {
+    fn test_positive_rational_aggregate() {
         let d = vec![Ratio::from_integer(1), Ratio::from_integer(4)];
         assert!(verify_fusion_global_dimension(&d, Ratio::from_integer(5)));
     }

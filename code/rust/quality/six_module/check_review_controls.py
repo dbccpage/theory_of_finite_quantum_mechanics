@@ -34,6 +34,12 @@ def main():
     def changed_body(value):
         value["symbol_map"][next(iter(value["symbol_map"]))]["body"] = "{ unreachable!() }"
 
+    def missing_support(value):
+        value["copies"].pop()
+
+    def false_support(value):
+        value["copies"][0]["sha256"] = "0" * 64
+
     probes = [
         ("false_six_outcome_counts", assessment["native_summary"], changed_native),
         ("kill_without_test_failure", assessment["native_mutations"], missing_failure),
@@ -46,14 +52,19 @@ def main():
     registry = json.loads((checks.HERE / "gate_reviews.json").read_text(encoding="utf-8"))
     if lib_source.relative_to(checks.ROOT).as_posix() in registry:
         lib_review = original_load(registry[lib_source.relative_to(checks.ROOT).as_posix()])
-        def missing_support(value):
-            value["copies"].pop()
-        def false_support(value):
-            value["copies"][0]["sha256"] = "0" * 64
         probes.extend([
             ("missing_nested_crate_source", lib_review["native_support_sources"], missing_support, lib_source),
             ("wrong_nested_crate_source", lib_review["native_support_sources"], false_support, lib_source),
         ])
+    for stem in ("lib", "mod"):
+        fusion_source = checks.ROOT / f"code/rust/src/fusion_categories/{stem}.rs"
+        key = fusion_source.relative_to(checks.ROOT).as_posix()
+        if key in registry:
+            fusion_review = original_load(registry[key])
+            probes.extend([
+                (f"missing_fusion_{stem}_support", fusion_review["native_support_sources"], missing_support, fusion_source),
+                (f"wrong_fusion_{stem}_support", fusion_review["native_support_sources"], false_support, fusion_source),
+            ])
     try:
         for name, target, mutate, probe_source in probes:
             def injected(item):
@@ -74,6 +85,12 @@ def main():
     record, _ = checks.reviewed(source)
     assert record[1]["score_token"] == "L4A"
     cases.append({"control": "unaltered_current_review", "expected": "pass", "observed": record[1]["score_token"]})
+    for stem in ("lib", "mod"):
+        fusion_source = checks.ROOT / f"code/rust/src/fusion_categories/{stem}.rs"
+        if fusion_source.relative_to(checks.ROOT).as_posix() in registry:
+            record, _ = checks.reviewed(fusion_source)
+            assert record[1]["score_token"] == "L1A"
+            cases.append({"control": f"unaltered_fusion_{stem}", "expected": "pass", "observed": "L1A"})
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
     output = checks.ROOT / "evidence/quality/six_module" / (stamp + "-review-controls.json")
     output.parent.mkdir(parents=True, exist_ok=True)

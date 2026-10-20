@@ -3,7 +3,7 @@
   "AuthorityEffect": "None",
   "artifact": {
     "path": "code/rust/src/fusion_categories/lib.rs",
-    "sha256": "fb71778cda4585274ff28962abf4c78236f25a2c2a0bd7ef4554a32adc129c3b",
+    "sha256": "2e5ec53704ac51f6e0c51facad9f3ca8322296681b0d9700a1701d97f0cb7f89",
     "language": "Rust"
   },
   "rubric": {
@@ -14,63 +14,28 @@
   "engineering_target": "A",
   "level": "L1",
   "gates": {
-    "G1": null,
-    "G2": null,
-    "G3": null,
-    "G4": null,
-    "G5": null
+    "G1": "A",
+    "G2": "A",
+    "G3": "A",
+    "G4": "A",
+    "G5": "A"
   },
-  "composite_grade": null,
-  "score_token": null,
-  "is_complete": false,
-  "assessment_status": "incomplete",
-  "assessment_source": null,
+  "composite_grade": "A",
+  "score_token": "L1A",
+  "is_complete": true,
+  "assessment_status": "explicit_source_review_referenced",
+  "assessment_source": {
+    "path": "code/rust/quality/six_module/assessments/fusion_lib.json",
+    "sha256": "b545c928378e79922a46f4e18b9a69315df5fb5eb18e974d0e8bc7f26c48c616"
+  },
   "contract": {
     "path": "code/rust/src/fusion_categories/lib.rs.contract.yaml",
-    "sha256": "fe950c2c1668452eab2dc7b06ab4940a37a510974170873f033c49541a0bfbee"
+    "sha256": "6b3bc153e4ab2b7070c52cf7611d62ea630826e5b98e0c33d85c6c7a00119f0e"
   },
   "assessment_note": "Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.",
-  "open_obligations": [
-    "Complete each missing sovereign gate; no completed token until all five have adequate evidence."
-  ],
-  "known_findings": [
-    {
-      "id": "FUS-005",
-      "status": "repaired",
-      "issue": "Ratio<i64> addition overflowed on a valid large-cancellation aggregate.",
-      "basis": "Both roots reproduce the overflow before repair and accept the exact sum after BigRational lifting."
-    },
-    {
-      "id": "FUS-006",
-      "status": "repaired",
-      "issue": "Malformed raw ratios with zero denominator reached arithmetic and panicked.",
-      "basis": "Both roots reproduce the division-by-zero panic before repair and refuse the input after denominator admission."
-    }
-  ],
-  "partial_evidence": [
-    {
-      "path": "code/rust/quality/six_module/fusion_boundary_review.json",
-      "sha256": "f886286fdab509bf91b5e7e294a4191f98a15b0bc1a81d00e74817298e4d6702"
-    },
-    {
-      "path": "evidence/quality/six_module/checkpoint-007/repair-history.json",
-      "sha256": "bef8747e9d45d68beedceeb37d519b754c1806dfb98e4930b7558ed2c45b603d"
-    },
-    {
-      "path": "evidence/quality/six_module/20261020T013818Z-fusion-audit/receipt.json",
-      "sha256": "c47077743638f53cb72cdbf03473f8c7b8d8eead91589d1f3550e9ed24898799"
-    },
-    {
-      "path": "evidence/quality/category_homology/20261020T013747Z-fusion-admission-proof/receipt.json",
-      "sha256": "7f8f7cfb78034273a278df1eb220406c5c838a03bff84f1710bc0301c9b4122e"
-    },
-    {
-      "path": "evidence/quality/category_homology/20261020T013858Z-metrics/receipt.json",
-      "sha256": "b506e6defa590126b74d27a3a19e59970bd81934f2c01786ef9ddb38d8cbd4b0"
-    }
-  ],
+  "open_obligations": [],
   "structural_measurement": {
-    "source_sha256": "fb71778cda4585274ff28962abf4c78236f25a2c2a0bd7ef4554a32adc129c3b",
+    "source_sha256": "2e5ec53704ac51f6e0c51facad9f3ca8322296681b0d9700a1701d97f0cb7f89",
     "function_count": 1,
     "maxima": {
       "ccn": 5,
@@ -81,18 +46,18 @@
     "opaque_macros": [],
     "evidence": [
       {
-        "path": "evidence/quality/category_homology/20261020T013858Z-metrics/receipt.json",
-        "sha256": "b506e6defa590126b74d27a3a19e59970bd81934f2c01786ef9ddb38d8cbd4b0"
+        "path": "evidence/quality/category_homology/20261020T014925Z-metrics/receipt.json",
+        "sha256": "2a0a1475ac7cd71fb6ebdb0063c6bc8c24aa2688e1863c0635df4ada1234f42e"
       },
       {
-        "path": "evidence/quality/category_homology/20261020T013858Z-metrics/metrics.json",
-        "sha256": "f601a9e274660c4964e6867e210d87cbb6ccf0e5f43e8a878685795cffb29834"
+        "path": "evidence/quality/category_homology/20261020T014925Z-metrics/metrics.json",
+        "sha256": "28ce84e5dd23e7436f882de23ad481e1af1ff8dc8ec54538cd9596efde6bbdc4"
       },
       {
-        "path": "evidence/quality/category_homology/20261020T013858Z-metrics/six_module_scope.json",
+        "path": "evidence/quality/category_homology/20261020T014925Z-metrics/six_module_scope.json",
         "sha256": "0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf"
       }
     ],
-    "scope": "Calibrated source measurements only, including sibling leading-blank normalization by rustfmt. Structural ceilings do not award full-file grades; semantic, dependency, cost and mutation reviews remain incomplete."
+    "scope": "Calibrated source measurements only. A ceiling is not an awarded engineering grade; ring full-body/provider/cost/mutation review remains incomplete."
   }
 }
