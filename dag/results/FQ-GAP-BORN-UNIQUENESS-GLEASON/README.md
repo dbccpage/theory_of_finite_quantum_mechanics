@@ -2,6 +2,8 @@
 
 AuthorityEffect: None.
 
+- [Effect-additive Born representation over Q: the eight frozen targets discharged, unique trace-form density, rational Gram converse, parity obstruction on rational rays, exact Python/Rust twins](runs/20261020T205000Z_effect_valuation_lean/README.md).
+
 - [Concrete classical and qubit models: staged partial Jordan catalogue, square cones, exact Lean checks and collected operations](runs/20261020T162715Z_jordan_classical_qubit/README.md).
 
 - [Reviewed System repair: exact premises, classical exclusion, inhabited-System witness and publication custody](reviews/20261020T143852Z_system_repair_audit/README.md).

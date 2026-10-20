@@ -1,0 +1,18 @@
+{
+  "authority_effect": "None",
+  "claims": [
+    {"id": "eight_frozen_targets", "statement": "val_zero, effect_sub, val_mono, val_le_one, effect_smul, val_nsmul, val_rat_smul, val_sandwich with the frozen binder order", "status": "KERNEL_CHECKED", "where": "BornEffectValuation.lean"},
+    {"id": "linear_extension", "statement": "Unique positive unital Q-linear extension of an effect valuation on an ordered rational module with an order unit", "status": "KERNEL_CHECKED", "where": "BornLinearExtension.lean::linear_extension"},
+    {"id": "matrix_carrier", "statement": "Rational n x n matrices with the quadratic-form preorder form an OrderedQUnit; identity is an order unit; rank-one effects; trace representation with unique representing matrix", "status": "KERNEL_CHECKED", "where": "BornMatrixCarrier.lean"},
+    {"id": "born_representation", "statement": "Every effect valuation on rational n x n matrices is E -> trace(rho E) for a unique rho; rho symmetric, PSD over Q, trace one; v(P x) = <x,rho x>/<x,x>", "status": "KERNEL_CHECKED", "where": "BornTraceRepresentation.lean::born_representation, density_is_state, born_rule"},
+    {"id": "gram_decomposition", "statement": "Symmetric rational-PSD matrices are nonnegative rational combinations of rank-one squares in every dimension; trace positivity", "status": "KERNEL_CHECKED", "where": "BornPsdDecomposition.lean::gram_of_psd, trace_mul_nonneg"},
+    {"id": "state_correspondence", "statement": "Every symmetric rational-PSD trace-one matrix is the density of its Born valuation; nonvacuity by the pure state e0", "status": "KERNEL_CHECKED", "where": "BornTraceRepresentation.lean::state_valuation_correspondence, pureZero_density"},
+    {"id": "rational_sphere_obstruction", "statement": "The parity function on rational rays of S^2 is a two-valued frame function on orthogonal triples that no rational quadratic form reproduces", "status": "KERNEL_CHECKED", "where": "BornRationalSphereObstruction.lean::parity_frame_function, parity_not_quadratic"},
+    {"id": "python_replay", "statement": "Exact rational replay of the chain with Gram certificates, negative witnesses, extension consistency, Born certificate, parity sweep and mutation controls", "status": "NATIVE_TESTS_PASS", "where": "code/python/src/qm/born_effect_valuation.py; code/python/tests/test_born_effect_valuation.py (15 tests)"},
+    {"id": "rust_replay", "statement": "BigRational twin of the Python replay with inline tests", "status": "NATIVE_TESTS_PASS", "where": "code/rust/src/qm/born_effect_valuation.rs (18 inline tests)"},
+    {"id": "complex_carrier", "statement": "Gaussian-rational Hermitian carrier", "status": "OPEN", "where": "next_steps.md item 1"},
+    {"id": "operational_effect_additivity", "statement": "Derivation of effect additivity from finite-theory primitives", "status": "OPEN", "where": "next_steps.md item 2"},
+    {"id": "projection_only_route", "statement": "Born form from additivity on projections only at n >= 3", "status": "OBSTRUCTED_ON_RATIONAL_RAYS_CONTINUUM_IMPORT_OTHERWISE", "where": "BornRationalSphereObstruction.lean; DAG node bottleneck"},
+    {"id": "hilbert_space_from_primitives", "statement": "Hilbert space or matrix algebra derived from primitive difference", "status": "NOT_CLAIMED", "where": "review.md"}
+  ]
+}

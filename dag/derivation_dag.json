@@ -2436,7 +2436,7 @@
       "id": "FQ-GAP-BORN-UNIQUENESS-GLEASON",
       "stage": "FINITE_QM_CORE",
       "status": "CONDITIONAL",
-      "source_status": "Born vs quartic rival separation on (3,4) and d=3 orthogonal frame additivity eliminating the quartic rival mechanized in DerivationDagQMClosure.lean; continuum Gleason on S^{n-1} remains an external import",
+      "source_status": "Effect-additive (Busch-type) route kernel-checked over Q in dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/runs/20261020T205000Z_effect_valuation_lean: every positive normalized effect-additive valuation on rational n x n matrices is E -> trace(rho E) for a unique symmetric rational-PSD trace-one rho (born_representation, density_is_state, born_rule, state_valuation_correspondence); the eight frozen targets of runs/20261020T004525Z_fable51_born (val_zero .. val_sandwich) are discharged; the rational-sphere parity frame function (parity_frame_function, parity_not_quadratic) shows that additivity on orthogonal triples of rational rays in d=3 does not select the quadratic form. Continuum Gleason on S^{n-1} is not used; it remains an external import only for the projection-lattice route. Exact replays: code/python/src/qm/born_effect_valuation.py, code/rust/src/qm/born_effect_valuation.rs. Earlier: Born vs quartic rival separation on (3,4) and d=3 orthogonal frame additivity eliminating the quartic rival mechanized in DerivationDagQMClosure.lean",
       "statement": "Born uniqueness of the quadratic form needs imported Hilbert space, projection lattices and Gleason-type assumptions, with dimension n >= 3; Gleason frame additivity at n >= 3 is verified only over orthogonal frames of specific finite ray sets. The three-label cardinality surrogate (3 <= |Q|) is false on Bool; the unit-effect contract already has two disagreeing pairings.",
       "source": [
         "omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/claims/gap_register.yaml:193",
@@ -2447,7 +2447,17 @@
         "lean4/quantum_mechanics/H013QuarticRivalSeparation.lean::frames_equinorm",
         "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm072_073_090_and_fq_import_boundary_certificates",
         "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_gleason_d3_orthogonal_frame_additivity_eliminates_quartic_rival",
-        "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure"
+        "lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure",
+        "lean4/BornEffectValuation.lean::BornFable.val_rat_smul",
+        "lean4/BornLinearExtension.lean::BornFable.OrderedQUnit.linear_extension",
+        "lean4/BornMatrixCarrier.lean::BornFable.MatrixCarrier.order_unit",
+        "lean4/BornPsdDecomposition.lean::BornFable.PsdDecomposition.gram_of_psd",
+        "lean4/BornTraceRepresentation.lean::BornFable.MatrixCarrier.born_representation",
+        "lean4/BornTraceRepresentation.lean::BornFable.MatrixCarrier.density_is_state",
+        "lean4/BornTraceRepresentation.lean::BornFable.MatrixCarrier.born_rule",
+        "lean4/BornTraceRepresentation.lean::BornFable.MatrixCarrier.state_valuation_correspondence",
+        "lean4/BornRationalSphereObstruction.lean::BornFable.RationalSphere.parity_frame_function",
+        "lean4/BornRationalSphereObstruction.lean::BornFable.RationalSphere.parity_not_quadratic"
       ],
       "rust": [
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche2_row_sparsity_bell_torsion_and_structure_witness",
@@ -2455,11 +2465,13 @@
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness"
       ],
       "imported_structure": [
-        "Gleason theorem for d >= 3 (assumption)",
-        "projection lattice (assumption)",
+        "rational matrix algebra with the quadratic-form preorder and unit identity (supplied carrier)",
+        "effect additivity: v(E+F) = v(E)+v(F) whenever E, F and E+F are effects (assumption)",
+        "Gleason theorem for d >= 3 (assumption, projection-lattice route only)",
+        "projection lattice (assumption, projection-lattice route only)",
         "Hilbert space (assumption)"
       ],
-      "bottleneck": "Finite rational frame obstructions (Cabello 18-9, d=2 plane, and d=3 rotated frame eliminating the quartic rival) are mechanized; continuum Gleason frame additivity on S^{n-1} remains an external import.",
+      "bottleneck": "The carrier (rational matrices, real-symmetric case) and effect additivity are supplied, not derived from primitives; the complex-Hermitian (Gaussian-rational) carrier, the operational justification of effect additivity, and the projection-only frame-function route at n >= 3 remain open; on rational rays the frame-function route is obstructed by the parity countermodel. Finite rational frame obstructions (Cabello 18-9, d=2 plane, d=3 rotated frame eliminating the quartic rival) remain mechanized.",
       "tags": [],
       "see_also": [
         "GP-IMPORT-GLEASON",

@@ -89,6 +89,7 @@ impl DensityOperator {
     }
 }
 
+pub mod born_effect_valuation;
 pub mod campaigns;
 pub mod causal_prices;
 pub mod domain;
