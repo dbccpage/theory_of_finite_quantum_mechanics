@@ -6,271 +6,302 @@
     "sha256": "aba2ed0e56a32a0fd6017e9084666e4673c4448a6a96d21f9a160d5f11539cda",
     "language": "Rust"
   },
-  "status": "partial_source_review",
-  "formal_specification": "Exact finite balancing/modular checks and rational-root/second-indicator/genus computations on admitted ribbon inputs.",
+  "status": "source_reviewed",
+  "formal_specification": {
+    "profile": "Exact",
+    "claim_urn": "urn:tfqm:fusion:modular:bounded-exact-data:v1",
+    "domain": "Admitted immutable ribbon records with lawful exact scalar value semantics and compatible conjugation/root data. Fresh ModularData has rank1..32 and aligned private carriers. Public methods compute their exact displayed formulas or return typed failures; modular/physical interpretation is conditional as specified, with optional positive global dimension D and any u32 genus.",
+    "behavior": [
+      "Compute exact S_ab=(theta_a theta_b)^-1 sum_c N(a,b*,c)d_c theta_c from admitted ribbon data, then clone owned inputs and retain D^2 and p+. This constructor alone does not verify modularity.",
+      "Private aligned ring/dimension/twist vectors from an admitted ribbon value: cache inverse twists, d*theta and dual labels, then fill the n-by-n balancing matrix; propagate checked inversion, label and matrix errors.",
+      "Compute total+m*value: zero moves total, one adds without scalar embedding, larger m must fit i64 before exact embedding or returns Overflow.",
+      "Private admitted labels and values length=ring.rank: sum_c N(a,b,c)*values[c] using checked multiplicity conversion.",
+      "Build through from_ribbon and call verify before returning; the same public type also has an unchecked-with-respect-to-modularity constructor, so it is not a sealed certificate type.",
+      "Borrow the ring rank established by ring admission, at most32.",
+      "Borrow the immutable admitted ring; no mutable access is granted.",
+      "Borrow the retained immutable dimension vector aligned with ring labels.",
+      "Borrow the retained immutable twist vector aligned with ring labels.",
+      "Borrow the retained immutable square balancing matrix.",
+      "Borrow the exact sum of squared ribbon dimensions.",
+      "Borrow the exact positive Gauss sum supplied by ribbon data; no independent positivity assertion.",
+      "Return the raw D^2 field element only; this method computes no logarithm or physical entropy.",
+      "Return a fresh diagonal matrix of twists, propagating matrix allocation/domain errors.",
+      "Return the exact zero-one charge conjugation matrix C_ab=[dual(a)=b].",
+      "Private admitted ring: directly construct scale*C without an unscaled intermediate; propagate label/matrix errors.",
+      "Construct scale times the rank-dimensional identity directly; propagate matrix errors.",
+      "Require equal shapes; then return the first unequal entry in row-major order, or None for equal matrices.",
+      "Refuse in fixed order: zero D^2, asymmetry, deficient rank, S^2!=D^2 C, SS^dagger!=D^2 I, (ST)^3!=p+S^2, first Verlinde defect. Success establishes these checks only.",
+      "Use first_difference and map the first unequal coordinate to the supplied typed modular defect; propagate shape errors.",
+      "Scan the strict upper triangle in lexicographic order, refusing the first asymmetric pair.",
+      "Compute exact provider rank and refuse rank<size, carrying actual and expected ranks.",
+      "Compute the actual matrix square and compare to D^2 C; return the square for reuse after equality succeeds.",
+      "Compute S times its actual conjugate transpose and compare to D^2 I; no plain-transpose substitution.",
+      "Construct (ST)_ab=S_ab*theta_b by column scaling without a dense diagonal multiplication.",
+      "Form (ST)^3 using two actual matrix products and compare row-major to p+ times the supplied S^2.",
+      "Delegate the bounded full defect computation to the admitted ring provider and report its first triple; do not claim a category realization theorem.",
+      "Divide p+^2 by D^2, require its advertised root data (n,k), return exact rational4k/n. Physical angle interpretation requires a compatible canonical complex root embedding.",
+      "Require supplied D squares to stored D^2, then decide D>0, then divide p+ by D and require root data; return exact8k/n. Wrong square, nonpositive and undecidable sign have distinct priority.",
+      "Require label<rank; compute the second indicator sum using cached d_b*theta_b^2 and d_c/theta_c^2; divide by D^2 and admit exactly -1,0,1.",
+      "Private aligned retained vectors: precompute (d_b theta_b^2,d_b/theta_b^2), propagating checked division refusal.",
+      "Private admitted labels and rank-aligned weights: compute sum_c N(b,c,a)*weights[b].0*weights[c].1, skipping zero coefficients.",
+      "Map exact values1,-1,0 to i8; reject every other field value with FrobeniusSchur{label}.",
+      "Admit genus exponent before field arithmetic; compute sum_a(D^2/d_a^2)^(g-1), grouping equal squares, and return only an exact nonnegative integer. Nonrational, fractional and negative outputs refuse.",
+      "For any u32 genus compute i64(genus)-1, require absolute value<=MAX_SCALAR_EXPONENT, otherwise return Budget before scalar work.",
+      "Group exactly equal dimension squares with positive u64 counts, at most rank<=32; replace each square by checked D^2/square without a second ratio buffer."
+    ]
+  },
   "operations": {
     "ModularData::from_ribbon": {
       "line": 49,
       "signature": "pub fn from_ribbon(ribbon: &RibbonFusionCategory<K>) -> Result<Self, FusionError>",
-      "obligation": "Compute exact S_ab=(theta_a theta_b)^-1 sum_c N(a,b*,c)d_c theta_c from admitted ribbon data, then clone owned inputs and retain D^2 and p+. This constructor alone does not verify modularity.",
-      "status": "partial_review_no_gate_award"
+      "obligation": "Compute exact S_ab=(theta_a theta_b)^-1 sum_c N(a,b*,c)d_c theta_c from admitted ribbon data, then clone owned inputs and retain D^2 and p+. This constructor alone does not verify modularity."
     },
     "ModularData::ribbon_s_matrix": {
       "line": 61,
       "signature": "fn ribbon_s_matrix(\n        ring: &FusionRing,\n        dimensions: &[K],\n        twists: &[K],\n    ) -> Result<BasicMatrix<K>, FusionError>",
-      "obligation": "Private aligned ring/dimension/twist vectors from an admitted ribbon value: cache inverse twists, d*theta and dual labels, then fill the n-by-n balancing matrix; propagate checked inversion, label and matrix errors.",
-      "status": "partial_review_no_gate_award"
+      "obligation": "Private aligned ring/dimension/twist vectors from an admitted ribbon value: cache inverse twists, d*theta and dual labels, then fill the n-by-n balancing matrix; propagate checked inversion, label and matrix errors."
     },
     "ModularData::add_multiple": {
       "line": 85,
       "signature": "fn add_multiple(total: K, value: &K, multiplicity: u64) -> Result<K, FusionError>",
-      "obligation": "Compute total+m*value: zero moves total, one adds without scalar embedding, larger m must fit i64 before exact embedding or returns Overflow.",
-      "status": "partial_review_no_gate_award"
+      "obligation": "Compute total+m*value: zero moves total, one adds without scalar embedding, larger m must fit i64 before exact embedding or returns Overflow."
     },
     "ModularData::fusion_sum": {
       "line": 100,
       "signature": "fn fusion_sum(ring: &FusionRing, a: usize, b: usize, values: &[K]) -> Result<K, FusionError>",
-      "obligation": "Private admitted labels and values length=ring.rank: sum_c N(a,b,c)*values[c] using checked multiplicity conversion.",
-      "status": "partial_review_no_gate_award"
+      "obligation": "Private admitted labels and values length=ring.rank: sum_c N(a,b,c)*values[c] using checked multiplicity conversion."
     },
     "ModularData::verified": {
       "line": 108,
       "signature": "pub fn verified(ribbon: &RibbonFusionCategory<K>) -> Result<Self, FusionError>",
-      "obligation": "Build through from_ribbon and call verify before returning; the same public type also has an unchecked-with-respect-to-modularity constructor, so it is not a sealed certificate type.",
-      "status": "partial_review_no_gate_award"
+      "obligation": "Build through from_ribbon and call verify before returning; the same public type also has an unchecked-with-respect-to-modularity constructor, so it is not a sealed certificate type."
     },
     "ModularData::rank": {
       "line": 114,
       "signature": "pub fn rank(&self) -> usize",
-      "obligation": "Borrow the ring rank established by ring admission, at most32.",
-      "status": "partial_review_no_gate_award"
+      "obligation": "Borrow the ring rank established by ring admission, at most32."
     },
     "ModularData::ring": {
       "line": 118,
       "signature": "pub fn ring(&self) -> &FusionRing",
-      "obligation": "Borrow the immutable admitted ring; no mutable access is granted.",
-      "status": "partial_review_no_gate_award"
+      "obligation": "Borrow the immutable admitted ring; no mutable access is granted."
     },
     "ModularData::dimensions": {
       "line": 122,
       "signature": "pub fn dimensions(&self) -> &[K]",
-      "obligation": "Borrow the retained immutable dimension vector aligned with ring labels.",
-      "status": "partial_review_no_gate_award"
+      "obligation": "Borrow the retained immutable dimension vector aligned with ring labels."
     },
     "ModularData::twists": {
       "line": 126,
       "signature": "pub fn twists(&self) -> &[K]",
-      "obligation": "Borrow the retained immutable twist vector aligned with ring labels.",
-      "status": "partial_review_no_gate_award"
+      "obligation": "Borrow the retained immutable twist vector aligned with ring labels."
     },
     "ModularData::s_tilde": {
       "line": 130,
       "signature": "pub fn s_tilde(&self) -> &BasicMatrix<K>",
-      "obligation": "Borrow the retained immutable square balancing matrix.",
-      "status": "partial_review_no_gate_award"
+      "obligation": "Borrow the retained immutable square balancing matrix."
     },
     "ModularData::d_squared": {
       "line": 134,
       "signature": "pub fn d_squared(&self) -> &K",
-      "obligation": "Borrow the exact sum of squared ribbon dimensions.",
-      "status": "partial_review_no_gate_award"
+      "obligation": "Borrow the exact sum of squared ribbon dimensions."
     },
     "ModularData::p_plus": {
       "line": 138,
       "signature": "pub fn p_plus(&self) -> &K",
-      "obligation": "Borrow the exact positive Gauss sum supplied by ribbon data; no independent positivity assertion.",
-      "status": "partial_review_no_gate_award"
+      "obligation": "Borrow the exact positive Gauss sum supplied by ribbon data; no independent positivity assertion."
     },
     "ModularData::topological_entanglement_entropy_dimension_squared": {
       "line": 142,
       "signature": "pub fn topological_entanglement_entropy_dimension_squared(&self) -> &K",
-      "obligation": "Return the raw D^2 field element only; this method computes no logarithm or physical entropy.",
-      "status": "partial_review_no_gate_award"
+      "obligation": "Return the raw D^2 field element only; this method computes no logarithm or physical entropy."
     },
     "ModularData::t_matrix": {
       "line": 146,
       "signature": "pub fn t_matrix(&self) -> Result<BasicMatrix<K>, FusionError>",
-      "obligation": "Return a fresh diagonal matrix of twists, propagating matrix allocation/domain errors.",
-      "status": "partial_review_no_gate_award"
+      "obligation": "Return a fresh diagonal matrix of twists, propagating matrix allocation/domain errors."
     },
     "ModularData::charge_conjugation": {
       "line": 150,
       "signature": "pub fn charge_conjugation(&self) -> Result<BasicMatrix<K>, FusionError>",
-      "obligation": "Return the exact zero-one charge conjugation matrix C_ab=[dual(a)=b].",
-      "status": "partial_review_no_gate_award"
+      "obligation": "Return the exact zero-one charge conjugation matrix C_ab=[dual(a)=b]."
     },
     "ModularData::scaled_charge_conjugation": {
       "line": 154,
       "signature": "fn scaled_charge_conjugation(&self, scale: &K) -> Result<BasicMatrix<K>, FusionError>",
-      "obligation": "Private admitted ring: directly construct scale*C without an unscaled intermediate; propagate label/matrix errors.",
-      "status": "partial_review_no_gate_award"
+      "obligation": "Private admitted ring: directly construct scale*C without an unscaled intermediate; propagate label/matrix errors."
     },
     "ModularData::scaled_identity": {
       "line": 165,
       "signature": "fn scaled_identity(&self, scale: &K) -> Result<BasicMatrix<K>, FusionError>",
-      "obligation": "Construct scale times the rank-dimensional identity directly; propagate matrix errors.",
-      "status": "partial_review_no_gate_award"
+      "obligation": "Construct scale times the rank-dimensional identity directly; propagate matrix errors."
     },
     "ModularData::first_difference": {
       "line": 171,
       "signature": "fn first_difference(\n        left: &BasicMatrix<K>,\n        right: &BasicMatrix<K>,\n    ) -> Result<Option<(usize, usize)>, FusionError>",
-      "obligation": "Require equal shapes; then return the first unequal entry in row-major order, or None for equal matrices.",
-      "status": "partial_review_no_gate_award"
+      "obligation": "Require equal shapes; then return the first unequal entry in row-major order, or None for equal matrices."
     },
     "ModularData::verify": {
       "line": 192,
       "signature": "pub fn verify(&self) -> Result<(), FusionError>",
-      "obligation": "Refuse in fixed order: zero D^2, asymmetry, deficient rank, S^2!=D^2 C, SS^dagger!=D^2 I, (ST)^3!=p+S^2, first Verlinde defect. Success establishes these checks only.",
-      "status": "partial_review_no_gate_award"
+      "obligation": "Refuse in fixed order: zero D^2, asymmetry, deficient rank, S^2!=D^2 C, SS^dagger!=D^2 I, (ST)^3!=p+S^2, first Verlinde defect. Success establishes these checks only."
     },
     "ModularData::require_equal": {
       "line": 204,
       "signature": "fn require_equal(\n        left: &BasicMatrix<K>,\n        right: &BasicMatrix<K>,\n        defect: impl FnOnce(usize, usize) -> ModularDefect,\n    ) -> Result<(), FusionError>",
-      "obligation": "Use first_difference and map the first unequal coordinate to the supplied typed modular defect; propagate shape errors.",
-      "status": "partial_review_no_gate_award"
+      "obligation": "Use first_difference and map the first unequal coordinate to the supplied typed modular defect; propagate shape errors."
     },
     "ModularData::verify_symmetry": {
       "line": 215,
       "signature": "fn verify_symmetry(&self) -> Result<(), FusionError>",
-      "obligation": "Scan the strict upper triangle in lexicographic order, refusing the first asymmetric pair.",
-      "status": "partial_review_no_gate_award"
+      "obligation": "Scan the strict upper triangle in lexicographic order, refusing the first asymmetric pair."
     },
     "ModularData::verify_nondegenerate": {
       "line": 226,
       "signature": "fn verify_nondegenerate(&self) -> Result<(), FusionError>",
-      "obligation": "Compute exact provider rank and refuse rank<size, carrying actual and expected ranks.",
-      "status": "partial_review_no_gate_award"
+      "obligation": "Compute exact provider rank and refuse rank<size, carrying actual and expected ranks."
     },
     "ModularData::verify_square": {
       "line": 237,
       "signature": "fn verify_square(&self) -> Result<BasicMatrix<K>, FusionError>",
-      "obligation": "Compute the actual matrix square and compare to D^2 C; return the square for reuse after equality succeeds.",
-      "status": "partial_review_no_gate_award"
+      "obligation": "Compute the actual matrix square and compare to D^2 C; return the square for reuse after equality succeeds."
     },
     "ModularData::verify_unitarity": {
       "line": 247,
       "signature": "fn verify_unitarity(&self) -> Result<(), FusionError>",
-      "obligation": "Compute S times its actual conjugate transpose and compare to D^2 I; no plain-transpose substitution.",
-      "status": "partial_review_no_gate_award"
+      "obligation": "Compute S times its actual conjugate transpose and compare to D^2 I; no plain-transpose substitution."
     },
     "ModularData::st_matrix": {
       "line": 258,
       "signature": "fn st_matrix(&self) -> Result<BasicMatrix<K>, FusionError>",
-      "obligation": "Construct (ST)_ab=S_ab*theta_b by column scaling without a dense diagonal multiplication.",
-      "status": "partial_review_no_gate_award"
+      "obligation": "Construct (ST)_ab=S_ab*theta_b by column scaling without a dense diagonal multiplication."
     },
     "ModularData::verify_relation": {
       "line": 265,
       "signature": "fn verify_relation(&self, squared: &BasicMatrix<K>) -> Result<(), FusionError>",
-      "obligation": "Form (ST)^3 using two actual matrix products and compare row-major to p+ times the supplied S^2.",
-      "status": "partial_review_no_gate_award"
+      "obligation": "Form (ST)^3 using two actual matrix products and compare row-major to p+ times the supplied S^2."
     },
     "ModularData::verify_verlinde": {
       "line": 273,
       "signature": "fn verify_verlinde(&self) -> Result<(), FusionError>",
-      "obligation": "Delegate the bounded full defect computation to the admitted ring provider and report its first triple; do not claim a category realization theorem.",
-      "status": "partial_review_no_gate_award"
+      "obligation": "Delegate the bounded full defect computation to the admitted ring provider and report its first triple; do not claim a category realization theorem."
     },
     "ModularData::central_charge_mod_4": {
       "line": 284,
       "signature": "pub fn central_charge_mod_4(&self) -> Result<Rational, FusionError>",
-      "obligation": "Divide p+^2 by D^2, require its advertised root data (n,k), return exact rational4k/n. Physical angle interpretation requires a compatible canonical complex root embedding.",
-      "status": "partial_review_no_gate_award"
+      "obligation": "Divide p+^2 by D^2, require its advertised root data (n,k), return exact rational4k/n. Physical angle interpretation requires a compatible canonical complex root embedding."
     },
     "ModularData::central_charge_mod_8": {
       "line": 298,
       "signature": "pub fn central_charge_mod_8(&self, total_dimension: &K) -> Result<Rational, FusionError>",
-      "obligation": "Require supplied D squares to stored D^2, then decide D>0, then divide p+ by D and require root data; return exact8k/n. Wrong square, nonpositive and undecidable sign have distinct priority.",
-      "status": "partial_review_no_gate_award"
+      "obligation": "Require supplied D squares to stored D^2, then decide D>0, then divide p+ by D and require root data; return exact8k/n. Wrong square, nonpositive and undecidable sign have distinct priority."
     },
     "ModularData::frobenius_schur_indicator": {
       "line": 323,
       "signature": "pub fn frobenius_schur_indicator(&self, a: usize) -> Result<i8, FusionError>",
-      "obligation": "Require label<rank; compute the second indicator sum using cached d_b*theta_b^2 and d_c/theta_c^2; divide by D^2 and admit exactly -1,0,1.",
-      "status": "partial_review_no_gate_award"
+      "obligation": "Require label<rank; compute the second indicator sum using cached d_b*theta_b^2 and d_c/theta_c^2; divide by D^2 and admit exactly -1,0,1."
     },
     "ModularData::indicator_weights": {
       "line": 338,
       "signature": "fn indicator_weights(&self) -> Result<Vec<(K, K)>, FusionError>",
-      "obligation": "Private aligned retained vectors: precompute (d_b theta_b^2,d_b/theta_b^2), propagating checked division refusal.",
-      "status": "partial_review_no_gate_award"
+      "obligation": "Private aligned retained vectors: precompute (d_b theta_b^2,d_b/theta_b^2), propagating checked division refusal."
     },
     "ModularData::indicator_row": {
       "line": 352,
       "signature": "fn indicator_row(&self, a: usize, b: usize, weights: &[(K, K)]) -> Result<K, FusionError>",
-      "obligation": "Private admitted labels and rank-aligned weights: compute sum_c N(b,c,a)*weights[b].0*weights[c].1, skipping zero coefficients.",
-      "status": "partial_review_no_gate_award"
+      "obligation": "Private admitted labels and rank-aligned weights: compute sum_c N(b,c,a)*weights[b].0*weights[c].1, skipping zero coefficients."
     },
     "ModularData::indicator_result": {
       "line": 364,
       "signature": "fn indicator_result(a: usize, value: &K) -> Result<i8, FusionError>",
-      "obligation": "Map exact values1,-1,0 to i8; reject every other field value with FrobeniusSchur{label}.",
-      "status": "partial_review_no_gate_award"
+      "obligation": "Map exact values1,-1,0 to i8; reject every other field value with FrobeniusSchur{label}."
     },
     "ModularData::ground_state_degeneracy": {
       "line": 378,
       "signature": "pub fn ground_state_degeneracy(&self, genus: u32) -> Result<BigInt, FusionError>",
-      "obligation": "Admit genus exponent before field arithmetic; compute sum_a(D^2/d_a^2)^(g-1), grouping equal squares, and return only an exact nonnegative integer. Nonrational, fractional and negative outputs refuse.",
-      "status": "partial_review_no_gate_award"
+      "obligation": "Admit genus exponent before field arithmetic; compute sum_a(D^2/d_a^2)^(g-1), grouping equal squares, and return only an exact nonnegative integer. Nonrational, fractional and negative outputs refuse."
     },
     "ModularData::genus_exponent": {
       "line": 398,
       "signature": "fn genus_exponent(genus: u32) -> Result<i64, FusionError>",
-      "obligation": "For any u32 genus compute i64(genus)-1, require absolute value<=MAX_SCALAR_EXPONENT, otherwise return Budget before scalar work.",
-      "status": "partial_review_no_gate_award"
+      "obligation": "For any u32 genus compute i64(genus)-1, require absolute value<=MAX_SCALAR_EXPONENT, otherwise return Budget before scalar work."
     },
     "ModularData::dimension_ratios": {
       "line": 412,
       "signature": "fn dimension_ratios(&self) -> Result<Vec<(K, u64)>, FusionError>",
-      "obligation": "Group exactly equal dimension squares with positive u64 counts, at most rank<=32; replace each square by checked D^2/square without a second ratio buffer.",
-      "status": "partial_review_no_gate_award"
+      "obligation": "Group exactly equal dimension squares with positive u64 counts, at most rank<=32; replace each square by checked D^2/square without a second ratio buffer."
+    },
+    "ModularData::Clone/Debug/PartialEq": {
+      "obligation": "Derives preserve the same private ring, aligned vectors, matrix and exact values under scalar value semantics; cloning has payload-dependent cost and does not run verify.",
+      "origin": "Rust private ownership / explicit derive attributes in bound source"
+    },
+    "ModularDefect::Debug/Clone/Copy/PartialEq/Eq/Display/Error": {
+      "obligation": "Derives preserve the literal discriminant/witness and render the declared ten diagnostic variants. They perform no arithmetic validation. The unchanged declaration is covered by the diagnostic source review/bridge and nominal-type native composition.",
+      "origin": "Rust private ownership / explicit derive attributes in bound source"
     }
   },
   "invariants": [
-    "Retained vectors and square matrix match the immutable admitted ring rank<=32; safe public constructors establish these alignments.",
-    "Failure priority and first row-major witnesses are preserved except deliberate early genus budget admission; genus conversion and output nonnegative-integrality are checked."
+    "Carrier: ModularData fields are private and have no public mutator or Deserialize. from_ribbon is the only fresh public construction path and retains an admitted ring of rank1..32, aligned dimensions/twists and an n-by-n matrix; Clone preserves alignment under scalar value semantics. Its borrowed getters cannot resize those carriers. verified adds verify but returns the same type, so an arbitrary value of the type is not a sealed modularity certificate.",
+    "Balancing: precompute inv(theta_a),d_c*theta_c and b*. Each entry is inv(theta_a)*inv(theta_b)*sum_c N(a,b*,c)d_c*theta_c, without dropping multiplicities. The source convention equals the published N(a*,b) form by simultaneous duality N(a,b*)^c=N(a*,b)^(c*), d_(c*)=d_c and theta_(c*)=theta_c. The cyclic3 Fourier witness detects accidental omission of the dual; self-dual examples alone cannot establish that convention.",
+    "Coefficient safety: add_multiple preserves zero/one directly and admits u64->i64 before embedding larger coefficients. Public ribbon rings are multiplicity-free, but the helper still refuses a forged extreme coefficient. Every public genus is u32, so i64(genus)-1 lies in[-1,4294967294]. Its unsigned absolute value is computed before comparing to the pinned scalar exponent bound. Label and shape admission precede private indexing.",
+    "Ordered verification: after D^2!=0, the strict upper triangle yields the first asymmetric pair, exact rank then checks nondegeneracy, actual multiplication checks S^2=D^2*C, and actual conjugate transpose checks SS^dagger=D^2*I. Column scaling constructs ST and two ordered products construct its cube; equality to p+S^2 precedes the first provider Verlinde triple. Matrix mismatches scan row-major; shape disagreement is typed, never zip-truncated.",
+    "Root-index results: root_of_unity_data requires an advertised order1..4096 and scans powers until finding equality; its reduced(n,k) has0<=k<n. Multipliers4/8 are widened to u64 before multiplication and are bounded by32760. Rational denominators are positive and numerator/denominator remain BigInt. Mod8 additionally checks suppliedD^2, then a decidable positive sign before division. A returned root index is an angle in the advertised generator; canonical complex embeddings are additional hypotheses for physical central-charge terminology.",
+    "Second indicator: aligned cached u_b=d_b*theta_b^2 and v_c=d_c/theta_c^2 give sum_bc N(b,c,a)u_b v_c/D^2. The field factorization equals the raw squared-ratio formula; zero multiplicities skip unnecessary products, nonzero coefficients use checked embedding. Exactly1,-1,0 are admitted as i8; every other exact result carries FrobeniusSchur{label}. This computation is available on raw data too, so its mathematical interpretation is conditional on the required modular-category hypotheses.",
+    "Genus sum: group dimension squares by exact equality, preserving the total count n and positive counts<=32; replace each key in place with D^2/square. Equal squares yield equal ratios, so summing count*ratio^(g-1) equals the literal per-label sum in a lawful characteristic-zero field. The genus budget refuses before any grouping/division/power, zero denominators remain typed, and rational projection then nonnegative-integrality admission precedes BigInt extraction. Raw from_ribbon data is allowed, so a successful number is the specified exact formula; a physical state-space interpretation requires additional mathematical hypotheses.",
+    "Logical cost: balancing is O(n^3) field work with O(n^2) output and O(n) caches; inverses/dual lookups occur once per label. verify uses O(n^3) rank/products plus the existing O(n^4) full Verlinde defect provider, retaining up to O(n^3) defect triples. Reusing S^2 and direct ST/scaled C/I construction avoids unused unscaled/diagonal matrices and generic exponentiation products. Keeping the full provider result before first() is a limitation of the reused API, not a claim of streaming or an allocation-free provider.",
+    "Indicator work is O(n^2) with O(n) weights and no per-channel inverse. Genus grouping is O(n^2) equality work/O(n) retained pairs, one division and O(log(|g-1|+1)) repeated-squaring work per distinct square; the pinned provider exponent limit is2^20. Root lookup uses at most4096 scalar steps. Matrix constructors admit at most1024 entries due to the ring rank bound, even when the called default matrix APIs use UNLIMITED logical policies. Arbitrary field coefficient bit growth, allocation failure and operation implementation costs remain outside these bounds."
   ],
   "failure_paths": {
-    "scope": "See individually named operation obligations; provider and scalar errors propagate.",
-    "priority": "verify: zero D^2, symmetry, rank, square, unitarity, relation, Verlinde. Genus budget precedes scalar work."
+    "ModularData::from_ribbon": "Compute exact S_ab=(theta_a theta_b)^-1 sum_c N(a,b*,c)d_c theta_c from admitted ribbon data, then clone owned inputs and retain D^2 and p+. This constructor alone does not verify modularity. Checked scalar/matrix/provider errors propagate unchanged through FusionError; no partial data or rounded value is returned.",
+    "ModularData::ribbon_s_matrix": "Private aligned ring/dimension/twist vectors from an admitted ribbon value: cache inverse twists, d*theta and dual labels, then fill the n-by-n balancing matrix; propagate checked inversion, label and matrix errors. Checked scalar/matrix/provider errors propagate unchanged through FusionError; no partial data or rounded value is returned.",
+    "ModularData::add_multiple": "Compute total+m*value: zero moves total, one adds without scalar embedding, larger m must fit i64 before exact embedding or returns Overflow. Checked scalar/matrix/provider errors propagate unchanged through FusionError; no partial data or rounded value is returned.",
+    "ModularData::fusion_sum": "Private admitted labels and values length=ring.rank: sum_c N(a,b,c)*values[c] using checked multiplicity conversion. Checked scalar/matrix/provider errors propagate unchanged through FusionError; no partial data or rounded value is returned.",
+    "ModularData::verified": "Build through from_ribbon and call verify before returning; the same public type also has an unchecked-with-respect-to-modularity constructor, so it is not a sealed certificate type. Checked scalar/matrix/provider errors propagate unchanged through FusionError; no partial data or rounded value is returned.",
+    "ModularData::rank": "Infallible immutable getter under the retained carrier invariant; returns a borrowed view/value without allocating or certifying modularity.",
+    "ModularData::ring": "Infallible immutable getter under the retained carrier invariant; returns a borrowed view/value without allocating or certifying modularity.",
+    "ModularData::dimensions": "Infallible immutable getter under the retained carrier invariant; returns a borrowed view/value without allocating or certifying modularity.",
+    "ModularData::twists": "Infallible immutable getter under the retained carrier invariant; returns a borrowed view/value without allocating or certifying modularity.",
+    "ModularData::s_tilde": "Infallible immutable getter under the retained carrier invariant; returns a borrowed view/value without allocating or certifying modularity.",
+    "ModularData::d_squared": "Infallible immutable getter under the retained carrier invariant; returns a borrowed view/value without allocating or certifying modularity.",
+    "ModularData::p_plus": "Infallible immutable getter under the retained carrier invariant; returns a borrowed view/value without allocating or certifying modularity.",
+    "ModularData::topological_entanglement_entropy_dimension_squared": "Infallible immutable getter under the retained carrier invariant; returns a borrowed view/value without allocating or certifying modularity.",
+    "ModularData::t_matrix": "Return a fresh diagonal matrix of twists, propagating matrix allocation/domain errors. Checked scalar/matrix/provider errors propagate unchanged through FusionError; no partial data or rounded value is returned.",
+    "ModularData::charge_conjugation": "Return the exact zero-one charge conjugation matrix C_ab=[dual(a)=b]. Checked scalar/matrix/provider errors propagate unchanged through FusionError; no partial data or rounded value is returned.",
+    "ModularData::scaled_charge_conjugation": "Private admitted ring: directly construct scale*C without an unscaled intermediate; propagate label/matrix errors. Checked scalar/matrix/provider errors propagate unchanged through FusionError; no partial data or rounded value is returned.",
+    "ModularData::scaled_identity": "Construct scale times the rank-dimensional identity directly; propagate matrix errors. Checked scalar/matrix/provider errors propagate unchanged through FusionError; no partial data or rounded value is returned.",
+    "ModularData::first_difference": "Require equal shapes; then return the first unequal entry in row-major order, or None for equal matrices. Checked scalar/matrix/provider errors propagate unchanged through FusionError; no partial data or rounded value is returned.",
+    "ModularData::verify": "Refuse in fixed order: zero D^2, asymmetry, deficient rank, S^2!=D^2 C, SS^dagger!=D^2 I, (ST)^3!=p+S^2, first Verlinde defect. Success establishes these checks only. Checked scalar/matrix/provider errors propagate unchanged through FusionError; no partial data or rounded value is returned.",
+    "ModularData::require_equal": "Use first_difference and map the first unequal coordinate to the supplied typed modular defect; propagate shape errors. Checked scalar/matrix/provider errors propagate unchanged through FusionError; no partial data or rounded value is returned.",
+    "ModularData::verify_symmetry": "Scan the strict upper triangle in lexicographic order, refusing the first asymmetric pair. Checked scalar/matrix/provider errors propagate unchanged through FusionError; no partial data or rounded value is returned.",
+    "ModularData::verify_nondegenerate": "Compute exact provider rank and refuse rank<size, carrying actual and expected ranks. Checked scalar/matrix/provider errors propagate unchanged through FusionError; no partial data or rounded value is returned.",
+    "ModularData::verify_square": "Compute the actual matrix square and compare to D^2 C; return the square for reuse after equality succeeds. Checked scalar/matrix/provider errors propagate unchanged through FusionError; no partial data or rounded value is returned.",
+    "ModularData::verify_unitarity": "Compute S times its actual conjugate transpose and compare to D^2 I; no plain-transpose substitution. Checked scalar/matrix/provider errors propagate unchanged through FusionError; no partial data or rounded value is returned.",
+    "ModularData::st_matrix": "Construct (ST)_ab=S_ab*theta_b by column scaling without a dense diagonal multiplication. Checked scalar/matrix/provider errors propagate unchanged through FusionError; no partial data or rounded value is returned.",
+    "ModularData::verify_relation": "Form (ST)^3 using two actual matrix products and compare row-major to p+ times the supplied S^2. Checked scalar/matrix/provider errors propagate unchanged through FusionError; no partial data or rounded value is returned.",
+    "ModularData::verify_verlinde": "Delegate the bounded full defect computation to the admitted ring provider and report its first triple; do not claim a category realization theorem. Checked scalar/matrix/provider errors propagate unchanged through FusionError; no partial data or rounded value is returned.",
+    "ModularData::central_charge_mod_4": "Divide p+^2 by D^2, require its advertised root data (n,k), return exact rational4k/n. Physical angle interpretation requires a compatible canonical complex root embedding. Checked scalar/matrix/provider errors propagate unchanged through FusionError; no partial data or rounded value is returned.",
+    "ModularData::central_charge_mod_8": "Require supplied D squares to stored D^2, then decide D>0, then divide p+ by D and require root data; return exact8k/n. Wrong square, nonpositive and undecidable sign have distinct priority. Checked scalar/matrix/provider errors propagate unchanged through FusionError; no partial data or rounded value is returned.",
+    "ModularData::frobenius_schur_indicator": "Require label<rank; compute the second indicator sum using cached d_b*theta_b^2 and d_c/theta_c^2; divide by D^2 and admit exactly -1,0,1. Checked scalar/matrix/provider errors propagate unchanged through FusionError; no partial data or rounded value is returned.",
+    "ModularData::indicator_weights": "Private aligned retained vectors: precompute (d_b theta_b^2,d_b/theta_b^2), propagating checked division refusal. Checked scalar/matrix/provider errors propagate unchanged through FusionError; no partial data or rounded value is returned.",
+    "ModularData::indicator_row": "Private admitted labels and rank-aligned weights: compute sum_c N(b,c,a)*weights[b].0*weights[c].1, skipping zero coefficients. Checked scalar/matrix/provider errors propagate unchanged through FusionError; no partial data or rounded value is returned.",
+    "ModularData::indicator_result": "Map exact values1,-1,0 to i8; reject every other field value with FrobeniusSchur{label}. Checked scalar/matrix/provider errors propagate unchanged through FusionError; no partial data or rounded value is returned.",
+    "ModularData::ground_state_degeneracy": "Admit genus exponent before field arithmetic; compute sum_a(D^2/d_a^2)^(g-1), grouping equal squares, and return only an exact nonnegative integer. Nonrational, fractional and negative outputs refuse. Checked scalar/matrix/provider errors propagate unchanged through FusionError; no partial data or rounded value is returned.",
+    "ModularData::genus_exponent": "For any u32 genus compute i64(genus)-1, require absolute value<=MAX_SCALAR_EXPONENT, otherwise return Budget before scalar work. Checked scalar/matrix/provider errors propagate unchanged through FusionError; no partial data or rounded value is returned.",
+    "ModularData::dimension_ratios": "Group exactly equal dimension squares with positive u64 counts, at most rank<=32; replace each square by checked D^2/square without a second ratio buffer. Checked scalar/matrix/provider errors propagate unchanged through FusionError; no partial data or rounded value is returned."
   },
-  "trust_boundary": "Lawful exact scalar implementation, existing bounded ring/category/ribbon/matrix providers, Rust/compiler and standard allocation behavior. Root indices need canonical embeddings for physical angles.",
+  "trust_boundary": "Lawful immutable characteristic-zero exact field values, rational embedding, compatible conjugation and root generators; honest optional rational/sign projections. FusionScalar is an open protocol and cannot enforce those laws for arbitrary client implementations. Rust/compiler, pinned thiserror and exact matrix/ring/category/ribbon/scalar providers are explicit dependencies. Logical element/operation counts exclude scalar bit length, comparison/clone cost, allocator metadata and OS memory. No arbitrary client panic or allocator-totality theorem is asserted.",
   "assurance_limits": [
-    "Partial source review and model evidence only: a complete five-gate assessment has not been awarded.",
-    "Lawful FusionScalar field operations, conjugation, compatible roots and provider admissions are explicit assumptions; the open trait cannot enforce algebraic laws.",
-    "Finite exact checks and model proofs do not establish Rust refinement, categorical realizability, physical entropy, allocator success, bounded scalar bit length or whole-workspace correctness."
+    "AuthorityEffect: None. These are bounded exact construction/checking/computation APIs; no physical authority, publication or whole-workspace verification is inferred.",
+    "Lawful immutable characteristic-zero exact field values, rational embedding, compatible conjugation and root generators; honest optional rational/sign projections. FusionScalar is an open protocol and cannot enforce those laws for arbitrary client implementations. Rust/compiler, pinned thiserror and exact matrix/ring/category/ribbon/scalar providers are explicit dependencies. Logical element/operation counts exclude scalar bit length, comparison/clone cost, allocator metadata and OS memory. No arbitrary client panic or allocator-totality theorem is asserted.",
+    "The19 clean Lean declarations establish the specified arithmetic, finite-sum and actual-matrix model facts. Rust-to-model representation correspondence, mixed-radix quotient transport and provider composition are explicitly reviewed source arguments, not extracted/MIR proofs. No A+ crash-freedom or scalar bit-cost claim.",
+    "from_ribbon constructs data; verified adds the named runtime checks. S/T constraints alone are not a category realization theorem or a distinct L5 certificate type.",
+    "The entropy-named accessor returns raw D^2 only. Root indices and exact genus/indicator formulas have physical meanings only under the additional modular-category/canonical-embedding hypotheses; no logarithm or physical entropy is computed."
   ],
   "review_evidence": [
     {
-      "path": "evidence/quality/six_module/20261020T035434Z-fusion-audit/receipt.json",
-      "sha256": "f1e2e982794b4722e978ac5f0a063263e5f703a5afdb88d5fec9e869a965e4ad"
-    },
-    {
-      "path": "evidence/quality/category_homology/20261020T142450Z-modular-catalog-proof/receipt.json",
-      "sha256": "e09b32e00a527368860795c72ac1cfab3f2025f94314f9b91b8c3cbe650b281a"
-    },
-    {
-      "path": "evidence/quality/category_homology/20261020T035433Z-metrics/receipt.json",
-      "sha256": "e1c84042c8a588cc96351d3ff16302d50d1cf786da90d5a059f05a81242a7461"
-    },
-    {
-      "path": "code/rust/quality/six_module/modular_catalog_partial_review.json",
-      "sha256": "b8465fd1b10bb87f0c11346519b0821f4f43b0fed78542ce425aa223b60b6b0f"
-    },
-    {
-      "path": "code/rust/quality/six_module/modular_catalog_partial_review.json",
-      "sha256": "b8465fd1b10bb87f0c11346519b0821f4f43b0fed78542ce425aa223b60b6b0f"
-    },
-    {
-      "path": "evidence/quality/six_module/20261020T145819Z-fusion-modular/summary.json",
-      "sha256": "31d362a4b349dc875c6d6af1eb57b625b653e27ec03ac633bef96998f20ec58d"
-    },
-    {
-      "path": "evidence/quality/six_module/20261020T145819Z-fusion-modular/mutations.json",
-      "sha256": "f6a2299e84c46ed8c4f57c008502fc3bc9459e38337015745fc0a2e02b36e8ba"
+      "path": "code/rust/quality/six_module/assessments/fusion_modular.json",
+      "sha256": "1b71ee45afd6189f3edd67bbc435124cce21833a706c154217f67c8cbed55440"
     }
   ],
-  "open_obligations": [
-    "Finish independent whole-source/provider/consumer review and a complete explicit five-gate assessment; no completed score token is emitted."
-  ]
+  "open_obligations": []
 }
