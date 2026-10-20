@@ -1,0 +1,800 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: L1-QM020-THM3-ROW-SPARSITY
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: A linear map that is descent-compatible (respects the l1 weight descent on a chosen
+    sector basis, with phase rotation freedom) is monomial, i.e. strictly row-sparse. Lean covers the
+    2x2 real case.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions:
+  - 'linear representation of sectors: assumption'
+  - 'unit phase rotations: assumption'
+  source_bottleneck: General-n 2-sparse probe separation and 1-sparse invariance mechanized in DerivationDagQMClosure.lean.
+  source_refs:
+  - omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/020_born_normalization_and_conditional_hilbert_lift/born_normalization_and_conditional_hilbert_lift.md:408
+  paper_refs:
+  - dag/derivations/08_l1_to_l2/tfq_0300_descent_compatible_maps_stay_row_sparse.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  historical_paper_refs:
+  - papers/derivations/08_l1_to_l2/tfq_0300_descent_compatible_maps_stay_row_sparse.md
+  paper_relocations:
+  - from: papers/derivations/08_l1_to_l2/tfq_0300_descent_compatible_maps_stay_row_sparse.md
+    to: dag/derivations/08_l1_to_l2/tfq_0300_descent_compatible_maps_stay_row_sparse.md
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/08_l1_to_l2/tfq_0300_descent_compatible_maps_stay_row_sparse.md
+    sha256: 9628efa7ce0dec94e3719d8834294953a63b75f93c21b93d201618bf546f7f87
+source_provenance:
+  repository: this_repository
+  commit: 642f5b95a116da6df805adbd745a4826c6739c2b
+  path: dag/prompts/l1_to_l2_l1_qm020_thm3_row_sparsity_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: RowSparse
+  line: 220
+  signature_excerpt: 'def RowSparse (M : Mat2) : Prop'
+  source: lean4/BornRedundancy.lean
+  repository: this_repository
+  source_sha256: 8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: Mat2
+  line: 197
+  signature_excerpt: structure Mat2
+  source: lean4/BornRedundancy.lean
+  repository: this_repository
+  source_sha256: 8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: DescentCompatible
+  line: 217
+  signature_excerpt: 'def DescentCompatible (M : Mat2) : Prop'
+  source: lean4/BornRedundancy.lean
+  repository: this_repository
+  source_sha256: 8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: Vec2
+  line: 203
+  signature_excerpt: structure Vec2
+  source: lean4/BornRedundancy.lean
+  repository: this_repository
+  source_sha256: 8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: PhaseEquiv
+  line: 214
+  signature_excerpt: 'def PhaseEquiv (v1 v2 : Vec2) : Prop'
+  source: lean4/BornRedundancy.lean
+  repository: this_repository
+  source_sha256: 8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: sqNorm
+  line: 211
+  signature_excerpt: 'def sqNorm (v : Vec2) : Vec2'
+  source: lean4/BornRedundancy.lean
+  repository: this_repository
+  source_sha256: 8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: applyMat2
+  line: 208
+  signature_excerpt: 'def applyMat2 (M : Mat2) (v : Vec2) : Vec2'
+  source: lean4/BornRedundancy.lean
+  repository: this_repository
+  source_sha256: 8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: descent_compatible_iff_row_sparse
+  line: 299
+  signature_excerpt: "theorem descent_compatible_iff_row_sparse (M : Mat2) :\n    DescentCompatible M\
+    \ ↔ RowSparse M"
+  source: lean4/BornRedundancy.lean
+  repository: this_repository
+  source_sha256: 8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: row_sparse_implies_descent_compatible
+  line: 223
+  signature_excerpt: "theorem row_sparse_implies_descent_compatible (M : Mat2) (hM : RowSparse M) :\n\
+    \    DescentCompatible M"
+  source: lean4/BornRedundancy.lean
+  repository: this_repository
+  source_sha256: 8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: fq_phase_blind_descent_general_n_row_sparsity
+  line: 425
+  signature_excerpt: "theorem fq_phase_blind_descent_general_n_row_sparsity\n    (a b : Int) (ha : a ≠\
+    \ 0) (hb : b ≠ 0)\n    (u v : Nat → Int) (c : Nat) (h_sq : u c * u c = v c * v c) :\n    ((a + b)\
+    \ * (a + b) - (a - b) * (a - b) = 4 * (a * b)) ∧\n    ((a + b) * (a + b) ≠ (a - b) * (a - b)) ∧\n\
+    \    ((a * u c) * (a * u c) = (a * v c) * (a * v c)) ∧\n    (1 * (1 : Int) + 1 * (-1 : Int) = 0)"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/quantum_mechanics/BornRedundancy.lean::descent_compatible_iff_row_sparse
+  availability: local
+  symbol: descent_compatible_iff_row_sparse
+  path: lean4/BornRedundancy.lean
+  repository: this_repository
+  sha256: 8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b
+  declaration_status: declaration_found_not_proof_checked
+  line: 299
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/BornRedundancy.lean::row_sparse_implies_descent_compatible
+  availability: local
+  symbol: row_sparse_implies_descent_compatible
+  path: lean4/BornRedundancy.lean
+  repository: this_repository
+  sha256: 8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b
+  declaration_status: declaration_found_not_proof_checked
+  line: 223
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_phase_blind_descent_general_n_row_sparsity
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.fq_phase_blind_descent_general_n_row_sparsity
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 425
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_quantum_physics/src/phase_blind_quotient.rs::classify_descent
+  availability: external
+  symbol: classify_descent
+  path: omega_engine/crates_rs/omega_quantum_physics/src/phase_blind_quotient.rs
+  repository: the_symbol_game
+  sha256: ff2874e2584f1df73fcee4976cabb826aace1b22ae81dea8d4ab2319a7de244b
+  declaration_status: declaration_found_not_executed
+  line: 303
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche2_row_sparsity_bell_torsion_and_structure_witness
+  availability: external
+  symbol: verify_tranche2_row_sparsity_bell_torsion_and_structure_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 518
+  role: source_lead_only
+presentation:
+  status: scoped_stage_result_pending_batch_review
+  scope: Exact phase-sign readouts, row sparsity, determinant, monomial and rank distinctions; universal
+    row interference and a singular sparse control in Lean.
+  colours:
+  - id: PlusAndMinusRowIntensities
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: RationalTwoByTwoMatrix
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: RowInterferenceProducts
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: SparsityDeterminantMonomialAndRank
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  generators:
+  - id: sparse_row_readouts
+    ordered_inputs:
+    - RationalTwoByTwoMatrix
+    output: PlusAndMinusRowIntensities
+    arity: 1
+    carrier: RationalTwoByTwoMatrix
+    coefficient_ring: Exact rational coordinates, finite integer group/map indices and explicit validity
+      tags
+    hypotheses:
+    - Real rational2x2 matrix; phase-sign tests and full source theorem kept distinct.
+    semantic_predicate: Apply each row to(1,1) and(1,-1).
+    source_pins:
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_qm020_thm3_row_sparsity_proved_lean.yaml
+      sha256: 4534cb38b9474ff151f3f87776fdfe5b56948f8c7e1ce63d0877e22e38f415fe
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/inputs/this_repository/dag/operads/l1_qm020_thm3_row_sparsity.yaml
+      sha256: 41cd2fddcd59455b88dc851ccdbda9514a1822ed7e3776b99a2b3fa80747e419
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/inputs/this_repository/lean4/BornRedundancy.lean
+      sha256: 8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/phase_blind_quotient.rs
+      sha256: ff2874e2584f1df73fcee4976cabb826aace1b22ae81dea8d4ab2319a7de244b
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0300_descent_compatible_maps_stay_row_sparse.md
+      sha256: 1711cef9f69d5cafbf72d2e3c1a12bb8ce47f6773b96bab5491aec0055e0ca38
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/code/python/src/qm/born_boundary_exact.py
+      sha256: 04326ded1c1e17e88659e60498e5b7d92afab1bb8f0c5c91a7268013ca2f0738
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/code/python/tests/test_born_boundary_exact.py
+      sha256: fe382974658a106563ce5870da4a7d87477a0893b1669d0b123b3bc372b493ba
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/code/rust/src/finite_probability/born_boundary_exact.rs
+      sha256: 80427803fced2970578ba5e9b223e2d51b2e494e5900e430db17a6eae8a666ce
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/born_boundary_exact_replay.rs
+      sha256: 37575b2bc4ba8fa23d397f66da9eaa0e290e21a79a051103401878cc356f1a33
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/born_boundary_checker.py
+      sha256: 7bc9e8b52f40f78cb85f78edfc31b55ceff79f649b6a499090e64df460fac182
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/prepare.py
+      sha256: e07ac6946888be24689ae63a52370d4d1588d3d048dd0ba1b30298c869ca7bdd
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/witness_cases.json
+      sha256: 5fa9d9d9532cab06d68e8e01257c436bd2ba10746576a5854110e850af92ae98
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/specs.py
+      sha256: 3dd63e06b01e17c6357223845a487490ab707ae27f137cbd0fbb83d2c0e8dcfd
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/check_candidate.py
+      sha256: dd4317c3de9180ae1eb09b80908561f8b57f459b2d71fed5505c4cef49ef054a
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/format_certificate.py
+      sha256: 5aef9d505ce1abc6ddff11bbe9841062044a646dc88bc3f5f3b6d7b258902805
+    evidence_status: Target-specific native predicates checked on retained inputs; relation-specific kernel
+      scope is separate. General refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p2/host_check.json
+  - id: sparse_phase_compare
+    ordered_inputs:
+    - PlusAndMinusRowIntensities
+    output: RowInterferenceProducts
+    arity: 1
+    carrier: PlusAndMinusRowIntensities
+    coefficient_ring: Exact rational coordinates, finite integer group/map indices and explicit validity
+      tags
+    hypotheses:
+    - Real rational2x2 matrix; phase-sign tests and full source theorem kept distinct.
+    semantic_predicate: Subtract squared outputs to get4ab per row.
+    source_pins:
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_qm020_thm3_row_sparsity_proved_lean.yaml
+      sha256: 4534cb38b9474ff151f3f87776fdfe5b56948f8c7e1ce63d0877e22e38f415fe
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/inputs/this_repository/dag/operads/l1_qm020_thm3_row_sparsity.yaml
+      sha256: 41cd2fddcd59455b88dc851ccdbda9514a1822ed7e3776b99a2b3fa80747e419
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/inputs/this_repository/lean4/BornRedundancy.lean
+      sha256: 8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/phase_blind_quotient.rs
+      sha256: ff2874e2584f1df73fcee4976cabb826aace1b22ae81dea8d4ab2319a7de244b
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0300_descent_compatible_maps_stay_row_sparse.md
+      sha256: 1711cef9f69d5cafbf72d2e3c1a12bb8ce47f6773b96bab5491aec0055e0ca38
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/code/python/src/qm/born_boundary_exact.py
+      sha256: 04326ded1c1e17e88659e60498e5b7d92afab1bb8f0c5c91a7268013ca2f0738
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/code/python/tests/test_born_boundary_exact.py
+      sha256: fe382974658a106563ce5870da4a7d87477a0893b1669d0b123b3bc372b493ba
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/code/rust/src/finite_probability/born_boundary_exact.rs
+      sha256: 80427803fced2970578ba5e9b223e2d51b2e494e5900e430db17a6eae8a666ce
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/born_boundary_exact_replay.rs
+      sha256: 37575b2bc4ba8fa23d397f66da9eaa0e290e21a79a051103401878cc356f1a33
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/born_boundary_checker.py
+      sha256: 7bc9e8b52f40f78cb85f78edfc31b55ceff79f649b6a499090e64df460fac182
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/prepare.py
+      sha256: e07ac6946888be24689ae63a52370d4d1588d3d048dd0ba1b30298c869ca7bdd
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/witness_cases.json
+      sha256: 5fa9d9d9532cab06d68e8e01257c436bd2ba10746576a5854110e850af92ae98
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/specs.py
+      sha256: 3dd63e06b01e17c6357223845a487490ab707ae27f137cbd0fbb83d2c0e8dcfd
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/check_candidate.py
+      sha256: dd4317c3de9180ae1eb09b80908561f8b57f459b2d71fed5505c4cef49ef054a
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/format_certificate.py
+      sha256: 5aef9d505ce1abc6ddff11bbe9841062044a646dc88bc3f5f3b6d7b258902805
+    evidence_status: Target-specific native predicates checked on retained inputs; relation-specific kernel
+      scope is separate. General refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p2/host_check.json
+  - id: sparse_sparse_rank_screen
+    ordered_inputs:
+    - RowInterferenceProducts
+    output: SparsityDeterminantMonomialAndRank
+    arity: 1
+    carrier: RowInterferenceProducts
+    coefficient_ring: Exact rational coordinates, finite integer group/map indices and explicit validity
+      tags
+    hypotheses:
+    - Real rational2x2 matrix; phase-sign tests and full source theorem kept distinct.
+    semantic_predicate: Check row/column supports and rank separately.
+    source_pins:
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_qm020_thm3_row_sparsity_proved_lean.yaml
+      sha256: 4534cb38b9474ff151f3f87776fdfe5b56948f8c7e1ce63d0877e22e38f415fe
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/inputs/this_repository/dag/operads/l1_qm020_thm3_row_sparsity.yaml
+      sha256: 41cd2fddcd59455b88dc851ccdbda9514a1822ed7e3776b99a2b3fa80747e419
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/inputs/this_repository/lean4/BornRedundancy.lean
+      sha256: 8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/phase_blind_quotient.rs
+      sha256: ff2874e2584f1df73fcee4976cabb826aace1b22ae81dea8d4ab2319a7de244b
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0300_descent_compatible_maps_stay_row_sparse.md
+      sha256: 1711cef9f69d5cafbf72d2e3c1a12bb8ce47f6773b96bab5491aec0055e0ca38
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/code/python/src/qm/born_boundary_exact.py
+      sha256: 04326ded1c1e17e88659e60498e5b7d92afab1bb8f0c5c91a7268013ca2f0738
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/code/python/tests/test_born_boundary_exact.py
+      sha256: fe382974658a106563ce5870da4a7d87477a0893b1669d0b123b3bc372b493ba
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/code/rust/src/finite_probability/born_boundary_exact.rs
+      sha256: 80427803fced2970578ba5e9b223e2d51b2e494e5900e430db17a6eae8a666ce
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/born_boundary_exact_replay.rs
+      sha256: 37575b2bc4ba8fa23d397f66da9eaa0e290e21a79a051103401878cc356f1a33
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/born_boundary_checker.py
+      sha256: 7bc9e8b52f40f78cb85f78edfc31b55ceff79f649b6a499090e64df460fac182
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/prepare.py
+      sha256: e07ac6946888be24689ae63a52370d4d1588d3d048dd0ba1b30298c869ca7bdd
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/witness_cases.json
+      sha256: 5fa9d9d9532cab06d68e8e01257c436bd2ba10746576a5854110e850af92ae98
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/specs.py
+      sha256: 3dd63e06b01e17c6357223845a487490ab707ae27f137cbd0fbb83d2c0e8dcfd
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/check_candidate.py
+      sha256: dd4317c3de9180ae1eb09b80908561f8b57f459b2d71fed5505c4cef49ef054a
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/format_certificate.py
+      sha256: 5aef9d505ce1abc6ddff11bbe9841062044a646dc88bc3f5f3b6d7b258902805
+    evidence_status: Target-specific native predicates checked on retained inputs; relation-specific kernel
+      scope is separate. General refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p2/host_check.json
+  relations:
+  - id: sparse_relation_0
+    equation_or_predicate: A nonzero row product changes sign-pair intensity; row-sparse can still be
+      singular.
+    typing_conditions: Literal declared operation domains; Prove the full representation refinement and
+      add injectivity/column conditions before claiming monomial invertibility. No scalar label licenses
+      the stronger claim.
+    evidence_status: P1 candidate; independent native and named kernel gates remain required.
+    scope: Exact phase-sign readouts, row sparsity, determinant, monomial and rank distinctions; universal
+      row interference and a singular sparse control in Lean.
+    source_pins:
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_qm020_thm3_row_sparsity_proved_lean.yaml
+      sha256: 4534cb38b9474ff151f3f87776fdfe5b56948f8c7e1ce63d0877e22e38f415fe
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/inputs/this_repository/dag/operads/l1_qm020_thm3_row_sparsity.yaml
+      sha256: 41cd2fddcd59455b88dc851ccdbda9514a1822ed7e3776b99a2b3fa80747e419
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/inputs/this_repository/lean4/BornRedundancy.lean
+      sha256: 8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/phase_blind_quotient.rs
+      sha256: ff2874e2584f1df73fcee4976cabb826aace1b22ae81dea8d4ab2319a7de244b
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0300_descent_compatible_maps_stay_row_sparse.md
+      sha256: 1711cef9f69d5cafbf72d2e3c1a12bb8ce47f6773b96bab5491aec0055e0ca38
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/code/python/src/qm/born_boundary_exact.py
+      sha256: 04326ded1c1e17e88659e60498e5b7d92afab1bb8f0c5c91a7268013ca2f0738
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/code/python/tests/test_born_boundary_exact.py
+      sha256: fe382974658a106563ce5870da4a7d87477a0893b1669d0b123b3bc372b493ba
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/code/rust/src/finite_probability/born_boundary_exact.rs
+      sha256: 80427803fced2970578ba5e9b223e2d51b2e494e5900e430db17a6eae8a666ce
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/born_boundary_exact_replay.rs
+      sha256: 37575b2bc4ba8fa23d397f66da9eaa0e290e21a79a051103401878cc356f1a33
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/born_boundary_checker.py
+      sha256: 7bc9e8b52f40f78cb85f78edfc31b55ceff79f649b6a499090e64df460fac182
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/prepare.py
+      sha256: e07ac6946888be24689ae63a52370d4d1588d3d048dd0ba1b30298c869ca7bdd
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/witness_cases.json
+      sha256: 5fa9d9d9532cab06d68e8e01257c436bd2ba10746576a5854110e850af92ae98
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/specs.py
+      sha256: 3dd63e06b01e17c6357223845a487490ab707ae27f137cbd0fbb83d2c0e8dcfd
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/check_candidate.py
+      sha256: dd4317c3de9180ae1eb09b80908561f8b57f459b2d71fed5505c4cef49ef054a
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/format_certificate.py
+      sha256: 5aef9d505ce1abc6ddff11bbe9841062044a646dc88bc3f5f3b6d7b258902805
+    latest_host_check: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p2/host_check.json
+  compositions:
+  - outer_operation: sparse_phase_compare
+    input_slot: 0
+    inner_operation: sparse_row_readouts
+    colour_match: PlusAndMinusRowIntensities -> PlusAndMinusRowIntensities
+    hypothesis_match: Same declared coordinates, coefficients and context; all operation hypotheses must
+      be carried into the graft.
+    licensing_relations:
+    - sparse_relation_0
+    evidence_status: Semantic substitution supported by the retained finite operation traces and separately
+      scoped named kernel statements. A complete refined-carrier operad is not asserted.
+  - outer_operation: sparse_sparse_rank_screen
+    input_slot: 0
+    inner_operation: sparse_phase_compare
+    colour_match: RowInterferenceProducts -> RowInterferenceProducts
+    hypothesis_match: Same declared coordinates, coefficients and context; all operation hypotheses must
+      be carried into the graft.
+    licensing_relations:
+    - sparse_relation_0
+    evidence_status: Semantic substitution supported by the retained finite operation traces and separately
+      scoped named kernel statements. A complete refined-carrier operad is not asserted.
+  identities:
+  - colour: PlusAndMinusRowIntensities
+    proposed_operation: id_PlusAndMinusRowIntensities
+    signature: PlusAndMinusRowIntensities -> PlusAndMinusRowIntensities
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: RationalTwoByTwoMatrix
+    proposed_operation: id_RationalTwoByTwoMatrix
+    signature: RationalTwoByTwoMatrix -> RationalTwoByTwoMatrix
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: RowInterferenceProducts
+    proposed_operation: id_RowInterferenceProducts
+    signature: RowInterferenceProducts -> RowInterferenceProducts
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: SparsityDeterminantMonomialAndRank
+    proposed_operation: id_SparsityDeterminantMonomialAndRank
+    signature: SparsityDeterminantMonomialAndRank -> SparsityDeterminantMonomialAndRank
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  symmetric_actions: []
+  coherence_obligations: &id001
+  - Prove the full representation refinement and add injectivity/column conditions before claiming monomial
+    invertibility. No scalar label licenses the stronger claim.
+  - Prove the full refined-carrier operad identity, substitution, symmetry and coherence laws; mere colour
+    matches do not instantiate that formal structure.
+  failed_compositions:
+  - proposal: Promote the selected step to the unrestricted original target
+    reason: Prove the full representation refinement and add injectivity/column conditions before claiming
+      monomial invertibility. No scalar label licenses the stronger claim.
+  counterexamples:
+  - id: retained_actual_domain_controls
+    records:
+    - input:
+      - '1'
+      - '0'
+      - '2'
+      - '0'
+      output:
+      - '1'
+      - '4'
+      - '1'
+      - '4'
+      - '0'
+      - '0'
+      - '1'
+      - '0'
+      - '0'
+      - '1'
+    - input:
+      - '1'
+      - '0'
+      - '0'
+      - '1'
+      output:
+      - '1'
+      - '1'
+      - '1'
+      - '1'
+      - '0'
+      - '0'
+      - '1'
+      - '1'
+      - '1'
+      - '2'
+    - input:
+      - '1'
+      - '1'
+      - '1'
+      - '-1'
+      output:
+      - '4'
+      - '0'
+      - '0'
+      - '4'
+      - '4'
+      - '-4'
+      - '0'
+      - '-2'
+      - '0'
+      - '2'
+    - input:
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      output:
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '1'
+      - '0'
+      - '0'
+      - '0'
+    scope: Computed values, with the source/kernel/native distinctions retained in claim_boundary.
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: FILLED
+    carrier: Literal per-operation finite or admitted scalar carriers
+    coefficient_ring: Exact Q, finite integer indices and explicit defined/refusal tags
+    source_pins:
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_qm020_thm3_row_sparsity_proved_lean.yaml
+      sha256: 4534cb38b9474ff151f3f87776fdfe5b56948f8c7e1ce63d0877e22e38f415fe
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/inputs/this_repository/dag/operads/l1_qm020_thm3_row_sparsity.yaml
+      sha256: 41cd2fddcd59455b88dc851ccdbda9514a1822ed7e3776b99a2b3fa80747e419
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/inputs/this_repository/lean4/BornRedundancy.lean
+      sha256: 8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/phase_blind_quotient.rs
+      sha256: ff2874e2584f1df73fcee4976cabb826aace1b22ae81dea8d4ab2319a7de244b
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0300_descent_compatible_maps_stay_row_sparse.md
+      sha256: 1711cef9f69d5cafbf72d2e3c1a12bb8ce47f6773b96bab5491aec0055e0ca38
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/code/python/src/qm/born_boundary_exact.py
+      sha256: 04326ded1c1e17e88659e60498e5b7d92afab1bb8f0c5c91a7268013ca2f0738
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/code/python/tests/test_born_boundary_exact.py
+      sha256: fe382974658a106563ce5870da4a7d87477a0893b1669d0b123b3bc372b493ba
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/code/rust/src/finite_probability/born_boundary_exact.rs
+      sha256: 80427803fced2970578ba5e9b223e2d51b2e494e5900e430db17a6eae8a666ce
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/born_boundary_exact_replay.rs
+      sha256: 37575b2bc4ba8fa23d397f66da9eaa0e290e21a79a051103401878cc356f1a33
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/born_boundary_checker.py
+      sha256: 7bc9e8b52f40f78cb85f78edfc31b55ceff79f649b6a499090e64df460fac182
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/prepare.py
+      sha256: e07ac6946888be24689ae63a52370d4d1588d3d048dd0ba1b30298c869ca7bdd
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/witness_cases.json
+      sha256: 5fa9d9d9532cab06d68e8e01257c436bd2ba10746576a5854110e850af92ae98
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/specs.py
+      sha256: 3dd63e06b01e17c6357223845a487490ab707ae27f137cbd0fbb83d2c0e8dcfd
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/check_candidate.py
+      sha256: dd4317c3de9180ae1eb09b80908561f8b57f459b2d71fed5505c4cef49ef054a
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/format_certificate.py
+      sha256: 5aef9d505ce1abc6ddff11bbe9841062044a646dc88bc3f5f3b6d7b258902805
+    public_input:
+      kind: sparse
+      cases:
+      - - '1'
+        - '0'
+        - '2'
+        - '0'
+      - - '1'
+        - '0'
+        - '0'
+        - '1'
+      - - '1'
+        - '1'
+        - '1'
+        - '-1'
+      - - '0'
+        - '0'
+        - '0'
+        - '0'
+      scope: Exact phase-sign readouts, row sparsity, determinant, monomial and rank distinctions; universal
+        row interference and a singular sparse control in Lean.
+      unpaid_target: Prove the full representation refinement and add injectivity/column conditions before
+        claiming monomial invertibility. No scalar label licenses the stronger claim.
+    original_target: A linear map that is descent-compatible (respects the l1 weight descent on a chosen
+      sector basis, with phase rotation freedom) is monomial, i.e. strictly row-sparse. Lean covers the
+      2x2 real case.
+    source_scope_review: 'BornRedundancy proves descent compatibility iff each real2x2 row has at most
+      one nonzero entry. This is weaker than an invertible monomial matrix: [[1,0],[2,0]] is row-sparse
+      with rank1. Preserve that counterexample, zero rows and the mixing-row sign witnesses. Output layout:
+      plus2;minus2;difference2;row_sparse;det;invertible_monomial;rank'
+    admitted_assumptions:
+    - 'linear representation of sectors: assumption'
+    - 'unit phase rotations: assumption'
+  slot_m2_layer1_forward_morphisms:
+    mining_status: FILLED
+    operations:
+    - catalog_id: sparse_row_readouts
+      inputs:
+      - RationalTwoByTwoMatrix
+      output: PlusAndMinusRowIntensities
+      semantic_predicate: Apply each row to(1,1) and(1,-1).
+    - catalog_id: sparse_phase_compare
+      inputs:
+      - PlusAndMinusRowIntensities
+      output: RowInterferenceProducts
+      semantic_predicate: Subtract squared outputs to get4ab per row.
+    - catalog_id: sparse_sparse_rank_screen
+      inputs:
+      - RowInterferenceProducts
+      output: SparsityDeterminantMonomialAndRank
+      semantic_predicate: Check row/column supports and rank separately.
+    composition_plan:
+    - outer_operation: sparse_phase_compare
+      input_slot: 0
+      inner_operation: sparse_row_readouts
+      colour_match: PlusAndMinusRowIntensities -> PlusAndMinusRowIntensities
+      hypothesis_match: Same declared coordinates, coefficients and context; all operation hypotheses
+        must be carried into the graft.
+      licensing_relations:
+      - sparse_relation_0
+      evidence_status: Semantic substitution supported by the retained finite operation traces and separately
+        scoped named kernel statements. A complete refined-carrier operad is not asserted.
+    - outer_operation: sparse_sparse_rank_screen
+      input_slot: 0
+      inner_operation: sparse_phase_compare
+      colour_match: RowInterferenceProducts -> RowInterferenceProducts
+      hypothesis_match: Same declared coordinates, coefficients and context; all operation hypotheses
+        must be carried into the graft.
+      licensing_relations:
+      - sparse_relation_0
+      evidence_status: Semantic substitution supported by the retained finite operation traces and separately
+        scoped named kernel statements. A complete refined-carrier operad is not asserted.
+    tree:
+    - A nonzero row product changes sign-pair intensity; row-sparse can still be singular.
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: FILLED
+    algebraic_relations:
+    - id: sparse_relation_0
+      equation_or_predicate: A nonzero row product changes sign-pair intensity; row-sparse can still be
+        singular.
+      typing_conditions: Literal declared operation domains; Prove the full representation refinement
+        and add injectivity/column conditions before claiming monomial invertibility. No scalar label
+        licenses the stronger claim.
+      evidence_status: P1 candidate; independent native and named kernel gates remain required.
+      scope: Exact phase-sign readouts, row sparsity, determinant, monomial and rank distinctions; universal
+        row interference and a singular sparse control in Lean.
+      source_pins:
+      - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_qm020_thm3_row_sparsity_proved_lean.yaml
+        sha256: 4534cb38b9474ff151f3f87776fdfe5b56948f8c7e1ce63d0877e22e38f415fe
+      - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/inputs/this_repository/dag/operads/l1_qm020_thm3_row_sparsity.yaml
+        sha256: 41cd2fddcd59455b88dc851ccdbda9514a1822ed7e3776b99a2b3fa80747e419
+      - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/inputs/this_repository/lean4/BornRedundancy.lean
+        sha256: 8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b
+      - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+        sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+      - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/phase_blind_quotient.rs
+        sha256: ff2874e2584f1df73fcee4976cabb826aace1b22ae81dea8d4ab2319a7de244b
+      - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0300_descent_compatible_maps_stay_row_sparse.md
+        sha256: 1711cef9f69d5cafbf72d2e3c1a12bb8ce47f6773b96bab5491aec0055e0ca38
+      - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/code/python/src/qm/born_boundary_exact.py
+        sha256: 04326ded1c1e17e88659e60498e5b7d92afab1bb8f0c5c91a7268013ca2f0738
+      - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/code/python/tests/test_born_boundary_exact.py
+        sha256: fe382974658a106563ce5870da4a7d87477a0893b1669d0b123b3bc372b493ba
+      - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/code/rust/src/finite_probability/born_boundary_exact.rs
+        sha256: 80427803fced2970578ba5e9b223e2d51b2e494e5900e430db17a6eae8a666ce
+      - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/born_boundary_exact_replay.rs
+        sha256: 37575b2bc4ba8fa23d397f66da9eaa0e290e21a79a051103401878cc356f1a33
+      - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/born_boundary_checker.py
+        sha256: 7bc9e8b52f40f78cb85f78edfc31b55ceff79f649b6a499090e64df460fac182
+      - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+        sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+      - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/prepare.py
+        sha256: e07ac6946888be24689ae63a52370d4d1588d3d048dd0ba1b30298c869ca7bdd
+      - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/witness_cases.json
+        sha256: 5fa9d9d9532cab06d68e8e01257c436bd2ba10746576a5854110e850af92ae98
+      - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/specs.py
+        sha256: 3dd63e06b01e17c6357223845a487490ab707ae27f137cbd0fbb83d2c0e8dcfd
+      - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/custody.py
+        sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+      - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+        sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+      - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/check_candidate.py
+        sha256: dd4317c3de9180ae1eb09b80908561f8b57f459b2d71fed5505c4cef49ef054a
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/format_certificate.py
+        sha256: 5aef9d505ce1abc6ddff11bbe9841062044a646dc88bc3f5f3b6d7b258902805
+    rejection_predicates:
+    - Independent domain equations and actual matrix/graph/quotient arrays recompute every output.
+    - Exact public input, canonical rational primitive types, complete source pins and exact sealed request
+      bytes.
+    - Full native cross-language output equality and actual named Lean axiom reports; no label-based target
+      promotion.
+    negative_control_plan: Alter every output coordinate, input identity, primitive types, source set
+      and sealed request.
+  slot_m4_tri_language_witness_anchors:
+    mining_status: FILLED
+    certificate_predicates:
+    - Independent domain equations and actual matrix/graph/quotient arrays recompute every output.
+    - Exact public input, canonical rational primitive types, complete source pins and exact sealed request
+      bytes.
+    - Full native cross-language output equality and actual named Lean axiom reports; no label-based target
+      promotion.
+    anchors:
+    - code/python/src/qm/born_boundary_exact.py
+    - code/python/tests/test_born_boundary_exact.py
+    - code/rust/src/finite_probability/born_boundary_exact.rs
+    - code/rust/src/finite_probability/examples/born_boundary_exact_replay.rs
+    - dag/pfp/born_boundary_checker.py
+    - dag/pfp/exact_json.py
+    - dag/pfp/review_exact_json.py
+    - lean4/PromptBornBoundaries.lean
+    - dag/results/batches/20261020T000351Z_prompts_132_151/tools/prepare.py
+    - dag/results/batches/20261020T000351Z_prompts_132_151/tools/witness_cases.json
+    - dag/results/batches/20261020T000351Z_prompts_132_151/tools/specs.py
+    - dag/pfp/custody.py
+    - dag/pfp/filename_custody.json
+    - QuantumMechanics.PromptBornBoundaries.sparse_law
+    - QuantumMechanics.PromptBornBoundaries.sparse_control
+    unpaid_imports:
+    - Prove the full representation refinement and add injectivity/column conditions before claiming monomial
+      invertibility. No scalar label licenses the stronger claim.
+    - Prove the full refined-carrier operad identity, substitution, symmetry and coherence laws; mere
+      colour matches do not instantiate that formal structure.
+    anchor_status: New Lean anchors are candidate declarations until the retained P2 compiler runs; compiled
+      source leads retain their literal scope.
+stage_history:
+- stage: P0_MINE_OPERAD
+  attempt: p0
+  run: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged
+  operad_delta: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operad_delta.yaml
+  host_check: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/host_check.json
+- stage: P1_DERIVE
+  attempt: p1
+  run: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged
+  operad_delta: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p1/operad_delta.yaml
+  host_check: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p1/host_check.json
+- stage: P2_VERIFY
+  attempt: p2
+  run: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged
+  operad_delta: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p2/operad_delta.yaml
+  host_check: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p2/host_check.json
+- stage: P4_CHALLENGE
+  attempt: p4
+  run: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged
+  operad_delta: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p4/operad_delta.yaml
+  host_check: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p4/host_check.json
+- stage: P5_RECORD
+  attempt: p5
+  run: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged
+  operad_delta: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p5/operad_delta.yaml
+  host_check: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p5/host_check.json
+open_obligations: *id001
+excluded_relation_leads: []
+operad_slots_scope:
+  work_unit: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/reviewed_missions.json
+  scope: FILLED means reviewed prerequisites for this selected step; original target and unpaid imports
+    retained.
+latest_run:
+  path: dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged
+  stage: P5_RECORD
+  status: scoped_result_or_obstruction_pending_batch_review
+scope_notes:
+- 'BornRedundancy proves descent compatibility iff each real2x2 row has at most one nonzero entry. This
+  is weaker than an invertible monomial matrix: [[1,0],[2,0]] is row-sparse with rank1. Preserve that
+  counterexample, zero rows and the mixing-row sign witnesses. Output layout: plus2;minus2;difference2;row_sparse;det;invertible_monomial;rank'

@@ -1,0 +1,3 @@
+import PromptBornBoundaries
+#print axioms QuantumMechanics.PromptBornBoundaries.selector_law
+#print axioms QuantumMechanics.PromptBornBoundaries.selector_control

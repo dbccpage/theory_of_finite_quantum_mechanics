@@ -1,0 +1,3 @@
+import PromptBornBoundaries
+#print axioms QuantumMechanics.PromptBornBoundaries.gleason_law
+#print axioms QuantumMechanics.PromptBornBoundaries.gleason_control
