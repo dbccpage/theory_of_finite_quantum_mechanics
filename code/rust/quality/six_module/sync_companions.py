@@ -106,7 +106,7 @@ def main():
                 "formal_specification": assessment["formal_specification"] if assessment else None,
                 "operations": {name: ({k: v for k, v in item.items() if k != "body"}
                                       if isinstance(item, dict) else {"obligation": item})
-                               for name, item in assessment["symbol_map"].items()} if assessment else {},
+                               for name, item in {**assessment["symbol_map"], **assessment.get("generated_operations", {})}.items()} if assessment else {},
                 "invariants": assessment["invariant_argument"] if assessment else [],
                 "failure_paths": assessment["failure_paths"] if assessment else {},
                 "trust_boundary": assessment["trust_boundary"] if assessment else None,

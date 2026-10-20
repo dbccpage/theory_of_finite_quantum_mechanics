@@ -89,7 +89,7 @@ def reviewed(source):
             raise ValueError("Nested crate source coverage mismatch")
         if any(sha(ROOT / item["path"]) != item["sha256"] for item in records):
             raise ValueError("Nested crate source bytes changed")
-    if artifact["path"] in {"code/rust/src/fusion_categories/lib.rs", "code/rust/src/fusion_categories/mod.rs", "code/rust/src/fusion_categories/fusion_ring.rs"}:
+    if artifact["path"] in {"code/rust/src/fusion_categories/lib.rs", "code/rust/src/fusion_categories/mod.rs", "code/rust/src/fusion_categories/fusion_ring.rs", "code/rust/src/fusion_categories/scalar.rs", "code/rust/src/fusion_categories/error.rs"}:
         support = load(assessment["native_support_sources"])
         work = Path(native["baseline"][0]["command"][0]).parent
         expected = {
@@ -146,6 +146,39 @@ def reviewed(source):
     for run in metric["runs"]:
         verify_run(run, successful=True)
     measured = load(assessment["metric_output"])[artifact["path"]]
+    if source.relative_to(ROOT).as_posix() == "code/rust/src/fusion_categories/scalar.rs":
+        macro = load(assessment["macro_review"])
+        template = macro["template"]
+        start = source_text.index("macro_rules! cyclotomic_scalar")
+        end = source_text.index("#[cfg(test)]", start)
+        invocation_start = source_text.index("\ncyclotomic_scalar!", start)
+        if template != source_text[start:invocation_start].strip():
+            raise ValueError("Scalar macro template drift")
+        entries = macro["invocations"]
+        if len(entries) != 8 or len({x["type"] for x in entries}) != 8:
+            raise ValueError("Scalar macro coverage mismatch")
+        calls = []
+        body = template.split("=> {", 1)[1].rsplit("    };", 1)[0].strip()
+        expanded = "// Explicit macro substitution view for calibrated AST metrics only. Not compiled.\n"
+        for item in entries:
+            invocation = f"cyclotomic_scalar!({item['type']}, {item['order']}, {item['root']});"
+            if invocation != item["invocation"]:
+                raise ValueError("Scalar macro argument mismatch")
+            calls.append(invocation)
+            expanded += body.replace("$ty",item["type"]).replace("$order",item["order"]).replace("$root",item["root"]) + "\n"
+        if re.sub(r"\s+", "", "".join(calls)) != re.sub(r"\s+", "", source_text[invocation_start:end]):
+            raise ValueError("Scalar macro invocation drift")
+        view = assessment["macro_view"]
+        if sha(ROOT / view["path"]) != view["sha256"] or (ROOT / view["path"]).read_text(encoding="utf-8") != expanded:
+            raise ValueError("Scalar macro metric view differs from substitution")
+        if metric_manifest.get(view["path"]) != view["sha256"]:
+            raise ValueError("Scalar macro metric view not measured")
+        records = load(assessment["metric_output"])[view["path"]]
+        names = Counter(x["name"] for x in records)
+        if names != Counter({name:8 for name in ("to_rational","root_of_unity_order","primitive_root_of_unity","real_sign")}):
+            raise ValueError("Scalar generated method coverage mismatch")
+        if any(x["ccn"]>10 or x["cognitive_upper_bound"]>15 or x["control_nesting"]>3 or x["opaque_macros"] for x in records):
+            raise ValueError("Scalar generated methods exceed A structure")
     mapped = list(assessment["symbol_map"].values())
     pairs = sorted((item["line"], re.search(r"\bfn\s+(\w+)", item["signature"])[1]) for item in mapped)
     if pairs != sorted((item["line"], item["name"]) for item in measured):

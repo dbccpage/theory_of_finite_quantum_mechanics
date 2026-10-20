@@ -23,7 +23,7 @@ def passed(run):
 
 def main():
     parser=argparse.ArgumentParser()
-    parser.add_argument('--subject',choices=('lib','mod','fusion_ring'),required=True)
+    parser.add_argument('--subject',choices=('lib','mod','fusion_ring','scalar','error'),required=True)
     name=parser.parse_args().subject
     stamp=datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')
     output=ROOT/'evidence/quality/six_module'/(stamp+'-fusion-'+name)
@@ -38,7 +38,9 @@ def main():
     source=ROOT/policy['subject']['path']
     if digest(source)!=policy['subject']['sha256']:raise ValueError('Source/policy drift')
     text=source.read_text(encoding='utf-8')
-    fixture_name = 'fusion_ring_challenges.rs' if name=='fusion_ring' else 'fusion_root_challenges.rs'
+    fixture_name = ('fusion_ring_challenges.rs' if name=='fusion_ring' else
+                    'fusion_'+name+'_challenges.rs' if name in ('scalar','error') else 'fusion_root_challenges.rs')
+    test_filter = {'fusion_ring':'ring_review::','scalar':'scalar_review::','error':'error_review::'}.get(name,'sum_review::')
     fixture=(HERE/fixture_name).read_text(encoding='utf-8')
     candidates=[text];records=[];support=[]
     for item in policy['faults']:
@@ -83,15 +85,15 @@ def main():
                         binary=work/f'tests{index}.exe';shutil.copyfile(item['executable'],binary);binaries[index]=binary
         finally:clear_debug_outputs(build,work)
         if len(binaries)==len(candidates):
-            baseline=[execute([str(binaries[0]),('ring_review::' if name=='fusion_ring' else 'sum_review::'),'--test-threads=1'],work,output/'control.log')]
+            baseline=[execute([str(binaries[0]),test_filter,'--test-threads=1'],work,output/'control.log')]
             if all(passed(x) for x in baseline):
                 for index,record in enumerate(records,1):
-                    result=execute([str(binaries[index]),('ring_review::' if name=='fusion_ring' else 'sum_review::'),'--test-threads=1'],work,output/f'fault-{index}.log',timeout=60)
+                    result=execute([str(binaries[index]),test_filter,'--test-threads=1'],work,output/f'fault-{index}.log',timeout=60)
                     log=(ROOT/result['log']).read_text(encoding='utf-8')
                     record['outcome']=('inconclusive' if result['timed_out'] else 'survived' if passed(result)
                         else 'killed' if result['exit_code']!=0 and 'test result: FAILED' in log else 'inconclusive')
                     record['run']=result;write_json(output/'mutations.json',records)
-            restored=[execute([str(binaries[0]),('ring_review::' if name=='fusion_ring' else 'sum_review::'),'--test-threads=1'],work,output/'restored-control.log')]
+            restored=[execute([str(binaries[0]),test_filter,'--test-threads=1'],work,output/'restored-control.log')]
     finally:
         for binary in binaries.values():binary.unlink(missing_ok=True)
         if build.exists():
@@ -109,7 +111,7 @@ def main():
         'subject':policy['subject'],'runner_sha256':digest(output/Path(__file__).name),
         'policy_sha256':digest(output/('fusion_'+name+'_boundaries.json')),
         'fixture_sha256':digest(output/fixture_name),
-        'scope':'Actual full fusion packages, one source fault each. Pure aggregate boundary replay; full canonical fusion suites are separately bound. No projection/stubs or whole-workspace result.'}
+        'scope':'Actual full fusion packages, one source fault each. Subject-specific independent boundary replay; full canonical fusion suites are separately bound. No projection/stubs or whole-workspace result.'}
     write_json(output/'summary.json',summary)
     print('Receipt:',output,flush=True)
     print(json.dumps({k:v for k,v in summary.items() if isinstance(v,bool) or k=='mutation_accounting'}),flush=True)

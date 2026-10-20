@@ -1,0 +1,62 @@
+{
+  "AuthorityEffect": "None",
+  "template": "macro_rules! cyclotomic_scalar {\n    ($ty:ty, $order:expr, $root:expr) => {\n        impl FusionScalar for $ty {\n            fn to_rational(&self) -> Option<Rational> {\n                constant_term(&self.a)\n            }\n            fn root_of_unity_order() -> u32 {\n                $order\n            }\n            fn primitive_root_of_unity() -> Self {\n                $root\n            }\n            fn real_sign(&self) -> Option<Ordering> {\n                cyclotomic_sign(&CyclotomicNumber::from(self))\n            }\n        }\n    };\n}",
+  "invocations": [
+    {
+      "type": "Cyc5",
+      "order": "10",
+      "root": "{\n    let z = Cyc5::zeta5(3);\n    Cyc5::zero().sub(&z)\n}",
+      "invocation": "cyclotomic_scalar!(Cyc5, 10, {\n    let z = Cyc5::zeta5(3);\n    Cyc5::zero().sub(&z)\n});"
+    },
+    {
+      "type": "Cyc8",
+      "order": "8",
+      "root": "Cyc8::zeta8(1)",
+      "invocation": "cyclotomic_scalar!(Cyc8, 8, Cyc8::zeta8(1));"
+    },
+    {
+      "type": "Cyc12",
+      "order": "12",
+      "root": "Cyc12::zeta12(1)",
+      "invocation": "cyclotomic_scalar!(Cyc12, 12, Cyc12::zeta12(1));"
+    },
+    {
+      "type": "Cyc24",
+      "order": "24",
+      "root": "Cyc24::zeta24(1)",
+      "invocation": "cyclotomic_scalar!(Cyc24, 24, Cyc24::zeta24(1));"
+    },
+    {
+      "type": "Cyc28",
+      "order": "28",
+      "root": "Cyc28::zeta(1)",
+      "invocation": "cyclotomic_scalar!(Cyc28, 28, Cyc28::zeta(1));"
+    },
+    {
+      "type": "Cyc44",
+      "order": "44",
+      "root": "Cyc44::zeta(1)",
+      "invocation": "cyclotomic_scalar!(Cyc44, 44, Cyc44::zeta(1));"
+    },
+    {
+      "type": "Cyc52",
+      "order": "52",
+      "root": "Cyc52::zeta(1)",
+      "invocation": "cyclotomic_scalar!(Cyc52, 52, Cyc52::zeta(1));"
+    },
+    {
+      "type": "Cyc120",
+      "order": "120",
+      "root": "Cyc120::zeta(1)",
+      "invocation": "cyclotomic_scalar!(Cyc120, 120, Cyc120::zeta(1));"
+    }
+  ],
+  "method_names": [
+    "to_rational",
+    "root_of_unity_order",
+    "primitive_root_of_unity",
+    "real_sign"
+  ],
+  "expanded_bodies": 32,
+  "scope": "Deterministic literal substitution view for source metrics; actual macro compilation and all eight adapters are tested separately. The four methods delegate to constant-basis extraction, exact order/root metadata and exact real-sign provider. No compiler-expansion equivalence theorem is claimed."
+}

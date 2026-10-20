@@ -1,0 +1,34 @@
+{
+  "AuthorityEffect": "None",
+  "subject": "code/rust/src/fusion_categories/scalar.rs",
+  "repaired_findings": [
+    {
+      "id": "signed-exponent-overflow-refusal",
+      "prior_source": "previous/code/rust/src/fusion_categories/scalar.rs",
+      "witness": "Cyc12::root_of_unity(1,i64::MIN) returned None although the exact result is one; Cyc12 order-3 at i64::MAX is also valid. The original checked-multiply expression is replayed as the first explicit native fault.",
+      "native_failure": "evidence/quality/six_module/20261020T025854Z-fusion-scalar/fault-1.log",
+      "repair": "Reduce k modulo n before multiplying by w/n; result lies in [0,w), w<=4096."
+    },
+    {
+      "id": "unsupported-const-order-metadata",
+      "witness": "An unsupported usize::MAX odd generic conductor can overflow 2*N even through the metadata method. The actual generic order fault is killed by the invalid-parameter metadata checks.",
+      "repair": "Return zero metadata for N=0 or N beyond the actual provider MAX_CONDUCTOR=1024 before multiplication."
+    }
+  ],
+  "retained_nonpassing_attempts": [
+    {
+      "path": "evidence/quality/six_module/20261020T024934Z-fusion-scalar",
+      "outcome": "Build refused below 3 GiB free. No test ran; no native defect evidence inferred."
+    },
+    {
+      "path": "evidence/quality/six_module/20261020T025732Z-fusion-scalar",
+      "outcome": "Fixture i64 argument mismatched fixed Cyc12 zeta12(i32). No native test ran; all 18 generated faults remained unrun. Corrected fixture-only cast after reducing reference exponent to 0..11."
+    },
+    {
+      "path": "evidence/quality/category_homology/20261020T025414Z-fusion-scalars-proof",
+      "outcome": "Two arithmetic lemmas needed the Int namespace. Elaborator produced sorryAx in dependent reports; attempt retained and receives no proof credit."
+    }
+  ],
+  "storage": "Only owned target snapshots and the owned prepared Lean cache were NTFS-compressed. Compression preserves content; no receipt/dependency bytes were deleted. Every native/metric build still clears owned debug/tmp outputs and removes copied test executables after use.",
+  "limits": "Source review is explicit; native tests and metrics alone never award a grade. Scope remains all six source directories."
+}

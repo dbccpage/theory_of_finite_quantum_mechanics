@@ -18,6 +18,9 @@ def inventory():
         folder = run_audit.RUST / "src" / module
         paths.extend(folder.rglob("*.rs"))
         paths.append(folder / "Cargo.toml")
+    macro_view = HERE / "fusion_scalar_macro_view.rs"
+    if macro_view.exists():
+        paths.append(macro_view)
     return {p.relative_to(run_audit.ROOT).as_posix(): run_audit.digest(p) for p in sorted(paths)}
 
 
