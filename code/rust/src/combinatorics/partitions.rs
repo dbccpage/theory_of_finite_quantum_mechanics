@@ -1,4 +1,3 @@
-
 use crate::enumeration::{factorial, CombinatoricsError};
 use num_bigint::BigUint;
 use num_traits::{One, Zero};
@@ -7,6 +6,9 @@ use std::collections::BTreeMap;
 pub const PROVENANCE: &str = "Origin: code/rust/src/combinatorics/partitions.rs\nClaim: urn:omega:fqm:combinatorics:integer-partition-certificate:v1\nAuthorityEffect: None\nScope Fence: partition counts are the exact recurrence values, not asymptotic Hardy-Ramanujan approximations.\nMutation-Kills: 2 non-equivalent source mutants, executed by cargo test -p tfqm_combinatorics --lib.\n";
 
 pub const MAX_PARTITION_ARGUMENT: usize = 1_000;
+
+/// Conservative bound on the total usize cells retained by eager enumeration.
+pub const MAX_PARTITION_CELLS: usize = 1 << 20;
 
 fn admit(n: usize) -> Result<(), CombinatoricsError> {
     if n > MAX_PARTITION_ARGUMENT {
@@ -25,8 +27,8 @@ pub fn partition_count(n: usize) -> Result<BigUint, CombinatoricsError> {
     ways[0] = BigUint::one();
     for part in 1..=n {
         for total in part..=n {
-            let previous = ways[total - part].clone();
-            ways[total] += previous;
+            let (before, current) = ways.split_at_mut(total);
+            current[0] += &before[total - part];
         }
     }
     Ok(ways.swap_remove(n))
@@ -41,22 +43,48 @@ pub fn partitions(n: usize, limit: usize) -> Result<Vec<Vec<usize>>, Combinatori
             limit,
         });
     }
-    let mut out = Vec::new();
-    let mut current = Vec::new();
-    fill(n, n, &mut current, &mut out);
-    Ok(out)
+    let cells = count * BigUint::from(n);
+    if cells > BigUint::from(MAX_PARTITION_CELLS) {
+        return Err(CombinatoricsError::BudgetExceeded {
+            what: "partition cell upper bound",
+            requested: cells,
+            limit: MAX_PARTITION_CELLS,
+        });
+    }
+    Ok(collect_partitions(n))
 }
 
-fn fill(remaining: usize, largest: usize, current: &mut Vec<usize>, out: &mut Vec<Vec<usize>>) {
-    if remaining == 0 {
-        out.push(current.clone());
-        return;
-    }
-    for part in (1..=remaining.min(largest)).rev() {
+struct Frame {
+    remaining: usize,
+    next_part: usize,
+}
+
+fn collect_partitions(n: usize) -> Vec<Vec<usize>> {
+    let mut out = Vec::new();
+    let mut current = Vec::new();
+    let mut frames = vec![Frame {
+        remaining: n,
+        next_part: n,
+    }];
+    while let Some(frame) = frames.last_mut() {
+        if frame.remaining == 0 || frame.next_part == 0 {
+            if frame.remaining == 0 {
+                out.push(current.clone());
+            }
+            frames.pop();
+            current.pop();
+            continue;
+        }
+        let part = frame.next_part;
+        frame.next_part -= 1;
+        let remaining = frame.remaining - part;
         current.push(part);
-        fill(remaining - part, part, current, out);
-        current.pop();
+        frames.push(Frame {
+            remaining,
+            next_part: remaining.min(part),
+        });
     }
+    out
 }
 
 pub fn conjugacy_class_size(parts: &[usize]) -> Result<BigUint, CombinatoricsError> {
@@ -75,21 +103,30 @@ pub fn conjugacy_class_size(parts: &[usize]) -> Result<BigUint, CombinatoricsErr
             argument: u64::MAX,
             max: u64::MAX - 1,
         })?;
+    // Admit the total degree before powers or multiplicity-map allocation.
+    let numerator = factorial(n)?;
     let mut multiplicity: BTreeMap<usize, usize> = BTreeMap::new();
     for &p in parts {
         let count = multiplicity.entry(p).or_default();
-        *count = count.checked_add(1).ok_or(CombinatoricsError::ArgumentTooLarge {
-            what: "cycle multiplicity",
-            argument: u64::MAX,
-            max: u64::MAX - 1,
-        })?;
+        *count = count
+            .checked_add(1)
+            .ok_or(CombinatoricsError::ArgumentTooLarge {
+                what: "cycle multiplicity",
+                argument: u64::MAX,
+                max: u64::MAX - 1,
+            })?;
     }
     let mut centralizer = BigUint::one();
     for (&length, &count) in &multiplicity {
-        centralizer *= BigUint::from(length).pow(u32::try_from(count).unwrap_or(u32::MAX));
+        let exponent = u32::try_from(count).map_err(|_| CombinatoricsError::ArgumentTooLarge {
+            what: "cycle exponent",
+            argument: u64::try_from(count).unwrap_or(u64::MAX),
+            max: u64::from(u32::MAX),
+        })?;
+        centralizer *= BigUint::from(length).pow(exponent);
         centralizer *= factorial(count)?;
     }
-    Ok(factorial(n)? / centralizer)
+    Ok(numerator / centralizer)
 }
 
 #[cfg(test)]
@@ -101,7 +138,13 @@ mod tests {
         assert_eq!(partitions(0, 1).unwrap(), vec![Vec::<usize>::new()]);
         assert_eq!(
             partitions(4, 5).unwrap(),
-            vec![vec![4], vec![3, 1], vec![2, 2], vec![2, 1, 1], vec![1, 1, 1, 1]]
+            vec![
+                vec![4],
+                vec![3, 1],
+                vec![2, 2],
+                vec![2, 1, 1],
+                vec![1, 1, 1, 1]
+            ]
         );
     }
 

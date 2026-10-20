@@ -1,0 +1,44 @@
+
+running 9 tests
+test partitions_subject_11::tests::unit_partition_count_four ... ok
+test partitions_subject_11::tests::zero_cycle_length_is_refused ... ok
+test partitions_subject_11::tests::integration_conjugacy_uses_factorial ... ok
+test partitions_subject_11::tests::e2e_listed_partitions_match_the_count ... ok
+test partitions_subject_11::tests::negative_partition_budget_records_limit ... ok
+test partitions_subject_11::tests::small_partitions_are_listed_in_the_declared_order ... FAILED
+test partitions_subject_11::independent_partition_checks::resource_refusal_order_and_bounded_stack_preserve_semantics ... FAILED
+test partitions_subject_11::independent_partition_checks::symmetric_group_cycle_histograms_give_exact_class_sizes ... ok
+test partitions_subject_11::independent_partition_checks::counts_match_independent_identity_and_lists_match_cut_masks ... FAILED
+
+failures:
+
+---- partitions_subject_11::tests::small_partitions_are_listed_in_the_declared_order stdout ----
+
+thread 'partitions_subject_11::tests::small_partitions_are_listed_in_the_declared_order' (33556) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\six-module\20261020T002441Z\src\combinatorics\q\n11.rs:139:9:
+assertion `left == right` failed
+  left: [[4], [3, 1], [2, 2], [1, 1], [1, 1, 1, 1]]
+ right: [[4], [3, 1], [2, 2], [2, 1, 1], [1, 1, 1, 1]]
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- partitions_subject_11::independent_partition_checks::resource_refusal_order_and_bounded_stack_preserve_semantics stdout ----
+
+thread 'partitions_subject_11::independent_partition_checks::resource_refusal_order_and_bounded_stack_preserve_semantics' (31032) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\six-module\20261020T002441Z\src\combinatorics\q\n11.rs:298:9:
+assertion failed: rows.iter().all(|r|
+        r.iter().sum::<usize>() == 38 && r.iter().all(|&x| x > 0) &&
+            r.windows(2).all(|p| p[0] >= p[1]))
+
+---- partitions_subject_11::independent_partition_checks::counts_match_independent_identity_and_lists_match_cut_masks stdout ----
+
+thread 'partitions_subject_11::independent_partition_checks::counts_match_independent_identity_and_lists_match_cut_masks' (17304) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\six-module\20261020T002441Z\src\combinatorics\q\n11.rs:263:13:
+assertion `left == right` failed
+  left: [[4], [3, 1], [2, 2], [1, 1], [1, 1, 1, 1]]
+ right: [[4], [3, 1], [2, 2], [2, 1, 1], [1, 1, 1, 1]]
+
+
+failures:
+    partitions_subject_11::independent_partition_checks::counts_match_independent_identity_and_lists_match_cut_masks
+    partitions_subject_11::independent_partition_checks::resource_refusal_order_and_bounded_stack_preserve_semantics
+    partitions_subject_11::tests::small_partitions_are_listed_in_the_declared_order
+
+test result: FAILED. 6 passed; 3 failed; 0 ignored; 0 measured; 233 filtered out; finished in 19.10s
+

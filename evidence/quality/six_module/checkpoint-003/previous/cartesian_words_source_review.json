@@ -1,0 +1,94 @@
+{
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/combinatorics/cartesian_words.rs",
+    "sha256": "b49ba3a662945a1a52006311d08de1c627d00170953340887ec01c10e9445331",
+    "language": "Rust"
+  },
+  "symbol_map": {
+    "CartesianWords::new": {
+      "line": 17,
+      "signature": "pub fn new(\n        base: usize,\n        width: usize,\n        max_words: usize,\n        max_width: usize,\n    ) -> Result<Self, CombinatoricsError>",
+      "body": "{\n        let admitted_width = max_width.min(MAX_CARTESIAN_WIDTH);\n        if width > admitted_width {\n            return Err(CombinatoricsError::BudgetExceeded {\n                what: \"Cartesian word width\",\n                requested: width.into(),\n                limit: admitted_width,\n            });\n        }\n        let width_u32 = u32::try_from(width).map_err(|_| CombinatoricsError::ArgumentTooLarge {\n            what: \"Cartesian word width\",\n            argument: u64::try_from(width).unwrap_or(u64::MAX),\n            max: u64::from(u32::MAX),\n        })?;\n        let count = BigUint::from(base).pow(width_u32);\n        if count > BigUint::from(max_words) {\n            return Err(CombinatoricsError::BudgetExceeded {\n                what: \"Cartesian words\",\n                requested: count,\n                limit: max_words,\n            });\n        }\n        let cardinality = count.to_usize().ok_or(CombinatoricsError::ArgumentTooLarge {\n            what: \"Cartesian cardinality\",\n            argument: u64::MAX,\n            max: u64::try_from(usize::MAX).unwrap_or(u64::MAX),\n        })?;\n        Ok(Self {\n            base,\n            current: if cardinality == 0 {\n                None\n            } else {\n                Some(vec![0; width])\n            },\n            cardinality,\n        })\n    }",
+      "obligation": "Admit width <= min(caller max_width,4096) before exponentiation or word allocation. Compute exact base^width as BigUint, reject cardinality above max_words, then convert the admitted count to usize. Private state is None exactly for zero count and otherwise the all-zero word. Empty width has one empty word, even for base zero. Typed diagnostic priority and exact requested cardinalities are preserved."
+    },
+    "cardinality": {
+      "line": 60,
+      "signature": "pub fn cardinality(&self) -> usize",
+      "body": "{\n        self.cardinality\n    }",
+      "obligation": "Return the full initially admitted base^width throughout iteration and cloning; this is not the remaining length and no ExactSizeIterator promise is added."
+    },
+    "Iterator::next": {
+      "line": 68,
+      "signature": "fn next(&mut self) -> Option<Self::Item>",
+      "body": "{\n        let out = self.current.take()?;\n        self.current = advance(&out, self.base);\n        Some(out)\n    }",
+      "obligation": "Take the private current owned vector or remain exhausted. Borrow it to construct the successor, then return it by ownership. This removes the former extra output clone while preserving values, order, independent output buffers and cloned-iterator independence."
+    },
+    "advance": {
+      "line": 75,
+      "signature": "fn advance(word: &[usize], base: usize) -> Option<Vec<usize>>",
+      "body": "{\n    let mut next = word.to_vec();\n    for slot in next.iter_mut().rev() {\n        let stepped = slot.checked_add(1)?;\n        if stepped < base {\n            *slot = stepped;\n            return Some(next);\n        }\n        *slot = 0;\n    }\n    None\n}",
+      "obligation": "For a valid current word, clone one future-state buffer and traverse digits right to left. Use checked addition, return on the first increment below base, and otherwise reset carried digits to zero. A complete carry, including the empty word, returns None. The source constructor guarantees every observed current digit is admitted; the checked-add fallback remains defensive."
+    }
+  },
+  "invariant_argument": [
+    "All iterator fields are private. Only new constructs ordinary instances and it first bounds width by both caller and hard limits. It then computes exact BigUint power and refuses a count greater than the caller max_words before allocating the owned digit vector. Since max_words is usize, accepted count necessarily fits usize; the conversion fallback is unreachable after this comparison. Width<=4096 also makes u32 conversion failure unreachable. Clone preserves admitted state and deep-copies the current Vec. No unchecked constructor, mutation accessor, Deserialize or Default bypass exists.",
+    "An admitted nonempty current word has fixed admitted width and every digit below base. For a zero alphabet, positive width has count zero and no current vector; width zero has count one and the empty vector. The all-zero initialization has rank zero. For valid positive-width words, each digit is at most base-1, so digit+1<=base<=usize::MAX and checked_add succeeds without wrap. Thus the internal fallback cannot silently truncate an admitted enumeration.",
+    "Reverse the Rust most-significant-first word to obtain the least-significant-first model. Its positional value is d0 + base*(d1 + ...), below base^width. The full carry model proves successor length, validity and value=old+1. Exhaustion occurs exactly when old+1=base^width. Valid fixed-width words have injective values via modulus and quotient. Starting at the zero vector, the source therefore emits every integer rank from 0 through count-1 once, without gaps or duplicate words, and then remains exhausted. Fixed-width positional rank agrees with the Rust lexicographic order. The model proofs cover all admitted abstract digit lists; reverse-Vec traversal and constructor/BigUint correspondence receive this separate source argument.",
+    "The updated next moves the current Vec out with take, borrows it for advance and returns it unchanged. Before the change, next first cloned current and advance cloned that output again, then replaced the original current. After the change, only the future-state clone is needed. Outputs, successor state, initial cardinality, exhaustion and clone behavior are unchanged on all admitted inputs. A caller mutating an emitted Vec or advancing a cloned iterator cannot mutate the other private vector.",
+    "On the tested 64-bit target, width admission bounds owned digit buffers to 4096 usize cells each; a next call holds the moved output and one future-state clone, with constant call-stack depth and O(width) traversal/copy work. Exact power computation has at most 4096*64 significant result bits for a usize base, but standard BigUint implementation costs and allocation availability remain TCB. Row budget bounds the total number of emitted words; callers control how many owned outputs they retain. No global process-memory, allocation-success or constant-time promise is made.",
+    "All four production bodies meet calibrated maxima CCN 6, cognitive 4 and nesting 2. Concrete Vec allocation, Option take/map, derived Clone/Debug, checked integer addition and BigUint power/conversion are explicitly reviewed; source metrics do not expand standard-library implementations or prove Rust/MIR. Raw error values are diagnostics and do not attest mathematical authority."
+  ],
+  "consumer_review": [
+    "The actual combinatorics color_constraints caller admits Cartesian words and consumes them lazily. Its source and actual local enumeration provider are pinned, along with lib/mod and Cargo manifests. The full 44-test crate passes on the new implementation; both the Cartesian-specific and refreshed enumeration campaigns include that canonical package baseline.",
+    "WDP genesis_primitive_execution imports omega_combinatorics and the pinned WDP manifest resolves it to external the_symbol_game. Root Cargo distinguishes that external provider from local tfqm_combinatorics. Only interface inspection is claimed for external use; no external build or cross-repository authority is inferred.",
+    "The independent oracle decodes integer ranks using division and remainder, rather than implementing production carry. It checks all 26,220 emitted words across 42 base/width cases, exact row-limit refusals, width-priority/caller/hard bounds, empty alphabet/empty width, sparse maximum scalar bases, initial cardinality after iteration, repeated exhaustion and independent output/iterator ownership. Fourteen designated valid non-equivalent faults are detected."
+  ],
+  "assurance_limits": [
+    "AuthorityEffect: None. The formal positional list model uses reversed digit order relative to Rust vectors; no extracted Rust/MIR or machine-checked allocator theorem.",
+    "Proofs cover exact successor, positional injectivity/range, exhaustion and arithmetic boundaries. Source review connects BigUint power, constructor admission, reverse traversal and ownership.",
+    "Only the actual local combinatorics crate and one-fault copies are compiled. External omega and whole-workspace results are outside the claim.",
+    "The static PROVENANCE mutation-count annotation is historical text; the current source-pinned recipe and six-outcome native ledger establish actual sensitivity."
+  ],
+  "proof_correspondence": {
+    "value_bound": "Every admitted fixed-width digit word has rank below base^width.",
+    "advance_success": "Reverse traversal matches recursive least-significant carry; successful carry preserves width/range and increments rank by exactly one.",
+    "exhausted_value": "Complete carry is the maximal positional rank, including the empty word.",
+    "exhausted_iff": "Every nonterminal rank has a successor, so finite traversal cannot stop early.",
+    "digit_remainder": "Low digit is determined by rank modulo base.",
+    "tail_quotient": "Higher digits are determined by rank divided by base.",
+    "value_injective": "Equal fixed-width admitted ranks represent the same word, so successor traversal is exhaustive and duplicate-free.",
+    "nullary_count": "Every alphabet, including empty, has one width-zero word.",
+    "empty_alphabet": "Positive width over base zero has no words.",
+    "width_admitted": "The caller cap and hard cap are both enforced by the minimum.",
+    "increment_fits": "An admitted digit is below base and base fits usize, so checked increment cannot wrap."
+  },
+  "metrics": {
+    "receipt": {
+      "path": "evidence/quality/category_homology/20261020T000457Z-metrics/receipt.json",
+      "sha256": "60e63eb1d89f29fb7d964636abeb8ee6bada45d0fddfc917c532fc937c5a232c"
+    },
+    "functions": 4,
+    "max_ccn": 6,
+    "max_cognitive": 4,
+    "max_nesting": 2
+  },
+  "evidence": [
+    {
+      "path": "evidence/quality/six_module/20261020T000557Z-cartesian_words/summary.json",
+      "sha256": "7240b8d43fabce4729be7b3dfa409368904b1a61c1122ca32ede6d610dd7444d"
+    },
+    {
+      "path": "evidence/quality/six_module/20261020T000557Z-cartesian_words/mutations.json",
+      "sha256": "a81e693266e0b0ca94ea55b46cde2eaacb3ce39d2a457a4cac7b3b3c168479c5"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261020T000703Z-cartesian-words-proof/receipt.json",
+      "sha256": "83bc85e374556fc061eb7a11e052aa513bc1d792b810ac670042e3ed5fd2dcd3"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261020T000457Z-metrics/receipt.json",
+      "sha256": "60e63eb1d89f29fb7d964636abeb8ee6bada45d0fddfc917c532fc937c5a232c"
+    }
+  ]
+}

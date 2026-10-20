@@ -1,0 +1,338 @@
+[
+  {
+    "candidate": "code\\rust\\target\\six-module\\20261020T003632Z\\src\\combinatorics\\q\\n1.rs",
+    "id": "width-boundary",
+    "needle": "if width > admitted_width {",
+    "outcome": "killed",
+    "replacement": "if width >= admitted_width {",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T003632Z\\tests.exe",
+        "cartesian_words_subject_1::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T003632Z",
+      "elapsed_seconds": 0.0,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\six_module\\20261020T003632Z-cartesian_words\\fault-1.log",
+      "log_sha256": "25da7f0bda3926f2ac5ea19d4ec2dfae5ff95fd0fe73afa1b17778579e1b16e0",
+      "timed_out": false
+    },
+    "sha256": "9401d2aab3d67b08b8b368b7fb90955ed550d317662f11b2b692d5bbc76dbebd"
+  },
+  {
+    "candidate": "code\\rust\\target\\six-module\\20261020T003632Z\\src\\combinatorics\\q\\n2.rs",
+    "id": "global-width-cap",
+    "needle": "max_width.min(MAX_CARTESIAN_WIDTH)",
+    "outcome": "killed",
+    "replacement": "max_width.max(MAX_CARTESIAN_WIDTH)",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T003632Z\\tests.exe",
+        "cartesian_words_subject_2::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T003632Z",
+      "elapsed_seconds": 0.078,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\six_module\\20261020T003632Z-cartesian_words\\fault-2.log",
+      "log_sha256": "1cf06d3502d5c349ad0a3cd63f7769e80e760de0af25f3981ef123c3f8d90436",
+      "timed_out": false
+    },
+    "sha256": "806c51d82441a514087ded7b440df6a063089ab7553bfce25d69accf4d5b0c0a"
+  },
+  {
+    "candidate": "code\\rust\\target\\six-module\\20261020T003632Z\\src\\combinatorics\\q\\n3.rs",
+    "id": "row-boundary",
+    "needle": "if count > BigUint::from(max_words) {",
+    "outcome": "killed",
+    "replacement": "if count >= BigUint::from(max_words) {",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T003632Z\\tests.exe",
+        "cartesian_words_subject_3::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T003632Z",
+      "elapsed_seconds": 0.016,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\six_module\\20261020T003632Z-cartesian_words\\fault-3.log",
+      "log_sha256": "2845dab588bd55f6c2eb45902482f606749e4d998ad59ceb396de31b0024f176",
+      "timed_out": false
+    },
+    "sha256": "f3d8a5d63b771fe1b86c62ac3721019921fcad70fe486fbe9c2b5a3162236fa4"
+  },
+  {
+    "candidate": "code\\rust\\target\\six-module\\20261020T003632Z\\src\\combinatorics\\q\\n4.rs",
+    "id": "row-refusal",
+    "needle": "if count > BigUint::from(max_words) {",
+    "outcome": "killed",
+    "replacement": "if false && count > BigUint::from(max_words) {",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T003632Z\\tests.exe",
+        "cartesian_words_subject_4::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T003632Z",
+      "elapsed_seconds": 0.031,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\six_module\\20261020T003632Z-cartesian_words\\fault-4.log",
+      "log_sha256": "e2971ced2237039c40143a7ebeb72f332d7b192d2155a76ad3858e8cb0ae7807",
+      "timed_out": false
+    },
+    "sha256": "49991764ddf644d57e9aa7c8a8bb5583360e63d4eaf3fa7a4467192795492adc"
+  },
+  {
+    "candidate": "code\\rust\\target\\six-module\\20261020T003632Z\\src\\combinatorics\\q\\n5.rs",
+    "id": "power-exponent",
+    "needle": ".pow(width_u32)",
+    "outcome": "killed",
+    "replacement": ".pow(width_u32.saturating_sub(1))",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T003632Z\\tests.exe",
+        "cartesian_words_subject_5::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T003632Z",
+      "elapsed_seconds": 0.0,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\six_module\\20261020T003632Z-cartesian_words\\fault-5.log",
+      "log_sha256": "7fa1cad765fa77b7eb8a9abea1b81599e3a44441a0a88d626daee8e82763abef",
+      "timed_out": false
+    },
+    "sha256": "d437e5611785b9d80f4aa4eb810d62cfb40a04d77a58c997ffab5c263195de18"
+  },
+  {
+    "candidate": "code\\rust\\target\\six-module\\20261020T003632Z\\src\\combinatorics\\q\\n6.rs",
+    "id": "zero-family",
+    "needle": "current: if cardinality == 0 {",
+    "outcome": "killed",
+    "replacement": "current: if cardinality != 0 {",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T003632Z\\tests.exe",
+        "cartesian_words_subject_6::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T003632Z",
+      "elapsed_seconds": 0.0,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\six_module\\20261020T003632Z-cartesian_words\\fault-6.log",
+      "log_sha256": "8d5c77dbdfd4b1cf7bb039217cbe42d26e9b517191761f67e60c20f11c2722d3",
+      "timed_out": false
+    },
+    "sha256": "7839f62b1c57736c6a13f0ec2f860d14f1eb7e5a987df325547a4a97b9718974"
+  },
+  {
+    "candidate": "code\\rust\\target\\six-module\\20261020T003632Z\\src\\combinatorics\\q\\n7.rs",
+    "id": "initial-digits",
+    "needle": "Some(vec![0; width])",
+    "outcome": "killed",
+    "replacement": "Some(vec![1; width])",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T003632Z\\tests.exe",
+        "cartesian_words_subject_7::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T003632Z",
+      "elapsed_seconds": 0.016,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\six_module\\20261020T003632Z-cartesian_words\\fault-7.log",
+      "log_sha256": "8642a423a776dc953647f56dc3c1fa14e242d58a2f15dd8a2deee060675995be",
+      "timed_out": false
+    },
+    "sha256": "9880c83579291c5079ec8153081c1c72cfd116b8ad7d231cc0991fa186d3f550"
+  },
+  {
+    "candidate": "code\\rust\\target\\six-module\\20261020T003632Z\\src\\combinatorics\\q\\n8.rs",
+    "id": "reported-cardinality",
+    "needle": "self.cardinality\n",
+    "outcome": "killed",
+    "replacement": "0\n",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T003632Z\\tests.exe",
+        "cartesian_words_subject_8::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T003632Z",
+      "elapsed_seconds": 0.016,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\six_module\\20261020T003632Z-cartesian_words\\fault-8.log",
+      "log_sha256": "f81469c3937020ea57003508e7890fbee71e7a36c344ee4dd75f485c54427934",
+      "timed_out": false
+    },
+    "sha256": "bc5be15f15b5076ca43d8605eeec6d9b6e55e806fe7914a2b0acb3b19b5916b2"
+  },
+  {
+    "candidate": "code\\rust\\target\\six-module\\20261020T003632Z\\src\\combinatorics\\q\\n9.rs",
+    "id": "emitted-word",
+    "needle": "Some(out)\n",
+    "outcome": "killed",
+    "replacement": "Some(vec![0; out.len()])\n",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T003632Z\\tests.exe",
+        "cartesian_words_subject_9::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T003632Z",
+      "elapsed_seconds": 0.015,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\six_module\\20261020T003632Z-cartesian_words\\fault-9.log",
+      "log_sha256": "0eb6b8dabe18bf8ab1c184a5cd7800458e3655c7c59d5f27270a2706584eb957",
+      "timed_out": false
+    },
+    "sha256": "22ef97d11ca8124dd0509132ca142914c0418a6ab9112e3d2d98c924aa717783"
+  },
+  {
+    "candidate": "code\\rust\\target\\six-module\\20261020T003632Z\\src\\combinatorics\\q\\n10.rs",
+    "id": "carry-order",
+    "needle": "for slot in next.iter_mut().rev() {",
+    "outcome": "killed",
+    "replacement": "for slot in next.iter_mut() {",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T003632Z\\tests.exe",
+        "cartesian_words_subject_10::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T003632Z",
+      "elapsed_seconds": 0.016,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\six_module\\20261020T003632Z-cartesian_words\\fault-10.log",
+      "log_sha256": "d230c3d853e48eb5f19821c2d95a23d4271b69e4d30af266a993287600ad1c70",
+      "timed_out": false
+    },
+    "sha256": "2b550e14a2af132bd3993378ca0817b4692a01b543b84f8e671f7d36d8761eb2"
+  },
+  {
+    "candidate": "code\\rust\\target\\six-module\\20261020T003632Z\\src\\combinatorics\\q\\n11.rs",
+    "id": "carry-increment",
+    "needle": "slot.checked_add(1)?",
+    "outcome": "killed",
+    "replacement": "slot.checked_add(2)?",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T003632Z\\tests.exe",
+        "cartesian_words_subject_11::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T003632Z",
+      "elapsed_seconds": 0.016,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\six_module\\20261020T003632Z-cartesian_words\\fault-11.log",
+      "log_sha256": "f98b42f600c163063760ab53770fe20ab5933194adde6e18a5301d77b5dfe572",
+      "timed_out": false
+    },
+    "sha256": "41eb5d630372ca8cce6adcb1d5f7bb718acbf1c127340108a959cbd36afe9d9a"
+  },
+  {
+    "candidate": "code\\rust\\target\\six-module\\20261020T003632Z\\src\\combinatorics\\q\\n12.rs",
+    "id": "carry-boundary",
+    "needle": "if stepped < base {",
+    "outcome": "killed",
+    "replacement": "if stepped <= base {",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T003632Z\\tests.exe",
+        "cartesian_words_subject_12::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T003632Z",
+      "elapsed_seconds": 0.015,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\six_module\\20261020T003632Z-cartesian_words\\fault-12.log",
+      "log_sha256": "39767b986c29801a8e34c1e1c86ee38219c6aa73559870ac1eb3b15bd62c3b2c",
+      "timed_out": false
+    },
+    "sha256": "9f949b193dea78ed5356f0ea1db336ab476553b3ffe964a1d9b5cceac9e818f0"
+  },
+  {
+    "candidate": "code\\rust\\target\\six-module\\20261020T003632Z\\src\\combinatorics\\q\\n13.rs",
+    "id": "carry-reset",
+    "needle": "*slot = 0;",
+    "outcome": "killed",
+    "replacement": "*slot = 1;",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T003632Z\\tests.exe",
+        "cartesian_words_subject_13::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T003632Z",
+      "elapsed_seconds": 0.016,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\six_module\\20261020T003632Z-cartesian_words\\fault-13.log",
+      "log_sha256": "8e74e03344654741c42c3954054f60e076e48aadce6a5c58865345e48a0e4850",
+      "timed_out": false
+    },
+    "sha256": "9e55f7a7c5e4b58fe6313c0ffc014d335a8298cf0e06f6621b2fc149d1846d76"
+  },
+  {
+    "candidate": "code\\rust\\target\\six-module\\20261020T003632Z\\src\\combinatorics\\q\\n14.rs",
+    "id": "early-exhaustion",
+    "needle": "return Some(next);",
+    "outcome": "killed",
+    "replacement": "return None;",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T003632Z\\tests.exe",
+        "cartesian_words_subject_14::"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T003632Z",
+      "elapsed_seconds": 0.015,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\six_module\\20261020T003632Z-cartesian_words\\fault-14.log",
+      "log_sha256": "e4a291be4e20adf53b11a52dc348e833988c9ad97d84349a6ded9d18b006cf2d",
+      "timed_out": false
+    },
+    "sha256": "dec0b717d352997f194c08eba6d43dfd62927803bd37b31cfae5b2577a6f0d03"
+  }
+]

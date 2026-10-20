@@ -11,7 +11,11 @@ pub enum ColorConstraintError {
     #[error("edge {index} has an undeclared endpoint")]
     Endpoint { index: usize },
     #[error("forbidden color ({left}, {right}) is outside the palette of size {colors}")]
-    Color { left: usize, right: usize, colors: usize },
+    Color {
+        left: usize,
+        right: usize,
+        colors: usize,
+    },
     #[error(transparent)]
     Enumeration(#[from] CombinatoricsError),
 }
@@ -30,7 +34,11 @@ impl ColorConstraintError {
         match self {
             Self::EmptyPalette { colors } => vec![("colors", colors.to_string())],
             Self::Endpoint { index } => vec![("index", index.to_string())],
-            Self::Color { left, right, colors } => vec![
+            Self::Color {
+                left,
+                right,
+                colors,
+            } => vec![
                 ("left", left.to_string()),
                 ("right", right.to_string()),
                 ("colors", colors.to_string()),
@@ -54,12 +62,23 @@ pub fn minimum_color_violations(
     max_colorings: usize,
     max_edge_checks: usize,
 ) -> Result<MinimumColorViolations, ColorConstraintError> {
-    let words = admit_instance(vertices, edges, colors, forbidden, max_colorings, max_edge_checks)?;
+    let words = admit_instance(
+        vertices,
+        edges,
+        colors,
+        forbidden,
+        max_colorings,
+        max_edge_checks,
+    )?;
     let mut best: Option<MinimumColorViolations> = None;
+    let mut violations = Vec::new();
     for coloring in words {
-        let violated_edges = violated_edges(&coloring, edges, forbidden)?;
-        best = prefer(best, coloring, violated_edges);
-        if best.as_ref().is_some_and(|item| item.violated_edges.is_empty()) {
+        violated_edges(&coloring, edges, forbidden, &mut violations)?;
+        best = prefer(best, coloring, &mut violations);
+        if best
+            .as_ref()
+            .is_some_and(|item| item.violated_edges.is_empty())
+        {
             break;
         }
     }
@@ -85,7 +104,11 @@ fn admit_instance(
         return Err(ColorConstraintError::Endpoint { index });
     }
     if let Some(&(left, right)) = forbidden.iter().find(|(a, b)| *a >= colors || *b >= colors) {
-        return Err(ColorConstraintError::Color { left, right, colors });
+        return Err(ColorConstraintError::Color {
+            left,
+            right,
+            colors,
+        });
     }
     let words = CartesianWords::new(colors, vertices, max_colorings, 4096)?;
     let checks = BigUint::from(words.cardinality()) * BigUint::from(edges.len());
@@ -104,8 +127,9 @@ fn violated_edges(
     coloring: &[usize],
     edges: &[(usize, usize)],
     forbidden: &BTreeSet<(usize, usize)>,
-) -> Result<Vec<usize>, ColorConstraintError> {
-    let mut violated = Vec::new();
+    violated: &mut Vec<usize>,
+) -> Result<(), ColorConstraintError> {
+    violated.clear();
     for (index, &(u, v)) in edges.iter().enumerate() {
         let left = color_at(coloring, u, index)?;
         let right = color_at(coloring, v, index)?;
@@ -113,10 +137,14 @@ fn violated_edges(
             violated.push(index);
         }
     }
-    Ok(violated)
+    Ok(())
 }
 
-fn color_at(coloring: &[usize], vertex: usize, index: usize) -> Result<usize, ColorConstraintError> {
+fn color_at(
+    coloring: &[usize],
+    vertex: usize,
+    index: usize,
+) -> Result<usize, ColorConstraintError> {
     coloring
         .get(vertex)
         .copied()
@@ -128,21 +156,23 @@ fn pair_forbidden(forbidden: &BTreeSet<(usize, usize)>, left: usize, right: usiz
 }
 
 fn prefer(
-    best: Option<MinimumColorViolations>,
+    mut best: Option<MinimumColorViolations>,
     coloring: Vec<usize>,
-    violated_edges: Vec<usize>,
+    violated_edges: &mut Vec<usize>,
 ) -> Option<MinimumColorViolations> {
     let replace = best
         .as_ref()
         .is_none_or(|item| violated_edges.len() < item.violated_edges.len());
     if replace {
-        Some(MinimumColorViolations {
+        let candidate = MinimumColorViolations {
             coloring,
-            violated_edges,
-        })
-    } else {
-        best
+            violated_edges: std::mem::take(violated_edges),
+        };
+        if let Some(previous) = best.replace(candidate) {
+            *violated_edges = previous.violated_edges;
+        }
     }
+    best
 }
 
 #[cfg(test)]
@@ -185,9 +215,14 @@ mod tests {
 
     #[test]
     fn negative_endpoint_and_color_are_refused() {
-        let endpoint = minimum_color_violations(1, &[(0, 2)], 2, &BTreeSet::new(), 4, 4).unwrap_err();
+        let endpoint =
+            minimum_color_violations(1, &[(0, 2)], 2, &BTreeSet::new(), 4, 4).unwrap_err();
         assert_eq!(endpoint.measured_parameters()[0], ("index", "0".to_owned()));
-        let color = minimum_color_violations(1, &[], 2, &BTreeSet::from([(2, 0)]), 4, 4).unwrap_err();
-        assert_eq!(color.violated_invariant(), "forbidden colors lie in the declared palette");
+        let color =
+            minimum_color_violations(1, &[], 2, &BTreeSet::from([(2, 0)]), 4, 4).unwrap_err();
+        assert_eq!(
+            color.violated_invariant(),
+            "forbidden colors lie in the declared palette"
+        );
     }
 }

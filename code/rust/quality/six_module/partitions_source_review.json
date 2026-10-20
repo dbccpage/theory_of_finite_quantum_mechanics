@@ -1,0 +1,111 @@
+{
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/combinatorics/partitions.rs",
+    "sha256": "e7680fd6947bfe812d444243159fb68d9f5d6c9b5905b04667aa690117b0fd79",
+    "language": "Rust"
+  },
+  "symbol_map": {
+    "admit": {
+      "line": 13,
+      "signature": "fn admit(n: usize) -> Result<(), CombinatoricsError>",
+      "body": "{\n    if n > MAX_PARTITION_ARGUMENT {\n        return Err(CombinatoricsError::ArgumentTooLarge {\n            what: \"partitions\",\n            argument: u64::try_from(n).unwrap_or(u64::MAX),\n            max: MAX_PARTITION_ARGUMENT as u64,\n        });\n    }\n    Ok(())\n}",
+      "obligation": "Accept n<=1000 including the boundary; reject larger arguments before DP vector allocation with exact typed operation/argument/maximum fields."
+    },
+    "partition_count": {
+      "line": 24,
+      "signature": "pub fn partition_count(n: usize) -> Result<BigUint, CombinatoricsError>",
+      "body": "{\n    admit(n)?;\n    let mut ways = vec![BigUint::zero(); n + 1];\n    ways[0] = BigUint::one();\n    for part in 1..=n {\n        for total in part..=n {\n            let (before, current) = ways.split_at_mut(total);\n            current[0] += &before[total - part];\n        }\n    }\n    Ok(ways.swap_remove(n))\n}",
+      "obligation": "After admission initialize the empty partition count to one. For each allowed part ascending, update totals ascending by adding the already-updated same-part predecessor. Disjoint slices borrow the summand without an owned BigUint clone. Return exact p(n), including p(0)=1."
+    },
+    "partitions": {
+      "line": 37,
+      "signature": "pub fn partitions(n: usize, limit: usize) -> Result<Vec<Vec<usize>>, CombinatoricsError>",
+      "body": "{\n    let count = partition_count(n)?;\n    if count > BigUint::from(limit) {\n        return Err(CombinatoricsError::BudgetExceeded {\n            what: \"partitions\",\n            requested: count,\n            limit,\n        });\n    }\n    let cells = count * BigUint::from(n);\n    if cells > BigUint::from(MAX_PARTITION_CELLS) {\n        return Err(CombinatoricsError::BudgetExceeded {\n            what: \"partition cell upper bound\",\n            requested: cells,\n            limit: MAX_PARTITION_CELLS,\n        });\n    }\n    Ok(collect_partitions(n))\n}",
+      "obligation": "Compute the admitted exact count first, reject count above caller row budget, then reject conservative count*n above 1048576 cells. Equality is allowed. Only then construct all positive nonincreasing rows summing to n, in descending lexicographic order. Zero has exactly the empty row. This bound can conservatively refuse a request whose actual shorter rows would fit."
+    },
+    "collect_partitions": {
+      "line": 62,
+      "signature": "fn collect_partitions(n: usize) -> Vec<Vec<usize>>",
+      "body": "{\n    let mut out = Vec::new();\n    let mut current = Vec::new();\n    let mut frames = vec![Frame {\n        remaining: n,\n        next_part: n,\n    }];\n    while let Some(frame) = frames.last_mut() {\n        if frame.remaining == 0 || frame.next_part == 0 {\n            if frame.remaining == 0 {\n                out.push(current.clone());\n            }\n            frames.pop();\n            current.pop();\n            continue;\n        }\n        let part = frame.next_part;\n        frame.next_part -= 1;\n        let remaining = frame.remaining - part;\n        current.push(part);\n        frames.push(Frame {\n            remaining,\n            next_part: remaining.min(part),\n        });\n    }\n    out\n}",
+      "obligation": "Private admitted n only. Explicit frames record remaining sum and next descending part; current is the path prefix. Zero remaining emits an owned row, exhausted frames backtrack, and each positive choice decreases both the parent cursor and child remaining. Preserve original recursive traversal order with a constant machine call stack and at most n+1 frames."
+    },
+    "conjugacy_class_size": {
+      "line": 90,
+      "signature": "pub fn conjugacy_class_size(parts: &[usize]) -> Result<BigUint, CombinatoricsError>",
+      "body": "{\n    if parts.contains(&0) {\n        return Err(CombinatoricsError::ArgumentTooLarge {\n            what: \"cycle length (must be positive)\",\n            argument: 0,\n            max: 0,\n        });\n    }\n    let n = parts\n        .iter()\n        .try_fold(0usize, |acc, &p| acc.checked_add(p))\n        .ok_or(CombinatoricsError::ArgumentTooLarge {\n            what: \"sum of cycle lengths\",\n            argument: u64::MAX,\n            max: u64::MAX - 1,\n        })?;\n    // Admit the total degree before powers or multiplicity-map allocation.\n    let numerator = factorial(n)?;\n    let mut multiplicity: BTreeMap<usize, usize> = BTreeMap::new();\n    for &p in parts {\n        let count = multiplicity.entry(p).or_default();\n        *count = count\n            .checked_add(1)\n            .ok_or(CombinatoricsError::ArgumentTooLarge {\n                what: \"cycle multiplicity\",\n                argument: u64::MAX,\n                max: u64::MAX - 1,\n            })?;\n    }\n    let mut centralizer = BigUint::one();\n    for (&length, &count) in &multiplicity {\n        let exponent = u32::try_from(count).map_err(|_| CombinatoricsError::ArgumentTooLarge {\n            what: \"cycle exponent\",\n            argument: u64::try_from(count).unwrap_or(u64::MAX),\n            max: u64::from(u32::MAX),\n        })?;\n        centralizer *= BigUint::from(length).pow(exponent);\n        centralizer *= factorial(count)?;\n    }\n    Ok(numerator / centralizer)\n}",
+      "obligation": "Reject any zero cycle length first, then checked total-sum overflow. Admit factorial(total)<=the supported argument domain before map/power work. Count exact multiplicities, checked-convert each exponent, and compute n! divided by product length^multiplicity * multiplicity!. Empty and unsorted cycle lists are supported; all accepted positive lists give an integral class size. Oversized totals now refuse before multiplicity work, intentionally changing diagnostic argument priority for some formerly oversized inputs."
+    }
+  },
+  "invariant_argument": [
+    "Admission fixes n<=1000 before n+1 or DP allocation; all totals are in part..=n with part>=1. Thus total-part<total<n+1. split_at_mut(total) creates disjoint before/current slices, current[0] and before[total-part] are valid, and BigUint += borrows a distinct value. No floating point, fixed-width count accumulation, truncation or saturation occurs.",
+    "After completing part k, ways[t] counts multisets of positive parts<=k summing to t. Initially only t=0 has one empty multiset. Multisets using no k are counted by the previous ways[t]; removing one k from those using k gives exactly ways[t-k] already updated for the current k because totals ascend. These disjoint classes prove the recurrence. At k=n every positive partition of n is covered. BigUint carries exact nonnegative counts. The independent generalized-pentagonal recurrence checks every n from 0 through 1000.",
+    "The output guard first requires p(n)<=limit, then p(n)*n<=1048576 in exact BigUint arithmetic. Every output row has at most n scalar entries. Consequently the eager retained scalar cells are bounded by this product, with a separate empty-row case at n=0. This is a conservative upper bound, not the exact sum of row lengths. Workspaces for counting are explicitly allowed before the output guards; no allocation-free refusal promise is made.",
+    "While the frame stack is nonempty, the current positive nonincreasing path has length frames.len()-1, and the top remaining plus its prefix sum equals n. Each frame cursor is at most its remaining and the preceding chosen part. A positive cursor selects a valid part and decreases before descending; the child remaining is strictly smaller. Zero remaining emits exactly the path; a zero cursor after all children backtracks without emission. Parent cursor preservation simulates the previous recursive call order. Paths and choices are unique, all legal choices occur, and output order is descending lexicographic. The finite depth is at most n+1; the explicit stack makes machine call depth constant.",
+    "Conjugacy admission scans for zero before summing, preserving that first error even if another field could overflow. checked_add refuses sum overflow. factorial(n) then admits n<=20000 before any multiplicity map or powers. Positivity implies list length and each multiplicity are at most n, so checked multiplicity increments and u32 exponent conversion are safe. Their typed fallback branches remain defensive and unreachable on admitted input. This new total-first lifecycle intentionally changes some oversized-input diagnostic details; accepted values remain unchanged.",
+    "Each positive cycle multiset of total n determines a symmetric-group conjugacy type: remove 1-cycles to obtain Mathlib cycleType with all members>=2 and sum<=n; the removed count is n minus that sum. Mathlib proves actual realization, conjugacy size and denominator divisibility. Grouping the nontrivial multiset product gives product length^multiplicity, while 1-cycles contribute 1^count=1 and their count! fixed-point factor. Thus the source denominator is positive, divides n!, and BigUint integer division loses no fraction. Input order is irrelevant because exact multiplicities are stored in a BTreeMap.",
+    "All five production bodies meet maxima CCN 9, cognitive 7, nesting 3. Counting performs O(n squared) exact BigUint additions in O(n) values. Counting values are bounded by the positive-composition count 2^(n-1) for n>0, so their bit growth is finite under n<=1000. Enumeration visits at most the output-path prefixes and copies each required owned row, with O(p(n)*n) scalar work/storage upper bound under the conservative cap. Conjugacy scans caller input, then has map size, factorial and exponent work bounded by admitted total 20000. Standard-library and BigUint implementation costs/allocator availability remain TCB; no global heap or constant-time promise.",
+    "Public inputs are borrowed or scalar and no caller data is mutated. Local workspaces drop on typed failure. Output vectors and BigUint values are owned results; raw returned values are not authority or intrinsic proof certificates. Runtime construction/stack correspondence and DP completeness are source arguments corroborated independently, distinct from the abstract Mathlib model."
+  ],
+  "consumer_review": [
+    "Local enumeration tests and crate_certificate call partition_count(4); lib exposes the unchanged public signatures. These providers/callers and manifests are pinned. Refreshed actual package tests and the completed enumeration campaign confirm current composition, including p(4)=5.",
+    "Exact import search finds no local conjugacy_class_size consumer beyond the module tests. No external omega or whole-workspace consumer build is inferred.",
+    "Independent cut-mask compositions sorted and deduplicated give all ordered expected partition lists for n<=14. The Euler generalized-pentagonal identity checks all 1001 admitted count arguments. Independent remove-and-prefix permutation generation computes exact cycle-type histograms for all 46,234 permutations across S0 through S8, including reversed cycle lists. Cell/row/domain priority and admitted upper boundaries receive separate controls."
+  ],
+  "assurance_limits": [
+    "AuthorityEffect: None. Native tests and mathematical model proofs have explicit separate scopes; no extracted Rust/MIR or machine-checked allocator theorem.",
+    "Only the actual standalone combinatorics crate and one-fault copies are compiled. No external omega or whole-workspace success is inferred.",
+    "Static PROVENANCE mutation-count annotations are legacy text; source-pinned recipes and literal six-outcome receipts establish actual challenge sensitivity.",
+    "DP and explicit-stack completeness and the Rust-to-multiset/fixed-point correspondence are separate source arguments; the model directly proves actual Mathlib partition/conjugacy and arithmetic/admission facts.",
+    "The eager cell bound is conservative count*n, not actual row-cell equality. The new total-first conjugacy lifecycle intentionally changes some oversized-input diagnostic details."
+  ],
+  "proof_correspondence": {
+    "admitted_parts": "Positive source rows are the parts of an actual Nat.Partition, not a metadata label.",
+    "admitted_sum": "The partition object carries the exact row sum.",
+    "member_bounded": "Every positive row entry is at most its total.",
+    "dp_previous_index": "Positive part and admitted total prove both disjoint-slice indices are in range.",
+    "dfs_child_smaller": "A selected positive part strictly decreases remaining.",
+    "dfs_preserves_sum": "Pushing a chosen part preserves prefix_sum+remaining=n.",
+    "descending_child": "The new cursor is bounded by remaining and the prior chosen part.",
+    "part_cursor_decreases": "Each parent choice is used once before the cursor decreases.",
+    "admission_exact": "After exact count construction, row and conservative cell bounds characterize eager output acceptance.",
+    "rows_before_cells": "Row-budget failure has priority over cell failure.",
+    "cell_refusal": "A failed exact count*n bound rejects before output construction.",
+    "grouped_denominator": "The multiplicity powers reconstruct the multiset product exactly.",
+    "actual_conjugacy_size": "Mathlib proves the actual conjugacy-class cardinality, including the factorial of fixed points.",
+    "conjugacy_denominator_divides": "The actual group denominator divides n!, so the integer quotient is integral.",
+    "cycle_realization": "Every nontrivial cycle multiset satisfying the admitted size/member predicates is realized by an actual finite permutation."
+  },
+  "metrics": {
+    "receipt": {
+      "path": "evidence/quality/category_homology/20261020T003316Z-metrics/receipt.json",
+      "sha256": "e5f096d307dd06caa35874f5ad5c5da4bdd8e4d936db2e860faed45bdbc33121"
+    },
+    "functions": 5,
+    "max_ccn": 9,
+    "max_cognitive": 7,
+    "max_nesting": 3
+  },
+  "evidence": [
+    {
+      "path": "evidence/quality/six_module/20261020T002441Z-partitions/summary.json",
+      "sha256": "0f569e50b89192892bfa652a4b90e85b63d4a97cb9e023aeb7f0a2f90a3b44ce"
+    },
+    {
+      "path": "evidence/quality/six_module/20261020T002441Z-partitions/mutations.json",
+      "sha256": "7c2e7aedcdeee78719e0934c997821b8f7fdb84bfd97c6b12f1fdda671674ff2"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261020T003103Z-finite-partitions-proof/receipt.json",
+      "sha256": "d090b92fd21fd8ce169d43b117c6569344c17d83f09e78c2934c2b1b9406eccf"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261020T003316Z-metrics/receipt.json",
+      "sha256": "e5f096d307dd06caa35874f5ad5c5da4bdd8e4d936db2e860faed45bdbc33121"
+    },
+    {
+      "path": "evidence/quality/six_module/checkpoint-003/repair-history.json",
+      "sha256": "a8c23befa2b6d424676d79e9b749d755d6ab1493b947a95f1ba4beec0bdfb54f"
+    }
+  ]
+}

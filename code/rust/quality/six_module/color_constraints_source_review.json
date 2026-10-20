@@ -1,0 +1,126 @@
+{
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/combinatorics/color_constraints.rs",
+    "sha256": "33c358ffcbd912bf336a460ead8fb1dd06e6d06d6386dcf443a2c50a2767abe8",
+    "language": "Rust"
+  },
+  "symbol_map": {
+    "ColorConstraintError::violated_invariant": {
+      "line": 24,
+      "signature": "pub fn violated_invariant(&self) -> &'static str",
+      "body": "{\n        match self {\n            Self::EmptyPalette { .. } => \"palette cardinality is positive\",\n            Self::Endpoint { .. } => \"edge endpoints lie in the declared vertex set\",\n            Self::Color { .. } => \"forbidden colors lie in the declared palette\",\n            Self::Enumeration(err) => err.violated_invariant(),\n        }\n    }",
+      "obligation": "Return the exact stable diagnostic label for each error variant; delegate Enumeration labels to the actual admitted enumeration provider. Raw errors do not carry mathematical authority."
+    },
+    "ColorConstraintError::measured_parameters": {
+      "line": 33,
+      "signature": "pub fn measured_parameters(&self) -> Vec<(&'static str, String)>",
+      "body": "{\n        match self {\n            Self::EmptyPalette { colors } => vec![(\"colors\", colors.to_string())],\n            Self::Endpoint { index } => vec![(\"index\", index.to_string())],\n            Self::Color {\n                left,\n                right,\n                colors,\n            } => vec![\n                (\"left\", left.to_string()),\n                (\"right\", right.to_string()),\n                (\"colors\", colors.to_string()),\n            ],\n            Self::Enumeration(err) => err.measured_parameters(),\n        }\n    }",
+      "obligation": "Return each variant's exact ordered parameter names and decimal values, delegating Enumeration parameters unchanged."
+    },
+    "minimum_color_violations": {
+      "line": 57,
+      "signature": "pub fn minimum_color_violations(\n    vertices: usize,\n    edges: &[(usize, usize)],\n    colors: usize,\n    forbidden: &BTreeSet<(usize, usize)>,\n    max_colorings: usize,\n    max_edge_checks: usize,\n) -> Result<MinimumColorViolations, ColorConstraintError>",
+      "body": "{\n    let words = admit_instance(\n        vertices,\n        edges,\n        colors,\n        forbidden,\n        max_colorings,\n        max_edge_checks,\n    )?;\n    let mut best: Option<MinimumColorViolations> = None;\n    let mut violations = Vec::new();\n    for coloring in words {\n        violated_edges(&coloring, edges, forbidden, &mut violations)?;\n        best = prefer(best, coloring, &mut violations);\n        if best\n            .as_ref()\n            .is_some_and(|item| item.violated_edges.is_empty())\n        {\n            break;\n        }\n    }\n    best.ok_or(ColorConstraintError::EmptyPalette { colors })\n}",
+      "obligation": "Admit the complete instance before search. Enumerate all Cartesian assignments in lexicographic order, compute literal violated edge indexes into reusable scratch, and keep strict improvements only. Return the first minimum; zero can terminate early because no negative cost exists. The final EmptyPalette fallback is unreachable after successful positive-palette admission."
+    },
+    "admit_instance": {
+      "line": 88,
+      "signature": "fn admit_instance(\n    vertices: usize,\n    edges: &[(usize, usize)],\n    colors: usize,\n    forbidden: &BTreeSet<(usize, usize)>,\n    max_colorings: usize,\n    max_edge_checks: usize,\n) -> Result<CartesianWords, ColorConstraintError>",
+      "body": "{\n    if colors == 0 {\n        return Err(ColorConstraintError::EmptyPalette { colors });\n    }\n    if let Some((index, _)) = edges\n        .iter()\n        .enumerate()\n        .find(|(_, &(u, v))| u >= vertices || v >= vertices)\n    {\n        return Err(ColorConstraintError::Endpoint { index });\n    }\n    if let Some(&(left, right)) = forbidden.iter().find(|(a, b)| *a >= colors || *b >= colors) {\n        return Err(ColorConstraintError::Color {\n            left,\n            right,\n            colors,\n        });\n    }\n    let words = CartesianWords::new(colors, vertices, max_colorings, 4096)?;\n    let checks = BigUint::from(words.cardinality()) * BigUint::from(edges.len());\n    if checks > BigUint::from(max_edge_checks) {\n        return Err(CombinatoricsError::BudgetExceeded {\n            what: \"coloring edge checks\",\n            requested: checks,\n            limit: max_edge_checks,\n        }\n        .into());\n    }\n    Ok(words)\n}",
+      "obligation": "Reject zero palette, then the first invalid listed edge endpoint, then the first lexicographically invalid forbidden tuple. Admit Cartesian width and row count, then compare exact cardinality*edges.len against the caller check budget. Equality is accepted. This is a conservative full-search pair-check charge even if zero early exit would use less."
+    },
+    "violated_edges": {
+      "line": 126,
+      "signature": "fn violated_edges(\n    coloring: &[usize],\n    edges: &[(usize, usize)],\n    forbidden: &BTreeSet<(usize, usize)>,\n    violated: &mut Vec<usize>,\n) -> Result<(), ColorConstraintError>",
+      "body": "{\n    violated.clear();\n    for (index, &(u, v)) in edges.iter().enumerate() {\n        let left = color_at(coloring, u, index)?;\n        let right = color_at(coloring, v, index)?;\n        if pair_forbidden(forbidden, left, right) {\n            violated.push(index);\n        }\n    }\n    Ok(())\n}",
+      "obligation": "Clear the private scratch length before each candidate. Read each edge endpoint via typed get and append its original index exactly when either orientation is forbidden. Duplicates and self-loops remain literal listed edges. A private malformed call can return a typed endpoint error with a partial scratch prefix; the public search exposes no partial result and its admission prevents that path."
+    },
+    "color_at": {
+      "line": 143,
+      "signature": "fn color_at(\n    coloring: &[usize],\n    vertex: usize,\n    index: usize,\n) -> Result<usize, ColorConstraintError>",
+      "body": "{\n    coloring\n        .get(vertex)\n        .copied()\n        .ok_or(ColorConstraintError::Endpoint { index })\n}",
+      "obligation": "Safely read the declared vertex and return its color, or Endpoint carrying the supplied original edge index. Never index unchecked."
+    },
+    "pair_forbidden": {
+      "line": 154,
+      "signature": "fn pair_forbidden(forbidden: &BTreeSet<(usize, usize)>, left: usize, right: usize) -> bool",
+      "body": "{\n    forbidden.contains(&(left, right)) || forbidden.contains(&(right, left))\n}",
+      "obligation": "Test either literal color-pair orientation, with undirected semantics even if only one orientation was supplied."
+    },
+    "prefer": {
+      "line": 158,
+      "signature": "fn prefer(\n    mut best: Option<MinimumColorViolations>,\n    coloring: Vec<usize>,\n    violated_edges: &mut Vec<usize>,\n) -> Option<MinimumColorViolations>",
+      "body": "{\n    let replace = best\n        .as_ref()\n        .is_none_or(|item| violated_edges.len() < item.violated_edges.len());\n    if replace {\n        let candidate = MinimumColorViolations {\n            coloring,\n            violated_edges: std::mem::take(violated_edges),\n        };\n        if let Some(previous) = best.replace(candidate) {\n            *violated_edges = previous.violated_edges;\n        }\n    }\n    best\n}",
+      "obligation": "If no prior best or strictly fewer violations, move the current coloring and scratch vector into the new best and recycle the old best violation buffer for future scratch. Keep the previous best exactly on equal or worse costs. No output aliases mutable scratch; discarded candidates are dropped."
+    }
+  },
+  "invariant_argument": [
+    "Palette admission is positive even for the empty graph. Endpoint validity is checked in original edge order before forbidden tuples and any Cartesian admission. Forbidden tuples are checked in BTreeSet lexicographic order. CartesianWords then supplies admitted width<=4096 and exact full row count. Worst-case pair checks use BigUint multiplication, so cardinality*edge_count cannot wrap before comparison to usize max_edge_checks. A bounded initial Cartesian buffer can already exist at this last refusal; no promise of zero allocation before all guards is made.",
+    "Every candidate has exactly vertices entries, each below colors, and every edge endpoint is in range. color_at still uses get and typed errors defensively. violated_edges clears scratch and scans original edge indexes in order; an index appears exactly when the symmetric forbidden predicate holds. Duplicate/oriented edges and loops are distinct listed constraints and count independently. No count approximation or deduplication changes the objective.",
+    "CartesianWords covers every admitted coloring once in lexicographic order. After each candidate, best is a processed candidate with cost no greater than any processed cost. The first candidate initializes it, strict improvement replaces it, and equal costs preserve the prior earliest candidate. Induction establishes the global minimum after full traversal. If best cost is zero, all remaining natural costs are at least zero, and continuing cannot replace it, so early termination preserves both optimality and first-tie choice. The Lean fold invariant, actual result membership, global argmin, tie and zero-extension lemmas establish these abstract properties.",
+    "Positive colors imply colors^vertices>0, including vertices=0, hence successful Cartesian admission always yields at least one candidate and the final no-best fallback is unreachable. Empty palette, endpoint, color, width, row budget and pair-check budget errors keep their stated priority. Public arguments are borrowed or scalar; local scratch/best values drop on error and no partial result is returned. Public raw MinimumColorViolations fields can be forged independently and are not intrinsic certificates; only the function result is claimed.",
+    "Scratch and best violation vectors have distinct owned storage. On replacement, mem::take moves scratch into the candidate, Option::replace installs the candidate and returns the previous owned best, whose violation vector becomes scratch. On ties/worse candidates scratch is retained and later cleared; the rejected coloring is dropped. No violation-list clone is needed. The previous best coloring is dropped after moving its old violation buffer. This changes allocation behavior without changing selected values or ties.",
+    "Let N=colors^vertices, V=vertices, E=listed edges and F=forbidden tuples. Admission bounds the worst-case pair evaluations N*E by the caller budget; symmetric lookup uses at most two BTreeSet lookups per pair, with O(log F) comparison cost. Cartesian generation/copy has O(N*V) work. Retained working/output storage is O(V+E) (at most three coloring vectors during replacement and two violation buffers), with V<=4096. The edge budget is a pair-count bound, not a heap/time guarantee. Caller-owned graph/set size and allocator/BigUint/library implementation remain explicit TCB.",
+    "All eight production bodies meet maxima CCN 8, cognitive 6 and nesting 3. thiserror formatting/From, concrete Vec and Option operations, iterator closures and borrowed BTreeSet lookups are reviewed separately from the declared AST metric. No compiler-expanded control flow or Rust/MIR theorem is claimed."
+  ],
+  "consumer_review": [
+    "The local CartesianWords and CombinatoricsError providers, their completed source assessments, crate catalog and manifests are pinned. All 44 actual package tests pass; the unchanged completed Cartesian source also receives a fresh 14-fault package/caller replay after this buffer change.",
+    "WDP wdp_lggr_chromatic imports omega_combinatorics. Its manifest resolves that name to the external the_symbol_game provider, distinct from the local tfqm_combinatorics alias in root Cargo. The adapter source and manifest are pinned for interface review only; no external or WDP build claim.",
+    "A division/remainder positional oracle builds every candidate independently, scans literal forbidden tuples linearly, then sorts complete candidate results by (violation_count,rank). All 6,982 small graph/forbidden-set instances match the exact chosen coloring and edge-index list; extra duplicate/oriented-edge cases and typed priority/budget/max-scalar controls pass. The final fault-safe campaign detects all 18 faults. The first campaign's minimum-direction timeout and successful huge-palette control are retained as auxiliary evidence without relabeling the timeout as a kill."
+  ],
+  "assurance_limits": [
+    "AuthorityEffect: None. Native tests and mathematical model proofs have explicit separate scopes; no extracted Rust/MIR or machine-checked allocator theorem.",
+    "Only the actual standalone combinatorics crate and one-fault copies are compiled. No external omega or whole-workspace success is inferred.",
+    "Static PROVENANCE mutation-count annotations are legacy text; source-pinned recipes and literal six-outcome receipts establish actual challenge sensitivity.",
+    "The argmin model assumes an actual complete candidate list with exact natural costs; Cartesian coverage, literal edge evaluation, typed admission and buffer ownership are connected separately in this review.",
+    "The initial huge-palette minimum-direction mutant timed out. The final sensitivity campaign uses a bounded two-color search for that behavior while preserving maximum-scalar admission checks; the original successful large search is retained as auxiliary control evidence."
+  ],
+  "proof_correspondence": {
+    "undirected_symmetric": "Either forbidden orientation gives the same symmetric constraint.",
+    "new_candidate": "The first candidate initializes the best.",
+    "strict_improvement": "Only a strictly lower cost replaces a prior best.",
+    "tie_keeps_first": "Equal cost preserves the existing candidate.",
+    "update_good": "One step preserves membership and the processed-prefix minimum invariant.",
+    "fold_good": "Induction extends the invariant over the entire candidate list.",
+    "minimum_good": "The actual fold result satisfies the membership/minimum invariant without assuming the answer.",
+    "minimum_none_iff": "The fold is empty exactly when no candidates exist.",
+    "minimum_optimal": "A returned candidate is a genuine globally minimal member.",
+    "zero_stays": "Processing further natural-cost candidates cannot replace a zero-cost best.",
+    "zero_global": "A zero minimum on a prefix is still optimal over any unprocessed suffix.",
+    "positive_word_count": "A positive palette has at least one assignment for every finite width.",
+    "work_bound": "The exact full-search charge remains inside its admitted caller bound."
+  },
+  "metrics": {
+    "receipt": {
+      "path": "evidence/quality/category_homology/20261020T003316Z-metrics/receipt.json",
+      "sha256": "e5f096d307dd06caa35874f5ad5c5da4bdd8e4d936db2e860faed45bdbc33121"
+    },
+    "functions": 8,
+    "max_ccn": 8,
+    "max_cognitive": 6,
+    "max_nesting": 3
+  },
+  "evidence": [
+    {
+      "path": "evidence/quality/six_module/20261020T003421Z-color_constraints/summary.json",
+      "sha256": "b84784fd4659a597afc08748bd86153a49d435d55baabe856d242271d4b63d11"
+    },
+    {
+      "path": "evidence/quality/six_module/20261020T003421Z-color_constraints/mutations.json",
+      "sha256": "81c852b4fccf9ae1ee5edeebc3713afaa87bc85249a4af68c7dddec3d372a8df"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261020T003159Z-minimum-colors-proof/receipt.json",
+      "sha256": "cfec03618a3128df9d1bfbcc21f5d16be601783f6b392013e8a969d3b255dd83"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261020T003316Z-metrics/receipt.json",
+      "sha256": "e5f096d307dd06caa35874f5ad5c5da4bdd8e4d936db2e860faed45bdbc33121"
+    },
+    {
+      "path": "evidence/quality/six_module/checkpoint-003/repair-history.json",
+      "sha256": "a8c23befa2b6d424676d79e9b749d755d6ab1493b947a95f1ba4beec0bdfb54f"
+    }
+  ]
+}
