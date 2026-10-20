@@ -1,0 +1,49 @@
+{
+  "AuthorityEffect": "None",
+  "subject": {
+    "path": "code/rust/src/fusion_categories/lib.rs",
+    "sha256": "2e5ec53704ac51f6e0c51facad9f3ca8322296681b0d9700a1701d97f0cb7f89"
+  },
+  "faults": [
+    {
+      "id": "total-denominator",
+      "needle": "if *total_dim_sq.denom() == 0 {",
+      "replacement": "if false && *total_dim_sq.denom() == 0 {"
+    },
+    {
+      "id": "positive-total",
+      "needle": "if total <= BigRational::zero() {",
+      "replacement": "if total < BigRational::zero() {"
+    },
+    {
+      "id": "negative-total",
+      "needle": "if total <= BigRational::zero() {",
+      "replacement": "if false && total <= BigRational::zero() {"
+    },
+    {
+      "id": "entry-denominator",
+      "needle": "if *value.denom() == 0 {",
+      "replacement": "if false && *value.denom() == 0 {"
+    },
+    {
+      "id": "entry-numerator",
+      "needle": "BigInt::from(*value.numer())",
+      "replacement": "BigInt::from(0)"
+    },
+    {
+      "id": "entry-denominator-lift",
+      "needle": "BigInt::from(*value.denom())",
+      "replacement": "BigInt::from(1)"
+    },
+    {
+      "id": "sum",
+      "needle": "sum += BigRational::new",
+      "replacement": "sum = BigRational::new"
+    },
+    {
+      "id": "comparison",
+      "needle": "    sum == total",
+      "replacement": "    sum != total"
+    }
+  ]
+}

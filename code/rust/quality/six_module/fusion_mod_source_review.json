@@ -1,0 +1,76 @@
+{
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/fusion_categories/mod.rs",
+    "sha256": "ee0714484ee8dde3d8101b737b1d086ec0fac2d59442bbc1a99d1ab1eee33d7b",
+    "language": "Rust"
+  },
+  "symbol_map": {
+    "verify_fusion_global_dimension": {
+      "line": 19,
+      "signature": "pub fn verify_fusion_global_dimension(\n    dims_squared: &[Ratio<i64>],\n    total_dim_sq: Ratio<i64>,\n) -> bool",
+      "body": "{\n    if *total_dim_sq.denom() == 0 {\n        return false;\n    }\n    let total = BigRational::new(\n        BigInt::from(*total_dim_sq.numer()),\n        BigInt::from(*total_dim_sq.denom()),\n    );\n    if total <= BigRational::zero() {\n        return false;\n    }\n    let mut sum = BigRational::zero();\n    for value in dims_squared {\n        if *value.denom() == 0 {\n            return false;\n        }\n        sum += BigRational::new(BigInt::from(*value.numer()), BigInt::from(*value.denom()));\n    }\n    sum == total\n}",
+      "obligation": "Accept iff every used raw denominator is nonzero and the exact rational sum equals the strictly positive exact total; refuse malformed ratios before quotient construction and preserve arbitrary signed cancellation. This does not certify individual physical dimension values."
+    }
+  },
+  "invariant_argument": [
+    "Both helpers implement only a finite rational-aggregate predicate. The Ratio<i64> signature excludes floating point but permits noncanonical raw numerator/denominator records, including zero denominators. Reject the total zero denominator first, lift both signed components separately into BigInt then BigRational, reject a nonpositive exact total, then check every used entry denominator before constructing its rational.",
+    "BigInt exactly embeds the complete signed-i64 domain, including i64::MIN. BigRational normalization handles either sign and reduces the quotient exactly after the nonzero-denominator guard. No intermediate addition, multiplication, negation or absolute value is performed in i64. The dependency versions and actual package/tool contents are bound in the native receipt, not assumed from a floating approximation.",
+    "At each successful prefix, sum equals the mathematical rational sum of all preceding values, starting at zero. One exact lift and one arbitrary-precision += step preserve that invariant. The final equality tests the exact admitted total. Negative entries and large cancellation remain admitted; the helper makes no physical positivity assertion about individual squared dimensions. Empty and zero/nonpositive totals are rejected by the same exact predicate.",
+    "Malformed raw input returns false before its invalid rational construction. No partial sum or mutation of borrowed input escapes, and the consumed scalar total has no external mutation. Standard allocation availability, Rust/compiler and the pinned exact-integer/rational implementations remain TCB; no OS out-of-memory recovery or verified Rust extraction is asserted.",
+    "The independent oracle uses unreduced signed-i128 numerator/denominator cross-products on a deliberately small corpus, independently of BigRational operations. It checks 8000 signed raw-ratio pair/total cases, 40 empty/singleton cases, 4096 triples and distinct malformed-total/entry cases. Separate identities cover i64::MAX cancellation, i64::MIN denominators/numerators and a raw positive value above i64::MAX. Every designated fault has a distinct failing native test; both subjects kill 8/8 faults with zero in the other five outcomes.",
+    "Each file has one production body, measured CCN 5, cognitive 5 and nesting 2. The helper creates no input-list copy and normalizes one exact scalar per input entry, keeping one accumulator. There are O(N) rational additions with arbitrary-precision bit costs: denominators divide a product of N magnitudes <=2^63, so at most O(63N) denominator bits are needed and numerator growth adds O(log N) bits. This is not constant-time or byte-precise memory admission; owned arithmetic intermediates are necessary and no redundant source-level loop allocation/clone is introduced."
+  ],
+  "consumer_review": [
+    "Repository Cargo.toml declares the local tfqm_fusion_categories path and src/lib.rs re-exports that crate as fusion_categories. Exact search finds no direct aggregate caller beyond the two source tests; there is no adapter changing input/result semantics.",
+    "Each source declares the same ten provider modules; those declarations are compiled in actual package variants, without projection or stubs. The aggregate calls only the pinned exact integer/rational dependencies. Provider mathematical implementations are independently scoped and do not receive grades from this review."
+  ],
+  "assurance_limits": [
+    "AuthorityEffect: None. Engineering A applies to the aggregate helper and its literal module declarations, not to all exported providers. This does not validate a fusion ring, a category, simple-object dimensions, or a physical global-dimension theorem.",
+    "Actual full package variants retain all support modules with exact source pins, and both complete canonical crate roots pass 52 tests each. Only the pure aggregate fixture runs in each fault variant. Root-main re-export is inspected; no main-workspace build or cross-repository authority/attestation is inferred.",
+    "Lean checks the rational lift, aggregate, cancellation/permutation and step model; the same receipt also contains rank/level facts used by the separate partial ring review. Only the rational statements support this helper. Full Rust/MIR, allocator and third-party arithmetic correctness remain explicit trusted correspondence, not extracted proof.",
+    "The larger ring has all A structural ceilings after refactoring but its complete 68-body invariant/provider/cost and mutation review remains pending. Re-exporting that module does not inherit a completed ring grade.",
+    "Mutation campaigns cover eight declared critical semantic faults per source and preserve all six literal outcomes. Tests, parser ceilings and sidecar generation do not author the gate judgments."
+  ],
+  "proof_correspondence": {
+    "zero_denominator_refused": "Both total and entry guards exclude d=0 before constructing the actual quotient.",
+    "exact_lift": "Every admitted signed raw pair denotes exactly its integer quotient in the rational field.",
+    "aggregate_exact": "The boolean accepts precisely exact sum equality with a positive total.",
+    "aggregate_nonpositive": "Nonpositive totals cannot be accepted, regardless of the list.",
+    "aggregate_permutation": "Exact aggregate meaning is independent of input order; there is no fixed-width overflow path.",
+    "cancellation_preserves_aggregate": "Exact signed cancellation is preserved beyond i64 intermediate ranges.",
+    "sum_step": "The accumulator prefix advances by exact rational addition."
+  },
+  "metrics": {
+    "receipt": {
+      "path": "evidence/quality/category_homology/20261020T014925Z-metrics/receipt.json",
+      "sha256": "2a0a1475ac7cd71fb6ebdb0063c6bc8c24aa2688e1863c0635df4ada1234f42e"
+    },
+    "functions": 1,
+    "max_ccn": 5,
+    "max_cognitive": 5,
+    "max_nesting": 2
+  },
+  "evidence": [
+    {
+      "path": "evidence/quality/six_module/20261020T015248Z-fusion-mod/summary.json",
+      "sha256": "61f5e7ac2776947519a1cf2dbb021f1b25effeef09f163837b1dcb63b956abae"
+    },
+    {
+      "path": "evidence/quality/six_module/20261020T015248Z-fusion-mod/support_sources.json",
+      "sha256": "0ccec311063e1225946a1d83138bf5f3f429a9706c7315067efa963c17e628cf"
+    },
+    {
+      "path": "evidence/quality/six_module/20261020T014925Z-fusion-audit/receipt.json",
+      "sha256": "f0d0c42c80b5aeeeabe39b523ba06ad7c88e20cafd05422211c6ea4c7fa2b6ea"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261020T013747Z-fusion-admission-proof/receipt.json",
+      "sha256": "7f8f7cfb78034273a278df1eb220406c5c838a03bff84f1710bc0301c9b4122e"
+    },
+    {
+      "path": "evidence/quality/six_module/checkpoint-007/repair-history.json",
+      "sha256": "bef8747e9d45d68beedceeb37d519b754c1806dfb98e4930b7558ed2c45b603d"
+    }
+  ]
+}

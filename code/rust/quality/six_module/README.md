@@ -99,23 +99,27 @@ declarations. No source changes were required. Report fields remain publicly
 mutable and are not admission tokens. Library copies retain exact module-relative
 source paths, with all 56 nested support copies separately bound and challenged.
 
-Fusion review has started with verified boundary repairs, not completed grades.
-Table/array/cyclic constructors now admit ranks before allocating, SU2 level
-addition is checked, and both aggregate helpers use BigRational after denominator
-admission. Both actual local crate roots compile against their real external path
-dependencies and pass all 52 tests each (47 prior tests plus five boundary tests).
-Before-repair receipts retain the five failures per root. Thirteen clean model
-declarations cover rank/level and rational-sum facts. Source-pinned partial
-contracts explicitly retain missing mutation, full-body and cost reviews; the
-ring still has six functions above A limits. The aggregate helpers are L1 with
-unassessed engineering gates. No completed fusion score is inferred.
+Fusion review includes exact boundary repairs and two complete L1A aggregate
+helpers (`lib.rs` and `mod.rs`). Each has a full source/body/consumer review,
+eight detected critical faults, independent signed raw-ratio cross-product
+oracles, exact machine-extreme identities and clean rational model evidence.
+Actual package variants retain their own crate root and all support sources;
+missing/false support records are challenged. Both complete canonical roots pass
+all 52 tests each. Helpers certify only aggregate equality to a positive total,
+not individual physical dimensions or all exported provider implementations.
+
+The ring's six above-A functions have been factored by mathematical operation,
+preserving lexicographic diagnostics and scalar order. All 68 ring bodies now
+meet A ceilings (9/7/3). Complete ring invariant/provider/cost and mutation
+review is still pending; no ring grade is awarded. Original boundary failures
+and previous contracts are retained, including the pre-repair 47/5 results.
 
 `gate_reviews.json` registers individually authored completed assessments.
 `reviewed_assessments.py` checks their actual native/dependency/proof/metric
 receipts with the existing weakest-link and proof verifiers. It checks each
 compiled mutant against its exact source substitution and frozen fixture, and
 each mapped production signature/body against source. The writer cannot create
-a gate review from test counts. Seven decoded-value probes challenge accounting,
+a gate review from test counts. Eleven decoded-value probes challenge accounting,
 kill attribution, structural ceilings and complete/accurate body mapping without
 editing any source or immutable receipt. Legacy grades keep their immutable
 score-manifest custody. Failed proof and interrupted receipt attempts remain

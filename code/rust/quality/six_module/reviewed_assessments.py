@@ -89,6 +89,23 @@ def reviewed(source):
             raise ValueError("Nested crate source coverage mismatch")
         if any(sha(ROOT / item["path"]) != item["sha256"] for item in records):
             raise ValueError("Nested crate source bytes changed")
+    if artifact["path"] in {"code/rust/src/fusion_categories/lib.rs", "code/rust/src/fusion_categories/mod.rs"}:
+        support = load(assessment["native_support_sources"])
+        work = Path(native["baseline"][0]["command"][0]).parent
+        expected = {
+            ((work / f"p{index}" / Path(path).name).relative_to(ROOT).as_posix(), path, value)
+            for index in range(len(policy["faults"]) + 1)
+            for path, value in manifest.items()
+            if path.endswith(".rs") and Path(path).name != source.name
+        }
+        records = support["copies"]
+        if {(x["path"], x["source"], x["sha256"]) for x in records} != expected or len(records) != len(expected):
+            raise ValueError("Fusion package source coverage mismatch")
+        if any(sha(ROOT / item["path"]) != item["sha256"] for item in records):
+            raise ValueError("Fusion package source bytes changed")
+        control = work / "p0" / source.name
+        if control.read_text(encoding="utf-8") != source_text + "\n" + fixture_text:
+            raise ValueError("Fusion control source mismatch")
     for run in native["builds"]:
         verify_run(run, successful=True)
     for run in native["baseline"] + native["restored"]:
