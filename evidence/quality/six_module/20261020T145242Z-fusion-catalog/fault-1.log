@@ -1,0 +1,37 @@
+
+running 4 tests
+test catalog::catalog_review::domain_and_shape_errors_keep_the_actual_witness ... FAILED
+test catalog::catalog_review::named_recipes_have_the_declared_gauge_dimensions_and_twists ... ok
+test catalog::catalog_review::reduced_phase_plans_match_raw_signed_fractions_and_minimal_orders ... FAILED
+test catalog::catalog_review::supported_phase_fields_and_actual_symbol_values_are_exact ... FAILED
+
+failures:
+
+---- catalog::catalog_review::domain_and_shape_errors_keep_the_actual_witness stdout ----
+
+thread 'catalog::catalog_review::domain_and_shape_errors_keep_the_actual_witness' (44344) panicked at p1\catalog.rs:466:9:
+assertion `left == right` failed
+  left: (0, 2)
+ right: (0, 1)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- catalog::catalog_review::reduced_phase_plans_match_raw_signed_fractions_and_minimal_orders stdout ----
+
+thread 'catalog::catalog_review::reduced_phase_plans_match_raw_signed_fractions_and_minimal_orders' (42216) panicked at p1\catalog.rs:333:17:
+assertion `left == right` failed
+  left: 2
+ right: 1
+
+---- catalog::catalog_review::supported_phase_fields_and_actual_symbol_values_are_exact stdout ----
+
+thread 'catalog::catalog_review::supported_phase_fields_and_actual_symbol_values_are_exact' (39624) panicked at p1\catalog.rs:340:56:
+called `Result::unwrap()` on an `Err` value: FieldTooSmall { needed: "a primitive root of unity of the requested order" }
+
+
+failures:
+    catalog::catalog_review::domain_and_shape_errors_keep_the_actual_witness
+    catalog::catalog_review::reduced_phase_plans_match_raw_signed_fractions_and_minimal_orders
+    catalog::catalog_review::supported_phase_fields_and_actual_symbol_values_are_exact
+
+test result: FAILED. 1 passed; 3 failed; 0 ignored; 0 measured; 47 filtered out; finished in 0.04s
+

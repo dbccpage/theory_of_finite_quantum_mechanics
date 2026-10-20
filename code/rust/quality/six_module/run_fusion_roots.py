@@ -23,8 +23,11 @@ def passed(run):
 
 def main():
     parser=argparse.ArgumentParser()
-    parser.add_argument('--subject',choices=('lib','mod','fusion_ring','scalar','error','braid_group','yang_baxter'),required=True)
-    name=parser.parse_args().subject
+    parser.add_argument('--subject',choices=('lib','mod','fusion_ring','scalar','error','braid_group','yang_baxter','modular','catalog'),required=True)
+    parser.add_argument("--policy-file",type=Path)
+    parser.add_argument("--fixture-file",type=Path)
+    args=parser.parse_args()
+    name=args.subject
     stamp=datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')
     output=ROOT/'evidence/quality/six_module'/(stamp+'-fusion-'+name)
     output.mkdir(parents=True)
@@ -34,14 +37,20 @@ def main():
     sources={p.relative_to(ROOT).as_posix():digest(p) for p in sorted(folder.iterdir())
              if p.suffix=='.rs' or p.name=='Cargo.toml'}
     write_json(output/'source_manifest.json',sources)
-    policy=json.loads((HERE/('fusion_'+name+'_boundaries.json')).read_text(encoding='utf-8'))
+    policy_file=args.policy_file or HERE/('fusion_'+name+'_boundaries.json')
+    policy=json.loads(policy_file.read_text(encoding='utf-8'))
     source=ROOT/policy['subject']['path']
     if digest(source)!=policy['subject']['sha256']:raise ValueError('Source/policy drift')
     text=source.read_text(encoding='utf-8')
     fixture_name = ('fusion_ring_challenges.rs' if name=='fusion_ring' else
-                    'fusion_'+name+'_challenges.rs' if name in ('scalar','error','braid_group','yang_baxter') else 'fusion_root_challenges.rs')
-    test_filter = {'fusion_ring':'ring_review::','scalar':'scalar_review::','error':'error_review::','braid_group':'braid_review::','yang_baxter':'tensor_review::'}.get(name,'sum_review::')
-    fixture=(HERE/fixture_name).read_text(encoding='utf-8')
+                    'fusion_'+name+'_challenges.rs' if name in ('scalar','error','braid_group','yang_baxter','modular','catalog') else 'fusion_root_challenges.rs')
+    test_filter = {'fusion_ring':'ring_review::','scalar':'scalar_review::','error':'error_review::','braid_group':'braid_review::','yang_baxter':'tensor_review::','modular':'modular_review::','catalog':'catalog_review::'}.get(name,'sum_review::')
+    fixture_file=args.fixture_file or HERE/fixture_name
+    fixture_name=fixture_file.name
+    fixture=fixture_file.read_text(encoding='utf-8')
+    if policy['subject']['path'] not in sources:
+        sources[policy['subject']['path']]=digest(source)
+        write_json(output/'source_manifest.json',sources)
     candidates=[text];records=[];support=[]
     for item in policy['faults']:
         if text.count(item['needle'])!=1:raise ValueError('Fault occurrence: '+item['id'])
@@ -64,9 +73,9 @@ def main():
         path.write_text(candidate+'\n'+fixture,encoding='utf-8')
         if index:records[index-1].update(candidate=path.relative_to(ROOT).as_posix(),sha256=digest(path))
     (work/'Cargo.toml').write_text('[workspace]\nmembers='+json.dumps(members)+'\nresolver="2"\n'
-        '[profile.dev]\ndebug=0\n[profile.test]\ndebug=0\n',encoding='utf-8')
-    for f in (Path(__file__).name,fixture_name,'fusion_'+name+'_boundaries.json'):
-        shutil.copyfile(HERE/f,output/f)
+        '[profile.dev]\ndebug=0\nincremental=false\n[profile.test]\ndebug=0\nincremental=false\n',encoding='utf-8')
+    for path in (Path(__file__),fixture_file,policy_file):
+        shutil.copyfile(path,output/path.name)
     write_json(output/'support_sources.json',{'AuthorityEffect':'None','copies':support})
     write_json(output/'mutations.json',records)
     roots,dependencies=bind_dependencies(work,output)
@@ -109,7 +118,7 @@ def main():
         'dependencies_unchanged':dependency_inventory(roots)==dependencies,
         'build_outputs_removed':not build.exists() and not any(x.exists() for x in binaries.values()),
         'subject':policy['subject'],'runner_sha256':digest(output/Path(__file__).name),
-        'policy_sha256':digest(output/('fusion_'+name+'_boundaries.json')),
+        'policy_sha256':digest(output/policy_file.name),
         'fixture_sha256':digest(output/fixture_name),
         'scope':'Actual full fusion packages, one source fault each. Subject-specific independent boundary replay; full canonical fusion suites are separately bound. No projection/stubs or whole-workspace result.'}
     write_json(output/'summary.json',summary)

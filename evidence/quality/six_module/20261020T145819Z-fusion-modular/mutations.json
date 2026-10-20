@@ -1,0 +1,752 @@
+[
+  {
+    "candidate": "code/rust/target/six-module/20261020T145819Z-fusion-modular/p1/modular.rs",
+    "id": "balancing-dual",
+    "needle": "Self::fusion_sum(ring, a, duals[b], &weighted)?",
+    "outcome": "killed",
+    "replacement": "Self::fusion_sum(ring, a, b, &weighted)?",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T145819Z-fusion-modular\\tests1.exe",
+        "modular_review::",
+        "--test-threads=1"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T145819Z-fusion-modular",
+      "elapsed_seconds": 0.172,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\six_module\\20261020T145819Z-fusion-modular\\fault-1.log",
+      "log_sha256": "5e8681659cb3fb5e0b0686c3d0094caa489c0889a30f8abaeac68e841fc5d9d6",
+      "timed_out": false
+    },
+    "sha256": "fb4bcff1006cf21e5e801f26a56771a5e3788d3763265ef399bbdcde0c4b46d3"
+  },
+  {
+    "candidate": "code/rust/target/six-module/20261020T145819Z-fusion-modular/p2/modular.rs",
+    "id": "cached-inverse",
+    "needle": "omega_number_theory::scalar::inverse(theta).map_err(FusionError::from)",
+    "outcome": "killed",
+    "replacement": "Ok::<K,FusionError>(theta.clone())",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T145819Z-fusion-modular\\tests2.exe",
+        "modular_review::",
+        "--test-threads=1"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T145819Z-fusion-modular",
+      "elapsed_seconds": 0.188,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\six_module\\20261020T145819Z-fusion-modular\\fault-2.log",
+      "log_sha256": "2e97e3ce1e0ac6ab5328b88fdc26e77e3b5aba24919792b516be1de681eee305",
+      "timed_out": false
+    },
+    "sha256": "51dbfb5eec1ae14bce2e5d19425168ec2dd85fc1f2cbed064d3ec269bc4e4cc1"
+  },
+  {
+    "candidate": "code/rust/target/six-module/20261020T145819Z-fusion-modular/p3/modular.rs",
+    "id": "balanced-twist",
+    "needle": "map(|(d, t)| d.mul(t))",
+    "outcome": "killed",
+    "replacement": "map(|(d, _)| d.clone())",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T145819Z-fusion-modular\\tests3.exe",
+        "modular_review::",
+        "--test-threads=1"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T145819Z-fusion-modular",
+      "elapsed_seconds": 0.156,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\six_module\\20261020T145819Z-fusion-modular\\fault-3.log",
+      "log_sha256": "2eef91479813ba55248cba64e7f1e830c7ade14fecd63ef3010ed6a6099c3cba",
+      "timed_out": false
+    },
+    "sha256": "2605e005f25e8716842dfdf34324ce736d9dce8d780b548b451adac4a02f0bcf"
+  },
+  {
+    "candidate": "code/rust/target/six-module/20261020T145819Z-fusion-modular/p4/modular.rs",
+    "id": "zero-multiplicity",
+    "needle": "0 => Ok(total),",
+    "outcome": "killed",
+    "replacement": "0 => Ok(total.add(value)),",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T145819Z-fusion-modular\\tests4.exe",
+        "modular_review::",
+        "--test-threads=1"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T145819Z-fusion-modular",
+      "elapsed_seconds": 0.172,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\six_module\\20261020T145819Z-fusion-modular\\fault-4.log",
+      "log_sha256": "0cd7e4475535ae89a154c75a610209656801160549c50138a8e9bd13c4dc5690",
+      "timed_out": false
+    },
+    "sha256": "af88a55932ab4ad3e6491e2b611f471042b067a74c092ddb41546bb028c0fc88"
+  },
+  {
+    "candidate": "code/rust/target/six-module/20261020T145819Z-fusion-modular/p5/modular.rs",
+    "id": "unit-multiplicity",
+    "needle": "1 => Ok(total.add(value)),",
+    "outcome": "killed",
+    "replacement": "1 => Ok(total),",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T145819Z-fusion-modular\\tests5.exe",
+        "modular_review::",
+        "--test-threads=1"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T145819Z-fusion-modular",
+      "elapsed_seconds": 0.235,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\six_module\\20261020T145819Z-fusion-modular\\fault-5.log",
+      "log_sha256": "bdf1eb5a85cf193c85e047584629d76717eff18e91b971925017cc620a8ee421",
+      "timed_out": false
+    },
+    "sha256": "469bdb6a3d6c5a93dd85c37dfaf4d1c181e47cee60d8dab42694f52102a7b957"
+  },
+  {
+    "candidate": "code/rust/target/six-module/20261020T145819Z-fusion-modular/p6/modular.rs",
+    "id": "zero-global",
+    "needle": "if self.d_squared.is_zero()",
+    "outcome": "killed",
+    "replacement": "if false && self.d_squared.is_zero()",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T145819Z-fusion-modular\\tests6.exe",
+        "modular_review::",
+        "--test-threads=1"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T145819Z-fusion-modular",
+      "elapsed_seconds": 0.359,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\six_module\\20261020T145819Z-fusion-modular\\fault-6.log",
+      "log_sha256": "e12db7638e36f2d10176feeda44b298892d3941dcfc870087d2e4d90c6c98047",
+      "timed_out": false
+    },
+    "sha256": "725aaafb1118eb287a5385573441dd44b97d3fde24fc4af3c977531b7a0ebd2f"
+  },
+  {
+    "candidate": "code/rust/target/six-module/20261020T145819Z-fusion-modular/p7/modular.rs",
+    "id": "symmetry-priority",
+    "needle": "self.verify_symmetry()?;",
+    "outcome": "killed",
+    "replacement": "let _ = 0;",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T145819Z-fusion-modular\\tests7.exe",
+        "modular_review::",
+        "--test-threads=1"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T145819Z-fusion-modular",
+      "elapsed_seconds": 0.234,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\six_module\\20261020T145819Z-fusion-modular\\fault-7.log",
+      "log_sha256": "7df42b63c5626e0b42f70cc74cb0821cd74e9add23e9510d1f698e43bb0ea11b",
+      "timed_out": false
+    },
+    "sha256": "5ed9e20937a4c1363b068c37340d3fb1d1c9d72a35528f327803fcfd845a2c43"
+  },
+  {
+    "candidate": "code/rust/target/six-module/20261020T145819Z-fusion-modular/p8/modular.rs",
+    "id": "nondegenerate-gate",
+    "needle": "if rank < self.rank()",
+    "outcome": "killed",
+    "replacement": "if false",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T145819Z-fusion-modular\\tests8.exe",
+        "modular_review::",
+        "--test-threads=1"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T145819Z-fusion-modular",
+      "elapsed_seconds": 0.25,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\six_module\\20261020T145819Z-fusion-modular\\fault-8.log",
+      "log_sha256": "daa3bab5c875094386ab8e493dcb43c3a2cc9dca479a40db873469ecd5f27ed6",
+      "timed_out": false
+    },
+    "sha256": "c3c6accfab14893b4ccea113447b53c0bb1fe2cee1ef9fd381ab6381dc32681d"
+  },
+  {
+    "candidate": "code/rust/target/six-module/20261020T145819Z-fusion-modular/p9/modular.rs",
+    "id": "charge-duality",
+    "needle": "&self.scaled_charge_conjugation(&self.d_squared)?",
+    "outcome": "killed",
+    "replacement": "&self.scaled_identity(&self.d_squared)?",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T145819Z-fusion-modular\\tests9.exe",
+        "modular_review::",
+        "--test-threads=1"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T145819Z-fusion-modular",
+      "elapsed_seconds": 0.219,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\six_module\\20261020T145819Z-fusion-modular\\fault-9.log",
+      "log_sha256": "4df8d9576013356a3f27b096bd9b12c188a9e75e72256eb8f2f486b6ed0c6e51",
+      "timed_out": false
+    },
+    "sha256": "1022a8dbf3ab4809ff57f281e5c780edfeff7ed146334de019ca48d16edf8065"
+  },
+  {
+    "candidate": "code/rust/target/six-module/20261020T145819Z-fusion-modular/p10/modular.rs",
+    "id": "adjoint-conjugation",
+    "needle": "involution::adjoint(&self.s_tilde)",
+    "outcome": "killed",
+    "replacement": "matrix::transpose(&self.s_tilde)",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T145819Z-fusion-modular\\tests10.exe",
+        "modular_review::",
+        "--test-threads=1"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T145819Z-fusion-modular",
+      "elapsed_seconds": 0.156,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\six_module\\20261020T145819Z-fusion-modular\\fault-10.log",
+      "log_sha256": "28619d77b6c2126d9c9c39c82f2daa1fbf5049696f43143edc348b92d7db12d5",
+      "timed_out": false
+    },
+    "sha256": "cc9e3d58dcb95fa71ab9bdfa4317eba113fc94207c27689133545aeb5d418705"
+  },
+  {
+    "candidate": "code/rust/target/six-module/20261020T145819Z-fusion-modular/p11/modular.rs",
+    "id": "st-column",
+    "needle": "self.s_tilde.get_ref(a, b)?.mul(&self.twists[b])",
+    "outcome": "killed",
+    "replacement": "self.s_tilde.get_ref(a, b)?.mul(&self.twists[a])",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T145819Z-fusion-modular\\tests11.exe",
+        "modular_review::",
+        "--test-threads=1"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T145819Z-fusion-modular",
+      "elapsed_seconds": 0.406,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\six_module\\20261020T145819Z-fusion-modular\\fault-11.log",
+      "log_sha256": "4fa99a8d34aa16c59d7b5b33a7d0fc0af1fe5dd298dead2b2d13c07f10ffdf2f",
+      "timed_out": false
+    },
+    "sha256": "6042d52b2f397d53a4f71746fc39fdd328532618d9aa762318d58f07a6a0d698"
+  },
+  {
+    "candidate": "code/rust/target/six-module/20261020T145819Z-fusion-modular/p12/modular.rs",
+    "id": "gauss-scale",
+    "needle": "matrix::scale(squared, &self.p_plus)",
+    "outcome": "killed",
+    "replacement": "matrix::scale(squared, &self.d_squared)",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T145819Z-fusion-modular\\tests12.exe",
+        "modular_review::",
+        "--test-threads=1"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T145819Z-fusion-modular",
+      "elapsed_seconds": 0.219,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\six_module\\20261020T145819Z-fusion-modular\\fault-12.log",
+      "log_sha256": "59c0f3747fdfdef2ea7eb40c3efdc22144338a7e411c6168ae922751771b23c7",
+      "timed_out": false
+    },
+    "sha256": "b013b1b73719b125d99381b2f13e6a92cf39165eafec45abf8c9c73f73177df4"
+  },
+  {
+    "candidate": "code/rust/target/six-module/20261020T145819Z-fusion-modular/p13/modular.rs",
+    "id": "verlinde-gate",
+    "needle": "        self.verify_verlinde()",
+    "outcome": "killed",
+    "replacement": "        Ok(())",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T145819Z-fusion-modular\\tests13.exe",
+        "modular_review::",
+        "--test-threads=1"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T145819Z-fusion-modular",
+      "elapsed_seconds": 0.25,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\six_module\\20261020T145819Z-fusion-modular\\fault-13.log",
+      "log_sha256": "8d1d1a59bff4f6ac149553b7c806cff666a9116d4075d7512910111c93756ff1",
+      "timed_out": false
+    },
+    "sha256": "26c23845f3b7933f929f09937555bdb12837d12d4d6c8d09d6f4f6af53297c40"
+  },
+  {
+    "candidate": "code/rust/target/six-module/20261020T145819Z-fusion-modular/p14/modular.rs",
+    "id": "difference-witness",
+    "needle": "return Ok(Some((a, b)));",
+    "outcome": "killed",
+    "replacement": "return Ok(Some((b, a)));",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T145819Z-fusion-modular\\tests14.exe",
+        "modular_review::",
+        "--test-threads=1"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T145819Z-fusion-modular",
+      "elapsed_seconds": 0.265,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\six_module\\20261020T145819Z-fusion-modular\\fault-14.log",
+      "log_sha256": "f86e6871b1cb95967ee9f37ee1bfc2270c74089d66330c4f779fba0770f9aabc",
+      "timed_out": false
+    },
+    "sha256": "5a9f74262543b9a43438567506f65814d6de76118ccc90405bf10251c04bceac"
+  },
+  {
+    "candidate": "code/rust/target/six-module/20261020T145819Z-fusion-modular/p15/modular.rs",
+    "id": "difference-shape",
+    "needle": "if left.shape() != right.shape()",
+    "outcome": "killed",
+    "replacement": "if false && left.shape() != right.shape()",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T145819Z-fusion-modular\\tests15.exe",
+        "modular_review::",
+        "--test-threads=1"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T145819Z-fusion-modular",
+      "elapsed_seconds": 0.281,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\six_module\\20261020T145819Z-fusion-modular\\fault-15.log",
+      "log_sha256": "56b8ed5c67e771cdc2daca6761741e2125f8b43359a733a8d5e4e13c5699ff9f",
+      "timed_out": false
+    },
+    "sha256": "70ae5f623d5e536880449610f13beb58424211e4574d84c33767c9945b0499e1"
+  },
+  {
+    "candidate": "code/rust/target/six-module/20261020T145819Z-fusion-modular/p16/modular.rs",
+    "id": "dimension-square",
+    "needle": "if total_dimension.mul(total_dimension) != self.d_squared",
+    "outcome": "killed",
+    "replacement": "if total_dimension.mul(total_dimension) == self.d_squared",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T145819Z-fusion-modular\\tests16.exe",
+        "modular_review::",
+        "--test-threads=1"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T145819Z-fusion-modular",
+      "elapsed_seconds": 0.125,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\six_module\\20261020T145819Z-fusion-modular\\fault-16.log",
+      "log_sha256": "43af0b948f82c180e80c6ac5e51cd24dca010f714d3f5fc339dc263ff00b5744",
+      "timed_out": false
+    },
+    "sha256": "9fb298ad29cbfc0891f41c3651c6a4180dab1d25dfd8ecb9d33692078891ed50"
+  },
+  {
+    "candidate": "code/rust/target/six-module/20261020T145819Z-fusion-modular/p17/modular.rs",
+    "id": "dimension-positive",
+    "needle": "Some(_) => return Err(FusionError::Modular(ModularDefect::NonPositiveDimension)),",
+    "outcome": "killed",
+    "replacement": "Some(_) => {},",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T145819Z-fusion-modular\\tests17.exe",
+        "modular_review::",
+        "--test-threads=1"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T145819Z-fusion-modular",
+      "elapsed_seconds": 0.203,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\six_module\\20261020T145819Z-fusion-modular\\fault-17.log",
+      "log_sha256": "92cc0bad770dc40cc342d888b6ce4d76a19d616a5aa1ee705b00d8770c68614a",
+      "timed_out": false
+    },
+    "sha256": "5cb0c4032d9fc5c62bda2edadacd5b9b8b6960b819ef682e4a2e6f393d961595"
+  },
+  {
+    "candidate": "code/rust/target/six-module/20261020T145819Z-fusion-modular/p18/modular.rs",
+    "id": "charge-four",
+    "needle": "BigInt::from(4 * u64::from(k))",
+    "outcome": "killed",
+    "replacement": "BigInt::from(8 * u64::from(k))",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T145819Z-fusion-modular\\tests18.exe",
+        "modular_review::",
+        "--test-threads=1"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T145819Z-fusion-modular",
+      "elapsed_seconds": 0.094,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\six_module\\20261020T145819Z-fusion-modular\\fault-18.log",
+      "log_sha256": "15828ecd1740cc6e7b5394edcfdbe2a2530a7e32c2c3fbe786e6e37cc137ead9",
+      "timed_out": false
+    },
+    "sha256": "335a1b38dcbcd6ec768b0245370d9227ee88c04eb734729395ce6ce8c56671fb"
+  },
+  {
+    "candidate": "code/rust/target/six-module/20261020T145819Z-fusion-modular/p19/modular.rs",
+    "id": "charge-eight",
+    "needle": "BigInt::from(8 * u64::from(k))",
+    "outcome": "killed",
+    "replacement": "BigInt::from(4 * u64::from(k))",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T145819Z-fusion-modular\\tests19.exe",
+        "modular_review::",
+        "--test-threads=1"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T145819Z-fusion-modular",
+      "elapsed_seconds": 0.188,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\six_module\\20261020T145819Z-fusion-modular\\fault-19.log",
+      "log_sha256": "55dceb1db6683a2e78036f88a875069cf982d0066c10db159b86b01ef416fd75",
+      "timed_out": false
+    },
+    "sha256": "363f1027c2c578f1f366864572f41e1136820633b2274fc308487de0f32cad51"
+  },
+  {
+    "candidate": "code/rust/target/six-module/20261020T145819Z-fusion-modular/p20/modular.rs",
+    "id": "indicator-square",
+    "needle": "let square = t.mul(t);",
+    "outcome": "killed",
+    "replacement": "let square = t.clone();",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T145819Z-fusion-modular\\tests20.exe",
+        "modular_review::",
+        "--test-threads=1"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T145819Z-fusion-modular",
+      "elapsed_seconds": 0.172,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\six_module\\20261020T145819Z-fusion-modular\\fault-20.log",
+      "log_sha256": "08a48506e01c3159605cc06c6ff41a946f248f3e35130dcab88c8993b1f5e3c9",
+      "timed_out": false
+    },
+    "sha256": "6c7c8bb39e3b2e1a3f4068bc5dd4c582a064c60385b8afdd37833ce08b51323b"
+  },
+  {
+    "candidate": "code/rust/target/six-module/20261020T145819Z-fusion-modular/p21/modular.rs",
+    "id": "indicator-channel",
+    "needle": "self.ring.n(b, c, a)",
+    "outcome": "killed",
+    "replacement": "self.ring.n(a, b, c)",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T145819Z-fusion-modular\\tests21.exe",
+        "modular_review::",
+        "--test-threads=1"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T145819Z-fusion-modular",
+      "elapsed_seconds": 0.156,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\six_module\\20261020T145819Z-fusion-modular\\fault-21.log",
+      "log_sha256": "f40f98a4795dda191b90a828c78f1bc7039a5e477def8dcd95202b3c1e9e95c1",
+      "timed_out": false
+    },
+    "sha256": "09b1acf4a4479ee3eab1352aeb609500046bd38856905395b57da349e658193d"
+  },
+  {
+    "candidate": "code/rust/target/six-module/20261020T145819Z-fusion-modular/p22/modular.rs",
+    "id": "indicator-sign",
+    "needle": "Ok(-1)",
+    "outcome": "killed",
+    "replacement": "Ok(1)",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T145819Z-fusion-modular\\tests22.exe",
+        "modular_review::",
+        "--test-threads=1"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T145819Z-fusion-modular",
+      "elapsed_seconds": 0.125,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\six_module\\20261020T145819Z-fusion-modular\\fault-22.log",
+      "log_sha256": "842ec762c1040cde1db11719a25e4219ff8b4152325adb4f6ce7e4e7924e283a",
+      "timed_out": false
+    },
+    "sha256": "05ec91217b70e1d5a7e7f470b5e236bfaf9a90a47427d249755a1b08f934b2cd"
+  },
+  {
+    "candidate": "code/rust/target/six-module/20261020T145819Z-fusion-modular/p23/modular.rs",
+    "id": "indicator-label",
+    "needle": "if a >= n",
+    "outcome": "killed",
+    "replacement": "if a > n",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T145819Z-fusion-modular\\tests23.exe",
+        "modular_review::",
+        "--test-threads=1"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T145819Z-fusion-modular",
+      "elapsed_seconds": 0.219,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\six_module\\20261020T145819Z-fusion-modular\\fault-23.log",
+      "log_sha256": "e638d77832affd3e49428b29dd5abdbbdb54c5d872bb3ee7ce3f87b6e6ffee79",
+      "timed_out": false
+    },
+    "sha256": "7cda1f65017454baec3c7d931211ab81b33acfd6b9fb689b138dfcc2a3b35520"
+  },
+  {
+    "candidate": "code/rust/target/six-module/20261020T145819Z-fusion-modular/p24/modular.rs",
+    "id": "cache-multiplicity",
+    "needle": "*count += 1;",
+    "outcome": "killed",
+    "replacement": "*count += 0;",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T145819Z-fusion-modular\\tests24.exe",
+        "modular_review::",
+        "--test-threads=1"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T145819Z-fusion-modular",
+      "elapsed_seconds": 0.093,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\six_module\\20261020T145819Z-fusion-modular\\fault-24.log",
+      "log_sha256": "f44e6a6cad1a0fdf0fbe552cc24a74bef77a23a0c2f85263f002ae712c8bd39d",
+      "timed_out": false
+    },
+    "sha256": "89f51f2de728be3ced2c78132ee840f2f4466b5e869657022e0350028171a377"
+  },
+  {
+    "candidate": "code/rust/target/six-module/20261020T145819Z-fusion-modular/p25/modular.rs",
+    "id": "ratio-orientation",
+    "needle": "divide(&self.d_squared, square)",
+    "outcome": "killed",
+    "replacement": "divide(square, &self.d_squared)",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T145819Z-fusion-modular\\tests25.exe",
+        "modular_review::",
+        "--test-threads=1"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T145819Z-fusion-modular",
+      "elapsed_seconds": 0.172,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\six_module\\20261020T145819Z-fusion-modular\\fault-25.log",
+      "log_sha256": "f99c1f8d31eab2a3cbb96f8d01a8237cca53afe7210da6a3b58a2502f0c2a2cf",
+      "timed_out": false
+    },
+    "sha256": "ae4dfb8861d025dea89ec26dcdda74bc14e5c177b46e9865c269ea3c2c8d7ca8"
+  },
+  {
+    "candidate": "code/rust/target/six-module/20261020T145819Z-fusion-modular/p26/modular.rs",
+    "id": "genus-exponent",
+    "needle": "let exponent = i64::from(genus) - 1;",
+    "outcome": "killed",
+    "replacement": "let exponent = i64::from(genus) + 1;",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T145819Z-fusion-modular\\tests26.exe",
+        "modular_review::",
+        "--test-threads=1"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T145819Z-fusion-modular",
+      "elapsed_seconds": 0.11,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\six_module\\20261020T145819Z-fusion-modular\\fault-26.log",
+      "log_sha256": "bda1b0a0ff1cf0e3829d0800b35798895356a0ec290a7ad764b76ac36e431606",
+      "timed_out": false
+    },
+    "sha256": "288cd9ffaf53f4560cf24313fb5110d01bee8f7b42de6a21f7c1c07dfc91131e"
+  },
+  {
+    "candidate": "code/rust/target/six-module/20261020T145819Z-fusion-modular/p27/modular.rs",
+    "id": "genus-equality",
+    "needle": "if requested > limit {",
+    "outcome": "killed",
+    "replacement": "if requested >= limit {",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T145819Z-fusion-modular\\tests27.exe",
+        "modular_review::",
+        "--test-threads=1"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T145819Z-fusion-modular",
+      "elapsed_seconds": 0.172,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\six_module\\20261020T145819Z-fusion-modular\\fault-27.log",
+      "log_sha256": "f36ed104d3afda71c8393c9904359eee01ee4c0f58413f55a1df0cd8b04cf5ea",
+      "timed_out": false
+    },
+    "sha256": "61d177952347e60835ee84bac5739bc0d22e28783da1503dba84fe10f296f269"
+  },
+  {
+    "candidate": "code/rust/target/six-module/20261020T145819Z-fusion-modular/p28/modular.rs",
+    "id": "integer-output",
+    "needle": "if !rational.is_integer() || rational < Rational::from_integer(BigInt::from(0))",
+    "outcome": "killed",
+    "replacement": "if rational < Rational::from_integer(BigInt::from(0))",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T145819Z-fusion-modular\\tests28.exe",
+        "modular_review::",
+        "--test-threads=1"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T145819Z-fusion-modular",
+      "elapsed_seconds": 0.203,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\six_module\\20261020T145819Z-fusion-modular\\fault-28.log",
+      "log_sha256": "3c522708d3b23837b443ef953379be4d53e62a359fdee7497ce0e98621516960",
+      "timed_out": false
+    },
+    "sha256": "20eb58d303f1dbd993656391a67a40324d79a4d2b8fbf66678d18b739951e1f0"
+  },
+  {
+    "candidate": "code/rust/target/six-module/20261020T145819Z-fusion-modular/p29/modular.rs",
+    "id": "nonnegative-output",
+    "needle": "if !rational.is_integer() || rational < Rational::from_integer(BigInt::from(0))",
+    "outcome": "killed",
+    "replacement": "if !rational.is_integer()",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T145819Z-fusion-modular\\tests29.exe",
+        "modular_review::",
+        "--test-threads=1"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T145819Z-fusion-modular",
+      "elapsed_seconds": 0.218,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\six_module\\20261020T145819Z-fusion-modular\\fault-29.log",
+      "log_sha256": "9bdc1c4e0e88584c52bf6f359fc6b5d847c60d2bacad03917b9168a80b0c5849",
+      "timed_out": false
+    },
+    "sha256": "f8e92888a9b7eeb63703b4228c9f693e574199ca90b8468292d1449c5ad514f3"
+  },
+  {
+    "candidate": "code/rust/target/six-module/20261020T145819Z-fusion-modular/p30/modular.rs",
+    "id": "coefficient-narrowing",
+    "needle": "i64::try_from(multiplicity).map_err(|_| FusionError::Overflow {\n                        context: \"embedding a fusion coefficient\",\n                    })?",
+    "outcome": "killed",
+    "replacement": "multiplicity as i64",
+    "run": {
+      "command": [
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T145819Z-fusion-modular\\tests30.exe",
+        "modular_review::",
+        "--test-threads=1"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.worktrees\\category-homology-pr\\code\\rust\\target\\six-module\\20261020T145819Z-fusion-modular",
+      "elapsed_seconds": 0.172,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0"
+      },
+      "exit_code": 101,
+      "log": "evidence\\quality\\six_module\\20261020T145819Z-fusion-modular\\fault-30.log",
+      "log_sha256": "462e7aa1633fd8dc47f4ebbeacfb7723286b336d0ba34404557dfa7e61bca7d0",
+      "timed_out": false
+    },
+    "sha256": "ecc4c112ef7a90cb8bf01adad70147be67c3140c193e99b44393f72fd41b300e"
+  }
+]

@@ -1,0 +1,23 @@
+
+running 4 tests
+test modular::modular_review::complex_nonselfdual_data_matches_fourier_and_indicator_oracles ... ok
+test modular::modular_review::conversion_output_and_failure_boundaries_are_typed ... ok
+test modular::modular_review::every_verification_stage_has_its_ordered_first_defect ... FAILED
+test modular::modular_review::named_charges_indicators_and_genus_sums_have_exact_expected_values ... ok
+
+failures:
+
+---- modular::modular_review::every_verification_stage_has_its_ordered_first_defect stdout ----
+
+thread 'modular::modular_review::every_verification_stage_has_its_ordered_first_defect' (44856) panicked at p13\modular.rs:593:9:
+assertion `left == right` failed
+  left: Ok(())
+ right: Err(Modular(Verlinde { a: 1, b: 1, c: 1 }))
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    modular::modular_review::every_verification_stage_has_its_ordered_first_defect
+
+test result: FAILED. 3 passed; 1 failed; 0 ignored; 0 measured; 47 filtered out; finished in 0.19s
+

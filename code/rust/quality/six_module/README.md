@@ -177,3 +177,19 @@ and receipts are retained. The whole workspace and external omega providers are
 outside the compiled claim. The goal remains open until all required semantic
 reviews, contracts, appropriate L4 architecture changes and five-gate evidence
 are complete; sidecar coverage alone does not establish completion.
+
+The modular/catalog checkpoint fixes unnecessary field admission for cancelled
+pointed phases (for example cyclic_pointed::<Rational>(3,3)), reports actual
+ragged-column lengths, and caches bounded phase and modular computations.
+Ground-state genus budgets now refuse before field arithmetic; exact outputs
+must remain nonnegative integers. The S-matrix dual convention and ordered
+modular checks are retained. Both canonical fusion roots pass 52 tests each,
+and the modular/catalog Lean model has 19 clean declarations.
+
+All 55 changed production operations have source-bound partial contracts. The
+complete five-gate reviews for these two files remain open: their gate grades,
+composite grades and score tokens remain null. Structural ceilings of A and
+passing native/model checks do not complete those reviews. The ledger remains
+171 completed assessments and 151 incomplete sources. Exact campaign outcomes,
+resource refusals, the rejected first proof and the archived pre-repair native
+witness are retained in checkpoint-012/validation.json and review-history.json.
