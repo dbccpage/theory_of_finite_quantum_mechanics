@@ -1,80 +1,112 @@
-# =============================================================================
-# SCORING.md v2.0.0 FIVE-GATE EVALUATION RECORD
-# AuthorityEffect: None
-# =============================================================================
-schema_version: "2.0.0"
-AuthorityEffect: "None"
-artifact:
-  path: "code/rust/src/fsp/bqnf.rs"
-  language: "Rust"
-  sha256: "83a6aad845fe89a2f9089dcc0687bf5b7e2e4cf1aea74bcb949dd6c44dbfcea9"
-profile: "Exact"
-level: "L3"
-level_basis: "Bounded-domain rational cochain complex ($C^0 \\to C^1 \\to C^2$) nilpotence validator ($d_1 \\circ d_0 = 0$), $\\ell_1$ coboundary norm evaluator $\\Gamma_2 = \\|d_1 c^1\\|_1$, and deterministic 5-fold BQNF terminal router."
-architecture_target: "L4"
-engineering_target: "A"
-gates:
-  G1: null
-  G2: null
-  G3: null
-  G4: null
-  G5: null
-composite_grade: null
-score_token: null
-is_complete: false
-grade_ceiling: "A"
-evaluation_timestamp: "2026-10-20T19:07:10+00:00"
-claim:
-  urn: "urn:tfqm:rust:fsp:bqnf"
-  description: "Classify finite sign obstruction packets into five terminal routes (`ExactRepair`, `ClosedResidual`, `OpenSignObstruction`, `SplitBrainRefusal`, `ClosureFailure`) and verify rational cochain complex nilpotence $d_1 \\circ d_0 = 0$."
-  scope: "Only the source-bound finite runtime behavior in code/rust/src/fsp; no continuum derivation or authority promotion is certified."
-contract:
-  status: "active_with_recorded_obligations"
-  path: "code/rust/src/fsp/bqnf.contract.yaml"
-  contract_id: "urn:tfqm:contract:rust:fsp:bqnf:v2.0.0"
-evidence:
-  - {"path": "evidence/quality/fsp/20261020T190710Z/baseline.json", "scope": "Scoped offline cargo test baseline receipt and log hash for tfqm_fsp.", "sha256": "78c5f43e8ee22da2033b00b54df6b9b56723b3d1762c65958fb9dceb9be460fc"}
-  - {"path": "evidence/quality/fsp/20261020T190710Z/summary.json", "scope": "Source snapshot invariance and complete six-outcome mutation accounting summary.", "sha256": "67e1f05655597b1af15d34c7d23d28d6a2c5457722639923e0bfce6eb0da2b50"}
-  - {"path": "evidence/quality/fsp/20261020T190710Z/mutations.json", "scope": "Designated semantic fault injection runs and per-mutant log hashes.", "sha256": "6c49cf946acb882301064b27663424761a232ae06bd8d7459af6b78b358ddc92"}
-  - {"path": "evidence/quality/fsp/20261020T190710Z/metric_receipt.json", "scope": "Calibrated syn 3.0.9 source AST complexity receipt and tool-source hashes.", "sha256": "75e207ea1e8dcec4cde37baff310d3d8cab8c66565f34724448d93af2585fbc9"}
-verification:
-  baseline_ok: true
-  restored_baseline_ok: true
-  source_snapshot_unchanged: true
-  compiled_scope: "tfqm_fsp isolated offline crate library tests; inspect the bound log for executed counts"
-  local_mutant_ids:
-    - "FSP-BQNF-01-valid-complex-branch"
-    - "FSP-BQNF-02-open-defect-branch"
-mutation_accounting:
-  killed: 2
-  survived: 0
-  demonstrably_equivalent: 0
-  invalid: 0
-  inconclusive: 0
-  unrun: 0
-  conservative_ratio: 1.0
-structure:
-  tool: "syn 3.0.9 source AST"
-  source_ast_parsed: true
-  expanded_ast: false
-  physical_lines: 250
-  parsed_production_functions: 7
-  max_production_ccn: 8
-  cognitive_complexity_upper_bound: 9
-  control_nesting: 3
-  metric_ceiling: "A"
-  opaque_function_macros: []
-  functions_exceeding_A: []
-  scope: "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
-gate_review:
-  G1: "C: Explicit `AuthorityEffect: None` and `#![forbid(unsafe_code)]`; `TerminalRoute` and `route_packet` correspond 1-to-1 with `lean4/BqnfSignPacket.lean`."
-  G2: "D: Primary calculations use exact `BigRational`, but `SignPacketMetrics` and `CochainComplex` have `pub` fields and derive `Deserialize` (`RULE_RS_003`), permitting construction of unvalidated complexes with $d_1 d_0 \\ne 0$ or negative norms `closure_defect < 0` / `residual_mass < 0`."
-  G3: "D: `CochainComplex::check_nilpotence` (line 125: `&row[k] * &self.d0[k][j]`) and `apply_d1` (line 146) use direct slice indexing (`RULE_RS_002`). If a `CochainComplex` is constructed via public struct literal or `serde::Deserialize` with ragged rows (`RULE_RS_003`), `check_nilpotence` and `apply_d1` panic out-of-bounds."
-  G4: "C: Unit tests `bqnf_5_fold_routing_theorems` and `cochain_nilpotence_check` cover all 6 routing cases and valid/open/closed cochains; both designated mutants (`FSP-BQNF-01`, `FSP-BQNF-02`) are killed ($R = 2/2 = 1.0$). Missing negative unit tests for `CochainComplex::new` refusal branches."
-  G5: "A: Calibrated `syn 3.0.9` AST metrics across 7 production functions: max CCN = 8 (<= 10), cognitive upper bound = 9 (<= 15), control nesting = 3 (<= 3), 0 functions exceeding `A`."
-open_findings:
-  - "RULE_RS_003 (Gate 2 -> D, Gate 3 -> D): `CochainComplex` and `SignPacketMetrics` expose `pub` fields and unchecked `serde::Deserialize`, allowing callers to bypass `CochainComplex::new` nilpotence/dimension checks and trigger slice-indexing panics in `check_nilpotence` / `apply_d1`."
-  - "Gate 2 -> D: `SignPacketMetrics::new` does not reject negative `closure_defect` or negative `residual_mass` even though both represent $\\ell_1$ norms."
-assurance_limits:
-  - "Evaluation applies SCORING.md v2.0.0 fail-closed weakest-link grading (`composite_grade = min(G1..G5)`)."
-  - "No mechanized Rust-to-Lean extraction, MIR crash-freedom proof, or global allocator totality is claimed."
+# YAML 1.2 (JSON syntax). AuthorityEffect: None.
+{
+  "schema_version": "2.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/fsp/bqnf.rs",
+    "language": "Rust",
+    "sha256": "83a6aad845fe89a2f9089dcc0687bf5b7e2e4cf1aea74bcb949dd6c44dbfcea9"
+  },
+  "profile": "Exact",
+  "level": "L3",
+  "level_basis": "Bounded-domain rational cochain complex ($C^0 \\to C^1 \\to C^2$) nilpotence validator ($d_1 \\circ d_0 = 0$), $\\ell_1$ coboundary norm evaluator $\\Gamma_2 = \\|d_1 c^1\\|_1$, and deterministic 5-fold BQNF terminal router.",
+  "architecture_target": "L4",
+  "engineering_target": "A",
+  "gates": {
+    "G1": null,
+    "G2": null,
+    "G3": null,
+    "G4": null,
+    "G5": null
+  },
+  "composite_grade": null,
+  "score_token": null,
+  "is_complete": false,
+  "grade_ceiling": "A",
+  "evaluation_timestamp": "2026-10-20T19:07:10+00:00",
+  "claim": {
+    "urn": "urn:tfqm:rust:fsp:bqnf",
+    "description": "Classify finite sign obstruction packets into five terminal routes (`ExactRepair`, `ClosedResidual`, `OpenSignObstruction`, `SplitBrainRefusal`, `ClosureFailure`) and verify rational cochain complex nilpotence $d_1 \\circ d_0 = 0$.",
+    "scope": "Only the source-bound finite runtime behavior in code/rust/src/fsp; no continuum derivation or authority promotion is certified."
+  },
+  "contract": {
+    "status": "active_with_recorded_obligations",
+    "path": "code/rust/src/fsp/bqnf.contract.yaml",
+    "contract_id": "urn:tfqm:contract:rust:fsp:bqnf:v2.0.0"
+  },
+  "evidence": [
+    {
+      "path": "evidence/quality/fsp/20261020T190710Z/baseline.json",
+      "scope": "Scoped offline cargo test baseline receipt and log hash for tfqm_fsp.",
+      "sha256": "78c5f43e8ee22da2033b00b54df6b9b56723b3d1762c65958fb9dceb9be460fc"
+    },
+    {
+      "path": "evidence/quality/fsp/20261020T190710Z/summary.json",
+      "scope": "Source snapshot invariance and complete six-outcome mutation accounting summary.",
+      "sha256": "67e1f05655597b1af15d34c7d23d28d6a2c5457722639923e0bfce6eb0da2b50"
+    },
+    {
+      "path": "evidence/quality/fsp/20261020T190710Z/mutations.json",
+      "scope": "Designated semantic fault injection runs and per-mutant log hashes.",
+      "sha256": "6c49cf946acb882301064b27663424761a232ae06bd8d7459af6b78b358ddc92"
+    },
+    {
+      "path": "evidence/quality/fsp/20261020T190710Z/metric_receipt.json",
+      "scope": "Calibrated syn 3.0.9 source AST complexity receipt and tool-source hashes.",
+      "sha256": "75e207ea1e8dcec4cde37baff310d3d8cab8c66565f34724448d93af2585fbc9"
+    }
+  ],
+  "verification": {
+    "baseline_ok": true,
+    "restored_baseline_ok": true,
+    "source_snapshot_unchanged": true,
+    "compiled_scope": "tfqm_fsp isolated offline crate library tests; inspect the bound log for executed counts",
+    "local_mutant_ids": [
+      "FSP-BQNF-01-valid-complex-branch",
+      "FSP-BQNF-02-open-defect-branch"
+    ],
+    "current_manifest_assessment_complete": false
+  },
+  "mutation_accounting": {
+    "killed": 2,
+    "survived": 0,
+    "demonstrably_equivalent": 0,
+    "invalid": 0,
+    "inconclusive": 0,
+    "unrun": 0,
+    "conservative_ratio": 1.0
+  },
+  "structure": {
+    "tool": "syn 3.0.9 source AST",
+    "source_ast_parsed": true,
+    "expanded_ast": false,
+    "physical_lines": 250,
+    "parsed_production_functions": 7,
+    "max_production_ccn": 8,
+    "cognitive_complexity_upper_bound": 9,
+    "control_nesting": 3,
+    "metric_ceiling": "A",
+    "opaque_function_macros": [],
+    "functions_exceeding_A": [],
+    "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
+  },
+  "gate_review": {
+    "G1": "C: Explicit `AuthorityEffect: None` and `#![forbid(unsafe_code)]`; `TerminalRoute` and `route_packet` correspond 1-to-1 with `lean4/BqnfSignPacket.lean`.",
+    "G2": "D: Primary calculations use exact `BigRational`, but `SignPacketMetrics` and `CochainComplex` have `pub` fields and derive `Deserialize` (`RULE_RS_003`), permitting construction of unvalidated complexes with $d_1 d_0 \\ne 0$ or negative norms `closure_defect < 0` / `residual_mass < 0`.",
+    "G3": "D: `CochainComplex::check_nilpotence` (line 125: `&row[k] * &self.d0[k][j]`) and `apply_d1` (line 146) use direct slice indexing (`RULE_RS_002`). If a `CochainComplex` is constructed via public struct literal or `serde::Deserialize` with ragged rows (`RULE_RS_003`), `check_nilpotence` and `apply_d1` panic out-of-bounds.",
+    "G4": "C: Unit tests `bqnf_5_fold_routing_theorems` and `cochain_nilpotence_check` cover all 6 routing cases and valid/open/closed cochains; both designated mutants (`FSP-BQNF-01`, `FSP-BQNF-02`) are killed ($R = 2/2 = 1.0$). Missing negative unit tests for `CochainComplex::new` refusal branches.",
+    "G5": "A: Calibrated `syn 3.0.9` AST metrics across 7 production functions: max CCN = 8 (<= 10), cognitive upper bound = 9 (<= 15), control nesting = 3 (<= 3), 0 functions exceeding `A`."
+  },
+  "open_findings": [
+    "RULE_RS_003 (Gate 2 -> D, Gate 3 -> D): `CochainComplex` and `SignPacketMetrics` expose `pub` fields and unchecked `serde::Deserialize`, allowing callers to bypass `CochainComplex::new` nilpotence/dimension checks and trigger slice-indexing panics in `check_nilpotence` / `apply_d1`.",
+    "Gate 2 -> D: `SignPacketMetrics::new` does not reject negative `closure_defect` or negative `residual_mass` even though both represent $\\ell_1$ norms.",
+    "Immediate merge requested; further validation deferred. Five original package baselines passed; QM release failed in omega_engines. strict_invariants fix is committed but its retry was interrupted. No current complete assessment or mutation certification is claimed."
+  ],
+  "assurance_limits": [
+    "Evaluation applies SCORING.md v2.0.0 fail-closed weakest-link grading (`composite_grade = min(G1..G5)`).",
+    "No mechanized Rust-to-Lean extraction, MIR crash-freedom proof, or global allocator totality is claimed."
+  ],
+  "assessment_status": "WITHDRAWN_PENDING_SOURCE_BOUND_REVIEW",
+  "capability_status": "provisional_unverified",
+  "profile_status": "declared_target_unverified"
+}

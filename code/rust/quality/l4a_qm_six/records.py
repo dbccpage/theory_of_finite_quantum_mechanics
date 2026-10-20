@@ -126,7 +126,7 @@ def apply_individual_engineering_review(scoring, specification):
     known = [g for g in scoring["gates"].values() if g is not None]
     complete = len(known) == 5
     scoring["is_complete"] = complete
-    if complete or "E" in known:
+    if complete:
         grade = min(known, key=grades.index)
         scoring["composite_grade"] = grade
         scoring["score_token"] = scoring["level"] + grade
@@ -219,6 +219,11 @@ def record_for(path, receipt_path, receipt, metrics, mutation_path=None):
         failures.append(
             "One or more source functions exceed an A structural ceiling; see structure.exceeding_A."
         )
+    float_markers = len(re.findall(r"\b(?:f32|f64)\b", source))
+    if float_markers:
+        failures.append(
+            "Floating-point type spellings occur in this source. The Exact profile is a declared target, not an established property; active numerical paths require dataflow review and a declared error model. Lexical presence alone does not prove an executed defect."
+        )
     contract_path = Path(str(path) + ".contract.yaml")
     evidence = [ref(receipt_path), ref(receipt_path.parent / "source_manifest.json")]
     evidence.extend([ref(Path(__file__)), ref(SPECS_PATH)])
@@ -257,6 +262,8 @@ def record_for(path, receipt_path, receipt, metrics, mutation_path=None):
         "status": "draft_requires_semantic_review",
         "target": "L4A",
         "profile": profile,
+        "profile_status": "declared_target_unverified",
+        "floating_point_type_spellings": float_markers,
         "purpose": PURPOSES[group],
         "subject_role": basis,
         "compilation": {
@@ -314,6 +321,8 @@ def record_for(path, receipt_path, receipt, metrics, mutation_path=None):
         "AuthorityEffect": "None",
         "artifact": artifact,
         "profile": profile,
+        "profile_status": "declared_target_unverified",
+        "floating_point_type_spellings": float_markers,
         "level": level,
         "level_basis": basis,
         "engineering_target": "A",
@@ -411,6 +420,9 @@ def record_for(path, receipt_path, receipt, metrics, mutation_path=None):
         "Start of the latest bound assessment execution; execution durations are recorded in receipts."
     )
     apply_individual_engineering_review(scoring, specification)
+    if not scoring["is_complete"]:
+        scoring["composite_grade"] = None
+        scoring["score_token"] = None
     scoring["contract"]["sha256"] = hashlib.sha256(
         render(contract).encode("utf-8")
     ).hexdigest()

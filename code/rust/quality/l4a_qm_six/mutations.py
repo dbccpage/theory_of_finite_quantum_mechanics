@@ -316,6 +316,8 @@ def classify(run):
     if run["exit_code"] == 0:
         return "survived", "Selected suite passed."
     log = (ROOT / run["log"]).read_text(encoding="utf-8")
+    if any(text in log.lower() for text in ["not enough space", "no space left", "os error 112"]):
+        return "inconclusive", "Resource exhaustion does not establish a semantic kill or an invalid recipe."
     if "could not compile" in log or "error[E" in log:
         return "invalid", "Compiler rejected candidate; excluded from eligible denominator."
     if "test result: FAILED" in log:
@@ -326,6 +328,7 @@ def classify(run):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--prefix")
+    parser.add_argument("--release", action="store_true", help="Run the same designated faults with optimized overflow-checked snapshot profiles")
     args = parser.parse_args()
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     output = ROOT / "evidence/quality/l4a_qm_six" / (stamp + "-mutations")
@@ -374,18 +377,20 @@ def main():
         receipt["dependency_sources_sha256"] = digest(output / "dependency_sources.json")
         packages = sorted({c["package"] for c in entries})
         common = ["--offline", "--target-dir", str(work_root / "build"), "--quiet"]
+        if args.release:
+            common.append("--release")
 
         def run_package(package, log, test_filter=None):
-            if shutil.disk_usage(ROOT).free < 700 * 1024**2:
+            if shutil.disk_usage(ROOT).free < 3500 * 1024**2:
                 remove_owned(work_root / "build", work_root)
                 receipt["build_cache_disposals"].append(
                     {
                         "before_log": log.name,
-                        "reason": "Completed Cargo cache removed to recover 700 MiB headroom.",
+                        "reason": "Completed owned Cargo cache removed to recover 3 GiB headroom.",
                     }
                 )
-            if shutil.disk_usage(ROOT).free < 500 * 1024**2:
-                return {"started": False, "exit_code": None, "reason": "Less than 500 MiB free"}
+            if shutil.disk_usage(ROOT).free < 3 * 1024**3:
+                return {"started": False, "exit_code": None, "reason": "Less than 3 GiB free"}
             cmd = ["cargo", "test", *common, "-p", package, "--lib"]
             if test_filter:
                 cmd.append(test_filter)

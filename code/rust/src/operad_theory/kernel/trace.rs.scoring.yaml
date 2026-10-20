@@ -13,15 +13,15 @@
   "engineering_target": "A",
   "requested_target": "L4A",
   "gates": {
-    "G1": "A",
-    "G2": "A",
-    "G3": "A",
-    "G4": "A",
-    "G5": "A"
+    "G1": null,
+    "G2": null,
+    "G3": null,
+    "G4": null,
+    "G5": null
   },
-  "composite_grade": "A",
-  "score_token": "L4A",
-  "is_complete": true,
+  "composite_grade": null,
+  "score_token": null,
+  "is_complete": false,
   "grade_ceiling": "A",
   "evaluation_timestamp": "2026-10-20T15:14:24+00:00",
   "grade_ceiling_basis": "Minimum of explicit individual gate decisions and measured structural eligibility.",
@@ -97,7 +97,8 @@
       "OP03-event-operand-receipts"
     ],
     "mutation_restoration_baselines_ok": true,
-    "reproduced_defects": []
+    "reproduced_defects": [],
+    "current_manifest_assessment_complete": false
   },
   "mutation_accounting": {
     "killed": 1,
@@ -201,7 +202,9 @@
     "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
   },
   "open_findings": [
-    "Scoped to finite execution trace events and SHA-256 digest references."
+    "Scoped to finite execution trace events and SHA-256 digest references.",
+    "User requested immediate merge and deferred further fixes. Five original native package baselines passed; QM release failed in omega_engines; strict_invariants dependency fix is committed but retry was interrupted. No fresh full source-bound assessment, full mutation campaign, or completed engineering grade is claimed.",
+    "Immediate merge requested; further validation deferred. Five original package baselines passed; QM release failed in omega_engines. strict_invariants fix is committed but its retry was interrupted. No current complete assessment or mutation certification is claimed."
   ],
   "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts.",
   "engineering_review": {
@@ -228,5 +231,8 @@
         "basis": "Decomposed ExecutionEvent::new into focused validation helpers so all functions satisfy Grade A structural ceilings (CCN <= 10, cognitive <= 15, nesting <= 3)."
       }
     }
-  }
+  },
+  "assessment_status": "WITHDRAWN_PENDING_SOURCE_BOUND_REVIEW",
+  "capability_status": "provisional_unverified",
+  "profile_status": "declared_target_unverified"
 }
