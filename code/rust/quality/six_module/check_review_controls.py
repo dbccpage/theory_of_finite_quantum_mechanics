@@ -1,0 +1,74 @@
+"""Exercise semantic refusal checks beyond the outer SHA envelope, without edits.
+
+The probes replace decoded values in memory after normal digest validation.
+No source, native receipt, proof or contract file is mutated by these controls.
+"""
+from copy import deepcopy
+from datetime import datetime, timezone
+import json
+from pathlib import Path
+
+import reviewed_assessments as checks
+
+
+def main():
+    source = checks.ROOT / "code/rust/src/combinatorics/enumeration.rs"
+    reference = json.loads((checks.HERE / "gate_reviews.json").read_text(encoding="utf-8"))[source.relative_to(checks.ROOT).as_posix()]
+    original_load = checks.load
+    assessment = original_load(reference)
+    cases = []
+
+    def changed_native(value):
+        value["mutation_accounting"]["killed"] -= 1
+        value["mutation_accounting"]["survived"] += 1
+
+    def missing_failure(value):
+        value[0]["run"]["exit_code"] = 0
+
+    def wrong_metric(value):
+        value[source.relative_to(checks.ROOT).as_posix()][0]["ccn"] = 11
+
+    def missing_body(value):
+        value["symbol_map"].pop(next(iter(value["symbol_map"])))
+
+    def changed_body(value):
+        value["symbol_map"][next(iter(value["symbol_map"]))]["body"] = "{ unreachable!() }"
+
+    probes = [
+        ("false_six_outcome_counts", assessment["native_summary"], changed_native),
+        ("kill_without_test_failure", assessment["native_mutations"], missing_failure),
+        ("measured_A_ceiling_exceeded", assessment["metric_output"], wrong_metric),
+        ("unmapped_production_body", reference, missing_body),
+        ("incorrect_production_body", reference, changed_body),
+    ]
+    try:
+        for name, target, mutate in probes:
+            def injected(item):
+                value = original_load(item)
+                if item["path"] == target["path"]:
+                    value = deepcopy(value)
+                    mutate(value)
+                return value
+            checks.load = injected
+            try:
+                checks.reviewed(source)
+            except (ValueError, SystemExit) as error:
+                cases.append({"control": name, "expected": "refusal", "observed": str(error)})
+            else:
+                raise AssertionError("Undetected false evidence: " + name)
+    finally:
+        checks.load = original_load
+    record, _ = checks.reviewed(source)
+    assert record[1]["score_token"] == "L4A"
+    cases.append({"control": "unaltered_current_review", "expected": "pass", "observed": record[1]["score_token"]})
+    output = checks.ROOT / "evidence/quality/six_module/checkpoint-002/review-controls.json"
+    output.parent.mkdir(parents=True, exist_ok=True)
+    output.write_text(json.dumps({"AuthorityEffect": "None", "checked_at": datetime.now(timezone.utc).isoformat(),
+        "runner_sha256": checks.sha(Path(__file__)), "review_verifier_sha256": checks.sha(Path(checks.__file__)),
+        "scope": "In-memory decoded-value controls after validating the original outer reference digests; no artifact bytes edited.",
+        "checks": cases}, indent=2) + "\n", encoding="utf-8")
+    print("Five semantic false-evidence controls refused; the unaltered L4A review passes")
+
+
+if __name__ == "__main__":
+    main()

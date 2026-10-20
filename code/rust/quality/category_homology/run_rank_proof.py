@@ -18,14 +18,22 @@ from run_audit import ROOT, digest, execute, write_json
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model",choices=("rank","category","metadata","degree","counter","parameters","finite-set","literal-reversal","shape-inventory","root-records","homology-protocols","degree-repair","two-step-complex","simplicial-closure","simplicial-boundary","simplicial-homology","scalar-admission","carrier-dimensions","vector-maps","graph-incidence","validation-inventory","arrow-effects","finite-builder","em-samples","lawvere-inventory","higher-functor-inventory","finite-functor","functor-operations","finite-naturality","natural-composition","joint-carrier","finite-simulation","finite-independence","finite-trace","finite-dagger","finite-groupoid","cauchy-inventory","tagged-coend","condensation-metadata","root-catalog","finite-profunctor-inventory","finite-continuation","finite-moore","partial-structure","finite-path","family-registry","functional-dependencies","functional-classification","finite-relational","joint-dynamics","history-context","context-reflection"),default="rank")
+    parser.add_argument("--model",choices=("rank","category","metadata","degree","counter","parameters","finite-set","literal-reversal","shape-inventory","root-records","homology-protocols","degree-repair","two-step-complex","simplicial-closure","simplicial-boundary","simplicial-homology","scalar-admission","carrier-dimensions","vector-maps","graph-incidence","validation-inventory","arrow-effects","finite-builder","em-samples","lawvere-inventory","higher-functor-inventory","finite-functor","functor-operations","finite-naturality","natural-composition","joint-carrier","finite-simulation","finite-independence","finite-trace","finite-dagger","finite-groupoid","cauchy-inventory","tagged-coend","condensation-metadata","root-catalog","finite-profunctor-inventory","finite-continuation","finite-moore","partial-structure","finite-path","family-registry","functional-dependencies","functional-classification","finite-relational","joint-dynamics","history-context","context-reflection","finite-enumeration","cartesian-words"),default="rank")
     parser.add_argument("--memory-mb", type=int, default=1024,
         help="Explicit Lean memory limit, from 256 to 2048 MiB; default remains 1024.")
     args = parser.parse_args()
     if not 256 <= args.memory_mb <= 2048:
         parser.error("Lean memory must stay within 256..2048 MiB")
     model = args.model
-    if model == "rank":
+    if model == "cartesian-words":
+        proof_name, import_name, namespace = "CartesianWords", "Data/Nat/Choose/Basic", "TFQM.CartesianWords."
+        declarations = ("value_bound", "advance_success", "exhausted_value", "exhausted_iff", "digit_remainder", "tail_quotient", "value_injective", "nullary_count", "empty_alphabet", "width_admitted", "increment_fits")
+        scope = "Admitted digit range, positional-value bound/injectivity, exact carry successor, maximal exhaustion and width/increment boundaries, with least-significant-first model words. Rust reverse-Vec traversal, bounded ownership/admission and costs are separately reviewed."
+    elif model == "finite-enumeration":
+        proof_name, import_name, namespace = "FiniteEnumeration", "Data/Nat/Choose/Basic", "TFQM.FiniteEnumeration."
+        declarations = ("factorial_exact", "binomial_step", "binomial_step_integral", "binomial_loop_exact", "binomial_final", "symmetric_choice", "choose_outside", "numerator_fits", "composition_count", "no_parts_nonzero", "empty_composition", "admission_exact", "width_first", "rows_before_cells", "cells_refused", "pivot_sum", "pivot_increment_fits", "pivot_remainder_lt", "subset_increment_fits")
+        scope = "Exact factorial/binomial recurrences including integral division, multichoose identity, ordered resource refusal and arithmetic pivot/subset bounds. Rust iterator storage, complete lexicographic enumeration, admission correspondence and costs are separately reviewed."
+    elif model == "rank":
         proof_name, import_name, namespace = "RankCertificate", "LinearAlgebra/Matrix/Rank", "TFQM.RankCertificate."
         declarations = ("valid_rank","runChecks_ok_iff","admit_success","admit_success_rank",
             "producer_failure","explicit_failure","failed_predicate","first_error_preserved",

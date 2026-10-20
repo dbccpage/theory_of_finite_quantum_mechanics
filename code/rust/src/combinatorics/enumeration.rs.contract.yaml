@@ -6,7 +6,7 @@
     "sha256": "7e952dc5fe3b1322f286093c674393735bacdae9c281efc8e687ce5691e5cb8c",
     "language": "Rust"
   },
-  "status": "resource_and_semantic_source_review_complete_gates_pending",
+  "status": "source_reviewed",
   "formal_specification": {
     "profile": "Exact",
     "domain": "All public inputs, with explicit typed factorial, choice, row-count, width and eager-cell admission; bool successors reject invalid slices without writes.",
@@ -156,33 +156,17 @@
   },
   "trust_boundary": "Derived thiserror formatting, Debug/Clone/Eq, concrete Vec and BigUint operations are standard-library/compiler/dependency trust. The source metric parser does not expand their implementations. No Rust/MIR proof or cross-repository provider attestation is claimed. Native exact oracles and source invariant arguments remain distinct from machine-checked mathematical proof.",
   "assurance_limits": [
-    "Complete five-gate assessment remains pending; the concrete resource fixes and source invariants do not automatically award A.",
-    "Source-level arithmetic and enumeration arguments are not extracted Rust proofs. Allocator availability remains in the TCB.",
-    "Only the actual standalone combinatorics crate and copied enumeration controls are compiled; other goal modules remain independently unreviewed."
+    "AuthorityEffect: None. The exact arithmetic/refusal model is checked independently of Rust compilation.",
+    "No extracted Rust/MIR refinement or machine-checked allocator/crash-freedom theorem. Source invariants and native controls connect the explicit model to implementation.",
+    "The replay covers the actual standalone combinatorics crate and one-fault enumeration copies. It does not compile the entire workspace or any external omega provider.",
+    "Eager permutation and combination collections respect caller row limits; aggregate memory remains caller-controlled. Weak composition cells and owned iterator widths have explicit hard admission bounds.",
+    "The static PROVENANCE mutation-count text is a legacy annotation. The source-bound current recipe and full six-outcome ledger are authoritative for this assessment."
   ],
   "review_evidence": [
     {
-      "path": "code/rust/quality/six_module/enumeration_source_review.json",
-      "sha256": "110e483c3a1782f528fb73700cda16047554dd3cf865bf9642e20f941e2f0e6a"
-    },
-    {
-      "path": "evidence/quality/six_module/20261019T234341Z-enumeration/summary.json",
-      "sha256": "f391576f57241b0c071534cf35f7714c7250e8c927371b5372cd433d8a0350a3"
-    },
-    {
-      "path": "evidence/quality/six_module/20261019T234341Z-enumeration/mutations.json",
-      "sha256": "fe8ea125b739df1e685fda6eac6fda15aa2a14210e2c822f075b5ee848882584"
-    },
-    {
-      "path": "evidence/quality/six_module/20261019T234341Z-enumeration/control.log",
-      "sha256": "e2ec723cd6b66e90688046c6f7b12eb45be353b8e55f8da003d674f74ad50815"
-    },
-    {
-      "path": "evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json",
-      "sha256": "03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3"
+      "path": "code/rust/quality/six_module/assessments/enumeration.json",
+      "sha256": "fc8fcac5145da198a8e1c4b041ee1551fe403acf8e24506053bbbfb4878d449f"
     }
   ],
-  "open_obligations": [
-    "Finish gate-by-gate approval, bind the complete caller/dependency review, and audit the new contract/evidence against the rubric before emitting a completed score."
-  ]
+  "open_obligations": []
 }

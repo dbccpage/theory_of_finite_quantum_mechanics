@@ -1,0 +1,95 @@
+{
+  "schema_version": "2.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/combinatorics/enumeration.rs",
+    "sha256": "7e952dc5fe3b1322f286093c674393735bacdae9c281efc8e687ce5691e5cb8c",
+    "language": "Rust"
+  },
+  "rubric": {
+    "path": "SCORING.md",
+    "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+  },
+  "architecture_target": "L4",
+  "engineering_target": "A",
+  "level": "L4",
+  "gates": {
+    "G1": null,
+    "G2": null,
+    "G3": null,
+    "G4": null,
+    "G5": null
+  },
+  "composite_grade": null,
+  "score_token": null,
+  "is_complete": false,
+  "assessment_status": "incomplete",
+  "assessment_source": null,
+  "contract": {
+    "path": "code/rust/src/combinatorics/enumeration.rs.contract.yaml",
+    "sha256": "a9d2187626dda90d856f61e9e5b4eefe68ae88fb40f9c7bd67ef09ce6086bf53"
+  },
+  "assessment_note": "Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.",
+  "open_obligations": [
+    "Complete each missing sovereign gate; no completed token until all five have adequate evidence."
+  ],
+  "known_findings": [
+    {
+      "gate": "G3",
+      "status": "resolved_on_current_bytes",
+      "historical_finding": {
+        "path": "evidence/quality/six_module/20261019T233833Z-enumeration-before/finding.json",
+        "sha256": "54c5c844c0eea319eda92bcd8782ccf81f3fa544749b150ea884b93ce3a3a252"
+      },
+      "resolution": "Admit owned width and total eager cells before allocation; iterative composition traversal. Both original counterexamples now return typed ArgumentTooLarge in the independent native control."
+    }
+  ],
+  "partial_evidence": [
+    {
+      "path": "code/rust/quality/six_module/enumeration_source_review.json",
+      "sha256": "110e483c3a1782f528fb73700cda16047554dd3cf865bf9642e20f941e2f0e6a"
+    },
+    {
+      "path": "evidence/quality/six_module/20261019T234341Z-enumeration/summary.json",
+      "sha256": "f391576f57241b0c071534cf35f7714c7250e8c927371b5372cd433d8a0350a3"
+    },
+    {
+      "path": "evidence/quality/six_module/20261019T234341Z-enumeration/mutations.json",
+      "sha256": "fe8ea125b739df1e685fda6eac6fda15aa2a14210e2c822f075b5ee848882584"
+    },
+    {
+      "path": "evidence/quality/six_module/20261019T234341Z-enumeration/control.log",
+      "sha256": "e2ec723cd6b66e90688046c6f7b12eb45be353b8e55f8da003d674f74ad50815"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json",
+      "sha256": "03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3"
+    }
+  ],
+  "structural_measurement": {
+    "source_sha256": "7e952dc5fe3b1322f286093c674393735bacdae9c281efc8e687ce5691e5cb8c",
+    "function_count": 18,
+    "maxima": {
+      "ccn": 8,
+      "cognitive_upper_bound": 9,
+      "control_nesting": 3
+    },
+    "structural_ceiling": "A",
+    "opaque_macros": [],
+    "evidence": [
+      {
+        "path": "evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json",
+        "sha256": "03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3"
+      },
+      {
+        "path": "evidence/quality/category_homology/20261019T234440Z-metrics/metrics.json",
+        "sha256": "f1cd57a774df89c14758566aa0ea903e2b5cbdd5c47f0e536eedd525b9e891cc"
+      },
+      {
+        "path": "evidence/quality/category_homology/20261019T234440Z-metrics/six_module_scope.json",
+        "sha256": "0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf"
+      }
+    ],
+    "scope": "Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate."
+  }
+}
