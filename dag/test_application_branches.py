@@ -24,7 +24,7 @@ def test_branches_have_resolved_papers_parents_and_local_source_symbols():
     f = fragment()
     records = [json.loads(line) for line in (ROOT / 'dag/theory_of_finite_qm.jsonl').read_text(encoding='utf-8').splitlines()]
     ids = {r['id'] for r in records}
-    assert len(ids) == len(records) == 410
+    assert len(ids) == len(records) == 397 + len(f["records"])
     papers = list((ROOT / 'dag/derivations').rglob('tfq_*.md'))
     paper_ids = ['TFQ-' + re.match(r'tfq_(\d{4})_', p.name)[1] for p in papers]
     assert len(paper_ids) == len(set(paper_ids)) == len(records)
@@ -68,6 +68,8 @@ def test_application_paper_and_index_links_resolve():
     sections.append((index, index.read_text(encoding='utf-8').split(sync.MARKER)[1]))
     for paper, text in sections:
         for reference in re.findall(r'\]\(([^)]+)\)', text):
+            if reference.startswith(('https://', 'http://')):
+                continue
             assert (paper.parent / reference.split('#')[0]).is_file(), (paper, reference)
 
 
@@ -106,3 +108,23 @@ def test_nf002_port_preserves_sealed_source_except_conditional_lemma_spellings()
     port = (ROOT / f['nf002_replay_source']).read_text(encoding='utf-8')
     port = re.sub(r'\n/- Compatibility port of the sealed NF-002 source\..*?-/\n', '', port, count=1, flags=re.S)
     assert port == expected
+
+
+def test_tensor_proof_boundaries_and_conditional_gap():
+    graph = json.loads((ROOT / 'dag/derivation_dag.json').read_text(encoding='utf-8'))
+    nodes = {n['id']: n for n in graph['nodes']}
+    assert nodes['FQ-GAP-TENSOR-UNIQUENESS']['status'] == 'CONDITIONAL'
+    assert nodes['TENSOR-CONE-ORBIT-KERNEL']['status'] == 'PROVED_LEAN'
+    for name in ('TENSOR-TOMOGRAPHIC-COORDINATES',
+                 'TENSOR-CONTROLLED-SHIFT-RECONSTRUCTION',
+                 'TENSOR-ASSUMPTION-COUNTERMODELS'):
+        assert nodes[name]['status'] == 'PROVED_PROSE'
+    gap = nodes['FQ-GAP-TENSOR-UNIQUENESS']
+    update = fragment()['tensor_uniqueness_update']
+    for field in ('statement', 'source_status', 'bottleneck', 'imported_structure'):
+        assert gap[field] == update[field]
+    assert 'tensor composition (assumption)' not in gap['imported_structure']
+    lean = (ROOT / 'lean4/TensorConeReconstruction.lean').read_text(encoding='utf-8')
+    assert not re.search(r'\b(sorry|admit|axiom)\b', lean)
+    assert 'reachability : ∀ v' in lean
+    assert 'variable {n : Type*} [Fintype n]' in lean

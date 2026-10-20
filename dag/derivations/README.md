@@ -568,9 +568,9 @@ Folder: [`23_engine_custody/`](./23_engine_custody/)
 
 <!-- application-branches: generated from fragments/application_branches.json -->
 
-## Application derivation branches
+## Application and composition derivation branches
 
-These branches attach to existing finite carriers. A proved theorem has its stated hypotheses; an open research target remains open. See the [branch fragment](../fragments/application_branches.json) and [validation receipt](../research/application_branches_validation.json).
+These branches attach to existing finite carriers. A proved theorem has its stated hypotheses; an open research target remains open. See the [branch fragment](../fragments/application_branches.json) and the [initial application receipt](../research/application_branches_validation.json). The [tensor receipt](../research/tensor_composition_validation.json) records the later extension.
 
 ### DRESSING_FIELD (5 derivations)
 
@@ -599,3 +599,12 @@ These branches attach to existing finite carriers. A proved theorem has its stat
 | [TFQ-0407](./26_fsp/tfq_0407_fsp_meron_character_cancellation.md) | Meron character cancellation on a supplied flip orbit | `PROVED_LEAN` | [TFQ-0406](./26_fsp/tfq_0406_fsp_switching_normal_form.md) | `FSP-MERON-CHARACTER-CANCELLATION` |
 | [TFQ-0408](./26_fsp/tfq_0408_fsp_hubbard_protected_representations.md) | Protected Hubbard representations and negative witnesses | `CONDITIONAL` | [TFQ-0406](./26_fsp/tfq_0406_fsp_switching_normal_form.md) | `FSP-HUBBARD-PROTECTED-REPRESENTATIONS` |
 | [TFQ-0409](./26_fsp/tfq_0409_fsp_efficient_sampling_obligations.md) | Efficient sampling and general FSP obligations | `OPEN_OBLIGATION` | [TFQ-0408](./26_fsp/tfq_0408_fsp_hubbard_protected_representations.md) | `FSP-EFFICIENT-SAMPLING-OBLIGATIONS` |
+
+### TENSOR_COMPOSITION (4 derivations)
+
+| ID | Name | Status | Parent | DAG node |
+|---|---|---|---|---|
+| [TFQ-0410](./27_tensor_composition/tfq_0410_tensor_tomographic_coordinates.md) | Composite coordinates from local operational statistics | `PROVED_PROSE` | [TFQ-0127](./21_implementation_core/tfq_0127_hilbert_carriers_and_tensor_index.md) | `TENSOR-TOMOGRAPHIC-COORDINATES` |
+| [TFQ-0411](./27_tensor_composition/tfq_0411_tensor_cone_orbit_kernel.md) | Positive cone selection by preparations and transported tests | `PROVED_LEAN` | [TFQ-0410](./27_tensor_composition/tfq_0410_tensor_tomographic_coordinates.md) | `TENSOR-CONE-ORBIT-KERNEL` |
+| [TFQ-0412](./27_tensor_composition/tfq_0412_tensor_controlled_shift_reconstruction.md) | Quantum composition from a calibrated reversible controlled shift | `PROVED_PROSE` | [TFQ-0411](./27_tensor_composition/tfq_0411_tensor_cone_orbit_kernel.md) | `TENSOR-CONTROLLED-SHIFT-RECONSTRUCTION` |
+| [TFQ-0413](./27_tensor_composition/tfq_0413_tensor_assumption_countermodels.md) | Countermodels and the interaction assumption boundary | `PROVED_PROSE` | [TFQ-0412](./27_tensor_composition/tfq_0412_tensor_controlled_shift_reconstruction.md) | `TENSOR-ASSUMPTION-COUNTERMODELS` |

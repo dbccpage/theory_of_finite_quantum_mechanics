@@ -54,6 +54,15 @@ def generated_files(root: Path):
         if reference not in nf['lean']:
             nf['lean'].append(reference)
 
+    tensor = next(n for n in dag['nodes'] if n['id'] == 'FQ-GAP-TENSOR-UNIQUENESS')
+    update = fragment['tensor_uniqueness_update']
+    for field in ('statement', 'source_status', 'bottleneck', 'imported_structure'):
+        tensor[field] = update[field]
+    for field in ('source', 'see_also'):
+        for reference in update[field]:
+            if reference not in tensor[field]:
+                tensor[field].append(reference)
+
     old_records = [json.loads(line) for line in (folder / 'theory_of_finite_qm.jsonl').read_text(encoding='utf-8').splitlines()]
     for r in old_records:
         if r['id'] in record_ids and r.get('source_slice') != 'application_branches':
@@ -73,10 +82,11 @@ def generated_files(root: Path):
         raise ValueError('application paper or parent is missing')
 
     index = strip_suffix((folder / 'derivations/README.md').read_text(encoding='utf-8'))
-    index += '\n' + MARKER + '\n\n## Application derivation branches\n\n'
+    index += '\n' + MARKER + '\n\n## Application and composition derivation branches\n\n'
     index += ('These branches attach to existing finite carriers. A proved theorem has its stated hypotheses; '
               'an open research target remains open. See the [branch fragment](../fragments/application_branches.json) '
-              'and [validation receipt](../research/application_branches_validation.json).\n')
+              'and the [initial application receipt](../research/application_branches_validation.json). '
+              'The [tensor receipt](../research/tensor_composition_validation.json) records the later extension.\n')
     master = strip_suffix((folder / 'theory_of_finite_qm.md').read_text(encoding='utf-8'))
     master = re.sub(r'Nodes: \d+\.', f'Nodes: {len(all_records)}.', master, count=1)
     for stage in fragment['stages']:

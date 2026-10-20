@@ -4,7 +4,7 @@
 
 This file is a table of contents for `theory_of_finite_qm.jsonl`. Each row is a finite derivation step that Python, Rust, and Lean 4 still have to carry, or a source record those languages have to match. The graph is a tree rooted at the inert inscription `<>`. A `GAP` or `OPEN_OBLIGATION` status is unfinished work. A computational control is not a completed derivation. Statuses other than SOURCE_RECORD, OPEN_OBLIGATION, GAP, and COMPUTATIONAL_CONTROL are fences from the source slice, including a float script and an exact area-deficit proxy that is not the Einstein-Hilbert action. F002 remains an interface inventory. Continuum QED, continuum QCD, and continuum quantum gravity are not derived here.
 
-Nodes: 410. Dropped atlas paths that were not on disk: 0.
+Nodes: 414. Dropped atlas paths that were not on disk: 0.
 
 ## Stage index
 
@@ -36,6 +36,7 @@ Nodes: 410. Dropped atlas paths that were not on disk: 0.
 | `DRESSING_FIELD` | 5 |
 | `MUTUALLY_UNBIASED_BASES` | 4 |
 | `FERMION_SIGN` | 4 |
+| `TENSOR_COMPOSITION` | 4 |
 
 ## Coda atlas packages cited from the four floors
 
@@ -5629,3 +5630,53 @@ Obligation: Prove the required determinant pairing and Hamiltonian-to-representa
 Canonical sign representatives, finite cancellation and nonnegative determinant weights do not establish an efficient sampler or a general fermion sign-problem solution.
 
 Obligation: Define input size, transformation cost, estimator variance, normalization and mixing or sampling bounds for the chosen model family.
+
+## TENSOR_COMPOSITION
+
+### TFQ-0410 Composite coordinates from local operational statistics
+
+- UUID: `c1737cb8-173a-54e8-bcfa-f3efbb7422c8`
+- Parent: `TFQ-0127`
+- Status: `PROVED_PROSE`
+- DAG node: `TENSOR-TOMOGRAPHIC-COORDINATES`
+- Paper: [derivation](derivations/27_tensor_composition/tfq_0410_tensor_tomographic_coordinates.md)
+
+For arbitrary positive finite local dimensions n,m, independent quantum preparations and tests plus local tomography determine a unique real linear identification with Herm(nm), taking products to Kronecker matrices and the unit effect to trace. The state cone is bracketed by SEP and BP; PSD is not selected at this step.
+
+Obligation: Local complex quantum state/effect spaces and trace probabilities are supplied; the coordinate theorem is a general prose proof. Exact projector-basis fixtures are finite checks.
+
+### TFQ-0411 Positive cone selection by preparations and transported tests
+
+- UUID: `d848f596-e2a5-5f4d-b4dd-d272fa7da721`
+- Parent: `TFQ-0410`
+- Status: `PROVED_LEAN`
+- DAG node: `TENSOR-CONE-ORBIT-KERNEL`
+- Paper: [derivation](derivations/27_tensor_composition/tfq_0411_tensor_cone_orbit_kernel.md)
+
+For any finite complex matrix size, a Hermitian set containing zero and closed under addition equals PSD when seed preparations and positive seed tests are transported by preserving operations whose seed-vector orbits cover all vectors.
+
+Obligation: Lean checks the cone kernel for an arbitrary finite index type. Operational coordinate construction and controlled-shift reachability are hypotheses at this formal boundary, discharged in prose by TFQ-0410 and TFQ-0412.
+
+### TFQ-0412 Quantum composition from a calibrated reversible controlled shift
+
+- UUID: `6cccaded-526a-5033-ad6e-bf1d0d2d86a0`
+- Parent: `TFQ-0411`
+- Status: `PROVED_PROSE`
+- DAG node: `TENSOR-CONTROLLED-SHIFT-RECONSTRUCTION`
+- Paper: [derivation](derivations/27_tensor_composition/tfq_0412_tensor_controlled_shift_reconstruction.md)
+
+For all positive finite n,m, local complex QM, independent preparation/testing, local tomography, local unitaries and a fully tomographically calibrated reversible controlled shift force the state and generated effect cones to be PSD(nm), with trace normalization and Kronecker products. Effect saturation supplies the full binary effect interval; finite-test saturation supplies all POVMs.
+
+Obligation: The all-dimension proof uses a finite Schmidt decomposition and one controlled shift. The cone kernel is mechanized; tomography and Schmidt instantiation are prose proofs. The operational assumptions are not derived from primitive difference.
+
+### TFQ-0413 Countermodels and the interaction assumption boundary
+
+- UUID: `a3dcdee6-32e4-5ed0-a614-dd0d65142ee8`
+- Parent: `TFQ-0412`
+- Status: `PROVED_PROSE`
+- DAG node: `TENSOR-ASSUMPTION-COUNTERMODELS`
+- Paper: [derivation](derivations/27_tensor_composition/tfq_0413_tensor_assumption_countermodels.md)
+
+SEP, BP and the partially transposed quantum cone distinguish local tomography and local reversibility from calibrated interaction. A doubled quantum carrier shows why tomography is required. Complete coherent calibration separates an ordinary controlled shift from a twisted interaction and a dephasing mutation that share its classical truth table.
+
+Obligation: Countermodels delimit the sufficient package; no minimality theorem or arbitrary-GPT classification is claimed. The identical-qubit reconstruction cited in the paper is an external theorem with additional composition assumptions.

@@ -18,7 +18,8 @@
     "IMPLEMENTATION",
     "DRESSING_FIELD",
     "MUTUALLY_UNBIASED_BASES",
-    "FERMION_SIGN"
+    "FERMION_SIGN",
+    "TENSOR_COMPOSITION"
   ],
   "status_legend": {
     "ADMITTED_PRIMITIVE": "posited as an input of the programme, not derived",
@@ -2527,11 +2528,14 @@
       "id": "FQ-GAP-TENSOR-UNIQUENESS",
       "stage": "FINITE_QM_CORE",
       "status": "CONDITIONAL",
-      "source_status": "Direct-sum vs Kronecker dimension separation, min-vs-Hilbert-vs-max cone bracketing (50 < 70 < 100), and product-table zero determinant mechanized in DerivationDagQMClosure.lean",
-      "statement": "Hilbert tensor product as the unique way to combine systems remains extra structure; rival exclusions exist only for stated hosts and covariance requirements. Bipartite composition and entangled preparation are load-bearing for Bell (s13.8.2).",
+      "source_status": "The 20261019 scope audit supports only a determinant obstruction on a supplied rational host. TFQ-0410--TFQ-0413 add general prose reconstruction and countermodels, with a separately checked general Lean cone kernel.",
+      "statement": "General finite-dimensional quantum composition follows from supplied local complex QM, independent preparation and testing, local tomography, local unitaries, and a fully calibrated reversible controlled shift. The state and generated effect cones are PSD; full effect and POVM availability has explicit saturation assumptions. Primitive difference has not supplied these operational premises.",
       "source": [
         "omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/claims/gap_register.yaml:255",
-        "omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md:1332"
+        "omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/finite_quantum_mechanics.md:1332",
+        "dag/derivations/27_tensor_composition/tfq_0412_tensor_controlled_shift_reconstruction.md",
+        "dag/derivations/27_tensor_composition/tfq_0413_tensor_assumption_countermodels.md",
+        "dag/research/tensor_composition_validation.json"
       ],
       "lean": [
         "lean4/quantum_mechanics/CoupledRelationalProjectors.lean::QuantumMechanics.CoupledRelationalProjectors.coupled_bipartite_and_tripartite_relational_master_certificate",
@@ -2546,12 +2550,21 @@
         "omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness"
       ],
       "imported_structure": [
-        "tensor composition (assumption)"
+        "local finite complex quantum state and effect spaces with trace probabilities",
+        "independent preparation, testing and convex composition",
+        "local tomography",
+        "all local unitary operations",
+        "fully coherently calibrated reversible controlled shift",
+        "effect and finite-test saturation for full measurement availability"
       ],
-      "bottleneck": "Finite bipartite/tripartite Kronecker projector decompositions and min-vs-max cone bracketing are mechanized; general state-effect tensor uniqueness without host covariance remains conditional.",
+      "bottleneck": "The sufficient operational assumptions are now explicit and yield a general finite-dimensional theorem. Deriving local complex QM, tomography, coherent reversible interaction and measurement saturation from primitive difference remains conditional. Tomography and Schmidt reachability have prose proofs, not full Lean formalizations.",
       "tags": [],
       "see_also": [
-        "GP-IMPORT-TENSOR-PRODUCT"
+        "GP-IMPORT-TENSOR-PRODUCT",
+        "TENSOR-ASSUMPTION-COUNTERMODELS",
+        "TENSOR-CONE-ORBIT-KERNEL",
+        "TENSOR-CONTROLLED-SHIFT-RECONSTRUCTION",
+        "TENSOR-TOMOGRAPHIC-COORDINATES"
       ]
     },
     {
@@ -5349,6 +5362,111 @@
         "TFQ-0409"
       ],
       "see_also": []
+    },
+    {
+      "id": "TENSOR-TOMOGRAPHIC-COORDINATES",
+      "stage": "TENSOR_COMPOSITION",
+      "status": "PROVED_PROSE",
+      "source_status": "General finite-dimensional proof; Lean scope distinguished from prose and finite fixtures.",
+      "statement": "For arbitrary positive finite local dimensions n,m, independent quantum preparations and tests plus local tomography determine a unique real linear identification with Herm(nm), taking products to Kronecker matrices and the unit effect to trace. The state cone is bracketed by SEP and BP; PSD is not selected at this step.",
+      "source": [
+        "dag/derivations/27_tensor_composition/tfq_0410_tensor_tomographic_coordinates.md",
+        "code/python/src/qm/tensor_composition.py",
+        "code/python/tests/test_tensor_composition.py"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [
+        "finite local complex quantum state and effect spaces",
+        "independent preparations and tests with factorized probabilities",
+        "local tomography",
+        "mixing and linear operational extension"
+      ],
+      "bottleneck": "Local complex quantum state/effect spaces and trace probabilities are supplied; the coordinate theorem is a general prose proof. Exact projector-basis fixtures are finite checks.",
+      "tags": [
+        "application-branch",
+        "TFQ-0410"
+      ],
+      "see_also": []
+    },
+    {
+      "id": "TENSOR-CONE-ORBIT-KERNEL",
+      "stage": "TENSOR_COMPOSITION",
+      "status": "PROVED_LEAN",
+      "source_status": "General finite-dimensional proof; Lean scope distinguished from prose and finite fixtures.",
+      "statement": "For any finite complex matrix size, a Hermitian set containing zero and closed under addition equals PSD when seed preparations and positive seed tests are transported by preserving operations whose seed-vector orbits cover all vectors.",
+      "source": [
+        "dag/derivations/27_tensor_composition/tfq_0411_tensor_cone_orbit_kernel.md",
+        "code/python/src/qm/tensor_composition.py",
+        "code/python/tests/test_tensor_composition.py"
+      ],
+      "lean": [
+        "lean4/TensorConeReconstruction.lean::operational_orbit_selects_positive",
+        "lean4/TensorConeReconstruction.lean::positive_mem_of_rankOne"
+      ],
+      "rust": [],
+      "imported_structure": [
+        "finite complex matrix and spectral theory",
+        "explicit OrbitData reachability and transport hypotheses"
+      ],
+      "bottleneck": "Lean checks the cone kernel for an arbitrary finite index type. Operational coordinate construction and controlled-shift reachability are hypotheses at this formal boundary, discharged in prose by TFQ-0410 and TFQ-0412.",
+      "tags": [
+        "application-branch",
+        "TFQ-0411"
+      ],
+      "see_also": []
+    },
+    {
+      "id": "TENSOR-CONTROLLED-SHIFT-RECONSTRUCTION",
+      "stage": "TENSOR_COMPOSITION",
+      "status": "PROVED_PROSE",
+      "source_status": "General finite-dimensional proof; Lean scope distinguished from prose and finite fixtures.",
+      "statement": "For all positive finite n,m, local complex QM, independent preparation/testing, local tomography, local unitaries and a fully tomographically calibrated reversible controlled shift force the state and generated effect cones to be PSD(nm), with trace normalization and Kronecker products. Effect saturation supplies the full binary effect interval; finite-test saturation supplies all POVMs.",
+      "source": [
+        "dag/derivations/27_tensor_composition/tfq_0412_tensor_controlled_shift_reconstruction.md",
+        "code/python/src/qm/tensor_composition.py",
+        "code/python/tests/test_tensor_composition.py"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [
+        "local complex QM and spectral theory",
+        "independent preparation, testing and convex composition",
+        "local tomography",
+        "all local unitary operations",
+        "coherently calibrated reversible controlled shift",
+        "effect and finite-test saturation for full measurement availability"
+      ],
+      "bottleneck": "The all-dimension proof uses a finite Schmidt decomposition and one controlled shift. The cone kernel is mechanized; tomography and Schmidt instantiation are prose proofs. The operational assumptions are not derived from primitive difference.",
+      "tags": [
+        "application-branch",
+        "TFQ-0412"
+      ],
+      "see_also": []
+    },
+    {
+      "id": "TENSOR-ASSUMPTION-COUNTERMODELS",
+      "stage": "TENSOR_COMPOSITION",
+      "status": "PROVED_PROSE",
+      "source_status": "General finite-dimensional proof; Lean scope distinguished from prose and finite fixtures.",
+      "statement": "SEP, BP and the partially transposed quantum cone distinguish local tomography and local reversibility from calibrated interaction. A doubled quantum carrier shows why tomography is required. Complete coherent calibration separates an ordinary controlled shift from a twisted interaction and a dephasing mutation that share its classical truth table.",
+      "source": [
+        "dag/derivations/27_tensor_composition/tfq_0413_tensor_assumption_countermodels.md",
+        "code/python/src/qm/tensor_composition.py",
+        "code/python/tests/test_tensor_composition.py"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [
+        "finite-dimensional ordered real vector spaces",
+        "local quantum state and effect spaces"
+      ],
+      "bottleneck": "Countermodels delimit the sufficient package; no minimality theorem or arbitrary-GPT classification is claimed. The identical-qubit reconstruction cited in the paper is an external theorem with additional composition assumptions.",
+      "tags": [
+        "application-branch",
+        "TFQ-0413"
+      ],
+      "see_also": []
     }
   ],
   "routes": [
@@ -7862,6 +7980,56 @@
       "status": "GAP_NO_DERIVATION",
       "mechanism": "Define input size, transformation cost, estimator variance, normalization and mixing or sampling bounds for the chosen model family.",
       "source": []
+    },
+    {
+      "id": "APP-R-TENSOR-TOMOGRAPHIC-COORDINATES",
+      "inputs": [
+        "FQ-DECLARED-QUANTUM-INTERFACE",
+        "FQ-GAP-TENSOR-UNIQUENESS"
+      ],
+      "output": "TENSOR-TOMOGRAPHIC-COORDINATES",
+      "status": "DERIVED_PROSE",
+      "mechanism": "Local complex quantum state/effect spaces and trace probabilities are supplied; the coordinate theorem is a general prose proof. Exact projector-basis fixtures are finite checks.",
+      "source": [
+        "dag/derivations/27_tensor_composition/tfq_0410_tensor_tomographic_coordinates.md"
+      ]
+    },
+    {
+      "id": "APP-R-TENSOR-CONE-ORBIT-KERNEL",
+      "inputs": [
+        "TENSOR-TOMOGRAPHIC-COORDINATES"
+      ],
+      "output": "TENSOR-CONE-ORBIT-KERNEL",
+      "status": "DERIVED_LEAN",
+      "mechanism": "Lean checks the cone kernel for an arbitrary finite index type. Operational coordinate construction and controlled-shift reachability are hypotheses at this formal boundary, discharged in prose by TFQ-0410 and TFQ-0412.",
+      "source": [
+        "dag/derivations/27_tensor_composition/tfq_0411_tensor_cone_orbit_kernel.md"
+      ]
+    },
+    {
+      "id": "APP-R-TENSOR-CONTROLLED-SHIFT-RECONSTRUCTION",
+      "inputs": [
+        "TENSOR-TOMOGRAPHIC-COORDINATES",
+        "TENSOR-CONE-ORBIT-KERNEL"
+      ],
+      "output": "TENSOR-CONTROLLED-SHIFT-RECONSTRUCTION",
+      "status": "DERIVED_PROSE",
+      "mechanism": "The all-dimension proof uses a finite Schmidt decomposition and one controlled shift. The cone kernel is mechanized; tomography and Schmidt instantiation are prose proofs. The operational assumptions are not derived from primitive difference.",
+      "source": [
+        "dag/derivations/27_tensor_composition/tfq_0412_tensor_controlled_shift_reconstruction.md"
+      ]
+    },
+    {
+      "id": "APP-R-TENSOR-ASSUMPTION-COUNTERMODELS",
+      "inputs": [
+        "TENSOR-TOMOGRAPHIC-COORDINATES"
+      ],
+      "output": "TENSOR-ASSUMPTION-COUNTERMODELS",
+      "status": "DERIVED_PROSE",
+      "mechanism": "Countermodels delimit the sufficient package; no minimality theorem or arbitrary-GPT classification is claimed. The identical-qubit reconstruction cited in the paper is an external theorem with additional composition assumptions.",
+      "source": [
+        "dag/derivations/27_tensor_composition/tfq_0413_tensor_assumption_countermodels.md"
+      ]
     }
   ]
 }

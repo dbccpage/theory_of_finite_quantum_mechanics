@@ -15,6 +15,7 @@ lean_lib «FiniteQuantum» where
   roots := #[
 
     `FiniteGraphDressing,
+    `TensorConeReconstruction,
     `SwitchingNormalForm,
     `EntropyDichotomy,
     `BornNormalization,
