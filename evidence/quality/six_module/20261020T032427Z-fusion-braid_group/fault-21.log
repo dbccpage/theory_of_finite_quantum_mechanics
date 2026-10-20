@@ -1,0 +1,23 @@
+
+running 4 tests
+test braid_group::braid_review::exact_budget_thresholds_shapes_and_singular_priority ... FAILED
+test braid_group::braid_review::independent_signed_permutation_sets_bind_exact_and_projective_closures ... ok
+test braid_group::braid_review::primitive_word_order_and_relation_witness_priority ... ok
+test braid_group::braid_review::proportionality_has_an_oriented_factor_and_zero_is_not_a_class ... ok
+
+failures:
+
+---- braid_group::braid_review::exact_budget_thresholds_shapes_and_singular_priority stdout ----
+
+thread 'braid_group::braid_review::exact_budget_thresholds_shapes_and_singular_priority' (41040) panicked at p21\braid_group.rs:816:13:
+assertion failed: matches!(group_closure_with_limits(&[id.clone()], 1, projective,
+    OperationLimits { max_scalar_ops: work - 1, ..exact }),
+    Err(FusionError::Budget { .. }))
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    braid_group::braid_review::exact_budget_thresholds_shapes_and_singular_priority
+
+test result: FAILED. 3 passed; 1 failed; 0 ignored; 0 measured; 47 filtered out; finished in 0.28s
+

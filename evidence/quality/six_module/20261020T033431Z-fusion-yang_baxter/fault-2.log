@@ -1,0 +1,23 @@
+
+running 3 tests
+test yang_baxter::tensor_review::actual_embeddings_and_all_three_defect_orientations_match_coefficient_sums ... ok
+test yang_baxter::tensor_review::flip_yang_hecke_and_six_vertex_have_independent_entry_formulas ... ok
+test yang_baxter::tensor_review::storage_work_cutoffs_and_callback_error_order_are_exact ... FAILED
+
+failures:
+
+---- yang_baxter::tensor_review::storage_work_cutoffs_and_callback_error_order_are_exact stdout ----
+
+thread 'yang_baxter::tensor_review::storage_work_cutoffs_and_callback_error_order_are_exact' (31268) panicked at p2\yang_baxter.rs:845:9:
+assertion failed: matches!(braid_form_defect_with_limits(&two, OperationLimits
+    { max_elements: 319, ..two_exact }),
+    Err(FusionError::Budget
+    { what: "Yang-Baxter embedding storage", requested: 320, .. }))
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    yang_baxter::tensor_review::storage_work_cutoffs_and_callback_error_order_are_exact
+
+test result: FAILED. 2 passed; 1 failed; 0 ignored; 0 measured; 47 filtered out; finished in 1.41s
+

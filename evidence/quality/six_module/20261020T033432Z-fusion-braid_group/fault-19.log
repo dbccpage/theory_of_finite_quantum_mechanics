@@ -1,0 +1,35 @@
+
+running 4 tests
+test braid_group::braid_review::exact_budget_thresholds_shapes_and_singular_priority ... ok
+test braid_group::braid_review::independent_signed_permutation_sets_bind_exact_and_projective_closures ... FAILED
+test braid_group::braid_review::primitive_word_order_and_relation_witness_priority ... FAILED
+test braid_group::braid_review::proportionality_has_an_oriented_factor_and_zero_is_not_a_class ... FAILED
+
+failures:
+
+---- braid_group::braid_review::independent_signed_permutation_sets_bind_exact_and_projective_closures stdout ----
+
+thread 'braid_group::braid_review::independent_signed_permutation_sets_bind_exact_and_projective_closures' (20572) panicked at p19\braid_group.rs:684:21:
+assertion failed: g.contains(&BasicMatrix::from_row_major(n, n, a.clone()).unwrap()).unwrap()
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- braid_group::braid_review::primitive_word_order_and_relation_witness_priority stdout ----
+
+thread 'braid_group::braid_review::primitive_word_order_and_relation_witness_priority' (32596) panicked at p19\braid_group.rs:729:13:
+explicit panic
+
+---- braid_group::braid_review::proportionality_has_an_oriented_factor_and_zero_is_not_a_class stdout ----
+
+thread 'braid_group::braid_review::proportionality_has_an_oriented_factor_and_zero_is_not_a_class' (18676) panicked at p19\braid_group.rs:752:9:
+assertion `left == right` failed
+  left: None
+ right: Some(4)
+
+
+failures:
+    braid_group::braid_review::independent_signed_permutation_sets_bind_exact_and_projective_closures
+    braid_group::braid_review::primitive_word_order_and_relation_witness_priority
+    braid_group::braid_review::proportionality_has_an_oriented_factor_and_zero_is_not_a_class
+
+test result: FAILED. 1 passed; 3 failed; 0 ignored; 0 measured; 47 filtered out; finished in 0.00s
+

@@ -3,22 +3,202 @@
   "AuthorityEffect": "None",
   "artifact": {
     "path": "code/rust/src/fusion_categories/yang_baxter.rs",
-    "sha256": "4e67ee71c46585a7c48750c60da6cd5cdc735d80313980577843e2abff50236b",
+    "sha256": "faba7a6eb6db2d20b3ac5f6b013cb456abd176baff8517f8323e2cb5e9bf1b52",
     "language": "Rust"
   },
-  "status": "review_incomplete",
-  "formal_specification": null,
-  "operations": {},
-  "invariants": [],
-  "failure_paths": {},
-  "trust_boundary": null,
-  "assurance_limits": [
-    "This source has not received a complete symbol-level contract and five-gate review.",
-    "No production safety, semantic theorem or completed score is inferred from this file's existence."
+  "status": "source_reviewed",
+  "formal_specification": {
+    "profile": "Exact",
+    "claim_urn": "urn:tfqm:fusion:yang_baxter:bounded-exact-actions:v1",
+    "domain": "Exact dense matrices over lawful commutative FusionScalar fields; defect carriers are nonempty n^2 by n^2. Spectral callbacks must return compatible exact carriers without untyped panics, and typed failures remain observable. Flip/Yang constructors allow n=0 as an empty matrix. Storage/work limits are conservative scalar-unit policies.",
+    "behavior": [
+      "Admit requested<=limit exactly; otherwise return the original typed Budget fields.",
+      "Private calls use four dense products and storage coefficients 5,9 or 10. Checked-compute d=n^3 and entries=d^2 in usize, charge storage*entries before matrix construction, then charge 8*d^3+(storage+1)*entries scalar work. These small fixed coefficients and d^2<=usize::MAX keep the widened u128 arithmetic safe on the recorded 64-bit target. Cost units exclude bit sizes and arbitrary callback work.",
+      "Require a positive square matrix with row count exactly n^2. Use widened u128 lower-bound binary search, rejecting zero or a non-square row count with the exact shape. On 64-bit usize every midpoint<2^64, so mid^2 fits u128; conversion of the admitted positive root is checked.",
+      "Delegate the exact flip on K^n tensor K^n to default element/operation limits.",
+      "Checked-compute the two-particle dimension n^2, then allocate exactly one bounded dense matrix with entry delta(i,l)*delta(j,k). Zero n yields a 0x0 matrix without callback evaluation; guard divisions by n.max(1).",
+      "Private n is obtained from an admitted first carrier, hence n^2 fits usize. Validate this matrix as a positive square-square carrier, then require exactly the same base dimension; mismatch returns Shape with expected (n^2,n^2) and actual shape.",
+      "Validate common carrier and checked three-particle dimension, then allocate one bounded dense embedding only for the requested First=(12), Outer=(13), or Last=(23) pair. Decode row/column into ordered triples, retain the spectator Kronecker delta, and clone precisely the selected two-particle coefficient. Every coefficient index is below n^4. No identity/flip matrix, scalar multiplication by delta, unused embedding or conjugating dense product is constructed.",
+      "Compute (m0*m1)*m2 with two checked exact multiplications and the same limits, preserving argument order.",
+      "Return left0*left1*left2 minus right0*right1*right2, with checked products and exact subtraction. This computes a defect and does not pre-assert it is zero.",
+      "Evaluate b then c exactly once each before shape checks, propagate each callback error unchanged, then validate rb before rc against n. Return owned matrices by move, without extra copies.",
+      "Call family(a) once, validate its base carrier and preflight four products with the selected storage coefficient before invoking b/c. Then obtain the other two values in the declared order. Callback allocation/work/panics are caller-domain responsibilities outside this library cost model.",
+      "Construct only the three requested alternating slot embeddings and compute their ordered triple product; drop these local embeddings before the caller constructs the opposite side.",
+      "Delegate the constant braid defect to default limits.",
+      "Admit carrier and the (four-products,five-slot) model; construct only r12 and r23 and return r12*r23*r12-r23*r12*r23. No r13 is constructed.",
+      "Delegate the three-argument spectral defect to default limits; parameters are passed as supplied, not reinterpreted as differences or ratios.",
+      "Evaluate family once per argument with common carrier and (four-products,nine-slot) admission; construct only ra12, rb13 and rc23 and return ra12*rb13*rc23-rc23*rb13*ra12.",
+      "Delegate the alternating three-argument braid defect to default limits.",
+      "Evaluate x,y,z once with common carrier and (four-products,ten-slot) admission; return rx12*ry23*rz12-rz23*ry12*rx23. Drop left-side embeddings before building the right side; parameter order remains observable.",
+      "Checked-compute dimension n^2, allocate one bounded matrix, and fill the exact entry of u*I+P: u+1 on diagonal flip overlap, u on diagonal-only, one on flip-only, zero otherwise. Zero n returns empty matrix without division callback; no temporary identity, scaled matrix, flip matrix or addition buffer is allocated.",
+      "Compute inverse(q), refusing zero/provider contract failure, then return the exact fixed 4x4 Hecke braid matrix with middle off-diagonals one and entry (2,2)=q-q^-1. The matrix is supplied data, not a newly admitted braid-group representation.",
+      "Admit positive square matrix and fixed storage/work model before inverse(q); return (r-q*I)*(r+q^-1*I) with checked matrix operations. Nonzero output is a valid defect, not an exception.",
+      "Reject non-square/empty carrier, then charge 4*n^2 storage followed by 2*n^3+4*n^2 scalar work under default limits. The first bound proves the subsequent widened cubic arithmetic safe.",
+      "Compute a=q*z-(q*z)^-1, b=z-z^-1 and c=q-q^-1 with exact typed inverses in that order; return the fixed symmetric 4x4 six-vertex matrix with diagonal a,b,b,a and middle off-diagonals c. Zero/inverse-contract failures propagate; no spectral parameter relation is imposed here."
+    ]
+  },
+  "operations": {
+    "module::charge": {
+      "line": 8,
+      "signature": "fn charge(what: &'static str, requested: u128, limit: usize) -> Result<(), FusionError>",
+      "obligation": "Admit requested<=limit exactly; otherwise return the original typed Budget fields."
+    },
+    "module::preflight": {
+      "line": 19,
+      "signature": "fn preflight(\n    n: usize,\n    products: usize,\n    storage: usize,\n    limits: OperationLimits,\n) -> Result<(), FusionError>",
+      "obligation": "Private calls use four dense products and storage coefficients 5,9 or 10. Checked-compute d=n^3 and entries=d^2 in usize, charge storage*entries before matrix construction, then charge 8*d^3+(storage+1)*entries scalar work. These small fixed coefficients and d^2<=usize::MAX keep the widened u128 arithmetic safe on the recorded 64-bit target. Cost units exclude bit sizes and arbitrary callback work."
+    },
+    "module::base_dimension": {
+      "line": 42,
+      "signature": "pub fn base_dimension<K: FusionScalar>(r: &BasicMatrix<K>) -> Result<usize, FusionError>",
+      "obligation": "Require a positive square matrix with row count exactly n^2. Use widened u128 lower-bound binary search, rejecting zero or a non-square row count with the exact shape. On 64-bit usize every midpoint<2^64, so mid^2 fits u128; conversion of the admitted positive root is checked."
+    },
+    "module::swap_matrix": {
+      "line": 72,
+      "signature": "pub fn swap_matrix<K: FusionScalar>(n: usize) -> Result<BasicMatrix<K>, FusionError>",
+      "obligation": "Delegate the exact flip on K^n tensor K^n to default element/operation limits."
+    },
+    "module::swap_matrix_with_limits": {
+      "line": 76,
+      "signature": "pub fn swap_matrix_with_limits<K: FusionScalar>(\n    n: usize,\n    limits: OperationLimits,\n) -> Result<BasicMatrix<K>, FusionError>",
+      "obligation": "Checked-compute the two-particle dimension n^2, then allocate exactly one bounded dense matrix with entry delta(i,l)*delta(j,k). Zero n yields a 0x0 matrix without callback evaluation; guard divisions by n.max(1)."
+    },
+    "module::check_family_shape": {
+      "line": 95,
+      "signature": "fn check_family_shape<K: FusionScalar>(r: &BasicMatrix<K>, n: usize) -> Result<(), FusionError>",
+      "obligation": "Private n is obtained from an admitted first carrier, hence n^2 fits usize. Validate this matrix as a positive square-square carrier, then require exactly the same base dimension; mismatch returns Shape with expected (n^2,n^2) and actual shape."
+    },
+    "module::tensor_embedding": {
+      "line": 113,
+      "signature": "fn tensor_embedding<K: FusionScalar>(\n    r: &BasicMatrix<K>,\n    n: usize,\n    pair: TensorPair,\n    limits: OperationLimits,\n) -> Result<BasicMatrix<K>, FusionError>",
+      "obligation": "Validate common carrier and checked three-particle dimension, then allocate one bounded dense embedding only for the requested First=(12), Outer=(13), or Last=(23) pair. Decode row/column into ordered triples, retain the spectator Kronecker delta, and clone precisely the selected two-particle coefficient. Every coefficient index is below n^4. No identity/flip matrix, scalar multiplication by delta, unused embedding or conjugating dense product is constructed."
+    },
+    "module::triple_product": {
+      "line": 141,
+      "signature": "fn triple_product<K: FusionScalar>(\n    m: [&BasicMatrix<K>; 3],\n    limits: OperationLimits,\n) -> Result<BasicMatrix<K>, FusionError>",
+      "obligation": "Compute (m0*m1)*m2 with two checked exact multiplications and the same limits, preserving argument order."
+    },
+    "module::triple_difference": {
+      "line": 153,
+      "signature": "fn triple_difference<K: FusionScalar>(\n    left: [&BasicMatrix<K>; 3],\n    right: [&BasicMatrix<K>; 3],\n    limits: OperationLimits,\n) -> Result<BasicMatrix<K>, FusionError>",
+      "obligation": "Return left0*left1*left2 minus right0*right1*right2, with checked products and exact subtraction. This computes a defect and does not pre-assert it is zero."
+    },
+    "module::remaining_family": {
+      "line": 165,
+      "signature": "fn remaining_family<K: FusionScalar>(\n    family: &impl Fn(&K) -> Result<BasicMatrix<K>, FusionError>,\n    b: &K,\n    c: &K,\n    n: usize,\n) -> Result<[BasicMatrix<K>; 2], FusionError>",
+      "obligation": "Evaluate b then c exactly once each before shape checks, propagate each callback error unchanged, then validate rb before rc against n. Return owned matrices by move, without extra copies."
+    },
+    "module::spectral_values": {
+      "line": 178,
+      "signature": "fn spectral_values<K: FusionScalar>(\n    family: impl Fn(&K) -> Result<BasicMatrix<K>, FusionError>,\n    parameters: [&K; 3],\n    limits: OperationLimits,\n    storage: usize,\n) -> Result<(usize, [BasicMatrix<K>; 3]), FusionError>",
+      "obligation": "Call family(a) once, validate its base carrier and preflight four products with the selected storage coefficient before invoking b/c. Then obtain the other two values in the declared order. Callback allocation/work/panics are caller-domain responsibilities outside this library cost model."
+    },
+    "module::alternate_triple": {
+      "line": 191,
+      "signature": "fn alternate_triple<K: FusionScalar>(\n    values: [&BasicMatrix<K>; 3],\n    n: usize,\n    outer: TensorPair,\n    middle: TensorPair,\n    limits: OperationLimits,\n) -> Result<BasicMatrix<K>, FusionError>",
+      "obligation": "Construct only the three requested alternating slot embeddings and compute their ordered triple product; drop these local embeddings before the caller constructs the opposite side."
+    },
+    "module::braid_form_defect": {
+      "line": 204,
+      "signature": "pub fn braid_form_defect<K: FusionScalar>(\n    r: &BasicMatrix<K>,\n) -> Result<BasicMatrix<K>, FusionError>",
+      "obligation": "Delegate the constant braid defect to default limits."
+    },
+    "module::braid_form_defect_with_limits": {
+      "line": 210,
+      "signature": "pub fn braid_form_defect_with_limits<K: FusionScalar>(\n    r: &BasicMatrix<K>,\n    limits: OperationLimits,\n) -> Result<BasicMatrix<K>, FusionError>",
+      "obligation": "Admit carrier and the (four-products,five-slot) model; construct only r12 and r23 and return r12*r23*r12-r23*r12*r23. No r13 is constructed."
+    },
+    "module::spectral_form_defect": {
+      "line": 221,
+      "signature": "pub fn spectral_form_defect<K: FusionScalar>(\n    family: impl Fn(&K) -> Result<BasicMatrix<K>, FusionError>,\n    a: &K,\n    b: &K,\n    c: &K,\n) -> Result<BasicMatrix<K>, FusionError>",
+      "obligation": "Delegate the three-argument spectral defect to default limits; parameters are passed as supplied, not reinterpreted as differences or ratios."
+    },
+    "module::spectral_form_defect_with_limits": {
+      "line": 230,
+      "signature": "pub fn spectral_form_defect_with_limits<K: FusionScalar>(\n    family: impl Fn(&K) -> Result<BasicMatrix<K>, FusionError>,\n    a: &K,\n    b: &K,\n    c: &K,\n    limits: OperationLimits,\n) -> Result<BasicMatrix<K>, FusionError>",
+      "obligation": "Evaluate family once per argument with common carrier and (four-products,nine-slot) admission; construct only ra12, rb13 and rc23 and return ra12*rb13*rc23-rc23*rb13*ra12."
+    },
+    "module::spectral_braid_form_defect": {
+      "line": 244,
+      "signature": "pub fn spectral_braid_form_defect<K: FusionScalar>(\n    family: impl Fn(&K) -> Result<BasicMatrix<K>, FusionError>,\n    x: &K,\n    y: &K,\n    z: &K,\n) -> Result<BasicMatrix<K>, FusionError>",
+      "obligation": "Delegate the alternating three-argument braid defect to default limits."
+    },
+    "module::spectral_braid_form_defect_with_limits": {
+      "line": 253,
+      "signature": "pub fn spectral_braid_form_defect_with_limits<K: FusionScalar>(\n    family: impl Fn(&K) -> Result<BasicMatrix<K>, FusionError>,\n    x: &K,\n    y: &K,\n    z: &K,\n    limits: OperationLimits,\n) -> Result<BasicMatrix<K>, FusionError>",
+      "obligation": "Evaluate x,y,z once with common carrier and (four-products,ten-slot) admission; return rx12*ry23*rz12-rz23*ry12*rx23. Drop left-side embeddings before building the right side; parameter order remains observable."
+    },
+    "module::yang_rational": {
+      "line": 278,
+      "signature": "pub fn yang_rational<K: FusionScalar>(n: usize, u: &K) -> Result<BasicMatrix<K>, FusionError>",
+      "obligation": "Checked-compute dimension n^2, allocate one bounded matrix, and fill the exact entry of u*I+P: u+1 on diagonal flip overlap, u on diagonal-only, one on flip-only, zero otherwise. Zero n returns empty matrix without division callback; no temporary identity, scaled matrix, flip matrix or addition buffer is allocated."
+    },
+    "module::hecke": {
+      "line": 294,
+      "signature": "pub fn hecke<K: FusionScalar>(q: &K) -> Result<BasicMatrix<K>, FusionError>",
+      "obligation": "Compute inverse(q), refusing zero/provider contract failure, then return the exact fixed 4x4 Hecke braid matrix with middle off-diagonals one and entry (2,2)=q-q^-1. The matrix is supplied data, not a newly admitted braid-group representation."
+    },
+    "module::hecke_quadratic_defect": {
+      "line": 307,
+      "signature": "pub fn hecke_quadratic_defect<K: FusionScalar>(\n    r: &BasicMatrix<K>,\n    q: &K,\n) -> Result<BasicMatrix<K>, FusionError>",
+      "obligation": "Admit positive square matrix and fixed storage/work model before inverse(q); return (r-q*I)*(r+q^-1*I) with checked matrix operations. Nonzero output is a valid defect, not an exception."
+    },
+    "module::hecke_admission": {
+      "line": 319,
+      "signature": "fn hecke_admission<K: FusionScalar>(r: &BasicMatrix<K>) -> Result<(), FusionError>",
+      "obligation": "Reject non-square/empty carrier, then charge 4*n^2 storage followed by 2*n^3+4*n^2 scalar work under default limits. The first bound proves the subsequent widened cubic arithmetic safe."
+    },
+    "module::six_vertex": {
+      "line": 341,
+      "signature": "pub fn six_vertex<K: FusionScalar>(q: &K, z: &K) -> Result<BasicMatrix<K>, FusionError>",
+      "obligation": "Compute a=q*z-(q*z)^-1, b=z-z^-1 and c=q-q^-1 with exact typed inverses in that order; return the fixed symmetric 4x4 six-vertex matrix with diagonal a,b,b,a and middle off-diagonals c. Zero/inverse-contract failures propagate; no spectral parameter relation is imposed here."
+    }
+  },
+  "invariants": [
+    "Carrier invariant: base_dimension computes the exact positive integer square root of the row count using u128 lower-bound search, after checking equal rows/columns. Every midpoint lies below 2^64 on the recorded target, so its square fits u128. Zero/non-perfect-square carriers refuse. Checked n^3 and n^6 calculations admit dense storage before any embedding allocation.",
+    "Tensor coordinate invariant: n>0, square=n^2, dimension=n^3 and a row/column below n^3 decode uniquely into three coordinates below n. For First, Outer or Last slots, the unused coordinate is a Kronecker delta; the selected pair maps to a row/column below n^2, hence the borrowed scalar index is below n^4. The independent fixture deposits basis-action coefficients through five nested coordinate loops instead of reusing this decoder. Lean proves actual finite-matrix swap conjugation equals the Outer embedding; numeric flatten/unflatten correspondence remains a source argument and native check.",
+    "Equation invariant: triple_product is ordered matrix multiplication, and triple_difference is literal left-minus-right. Constant braid uses R12 R23 R12 minus R23 R12 R23; spectral form uses Ra12 Rb13 Rc23 minus Rc23 Rb13 Ra12; alternating spectral braid uses Rx12 Ry23 Rz12 minus Rz23 Ry12 Rx23. These routines compute defects for supplied parameters; zero is established only by the exact returned entries, not assumed from a family name.",
+    "Callback invariant: the first parameter is evaluated once, then its carrier/cost are admitted before calling the second and third parameters. Each later callback is evaluated once, in order, before the rb/rc shape checks in that order. Typed callback errors are returned unchanged. The library cannot pre-admit allocations or execution inside an arbitrary client callback; the callback is required to obey its declared exact/no-panic domain.",
+    "Allocation/cost invariant: direct pair embedding copies only necessary coefficients and writes spectator zeros; it constructs no identity, swap, unused pair embedding or conjugating dense product. Constant braid retains two embeddings, spectral form three, and alternating braid drops each side’s three embeddings before building the other side. Yang R=uI+P is assembled in one dense allocation. Preflight coefficients 5/9/10 are conservative logical-slot envelopes and the four products cost 8*d^3 plus the named entry work; raw callback-returned matrices are included conservatively by n^4<=n^6. No scalar bit-size, callback, hash, allocator-byte or physical time bound is claimed.",
+    "Closed-form invariant: flip entries are delta(i,l) delta(j,k). Yang entries are u delta(i,k) delta(j,l) plus this flip. Hecke is the exact displayed 4x4 matrix, and its defect is (R-qI)(R+q^-1 I). Six-vertex entries use the explicitly ordered nonzero inverses of qz,z,q. All arithmetic remains in the supplied exact field; zero/inverse-contract failures propagate. Zero-size flip/Yang constructors never invoke their entry closures and return empty matrices, while defect-carrier admission refuses zero. These are matrix constructions/checks, not categorical realizability or a classification theorem."
   ],
-  "review_evidence": [],
-  "open_obligations": [
-    "Specify actual domains, results, error priority, invariants and operational bounds for every entry point.",
-    "Review callers and providers; obtain independent semantic, negative, mutation and complexity evidence."
-  ]
+  "failure_paths": {
+    "module::charge": "Admit requested<=limit exactly; otherwise return the original typed Budget fields.",
+    "module::preflight": "Private calls use four dense products and storage coefficients 5,9 or 10. Checked-compute d=n^3 and entries=d^2 in usize, charge storage*entries before matrix construction, then charge 8*d^3+(storage+1)*entries scalar work. These small fixed coefficients and d^2<=usize::MAX keep the widened u128 arithmetic safe on the recorded 64-bit target. Cost units exclude bit sizes and arbitrary callback work.",
+    "module::base_dimension": "Require a positive square matrix with row count exactly n^2. Use widened u128 lower-bound binary search, rejecting zero or a non-square row count with the exact shape. On 64-bit usize every midpoint<2^64, so mid^2 fits u128; conversion of the admitted positive root is checked.",
+    "module::swap_matrix": "Delegate the exact flip on K^n tensor K^n to default element/operation limits.",
+    "module::swap_matrix_with_limits": "Checked-compute the two-particle dimension n^2, then allocate exactly one bounded dense matrix with entry delta(i,l)*delta(j,k). Zero n yields a 0x0 matrix without callback evaluation; guard divisions by n.max(1).",
+    "module::check_family_shape": "Private n is obtained from an admitted first carrier, hence n^2 fits usize. Validate this matrix as a positive square-square carrier, then require exactly the same base dimension; mismatch returns Shape with expected (n^2,n^2) and actual shape.",
+    "module::tensor_embedding": "Validate common carrier and checked three-particle dimension, then allocate one bounded dense embedding only for the requested First=(12), Outer=(13), or Last=(23) pair. Decode row/column into ordered triples, retain the spectator Kronecker delta, and clone precisely the selected two-particle coefficient. Every coefficient index is below n^4. No identity/flip matrix, scalar multiplication by delta, unused embedding or conjugating dense product is constructed.",
+    "module::triple_product": "Compute (m0*m1)*m2 with two checked exact multiplications and the same limits, preserving argument order.",
+    "module::triple_difference": "Return left0*left1*left2 minus right0*right1*right2, with checked products and exact subtraction. This computes a defect and does not pre-assert it is zero.",
+    "module::remaining_family": "Evaluate b then c exactly once each before shape checks, propagate each callback error unchanged, then validate rb before rc against n. Return owned matrices by move, without extra copies.",
+    "module::spectral_values": "Call family(a) once, validate its base carrier and preflight four products with the selected storage coefficient before invoking b/c. Then obtain the other two values in the declared order. Callback allocation/work/panics are caller-domain responsibilities outside this library cost model.",
+    "module::alternate_triple": "Construct only the three requested alternating slot embeddings and compute their ordered triple product; drop these local embeddings before the caller constructs the opposite side.",
+    "module::braid_form_defect": "Delegate the constant braid defect to default limits.",
+    "module::braid_form_defect_with_limits": "Admit carrier and the (four-products,five-slot) model; construct only r12 and r23 and return r12*r23*r12-r23*r12*r23. No r13 is constructed.",
+    "module::spectral_form_defect": "Delegate the three-argument spectral defect to default limits; parameters are passed as supplied, not reinterpreted as differences or ratios.",
+    "module::spectral_form_defect_with_limits": "Evaluate family once per argument with common carrier and (four-products,nine-slot) admission; construct only ra12, rb13 and rc23 and return ra12*rb13*rc23-rc23*rb13*ra12.",
+    "module::spectral_braid_form_defect": "Delegate the alternating three-argument braid defect to default limits.",
+    "module::spectral_braid_form_defect_with_limits": "Evaluate x,y,z once with common carrier and (four-products,ten-slot) admission; return rx12*ry23*rz12-rz23*ry12*rx23. Drop left-side embeddings before building the right side; parameter order remains observable.",
+    "module::yang_rational": "Checked-compute dimension n^2, allocate one bounded matrix, and fill the exact entry of u*I+P: u+1 on diagonal flip overlap, u on diagonal-only, one on flip-only, zero otherwise. Zero n returns empty matrix without division callback; no temporary identity, scaled matrix, flip matrix or addition buffer is allocated.",
+    "module::hecke": "Compute inverse(q), refusing zero/provider contract failure, then return the exact fixed 4x4 Hecke braid matrix with middle off-diagonals one and entry (2,2)=q-q^-1. The matrix is supplied data, not a newly admitted braid-group representation.",
+    "module::hecke_quadratic_defect": "Admit positive square matrix and fixed storage/work model before inverse(q); return (r-q*I)*(r+q^-1*I) with checked matrix operations. Nonzero output is a valid defect, not an exception.",
+    "module::hecke_admission": "Reject non-square/empty carrier, then charge 4*n^2 storage followed by 2*n^3+4*n^2 scalar work under default limits. The first bound proves the subsequent widened cubic arithmetic safe.",
+    "module::six_vertex": "Compute a=q*z-(q*z)^-1, b=z-z^-1 and c=q-q^-1 with exact typed inverses in that order; return the fixed symmetric 4x4 six-vertex matrix with diagonal a,b,b,a and middle off-diagonals c. Zero/inverse-contract failures propagate; no spectral parameter relation is imposed here."
+  },
+  "trust_boundary": "Rust/compiler and standard allocation; exact immutable commutative field/embedding/conjugation laws and compatible stable Hash/Eq for scalar values; pinned num_bigint/num_rational, exact matrix storage/multiplication/elimination and scalar inverse providers. FusionScalar/ExactRing are open protocols, not sealed runtime enforcement. OperationLimits count logical scalar slots and conservative field operations, not scalar bit sizes, hash/compare time, allocator metadata, callback work or OS memory. No arbitrary custom-field crash freedom is inferred.",
+  "assurance_limits": [
+    "AuthorityEffect: None. Exact finite computational output and matrix defects only; no fusion-category realizability, general R-matrix classification, physical authority or complete six-module goal is inferred.",
+    "Rust/compiler and standard allocation; exact immutable commutative field/embedding/conjugation laws and compatible stable Hash/Eq for scalar values; pinned num_bigint/num_rational, exact matrix storage/multiplication/elimination and scalar inverse providers. FusionScalar/ExactRing are open protocols, not sealed runtime enforcement. OperationLimits count logical scalar slots and conservative field operations, not scalar bit sizes, hash/compare time, allocator metadata, callback work or OS memory. No arbitrary custom-field crash freedom is inferred.",
+    "Lean proves the named word/finite-inverse/normalization/matrix-conjugation model facts. Rust extraction, GL/PGL implementation refinement, numeric tensor flattening, allocator behavior and provider-wide correctness remain separate source/native evidence. No MIR proof or A+ crash/byte-cost theorem is claimed.",
+    "An earlier campaign with survivors remains unchanged. New independent S3 and nontrivial storage/cube boundary witnesses close the identified test blind spots; successful intermediate sources are preserved separately from final current-source evidence."
+  ],
+  "review_evidence": [
+    {
+      "path": "code/rust/quality/six_module/assessments/fusion_yang_baxter.json",
+      "sha256": "2e91c3678f8df09f8418c04f09002584ed0e416d607d05e009fe5addbc7b61bf"
+    }
+  ],
+  "open_obligations": []
 }
