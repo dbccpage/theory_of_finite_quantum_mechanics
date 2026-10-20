@@ -2,6 +2,8 @@
 
 AuthorityEffect: None.
 
+- [Concrete classical and qubit models: staged partial Jordan catalogue, square cones, exact Lean checks and collected operations](runs/20261020T162715Z_jordan_classical_qubit/README.md).
+
 - [Reviewed System repair: exact premises, classical exclusion, inhabited-System witness and publication custody](reviews/20261020T143852Z_system_repair_audit/README.md).
 
 - [Repaired geometric System, guarded Jordan boundary, compiled classical exclusion and operation records](user_submissions/20261020T141424Z_system_geometry_repair/README.md).

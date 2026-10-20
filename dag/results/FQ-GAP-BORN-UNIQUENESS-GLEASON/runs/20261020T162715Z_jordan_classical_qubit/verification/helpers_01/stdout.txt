@@ -1,0 +1,28 @@
+C:\Users\a343o\.codex\worktrees\bell-joint-extension\theory_of_finite_quantum_mechanics\dag\results\FQ-GAP-BORN-UNIQUENESS-GLEASON\runs\20261020T162715Z_jordan_classical_qubit\verification\helpers_01\CatalogueGeometry.lean:56:4: error: linarith failed to find a contradiction
+n m : ℕ
+S : Set (Space n)
+zero_mem : 0 ∈ S
+symmetric : ∀ x ∈ S, -x ∈ S
+f : Fin m → Space n
+hf : Frame S f
+e : Fin m → Effect S
+norm : ∀ x ∈ S, ∑ i, (e i).functional x = 1
+delta : ∀ (i j : Fin m), (e i).functional (f j) = if i = j then 1 else 0
+i : Fin m
+hm : 0 ≤ (e i).functional (-f i)
+h : (e i).functional (-f i) + (e i).functional (f i) = 2 * (e i).functional 0
+hd : (e i).functional (f i) = if True then 1 else 0
+a✝ : 2 * (e i).functional 0 < 1
+⊢ False
+failed
+C:\Users\a343o\.codex\worktrees\bell-joint-extension\theory_of_finite_quantum_mechanics\dag\results\FQ-GAP-BORN-UNIQUENESS-GLEASON\runs\20261020T162715Z_jordan_classical_qubit\verification\helpers_01\CatalogueGeometry.lean:55:15: warning: This simp argument is unused:
+  if_pos rfl
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only at hd
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+'FiniteQM.CatalogueGeometry.affine_combo' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FiniteQM.CatalogueGeometry.extreme_of_unique_affine_max' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FiniteQM.CatalogueGeometry.affine_reflection' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FiniteQM.CatalogueGeometry.symmetric_frame_bound' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
