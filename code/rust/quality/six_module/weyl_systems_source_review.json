@@ -1,0 +1,148 @@
+{
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/combinatorics/weyl_systems.rs",
+    "sha256": "b537ac5f92a16af761b02ac6c8eb47d23f0aaf202572b3f8dbce7e62a6185039",
+    "language": "Rust"
+  },
+  "symbol_map": {
+    "violated_invariant": {
+      "line": 25,
+      "signature": "pub fn violated_invariant(&self) -> &'static str",
+      "body": "{\n        match self {\n            Self::InvalidDimension { .. } => \"dimension lies in 2..=256\",\n            Self::NotPrime(_) => \"isotropic rays are admitted only for prime dimension\",\n            Self::CoordinateOutOfBounds(_, _, _) => \"phase coordinates lie in the dimension\",\n            Self::PartitionFailed { .. } => \"nonzero phase points partition into isotropic rays\",\n        }\n    }",
+      "obligation": "Exhaustively describe the four typed error invariants without granting authority."
+    },
+    "measured_parameters": {
+      "line": 34,
+      "signature": "pub fn measured_parameters(&self) -> Vec<(&'static str, String)>",
+      "body": "{\n        match self {\n            Self::InvalidDimension { dim, min, max } => vec![\n                (\"dim\", dim.to_string()),\n                (\"min\", min.to_string()),\n                (\"max\", max.to_string()),\n            ],\n            Self::NotPrime(dim) => vec![(\"dim\", dim.to_string())],\n            Self::CoordinateOutOfBounds(q, p, dim) => vec![\n                (\"q\", q.to_string()),\n                (\"p\", p.to_string()),\n                (\"dim\", dim.to_string()),\n            ],\n            Self::PartitionFailed {\n                prime,\n                rays,\n                nonzero,\n            } => vec![\n                (\"prime\", prime.to_string()),\n                (\"rays\", rays.to_string()),\n                (\"nonzero\", nonzero.to_string()),\n            ],\n        }\n    }",
+      "obligation": "Report the exact dimension/range, coordinate/modulus, or generated partition count operands."
+    },
+    "PhasePoint::new": {
+      "line": 67,
+      "signature": "pub fn new(q: usize, p: usize) -> Self",
+      "body": "{\n        Self { q, p }\n    }",
+      "obligation": "Construct a raw public coordinate record without claiming admission; arbitrary usize coordinates remain representable records."
+    },
+    "DiscreteWeylSystem::new": {
+      "line": 78,
+      "signature": "pub fn new(dim: usize) -> Result<Self, WeylSystemError>",
+      "body": "{\n        if dim < 2 || dim > 256 {\n            return Err(WeylSystemError::InvalidDimension {\n                dim,\n                min: 2,\n                max: 256,\n            });\n        }\n        Ok(Self { dim })\n    }",
+      "obligation": "Admit every modulus in 2..=256, including composites, and reject others before arithmetic or allocation. Private dim has no mutation route."
+    },
+    "dim": {
+      "line": 89,
+      "signature": "pub fn dim(&self) -> usize",
+      "body": "{\n        self.dim\n    }",
+      "obligation": "Return the admitted immutable modulus."
+    },
+    "validate_point": {
+      "line": 94,
+      "signature": "pub fn validate_point(&self, point: PhasePoint) -> Result<(), WeylSystemError>",
+      "body": "{\n        if point.q >= self.dim || point.p >= self.dim {\n            return Err(WeylSystemError::CoordinateOutOfBounds(\n                point.q, point.p, self.dim,\n            ));\n        }\n        Ok(())\n    }",
+      "obligation": "Reject q>=dim or p>=dim with exact raw coordinates and modulus; admit equality-below values only. No arithmetic is performed before domain rejection."
+    },
+    "symplectic_form": {
+      "line": 103,
+      "signature": "pub fn symplectic_form(&self, u: PhasePoint, v: PhasePoint) -> Result<usize, WeylSystemError>",
+      "body": "{\n        self.validate_point(u)?;\n        self.validate_point(v)?;\n        let term1 = (u.q * v.p) % self.dim;\n        let term2 = (u.p * v.q) % self.dim;\n        let res = (self.dim + term1 - term2) % self.dim;\n        Ok(res)\n    }",
+      "obligation": "Validate u before v, then return (u.q*v.p-u.p*v.q) in the least nonnegative modular representative. Products are reduced first and dim is added before subtraction."
+    },
+    "commutes": {
+      "line": 112,
+      "signature": "pub fn commutes(&self, u: PhasePoint, v: PhasePoint) -> Result<bool, WeylSystemError>",
+      "body": "{\n        Ok(self.symplectic_form(u, v)? == 0)\n    }",
+      "obligation": "Propagate coordinate errors; return true exactly for zero symplectic form."
+    },
+    "add": {
+      "line": 116,
+      "signature": "pub fn add(&self, u: PhasePoint, v: PhasePoint) -> Result<PhasePoint, WeylSystemError>",
+      "body": "{\n        self.validate_point(u)?;\n        self.validate_point(v)?;\n        Ok(PhasePoint {\n            q: (u.q + v.q) % self.dim,\n            p: (u.p + v.p) % self.dim,\n        })\n    }",
+      "obligation": "Validate u then v, then add both coordinates modulo dim, preserving the admitted representative range."
+    },
+    "isotropic_rays": {
+      "line": 125,
+      "signature": "pub fn isotropic_rays(&self) -> Result<Vec<Vec<PhasePoint>>, WeylSystemError>",
+      "body": "{\n        let p = self.dim;\n        for d in 2..p {\n            if p % d == 0 {\n                return Err(WeylSystemError::NotPrime(p));\n            }\n        }\n\n        let mut rays = Vec::with_capacity(p + 1);\n\n        let mut ray_inf = Vec::with_capacity(p);\n        for y in 0..p {\n            ray_inf.push(PhasePoint::new(0, y));\n        }\n        rays.push(ray_inf);\n\n        for m in 0..p {\n            let mut ray_m = Vec::with_capacity(p);\n            for x in 0..p {\n                ray_m.push(PhasePoint::new(x, (m * x) % p));\n            }\n            rays.push(ray_m);\n        }\n\n        Ok(rays)\n    }",
+      "obligation": "Reject any composite admitted modulus before allocation, then produce the vertical ray followed by all slope rays in slope order, each point ordered by its free coordinate. Every ray includes the origin once. Field facts apply only after prime admission."
+    },
+    "certify_ray_partition": {
+      "line": 153,
+      "signature": "pub fn certify_ray_partition(prime: usize) -> Result<(usize, usize), WeylSystemError>",
+      "body": "{\n    let system = DiscreteWeylSystem::new(prime)?;\n    let rays = system.isotropic_rays()?;\n    let nonzero = count_nonzero(&rays);\n    let expected = prime\n        .checked_mul(prime)\n        .and_then(|square| square.checked_sub(1))\n        .ok_or(WeylSystemError::InvalidDimension {\n            dim: prime,\n            min: 2,\n            max: 256,\n        })?;\n    if rays.len() != prime + 1 || nonzero != expected {\n        return Err(WeylSystemError::PartitionFailed {\n            prime,\n            rays: rays.len(),\n            nonzero,\n        });\n    }\n    Ok((rays.len(), nonzero))\n}",
+      "obligation": "Generate the admitted prime rays and independently count their nonzero union. Check p+1 rays and p*p-1 distinct nonzero points; report the count tuple only if both checks hold. No caller-supplied certificate or authenticity claim."
+    },
+    "count_nonzero": {
+      "line": 175,
+      "signature": "fn count_nonzero(rays: &[Vec<PhasePoint>]) -> usize",
+      "body": "{\n    let mut seen = BTreeSet::new();\n    for ray in rays {\n        collect_nonzero(&mut seen, ray);\n    }\n    seen.len()\n}",
+      "obligation": "Compute the set union cardinality after excluding the literal origin, irrespective of duplicate raw records in its private input."
+    },
+    "collect_nonzero": {
+      "line": 183,
+      "signature": "fn collect_nonzero(seen: &mut BTreeSet<PhasePoint>, ray: &[PhasePoint])",
+      "body": "{\n    for pt in ray {\n        if *pt != PhasePoint::new(0, 0) {\n            seen.insert(*pt);\n        }\n    }\n}",
+      "obligation": "Insert each non-origin raw coordinate into the owned ordered set; skip origin and deduplicate. This is a private union helper, not a coordinate admission function."
+    }
+  },
+  "invariant_argument": [
+    "PhasePoint has public fields and its new method is only a raw record constructor. DiscreteWeylSystem carries a private modulus admitted once in 2..=256. All exported point arithmetic now calls the same relative coordinate gate, left operand before right. Composites support ring addition/alternating form; only ray generation requires primality.",
+    "For admitted coordinates each product is <=255 squared=65025 and sum <=510. Residues term1,term2<d make d+term1>=term2 and <=511, so modular subtraction never underflows. The exact result is the determinant modulo d, including even and composite d. Both addition results lie below d. No float, saturation, division by zero or unchecked large-operand arithmetic occurs.",
+    "Trial divisors 2..p find a proper divisor exactly for composite p. At a prime p, the vertical ray (0,y) and slope rays (x,m*x mod p) each have p distinct entries via their free coordinate. The actual field direction theorem gives a unique direction to each nonzero point, isotropy, and disjointness outside origin. Its Option-field direction count is p+1. Natural representatives compute those field coordinates exactly.",
+    "Generation owns one outer vector and one exact-capacity vector per required ray. At most 257*256 phase records are constructed by the admitted domain (the actual largest prime is 251). count_nonzero stores at most p*p-1 records and tests both output counts against the checked formula; failure is typed. Those checks corroborate this private generator; they are not a universal checker for arbitrary malformed raw ray matrices.",
+    "The independent inverse-classification oracle enumerates every coordinate and groups nonzero points by y/x or vertical, independently of production slope enumeration, for every prime modulus through 256. It compares complete ordered rays, checks each point with its direction anchor and verifies the distinct union/certificate. Every composite modulus is refused for rays. Exhaustive small-ring pairs and i128 determinant reduction also check signs, zero divisors, boundary moduli and both operand gates.",
+    "All 13 production bodies have structural maxima CCN 6, cognitive 7, nesting 2. Point operations have constant work/no heap allocation except an error diagnostic only when requested. Trial division is O(d), ray generation O(d squared) records with no redundant inner allocations, and union/certification O(d squared log d) set work/storage bounded by the admitted modulus. Standard collection allocation remains TCB. Returned raw vectors/count tuples carry no authority."
+  ],
+  "consumer_review": [
+    "Exact Rust source search finds only these local Weyl/MUB modules, lib exports, and mod.rs fixed prime-five configuration consumer. Actual canonical package tests exercise the surface. Root Cargo/lib are pinned and no external omega build is claimed.",
+    "The two reviewed files are source-pinned providers/consumers of validate_point, modular commutation and prime ray generation. Native frozen source manifests include both actual implementations; the shared mathematical model connects their ring/field and finite-set claims."
+  ],
+  "assurance_limits": [
+    "AuthorityEffect: None. These are exact modular phase-coordinate operations and admitted operator bundles; no complex matrices/eigenvectors, actual unbiased eigenbasis construction, continuous representation, or classification/completeness theorem for composite dimensions.",
+    "Lean proves actual ring/field/finite-set facts. Rust representative arithmetic, prime trial division, ordered loops, private ownership and Vec-to-Finset correspondence are explicit source arguments corroborated by independent tests, not extracted Rust/MIR or allocator proofs.",
+    "The exact standalone tfqm_combinatorics crate and copied subjects are compiled with real siblings. Root manifests are pinned for import disambiguation; external omega providers and whole-workspace success are not inferred.",
+    "Legacy in-source mutation counts are not current accounting. Final native receipts preserve all six outcomes; earlier MUB failures, its 13-killed/1-survived campaign, and rejected proof remain separate and are not used as passing proof evidence.",
+    "Fixed dimension 2..=256 bounds owned work and integer intermediates on the compiled 64-bit target (bounds also fit 32-bit usize). Allocator/compiler/standard collections/thiserror are TCB; no out-of-memory recovery or constant-time guarantee."
+  ],
+  "proof_correspondence": {
+    "alternating": "The determinant form on actual commutative-ring pairs vanishes on the diagonal, including composite modular rings.",
+    "antisymmetric": "Swapping pair operands negates the exact determinant.",
+    "additive": "Coordinatewise addition is additive in the determinant first argument.",
+    "ray_isotropic": "Every two points of an actual projective field direction commute under the form.",
+    "unique_direction": "Every nonzero point over a field has exactly one vertical/slope direction; admitted prime ZMod supplies that field.",
+    "distinct_directions_disjoint": "Distinct field directions cannot share a nonzero point.",
+    "direction_count": "A finite field has its cardinality plus one projective directions.",
+    "bundle_mass": "Actual pairwise-disjoint finite bundles of size d-1 have union cardinality k*(d-1).",
+    "bundle_mass_bound": "Global identity exclusion places that union in the d-squared-point ambient set minus one.",
+    "basis_count_bound": "For d>=2 the actual mass inequality forces k<=d+1.",
+    "bounded_add": "Representatives below d<=256 have a sum at most 510.",
+    "bounded_product": "Representative products are at most 65025.",
+    "subtract_representative_safe": "Adding d before subtracting a residue avoids unsigned underflow.",
+    "singleton_admission": "Membership admission applies to singleton bundles even though no distinct pair exists.",
+    "bounded_plus_one": "Exact dimension-plus-one representability is strict inequality against the machine maximum."
+  },
+  "metrics": {
+    "receipt": {
+      "path": "evidence/quality/category_homology/20261020T011312Z-metrics/receipt.json",
+      "sha256": "9828eb38d125039bfb838c3fb199d561706c0cac2104b05c46d766d265abc73d"
+    },
+    "functions": 13,
+    "max_ccn": 6,
+    "max_cognitive": 7,
+    "max_nesting": 2
+  },
+  "evidence": [
+    {
+      "path": "evidence/quality/six_module/20261020T011138Z-weyl_systems/summary.json",
+      "sha256": "91323376fe15487b283e7ab128fc929ea5a7b28de8e62a8e12c8469d474480c9"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261020T011351Z-weyl-bundles-proof/receipt.json",
+      "sha256": "fb14ca80aecddd39da9711bcba4a70d199fff558f0469b237f6836e9134f9801"
+    },
+    {
+      "path": "evidence/quality/six_module/checkpoint-005/repair-history.json",
+      "sha256": "57e4c8d7ddf33532dcfab5a74aac70e2eda1ddaa9ed201e5e7780543b537e160"
+    }
+  ]
+}

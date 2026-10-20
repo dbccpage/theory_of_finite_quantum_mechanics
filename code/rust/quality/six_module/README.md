@@ -31,7 +31,8 @@ This command requires PyYAML, available in the existing Python 3.10 environment.
 
 `run_enumeration.py` uses the actual standalone combinatorics crate and copies
 the selected `--subject enumeration`, `cartesian_words`, `partitions` or
-`color_constraints` or `finite_geometry` into one-fault
+`color_constraints`, `finite_geometry`, `weyl_systems` or
+`mub_configurations` into one-fault
 namespaces, keeping its real sibling providers.
 It preserves all six mutation outcomes and separates compiler refusal from test
 failure. The exact independent oracle is in `enumeration_challenges.rs`. The
@@ -78,6 +79,17 @@ intentional integer-vector cases. Independent bitmask incidence, XOR Fano,
 modular line equations and i128 dot oracles support the source correspondence.
 Before-repair failure, a surviving initial shape mutant and the rejected first
 proof remain visible in checkpoint-004 history.
+
+Weyl systems and MUB configurations also receive L4A with all 27 production
+bodies mapped, 19 and 14 detected final faults respectively, and fifteen clean
+shared model declarations for alternating forms, unique prime-field directions,
+isotropy, disjoint finite-bundle cardinality and the d+1 bound. Singleton bundle
+coordinates are admitted independently of pair checks. The dimension-plus-one
+helper now returns a checked Result; the sole pre-existing local call was its
+updated unit test. Canonical MUB construction reuses ray buffers in place.
+Operator-bundle completeness is not an eigenbasis or composite-dimension theorem.
+The pre-repair failures, initial surviving size mutant and rejected proof remain
+recorded in checkpoint-005 history.
 
 `gate_reviews.json` registers individually authored completed assessments.
 `reviewed_assessments.py` checks their actual native/dependency/proof/metric

@@ -1,0 +1,43 @@
+
+running 10 tests
+test mub_configurations_subject_0::boundary_review::oversized_dimension_is_refused_without_panic ... FAILED
+test mub_configurations_subject_0::boundary_review::unrepresentable_upper_bound_has_typed_result ... FAILED
+test mub_configurations_subject_0::boundary_review::invalid_singleton_is_refused ... FAILED
+test mub_configurations_subject_0::tests::integration_canonical_prime_uses_weyl_dimension ... ok
+test mub_configurations_subject_0::tests::negative_dimension_size_and_identity ... ok
+test mub_configurations_subject_0::tests::e2e_complete_prime_bundle_contract ... ok
+test mub_configurations_subject_0::tests::negative_too_many_and_noncommuting ... ok
+test mub_configurations_subject_0::tests::test_canonical_mub_configurations_prime ... ok
+test mub_configurations_subject_0::tests::test_non_disjoint_bundle_refusal ... ok
+test mub_configurations_subject_0::tests::unit_upper_bound_is_dim_plus_one ... ok
+
+failures:
+
+---- mub_configurations_subject_0::boundary_review::oversized_dimension_is_refused_without_panic stdout ----
+
+thread 'mub_configurations_subject_0::boundary_review::oversized_dimension_is_refused_without_panic' (26056) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\six-module\20261020T010806Z\src\combinatorics\q\n0.rs:117:17:
+attempt to add with overflow
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- mub_configurations_subject_0::boundary_review::unrepresentable_upper_bound_has_typed_result stdout ----
+
+thread 'mub_configurations_subject_0::boundary_review::unrepresentable_upper_bound_has_typed_result' (8176) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\six-module\20261020T010806Z\src\combinatorics\q\n0.rs:194:5:
+attempt to add with overflow
+
+thread 'mub_configurations_subject_0::boundary_review::unrepresentable_upper_bound_has_typed_result' (8176) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\six-module\20261020T010806Z\src\combinatorics\q\n0.rs:278:9:
+public bound helper panicked
+
+---- mub_configurations_subject_0::boundary_review::invalid_singleton_is_refused stdout ----
+
+thread 'mub_configurations_subject_0::boundary_review::invalid_singleton_is_refused' (42432) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\six-module\20261020T010806Z\src\combinatorics\q\n0.rs:270:9:
+assertion failed: MubOperatorConfiguration::new(2,
+        vec![vec![PhasePoint::new(usize::MAX, 1)]]).is_err()
+
+
+failures:
+    mub_configurations_subject_0::boundary_review::invalid_singleton_is_refused
+    mub_configurations_subject_0::boundary_review::oversized_dimension_is_refused_without_panic
+    mub_configurations_subject_0::boundary_review::unrepresentable_upper_bound_has_typed_result
+
+test result: FAILED. 7 passed; 3 failed; 0 ignored; 0 measured; 44 filtered out; finished in 0.00s
+

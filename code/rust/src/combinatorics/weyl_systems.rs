@@ -1,4 +1,3 @@
-
 use std::collections::BTreeSet;
 use thiserror::Error;
 
@@ -15,7 +14,11 @@ pub enum WeylSystemError {
     #[error("coordinate ({0}, {1}) is out of bounds for dimension {2}")]
     CoordinateOutOfBounds(usize, usize, usize),
     #[error("isotropic rays fail the partition invariant for prime {prime}: rays {rays}, nonzero {nonzero}")]
-    PartitionFailed { prime: usize, rays: usize, nonzero: usize },
+    PartitionFailed {
+        prime: usize,
+        rays: usize,
+        nonzero: usize,
+    },
 }
 
 impl WeylSystemError {
@@ -41,7 +44,11 @@ impl WeylSystemError {
                 ("p", p.to_string()),
                 ("dim", dim.to_string()),
             ],
-            Self::PartitionFailed { prime, rays, nonzero } => vec![
+            Self::PartitionFailed {
+                prime,
+                rays,
+                nonzero,
+            } => vec![
                 ("prime", prime.to_string()),
                 ("rays", rays.to_string()),
                 ("nonzero", nonzero.to_string()),
@@ -70,7 +77,11 @@ pub struct DiscreteWeylSystem {
 impl DiscreteWeylSystem {
     pub fn new(dim: usize) -> Result<Self, WeylSystemError> {
         if dim < 2 || dim > 256 {
-            return Err(WeylSystemError::InvalidDimension { dim, min: 2, max: 256 });
+            return Err(WeylSystemError::InvalidDimension {
+                dim,
+                min: 2,
+                max: 256,
+            });
         }
         Ok(Self { dim })
     }
@@ -79,13 +90,19 @@ impl DiscreteWeylSystem {
         self.dim
     }
 
+    /// PhasePoint is a raw coordinate record; admission is relative to this modulus.
+    pub fn validate_point(&self, point: PhasePoint) -> Result<(), WeylSystemError> {
+        if point.q >= self.dim || point.p >= self.dim {
+            return Err(WeylSystemError::CoordinateOutOfBounds(
+                point.q, point.p, self.dim,
+            ));
+        }
+        Ok(())
+    }
+
     pub fn symplectic_form(&self, u: PhasePoint, v: PhasePoint) -> Result<usize, WeylSystemError> {
-        if u.q >= self.dim || u.p >= self.dim {
-            return Err(WeylSystemError::CoordinateOutOfBounds(u.q, u.p, self.dim));
-        }
-        if v.q >= self.dim || v.p >= self.dim {
-            return Err(WeylSystemError::CoordinateOutOfBounds(v.q, v.p, self.dim));
-        }
+        self.validate_point(u)?;
+        self.validate_point(v)?;
         let term1 = (u.q * v.p) % self.dim;
         let term2 = (u.p * v.q) % self.dim;
         let res = (self.dim + term1 - term2) % self.dim;
@@ -97,12 +114,8 @@ impl DiscreteWeylSystem {
     }
 
     pub fn add(&self, u: PhasePoint, v: PhasePoint) -> Result<PhasePoint, WeylSystemError> {
-        if u.q >= self.dim || u.p >= self.dim {
-            return Err(WeylSystemError::CoordinateOutOfBounds(u.q, u.p, self.dim));
-        }
-        if v.q >= self.dim || v.p >= self.dim {
-            return Err(WeylSystemError::CoordinateOutOfBounds(v.q, v.p, self.dim));
-        }
+        self.validate_point(u)?;
+        self.validate_point(v)?;
         Ok(PhasePoint {
             q: (u.q + v.q) % self.dim,
             p: (u.p + v.p) % self.dim,
@@ -200,9 +213,13 @@ mod tests {
     #[test]
     fn e2e_addition_and_commutation() {
         let weyl = DiscreteWeylSystem::new(5).unwrap();
-        let sum = weyl.add(PhasePoint::new(4, 4), PhasePoint::new(2, 3)).unwrap();
+        let sum = weyl
+            .add(PhasePoint::new(4, 4), PhasePoint::new(2, 3))
+            .unwrap();
         assert_eq!(sum, PhasePoint::new(1, 2));
-        assert!(weyl.commutes(PhasePoint::new(1, 2), PhasePoint::new(2, 4)).unwrap());
+        assert!(weyl
+            .commutes(PhasePoint::new(1, 2), PhasePoint::new(2, 4))
+            .unwrap());
         assert!(PROVENANCE.contains("AuthorityEffect: None"));
         assert!(PROVENANCE.contains("Mutation-Kills: 2 non-equivalent source mutants"));
         assert_eq!(AUTHORITY_EFFECT, "AuthorityEffect: None");
@@ -235,10 +252,18 @@ mod tests {
         let dim = DiscreteWeylSystem::new(1).unwrap_err();
         assert_eq!(dim.violated_invariant(), "dimension lies in 2..=256");
         assert_eq!(dim.measured_parameters()[0], ("dim", "1".to_owned()));
-        let composite = DiscreteWeylSystem::new(4).unwrap().isotropic_rays().unwrap_err();
-        assert_eq!(composite.violated_invariant(), "isotropic rays are admitted only for prime dimension");
+        let composite = DiscreteWeylSystem::new(4)
+            .unwrap()
+            .isotropic_rays()
+            .unwrap_err();
+        assert_eq!(
+            composite.violated_invariant(),
+            "isotropic rays are admitted only for prime dimension"
+        );
         let weyl = DiscreteWeylSystem::new(5).unwrap();
-        let coord = weyl.symplectic_form(PhasePoint::new(5, 0), PhasePoint::new(0, 0)).unwrap_err();
+        let coord = weyl
+            .symplectic_form(PhasePoint::new(5, 0), PhasePoint::new(0, 0))
+            .unwrap_err();
         assert_eq!(coord.measured_parameters()[0], ("q", "5".to_owned()));
     }
 }

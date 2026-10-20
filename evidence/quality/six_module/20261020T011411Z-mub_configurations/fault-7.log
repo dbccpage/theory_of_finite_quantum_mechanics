@@ -1,0 +1,44 @@
+
+running 11 tests
+test mub_configurations_subject_7::boundary_review::singleton_coordinates_and_overflow_refuse ... ok
+test mub_configurations_subject_7::tests::e2e_complete_prime_bundle_contract ... ok
+test mub_configurations_subject_7::boundary_review::failure_order_and_owned_boundary ... FAILED
+test mub_configurations_subject_7::tests::integration_canonical_prime_uses_weyl_dimension ... ok
+test mub_configurations_subject_7::tests::negative_too_many_and_noncommuting ... FAILED
+test mub_configurations_subject_7::tests::test_canonical_mub_configurations_prime ... ok
+test mub_configurations_subject_7::tests::test_non_disjoint_bundle_refusal ... ok
+test mub_configurations_subject_7::tests::negative_dimension_size_and_identity ... ok
+test mub_configurations_subject_7::tests::unit_upper_bound_is_dim_plus_one ... ok
+test mub_configurations_subject_7::boundary_review::exhaustive_small_bundle_candidate_oracle ... FAILED
+test mub_configurations_subject_7::boundary_review::prime_bundles_composition_and_largest_ring ... ok
+
+failures:
+
+---- mub_configurations_subject_7::boundary_review::failure_order_and_owned_boundary stdout ----
+
+thread 'mub_configurations_subject_7::boundary_review::failure_order_and_owned_boundary' (32116) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\six-module\20261020T011411Z\src\combinatorics\q\n7.rs:374:3:
+assertion `left == right` failed
+  left: Ok(MubOperatorConfiguration { dim: 3, bundles: [[PhasePoint { q: 0, p: 1 }, PhasePoint { q: 1, p: 0 }]] })
+ right: Err(NonCommutingBundle { index: 0, q0: 0, p0: 1, q1: 1, p1: 0 })
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- mub_configurations_subject_7::tests::negative_too_many_and_noncommuting stdout ----
+
+thread 'mub_configurations_subject_7::tests::negative_too_many_and_noncommuting' (46720) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\six-module\20261020T011411Z\src\combinatorics\q\n7.rs:310:65:
+called `Result::unwrap_err()` on an `Ok` value: MubOperatorConfiguration { dim: 3, bundles: [[PhasePoint { q: 0, p: 1 }, PhasePoint { q: 1, p: 0 }]] }
+
+---- mub_configurations_subject_7::boundary_review::exhaustive_small_bundle_candidate_oracle stdout ----
+
+thread 'mub_configurations_subject_7::boundary_review::exhaustive_small_bundle_candidate_oracle' (46216) panicked at C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics\.worktrees\category-homology-pr\code\rust\target\six-module\20261020T011411Z\src\combinatorics\q\n7.rs:348:5:
+assertion `left == right` failed: d=3 bundles=[[PhasePoint { q: 0, p: 1 }, PhasePoint { q: 0, p: 2 }], [PhasePoint { q: 1, p: 0 }, PhasePoint { q: 1, p: 1 }]]
+  left: true
+ right: false
+
+
+failures:
+    mub_configurations_subject_7::boundary_review::exhaustive_small_bundle_candidate_oracle
+    mub_configurations_subject_7::boundary_review::failure_order_and_owned_boundary
+    mub_configurations_subject_7::tests::negative_too_many_and_noncommuting
+
+test result: FAILED. 8 passed; 3 failed; 0 ignored; 0 measured; 198 filtered out; finished in 0.09s
+
