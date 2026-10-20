@@ -1,0 +1,149 @@
+{
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/combinatorics/mod.rs",
+    "sha256": "2dae3faff20c8917f015fb9543f4d708fbc1cf7545cb40817547d91e2b7ce35f",
+    "language": "Rust"
+  },
+  "symbol_map": {
+    "surface_certificate": {
+      "line": 20,
+      "signature": "pub fn surface_certificate() -> Result<SurfaceCertificate, SurfaceError>",
+      "body": "{\n    let partition_four = match certify_partition() {\n        Ok(value) => value,\n        Err(err) => return Err(err),\n    };\n    let factorial_five = match certify_factorial() {\n        Ok(value) => value,\n        Err(err) => return Err(err),\n    };\n    finish_surface(partition_four, factorial_five)\n}",
+      "obligation": "Call the exact partition and factorial checks in that order, returning their first error; on success pass both admitted values to the private finishing assembler."
+    },
+    "finish_surface": {
+      "line": 32,
+      "signature": "fn finish_surface(partition_four: u64, factorial_five: u64) -> Result<SurfaceCertificate, SurfaceError>",
+      "body": "{\n    let mub_bases = match certify_mub() {\n        Ok(value) => value,\n        Err(err) => return Err(err),\n    };\n    let fano_lines = match certify_fano() {\n        Ok(value) => value,\n        Err(err) => return Err(err),\n    };\n    let affine_lines = match certify_affine() {\n        Ok(value) => value,\n        Err(err) => return Err(err),\n    };\n    Ok(SurfaceCertificate {\n        partition_four,\n        factorial_five,\n        mub_bases,\n        fano_lines,\n        affine_lines,\n    })\n}",
+      "obligation": "Private assembler: retain both supplied u64 fields without validating them; call MUB, Fano and affine checks in order and preserve all five resulting fields in the raw report."
+    },
+    "refuse_partition_witness": {
+      "line": 54,
+      "signature": "pub fn refuse_partition_witness(witness: u64) -> Result<(), SurfaceError>",
+      "body": "{\n    if witness != 5 {\n        return Err(SurfaceError {\n            invariant: \"p(4)=5\",\n            parameters: format!(\"witness={witness}\"),\n        });\n    }\n    Ok(())\n}",
+      "obligation": "Compare any u64 witness to five; accept equality only and otherwise report invariant p(4)=5 with the exact witness operand. It is public in this source module but the crate_certificate module is private and does not re-export this helper externally."
+    },
+    "certify_partition": {
+      "line": 64,
+      "signature": "fn certify_partition() -> Result<u64, SurfaceError>",
+      "body": "{\n    let value = crate::partitions::partition_count(4).map_err(|_| SurfaceError {\n        invariant: \"p(4) is defined by the integer recurrence\",\n        parameters: \"n=4\".to_owned(),\n    })?;\n    match value.to_u64() {\n        Some(5) => Ok(5),\n        Some(other) => Err(SurfaceError {\n            invariant: \"p(4)=5\",\n            parameters: format!(\"n=4,got={other}\"),\n        }),\n        None => Err(SurfaceError {\n            invariant: \"p(4) fits u64\",\n            parameters: \"n=4\".to_owned(),\n        }),\n    }\n}",
+      "obligation": "Compute exact partition_count(4), map a provider error, checked-convert to u64 and accept exactly five; distinguish a different representable value from conversion failure."
+    },
+    "certify_factorial": {
+      "line": 82,
+      "signature": "fn certify_factorial() -> Result<u64, SurfaceError>",
+      "body": "{\n    let value = crate::enumeration::factorial(5).map_err(|_| SurfaceError {\n        invariant: \"5! is defined\",\n        parameters: \"n=5\".to_owned(),\n    })?;\n    match value.to_u64() {\n        Some(120) => Ok(120),\n        Some(other) => Err(SurfaceError {\n            invariant: \"5!=120\",\n            parameters: format!(\"n=5,got={other}\"),\n        }),\n        None => Err(SurfaceError {\n            invariant: \"5! fits u64\",\n            parameters: \"n=5\".to_owned(),\n        }),\n    }\n}",
+      "obligation": "Compute exact factorial(5), map a provider error, checked-convert to u64 and accept exactly 120; distinguish other values from conversion failure."
+    },
+    "certify_mub": {
+      "line": 100,
+      "signature": "fn certify_mub() -> Result<usize, SurfaceError>",
+      "body": "{\n    let config = crate::mub_configurations::MubOperatorConfiguration::canonical_prime(5)\n        .map_err(|_| SurfaceError {\n            invariant: \"prime 5 admits a complete isotropic MUB bundle\",\n            parameters: \"p=5\".to_owned(),\n        })?;\n    let bases = config.num_bases();\n    if bases != 6 {\n        return Err(SurfaceError {\n            invariant: \"canonical prime-5 MUB has p+1 bases\",\n            parameters: format!(\"p=5,bases={bases}\"),\n        });\n    }\n    Ok(bases)\n}",
+      "obligation": "Construct the admitted canonical prime-five operator bundles, map failure and accept exactly six bundles; no eigenbasis completeness claim."
+    },
+    "certify_fano": {
+      "line": 116,
+      "signature": "fn certify_fano() -> Result<usize, SurfaceError>",
+      "body": "{\n    let fano = crate::finite_geometry::fano_plane().map_err(|_| SurfaceError {\n        invariant: \"the Fano incidence list is a linear space\",\n        parameters: \"points=7\".to_owned(),\n    })?;\n    if !fano.is_linear_space() {\n        return Err(SurfaceError {\n            invariant: \"the Fano plane is a linear space\",\n            parameters: \"points=7\".to_owned(),\n        });\n    }\n    Ok(fano.num_lines())\n}",
+      "obligation": "Construct the Fano relation, map failure, recompute linearity and reject its failure, then return the actual line count. The current reviewed producer supplies exactly seven lines."
+    },
+    "certify_affine": {
+      "line": 130,
+      "signature": "fn certify_affine() -> Result<usize, SurfaceError>",
+      "body": "{\n    let plane = crate::finite_geometry::affine_plane_ag2(3).map_err(|_| SurfaceError {\n        invariant: \"AG(2,3) is admitted for prime order 3\",\n        parameters: \"p=3\".to_owned(),\n    })?;\n    if plane.num_lines() != 12 {\n        return Err(SurfaceError {\n            invariant: \"AG(2,3) has p(p+1) lines\",\n            parameters: format!(\"p=3,lines={}\", plane.num_lines()),\n        });\n    }\n    Ok(plane.num_lines())\n}",
+      "obligation": "Construct AG(2,3), map failure, compare its actual line count to twelve and return it only on equality."
+    }
+  },
+  "invariant_argument": [
+    "The fixed public surface obtains p(4), 5!, canonical prime-5 bundle count, Fano lines and AG(2,3) lines from the actual separately reviewed providers. These seven review documents, all nine production sources and both manifests are pinned. Provider outputs 5,120,6,7,12 are exact and fit both u64 and the compiled usize.",
+    "Errors are typed SurfaceError records. The source preserves the first failing stage, mapping provider errors to finite input diagnostics rather than continuing with defaults. The checked BigUint-to-u64 conversions admit exactly the fixed expected values and reject other representable or oversized outputs. Current fixed pure providers cannot enter those defensive failure branches, which remain reviewed rather than falsely covered by injected tests.",
+    "Private finish_surface trusts its two scalar arguments and joins three more fixed providers; it does not validate those scalar arguments itself. Only the preceding private checks supply them on the public path. Direct fixture calls with arbitrary u64 values confirm the weaker assembler contract. Public report fields and derived clones are freely editable; no type-level authenticity or general theorem follows from their names.",
+    "Fano linearity is recomputed using the reviewed pair predicate before its line count is reported. AG(2,3) uses the exact prime-order producer and explicitly checks twelve lines. Canonical prime-five MUB configuration uses the admitted operator-bundle producer and checks six bundles. This does not construct eigenvectors or classify dimensions.",
+    "The entry points call each fixed producer once in a fixed order. Wrapper/assembler code has no loop or recursion and introduces no redundant inner allocations. Provider allocations are bounded by fixed n=4,5, p=3,5 and seven-point Fano inputs under the provider contracts. Error formatting allocates only on failure. Successful returned records own their fields and no partial report escapes an error.",
+    "The native controls compare the assembled report to independently listed partitions and factorial/pair-count formulas; they also test all wrong scalar witnesses including u64::MAX, shared exports, cloned ownership and forged raw reports. Complete source mutation campaigns challenge false refusal and corruption of every exported field or provider check. Every designated fault is detected; mutation outcomes are literal, not inferred from test annotations.",
+    "All 8 production bodies meet structural maxima CCN 7, cognitive 3, nesting 1. Standard fixed witness checks, typed procedural error propagation and raw report assembly. Mathematical sophistication resides in the reviewed providers."
+  ],
+  "consumer_review": [
+    "Local lib.rs re-exports only surface_certificate, SurfaceCertificate and SurfaceError from the private crate_certificate module, and exposes e2e_surface. The scalar refuse_partition_witness helper is exercised internally, not externally re-exported.",
+    "The root repository uses an external omega_combinatorics Cargo path; this isolated replay proves the local tfqm_combinatorics boundary only. All seven local leaf providers and their explicit reviews are bound here.",
+    "The lib candidate retains its exact source body and module-relative declarations. All 56 support-source copies across seven namespaces were audited bytewise against the frozen native source manifest; this post-replay audit is not a compiler file-read trace."
+  ],
+  "assurance_limits": [
+    "AuthorityEffect: None. Fixed finite witness aggregation only. Public SurfaceCertificate and SurfaceError fields are mutable raw report records, not authenticated or invariant-bearing proof tokens; no consumer may treat a caller-built record as admitted mathematical evidence.",
+    "Provider failures and to_u64 overflow arms are unreachable for the pinned exact fixed calls, whose reviewed outputs are small constants. Those defensive arms are source-reviewed and the ordered Except model is checked; no injected provider-failure execution or full Rust/MIR refinement is claimed.",
+    "Lean list/arithmetic examples corroborate the fixed witnesses but do not newly prove completeness of a partition enumeration or a physical MUB theorem. Actual computation semantics are discharged by the seven separately registered source reviews.",
+    "The actual standalone combinatorics crate and one-fault copies are compiled. External omega providers and whole-workspace success are outside the claim. Legacy mutation annotations are not the final literal six-outcome tables.",
+    "No production source changes were needed. Delivered L1/L2 capabilities remain below the architecture target, as authorized for honest per-file scores; completed engineering A is not a blanket L4 award.",
+    "Compiler, standard allocation/formatting, num_bigint/num_traits, thiserror and the seven exact provider implementations remain TCB. No memory-exhaustion recovery, compiler-read trace, or constant-time guarantee."
+  ],
+  "proof_correspondence": {
+    "assemble_exact": "Exact successful fixed-field assembly preserves all five operands.",
+    "first_error": "Partition-stage refusal propagates before all later stages.",
+    "factorial_error": "After partition success, factorial refusal propagates before later stages.",
+    "mub_error": "After both scalar successes, MUB refusal has priority.",
+    "fano_error": "Fano refusal precedes affine work.",
+    "affine_error": "Final affine refusal prevents a successful report.",
+    "partition_acceptance": "The scalar checker accepts exactly 5.",
+    "partition_refusal": "Every other scalar is rejected with the declared invariant.",
+    "listed_partition_count": "The independently listed five rows have cardinality five, without claiming model enumeration completeness.",
+    "listed_partition_invariants": "Each independently listed row is positive, descending and sums to four.",
+    "fixed_factorial": "Actual Nat.factorial 5 is 120.",
+    "prime_bundle_count": "Prime-five direction count arithmetic is six; the provider review supplies field-ray semantics.",
+    "fano_pair_count": "Independent double-counting arithmetic gives seven triple lines on seven points.",
+    "affine_pair_count": "Independent pair-incidence arithmetic gives twelve length-three lines on nine points.",
+    "fixed_report": "The fixed successful input tuple yields precisely the declared report."
+  },
+  "metrics": {
+    "receipt": {
+      "path": "evidence/quality/category_homology/20261020T011312Z-metrics/receipt.json",
+      "sha256": "9828eb38d125039bfb838c3fb199d561706c0cac2104b05c46d766d265abc73d"
+    },
+    "functions": 8,
+    "max_ccn": 7,
+    "max_cognitive": 3,
+    "max_nesting": 1
+  },
+  "evidence": [
+    {
+      "path": "code/rust/quality/six_module/assessments/enumeration.json",
+      "sha256": "731d5ebc730c7131a3b732ed62361d4191769cdbdc1d1bf6c3a752780120429e"
+    },
+    {
+      "path": "code/rust/quality/six_module/assessments/cartesian_words.json",
+      "sha256": "8b035900ceb41c6b61c48f31a1ca5f598d9765f5afdbe8770e3689979003be00"
+    },
+    {
+      "path": "code/rust/quality/six_module/assessments/partitions.json",
+      "sha256": "225adfe75edf65de8a0c244131545d15819293841ff339dabbd6a121b09ef2b4"
+    },
+    {
+      "path": "code/rust/quality/six_module/assessments/color_constraints.json",
+      "sha256": "ffdd2ae6d0eaa2d95e0caac9a130af12a2c656a0700035d6e8c1da21ec61dcb6"
+    },
+    {
+      "path": "code/rust/quality/six_module/assessments/finite_geometry.json",
+      "sha256": "b89c8838f0b7eae3ac7b0d43a5e07903a48fc69529f29ab31eadc7808441226b"
+    },
+    {
+      "path": "code/rust/quality/six_module/assessments/weyl_systems.json",
+      "sha256": "383e8c01a7660087d775603419dd93a6fb69dfab016cbcf664a17cbec271a6e5"
+    },
+    {
+      "path": "code/rust/quality/six_module/assessments/mub_configurations.json",
+      "sha256": "3a303f51005f40f364fc36347246f457c4ddf648f8746aae351b37f1a1f078b2"
+    },
+    {
+      "path": "evidence/quality/six_module/20261020T012248Z-mod/summary.json",
+      "sha256": "63bf8c62b54fe6bebcdbda55707857b6b9d0f7462b257409f185b0a7f8cd09ad"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261020T012236Z-surface-witnesses-proof/receipt.json",
+      "sha256": "8f4d72cd51d5f687b836b13e37bc69c0c939437ad0e46bb243c6ac4fa6b2113a"
+    },
+    {
+      "path": "evidence/quality/six_module/checkpoint-006/lib-support-sources.json",
+      "sha256": "777d5b3eefe4b26b05271b6054feff393850acb669ba35273e220094bde4c653"
+    }
+  ]
+}

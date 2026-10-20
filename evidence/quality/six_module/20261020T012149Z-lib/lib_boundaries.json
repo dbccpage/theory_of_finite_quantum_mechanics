@@ -1,0 +1,39 @@
+{
+  "AuthorityEffect": "None",
+  "subject": {
+    "path": "code/rust/src/combinatorics/lib.rs",
+    "sha256": "864fbe85c5ab6fb02b933d30ff72190aa0b2956538170ec151bd3c29676f682c"
+  },
+  "faults": [
+    {
+      "id": "partition-refusal",
+      "needle": "if cert.partition_four != 5 {",
+      "replacement": "if cert.partition_four == 5 {"
+    },
+    {
+      "id": "partition_four",
+      "needle": "    Ok(cert)",
+      "replacement": "    Ok({ let mut cert=cert; cert.partition_four=0; cert })"
+    },
+    {
+      "id": "factorial_five",
+      "needle": "    Ok(cert)",
+      "replacement": "    Ok({ let mut cert=cert; cert.factorial_five=0; cert })"
+    },
+    {
+      "id": "mub_bases",
+      "needle": "    Ok(cert)",
+      "replacement": "    Ok({ let mut cert=cert; cert.mub_bases=0; cert })"
+    },
+    {
+      "id": "fano_lines",
+      "needle": "    Ok(cert)",
+      "replacement": "    Ok({ let mut cert=cert; cert.fano_lines=0; cert })"
+    },
+    {
+      "id": "affine_lines",
+      "needle": "    Ok(cert)",
+      "replacement": "    Ok({ let mut cert=cert; cert.affine_lines=0; cert })"
+    }
+  ]
+}

@@ -32,7 +32,7 @@ This command requires PyYAML, available in the existing Python 3.10 environment.
 `run_enumeration.py` uses the actual standalone combinatorics crate and copies
 the selected `--subject enumeration`, `cartesian_words`, `partitions` or
 `color_constraints`, `finite_geometry`, `weyl_systems` or
-`mub_configurations` into one-fault
+`mub_configurations`, `lib` or `mod` into one-fault
 namespaces, keeping its real sibling providers.
 It preserves all six mutation outcomes and separates compiler refusal from test
 failure. The exact independent oracle is in `enumeration_challenges.rs`. The
@@ -91,12 +91,20 @@ Operator-bundle completeness is not an eigenbasis or composite-dimension theorem
 The pre-repair failures, initial surviving size mutant and rejected proof remain
 recorded in checkpoint-005 history.
 
+All nine combinatorics files now have complete engineering-A assessments. The
+crate root remains L1A and the fixed report assembler L2A; the seven domain
+providers are L4A. All nine production entry-point/assembler bodies are mapped,
+with six and sixteen detected faults and fifteen clean report/error/scalar model
+declarations. No source changes were required. Report fields remain publicly
+mutable and are not admission tokens. Library copies retain exact module-relative
+source paths, with all 56 nested support copies separately bound and challenged.
+
 `gate_reviews.json` registers individually authored completed assessments.
 `reviewed_assessments.py` checks their actual native/dependency/proof/metric
 receipts with the existing weakest-link and proof verifiers. It checks each
 compiled mutant against its exact source substitution and frozen fixture, and
 each mapped production signature/body against source. The writer cannot create
-a gate review from test counts. Five decoded-value probes challenge accounting,
+a gate review from test counts. Seven decoded-value probes challenge accounting,
 kill attribution, structural ceilings and complete/accurate body mapping without
 editing any source or immutable receipt. Legacy grades keep their immutable
 score-manifest custody. Failed proof and interrupted receipt attempts remain

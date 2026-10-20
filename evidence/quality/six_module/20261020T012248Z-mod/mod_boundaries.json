@@ -1,0 +1,89 @@
+{
+  "AuthorityEffect": "None",
+  "subject": {
+    "path": "code/rust/src/combinatorics/mod.rs",
+    "sha256": "2dae3faff20c8917f015fb9543f4d708fbc1cf7545cb40817547d91e2b7ce35f"
+  },
+  "faults": [
+    {
+      "id": "partition-return",
+      "needle": "Some(5) => Ok(5),",
+      "replacement": "Some(5) => Ok(4),"
+    },
+    {
+      "id": "partition-match",
+      "needle": "Some(5) => Ok(5),",
+      "replacement": "Some(4) => Ok(5),"
+    },
+    {
+      "id": "factorial-return",
+      "needle": "Some(120) => Ok(120),",
+      "replacement": "Some(120) => Ok(119),"
+    },
+    {
+      "id": "factorial-input",
+      "needle": "crate::enumeration::factorial(5)",
+      "replacement": "crate::enumeration::factorial(4)"
+    },
+    {
+      "id": "mub-input",
+      "needle": "canonical_prime(5)",
+      "replacement": "canonical_prime(3)"
+    },
+    {
+      "id": "mub-count",
+      "needle": "if bases != 6 {",
+      "replacement": "if bases == 6 {"
+    },
+    {
+      "id": "fano-linear",
+      "needle": "if !fano.is_linear_space() {",
+      "replacement": "if fano.is_linear_space() {"
+    },
+    {
+      "id": "fano-output",
+      "needle": "Ok(fano.num_lines())",
+      "replacement": "Ok(fano.num_lines()+1)"
+    },
+    {
+      "id": "affine-input",
+      "needle": "affine_plane_ag2(3)",
+      "replacement": "affine_plane_ag2(4)"
+    },
+    {
+      "id": "affine-count",
+      "needle": "if plane.num_lines() != 12 {",
+      "replacement": "if plane.num_lines() == 12 {"
+    },
+    {
+      "id": "affine-output",
+      "needle": "Ok(plane.num_lines())",
+      "replacement": "Ok(plane.num_lines()+1)"
+    },
+    {
+      "id": "partition-witness",
+      "needle": "if witness != 5 {",
+      "replacement": "if witness == 5 {"
+    },
+    {
+      "id": "diagnostic-operand",
+      "needle": "format!(\"witness={witness}\")",
+      "replacement": "format!(\"witness={}\",witness.wrapping_add(1))"
+    },
+    {
+      "id": "report-partition",
+      "needle": "        partition_four,",
+      "replacement": "        partition_four: factorial_five,"
+    },
+    {
+      "id": "report-factorial",
+      "needle": "        factorial_five,",
+      "replacement": "        factorial_five: partition_four,"
+    },
+    {
+      "id": "report-mub",
+      "needle": "        mub_bases,",
+      "replacement": "        mub_bases: mub_bases+1,"
+    }
+  ]
+}

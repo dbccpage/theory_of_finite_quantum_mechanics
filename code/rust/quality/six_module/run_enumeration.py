@@ -31,7 +31,7 @@ def inputs():
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--subject", choices=("enumeration", "cartesian_words", "partitions", "color_constraints", "finite_geometry", "weyl_systems", "mub_configurations"), default="enumeration")
+    parser.add_argument("--subject", choices=("enumeration", "cartesian_words", "partitions", "color_constraints", "finite_geometry", "weyl_systems", "mub_configurations", "lib", "mod"), default="enumeration")
     args = parser.parse_args()
     name = args.subject
     prefix = name + "_subject_"
@@ -68,6 +68,15 @@ def main():
     declarations = []
     for index, (_tag, candidate) in enumerate(copies):
         path = generated / f"n{index}.rs"
+        if name == "lib":
+            # Preserve Rust module-relative paths without editing candidate code.
+            folder = generated / f"n{index}"
+            folder.mkdir()
+            for source_path in original:
+                source_file = ROOT / source_path
+                if source_file.suffix == ".rs" and source_file.name != "lib.rs":
+                    shutil.copyfile(source_file, folder / source_file.name)
+            path = folder / "lib.rs"
         path.write_text(candidate + "\n" + fixture, encoding="utf-8")
         declarations.append(f'#[cfg(test)]\n#[path={json.dumps(path.resolve().as_posix())}] '
                             f'mod {prefix}{index};')
