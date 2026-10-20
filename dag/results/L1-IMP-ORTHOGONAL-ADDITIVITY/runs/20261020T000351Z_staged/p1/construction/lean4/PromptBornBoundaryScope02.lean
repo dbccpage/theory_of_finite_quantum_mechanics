@@ -1,0 +1,3 @@
+import PromptBornBoundaries
+#print axioms QuantumMechanics.PromptBornBoundaries.orthogonal_law
+#print axioms QuantumMechanics.PromptBornBoundaries.orthogonal_control

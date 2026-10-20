@@ -1,0 +1,343 @@
+add_or_refine_generators:
+- id: normalize_normalize
+  ordered_inputs:
+  - RationalWeightTripleAndScale
+  output: NormalizedTriple
+  arity: 1
+  carrier: RationalWeightTripleAndScale
+  coefficient_ring: Exact rational coordinates, finite integer group/map indices and explicit validity
+    tags
+  hypotheses:
+  - Signed rational lists allowed for algebra; probability eligibility requires nonnegative masses and
+    positive total.
+  semantic_predicate: Divide by nonzero total.
+  source_pins:
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_qm020_thm1_direct_normalization_proved_lean.yaml
+    sha256: 0fa78d02f54c8d3ec28eef63e75a511ae5ef59d4b2f918b8d84c047775be5e5f
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/inputs/this_repository/dag/operads/l1_qm020_thm1_direct_normalization.yaml
+    sha256: 873da3936bc0083d302c69414050e9abb674754b0624c446ba565988e50fd2d7
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/inputs/this_repository/lean4/BornRedundancy.lean
+    sha256: 8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/inputs/this_repository/code/rust/src/finite_probability/simplex.rs
+    sha256: f806fa8ae31e1d13be6cfe1ba131d1ae33c5778f7448c58601e5f2ed6eb7791f
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0290_direct_normalization_of_sector_weights.md
+    sha256: a491aa3ac2d7b76dd1c5f1dc490ab6b8ec60ef7691e2270986e80d918d5804d2
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/p0/operation_sources/code/python/src/qm/born_boundary_exact.py
+    sha256: 04326ded1c1e17e88659e60498e5b7d92afab1bb8f0c5c91a7268013ca2f0738
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/p0/operation_sources/code/python/tests/test_born_boundary_exact.py
+    sha256: fe382974658a106563ce5870da4a7d87477a0893b1669d0b123b3bc372b493ba
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/p0/operation_sources/code/rust/src/finite_probability/born_boundary_exact.rs
+    sha256: 80427803fced2970578ba5e9b223e2d51b2e494e5900e430db17a6eae8a666ce
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/born_boundary_exact_replay.rs
+    sha256: 37575b2bc4ba8fa23d397f66da9eaa0e290e21a79a051103401878cc356f1a33
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/born_boundary_checker.py
+    sha256: 7bc9e8b52f40f78cb85f78edfc31b55ceff79f649b6a499090e64df460fac182
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+    sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/prepare.py
+    sha256: e07ac6946888be24689ae63a52370d4d1588d3d048dd0ba1b30298c869ca7bdd
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/witness_cases.json
+    sha256: 5fa9d9d9532cab06d68e8e01257c436bd2ba10746576a5854110e850af92ae98
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/specs.py
+    sha256: 3dd63e06b01e17c6357223845a487490ab707ae27f137cbd0fbb83d2c0e8dcfd
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/custody.py
+    sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+    sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/check_candidate.py
+    sha256: 9a77590b0e29f040914e63295dffd41e9bf3039e27d234a443486aa371e63092
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/format_certificate.py
+    sha256: ba00fa87e52242b32f099ac64d574c7dedcd43da38fd479755d402662d5b4432
+  evidence_status: Target-specific native predicates checked on retained inputs; relation-specific kernel
+    scope is separate. General refined-carrier operad instantiation remains open.
+  latest_host_check: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/p2/host_check.json
+- id: normalize_renormalize
+  ordered_inputs:
+  - NormalizedTriple
+  output: IdempotentAndScaledNormalizedTriples
+  arity: 1
+  carrier: NormalizedTriple
+  coefficient_ring: Exact rational coordinates, finite integer group/map indices and explicit validity
+    tags
+  hypotheses:
+  - Signed rational lists allowed for algebra; probability eligibility requires nonnegative masses and
+    positive total.
+  semantic_predicate: Normalize the normalized vector.
+  source_pins:
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_qm020_thm1_direct_normalization_proved_lean.yaml
+    sha256: 0fa78d02f54c8d3ec28eef63e75a511ae5ef59d4b2f918b8d84c047775be5e5f
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/inputs/this_repository/dag/operads/l1_qm020_thm1_direct_normalization.yaml
+    sha256: 873da3936bc0083d302c69414050e9abb674754b0624c446ba565988e50fd2d7
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/inputs/this_repository/lean4/BornRedundancy.lean
+    sha256: 8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/inputs/this_repository/code/rust/src/finite_probability/simplex.rs
+    sha256: f806fa8ae31e1d13be6cfe1ba131d1ae33c5778f7448c58601e5f2ed6eb7791f
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0290_direct_normalization_of_sector_weights.md
+    sha256: a491aa3ac2d7b76dd1c5f1dc490ab6b8ec60ef7691e2270986e80d918d5804d2
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/p0/operation_sources/code/python/src/qm/born_boundary_exact.py
+    sha256: 04326ded1c1e17e88659e60498e5b7d92afab1bb8f0c5c91a7268013ca2f0738
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/p0/operation_sources/code/python/tests/test_born_boundary_exact.py
+    sha256: fe382974658a106563ce5870da4a7d87477a0893b1669d0b123b3bc372b493ba
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/p0/operation_sources/code/rust/src/finite_probability/born_boundary_exact.rs
+    sha256: 80427803fced2970578ba5e9b223e2d51b2e494e5900e430db17a6eae8a666ce
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/born_boundary_exact_replay.rs
+    sha256: 37575b2bc4ba8fa23d397f66da9eaa0e290e21a79a051103401878cc356f1a33
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/born_boundary_checker.py
+    sha256: 7bc9e8b52f40f78cb85f78edfc31b55ceff79f649b6a499090e64df460fac182
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+    sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/prepare.py
+    sha256: e07ac6946888be24689ae63a52370d4d1588d3d048dd0ba1b30298c869ca7bdd
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/witness_cases.json
+    sha256: 5fa9d9d9532cab06d68e8e01257c436bd2ba10746576a5854110e850af92ae98
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/specs.py
+    sha256: 3dd63e06b01e17c6357223845a487490ab707ae27f137cbd0fbb83d2c0e8dcfd
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/custody.py
+    sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+    sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/check_candidate.py
+    sha256: 9a77590b0e29f040914e63295dffd41e9bf3039e27d234a443486aa371e63092
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/format_certificate.py
+    sha256: ba00fa87e52242b32f099ac64d574c7dedcd43da38fd479755d402662d5b4432
+  evidence_status: Target-specific native predicates checked on retained inputs; relation-specific kernel
+    scope is separate. General refined-carrier operad instantiation remains open.
+  latest_host_check: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/p2/host_check.json
+- id: normalize_ray_compare
+  ordered_inputs:
+  - IdempotentAndScaledNormalizedTriples
+  output: DefinedScalingAndPositiveRayPredicates
+  arity: 1
+  carrier: IdempotentAndScaledNormalizedTriples
+  coefficient_ring: Exact rational coordinates, finite integer group/map indices and explicit validity
+    tags
+  hypotheses:
+  - Signed rational lists allowed for algebra; probability eligibility requires nonnegative masses and
+    positive total.
+  semantic_predicate: Compare scaled normalization and positive-scale hypothesis.
+  source_pins:
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_qm020_thm1_direct_normalization_proved_lean.yaml
+    sha256: 0fa78d02f54c8d3ec28eef63e75a511ae5ef59d4b2f918b8d84c047775be5e5f
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/inputs/this_repository/dag/operads/l1_qm020_thm1_direct_normalization.yaml
+    sha256: 873da3936bc0083d302c69414050e9abb674754b0624c446ba565988e50fd2d7
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/inputs/this_repository/lean4/BornRedundancy.lean
+    sha256: 8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/inputs/this_repository/code/rust/src/finite_probability/simplex.rs
+    sha256: f806fa8ae31e1d13be6cfe1ba131d1ae33c5778f7448c58601e5f2ed6eb7791f
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0290_direct_normalization_of_sector_weights.md
+    sha256: a491aa3ac2d7b76dd1c5f1dc490ab6b8ec60ef7691e2270986e80d918d5804d2
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/p0/operation_sources/code/python/src/qm/born_boundary_exact.py
+    sha256: 04326ded1c1e17e88659e60498e5b7d92afab1bb8f0c5c91a7268013ca2f0738
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/p0/operation_sources/code/python/tests/test_born_boundary_exact.py
+    sha256: fe382974658a106563ce5870da4a7d87477a0893b1669d0b123b3bc372b493ba
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/p0/operation_sources/code/rust/src/finite_probability/born_boundary_exact.rs
+    sha256: 80427803fced2970578ba5e9b223e2d51b2e494e5900e430db17a6eae8a666ce
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/born_boundary_exact_replay.rs
+    sha256: 37575b2bc4ba8fa23d397f66da9eaa0e290e21a79a051103401878cc356f1a33
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/born_boundary_checker.py
+    sha256: 7bc9e8b52f40f78cb85f78edfc31b55ceff79f649b6a499090e64df460fac182
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+    sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/prepare.py
+    sha256: e07ac6946888be24689ae63a52370d4d1588d3d048dd0ba1b30298c869ca7bdd
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/witness_cases.json
+    sha256: 5fa9d9d9532cab06d68e8e01257c436bd2ba10746576a5854110e850af92ae98
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/specs.py
+    sha256: 3dd63e06b01e17c6357223845a487490ab707ae27f137cbd0fbb83d2c0e8dcfd
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/custody.py
+    sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+    sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/check_candidate.py
+    sha256: 9a77590b0e29f040914e63295dffd41e9bf3039e27d234a443486aa371e63092
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/format_certificate.py
+    sha256: ba00fa87e52242b32f099ac64d574c7dedcd43da38fd479755d402662d5b4432
+  evidence_status: Target-specific native predicates checked on retained inputs; relation-specific kernel
+    scope is separate. General refined-carrier operad instantiation remains open.
+  latest_host_check: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/p2/host_check.json
+add_or_refine_relations:
+- id: normalize_relation_0
+  equation_or_predicate: Any nonzero scale preserves algebraic normalization; positive-ray classification
+    requires positive totals.
+  typing_conditions: Literal declared operation domains; Refine arbitrary lists and positive-mass ray
+    classification to the source theorem. Do not claim positive-ray equivalence under nonzero totals alone.
+  evidence_status: P1 candidate; independent native and named kernel gates remain required.
+  scope: Exact idempotence, nonzero scaling and positive-ray-premise controls; universal normalization
+    algebra and a negative-ray counterexample in Lean.
+  source_pins:
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_qm020_thm1_direct_normalization_proved_lean.yaml
+    sha256: 0fa78d02f54c8d3ec28eef63e75a511ae5ef59d4b2f918b8d84c047775be5e5f
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/inputs/this_repository/dag/operads/l1_qm020_thm1_direct_normalization.yaml
+    sha256: 873da3936bc0083d302c69414050e9abb674754b0624c446ba565988e50fd2d7
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/inputs/this_repository/lean4/BornRedundancy.lean
+    sha256: 8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+    sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/inputs/this_repository/code/rust/src/finite_probability/simplex.rs
+    sha256: f806fa8ae31e1d13be6cfe1ba131d1ae33c5778f7448c58601e5f2ed6eb7791f
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+    sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0290_direct_normalization_of_sector_weights.md
+    sha256: a491aa3ac2d7b76dd1c5f1dc490ab6b8ec60ef7691e2270986e80d918d5804d2
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/p0/operation_sources/code/python/src/qm/born_boundary_exact.py
+    sha256: 04326ded1c1e17e88659e60498e5b7d92afab1bb8f0c5c91a7268013ca2f0738
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/p0/operation_sources/code/python/tests/test_born_boundary_exact.py
+    sha256: fe382974658a106563ce5870da4a7d87477a0893b1669d0b123b3bc372b493ba
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/p0/operation_sources/code/rust/src/finite_probability/born_boundary_exact.rs
+    sha256: 80427803fced2970578ba5e9b223e2d51b2e494e5900e430db17a6eae8a666ce
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/born_boundary_exact_replay.rs
+    sha256: 37575b2bc4ba8fa23d397f66da9eaa0e290e21a79a051103401878cc356f1a33
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/born_boundary_checker.py
+    sha256: 7bc9e8b52f40f78cb85f78edfc31b55ceff79f649b6a499090e64df460fac182
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+    sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/prepare.py
+    sha256: e07ac6946888be24689ae63a52370d4d1588d3d048dd0ba1b30298c869ca7bdd
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/witness_cases.json
+    sha256: 5fa9d9d9532cab06d68e8e01257c436bd2ba10746576a5854110e850af92ae98
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/specs.py
+    sha256: 3dd63e06b01e17c6357223845a487490ab707ae27f137cbd0fbb83d2c0e8dcfd
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/custody.py
+    sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+    sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/check_candidate.py
+    sha256: 9a77590b0e29f040914e63295dffd41e9bf3039e27d234a443486aa371e63092
+  - path: dag/pfp/exact_json.py
+    sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+  - path: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/format_certificate.py
+    sha256: ba00fa87e52242b32f099ac64d574c7dedcd43da38fd479755d402662d5b4432
+  latest_host_check: dag/results/L1-QM020-THM1-DIRECT-NORMALIZATION/runs/20261020T000351Z_staged/p2/host_check.json
+checked_compositions:
+- outer_operation: normalize_renormalize
+  input_slot: 0
+  inner_operation: normalize_normalize
+  colour_match: NormalizedTriple -> NormalizedTriple
+  hypothesis_match: Same declared coordinates, coefficients and context; all operation hypotheses must
+    be carried into the graft.
+  licensing_relations:
+  - normalize_relation_0
+  evidence_status: Semantic substitution supported by the retained finite operation traces and separately
+    scoped named kernel statements. A complete refined-carrier operad is not asserted.
+- outer_operation: normalize_ray_compare
+  input_slot: 0
+  inner_operation: normalize_renormalize
+  colour_match: IdempotentAndScaledNormalizedTriples -> IdempotentAndScaledNormalizedTriples
+  hypothesis_match: Same declared coordinates, coefficients and context; all operation hypotheses must
+    be carried into the graft.
+  licensing_relations:
+  - normalize_relation_0
+  evidence_status: Semantic substitution supported by the retained finite operation traces and separately
+    scoped named kernel statements. A complete refined-carrier operad is not asserted.
+failed_compositions:
+- proposal: Promote the selected step to the unrestricted original target
+  reason: Refine arbitrary lists and positive-mass ray classification to the source theorem. Do not claim
+    positive-ray equivalence under nonzero totals alone.
+counterexamples:
+- id: retained_actual_domain_controls
+  records:
+  - input:
+    - '1'
+    - '2'
+    - '3'
+    - '2'
+    output:
+    - '1'
+    - '6'
+    - '12'
+    - 1/6
+    - 1/3
+    - 1/2
+    - 1/6
+    - 1/3
+    - 1/2
+    - '1'
+    - 1/6
+    - 1/3
+    - 1/2
+    - '1'
+    - '1'
+    - '1'
+  - input:
+    - '1'
+    - '2'
+    - '3'
+    - '-2'
+    output:
+    - '1'
+    - '6'
+    - '-12'
+    - 1/6
+    - 1/3
+    - 1/2
+    - 1/6
+    - 1/3
+    - 1/2
+    - '1'
+    - 1/6
+    - 1/3
+    - 1/2
+    - '1'
+    - '0'
+    - '1'
+  - input:
+    - '1'
+    - '2'
+    - '3'
+    - '0'
+    output:
+    - '1'
+    - '6'
+    - '0'
+    - 1/6
+    - 1/3
+    - 1/2
+    - 1/6
+    - 1/3
+    - 1/2
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '0'
+    - '1'
+  - input:
+    - '0'
+    - '0'
+    - '0'
+    - '1'
+    output:
+    - '0'
+  scope: Computed values, with the source/kernel/native distinctions retained in claim_boundary.
+open_obligations:
+- Refine arbitrary lists and positive-mass ray classification to the source theorem. Do not claim positive-ray
+  equivalence under nonzero totals alone.
+- Prove the full refined-carrier operad identity, substitution, symmetry and coherence laws; mere colour
+  matches do not instantiate that formal structure.

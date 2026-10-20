@@ -1,0 +1,3 @@
+import PromptBornBoundaries
+#print axioms QuantumMechanics.PromptBornBoundaries.sparse_law
+#print axioms QuantumMechanics.PromptBornBoundaries.sparse_control

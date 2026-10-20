@@ -1,0 +1,492 @@
+{
+  "task_id": "L1-QM020-THM3-ROW-SPARSITY",
+  "stage_id": "P2_VERIFY",
+  "attempt_id": "p2",
+  "input_sha256": "6f259b225c1a4deb9e193ea6db0ee3046cff478fac814ae67adc8448c99e1810",
+  "candidate_sha256": "6f259b225c1a4deb9e193ea6db0ee3046cff478fac814ae67adc8448c99e1810",
+  "status": "accepted_candidate_for_challenge",
+  "checker_pins": [
+    {
+      "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/check_candidate.py",
+      "sha256": "dd4317c3de9180ae1eb09b80908561f8b57f459b2d71fed5505c4cef49ef054a"
+    },
+    {
+      "path": "dag/pfp/exact_json.py",
+      "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+    }
+  ],
+  "predicate_results": {
+    "native_exit_codes": {
+      "certificate": 0,
+      "python": 0,
+      "rust": 0,
+      "lean": 0,
+      "rust_replay": 0
+    },
+    "required_named_Lean_reports": true,
+    "exact_cross_language_full_output": true,
+    "nonempty_test_coverage": true,
+    "Python_tests": 20,
+    "Rust_tests": 1,
+    "scope": {
+      "supports": "Exact phase-sign readouts, row sparsity, determinant, monomial and rank distinctions; universal row interference and a singular sparse control in Lean.",
+      "does_not_support": "Prove the full representation refinement and add injectivity/column conditions before claiming monomial invertibility. No scalar label licenses the stronger claim.",
+      "narrowest_claim": "Exact phase-sign readouts, row sparsity, determinant, monomial and rank distinctions; universal row interference and a singular sparse control in Lean.",
+      "next_test": "Challenge every output coordinate and strict custody/type boundary, then address the explicit unpaid mathematical bridge."
+    }
+  },
+  "bounded_failure_codes": [],
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "sparse_row_readouts",
+        "ordered_inputs": [
+          "RationalTwoByTwoMatrix"
+        ],
+        "output": "PlusAndMinusRowIntensities",
+        "arity": 1,
+        "carrier": "RationalTwoByTwoMatrix",
+        "coefficient_ring": "Exact rational coordinates, finite integer group/map indices and explicit validity tags",
+        "hypotheses": [
+          "Real rational2x2 matrix; phase-sign tests and full source theorem kept distinct."
+        ],
+        "semantic_predicate": "Apply each row to(1,1) and(1,-1).",
+        "source_pins": [
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_qm020_thm3_row_sparsity_proved_lean.yaml",
+            "sha256": "4534cb38b9474ff151f3f87776fdfe5b56948f8c7e1ce63d0877e22e38f415fe"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/inputs/this_repository/dag/operads/l1_qm020_thm3_row_sparsity.yaml",
+            "sha256": "41cd2fddcd59455b88dc851ccdbda9514a1822ed7e3776b99a2b3fa80747e419"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/inputs/this_repository/lean4/BornRedundancy.lean",
+            "sha256": "8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/phase_blind_quotient.rs",
+            "sha256": "ff2874e2584f1df73fcee4976cabb826aace1b22ae81dea8d4ab2319a7de244b"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0300_descent_compatible_maps_stay_row_sparse.md",
+            "sha256": "1711cef9f69d5cafbf72d2e3c1a12bb8ce47f6773b96bab5491aec0055e0ca38"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/code/python/src/qm/born_boundary_exact.py",
+            "sha256": "04326ded1c1e17e88659e60498e5b7d92afab1bb8f0c5c91a7268013ca2f0738"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/code/python/tests/test_born_boundary_exact.py",
+            "sha256": "fe382974658a106563ce5870da4a7d87477a0893b1669d0b123b3bc372b493ba"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/code/rust/src/finite_probability/born_boundary_exact.rs",
+            "sha256": "80427803fced2970578ba5e9b223e2d51b2e494e5900e430db17a6eae8a666ce"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/born_boundary_exact_replay.rs",
+            "sha256": "37575b2bc4ba8fa23d397f66da9eaa0e290e21a79a051103401878cc356f1a33"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/born_boundary_checker.py",
+            "sha256": "7bc9e8b52f40f78cb85f78edfc31b55ceff79f649b6a499090e64df460fac182"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py",
+            "sha256": "c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/prepare.py",
+            "sha256": "e07ac6946888be24689ae63a52370d4d1588d3d048dd0ba1b30298c869ca7bdd"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/witness_cases.json",
+            "sha256": "5fa9d9d9532cab06d68e8e01257c436bd2ba10746576a5854110e850af92ae98"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/specs.py",
+            "sha256": "3dd63e06b01e17c6357223845a487490ab707ae27f137cbd0fbb83d2c0e8dcfd"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/custody.py",
+            "sha256": "cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/filename_custody.json",
+            "sha256": "20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/check_candidate.py",
+            "sha256": "dd4317c3de9180ae1eb09b80908561f8b57f459b2d71fed5505c4cef49ef054a"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/format_certificate.py",
+            "sha256": "5aef9d505ce1abc6ddff11bbe9841062044a646dc88bc3f5f3b6d7b258902805"
+          }
+        ],
+        "evidence_status": "Source semantics reviewed; actual native and candidate kernel acceptance remain P2 gates."
+      },
+      {
+        "id": "sparse_phase_compare",
+        "ordered_inputs": [
+          "PlusAndMinusRowIntensities"
+        ],
+        "output": "RowInterferenceProducts",
+        "arity": 1,
+        "carrier": "PlusAndMinusRowIntensities",
+        "coefficient_ring": "Exact rational coordinates, finite integer group/map indices and explicit validity tags",
+        "hypotheses": [
+          "Real rational2x2 matrix; phase-sign tests and full source theorem kept distinct."
+        ],
+        "semantic_predicate": "Subtract squared outputs to get4ab per row.",
+        "source_pins": [
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_qm020_thm3_row_sparsity_proved_lean.yaml",
+            "sha256": "4534cb38b9474ff151f3f87776fdfe5b56948f8c7e1ce63d0877e22e38f415fe"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/inputs/this_repository/dag/operads/l1_qm020_thm3_row_sparsity.yaml",
+            "sha256": "41cd2fddcd59455b88dc851ccdbda9514a1822ed7e3776b99a2b3fa80747e419"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/inputs/this_repository/lean4/BornRedundancy.lean",
+            "sha256": "8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/phase_blind_quotient.rs",
+            "sha256": "ff2874e2584f1df73fcee4976cabb826aace1b22ae81dea8d4ab2319a7de244b"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0300_descent_compatible_maps_stay_row_sparse.md",
+            "sha256": "1711cef9f69d5cafbf72d2e3c1a12bb8ce47f6773b96bab5491aec0055e0ca38"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/code/python/src/qm/born_boundary_exact.py",
+            "sha256": "04326ded1c1e17e88659e60498e5b7d92afab1bb8f0c5c91a7268013ca2f0738"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/code/python/tests/test_born_boundary_exact.py",
+            "sha256": "fe382974658a106563ce5870da4a7d87477a0893b1669d0b123b3bc372b493ba"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/code/rust/src/finite_probability/born_boundary_exact.rs",
+            "sha256": "80427803fced2970578ba5e9b223e2d51b2e494e5900e430db17a6eae8a666ce"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/born_boundary_exact_replay.rs",
+            "sha256": "37575b2bc4ba8fa23d397f66da9eaa0e290e21a79a051103401878cc356f1a33"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/born_boundary_checker.py",
+            "sha256": "7bc9e8b52f40f78cb85f78edfc31b55ceff79f649b6a499090e64df460fac182"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py",
+            "sha256": "c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/prepare.py",
+            "sha256": "e07ac6946888be24689ae63a52370d4d1588d3d048dd0ba1b30298c869ca7bdd"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/witness_cases.json",
+            "sha256": "5fa9d9d9532cab06d68e8e01257c436bd2ba10746576a5854110e850af92ae98"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/specs.py",
+            "sha256": "3dd63e06b01e17c6357223845a487490ab707ae27f137cbd0fbb83d2c0e8dcfd"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/custody.py",
+            "sha256": "cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/filename_custody.json",
+            "sha256": "20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/check_candidate.py",
+            "sha256": "dd4317c3de9180ae1eb09b80908561f8b57f459b2d71fed5505c4cef49ef054a"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/format_certificate.py",
+            "sha256": "5aef9d505ce1abc6ddff11bbe9841062044a646dc88bc3f5f3b6d7b258902805"
+          }
+        ],
+        "evidence_status": "Source semantics reviewed; actual native and candidate kernel acceptance remain P2 gates."
+      },
+      {
+        "id": "sparse_sparse_rank_screen",
+        "ordered_inputs": [
+          "RowInterferenceProducts"
+        ],
+        "output": "SparsityDeterminantMonomialAndRank",
+        "arity": 1,
+        "carrier": "RowInterferenceProducts",
+        "coefficient_ring": "Exact rational coordinates, finite integer group/map indices and explicit validity tags",
+        "hypotheses": [
+          "Real rational2x2 matrix; phase-sign tests and full source theorem kept distinct."
+        ],
+        "semantic_predicate": "Check row/column supports and rank separately.",
+        "source_pins": [
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_qm020_thm3_row_sparsity_proved_lean.yaml",
+            "sha256": "4534cb38b9474ff151f3f87776fdfe5b56948f8c7e1ce63d0877e22e38f415fe"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/inputs/this_repository/dag/operads/l1_qm020_thm3_row_sparsity.yaml",
+            "sha256": "41cd2fddcd59455b88dc851ccdbda9514a1822ed7e3776b99a2b3fa80747e419"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/inputs/this_repository/lean4/BornRedundancy.lean",
+            "sha256": "8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/phase_blind_quotient.rs",
+            "sha256": "ff2874e2584f1df73fcee4976cabb826aace1b22ae81dea8d4ab2319a7de244b"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0300_descent_compatible_maps_stay_row_sparse.md",
+            "sha256": "1711cef9f69d5cafbf72d2e3c1a12bb8ce47f6773b96bab5491aec0055e0ca38"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/code/python/src/qm/born_boundary_exact.py",
+            "sha256": "04326ded1c1e17e88659e60498e5b7d92afab1bb8f0c5c91a7268013ca2f0738"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/code/python/tests/test_born_boundary_exact.py",
+            "sha256": "fe382974658a106563ce5870da4a7d87477a0893b1669d0b123b3bc372b493ba"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/code/rust/src/finite_probability/born_boundary_exact.rs",
+            "sha256": "80427803fced2970578ba5e9b223e2d51b2e494e5900e430db17a6eae8a666ce"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/born_boundary_exact_replay.rs",
+            "sha256": "37575b2bc4ba8fa23d397f66da9eaa0e290e21a79a051103401878cc356f1a33"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/born_boundary_checker.py",
+            "sha256": "7bc9e8b52f40f78cb85f78edfc31b55ceff79f649b6a499090e64df460fac182"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py",
+            "sha256": "c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/prepare.py",
+            "sha256": "e07ac6946888be24689ae63a52370d4d1588d3d048dd0ba1b30298c869ca7bdd"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/witness_cases.json",
+            "sha256": "5fa9d9d9532cab06d68e8e01257c436bd2ba10746576a5854110e850af92ae98"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/specs.py",
+            "sha256": "3dd63e06b01e17c6357223845a487490ab707ae27f137cbd0fbb83d2c0e8dcfd"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/custody.py",
+            "sha256": "cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/filename_custody.json",
+            "sha256": "20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/check_candidate.py",
+            "sha256": "dd4317c3de9180ae1eb09b80908561f8b57f459b2d71fed5505c4cef49ef054a"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/format_certificate.py",
+            "sha256": "5aef9d505ce1abc6ddff11bbe9841062044a646dc88bc3f5f3b6d7b258902805"
+          }
+        ],
+        "evidence_status": "Source semantics reviewed; actual native and candidate kernel acceptance remain P2 gates."
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "sparse_relation_0",
+        "equation_or_predicate": "A nonzero row product changes sign-pair intensity; row-sparse can still be singular.",
+        "typing_conditions": "Literal declared operation domains; Prove the full representation refinement and add injectivity/column conditions before claiming monomial invertibility. No scalar label licenses the stronger claim.",
+        "evidence_status": "P1 candidate; independent native and named kernel gates remain required.",
+        "scope": "Exact phase-sign readouts, row sparsity, determinant, monomial and rank distinctions; universal row interference and a singular sparse control in Lean.",
+        "source_pins": [
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_qm020_thm3_row_sparsity_proved_lean.yaml",
+            "sha256": "4534cb38b9474ff151f3f87776fdfe5b56948f8c7e1ce63d0877e22e38f415fe"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/inputs/this_repository/dag/operads/l1_qm020_thm3_row_sparsity.yaml",
+            "sha256": "41cd2fddcd59455b88dc851ccdbda9514a1822ed7e3776b99a2b3fa80747e419"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/inputs/this_repository/lean4/BornRedundancy.lean",
+            "sha256": "8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/phase_blind_quotient.rs",
+            "sha256": "ff2874e2584f1df73fcee4976cabb826aace1b22ae81dea8d4ab2319a7de244b"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0300_descent_compatible_maps_stay_row_sparse.md",
+            "sha256": "1711cef9f69d5cafbf72d2e3c1a12bb8ce47f6773b96bab5491aec0055e0ca38"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/code/python/src/qm/born_boundary_exact.py",
+            "sha256": "04326ded1c1e17e88659e60498e5b7d92afab1bb8f0c5c91a7268013ca2f0738"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/code/python/tests/test_born_boundary_exact.py",
+            "sha256": "fe382974658a106563ce5870da4a7d87477a0893b1669d0b123b3bc372b493ba"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/code/rust/src/finite_probability/born_boundary_exact.rs",
+            "sha256": "80427803fced2970578ba5e9b223e2d51b2e494e5900e430db17a6eae8a666ce"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/born_boundary_exact_replay.rs",
+            "sha256": "37575b2bc4ba8fa23d397f66da9eaa0e290e21a79a051103401878cc356f1a33"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/born_boundary_checker.py",
+            "sha256": "7bc9e8b52f40f78cb85f78edfc31b55ceff79f649b6a499090e64df460fac182"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py",
+            "sha256": "c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/prepare.py",
+            "sha256": "e07ac6946888be24689ae63a52370d4d1588d3d048dd0ba1b30298c869ca7bdd"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/witness_cases.json",
+            "sha256": "5fa9d9d9532cab06d68e8e01257c436bd2ba10746576a5854110e850af92ae98"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/specs.py",
+            "sha256": "3dd63e06b01e17c6357223845a487490ab707ae27f137cbd0fbb83d2c0e8dcfd"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/custody.py",
+            "sha256": "cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/filename_custody.json",
+            "sha256": "20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/check_candidate.py",
+            "sha256": "dd4317c3de9180ae1eb09b80908561f8b57f459b2d71fed5505c4cef49ef054a"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/L1-QM020-THM3-ROW-SPARSITY/runs/20261020T000351Z_staged/format_certificate.py",
+            "sha256": "5aef9d505ce1abc6ddff11bbe9841062044a646dc88bc3f5f3b6d7b258902805"
+          }
+        ]
+      }
+    ],
+    "checked_compositions": [
+      {
+        "outer_operation": "sparse_phase_compare",
+        "input_slot": 0,
+        "inner_operation": "sparse_row_readouts",
+        "colour_match": "PlusAndMinusRowIntensities -> PlusAndMinusRowIntensities",
+        "hypothesis_match": "Same declared coordinates, coefficients and context; all operation hypotheses must be carried into the graft.",
+        "licensing_relations": [
+          "sparse_relation_0"
+        ],
+        "evidence_status": "Semantic substitution supported by the retained finite operation traces and separately scoped named kernel statements. A complete refined-carrier operad is not asserted."
+      },
+      {
+        "outer_operation": "sparse_sparse_rank_screen",
+        "input_slot": 0,
+        "inner_operation": "sparse_phase_compare",
+        "colour_match": "RowInterferenceProducts -> RowInterferenceProducts",
+        "hypothesis_match": "Same declared coordinates, coefficients and context; all operation hypotheses must be carried into the graft.",
+        "licensing_relations": [
+          "sparse_relation_0"
+        ],
+        "evidence_status": "Semantic substitution supported by the retained finite operation traces and separately scoped named kernel statements. A complete refined-carrier operad is not asserted."
+      }
+    ],
+    "failed_compositions": [
+      {
+        "proposal": "Promote the selected step to the unrestricted original target",
+        "reason": "Prove the full representation refinement and add injectivity/column conditions before claiming monomial invertibility. No scalar label licenses the stronger claim."
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "Prove the full representation refinement and add injectivity/column conditions before claiming monomial invertibility. No scalar label licenses the stronger claim.",
+      "Prove the full refined-carrier operad identity, substitution, symmetry and coherence laws; mere colour matches do not instantiate that formal structure."
+    ]
+  }
+}

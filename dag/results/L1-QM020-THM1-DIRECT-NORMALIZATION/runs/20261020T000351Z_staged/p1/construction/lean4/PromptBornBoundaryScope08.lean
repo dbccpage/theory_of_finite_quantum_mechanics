@@ -1,0 +1,3 @@
+import PromptBornBoundaries
+#print axioms QuantumMechanics.PromptBornBoundaries.normalize_law
+#print axioms QuantumMechanics.PromptBornBoundaries.normalize_control

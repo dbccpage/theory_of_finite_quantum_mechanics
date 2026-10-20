@@ -456,3 +456,6 @@ private def l5aProvenance : String :=
 
 lean_lib PromptL1Imports where
   roots := #[`PromptL1Imports]
+
+lean_lib PromptBornBoundaries where
+  roots := #[`PromptBornBoundaries]

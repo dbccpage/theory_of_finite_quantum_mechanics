@@ -1,0 +1,3 @@
+import PromptBornBoundaries
+#print axioms QuantumMechanics.PromptBornBoundaries.isometry_law
+#print axioms QuantumMechanics.PromptBornBoundaries.isometry_control

@@ -1,0 +1,3 @@
+import PromptBornBoundaries
+#print axioms QuantumMechanics.PromptBornBoundaries.shadow_law
+#print axioms QuantumMechanics.PromptBornBoundaries.shadow_control
