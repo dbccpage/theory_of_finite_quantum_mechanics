@@ -1,6 +1,6 @@
 # Theory of Finite Quantum Mechanics: Master Derivation Index
 
-This directory contains **one standalone Markdown paper per derivation step** tracing the unbroken chain from the inert inscription `<>` through Pre-Genesis, Genesis, Cochain Complexes, Discrete Hilbert Spaces, and the Continuum Limit.
+This directory contains **one standalone Markdown paper per derivation step** tracking finite constructions, source records, explicit assumptions and open obligations from the inert inscription `<>` through the finite quantum programme and its application branches.
 
 Every paper declares its parent prerequisites, mathematical statement, exact rational / Lean 4 witnesses, and downstream consequences.
 
@@ -566,3 +566,36 @@ Folder: [`23_engine_custody/`](./23_engine_custody/)
 | [`TFQ-0232`](./23_engine_custody/tfq_0232_runtime_crate_catalogs_are_not_theorems.md) | Runtime-crate catalogs are not theorems | `SOURCE_RECORD` | [`TFQ-0231`](./23_engine_custody/tfq_0231_python_runtime_landings_are_surveys.md) |
 | [`TFQ-0233`](./23_engine_custody/tfq_0233_engine_use_notes_keep_leftover_marks.md) | Engine use notes keep leftover marks | `OPEN_OBLIGATION` | [`TFQ-0232`](./23_engine_custody/tfq_0232_runtime_crate_catalogs_are_not_theorems.md) |
 
+<!-- application-branches: generated from fragments/application_branches.json -->
+
+## Application derivation branches
+
+These branches attach to existing finite carriers. A proved theorem has its stated hypotheses; an open research target remains open. See the [branch fragment](../fragments/application_branches.json) and [validation receipt](../research/application_branches_validation.json).
+
+### DRESSING_FIELD (5 derivations)
+
+| ID | Name | Status | Parent | DAG node |
+|---|---|---|---|---|
+| [TFQ-0397](./24_dressing_field/tfq_0397_dfm_group_connection.md) | Group-valued connections on a finite multigraph | `DEFINITION` | [TFQ-0009](./14_finite_gauge/tfq_0009_finite_gauge_cochain.md) | `DFM-GROUP-CONNECTION` |
+| [TFQ-0398](./24_dressing_field/tfq_0398_dfm_general_graph_dressing.md) | General finite-graph dressing and closed-walk holonomy | `PROVED_LEAN` | [TFQ-0397](./24_dressing_field/tfq_0397_dfm_group_connection.md) | `DFM-GENERAL-GRAPH-DRESSING` |
+| [TFQ-0399](./24_dressing_field/tfq_0399_dfm_tree_change.md) | Tree-change covariance of the residual connection | `PROVED_LEAN` | [TFQ-0398](./24_dressing_field/tfq_0398_dfm_general_graph_dressing.md) | `DFM-TREE-CHANGE` |
+| [TFQ-0400](./24_dressing_field/tfq_0400_dfm_hierarchical_borel.md) | Hierarchical Borel dressing beyond the diamond control | `OPEN_OBLIGATION` | [TFQ-0399](./24_dressing_field/tfq_0399_dfm_tree_change.md) | `DFM-HIERARCHICAL-BOREL` |
+| [TFQ-0401](./24_dressing_field/tfq_0401_dfm_continuum_interface.md) | Dressing-field continuum and physical interpretation obligations | `GAP` | [TFQ-0400](./24_dressing_field/tfq_0400_dfm_hierarchical_borel.md) | `DFM-CONTINUUM-INTERFACE` |
+
+### MUTUALLY_UNBIASED_BASES (4 derivations)
+
+| ID | Name | Status | Parent | DAG node |
+|---|---|---|---|---|
+| [TFQ-0402](./25_mub/tfq_0402_mub_exact_projectors.md) | Exact projector contract for mutually unbiased bases | `DEFINITION` | [TFQ-0315](./09_finite_hilbert/tfq_0315_exact_density_ray_and_population_shadow.md) | `MUB-EXACT-PROJECTORS` |
+| [TFQ-0403](./25_mub/tfq_0403_mub_prime_power_construction.md) | Prime-power MUB construction and exact field obligations | `OPEN_OBLIGATION` | [TFQ-0402](./25_mub/tfq_0402_mub_exact_projectors.md) | `MUB-PRIME-POWER-CONSTRUCTION` |
+| [TFQ-0404](./25_mub/tfq_0404_mub_tomography_inversion.md) | Tomography from a supplied complete MUB family | `PROVED_PROSE` | [TFQ-0402](./25_mub/tfq_0402_mub_exact_projectors.md) | `MUB-TOMOGRAPHY-INVERSION` |
+| [TFQ-0405](./25_mub/tfq_0405_mub6_global_obligations.md) | Dimension-six MUB reductions and global obligations | `OPEN_OBLIGATION` | [TFQ-0402](./25_mub/tfq_0402_mub_exact_projectors.md) | `MUB6-GLOBAL-OBLIGATIONS` |
+
+### FERMION_SIGN (4 derivations)
+
+| ID | Name | Status | Parent | DAG node |
+|---|---|---|---|---|
+| [TFQ-0406](./26_fsp/tfq_0406_fsp_switching_normal_form.md) | Signed-graph switching normal form and class count | `PROVED_LEAN` | [TFQ-0003](./03_finite_obstruction/tfq_0003_finite_obstruction_calculus_on_a_declared_carrier.md) | `FSP-SWITCHING-NORMAL-FORM` |
+| [TFQ-0407](./26_fsp/tfq_0407_fsp_meron_character_cancellation.md) | Meron character cancellation on a supplied flip orbit | `PROVED_LEAN` | [TFQ-0406](./26_fsp/tfq_0406_fsp_switching_normal_form.md) | `FSP-MERON-CHARACTER-CANCELLATION` |
+| [TFQ-0408](./26_fsp/tfq_0408_fsp_hubbard_protected_representations.md) | Protected Hubbard representations and negative witnesses | `CONDITIONAL` | [TFQ-0406](./26_fsp/tfq_0406_fsp_switching_normal_form.md) | `FSP-HUBBARD-PROTECTED-REPRESENTATIONS` |
+| [TFQ-0409](./26_fsp/tfq_0409_fsp_efficient_sampling_obligations.md) | Efficient sampling and general FSP obligations | `OPEN_OBLIGATION` | [TFQ-0408](./26_fsp/tfq_0408_fsp_hubbard_protected_representations.md) | `FSP-EFFICIENT-SAMPLING-OBLIGATIONS` |

@@ -1,0 +1,108 @@
+{
+  "schema_version": "application_branches_validation.v1",
+  "authority_effect": "None",
+  "source_base": "9d99f54627407197f3974f0a728620dcacaec09b",
+  "branch": "codex/mub-fsp-dressing-derivations",
+  "checked_at": "2026-10-20T20:29:41.534335+00:00",
+  "counts": {
+    "dag_nodes": 190,
+    "dag_routes": 185,
+    "master_records": 410,
+    "added_papers": 13
+  },
+  "preservation": {
+    "old_nodes_unchanged_except_nf002": true,
+    "old_routes_unchanged": true,
+    "old_master_records_unchanged": true,
+    "sealed_nf002_sha256": "dfb38dc1540c22c8bd805b5e00287b75125b8270ca3384a6251899bcb03e6931"
+  },
+  "checks": [
+    {
+      "command": "python -B -m pytest dag/research/test_finite_graph_dressing.py dag/test_application_branches.py dag/test_validate_derivation_dag.py code/python/tests/test_qm_atlas_loc.py -q",
+      "python": "3.14.2",
+      "status": "PASS",
+      "tests": 35
+    },
+    {
+      "command": "python scripts/verify_qm_atlas_loc.py",
+      "status": "PASS",
+      "questions": 65,
+      "links": 403,
+      "window_symbols": 197,
+      "rust_python_parity": true
+    },
+    {
+      "command": "python dag/validate_derivation_dag.py --no-files",
+      "status": "PASS",
+      "failures": 0,
+      "scope": "Full graph structure; new branch local paths and symbols are checked by integration tests. Historical external source paths are not replayed."
+    },
+    {
+      "command": "python dag/sync_application_branches.py --check",
+      "status": "PASS"
+    },
+    {
+      "command": "rustc --edition=2021 --test dag/research/finite_graph_dressing.rs -o <scratch>/dressing-tests.exe; <scratch>/dressing-tests.exe",
+      "status": "PASS",
+      "tests": 5
+    },
+    {
+      "command": "lean +leanprover/lean4:v4.33.1 lean4/FiniteGraphDressing.lean",
+      "status": "PASS",
+      "axioms": [
+        "propext"
+      ],
+      "dependency_source": "Existing pinned Mathlib cache via LEAN_PATH"
+    },
+    {
+      "command": "lean +leanprover/lean4:v4.33.1 lean4/SwitchingNormalForm.lean",
+      "status": "PASS",
+      "count_enumeration_axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "port": "19 conditional eliminator spelling replacements; no theorem statement changes"
+    },
+    {
+      "command": "lean +leanprover/lean4:v4.33.1 lean4/MeronCharacter.lean",
+      "status": "PASS",
+      "character_sum_axioms": [
+        "propext",
+        "Quot.sound"
+      ]
+    }
+  ],
+  "limits": [
+    "Targeted checks only; no full Rust workspace or full lake build claimed.",
+    "General dressing theorem takes a supplied group and component root paths.",
+    "MUB dimension-six, hierarchical DFM generalization, continuum limits and efficient general FSP sampling remain open."
+  ],
+  "sha256": {
+    "dag/fragments/application_branches.json": "2fbe5d359da0b8662ff38914efd0668681365a3dbd105c74d6b2b946aaa56c21",
+    "dag/derivation_dag.json": "6aa8ce60b9400d68c9ecf997ce1f45abfe0bf420c76f903e8f81c4d439712cad",
+    "dag/theory_of_finite_qm.jsonl": "7cd95f9bd280e283fd4d46c8999e0af4b7a22c55625cd44f00cb227c6639043e",
+    "dag/theory_of_finite_qm.md": "8162e7a010bcbb6312085c4f74f450300cfc01254d1ce31a6113701bdc0eecfc",
+    "dag/derivations/README.md": "f420361c4580df6694d657c0cf1f7a7d4ed73ae139eb132f8180ab91a40069e6",
+    "dag/sync_application_branches.py": "3712d7d152c161b970953c9b234eab9249dbe160b311953d030dfb84d0af31c5",
+    "dag/test_application_branches.py": "d43d1cdd29457b2db8120ee988dd073bb9200bcb8521cbf535147bde1b1ed391",
+    "dag/research/finite_graph_dressing.py": "bc0c027d037cac345a2602fa0d6acb1446ac262328b868844c20994cce7479c6",
+    "dag/research/finite_graph_dressing.rs": "e712f48dcd6dfc980b43b6c3962349ea2d22f92d4854548dcef60561b1705324",
+    "dag/research/test_finite_graph_dressing.py": "ebd5c9b89bb23d4942d740ffb10c53a4f121821c5678b7d7743c51795f034e47",
+    "lean4/FiniteGraphDressing.lean": "23bed260d85f626312bcebf0d1b6052711591450af1cad3a3300d744038e3e7d",
+    "lean4/SwitchingNormalForm.lean": "e83ec8c3651888fd3ae7c2abba9e2b5216c5b0c027dd02308280f9bcaec09d05",
+    "lean4/MeronCharacter.lean": "bde7f9bade1d62d06e66a2671dfefdbac25c1f32011d32732169bc575e168c9d",
+    "dag/derivations/24_dressing_field/tfq_0397_dfm_group_connection.md": "df4865f34200afa63bacecf4b1bba5d0a0dbbfb8c7ab59e83f90b61b7308354d",
+    "dag/derivations/24_dressing_field/tfq_0398_dfm_general_graph_dressing.md": "e3a07f421fee8da1b5209cad7205c85dcd2da5e0d93a57b54a57154c88fcd42c",
+    "dag/derivations/24_dressing_field/tfq_0399_dfm_tree_change.md": "075660d7fd2591335d28fa43c620f541ac56838207ad1b355ebf8e38903cf9b7",
+    "dag/derivations/24_dressing_field/tfq_0400_dfm_hierarchical_borel.md": "6ff0fe0ba4f350ddd04a0ccd0b7cd02b26aa36c20be3a5c4e06ad7f2bebc463c",
+    "dag/derivations/24_dressing_field/tfq_0401_dfm_continuum_interface.md": "9b89d268122f0c17bf1a11c2b4f78e500d10772751cd32051ff84bab5fb12d04",
+    "dag/derivations/25_mub/tfq_0402_mub_exact_projectors.md": "bf9e6f921ff6c5e41d8aabf191026a18ffd1487987c8846b01d727aabebb2ddd",
+    "dag/derivations/25_mub/tfq_0403_mub_prime_power_construction.md": "36a80e2b810e939e9276544b0b9bc012299d8c464296607aad02470495acefe8",
+    "dag/derivations/25_mub/tfq_0404_mub_tomography_inversion.md": "9590bd61c9dd6eb62ec4911c1b8425567464fbc8a1d4b755889bb4a9eaaf8b01",
+    "dag/derivations/25_mub/tfq_0405_mub6_global_obligations.md": "021163b482a0e1a7741b8cbeccaf0070ca74d30675326400805960ad35ba039b",
+    "dag/derivations/26_fsp/tfq_0406_fsp_switching_normal_form.md": "0abc7f61a6a66f537f1c7472a42b480f2869ae6f2cd4d7cb5d5d10d9f68ce145",
+    "dag/derivations/26_fsp/tfq_0407_fsp_meron_character_cancellation.md": "80a706cc9fc7a6dbb8e5ae6a555f4102705056dcaeee5fe087b42031d5578b26",
+    "dag/derivations/26_fsp/tfq_0408_fsp_hubbard_protected_representations.md": "9a23cc13f78442d23b4852e3edb6c06ceb20dc6a9699025192a1cf57d0b1968c",
+    "dag/derivations/26_fsp/tfq_0409_fsp_efficient_sampling_obligations.md": "8b014adf668898124e8fd50ed95208215caf4c36353e085b1e3cb91217a65baa"
+  }
+}

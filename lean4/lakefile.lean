@@ -14,6 +14,8 @@ lean_lib «FiniteQuantum» where
   srcDir := "."
   roots := #[
 
+    `FiniteGraphDressing,
+    `SwitchingNormalForm,
     `EntropyDichotomy,
     `BornNormalization,
     `CellGrammar,
