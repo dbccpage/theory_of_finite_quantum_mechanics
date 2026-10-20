@@ -208,3 +208,14 @@ complex embeddings for physical angles, and the entropy accessor returns D^2
 only. No sealed L5 certificate, categorical realizability, scalar bit-cost or
 physical state-space theorem is inferred. The current ledger has 173 completed
 assessments and 149 incomplete sources; the full goal remains open.
+
+Checkpoint-014 completes the bounded SU(2) recipe at L4A across18 production
+bodies. Quantum dimensions/factorials and one root period are cached, retained
+F-block channels are borrowed, and Gram diagonals are written directly. The
+original public signatures, full test module, level1..6 domain and gauge remain.
+All26 source faults are detected; both actual roots pass52 tests each;13 clean
+Lean declarations and2957 independent integer envelopes support their stated
+bounded contracts. Catalog/modular consumer context is refreshed separately.
+Structural maxima are10/4/2. Failed and superseded attempts remain explicit;
+no full q-6j/pentagon, general-level, Rust-extraction or physical theorem follows.
+The current ledger is174 completed assessments and148 incomplete sources.
