@@ -26,13 +26,13 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`omega_engine_atlas/coda_atlas/F000_finite/S001_authorization_and_incompleteness/001_authorization_an_incompleteness_theory/lean4/AuthorizationIncompletenessTheory/ReportFactorization.lean`](../../code/lean4/)
+- [`absent: no local lean twin located for omega_engine_atlas/coda_atlas/F000_finite/S001_authorization_and_incompleteness/001_authorization_an_incompleteness_theory/lean4/AuthorizationIncompletenessTheory/ReportFactorization.lean`](../../lean4/)
 
 ### Sovereign Rust Certifiers
 *Computational witness tracked under `theory_of_finite_qm` crate.*
 
 ### Python Oracles & Numerical Evaluators
-- [`omega_engine_atlas/coda_atlas/F000_finite/S001_authorization_and_incompleteness/001_authorization_an_incompleteness_theory/python/tests_unit/test_report_factorization.py`](../../code/python/)
+- [`absent: no local python twin located for omega_engine_atlas/coda_atlas/F000_finite/S001_authorization_and_incompleteness/001_authorization_an_incompleteness_theory/python/tests_unit/test_report_factorization.py`](../../code/python/)
 
 ---
 

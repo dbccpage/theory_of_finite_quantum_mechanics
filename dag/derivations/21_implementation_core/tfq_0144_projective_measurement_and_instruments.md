@@ -26,20 +26,20 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/quantum_mechanics`](../../code/lean4/)
+- [`absent: no local lean twin located for lean4/quantum_mechanics`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`omega_engine/crates_rs/omega_quantum_physics/src/busch_effects.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_quantum_physics/src/exact_instrument.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_quantum_physics/src/instrument_repeatability.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_quantum_physics/src/instruments.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_quantum_physics/src/measurement.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_quantum_physics/src/measurement_update.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_quantum_physics/src/sector_conditioning.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/measurement.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/measurement_update.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/instruments.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/exact_instrument.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/instrument_repeatability.rs`](../../code/rust/src/)
+- [`code/rust/src/qm/campaigns/sector_conditioning.rs`](../../code/rust/src/)
+- [`code/rust/src/qm/campaigns/busch_effects.rs`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`not located`](../../code/python/)
-- [`omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/python/finite_qm/use_cases/busch_effects.py`](../../code/python/)
+- [`code/python/src/majorana/tests/support/finite_qm/use_cases/busch_effects.py`](../../code/python/)
+- [`absent: not located`](../../code/python/)
 
 ---
 

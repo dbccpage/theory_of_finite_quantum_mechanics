@@ -26,15 +26,15 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`missing declaration obligation: the AdmitRuleAll erasure counterexample was not found in the opened Inertia.lean or Run.lean fragments`](../../code/lean4/)
+- [`absent: missing declaration obligation: the AdmitRuleAll erasure counterexample was not found in the opened Inertia.lean or Run.lean fragments`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`missing obligation: imposition.rs must be able to show a rule that drops a prior separation`](../../code/rust/src/)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/imposition.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/imposition.rs`](../../code/rust/src/)
+- [`absent: missing obligation: imposition.rs must be able to show a rule that drops a prior separation`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`missing obligation: replay the two-data AdmitRuleAll counterexample from ledger row WDP-P000-017`](../../code/python/)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/candidates.py`](../../code/python/)
+- [`absent: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/candidates.py`](../../code/python/)
+- [`absent: missing obligation: replay the two-data AdmitRuleAll counterexample from ledger row WDP-P000-017`](../../code/python/)
 
 ---
 

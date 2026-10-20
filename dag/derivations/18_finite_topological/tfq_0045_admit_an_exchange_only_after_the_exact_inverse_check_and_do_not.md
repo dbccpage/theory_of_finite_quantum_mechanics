@@ -26,10 +26,10 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`absent: braid-limited inversion is not a FiniteQM theorem`](../../code/lean4/)
+- [`absent: braid-limited inversion is not a FiniteQM theorem`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`omega_engine/crates_rs/omega_quantum_physics/src/r_matrix.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/r_matrix.rs`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
 - [`absent: RMatrix has no finite_qm use case`](../../code/python/)

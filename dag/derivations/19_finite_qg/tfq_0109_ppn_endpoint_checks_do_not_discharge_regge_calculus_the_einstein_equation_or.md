@@ -26,13 +26,13 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/lean/FiniteQFTAndGravity.lean`](../../code/lean4/)
+- [`lean4/FiniteQFTAndGravity.lean`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`omega_engine/crates_rs/omega_quantum_physics/src/regge_gravity_ghz_chern_finite_maps.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/regge_gravity_ghz_chern_finite_maps.rs`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/python/finite_qm/use_cases/regge_gravity_ghz_chern_control.py`](../../code/python/)
+- [`absent: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/python/finite_qm/use_cases/regge_gravity_ghz_chern_control.py`](../../code/python/)
 
 ---
 

@@ -34,19 +34,13 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_core_phase_sorkin_gleason_busch_tsirelson_dynamics_route_composition`](../../code/lean4/)
-- [`lean4/quantum_mechanics/H061DynamicsDichotomy.lean::periodic_sector_requires_declaration`](../../code/lean4/)
-- [`lean4/quantum_mechanics/H061DynamicsDichotomy.lean::pythagorean_rotation_order_infinite`](../../code/lean4/)
-- [`not located`](../../code/lean4/)
+- [`absent: not located`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`omega_engine/crates_rs/omega_quantum_physics/src/dynamics_dichotomy.rs::classify_unitary_orbit`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_quantum_physics/src/perturbation_theory.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche13_ds_qm_final_16_second_witness_closure_witness`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche14_cross_stage_route_composition_and_sorkin_hierarchy_witness`](../../code/rust/src/)
+- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/perturbation_theory.rs`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`not located`](../../code/python/)
+- [`absent: not located`](../../code/python/)
 
 ---
 

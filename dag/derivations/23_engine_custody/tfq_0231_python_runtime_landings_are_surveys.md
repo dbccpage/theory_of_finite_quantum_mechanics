@@ -32,8 +32,8 @@ In accordance with strict constructive principles:
 *Computational witness tracked under `theory_of_finite_qm` crate.*
 
 ### Python Oracles & Numerical Evaluators
-- [`omega_engine_atlas/coda_atlas/F003_omega_engine/S000_prime_algorithms_and_runtime/000_omega_engine_prime_algorithms_and_runtime/python/src/omega_engine_rc/prime_triad.py`](../../code/python/)
-- [`omega_engine_atlas/coda_atlas/F003_omega_engine/S002_python_runtime/000_omega_engine_pfp/python/src/omega_engine_symbol_game/obstruction.py`](../../code/python/)
+- [`code/python/src/majorana/tests/support/domain/shared_kernel/obstruction.py`](../../code/python/)
+- [`absent: no local python twin located for omega_engine_atlas/coda_atlas/F003_omega_engine/S000_prime_algorithms_and_runtime/000_omega_engine_prime_algorithms_and_runtime/python/src/omega_engine_rc/prime_triad.py`](../../code/python/)
 
 ---
 

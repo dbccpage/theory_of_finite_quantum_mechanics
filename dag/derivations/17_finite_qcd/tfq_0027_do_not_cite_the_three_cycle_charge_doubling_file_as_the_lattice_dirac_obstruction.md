@@ -26,10 +26,10 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/quantum_mechanics/IntegralRefinementC3C6.lean`](../../code/lean4/)
+- [`lean4/IntegralRefinementC3C6.lean`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`omega_engine/crates_rs/omega_quantum_physics/src/lattice_dirac_doubling.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/lattice_dirac_doubling.rs`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
 - [`absent: wilson_species_count has no Python twin in finite_qm`](../../code/python/)

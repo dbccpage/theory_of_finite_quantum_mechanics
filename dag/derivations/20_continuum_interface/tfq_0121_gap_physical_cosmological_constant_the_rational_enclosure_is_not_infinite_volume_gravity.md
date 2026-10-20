@@ -29,10 +29,10 @@ In accordance with strict constructive principles:
 *Formalization active. Proof obligations tracked under zero-sorry regime.*
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`omega_engine/crates_rs/omega_quantum_physics/src/meron_source_field.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/meron_source_field.rs`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`omega_engine_atlas/coda_atlas/F004_papers/007_finite_to_continuum/code/meron_source_response.py`](../../code/python/)
+- [`absent: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/007_finite_to_continuum/code/meron_source_response.py`](../../code/python/)
 
 ---
 

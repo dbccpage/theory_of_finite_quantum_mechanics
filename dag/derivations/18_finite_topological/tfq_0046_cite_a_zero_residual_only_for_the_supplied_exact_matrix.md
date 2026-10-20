@@ -26,11 +26,11 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`absent: the residual matrix test is not in FiniteQM.lean`](../../code/lean4/)
+- [`absent: the residual matrix test is not in FiniteQM.lean`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`omega_engine/crates_rs/omega_fusion_categories/src/yang_baxter.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_quantum_physics/src/yang_baxter_equation.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/yang_baxter_equation.rs`](../../code/rust/src/)
+- [`code/rust/src/fusion_categories/yang_baxter.rs`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
 - [`absent: Yang-Baxter residual has no finite_qm use case`](../../code/python/)

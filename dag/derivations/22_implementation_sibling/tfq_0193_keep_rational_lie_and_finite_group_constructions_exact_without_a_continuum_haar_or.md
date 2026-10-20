@@ -26,17 +26,17 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/quantum_mechanics/H019RationalLieSpan.lean`](../../code/lean4/)
+- [`lean4/H019RationalLieSpan.lean`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`omega_engine/crates_rs/omega_lie_theory/src/finite_group.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_lie_theory/src/lib.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_lie_theory/src/lie_algebra.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_lie_theory/src/lorentz.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_lie_theory/src/su2.rs`](../../code/rust/src/)
+- [`code/rust/src/wdp/lib.rs`](../../code/rust/src/)
+- [`code/rust/src/lie_theory/finite_group.rs`](../../code/rust/src/)
+- [`code/rust/src/lie_theory/lorentz.rs`](../../code/rust/src/)
+- [`code/rust/src/lie_theory/su2.rs`](../../code/rust/src/)
+- [`code/rust/src/lie_theory/lie_algebra.rs`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`not located`](../../code/python/)
+- [`absent: not located`](../../code/python/)
 
 ---
 

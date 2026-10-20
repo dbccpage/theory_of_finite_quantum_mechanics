@@ -33,20 +33,15 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_and_fq_cptp_partial_transpose_born_lp_and_f64_diagnostic_firewall`](../../code/lean4/)
-- [`lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_impl_amplitude_realification_and_pairing_bridges`](../../code/lean4/)
-- [`not located`](../../code/lean4/)
+- [`absent: not located`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`omega_engine/crates_rs/omega_measurement/src/documentary_traceability.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_measurement/src/measurement_access.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_measurement/src/measurement_kernel.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_quantum_physics/src/engine_bridge.rs::DiagnosticBridgeError`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche11_admitted_primitives_definitions_and_imported_assumptions_witness`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche5_full_dag_177_node_coverage_witness`](../../code/rust/src/)
+- [`absent: no local rust twin located for omega_engine/crates_rs/omega_measurement/src/measurement_kernel.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for omega_engine/crates_rs/omega_measurement/src/measurement_access.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for omega_engine/crates_rs/omega_measurement/src/documentary_traceability.rs`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`not located`](../../code/python/)
+- [`absent: not located`](../../code/python/)
 
 ---
 

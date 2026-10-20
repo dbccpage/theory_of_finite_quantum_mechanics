@@ -26,14 +26,14 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/ExactRat/Basic.lean`](../../code/lean4/)
+- [`absent: no local lean twin located for lean4/ExactRat/Basic.lean`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`omega_engine/crates_rs/omega_finite_probability/src/finite_valuation.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_kernel/src/exact.rs`](../../code/rust/src/)
+- [`code/rust/src/finite_probability/finite_valuation.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for omega_engine/crates_rs/omega_kernel/src/exact.rs`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics/001_from_primitive_difference_to_quantum_mechanics/python/src/finite_quantum/density_matrix.py`](../../code/python/)
+- [`code/python/src/majorana/tests/support/finite_qm/use_cases/density_matrix.py`](../../code/python/)
 
 ---
 

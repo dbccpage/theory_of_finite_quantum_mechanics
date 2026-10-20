@@ -32,20 +32,12 @@ In accordance with strict constructive principles:
 
 ## 3. Multi-Tier Code & Proof Witnesses
 
-### Lean 4 Theorems
-- [`lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.master_dag_177_node_10_stage_and_172_route_partition_conservation`](../../code/lean4/)
-- [`lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.master_operad_25_family_composition_and_end_to_end_chain_closure`](../../code/lean4/)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean::closure_ratio_le_opnorm`](../../code/lean4/)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean::closure_ratio_nonneg`](../../code/lean4/)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean::kappa_exact_sequence`](../../code/lean4/)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean::kappa_well_defined`](../../code/lean4/)
+### Lean 4 Formalization
+*Formalization active. Proof obligations tracked under zero-sorry regime.*
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche16_master_177_node_172_route_dag_completeness_and_operad_audit_witness`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_wdp_obligations_and_growth_witness`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_wdp/src/fenchel_duality.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_wdp/src/obstruction.rs`](../../code/rust/src/)
+- [`code/rust/src/wdp/obstruction.rs`](../../code/rust/src/)
+- [`code/rust/src/wdp/fenchel_duality.rs`](../../code/rust/src/)
 
 ---
 

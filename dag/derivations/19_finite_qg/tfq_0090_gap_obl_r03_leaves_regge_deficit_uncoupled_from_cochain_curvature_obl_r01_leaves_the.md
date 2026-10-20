@@ -32,8 +32,8 @@ In accordance with strict constructive principles:
 *Computational witness tracked under `theory_of_finite_qm` crate.*
 
 ### Python Oracles & Numerical Evaluators
-- [`omega_engine_atlas/coda_atlas/F004_papers/002_projection_obstruction/035_zero_container_relational_spacetime_and_witness_holonomy/code/continuum_lorentz_causality.py`](../../code/python/)
-- [`omega_engine_atlas/coda_atlas/F004_papers/002_projection_obstruction/035_zero_container_relational_spacetime_and_witness_holonomy/code/regge_relational_obstruction.py`](../../code/python/)
+- [`absent: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/002_projection_obstruction/035_zero_container_relational_spacetime_and_witness_holonomy/code/regge_relational_obstruction.py`](../../code/python/)
+- [`absent: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/002_projection_obstruction/035_zero_container_relational_spacetime_and_witness_holonomy/code/continuum_lorentz_causality.py`](../../code/python/)
 
 ---
 

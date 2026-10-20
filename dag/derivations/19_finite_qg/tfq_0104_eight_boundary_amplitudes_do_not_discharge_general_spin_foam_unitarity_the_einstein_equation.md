@@ -29,7 +29,7 @@ In accordance with strict constructive principles:
 *Formalization active. Proof obligations tracked under zero-sorry regime.*
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`omega_engine/crates_rs/omega_quantum_physics/src/finite_spinfoam.rs`](../../code/rust/src/)
+- [`code/rust/src/qm/finite_spinfoam.rs`](../../code/rust/src/)
 
 ---
 

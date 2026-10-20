@@ -26,16 +26,16 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`missing declaration obligation: a certified map from the sealed tag into HasRawDistinction is absent from the opened chapter and from proposed_gaps.yaml`](../../code/lean4/)
-- [`omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/lean4/FromPrimitiveDifferenceToFiniteObstructionCalculus/B001_raw_distinction.lean`](../../code/lean4/)
+- [`absent: no local lean twin located for omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/lean4/FromPrimitiveDifferenceToFiniteObstructionCalculus/B001_raw_distinction.lean`](../../lean4/)
+- [`absent: missing declaration obligation: a certified map from the sealed tag into HasRawDistinction is absent from the opened chapter and from proposed_gaps.yaml`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`missing obligation: no term-map crate was opened from tag 3100c4e into the S000 carrier`](../../code/rust/src/)
+- [`absent: missing obligation: no term-map crate was opened from tag 3100c4e into the S000 carrier`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`missing obligation: test_genesis_bridge_contract.py was listed and not opened; chapter 1 says it checks a pinned reference file and is not a term map`](../../code/python/)
-- [`omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/python/src/finite_obstruction.py`](../../code/python/)
-- [`omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/python/tests_unit/test_genesis_bridge_contract.py`](../../code/python/)
+- [`absent: no local python twin located for omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/python/src/finite_obstruction.py`](../../code/python/)
+- [`absent: no local python twin located for omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/python/tests_unit/test_genesis_bridge_contract.py`](../../code/python/)
+- [`absent: missing obligation: test_genesis_bridge_contract.py was listed and not opened; chapter 1 says it checks a pinned reference file and is not a term map`](../../code/python/)
 
 ---
 
