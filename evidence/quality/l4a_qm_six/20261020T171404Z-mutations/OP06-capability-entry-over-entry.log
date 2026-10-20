@@ -1,0 +1,19 @@
+
+running 1 test
+kernel::capability::tests::authorize_term_admits_licensed_term_and_refuses_escape_and_entry_over_entry --- FAILED
+
+failures:
+
+---- kernel::capability::tests::authorize_term_admits_licensed_term_and_refuses_escape_and_entry_over_entry stdout ----
+
+thread 'kernel::capability::tests::authorize_term_admits_licensed_term_and_refuses_escape_and_entry_over_entry' (32912) panicked at src\operad_theory\kernel\capability.rs:320:56:
+called `Result::unwrap()` on an `Err` value: Refusal { code: "ENTRY_OVER_ENTRY", message: "an entry operation may not contain another entry operation", locus: "", details: [] }
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    kernel::capability::tests::authorize_term_admits_licensed_term_and_refuses_escape_and_entry_over_entry
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 35 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `-p tfqm_operad_theory --lib`

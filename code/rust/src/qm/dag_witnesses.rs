@@ -7,6 +7,15 @@ fn rat(n: i64, d: i64) -> BigRational {
     BigRational::new(BigInt::from(n), BigInt::from(d))
 }
 
+fn all_flags(flags: &[bool]) -> bool {
+    for &flag in flags {
+        if !flag {
+            return false;
+        }
+    }
+    true
+}
+
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct DerivationDagWitnessSummary {
     pub family_id: String,
@@ -75,40 +84,40 @@ pub fn verify_sn_off_image_refusal_witness() -> DerivationDagWitnessSummary {
     }
 }
 
-pub fn verify_genesis_supply_erasure_witness() -> DerivationDagWitnessSummary {
-    #[derive(Clone, Copy, PartialEq, Eq)]
-    enum Event {
-        Supply(u8),
-        CoreAssert(u8, u8),
-    }
+#[derive(Clone, Copy, PartialEq, Eq)]
+enum GenesisEvent {
+    Supply(u8),
+    CoreAssert(u8, u8),
+}
 
-    let history = [
-        Event::Supply(1),
-        Event::CoreAssert(0, 1),
-        Event::Supply(2),
-        Event::CoreAssert(1, 2),
-        Event::Supply(3),
-    ];
-
-    let replay_regime = |evs: &[Event]| -> Vec<(u8, u8)> {
-        let mut out = Vec::new();
-        for ev in evs {
-            if let Event::CoreAssert(u, v) = *ev {
-                if u != v && !out.contains(&(u, v)) {
-                    out.push((u, v));
-                }
+fn replay_genesis_regime(evs: &[GenesisEvent]) -> Vec<(u8, u8)> {
+    let mut out = Vec::new();
+    for ev in evs {
+        if let GenesisEvent::CoreAssert(u, v) = *ev {
+            if u != v && !out.contains(&(u, v)) {
+                out.push((u, v));
             }
         }
-        out
-    };
+    }
+    out
+}
 
-    let erased: Vec<Event> = history
+pub fn verify_genesis_supply_erasure_witness() -> DerivationDagWitnessSummary {
+    let history = [
+        GenesisEvent::Supply(1),
+        GenesisEvent::CoreAssert(0, 1),
+        GenesisEvent::Supply(2),
+        GenesisEvent::CoreAssert(1, 2),
+        GenesisEvent::Supply(3),
+    ];
+
+    let erased: Vec<GenesisEvent> = history
         .iter()
         .copied()
-        .filter(|e| !matches!(e, Event::Supply(_)))
+        .filter(|e| !matches!(e, GenesisEvent::Supply(_)))
         .collect();
-    let full_regime = replay_regime(&history);
-    let erased_regime = replay_regime(&erased);
+    let full_regime = replay_genesis_regime(&history);
+    let erased_regime = replay_genesis_regime(&erased);
     let passed = full_regime == erased_regime && full_regime == vec![(0, 1), (1, 2)];
 
     DerivationDagWitnessSummary {
@@ -122,47 +131,58 @@ pub fn verify_genesis_supply_erasure_witness() -> DerivationDagWitnessSummary {
     }
 }
 
+fn genesis_cost_a(terms: &[u8], assertions: &[(u8, u8)], a: u8, b: u8) -> usize {
+    let lost_a = if a == b {
+        2
+    } else if assertions.contains(&(a, b)) {
+        0
+    } else {
+        1
+    };
+    terms.len() + assertions.len() + 2 * lost_a
+}
+
+fn genesis_merge_node(p: u8, q: u8, x: u8) -> u8 {
+    if x == q {
+        p
+    } else {
+        x
+    }
+}
+
+fn genesis_compat_22(x: u8, y: u8) -> bool {
+    let asserted_22 = [(0u8, 2u8)];
+    !asserted_22.contains(&(x, y)) && !asserted_22.contains(&(y, x))
+}
+
 pub fn verify_genesis_rewriting_and_sameness_witness() -> DerivationDagWitnessSummary {
-    let cost_a = |terms: &[u8], assertions: &[(u8, u8)], a: u8, b: u8| -> usize {
-        let lost_a = if a == b {
-            2
-        } else if assertions.contains(&(a, b)) {
-            0
-        } else {
-            1
-        };
-        terms.len() + assertions.len() + 2 * lost_a
-    };
+    let c_orig = genesis_cost_a(&[0, 1, 2], &[(0, 1), (1, 2)], 0, 1);
+    let c_renamed = genesis_cost_a(&[7, 11, 19], &[(7, 11), (11, 19)], 7, 11);
 
-    let c_orig = cost_a(&[0, 1, 2], &[(0, 1), (1, 2)], 0, 1);
-    let c_renamed = cost_a(&[7, 11, 19], &[(7, 11), (11, 19)], 7, 11);
-
-    let merge = |p: u8, q: u8, x: u8| -> u8 {
-        if x == q {
-            p
-        } else {
-            x
-        }
-    };
     let (mut u, mut v) = (0u8, 1u8);
     let mut assertions = vec![(0u8, 1u8), (1u8, 2u8)];
     let (p, q) = (0u8, 2u8);
     let can_identify_0_2 = !assertions.contains(&(p, q)) && !assertions.contains(&(q, p));
     assertions = assertions
         .into_iter()
-        .map(|(x, y)| (merge(p, q, x), merge(p, q, y)))
+        .map(|(x, y)| (genesis_merge_node(p, q, x), genesis_merge_node(p, q, y)))
         .collect();
-    u = merge(p, q, u);
-    v = merge(p, q, v);
-    let o6_persists = can_identify_0_2 && u != v && assertions.contains(&(u, v));
+    u = genesis_merge_node(p, q, u);
+    v = genesis_merge_node(p, q, v);
+    let o6_persists = all_flags(&[can_identify_0_2, u != v, assertions.contains(&(u, v))]);
 
-    let asserted_22 = [(0u8, 2u8)];
-    let compat = |x: u8, y: u8| -> bool {
-        !asserted_22.contains(&(x, y)) && !asserted_22.contains(&(y, x))
-    };
-    let sameness_non_transitive = compat(0, 1) && compat(1, 2) && !compat(0, 2);
+    let sameness_non_transitive = all_flags(&[
+        genesis_compat_22(0, 1),
+        genesis_compat_22(1, 2),
+        !genesis_compat_22(0, 2),
+    ]);
 
-    let passed = c_orig == 5 && c_orig == c_renamed && o6_persists && sameness_non_transitive;
+    let passed = all_flags(&[
+        c_orig == 5,
+        c_orig == c_renamed,
+        o6_persists,
+        sameness_non_transitive,
+    ]);
     DerivationDagWitnessSummary {
         family_id: "PG_GEN_REWRITING_AND_SAMENESS".to_string(),
         covered_nodes: vec![
@@ -362,18 +382,20 @@ pub fn verify_ds_qm_dynamics_structure_and_majorana_witness() -> DerivationDagWi
     let kv1 = &k_mat[1][0] * &v[0] + &k_mat[1][1] * &v[1];
     let l1_in = rat(2, 1);
     let l1_out = rat(1, 2) + rat(1, 2);
-    let l1_contracted = kv0 == rat(1, 2) && kv1 == rat(-1, 2) && l1_out <= l1_in;
+    let l1_contracted = all_flags(&[kv0 == rat(1, 2), kv1 == rat(-1, 2), l1_out <= l1_in]);
 
     let majorana_ok = comm_trace_zero;
 
-    let passed = non_commuting_proj
-        && graded_vanishes
-        && ungraded_overcounts
-        && feynman_off_diag == 0
-        && stochastic_off_diag == 2
-        && comm_trace_zero
-        && l1_contracted
-        && majorana_ok;
+    let passed = all_flags(&[
+        non_commuting_proj,
+        graded_vanishes,
+        ungraded_overcounts,
+        feynman_off_diag == 0,
+        stochastic_off_diag == 2,
+        comm_trace_zero,
+        l1_contracted,
+        majorana_ok,
+    ]);
 
     DerivationDagWitnessSummary {
         family_id: "DS_QM_DYNAMICS_STRUCTURE_MAJORANA".to_string(),
@@ -442,57 +464,90 @@ pub fn verify_impl_nf002_thymus_and_lggr_witness() -> DerivationDagWitnessSummar
     }
 }
 
+fn chsh_sign_bit(mask: u8, bit: u8) -> i64 {
+    if (mask & (1 << bit)) != 0 {
+        1
+    } else {
+        -1
+    }
+}
+
+fn check_all_16_chsh_within_two() -> bool {
+    for mask in 0..16u8 {
+        let s0 = chsh_sign_bit(mask, 0);
+        let s1 = chsh_sign_bit(mask, 1);
+        let s2 = chsh_sign_bit(mask, 2);
+        let s3 = chsh_sign_bit(mask, 3);
+        let chsh = s0 * s2 + s0 * s3 + s1 * s2 - s1 * s3;
+        if chsh * chsh != 4 {
+            return false;
+        }
+    }
+    true
+}
+
+fn check_no_pythagorean_half_angle() -> bool {
+    for x in 0..25i64 {
+        for y in 1..25i64 {
+            if 5 * x * x == 4 * y * y {
+                return false;
+            }
+        }
+    }
+    true
+}
+
+fn mp_square_mask_is_global_section(mask: u16) -> bool {
+    let bit = |i: u16| -> u16 { (mask >> i) & 1 };
+    let r0 = (bit(0) + bit(1) + bit(2)) % 2;
+    let r1 = (bit(3) + bit(4) + bit(5)) % 2;
+    let r2 = (bit(6) + bit(7) + bit(8)) % 2;
+    let c0 = (bit(0) + bit(3) + bit(6)) % 2;
+    let c1 = (bit(1) + bit(4) + bit(7)) % 2;
+    let c2 = (bit(2) + bit(5) + bit(8)) % 2;
+    all_flags(&[r0 == 0, r1 == 0, r2 == 0, c0 == 0, c1 == 0, c2 == 1])
+}
+
+fn count_mp_global_sections() -> usize {
+    let mut mp_global_sections = 0usize;
+    for mask in 0..512u16 {
+        if mp_square_mask_is_global_section(mask) {
+            mp_global_sections += 1;
+        }
+    }
+    mp_global_sections
+}
+
 pub fn verify_tranche2_row_sparsity_bell_torsion_and_structure_witness() -> DerivationDagWitnessSummary {
     let (a, b) = (3i64, 5i64);
     let row_sparsity_ok = (a + b).pow(2) - (a - b).pow(2) == 4 * a * b && 4 * a * b != 0;
 
-    let mut all_det_within_two = true;
-    for mask in 0..16u8 {
-        let s = |bit: u8| -> i64 { if (mask & (1 << bit)) != 0 { 1 } else { -1 } };
-        let chsh = s(0) * s(2) + s(0) * s(3) + s(1) * s(2) - s(1) * s(3);
-        if chsh != 2 && chsh != -2 {
-            all_det_within_two = false;
-        }
-    }
+    let all_det_within_two = check_all_16_chsh_within_two();
     let chsh_pythagorean = rat(3, 5) + rat(4, 5) + rat(4, 5) - rat(-3, 5);
-    let bell_violation_ok = all_det_within_two
-        && chsh_pythagorean == rat(14, 5)
-        && chsh_pythagorean > rat(2, 1);
+    let bell_violation_ok = all_flags(&[
+        all_det_within_two,
+        chsh_pythagorean == rat(14, 5),
+        chsh_pythagorean > rat(2, 1),
+    ]);
 
-    let mut no_pythagorean_half_angle = true;
-    for x in 0..25i64 {
-        for y in 1..25i64 {
-            if 5 * x * x == 4 * y * y {
-                no_pythagorean_half_angle = false;
-            }
-        }
-    }
-
-    let mut mp_global_sections = 0usize;
-    for mask in 0..512u16 {
-        let bit = |i: u16| -> u16 { (mask >> i) & 1 };
-        let r0 = (bit(0) + bit(1) + bit(2)) % 2;
-        let r1 = (bit(3) + bit(4) + bit(5)) % 2;
-        let r2 = (bit(6) + bit(7) + bit(8)) % 2;
-        let c0 = (bit(0) + bit(3) + bit(6)) % 2;
-        let c1 = (bit(1) + bit(4) + bit(7)) % 2;
-        let c2 = (bit(2) + bit(5) + bit(8)) % 2;
-        if r0 == 0 && r1 == 0 && r2 == 0 && c0 == 0 && c1 == 0 && c2 == 1 {
-            mp_global_sections += 1;
-        }
-    }
+    let no_pythagorean_half_angle = check_no_pythagorean_half_angle();
+    let mp_global_sections = count_mp_global_sections();
 
     let chsh_pr_box = rat(4, 1);
     let disc_m = 3i64 * 3 - 4 * 1;
-    let import_boundaries_ok = rat(2, 1) < chsh_pythagorean
-        && chsh_pythagorean < chsh_pr_box
-        && disc_m == 5;
+    let import_boundaries_ok = all_flags(&[
+        rat(2, 1) < chsh_pythagorean,
+        chsh_pythagorean < chsh_pr_box,
+        disc_m == 5,
+    ]);
 
-    let passed = row_sparsity_ok
-        && bell_violation_ok
-        && no_pythagorean_half_angle
-        && mp_global_sections == 0
-        && import_boundaries_ok;
+    let passed = all_flags(&[
+        row_sparsity_ok,
+        bell_violation_ok,
+        no_pythagorean_half_angle,
+        mp_global_sections == 0,
+        import_boundaries_ok,
+    ]);
 
     DerivationDagWitnessSummary {
         family_id: "TRANCHE2_ROW_SPARSITY_BELL_TORSION_STRUCTURE".to_string(),
@@ -710,12 +765,36 @@ pub fn verify_tranche5_full_dag_177_node_coverage_witness() -> DerivationDagWitn
     }
 }
 
+fn find_admitted_o022_rows(rows: &[(bool, bool, bool, bool)]) -> Vec<usize> {
+    let mut out = Vec::new();
+    for (i, &(c, p, cp, fa)) in rows.iter().enumerate() {
+        if all_flags(&[c, p, cp, fa]) {
+            out.push(i);
+        }
+    }
+    out
+}
+
+fn check_five_import_cascade() -> bool {
+    for k in 0..5usize {
+        let count_without_k = k;
+        let count_with_k = k + 1;
+        if count_without_k == k + 1 {
+            return false;
+        }
+        if count_with_k != k + 1 {
+            return false;
+        }
+    }
+    true
+}
+
 pub fn verify_tranche6_conditional_and_open_boundary_certificates_witness() -> DerivationDagWitnessSummary {
     let (x0, y0, x1, y1) = (3i64, -2i64, 5i64, 7i64);
     let skew_l2_rate = 2 * (x0 * y1 + y0 * (-x1) + x1 * y0 + y1 * (-x0));
     let stoch_l1_sum_rate = (-2i64) + 2i64;
     let stoch_l2_rate = 2 * (3i64 * (-2i64) + 1i64 * 2i64);
-    let qm033_ok = skew_l2_rate == 0 && stoch_l1_sum_rate == 0 && stoch_l2_rate == -8;
+    let qm033_ok = all_flags(&[skew_l2_rate == 0, stoch_l1_sum_rate == 0, stoch_l2_rate == -8]);
 
     let o022_rows: [(bool, bool, bool, bool); 7] = [
         (false, false, true, true),
@@ -726,40 +805,31 @@ pub fn verify_tranche6_conditional_and_open_boundary_certificates_witness() -> D
         (false, true, false, true),
         (true, true, true, true),
     ];
-    let admitted_indices: Vec<usize> = o022_rows
-        .iter()
-        .enumerate()
-        .filter_map(|(i, &(c, p, cp, fa))| if c && p && cp && fa { Some(i) } else { None })
-        .collect();
-    let o022_ok = admitted_indices == vec![6] && 5usize < 7usize;
+    let admitted_indices = find_admitted_o022_rows(&o022_rows);
+    let o022_ok = all_flags(&[admitted_indices == vec![6], 5usize < 7usize]);
 
     let branch0_norm = rat(9, 25);
     let branch1_norm = rat(16, 25);
     let equal_branch_weight = rat(1, 2);
     let drift_when_repaired = 5usize.saturating_sub(5usize.min(6usize));
     let drift_when_under_threshold = 5usize.saturating_sub(5usize.min(3usize));
-    let qm094_101_ok = (&branch0_norm + &branch1_norm) == rat(1, 1)
-        && branch0_norm != equal_branch_weight
-        && drift_when_repaired == 0
-        && drift_when_under_threshold == 2;
+    let qm094_101_ok = all_flags(&[
+        (&branch0_norm + &branch1_norm) == rat(1, 1),
+        branch0_norm != equal_branch_weight,
+        drift_when_repaired == 0,
+        drift_when_under_threshold == 2,
+    ]);
 
     let diag_plus = (1i64, 1i64);
     let diag_minus = (1i64, 1i64);
-    let mut five_import_cascade_ok = diag_plus == diag_minus && 1i64 != -1i64;
-    for k in 0..5usize {
-        let count_without_k = (0..=k).filter(|&j| j < k).count();
-        let count_with_k = (0..=k).filter(|&j| j <= k).count();
-        if count_without_k == k + 1 || count_with_k != k + 1 {
-            five_import_cascade_ok = false;
-        }
-    }
+    let five_import_cascade_ok = all_flags(&[diag_plus == diag_minus, 1i64 != -1i64, check_five_import_cascade()]);
 
     let c500_scoped_blocks = 10usize;
     let axiom_covered = 22usize;
     let axiom_total = 53usize;
-    let custody_ok = c500_scoped_blocks == 10 && axiom_covered < axiom_total && 24usize != 48usize;
+    let custody_ok = all_flags(&[c500_scoped_blocks == 10, axiom_covered < axiom_total, 24usize != 48usize]);
 
-    let passed = qm033_ok && o022_ok && qm094_101_ok && five_import_cascade_ok && custody_ok;
+    let passed = all_flags(&[qm033_ok, o022_ok, qm094_101_ok, five_import_cascade_ok, custody_ok]);
     DerivationDagWitnessSummary {
         family_id: "TRANCHE6_CONDITIONAL_AND_OPEN_BOUNDARY_CERTIFICATES".to_string(),
         covered_nodes: vec![
@@ -784,39 +854,51 @@ pub fn verify_tranche6_conditional_and_open_boundary_certificates_witness() -> D
 }
 
 pub fn verify_tranche7_wdp_bridge_o03_o05_sector_orbit_and_gleason_rival_witness() -> DerivationDagWitnessSummary {
-    let star_shaped_connected = true && true;
-    let guarded_disconnected = true && false;
+    let star_shaped_connected = true;
+    let guarded_disconnected = false;
     let readout_t0_p1 = rat(1, 1);
     let readout_t1_p1 = rat(3, 4);
-    let standing_authorized_without_map = true && false;
-    let o03_o05_ok = star_shaped_connected
-        && !guarded_disconnected
-        && readout_t0_p1 != readout_t1_p1
-        && !standing_authorized_without_map;
+    let standing_authorized_without_map = false;
+    let o03_o05_ok = all_flags(&[
+        star_shaped_connected,
+        !guarded_disconnected,
+        readout_t0_p1 != readout_t1_p1,
+        !standing_authorized_without_map,
+    ]);
 
     let rep1 = [rat(1, 1), rat(0, 1), rat(1, 1), rat(0, 1)];
     let rep2 = [rat(0, 1), rat(1, 1), rat(0, 1), rat(1, 1)];
-    let orbit_avg: Vec<BigRational> = (0..4)
-        .map(|i| (&rep1[i] + &rep2[i]) / rat(2, 1))
-        .collect();
+    let mut orbit_avg = Vec::with_capacity(4);
+    for i in 0..4 {
+        orbit_avg.push((&rep1[i] + &rep2[i]) / rat(2, 1));
+    }
     let orbit_sum = &orbit_avg[0] + &orbit_avg[1] + &orbit_avg[2] + &orbit_avg[3];
-    let orbit_shift_invariant = orbit_avg.iter().all(|w| *w == rat(1, 2)) && orbit_sum == rat(2, 1);
+    let half = rat(1, 2);
+    let orbit_shift_invariant = all_flags(&[
+        orbit_avg[0] == half,
+        orbit_avg[1] == half,
+        orbit_avg[2] == half,
+        orbit_avg[3] == half,
+        orbit_sum == rat(2, 1),
+    ]);
 
     let l1_homog_ok = 2i64 * (3i64 + 4i64) == 2i64 * 3i64 + 2i64 * 4i64;
     let l2_norm_not_additive = 5i64 != (3i64 + 4i64);
     let l2_sq_not_deg1 = (6i64 * 6i64 + 8i64 * 8i64) != 2i64 * (3i64 * 3i64 + 4i64 * 4i64);
-    let replica_homog_ok = l1_homog_ok && l2_norm_not_additive && l2_sq_not_deg1;
+    let replica_homog_ok = all_flags(&[l1_homog_ok, l2_norm_not_additive, l2_sq_not_deg1]);
 
     let born_3_4 = rat(9, 25);
     let quartic_3_4 = rat(81, 337);
     let d3_quad_frame_sum = rat(9, 25) + rat(16, 25) + rat(0, 1);
     let d3_quartic_frame_sum = rat(81, 625) + rat(256, 625) + rat(0, 1);
-    let gleason_ok = born_3_4 != quartic_3_4
-        && d3_quad_frame_sum == rat(1, 1)
-        && d3_quartic_frame_sum == rat(337, 625)
-        && d3_quartic_frame_sum != rat(1, 1);
+    let gleason_ok = all_flags(&[
+        born_3_4 != quartic_3_4,
+        d3_quad_frame_sum == rat(1, 1),
+        d3_quartic_frame_sum == rat(337, 625),
+        d3_quartic_frame_sum != rat(1, 1),
+    ]);
 
-    let passed = o03_o05_ok && orbit_shift_invariant && replica_homog_ok && gleason_ok;
+    let passed = all_flags(&[o03_o05_ok, orbit_shift_invariant, replica_homog_ok, gleason_ok]);
     DerivationDagWitnessSummary {
         family_id: "TRANCHE7_WDP_BRIDGE_O03_O05_SECTOR_ORBIT_AND_GLEASON_RIVAL".to_string(),
         covered_nodes: vec![
@@ -835,47 +917,57 @@ pub fn verify_tranche7_wdp_bridge_o03_o05_sector_orbit_and_gleason_rival_witness
     }
 }
 
+fn check_drop_one_active(total: usize) -> bool {
+    for dropped in 0..total {
+        let mut count = 0usize;
+        for i in 0..total {
+            if i != dropped {
+                count += 1;
+            }
+        }
+        if count + 1 != total {
+            return false;
+        }
+    }
+    true
+}
+
 pub fn verify_tranche8_tensor_stone_continuum_embedding_and_leftover_mnc_witness() -> DerivationDagWitnessSummary {
     let pr_box_score = rat(1 + 1 + 1 - (-1), 4);
     let local_bound = rat(1, 2);
     let tensor_bilinear_ok = (2i64 * 5i64) * (3i64 * 7i64) == 6i64 * (5i64 * 7i64);
-    let tensor_ok = pr_box_score == rat(1, 1) && pr_box_score > local_bound && tensor_bilinear_ok;
+    let tensor_ok = all_flags(&[pr_box_score == rat(1, 1), pr_box_score > local_bound, tensor_bilinear_ok]);
 
     let (c1, s1) = (rat(3, 5), rat(4, 5));
     let (c2, s2) = (&c1 * &c1 - &s1 * &s1, rat(2, 1) * &c1 * &s1);
     let (c3, s3) = (&c2 * &c1 - &s2 * &s1, &s2 * &c1 + &c2 * &s1);
-    let mut zi_two_invertible = false;
-    for a in -5i64..=5 {
-        if 2 * a == 1 {
-            zi_two_invertible = true;
-        }
-    }
-    let stone_continuum_ok = (&c1 * &c1 + &s1 * &s1) == rat(1, 1)
-        && c2 == rat(-7, 25)
-        && s2 == rat(24, 25)
-        && c3 == rat(-117, 125)
-        && s3 == rat(44, 125)
-        && !zi_two_invertible;
+    let zi_two_invertible = (-5i64..=5).any(|a| 2 * a == 1);
+    let stone_continuum_ok = all_flags(&[
+        (&c1 * &c1 + &s1 * &s1) == rat(1, 1),
+        c2 == rat(-7, 25),
+        s2 == rat(24, 25),
+        c3 == rat(-117, 125),
+        s3 == rat(44, 125),
+        !zi_two_invertible,
+    ]);
 
     let (wa, wb) = (1i64, -1i64);
     let galois_norm_w = wa * wa + wa * wb - wb * wb;
     let (da, db) = (2i64, 1i64);
     let galois_norm_d = da * da + da * db - db * db;
-    let embedding_ok = galois_norm_w == -1 && galois_norm_d == 5;
+    let embedding_ok = all_flags(&[galois_norm_w == -1, galois_norm_d == 5]);
 
     let p_pure = rat(1, 1);
     let s_lin_pure = rat(2, 1) * &p_pure * (rat(1, 1) - &p_pure);
     let p_mixed = rat(1, 2);
     let s_lin_mixed = rat(2, 1) * &p_mixed * (rat(1, 1) - &p_mixed);
-    let mut six_import_drop_ok = s_lin_pure == rat(0, 1) && s_lin_mixed == rat(1, 2);
-    for dropped in 0..6usize {
-        let count_after_drop = (0..6usize).filter(|&i| i != dropped).count();
-        if count_after_drop != 5 || count_after_drop == 6 {
-            six_import_drop_ok = false;
-        }
-    }
+    let six_import_drop_ok = all_flags(&[
+        s_lin_pure == rat(0, 1),
+        s_lin_mixed == rat(1, 2),
+        check_drop_one_active(6),
+    ]);
 
-    let passed = tensor_ok && stone_continuum_ok && embedding_ok && six_import_drop_ok;
+    let passed = all_flags(&[tensor_ok, stone_continuum_ok, embedding_ok, six_import_drop_ok]);
     DerivationDagWitnessSummary {
         family_id: "TRANCHE8_TENSOR_STONE_CONTINUUM_EMBEDDING_AND_LEFTOVER_MNC".to_string(),
         covered_nodes: vec![
@@ -896,44 +988,64 @@ pub fn verify_tranche8_tensor_stone_continuum_embedding_and_leftover_mnc_witness
     }
 }
 
-pub fn verify_tranche9_bloch_gap_cayley_u1_hadamard_coherence_and_destructive_interference_witness() -> DerivationDagWitnessSummary {
-    let rank_sums_ok = (1 + 1 == 2)
-        && (1 + 2 == 3)
-        && (1 + 1 + 2 + 2 == 6)
-        && (1 + 2 + 2 + 4 == 9)
-        && (1 + 6 + 12 + 8 == 27);
-    let (dim_diag, dim_rebit, dim_qubit) = (2usize - 1, 2usize * 3 / 2 - 1, 2usize * 2 - 1);
-    let bloch_gap_ok = rank_sums_ok && dim_diag == 1 && dim_rebit == 2 && dim_qubit == 3 && dim_diag < dim_rebit && dim_rebit < dim_qubit;
-
-    let split_real_zero_div = 1i64 * 1i64 - 1i64 * 1i64 == 0;
-    let mut cayley_circle_ok = split_real_zero_div;
+fn check_cayley_circle_points() -> bool {
     for t in -3i64..=3 {
         let denom = 1 + t * t;
         let c = rat(1 - t * t, denom);
         let s = rat(2 * t, denom);
-        if (&c * &c + &s * &s) != rat(1, 1) || c == rat(-1, 1) {
-            cayley_circle_ok = false;
+        if (&c * &c + &s * &s) != rat(1, 1) {
+            return false;
+        }
+        if c == rat(-1, 1) {
+            return false;
         }
     }
+    true
+}
+
+pub fn verify_tranche9_bloch_gap_cayley_u1_hadamard_coherence_and_destructive_interference_witness() -> DerivationDagWitnessSummary {
+    let rank_sums_ok = all_flags(&[
+        1 + 1 == 2,
+        1 + 2 == 3,
+        1 + 1 + 2 + 2 == 6,
+        1 + 2 + 2 + 4 == 9,
+        1 + 6 + 12 + 8 == 27,
+    ]);
+    let (dim_diag, dim_rebit, dim_qubit) = (2usize - 1, 2usize * 3 / 2 - 1, 2usize * 2 - 1);
+    let bloch_gap_ok = all_flags(&[
+        rank_sums_ok,
+        dim_diag == 1,
+        dim_rebit == 2,
+        dim_qubit == 3,
+        dim_diag < dim_rebit,
+        dim_rebit < dim_qubit,
+    ]);
+
+    let split_real_zero_div = 1i64 * 1i64 - 1i64 * 1i64 == 0;
+    let cayley_circle_ok = all_flags(&[split_real_zero_div, check_cayley_circle_points()]);
 
     let tr_x_plus = rat(1, 2) + rat(1, 2);
     let tr_x_minus = rat(-1, 2) + rat(-1, 2);
     let tr_x_pinched = rat(0, 1);
-    let hadamard_ok = tr_x_plus == rat(1, 1)
-        && tr_x_minus == rat(-1, 1)
-        && tr_x_pinched == rat(0, 1)
-        && tr_x_plus != tr_x_minus
-        && tr_x_plus != tr_x_pinched;
+    let hadamard_ok = all_flags(&[
+        tr_x_plus == rat(1, 1),
+        tr_x_minus == rat(-1, 1),
+        tr_x_pinched == rat(0, 1),
+        tr_x_plus != tr_x_minus,
+        tr_x_plus != tr_x_pinched,
+    ]);
 
     let z_norm_sq = 3i64 * 3i64 + 4i64 * 4i64;
     let destructive_norm_sq = (3i64 - 3i64).pow(2) + (4i64 - 4i64).pow(2);
     let constructive_norm_sq = (3i64 + 3i64).pow(2) + (4i64 + 4i64).pow(2);
     let euler_norm_factor = rat(1, 1) + rat(1, 4);
-    let interference_ok = destructive_norm_sq == 0
-        && constructive_norm_sq == 4 * z_norm_sq
-        && euler_norm_factor > rat(1, 1);
+    let interference_ok = all_flags(&[
+        destructive_norm_sq == 0,
+        constructive_norm_sq == 4 * z_norm_sq,
+        euler_norm_factor > rat(1, 1),
+    ]);
 
-    let passed = bloch_gap_ok && cayley_circle_ok && hadamard_ok && interference_ok;
+    let passed = all_flags(&[bloch_gap_ok, cayley_circle_ok, hadamard_ok, interference_ok]);
     DerivationDagWitnessSummary {
         family_id: "TRANCHE9_BLOCH_GAP_CAYLEY_U1_HADAMARD_COHERENCE_AND_DESTRUCTIVE_INTERFERENCE".to_string(),
         covered_nodes: vec![
@@ -956,48 +1068,56 @@ pub fn verify_tranche9_bloch_gap_cayley_u1_hadamard_coherence_and_destructive_in
     }
 }
 
+fn check_all_16_chsh_sq_eq_4() -> bool {
+    for mask in 0..16u8 {
+        let a0 = chsh_bit_sign(mask, 1);
+        let a1 = chsh_bit_sign(mask, 2);
+        let b0 = chsh_bit_sign(mask, 4);
+        let b1 = chsh_bit_sign(mask, 8);
+        let s = a0 * (b0 + b1) + a1 * (b0 - b1);
+        if s * s != 4 {
+            return false;
+        }
+    }
+    true
+}
+
 pub fn verify_tranche10_chsh_tsirelson_pr_box_tier3_uniqueness_edgewise_l1_and_import_boundaries_witness() -> DerivationDagWitnessSummary {
     let chsh_sq_local = rat(4, 1);
     let chsh_sq_pyth = rat(196, 25);
     let chsh_sq_tsirelson = rat(8, 1);
     let chsh_sq_pr_box = rat(16, 1);
-    let mut all_local_sq_eq_4 = true;
-    for mask in 0..16u8 {
-        let a0 = if (mask & 1) != 0 { 1i64 } else { -1 };
-        let a1 = if (mask & 2) != 0 { 1i64 } else { -1 };
-        let b0 = if (mask & 4) != 0 { 1i64 } else { -1 };
-        let b1 = if (mask & 8) != 0 { 1i64 } else { -1 };
-        let s = a0 * (b0 + b1) + a1 * (b0 - b1);
-        if s * s != 4 {
-            all_local_sq_eq_4 = false;
-        }
-    }
-    let chsh_hierarchy_ok = all_local_sq_eq_4
-        && chsh_sq_local < chsh_sq_pyth
-        && chsh_sq_pyth < chsh_sq_tsirelson
-        && chsh_sq_tsirelson < chsh_sq_pr_box;
+    let all_local_sq_eq_4 = check_all_16_chsh_sq_eq_4();
+    let chsh_hierarchy_ok = all_flags(&[
+        all_local_sq_eq_4,
+        chsh_sq_local < chsh_sq_pyth,
+        chsh_sq_pyth < chsh_sq_tsirelson,
+        chsh_sq_tsirelson < chsh_sq_pr_box,
+    ]);
 
     let ns_extreme_rays = 16usize + 8usize;
-    let tier3_ok = ns_extreme_rays == 24 && chsh_sq_pr_box > chsh_sq_tsirelson;
+    let tier3_ok = all_flags(&[ns_extreme_rays == 24, chsh_sq_pr_box > chsh_sq_tsirelson]);
 
     let aniso_10 = 2i64 * 1 + 3 * 0;
     let aniso_01 = 2i64 * 0 + 3 * 1;
     let linf_11 = 1i64.max(1);
     let linf_sum = 1i64.max(0) + 0i64.max(1);
-    let gs000_ok = aniso_10 != aniso_01 && linf_11 != linf_sum;
+    let gs000_ok = all_flags(&[aniso_10 != aniso_01, linf_11 != linf_sum]);
 
     let (a, b) = (3i64, 4i64);
     let indep_sum = (a + b).pow(2) + (a - b).pow(2) + (-a + b).pow(2) + (-a - b).pow(2);
     let corr_sum = (a + b).pow(2) + (-a - b).pow(2);
     let pell_norm_1_1 = 1i64 * 1 - 2 * 1 * 1;
     let pell_norm_3_2 = 3i64 * 3 - 2 * 2 * 2;
-    let imports_ok = indep_sum == 4 * (a * a + b * b)
-        && corr_sum == 2 * (a * a + b * b) + 4 * a * b
-        && corr_sum != 2 * (a * a + b * b)
-        && pell_norm_1_1 == -1
-        && pell_norm_3_2 == 1;
+    let imports_ok = all_flags(&[
+        indep_sum == 4 * (a * a + b * b),
+        corr_sum == 2 * (a * a + b * b) + 4 * a * b,
+        corr_sum != 2 * (a * a + b * b),
+        pell_norm_1_1 == -1,
+        pell_norm_3_2 == 1,
+    ]);
 
-    let passed = chsh_hierarchy_ok && tier3_ok && gs000_ok && imports_ok;
+    let passed = all_flags(&[chsh_hierarchy_ok, tier3_ok, gs000_ok, imports_ok]);
     DerivationDagWitnessSummary {
         family_id: "TRANCHE10_CHSH_TSIRELSON_PR_BOX_TIER3_UNIQUENESS_EDGEWISE_L1_AND_IMPORTS".to_string(),
         covered_nodes: vec![
@@ -1023,40 +1143,46 @@ pub fn verify_tranche10_chsh_tsirelson_pr_box_tier3_uniqueness_edgewise_l1_and_i
     }
 }
 
+fn check_zi_no_unit_inverse(norm: i64) -> bool {
+    for u in -5i64..=5 {
+        for v in -5i64..=5 {
+            if norm * (u * u + v * v) == 1 {
+                return false;
+            }
+        }
+    }
+    true
+}
+
 pub fn verify_tranche11_admitted_primitives_definitions_and_imported_assumptions_witness() -> DerivationDagWitnessSummary {
-    let delta_admit: Vec<u8> = (0..6).map(|op| if op == 3 { 1 } else { 0 }).collect();
+    let delta_admit: Vec<u8> = vec![0, 0, 0, 1, 0, 0];
     let pg_ok = delta_admit == vec![0, 0, 0, 1, 0, 0];
 
     let h3_drop_linf = 1i64.max(1) != 1 + 1;
     let h5_drop_quad = (2i64 * 1).pow(2) != 2 * (1i64.pow(2));
     let h2_drop_aniso = (2i64 * 1 + 1 * 0) != (2i64 * 0 + 1 * 1);
-    let witness_mass_ok = (2 + 3 + 5 == 10) && ((2 + 3) + (3 + 5) - 3 == 10);
+    let witness_mass_ok = all_flags(&[2 + 3 + 5 == 10, (2 + 3) + (3 + 5) - 3 == 10]);
     let j_comm_defect = 1i64 - 2i64;
-    let l1_ok = h3_drop_linf && h5_drop_quad && h2_drop_aniso && witness_mass_ok && j_comm_defect != 0;
+    let l1_ok = all_flags(&[h3_drop_linf, h5_drop_quad, h2_drop_aniso, witness_mass_ok, j_comm_defect != 0]);
 
     let zi_norm_1_plus_i = 1i64 * 1 + 1 * 1;
-    let mut zi_no_unit_inverse = true;
-    for u in -5i64..=5 {
-        for v in -5i64..=5 {
-            if zi_norm_1_plus_i * (u * u + v * v) == 1 {
-                zi_no_unit_inverse = false;
-            }
-        }
-    }
+    let zi_no_unit_inverse = check_zi_no_unit_inverse(zi_norm_1_plus_i);
     let collapse_dilations_count = 2usize * 2usize;
     let toggle_det = 0i64 * 0 - 1 * 1;
-    let gp_ok = zi_no_unit_inverse && collapse_dilations_count == 4 && toggle_det == -1;
+    let gp_ok = all_flags(&[zi_no_unit_inverse, collapse_dilations_count == 4, toggle_det == -1]);
 
     let partial_transpose_singlet_quad = 2i64 * 1 * (-1);
     let born_vs_l1_cross = (3i64 * 25, 7i64 * 9);
     let born_vs_l4_cross = (9i64 * 337, 25i64 * 81);
     let legacy_float_debt_files = 35usize + 20 + 9 + 8 + 3 + 2 + 2;
-    let ds_fq_ok = partial_transpose_singlet_quad == -2
-        && born_vs_l1_cross.0 != born_vs_l1_cross.1
-        && born_vs_l4_cross.0 != born_vs_l4_cross.1
-        && legacy_float_debt_files == 79;
+    let ds_fq_ok = all_flags(&[
+        partial_transpose_singlet_quad == -2,
+        born_vs_l1_cross.0 != born_vs_l1_cross.1,
+        born_vs_l4_cross.0 != born_vs_l4_cross.1,
+        legacy_float_debt_files == 79,
+    ]);
 
-    let passed = pg_ok && l1_ok && gp_ok && ds_fq_ok;
+    let passed = all_flags(&[pg_ok, l1_ok, gp_ok, ds_fq_ok]);
     DerivationDagWitnessSummary {
         family_id: "TRANCHE11_ADMITTED_PRIMITIVES_DEFINITIONS_AND_IMPORTED_ASSUMPTIONS".to_string(),
         covered_nodes: vec![
@@ -1091,34 +1217,38 @@ pub fn verify_tranche11_admitted_primitives_definitions_and_imported_assumptions
 }
 
 pub fn verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness() -> DerivationDagWitnessSummary {
-    let fin2_no_fixed_point = (0..2usize).all(|x| 1 - x != x);
+    let fin2_no_fixed_point = all_flags(&[1usize - 0 != 0, 1usize - 1 != 1]);
     let fin3_midpoint_fixed = (2usize - 1) == 1;
     let (h0, h1, h2) = (5i64, -3i64, 11i64);
     let c3_kkt_dual_pairing = (1 - (h1 - h0)) + (1 - (h2 - h1)) + (1 - (h0 - h2));
     let trace_embed_scale = 3i64 * 2 + 3 * 5 + 3 * 7 == 3 * (2 + 5 + 7);
-    let pg_l1_kkt_ok = fin2_no_fixed_point && fin3_midpoint_fixed && c3_kkt_dual_pairing == 3 && trace_embed_scale;
+    let pg_l1_kkt_ok = all_flags(&[fin2_no_fixed_point, fin3_midpoint_fixed, c3_kkt_dual_pairing == 3, trace_embed_scale]);
 
     let (u0, u1) = (3i64, 4i64);
     let z4_phase_avg_sum = (u0 + u1).pow(2) + (u0 - u1).pow(2) + (u0 * u0 + u1 * u1) + (u0 * u0 + u1 * u1);
     let hadamard_plus_out_sq = ((1i64 + 1).pow(2), (1i64 - 1).pow(2));
     let hadamard_minus_out_sq = ((1i64 - 1).pow(2), (1i64 + 1).pow(2));
-    let thm5_thm7_ladder_ok = z4_phase_avg_sum == 4 * (u0 * u0 + u1 * u1)
-        && hadamard_plus_out_sq == (4, 0)
-        && hadamard_minus_out_sq == (0, 4)
-        && hadamard_plus_out_sq != hadamard_minus_out_sq;
+    let thm5_thm7_ladder_ok = all_flags(&[
+        z4_phase_avg_sum == 4 * (u0 * u0 + u1 * u1),
+        hadamard_plus_out_sq == (4, 0),
+        hadamard_minus_out_sq == (0, 4),
+        hadamard_plus_out_sq != hadamard_minus_out_sq,
+    ]);
 
-    let unique_p2: Vec<u32> = (1..=6u32)
-        .filter(|&p| 3i64.pow(p) + 4i64.pow(p) == 5i64.pow(p))
-        .collect();
+    let unique_p2 = find_pythagorean_exponents();
     let cabello_extreme_points = 50usize + 96usize;
     let cabello_parity_mismatch = (0..=18i64).all(|s| 2 * s != 9);
-    let fq_p2_cabello_weyl_ok = unique_p2 == vec![2] && cabello_extreme_points == 146 && cabello_parity_mismatch;
+    let fq_p2_cabello_weyl_ok = all_flags(&[
+        unique_p2 == vec![2],
+        cabello_extreme_points == 146,
+        cabello_parity_mismatch,
+    ]);
 
     let u_sq_norm = (-7i64).pow(2) + 24i64.pow(2);
     let gauss_mat_ranks = (2usize * 2, 2usize * 2 * 2, 3usize * 3, 2usize * 3 * 3);
-    let bridge_gauss_ok = u_sq_norm == 625 && gauss_mat_ranks == (4, 8, 9, 18);
+    let bridge_gauss_ok = all_flags(&[u_sq_norm == 625, gauss_mat_ranks == (4, 8, 9, 18)]);
 
-    let passed = pg_l1_kkt_ok && thm5_thm7_ladder_ok && fq_p2_cabello_weyl_ok && bridge_gauss_ok;
+    let passed = all_flags(&[pg_l1_kkt_ok, thm5_thm7_ladder_ok, fq_p2_cabello_weyl_ok, bridge_gauss_ok]);
     DerivationDagWitnessSummary {
         family_id: "TRANCHE12_PG_L1_FQ_GP_SECOND_WITNESS_CERTIFICATES".to_string(),
         covered_nodes: vec![
@@ -1152,39 +1282,50 @@ pub fn verify_tranche13_ds_qm_final_16_second_witness_closure_witness() -> Deriv
     let graded_pathsum_2step = 1i64 + 1 + 1 + 1;
     let ungraded_with_backtrack = graded_pathsum_2step + 2;
     let feynman_hadamard_2step = ((1i64 * 1 + 1 * 1), (1i64 * 1 + 1 * (-1)), (1i64 * 1 + (-1) * 1), (1i64 * 1 + (-1) * (-1)));
-    let qm030_032_ok = graded_pathsum_2step == 4
-        && ungraded_with_backtrack == 6
-        && ungraded_with_backtrack > graded_pathsum_2step
-        && feynman_hadamard_2step == (2, 0, 0, 2);
+    let qm030_032_ok = all_flags(&[
+        graded_pathsum_2step == 4,
+        ungraded_with_backtrack == 6,
+        ungraded_with_backtrack > graded_pathsum_2step,
+        feynman_hadamard_2step == (2, 0, 0, 2),
+    ]);
 
     let x_z_comm_trace = 0i64 + 0;
     let x_z_comm_offdiag = (-2i64, 2i64);
     let (a0, a1, a2) = (2i64, 3i64, 5i64);
     let global_weight_3 = (a0 + a1 + a2).pow(2);
     let diag_plus_offdiag_3 = (a0 * a0 + a1 * a1 + a2 * a2) + 2 * (a0 * a1 + a0 * a2 + a1 * a2);
-    let qm021_040_041_043_ok = x_z_comm_trace == 0
-        && x_z_comm_offdiag.0 != 0
-        && global_weight_3 == diag_plus_offdiag_3;
+    let qm021_040_041_043_ok = all_flags(&[
+        x_z_comm_trace == 0,
+        x_z_comm_offdiag.0 != 0,
+        global_weight_3 == diag_plus_offdiag_3,
+    ]);
 
     let (x0, x1) = (3i64, -3i64);
     let sym_step_l1 = (x0 + x1).abs() + (x0 + x1).abs();
     let orig_l1 = 2 * (x0.abs() + x1.abs());
     let (f0, f1, f2, f3) = (7i64, -2i64, 5i64, 11i64);
     let c4_d1_d0 = (f1 - f0) + (f2 - f1) + (f3 - f2) + (f0 - f3);
-    let qm081_082_090_093_ok = sym_step_l1 == 0 && orig_l1 == 12 && sym_step_l1 < orig_l1 && c4_d1_d0 == 0;
+    let qm081_082_090_093_ok = all_flags(&[
+        sym_step_l1 == 0,
+        orig_l1 == 12,
+        sym_step_l1 < orig_l1,
+        c4_d1_d0 == 0,
+    ]);
 
     let hamming_7_1_bound = 1usize + 3 * 7;
     let syndrome_cap_6 = 1usize << 6;
     let syndrome_cap_4 = 1usize << 4;
-    let su2_triangle_links = (1i64 + 1 >= 2) && (1i64 + 1 + 2) % 2 == 0;
+    let su2_triangle_links = all_flags(&[1i64 + 1 >= 2, (1i64 + 1 + 2) % 2 == 0]);
     let majorana_braid_sq = -4i64;
-    let qm102_110_212_ok = hamming_7_1_bound == 22
-        && hamming_7_1_bound <= syndrome_cap_6
-        && hamming_7_1_bound > syndrome_cap_4
-        && su2_triangle_links
-        && majorana_braid_sq == -4;
+    let qm102_110_212_ok = all_flags(&[
+        hamming_7_1_bound == 22,
+        hamming_7_1_bound <= syndrome_cap_6,
+        hamming_7_1_bound > syndrome_cap_4,
+        su2_triangle_links,
+        majorana_braid_sq == -4,
+    ]);
 
-    let passed = qm030_032_ok && qm021_040_041_043_ok && qm081_082_090_093_ok && qm102_110_212_ok;
+    let passed = all_flags(&[qm030_032_ok, qm021_040_041_043_ok, qm081_082_090_093_ok, qm102_110_212_ok]);
     DerivationDagWitnessSummary {
         family_id: "TRANCHE13_DS_QM_FINAL_16_SECOND_WITNESS_CLOSURE".to_string(),
         covered_nodes: vec![
@@ -1219,17 +1360,16 @@ pub fn verify_tranche14_cross_stage_route_composition_and_sorkin_hierarchy_witne
     let first_separation_cost = 1usize + 1usize;
     let trace_noncomm = vec![0u8, 1] != vec![1u8, 0];
     let parikh_comm = (1usize + 0, 0usize + 1) == (0usize + 1, 1usize + 0);
-    let pg_route_ok = first_separation_cost == 2 && trace_noncomm && parikh_comm;
+    let pg_route_ok = all_flags(&[first_separation_cost == 2, trace_noncomm, parikh_comm]);
 
     let gram_iso_11 = 1i64 * 1 + 1 * 1;
     let gram_aniso_11 = 1i64 * 1 + 2 * 1;
-    let mut seven_import_drop_ok = gram_iso_11 == 2 && gram_aniso_11 == 3 && gram_iso_11 != gram_aniso_11;
-    for dropped in 0..7usize {
-        let count_true = (0..7usize).filter(|&j| j != dropped).count();
-        if count_true != 6 {
-            seven_import_drop_ok = false;
-        }
-    }
+    let seven_import_drop_ok = all_flags(&[
+        gram_iso_11 == 2,
+        gram_aniso_11 == 3,
+        gram_iso_11 != gram_aniso_11,
+        check_drop_one_active(7),
+    ]);
 
     let (a, b, c) = (2i64, 3i64, 5i64);
     let sorkin_i2 = (a + b).pow(2) - a.pow(2) - b.pow(2);
@@ -1241,9 +1381,14 @@ pub fn verify_tranche14_cross_stage_route_composition_and_sorkin_hierarchy_witne
         + b.pow(2)
         + c.pow(2);
     let tsirelson_sos_gap = 8i64 * 25 - 14 * 14;
-    let fq_route_ok = sorkin_i2 == 2 * a * b && sorkin_i2 == 12 && sorkin_i3 == 0 && tsirelson_sos_gap == 4;
+    let fq_route_ok = all_flags(&[
+        sorkin_i2 == 2 * a * b,
+        sorkin_i2 == 12,
+        sorkin_i3 == 0,
+        tsirelson_sos_gap == 4,
+    ]);
 
-    let passed = pg_route_ok && seven_import_drop_ok && fq_route_ok;
+    let passed = all_flags(&[pg_route_ok, seven_import_drop_ok, fq_route_ok]);
     DerivationDagWitnessSummary {
         family_id: "TRANCHE14_CROSS_STAGE_ROUTE_COMPOSITION_AND_SORKIN_HIERARCHY".to_string(),
         covered_nodes: vec![
@@ -1287,26 +1432,22 @@ pub fn verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_br
     let lorentz_null_11 = 1i64 * 1 - 1 * 1;
     let l1_sq_vs_l2_sq_11 = ((1i64 + 1).pow(2), 1i64.pow(2) + 1i64.pow(2));
     let proj_contraction_11 = (1i64.pow(2) + 0i64.pow(2)) < (1i64.pow(2) + 1i64.pow(2));
-    let l1_gaps_ok = gauss_1_2i_norm_sq == 5
-        && gauss_1_2i_norm_sq != 1
-        && lorentz_null_11 == 0
-        && l1_sq_vs_l2_sq_11 == (4, 2)
-        && proj_contraction_11;
+    let l1_gaps_ok = all_flags(&[
+        gauss_1_2i_norm_sq == 5,
+        gauss_1_2i_norm_sq != 1,
+        lorentz_null_11 == 0,
+        l1_sq_vs_l2_sq_11 == (4, 2),
+        proj_contraction_11,
+    ]);
 
     let luders_vs_dephasing_p1 = (1i64, 0i64, 0i64) != (1i64, 0i64, 1i64);
     let euler_step_norm_sq = 1i64 * 1 + 1 * 1;
     let cayley_t2_norm_sq = (-3i64).pow(2) + 4i64.pow(2);
-    let ds_gaps_ok = luders_vs_dephasing_p1 && euler_step_norm_sq == 2 && cayley_t2_norm_sq == 25;
+    let ds_gaps_ok = all_flags(&[luders_vs_dephasing_p1, euler_step_norm_sq == 2, cayley_t2_norm_sq == 25]);
 
-    let mut sixteen_bridges_ok = true;
-    for r in 0..16usize {
-        let active_count = (0..16usize).filter(|&j| j != r).count();
-        if active_count != 15 {
-            sixteen_bridges_ok = false;
-        }
-    }
+    let sixteen_bridges_ok = check_drop_one_active(16);
 
-    let passed = l1_gaps_ok && ds_gaps_ok && sixteen_bridges_ok;
+    let passed = all_flags(&[l1_gaps_ok, ds_gaps_ok, sixteen_bridges_ok]);
     DerivationDagWitnessSummary {
         family_id: "TRANCHE15_GAP_NONDERIVATION_COUNTERMODELS_AND_CONDITIONAL_ROUTE_BRIDGES".to_string(),
         covered_nodes: vec![
@@ -1356,26 +1497,17 @@ pub fn verify_tranche16_master_177_node_172_route_dag_completeness_and_operad_au
     let min_dual_witness_bindings = 2 * total_nodes_by_status;
     let total_cross_language_bindings_floor = 2 * min_dual_witness_bindings;
 
-    let mut twenty_five_family_isolation = true;
-    for k in 0..25_usize {
-        for j in 0..25_usize {
-            let f_j = j != k;
-            if j == k && f_j {
-                twenty_five_family_isolation = false;
-            }
-            if j != k && !f_j {
-                twenty_five_family_isolation = false;
-            }
-        }
-    }
+    let twenty_five_family_isolation = check_drop_one_active(25);
 
-    let passed = total_nodes_by_status == 177
-        && total_nodes_by_stage == 177
-        && total_routes == 172
-        && total_gap_routes == 11
-        && min_dual_witness_bindings == 354
-        && total_cross_language_bindings_floor == 708
-        && twenty_five_family_isolation;
+    let passed = all_flags(&[
+        total_nodes_by_status == 177,
+        total_nodes_by_stage == 177,
+        total_routes == 172,
+        total_gap_routes == 11,
+        min_dual_witness_bindings == 354,
+        total_cross_language_bindings_floor == 708,
+        twenty_five_family_isolation,
+    ]);
 
     DerivationDagWitnessSummary {
         family_id: "TRANCHE16_MASTER_177_NODE_172_ROUTE_DAG_COMPLETENESS_AND_OPERAD_AUDIT".to_string(),
@@ -1406,14 +1538,14 @@ pub fn verify_tranche17_l1_emergence_gs000_gs001_replica_and_c10_branch_closure_
     let weighted_sum = x0 * w0 + x1 * w1 + x2 * w2;
     let uniform_w = 4_i64;
     let uniform_sum = x0 * uniform_w + x1 * uniform_w + x2 * uniform_w;
-    let gs003_passed = weighted_sum == 56 && uniform_sum == uniform_w * (x0 + x1 + x2);
+    let gs003_passed = all_flags(&[weighted_sum == 56, uniform_sum == uniform_w * (x0 + x1 + x2)]);
 
     let unit_gauge_u0 = 3_i64;
     let norm_x = 11_i64;
     let gauge_x = unit_gauge_u0 * norm_x;
     let enc0523_p1_drop_max = 1_i64.max(1) != 1 + 1;
     let enc0523_p3_drop_aniso = (1_i64 * 1 + 2 * 0) != (1 * 0 + 2 * 1);
-    let gs001_passed = gauge_x == 33 && enc0523_p1_drop_max && enc0523_p3_drop_aniso;
+    let gs001_passed = all_flags(&[gauge_x == 33, enc0523_p1_drop_max, enc0523_p3_drop_aniso]);
 
     let (rx0, rx1, ry0, ry1) = (3_i64, 4_i64, 5_i64, 12_i64);
     let l1_replica_ext = (rx0 + rx1) + (ry0 + ry1) == rx0 + rx1 + ry0 + ry1;
@@ -1421,15 +1553,19 @@ pub fn verify_tranche17_l1_emergence_gs000_gs001_replica_and_c10_branch_closure_
         == rx0 * rx0 + rx1 * rx1 + ry0 * ry0 + ry1 * ry1;
     let l2_sq_homog_fails = (2 * rx0) * (2 * rx0) + (2 * rx1) * (2 * rx1) != 2 * (rx0 * rx0 + rx1 * rx1);
     let l2_disjoint_add_fails = 5_i64 != rx0 + rx1;
-    let replica_passed = l1_replica_ext && l2_sq_replica_ext && l2_sq_homog_fails && l2_disjoint_add_fails;
+    let replica_passed = all_flags(&[l1_replica_ext, l2_sq_replica_ext, l2_sq_homog_fails, l2_disjoint_add_fails]);
 
     let (d0, b, c, d1) = (3_i64, 5_i64, -7_i64, 9_i64);
-    let z_pinched_off_diag_zero = (b + (-b) == 0) && (c + (-c) == 0) && (d0 + d0 == 2 * d0) && (d1 + d1 == 2 * d1);
+    let z_pinched_off_diag_zero = all_flags(&[b + (-b) == 0, c + (-c) == 0, d0 + d0 == 2 * d0, d1 + d1 == 2 * d1]);
     let hadamard_plus_x_trace = 1_i64 + 1;
     let hadamard_minus_x_trace = -1_i64 + (-1);
-    let c10_and_sector_passed = z_pinched_off_diag_zero && hadamard_plus_x_trace == 2 && hadamard_minus_x_trace == -2;
+    let c10_and_sector_passed = all_flags(&[
+        z_pinched_off_diag_zero,
+        hadamard_plus_x_trace == 2,
+        hadamard_minus_x_trace == -2,
+    ]);
 
-    let passed = gs003_passed && gs001_passed && replica_passed && c10_and_sector_passed;
+    let passed = all_flags(&[gs003_passed, gs001_passed, replica_passed, c10_and_sector_passed]);
 
     DerivationDagWitnessSummary {
         family_id: "TRANCHE17_L1_EMERGENCE_GS000_GS001_REPLICA_AND_C10_BRANCH_CLOSURE".to_string(),
@@ -1457,34 +1593,35 @@ pub fn verify_tranche18_ds_qm063_072_073_090_holonomy_bit_shadow_chsh_and_o022_c
     let gauge_rotated_intensity = (-b1 - b2).pow(2) + (a1 + a2).pow(2);
     let (c1, c2, c3) = (5_i64, -3_i64, 7_i64);
     let (phi0, phi1, phi2, phi3) = (0_i64, c1, c1 + c2, c1 + c3);
-    let tree_repaired_zero = (c1 - (phi1 - phi0) == 0) && (c2 - (phi2 - phi1) == 0) && (c3 - (phi3 - phi1) == 0);
-    let qm063_passed = lhs_intensity == 50 && rhs_intensity == 50 && gauge_rotated_intensity == 50 && tree_repaired_zero;
+    let tree_repaired_zero = all_flags(&[
+        c1 - (phi1 - phi0) == 0,
+        c2 - (phi2 - phi1) == 0,
+        c3 - (phi3 - phi1) == 0,
+    ]);
+    let qm063_passed = all_flags(&[
+        lhs_intensity == 50,
+        rhs_intensity == 50,
+        gauge_rotated_intensity == 50,
+        tree_repaired_zero,
+    ]);
 
     let bit_shadow_equal = (1_i64, 1_i64) == (1_i64, 1_i64);
     let (trace_x_plus, trace_x_minus, trace_x_mixed) = (2_i64, -2_i64, 0_i64);
     let p7_c10_z_preserved = 0_i64.pow(2) + 0_i64.pow(2) + 1_i64.pow(2) == 1;
     let p7_c10_x_expanded = (2_i64 * 1).pow(2) + 0_i64.pow(2) + 0_i64.pow(2);
-    let qm072_passed = bit_shadow_equal
-        && trace_x_plus != trace_x_minus
-        && trace_x_plus != trace_x_mixed
-        && p7_c10_z_preserved
-        && p7_c10_x_expanded == 4
-        && p7_c10_x_expanded > 1;
+    let qm072_passed = all_flags(&[
+        bit_shadow_equal,
+        trace_x_plus != trace_x_minus,
+        trace_x_plus != trace_x_mixed,
+        p7_c10_z_preserved,
+        p7_c10_x_expanded == 4,
+        p7_c10_x_expanded > 1,
+    ]);
 
-    let mut all_16_chsh_sq_eq_4 = true;
-    for mask in 0..16_u8 {
-        let a0 = if (mask & 1) != 0 { 1_i64 } else { -1_i64 };
-        let a1 = if (mask & 2) != 0 { 1_i64 } else { -1_i64 };
-        let b0 = if (mask & 4) != 0 { 1_i64 } else { -1_i64 };
-        let b1 = if (mask & 8) != 0 { 1_i64 } else { -1_i64 };
-        let s = a0 * (b0 + b1) + a1 * (b0 - b1);
-        if s * s != 4 {
-            all_16_chsh_sq_eq_4 = false;
-        }
-    }
+    let all_16_chsh_sq_eq_4 = check_all_16_chsh_sq_eq_4();
     let s_pr = 1_i64 + 1 + 1 - (-1);
-    let chsh_hierarchy_25 = 100_i64 < 196 && 196 < 200 && 200 < 400;
-    let qm073_passed = all_16_chsh_sq_eq_4 && s_pr == 4 && s_pr * s_pr == 16 && chsh_hierarchy_25;
+    let chsh_hierarchy_25 = all_flags(&[100_i64 < 196, 196_i64 < 200, 200_i64 < 400]);
+    let qm073_passed = all_flags(&[all_16_chsh_sq_eq_4, s_pr == 4, s_pr * s_pr == 16, chsh_hierarchy_25]);
 
     let o022_rows: [(bool, bool, bool, bool); 7] = [
         (false, false, true, true),
@@ -1495,15 +1632,11 @@ pub fn verify_tranche18_ds_qm063_072_073_090_holonomy_bit_shadow_chsh_and_o022_c
         (false, true, false, true),
         (true, true, true, true),
     ];
-    let passing_rows: Vec<usize> = o022_rows
-        .iter()
-        .enumerate()
-        .filter_map(|(idx, &(c, p, cp, fa))| if c && p && cp && fa { Some(idx) } else { None })
-        .collect();
+    let passing_rows = find_admitted_o022_rows(&o022_rows);
     let super_registry_min = 5_usize.min(7);
-    let qm090_passed = passing_rows == vec![6] && super_registry_min == 5 && (16_usize + 8 == 24);
+    let qm090_passed = all_flags(&[passing_rows == vec![6], super_registry_min == 5, 16_usize + 8 == 24]);
 
-    let passed = qm063_passed && qm072_passed && qm073_passed && qm090_passed;
+    let passed = all_flags(&[qm063_passed, qm072_passed, qm073_passed, qm090_passed]);
 
     DerivationDagWitnessSummary {
         family_id: "TRANCHE18_DS_QM063_072_073_090_HOLONOMY_BIT_SHADOW_CHSH_AND_O022_CLOSURE".to_string(),
@@ -1526,14 +1659,26 @@ pub fn verify_tranche18_ds_qm063_072_073_090_holonomy_bit_shadow_chsh_and_o022_c
     }
 }
 
+fn check_repair_image_monotone() -> bool {
+    let pairs = [(false, false), (false, true), (true, true)];
+    for &(b_x, b_prime_x) in &pairs {
+        let fail_b = u8::from(!b_x);
+        let fail_b_prime = u8::from(!b_prime_x);
+        if fail_b_prime > fail_b {
+            return false;
+        }
+    }
+    true
+}
+
 pub fn verify_tranche19_ds_qm062_094_101_206_u1_selector_everett_threshold_and_boundary_synthesis_witness() -> DerivationDagWitnessSummary {
-    let s_sq_is_id = (1_i64 * 1 == 1) && ((-1_i64) * (-1) == 1);
-    let split_real_zero_div = (1_i64 * 1 + 1 * (-1) == 0) && (1_i64 * (-1) + 1 * 1 == 0);
+    let s_sq_is_id = all_flags(&[1_i64 * 1 == 1, (-1_i64) * (-1) == 1]);
+    let split_real_zero_div = all_flags(&[1_i64 * 1 + 1 * (-1) == 0, 1_i64 * (-1) + 1 * 1 == 0]);
     let pauli_xz_entry01 = 0_i64 * 0 + 1 * (-1);
     let pauli_zx_entry01 = 1_i64 * 1 + 0 * 0;
     let non_abelian_excluded = pauli_xz_entry01 != pauli_zx_entry01;
     let cx_injective_check = (3_i64, -4_i64, 4_i64, 3_i64) != (3_i64, 4_i64, -4_i64, 3_i64);
-    let qm062_passed = s_sq_is_id && split_real_zero_div && non_abelian_excluded && cx_injective_check;
+    let qm062_passed = all_flags(&[s_sq_is_id, split_real_zero_div, non_abelian_excluded, cx_injective_check]);
 
     let (c0, c1, d0, d1) = (3_i64, 4_i64, 5_i64, 7_i64);
     let off_diag_r0 = c0 * c1 * 0;
@@ -1541,26 +1686,17 @@ pub fn verify_tranche19_ds_qm062_094_101_206_u1_selector_everett_threshold_and_b
     let (p, q, s_pyth, w0) = (3_i64, 4_i64, 5_i64, 9_i64);
     let pyth_child_conserved = p * p * w0 + q * q * w0 == s_pyth * s_pyth * w0;
     let global_swap_coherent_vs_collapsed = (4_i64, 2_i64);
-    let qm094_passed = off_diag_r0 == 0
-        && local_diag_trace == 157
-        && pyth_child_conserved
-        && global_swap_coherent_vs_collapsed.0 != global_swap_coherent_vs_collapsed.1;
+    let qm094_passed = all_flags(&[
+        off_diag_r0 == 0,
+        local_diag_trace == 157,
+        pyth_child_conserved,
+        global_swap_coherent_vs_collapsed.0 != global_swap_coherent_vs_collapsed.1,
+    ]);
 
-    let mut repair_image_monotone = true;
-    for b_x in [false, true] {
-        for b_prime_x in [false, true] {
-            if !b_x || b_prime_x {
-                let fail_b = if b_x { 0_u8 } else { 1_u8 };
-                let fail_b_prime = if b_prime_x { 0_u8 } else { 1_u8 };
-                if fail_b_prime > fail_b {
-                    repair_image_monotone = false;
-                }
-            }
-        }
-    }
-    let sub_threshold_dec = 32_i64 > 16 && 16 > 8;
-    let super_threshold_inc = 96_i64 < 144 && 144 < 216;
-    let qm101_passed = repair_image_monotone && sub_threshold_dec && super_threshold_inc;
+    let repair_image_monotone = check_repair_image_monotone();
+    let sub_threshold_dec = all_flags(&[32_i64 > 16, 16_i64 > 8]);
+    let super_threshold_inc = all_flags(&[96_i64 < 144, 144_i64 < 216]);
+    let qm101_passed = all_flags(&[repair_image_monotone, sub_threshold_dec, super_threshold_inc]);
 
     let (f0, f1, f2, f3) = (2_i64, -5_i64, 11_i64, 3_i64);
     let (df01, df12, df23, df30) = (f1 - f0, f2 - f1, f3 - f2, f0 - f3);
@@ -1568,11 +1704,16 @@ pub fn verify_tranche19_ds_qm062_094_101_206_u1_selector_everett_threshold_and_b
     let (w01, w12, w23, w30) = (7_i64, -3_i64, 4_i64, 9_i64);
     let holonomy_before = w01 + w12 + w23 + w30;
     let holonomy_after = (w01 + df01) + (w12 + df12) + (w23 + df23) + (w30 + df30);
-    let non_faithful_shadow = (1_i64, 1_i64) == (1_i64, 1_i64) && (1_i64 != -1_i64);
+    let non_faithful_shadow = all_flags(&[(1_i64, 1_i64) == (1_i64, 1_i64), 1_i64 != -1_i64]);
     let mermin_peres_parity_gap = (1_i64 * 1 * 1) != (1_i64 * 1 * (-1));
-    let qm206_passed = d1_d0_zero && holonomy_before == holonomy_after && non_faithful_shadow && mermin_peres_parity_gap;
+    let qm206_passed = all_flags(&[
+        d1_d0_zero,
+        holonomy_before == holonomy_after,
+        non_faithful_shadow,
+        mermin_peres_parity_gap,
+    ]);
 
-    let passed = qm062_passed && qm094_passed && qm101_passed && qm206_passed;
+    let passed = all_flags(&[qm062_passed, qm094_passed, qm101_passed, qm206_passed]);
 
     DerivationDagWitnessSummary {
         family_id: "TRANCHE19_DS_QM062_094_101_206_U1_SELECTOR_EVERETT_THRESHOLD_AND_BOUNDARY_SYNTHESIS".to_string(),
@@ -1601,8 +1742,8 @@ pub fn verify_tranche20_ds_qm032_033_073_090_207_feynman_schrodinger_exchange_an
     let (u0, u1, u2) = (2_i64, -3_i64, 5_i64);
     let (v0, v1, v2) = (4_i64, 1_i64, -2_i64);
     let composed_kernel = u0 * v0 + u1 * v1 + u2 * v2;
-    let coda_a_terminalizer = (true && true) && !(true && false) && !(false && true);
-    let qm032_passed = actions_midpoints == [2, 0, 2] && composed_kernel == -5 && coda_a_terminalizer;
+    let coda_a_terminalizer = true;
+    let qm032_passed = all_flags(&[actions_midpoints == [2, 0, 2], composed_kernel == -5, coda_a_terminalizer]);
 
     let (d0, d1, a0, b0, a1, b1) = (3_i64, -5_i64, 4_i64, -7_i64, 2_i64, 9_i64);
     let mass_rate = ((d0 * a0) * b0 + (d0 * b0) * (-a0))
@@ -1612,37 +1753,32 @@ pub fn verify_tranche20_ds_qm032_033_073_090_207_feynman_schrodinger_exchange_an
     let (al0, al1, al2) = (3_i64, -4_i64, 7_i64);
     let holonomy_before = th01 + th12 + th20;
     let holonomy_after = (th01 + (al1 - al0)) + (th12 + (al2 - al1)) + (th20 + (al0 - al2));
-    let qm033_passed = mass_rate == 0 && holonomy_before == 11 && holonomy_after == 11;
+    let qm033_passed = all_flags(&[mass_rate == 0, holonomy_before == 11, holonomy_after == 11]);
 
-    let int_domain_diag_zero = (-7_i64 != 7_i64) && (0_i64 == -0_i64);
-    let zmod4_zero_divisor_witness = ((2_u8 + 2_u8) % 4 == 0) && (2_u8 % 4 != 0);
-    let bell_three_clauses = (true && true && true)
-        && !(false && true && true)
-        && !(true && false && true)
-        && !(true && true && false);
-    let qm073_passed = int_domain_diag_zero && zmod4_zero_divisor_witness && bell_three_clauses;
+    let int_domain_diag_zero = all_flags(&[-7_i64 != 7_i64, 0_i64 == -0_i64]);
+    let zmod4_zero_divisor_witness = all_flags(&[(2_u8 + 2_u8) % 4 == 0, 2_u8 % 4 != 0]);
+    let bell_three_clauses = true;
+    let qm073_passed = all_flags(&[int_domain_diag_zero, zmod4_zero_divisor_witness, bell_three_clauses]);
 
-    let survival_gate_and_sealed_fail = (true && true && true) && !(true && true && false);
+    let survival_gate_and_sealed_fail = true;
     let rebit_dim_2 = 2_usize * (2 + 1) / 2;
     let rebit_dim_4 = 4_usize * (4 + 1) / 2;
     let qubit_dim_2 = 2_usize * 2;
     let qubit_dim_4 = 4_usize * 4;
-    let rebit_vs_qubit_tomography = (rebit_dim_2 * rebit_dim_2 == 9)
-        && (rebit_dim_4 == 10)
-        && (9_usize != 10)
-        && (qubit_dim_2 * qubit_dim_2 == qubit_dim_4);
-    let mut five_import_drop_one_ok = true;
-    for k in 0..5_usize {
-        for j in 0..5_usize {
-            let f_j = j != k;
-            if (j == k && f_j) || (j != k && !f_j) {
-                five_import_drop_one_ok = false;
-            }
-        }
-    }
-    let qm090_207_passed = survival_gate_and_sealed_fail && rebit_vs_qubit_tomography && five_import_drop_one_ok;
+    let rebit_vs_qubit_tomography = all_flags(&[
+        rebit_dim_2 * rebit_dim_2 == 9,
+        rebit_dim_4 == 10,
+        9_usize != 10,
+        qubit_dim_2 * qubit_dim_2 == qubit_dim_4,
+    ]);
+    let five_import_drop_one_ok = check_drop_one_active(5);
+    let qm090_207_passed = all_flags(&[
+        survival_gate_and_sealed_fail,
+        rebit_vs_qubit_tomography,
+        five_import_drop_one_ok,
+    ]);
 
-    let passed = qm032_passed && qm033_passed && qm073_passed && qm090_207_passed;
+    let passed = all_flags(&[qm032_passed, qm033_passed, qm073_passed, qm090_207_passed]);
 
     DerivationDagWitnessSummary {
         family_id: "TRANCHE20_DS_QM032_033_073_090_207_FEYNMAN_SCHRODINGER_EXCHANGE_AND_FIVE_IMPORT_CASCADE".to_string(),
@@ -1662,21 +1798,37 @@ pub fn verify_tranche20_ds_qm032_033_073_090_207_feynman_schrodinger_exchange_an
     }
 }
 
-pub fn verify_tranche21_pg_wdp_bridge_sector_weights_qm122_finish_embedding_and_baker_witness() -> DerivationDagWitnessSummary {
-    let (d_h_tri, d_k_tri) = (3_usize, 6_usize);
-    let (d_h_bdry, d_k_bdry) = (0_usize, 2_usize);
-    let completion_dim_ok = (d_h_tri + (d_k_tri - d_h_tri) == 6) && (d_h_bdry + (d_k_bdry - d_h_bdry) == 2);
-    let flat_diamond_curl = (2_i64 + 3) - (1_i64 + 4);
-    let assertion_fee_curl = (1_i64 + 2) - (1_i64 + 1);
-    let mut no_rational_sqrt2 = true;
+fn check_no_rational_sqrt2() -> bool {
     for q in 1..=4_i64 {
         for p in 1..=6_i64 {
             if p * p == 2 * q * q {
-                no_rational_sqrt2 = false;
+                return false;
             }
         }
     }
-    let pg_wdp_passed = completion_dim_ok && flat_diamond_curl == 0 && assertion_fee_curl == 1 && no_rational_sqrt2;
+    true
+}
+
+fn gauss_pair_norm_sq((a, b): (i64, i64)) -> i64 {
+    a * a + b * b
+}
+
+pub fn verify_tranche21_pg_wdp_bridge_sector_weights_qm122_finish_embedding_and_baker_witness() -> DerivationDagWitnessSummary {
+    let (d_h_tri, d_k_tri) = (3_usize, 6_usize);
+    let (d_h_bdry, d_k_bdry) = (0_usize, 2_usize);
+    let completion_dim_ok = all_flags(&[
+        d_h_tri + (d_k_tri - d_h_tri) == 6,
+        d_h_bdry + (d_k_bdry - d_h_bdry) == 2,
+    ]);
+    let flat_diamond_curl = (2_i64 + 3) - (1_i64 + 4);
+    let assertion_fee_curl = (1_i64 + 2) - (1_i64 + 1);
+    let no_rational_sqrt2 = check_no_rational_sqrt2();
+    let pg_wdp_passed = all_flags(&[
+        completion_dim_ok,
+        flat_diamond_curl == 0,
+        assertion_fee_curl == 1,
+        no_rational_sqrt2,
+    ]);
 
     let r_a = [1_u64, 1, 0, 0];
     let r_b = [0_u64, 0, 1, 1];
@@ -1686,26 +1838,31 @@ pub fn verify_tranche21_pg_wdp_bridge_sector_weights_qm122_finish_embedding_and_
     let sectors_b = (r_b[0] + r_b[1], r_b[2] + r_b[3]);
     let orbit_sum_s1_a = (1_u64 + 1) + (1 + 0) + (0 + 0) + (0 + 1);
     let orbit_sum_s1_b = (0_u64 + 0) + (0 + 1) + (1 + 1) + (1 + 0);
-    let sector_weights_passed = phi1_a == 2
-        && phi1_b == 2
-        && sectors_a == (2, 0)
-        && sectors_b == (0, 2)
-        && sectors_a != sectors_b
-        && orbit_sum_s1_a == 4
-        && orbit_sum_s1_b == 4;
+    let sector_weights_passed = all_flags(&[
+        phi1_a == 2,
+        phi1_b == 2,
+        sectors_a == (2, 0),
+        sectors_b == (0, 2),
+        sectors_a != sectors_b,
+        orbit_sum_s1_a == 4,
+        orbit_sum_s1_b == 4,
+    ]);
 
-    let gauss_norm_sq = |(a, b): (i64, i64)| -> i64 { a * a + b * b };
     let z0 = (2_i64, -1_i64);
     let z1 = (1_i64, 3_i64);
-    let norm_z0_z1 = gauss_norm_sq(z0) + gauss_norm_sq(z1);
+    let norm_z0_z1 = gauss_pair_norm_sq(z0) + gauss_pair_norm_sq(z1);
     let mix_out0 = (z0.0 + z1.0, z0.1 + z1.1);
     let mix_out1 = (z0.0 - z1.0, z0.1 - z1.1);
-    let norm_mix = gauss_norm_sq(mix_out0) + gauss_norm_sq(mix_out1);
+    let norm_mix = gauss_pair_norm_sq(mix_out0) + gauss_pair_norm_sq(mix_out1);
     let swap_i_out0 = (-z1.1, z1.0);
     let swap_i_out1 = (-z0.1, z0.0);
-    let norm_swap_i = gauss_norm_sq(swap_i_out0) + gauss_norm_sq(swap_i_out1);
-    let qm122_finish_census = (2_usize * 2 == 4) && (3_usize + 4 + 1 == 8);
-    let qm122_passed = norm_mix == 2 * norm_z0_z1 && norm_swap_i == norm_z0_z1 && qm122_finish_census;
+    let norm_swap_i = gauss_pair_norm_sq(swap_i_out0) + gauss_pair_norm_sq(swap_i_out1);
+    let qm122_finish_census = all_flags(&[2_usize * 2 == 4, 3_usize + 4 + 1 == 8]);
+    let qm122_passed = all_flags(&[
+        norm_mix == 2 * norm_z0_z1,
+        norm_swap_i == norm_z0_z1,
+        qm122_finish_census,
+    ]);
 
     let (c0, c1) = (3_i64, -5_i64);
     let pure_gram_det = (c0 * c0) * (c1 * c1) - (c0 * c1) * (c0 * c1);
@@ -1715,15 +1872,17 @@ pub fn verify_tranche21_pg_wdp_bridge_sector_weights_qm122_finish_embedding_and_
     let renyi2_deficit = d * d - (p * p + (d - p) * (d - p));
     let gamma_pure = d * b - d * b;
     let gamma_mixed = d * b - p * b;
-    let fq_embedding_baker_passed = pure_gram_det == 0
-        && w5_eval_pos == (1, 3)
-        && w5_eval_neg == (-17, 21)
-        && (32_usize / 2 == 16)
-        && renyi2_deficit == 2 * p * (d - p)
-        && gamma_pure == 0
-        && gamma_mixed == 6;
+    let fq_embedding_baker_passed = all_flags(&[
+        pure_gram_det == 0,
+        w5_eval_pos == (1, 3),
+        w5_eval_neg == (-17, 21),
+        32_usize / 2 == 16,
+        renyi2_deficit == 2 * p * (d - p),
+        gamma_pure == 0,
+        gamma_mixed == 6,
+    ]);
 
-    let passed = pg_wdp_passed && sector_weights_passed && qm122_passed && fq_embedding_baker_passed;
+    let passed = all_flags(&[pg_wdp_passed, sector_weights_passed, qm122_passed, fq_embedding_baker_passed]);
 
     DerivationDagWitnessSummary {
         family_id: "TRANCHE21_PG_WDP_BRIDGE_SECTOR_WEIGHTS_QM122_FINISH_EMBEDDING_AND_BAKER".to_string(),
@@ -1743,6 +1902,26 @@ pub fn verify_tranche21_pg_wdp_bridge_sector_weights_qm122_finish_embedding_and_
     }
 }
 
+fn check_norm25_cuts_disjoint() -> bool {
+    for z in -10_i64..=10 {
+        if 2 * z * z == 25 {
+            return false;
+        }
+        if 7 * z * z == 25 {
+            return false;
+        }
+    }
+    true
+}
+
+fn proj_dump_pair((u0, u1): (i64, i64), (v0, v1): (i64, i64)) -> (i64, i64) {
+    ((v0 + v1) * u0, (v0 + v1) * u1)
+}
+
+fn pauli_z_pair((v0, v1): (i64, i64)) -> (i64, i64) {
+    (v0, -v1)
+}
+
 pub fn verify_tranche22_fq_selection_gleason_tensor_u1_stone_continuum_and_stubs_witness() -> DerivationDagWitnessSummary {
     let prim_diff = 4_i64 - 3;
     let (r_l1, r_born, r_quartic) = (3_i64 + 4, 3_i64 * 3 + 4 * 4, 3_i64.pow(4) + 4_i64.pow(4));
@@ -1755,59 +1934,56 @@ pub fn verify_tranche22_fq_selection_gleason_tensor_u1_stone_continuum_and_stubs
     let det_3x3 = 1_i64 * (1 * 1 - (-1) * (-1))
         - (-1_i64) * ((-1) * 1 - (-1) * (-1))
         + (-1_i64) * ((-1) * (-1) - 1 * (-1));
-    let mut norm25_cuts_disjoint = true;
-    for z in -10_i64..=10 {
-        if 2 * z * z == 25 || 7 * z * z == 25 {
-            norm25_cuts_disjoint = false;
-        }
-    }
-    let selection_and_gleason_passed = prim_diff == 1
-        && r_l1 == 7
-        && r_born == 25
-        && r_quartic == 337
-        && sorkin_i3_quad == 0
-        && sorkin_i3_cubic == 6
-        && minor_1x1 >= 0
-        && minor_2x2 == 0
-        && det_3x3 == -4
-        && norm25_cuts_disjoint
-        && (120_usize % 28 != 0)
-        && (120_usize % 7 != 0);
+    let norm25_cuts_disjoint = check_norm25_cuts_disjoint();
+    let selection_and_gleason_passed = all_flags(&[
+        prim_diff == 1,
+        r_l1 == 7,
+        r_born == 25,
+        r_quartic == 337,
+        sorkin_i3_quad == 0,
+        sorkin_i3_cubic == 6,
+        minor_1x1 >= 0,
+        minor_2x2 == 0,
+        det_3x3 == -4,
+        norm25_cuts_disjoint,
+        120_usize % 28 != 0,
+        120_usize % 7 != 0,
+    ]);
 
-    let proj_dump = |(u0, u1): (i64, i64), (v0, v1): (i64, i64)| -> (i64, i64) {
-        ((v0 + v1) * u0, (v0 + v1) * u1)
-    };
     let e0 = (1_i64, 0_i64);
     let e1 = (0_i64, 1_i64);
-    let pauli_z = |(v0, v1): (i64, i64)| -> (i64, i64) { (v0, -v1) };
-    let dump_e0_e0 = proj_dump(e0, e0);
-    let dump_e0_e1 = proj_dump(e0, e1);
-    let dump_e0_ze0 = proj_dump(e0, pauli_z(e0));
-    let dump_e0_ze1 = proj_dump(e0, pauli_z(e1));
-    let sign_squares_one = (-1_i64 * -1 == 1) && (1_i64 * 1 == 1);
+    let dump_e0_e0 = proj_dump_pair(e0, e0);
+    let dump_e0_e1 = proj_dump_pair(e0, e1);
+    let dump_e0_ze0 = proj_dump_pair(e0, pauli_z_pair(e0));
+    let dump_e0_ze1 = proj_dump_pair(e0, pauli_z_pair(e1));
+    let sign_squares_one = all_flags(&[-1_i64 * -1 == 1, 1_i64 * 1 == 1]);
     let gauss_i_sq = (-1_i64, 0_i64);
     let cyc3_one_double = (1_usize + 1) % 3;
-    let tensor_and_u1_passed = dump_e0_e0 == e0
-        && dump_e0_e1 == e0
-        && dump_e0_ze0 == (1, 0)
-        && dump_e0_ze1 == (-1, 0)
-        && dump_e0_ze0 != dump_e0_ze1
-        && (2_usize * 3 == 6)
-        && sign_squares_one
-        && gauss_i_sq != (1, 0)
-        && cyc3_one_double == 2;
+    let tensor_and_u1_passed = all_flags(&[
+        dump_e0_e0 == e0,
+        dump_e0_e1 == e0,
+        dump_e0_ze0 == (1, 0),
+        dump_e0_ze1 == (-1, 0),
+        dump_e0_ze0 != dump_e0_ze1,
+        2_usize * 3 == 6,
+        sign_squares_one,
+        gauss_i_sq != (1, 0),
+        cyc3_one_double == 2,
+    ]);
 
     let (qa, qb) = (2_i64, -1_i64);
     let (pa, pb) = (5 * qa + 3, 5 * qb + 4);
     let (next_a, next_b) = (3 * pa - 4 * pb, 4 * pa + 3 * pb);
-    let mod5_step_ok = next_a == 5 * (3 * qa - 4 * qb - 2) + 3
-        && next_b == 5 * (4 * qa + 3 * qb + 4) + 4
-        && next_b != 0;
+    let mod5_step_ok = all_flags(&[
+        next_a == 5 * (3 * qa - 4 * qb - 2) + 3,
+        next_b == 5 * (4 * qa + 3 * qb + 4) + 4,
+        next_b != 0,
+    ]);
     let (a00, a01, a10, a11) = (3_i64, -2_i64, 5_i64, 7_i64);
     let (b00, b01, b10, b11) = (-4_i64, 6_i64, 1_i64, -3_i64);
     let tr_comm = (a00 * b00 + a01 * b10 - (b00 * a00 + b01 * a10))
         + (a10 * b01 + a11 * b11 - (b10 * a01 + b11 * a11));
-    let stone_and_continuum_passed = mod5_step_ok && tr_comm == 0 && (2_i64 * 0 + 1 != 2 * 1 + 1);
+    let stone_and_continuum_passed = all_flags(&[mod5_step_ok, tr_comm == 0, 2_i64 * 0 + 1 != 2 * 1 + 1]);
 
     let (t, x, y) = (2_i64, 3_i64, -4_i64);
     let cayley_x = (1 - t * t) * x - 2 * t * y;
@@ -1818,17 +1994,21 @@ pub fn verify_tranche22_fq_selection_gleason_tensor_u1_stone_continuum_and_stubs
     let dirac_tr = m_mass + (-m_mass);
     let dirac_sq_diag = m_mass * m_mass + p_mom * p_mom;
     let dirac_sq_off = m_mass * p_mom + p_mom * (-m_mass);
-    let stubs_and_zero_cond_passed = cayley_norm_lhs == cayley_norm_rhs
-        && dirac_tr == 0
-        && dirac_sq_diag == 169
-        && dirac_sq_off == 0
-        && (132_usize + 0 + 25 + 14 + 3 + 3 == 177)
-        && (149_usize + 12 + 11 == 172);
+    let stubs_and_zero_cond_passed = all_flags(&[
+        cayley_norm_lhs == cayley_norm_rhs,
+        dirac_tr == 0,
+        dirac_sq_diag == 169,
+        dirac_sq_off == 0,
+        132_usize + 0 + 25 + 14 + 3 + 3 == 177,
+        149_usize + 12 + 11 == 172,
+    ]);
 
-    let passed = selection_and_gleason_passed
-        && tensor_and_u1_passed
-        && stone_and_continuum_passed
-        && stubs_and_zero_cond_passed;
+    let passed = all_flags(&[
+        selection_and_gleason_passed,
+        tensor_and_u1_passed,
+        stone_and_continuum_passed,
+        stubs_and_zero_cond_passed,
+    ]);
 
     DerivationDagWitnessSummary {
         family_id: "TRANCHE22_FQ_SELECTION_GLEASON_TENSOR_U1_STONE_CONTINUUM_AND_STUBS".to_string(),
@@ -1930,7 +2110,34 @@ pub fn verify_tranche23_pfp_35_dag_prompt_operad_certificates_witness() -> Deriv
     }
 }
 
-/// 33. Tranche 24: PFP 142 Remaining DAG Nodes (`36..177`), Mission M3 Decoy Separation, and 177-Node Total Closure.
+fn evaluate_tranche24_node_spec(idx: i64, r_stage: i64, d_routes: i64) -> (bool, i64, i64) {
+    let du01 = (3 * idx + 7) * 5;
+    let du12 = -(2 * idx + 4) * 5;
+    let du23 = (4 * idx + 3) * 5;
+    let du30 = -(5 * idx + 2) * 5;
+    let u0 = 0_i64;
+    let u1 = u0 + du01;
+    let u2 = u1 + du12;
+    let u3 = u2 + du23;
+    let c_hat_30 = u0 - u3;
+    let gamma2 = (du30 - c_hat_30).abs();
+    let d1_d0 = (u1 - u0) + (u2 - u1) + (u3 - u2) + (u0 - u3);
+
+    let shadow = 4 * idx + 3 * r_stage + d_routes;
+    let r_raw = 2 * idx + 5 * r_stage;
+    let g_cob = idx + 2 * r_stage;
+    let s_decoy = r_stage;
+    let countermodel = r_raw - g_cob - s_decoy;
+    let decoy_trap = r_raw - g_cob;
+
+    let ok = all_flags(&[
+        d1_d0 == 0,
+        gamma2 == 20,
+        countermodel == idx + 2 * r_stage,
+        decoy_trap != countermodel,
+    ]);
+    (ok, shadow, countermodel)
+}
 pub fn verify_tranche24_pfp_142_remaining_dag_nodes_and_m3_ablation_witness() -> DerivationDagWitnessSummary {
     let expected_142_specs: [(&str, i64, i64); 142] = [
         ("PG-ROOT-DIFF-STRUCTURE", 1, 4),
@@ -2084,32 +2291,8 @@ pub fn verify_tranche24_pfp_142_remaining_dag_nodes_and_m3_ablation_witness() ->
 
     for (offset, (nid, r_stage, d_routes)) in expected_142_specs.iter().enumerate() {
         let idx = 36_i64 + (offset as i64);
-        let du01 = (3 * idx + 7) * 5;
-        let du12 = -(2 * idx + 4) * 5;
-        let du23 = (4 * idx + 3) * 5;
-        let du30 = -(5 * idx + 2) * 5;
-        let u0 = 0_i64;
-        let u1 = u0 + du01;
-        let u2 = u1 + du12;
-        let u3 = u2 + du23;
-        let c_hat_30 = u0 - u3;
-        let gamma2 = (du30 - c_hat_30).abs();
-        let d1_d0 = (u1 - u0) + (u2 - u1) + (u3 - u2) + (u0 - u3);
-
-        let shadow = 4 * idx + 3 * (*r_stage) + (*d_routes);
-        let r_raw = 2 * idx + 5 * (*r_stage);
-        let g_cob = idx + 2 * (*r_stage);
-        let s_decoy = *r_stage;
-        let countermodel = r_raw - g_cob - s_decoy;
-        let decoy_trap = r_raw - g_cob;
-
-        if d1_d0 != 0
-            || gamma2 != 20
-            || countermodel != idx + 2 * (*r_stage)
-            || decoy_trap == countermodel
-        {
-            all_142_ok = false;
-        }
+        let (ok, shadow, countermodel) = evaluate_tranche24_node_spec(idx, *r_stage, *d_routes);
+        all_142_ok &= ok;
         shadow_sum_142 += shadow;
         countermodel_sum_142 += countermodel;
         covered_nodes.push((*nid).to_string());
@@ -2117,12 +2300,14 @@ pub fn verify_tranche24_pfp_142_remaining_dag_nodes_and_m3_ablation_witness() ->
 
     let shadow_sum_177 = 2540_i64 + shadow_sum_142;
     let countermodel_sum_177 = 921_i64 + countermodel_sum_142;
-    let passed = all_142_ok
-        && covered_nodes.len() == 142
-        && shadow_sum_142 == 63620
-        && countermodel_sum_142 == 16885
-        && shadow_sum_177 == 66160
-        && countermodel_sum_177 == 17806;
+    let passed = all_flags(&[
+        all_142_ok,
+        covered_nodes.len() == 142,
+        shadow_sum_142 == 63620,
+        countermodel_sum_142 == 16885,
+        shadow_sum_177 == 66160,
+        countermodel_sum_177 == 17806,
+    ]);
 
     DerivationDagWitnessSummary {
         family_id: "TRANCHE24_PFP_142_REMAINING_DAG_NODES_AND_M3_ABLATION".to_string(),

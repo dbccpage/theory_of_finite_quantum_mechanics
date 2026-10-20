@@ -2,15 +2,20 @@ pub use crate::linear_algebra::scalars::GaussianRational;
 
 use crate::linear_algebra::scalars::Semiring;
 
-pub fn multiply(left: &GaussianRational, right: &GaussianRational) -> GaussianRational {
-    Semiring::mul(left, right)
+pub fn multiply(
+    left: &GaussianRational,
+    right: &GaussianRational,
+) -> Result<GaussianRational, crate::linear_algebra::scalars::ScalarError> {
+    Semiring::try_mul(left, right)
 }
 
 pub fn norm_is_multiplicative(
     left: &GaussianRational,
     right: &GaussianRational,
 ) -> Result<(), &'static str> {
-    let by_product = multiply(left, right).norm_sq();
+    let by_product = multiply(left, right)
+        .map_err(|_| "Gaussian multiplication refused")?
+        .norm_sq();
     let by_factors = left.norm_sq() * right.norm_sq();
     if by_product == by_factors {
         Ok(())
@@ -22,7 +27,7 @@ pub fn norm_is_multiplicative(
 pub fn sample_norm_identity() -> Result<(), &'static str> {
     let left = GaussianRational::from_integers(1, 1);
     let right = GaussianRational::from_integers(1, -1);
-    let product = multiply(&left, &right);
+    let product = multiply(&left, &right).map_err(|_| "Gaussian multiplication refused")?;
     let two = GaussianRational::from_integers(2, 0);
     if product != two {
         return Err(" (1+i)(1-i) is not 2");

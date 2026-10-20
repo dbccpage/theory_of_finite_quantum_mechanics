@@ -1,0 +1,20 @@
+
+running 13 tests
+............ 12/13
+kernel::model::tests::effect_may_not_exceed_ceiling --- FAILED
+
+failures:
+
+---- kernel::model::tests::effect_may_not_exceed_ceiling stdout ----
+
+thread 'kernel::model::tests::effect_may_not_exceed_ceiling' (29796) panicked at src\operad_theory\kernel\model.rs:576:39:
+called `Result::unwrap_err()` on an `Ok` value: OperationSpec { operation_id: "woland", version: "v1", input_ports: [PortSpec { port_id: "in_0", colour_id: "State", schema_ref: "any" }, PortSpec { port_id: "in_1", colour_id: "Code", schema_ref: "any" }], output_port: PortSpec { port_id: "out", colour_id: "Receipt", schema_ref: "any" }, executor_ref: "skill.woland", executor_digest: "sha256:0000000000000000000000000000000000000000000000000000000000000000", tool_refs: [], effects: [], invocation_grade: Discipline, authority_effect: StateTransition, authority_ceiling: None }
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    kernel::model::tests::effect_may_not_exceed_ceiling
+
+test result: FAILED. 12 passed; 1 failed; 0 ignored; 0 measured; 21 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `-p tfqm_operad_theory --lib`

@@ -25,43 +25,41 @@ pub struct ChmVerificationReport {
 }
 
 #[allow(clippy::needless_range_loop)]
-pub fn verify_chm(m: &Matrix6) -> ChmVerificationReport {
+fn all_entries_have_unit_modulus(m: &Matrix6) -> bool {
     let one = Cyc24::rat(ri(1));
-    let six = Cyc24::rat(ri(6));
-    let zero = Cyc24::zero();
-
-    let mut entries_ok = true;
     for i in 0..D {
         for j in 0..D {
             if mod_sq(&m[i][j]) != one {
-                entries_ok = false;
+                return false;
             }
         }
     }
+    true
+}
 
-    let gram = matrix_mul(m, &matrix_adjoint(m));
-    let mut orth_ok = true;
-    let mut max_offdiag = Cyc24::zero();
+#[allow(clippy::needless_range_loop)]
+fn check_gram_orthogonality(gram: &Matrix6) -> bool {
+    let six = Cyc24::rat(ri(6));
+    let zero = Cyc24::zero();
     for i in 0..D {
         for j in 0..D {
-            if i == j {
-                if gram[i][j] != six {
-                    orth_ok = false;
-                }
-            } else {
-                let off = mod_sq(&gram[i][j]);
-                if gram[i][j] != zero {
-                    orth_ok = false;
-                }
-                if max_offdiag.is_zero() && !off.is_zero() {
-                    max_offdiag = off;
-                }
+            let expected = if i == j { &six } else { &zero };
+            if gram[i][j] != *expected {
+                return false;
             }
         }
     }
+    true
+}
+
+pub fn verify_chm(m: &Matrix6) -> ChmVerificationReport {
+    let entries_ok = all_entries_have_unit_modulus(m);
+    let gram = matrix_mul(m, &matrix_adjoint(m));
+    let orth_ok = check_gram_orthogonality(&gram);
+    let is_chm = entries_ok && orth_ok;
 
     ChmVerificationReport {
-        is_chm: entries_ok && orth_ok,
+        is_chm,
         all_entries_unit_modulus: entries_ok,
         is_orthogonal: orth_ok,
         diagonal_norm_sq: "6".to_string(),
@@ -70,7 +68,7 @@ pub fn verify_chm(m: &Matrix6) -> ChmVerificationReport {
         } else {
             "nonzero".to_string()
         },
-        details: if entries_ok && orth_ok {
+        details: if is_chm {
             "Exact complex Hadamard matrix verified over Q(zeta_24)".to_string()
         } else {
             format!("CHM failure: entries_ok={entries_ok}, orth_ok={orth_ok}")
@@ -178,6 +176,26 @@ pub struct TransitionReport {
     pub sample_violations: Vec<TransitionViolation>,
 }
 
+fn update_min_max_rational(
+    val: &BigRational,
+    min_val: &mut Option<BigRational>,
+    max_val: &mut Option<BigRational>,
+) {
+    if min_val.as_ref().is_none_or(|cur| val < cur) {
+        *min_val = Some(val.clone());
+    }
+    if max_val.as_ref().is_none_or(|cur| val > cur) {
+        *max_val = Some(val.clone());
+    }
+}
+
+fn format_opt_rational(opt: Option<BigRational>) -> String {
+    match opt {
+        Some(r) => format!("{}/{}", r.numer(), r.denom()),
+        None => "none".to_string(),
+    }
+}
+
 #[allow(clippy::needless_range_loop)]
 pub fn check_hadamard_transition(h1: &Matrix6, h2: &Matrix6) -> TransitionReport {
     let h12 = matrix_mul(&matrix_adjoint(h1), h2);
@@ -192,21 +210,7 @@ pub fn check_hadamard_transition(h1: &Matrix6, h2: &Matrix6) -> TransitionReport
         for k in 0..D {
             let msq = mod_sq(&h12[j][k]);
             let rat_val = msq.a[0].clone();
-            if let Some(ref cur_min) = min_val {
-                if &rat_val < cur_min {
-                    min_val = Some(rat_val.clone());
-                }
-            } else {
-                min_val = Some(rat_val.clone());
-            }
-
-            if let Some(ref cur_max) = max_val {
-                if &rat_val > cur_max {
-                    max_val = Some(rat_val.clone());
-                }
-            } else {
-                max_val = Some(rat_val.clone());
-            }
+            update_min_max_rational(&rat_val, &mut min_val, &mut max_val);
 
             if msq == six {
                 matching_count += 1;
@@ -222,24 +226,14 @@ pub fn check_hadamard_transition(h1: &Matrix6, h2: &Matrix6) -> TransitionReport
         }
     }
 
-    let is_mu = violations.is_empty();
-    let min_str = min_val
-        .map(|r| format!("{}/{}", r.numer(), r.denom()))
-        .unwrap_or_else(|| "none".to_string());
-    let max_str = max_val
-        .map(|r| format!("{}/{}", r.numer(), r.denom()))
-        .unwrap_or_else(|| "none".to_string());
-
-    let sample_violations = violations.iter().take(8).cloned().collect();
-
     TransitionReport {
-        is_mutually_unbiased: is_mu,
+        is_mutually_unbiased: violations.is_empty(),
         total_entries: 36,
         matching_entries_count: matching_count,
         violation_count: violations.len(),
-        min_entry_mod_sq_rat: min_str,
-        max_entry_mod_sq_rat: max_str,
-        sample_violations,
+        min_entry_mod_sq_rat: format_opt_rational(min_val),
+        max_entry_mod_sq_rat: format_opt_rational(max_val),
+        sample_violations: violations.iter().take(8).cloned().collect(),
     }
 }
 
@@ -313,15 +307,17 @@ pub struct SzollosiTriadSearchReceipt {
     pub terminal_status: &'static str,
 }
 
-pub fn execute_szollosi_triad_search() -> SzollosiTriadSearchReceipt {
-    let s6 = tao_s6_matrix();
-    let s6_report = verify_chm(&s6);
-    assert!(s6_report.is_chm, "Tao matrix S6 must be an exact CHM");
-
-    let mut tao_permutations: Vec<[usize; 6]> = Vec::new();
-    tao_permutations.push([0, 1, 2, 3, 4, 5]);
+fn generate_tao_permutations() -> Vec<[usize; 6]> {
+    let mut tao_permutations: Vec<[usize; 6]> = vec![[0, 1, 2, 3, 4, 5]];
     for shift in 1..6 {
-        let p = std::array::from_fn(|i| (i + shift) % 6);
+        let p = [
+            shift % 6,
+            (1 + shift) % 6,
+            (2 + shift) % 6,
+            (3 + shift) % 6,
+            (4 + shift) % 6,
+            (5 + shift) % 6,
+        ];
         if !tao_permutations.contains(&p) {
             tao_permutations.push(p);
         }
@@ -336,44 +332,59 @@ pub fn execute_szollosi_triad_search() -> SzollosiTriadSearchReceipt {
         }
     }
     debug_assert_eq!(tao_permutations.len(), 21);
+    tao_permutations
+}
 
+fn count_tao_permutation_triads(s6: &Matrix6, tao_permutations: &[[usize; 6]]) -> usize {
     let mut tao_tao_mu_count = 0;
-    for p in &tao_permutations {
+    for p in tao_permutations {
         let perm_s6: Matrix6 = std::array::from_fn(|i| s6[p[i]].clone());
-        let tr = check_hadamard_transition(&s6, &perm_s6);
-        if tr.is_mutually_unbiased {
+        if check_hadamard_transition(s6, &perm_s6).is_mutually_unbiased {
             tao_tao_mu_count += 1;
         }
     }
+    tao_tao_mu_count
+}
 
-    let discrete_points = search_discrete_szollosi_chm_points();
-    let total_tuples = 24 * 24 * 24 * 24;
-    let valid_count = discrete_points.len();
+fn build_verified_szollosi_b6(pt: &SzollosiDiscretePoint) -> Option<Matrix6> {
+    let b = Cyc24::zeta24(pt.kb as i32);
+    let c = Cyc24::zeta24(pt.kc as i32);
+    let e = Cyc24::zeta24(pt.ke as i32);
+    let f = Cyc24::zeta24(pt.kf as i32);
+    let b6 = szollosi_dephased_b6(&b, &c, &e, &f).ok()?;
+    if verify_chm(&b6).is_chm {
+        Some(b6)
+    } else {
+        None
+    }
+}
 
+fn evaluate_tao_vs_szollosi_prefix(
+    s6: &Matrix6,
+    discrete_points: &[SzollosiDiscretePoint],
+) -> (usize, Option<TransitionReport>, Vec<Matrix6>) {
     let mut tao_szo_mu_count = 0;
     let mut sample_tao_szo_report = None;
     let mut tested_szo_matrices = Vec::new();
 
     for pt in discrete_points.iter().take(64) {
-        let b = Cyc24::zeta24(pt.kb as i32);
-        let c = Cyc24::zeta24(pt.kc as i32);
-        let e = Cyc24::zeta24(pt.ke as i32);
-        let f = Cyc24::zeta24(pt.kf as i32);
-        if let Ok(b6) = szollosi_dephased_b6(&b, &c, &e, &f) {
-            let chm_ver = verify_chm(&b6);
-            if chm_ver.is_chm {
-                let tr = check_hadamard_transition(&s6, &b6);
-                if tr.is_mutually_unbiased {
-                    tao_szo_mu_count += 1;
-                }
-                if sample_tao_szo_report.is_none() {
-                    sample_tao_szo_report = Some(tr);
-                }
-                tested_szo_matrices.push(b6);
+        if let Some(b6) = build_verified_szollosi_b6(pt) {
+            let tr = check_hadamard_transition(s6, &b6);
+            if tr.is_mutually_unbiased {
+                tao_szo_mu_count += 1;
             }
+            if sample_tao_szo_report.is_none() {
+                sample_tao_szo_report = Some(tr);
+            }
+            tested_szo_matrices.push(b6);
         }
     }
+    (tao_szo_mu_count, sample_tao_szo_report, tested_szo_matrices)
+}
 
+fn evaluate_szollosi_pairs(
+    tested_szo_matrices: &[Matrix6],
+) -> (usize, usize, Option<TransitionReport>) {
     let mut szo_szo_mu_count = 0;
     let mut sample_szo_szo_report = None;
     let num_tested_szo = tested_szo_matrices.len();
@@ -391,19 +402,35 @@ pub fn execute_szollosi_triad_search() -> SzollosiTriadSearchReceipt {
             }
         }
     }
+    (szo_pairs_tested, szo_szo_mu_count, sample_szo_szo_report)
+}
+
+pub fn execute_szollosi_triad_search() -> SzollosiTriadSearchReceipt {
+    let s6 = tao_s6_matrix();
+    let s6_report = verify_chm(&s6);
+    assert!(s6_report.is_chm, "Tao matrix S6 must be an exact CHM");
+
+    let tao_permutations = generate_tao_permutations();
+    let tao_tao_mu_count = count_tao_permutation_triads(&s6, &tao_permutations);
+
+    let discrete_points = search_discrete_szollosi_chm_points();
+    let total_tuples = 24 * 24 * 24 * 24;
+    let valid_count = discrete_points.len();
+
+    let (tao_szo_mu_count, sample_tao_szo_report, tested_szo_matrices) =
+        evaluate_tao_vs_szollosi_prefix(&s6, &discrete_points);
+    let (szo_pairs_tested, szo_szo_mu_count, sample_szo_szo_report) =
+        evaluate_szollosi_pairs(&tested_szo_matrices);
 
     let sample_ts = sample_tao_szo_report.unwrap_or_else(|| check_hadamard_transition(&s6, &s6));
-
     let evaluated_set_scope = if tested_szo_matrices.len() == valid_count {
         "All valid discrete Szöllősi CHM points over mu_24 evaluated"
     } else {
         "Prefix subset of 64 discrete Szöllősi CHM points over mu_24 evaluated"
     };
 
-    let (terminal_status, obstruction_summary) = if tao_tao_mu_count == 0
-        && tao_szo_mu_count == 0
-        && szo_szo_mu_count == 0
-    {
+    let any_found = (tao_tao_mu_count + tao_szo_mu_count + szo_szo_mu_count) > 0;
+    let (terminal_status, obstruction_summary) = if !any_found {
         (
             "VerifiedTriadNonExistenceInDiscreteLoci",
             "No mutually unbiased triple {I6, H1, H2} exists between Tao S6 and discrete Szöllősi B6(θ) evaluated points; transition matrix entry moduli deviate strictly from 6",

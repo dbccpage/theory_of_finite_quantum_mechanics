@@ -1,0 +1,173 @@
+# YAML 1.2 (JSON syntax). AuthorityEffect: None.
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/sheaf_theory/cech.rs",
+    "sha256": "8e513cd52c871f7cbc29eec15adfd8404a6493aebde753b6a60fb00db7f1c2b8",
+    "language": "Rust"
+  },
+  "contract_urn": "urn:tfqm:contract:sheaf_theory:cech.rs",
+  "status": "individual_gate_review_L4A_complete",
+  "target": "L4A",
+  "profile": "Exact",
+  "purpose": "Finite presheaves, sheaves, rational Cech cohomology, gluing obstructions, and contextuality sheaf diagnostics over finite covers.",
+  "subject_role": "Individual source review: implements exact rational Cech cochains, coboundary operators, H^0 global section gluing, and H^1 cocycle/coboundary obstruction detection over finite open covers.",
+  "compilation": {
+    "disabled_by_cfg_any": false,
+    "test_or_support_file": false,
+    "compatibility_mirror_tree": false
+  },
+  "declaration_index": [
+    {
+      "kind": "struct",
+      "name": "CechCochain",
+      "line": 9,
+      "declaration_line": "pub struct CechCochain {"
+    },
+    {
+      "kind": "fn",
+      "name": "new",
+      "line": 15,
+      "declaration_line": "pub fn new(degree: usize, data: BTreeMap<Vec<usize>, Ratio<i64>>) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "get",
+      "line": 19,
+      "declaration_line": "pub fn get(&self, indices: &[usize]) -> Ratio<i64> {"
+    },
+    {
+      "kind": "fn",
+      "name": "is_zero",
+      "line": 26,
+      "declaration_line": "pub fn is_zero(&self) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "cech_coboundary_rational",
+      "line": 31,
+      "declaration_line": "pub fn cech_coboundary_rational(cochain: &CechCochain, cover: &[OpenSet]) -> CechCochain {"
+    },
+    {
+      "kind": "fn",
+      "name": "compute_cech_h0",
+      "line": 84,
+      "declaration_line": "pub fn compute_cech_h0(cover: &[OpenSet], constant_val: Ratio<i64>) -> Option<CechCochain> {"
+    },
+    {
+      "kind": "struct",
+      "name": "CechH1Result",
+      "line": 99,
+      "declaration_line": "pub struct CechH1Result {"
+    },
+    {
+      "kind": "fn",
+      "name": "compute_cech_h1_obstruction",
+      "line": 155,
+      "declaration_line": "pub fn compute_cech_h1_obstruction("
+    },
+    {
+      "kind": "fn",
+      "name": "check_h1_vanishing_on_intersections",
+      "line": 184,
+      "declaration_line": "pub fn check_h1_vanishing_on_intersections("
+    }
+  ],
+  "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+  "requirements": [
+    {
+      "id": "G1",
+      "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+    },
+    {
+      "id": "G2",
+      "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+    },
+    {
+      "id": "G3",
+      "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+    },
+    {
+      "id": "G4",
+      "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+    },
+    {
+      "id": "G5",
+      "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+    }
+  ],
+  "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+  "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+  "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+  "open_obligations": [
+    "Scoped to finite open covers and rational 0/1/2-nerve skeleta."
+  ],
+  "evidence": [
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json",
+      "sha256": "3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98"
+    },
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json",
+      "sha256": "e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd"
+    },
+    {
+      "path": "code/rust/quality/l4a_qm_six/records.py",
+      "sha256": "0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706"
+    },
+    {
+      "path": "code/rust/quality/l4a_qm_six/specs.json",
+      "sha256": "bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12"
+    },
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json",
+      "sha256": "929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758"
+    },
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json",
+      "sha256": "9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78"
+    },
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json",
+      "sha256": "90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a"
+    }
+  ],
+  "reviewed_specification": {
+    "status": "individual_gate_review_L4A_complete",
+    "capability_assessment": {
+      "source_sha256": "8e513cd52c871f7cbc29eec15adfd8404a6493aebde753b6a60fb00db7f1c2b8",
+      "level": "L4",
+      "basis": "Individual source review: implements exact rational Cech cochains, coboundary operators, H^0 global section gluing, and H^1 cocycle/coboundary obstruction detection over finite open covers."
+    },
+    "purpose": "Compute exact rational Cech coboundaries and H^0 / H^1 cohomological obstructions on finite nerves.",
+    "open_obligations": [
+      "Scoped to finite open covers and rational 0/1/2-nerve skeleta."
+    ],
+    "engineering_assessment": {
+      "source_sha256": "8e513cd52c871f7cbc29eec15adfd8404a6493aebde753b6a60fb00db7f1c2b8",
+      "gates": {
+        "G1": {
+          "grade": "A",
+          "basis": "Clear cochain and H^0/H^1 obstruction result types over exact Rational64."
+        },
+        "G2": {
+          "grade": "A",
+          "basis": "Exact alternating simplex face sums preserve d^2 = 0 nilpotency and cocycle/coboundary classification."
+        },
+        "G3": {
+          "grade": "A",
+          "basis": "Non-cocycle inputs, missing transition keys, and nerve construction errors return typed Result<CechH1Result, String> refusals."
+        },
+        "G4": {
+          "grade": "A",
+          "basis": "Nilpotency, negative refusal, and H^1 obstruction unit tests plus designated mutations SH01-cech-cocycle and SH02-cech-coboundary (R = 1.0)."
+        },
+        "G5": {
+          "grade": "A",
+          "basis": "Decomposed compute_cech_h1_obstruction via build_nerve_2_skeleton and validate_transition_cocycle_keys so all functions satisfy Grade A structural ceilings (CCN <= 10, cognitive <= 15, nesting <= 3)."
+        }
+      }
+    }
+  }
+}

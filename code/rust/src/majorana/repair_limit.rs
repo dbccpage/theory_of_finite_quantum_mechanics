@@ -145,6 +145,16 @@ pub fn repair_capacity_t(d: usize) -> usize {
     repair_capacity_bound(d)
 }
 
+fn is_nontrivial_cocycle(complex: &ChainComplexGf2, v: &[u8]) -> Result<bool, String> {
+    if v.iter().all(|&b| b == 0) {
+        return Ok(false);
+    }
+    if !is_closed(&complex.d1, v)? {
+        return Ok(false);
+    }
+    Ok(!in_image_d0(&complex.d0, v)?)
+}
+
 pub fn homology_distance(complex: &ChainComplexGf2) -> Result<HomologyDistanceReport, String> {
     if !complex.verify_boundary() {
         return Err("boundary d1 d0 != 0".into());
@@ -156,26 +166,13 @@ pub fn homology_distance(complex: &ChainComplexGf2) -> Result<HomologyDistanceRe
     let mut rep: Option<Vec<u8>> = None;
 
     for v in &all {
-        if v.iter().all(|&b| b == 0) {
-            continue;
-        }
-        if !is_closed(&complex.d1, v)? {
-            continue;
-        }
-        if in_image_d0(&complex.d0, v)? {
+        if !is_nontrivial_cocycle(complex, v)? {
             continue;
         }
         let w = hamming_weight(v);
-        match min_d {
-            None => {
-                min_d = Some(w);
-                rep = Some(v.clone());
-            }
-            Some(cur) if w < cur => {
-                min_d = Some(w);
-                rep = Some(v.clone());
-            }
-            _ => {}
+        if min_d.map_or(true, |cur| w < cur) {
+            min_d = Some(w);
+            rep = Some(v.clone());
         }
     }
 
@@ -234,25 +231,15 @@ pub fn coset_decode_demo(
     coset_decode_demo_inner(complex, error, report.d, report.t, logical)
 }
 
-fn coset_decode_demo_inner(
-    complex: &ChainComplexGf2,
-    error: &[u8],
-    d: Option<usize>,
-    t: Option<usize>,
-    logical: Option<&[u8]>,
-) -> Result<CosetDecodeDemo, String> {
-    let n = complex.num_edges;
-    if error.len() != n {
-        return Err(format!("error len {} != |E|={}", error.len(), n));
-    }
-    let syndrome = apply_d1(&complex.d1, error)?;
-    let all = enumerate_all(n)?;
-
+fn find_closest_coset_leaders(
+    d1: &GF2Matrix,
+    all: &[Vec<u8>],
+    syndrome: &[u8],
+) -> Result<(usize, Vec<Vec<u8>>), String> {
     let mut closest_weight = usize::MAX;
     let mut closest: Vec<Vec<u8>> = Vec::new();
-    for v in &all {
-        let s = apply_d1(&complex.d1, v)?;
-        if s != syndrome {
+    for v in all {
+        if apply_d1(d1, v)? != syndrome {
             continue;
         }
         let w = hamming_weight(v);
@@ -267,31 +254,60 @@ fn coset_decode_demo_inner(
     if closest.is_empty() {
         return Err("empty coset (internal error)".into());
     }
+    Ok((closest_weight, closest))
+}
+
+fn evaluate_logical_shift(
+    complex: &ChainComplexGf2,
+    error: &[u8],
+    syndrome: &[u8],
+    closest: &[Vec<u8>],
+    d: Option<usize>,
+    t: Option<usize>,
+    log: &[u8],
+) -> Result<(bool, bool), String> {
+    let n = complex.num_edges;
+    if log.len() != n {
+        return Err(format!("logical len {} != |E|={}", log.len(), n));
+    }
+    if !is_closed(&complex.d1, log)? {
+        return Err("logical must be closed (d1 L = 0)".into());
+    }
+    let e_plus_l = gf2_add(error, log)?;
+    let syn_l = apply_d1(&complex.d1, &e_plus_l)?;
+    let same_syndrome = syn_l == syndrome;
+    let demo_l = coset_decode_demo_inner(complex, &e_plus_l, d, t, None)?;
+    let leaders_differ =
+        closest.len() != 1 || !demo_l.unique_closest || demo_l.a_closest != closest[0];
+    Ok((same_syndrome, leaders_differ))
+}
+
+fn coset_decode_demo_inner(
+    complex: &ChainComplexGf2,
+    error: &[u8],
+    d: Option<usize>,
+    t: Option<usize>,
+    logical: Option<&[u8]>,
+) -> Result<CosetDecodeDemo, String> {
+    let n = complex.num_edges;
+    if error.len() != n {
+        return Err(format!("error len {} != |E|={}", error.len(), n));
+    }
+    let syndrome = apply_d1(&complex.d1, error)?;
+    let all = enumerate_all(n)?;
+    let (closest_weight, closest) = find_closest_coset_leaders(&complex.d1, &all, &syndrome)?;
 
     let wt_e = hamming_weight(error);
-    let within = match t {
-        Some(tv) => wt_e <= tv,
-        None => true,
+    let within = t.map_or(true, |tv| wt_e <= tv);
+
+    let (logical_same_syndrome, logical_flips_unique_leader) = match logical {
+        Some(log) => {
+            let (same, flips) =
+                evaluate_logical_shift(complex, error, &syndrome, &closest, d, t, log)?;
+            (Some(same), Some(flips))
+        }
+        None => (None, None),
     };
-
-    let mut logical_same_syndrome = None;
-    let mut logical_flips_unique_leader = None;
-    if let Some(log) = logical {
-        if log.len() != n {
-            return Err(format!("logical len {} != |E|={}", log.len(), n));
-        }
-        if !is_closed(&complex.d1, log)? {
-            return Err("logical must be closed (d1 L = 0)".into());
-        }
-        let e_plus_l = gf2_add(error, log)?;
-        let syn_l = apply_d1(&complex.d1, &e_plus_l)?;
-        logical_same_syndrome = Some(syn_l == syndrome);
-
-        let demo_l = coset_decode_demo_inner(complex, &e_plus_l, d, t, None)?;
-        let leaders_differ =
-            closest.len() != 1 || !demo_l.unique_closest || demo_l.a_closest != closest[0];
-        logical_flips_unique_leader = Some(leaders_differ);
-    }
 
     Ok(CosetDecodeDemo {
         error: error.iter().map(|&b| b & 1).collect(),

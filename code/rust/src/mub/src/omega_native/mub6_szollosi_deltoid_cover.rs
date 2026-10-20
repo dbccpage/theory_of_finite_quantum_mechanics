@@ -19,44 +19,51 @@ use omega_solvers::solver_lp_phi1_boundary::{solve_phi1, Boundary1, BoundaryEdge
 
 crate::fixture_set!(fixtures, "mub6_szollosi_deltoid_cover");
 
-pub fn rational_interval_sqrt(val_lo: &BigRational, val_hi: &BigRational, iters: u32) -> Interval {
+fn bisect_sqrt_lower(val_lo: &BigRational, iters: u32) -> BigRational {
     let zero = BigRational::zero();
+    if val_lo <= &zero {
+        return zero;
+    }
     let one = ri(1);
     let two = ri(2);
-
-    let lo_bound = if val_lo <= &zero {
-        zero.clone()
-    } else {
-        let mut lo = zero.clone();
-        let mut hi = if val_lo < &one { one.clone() } else { val_lo.clone() };
-        for _ in 0..iters {
-            let mid = (&lo + &hi) / &two;
-            if &mid * &mid <= *val_lo {
-                lo = mid;
-            } else {
-                hi = mid;
-            }
+    let mut lo = zero;
+    let mut hi = val_lo.clone().max(one);
+    for _ in 0..iters {
+        let mid = (&lo + &hi) / &two;
+        if &mid * &mid <= *val_lo {
+            lo = mid;
+        } else {
+            hi = mid;
         }
-        lo
-    };
+    }
+    lo
+}
 
-    let hi_bound = if val_hi <= &zero {
-        zero
-    } else {
-        let mut lo = zero;
-        let mut hi = if val_hi < &one { one } else { val_hi.clone() };
-        for _ in 0..iters {
-            let mid = (&lo + &hi) / &two;
-            if &mid * &mid >= *val_hi {
-                hi = mid;
-            } else {
-                lo = mid;
-            }
+fn bisect_sqrt_upper(val_hi: &BigRational, iters: u32) -> BigRational {
+    let zero = BigRational::zero();
+    if val_hi <= &zero {
+        return zero;
+    }
+    let one = ri(1);
+    let two = ri(2);
+    let mut lo = zero;
+    let mut hi = val_hi.clone().max(one);
+    for _ in 0..iters {
+        let mid = (&lo + &hi) / &two;
+        if &mid * &mid >= *val_hi {
+            hi = mid;
+        } else {
+            lo = mid;
         }
-        hi
-    };
+    }
+    hi
+}
 
-    Interval::new(lo_bound, hi_bound)
+pub fn rational_interval_sqrt(val_lo: &BigRational, val_hi: &BigRational, iters: u32) -> Interval {
+    Interval::new(
+        bisect_sqrt_lower(val_lo, iters),
+        bisect_sqrt_upper(val_hi, iters),
+    )
 }
 
 #[derive(Clone, Debug, PartialEq, Eq)]
@@ -437,39 +444,24 @@ impl SzollosiDeltoidContext {
         false
     }
 
+    fn interval_min_abs_dist(iv: &Interval) -> BigRational {
+        if iv.lo() <= &BigRational::zero() && BigRational::zero() <= *iv.hi() {
+            BigRational::zero()
+        } else {
+            let a = iv.lo().abs();
+            let b = iv.hi().abs();
+            if a < b { a } else { b }
+        }
+    }
+
     pub fn is_strictly_outside_cusps(
         &self,
         pbox: &SzollosiDeltoidParameterBox,
         delta: &BigRational,
     ) -> bool {
         for c in &self.cusps {
-            let du = pbox.u.sub(&c.u_ival);
-            let dv = pbox.v.sub(&c.v_ival);
-
-            let min_u = if du.lo() <= &BigRational::zero() && BigRational::zero() <= *du.hi() {
-                BigRational::zero()
-            } else {
-                let a = du.lo().abs();
-                let b = du.hi().abs();
-                if a < b {
-                    a
-                } else {
-                    b
-                }
-            };
-
-            let min_v = if dv.lo() <= &BigRational::zero() && BigRational::zero() <= *dv.hi() {
-                BigRational::zero()
-            } else {
-                let a = dv.lo().abs();
-                let b = dv.hi().abs();
-                if a < b {
-                    a
-                } else {
-                    b
-                }
-            };
-
+            let min_u = Self::interval_min_abs_dist(&pbox.u.sub(&c.u_ival));
+            let min_v = Self::interval_min_abs_dist(&pbox.v.sub(&c.v_ival));
             if min_u < *delta && min_v < *delta {
                 return false;
             }
@@ -628,6 +620,167 @@ pub fn solve_szollosi_deltoid_cover(
     solve_szollosi_deltoid_cover_accelerated(grid_divisions_per_axis, delta, max_depth, true)
 }
 
+fn build_initial_deltoid_stack(
+    grid_divisions_per_axis: usize,
+) -> Vec<(SzollosiDeltoidParameterBox, u32)> {
+    let n = grid_divisions_per_axis as i64;
+    let mut intervals = Vec::with_capacity(grid_divisions_per_axis);
+    for i in 0..grid_divisions_per_axis {
+        let lo = ri(-n + 2 * (i as i64)) / ri(n);
+        let hi = ri(-n + 2 * ((i + 1) as i64)) / ri(n);
+        intervals.push(Interval::new(lo, hi));
+    }
+
+    let mut stack = Vec::new();
+    for u in &intervals {
+        for v in &intervals {
+            let pbox = SzollosiDeltoidParameterBox::new(u.clone(), v.clone());
+            if box_touches_parameter_circle(&pbox) {
+                stack.push((pbox, 0));
+            }
+        }
+    }
+    stack
+}
+
+fn update_deltoid_min_gap(slot: &mut Option<BigRational>, val: &BigRational) {
+    *slot = Some(match slot.take() {
+        Some(g) if &g <= val => g,
+        _ => val.clone(),
+    });
+}
+
+fn format_deltoid_atan2(v: &BigRational, u: &BigRational) -> String {
+    format!(
+        "{:.4}",
+        (v.to_f64().unwrap_or(0.0)).atan2(u.to_f64().unwrap_or(1.0))
+    )
+}
+
+fn build_certified_deltoid_box(
+    box_id: usize,
+    pbox: &SzollosiDeltoidParameterBox,
+    triad_gap: &BigRational,
+    psi_gap: &BigRational,
+    verified_positive: bool,
+    solver_method: &str,
+    phi1_objective: Option<i128>,
+) -> CertifiedDeltoidBox {
+    CertifiedDeltoidBox {
+        box_id,
+        u_lo: pbox.u.lo().to_string(),
+        u_hi: pbox.u.hi().to_string(),
+        v_lo: pbox.v.lo().to_string(),
+        v_hi: pbox.v.hi().to_string(),
+        theta_min: format_deltoid_atan2(pbox.v.lo(), pbox.u.lo()),
+        theta_max: format_deltoid_atan2(pbox.v.hi(), pbox.u.hi()),
+        min_psi_gap_num: psi_gap.numer().to_string(),
+        min_psi_gap_den: psi_gap.denom().to_string(),
+        triad_defect_gap: triad_gap.to_string(),
+        extension_psi_gap: psi_gap.to_string(),
+        verified_positive,
+        solver_method: solver_method.to_string(),
+        phi1_objective,
+    }
+}
+
+fn try_network_simplex_certification(
+    ctx: &SzollosiDeltoidContext,
+    pbox: &SzollosiDeltoidParameterBox,
+    box_id: usize,
+    min_triad_gap: &mut Option<BigRational>,
+    min_psi_gap: &mut Option<BigRational>,
+) -> Option<CertifiedDeltoidBox> {
+    let Ok(phi1_sol) = ctx.solve_network_simplex_obstruction(pbox) else {
+        return None;
+    };
+    if phi1_sol.objective <= 0 {
+        return None;
+    }
+    let triad_gap = ctx.triad_defect_lower(pbox);
+    let psi_gap = ctx.extension_psi_lower(pbox);
+    update_deltoid_min_gap(min_triad_gap, &triad_gap);
+    update_deltoid_min_gap(min_psi_gap, &psi_gap);
+    Some(build_certified_deltoid_box(
+        box_id,
+        pbox,
+        &triad_gap,
+        &psi_gap,
+        fixtures().flag("network_simplex_box_verified_positive"),
+        "network_simplex_l1",
+        Some(phi1_sol.objective),
+    ))
+}
+
+fn split_deltoid_box(
+    ctx: &SzollosiDeltoidContext,
+    pbox: &SzollosiDeltoidParameterBox,
+    delta: &BigRational,
+) -> (SzollosiDeltoidParameterBox, SzollosiDeltoidParameterBox) {
+    if let Some((coord, cut)) = ctx.find_cusp_boundary_cut(pbox, delta) {
+        pbox.split_at_coord_and_point(coord, cut)
+    } else {
+        pbox.bisect_widest()
+    }
+}
+
+fn try_scalar_interval_certification(
+    ctx: &SzollosiDeltoidContext,
+    pbox: &SzollosiDeltoidParameterBox,
+    delta: &BigRational,
+    box_index: usize,
+    min_triad_gap: &mut Option<BigRational>,
+    min_psi_gap: &mut Option<BigRational>,
+) -> Option<CertifiedDeltoidBox> {
+    if !ctx.is_strictly_outside_cusps(pbox, delta) {
+        return None;
+    }
+    let triad_gap = ctx.triad_defect_lower(pbox);
+    let psi_gap = ctx.extension_psi_lower(pbox);
+    if psi_gap <= BigRational::zero() {
+        return None;
+    }
+    update_deltoid_min_gap(min_triad_gap, &triad_gap);
+    update_deltoid_min_gap(min_psi_gap, &psi_gap);
+    Some(build_certified_deltoid_box(
+        box_index,
+        pbox,
+        &triad_gap,
+        &psi_gap,
+        fixtures().flag("scalar_box_verified_positive"),
+        "scalar_interval",
+        None,
+    ))
+}
+
+fn handle_max_depth_deltoid_box(
+    ctx: &SzollosiDeltoidContext,
+    pbox: SzollosiDeltoidParameterBox,
+    use_network_simplex: bool,
+    certified_count: &mut usize,
+    network_simplex_accelerated_count: &mut usize,
+    min_triad_gap: &mut Option<BigRational>,
+    min_psi_gap: &mut Option<BigRational>,
+    certified_boxes: &mut Vec<CertifiedDeltoidBox>,
+    uncertified_list: &mut Vec<SzollosiDeltoidParameterBox>,
+) {
+    if use_network_simplex {
+        if let Some(cbox) = try_network_simplex_certification(
+            ctx,
+            &pbox,
+            *certified_count + 1,
+            min_triad_gap,
+            min_psi_gap,
+        ) {
+            *certified_count += 1;
+            *network_simplex_accelerated_count += 1;
+            certified_boxes.push(cbox);
+            return;
+        }
+    }
+    uncertified_list.push(pbox);
+}
+
 pub fn solve_szollosi_deltoid_cover_accelerated(
     grid_divisions_per_axis: usize,
     delta: &BigRational,
@@ -641,24 +794,7 @@ pub fn solve_szollosi_deltoid_cover_accelerated(
     assert!(delta > &BigRational::zero(), "delta must be positive");
 
     let ctx = SzollosiDeltoidContext::new();
-    let mut stack: Vec<(SzollosiDeltoidParameterBox, u32)> = Vec::new();
-
-    let n = grid_divisions_per_axis as i64;
-    let mut intervals = Vec::with_capacity(grid_divisions_per_axis);
-    for i in 0..grid_divisions_per_axis {
-        let lo = ri(-n + 2 * (i as i64)) / ri(n);
-        let hi = ri(-n + 2 * ((i + 1) as i64)) / ri(n);
-        intervals.push(Interval::new(lo, hi));
-    }
-
-    for u in &intervals {
-        for v in &intervals {
-            let pbox = SzollosiDeltoidParameterBox::new(u.clone(), v.clone());
-            if box_touches_parameter_circle(&pbox) {
-                stack.push((pbox, 0));
-            }
-        }
-    }
+    let mut stack = build_initial_deltoid_stack(grid_divisions_per_axis);
 
     let mut total_explored = 0usize;
     let mut off_circle_count = 0usize;
@@ -673,126 +809,42 @@ pub fn solve_szollosi_deltoid_cover_accelerated(
 
     while let Some((pbox, depth)) = stack.pop() {
         total_explored += 1;
-        if depth > max_depth_used {
-            max_depth_used = depth;
-        }
+        max_depth_used = max_depth_used.max(depth);
 
         if !box_touches_parameter_circle(&pbox) {
             off_circle_count += 1;
             continue;
         }
-
         if ctx.is_inside_cusps(&pbox, delta) {
             cusp_neigh_count += 1;
             continue;
         }
-
-        if ctx.is_strictly_outside_cusps(&pbox, delta) {
-            let triad_gap = ctx.triad_defect_lower(&pbox);
-            let psi_gap = ctx.extension_psi_lower(&pbox);
-
-            if psi_gap > BigRational::zero() {
-                certified_count += 1;
-
-                min_triad_gap = Some(match min_triad_gap.take() {
-                    Some(g) if g <= triad_gap => g,
-                    _ => triad_gap.clone(),
-                });
-                min_psi_gap = Some(match min_psi_gap.take() {
-                    Some(g) if g <= psi_gap => g,
-                    _ => psi_gap.clone(),
-                });
-
-                let theta_min_approx = format!(
-                    "{:.4}",
-                    (pbox.v.lo().to_f64().unwrap_or(0.0))
-                        .atan2(pbox.u.lo().to_f64().unwrap_or(1.0))
-                );
-                let theta_max_approx = format!(
-                    "{:.4}",
-                    (pbox.v.hi().to_f64().unwrap_or(0.0))
-                        .atan2(pbox.u.hi().to_f64().unwrap_or(1.0))
-                );
-
-                certified_boxes.push(CertifiedDeltoidBox {
-                    box_id: certified_count,
-                    u_lo: pbox.u.lo().to_string(),
-                    u_hi: pbox.u.hi().to_string(),
-                    v_lo: pbox.v.lo().to_string(),
-                    v_hi: pbox.v.hi().to_string(),
-                    theta_min: theta_min_approx,
-                    theta_max: theta_max_approx,
-                    min_psi_gap_num: psi_gap.numer().to_string(),
-                    min_psi_gap_den: psi_gap.denom().to_string(),
-                    triad_defect_gap: triad_gap.to_string(),
-                    extension_psi_gap: psi_gap.to_string(),
-                    verified_positive: fixtures().flag("scalar_box_verified_positive"),
-                    solver_method: "scalar_interval".to_string(),
-                    phi1_objective: None,
-                });
-                continue;
-            }
+        if let Some(cbox) = try_scalar_interval_certification(
+            &ctx,
+            &pbox,
+            delta,
+            certified_count + 1,
+            &mut min_triad_gap,
+            &mut min_psi_gap,
+        ) {
+            certified_count += 1;
+            certified_boxes.push(cbox);
+            continue;
         }
-
         if depth >= max_depth {
-            if use_network_simplex {
-                if let Ok(phi1_sol) = ctx.solve_network_simplex_obstruction(&pbox) {
-                    if phi1_sol.objective > 0 {
-                        certified_count += 1;
-                        network_simplex_accelerated_count += 1;
-
-                        let triad_gap = ctx.triad_defect_lower(&pbox);
-                        let psi_gap = ctx.extension_psi_lower(&pbox);
-
-                        min_triad_gap = Some(match min_triad_gap.take() {
-                            Some(g) if g <= triad_gap => g,
-                            _ => triad_gap.clone(),
-                        });
-                        min_psi_gap = Some(match min_psi_gap.take() {
-                            Some(g) if g <= psi_gap => g,
-                            _ => psi_gap.clone(),
-                        });
-
-                        let theta_min_approx = format!(
-                            "{:.4}",
-                            (pbox.v.lo().to_f64().unwrap_or(0.0))
-                                .atan2(pbox.u.lo().to_f64().unwrap_or(1.0))
-                        );
-                        let theta_max_approx = format!(
-                            "{:.4}",
-                            (pbox.v.hi().to_f64().unwrap_or(0.0))
-                                .atan2(pbox.u.hi().to_f64().unwrap_or(1.0))
-                        );
-
-                        certified_boxes.push(CertifiedDeltoidBox {
-                            box_id: certified_count,
-                            u_lo: pbox.u.lo().to_string(),
-                            u_hi: pbox.u.hi().to_string(),
-                            v_lo: pbox.v.lo().to_string(),
-                            v_hi: pbox.v.hi().to_string(),
-                            theta_min: theta_min_approx,
-                            theta_max: theta_max_approx,
-                            min_psi_gap_num: psi_gap.numer().to_string(),
-                            min_psi_gap_den: psi_gap.denom().to_string(),
-                            triad_defect_gap: triad_gap.to_string(),
-                            extension_psi_gap: psi_gap.to_string(),
-                            verified_positive: fixtures()
-                                .flag("network_simplex_box_verified_positive"),
-                            solver_method: "network_simplex_l1".to_string(),
-                            phi1_objective: Some(phi1_sol.objective),
-                        });
-                        continue;
-                    }
-                }
-            }
-            uncertified_list.push(pbox);
+            handle_max_depth_deltoid_box(
+                &ctx,
+                pbox,
+                use_network_simplex,
+                &mut certified_count,
+                &mut network_simplex_accelerated_count,
+                &mut min_triad_gap,
+                &mut min_psi_gap,
+                &mut certified_boxes,
+                &mut uncertified_list,
+            );
         } else {
-            let (child_a, child_b) =
-                if let Some((coord, cut)) = ctx.find_cusp_boundary_cut(&pbox, delta) {
-                    pbox.split_at_coord_and_point(coord, cut)
-                } else {
-                    pbox.bisect_widest()
-                };
+            let (child_a, child_b) = split_deltoid_box(&ctx, &pbox, delta);
             stack.push((child_a, depth + 1));
             stack.push((child_b, depth + 1));
         }

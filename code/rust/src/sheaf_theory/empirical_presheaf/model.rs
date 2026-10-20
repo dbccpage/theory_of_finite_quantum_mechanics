@@ -27,34 +27,71 @@ pub type Cochain2 = BTreeMap<(usize, usize, usize), Vec<Q>>;
 
 impl Scenario {
     pub fn new(arities: Vec<usize>, contexts: Vec<Vec<usize>>) -> Result<Self, EmpiricalError> {
-        let n = arities.len();
-        if n == 0 || n > 64 {
-            return Err(EmpiricalError::CarrierSize);
-        }
-        if let Some(measurement) = (0..n).find(|&m| arities[m] < 2) {
-            return Err(EmpiricalError::Arity { measurement });
-        }
-        for (index, context) in contexts.iter().enumerate() {
-            let sorted = context.windows(2).all(|w| w[0] < w[1]);
-            if context.is_empty() || !sorted || context.iter().any(|&m| m >= n) {
-                return Err(EmpiricalError::Context { index });
-            }
-        }
+        let n = Self::validate_arities(&arities)?;
+        Self::validate_contexts(n, &contexts)?;
         let masks: Vec<u64> = contexts
             .iter()
             .map(|c| mask(c))
             .collect::<Result<Vec<_>, _>>()?;
-        for index in 0..masks.len() {
-            for other in 0..masks.len() {
-                if index != other && masks[index] & masks[other] == masks[index] {
-                    return Err(EmpiricalError::NonMaximalContext { index, other });
-                }
-            }
-        }
-        if masks.iter().fold(0, |m, &c| m | c) != Self::full_of(n) {
+        Self::validate_context_masks(n, &masks)?;
+        Ok(Self { arities, contexts })
+    }
+
+    fn validate_arities(arities: &[usize]) -> Result<usize, EmpiricalError> {
+        let n = arities.len();
+        if n == 0 || n > 64 {
             return Err(EmpiricalError::CarrierSize);
         }
-        Ok(Self { arities, contexts })
+        for (measurement, &arity) in arities.iter().enumerate() {
+            if arity < 2 {
+                return Err(EmpiricalError::Arity { measurement });
+            }
+        }
+        Ok(n)
+    }
+
+    fn validate_contexts(n: usize, contexts: &[Vec<usize>]) -> Result<(), EmpiricalError> {
+        for (index, context) in contexts.iter().enumerate() {
+            if !Self::is_valid_context(n, context) {
+                return Err(EmpiricalError::Context { index });
+            }
+        }
+        Ok(())
+    }
+
+    fn is_valid_context(n: usize, context: &[usize]) -> bool {
+        if context.is_empty() {
+            return false;
+        }
+        for (i, &m) in context.iter().enumerate() {
+            if m >= n || (i > 0 && context[i - 1] >= m) {
+                return false;
+            }
+        }
+        true
+    }
+
+    fn validate_context_masks(n: usize, masks: &[u64]) -> Result<(), EmpiricalError> {
+        let mut union_mask = 0u64;
+        for (index, &mi) in masks.iter().enumerate() {
+            union_mask |= mi;
+            if let Some(other) = Self::find_containing_context(index, mi, masks) {
+                return Err(EmpiricalError::NonMaximalContext { index, other });
+            }
+        }
+        if union_mask != Self::full_of(n) {
+            return Err(EmpiricalError::CarrierSize);
+        }
+        Ok(())
+    }
+
+    fn find_containing_context(index: usize, mi: u64, masks: &[u64]) -> Option<usize> {
+        for (other, &mo) in masks.iter().enumerate() {
+            if index != other && (mi & mo) == mi {
+                return Some(other);
+            }
+        }
+        None
     }
 
     pub fn binary(measurements: usize, contexts: Vec<Vec<usize>>) -> Result<Self, EmpiricalError> {
@@ -212,18 +249,25 @@ impl Scenario {
     }
 
     pub fn nerve_triples(&self) -> Vec<(usize, usize, usize)> {
-        let n = self.contexts.len();
         let mut out = Vec::new();
-        for i in 0..n {
-            for j in i + 1..n {
-                for k in j + 1..n {
-                    if self.context_mask(i) & self.context_mask(j) & self.context_mask(k) != 0 {
-                        out.push((i, j, k));
-                    }
-                }
-            }
+        for (i, j) in self.nerve_pairs() {
+            self.collect_nerve_triples_for_pair(i, j, &mut out);
         }
         out
+    }
+
+    fn collect_nerve_triples_for_pair(
+        &self,
+        i: usize,
+        j: usize,
+        out: &mut Vec<(usize, usize, usize)>,
+    ) {
+        let pair_mask = self.context_mask(i) & self.context_mask(j);
+        for k in j + 1..self.contexts.len() {
+            if pair_mask & self.context_mask(k) != 0 {
+                out.push((i, j, k));
+            }
+        }
     }
 
     fn check0(&self, cochain: &Cochain0) -> Result<(), EmpiricalError> {
@@ -324,35 +368,7 @@ impl Scenario {
         let mut sets: Vec<u64> = (0..n).map(|i| self.context_mask(i)).collect();
         let mut alive = vec![true; n];
         let mut removed: Vec<(usize, Option<usize>)> = Vec::new();
-        loop {
-            let mut changed = false;
-            for i in 0..n {
-                if !alive[i] {
-                    continue;
-                }
-                let others = (0..n)
-                    .filter(|&j| alive[j] && j != i)
-                    .fold(0, |m, j| m | sets[j]);
-                let private = sets[i] & !others;
-                if private != 0 {
-                    sets[i] &= !private;
-                    changed = true;
-                }
-            }
-            let contained = (0..n).filter(|&i| alive[i]).find_map(|i| {
-                (0..n)
-                    .find(|&j| alive[j] && j != i && sets[i] & sets[j] == sets[i])
-                    .map(|j| (i, j))
-            });
-            if let Some((i, j)) = contained {
-                alive[i] = false;
-                removed.push((i, Some(j)));
-                changed = true;
-            }
-            if !changed {
-                break;
-            }
-        }
+        while Self::gyo_step(&mut sets, &mut alive, &mut removed) {}
         let survivors: Vec<usize> = (0..n).filter(|&i| alive[i]).collect();
         if survivors.len() != 1 {
             return None;
@@ -360,6 +376,68 @@ impl Scenario {
         removed.push((survivors[0], None));
         removed.reverse();
         Some(removed)
+    }
+
+    fn gyo_step(
+        sets: &mut [u64],
+        alive: &mut [bool],
+        removed: &mut Vec<(usize, Option<usize>)>,
+    ) -> bool {
+        let mut changed = Self::strip_private_vertices(sets, alive);
+        if let Some((i, j)) = Self::find_contained_context(sets, alive) {
+            alive[i] = false;
+            removed.push((i, Some(j)));
+            changed = true;
+        }
+        changed
+    }
+
+    fn strip_private_vertices(sets: &mut [u64], alive: &[bool]) -> bool {
+        let mut changed = false;
+        let n = sets.len();
+        for i in 0..n {
+            if !alive[i] {
+                continue;
+            }
+            let others = Self::union_other_alive(sets, alive, i);
+            let private = sets[i] & !others;
+            if private != 0 {
+                sets[i] &= !private;
+                changed = true;
+            }
+        }
+        changed
+    }
+
+    fn union_other_alive(sets: &[u64], alive: &[bool], skip: usize) -> u64 {
+        let mut mask = 0u64;
+        for (j, &s) in sets.iter().enumerate() {
+            if alive[j] && j != skip {
+                mask |= s;
+            }
+        }
+        mask
+    }
+
+    fn find_contained_context(sets: &[u64], alive: &[bool]) -> Option<(usize, usize)> {
+        let n = sets.len();
+        for i in 0..n {
+            if alive[i] {
+                if let Some(j) = Self::find_container_for(sets, alive, i) {
+                    return Some((i, j));
+                }
+            }
+        }
+        None
+    }
+
+    fn find_container_for(sets: &[u64], alive: &[bool], i: usize) -> Option<usize> {
+        for (j, &sj) in sets.iter().enumerate() {
+            if alive[j] && j != i && (sets[i] & sj) == sets[i] {
+                return Some(j);
+            }
+        }
+        None
     }
 
     pub fn is_gyo_acyclic(&self) -> bool {
@@ -430,28 +508,57 @@ impl EmpiricalModel {
 
     pub fn restriction_is_functorial(&self) -> Result<bool, EmpiricalError> {
         for (c, context) in self.scenario.contexts.iter().enumerate() {
-            self.scenario.subset_window_fits(context)?;
-            let dist = &self.distributions[c];
-            if self.scenario.marginalize(context, dist, context)? != *dist {
+            if !self.context_restriction_is_functorial(context, &self.distributions[c])? {
                 return Ok(false);
             }
-            let width = context.len();
-            for d_bits in 0..1u64 << width {
-                let d: Vec<usize> = (0..width)
-                    .filter(|&t| d_bits >> t & 1 == 1)
-                    .map(|t| context[t])
-                    .collect();
-                let via_d = self.scenario.marginalize(context, dist, &d)?;
-                for e_bits in (0..1u64 << width).filter(|&e_bits| e_bits & d_bits == e_bits) {
-                    let e: Vec<usize> = (0..width)
-                        .filter(|&t| e_bits >> t & 1 == 1)
-                        .map(|t| context[t])
-                        .collect();
-                    if self.scenario.marginalize(&d, &via_d, &e)?
-                        != self.scenario.marginalize(context, dist, &e)?
-                    {
-                        return Ok(false);
-                    }
+        }
+        Ok(true)
+    }
+
+    fn context_restriction_is_functorial(
+        &self,
+        context: &[usize],
+        dist: &[Q],
+    ) -> Result<bool, EmpiricalError> {
+        self.scenario.subset_window_fits(context)?;
+        if self.scenario.marginalize(context, dist, context)? != *dist {
+            return Ok(false);
+        }
+        let width = context.len();
+        for d_bits in 0..1u64 << width {
+            if !self.subset_chain_commutes(context, dist, width, d_bits)? {
+                return Ok(false);
+            }
+        }
+        Ok(true)
+    }
+
+    fn subset_from_bits(context: &[usize], width: usize, bits: u64) -> Vec<usize> {
+        let mut out = Vec::new();
+        for (t, &pos) in context.iter().enumerate().take(width) {
+            if (bits >> t) & 1 == 1 {
+                out.push(pos);
+            }
+        }
+        out
+    }
+
+    fn subset_chain_commutes(
+        &self,
+        context: &[usize],
+        dist: &[Q],
+        width: usize,
+        d_bits: u64,
+    ) -> Result<bool, EmpiricalError> {
+        let d = Self::subset_from_bits(context, width, d_bits);
+        let via_d = self.scenario.marginalize(context, dist, &d)?;
+        for e_bits in 0..1u64 << width {
+            if (e_bits & d_bits) == e_bits {
+                let e = Self::subset_from_bits(context, width, e_bits);
+                if self.scenario.marginalize(&d, &via_d, &e)?
+                    != self.scenario.marginalize(context, dist, &e)?
+                {
+                    return Ok(false);
                 }
             }
         }
@@ -530,16 +637,7 @@ impl EmpiricalModel {
         let all = self.scenario.all_positions();
         for (c, context) in self.scenario.contexts.iter().enumerate() {
             for k in self.support(c)? {
-                let mut extends = false;
-                for &g in &globals {
-                    let assignment = self.scenario.assignment_of(&all, g);
-                    let local = Scenario::restrict_checked(&all, &assignment, context)?;
-                    if self.scenario.index_of(context, &local) == k {
-                        extends = true;
-                        break;
-                    }
-                }
-                if !extends {
+                if !self.section_extends_to_globals(&all, context, k, &globals)? {
                     return Ok(Some((c, k)));
                 }
             }
@@ -547,35 +645,68 @@ impl EmpiricalModel {
         Ok(None)
     }
 
+    fn section_extends_to_globals(
+        &self,
+        all: &[usize],
+        context: &[usize],
+        k: usize,
+        globals: &[usize],
+    ) -> Result<bool, EmpiricalError> {
+        for &g in globals {
+            let assignment = self.scenario.assignment_of(all, g);
+            let local = Scenario::restrict_checked(all, &assignment, context)?;
+            if self.scenario.index_of(context, &local) == k {
+                return Ok(true);
+            }
+        }
+        Ok(false)
+    }
+
     pub fn incidence(&self) -> Result<(Vec<Vec<Q>>, Vec<Q>), EmpiricalError> {
         let total = self.global_limit()?;
-        let mut height = 0usize;
-        for context in &self.scenario.contexts {
-            height = height
-                .checked_add(self.scenario.section_count(context)?)
-                .ok_or_else(too_large)?;
-        }
+        let height = self.total_local_sections()?;
         bound_dense(height, total)?;
         let all = self.scenario.all_positions();
         let mut rows = Vec::with_capacity(height);
         let mut e = Vec::with_capacity(height);
         for (c, context) in self.scenario.contexts.iter().enumerate() {
             for k in 0..self.scenario.section_count(context)? {
-                let mut row = Vec::with_capacity(total);
-                for g in 0..total {
-                    let assignment = self.scenario.assignment_of(&all, g);
-                    let local = Scenario::restrict_checked(&all, &assignment, context)?;
-                    row.push(if self.scenario.index_of(context, &local) == k {
-                        Q::one()
-                    } else {
-                        Q::zero()
-                    });
-                }
-                rows.push(row);
+                rows.push(self.incidence_row(&all, context, k, total)?);
                 e.push(self.distributions[c][k].clone());
             }
         }
         Ok((rows, e))
+    }
+
+    fn total_local_sections(&self) -> Result<usize, EmpiricalError> {
+        let mut height = 0usize;
+        for context in &self.scenario.contexts {
+            height = height
+                .checked_add(self.scenario.section_count(context)?)
+                .ok_or_else(too_large)?;
+        }
+        Ok(height)
+    }
+
+    fn incidence_row(
+        &self,
+        all: &[usize],
+        context: &[usize],
+        k: usize,
+        total: usize,
+    ) -> Result<Vec<Q>, EmpiricalError> {
+        let mut row = Vec::with_capacity(total);
+        for g in 0..total {
+            let assignment = self.scenario.assignment_of(all, g);
+            let local = Scenario::restrict_checked(all, &assignment, context)?;
+            let val = if self.scenario.index_of(context, &local) == k {
+                Q::one()
+            } else {
+                Q::zero()
+            };
+            row.push(val);
+        }
+        Ok(row)
     }
 
     fn columns(rows: &[Vec<Q>]) -> Vec<Vec<Q>> {
@@ -633,17 +764,28 @@ impl EmpiricalModel {
         let Ok((rows, e)) = self.incidence() else {
             return false;
         };
+        if !Self::verify_ncf_lp_certificate(&rows, &e, receipt) {
+            return false;
+        }
+        Self::verify_ncf_primal_and_dual(&rows, &e, receipt)
+    }
+
+    fn verify_ncf_lp_certificate(
+        rows: &[Vec<Q>],
+        e: &[Q],
+        receipt: &NoncontextualFractionReceipt,
+    ) -> bool {
         let (m, n) = (rows.len(), rows.first().map_or(0, Vec::len));
         if receipt.noncontextual_part.len() != n || receipt.bell_functional.len() != m {
             return false;
         }
-        let Ok(lp) = Self::standard_form_ncf(&rows, &e) else {
+        let Ok(lp) = Self::standard_form_ncf(rows, e) else {
             return false;
         };
         if !lp.verify(&receipt.lp) {
             return false;
         }
-        let lp_bound = receipt.lp.primal.len() == n + m
+        receipt.lp.primal.len() == n + m
             && receipt.lp.dual.len() == m
             && receipt.lp.primal[..n] == receipt.noncontextual_part[..]
             && receipt
@@ -651,22 +793,26 @@ impl EmpiricalModel {
                 .dual
                 .iter()
                 .zip(&receipt.bell_functional)
-                .all(|(y, b)| -y == *b);
-        if !lp_bound {
-            return false;
-        }
+                .all(|(y, b)| -y == *b)
+    }
+
+    fn verify_ncf_primal_and_dual(
+        rows: &[Vec<Q>],
+        e: &[Q],
+        receipt: &NoncontextualFractionReceipt,
+    ) -> bool {
         let part_ok = receipt.noncontextual_part.iter().all(|p| !p.is_negative())
             && receipt.noncontextual_part.iter().sum::<Q>() == receipt.noncontextual_fraction
             && rows
                 .iter()
-                .zip(&e)
+                .zip(e)
                 .all(|(row, bound)| dot(row, &receipt.noncontextual_part) <= *bound);
         let beta = &receipt.bell_functional;
         let functional_ok = beta.iter().all(|b| !b.is_negative())
-            && Self::columns(&rows)
+            && Self::columns(rows)
                 .iter()
                 .all(|column| dot(column, beta) >= Q::one())
-            && dot(&e, beta) == receipt.noncontextual_fraction;
+            && dot(e, beta) == receipt.noncontextual_fraction;
         let fraction_ok = &receipt.noncontextual_fraction + &receipt.contextual_fraction
             == Q::one()
             && receipt.lp.value == -receipt.noncontextual_fraction.clone();
@@ -688,17 +834,28 @@ impl EmpiricalModel {
     pub fn signed_global_section(&self, pivots: usize) -> Result<Option<Vec<Q>>, EmpiricalError> {
         let (rows, e) = self.incidence()?;
         let n = rows.first().map_or(0, Vec::len);
-        bound_dense(rows.len(), n.checked_mul(2).ok_or_else(too_large)?)?;
-        let matrix: Vec<Vec<Q>> = rows
-            .iter()
+        let width = n.checked_mul(2).ok_or_else(too_large)?;
+        bound_dense(rows.len(), width)?;
+        let matrix = Self::signed_incidence_matrix(&rows);
+        let lp = StandardLp::new(vec![Q::zero(); width], matrix, e)?;
+        Self::solve_signed_lp(&lp, n, pivots)
+    }
+
+    fn signed_incidence_matrix(rows: &[Vec<Q>]) -> Vec<Vec<Q>> {
+        rows.iter()
             .map(|row| {
                 let mut full = row.clone();
                 full.extend(row.iter().map(|x| -x));
                 full
             })
-            .collect();
-        let width = n.checked_mul(2).ok_or_else(too_large)?;
-        let lp = StandardLp::new(vec![Q::zero(); width], matrix, e)?;
+            .collect()
+    }
+
+    fn solve_signed_lp(
+        lp: &StandardLp,
+        n: usize,
+        pivots: usize,
+    ) -> Result<Option<Vec<Q>>, EmpiricalError> {
         match lp.solve(pivots) {
             Ok(solution) if lp.verify(&solution) => Ok(Some(
                 (0..n)
@@ -734,8 +891,22 @@ impl EmpiricalModel {
             .ok_or(EmpiricalError::NotAcyclic)?;
         let total = self.global_limit()?;
         let all = self.scenario.all_positions();
+        let factors = self.build_acyclic_factors(order)?;
+        let mut global = vec![Q::zero(); total];
+        for (g, slot) in global.iter_mut().enumerate() {
+            let assignment = self.scenario.assignment_of(&all, g);
+            *slot = self.acyclic_assignment_weight(&all, &assignment, &factors)?;
+        }
+        self.verify_acyclic_marginals(&all, &global)?;
+        Ok(global)
+    }
+
+    fn build_acyclic_factors(
+        &self,
+        order: Vec<(usize, Option<usize>)>,
+    ) -> Result<Vec<(usize, Vec<usize>, Option<(usize, Vec<Q>)>)>, EmpiricalError> {
         let mut seen: u64 = 0;
-        let mut factors: Vec<(usize, Vec<usize>, Option<(usize, Vec<Q>)>)> = Vec::new();
+        let mut factors = Vec::new();
         for (context, parent) in order {
             let separator = positions(self.scenario.context_mask(context) & seen);
             let denominator = match parent {
@@ -745,38 +916,48 @@ impl EmpiricalModel {
             factors.push((context, separator, denominator));
             seen |= self.scenario.context_mask(context);
         }
-        let mut global = vec![Q::zero(); total];
-        for (g, slot) in global.iter_mut().enumerate() {
-            let assignment = self.scenario.assignment_of(&all, g);
-            let mut weight = Q::one();
-            for (context, separator, denominator) in &factors {
-                let positions_c = &self.scenario.contexts[*context];
-                let local = Scenario::restrict_checked(&all, &assignment, positions_c)?;
-                let numerator =
-                    &self.distributions[*context][self.scenario.index_of(positions_c, &local)];
-                weight *= numerator;
-                if let Some((_, marginal)) = denominator {
-                    let sep_value = Scenario::restrict_checked(&all, &assignment, separator)?;
-                    let d = &marginal[self.scenario.index_of(separator, &sep_value)];
-                    if d.is_zero() {
-                        weight = Q::zero();
-                    } else {
-                        weight /= d;
-                    }
+        Ok(factors)
+    }
+
+    fn acyclic_assignment_weight(
+        &self,
+        all: &[usize],
+        assignment: &[usize],
+        factors: &[(usize, Vec<usize>, Option<(usize, Vec<Q>)>)],
+    ) -> Result<Q, EmpiricalError> {
+        let mut weight = Q::one();
+        for (context, separator, denominator) in factors {
+            let positions_c = &self.scenario.contexts[*context];
+            let local = Scenario::restrict_checked(all, assignment, positions_c)?;
+            let numerator =
+                &self.distributions[*context][self.scenario.index_of(positions_c, &local)];
+            weight *= numerator;
+            if let Some((_, marginal)) = denominator {
+                let sep_value = Scenario::restrict_checked(all, assignment, separator)?;
+                let d = &marginal[self.scenario.index_of(separator, &sep_value)];
+                if d.is_zero() {
+                    return Ok(Q::zero());
                 }
-                if weight.is_zero() {
-                    break;
-                }
+                weight /= d;
             }
-            *slot = weight;
+            if weight.is_zero() {
+                return Ok(Q::zero());
+            }
         }
+        Ok(weight)
+    }
+
+    fn verify_acyclic_marginals(
+        &self,
+        all: &[usize],
+        global: &[Q],
+    ) -> Result<(), EmpiricalError> {
         for (context, positions_c) in self.scenario.contexts.iter().enumerate() {
-            if self.scenario.marginalize(&all, &global, positions_c)? != self.distributions[context]
-            {
+            if self.scenario.marginalize(all, global, positions_c)? != self.distributions[context] {
                 return Err(EmpiricalError::ProductFormulaMismatch { context });
             }
         }
-        Ok(global)
+        Ok(())
     }
 
     pub fn admissible_presheaf(&self, extra: &[u64]) -> Result<AssignmentPresheaf, EmpiricalError> {

@@ -43,7 +43,9 @@ pub fn standard_qubit_is_a_state() -> Result<(), &'static str> {
     if trace != BigRational::one() {
         return Err("trace is not 1");
     }
-    let det = rat((1, 2))? * rat((1, 2))? - rat((1, 6))? * rat((1, 6))?;
+    let half = rat((1, 2))?;
+    let sixth = rat((1, 6))?;
+    let det = &half * &half - &sixth * &sixth;
     if det <= BigRational::from_integer(BigInt::from(0)) {
         return Err("determinant is not positive");
     }

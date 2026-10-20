@@ -37,24 +37,32 @@ pub struct PageStep {
     pub proper_time: String,
 }
 
+fn valid_face(n: usize, (t, f): (usize, usize)) -> bool {
+    t < n && f < 4
+}
+
+fn validate_glued_faces(n: usize, glued: &[[(usize, usize); 2]]) -> Result<(), String> {
+    let mut used = BTreeSet::new();
+    for [a, b] in glued {
+        if a == b || !valid_face(n, *a) || !valid_face(n, *b) {
+            return Err("INVALID_FACE_GLUING".into());
+        }
+        if !used.insert(*a) || !used.insert(*b) {
+            return Err("INVALID_FACE_GLUING".into());
+        }
+    }
+    Ok(())
+}
+
 pub fn area_model(
     n: usize,
     glued: &[[(usize, usize); 2]],
     d: u32,
 ) -> Result<AreaModel, String> {
-    if n == 0 || n > 256 || d < 2 || d > 256 || glued.len() > 2 * n {
+    if !(1..=256).contains(&n) || !(2..=256).contains(&d) || glued.len() > 2 * n {
         return Err("INVALID_AREA_MODEL_OR_RESOURCE_LIMIT".into());
     }
-    let mut used = BTreeSet::new();
-    for [a, b] in glued {
-        if a == b
-            || [a, b].iter().any(|&&(t, f)| t >= n || f >= 4)
-            || !used.insert(*a)
-            || !used.insert(*b)
-        {
-            return Err("INVALID_FACE_GLUING".into());
-        }
-    }
+    validate_glued_faces(n, glued)?;
     let a = 4 * n - 2 * glued.len();
     let b = BigInt::from(d);
     Ok(AreaModel {
@@ -68,6 +76,16 @@ pub fn area_model(
     })
 }
 
+fn validate_page_params(a: usize, steps: usize, d: u32, tau: &Q, kappa: &Q) -> Result<(), String> {
+    if !(2..=1024).contains(&a) || a % 2 != 0 || !(1..=1024).contains(&steps) || !(2..=256).contains(&d) {
+        return Err("INVALID_PAGE_PARAMETERS".into());
+    }
+    if tau <= &ri(0) || kappa < &ri(0) || kappa > tau {
+        return Err("INVALID_PAGE_PARAMETERS".into());
+    }
+    Ok(())
+}
+
 pub fn page_curve(
     a: usize,
     steps: usize,
@@ -75,19 +93,7 @@ pub fn page_curve(
     tau: &Q,
     kappa: &Q,
 ) -> Result<Vec<PageStep>, String> {
-    if a < 2
-        || a % 2 != 0
-        || a > 1024
-        || steps == 0
-        || steps > 1024
-        || d < 2
-        || d > 256
-        || tau <= &ri(0)
-        || kappa < &ri(0)
-        || kappa > tau
-    {
-        return Err("INVALID_PAGE_PARAMETERS".into());
-    }
+    validate_page_params(a, steps, d, tau, kappa)?;
     let mut radiated = 0;
     let mut proper = ri(0);
     let mut out = vec![];

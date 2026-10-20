@@ -50,19 +50,29 @@ impl RecoveryTarget {
         Self::T19SeparatingPredictions,
     ];
 
-    pub fn id(self) -> &'static str {
+    fn id_early(self) -> Option<&'static str> {
         match self {
-            Self::T08FiniteClassicalShadow => "T08",
-            Self::T09ObserverFunctoriality => "T09",
-            Self::T11PhaseFiber => "T11",
-            Self::T12SemanticLift => "T12",
-            Self::T13ImportIndependence => "T13",
-            Self::T14ImportSufficiency => "T14",
+            Self::T08FiniteClassicalShadow => Some("T08"),
+            Self::T09ObserverFunctoriality => Some("T09"),
+            Self::T11PhaseFiber => Some("T11"),
+            Self::T12SemanticLift => Some("T12"),
+            Self::T13ImportIndependence => Some("T13"),
+            Self::T14ImportSufficiency => Some("T14"),
+            _ => None,
+        }
+    }
+
+    pub fn id(self) -> &'static str {
+        if let Some(code) = self.id_early() {
+            return code;
+        }
+        match self {
             Self::T15Spectral => "T15",
             Self::T16Instruments => "T16",
             Self::T17CompositionTomography => "T17",
             Self::T18BornGleason => "T18",
             Self::T19SeparatingPredictions => "T19",
+            _ => unreachable!(),
         }
     }
 }
@@ -108,11 +118,7 @@ impl ReleaseReceipt {
     pub const DIAGNOSTIC_SEALED: &'static str = "DIAGNOSTIC_SEALED_NOT_PROMOTED";
 }
 
-pub fn independent_falsifier() -> RecoveryFalsifierReport {
-    let mut failures = Vec::new();
-    let mut checks = 0;
-
-    checks += 1;
+fn falsify_t15_and_t16(failures: &mut Vec<String>) -> usize {
     let diag = [ri(1), ri(2), ri(3)];
     match HermitianMatrix::try_diagonal_rational(&diag, ScalarCarrier::Rational)
         .and_then(|m| spectral_decompose(&m))
@@ -122,7 +128,6 @@ pub fn independent_falsifier() -> RecoveryFalsifierReport {
         Err(e) => failures.push(format!("T15: {e:?}")),
     }
 
-    checks += 1;
     match paid_computational_spectral(2)
         .and_then(|ev| {
             let povm = Povm::computational_basis(&ev, "cb")?;
@@ -135,35 +140,34 @@ pub fn independent_falsifier() -> RecoveryFalsifierReport {
         Ok(_) => {}
         Err(e) => failures.push(format!("T16: {e:?}")),
     }
+    2
+}
 
-    checks += 1;
+fn falsify_t17_suite(failures: &mut Vec<String>) -> usize {
     if let Err(e) = t17_spanning_falsifier() {
         failures.push(e);
     }
-
-    checks += 1;
     match LocalTomographyReport::complex_product(2, 2) {
         Ok(r) if r.identity_holds => {}
         Ok(_) => failures.push("T17: complex tomography identity false".into()),
         Err(e) => failures.push(format!("T17 complex: {e:?}")),
     }
-    checks += 1;
-    let cm = RealRebitCountermodel::rebit_pair();
-    if !cm.is_valid_countermodel() {
+    if !RealRebitCountermodel::rebit_pair().is_valid_countermodel() {
         failures.push("T17: rebit countermodel invalid".into());
     }
-    checks += 1;
-    if MonoidalComposite::tensor(
+    let tensor_dim_bad = MonoidalComposite::tensor(
         FiniteSystem::qubit_complex("a"),
         FiniteSystem::qubit_complex("b"),
     )
     .map(|c| c.dim != 4)
-    .unwrap_or(true)
-    {
+    .unwrap_or(true);
+    if tensor_dim_bad {
         failures.push("T17: monoidal tensor dim".into());
     }
+    4
+}
 
-    checks += 1;
+fn falsify_t18_and_t19(failures: &mut Vec<String>) -> usize {
     let assumptions = GleasonAssumptions {
         dimension: 3,
         noncontextual: true,
@@ -179,18 +183,22 @@ pub fn independent_falsifier() -> RecoveryFalsifierReport {
         Ok(_) => failures.push("T18: uniqueness flag false".into()),
         Err(e) => failures.push(format!("T18: {e:?}")),
     }
-
-    checks += 1;
     if ChshExample::pr_box().class != ChshClass::BeyondTsirelson {
         failures.push("T19: PR box not beyond Tsirelson".into());
     }
-    checks += 1;
     match MerminPeresCochainBridge::from_standard_square() {
         Ok(bridge) if bridge.is_obstructed() => {}
         Ok(_) => failures.push("T19: Mermin–Peres not obstructed".into()),
         Err(e) => failures.push(format!("T19: {e}")),
     }
+    3
+}
 
+pub fn independent_falsifier() -> RecoveryFalsifierReport {
+    let mut failures = Vec::new();
+    let checks = falsify_t15_and_t16(&mut failures)
+        + falsify_t17_suite(&mut failures)
+        + falsify_t18_and_t19(&mut failures);
     RecoveryFalsifierReport {
         checks_run: checks,
         failures,
@@ -280,7 +288,7 @@ pub fn residual_board() -> Vec<TargetResidual> {
     ]
 }
 
-pub fn t17_spanning_falsifier() -> Result<(), String> {
+fn verify_t17_rank_and_deficiency() -> Result<(), String> {
     let r = local_tomography_spanning_real(2, 2).map_err(|e| format!("T17 spanning: {e:?}"))?;
     if r.product_rank != 9 || r.joint_dim != 10 || r.spans {
         return Err(format!(
@@ -292,6 +300,10 @@ pub fn t17_spanning_falsifier() -> Result<(), String> {
     if r.joint_dim - r.product_rank != deficiency {
         return Err("T17: deficiency does not match C(m,2)*C(n,2)".into());
     }
+    Ok(())
+}
+
+fn verify_t17_state_pair_and_projector() -> Result<(), String> {
     let (rp, rm) = rebit_state_pair().map_err(|e| format!("T17 state pair: {e:?}"))?;
     if rp == rm {
         return Err("T17: rho_+ and rho_- coincide — countermodel is vacuous".into());
@@ -301,6 +313,11 @@ pub fn t17_spanning_falsifier() -> Result<(), String> {
         return Err("T17: separating effect is not idempotent".into());
     }
     Ok(())
+}
+
+pub fn t17_spanning_falsifier() -> Result<(), String> {
+    verify_t17_rank_and_deficiency()?;
+    verify_t17_state_pair_and_projector()
 }
 
 pub fn issue_release_receipt(allow_diagnostic_seal: bool) -> ReleaseReceipt {

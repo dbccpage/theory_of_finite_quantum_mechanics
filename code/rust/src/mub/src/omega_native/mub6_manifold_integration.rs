@@ -134,6 +134,26 @@ pub struct MasterUnifiedObstructionResult {
     pub active_arm: UnifiedObstructionArm,
 }
 
+fn evaluate_loop_circulation_arm(
+    c_family: &TransitionCocycleFamily,
+    generating_loop: Option<&ModuliLoop>,
+    gamma: &BigRational,
+) -> (Option<BigRational>, bool) {
+    let Some(loop_obj) = generating_loop else {
+        return (None, false);
+    };
+    let scale: i128 = 30000;
+    let _hol = loop_holonomy(c_family, loop_obj);
+    let Ok(rep) = solve_loop_circulation(loop_obj, scale, None) else {
+        return (None, false);
+    };
+    let Some(value) = rep.scaled_verified_value(scale) else {
+        return (None, false);
+    };
+    let obstructed = &value >= gamma && rep.dual_gap_zero && rep.circulation_conserved;
+    (Some(value), obstructed)
+}
+
 pub fn evaluate_master_unified_obstruction(
     sample: &UnifiedModuliSample,
     c_family: &TransitionCocycleFamily,
@@ -143,22 +163,8 @@ pub fn evaluate_master_unified_obstruction(
     let gamma = circulation_gamma();
 
     let curvature_obstructed = sample.curvature_margin >= min_margin;
-
-    let scale: i128 = 30000;
-    let evaluated = generating_loop.and_then(|loop_obj| {
-        let _hol = loop_holonomy(c_family, loop_obj);
-        solve_loop_circulation(loop_obj, scale, None).ok()
-    });
-    let (circulation_phi1, circulation_obstructed) = match evaluated {
-        Some(rep) => match rep.scaled_verified_value(scale) {
-            Some(value) => {
-                let obstructed = value >= gamma && rep.dual_gap_zero && rep.circulation_conserved;
-                (Some(value), obstructed)
-            }
-            None => (None, false),
-        },
-        None => (None, false),
-    };
+    let (circulation_phi1, circulation_obstructed) =
+        evaluate_loop_circulation_arm(c_family, generating_loop, &gamma);
 
     let is_obstructed = curvature_obstructed || circulation_obstructed;
 
@@ -476,24 +482,42 @@ pub struct MasterTargetB3Report {
     pub no_complete_mub6: bool,
 }
 
-pub fn evaluate_target_b3_manifold_integration(
-) -> Result<MasterTargetB3Report, ManifoldIntegrationError> {
-    let cech_rep = verify_cech_cocycles_all_53_triples()?;
-
-    let circ_rep = evaluate_discrete_circulation_gamma()?;
-
-    let chaining_rep = verify_continuous_szollosi_chaining(30)?;
-
-    let cov_rep = verify_full_unified_coverage()?;
-
+fn compute_target_b3_flags(
+    cech_rep: &CechNerveReport,
+    circ_rep: &CirculationEvaluationReport,
+    chaining_rep: &ContinuousChainingReport,
+    cov_rep: &UnifiedCoverageReport,
+) -> (bool, bool, bool, bool, bool) {
     let discrete_cells_ok =
         cov_rep.cells_tested == TOTAL_CELL_COUNT && cov_rep.all_samples_obstructed;
     let chaining_ok = chaining_rep.all_samples_obstructed && chaining_rep.gap_stability_certified;
     let circulation_ok = circ_rep.circulation_obstructed && circ_rep.circulation_conserved;
     let master_unified_ok = discrete_cells_ok && chaining_ok && circulation_ok;
-
     let moduli_covering_closure =
         cech_rep.all_triples_valid && cov_rep.closure_certified && master_unified_ok;
+    (
+        discrete_cells_ok,
+        chaining_ok,
+        circulation_ok,
+        master_unified_ok,
+        moduli_covering_closure,
+    )
+}
+
+pub fn evaluate_target_b3_manifold_integration(
+) -> Result<MasterTargetB3Report, ManifoldIntegrationError> {
+    let cech_rep = verify_cech_cocycles_all_53_triples()?;
+    let circ_rep = evaluate_discrete_circulation_gamma()?;
+    let chaining_rep = verify_continuous_szollosi_chaining(30)?;
+    let cov_rep = verify_full_unified_coverage()?;
+
+    let (
+        discrete_cells_ok,
+        chaining_ok,
+        circulation_ok,
+        master_unified_ok,
+        moduli_covering_closure,
+    ) = compute_target_b3_flags(&cech_rep, &circ_rep, &chaining_rep, &cov_rep);
 
     let no_complete_mub6 = moduli_covering_closure;
 

@@ -193,21 +193,24 @@ fn meets_below_karlsson(box3: &CollarBoundaryBox3D, karlsson_min: &BigRational) 
     &below_hi > z_lo
 }
 
-fn rectangle_partition_holds(boxes: &[CollarBoundaryBox3D], z_hi: &BigRational) -> bool {
+fn collect_box_grid_coordinates(
+    boxes: &[CollarBoundaryBox3D],
+    z_hi: &BigRational,
+) -> Option<(Vec<BigRational>, Vec<BigRational>, Vec<BigRational>)> {
     let zero = BigRational::zero();
     let one = BigRational::one();
     if z_hi <= &zero {
-        return false;
+        return None;
     }
     let mut xs = BTreeSet::from([zero.clone(), one.clone()]);
     let mut ys = BTreeSet::from([zero.clone(), one.clone()]);
-    let mut zs = BTreeSet::from([zero.clone(), z_hi.clone()]);
+    let mut zs = BTreeSet::from([zero, z_hi.clone()]);
     for box3 in boxes {
         if box3.bounds_xy[0].1 < box3.bounds_xy[0].0
             || box3.bounds_xy[1].1 < box3.bounds_xy[1].0
             || box3.z_range.1 < box3.z_range.0
         {
-            return false;
+            return None;
         }
         xs.insert(box3.bounds_xy[0].0.clone());
         xs.insert(box3.bounds_xy[0].1.clone());
@@ -216,49 +219,95 @@ fn rectangle_partition_holds(boxes: &[CollarBoundaryBox3D], z_hi: &BigRational) 
         zs.insert(box3.z_range.0.clone());
         zs.insert(box3.z_range.1.clone());
     }
-    let xs: Vec<_> = xs.into_iter().collect();
-    let ys: Vec<_> = ys.into_iter().collect();
-    let zs: Vec<_> = zs.into_iter().collect();
+    Some((
+        xs.into_iter().collect(),
+        ys.into_iter().collect(),
+        zs.into_iter().collect(),
+    ))
+}
+
+fn count_boxes_containing_point(
+    boxes: &[CollarBoundaryBox3D],
+    point: &[BigRational; DIM_3D],
+) -> usize {
+    let mut hits = 0usize;
+    for box3 in boxes {
+        if box3.contains_point(point) {
+            hits += 1;
+        }
+    }
+    hits
+}
+
+fn point_inside_target_prism(point: &[BigRational; DIM_3D], z_hi: &BigRational) -> bool {
+    let zero = BigRational::zero();
+    let one = BigRational::one();
+    let xy_ok = point[0] >= zero && point[0] <= one && point[1] >= zero && point[1] <= one;
+    xy_ok && point[2] >= zero && &point[2] <= z_hi
+}
+
+fn check_grid_cell_coverage(
+    boxes: &[CollarBoundaryBox3D],
+    point: &[BigRational; DIM_3D],
+    z_hi: &BigRational,
+    saw_target: &mut bool,
+) -> bool {
+    let inside = point_inside_target_prism(point, z_hi);
+    let hits = count_boxes_containing_point(boxes, point);
+    if inside {
+        *saw_target = true;
+        hits == 1
+    } else {
+        hits == 0
+    }
+}
+
+fn check_yz_slice_coverage(
+    boxes: &[CollarBoundaryBox3D],
+    xm: &BigRational,
+    ys: &[BigRational],
+    zs: &[BigRational],
+    z_hi: &BigRational,
+    saw_target: &mut bool,
+) -> bool {
+    for iy in 0..ys.len().saturating_sub(1) {
+        if ys[iy + 1] <= ys[iy] {
+            continue;
+        }
+        let ym = midpoint(&ys[iy], &ys[iy + 1]);
+        for iz in 0..zs.len().saturating_sub(1) {
+            if zs[iz + 1] <= zs[iz] {
+                continue;
+            }
+            let zm = midpoint(&zs[iz], &zs[iz + 1]);
+            let point = [xm.clone(), ym.clone(), zm];
+            if !check_grid_cell_coverage(boxes, &point, z_hi, saw_target) {
+                return false;
+            }
+        }
+    }
+    true
+}
+
+fn rectangle_partition_holds(boxes: &[CollarBoundaryBox3D], z_hi: &BigRational) -> bool {
+    let Some((xs, ys, zs)) = collect_box_grid_coordinates(boxes, z_hi) else {
+        return false;
+    };
     let mut saw_target = false;
     for ix in 0..xs.len().saturating_sub(1) {
         if xs[ix + 1] <= xs[ix] {
             continue;
         }
         let xm = midpoint(&xs[ix], &xs[ix + 1]);
-        for iy in 0..ys.len().saturating_sub(1) {
-            if ys[iy + 1] <= ys[iy] {
-                continue;
-            }
-            let ym = midpoint(&ys[iy], &ys[iy + 1]);
-            for iz in 0..zs.len().saturating_sub(1) {
-                if zs[iz + 1] <= zs[iz] {
-                    continue;
-                }
-                let zm = midpoint(&zs[iz], &zs[iz + 1]);
-                let inside =
-                    xm >= zero && xm <= one && ym >= zero && ym <= one && zm >= zero && &zm <= z_hi;
-                let point = [xm.clone(), ym.clone(), zm];
-                let hits = boxes
-                    .iter()
-                    .filter(|box3| box3.contains_point(&point))
-                    .count();
-                if inside {
-                    saw_target = true;
-                    if hits != 1 {
-                        return false;
-                    }
-                } else if hits != 0 {
-                    return false;
-                }
-            }
+        if !check_yz_slice_coverage(boxes, &xm, &ys, &zs, z_hi, &mut saw_target) {
+            return false;
         }
     }
     saw_target
 }
 
 impl BoundaryOverlapPartition {
-    pub fn verify_partition(&self) -> Result<(), CollarBoundaryError> {
-        let zero = BigRational::zero();
+    fn verify_partition_depths(&self) -> Result<(), CollarBoundaryError> {
         let supported = depth_is_supported(&self.collar_max_depth)
             && depth_is_supported(&self.karlsson_min_depth);
         let gap_empty = supported && self.collar_max_depth >= self.karlsson_min_depth;
@@ -274,64 +323,49 @@ impl BoundaryOverlapPartition {
                 gap_hi: self.karlsson_min_depth.clone(),
             });
         }
+        Ok(())
+    }
 
-        let expected_volume = self.collar_max_depth.clone();
-        let mut actual_volume = zero.clone();
-        let mut min_margin: Option<BigRational> = None;
-        let mut overlap_count = 0usize;
-        let collar_m = collar_margin_at(&self.collar_max_depth);
-        let karlsson_m = karlsson_volume_margin();
-        let interface_m = if collar_m <= karlsson_m {
-            collar_m.clone()
-        } else {
-            karlsson_m.clone()
-        };
-        if collar_m <= zero {
+    fn verify_single_partition_box(
+        &self,
+        box3: &CollarBoundaryBox3D,
+        collar_m: &BigRational,
+        interface_m: &BigRational,
+    ) -> Result<BigRational, CollarBoundaryError> {
+        let volume = box3.volume();
+        if volume <= BigRational::zero() {
             return Err(CollarBoundaryError::InvalidParameter(format!(
-                "collar margin {collar_m} is not positive"
+                "box {} does not have positive volume",
+                box3.index
             )));
         }
-
-        if self.boxes.is_empty() {
-            return Err(CollarBoundaryError::VolumeConservationMismatch {
-                expected: expected_volume,
-                actual: zero,
+        let below = meets_below_karlsson(box3, &self.karlsson_min_depth);
+        let certs_valid = if below {
+            !box3.karlsson_certified && box3.collar_certified
+        } else {
+            box3.karlsson_certified && box3.collar_certified
+        };
+        let applicable = if below { collar_m } else { interface_m };
+        if !certs_valid || &box3.effective_margin != applicable {
+            return Err(CollarBoundaryError::UncertifiedInterfaceBox {
+                box_index: box3.index,
+                margin: box3.effective_margin.clone(),
             });
         }
+        Ok(volume)
+    }
 
+    fn verify_partition_boxes_and_accumulate(
+        &self,
+        collar_m: &BigRational,
+        interface_m: &BigRational,
+    ) -> Result<(BigRational, BigRational, usize), CollarBoundaryError> {
+        let mut actual_volume = BigRational::zero();
+        let mut min_margin: Option<BigRational> = None;
+        let mut overlap_count = 0usize;
         for box3 in &self.boxes {
-            let volume = box3.volume();
-            if volume <= zero {
-                return Err(CollarBoundaryError::InvalidParameter(format!(
-                    "box {} does not have positive volume",
-                    box3.index
-                )));
-            }
+            let volume = self.verify_single_partition_box(box3, collar_m, interface_m)?;
             actual_volume += &volume;
-            let below = meets_below_karlsson(box3, &self.karlsson_min_depth);
-            let applicable = if below {
-                if box3.karlsson_certified {
-                    return Err(CollarBoundaryError::UncertifiedInterfaceBox {
-                        box_index: box3.index,
-                        margin: box3.effective_margin.clone(),
-                    });
-                }
-                collar_m.clone()
-            } else {
-                if !box3.karlsson_certified || !box3.collar_certified {
-                    return Err(CollarBoundaryError::UncertifiedInterfaceBox {
-                        box_index: box3.index,
-                        margin: box3.effective_margin.clone(),
-                    });
-                }
-                interface_m.clone()
-            };
-            if !box3.collar_certified || box3.effective_margin != applicable {
-                return Err(CollarBoundaryError::UncertifiedInterfaceBox {
-                    box_index: box3.index,
-                    margin: box3.effective_margin.clone(),
-                });
-            }
             if box3.is_overlap() {
                 overlap_count += 1;
             }
@@ -340,9 +374,21 @@ impl BoundaryOverlapPartition {
                 _ => box3.effective_margin.clone(),
             });
         }
+        Ok((
+            actual_volume,
+            min_margin.unwrap_or_else(BigRational::zero),
+            overlap_count,
+        ))
+    }
 
-        let min_margin = min_margin.unwrap_or_else(BigRational::zero);
-        let all_positive = min_margin > zero;
+    fn verify_partition_summary_totals(
+        &self,
+        expected_volume: BigRational,
+        actual_volume: BigRational,
+        min_margin: BigRational,
+        overlap_count: usize,
+    ) -> Result<(), CollarBoundaryError> {
+        let all_positive = min_margin > BigRational::zero();
         if self.total_volume != actual_volume || actual_volume != expected_volume {
             return Err(CollarBoundaryError::VolumeConservationMismatch {
                 expected: expected_volume,
@@ -372,14 +418,48 @@ impl BoundaryOverlapPartition {
         Ok(())
     }
 
+    pub fn verify_partition(&self) -> Result<(), CollarBoundaryError> {
+        let zero = BigRational::zero();
+        self.verify_partition_depths()?;
+
+        let expected_volume = self.collar_max_depth.clone();
+        let collar_m = collar_margin_at(&self.collar_max_depth);
+        let karlsson_m = karlsson_volume_margin();
+        let interface_m = if collar_m <= karlsson_m {
+            collar_m.clone()
+        } else {
+            karlsson_m.clone()
+        };
+        if collar_m <= zero {
+            return Err(CollarBoundaryError::InvalidParameter(format!(
+                "collar margin {collar_m} is not positive"
+            )));
+        }
+        if self.boxes.is_empty() {
+            return Err(CollarBoundaryError::VolumeConservationMismatch {
+                expected: expected_volume,
+                actual: zero,
+            });
+        }
+
+        let (actual_volume, min_margin, overlap_count) =
+            self.verify_partition_boxes_and_accumulate(&collar_m, &interface_m)?;
+        self.verify_partition_summary_totals(
+            expected_volume,
+            actual_volume,
+            min_margin,
+            overlap_count,
+        )
+    }
+
     pub fn find_box(&self, pt: &[BigRational; DIM_3D]) -> Option<&CollarBoundaryBox3D> {
         self.boxes.iter().find(|b| b.contains_point(pt))
     }
 }
 
-pub fn evaluate_boundary_overlap(
+fn validate_boundary_overlap_config(
     config: &CollarBoundaryConfig,
-) -> Result<BoundaryOverlapPartition, CollarBoundaryError> {
+) -> Result<BigRational, CollarBoundaryError> {
     if config.divisions_xy == 0 {
         return Err(CollarBoundaryError::InvalidParameter(
             "divisions_xy must be >= 1".to_string(),
@@ -396,7 +476,6 @@ pub fn evaluate_boundary_overlap(
             "karlsson_min_depth must be strictly positive".to_string(),
         ));
     }
-
     if config.collar_max_depth < config.karlsson_min_depth {
         return Err(CollarBoundaryError::BoundaryGapDetected {
             gap_lo: config.collar_max_depth.clone(),
@@ -411,15 +490,75 @@ pub fn evaluate_boundary_overlap(
             delta_certified()
         )));
     }
-
-    let n = BigRational::from(BigInt::from(config.divisions_xy));
-    let cell_width = BigRational::one() / &n;
     let cm = collar_margin_at(&config.collar_max_depth);
     if cm <= zero {
         return Err(CollarBoundaryError::InvalidParameter(format!(
             "collar margin {cm} is not positive at the requested depth"
         )));
     }
+    Ok(cm)
+}
+
+fn push_cell_boundary_boxes(
+    boxes: &mut Vec<CollarBoundaryBox3D>,
+    index: &mut usize,
+    overlap_count: &mut usize,
+    config: &CollarBoundaryConfig,
+    bounds_xy: [(BigRational, BigRational); 2],
+    cm: &BigRational,
+    km: &BigRational,
+    if_margin: &BigRational,
+) {
+    let zero = BigRational::zero();
+    if config.karlsson_min_depth < config.collar_max_depth {
+        boxes.push(CollarBoundaryBox3D {
+            index: *index,
+            bounds_xy: bounds_xy.clone(),
+            z_range: (zero.clone(), config.karlsson_min_depth.clone()),
+            collar_certified: fixtures().flag("collar_layer_certified"),
+            collar_margin: cm.clone(),
+            karlsson_certified: false,
+            karlsson_margin: zero,
+            effective_margin: cm.clone(),
+        });
+        *index += 1;
+
+        boxes.push(CollarBoundaryBox3D {
+            index: *index,
+            bounds_xy,
+            z_range: (
+                config.karlsson_min_depth.clone(),
+                config.collar_max_depth.clone(),
+            ),
+            collar_certified: fixtures().flag("collar_layer_certified"),
+            collar_margin: cm.clone(),
+            karlsson_certified: fixtures().flag("overlap_layer_karlsson_certified"),
+            karlsson_margin: km.clone(),
+            effective_margin: if_margin.clone(),
+        });
+        *index += 1;
+        *overlap_count += 1;
+    } else {
+        boxes.push(CollarBoundaryBox3D {
+            index: *index,
+            bounds_xy,
+            z_range: (zero.clone(), config.collar_max_depth.clone()),
+            collar_certified: fixtures().flag("collar_layer_certified"),
+            collar_margin: cm.clone(),
+            karlsson_certified: false,
+            karlsson_margin: zero,
+            effective_margin: cm.clone(),
+        });
+        *index += 1;
+    }
+}
+
+pub fn evaluate_boundary_overlap(
+    config: &CollarBoundaryConfig,
+) -> Result<BoundaryOverlapPartition, CollarBoundaryError> {
+    let cm = validate_boundary_overlap_config(config)?;
+    let n = BigRational::from(BigInt::from(config.divisions_xy));
+    let cell_width = BigRational::one() / &n;
     let km = karlsson_volume_margin();
     let if_margin = if cm <= km { cm.clone() } else { km.clone() };
 
@@ -427,64 +566,27 @@ pub fn evaluate_boundary_overlap(
     let mut index = 0;
     let mut overlap_count = 0;
 
-    let has_extended_overlap = config.karlsson_min_depth < config.collar_max_depth;
-
     for i in 0..config.divisions_xy {
-        let i_rat = BigRational::from(BigInt::from(i));
-        let x_lo = &i_rat * &cell_width;
+        let x_lo = BigRational::from(BigInt::from(i)) * &cell_width;
         let x_hi = &x_lo + &cell_width;
-
         for j in 0..config.divisions_xy {
-            let j_rat = BigRational::from(BigInt::from(j));
-            let y_lo = &j_rat * &cell_width;
+            let y_lo = BigRational::from(BigInt::from(j)) * &cell_width;
             let y_hi = &y_lo + &cell_width;
-
-            if has_extended_overlap {
-                boxes.push(CollarBoundaryBox3D {
-                    index,
-                    bounds_xy: [(x_lo.clone(), x_hi.clone()), (y_lo.clone(), y_hi.clone())],
-                    z_range: (zero.clone(), config.karlsson_min_depth.clone()),
-                    collar_certified: fixtures().flag("collar_layer_certified"),
-                    collar_margin: cm.clone(),
-                    karlsson_certified: false,
-                    karlsson_margin: zero.clone(),
-                    effective_margin: cm.clone(),
-                });
-                index += 1;
-
-                boxes.push(CollarBoundaryBox3D {
-                    index,
-                    bounds_xy: [(x_lo.clone(), x_hi.clone()), (y_lo.clone(), y_hi.clone())],
-                    z_range: (
-                        config.karlsson_min_depth.clone(),
-                        config.collar_max_depth.clone(),
-                    ),
-                    collar_certified: fixtures().flag("collar_layer_certified"),
-                    collar_margin: cm.clone(),
-                    karlsson_certified: fixtures().flag("overlap_layer_karlsson_certified"),
-                    karlsson_margin: km.clone(),
-                    effective_margin: if_margin.clone(),
-                });
-                index += 1;
-                overlap_count += 1;
-            } else {
-                boxes.push(CollarBoundaryBox3D {
-                    index,
-                    bounds_xy: [(x_lo.clone(), x_hi.clone()), (y_lo.clone(), y_hi.clone())],
-                    z_range: (zero.clone(), config.collar_max_depth.clone()),
-                    collar_certified: fixtures().flag("collar_layer_certified"),
-                    collar_margin: cm.clone(),
-                    karlsson_certified: false,
-                    karlsson_margin: zero.clone(),
-                    effective_margin: cm.clone(),
-                });
-                index += 1;
-            }
+            push_cell_boundary_boxes(
+                &mut boxes,
+                &mut index,
+                &mut overlap_count,
+                config,
+                [(x_lo.clone(), x_hi.clone()), (y_lo, y_hi)],
+                &cm,
+                &km,
+                &if_margin,
+            );
         }
     }
 
     let mut total_vol = BigRational::zero();
-    let mut min_m = cm.clone();
+    let mut min_m = cm;
     for b in &boxes {
         total_vol = &total_vol + &b.volume();
         if b.effective_margin < min_m {
@@ -501,7 +603,7 @@ pub fn evaluate_boundary_overlap(
         min_margin: min_m.clone(),
         overlap_box_count: overlap_count,
         boundary_gap_empty: true,
-        all_margins_positive: min_m > zero,
+        all_margins_positive: min_m > BigRational::zero(),
     };
 
     partition.verify_partition()?;
@@ -703,6 +805,26 @@ impl InterfaceCycle {
         Ok((boundary, omega))
     }
 
+    fn sum_coboundary_steps(
+        edges: &[BoundaryEdge],
+        vertex_potential: &[i128],
+    ) -> Result<i128, CollarBoundaryError> {
+        let mut d_alpha_sum = 0i128;
+        for edge in edges {
+            let step = vertex_potential[edge.head]
+                .checked_sub(vertex_potential[edge.tail])
+                .ok_or_else(|| {
+                    CollarBoundaryError::InvalidParameter(
+                        "coboundary difference overflowed i128".to_string(),
+                    )
+                })?;
+            d_alpha_sum = d_alpha_sum.checked_add(step).ok_or_else(|| {
+                CollarBoundaryError::InvalidParameter("coboundary sum overflowed i128".to_string())
+            })?;
+        }
+        Ok(d_alpha_sum)
+    }
+
     pub fn verify_circulation(
         &self,
         scale: i128,
@@ -719,20 +841,7 @@ impl InterfaceCycle {
             });
         }
 
-        let mut d_alpha_sum = 0i128;
-        for edge in &boundary.edges {
-            let step = phi1_sol.vertex_potential[edge.head]
-                .checked_sub(phi1_sol.vertex_potential[edge.tail])
-                .ok_or_else(|| {
-                    CollarBoundaryError::InvalidParameter(
-                        "coboundary difference overflowed i128".to_string(),
-                    )
-                })?;
-            d_alpha_sum = d_alpha_sum.checked_add(step).ok_or_else(|| {
-                CollarBoundaryError::InvalidParameter("coboundary sum overflowed i128".to_string())
-            })?;
-        }
-
+        let d_alpha_sum = Self::sum_coboundary_steps(&boundary.edges, &phi1_sol.vertex_potential)?;
         if d_alpha_sum != 0 {
             return Err(CollarBoundaryError::CoboundarySumNonZero {
                 cycle_index: self.index,
@@ -852,6 +961,31 @@ impl CollarBoundaryReceipt {
     }
 }
 
+fn summarize_cycle_certs(
+    certs: &[InterfaceCycleCirculationCert],
+) -> (i128, bool, bool, bool) {
+    let mut min_phi1 = i128::MAX;
+    let mut all_pos = true;
+    let mut all_dual_zero = true;
+    let mut all_coboundary_zero = true;
+
+    for c in certs {
+        if c.phi1_objective < min_phi1 {
+            min_phi1 = c.phi1_objective;
+        }
+        if !c.certified || c.net_circulation <= 0 {
+            all_pos = false;
+        }
+        if !c.dual_gap_zero {
+            all_dual_zero = false;
+        }
+        if !c.circulation_conserved || c.coboundary_sum != 0 {
+            all_coboundary_zero = false;
+        }
+    }
+    (min_phi1, all_pos, all_dual_zero, all_coboundary_zero)
+}
+
 pub fn certify_collar_boundary_overlap(
     divisions_xy: usize,
     num_cycles: usize,
@@ -873,31 +1007,9 @@ pub fn certify_collar_boundary_overlap(
         ));
     }
 
-    let mut min_phi1 = i128::MAX;
-    let mut all_pos = true;
-    let mut all_dual_zero = true;
-    let mut all_coboundary_zero = true;
-
-    for c in &certs {
-        if c.phi1_objective < min_phi1 {
-            min_phi1 = c.phi1_objective;
-        }
-        if !c.certified || c.net_circulation <= 0 {
-            all_pos = false;
-        }
-        if !c.dual_gap_zero {
-            all_dual_zero = false;
-        }
-        if !c.circulation_conserved || c.coboundary_sum != 0 {
-            all_coboundary_zero = false;
-        }
-    }
-
-    let verified = partition.boundary_gap_empty
-        && partition.all_margins_positive
-        && all_pos
-        && all_dual_zero
-        && all_coboundary_zero;
+    let (min_phi1, all_pos, all_dual_zero, all_coboundary_zero) = summarize_cycle_certs(&certs);
+    let partition_ok = partition.boundary_gap_empty && partition.all_margins_positive;
+    let verified = partition_ok && all_pos && all_dual_zero && all_coboundary_zero;
 
     Ok(CollarBoundaryReceipt {
         schema_version: "omega.mub.target-a8-collar-boundary.v1".to_string(),

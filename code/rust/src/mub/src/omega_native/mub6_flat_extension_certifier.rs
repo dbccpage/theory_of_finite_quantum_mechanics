@@ -22,6 +22,39 @@ pub struct FlatExtensionRankReport {
     pub status: String,
 }
 
+fn find_pivot_row(mat: &[Vec<BigRational>], pivot_row: usize, col: usize) -> Option<usize> {
+    (pivot_row..mat.len()).find(|&r| !mat[r][col].is_zero())
+}
+
+fn normalize_pivot_row(row: &mut [BigRational], col: usize) {
+    let pivot_val = row[col].clone();
+    for val in &mut row[col..] {
+        *val = &*val / &pivot_val;
+    }
+}
+
+fn subtract_scaled_row(
+    target: &mut [BigRational],
+    pivot: &[BigRational],
+    col: usize,
+    factor: &BigRational,
+) {
+    for c in col..target.len() {
+        let sub = &pivot[c] * factor;
+        target[c] = &target[c] - &sub;
+    }
+}
+
+fn eliminate_below_pivot(mat: &mut [Vec<BigRational>], pivot_row: usize, col: usize) {
+    let pivot_slice = mat[pivot_row].clone();
+    for row in &mut mat[(pivot_row + 1)..] {
+        let factor = row[col].clone();
+        if !factor.is_zero() {
+            subtract_scaled_row(row, &pivot_slice, col, &factor);
+        }
+    }
+}
+
 pub fn compute_exact_rational_rank(matrix: &[Vec<BigRational>]) -> usize {
     if matrix.is_empty() || matrix[0].is_empty() {
         return 0;
@@ -35,34 +68,13 @@ pub fn compute_exact_rational_rank(matrix: &[Vec<BigRational>]) -> usize {
         if pivot_row >= rows {
             break;
         }
-        let mut selected = None;
-        for r in pivot_row..rows {
-            if !mat[r][col].is_zero() {
-                selected = Some(r);
-                break;
-            }
-        }
-        let r = match selected {
-            Some(row_idx) => row_idx,
-            None => continue,
+        let Some(r) = find_pivot_row(&mat, pivot_row, col) else {
+            continue;
         };
 
         mat.swap(pivot_row, r);
-
-        let pivot_val = mat[pivot_row][col].clone();
-        for c in col..cols {
-            mat[pivot_row][c] = &mat[pivot_row][c] / &pivot_val;
-        }
-
-        for r_below in (pivot_row + 1)..rows {
-            let factor = mat[r_below][col].clone();
-            if !factor.is_zero() {
-                for c in col..cols {
-                    let sub = &mat[pivot_row][c] * &factor;
-                    mat[r_below][c] = &mat[r_below][c] - &sub;
-                }
-            }
-        }
+        normalize_pivot_row(&mut mat[pivot_row], col);
+        eliminate_below_pivot(&mut mat, pivot_row, col);
         pivot_row += 1;
     }
 

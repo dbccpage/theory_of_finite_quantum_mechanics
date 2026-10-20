@@ -167,6 +167,25 @@ pub fn monomial_lcm(m1: &Monomial4, m2: &Monomial4) -> Monomial4 {
     ]
 }
 
+fn find_divisible_reduction(
+    lm_p: &Monomial4,
+    lc_p: &BigRational,
+    divisors: &[ExactPoly4],
+    divisor_lts: &[Option<(Monomial4, BigRational)>],
+) -> Option<ExactPoly4> {
+    for (i, d_lt) in divisor_lts.iter().enumerate() {
+        let Some((lm_d, lc_d)) = d_lt else {
+            continue;
+        };
+        if monomial_is_divisible(lm_p, lm_d) {
+            let m_diff = monomial_sub(lm_p, lm_d);
+            let c_diff = lc_p / lc_d;
+            return Some(divisors[i].mul_monomial(&m_diff, &c_diff));
+        }
+    }
+    None
+}
+
 pub fn multivariate_remainder(f: &ExactPoly4, divisors: &[ExactPoly4]) -> ExactPoly4 {
     let mut remainder = ExactPoly4::zero();
     let mut p = f.clone();
@@ -176,24 +195,11 @@ pub fn multivariate_remainder(f: &ExactPoly4, divisors: &[ExactPoly4]) -> ExactP
 
     while !p.is_zero() {
         let (lm_p, lc_p) = p.leading_term().unwrap();
-        let mut divided = false;
-
-        for (i, d_lt) in divisor_lts.iter().enumerate() {
-            if let Some((lm_d, lc_d)) = d_lt {
-                if monomial_is_divisible(&lm_p, lm_d) {
-                    let m_diff = monomial_sub(&lm_p, lm_d);
-                    let c_diff = &lc_p / lc_d;
-                    let sub_poly = divisors[i].mul_monomial(&m_diff, &c_diff);
-                    p = p.sub(&sub_poly);
-                    divided = true;
-                    break;
-                }
-            }
-        }
-
-        if !divided {
+        if let Some(sub_poly) = find_divisible_reduction(&lm_p, &lc_p, divisors, &divisor_lts) {
+            p = p.sub(&sub_poly);
+        } else {
             let mut single_term = BTreeMap::new();
-            single_term.insert(lm_p, lc_p.clone());
+            single_term.insert(lm_p, lc_p);
             let rem_poly = ExactPoly4 { terms: single_term };
             remainder = remainder.add(&rem_poly);
             p = p.sub(&rem_poly);

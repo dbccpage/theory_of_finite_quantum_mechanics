@@ -176,6 +176,35 @@ pub fn find_irreducible_monic(prime: usize, degree: usize) -> Option<Vec<usize>>
     None
 }
 
+fn monic_divisor_from_index(prime: usize, divisor_degree: usize, mut index: usize) -> Vec<usize> {
+    let mut divisor = vec![0; divisor_degree + 1];
+    for coeff in divisor.iter_mut().take(divisor_degree) {
+        *coeff = index % prime;
+        index /= prime;
+    }
+    divisor[divisor_degree] = 1;
+    divisor
+}
+
+fn has_monic_divisor_of_degree(
+    prime: usize,
+    polynomial: &[usize],
+    divisor_degree: usize,
+) -> Option<bool> {
+    let divisor_count = checked_pow(prime, divisor_degree)?;
+    for index in 0..divisor_count {
+        let divisor = monic_divisor_from_index(prime, divisor_degree, index);
+        if divisor[0] != 0
+            && poly_mod(prime, polynomial, &divisor)
+                .iter()
+                .all(|coeff| *coeff == 0)
+        {
+            return Some(true);
+        }
+    }
+    Some(false)
+}
+
 pub fn is_irreducible_monic(prime: usize, lower: &[usize]) -> bool {
     let degree = lower.len();
     if !is_prime(prime) || degree == 0 || lower.iter().any(|&coeff| coeff >= prime) {
@@ -188,25 +217,8 @@ pub fn is_irreducible_monic(prime: usize, lower: &[usize]) -> bool {
     polynomial.push(1);
 
     for divisor_degree in 1..=degree / 2 {
-        let Some(divisor_count) = checked_pow(prime, divisor_degree) else {
+        if has_monic_divisor_of_degree(prime, &polynomial, divisor_degree) != Some(false) {
             return false;
-        };
-        for mut index in 0..divisor_count {
-            let mut divisor = vec![0; divisor_degree + 1];
-            for coeff in divisor.iter_mut().take(divisor_degree) {
-                *coeff = index % prime;
-                index /= prime;
-            }
-            divisor[divisor_degree] = 1;
-            if divisor[0] == 0 {
-                continue;
-            }
-            if poly_mod(prime, &polynomial, &divisor)
-                .iter()
-                .all(|coeff| *coeff == 0)
-            {
-                return false;
-            }
         }
     }
 

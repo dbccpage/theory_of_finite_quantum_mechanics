@@ -62,6 +62,30 @@ impl Work {
         }
         Ok(result)
     }
+    fn miller_rabin_witness(
+        &mut self,
+        a: u64,
+        d: u64,
+        s: u32,
+        n: u64,
+    ) -> Result<bool, FactorizationError> {
+        if a % n == 0 {
+            return Ok(false);
+        }
+        let mut x = self.pow_mod(a % n, d, n)?;
+        if x == 1 || x == n - 1 {
+            return Ok(false);
+        }
+        for _ in 1..s {
+            self.step()?;
+            x = ((u128::from(x) * u128::from(x)) % u128::from(n)) as u64;
+            if x == n - 1 {
+                return Ok(false);
+            }
+        }
+        Ok(true)
+    }
+
     fn prime64(&mut self, n: u64) -> Result<bool, FactorizationError> {
         self.step()?;
         if n < 2 {
@@ -79,23 +103,7 @@ impl Work {
         let s = (n - 1).trailing_zeros();
         let d = (n - 1) >> s;
         for a in [2, 325, 9375, 28178, 450775, 9780504, 1795265022] {
-            if a % n == 0 {
-                continue;
-            }
-            let mut x = self.pow_mod(a % n, d, n)?;
-            if x == 1 || x == n - 1 {
-                continue;
-            }
-            let mut witness = true;
-            for _ in 1..s {
-                self.step()?;
-                x = ((u128::from(x) * u128::from(x)) % u128::from(n)) as u64;
-                if x == n - 1 {
-                    witness = false;
-                    break;
-                }
-            }
-            if witness {
+            if self.miller_rabin_witness(a, d, s, n)? {
                 return Ok(false);
             }
         }
@@ -162,6 +170,20 @@ pub fn factor_natural(
     factor_with_work(value, &mut work)
 }
 
+fn strip_divisor_factor(
+    rest: &mut BigUint,
+    d: &BigUint,
+    factors: &mut BTreeMap<BigUint, u32>,
+    work: &mut Work,
+) -> Result<(), FactorizationError> {
+    while (&*rest % d).is_zero() {
+        work.step()?;
+        *rest /= d;
+        record_factor(factors, d.clone())?;
+    }
+    Ok(())
+}
+
 fn factor_with_work(
     value: &BigUint,
     work: &mut Work,
@@ -179,11 +201,7 @@ fn factor_with_work(
             record_factor(&mut factors, rest)?;
             return Ok(factors);
         }
-        while (&rest % &d).is_zero() {
-            work.step()?;
-            rest /= &d;
-            record_factor(&mut factors, d.clone())?;
-        }
+        strip_divisor_factor(&mut rest, &d, &mut factors, work)?;
         d += if d == BigUint::from(2u8) { 1u8 } else { 2u8 };
     }
     Ok(factors)

@@ -137,6 +137,145 @@ fn shape(message: impl Into<String>) -> BalancedReplayError {
     BalancedReplayError::Shape(message.into())
 }
 
+fn header_identity_and_counts_match(header: &Header) -> bool {
+    let expected_vars: Vec<usize> = (0..VARIABLES).collect();
+    let expected_eqs: Vec<usize> = (0..EQUATIONS).collect();
+    header.kind == "header"
+        && header.schema == SCHEMA
+        && header.authority_effect == "None"
+        && header.variable_count == VARIABLES
+        && header.equation_count == EQUATIONS
+        && header.coordinate_codes == expected_vars
+        && header.equation_codes == expected_eqs
+}
+
+fn header_metadata_matches(header: &Header) -> bool {
+    header.probe_count == PROBE_DEFINITIONS.len()
+        && header.probe_definitions == PROBE_DEFINITIONS
+        && header.semantics == SEMANTICS
+        && header.determinant_inequality.is_null()
+        && !header.kernel_reflected_file
+        && !header.infeasibility_claimed
+}
+
+fn validate_coordinate_bounds(header: &Header) -> Result<(), BalancedReplayError> {
+    if header.coordinate_bounds.len() != VARIABLES {
+        return Err(shape("coordinate_bounds length"));
+    }
+    for (v, [low, high]) in header.coordinate_bounds.iter().enumerate() {
+        let radius = coordinate_radius(v);
+        if rational(low)? != -radius.clone() || rational(high)? != radius {
+            return Err(shape(format!("coordinate bound {v}")));
+        }
+    }
+    Ok(())
+}
+
+fn build_probe_points() -> Vec<Vec<BigRational>> {
+    let mut points = Vec::with_capacity(PROBE_DEFINITIONS.len());
+    for p in 0..PROBE_DEFINITIONS.len() {
+        let mut pt = Vec::with_capacity(VARIABLES);
+        for i in 0..VARIABLES {
+            pt.push(probe(p, i));
+        }
+        points.push(pt);
+    }
+    points
+}
+
+fn factors_sorted_and_in_range(factors: &[usize]) -> bool {
+    if factors.len() > 2 {
+        return false;
+    }
+    for i in 0..factors.len() {
+        if factors[i] >= VARIABLES || (i > 0 && factors[i - 1] > factors[i]) {
+            return false;
+        }
+    }
+    true
+}
+
+fn decode_row_poly(id: usize, row: &Row) -> Result<RationalPoly, BalancedReplayError> {
+    let mut poly = RationalPoly::new();
+    let mut previous: Option<&Vec<usize>> = None;
+    for (coefficient, factors) in &row.terms {
+        let q = rational(coefficient)?;
+        let prev_bad = match previous {
+            Some(p) => p >= factors,
+            None => false,
+        };
+        if q.is_zero() || !factors_sorted_and_in_range(factors) || prev_bad {
+            return Err(shape(format!("row {id} term order or range")));
+        }
+        previous = Some(factors);
+        poly.insert(factors.clone(), q);
+    }
+    Ok(poly)
+}
+
+fn verify_row_probe_values(
+    id: usize,
+    poly: &RationalPoly,
+    row: &Row,
+    probe_points: &[Vec<BigRational>],
+) -> Result<(), BalancedReplayError> {
+    for (p, point) in probe_points.iter().enumerate() {
+        let value = evaluate_rational(poly, point);
+        if rational(&row.probe_values[p])? != value {
+            return Err(shape(format!("row {id} probe {p}")));
+        }
+    }
+    Ok(())
+}
+
+fn decode_and_verify_equation_row(
+    id: usize,
+    line: &str,
+    probe_points: &[Vec<BigRational>],
+) -> Result<RationalPoly, BalancedReplayError> {
+    let row: Row = serde_json::from_str(line)?;
+    if row.kind != "equation" || row.id != id || row.degree_bound != 2 {
+        return Err(shape(format!("row {id} header fields")));
+    }
+    if row.term_count != row.terms.len() || row.probe_values.len() != PROBE_DEFINITIONS.len() {
+        return Err(shape(format!("row {id} counts")));
+    }
+    let poly = decode_row_poly(id, &row)?;
+    verify_row_probe_values(id, &poly, &row, probe_points)?;
+    Ok(poly)
+}
+
+fn decode_all_equation_rows(
+    lines: &[&str],
+    probe_points: &[Vec<BigRational>],
+) -> Result<(Vec<RationalPoly>, usize, usize), BalancedReplayError> {
+    let mut rows = Vec::with_capacity(EQUATIONS);
+    let mut total_terms = 0;
+    let mut maximum_terms = 0;
+    for (id, line) in lines[1..=EQUATIONS].iter().enumerate() {
+        let poly = decode_and_verify_equation_row(id, line, probe_points)?;
+        total_terms += poly.len();
+        maximum_terms = maximum_terms.max(poly.len());
+        rows.push(poly);
+    }
+    Ok((rows, total_terms, maximum_terms))
+}
+
+fn validate_table_tail(
+    tail: &Tail,
+    total_terms: usize,
+    maximum_terms: usize,
+) -> Result<(), BalancedReplayError> {
+    if tail.kind != "complete"
+        || tail.equations != EQUATIONS
+        || tail.total_terms != total_terms
+        || tail.maximum_terms != maximum_terms
+    {
+        return Err(shape("tail totals"));
+    }
+    Ok(())
+}
+
 impl BalancedTable {
     pub fn from_bytes(bytes: &[u8]) -> Result<Self, BalancedReplayError> {
         let digest = format!("{:x}", Sha256::digest(bytes));
@@ -150,83 +289,21 @@ impl BalancedTable {
         let text = std::str::from_utf8(bytes).map_err(|_| shape("table is not UTF-8"))?;
         let lines: Vec<&str> = text.lines().collect();
         if lines.len() != EQUATIONS + 2 {
-            return Err(shape(format!("expected {} lines, found {}", EQUATIONS + 2, lines.len())));
+            return Err(shape(format!(
+                "expected {} lines, found {}",
+                EQUATIONS + 2,
+                lines.len()
+            )));
         }
         let header: Header = serde_json::from_str(lines[0])?;
-        let expected_codes = |n: usize| (0..n).collect::<Vec<_>>();
-        if header.kind != "header"
-            || header.schema != SCHEMA
-            || header.authority_effect != "None"
-            || header.variable_count != VARIABLES
-            || header.equation_count != EQUATIONS
-            || header.coordinate_codes != expected_codes(VARIABLES)
-            || header.equation_codes != expected_codes(EQUATIONS)
-            || header.probe_count != PROBE_DEFINITIONS.len()
-            || header.probe_definitions != PROBE_DEFINITIONS
-            || header.semantics != SEMANTICS
-            || !header.determinant_inequality.is_null()
-            || header.kernel_reflected_file
-            || header.infeasibility_claimed
-        {
+        if !header_identity_and_counts_match(&header) || !header_metadata_matches(&header) {
             return Err(shape("header fields differ from the balanced schema"));
         }
-        if header.coordinate_bounds.len() != VARIABLES {
-            return Err(shape("coordinate_bounds length"));
-        }
-        for (v, [low, high]) in header.coordinate_bounds.iter().enumerate() {
-            let radius = coordinate_radius(v);
-            if rational(low)? != -radius.clone() || rational(high)? != radius {
-                return Err(shape(format!("coordinate bound {v}")));
-            }
-        }
-        let probe_points: Vec<Vec<BigRational>> = (0..PROBE_DEFINITIONS.len())
-            .map(|p| (0..VARIABLES).map(|i| probe(p, i)).collect())
-            .collect();
-        let mut rows = Vec::with_capacity(EQUATIONS);
-        let mut total_terms = 0;
-        let mut maximum_terms = 0;
-        for (id, line) in lines[1..=EQUATIONS].iter().enumerate() {
-            let row: Row = serde_json::from_str(line)?;
-            if row.kind != "equation" || row.id != id || row.degree_bound != 2 {
-                return Err(shape(format!("row {id} header fields")));
-            }
-            if row.term_count != row.terms.len() || row.probe_values.len() != PROBE_DEFINITIONS.len()
-            {
-                return Err(shape(format!("row {id} counts")));
-            }
-            let mut poly = RationalPoly::new();
-            let mut previous: Option<&Vec<usize>> = None;
-            for (coefficient, factors) in &row.terms {
-                let q = rational(coefficient)?;
-                if q.is_zero()
-                    || factors.len() > 2
-                    || factors.windows(2).any(|w| w[0] > w[1])
-                    || factors.iter().any(|&v| v >= VARIABLES)
-                    || previous.is_some_and(|p| p >= factors)
-                {
-                    return Err(shape(format!("row {id} term order or range")));
-                }
-                previous = Some(factors);
-                poly.insert(factors.clone(), q);
-            }
-            for (p, point) in probe_points.iter().enumerate() {
-                let value = evaluate_rational(&poly, point);
-                if rational(&row.probe_values[p])? != value {
-                    return Err(shape(format!("row {id} probe {p}")));
-                }
-            }
-            total_terms += poly.len();
-            maximum_terms = maximum_terms.max(poly.len());
-            rows.push(poly);
-        }
+        validate_coordinate_bounds(&header)?;
+        let probe_points = build_probe_points();
+        let (rows, total_terms, maximum_terms) = decode_all_equation_rows(&lines, &probe_points)?;
         let tail: Tail = serde_json::from_str(lines[EQUATIONS + 1])?;
-        if tail.kind != "complete"
-            || tail.equations != EQUATIONS
-            || tail.total_terms != total_terms
-            || tail.maximum_terms != maximum_terms
-        {
-            return Err(shape("tail totals"));
-        }
+        validate_table_tail(&tail, total_terms, maximum_terms)?;
         Ok(Self {
             rows,
             total_terms,
@@ -361,21 +438,23 @@ impl ComplexPoly {
 
 type SymbolicMatrix = Vec<Vec<ComplexPoly>>;
 
+fn entry_base_a0(i: usize, j: usize) -> Option<usize> {
+    if i == 0 || j == 0 {
+        None
+    } else if i < 3 && j < 3 {
+        Some(2 * (2 * (i - 1) + (j - 1)))
+    } else if i < 3 {
+        Some(2 * (4 + 3 * (i - 1) + (j - 3)))
+    } else if j < 3 {
+        Some(2 * (10 + 2 * (i - 3) + (j - 1)))
+    } else {
+        Some(D_START + 2 * (3 * (i - 3) + (j - 3)))
+    }
+}
+
 pub fn entry_base(a: usize, i: usize, j: usize) -> Option<usize> {
     match a {
-        0 => {
-            if i == 0 || j == 0 {
-                None
-            } else if i < 3 && j < 3 {
-                Some(2 * (2 * (i - 1) + (j - 1)))
-            } else if i < 3 {
-                Some(2 * (4 + 3 * (i - 1) + (j - 3)))
-            } else if j < 3 {
-                Some(2 * (10 + 2 * (i - 3) + (j - 1)))
-            } else {
-                Some(D_START + 2 * (3 * (i - 3) + (j - 3)))
-            }
-        }
+        0 => entry_base_a0(i, j),
         1 | 2 => {
             if i == 0 {
                 None
@@ -392,19 +471,31 @@ pub fn core_base(a: usize, i: usize, j: usize) -> usize {
     CORE_START + 2 * (25 * a + 5 * i + j)
 }
 
+fn symbolic_basis_entry(a: usize, i: usize, j: usize) -> ComplexPoly {
+    match entry_base(a, i, j) {
+        Some(base) => ComplexPoly::coordinate(base),
+        None => ComplexPoly::constant(1),
+    }
+}
+
+fn symbolic_basis_matrix(a: usize) -> SymbolicMatrix {
+    let mut mat = Vec::with_capacity(6);
+    for i in 0..6 {
+        let mut row = Vec::with_capacity(6);
+        for j in 0..6 {
+            row.push(symbolic_basis_entry(a, i, j));
+        }
+        mat.push(row);
+    }
+    mat
+}
+
 fn symbolic_bases() -> [SymbolicMatrix; 3] {
-    std::array::from_fn(|a| {
-        (0..6)
-            .map(|i| {
-                (0..6)
-                    .map(|j| match entry_base(a, i, j) {
-                        Some(base) => ComplexPoly::coordinate(base),
-                        None => ComplexPoly::constant(1),
-                    })
-                    .collect()
-            })
-            .collect()
-    })
+    [
+        symbolic_basis_matrix(0),
+        symbolic_basis_matrix(1),
+        symbolic_basis_matrix(2),
+    ]
 }
 
 fn symbolic_transition(a: usize) -> SymbolicMatrix {
@@ -466,6 +557,28 @@ pub fn transition_modulus_code(a: usize, i: usize, j: usize) -> usize {
     TRANSITION_MODULUS_START + 36 * a + 6 * i + j
 }
 
+fn populate_cell_equations(
+    equations: &mut [RationalPoly],
+    bases: &[SymbolicMatrix; 3],
+    grams: &[SymbolicMatrix],
+    cores: &[SymbolicMatrix],
+    transitions: &[SymbolicMatrix],
+    a: usize,
+    i: usize,
+    j: usize,
+) {
+    equations[modulus_code(a, i, j)] = poly_add(&bases[a][i][j].norm(), &poly_const(1), -1);
+    let diagonal = if i == j { 6 } else { 0 };
+    let gram = grams[a][i][j].add(&ComplexPoly::constant(diagonal), -1);
+    let graph = cores[a][i][j].add(&transitions[a][i][j], -1);
+    for b in 0..2 {
+        equations[gram_code(a, i, j, b)] = gram.component(b);
+        equations[graph_code(a, i, j, b)] = graph.component(b);
+    }
+    equations[transition_modulus_code(a, i, j)] =
+        poly_add(&cores[a][i][j].norm(), &poly_const(6), -1);
+}
+
 pub fn regenerate_equations() -> Vec<RationalPoly> {
     let bases = symbolic_bases();
     let pairs = [(0, 1), (0, 2), (1, 2)];
@@ -482,17 +595,16 @@ pub fn regenerate_equations() -> Vec<RationalPoly> {
     for a in 0..3 {
         for i in 0..6 {
             for j in 0..6 {
-                equations[modulus_code(a, i, j)] =
-                    poly_add(&bases[a][i][j].norm(), &poly_const(1), -1);
-                let diagonal = if i == j { 6 } else { 0 };
-                let gram = grams[a][i][j].add(&ComplexPoly::constant(diagonal), -1);
-                let graph = cores[a][i][j].add(&transitions[a][i][j], -1);
-                for b in 0..2 {
-                    equations[gram_code(a, i, j, b)] = gram.component(b);
-                    equations[graph_code(a, i, j, b)] = graph.component(b);
-                }
-                equations[transition_modulus_code(a, i, j)] =
-                    poly_add(&cores[a][i][j].norm(), &poly_const(6), -1);
+                populate_cell_equations(
+                    &mut equations,
+                    &bases,
+                    &grams,
+                    &cores,
+                    &transitions,
+                    a,
+                    i,
+                    j,
+                );
             }
         }
     }
@@ -522,50 +634,78 @@ fn is_gauge(a: usize, i: usize, j: usize) -> bool {
     entry_base(a, i, j).is_none()
 }
 
+#[derive(Default)]
+struct InventoryCounters {
+    empty_gauge_modulus_rows: usize,
+    nonempty_modulus_rows: usize,
+    empty_gram_rows: usize,
+    gram_hermitian_duplicate_pairs: usize,
+    gram_diagonal_real_equal_modulus_sum: usize,
+    gram_upper_rows: usize,
+}
+
+fn is_hermitian_duplicate_pair(rows: &[RationalPoly], a: usize, i: usize, j: usize) -> bool {
+    let re_equal = rows[gram_code(a, i, j, 0)] == rows[gram_code(a, j, i, 0)];
+    let im_opposite = rows[gram_code(a, i, j, 1)]
+        == poly_add(&RationalPoly::new(), &rows[gram_code(a, j, i, 1)], -1);
+    re_equal && im_opposite
+}
+
+fn accumulate_cell_inventory(
+    rows: &[RationalPoly],
+    a: usize,
+    i: usize,
+    j: usize,
+    counters: &mut InventoryCounters,
+) {
+    let modulus = &rows[modulus_code(a, i, j)];
+    let gauge = is_gauge(a, i, j);
+    if modulus.is_empty() && gauge {
+        counters.empty_gauge_modulus_rows += 1;
+    } else if !modulus.is_empty() && !gauge {
+        counters.nonempty_modulus_rows += 1;
+    }
+    for b in 0..2 {
+        if rows[gram_code(a, i, j, b)].is_empty() {
+            counters.empty_gram_rows += 1;
+        }
+    }
+    if i < j {
+        counters.gram_upper_rows += 2;
+    } else if i > j && is_hermitian_duplicate_pair(rows, a, i, j) {
+        counters.gram_hermitian_duplicate_pairs += 1;
+    }
+}
+
+fn check_column_sum_inventory(rows: &[RationalPoly], a: usize, i: usize) -> bool {
+    let mut column_sum = RationalPoly::new();
+    for k in 0..6 {
+        column_sum = poly_add(&column_sum, &rows[modulus_code(a, k, i)], 1);
+    }
+    rows[gram_code(a, i, i, 0)] == column_sum
+}
+
 pub fn inventory(table: &BalancedTable) -> TableInventory {
     let regenerated = regenerate_equations();
-    let mismatched_rows: Vec<usize> = (0..EQUATIONS)
-        .filter(|&c| table.rows[c] != regenerated[c])
-        .collect();
     let rows = &table.rows;
-    let empty_rows: Vec<usize> = (0..EQUATIONS).filter(|&c| rows[c].is_empty()).collect();
-    let mut empty_gauge_modulus_rows = 0;
-    let mut nonempty_modulus_rows = 0;
-    let mut empty_gram_rows = 0;
-    let mut gram_hermitian_duplicate_pairs = 0;
-    let mut gram_diagonal_real_equal_modulus_sum = 0;
-    let mut gram_upper_rows = 0;
+    let mut mismatched_rows = Vec::new();
+    let mut empty_rows = Vec::new();
+    for c in 0..EQUATIONS {
+        if rows[c] != regenerated[c] {
+            mismatched_rows.push(c);
+        }
+        if rows[c].is_empty() {
+            empty_rows.push(c);
+        }
+    }
+    let mut counters = InventoryCounters::default();
     for a in 0..3 {
         for i in 0..6 {
             for j in 0..6 {
-                let modulus = &rows[modulus_code(a, i, j)];
-                if modulus.is_empty() && is_gauge(a, i, j) {
-                    empty_gauge_modulus_rows += 1;
-                } else if !modulus.is_empty() && !is_gauge(a, i, j) {
-                    nonempty_modulus_rows += 1;
-                }
-                for b in 0..2 {
-                    if rows[gram_code(a, i, j, b)].is_empty() {
-                        empty_gram_rows += 1;
-                    }
-                }
-                if i < j {
-                    gram_upper_rows += 2;
-                }
-                if i > j {
-                    let re_equal = rows[gram_code(a, i, j, 0)] == rows[gram_code(a, j, i, 0)];
-                    let im_opposite = rows[gram_code(a, i, j, 1)]
-                        == poly_add(&RationalPoly::new(), &rows[gram_code(a, j, i, 1)], -1);
-                    if re_equal && im_opposite {
-                        gram_hermitian_duplicate_pairs += 1;
-                    }
-                }
+                accumulate_cell_inventory(rows, a, i, j, &mut counters);
             }
-            let column_sum = (0..6).fold(RationalPoly::new(), |acc, k| {
-                poly_add(&acc, &rows[modulus_code(a, k, i)], 1)
-            });
-            if rows[gram_code(a, i, i, 0)] == column_sum {
-                gram_diagonal_real_equal_modulus_sum += 1;
+            if check_column_sum_inventory(rows, a, i) {
+                counters.gram_diagonal_real_equal_modulus_sum += 1;
             }
         }
     }
@@ -577,12 +717,12 @@ pub fn inventory(table: &BalancedTable) -> TableInventory {
         maximum_terms: table.maximum_terms,
         mismatched_rows,
         empty_rows,
-        empty_gauge_modulus_rows,
-        nonempty_modulus_rows,
-        empty_gram_rows,
-        gram_hermitian_duplicate_pairs,
-        gram_diagonal_real_equal_modulus_sum,
-        gram_upper_rows,
+        empty_gauge_modulus_rows: counters.empty_gauge_modulus_rows,
+        nonempty_modulus_rows: counters.nonempty_modulus_rows,
+        empty_gram_rows: counters.empty_gram_rows,
+        gram_hermitian_duplicate_pairs: counters.gram_hermitian_duplicate_pairs,
+        gram_diagonal_real_equal_modulus_sum: counters.gram_diagonal_real_equal_modulus_sum,
+        gram_upper_rows: counters.gram_upper_rows,
         graph_rows: TRANSITION_MODULUS_START - GRAPH_START,
         transition_modulus_rows: EQUATIONS - TRANSITION_MODULUS_START,
     }
@@ -618,6 +758,41 @@ fn check_square(name: &str, m: &ExactMatrix) -> Result<(), BalancedReplayError> 
     Ok(())
 }
 
+fn validate_single_basis_gauge(a: usize, m: &ExactMatrix) -> Result<(), BalancedReplayError> {
+    let one = Cyc24::one();
+    for i in 0..6 {
+        for j in 0..6 {
+            if is_gauge(a, i, j) && m[i][j] != one {
+                return Err(BalancedReplayError::Matrix(format!(
+                    "basis {a} entry ({i},{j}) is outside the gauge"
+                )));
+            }
+        }
+    }
+    Ok(())
+}
+
+fn encode_single_basis_entries(a: usize, m: &ExactMatrix, point: &mut [Cyc24]) {
+    for i in 0..6 {
+        for j in 0..6 {
+            if let Some(base) = entry_base(a, i, j) {
+                point[base] = real_part(&m[i][j]);
+                point[base + 1] = imag_part(&m[i][j]);
+            }
+        }
+    }
+}
+
+fn encode_single_transition_core(a: usize, t: &ExactMatrix, point: &mut [Cyc24]) {
+    for (i, row) in t.iter().enumerate().take(5) {
+        for (j, z) in row.iter().enumerate().take(5) {
+            let base = core_base(a, i, j);
+            point[base] = real_part(z);
+            point[base + 1] = imag_part(z);
+        }
+    }
+}
+
 pub fn encode_triple(
     h: &ExactMatrix,
     u: &ExactMatrix,
@@ -627,28 +802,12 @@ pub fn encode_triple(
     for (name, m) in ["H", "U", "V"].iter().zip(bases) {
         check_square(name, m)?;
     }
-    let one = Cyc24::one();
     for (a, m) in bases.iter().enumerate() {
-        for i in 0..6 {
-            for j in 0..6 {
-                if is_gauge(a, i, j) && m[i][j] != one {
-                    return Err(BalancedReplayError::Matrix(format!(
-                        "basis {a} entry ({i},{j}) is outside the gauge"
-                    )));
-                }
-            }
-        }
+        validate_single_basis_gauge(a, m)?;
     }
     let mut point = vec![Cyc24::zero(); VARIABLES];
     for (a, m) in bases.iter().enumerate() {
-        for i in 0..6 {
-            for j in 0..6 {
-                if let Some(base) = entry_base(a, i, j) {
-                    point[base] = real_part(&m[i][j]);
-                    point[base + 1] = imag_part(&m[i][j]);
-                }
-            }
-        }
+        encode_single_basis_entries(a, m, &mut point);
     }
     let transitions = [
         exact_conj_transpose_mul(h, u),
@@ -656,13 +815,7 @@ pub fn encode_triple(
         exact_conj_transpose_mul(u, v),
     ];
     for (a, t) in transitions.iter().enumerate() {
-        for (i, row) in t.iter().enumerate().take(5) {
-            for (j, z) in row.iter().enumerate().take(5) {
-                let base = core_base(a, i, j);
-                point[base] = real_part(z);
-                point[base + 1] = imag_part(z);
-            }
-        }
+        encode_single_transition_core(a, t, &mut point);
     }
     Ok(point)
 }

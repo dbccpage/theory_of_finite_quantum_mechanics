@@ -1,0 +1,331 @@
+# YAML 1.2 (JSON syntax). AuthorityEffect: None.
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/mub/src/omega_native/mub6_collar_boundary.rs",
+    "sha256": "58aa656152467b9e314551955db9f591151cdb56be616631bb24570dec6795ad",
+    "language": "Rust"
+  },
+  "contract_urn": "urn:tfqm:contract:mub:src:omega_native:mub6_collar_boundary.rs",
+  "status": "draft_requires_semantic_review",
+  "target": "L4A",
+  "profile": "Exact",
+  "purpose": "Finite mutually unbiased bases (MUB) in dimension 6, cyclotomic/rational Gramian diagnostics, dual witnesses, Fourier landing verifiers, and cover-tree exclusions.",
+  "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+  "compilation": {
+    "disabled_by_cfg_any": false,
+    "test_or_support_file": false,
+    "compatibility_mirror_tree": true
+  },
+  "declaration_index": [
+    {
+      "kind": "const",
+      "name": "DIM_2D",
+      "line": 20,
+      "declaration_line": "pub const DIM_2D: usize = 2;"
+    },
+    {
+      "kind": "const",
+      "name": "DIM_3D",
+      "line": 21,
+      "declaration_line": "pub const DIM_3D: usize = 3;"
+    },
+    {
+      "kind": "fn",
+      "name": "collar_margin",
+      "line": 23,
+      "declaration_line": "pub fn collar_margin() -> BigRational {"
+    },
+    {
+      "kind": "fn",
+      "name": "karlsson_volume_margin",
+      "line": 27,
+      "declaration_line": "pub fn karlsson_volume_margin() -> BigRational {"
+    },
+    {
+      "kind": "fn",
+      "name": "interface_margin",
+      "line": 31,
+      "declaration_line": "pub fn interface_margin() -> BigRational {"
+    },
+    {
+      "kind": "fn",
+      "name": "critical_mesh_step",
+      "line": 41,
+      "declaration_line": "pub fn critical_mesh_step() -> BigRational {"
+    },
+    {
+      "kind": "enum",
+      "name": "CollarBoundaryError",
+      "line": 46,
+      "declaration_line": "pub enum CollarBoundaryError {"
+    },
+    {
+      "kind": "struct",
+      "name": "CollarBoundaryBox3D",
+      "line": 89,
+      "declaration_line": "pub struct CollarBoundaryBox3D {"
+    },
+    {
+      "kind": "fn",
+      "name": "volume",
+      "line": 101,
+      "declaration_line": "pub fn volume(&self) -> BigRational {"
+    },
+    {
+      "kind": "fn",
+      "name": "is_overlap",
+      "line": 108,
+      "declaration_line": "pub fn is_overlap(&self) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "contains_point",
+      "line": 112,
+      "declaration_line": "pub fn contains_point(&self, pt: &[BigRational; DIM_3D]) -> bool {"
+    },
+    {
+      "kind": "struct",
+      "name": "CollarBoundaryConfig",
+      "line": 123,
+      "declaration_line": "pub struct CollarBoundaryConfig {"
+    },
+    {
+      "kind": "fn",
+      "name": "canonical",
+      "line": 130,
+      "declaration_line": "pub fn canonical(divisions_xy: usize) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "overlapping",
+      "line": 138,
+      "declaration_line": "pub fn overlapping(divisions_xy: usize, karlsson_min_depth: BigRational) -> Self {"
+    },
+    {
+      "kind": "struct",
+      "name": "BoundaryOverlapPartition",
+      "line": 148,
+      "declaration_line": "pub struct BoundaryOverlapPartition {"
+    },
+    {
+      "kind": "fn",
+      "name": "verify_partition",
+      "line": 421,
+      "declaration_line": "pub fn verify_partition(&self) -> Result<(), CollarBoundaryError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "find_box",
+      "line": 455,
+      "declaration_line": "pub fn find_box(&self, pt: &[BigRational; DIM_3D]) -> Option<&CollarBoundaryBox3D> {"
+    },
+    {
+      "kind": "fn",
+      "name": "evaluate_boundary_overlap",
+      "line": 556,
+      "declaration_line": "pub fn evaluate_boundary_overlap("
+    },
+    {
+      "kind": "struct",
+      "name": "InterfaceTransition",
+      "line": 614,
+      "declaration_line": "pub struct InterfaceTransition {"
+    },
+    {
+      "kind": "fn",
+      "name": "new",
+      "line": 622,
+      "declaration_line": "pub fn new(from: usize, to: usize, matrix: [[Cyc24; 3]; 3], defect: BigRational) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "phase_transition",
+      "line": 631,
+      "declaration_line": "pub fn phase_transition("
+    },
+    {
+      "kind": "fn",
+      "name": "permutation_transition",
+      "line": 653,
+      "declaration_line": "pub fn permutation_transition("
+    },
+    {
+      "kind": "fn",
+      "name": "identity",
+      "line": 677,
+      "declaration_line": "pub fn identity(from: usize, to: usize, defect: BigRational) -> Self {"
+    },
+    {
+      "kind": "struct",
+      "name": "InterfaceCycle",
+      "line": 688,
+      "declaration_line": "pub struct InterfaceCycle {"
+    },
+    {
+      "kind": "fn",
+      "name": "new",
+      "line": 695,
+      "declaration_line": "pub fn new(index: usize, name: String, transitions: [InterfaceTransition; 3]) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "canonical",
+      "line": 703,
+      "declaration_line": "pub fn canonical(index: usize) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "twisted",
+      "line": 726,
+      "declaration_line": "pub fn twisted(index: usize) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "chained_holonomy",
+      "line": 737,
+      "declaration_line": "pub fn chained_holonomy(&self) -> [[Cyc24; 3]; 3] {"
+    },
+    {
+      "kind": "fn",
+      "name": "is_cocycle_trivial",
+      "line": 744,
+      "declaration_line": "pub fn is_cocycle_trivial(&self) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "build_boundary_and_cochain",
+      "line": 757,
+      "declaration_line": "pub fn build_boundary_and_cochain("
+    },
+    {
+      "kind": "fn",
+      "name": "verify_circulation",
+      "line": 828,
+      "declaration_line": "pub fn verify_circulation("
+    },
+    {
+      "kind": "struct",
+      "name": "InterfaceCycleCirculationCert",
+      "line": 877,
+      "declaration_line": "pub struct InterfaceCycleCirculationCert {"
+    },
+    {
+      "kind": "struct",
+      "name": "InterfaceCycleChain",
+      "line": 891,
+      "declaration_line": "pub struct InterfaceCycleChain {"
+    },
+    {
+      "kind": "fn",
+      "name": "new",
+      "line": 896,
+      "declaration_line": "pub fn new(cycles: Vec<InterfaceCycle>) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "canonical_chain",
+      "line": 900,
+      "declaration_line": "pub fn canonical_chain(count: usize) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "verify_all",
+      "line": 908,
+      "declaration_line": "pub fn verify_all("
+    },
+    {
+      "kind": "fn",
+      "name": "compound_holonomy",
+      "line": 920,
+      "declaration_line": "pub fn compound_holonomy(&self) -> [[Cyc24; 3]; 3] {"
+    },
+    {
+      "kind": "struct",
+      "name": "CollarBoundaryReceipt",
+      "line": 931,
+      "declaration_line": "pub struct CollarBoundaryReceipt {"
+    },
+    {
+      "kind": "fn",
+      "name": "to_json_string",
+      "line": 955,
+      "declaration_line": "pub fn to_json_string(&self) -> Result<String, serde_json::Error> {"
+    },
+    {
+      "kind": "fn",
+      "name": "from_json_str",
+      "line": 959,
+      "declaration_line": "pub fn from_json_str(s: &str) -> Result<Self, serde_json::Error> {"
+    },
+    {
+      "kind": "fn",
+      "name": "certify_collar_boundary_overlap",
+      "line": 989,
+      "declaration_line": "pub fn certify_collar_boundary_overlap("
+    }
+  ],
+  "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+  "requirements": [
+    {
+      "id": "G1",
+      "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+    },
+    {
+      "id": "G2",
+      "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+    },
+    {
+      "id": "G3",
+      "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+    },
+    {
+      "id": "G4",
+      "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+    },
+    {
+      "id": "G5",
+      "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+    }
+  ],
+  "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+  "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+  "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+  "open_obligations": [
+    "Complete source-to-requirement and downstream consumer review is outstanding.",
+    "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+    "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+    "Compatibility mirror under mub/src/ retained for ownership-firewall and atlas path checks; primary compiled module tree is rooted at mub/lib.rs."
+  ],
+  "evidence": [
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json",
+      "sha256": "3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98"
+    },
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json",
+      "sha256": "e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd"
+    },
+    {
+      "path": "code/rust/quality/l4a_qm_six/records.py",
+      "sha256": "0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706"
+    },
+    {
+      "path": "code/rust/quality/l4a_qm_six/specs.json",
+      "sha256": "bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12"
+    },
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json",
+      "sha256": "929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758"
+    },
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json",
+      "sha256": "9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78"
+    },
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json",
+      "sha256": "90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a"
+    }
+  ]
+}

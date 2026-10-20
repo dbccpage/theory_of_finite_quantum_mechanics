@@ -70,25 +70,42 @@ impl AssignmentPresheaf {
             .position(|s| s.as_slice() == assignment)
     }
 
+    fn build_restriction_table(
+        &self,
+        source: u64,
+        sections: &[Vec<usize>],
+        target: u64,
+    ) -> Result<Vec<usize>, EmpiricalError> {
+        let (from, to) = (positions(source), positions(target));
+        let mut table = Vec::with_capacity(sections.len());
+        for s in sections {
+            let r = Scenario::restrict(&from, s, &to).ok_or(
+                EmpiricalError::NotClosedUnderRestriction {
+                    from: source,
+                    into: target,
+                },
+            )?;
+            let idx = self.section_index(target, &r).ok_or(
+                EmpiricalError::NotClosedUnderRestriction {
+                    from: source,
+                    into: target,
+                },
+            )?;
+            table.push(idx);
+        }
+        Ok(table)
+    }
+
     pub fn to_finite_report_presheaf(&self) -> Result<FiniteReportPresheaf, EmpiricalError> {
         let report_counts: BTreeMap<u64, usize> =
             self.sections.iter().map(|(&k, s)| (k, s.len())).collect();
         let mut restrictions = BTreeMap::new();
         for (&source, sections) in &self.sections {
-            for &target in self.sections.keys().filter(|&&t| t & source == t) {
-                let (from, to) = (positions(source), positions(target));
-                let table = sections
-                    .iter()
-                    .map(|s| {
-                        Scenario::restrict(&from, s, &to)
-                            .and_then(|r| self.section_index(target, &r))
-                            .ok_or(EmpiricalError::NotClosedUnderRestriction {
-                                from: source,
-                                into: target,
-                            })
-                    })
-                    .collect::<Result<Vec<usize>, EmpiricalError>>()?;
-                restrictions.insert((source, target), table);
+            for &target in self.sections.keys() {
+                if target & source == target {
+                    let table = self.build_restriction_table(source, sections, target)?;
+                    restrictions.insert((source, target), table);
+                }
             }
         }
         Ok(FiniteReportPresheaf::new(

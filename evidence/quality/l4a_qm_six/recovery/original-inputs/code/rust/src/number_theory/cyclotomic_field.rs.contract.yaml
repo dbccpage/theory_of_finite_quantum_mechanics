@@ -1,0 +1,504 @@
+# YAML 1.2 (JSON syntax). AuthorityEffect: None.
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/number_theory/cyclotomic_field.rs",
+    "sha256": "597a9fa12f4e2f1ee7546e765bf993b1f909c58d5e5e0f49cff6a13cad1e1e01",
+    "language": "Rust"
+  },
+  "contract_urn": "urn:tfqm:contract:number_theory:cyclotomic_field.rs",
+  "status": "draft_requires_semantic_review",
+  "target": "L4A",
+  "profile": "Exact",
+  "purpose": "Finite fields, cyclotomic rings, exact rational arithmetic, modular arithmetic, quadratic forms, and Dirichlet character evaluations.",
+  "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+  "compilation": {
+    "disabled_by_cfg_any": false,
+    "test_or_support_file": false,
+    "compatibility_mirror_tree": false
+  },
+  "declaration_index": [
+    {
+      "kind": "const",
+      "name": "MAX_QUANTUM_INDEX",
+      "line": 22,
+      "declaration_line": "pub const MAX_QUANTUM_INDEX: u64 = 1 << 20;"
+    },
+    {
+      "kind": "enum",
+      "name": "CyclotomicError",
+      "line": 25,
+      "declaration_line": "pub enum CyclotomicError {"
+    },
+    {
+      "kind": "fn",
+      "name": "min_poly_of_2cos",
+      "line": 266,
+      "declaration_line": "pub fn min_poly_of_2cos(conductor: usize) -> Result<Polynomial<Rational>, CyclotomicError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "normalized_conductor",
+      "line": 270,
+      "declaration_line": "pub fn normalized_conductor(n: usize) -> Result<usize, CyclotomicError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "contains_cyclotomic_field",
+      "line": 275,
+      "declaration_line": "pub fn contains_cyclotomic_field(source: usize, target: usize) -> Result<bool, CyclotomicError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "compositum_conductor",
+      "line": 279,
+      "declaration_line": "pub fn compositum_conductor(a: usize, b: usize) -> Result<usize, CyclotomicError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "intersection_conductor",
+      "line": 290,
+      "declaration_line": "pub fn intersection_conductor(a: usize, b: usize) -> Result<usize, CyclotomicError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "real_subfield_degree",
+      "line": 294,
+      "declaration_line": "pub fn real_subfield_degree(n: usize) -> Result<usize, CyclotomicError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "embed_cyclotomic",
+      "line": 299,
+      "declaration_line": "pub fn embed_cyclotomic("
+    },
+    {
+      "kind": "struct",
+      "name": "CyclotomicNumber",
+      "line": 330,
+      "declaration_line": "pub struct CyclotomicNumber {"
+    },
+    {
+      "kind": "fn",
+      "name": "from_coefficients",
+      "line": 400,
+      "declaration_line": "pub fn from_coefficients("
+    },
+    {
+      "kind": "fn",
+      "name": "from_polynomial",
+      "line": 418,
+      "declaration_line": "pub fn from_polynomial("
+    },
+    {
+      "kind": "fn",
+      "name": "to_polynomial",
+      "line": 430,
+      "declaration_line": "pub fn to_polynomial(&self) -> Polynomial<Rational> {"
+    },
+    {
+      "kind": "fn",
+      "name": "zero",
+      "line": 434,
+      "declaration_line": "pub fn zero(conductor: usize) -> Result<Self, CyclotomicError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "one",
+      "line": 438,
+      "declaration_line": "pub fn one(conductor: usize) -> Result<Self, CyclotomicError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "from_rational",
+      "line": 442,
+      "declaration_line": "pub fn from_rational(conductor: usize, q: Rational) -> Result<Self, CyclotomicError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "zeta",
+      "line": 454,
+      "declaration_line": "pub fn zeta(conductor: usize, k: i64) -> Result<Self, CyclotomicError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "conductor",
+      "line": 463,
+      "declaration_line": "pub fn conductor(&self) -> usize {"
+    },
+    {
+      "kind": "fn",
+      "name": "degree",
+      "line": 467,
+      "declaration_line": "pub fn degree(&self) -> usize {"
+    },
+    {
+      "kind": "fn",
+      "name": "coefficients",
+      "line": 471,
+      "declaration_line": "pub fn coefficients(&self) -> &[Rational] {"
+    },
+    {
+      "kind": "fn",
+      "name": "is_zero",
+      "line": 475,
+      "declaration_line": "pub fn is_zero(&self) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "is_rational",
+      "line": 479,
+      "declaration_line": "pub fn is_rational(&self) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "as_rational",
+      "line": 483,
+      "declaration_line": "pub fn as_rational(&self) -> Option<Rational> {"
+    },
+    {
+      "kind": "fn",
+      "name": "add",
+      "line": 515,
+      "declaration_line": "pub fn add(&self, other: &Self) -> Result<Self, CyclotomicError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "sub",
+      "line": 520,
+      "declaration_line": "pub fn sub(&self, other: &Self) -> Result<Self, CyclotomicError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "neg",
+      "line": 525,
+      "declaration_line": "pub fn neg(&self) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "scale",
+      "line": 529,
+      "declaration_line": "pub fn scale(&self, c: &Rational) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "mul",
+      "line": 533,
+      "declaration_line": "pub fn mul(&self, other: &Self) -> Result<Self, CyclotomicError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "pow",
+      "line": 545,
+      "declaration_line": "pub fn pow(&self, n: u32) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "inverse",
+      "line": 567,
+      "declaration_line": "pub fn inverse(&self) -> Option<Self> {"
+    },
+    {
+      "kind": "fn",
+      "name": "checked_div",
+      "line": 571,
+      "declaration_line": "pub fn checked_div(&self, other: &Self) -> Result<Self, CyclotomicError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "conjugate",
+      "line": 577,
+      "declaration_line": "pub fn conjugate(&self) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "galois",
+      "line": 582,
+      "declaration_line": "pub fn galois(&self, k: i64) -> Result<Self, CyclotomicError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "is_real",
+      "line": 592,
+      "declaration_line": "pub fn is_real(&self) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "real_part",
+      "line": 596,
+      "declaration_line": "pub fn real_part(&self) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "trace",
+      "line": 601,
+      "declaration_line": "pub fn trace(&self) -> Rational {"
+    },
+    {
+      "kind": "fn",
+      "name": "norm",
+      "line": 617,
+      "declaration_line": "pub fn norm(&self) -> Rational {"
+    },
+    {
+      "kind": "fn",
+      "name": "real_part_polynomial",
+      "line": 621,
+      "declaration_line": "pub fn real_part_polynomial(&self) -> Polynomial<Rational> {"
+    },
+    {
+      "kind": "fn",
+      "name": "from_real_polynomial",
+      "line": 631,
+      "declaration_line": "pub fn from_real_polynomial("
+    },
+    {
+      "kind": "fn",
+      "name": "eval_polynomial",
+      "line": 640,
+      "declaration_line": "pub fn eval_polynomial(&self, p: &Polynomial<Rational>) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "lift",
+      "line": 652,
+      "declaration_line": "pub fn lift(&self, m: usize) -> Result<Self, CyclotomicError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "quantum_integer",
+      "line": 678,
+      "declaration_line": "pub fn quantum_integer(conductor: usize, k: i64) -> Result<CyclotomicNumber, CyclotomicError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "gauss_sum",
+      "line": 698,
+      "declaration_line": "pub fn gauss_sum(conductor: usize, p: usize) -> Result<CyclotomicNumber, CyclotomicError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "quadratic_field_conductor",
+      "line": 718,
+      "declaration_line": "pub fn quadratic_field_conductor(squarefree: &BigInt) -> BigInt {"
+    },
+    {
+      "kind": "fn",
+      "name": "sqrt_of_integer",
+      "line": 783,
+      "declaration_line": "pub fn sqrt_of_integer(conductor: usize, d: &BigInt) -> Result<CyclotomicNumber, CyclotomicError> {"
+    },
+    {
+      "kind": "struct",
+      "name": "Cyclotomic",
+      "line": 819,
+      "declaration_line": "pub struct Cyclotomic<const N: usize>(CyclotomicNumber);"
+    },
+    {
+      "kind": "const",
+      "name": "CONDUCTOR",
+      "line": 872,
+      "declaration_line": "pub const CONDUCTOR: usize = N;"
+    },
+    {
+      "kind": "fn",
+      "name": "as_number",
+      "line": 879,
+      "declaration_line": "pub fn as_number(&self) -> &CyclotomicNumber {"
+    },
+    {
+      "kind": "fn",
+      "name": "zero",
+      "line": 883,
+      "declaration_line": "pub fn zero() -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "one",
+      "line": 889,
+      "declaration_line": "pub fn one() -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "rational",
+      "line": 893,
+      "declaration_line": "pub fn rational(q: Rational) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "zeta",
+      "line": 902,
+      "declaration_line": "pub fn zeta(k: i64) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "coefficients",
+      "line": 908,
+      "declaration_line": "pub fn coefficients(&self) -> &[Rational] {"
+    },
+    {
+      "kind": "fn",
+      "name": "is_zero",
+      "line": 912,
+      "declaration_line": "pub fn is_zero(&self) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "is_rational",
+      "line": 916,
+      "declaration_line": "pub fn is_rational(&self) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "as_rational",
+      "line": 920,
+      "declaration_line": "pub fn as_rational(&self) -> Option<Rational> {"
+    },
+    {
+      "kind": "fn",
+      "name": "add",
+      "line": 924,
+      "declaration_line": "pub fn add(&self, other: &Self) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "sub",
+      "line": 928,
+      "declaration_line": "pub fn sub(&self, other: &Self) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "neg",
+      "line": 932,
+      "declaration_line": "pub fn neg(&self) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "scale",
+      "line": 936,
+      "declaration_line": "pub fn scale(&self, c: &Rational) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "mul",
+      "line": 940,
+      "declaration_line": "pub fn mul(&self, other: &Self) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "pow",
+      "line": 944,
+      "declaration_line": "pub fn pow(&self, n: u32) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "inverse",
+      "line": 948,
+      "declaration_line": "pub fn inverse(&self) -> Option<Self> {"
+    },
+    {
+      "kind": "fn",
+      "name": "conjugate",
+      "line": 952,
+      "declaration_line": "pub fn conjugate(&self) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "galois",
+      "line": 956,
+      "declaration_line": "pub fn galois(&self, k: i64) -> Result<Self, CyclotomicError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "is_real",
+      "line": 960,
+      "declaration_line": "pub fn is_real(&self) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "trace",
+      "line": 964,
+      "declaration_line": "pub fn trace(&self) -> Rational {"
+    },
+    {
+      "kind": "fn",
+      "name": "norm",
+      "line": 968,
+      "declaration_line": "pub fn norm(&self) -> Rational {"
+    },
+    {
+      "kind": "enum",
+      "name": "QuadraticPrimeSearchError",
+      "line": 2154,
+      "declaration_line": "pub enum QuadraticPrimeSearchError {"
+    },
+    {
+      "kind": "fn",
+      "name": "first_missing_quadratic_prime",
+      "line": 2162,
+      "declaration_line": "pub fn first_missing_quadratic_prime("
+    }
+  ],
+  "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+  "requirements": [
+    {
+      "id": "G1",
+      "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+    },
+    {
+      "id": "G2",
+      "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+    },
+    {
+      "id": "G3",
+      "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+    },
+    {
+      "id": "G4",
+      "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+    },
+    {
+      "id": "G5",
+      "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+    }
+  ],
+  "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+  "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+  "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+  "open_obligations": [
+    "Complete source-to-requirement and downstream consumer review is outstanding.",
+    "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+    "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+  ],
+  "evidence": [
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json",
+      "sha256": "3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98"
+    },
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json",
+      "sha256": "e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd"
+    },
+    {
+      "path": "code/rust/quality/l4a_qm_six/records.py",
+      "sha256": "0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706"
+    },
+    {
+      "path": "code/rust/quality/l4a_qm_six/specs.json",
+      "sha256": "bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12"
+    },
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json",
+      "sha256": "929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758"
+    },
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json",
+      "sha256": "9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78"
+    },
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json",
+      "sha256": "90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a"
+    }
+  ]
+}

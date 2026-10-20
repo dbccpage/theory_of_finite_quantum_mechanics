@@ -264,6 +264,35 @@ pub struct OperationSpecInput<'a> {
     pub authority_ceiling: AuthorityEffect,
 }
 
+fn validate_unique_port_ids(ports: &[PortSpec]) -> Result<(), ModelError> {
+    let mut seen = std::collections::BTreeSet::new();
+    for port in ports {
+        if !seen.insert(port.port_id.clone()) {
+            return Err(ModelError::DuplicatePortIds);
+        }
+    }
+    Ok(())
+}
+
+fn validate_unique_identifiers(
+    items: &[String],
+    item_field: &str,
+    list_field: &str,
+) -> Result<Vec<String>, ModelError> {
+    let mut result = Vec::with_capacity(items.len());
+    let mut seen = std::collections::BTreeSet::new();
+    for item in items {
+        let normalized = require_identifier(item, item_field)?;
+        if !seen.insert(normalized.clone()) {
+            return Err(ModelError::Duplicates {
+                field: list_field.to_owned(),
+            });
+        }
+        result.push(normalized);
+    }
+    Ok(result)
+}
+
 impl OperationSpec {
     pub fn new(input: OperationSpecInput<'_>) -> Result<Self, ModelError> {
         let operation_id = require_identifier(input.operation_id, "operation_id")?;
@@ -271,32 +300,9 @@ impl OperationSpec {
         let executor_ref = require_identifier(input.executor_ref, "executor_ref")?;
         let executor_digest = require_digest(input.executor_digest, "executor_digest")?;
 
-        let mut seen = std::collections::BTreeSet::new();
-        for port in &input.input_ports {
-            if !seen.insert(port.port_id.clone()) {
-                return Err(ModelError::DuplicatePortIds);
-            }
-        }
-
-        let mut tool_refs = Vec::with_capacity(input.tool_refs.len());
-        let mut tool_seen = std::collections::BTreeSet::new();
-        for item in &input.tool_refs {
-            let normalized = require_identifier(item, "tool_ref")?;
-            if !tool_seen.insert(normalized.clone()) {
-                return Err(ModelError::Duplicates { field: "tool_refs".to_owned() });
-            }
-            tool_refs.push(normalized);
-        }
-
-        let mut effects = Vec::with_capacity(input.effects.len());
-        let mut effect_seen = std::collections::BTreeSet::new();
-        for item in &input.effects {
-            let normalized = require_identifier(item, "effect")?;
-            if !effect_seen.insert(normalized.clone()) {
-                return Err(ModelError::Duplicates { field: "effects".to_owned() });
-            }
-            effects.push(normalized);
-        }
+        validate_unique_port_ids(&input.input_ports)?;
+        let tool_refs = validate_unique_identifiers(&input.tool_refs, "tool_ref", "tool_refs")?;
+        let effects = validate_unique_identifiers(&input.effects, "effect", "effects")?;
 
         if input.authority_effect.rank() > input.authority_ceiling.rank() {
             return Err(ModelError::AuthorityCeilingExceeded);

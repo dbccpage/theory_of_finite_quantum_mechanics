@@ -141,6 +141,32 @@ pub fn d10_gtfoc_cross_validation_report() -> &'static D10GtfocCrossValidationRe
     REPORT.get_or_init(run_d10_gtfoc_cross_validation)
 }
 
+fn classify_d10_trichotomy(phi_value: f64, d1_linf: f64) -> D10GtfocTrichotomyClass {
+    if phi_value > 1e-12 && d1_linf < 1e-10 {
+        D10GtfocTrichotomyClass::ClosedSurvivor
+    } else if phi_value <= 1e-12 {
+        D10GtfocTrichotomyClass::ExactRepair
+    } else {
+        D10GtfocTrichotomyClass::OpenObstruction
+    }
+}
+
+fn is_z2_census_match(census: &CliffordCensus) -> bool {
+    census.antiunitary_involution_count == 1
+        && census.unitary_fixers == 0
+        && census.antiunitary_fixers == 1
+}
+
+fn all_flags_true(flags: [bool; 6]) -> bool {
+    let mut ok = true;
+    for f in flags {
+        if !f {
+            ok = false;
+        }
+    }
+    ok
+}
+
 pub fn run_d10_gtfoc_cross_validation() -> D10GtfocCrossValidationReport {
     let columns = canonical_d10_columns();
     let maximizer = optimize_wall_candidate(&columns);
@@ -165,32 +191,21 @@ pub fn run_d10_gtfoc_cross_validation() -> D10GtfocCrossValidationReport {
 
     let phi_match = wall_comparison.obstruction_matches;
     let wall_match = wall_comparison.wall_matches;
-    let class_value = if phi_value > 1e-12 && d1_linf < 1e-10 {
-        D10GtfocTrichotomyClass::ClosedSurvivor
-    } else if phi_value <= 1e-12 {
-        D10GtfocTrichotomyClass::ExactRepair
-    } else {
-        D10GtfocTrichotomyClass::OpenObstruction
-    };
+    let class_value = classify_d10_trichotomy(phi_value, d1_linf);
     let class_match = class_value == D10GtfocTrichotomyClass::ClosedSurvivor;
     let ray_locus_dim = census.real_fixed_locus_dim.saturating_sub(1);
     let ray_locus_match = ray_locus_dim == 9;
-    let z2_match = census.antiunitary_involution_count == 1
-        && census.unitary_fixers == 0
-        && census.antiunitary_fixers == 1;
+    let z2_match = is_z2_census_match(&census);
     let named_word_match = census.named_antiunitary_word_matches == 1;
     let named_transport_match = census.named_antiunitary_transport.status == MatchStatus::Match;
-    let overall = if phi_match
-        && wall_match
-        && class_match
-        && ray_locus_match
-        && z2_match
-        && named_transport_match
-    {
-        MatchStatus::Match
-    } else {
-        MatchStatus::Mismatch
-    };
+    let overall = status(all_flags_true([
+        phi_match,
+        wall_match,
+        class_match,
+        ray_locus_match,
+        z2_match,
+        named_transport_match,
+    ]));
 
     D10GtfocCrossValidationReport {
         target: "d=10 canonical-triple fourth-vector wall",
@@ -360,41 +375,56 @@ fn quint_q_basis(a: i32) -> Vec<Vector> {
     columns
 }
 
+fn step_along_gradient(v: &Vector, grad: &Vector, step: f64) -> Vector {
+    let mut next = Vec::with_capacity(v.len());
+    for (vi, gi) in v.iter().zip(grad.iter()) {
+        next.push(*vi - step * *gi);
+    }
+    normalize(&Vector::from_vec(next))
+}
+
+fn try_line_search_step(
+    columns: &[Vector],
+    v: &mut Vector,
+    s: &mut f64,
+    step: &mut f64,
+    grad: &Vector,
+) -> bool {
+    for _ in 0..16 {
+        let candidate = step_along_gradient(v, grad, *step);
+        let candidate_s = residual_square_sum(columns, &candidate);
+        if candidate_s < *s {
+            *v = candidate;
+            *s = candidate_s;
+            *step = (*step * 1.08).min(0.5);
+            return true;
+        }
+        *step *= 0.5;
+    }
+    false
+}
+
+fn optimize_from_seed(columns: &[Vector], seed: u64) -> (Vector, f64) {
+    let mut v = seeded_unit_vector(seed, D);
+    let mut s = residual_square_sum(columns, &v);
+    let mut step: f64 = 0.08;
+    for _ in 0..2500 {
+        let grad = projected_s_gradient(columns, &v);
+        if norm(&grad) < 1e-13 {
+            break;
+        }
+        if !try_line_search_step(columns, &mut v, &mut s, &mut step, &grad) || step < 1e-14 {
+            break;
+        }
+    }
+    (v, s)
+}
+
 fn optimize_wall_candidate(columns: &[Vector]) -> Vector {
     let mut best = zero_vec(D);
     let mut best_s = f64::INFINITY;
     for seed in 0..96_u64 {
-        let mut v = seeded_unit_vector(seed, D);
-        let mut s = residual_square_sum(columns, &v);
-        let mut step: f64 = 0.08;
-        for _ in 0..2500 {
-            let grad = projected_s_gradient(columns, &v);
-            let grad_norm = norm(&grad);
-            if grad_norm < 1e-13 {
-                break;
-            }
-            let mut accepted = false;
-            for _ in 0..16 {
-                let candidate = normalize(&Vector::from_vec(
-                    v.iter()
-                        .zip(&grad)
-                        .map(|(vi, gi)| *vi - step * *gi)
-                        .collect::<Vec<_>>(),
-                ));
-                let candidate_s = residual_square_sum(columns, &candidate);
-                if candidate_s < s {
-                    v = candidate;
-                    s = candidate_s;
-                    step = (step * 1.08).min(0.5);
-                    accepted = true;
-                    break;
-                }
-                step *= 0.5;
-            }
-            if !accepted || step < 1e-14 {
-                break;
-            }
-        }
+        let (v, s) = optimize_from_seed(columns, seed);
         if s < best_s {
             best_s = s;
             best = v;
@@ -412,6 +442,80 @@ fn basis_sum_linf(omega: &[f64]) -> f64 {
     max
 }
 
+#[derive(Default)]
+struct CensusScanAccumulator {
+    elements_scanned: usize,
+    unitary_fixers: usize,
+    antiunitary_fixers: usize,
+    antiunitary_involution_count: usize,
+    named_antiunitary_word_matches: usize,
+    derived_qubit_word: String,
+    derived_quint_word: String,
+    derived_qubit_matrix: Option<Matrix>,
+    derived_quint_matrix: Option<Matrix>,
+    real_fixed_locus_dim: usize,
+}
+
+fn matches_any_target(u: &Matrix, targets: &[Matrix]) -> bool {
+    for target in targets {
+        if projectively_close(u, target, 1e-8) {
+            return true;
+        }
+    }
+    false
+}
+
+fn record_antiunitary_fixer(
+    acc: &mut CensusScanAccumulator,
+    q: &CliffordElement,
+    r: &CliffordElement,
+    u: &Matrix,
+    identity: &Matrix,
+    targets: &[Matrix],
+) {
+    acc.antiunitary_fixers += 1;
+    if acc.derived_qubit_word.is_empty() {
+        acc.derived_qubit_word = q.word.clone();
+        acc.derived_quint_word = r.word.clone();
+        acc.derived_qubit_matrix = Some(q.matrix.clone());
+        acc.derived_quint_matrix = Some(r.matrix.clone());
+    }
+    if matches_any_target(u, targets) {
+        acc.named_antiunitary_word_matches += 1;
+    }
+    let u_conj = u
+        .conjugate()
+        .expect("finite ComplexMatrix conjugate should be valid");
+    let k2 = mat_mul(u, &u_conj, D);
+    if projectively_close(&k2, identity, 1e-8) {
+        acc.antiunitary_involution_count += 1;
+        acc.real_fixed_locus_dim = D;
+    }
+}
+
+fn scan_clifford_element_pair(
+    acc: &mut CensusScanAccumulator,
+    q: &CliffordElement,
+    r: &CliffordElement,
+    v: &Vector,
+    v_conj: &Vector,
+    identity: &Matrix,
+    targets: &[Matrix],
+) {
+    acc.elements_scanned += 1;
+    let u = kron_mat(&q.matrix, 2, &r.matrix, 5);
+    if !projectively_close(&u, identity, 1e-8) {
+        let uv = mat_vec(&u, D, v);
+        if alignment(v, &uv) > 1.0 - 1e-8 {
+            acc.unitary_fixers += 1;
+        }
+    }
+    let ukv = mat_vec(&u, D, v_conj);
+    if alignment(v, &ukv) > 1.0 - 1e-8 {
+        record_antiunitary_fixer(acc, q, r, &u, identity, targets);
+    }
+}
+
 fn full_clifford_census(v: &Vector) -> CliffordCensus {
     let cl2 = labeled_projective_clifford_group(2);
     let cl5 = labeled_projective_clifford_group(5);
@@ -419,57 +523,25 @@ fn full_clifford_census(v: &Vector) -> CliffordCensus {
     assert_eq!(cl5.len(), 3000);
 
     let v_conj = Vector::from_vec(v.iter().map(|z| z.conj()).collect());
-    let mut elements_scanned = 0;
-    let mut unitary_fixers = 0;
-    let mut antiunitary_fixers = 0;
-    let mut antiunitary_involution_count = 0;
-    let mut named_antiunitary_word_matches = 0;
-    let mut derived_qubit_word = String::new();
-    let mut derived_quint_word = String::new();
-    let mut derived_qubit_matrix = None;
-    let mut derived_quint_matrix = None;
-    let mut real_fixed_locus_dim = 0;
+    let mut acc = CensusScanAccumulator::default();
     let identity = identity(D);
     let named_antiunitary_targets = named_antiunitary_targets();
 
     for q in &cl2 {
         for r in &cl5 {
-            elements_scanned += 1;
-            let u = kron_mat(&q.matrix, 2, &r.matrix, 5);
-            if !projectively_close(&u, &identity, 1e-8) {
-                let uv = mat_vec(&u, D, v);
-                if alignment(v, &uv) > 1.0 - 1e-8 {
-                    unitary_fixers += 1;
-                }
-            }
-            let ukv = mat_vec(&u, D, &v_conj);
-            if alignment(v, &ukv) > 1.0 - 1e-8 {
-                antiunitary_fixers += 1;
-                if derived_qubit_word.is_empty() {
-                    derived_qubit_word = q.word.clone();
-                    derived_quint_word = r.word.clone();
-                    derived_qubit_matrix = Some(q.matrix.clone());
-                    derived_quint_matrix = Some(r.matrix.clone());
-                }
-                if named_antiunitary_targets
-                    .iter()
-                    .any(|target| projectively_close(&u, target, 1e-8))
-                {
-                    named_antiunitary_word_matches += 1;
-                }
-                let u_conj = u
-                    .conjugate()
-                    .expect("finite ComplexMatrix conjugate should be valid");
-                let k2 = mat_mul(&u, &u_conj, D);
-                if projectively_close(&k2, &identity, 1e-8) {
-                    antiunitary_involution_count += 1;
-                    real_fixed_locus_dim = D;
-                }
-            }
+            scan_clifford_element_pair(
+                &mut acc,
+                q,
+                r,
+                v,
+                &v_conj,
+                &identity,
+                &named_antiunitary_targets,
+            );
         }
     }
 
-    let named_antiunitary_transport = match (&derived_qubit_matrix, &derived_quint_matrix) {
+    let named_antiunitary_transport = match (&acc.derived_qubit_matrix, &acc.derived_quint_matrix) {
         (Some(q), Some(r)) => named_antiunitary_transport(q, r, &cl2, &cl5),
         _ => D10NamedAntiunitaryTransport {
             status: MatchStatus::Mismatch,
@@ -480,15 +552,15 @@ fn full_clifford_census(v: &Vector) -> CliffordCensus {
     };
 
     CliffordCensus {
-        elements_scanned,
-        unitary_fixers,
-        antiunitary_fixers,
-        antiunitary_involution_count,
-        named_antiunitary_word_matches,
+        elements_scanned: acc.elements_scanned,
+        unitary_fixers: acc.unitary_fixers,
+        antiunitary_fixers: acc.antiunitary_fixers,
+        antiunitary_involution_count: acc.antiunitary_involution_count,
+        named_antiunitary_word_matches: acc.named_antiunitary_word_matches,
         named_antiunitary_transport,
-        derived_qubit_word,
-        derived_quint_word,
-        real_fixed_locus_dim,
+        derived_qubit_word: acc.derived_qubit_word,
+        derived_quint_word: acc.derived_quint_word,
+        real_fixed_locus_dim: acc.real_fixed_locus_dim,
     }
 }
 #[derive(Debug, Clone)]
@@ -570,78 +642,110 @@ fn qubit_hxz_candidates() -> Vec<(&'static str, Matrix)> {
     out
 }
 
+fn append_quint_v_for_signs_and_ab(
+    out: &mut Vec<StringMatrix>,
+    x_sign: i32,
+    z_sign: i32,
+    f_sign: i32,
+    a: i32,
+    b: i32,
+) {
+    let s = quadratic_phase(5, a, b);
+    let quint_word = vec![
+        phase_signed(5, z_sign),
+        s.clone(),
+        shift_signed(5, x_sign),
+        s.clone(),
+        fourier_signed(5, f_sign),
+        s.clone(),
+        fourier_signed(5, f_sign),
+        s.clone(),
+        fourier_signed(5, f_sign),
+        s.clone(),
+        s,
+    ];
+    for (order, matrix) in [
+        ("right", word_right(5, &quint_word)),
+        ("left", word_left(5, &quint_word)),
+    ] {
+        out.push(StringMatrix {
+            label: format!(
+                "order={}; x={}; z={}; f={}; S=a*j^2+b*j with a={}, b={}",
+                order, x_sign, z_sign, f_sign, a, b
+            ),
+            matrix,
+        });
+    }
+}
+
+fn append_quint_v_for_signs(
+    out: &mut Vec<StringMatrix>,
+    x_sign: i32,
+    z_sign: i32,
+    f_sign: i32,
+) {
+    for a in 0..5 {
+        for b in 0..5 {
+            append_quint_v_for_signs_and_ab(out, x_sign, z_sign, f_sign, a, b);
+        }
+    }
+}
+
 fn quint_v_candidates() -> Vec<StringMatrix> {
     let mut out = Vec::new();
     for x_sign in [-1, 1] {
         for z_sign in [-1, 1] {
             for f_sign in [-1, 1] {
-                for a in 0..5 {
-                    for b in 0..5 {
-                        let s = quadratic_phase(5, a, b);
-                        let quint_word = vec![
-                            phase_signed(5, z_sign),
-                            s.clone(),
-                            shift_signed(5, x_sign),
-                            s.clone(),
-                            fourier_signed(5, f_sign),
-                            s.clone(),
-                            fourier_signed(5, f_sign),
-                            s.clone(),
-                            fourier_signed(5, f_sign),
-                            s.clone(),
-                            s.clone(),
-                        ];
-                        for order in ["right", "left"] {
-                            let matrix = if order == "right" {
-                                word_right(5, &quint_word)
-                            } else {
-                                word_left(5, &quint_word)
-                            };
-                            out.push(StringMatrix {
-                                label: format!(
-                                    "order={}; x={}; z={}; f={}; S=a*j^2+b*j with a={}, b={}",
-                                    order, x_sign, z_sign, f_sign, a, b
-                                ),
-                                matrix,
-                            });
-                        }
-                    }
-                }
+                append_quint_v_for_signs(&mut out, x_sign, z_sign, f_sign);
             }
         }
     }
     out
 }
+
+fn append_antiunitary_targets_for_signs(
+    targets: &mut Vec<Matrix>,
+    x_sign: i32,
+    z_sign: i32,
+    f_sign: i32,
+    s_sign: i32,
+) {
+    let qubit_word = vec![fourier(2), shift(2), phase(2)];
+    let quint_word = vec![
+        phase_signed(5, z_sign),
+        odd_shear_signed(5, s_sign),
+        shift_signed(5, x_sign),
+        odd_shear_signed(5, s_sign),
+        fourier_signed(5, f_sign),
+        odd_shear_signed(5, s_sign),
+        fourier_signed(5, f_sign),
+        odd_shear_signed(5, s_sign),
+        fourier_signed(5, f_sign),
+        odd_shear_signed(5, s_sign),
+        odd_shear_signed(5, s_sign),
+    ];
+    let qubit_targets = [word_right(2, &qubit_word), word_left(2, &qubit_word)];
+    let quint_targets = [word_right(5, &quint_word), word_left(5, &quint_word)];
+    for q in &qubit_targets {
+        for r in &quint_targets {
+            targets.push(kron_mat(q, 2, r, 5));
+        }
+    }
+}
+
+fn append_antiunitary_targets_for_xz(targets: &mut Vec<Matrix>, x_sign: i32, z_sign: i32) {
+    for f_sign in [-1, 1] {
+        for s_sign in [-1, 1] {
+            append_antiunitary_targets_for_signs(targets, x_sign, z_sign, f_sign, s_sign);
+        }
+    }
+}
+
 fn named_antiunitary_targets() -> Vec<Matrix> {
     let mut targets = Vec::new();
-    let signs = [-1, 1];
-    for x_sign in signs {
-        for z_sign in signs {
-            for f_sign in signs {
-                for s_sign in signs {
-                    let qubit_word = vec![fourier(2), shift(2), phase(2)];
-                    let quint_word = vec![
-                        phase_signed(5, z_sign),
-                        odd_shear_signed(5, s_sign),
-                        shift_signed(5, x_sign),
-                        odd_shear_signed(5, s_sign),
-                        fourier_signed(5, f_sign),
-                        odd_shear_signed(5, s_sign),
-                        fourier_signed(5, f_sign),
-                        odd_shear_signed(5, s_sign),
-                        fourier_signed(5, f_sign),
-                        odd_shear_signed(5, s_sign),
-                        odd_shear_signed(5, s_sign),
-                    ];
-                    let qubit_targets = [word_right(2, &qubit_word), word_left(2, &qubit_word)];
-                    let quint_targets = [word_right(5, &quint_word), word_left(5, &quint_word)];
-                    for q in &qubit_targets {
-                        for r in &quint_targets {
-                            targets.push(kron_mat(q, 2, r, 5));
-                        }
-                    }
-                }
-            }
+    for x_sign in [-1, 1] {
+        for z_sign in [-1, 1] {
+            append_antiunitary_targets_for_xz(&mut targets, x_sign, z_sign);
         }
     }
     targets
@@ -663,8 +767,8 @@ fn word_left(dim: usize, generators: &[Matrix]) -> Matrix {
     canonical_projective(&acc)
 }
 
-fn labeled_projective_clifford_group(dim: usize) -> Vec<CliffordElement> {
-    let generators = if dim == 2 {
+fn clifford_generators(dim: usize) -> Vec<(&'static str, Matrix)> {
+    if dim == 2 {
         vec![
             ("X2", shift(2)),
             ("Z2", phase(2)),
@@ -678,7 +782,37 @@ fn labeled_projective_clifford_group(dim: usize) -> Vec<CliffordElement> {
             ("F5", fourier(dim)),
             ("S5", odd_shear(dim)),
         ]
-    };
+    }
+}
+
+fn expand_clifford_neighbors(
+    current: &CliffordElement,
+    generators: &[(&'static str, Matrix)],
+    dim: usize,
+    seen: &mut BTreeMap<Vec<i64>, CliffordElement>,
+    queue: &mut VecDeque<CliffordElement>,
+) {
+    for (label, generator) in generators {
+        let next_matrix = canonical_projective(&mat_mul(generator, &current.matrix, dim));
+        let key = projective_key(&next_matrix);
+        if !seen.contains_key(&key) {
+            let word = if current.word == "I" {
+                (*label).to_string()
+            } else {
+                format!("{} {}", label, current.word)
+            };
+            let next = CliffordElement {
+                matrix: next_matrix,
+                word,
+            };
+            seen.insert(key, next.clone());
+            queue.push_back(next);
+        }
+    }
+}
+
+fn labeled_projective_clifford_group(dim: usize) -> Vec<CliffordElement> {
+    let generators = clifford_generators(dim);
     let id = identity(dim);
     let mut seen = BTreeMap::new();
     let mut queue = VecDeque::new();
@@ -691,23 +825,7 @@ fn labeled_projective_clifford_group(dim: usize) -> Vec<CliffordElement> {
     queue.push_back(identity_element);
 
     while let Some(current) = queue.pop_front() {
-        for (label, generator) in &generators {
-            let next_matrix = canonical_projective(&mat_mul(generator, &current.matrix, dim));
-            let key = projective_key(&next_matrix);
-            if !seen.contains_key(&key) {
-                let word = if current.word == "I" {
-                    label.to_string()
-                } else {
-                    format!("{} {}", label, current.word)
-                };
-                let next = CliffordElement {
-                    matrix: next_matrix,
-                    word,
-                };
-                seen.insert(key, next.clone());
-                queue.push_back(next);
-            }
-        }
+        expand_clifford_neighbors(&current, &generators, dim, &mut seen, &mut queue);
     }
     let mut out = seen.into_values().collect::<Vec<_>>();
     out.sort_by(|left, right| left.word.cmp(&right.word));
@@ -803,18 +921,30 @@ fn odd_shear(dim: usize) -> Matrix {
     matrix_from_row_major(dim, data)
 }
 
+fn fill_kron_block(
+    out: &mut [C],
+    dim: usize,
+    a_val: C,
+    b: &Matrix,
+    db: usize,
+    ar: usize,
+    ac: usize,
+) {
+    for br in 0..db {
+        for bc in 0..db {
+            let row = ar * db + br;
+            let col = ac * db + bc;
+            out[row * dim + col] = a_val * matrix_get(b, br, bc);
+        }
+    }
+}
+
 fn kron_mat(a: &Matrix, da: usize, b: &Matrix, db: usize) -> Matrix {
     let dim = da * db;
     let mut out = zero_mat_data(dim);
     for ar in 0..da {
         for ac in 0..da {
-            for br in 0..db {
-                for bc in 0..db {
-                    let row = ar * db + br;
-                    let col = ac * db + bc;
-                    out[row * dim + col] = matrix_get(a, ar, ac) * matrix_get(b, br, bc);
-                }
-            }
+            fill_kron_block(&mut out, dim, matrix_get(a, ar, ac), b, db, ar, ac);
         }
     }
     matrix_from_row_major(dim, out)

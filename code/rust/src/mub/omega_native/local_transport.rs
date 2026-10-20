@@ -49,13 +49,12 @@ pub fn check_pinned_transport_receipt(crate_root: &Path) -> LocalTransportSubcer
     }
 }
 
-fn validate_transport_receipt(value: &Value) -> Result<LocalTransportSubcertificate, String> {
+fn expect_transport_stage_counts(value: &Value) -> Result<(), String> {
     expect_str(
         value,
         &["schema"],
         "invariant_systems.mub6_transport_closure_exact.v1",
     )?;
-    expect_bool(value, &["stage1_group", "generator_exact_unitarity"], true)?;
     expect_u64(
         value,
         &["stage1_group", "triple_columns_exact_unit_norm"],
@@ -67,6 +66,11 @@ fn validate_transport_receipt(value: &Value) -> Result<LocalTransportSubcertific
     expect_u64(value, &["stage4_dim_inv", "d_inv"], 56)?;
     expect_u64(value, &["stage5_determining_set", "rank_modp"], 56)?;
     expect_u64(value, &["stage5_determining_set", "d_inv"], 56)?;
+    Ok(())
+}
+
+fn expect_transport_stage_booleans(value: &Value) -> Result<(), String> {
+    expect_bool(value, &["stage1_group", "generator_exact_unitarity"], true)?;
     expect_bool(value, &["stage0_rebuild", "identity_exact"], true)?;
     expect_bool(value, &["stage0_rebuild", "Q_zstar_zero_exact"], true)?;
     expect_bool(value, &["stage0_rebuild", "Q_kernel71_zero_exact"], true)?;
@@ -77,31 +81,50 @@ fn validate_transport_receipt(value: &Value) -> Result<LocalTransportSubcertific
         &["theorem", "transport_closed_deterministically"],
         true,
     )?;
+    Ok(())
+}
 
+fn slice_contains_stage(stages: &[Value], stage: &str) -> bool {
+    for item in stages {
+        if item.as_str() == Some(stage) {
+            return true;
+        }
+    }
+    false
+}
+
+fn expect_completed_stages(value: &Value) -> Result<(), String> {
     let stages = get(value, &["stages_completed"])?
         .as_array()
         .ok_or_else(|| "stages_completed is not an array".to_string())?;
     for stage in [
         "stage0", "stage1", "stage2", "stage3", "stage4", "stage5", "stage6",
     ] {
-        if !stages.iter().any(|item| item.as_str() == Some(stage)) {
+        if !slice_contains_stage(stages, stage) {
             return Err(format!("missing completed stage {stage}"));
         }
     }
+    Ok(())
+}
 
-    let generators = get(value, &["stage1_group", "generators"])?
+fn read_transport_generators(value: &Value) -> Result<Vec<u64>, String> {
+    let arr = get(value, &["stage1_group", "generators"])?
         .as_array()
-        .ok_or_else(|| "stage1_group.generators is not an array".to_string())?
-        .iter()
-        .map(|item| {
-            item.as_u64()
-                .ok_or_else(|| "stage1_group.generators contains a non-u64".to_string())
-        })
-        .collect::<Result<Vec<_>, _>>()?;
+        .ok_or_else(|| "stage1_group.generators is not an array".to_string())?;
+    let mut generators = Vec::with_capacity(arr.len());
+    for item in arr {
+        let g = item
+            .as_u64()
+            .ok_or_else(|| "stage1_group.generators contains a non-u64".to_string())?;
+        generators.push(g);
+    }
     if generators.len() != 3 {
         return Err("stage1_group.generators must contain exactly 3 generators".to_string());
     }
+    Ok(generators)
+}
 
+fn validate_generator_line_permutations(value: &Value) -> Result<(), String> {
     let line_perms = get(value, &["stage1_group", "generator_line_permutations"])?
         .as_array()
         .ok_or_else(|| "stage1_group.generator_line_permutations is not an array".to_string())?;
@@ -111,16 +134,35 @@ fn validate_transport_receipt(value: &Value) -> Result<LocalTransportSubcertific
     for perm in line_perms {
         exact_line_permutation(perm)?;
     }
+    Ok(())
+}
+
+fn read_transport_dimensions(value: &Value) -> Result<(u64, u64, u64, u64), String> {
+    let h_size = read_u64(value, &["stage1_group", "h_size"])?;
+    let stage2_rank = read_u64(value, &["stage2_ztilde_transport", "rank_modp"])?;
+    let invariant_dimension = read_u64(value, &["stage4_dim_inv", "d_inv"])?;
+    let determining_rank = read_u64(value, &["stage5_determining_set", "rank_modp"])?;
+    Ok((h_size, stage2_rank, invariant_dimension, determining_rank))
+}
+
+fn validate_transport_receipt(value: &Value) -> Result<LocalTransportSubcertificate, String> {
+    expect_transport_stage_counts(value)?;
+    expect_transport_stage_booleans(value)?;
+    expect_completed_stages(value)?;
+    let generators = read_transport_generators(value)?;
+    validate_generator_line_permutations(value)?;
+    let (h_size, stage2_rank, invariant_dimension, determining_rank) =
+        read_transport_dimensions(value)?;
 
     Ok(LocalTransportSubcertificate {
         status: LocalTransportStatus::ReceiptChecked,
         relative_path: TRANSPORT_RECEIPT,
         scope: "pinned canonical d=6 triple and its H-symmetry certificate lane only",
-        h_size: Some(read_u64(value, &["stage1_group", "h_size"])?),
+        h_size: Some(h_size),
         generators,
-        stage2_rank: Some(read_u64(value, &["stage2_ztilde_transport", "rank_modp"])?),
-        invariant_dimension: Some(read_u64(value, &["stage4_dim_inv", "d_inv"])?),
-        determining_rank: Some(read_u64(value, &["stage5_determining_set", "rank_modp"])?),
+        stage2_rank: Some(stage2_rank),
+        invariant_dimension: Some(invariant_dimension),
+        determining_rank: Some(determining_rank),
         checked_properties: vec![
             "receipt schema matches transport-closure exact v1",
             "H-size, generators, and line permutations of 0..17 match the receipt shape; this is not transport replay",

@@ -102,14 +102,30 @@ pub struct CechH1Result {
     pub representative_obstruction: Option<CechCochain>,
 }
 
-pub fn compute_cech_h1_obstruction(
+fn append_pair_and_triple_simplices(
     cover: &[OpenSet],
-    transition_1_cocycle: BTreeMap<Vec<usize>, Ratio<i64>>,
-) -> Result<CechH1Result, String> {
-    use omega_homology::scalar::inject_rational64;
-    use omega_homology::simplicial::{Simplex, SimplicialComplex};
-    use omega_homology::trichotomy_witness::{is_coboundary, is_cocycle};
+    i: usize,
+    j: usize,
+    simplices: &mut Vec<omega_homology::simplicial::Simplex>,
+) -> Result<(), String> {
+    use omega_homology::simplicial::Simplex;
+    let pair = cover[i].intersection(&cover[j]);
+    if pair.is_empty() {
+        return Ok(());
+    }
+    simplices.push(Simplex::new(vec![i, j]).map_err(|e| e.to_string())?);
+    for (k, item) in cover.iter().enumerate().skip(j + 1) {
+        if !pair.intersection(item).is_empty() {
+            simplices.push(Simplex::new(vec![i, j, k]).map_err(|e| e.to_string())?);
+        }
+    }
+    Ok(())
+}
 
+fn build_nerve_2_skeleton(
+    cover: &[OpenSet],
+) -> Result<omega_homology::simplicial::SimplicialComplex, String> {
+    use omega_homology::simplicial::{Simplex, SimplicialComplex};
     let n = cover.len();
     let mut simplices = Vec::new();
     for i in 0..n {
@@ -118,24 +134,33 @@ pub fn compute_cech_h1_obstruction(
         }
         simplices.push(Simplex::new(vec![i]).map_err(|e| e.to_string())?);
         for j in i + 1..n {
-            let pair = cover[i].intersection(&cover[j]);
-            if pair.is_empty() {
-                continue;
-            }
-            simplices.push(Simplex::new(vec![i, j]).map_err(|e| e.to_string())?);
-            for (k, item) in cover.iter().enumerate().skip(j + 1) {
-                if !pair.intersection(item).is_empty() {
-                    simplices.push(Simplex::new(vec![i, j, k]).map_err(|e| e.to_string())?);
-                }
-            }
+            append_pair_and_triple_simplices(cover, i, j, &mut simplices)?;
         }
     }
-    let nerve = SimplicialComplex::from_simplices(simplices).map_err(|e| e.to_string())?;
+    SimplicialComplex::from_simplices(simplices).map_err(|e| e.to_string())
+}
+
+fn validate_transition_cocycle_keys(
+    nerve: &omega_homology::simplicial::SimplicialComplex,
+    transition_1_cocycle: &BTreeMap<Vec<usize>, Ratio<i64>>,
+) -> Result<(), String> {
     for key in transition_1_cocycle.keys() {
         if key.len() != 2 || !nerve.simplices(1).iter().any(|edge| edge.vertices() == key) {
             return Err("cochain key is not an oriented nonempty nerve edge".into());
         }
     }
+    Ok(())
+}
+
+pub fn compute_cech_h1_obstruction(
+    cover: &[OpenSet],
+    transition_1_cocycle: BTreeMap<Vec<usize>, Ratio<i64>>,
+) -> Result<CechH1Result, String> {
+    use omega_homology::scalar::inject_rational64;
+    use omega_homology::trichotomy_witness::{is_coboundary, is_cocycle};
+
+    let nerve = build_nerve_2_skeleton(cover)?;
+    validate_transition_cocycle_keys(&nerve, &transition_1_cocycle)?;
     let c1 = CechCochain::new(1, transition_1_cocycle);
     let values: Vec<_> = nerve
         .simplices(1)
@@ -217,5 +242,16 @@ mod tests {
         let res = compute_cech_h1_obstruction(&cover, data1).unwrap();
         assert!(!res.is_trivial);
         assert_eq!(res.dim_h1, 1);
+    }
+
+    #[test]
+    fn test_cech_h1_obstruction_refuses_invalid_keys() {
+        let u0 = OpenSet::new(vec!["0", "1"]);
+        let u1 = OpenSet::new(vec!["1", "2"]);
+        let cover = vec![u0, u1];
+
+        let mut bad_key_data = BTreeMap::new();
+        bad_key_data.insert(vec![0, 2], Ratio::from_integer(1));
+        assert!(compute_cech_h1_obstruction(&cover, bad_key_data).is_err());
     }
 }

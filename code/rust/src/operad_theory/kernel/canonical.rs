@@ -99,6 +99,31 @@ pub fn sorted_unique(values: &[String], field: &str) -> Result<Vec<String>, Cano
     Ok(sorted)
 }
 
+fn canonicalize_array(items: &[Value]) -> Result<Value, CanonicalError> {
+    let mut out = Vec::with_capacity(items.len());
+    for item in items {
+        out.push(canonicalize(item)?);
+    }
+    Ok(Value::Array(out))
+}
+
+fn canonicalize_object(entries: &Map<String, Value>) -> Result<Value, CanonicalError> {
+    let mut out = Map::new();
+    for (key, item) in entries {
+        if !key.is_ascii() {
+            return Err(CanonicalError::NonAscii {
+                field: "canonical key".to_owned(),
+            });
+        }
+        if out.contains_key(key) {
+            return Err(CanonicalError::KeyCollision { key: key.clone() });
+        }
+        out.insert(key.clone(), canonicalize(item)?);
+    }
+    out.sort_keys();
+    Ok(Value::Object(out))
+}
+
 fn canonicalize(value: &Value) -> Result<Value, CanonicalError> {
     match value {
         Value::Null | Value::Bool(_) => Ok(value.clone()),
@@ -118,29 +143,8 @@ fn canonicalize(value: &Value) -> Result<Value, CanonicalError> {
             }
             Ok(Value::String(text.clone()))
         }
-        Value::Array(items) => {
-            let mut out = Vec::with_capacity(items.len());
-            for item in items {
-                out.push(canonicalize(item)?);
-            }
-            Ok(Value::Array(out))
-        }
-        Value::Object(entries) => {
-            let mut out = Map::new();
-            for (key, item) in entries {
-                if !key.is_ascii() {
-                    return Err(CanonicalError::NonAscii {
-                        field: "canonical key".to_owned(),
-                    });
-                }
-                if out.contains_key(key) {
-                    return Err(CanonicalError::KeyCollision { key: key.clone() });
-                }
-                out.insert(key.clone(), canonicalize(item)?);
-            }
-            out.sort_keys();
-            Ok(Value::Object(out))
-        }
+        Value::Array(items) => canonicalize_array(items),
+        Value::Object(entries) => canonicalize_object(entries),
     }
 }
 

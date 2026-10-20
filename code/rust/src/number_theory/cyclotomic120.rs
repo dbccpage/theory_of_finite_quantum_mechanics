@@ -59,11 +59,12 @@ impl Cyc120 {
     pub fn mul(&self, o: &Cyc120) -> Cyc120 {
         let mut prod = vec![BigRational::zero(); 2 * DEGREE - 1];
         for (i, x) in self.a.iter().enumerate() {
-            if !x.is_zero() {
-                for (j, y) in o.a.iter().enumerate() {
-                    if !y.is_zero() {
-                        prod[i + j] += x * y;
-                    }
+            if x.is_zero() {
+                continue;
+            }
+            for (j, y) in o.a.iter().enumerate() {
+                if !y.is_zero() {
+                    prod[i + j] += x * y;
                 }
             }
         }
@@ -91,35 +92,9 @@ impl Cyc120 {
             e.a[k] = BigRational::one();
             self.mul(&e).a
         });
-        let mut a: [[BigRational; DEGREE + 1]; DEGREE] = std::array::from_fn(|i| {
-            std::array::from_fn(|j| {
-                if j < DEGREE {
-                    cols[j][i].clone()
-                } else if i == 0 {
-                    BigRational::one()
-                } else {
-                    BigRational::zero()
-                }
-            })
-        });
+        let mut a = build_augmented_matrix(&cols);
         for col in 0..DEGREE {
-            let piv = (col..DEGREE)
-                .find(|&r| !a[r][col].is_zero())
-                .expect("Cyc120::inv on a non-invertible element");
-            a.swap(col, piv);
-            let pv = a[col][col].clone();
-            for x in a[col].iter_mut() {
-                *x /= &pv;
-            }
-            for r in 0..DEGREE {
-                if r != col && !a[r][col].is_zero() {
-                    let f = a[r][col].clone();
-                    for c in 0..=DEGREE {
-                        let t = &f * &a[col][c];
-                        a[r][c] -= t;
-                    }
-                }
-            }
+            eliminate_column(&mut a, col);
         }
         Cyc120 {
             a: std::array::from_fn(|i| a[i][DEGREE].clone()),
@@ -153,20 +128,69 @@ pub fn sqrt5_120() -> Cyc120 {
     c1_120().add(&Cyc120::zeta(24).add(&Cyc120::zeta(-24)).mul_rat(&ri(2)))
 }
 
+fn build_augmented_matrix(
+    cols: &[[BigRational; DEGREE]; DEGREE],
+) -> [[BigRational; DEGREE + 1]; DEGREE] {
+    let mut a: [[BigRational; DEGREE + 1]; DEGREE] =
+        std::array::from_fn(|_| std::array::from_fn(|_| BigRational::zero()));
+    for i in 0..DEGREE {
+        for j in 0..DEGREE {
+            a[i][j] = cols[j][i].clone();
+        }
+    }
+    a[0][DEGREE] = BigRational::one();
+    a
+}
+
+fn find_pivot_row(a: &[[BigRational; DEGREE + 1]; DEGREE], col: usize) -> Option<usize> {
+    (col..DEGREE).find(|&r| !a[r][col].is_zero())
+}
+
+fn subtract_scaled_row(
+    row: &mut [BigRational; DEGREE + 1],
+    pivot_row: &[BigRational; DEGREE + 1],
+    col: usize,
+) {
+    if row[col].is_zero() {
+        return;
+    }
+    let f = row[col].clone();
+    for c in 0..=DEGREE {
+        let t = &f * &pivot_row[c];
+        row[c] -= t;
+    }
+}
+
+fn eliminate_column(a: &mut [[BigRational; DEGREE + 1]; DEGREE], col: usize) {
+    let piv = find_pivot_row(a, col).expect("Cyc120::inv on a non-invertible element");
+    a.swap(col, piv);
+    let pv = a[col][col].clone();
+    for x in a[col].iter_mut() {
+        *x /= &pv;
+    }
+    let pivot_row = a[col].clone();
+    for (r, row) in a.iter_mut().enumerate() {
+        if r != col {
+            subtract_scaled_row(row, &pivot_row, col);
+        }
+    }
+}
+
 fn reduce_dense(mut dense: Vec<BigRational>) -> [BigRational; DEGREE] {
     if dense.len() < DEGREE {
         dense.resize(DEGREE, BigRational::zero());
     }
     for k in (DEGREE..dense.len()).rev() {
-        if !dense[k].is_zero() {
-            let v = dense[k].clone();
-            for j in 0..DEGREE {
-                if PHI120_LOW[j] != 0 {
-                    dense[k - DEGREE + j] -= &v * ri(PHI120_LOW[j]);
-                }
-            }
-            dense[k] = BigRational::zero();
+        if dense[k].is_zero() {
+            continue;
         }
+        let v = dense[k].clone();
+        for j in 0..DEGREE {
+            if PHI120_LOW[j] != 0 {
+                dense[k - DEGREE + j] -= &v * ri(PHI120_LOW[j]);
+            }
+        }
+        dense[k] = BigRational::zero();
     }
     std::array::from_fn(|i| dense[i].clone())
 }

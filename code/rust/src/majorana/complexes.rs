@@ -98,43 +98,46 @@ pub fn surface_grid_2x2_torus() -> ChainComplexGf2 {
     surface_grid(2, 2, true)
 }
 
-pub fn surface_grid(m: usize, n: usize, periodic: bool) -> ChainComplexGf2 {
-    assert!(m >= 1 && n >= 1, "need at least one plaquette");
-    let (nrows, ncols) = if periodic { (m, n) } else { (m + 1, n + 1) };
-    let num_vertices = nrows * ncols;
+fn grid_vid(r: usize, c: usize, nrows: usize, ncols: usize, periodic: bool) -> usize {
+    let rr = if periodic { r % nrows } else { r };
+    let cc = if periodic { c % ncols } else { c };
+    rr * ncols + cc
+}
 
-    let vid = |r: usize, c: usize| -> usize {
-        let rr = if periodic { r % nrows } else { r };
-        let cc = if periodic { c % ncols } else { c };
-        rr * ncols + cc
-    };
-
-    let n_h_per_row = if periodic { n } else { n };
+fn build_surface_edges(
+    m: usize,
+    n: usize,
+    nrows: usize,
+    ncols: usize,
+    periodic: bool,
+) -> (Vec<(usize, usize)>, Vec<(usize, usize)>) {
     let n_h_rows = if periodic { m } else { m + 1 };
     let mut h_edges: Vec<(usize, usize)> = Vec::new();
     for r in 0..n_h_rows {
-        for c in 0..n_h_per_row {
-            let u = vid(r, c);
-            let v = if periodic {
-                vid(r, c + 1)
-            } else {
-                vid(r, c + 1)
-            };
+        for c in 0..n {
+            let u = grid_vid(r, c, nrows, ncols, periodic);
+            let v = grid_vid(r, c + 1, nrows, ncols, periodic);
             h_edges.push((u, v));
         }
     }
 
-    let n_v_per_col = if periodic { m } else { m };
     let n_v_cols = if periodic { n } else { n + 1 };
     let mut v_edges: Vec<(usize, usize)> = Vec::new();
-    for r in 0..n_v_per_col {
+    for r in 0..m {
         for c in 0..n_v_cols {
-            let u = vid(r, c);
-            let v = vid(r + 1, c);
+            let u = grid_vid(r, c, nrows, ncols, periodic);
+            let v = grid_vid(r + 1, c, nrows, ncols, periodic);
             v_edges.push((u, v));
         }
     }
+    (h_edges, v_edges)
+}
 
+fn build_surface_d0(
+    num_vertices: usize,
+    h_edges: &[(usize, usize)],
+    v_edges: &[(usize, usize)],
+) -> GF2Matrix {
     let num_h = h_edges.len();
     let num_edges = num_h + v_edges.len();
     let mut d0_data = vec![vec![0u8; num_vertices]; num_edges];
@@ -146,56 +149,81 @@ pub fn surface_grid(m: usize, n: usize, periodic: bool) -> ChainComplexGf2 {
         d0_data[num_h + ei][u] = 1;
         d0_data[num_h + ei][v] = 1;
     }
+    GF2Matrix::from_data(d0_data)
+}
 
-    let h_index = |r: usize, c: usize| -> usize {
-        if periodic {
-            (r % m) * n + (c % n)
-        } else {
-            r * n + c
-        }
-    };
-    let v_index = |r: usize, c: usize| -> usize {
-        if periodic {
-            num_h + (r % m) * n + (c % n)
-        } else {
-            num_h + r * (n + 1) + c
-        }
-    };
+fn h_edge_index(r: usize, c: usize, m: usize, n: usize, periodic: bool) -> usize {
+    if periodic {
+        (r % m) * n + (c % n)
+    } else {
+        r * n + c
+    }
+}
 
+fn v_edge_index(r: usize, c: usize, m: usize, n: usize, num_h: usize, periodic: bool) -> usize {
+    if periodic {
+        num_h + (r % m) * n + (c % n)
+    } else {
+        num_h + r * (n + 1) + c
+    }
+}
+
+fn build_surface_d1(
+    m: usize,
+    n: usize,
+    num_h: usize,
+    num_edges: usize,
+    periodic: bool,
+) -> GF2Matrix {
     let mut d1_data = vec![vec![0u8; num_edges]; m * n];
     for pr in 0..m {
         for pc in 0..n {
             let fi = pr * n + pc;
-            let e_top = h_index(pr, pc);
-            let e_right = v_index(pr, pc + 1);
-            let e_bot = h_index(pr + 1, pc);
-            let e_left = v_index(pr, pc);
-            for e in [e_top, e_right, e_bot, e_left] {
-                d1_data[fi][e] ^= 1;
-            }
+            let e_top = h_edge_index(pr, pc, m, n, periodic);
+            let e_right = v_edge_index(pr, pc + 1, m, n, num_h, periodic);
+            let e_bot = h_edge_index(pr + 1, pc, m, n, periodic);
+            let e_left = v_edge_index(pr, pc, m, n, num_h, periodic);
+            d1_data[fi][e_top] ^= 1;
+            d1_data[fi][e_right] ^= 1;
+            d1_data[fi][e_bot] ^= 1;
+            d1_data[fi][e_left] ^= 1;
         }
     }
+    GF2Matrix::from_data(d1_data)
+}
 
+pub fn try_surface_grid(
+    m: usize,
+    n: usize,
+    periodic: bool,
+) -> Result<ChainComplexGf2, &'static str> {
+    if m == 0 || n == 0 {
+        return Err("surface_grid requires m >= 1 and n >= 1");
+    }
+    let (nrows, ncols) = if periodic { (m, n) } else { (m + 1, n + 1) };
+    let num_vertices = nrows * ncols;
+    let (h_edges, v_edges) = build_surface_edges(m, n, nrows, ncols, periodic);
+    let num_h = h_edges.len();
+    let num_edges = num_h + v_edges.len();
+    let d0 = build_surface_d0(num_vertices, &h_edges, &v_edges);
+    let d1 = build_surface_d1(m, n, num_h, num_edges, periodic);
     let name: &'static str = if periodic {
         "surface_grid_2x2_torus"
     } else {
         "surface_grid_2x2_planar"
     };
-    let _ = (m, n);
-    ChainComplexGf2 {
-        name: if periodic && m == 2 && n == 2 {
-            "surface_grid_2x2_torus"
-        } else if !periodic && m == 2 && n == 2 {
-            "surface_grid_2x2_planar"
-        } else {
-            name
-        },
-        d0: GF2Matrix::from_data(d0_data),
-        d1: GF2Matrix::from_data(d1_data),
+    Ok(ChainComplexGf2 {
+        name,
+        d0,
+        d1,
         num_vertices,
         num_edges,
         num_faces: m * n,
-    }
+    })
+}
+
+pub fn surface_grid(m: usize, n: usize, periodic: bool) -> ChainComplexGf2 {
+    try_surface_grid(m, n, periodic).expect("need at least one plaquette")
 }
 
 pub fn torus_logical_x_example() -> Vec<u8> {
@@ -234,6 +262,8 @@ mod tests {
         ] {
             assert!(c.verify_boundary(), "{} fails d1 d0 = 0", c.name);
         }
+        assert!(try_surface_grid(0, 2, false).is_err());
+        assert!(try_surface_grid(2, 0, true).is_err());
     }
 
     #[test]

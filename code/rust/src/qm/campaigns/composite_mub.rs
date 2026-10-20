@@ -1,6 +1,4 @@
-
-
-use crate::linear_algebra::{elimination::rank, involution::outer_product, matrix};
+use crate::qm::bridge::{elimination::rank, involution::outer_product, matrix};
 use omega_number_theory::cyclotomic::Cyc24;
 use omega_number_theory::integer_factorization::FactorizationBudget;
 use omega_number_theory::rational::{ri, Rational};
@@ -82,10 +80,10 @@ pub fn verify_d6_product_mubs() -> (usize, usize, bool) {
     (basis_count, total_projectors, ok)
 }
 
-pub fn search_fourth_mub_d6(
+fn validate_fourth_mub_budget(
     conductor_ceiling: usize,
     max_candidates: usize,
-) -> Result<(usize, &'static str), String> {
+) -> Result<(), String> {
     if conductor_ceiling == 0 || 24 % conductor_ceiling != 0 || max_candidates > 1_000_000 {
         return Err(
             "declare a divisor of conductor24 and at most one million candidate vectors".into(),
@@ -97,45 +95,56 @@ pub fn search_fourth_mub_d6(
     if max_candidates > total {
         return Err("candidate budget exceeds the distinct phase-vector carrier".into());
     }
+    Ok(())
+}
+
+fn candidate_phase_vector(cand_idx: usize, cond: usize) -> [Cyc24; 6] {
+    let mut index = cand_idx;
+    let mut powers = [0usize; 5];
+    for p in &mut powers {
+        *p = index % cond;
+        index /= cond;
+    }
+    let [k1, k2, k3, k4, k5] = powers;
+    [
+        Cyc24::one(),
+        Cyc24::zeta24((k1 * 24 / cond) as i32),
+        Cyc24::zeta24((k2 * 24 / cond) as i32),
+        Cyc24::zeta24((k3 * 24 / cond) as i32),
+        Cyc24::zeta24((k4 * 24 / cond) as i32),
+        Cyc24::zeta24((k5 * 24 / cond) as i32),
+    ]
+}
+
+fn is_candidate_unbiased(
+    cand_idx: usize,
+    cond: usize,
+    bases: &[Vec<::linear_algebra::backend::basic_matrix::BasicMatrix<Cyc24>>],
+) -> Result<bool, String> {
+    let phases = candidate_phase_vector(cand_idx, cond);
+    let m = outer_product(&phases, &phases).map_err(|e| e.to_string())?;
+    for basis in bases {
+        for pi in basis {
+            let prod = matrix::multiply(&m, pi).map_err(|e| e.to_string())?;
+            let tr = matrix::trace(&prod).map_err(|e| e.to_string())?;
+            if tr != Cyc24::one() {
+                return Ok(false);
+            }
+        }
+    }
+    Ok(true)
+}
+
+pub fn search_fourth_mub_d6(
+    conductor_ceiling: usize,
+    max_candidates: usize,
+) -> Result<(usize, &'static str), String> {
+    validate_fourth_mub_budget(conductor_ceiling, max_candidates)?;
     let bases = build_composite_mub_d6();
-    let cond = conductor_ceiling;
     let mut candidates_found = 0;
 
     for cand_idx in 0..max_candidates {
-        let mut index = cand_idx;
-        let mut powers = [0usize; 5];
-        for p in &mut powers {
-            *p = index % cond;
-            index /= cond;
-        }
-        let [k1, k2, k3, k4, k5] = powers;
-        let phases = [
-            Cyc24::one(),
-            Cyc24::zeta24((k1 * 24 / cond) as i32),
-            Cyc24::zeta24((k2 * 24 / cond) as i32),
-            Cyc24::zeta24((k3 * 24 / cond) as i32),
-            Cyc24::zeta24((k4 * 24 / cond) as i32),
-            Cyc24::zeta24((k5 * 24 / cond) as i32),
-        ];
-
-        let m = outer_product(&phases, &phases).map_err(|e| e.to_string())?;
-
-        let mut all_unbiased = true;
-        for basis in &bases {
-            for pi in basis {
-                let tr = matrix::trace(&matrix::multiply(&m, pi).map_err(|e| e.to_string())?)
-                    .map_err(|e| e.to_string())?;
-                if tr != Cyc24::one() {
-                    all_unbiased = false;
-                    break;
-                }
-            }
-            if !all_unbiased {
-                break;
-            }
-        }
-
-        if all_unbiased {
+        if is_candidate_unbiased(cand_idx, conductor_ceiling, &bases)? {
             candidates_found += 1;
         }
     }

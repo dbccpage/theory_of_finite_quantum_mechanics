@@ -143,39 +143,59 @@ fn qutrit_q_basis(a: i32) -> Vec<Vector> {
 }
 
 
+fn line_search_wall_step(
+    columns: &[Vector],
+    v: &mut Vector,
+    candidate: &mut Vector,
+    grad: &[C],
+    s: &mut f64,
+    step: &mut f64,
+) -> bool {
+    for _ in 0..20 {
+        for i in 0..D {
+            candidate[i] = v[i] - grad[i] * *step;
+        }
+        normalize_in_place(candidate);
+        let candidate_s = residual_square_sum(columns, candidate);
+        if candidate_s < *s {
+            std::mem::swap(v, candidate);
+            *s = candidate_s;
+            *step = (*step * 1.08).min(0.5);
+            return true;
+        }
+        *step *= 0.5;
+    }
+    false
+}
+
+fn optimize_seeded_wall_vector(
+    columns: &[Vector],
+    seed: u64,
+    candidate: &mut Vector,
+) -> (Vector, f64) {
+    let mut v = seeded_unit_vector(seed, D);
+    let mut s = residual_square_sum(columns, &v);
+    let mut step: f64 = 0.08;
+    for _ in 0..3000 {
+        let grad = projected_s_gradient(columns, &v);
+        if norm(&grad) < 1e-14 {
+            break;
+        }
+        let accepted =
+            line_search_wall_step(columns, &mut v, candidate, grad.as_slice(), &mut s, &mut step);
+        if !accepted || step < 1e-15 {
+            break;
+        }
+    }
+    (v, s)
+}
+
 fn optimize_wall_candidate(columns: &[Vector]) -> Vector {
     let mut best = zero_vec(D);
     let mut best_s = f64::INFINITY;
     let mut candidate = zero_vec(D);
     for seed in 0..128_u64 {
-        let mut v = seeded_unit_vector(seed, D);
-        let mut s = residual_square_sum(columns, &v);
-        let mut step: f64 = 0.08;
-        for _ in 0..3000 {
-            let grad = projected_s_gradient(columns, &v);
-            if norm(&grad) < 1e-14 {
-                break;
-            }
-            let mut accepted = false;
-            for _ in 0..20 {
-                for i in 0..D {
-                    candidate[i] = v[i] - grad[i] * step;
-                }
-                normalize_in_place(&mut candidate);
-                let candidate_s = residual_square_sum(columns, &candidate);
-                if candidate_s < s {
-                    std::mem::swap(&mut v, &mut candidate);
-                    s = candidate_s;
-                    step = (step * 1.08).min(0.5);
-                    accepted = true;
-                    break;
-                }
-                step *= 0.5;
-            }
-            if !accepted || step < 1e-15 {
-                break;
-            }
-        }
+        let (v, s) = optimize_seeded_wall_vector(columns, seed, &mut candidate);
         if s < best_s {
             best_s = s;
             best = v;

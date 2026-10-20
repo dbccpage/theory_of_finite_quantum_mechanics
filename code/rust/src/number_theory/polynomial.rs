@@ -450,6 +450,18 @@ impl<F: ExactField> Polynomial<F> {
     }
 }
 
+fn fmt_monomial<F: std::fmt::Display>(
+    f: &mut std::fmt::Formatter<'_>,
+    deg: usize,
+    coeff: &F,
+) -> std::fmt::Result {
+    match deg {
+        0 => write!(f, "({coeff})"),
+        1 => write!(f, "({coeff})x"),
+        _ => write!(f, "({coeff})x^{deg}"),
+    }
+}
+
 impl<F: ExactField + std::fmt::Display> std::fmt::Display for Polynomial<F> {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         if self.coeffs.is_empty() {
@@ -464,11 +476,7 @@ impl<F: ExactField + std::fmt::Display> std::fmt::Display for Polynomial<F> {
                 write!(f, " + ")?;
             }
             first = false;
-            match i {
-                0 => write!(f, "({c})")?,
-                1 => write!(f, "({c})x")?,
-                _ => write!(f, "({c})x^{i}")?,
-            }
+            fmt_monomial(f, i, c)?;
         }
         Ok(())
     }
@@ -925,6 +933,59 @@ fn dyadic_fractions() -> impl Iterator<Item = Rational> {
     })
 }
 
+fn root_multiplicity(
+    decomposition: &[(Polynomial<Rational>, usize)],
+    lo: &Rational,
+    hi: &Rational,
+) -> Result<usize, PolynomialError> {
+    for (factor, m) in decomposition {
+        let (a, b) = (factor.sign_at(lo), factor.sign_at(hi));
+        if a != Ordering::Equal && b != Ordering::Equal && a != b {
+            return Ok(*m);
+        }
+    }
+    Err(PolynomialError::Inconsistent(
+        "an isolated root belongs to no squarefree factor",
+    ))
+}
+
+fn refine_and_snap_root(
+    radical: &Polynomial<Rational>,
+    lo: Rational,
+    hi: Rational,
+    lattice: &Rational,
+    resolution: &Rational,
+) -> Result<RootLocation, PolynomialError> {
+    let mut location = refine_simple_root(radical, &Interval::new(lo, hi), resolution)?;
+    if let RootLocation::Isolated(interval) = &location {
+        let candidate = (&interval.mid() * lattice).round() / lattice;
+        if interval.contains(&candidate) && radical.sign_at(&candidate) == Ordering::Equal {
+            location = RootLocation::Exact(candidate);
+        }
+    }
+    Ok(location)
+}
+
+fn disjointify_root_intervals(
+    radical: &Polynomial<Rational>,
+    roots: &mut [RealRoot],
+) -> Result<(), PolynomialError> {
+    for i in 0..roots.len().saturating_sub(1) {
+        loop {
+            let RootLocation::Isolated(interval) = &roots[i].location else {
+                break;
+            };
+            if interval.hi() < roots[i + 1].location.lower() {
+                break;
+            }
+            let half_width = interval.diam() * half();
+            let tightened = refine_simple_root(radical, interval, &half_width)?;
+            roots[i].location = tightened;
+        }
+    }
+    Ok(())
+}
+
 pub fn isolate_real_roots(p: &Polynomial<Rational>) -> Result<Vec<RealRoot>, PolynomialError> {
     if p.is_zero() {
         return Err(PolynomialError::ZeroPolynomial);
@@ -944,41 +1005,14 @@ pub fn isolate_real_roots(p: &Polynomial<Rational>) -> Result<Vec<RealRoot>, Pol
 
     let mut roots = Vec::new();
     for (lo, hi) in isolate_squarefree(&radical)? {
-        let multiplicity = decomposition
-            .iter()
-            .find(|(factor, _)| {
-                let (a, b) = (factor.sign_at(&lo), factor.sign_at(&hi));
-                a != Ordering::Equal && b != Ordering::Equal && a != b
-            })
-            .map(|(_, m)| *m)
-            .ok_or(PolynomialError::Inconsistent(
-                "an isolated root belongs to no squarefree factor",
-            ))?;
-        let mut location = refine_simple_root(&radical, &Interval::new(lo, hi), &resolution)?;
-        if let RootLocation::Isolated(interval) = &location {
-            let candidate = (&interval.mid() * &lattice).round() / &lattice;
-            if interval.contains(&candidate) && radical.sign_at(&candidate) == Ordering::Equal {
-                location = RootLocation::Exact(candidate);
-            }
-        }
+        let multiplicity = root_multiplicity(&decomposition, &lo, &hi)?;
+        let location = refine_and_snap_root(&radical, lo, hi, &lattice, &resolution)?;
         roots.push(RealRoot {
             location,
             multiplicity,
         });
     }
-    for i in 0..roots.len().saturating_sub(1) {
-        loop {
-            let RootLocation::Isolated(interval) = &roots[i].location else {
-                break;
-            };
-            if interval.hi() < roots[i + 1].location.lower() {
-                break;
-            }
-            let half_width = interval.diam() * half();
-            let tightened = refine_simple_root(&radical, interval, &half_width)?;
-            roots[i].location = tightened;
-        }
-    }
+    disjointify_root_intervals(&radical, &mut roots)?;
     Ok(roots)
 }
 

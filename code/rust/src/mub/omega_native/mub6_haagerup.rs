@@ -84,11 +84,8 @@ pub fn haagerup_h6_matrix() -> Matrix6 {
     out
 }
 
-pub fn verify_haagerup_chm(m: &Matrix6) -> Result<(), HaagerupError> {
+fn verify_haagerup_unit_entries(m: &Matrix6) -> Result<(), HaagerupError> {
     let one = Cyc24::rat(ri(1));
-    let six = Cyc24::rat(ri(6));
-    let zero = Cyc24::zero();
-
     for i in 0..D {
         for j in 0..D {
             let mod_sq = m[i][j].mul(&m[i][j].conj());
@@ -101,7 +98,12 @@ pub fn verify_haagerup_chm(m: &Matrix6) -> Result<(), HaagerupError> {
             }
         }
     }
+    Ok(())
+}
 
+fn verify_haagerup_orthogonality(m: &Matrix6) -> Result<(), HaagerupError> {
+    let six = Cyc24::rat(ri(6));
+    let zero = Cyc24::zero();
     let m_adj = matrix_adjoint(m);
     let prod = matrix_mul(m, &m_adj);
     for i in 0..D {
@@ -117,8 +119,12 @@ pub fn verify_haagerup_chm(m: &Matrix6) -> Result<(), HaagerupError> {
             }
         }
     }
-
     Ok(())
+}
+
+pub fn verify_haagerup_chm(m: &Matrix6) -> Result<(), HaagerupError> {
+    verify_haagerup_unit_entries(m)?;
+    verify_haagerup_orthogonality(m)
 }
 
 pub fn verify_deltoid_identity(

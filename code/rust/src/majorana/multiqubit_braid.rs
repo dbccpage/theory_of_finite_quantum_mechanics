@@ -77,6 +77,118 @@ pub fn compile_multiqubit_braid(
     compile_multiqubit_braid_with_limit(num_qubits, operations, DEFAULT_MAX_COMPILED_STEPS)
 }
 
+fn check_qubit(qubit: usize, num_qubits: usize) -> Result<(), MultiQubitBraidError> {
+    if qubit == 0 || qubit > num_qubits {
+        Err(MultiQubitBraidError::InvalidQubit { qubit, num_qubits })
+    } else {
+        Ok(())
+    }
+}
+
+fn append_cnot_braid(
+    steps: &mut Vec<(usize, bool)>,
+    control: usize,
+    target: usize,
+    num_qubits: usize,
+    max_steps: usize,
+) -> Result<(), MultiQubitBraidError> {
+    check_qubit(control, num_qubits)?;
+    check_qubit(target, num_qubits)?;
+    if control == target {
+        return Err(MultiQubitBraidError::EqualControlTarget);
+    }
+    let routing_start = steps.len();
+    let mut current_target = target;
+    while current_target.abs_diff(control) > 1 {
+        let next_target = if target > control {
+            current_target - 1
+        } else {
+            current_target + 1
+        };
+        append_block_swap(steps, current_target, next_target, max_steps)?;
+        current_target = next_target;
+    }
+    let routing_end = steps.len();
+    push_step(steps, 4 * control.min(current_target), false, max_steps)?;
+    for position in (routing_start..routing_end).rev() {
+        let (index, inverse) = steps[position];
+        push_step(steps, index, !inverse, max_steps)?;
+    }
+    Ok(())
+}
+
+fn append_elementary_braid(
+    steps: &mut Vec<(usize, bool)>,
+    index: usize,
+    inverse: bool,
+    mode_count: usize,
+    max_steps: usize,
+) -> Result<(), MultiQubitBraidError> {
+    if index == 0 || index >= mode_count {
+        return Err(BraidActionError::BraidIndex {
+            index,
+            count: mode_count,
+        }
+        .into());
+    }
+    push_step(steps, index, inverse, max_steps)
+}
+
+fn append_hadamard_braid(
+    steps: &mut Vec<(usize, bool)>,
+    qubit: usize,
+    inverse: bool,
+    num_qubits: usize,
+    max_steps: usize,
+) -> Result<(), MultiQubitBraidError> {
+    check_qubit(qubit, num_qubits)?;
+    push_step(steps, 4 * qubit - 2, inverse, max_steps)?;
+    push_step(steps, 4 * qubit - 3, inverse, max_steps)?;
+    push_step(steps, 4 * qubit - 2, inverse, max_steps)
+}
+
+fn append_swap_braid(
+    steps: &mut Vec<(usize, bool)>,
+    first: usize,
+    second: usize,
+    num_qubits: usize,
+    max_steps: usize,
+) -> Result<(), MultiQubitBraidError> {
+    check_qubit(first, num_qubits)?;
+    check_qubit(second, num_qubits)?;
+    if first.abs_diff(second) != 1 {
+        return Err(MultiQubitBraidError::NonAdjacentSwap);
+    }
+    append_block_swap(steps, first, second, max_steps)
+}
+
+fn append_operation(
+    steps: &mut Vec<(usize, bool)>,
+    operation: MultiQubitOperation,
+    num_qubits: usize,
+    mode_count: usize,
+    max_steps: usize,
+) -> Result<(), MultiQubitBraidError> {
+    match operation {
+        MultiQubitOperation::Elementary { index, inverse } => {
+            append_elementary_braid(steps, index, inverse, mode_count, max_steps)
+        }
+        MultiQubitOperation::Phase { qubit, inverse } => {
+            check_qubit(qubit, num_qubits)?;
+            push_step(steps, 4 * qubit - 3, inverse, max_steps)
+        }
+        MultiQubitOperation::Hadamard { qubit, inverse } => {
+            append_hadamard_braid(steps, qubit, inverse, num_qubits, max_steps)
+        }
+        MultiQubitOperation::Swap { first, second } => {
+            append_swap_braid(steps, first, second, num_qubits, max_steps)
+        }
+        MultiQubitOperation::Cnot { control, target } => {
+            append_cnot_braid(steps, control, target, num_qubits, max_steps)
+        }
+    }
+}
+
 pub fn compile_multiqubit_braid_with_limit(
     num_qubits: usize,
     operations: &[MultiQubitOperation],
@@ -86,74 +198,9 @@ pub fn compile_multiqubit_braid_with_limit(
         .checked_mul(4)
         .filter(|&count| num_qubits > 0 && count <= MAX_BRAID_MODES)
         .ok_or(MultiQubitBraidError::InvalidQubitCount)?;
-    let check_qubit = |qubit: usize| {
-        if qubit == 0 || qubit > num_qubits {
-            Err(MultiQubitBraidError::InvalidQubit { qubit, num_qubits })
-        } else {
-            Ok(())
-        }
-    };
     let mut steps = Vec::new();
-    for operation in operations {
-        match *operation {
-            MultiQubitOperation::Elementary { index, inverse } => {
-                if index == 0 || index >= mode_count {
-                    return Err(BraidActionError::BraidIndex {
-                        index,
-                        count: mode_count,
-                    }
-                    .into());
-                }
-                push_step(&mut steps, index, inverse, max_steps)?;
-            }
-            MultiQubitOperation::Phase { qubit, inverse } => {
-                check_qubit(qubit)?;
-                push_step(&mut steps, 4 * qubit - 3, inverse, max_steps)?;
-            }
-            MultiQubitOperation::Hadamard { qubit, inverse } => {
-                check_qubit(qubit)?;
-                push_step(&mut steps, 4 * qubit - 2, inverse, max_steps)?;
-                push_step(&mut steps, 4 * qubit - 3, inverse, max_steps)?;
-                push_step(&mut steps, 4 * qubit - 2, inverse, max_steps)?;
-            }
-            MultiQubitOperation::Swap { first, second } => {
-                check_qubit(first)?;
-                check_qubit(second)?;
-                if first.abs_diff(second) != 1 {
-                    return Err(MultiQubitBraidError::NonAdjacentSwap);
-                }
-                append_block_swap(&mut steps, first, second, max_steps)?;
-            }
-            MultiQubitOperation::Cnot { control, target } => {
-                check_qubit(control)?;
-                check_qubit(target)?;
-                if control == target {
-                    return Err(MultiQubitBraidError::EqualControlTarget);
-                }
-                let routing_start = steps.len();
-                let mut current_target = target;
-                while current_target.abs_diff(control) > 1 {
-                    let next_target = if target > control {
-                        current_target - 1
-                    } else {
-                        current_target + 1
-                    };
-                    append_block_swap(&mut steps, current_target, next_target, max_steps)?;
-                    current_target = next_target;
-                }
-                let routing_end = steps.len();
-                push_step(
-                    &mut steps,
-                    4 * control.min(current_target),
-                    false,
-                    max_steps,
-                )?;
-                for position in (routing_start..routing_end).rev() {
-                    let (index, inverse) = steps[position];
-                    push_step(&mut steps, index, !inverse, max_steps)?;
-                }
-            }
-        }
+    for &operation in operations {
+        append_operation(&mut steps, operation, num_qubits, mode_count, max_steps)?;
     }
     let action = MajoranaBraidAction::from_word(mode_count, &steps)?;
     Ok(CompiledMultiQubitBraid {

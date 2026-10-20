@@ -536,22 +536,21 @@ pub fn run_textbook_atlas() -> Result<Value, String> {
     let q64 = solve_q64_pancharatnam_berry_phase();
     let q65 = solve_q65_fermi_golden_rule_and_revival();
 
-    let all_textbook_problems_verified = q58.sturm_oscillation_verified
-        && q59.interior_canonical_spacing_verified
-        && q60.flux_conservation_verified
-        && q61.regeneration_and_unitarity_verified
-        && q62.decomposition_verified
-        && q63.secular_diagonalization_verified
-        && q64.u1_rephasing_invariance_verified
-        && q64.octant_phase_tan_eq_one_verified
-        && q65.onset_and_heisenberg_revival_verified;
+    let all_textbook_problems_verified = all_textbook_flags(&[
+        q58.sturm_oscillation_verified,
+        q59.interior_canonical_spacing_verified,
+        q60.flux_conservation_verified,
+        q61.regeneration_and_unitarity_verified,
+        q62.decomposition_verified,
+        q63.secular_diagonalization_verified,
+        q64.u1_rephasing_invariance_verified,
+        q64.octant_phase_tan_eq_one_verified,
+        q65.onset_and_heisenberg_revival_verified,
+    ]);
 
     let questions = build_qm_question_atlas();
-    let all_65_verified = all_textbook_problems_verified
-        && questions.len() == 65
-        && questions
-            .iter()
-            .all(|q| q.finite_solved && q.continuum_boundary_noted);
+    let all_65_verified =
+        all_textbook_problems_verified && all_atlas_questions_verified(&questions);
 
     Ok(json!({
         "authority_effect": "None",
@@ -571,6 +570,27 @@ pub fn run_textbook_atlas() -> Result<Value, String> {
         },
         "questions": questions,
     }))
+}
+
+fn all_textbook_flags(flags: &[bool]) -> bool {
+    for &flag in flags {
+        if !flag {
+            return false;
+        }
+    }
+    true
+}
+
+fn all_atlas_questions_verified(questions: &[QmQuestionAtlasEntry]) -> bool {
+    if questions.len() != 65 {
+        return false;
+    }
+    for q in questions {
+        if !q.finite_solved || !q.continuum_boundary_noted {
+            return false;
+        }
+    }
+    true
 }
 
 #[cfg(test)]

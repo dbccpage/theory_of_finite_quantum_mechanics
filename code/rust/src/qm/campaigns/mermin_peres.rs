@@ -5,14 +5,30 @@ pub fn verify() -> Result<i8, &'static str> {
         [iy(), yi(), yy()],
         [xy(), yx(), zz()],
     ];
+    let row_phase = accumulate_row_phases(&rows)?;
+    let col_phase = accumulate_col_phases(&rows)?;
+    if row_phase == col_phase {
+        return Err("row and column phases agree");
+    }
+    if assignments() != 0 {
+        return Err("noncontextual assignment exists");
+    }
+    Ok(col_phase - row_phase)
+}
+
+fn accumulate_row_phases(rows: &[[Op; 3]; 3]) -> Result<i8, &'static str> {
     let mut row_phase = 0i8;
-    for row in &rows {
+    for row in rows {
         let product = mul(&mul(&row[0], &row[1])?, &row[2])?;
         if !is_signed_identity(&product) {
             return Err("row product is not ±I");
         }
         row_phase = (row_phase + product.phase) % 4;
     }
+    Ok(row_phase)
+}
+
+fn accumulate_col_phases(rows: &[[Op; 3]; 3]) -> Result<i8, &'static str> {
     let mut col_phase = 0i8;
     for col in 0..3 {
         let product = mul(&mul(&rows[0][col], &rows[1][col])?, &rows[2][col])?;
@@ -21,13 +37,7 @@ pub fn verify() -> Result<i8, &'static str> {
         }
         col_phase = (col_phase + product.phase) % 4;
     }
-    if row_phase == col_phase {
-        return Err("row and column phases agree");
-    }
-    if assignments() != 0 {
-        return Err("noncontextual assignment exists");
-    }
-    Ok(col_phase - row_phase)
+    Ok(col_phase)
 }
 
 #[derive(Clone, Copy)]

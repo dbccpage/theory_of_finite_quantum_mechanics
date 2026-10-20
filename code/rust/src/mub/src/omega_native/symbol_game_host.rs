@@ -325,18 +325,8 @@ impl SymbolGameHost {
         residuals
     }
 
-    pub fn verify_dual_witness(
-        &self,
-        dual: &[BigRational],
-        sec: &[BigRational],
-    ) -> Result<(), HostRefusalCode> {
-        let n_edges = self.problem.edges.len();
-        if dual.len() != n_edges || sec.len() != self.problem.vertices.len() {
-            return Err(HostRefusalCode::FormatViolation);
-        }
-
-        let n_verts = self.problem.vertices.len();
-        let mut divergences = vec![BigRational::zero(); n_verts];
+    fn compute_dual_divergences(&self, dual: &[BigRational]) -> Vec<BigRational> {
+        let mut divergences = vec![BigRational::zero(); self.problem.vertices.len()];
         for (e_idx, edge) in self.problem.edges.iter().enumerate() {
             let u_idx = self
                 .problem
@@ -353,7 +343,10 @@ impl SymbolGameHost {
             divergences[v_idx] += &dual[e_idx];
             divergences[u_idx] -= &dual[e_idx];
         }
+        divergences
+    }
 
+    fn check_dual_divergences(&self, divergences: &[BigRational]) -> Result<(), HostRefusalCode> {
         for (v_idx, div) in divergences.iter().enumerate() {
             if !div.is_zero() {
                 return Err(HostRefusalCode::DualNotPerpendicular {
@@ -362,7 +355,10 @@ impl SymbolGameHost {
                 });
             }
         }
+        Ok(())
+    }
 
+    fn check_dual_weights(&self, dual: &[BigRational]) -> Result<(), HostRefusalCode> {
         for (e_idx, edge) in self.problem.edges.iter().enumerate() {
             let z_val = &dual[e_idx];
             let abs_z = if z_val.is_negative() {
@@ -378,6 +374,21 @@ impl SymbolGameHost {
                 });
             }
         }
+        Ok(())
+    }
+
+    pub fn verify_dual_witness(
+        &self,
+        dual: &[BigRational],
+        sec: &[BigRational],
+    ) -> Result<(), HostRefusalCode> {
+        if dual.len() != self.problem.edges.len() || sec.len() != self.problem.vertices.len() {
+            return Err(HostRefusalCode::FormatViolation);
+        }
+
+        let divergences = self.compute_dual_divergences(dual);
+        self.check_dual_divergences(&divergences)?;
+        self.check_dual_weights(dual)?;
 
         let residuals = self.compute_residuals(sec);
         let defect = Self::compute_defect(&self.problem, sec);
@@ -397,251 +408,276 @@ impl SymbolGameHost {
         Ok(())
     }
 
-    pub fn process_proposal(&mut self, proposal: &UntrustedProposal) -> HostVerdict {
+    fn is_valid_rationale(rationale: &str) -> bool {
+        for c in rationale.chars() {
+            if !matches!(
+                c as u32,
+                32..=126 | 0x0391..=0x03A9 | 0x03B1..=0x03C9 | 0x2192 | 0x22A2 | 0x22A5 | 0x2261
+            ) {
+                return false;
+            }
+        }
+        true
+    }
+
+    fn validate_proposal_header(&self, proposal: &UntrustedProposal) -> Result<(), HostRefusalCode> {
         if proposal.problem_digest != self.problem.digest {
-            return self.refuse(HostRefusalCode::ProblemDigestMismatch {
+            return Err(HostRefusalCode::ProblemDigestMismatch {
                 expected: self.problem.digest.clone(),
                 found: proposal.problem_digest.clone(),
             });
         }
-
         if proposal.parent_state_digest != self.current_state_digest {
-            return self.refuse(HostRefusalCode::ParentStateMismatch {
+            return Err(HostRefusalCode::ParentStateMismatch {
                 expected: self.current_state_digest.clone(),
                 found: proposal.parent_state_digest.clone(),
             });
         }
+        if !Self::is_valid_rationale(&proposal.rationale) {
+            return Err(HostRefusalCode::CarrierViolation);
+        }
+        Ok(())
+    }
 
-        if !proposal.rationale.chars().all(|c| {
-            matches!(c as u32, 32..=126 | 0x0391..=0x03A9 | 0x03B1..=0x03C9
-                | 0x2192 | 0x22A2 | 0x22A5 | 0x2261)
-        }) {
-            return self.refuse(HostRefusalCode::CarrierViolation);
+    #[allow(clippy::too_many_arguments)]
+    fn commit_verified_move(
+        &mut self,
+        next_step: usize,
+        event_id: String,
+        parent_state_digest: String,
+        post_state_digest: String,
+        op: HostMoveOp,
+        defect: BigRational,
+        details: String,
+        section: Vec<BigRational>,
+    ) -> HostVerdict {
+        let parent_event_id = self.history.last().map(|e| e.event_id.clone());
+        let ev_digest = VerifiedEvent::calculate_event_digest(
+            &event_id,
+            parent_event_id.as_deref(),
+            &self.problem.digest,
+            &parent_state_digest,
+            &post_state_digest,
+            op,
+            &defect,
+        );
+        self.history.push(VerifiedEvent {
+            event_id: event_id.clone(),
+            event_digest: ev_digest,
+            parent_event_id,
+            problem_digest: self.problem.digest.clone(),
+            parent_state_digest,
+            post_state_digest: post_state_digest.clone(),
+            op,
+            verified_defect: defect.clone(),
+            details,
+            section_snapshot: section.clone(),
+        });
+        self.section = section;
+        self.step_counter = next_step;
+        self.current_state_digest = post_state_digest.clone();
+
+        HostVerdict {
+            admitted: true,
+            refusal_code: None,
+            reason: None,
+            post_state_digest: Some(post_state_digest),
+            verified_defect: Some(defect),
+            event_id: Some(event_id),
+        }
+    }
+
+    fn process_cut_move(
+        &mut self,
+        proposal: &UntrustedProposal,
+        next_step: usize,
+        event_id: String,
+    ) -> HostVerdict {
+        let candidate_section = match &proposal.proposed_section {
+            Some(sec) if sec.len() == self.problem.vertices.len() => sec.clone(),
+            _ => return self.refuse(HostRefusalCode::FormatViolation),
+        };
+
+        let defect_before = self.section_defect();
+        let defect_after = Self::compute_defect(&self.problem, &candidate_section);
+
+        if defect_after > defect_before {
+            return self.refuse(HostRefusalCode::DefectIncrease {
+                before: defect_before.to_string(),
+                after: defect_after.to_string(),
+            });
+        }
+
+        let host_post_digest = Self::calculate_state_digest(
+            &self.problem.digest,
+            &self.current_state_digest,
+            next_step,
+            &candidate_section,
+            &defect_after,
+        );
+
+        if host_post_digest != proposal.claimed_post_state_digest {
+            return self.refuse(HostRefusalCode::PostStateDigestMismatch {
+                host_digest: host_post_digest,
+                claimed_digest: proposal.claimed_post_state_digest.clone(),
+            });
+        }
+
+        let details = format!(
+            "CUT accepted: defect reduced from {} to {}",
+            defect_before, defect_after
+        );
+        self.commit_verified_move(
+            next_step,
+            event_id,
+            proposal.parent_state_digest.clone(),
+            host_post_digest,
+            HostMoveOp::Cut,
+            defect_after,
+            details,
+            candidate_section,
+        )
+    }
+
+    fn verify_target_property(
+        &self,
+        proposal: &UntrustedProposal,
+        cur_defect: &BigRational,
+    ) -> Result<String, HostRefusalCode> {
+        let target_prop = proposal.target_property.as_deref().unwrap_or("");
+        if target_prop == "ZERO_OBSTRUCTION" {
+            if !cur_defect.is_zero() {
+                return Err(HostRefusalCode::NonzeroObstruction {
+                    defect: cur_defect.to_string(),
+                });
+            }
+            return Ok(target_prop.to_string());
+        }
+        if target_prop == "DUAL_WITNESS" {
+            let dual = match &proposal.dual_witness {
+                Some(d) if d.len() == self.problem.edges.len() => d,
+                _ => return Err(HostRefusalCode::FormatViolation),
+            };
+            self.verify_dual_witness(dual, &self.section)?;
+            return Ok(target_prop.to_string());
+        }
+        Err(HostRefusalCode::FormatViolation)
+    }
+
+    fn process_verify_move(
+        &mut self,
+        proposal: &UntrustedProposal,
+        next_step: usize,
+        event_id: String,
+    ) -> HostVerdict {
+        let cur_defect = self.section_defect();
+        let target_prop = match self.verify_target_property(proposal, &cur_defect) {
+            Ok(tp) => tp,
+            Err(code) => return self.refuse(code),
+        };
+
+        let host_post_digest = Self::calculate_state_digest(
+            &self.problem.digest,
+            &self.current_state_digest,
+            next_step,
+            &self.section,
+            &cur_defect,
+        );
+
+        if host_post_digest != proposal.claimed_post_state_digest {
+            return self.refuse(HostRefusalCode::PostStateDigestMismatch {
+                host_digest: host_post_digest,
+                claimed_digest: proposal.claimed_post_state_digest.clone(),
+            });
+        }
+
+        let details = format!("VERIFY '{}' accepted with defect {}", target_prop, cur_defect);
+        let section_clone = self.section.clone();
+        self.commit_verified_move(
+            next_step,
+            event_id,
+            proposal.parent_state_digest.clone(),
+            host_post_digest,
+            HostMoveOp::Verify,
+            cur_defect,
+            details,
+            section_clone,
+        )
+    }
+
+    fn resolve_retract_section(
+        &self,
+        proposal: &UntrustedProposal,
+    ) -> Result<(String, Vec<BigRational>), HostRefusalCode> {
+        let target_ev = proposal
+            .target_event_id
+            .as_ref()
+            .ok_or(HostRefusalCode::FormatViolation)?;
+        let idx = self
+            .history
+            .iter()
+            .position(|e| &e.event_id == target_ev)
+            .ok_or_else(|| HostRefusalCode::EventNotFound {
+                event_id: target_ev.clone(),
+            })?;
+        let restored = if idx == 0 {
+            vec![BigRational::zero(); self.problem.vertices.len()]
+        } else {
+            self.history[idx - 1].section_snapshot.clone()
+        };
+        Ok((target_ev.clone(), restored))
+    }
+
+    fn process_retract_move(
+        &mut self,
+        proposal: &UntrustedProposal,
+        next_step: usize,
+        event_id: String,
+    ) -> HostVerdict {
+        let (target_ev, restored) = match self.resolve_retract_section(proposal) {
+            Ok(pair) => pair,
+            Err(code) => return self.refuse(code),
+        };
+        let defect = Self::compute_defect(&self.problem, &restored);
+        let post_digest = Self::calculate_state_digest(
+            &self.problem.digest,
+            &self.current_state_digest,
+            next_step,
+            &restored,
+            &defect,
+        );
+        if post_digest != proposal.claimed_post_state_digest {
+            return self.refuse(HostRefusalCode::PostStateDigestMismatch {
+                host_digest: post_digest,
+                claimed_digest: proposal.claimed_post_state_digest.clone(),
+            });
+        }
+        let parent_state_digest = self.current_state_digest.clone();
+        let details = format!("Restored state before {}; prior events retained", target_ev);
+        self.commit_verified_move(
+            next_step,
+            event_id,
+            parent_state_digest,
+            post_digest,
+            HostMoveOp::Retract,
+            defect,
+            details,
+            restored,
+        )
+    }
+
+    pub fn process_proposal(&mut self, proposal: &UntrustedProposal) -> HostVerdict {
+        if let Err(code) = self.validate_proposal_header(proposal) {
+            return self.refuse(code);
         }
         let next_step = self.step_counter + 1;
         let event_id = format!("ev_{:04}_{:?}", next_step, proposal.op);
-        let parent_event_id = self.history.last().map(|e| e.event_id.clone());
 
         match proposal.op {
-            HostMoveOp::Cut => {
-                let candidate_section = match &proposal.proposed_section {
-                    Some(sec) if sec.len() == self.problem.vertices.len() => sec,
-                    _ => return self.refuse(HostRefusalCode::FormatViolation),
-                };
-
-                let defect_before = self.section_defect();
-                let defect_after = Self::compute_defect(&self.problem, candidate_section);
-
-                if defect_after > defect_before {
-                    return self.refuse(HostRefusalCode::DefectIncrease {
-                        before: defect_before.to_string(),
-                        after: defect_after.to_string(),
-                    });
-                }
-
-                let host_post_digest = Self::calculate_state_digest(
-                    &self.problem.digest,
-                    &self.current_state_digest,
-                    next_step,
-                    candidate_section,
-                    &defect_after,
-                );
-
-                if host_post_digest != proposal.claimed_post_state_digest {
-                    return self.refuse(HostRefusalCode::PostStateDigestMismatch {
-                        host_digest: host_post_digest,
-                        claimed_digest: proposal.claimed_post_state_digest.clone(),
-                    });
-                }
-
-                self.section = candidate_section.clone();
-                self.step_counter = next_step;
-                self.current_state_digest = host_post_digest.clone();
-
-                let ev_digest = VerifiedEvent::calculate_event_digest(
-                    &event_id,
-                    parent_event_id.as_deref(),
-                    &self.problem.digest,
-                    &proposal.parent_state_digest,
-                    &host_post_digest,
-                    HostMoveOp::Cut,
-                    &defect_after,
-                );
-                let ev = VerifiedEvent {
-                    event_id: event_id.clone(),
-                    event_digest: ev_digest,
-                    parent_event_id,
-                    problem_digest: self.problem.digest.clone(),
-                    parent_state_digest: proposal.parent_state_digest.clone(),
-                    post_state_digest: host_post_digest.clone(),
-                    op: HostMoveOp::Cut,
-                    verified_defect: defect_after.clone(),
-                    details: format!(
-                        "CUT accepted: defect reduced from {} to {}",
-                        defect_before, defect_after
-                    ),
-                    section_snapshot: self.section.clone(),
-                };
-                self.history.push(ev);
-
-                HostVerdict {
-                    admitted: true,
-                    refusal_code: None,
-                    reason: None,
-                    post_state_digest: Some(host_post_digest),
-                    verified_defect: Some(defect_after),
-                    event_id: Some(event_id),
-                }
-            }
-
-            HostMoveOp::Verify => {
-                let target_prop = proposal.target_property.as_deref().unwrap_or("");
-                let cur_defect = self.section_defect();
-
-                if target_prop == "ZERO_OBSTRUCTION" {
-                    if !cur_defect.is_zero() {
-                        return self.refuse(HostRefusalCode::NonzeroObstruction {
-                            defect: cur_defect.to_string(),
-                        });
-                    }
-                } else if target_prop == "DUAL_WITNESS" {
-                    let dual = match &proposal.dual_witness {
-                        Some(d) if d.len() == self.problem.edges.len() => d,
-                        _ => return self.refuse(HostRefusalCode::FormatViolation),
-                    };
-                    if let Err(refusal) = self.verify_dual_witness(dual, &self.section) {
-                        return self.refuse(refusal);
-                    }
-                } else {
-                    return self.refuse(HostRefusalCode::FormatViolation);
-                }
-
-                let host_post_digest = Self::calculate_state_digest(
-                    &self.problem.digest,
-                    &self.current_state_digest,
-                    next_step,
-                    &self.section,
-                    &cur_defect,
-                );
-
-                if host_post_digest != proposal.claimed_post_state_digest {
-                    return self.refuse(HostRefusalCode::PostStateDigestMismatch {
-                        host_digest: host_post_digest,
-                        claimed_digest: proposal.claimed_post_state_digest.clone(),
-                    });
-                }
-
-                self.step_counter = next_step;
-                self.current_state_digest = host_post_digest.clone();
-                let ev_digest = VerifiedEvent::calculate_event_digest(
-                    &event_id,
-                    parent_event_id.as_deref(),
-                    &self.problem.digest,
-                    &proposal.parent_state_digest,
-                    &host_post_digest,
-                    HostMoveOp::Verify,
-                    &cur_defect,
-                );
-                let ev = VerifiedEvent {
-                    event_id: event_id.clone(),
-                    event_digest: ev_digest,
-                    parent_event_id,
-                    problem_digest: self.problem.digest.clone(),
-                    parent_state_digest: proposal.parent_state_digest.clone(),
-                    post_state_digest: host_post_digest.clone(),
-                    op: HostMoveOp::Verify,
-                    verified_defect: cur_defect.clone(),
-                    details: format!(
-                        "VERIFY '{}' accepted with defect {}",
-                        target_prop, cur_defect
-                    ),
-                    section_snapshot: self.section.clone(),
-                };
-                self.history.push(ev);
-
-                HostVerdict {
-                    admitted: true,
-                    refusal_code: None,
-                    reason: None,
-                    post_state_digest: Some(host_post_digest),
-                    verified_defect: Some(cur_defect),
-                    event_id: Some(event_id),
-                }
-            }
-
-            HostMoveOp::Assert => {
-                self.refuse(HostRefusalCode::UnlicensedProblemMutation)
-            }
-
-            HostMoveOp::Retract => {
-                let target_ev = match &proposal.target_event_id {
-                    Some(tid) => tid,
-                    None => return self.refuse(HostRefusalCode::FormatViolation),
-                };
-
-                let found_idx = self.history.iter().position(|e| &e.event_id == target_ev);
-                let idx = match found_idx {
-                    Some(i) => i,
-                    None => {
-                        return self.refuse(HostRefusalCode::EventNotFound {
-                            event_id: target_ev.clone(),
-                        })
-                    }
-                };
-
-                let restored = if idx == 0 {
-                    vec![BigRational::zero(); self.problem.vertices.len()]
-                } else {
-                    self.history[idx - 1].section_snapshot.clone()
-                };
-                let defect = Self::compute_defect(&self.problem, &restored);
-                let post_digest = Self::calculate_state_digest(
-                    &self.problem.digest,
-                    &self.current_state_digest,
-                    next_step,
-                    &restored,
-                    &defect,
-                );
-                if post_digest != proposal.claimed_post_state_digest {
-                    return self.refuse(HostRefusalCode::PostStateDigestMismatch {
-                        host_digest: post_digest,
-                        claimed_digest: proposal.claimed_post_state_digest.clone(),
-                    });
-                }
-                let ev_digest = VerifiedEvent::calculate_event_digest(
-                    &event_id,
-                    parent_event_id.as_deref(),
-                    &self.problem.digest,
-                    &self.current_state_digest,
-                    &post_digest,
-                    HostMoveOp::Retract,
-                    &defect,
-                );
-                self.history.push(VerifiedEvent {
-                    event_id: event_id.clone(),
-                    event_digest: ev_digest,
-                    parent_event_id,
-                    problem_digest: self.problem.digest.clone(),
-                    parent_state_digest: self.current_state_digest.clone(),
-                    post_state_digest: post_digest.clone(),
-                    op: HostMoveOp::Retract,
-                    verified_defect: defect,
-                    details: format!("Restored state before {}; prior events retained", target_ev),
-                    section_snapshot: restored.clone(),
-                });
-                self.section = restored;
-                self.current_state_digest = post_digest;
-                self.step_counter = next_step;
-
-                HostVerdict {
-                    admitted: true,
-                    refusal_code: None,
-                    reason: None,
-                    post_state_digest: Some(self.current_state_digest.clone()),
-                    verified_defect: Some(self.section_defect()),
-                    event_id: Some(event_id),
-                }
-            }
+            HostMoveOp::Cut => self.process_cut_move(proposal, next_step, event_id),
+            HostMoveOp::Verify => self.process_verify_move(proposal, next_step, event_id),
+            HostMoveOp::Assert => self.refuse(HostRefusalCode::UnlicensedProblemMutation),
+            HostMoveOp::Retract => self.process_retract_move(proposal, next_step, event_id),
         }
     }
 

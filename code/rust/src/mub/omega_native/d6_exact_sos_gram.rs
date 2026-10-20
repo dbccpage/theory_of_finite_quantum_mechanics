@@ -21,6 +21,22 @@ pub fn mon_index(j: usize, k: usize) -> usize {
     (0..a).map(|i| D - i).sum::<usize>() + (b - a)
 }
 
+fn accumulate_form_pair_into_gram(
+    g: &mut [Vec<Cyc24>],
+    a: &crate::omega_native::exact::d6_exact_sos::Form,
+    p: usize,
+    q: usize,
+) {
+    for r in 0..D {
+        let ma = mon_index(p, r);
+        for s in 0..D {
+            let mb = mon_index(q, s);
+            let coeff = a[p][q].mul(&a[r][s]);
+            g[ma][mb] = g[ma][mb].add(&coeff);
+        }
+    }
+}
+
 pub fn obstruction_gram() -> Vec<Vec<Cyc24>> {
     let forms = canonical_forms();
     let n = monomials().len();
@@ -28,14 +44,7 @@ pub fn obstruction_gram() -> Vec<Vec<Cyc24>> {
     for a in &forms {
         for p in 0..D {
             for q in 0..D {
-                for r in 0..D {
-                    for s in 0..D {
-                        let ma = mon_index(p, r);
-                        let mb = mon_index(q, s);
-                        let coeff = a[p][q].mul(&a[r][s]);
-                        g[ma][mb] = g[ma][mb].add(&coeff);
-                    }
-                }
+                accumulate_form_pair_into_gram(&mut g, a, p, q);
             }
         }
     }

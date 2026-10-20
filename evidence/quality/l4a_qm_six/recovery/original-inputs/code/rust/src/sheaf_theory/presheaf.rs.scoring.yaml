@@ -1,0 +1,252 @@
+# YAML 1.2 (JSON syntax). AuthorityEffect: None.
+{
+  "schema_version": "2.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/sheaf_theory/presheaf.rs",
+    "sha256": "4f061e5d84258805f32417741789ae84e08f0452741d4a96ff254e004fd17e12",
+    "language": "Rust"
+  },
+  "profile": "Exact",
+  "level": "L4",
+  "level_basis": "Individual source review: implements finite presheaves, restriction functoriality verification, presheaf morphisms, naturality checks, and kernel presheaf construction.",
+  "engineering_target": "A",
+  "requested_target": "L4A",
+  "gates": {
+    "G1": "A",
+    "G2": "A",
+    "G3": "A",
+    "G4": "A",
+    "G5": "A"
+  },
+  "composite_grade": "A",
+  "score_token": "L4A",
+  "is_complete": true,
+  "grade_ceiling": "A",
+  "evaluation_timestamp": "2026-10-20T15:14:24+00:00",
+  "grade_ceiling_basis": "Minimum of explicit individual gate decisions and measured structural eligibility.",
+  "contract": {
+    "path": "code/rust/src/sheaf_theory/presheaf.rs.contract.yaml",
+    "status": "individual_gate_review_L4A_complete",
+    "sha256": "ab8a1f9ee39a8fe22516b0ae62b35089dfa068b271d4ba7c9fefaf68a45eb48e"
+  },
+  "evidence": [
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json",
+      "sha256": "3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98"
+    },
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json",
+      "sha256": "e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd"
+    },
+    {
+      "path": "code/rust/quality/l4a_qm_six/records.py",
+      "sha256": "0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706"
+    },
+    {
+      "path": "code/rust/quality/l4a_qm_six/specs.json",
+      "sha256": "bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12"
+    },
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json",
+      "sha256": "929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758"
+    },
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json",
+      "sha256": "9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78"
+    },
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json",
+      "sha256": "90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a"
+    }
+  ],
+  "verification": {
+    "baseline": {
+      "command": [
+        "cargo",
+        "test",
+        "--offline",
+        "--target-dir",
+        "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-qm-six\\20261020T151424Z\\build",
+        "--quiet",
+        "-p",
+        "tfqm_sheaf_theory",
+        "--tests"
+      ],
+      "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-qm-six\\20261020T151424Z\\code\\rust",
+      "elapsed_seconds": 44.946,
+      "environment": {
+        "CARGO_BUILD_JOBS": "2",
+        "CARGO_INCREMENTAL": "0",
+        "CARGO_PROFILE_DEV_DEBUG": "0",
+        "CARGO_PROFILE_TEST_DEBUG": "0"
+      },
+      "exit_code": 0,
+      "log": "evidence/quality/l4a_qm_six/20261020T151424Z/tfqm_sheaf_theory.log",
+      "log_sha256": "dec08030e3925b8cc8bb1ffcf6a6c778b9c6908f2faca6d8311729c1dab2298d",
+      "timed_out": false
+    },
+    "sources_unchanged": true,
+    "doctests": [],
+    "disabled_by_cfg_any": false,
+    "test_or_support_file": false,
+    "compatibility_mirror_tree": false,
+    "dependency_sources_unchanged": true,
+    "compiled_scope": "Package unit/integration tests in the scoped six-directory snapshot. Compatibility mirror files under mub/src/ require separate compilation review.",
+    "designated_mutations": [
+      "SH04-presheaf-subset"
+    ],
+    "mutation_restoration_baselines_ok": true,
+    "reproduced_defects": []
+  },
+  "mutation_accounting": {
+    "killed": 1,
+    "survived": 0,
+    "demonstrably_equivalent": 0,
+    "invalid": 0,
+    "inconclusive": 0,
+    "unrun": 0,
+    "conservative_ratio": 1.0
+  },
+  "structure": {
+    "tool": "syn source AST (see pinned metric_tool_sources in receipt)",
+    "functions": [
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 24,
+        "name": "fmt",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 0,
+        "line": 34,
+        "name": "new",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 48,
+        "name": "sections",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 1,
+        "line": 52,
+        "name": "restrict",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 5,
+        "cognitive_upper_bound": 6,
+        "control_nesting": 3,
+        "line": 62,
+        "name": "validate_identity_restrictions",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 6,
+        "cognitive_upper_bound": 3,
+        "control_nesting": 2,
+        "line": 74,
+        "name": "validate_triple_composition",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 4,
+        "cognitive_upper_bound": 3,
+        "control_nesting": 2,
+        "line": 95,
+        "name": "validate_pair_compositions",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 6,
+        "cognitive_upper_bound": 6,
+        "control_nesting": 3,
+        "line": 109,
+        "name": "validate_functoriality",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 0,
+        "line": 131,
+        "name": "new",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 1,
+        "cognitive_upper_bound": 0,
+        "control_nesting": 0,
+        "line": 143,
+        "name": "apply",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 6,
+        "cognitive_upper_bound": 7,
+        "control_nesting": 3,
+        "line": 147,
+        "name": "check_naturality",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 5,
+        "cognitive_upper_bound": 3,
+        "control_nesting": 2,
+        "line": 159,
+        "name": "naturality_holds_on_pair",
+        "opaque_macros": []
+      },
+      {
+        "ccn": 2,
+        "cognitive_upper_bound": 1,
+        "control_nesting": 2,
+        "line": 171,
+        "name": "presheaf_kernel",
+        "opaque_macros": []
+      }
+    ],
+    "exceeding_A": [],
+    "metric_ceiling": "A",
+    "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
+  },
+  "open_findings": [
+    "Scoped to finite poset topologies and finite section tables."
+  ],
+  "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts.",
+  "engineering_review": {
+    "source_sha256": "4f061e5d84258805f32417741789ae84e08f0452741d4a96ff254e004fd17e12",
+    "gates": {
+      "G1": {
+        "grade": "A",
+        "basis": "Explicit Presheaf, PresheafMorphism, and PresheafError contracts over finite OpenSet posets."
+      },
+      "G2": {
+        "grade": "A",
+        "basis": "Exact verification of identity restrictions, triple-subset composition laws, and morphism naturality squares."
+      },
+      "G3": {
+        "grade": "A",
+        "basis": "Refuses non-subset restrictions, identity violations, and composition failures via typed Result<_, PresheafError>."
+      },
+      "G4": {
+        "grade": "A",
+        "basis": "Positive/negative unit tests and designated semantic mutation SH04-presheaf-subset (R = 1.0) verify subset restriction refusal."
+      },
+      "G5": {
+        "grade": "A",
+        "basis": "Decomposed validate_functoriality and check_naturality so all functions satisfy Grade A structural ceilings (CCN <= 10, cognitive <= 15, nesting <= 3)."
+      }
+    }
+  }
+}

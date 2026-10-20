@@ -279,10 +279,7 @@ fn declared_frontier_targets() -> Vec<FrontierTarget> {
         status: TargetStatus::Blocked,
     });
 
-    targets.sort_by(|a, b| {
-        b.heuristic_priority_points
-            .cmp(&a.heuristic_priority_points)
-    });
+    targets.sort_by_key(|b| std::cmp::Reverse(b.heuristic_priority_points));
     for (i, t) in targets.iter_mut().enumerate() {
         t.priority_rank = i;
     }
@@ -290,47 +287,40 @@ fn declared_frontier_targets() -> Vec<FrontierTarget> {
     targets
 }
 
-fn main() {
-    let args: Vec<String> = std::env::args().collect();
-    let verify_catalog = args.iter().any(|a| a == "--verify-catalog");
-    let target_filter: Option<&str> = args
-        .iter()
-        .position(|a| a == "--target")
-        .and_then(|i| args.get(i + 1))
-        .map(|s| s.as_str());
+fn find_target_filter(args: &[String]) -> Option<&str> {
+    for (i, arg) in args.iter().enumerate() {
+        if arg == "--target" {
+            return args.get(i + 1).map(String::as_str);
+        }
+    }
+    None
+}
 
-    eprintln!("═══════════════════════════════════════════════════════════════════");
-    eprintln!("  MUB(6) Gap Solver — Frontier Target Finder");
-    eprintln!("  Firewall: {FIREWALL}");
-    eprintln!("  AuthorityEffect: {AUTHORITY_EFFECT}");
-    eprintln!("═══════════════════════════════════════════════════════════════════");
-    eprintln!();
-
+fn step_registry_summary() -> RegistrySummary {
     eprintln!("[1/4] Reading ENC-1147 CHM registry...");
     let registry = current_chm_registry();
     eprintln!("  Charted loci: {}", registry.charted_count);
     eprintln!("  Open residuals: {}", registry.open_residual_count);
-    eprintln!(
-        "  Mechanical checks: {}",
-        if registry.mechanical_checks_ok {
-            "PASS"
-        } else {
-            "FAIL"
-        }
-    );
+    let check_label = if registry.mechanical_checks_ok {
+        "PASS"
+    } else {
+        "FAIL"
+    };
+    eprintln!("  Mechanical checks: {check_label}");
     if !registry.mechanical_checks_ok {
         for detail in &registry.mechanical_check_detail {
             eprintln!("    ✗ {detail}");
         }
     }
     eprintln!();
-
-    let reg_summary = RegistrySummary {
+    RegistrySummary {
         charted_count: registry.charted_count,
         open_residual_count: registry.open_residual_count,
         mechanical_checks_ok: registry.mechanical_checks_ok,
-    };
+    }
+}
 
+fn step_catalog_summary(verify_catalog: bool) -> CatalogSummary {
     eprintln!("[2/4] Classifying declared catalog candidates...");
     let catalog = canonical_catalog_candidates();
     let exhaustiveness = certify_catalog_exhaustiveness(&catalog);
@@ -350,7 +340,6 @@ fn main() {
         "  All declared catalog candidates classified: {}",
         exhaustiveness.is_exhaustive
     );
-
     if verify_catalog {
         for r in &exhaustiveness.candidate_results {
             let mark = if r.matches_expected { "✓" } else { "✗" };
@@ -361,8 +350,7 @@ fn main() {
         }
     }
     eprintln!();
-
-    let cat_summary = CatalogSummary {
+    CatalogSummary {
         total_candidates: exhaustiveness.total_candidates_tested,
         fourier_count: exhaustiveness.fourier_count,
         tao_count: exhaustiveness.tao_count,
@@ -370,8 +358,10 @@ fn main() {
         szollosi_count: exhaustiveness.szollosi_count,
         unassigned: exhaustiveness.unassigned_residual_count,
         all_declared_candidates_classified: exhaustiveness.is_exhaustive,
-    };
+    }
+}
 
+fn step_circulation_summaries() -> Vec<CirculationSummary> {
     eprintln!("[3/4] Verifying cross-orbit triad circulations...");
     let triads = [
         CrossOrbitTriad::TaoSzollosi,
@@ -394,33 +384,31 @@ fn main() {
         });
     }
     eprintln!();
+    circ_summaries
+}
 
-    eprintln!("[4/4] Ranking declared frontier targets...");
-    let mut targets = declared_frontier_targets();
-
-    if let Some(filter) = target_filter {
-        targets.retain(|t| t.residual_class == filter || t.id.contains(filter));
+fn count_targets_with_status(targets: &[FrontierTarget], status: TargetStatus) -> usize {
+    let mut count = 0;
+    for t in targets {
+        if t.status == status {
+            count += 1;
+        }
     }
+    count
+}
 
-    let total_open = targets
-        .iter()
-        .filter(|t| t.status == TargetStatus::Open)
-        .count();
-    let total_partial = targets
-        .iter()
-        .filter(|t| t.status == TargetStatus::Partial)
-        .count();
-    let total_blocked = targets
-        .iter()
-        .filter(|t| t.status == TargetStatus::Blocked)
-        .count();
-    let highest = targets.first().map(|t| t.id.clone());
-
+fn print_target_ranking(
+    targets: &[FrontierTarget],
+    total_open: usize,
+    total_partial: usize,
+    total_blocked: usize,
+    highest: Option<&str>,
+) {
     eprintln!();
     eprintln!("╔══════════════════════════════════════════════════════════════════╗");
     eprintln!("║                    FRONTIER TARGET RANKING                       ║");
     eprintln!("╠══════════════════════════════════════════════════════════════════╣");
-    for t in &targets {
+    for t in targets {
         let status_mark = match t.status {
             TargetStatus::Open => "🔴",
             TargetStatus::Partial => "🟡",
@@ -436,13 +424,12 @@ fn main() {
     }
     eprintln!("╠══════════════════════════════════════════════════════════════════╣");
     eprintln!("║ Open: {total_open} | Partial: {total_partial} | Blocked: {total_blocked}");
-    eprintln!(
-        "║ Highest priority: {}",
-        highest.as_deref().unwrap_or("none")
-    );
+    eprintln!("║ Highest priority: {}", highest.unwrap_or("none"));
     eprintln!("╚══════════════════════════════════════════════════════════════════╝");
+}
 
-    let recommended = if let Some(ref h) = highest {
+fn recommended_action_text(highest: Option<&str>) -> String {
+    if let Some(h) = highest {
         format!(
             "Target {h}: The irreducible core of G1. Two viable approaches: \
             (A) Formalize the Beauchamp-Nicoara / Szöllősi / Karlsson / Cárdenes Wuttig-Tindall \
@@ -454,8 +441,64 @@ fn main() {
         )
     } else {
         "No open targets.".to_string()
-    };
+    }
+}
 
+fn emit_frontier_report(mut report: FrontierReport) {
+    let json = serde_json::to_string_pretty(&report).expect("serialize");
+    let mut hasher = Sha256::new();
+    hasher.update(json.as_bytes());
+    report.sha256_digest = format!("{:x}", hasher.finalize());
+    let json_final = serde_json::to_string_pretty(&report).expect("serialize");
+
+    println!("{json_final}");
+
+    if let Ok(manifest) = std::env::var("CARGO_MANIFEST_DIR") {
+        let dir = std::path::PathBuf::from(manifest).join("../tests/omega_mub/artifacts");
+        let _ = std::fs::create_dir_all(&dir);
+        let path = dir.join("mub6_frontier_report.json");
+        if std::fs::write(&path, &json_final).is_ok() {
+            eprintln!("\nReport written to: {}", path.display());
+        }
+    }
+}
+
+fn main() {
+    let args: Vec<String> = std::env::args().collect();
+    let verify_catalog = args.iter().any(|a| a == "--verify-catalog");
+    let target_filter = find_target_filter(&args);
+
+    eprintln!("═══════════════════════════════════════════════════════════════════");
+    eprintln!("  MUB(6) Gap Solver — Frontier Target Finder");
+    eprintln!("  Firewall: {FIREWALL}");
+    eprintln!("  AuthorityEffect: {AUTHORITY_EFFECT}");
+    eprintln!("═══════════════════════════════════════════════════════════════════");
+    eprintln!();
+
+    let reg_summary = step_registry_summary();
+    let cat_summary = step_catalog_summary(verify_catalog);
+    let circ_summaries = step_circulation_summaries();
+
+    eprintln!("[4/4] Ranking declared frontier targets...");
+    let mut targets = declared_frontier_targets();
+    if let Some(filter) = target_filter {
+        targets.retain(|t| t.residual_class == filter || t.id.contains(filter));
+    }
+
+    let total_open = count_targets_with_status(&targets, TargetStatus::Open);
+    let total_partial = count_targets_with_status(&targets, TargetStatus::Partial);
+    let total_blocked = count_targets_with_status(&targets, TargetStatus::Blocked);
+    let highest = targets.first().map(|t| t.id.clone());
+
+    print_target_ranking(
+        &targets,
+        total_open,
+        total_partial,
+        total_blocked,
+        highest.as_deref(),
+    );
+
+    let recommended = recommended_action_text(highest.as_deref());
     let report = FrontierReport {
         schema_version: "omega.mub6.frontier-report.v2".to_string(),
         firewall: FIREWALL.to_string(),
@@ -473,25 +516,7 @@ fn main() {
         sha256_digest: String::new(),
     };
 
-    let json = serde_json::to_string_pretty(&report).expect("serialize");
-    let mut hasher = Sha256::new();
-    hasher.update(json.as_bytes());
-    let digest = format!("{:x}", hasher.finalize());
-
-    let mut report = report;
-    report.sha256_digest = digest.clone();
-    let json_final = serde_json::to_string_pretty(&report).expect("serialize");
-
-    println!("{json_final}");
-
-    if let Ok(manifest) = std::env::var("CARGO_MANIFEST_DIR") {
-        let dir = std::path::PathBuf::from(manifest).join("../tests/omega_mub/artifacts");
-        let _ = std::fs::create_dir_all(&dir);
-        let path = dir.join("mub6_frontier_report.json");
-        if std::fs::write(&path, &json_final).is_ok() {
-            eprintln!("\nReport written to: {}", path.display());
-        }
-    }
+    emit_frontier_report(report);
 
     eprintln!("\nRecommended next action:");
     eprintln!("{recommended}");

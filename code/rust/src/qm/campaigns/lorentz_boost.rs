@@ -1,4 +1,4 @@
-use crate::linear_algebra::matrix as mx;
+use crate::qm::bridge::matrix as mx;
 use num_bigint::BigInt;
 use num_integer::Integer;
 use num_traits::One;

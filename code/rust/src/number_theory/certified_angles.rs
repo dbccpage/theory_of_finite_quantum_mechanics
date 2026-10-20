@@ -44,6 +44,19 @@ pub fn validate_precision(eps: &Q) -> Result<(), AngleError> {
     Ok(())
 }
 
+fn dyadic_sqrt_interval(q: &Q, scale: BigInt) -> Result<Interval, AngleError> {
+    let square_scale = &scale * &scale;
+    let floor = (q.numer() * &square_scale) / q.denom();
+    let root = checked_integer_sqrt(&floor).ok_or(AngleError::NegativeRadicand)?;
+    let lo = Q::new(root.clone(), scale.clone());
+    let hi = if &lo * &lo == *q {
+        lo.clone()
+    } else {
+        Q::new(root + 1, scale)
+    };
+    Ok(Interval::try_new(lo, hi)?)
+}
+
 pub fn sqrt_enclosure(q: &Q, eps: &Q) -> Result<Interval, AngleError> {
     validate_rational(q)?;
     validate_precision(eps)?;
@@ -56,16 +69,7 @@ pub fn sqrt_enclosure(q: &Q, eps: &Q) -> Result<Interval, AngleError> {
     let mut scale = BigInt::one();
     for _ in 0..=MAX_DYADIC_BITS {
         if Q::new(BigInt::one(), scale.clone()) <= *eps {
-            let square_scale = &scale * &scale;
-            let floor = (q.numer() * &square_scale) / q.denom();
-            let root = checked_integer_sqrt(&floor).ok_or(AngleError::NegativeRadicand)?;
-            let lo = Q::new(root.clone(), scale.clone());
-            let hi = if &lo * &lo == *q {
-                lo.clone()
-            } else {
-                Q::new(root + 1, scale)
-            };
-            return Ok(Interval::try_new(lo, hi)?);
+            return dyadic_sqrt_interval(q, scale);
         }
         scale *= 2;
     }
@@ -123,5 +127,34 @@ pub fn atan_enclosure(x: &Q, eps: &Q) -> Result<Interval, AngleError> {
         Ok(positive_atan(&(-x), eps)?.mul_scalar(&rq(-1, 1)))
     } else {
         positive_atan(x, eps)
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn sqrt_pi_and_atan_enclosures_contain_known_bounds_and_refuse_invalid_inputs() {
+        let eps = rq(1, 1000);
+        let root2 = sqrt_enclosure(&rq(2, 1), &eps).unwrap();
+        assert!(root2.lo() * root2.lo() <= rq(2, 1));
+        assert!(root2.hi() * root2.hi() >= rq(2, 1));
+        let exact = sqrt_enclosure(&rq(9, 4), &eps).unwrap();
+        assert_eq!(exact.lo(), &rq(3, 2));
+        assert_eq!(exact.hi(), &rq(3, 2));
+        assert!(matches!(
+            sqrt_enclosure(&rq(-1, 1), &eps),
+            Err(AngleError::NegativeRadicand)
+        ));
+        assert!(matches!(
+            sqrt_enclosure(&rq(2, 1), &rq(0, 1)),
+            Err(AngleError::Precision)
+        ));
+        let pi = pi_enclosure(&eps).unwrap();
+        assert!(pi.lo() > &rq(314, 100) && pi.hi() < &rq(315, 100));
+        let atan1 = atan_enclosure(&rq(1, 1), &eps).unwrap();
+        let atan_neg1 = atan_enclosure(&rq(-1, 1), &eps).unwrap();
+        assert_eq!(atan1.lo(), &(-atan_neg1.hi()));
     }
 }

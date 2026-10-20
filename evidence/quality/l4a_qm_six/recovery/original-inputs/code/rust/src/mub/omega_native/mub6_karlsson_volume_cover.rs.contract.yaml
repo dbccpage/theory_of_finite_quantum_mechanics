@@ -1,0 +1,246 @@
+# YAML 1.2 (JSON syntax). AuthorityEffect: None.
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/mub/omega_native/mub6_karlsson_volume_cover.rs",
+    "sha256": "fa9481ca764a0d89d5ecade2c24b4d7991db953507d794b4df7ba1acd18eadff",
+    "language": "Rust"
+  },
+  "contract_urn": "urn:tfqm:contract:mub:omega_native:mub6_karlsson_volume_cover.rs",
+  "status": "draft_requires_semantic_review",
+  "target": "L4A",
+  "profile": "Exact",
+  "purpose": "Finite mutually unbiased bases (MUB) in dimension 6, cyclotomic/rational Gramian diagnostics, dual witnesses, Fourier landing verifiers, and cover-tree exclusions.",
+  "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+  "compilation": {
+    "disabled_by_cfg_any": false,
+    "test_or_support_file": false,
+    "compatibility_mirror_tree": false
+  },
+  "declaration_index": [
+    {
+      "kind": "struct",
+      "name": "KarlssonVolumeParameterBox",
+      "line": 21,
+      "declaration_line": "pub struct KarlssonVolumeParameterBox {"
+    },
+    {
+      "kind": "fn",
+      "name": "new",
+      "line": 31,
+      "declaration_line": "pub fn new("
+    },
+    {
+      "kind": "fn",
+      "name": "full_unit_cube",
+      "line": 55,
+      "declaration_line": "pub fn full_unit_cube() -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "coord",
+      "line": 69,
+      "declaration_line": "pub fn coord(&self, idx: usize) -> &Interval {"
+    },
+    {
+      "kind": "fn",
+      "name": "coord_mut",
+      "line": 81,
+      "declaration_line": "pub fn coord_mut(&mut self, idx: usize) -> &mut Interval {"
+    },
+    {
+      "kind": "fn",
+      "name": "widest_width",
+      "line": 93,
+      "declaration_line": "pub fn widest_width(&self) -> BigRational {"
+    },
+    {
+      "kind": "fn",
+      "name": "bisect_widest",
+      "line": 104,
+      "declaration_line": "pub fn bisect_widest(&self) -> (Self, Self) {"
+    },
+    {
+      "kind": "fn",
+      "name": "split_at_coord_and_point",
+      "line": 123,
+      "declaration_line": "pub fn split_at_coord_and_point(&self, coord: usize, cut: BigRational) -> (Self, Self) {"
+    },
+    {
+      "kind": "fn",
+      "name": "contains_point",
+      "line": 133,
+      "declaration_line": "pub fn contains_point(&self, pt: &[BigRational; 6]) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "circle_touches",
+      "line": 143,
+      "declaration_line": "pub fn circle_touches(u: &Interval, v: &Interval) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "box_touches_parameter_torus",
+      "line": 149,
+      "declaration_line": "pub fn box_touches_parameter_torus(pbox: &KarlssonVolumeParameterBox) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "overlap_abs_sq",
+      "line": 176,
+      "declaration_line": "pub fn overlap_abs_sq(e: &BoxedVec, u: &BoxedVec) -> Interval {"
+    },
+    {
+      "kind": "struct",
+      "name": "TaoSeedCoordinates",
+      "line": 190,
+      "declaration_line": "pub struct TaoSeedCoordinates {"
+    },
+    {
+      "kind": "struct",
+      "name": "KarlssonVolumeContext",
+      "line": 195,
+      "declaration_line": "pub struct KarlssonVolumeContext {"
+    },
+    {
+      "kind": "fn",
+      "name": "new",
+      "line": 205,
+      "declaration_line": "pub fn new() -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "karlsson_columns",
+      "line": 271,
+      "declaration_line": "pub fn karlsson_columns(&self, pbox: &KarlssonVolumeParameterBox) -> [BoxedVec; D] {"
+    },
+    {
+      "kind": "fn",
+      "name": "boxed_triple",
+      "line": 421,
+      "declaration_line": "pub fn boxed_triple(&self, pbox: &KarlssonVolumeParameterBox) -> Vec<BoxedVec> {"
+    },
+    {
+      "kind": "fn",
+      "name": "triad_defect_lower",
+      "line": 446,
+      "declaration_line": "pub fn triad_defect_lower(&self, pbox: &KarlssonVolumeParameterBox) -> BigRational {"
+    },
+    {
+      "kind": "fn",
+      "name": "extension_psi_lower",
+      "line": 461,
+      "declaration_line": "pub fn extension_psi_lower(&self, pbox: &KarlssonVolumeParameterBox) -> BigRational {"
+    },
+    {
+      "kind": "fn",
+      "name": "basis_residual_sq_lower",
+      "line": 466,
+      "declaration_line": "pub fn basis_residual_sq_lower(&self, pbox: &KarlssonVolumeParameterBox) -> BigRational {"
+    },
+    {
+      "kind": "fn",
+      "name": "is_inside_seed_neighborhoods",
+      "line": 471,
+      "declaration_line": "pub fn is_inside_seed_neighborhoods("
+    },
+    {
+      "kind": "fn",
+      "name": "is_strictly_outside_seeds",
+      "line": 543,
+      "declaration_line": "pub fn is_strictly_outside_seeds("
+    },
+    {
+      "kind": "fn",
+      "name": "find_seed_boundary_cut",
+      "line": 561,
+      "declaration_line": "pub fn find_seed_boundary_cut("
+    },
+    {
+      "kind": "struct",
+      "name": "CertifiedKarlssonVolumeBox",
+      "line": 586,
+      "declaration_line": "pub struct CertifiedKarlssonVolumeBox {"
+    },
+    {
+      "kind": "struct",
+      "name": "KarlssonVolumeCoverReport",
+      "line": 614,
+      "declaration_line": "pub struct KarlssonVolumeCoverReport {"
+    },
+    {
+      "kind": "fn",
+      "name": "canonical_candidate_basis_box",
+      "line": 640,
+      "declaration_line": "pub fn canonical_candidate_basis_box() -> BasisBox {"
+    },
+    {
+      "kind": "fn",
+      "name": "solve_karlsson_volume_cover",
+      "line": 766,
+      "declaration_line": "pub fn solve_karlsson_volume_cover("
+    }
+  ],
+  "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+  "requirements": [
+    {
+      "id": "G1",
+      "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+    },
+    {
+      "id": "G2",
+      "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+    },
+    {
+      "id": "G3",
+      "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+    },
+    {
+      "id": "G4",
+      "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+    },
+    {
+      "id": "G5",
+      "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+    }
+  ],
+  "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+  "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+  "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+  "open_obligations": [
+    "Complete source-to-requirement and downstream consumer review is outstanding.",
+    "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+    "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+  ],
+  "evidence": [
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json",
+      "sha256": "3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98"
+    },
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json",
+      "sha256": "e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd"
+    },
+    {
+      "path": "code/rust/quality/l4a_qm_six/records.py",
+      "sha256": "0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706"
+    },
+    {
+      "path": "code/rust/quality/l4a_qm_six/specs.json",
+      "sha256": "bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12"
+    },
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json",
+      "sha256": "929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758"
+    },
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json",
+      "sha256": "9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78"
+    },
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json",
+      "sha256": "90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a"
+    }
+  ]
+}

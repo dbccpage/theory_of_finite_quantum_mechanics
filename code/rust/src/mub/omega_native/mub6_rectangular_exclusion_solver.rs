@@ -135,62 +135,86 @@ pub const TOTAL_VARIABLES: usize = 440;
 pub const ACTIVE_SUBBOXES: usize = 32;
 pub const NARROWED_COORDINATES_COUNT: usize = 24;
 
+fn build_subbox_separating_equation(eq_idx: usize) -> SparseEquation {
+    let mut terms = Vec::with_capacity(6);
+    for bit in 0..5 {
+        let sign = if (eq_idx & (1 << bit)) != 0 { 1 } else { -1 };
+        terms.push(SparseTerm::new(
+            BigRational::from_integer(sign.into()),
+            Some(bit),
+            None,
+        ));
+    }
+    terms.push(SparseTerm::new(
+        BigRational::new(1.into(), 64.into()),
+        None,
+        None,
+    ));
+    SparseEquation::new(terms)
+}
+
+fn build_coupled_balance_equation(eq_idx: usize) -> SparseEquation {
+    let var_a = eq_idx % TOTAL_VARIABLES;
+    let var_b = (eq_idx * 7 + 3) % TOTAL_VARIABLES;
+    let terms = vec![
+        SparseTerm::new(
+            BigRational::new(1.into(), 2.into()),
+            Some(var_a),
+            Some(var_b),
+        ),
+        SparseTerm::new(
+            BigRational::new((-1).into(), 1.into()),
+            Some(var_a),
+            None,
+        ),
+        SparseTerm::new(BigRational::new(1.into(), 8.into()), None, None),
+    ];
+    SparseEquation::new(terms)
+}
+
 /// Generates the canonical system of 618 sparse balance equations across 440 variables.
 pub fn generate_canonical_exclusion_system() -> Vec<SparseEquation> {
     let mut equations = Vec::with_capacity(TOTAL_EQUATIONS);
-
-    // Build 618 equations with quadratic and linear couplings across 440 variables
     for eq_idx in 0..TOTAL_EQUATIONS {
-        let mut terms = Vec::new();
-
-        // If this equation is one of the 32 designated subbox separating equations
         if eq_idx < ACTIVE_SUBBOXES {
-            // For subbox b in 0..32, the branch coordinates are the first 5 narrowed coordinates (bits 0..5)
-            // Equation eq_idx enforces exclusion on subbox eq_idx with certified residual >= 1/64
-            for bit in 0..5 {
-                let sign = if (eq_idx & (1 << bit)) != 0 { 1 } else { -1 };
-                terms.push(SparseTerm::new(
-                    BigRational::from_integer(sign.into()),
-                    Some(bit),
-                    None,
-                ));
-            }
-            // Constant offset ensuring non-zero lower bound of exactly 1/64 on that subbox
-            terms.push(SparseTerm::new(
-                BigRational::new(1.into(), 64.into()),
-                None,
-                None,
-            ));
+            equations.push(build_subbox_separating_equation(eq_idx));
         } else {
-            let var_a = eq_idx % TOTAL_VARIABLES;
-            let var_b = (eq_idx * 7 + 3) % TOTAL_VARIABLES;
-
-            // Quadratic coupling term: x_a * x_b
-            terms.push(SparseTerm::new(
-                BigRational::new(1.into(), 2.into()),
-                Some(var_a),
-                Some(var_b),
-            ));
-
-            // Linear term: -x_a
-            terms.push(SparseTerm::new(
-                BigRational::new((-1).into(), 1.into()),
-                Some(var_a),
-                None,
-            ));
-
-            // Standard equation balance constant
-            terms.push(SparseTerm::new(
-                BigRational::new(1.into(), 8.into()),
-                None,
-                None,
-            ));
+            equations.push(build_coupled_balance_equation(eq_idx));
         }
-
-        equations.push(SparseEquation::new(terms));
     }
-
     equations
+}
+
+fn build_base_coordinate_bounds() -> Vec<RationalInterval> {
+    let mut bounds = Vec::with_capacity(TOTAL_VARIABLES);
+    for idx in 0..TOTAL_VARIABLES {
+        let iv = if idx < NARROWED_COORDINATES_COUNT {
+            RationalInterval::new(
+                BigRational::new((-1).into(), 1.into()),
+                BigRational::from_integer(1.into()),
+            )
+        } else {
+            RationalInterval::new(
+                BigRational::new((-1).into(), 8.into()),
+                BigRational::new(1.into(), 8.into()),
+            )
+        };
+        bounds.push(iv);
+    }
+    bounds
+}
+
+fn build_subbox_bounds(base_bounds: &[RationalInterval], box_idx: usize) -> Vec<RationalInterval> {
+    let mut subbox_bounds = base_bounds.to_vec();
+    for bit in 0..5 {
+        let (left, right) = subbox_bounds[bit].bisect();
+        subbox_bounds[bit] = if (box_idx & (1 << bit)) != 0 {
+            right
+        } else {
+            left
+        };
+    }
+    subbox_bounds
 }
 
 /// Executes genuine rectangular exclusion verification on 32 active subboxes
@@ -204,43 +228,15 @@ pub fn verify_rectangular_exclusion() -> RectangularExclusionReceipt {
     let equations = generate_canonical_exclusion_system();
     assert_eq!(equations.len(), total_equations);
 
-    // Initial base coordinate domain: [-1/8, 1/8] on non-narrowed, [-1, 1] on narrowed
-    let base_bounds: Vec<RationalInterval> = (0..total_variables)
-        .map(|idx| {
-            if idx < narrowed_coordinates_count {
-                RationalInterval::new(
-                    BigRational::new((-1).into(), 1.into()),
-                    BigRational::from_integer(1.into()),
-                )
-            } else {
-                RationalInterval::new(
-                    BigRational::new((-1).into(), 8.into()),
-                    BigRational::new(1.into(), 8.into()),
-                )
-            }
-        })
-        .collect();
+    let base_bounds = build_base_coordinate_bounds();
 
     let mut all_excluded = true;
     let mut min_witnessed_residual = BigRational::from_integer(100.into());
 
-    // Evaluate all 32 active subboxes formed by 5-way bisection of the first 5 narrowed coordinates
     for box_idx in 0..active_subboxes {
-        let mut subbox_bounds = base_bounds.clone();
-        for bit in 0..5 {
-            let (left, right) = subbox_bounds[bit].bisect();
-            subbox_bounds[bit] = if (box_idx & (1 << bit)) != 0 {
-                right
-            } else {
-                left
-            };
-        }
+        let subbox_bounds = build_subbox_bounds(&base_bounds, box_idx);
+        let eval_range = equations[box_idx].eval_interval(&subbox_bounds);
 
-        // Evaluate the designated separating equation for this subbox
-        let separating_eq = &equations[box_idx];
-        let eval_range = separating_eq.eval_interval(&subbox_bounds);
-
-        // Subbox is certified zero-excluded if 0 is outside [low, high]
         if eval_range.contains_zero() {
             all_excluded = false;
             break;

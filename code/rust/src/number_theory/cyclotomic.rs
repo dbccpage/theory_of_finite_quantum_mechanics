@@ -298,16 +298,7 @@ impl Cyc8 {
     }
 
     pub fn mul(&self, other: &Self) -> Self {
-        let mut full = vec![Rational::zero(); 7];
-        for i in 0..4 {
-            if !self.a[i].is_zero() {
-                for j in 0..4 {
-                    if !other.a[j].is_zero() {
-                        full[i + j] += &self.a[i] * &other.a[j];
-                    }
-                }
-            }
-        }
+        let full = dense_convolution(&self.a, &other.a);
         let mut res = std::array::from_fn(|k| full[k].clone());
         for k in 4..7 {
             if !full[k].is_zero() {
@@ -424,18 +415,8 @@ impl Cyc12 {
     }
 
     pub fn mul(&self, other: &Self) -> Self {
-        let mut prod = vec![Rational::zero(); 7];
-        for i in 0..4 {
-            if !self.a[i].is_zero() {
-                for j in 0..4 {
-                    if !other.a[j].is_zero() {
-                        prod[i + j] += &self.a[i] * &other.a[j];
-                    }
-                }
-            }
-        }
         Self {
-            a: reduce_dense_12(prod),
+            a: reduce_dense_12(dense_convolution(&self.a, &other.a)),
         }
     }
 
@@ -544,18 +525,8 @@ impl Cyc5 {
     }
 
     pub fn mul(&self, other: &Self) -> Self {
-        let mut prod = vec![Rational::zero(); 7];
-        for i in 0..4 {
-            if !self.a[i].is_zero() {
-                for j in 0..4 {
-                    if !other.a[j].is_zero() {
-                        prod[i + j] += &self.a[i] * &other.a[j];
-                    }
-                }
-            }
-        }
         Self {
-            a: reduce_dense_5(prod),
+            a: reduce_dense_5(dense_convolution(&self.a, &other.a)),
         }
     }
 
@@ -742,18 +713,8 @@ impl Cyc24 {
     }
 
     pub fn mul(&self, other: &Self) -> Self {
-        let mut prod = vec![Rational::zero(); 2 * DEGREE_24 - 1];
-        for (i, x) in self.a.iter().enumerate() {
-            if !x.is_zero() {
-                for (j, y) in other.a.iter().enumerate() {
-                    if !y.is_zero() {
-                        prod[i + j] += x * y;
-                    }
-                }
-            }
-        }
         Self {
-            a: reduce_dense_24(prod),
+            a: reduce_dense_24(dense_convolution(&self.a, &other.a)),
         }
     }
 
@@ -803,6 +764,60 @@ fn reduce_dense_24(mut poly: Vec<Rational>) -> [Rational; DEGREE_24] {
 }
 
 
+fn dense_convolution(lhs: &[Rational], rhs: &[Rational]) -> Vec<Rational> {
+    let mut prod = vec![Rational::zero(); lhs.len() + rhs.len() - 1];
+    for (i, x) in lhs.iter().enumerate() {
+        if x.is_zero() {
+            continue;
+        }
+        for (j, y) in rhs.iter().enumerate() {
+            if !y.is_zero() {
+                prod[i + j] += x * y;
+            }
+        }
+    }
+    prod
+}
+
+fn find_pivot_row<const N: usize, const M: usize>(
+    m: &[[Rational; M]; N],
+    col: usize,
+) -> Option<usize> {
+    (col..N).find(|&r| !m[r][col].is_zero())
+}
+
+fn eliminate_row<const M: usize>(row: &mut [Rational; M], pivot_row: &[Rational; M], col: usize) {
+    if row[col].is_zero() {
+        return;
+    }
+    let factor = row[col].clone();
+    for k in col..M {
+        let sub = &factor * &pivot_row[k];
+        row[k] = &row[k] - &sub;
+    }
+}
+
+fn eliminate_column<const N: usize, const M: usize>(
+    m: &mut [[Rational; M]; N],
+    col: usize,
+) -> Option<()> {
+    let pivot_row = find_pivot_row(m, col)?;
+    if pivot_row != col {
+        m.swap(col, pivot_row);
+    }
+    let inv_piv = Rational::one() / &m[col][col];
+    for k in col..M {
+        m[col][k] = &m[col][k] * &inv_piv;
+    }
+    let pivot_copy = m[col].clone();
+    for (r, row) in m.iter_mut().enumerate() {
+        if r != col {
+            eliminate_row(row, &pivot_copy, col);
+        }
+    }
+    Some(())
+}
+
 fn solve_linear_4(cols: &[[Rational; 4]; 4], b: &[Rational; 4]) -> Option<[Rational; 4]> {
     let mut m: [[Rational; 5]; 4] =
         std::array::from_fn(|_| std::array::from_fn(|_| Rational::zero()));
@@ -818,23 +833,7 @@ fn solve_linear_4(cols: &[[Rational; 4]; 4], b: &[Rational; 4]) -> Option<[Ratio
 
 fn gaussian_elimination_4(m: &mut [[Rational; 5]; 4]) -> Option<()> {
     for col in 0..4 {
-        let pivot_row = (col..4).find(|&r| !m[r][col].is_zero())?;
-        if pivot_row != col {
-            m.swap(col, pivot_row);
-        }
-        let inv_piv = Rational::one() / &m[col][col];
-        for k in col..5 {
-            m[col][k] = &m[col][k] * &inv_piv;
-        }
-        for r in 0..4 {
-            if r != col && !m[r][col].is_zero() {
-                let factor = m[r][col].clone();
-                for k in col..5 {
-                    let sub = &factor * &m[col][k];
-                    m[r][k] = &m[r][k] - &sub;
-                }
-            }
-        }
+        eliminate_column(m, col)?;
     }
     Some(())
 }
@@ -849,23 +848,7 @@ fn solve_linear_8(cols: &[[Rational; 8]; 8], b: &[Rational; 8]) -> Option<[Ratio
         m[r][8] = b[r].clone();
     }
     for col in 0..8 {
-        let pivot_row = (col..8).find(|&r| !m[r][col].is_zero())?;
-        if pivot_row != col {
-            m.swap(col, pivot_row);
-        }
-        let inv_piv = Rational::one() / &m[col][col];
-        for k in col..9 {
-            m[col][k] = &m[col][k] * &inv_piv;
-        }
-        for r in 0..8 {
-            if r != col && !m[r][col].is_zero() {
-                let factor = m[r][col].clone();
-                for k in col..9 {
-                    let sub = &factor * &m[col][k];
-                    m[r][k] = &m[r][k] - &sub;
-                }
-            }
-        }
+        eliminate_column(&mut m, col)?;
     }
     Some(std::array::from_fn(|i| m[i][8].clone()))
 }

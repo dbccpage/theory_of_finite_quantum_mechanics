@@ -171,6 +171,50 @@ pub fn squarefree_part_with_limit(
     squarefree_decomposition(n, limit, &primes_up_to(limit))
 }
 
+fn strip_prime_power(
+    rest: &mut BigUint,
+    prime_big: &BigUint,
+    squarefree: &mut BigUint,
+    root: &mut BigUint,
+) {
+    let mut exponent = 0u32;
+    loop {
+        let (quotient, remainder) = rest.div_rem(prime_big);
+        if !remainder.is_zero() {
+            break;
+        }
+        *rest = quotient;
+        exponent += 1;
+    }
+    if exponent >= 2 {
+        *root *= prime_big.pow(exponent / 2);
+    }
+    if exponent % 2 == 1 {
+        *squarefree *= prime_big;
+    }
+}
+
+fn finish_exhausted_squarefree(
+    n_bits: u64,
+    limit: u32,
+    rest: &mut BigUint,
+    root: &mut BigUint,
+) -> Result<(), ArithmeticError> {
+    if let Some(square_root) = exact_integer_sqrt(&BigInt::from(rest.clone())) {
+        *root *= square_root.magnitude();
+        *rest = BigUint::one();
+        return Ok(());
+    }
+    let limit_cubed = BigUint::from(limit).pow(3);
+    if *rest >= limit_cubed {
+        return Err(ArithmeticError::SquarefreePartUndecided {
+            bits: n_bits,
+            limit,
+        });
+    }
+    Ok(())
+}
+
 fn squarefree_decomposition(
     n: &BigInt,
     limit: u32,
@@ -190,36 +234,11 @@ fn squarefree_decomposition(
             exhausted = false;
             break;
         }
-        let mut exponent = 0u32;
-        loop {
-            let (quotient, remainder) = rest.div_rem(&prime_big);
-            if !remainder.is_zero() {
-                break;
-            }
-            rest = quotient;
-            exponent += 1;
-        }
-        if exponent >= 2 {
-            root *= prime_big.pow(exponent / 2);
-        }
-        if exponent % 2 == 1 {
-            squarefree *= &prime_big;
-        }
+        strip_prime_power(&mut rest, &prime_big, &mut squarefree, &mut root);
     }
 
     if exhausted {
-        if let Some(square_root) = exact_integer_sqrt(&BigInt::from(rest.clone())) {
-            root *= square_root.magnitude();
-            rest = BigUint::one();
-        } else {
-            let limit_cubed = BigUint::from(limit).pow(3);
-            if rest >= limit_cubed {
-                return Err(ArithmeticError::SquarefreePartUndecided {
-                    bits: n.bits(),
-                    limit,
-                });
-            }
-        }
+        finish_exhausted_squarefree(n.bits(), limit, &mut rest, &mut root)?;
     }
     squarefree *= &rest;
 

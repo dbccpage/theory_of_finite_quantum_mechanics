@@ -6,28 +6,37 @@ pub fn verify() -> Result<i64, &'static str> {
         [0, 1, 0, 0],
         [0, 0, 0, 1],
     ];
-    let square = mat_mul(&swap, &swap)?;
-    if square != identity() {
+    if mat_mul(&swap, &swap)? != identity() {
         return Err("swap does not square to I");
     }
+    verify_basis_involution(&swap)?;
+    verify_singlet_and_triplet(&swap)?;
+    Ok(-1)
+}
+
+fn verify_basis_involution(swap: &[[i64; 4]; 4]) -> Result<(), &'static str> {
     for basis in 0..4 {
         let mut vector = [0i64; 4];
         vector[basis] = 1;
-        let once = apply(&swap, &vector)?;
-        let twice = apply(&swap, &once)?;
+        let once = apply(swap, &vector)?;
+        let twice = apply(swap, &once)?;
         if twice != vector {
             return Err("swap failed to invert on a basis vector");
         }
     }
+    Ok(())
+}
+
+fn verify_singlet_and_triplet(swap: &[[i64; 4]; 4]) -> Result<(), &'static str> {
     let singlet = [0i64, 1, -1, 0];
     let triplet = [0i64, 1, 1, 0];
-    if apply(&swap, &singlet)? != scale(&singlet, -1)? {
+    if apply(swap, &singlet)? != scale(&singlet, -1)? {
         return Err("singlet is not antisymmetric");
     }
-    if apply(&swap, &triplet)? != triplet {
+    if apply(swap, &triplet)? != triplet {
         return Err("triplet is not symmetric");
     }
-    Ok(-1)
+    Ok(())
 }
 
 fn identity() -> [[i64; 4]; 4] {

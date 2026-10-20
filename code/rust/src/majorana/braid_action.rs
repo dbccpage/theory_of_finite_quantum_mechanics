@@ -47,6 +47,48 @@ fn reserve<T>(count: usize) -> Result<Vec<T>, BraidActionError> {
     Ok(result)
 }
 
+fn validate_and_record_image(
+    row: usize,
+    image: SignedMajorana,
+    count: usize,
+    visited: &mut [bool],
+    positions: &mut [usize],
+) -> Result<i8, BraidActionError> {
+    if image.sign != 1 && image.sign != -1 {
+        return Err(BraidActionError::Sign {
+            row: row + 1,
+            sign: image.sign,
+        });
+    }
+    if image.mode == 0 || image.mode > count {
+        return Err(BraidActionError::Mode {
+            mode: image.mode,
+            count,
+        });
+    }
+    if visited[image.mode - 1] {
+        return Err(BraidActionError::DuplicateImage { mode: image.mode });
+    }
+    visited[image.mode - 1] = true;
+    positions[image.mode - 1] = row;
+    Ok(image.sign)
+}
+
+fn trace_cycle_length(
+    start: usize,
+    images: &[SignedMajorana],
+    visited: &mut [bool],
+) -> usize {
+    let mut position = start;
+    let mut length = 0;
+    while !visited[position] {
+        visited[position] = true;
+        position = images[position].mode - 1;
+        length += 1;
+    }
+    length
+}
+
 impl MajoranaBraidAction {
     pub fn try_from_images(images: Vec<SignedMajorana>) -> Result<Self, BraidActionError> {
         let count = images.len();
@@ -56,39 +98,14 @@ impl MajoranaBraidAction {
         let mut positions = reserve(count)?;
         positions.resize(count, 0);
         let mut determinant = 1;
-        for (row, image) in images.iter().enumerate() {
-            if image.sign != 1 && image.sign != -1 {
-                return Err(BraidActionError::Sign {
-                    row: row + 1,
-                    sign: image.sign,
-                });
-            }
-            if image.mode == 0 || image.mode > count {
-                return Err(BraidActionError::Mode {
-                    mode: image.mode,
-                    count,
-                });
-            }
-            if visited[image.mode - 1] {
-                return Err(BraidActionError::DuplicateImage { mode: image.mode });
-            }
-            visited[image.mode - 1] = true;
-            positions[image.mode - 1] = row;
-            determinant *= image.sign;
+        for (row, &image) in images.iter().enumerate() {
+            determinant *=
+                validate_and_record_image(row, image, count, &mut visited, &mut positions)?;
         }
         visited.fill(false);
         for start in 0..count {
-            if !visited[start] {
-                let mut position = start;
-                let mut length = 0;
-                while !visited[position] {
-                    visited[position] = true;
-                    position = images[position].mode - 1;
-                    length += 1;
-                }
-                if length % 2 == 0 {
-                    determinant = -determinant;
-                }
+            if !visited[start] && trace_cycle_length(start, &images, &mut visited) % 2 == 0 {
+                determinant = -determinant;
             }
         }
         Ok(Self {

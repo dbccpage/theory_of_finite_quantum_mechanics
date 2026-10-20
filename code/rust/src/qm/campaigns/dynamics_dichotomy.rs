@@ -1,9 +1,7 @@
-
-
-use crate::linear_algebra::basic_matrix::BasicMatrix;
 #[cfg(test)]
-use crate::linear_algebra::elimination;
-use crate::linear_algebra::matrix as mx;
+use crate::qm::bridge::elimination;
+use crate::qm::bridge::matrix as mx;
+use ::linear_algebra::backend::basic_matrix::BasicMatrix;
 use num_bigint::BigInt;
 use num_traits::Zero;
 use omega_number_theory::cyclotomic_integer::CyclotomicInteger;

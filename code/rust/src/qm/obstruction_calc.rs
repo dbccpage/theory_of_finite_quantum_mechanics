@@ -1,6 +1,4 @@
-
-
-use crate::linear_algebra::basic_matrix::BasicMatrix;
+use ::linear_algebra::backend::basic_matrix::BasicMatrix;
 use num_traits::{Signed, Zero};
 use omega_number_theory::rational::Rational;
 use omega_solvers::data_cochain_packet::CochainPacketError;
@@ -294,18 +292,15 @@ impl GomcReport {
     }
 }
 
-pub fn gomc_report(
-    ledger: &ResidualLedger,
+fn validate_observer_labels(
     observer: &[usize],
+    weights_len: usize,
     classes: usize,
-    channel: Option<&BasicMatrix<Rational>>,
-    search: Option<(&ObstructionPoint, &[(String, ObstructionPoint)])>,
-) -> Result<GomcReport, GomcError> {
-    let global_weights = ledger.weights();
-    if observer.len() != global_weights.len() {
+) -> Result<(), GomcError> {
+    if observer.len() != weights_len {
         return Err(GomcError::ReadoutLength {
             first: observer.len(),
-            second: global_weights.len(),
+            second: weights_len,
         });
     }
     if classes > observer.len() {
@@ -314,9 +309,23 @@ pub fn gomc_report(
             states: observer.len(),
         });
     }
-    if let Some(&label) = observer.iter().find(|&&label| label >= classes) {
-        return Err(GomcError::ObserverLabel { label, classes });
+    for &label in observer {
+        if label >= classes {
+            return Err(GomcError::ObserverLabel { label, classes });
+        }
     }
+    Ok(())
+}
+
+pub fn gomc_report(
+    ledger: &ResidualLedger,
+    observer: &[usize],
+    classes: usize,
+    channel: Option<&BasicMatrix<Rational>>,
+    search: Option<(&ObstructionPoint, &[(String, ObstructionPoint)])>,
+) -> Result<GomcReport, GomcError> {
+    let global_weights = ledger.weights();
+    validate_observer_labels(observer, global_weights.len(), classes)?;
     let mut observed_weights = vec![Rational::zero(); classes];
     for (s, &label) in observer.iter().enumerate() {
         observed_weights[label] = &observed_weights[label] + &global_weights[s];

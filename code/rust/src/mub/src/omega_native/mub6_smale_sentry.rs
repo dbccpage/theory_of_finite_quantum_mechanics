@@ -1,6 +1,6 @@
 
 use num_rational::BigRational;
-use num_traits::{One, Zero};
+use num_traits::{One, Signed, Zero};
 use serde::{Deserialize, Serialize};
 use std::fmt;
 
@@ -207,6 +207,38 @@ pub struct ExactRationalLu {
 }
 
 impl ExactRationalLu {
+    fn find_max_lu_pivot_row(lu: &[Vec<BigRational>], k: usize, n: usize) -> Option<usize> {
+        let mut pivot_row = None;
+        let mut max_pivot_abs = BigRational::zero();
+        for (r, row) in lu.iter().enumerate().take(n).skip(k) {
+            let abs_val = row[k].abs();
+            if !abs_val.is_zero() && abs_val > max_pivot_abs {
+                max_pivot_abs = abs_val;
+                pivot_row = Some(r);
+            }
+        }
+        pivot_row
+    }
+
+    fn eliminate_lu_row(row_r: &mut [BigRational], row_k: &[BigRational], k: usize, n: usize) {
+        if row_r[k].is_zero() {
+            return;
+        }
+        let factor = row_r[k].clone() / &row_k[k];
+        row_r[k] = factor.clone();
+        for c in (k + 1)..n {
+            let delta = &factor * &row_k[c];
+            row_r[c] -= delta;
+        }
+    }
+
+    fn eliminate_lu_column(lu: &mut [Vec<BigRational>], k: usize, n: usize) {
+        let row_k = lu[k].clone();
+        for row_r in lu.iter_mut().take(n).skip(k + 1) {
+            Self::eliminate_lu_row(row_r, &row_k, k, n);
+        }
+    }
+
     pub fn factorize(mat: &RationalMatrix) -> Result<Self, LuError> {
         if mat.rows != mat.cols {
             return Err(LuError::DimensionMismatch {
@@ -220,42 +252,15 @@ impl ExactRationalLu {
         let mut num_swaps = 0;
 
         for k in 0..n {
-            let mut pivot_row = None;
-            let mut max_pivot_abs = BigRational::zero();
-
-            for r in k..n {
-                let abs_val = if lu[r][k] < BigRational::zero() {
-                    -lu[r][k].clone()
-                } else {
-                    lu[r][k].clone()
-                };
-                if !abs_val.is_zero() && abs_val > max_pivot_abs {
-                    max_pivot_abs = abs_val;
-                    pivot_row = Some(r);
-                }
-            }
-
-            let Some(pivot_row) = pivot_row else {
+            let Some(pivot_row) = Self::find_max_lu_pivot_row(&lu, k, n) else {
                 return Err(LuError::ZeroPivotAt(k));
             };
-
             if pivot_row != k {
                 lu.swap(k, pivot_row);
                 p.swap(k, pivot_row);
                 num_swaps += 1;
             }
-
-            let pivot = lu[k][k].clone();
-            for r in (k + 1)..n {
-                if !lu[r][k].is_zero() {
-                    let factor = lu[r][k].clone() / &pivot;
-                    lu[r][k] = factor.clone();
-                    for c in (k + 1)..n {
-                        let delta = &factor * &lu[k][c];
-                        lu[r][c] -= delta;
-                    }
-                }
-            }
+            Self::eliminate_lu_column(&mut lu, k, n);
         }
 
         Ok(Self {
@@ -266,19 +271,8 @@ impl ExactRationalLu {
         })
     }
 
-    pub fn solve(&self, b: &[BigRational]) -> Result<Vec<BigRational>, LuError> {
-        if b.len() != self.n {
-            return Err(LuError::DimensionMismatch {
-                expected: self.n,
-                found: b.len(),
-            });
-        }
-
-        let mut y = Vec::with_capacity(self.n);
-        for i in 0..self.n {
-            y.push(b[self.p[i]].clone());
-        }
-
+    fn forward_substitute(&self, b: &[BigRational]) -> Vec<BigRational> {
+        let mut y: Vec<BigRational> = (0..self.n).map(|i| b[self.p[i]].clone()).collect();
         for i in 0..self.n {
             for j in 0..i {
                 if !self.lu[i][j].is_zero() {
@@ -287,18 +281,34 @@ impl ExactRationalLu {
                 }
             }
         }
+        y
+    }
 
+    fn back_substitute_row(&self, i: usize, y_i: &BigRational, x: &[BigRational]) -> BigRational {
+        let mut sum = y_i.clone();
+        for j in (i + 1)..self.n {
+            if !self.lu[i][j].is_zero() {
+                sum -= &self.lu[i][j] * &x[j];
+            }
+        }
+        sum
+    }
+
+    pub fn solve(&self, b: &[BigRational]) -> Result<Vec<BigRational>, LuError> {
+        if b.len() != self.n {
+            return Err(LuError::DimensionMismatch {
+                expected: self.n,
+                found: b.len(),
+            });
+        }
+
+        let y = self.forward_substitute(b);
         let mut x = vec![BigRational::zero(); self.n];
         for i in (0..self.n).rev() {
-            let mut sum = y[i].clone();
-            for j in (i + 1)..self.n {
-                if !self.lu[i][j].is_zero() {
-                    sum -= &self.lu[i][j] * &x[j];
-                }
-            }
             if self.lu[i][i].is_zero() {
                 return Err(LuError::ZeroPivotAt(i));
             }
+            let sum = self.back_substitute_row(i, &y[i], &x);
             x[i] = sum / &self.lu[i][i];
         }
 
@@ -500,39 +510,41 @@ pub fn eval_108_mub_defects_cyc(
     results
 }
 
+fn append_basis_mub_relations(
+    basis_idx: usize,
+    basis: &BasisCyc,
+    cand_u: &BasisCyc,
+    one_sixth: &BigRational,
+    results: &mut Vec<(MubRelIndex, BigRational)>,
+) {
+    for (row, v_i) in basis.iter().enumerate().take(D) {
+        for (col, u_j) in cand_u.iter().enumerate().take(D) {
+            let ip = inner(v_i, u_j);
+            let sq = squared_norm(&ip);
+            let norm_sq = sq.as_rational().unwrap_or_else(|| sq.a[0].clone());
+            let residual = norm_sq - one_sixth;
+            results.push((
+                MubRelIndex {
+                    basis: basis_idx,
+                    row,
+                    col,
+                },
+                residual,
+            ));
+        }
+    }
+}
+
 pub fn eval_108_mub_relations(
     triple: &MuTripleCyc,
     cand_u: &BasisCyc,
 ) -> Vec<(MubRelIndex, BigRational)> {
     let mut results = Vec::with_capacity(TOTAL_MUB_RELATIONS);
     let one_sixth = rq(1, 6);
-
-    for basis_idx in 0..3 {
-        let basis = match basis_idx {
-            0 => &triple.b0,
-            1 => &triple.b1,
-            2 => &triple.b2,
-            _ => unreachable!(),
-        };
-
-        for (row, v_i) in basis.iter().enumerate().take(D) {
-            for (col, u_j) in cand_u.iter().enumerate().take(D) {
-                let ip = inner(v_i, u_j);
-                let sq = squared_norm(&ip);
-                let norm_sq = sq.as_rational().unwrap_or_else(|| sq.a[0].clone());
-                let residual = norm_sq - &one_sixth;
-                results.push((
-                    MubRelIndex {
-                        basis: basis_idx,
-                        row,
-                        col,
-                    },
-                    residual,
-                ));
-            }
-        }
+    let bases = [&triple.b0, &triple.b1, &triple.b2];
+    for (basis_idx, basis) in bases.iter().enumerate() {
+        append_basis_mub_relations(basis_idx, basis, cand_u, &one_sixth, &mut results);
     }
-
     results
 }
 
@@ -569,6 +581,38 @@ pub struct SmaleInvariants {
     pub is_certified_approx_zero: bool,
 }
 
+fn compute_smale_q_entry(
+    system: &SquarePolynomialSystem,
+    y_row: &[BigRational],
+    j: usize,
+    k: usize,
+    half: &BigRational,
+) -> BigRational {
+    let mut q_ijk = BigRational::zero();
+    for (p, y_ip) in y_row.iter().enumerate() {
+        let h_p_jk = &system.components[p].hessian.data[j][k];
+        if !y_ip.is_zero() && !h_p_jk.is_zero() {
+            q_ijk += y_ip * h_p_jk;
+        }
+    }
+    (q_ijk * half).abs()
+}
+
+fn compute_smale_gamma_row(
+    system: &SquarePolynomialSystem,
+    y_row: &[BigRational],
+    n: usize,
+    half: &BigRational,
+) -> BigRational {
+    let mut row_abs_sum = BigRational::zero();
+    for j in 0..n {
+        for k in 0..n {
+            row_abs_sum += compute_smale_q_entry(system, y_row, j, k, half);
+        }
+    }
+    row_abs_sum
+}
+
 pub fn compute_smale_invariants(
     system: &SquarePolynomialSystem,
     x_0: &[BigRational],
@@ -582,42 +626,17 @@ pub fn compute_smale_invariants(
     }
 
     let fx = system.eval(x_0);
-
     let df = system.jacobian(x_0);
-
     let lu = ExactRationalLu::factorize(&df)?;
 
     let delta_x = lu.solve(&fx)?;
     let beta = vec_norm_inf(&delta_x);
-
     let y_mat = lu.inverse()?;
 
     let mut gamma = BigRational::zero();
     let half = rq(1, 2);
-
     for i in 0..n {
-        let mut row_abs_sum = BigRational::zero();
-
-        for j in 0..n {
-            for k in 0..n {
-                let mut q_ijk = BigRational::zero();
-                for p in 0..n {
-                    let y_ip = &y_mat.data[i][p];
-                    let h_p_jk = &system.components[p].hessian.data[j][k];
-                    if !y_ip.is_zero() && !h_p_jk.is_zero() {
-                        q_ijk += y_ip * h_p_jk;
-                    }
-                }
-                q_ijk *= &half;
-
-                if q_ijk < BigRational::zero() {
-                    row_abs_sum -= q_ijk;
-                } else {
-                    row_abs_sum += q_ijk;
-                }
-            }
-        }
-
+        let row_abs_sum = compute_smale_gamma_row(system, &y_mat.data[i], n, &half);
         if row_abs_sum > gamma {
             gamma = row_abs_sum;
         }
@@ -636,12 +655,87 @@ pub fn compute_smale_invariants(
     })
 }
 
-
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct KrawczykResult {
     pub krawczyk_box: IntervalBox,
     pub is_strictly_contracted: bool,
     pub is_disjoint: bool,
+}
+
+fn resolve_krawczyk_center(
+    x_box: &IntervalBox,
+    custom_x0: Option<&[BigRational]>,
+    n: usize,
+) -> Result<Vec<BigRational>, LuError> {
+    let x_0 = match custom_x0 {
+        Some(pt) => {
+            if pt.len() != n {
+                return Err(LuError::DimensionMismatch {
+                    expected: n,
+                    found: pt.len(),
+                });
+            }
+            pt.to_vec()
+        }
+        None => x_box.midpoint(),
+    };
+    if !x_box.contains_point(&x_0) {
+        return Err(LuError::CenterOutsideBox);
+    }
+    Ok(x_0)
+}
+
+fn compute_krawczyk_m_entry(
+    y_row: &[BigRational],
+    df_iv: &[Vec<Interval>],
+    i: usize,
+    k: usize,
+    n: usize,
+) -> Interval {
+    let mut prod_sum = Interval::point(BigRational::zero());
+    for (j, df_row) in df_iv.iter().enumerate().take(n) {
+        let y_ij = &y_row[j];
+        if !y_ij.is_zero() {
+            prod_sum = prod_sum.add(&df_row[k].mul_scalar(y_ij));
+        }
+    }
+    let delta = if i == k {
+        Interval::point(BigRational::one())
+    } else {
+        Interval::point(BigRational::zero())
+    };
+    delta.sub(&prod_sum)
+}
+
+fn build_krawczyk_m_matrix(
+    y_mat: &RationalMatrix,
+    df_iv: &[Vec<Interval>],
+    n: usize,
+) -> Vec<Vec<Interval>> {
+    let mut m_matrix = vec![vec![Interval::point(BigRational::zero()); n]; n];
+    for (i, m_row) in m_matrix.iter_mut().enumerate().take(n) {
+        for (k, m_ik) in m_row.iter_mut().enumerate().take(n) {
+            *m_ik = compute_krawczyk_m_entry(&y_mat.data[i], df_iv, i, k, n);
+        }
+    }
+    m_matrix
+}
+
+fn assemble_krawczyk_intervals(
+    x_newton: &[BigRational],
+    m_matrix: &[Vec<Interval>],
+    delta_x_iv: &[Interval],
+    n: usize,
+) -> Vec<Interval> {
+    let mut k_intervals = Vec::with_capacity(n);
+    for (i, m_row) in m_matrix.iter().enumerate().take(n) {
+        let mut coord_iv = Interval::point(x_newton[i].clone());
+        for (k, m_ik) in m_row.iter().enumerate().take(n) {
+            coord_iv = coord_iv.add(&m_ik.mul(&delta_x_iv[k]));
+        }
+        k_intervals.push(coord_iv);
+    }
+    k_intervals
 }
 
 pub fn krawczyk_contractor(
@@ -657,23 +751,7 @@ pub fn krawczyk_contractor(
         });
     }
 
-    let x_0 = match custom_x0 {
-        Some(pt) => {
-            if pt.len() != n {
-                return Err(LuError::DimensionMismatch {
-                    expected: n,
-                    found: pt.len(),
-                });
-            }
-            pt.to_vec()
-        }
-        None => x_box.midpoint(),
-    };
-
-    if !x_box.contains_point(&x_0) {
-        return Err(LuError::CenterOutsideBox);
-    }
-
+    let x_0 = resolve_krawczyk_center(x_box, custom_x0, n)?;
     let fx = system.eval(&x_0);
     let df = system.jacobian(&x_0);
 
@@ -681,51 +759,15 @@ pub fn krawczyk_contractor(
     let y_mat = lu.inverse()?;
 
     let newton_step = lu.solve(&fx)?;
-    let mut x_newton = Vec::with_capacity(n);
-    for i in 0..n {
-        x_newton.push(&x_0[i] - &newton_step[i]);
-    }
+    let x_newton: Vec<BigRational> = (0..n).map(|i| &x_0[i] - &newton_step[i]).collect();
 
     let df_iv = system.jacobian_interval(x_box);
+    let m_matrix = build_krawczyk_m_matrix(&y_mat, &df_iv, n);
 
-    let mut m_matrix = vec![vec![Interval::point(BigRational::zero()); n]; n];
-
-    for (i, m_row) in m_matrix.iter_mut().enumerate().take(n) {
-        for (k, m_ik) in m_row.iter_mut().enumerate().take(n) {
-            let mut prod_sum = Interval::point(BigRational::zero());
-            for (j, df_row) in df_iv.iter().enumerate().take(n) {
-                let y_ij = &y_mat.data[i][j];
-                if !y_ij.is_zero() {
-                    let term = df_row[k].mul_scalar(y_ij);
-                    prod_sum = prod_sum.add(&term);
-                }
-            }
-
-            let delta = if i == k {
-                Interval::point(BigRational::one())
-            } else {
-                Interval::point(BigRational::zero())
-            };
-
-            *m_ik = delta.sub(&prod_sum);
-        }
-    }
-
-    let mut delta_x_iv = Vec::with_capacity(n);
-    for (k, x0_k) in x_0.iter().enumerate().take(n) {
-        let x0_pt = Interval::point(x0_k.clone());
-        delta_x_iv.push(x_box.intervals[k].sub(&x0_pt));
-    }
-
-    let mut k_intervals = Vec::with_capacity(n);
-    for (i, m_row) in m_matrix.iter().enumerate().take(n) {
-        let mut coord_iv = Interval::point(x_newton[i].clone());
-        for (k, m_ik) in m_row.iter().enumerate().take(n) {
-            let term = m_ik.mul(&delta_x_iv[k]);
-            coord_iv = coord_iv.add(&term);
-        }
-        k_intervals.push(coord_iv);
-    }
+    let delta_x_iv: Vec<Interval> = (0..n)
+        .map(|k| x_box.intervals[k].sub(&Interval::point(x_0[k].clone())))
+        .collect();
+    let k_intervals = assemble_krawczyk_intervals(&x_newton, &m_matrix, &delta_x_iv, n);
 
     let krawczyk_box = IntervalBox::new(k_intervals);
     let is_strictly_contracted = krawczyk_box.strict_interior_subset_of(x_box);

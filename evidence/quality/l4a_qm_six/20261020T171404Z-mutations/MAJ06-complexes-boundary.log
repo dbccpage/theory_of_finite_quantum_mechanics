@@ -1,0 +1,79 @@
+warning: struct `SimplexCertificate` is never constructed
+  --> C:\Users\a343o\source\repos\the_symbol_game\omega_engine\crates_rs\omega_functional\src\wire.rs:34:12
+   |
+34 | pub struct SimplexCertificate {
+   |            ^^^^^^^^^^^^^^^^^^
+   |
+   = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: enum `SimplexError` is never used
+  --> C:\Users\a343o\source\repos\the_symbol_game\omega_engine\crates_rs\omega_functional\src\wire.rs:41:10
+   |
+41 | pub enum SimplexError {
+   |          ^^^^^^^^^^^^
+
+warning: function `zero` is never used
+  --> C:\Users\a343o\source\repos\the_symbol_game\omega_engine\crates_rs\omega_functional\src\wire.rs:49:4
+   |
+49 | fn zero() -> BigRational {
+   |    ^^^^
+
+warning: function `one` is never used
+  --> C:\Users\a343o\source\repos\the_symbol_game\omega_engine\crates_rs\omega_functional\src\wire.rs:53:4
+   |
+53 | fn one() -> BigRational {
+   |    ^^^
+
+warning: function `try_simplex` is never used
+  --> C:\Users\a343o\source\repos\the_symbol_game\omega_engine\crates_rs\omega_functional\src\wire.rs:57:8
+   |
+57 | pub fn try_simplex(values: &[String]) -> Result<SimplexCertificate, SimplexError> {
+   |        ^^^^^^^^^^^
+
+warning: methods `mass_count`, `even_mass`, and `odd_mass` are never used
+  --> C:\Users\a343o\source\repos\the_symbol_game\omega_engine\crates_rs\omega_functional\src\wire.rs:90:12
+   |
+89 | impl SimplexCertificate {
+   | ----------------------- methods in this implementation
+90 |     pub fn mass_count(&self) -> usize {
+   |            ^^^^^^^^^^
+...
+94 |     pub fn even_mass(&self) -> &BigRational {
+   |            ^^^^^^^^^
+...
+98 |     pub fn odd_mass(&self) -> &BigRational {
+   |            ^^^^^^^^
+
+
+running 5 tests
+complexes::tests::play_surface_torus_logical_closed_residual --- FAILED
+complexes::tests::all_complexes_have_valid_boundary --- FAILED
+complexes::tests::play_surface_planar_exact_and_open --- FAILED
+..
+failures:
+
+---- complexes::tests::play_surface_torus_logical_closed_residual stdout ----
+
+thread 'complexes::tests::play_surface_torus_logical_closed_residual' (8820) panicked at src\majorana\complexes.rs:316:9:
+assertion failed: c.verify_boundary()
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- complexes::tests::all_complexes_have_valid_boundary stdout ----
+
+thread 'complexes::tests::all_complexes_have_valid_boundary' (42404) panicked at src\majorana\complexes.rs:263:13:
+surface_grid_2x2_planar fails d1 d0 = 0
+
+---- complexes::tests::play_surface_planar_exact_and_open stdout ----
+
+thread 'complexes::tests::play_surface_planar_exact_and_open' (23344) panicked at src\majorana\complexes.rs:300:78:
+called `Result::unwrap()` on an `Err` value: "Boundary operator validation failed: d1 * d0 != 0 mod 2"
+
+
+failures:
+    complexes::tests::all_complexes_have_valid_boundary
+    complexes::tests::play_surface_planar_exact_and_open
+    complexes::tests::play_surface_torus_logical_closed_residual
+
+test result: FAILED. 2 passed; 3 failed; 0 ignored; 0 measured; 131 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `-p tfqm_majorana --lib`

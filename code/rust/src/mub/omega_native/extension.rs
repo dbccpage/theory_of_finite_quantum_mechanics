@@ -163,8 +163,10 @@ pub fn attempt_mub10() -> ExtensionVerdict {
     })
 }
 
-pub fn assess_general_mub_n(evidence: &GeneralMubEvidence<'_>) -> ExtensionVerdict {
-    let mut discharged = Vec::new();
+fn collect_stratification_and_odd_prime_obligations(
+    evidence: &GeneralMubEvidence<'_>,
+    discharged: &mut Vec<&'static str>,
+) {
     if !evidence.dimension_stratification.is_empty() {
         discharged.push("finite dimension stratification separates supported prime-power controls from composite lower-controls");
     }
@@ -184,6 +186,12 @@ pub fn assess_general_mub_n(evidence: &GeneralMubEvidence<'_>) -> ExtensionVerdi
     {
         discharged.push("finite odd-prime Gauss-certificate gate aligns declared Hilbert controls with character-sum and Gauss-norm obligations");
     }
+}
+
+fn collect_odd_prime_power_obligations(
+    evidence: &GeneralMubEvidence<'_>,
+    discharged: &mut Vec<&'static str>,
+) {
     if evidence
         .odd_prime_weyl_schemas
         .iter()
@@ -214,6 +222,12 @@ pub fn assess_general_mub_n(evidence: &GeneralMubEvidence<'_>) -> ExtensionVerdi
             "dimension-parametric odd-prime-power Hilbert/CODA-MUR family is accepted for all odd p^k prime-power dimensions",
         );
     }
+}
+
+fn collect_char_two_schema_obligations(
+    evidence: &GeneralMubEvidence<'_>,
+    discharged: &mut Vec<&'static str>,
+) {
     if evidence
         .char_two_weyl_board_schemas
         .iter()
@@ -242,6 +256,12 @@ pub fn assess_general_mub_n(evidence: &GeneralMubEvidence<'_>) -> ExtensionVerdi
     {
         discharged.push("exact finite Hilbert matrix transport verifies sampled characteristic-two projector positivity factors and rank-one resolutions");
     }
+}
+
+fn collect_char_two_projector_and_boundary_obligations(
+    evidence: &GeneralMubEvidence<'_>,
+    discharged: &mut Vec<&'static str>,
+) {
     if evidence
         .gtmur_projector_ledgers
         .iter()
@@ -262,6 +282,14 @@ pub fn assess_general_mub_n(evidence: &GeneralMubEvidence<'_>) -> ExtensionVerdi
     {
         discharged.push("prime-power CODA-MUR boundary ledger separates finite-field schema authority from composite tensor lower-control gaps");
     }
+}
+
+pub fn assess_general_mub_n(evidence: &GeneralMubEvidence<'_>) -> ExtensionVerdict {
+    let mut discharged = Vec::new();
+    collect_stratification_and_odd_prime_obligations(evidence, &mut discharged);
+    collect_odd_prime_power_obligations(evidence, &mut discharged);
+    collect_char_two_schema_obligations(evidence, &mut discharged);
+    collect_char_two_projector_and_boundary_obligations(evidence, &mut discharged);
     general_mub_n_refusal(discharged)
 }
 

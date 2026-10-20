@@ -1,5 +1,4 @@
-
-use crate::linear_algebra::matrix as mx;
+use crate::qm::bridge::matrix as mx;
 use num_bigint::BigInt;
 use num_traits::{Signed, Zero};
 use omega_homology::f2_cohomology::F2ChainComplex;
@@ -96,8 +95,8 @@ pub fn z2_plaquette_invariance() -> (bool, bool, bool) {
         })
         .collect::<Vec<_>>();
     let commutes =
-        |a: &crate::linear_algebra::basic_matrix::BasicMatrix<GaussianRat>,
-         b: &crate::linear_algebra::basic_matrix::BasicMatrix<GaussianRat>| {
+        |a: &::linear_algebra::backend::basic_matrix::BasicMatrix<GaussianRat>,
+         b: &::linear_algebra::backend::basic_matrix::BasicMatrix<GaussianRat>| {
             mx::multiply(a, b).expect("fixed sixteen-dimensional carrier")
                 == mx::multiply(b, a).expect("fixed sixteen-dimensional carrier")
         };

@@ -112,29 +112,51 @@ pub fn curvature_c2(columns: &[ExactVec], v: &ExactVec) -> Vec<Cyc24> {
         .collect()
 }
 
-pub fn basis_closure(omega: &[Cyc24]) -> [Cyc24; BASIS_COUNT] {
-    assert_eq!(
-        omega.len(),
-        COLUMN_COUNT,
-        "basis_closure expects the full {COLUMN_COUNT}-vector curvature cochain"
-    );
-    std::array::from_fn(|b| {
+pub fn try_basis_closure(omega: &[Cyc24]) -> Result<[Cyc24; BASIS_COUNT], &'static str> {
+    if omega.len() != COLUMN_COUNT {
+        return Err("basis_closure expects the full 18-vector curvature cochain");
+    }
+    Ok(std::array::from_fn(|b| {
         let mut acc = Cyc24::zero();
         for j in 0..D {
             acc = acc.add(&omega[b * D + j]);
         }
         acc
-    })
+    }))
+}
+
+pub fn basis_closure(omega: &[Cyc24]) -> [Cyc24; BASIS_COUNT] {
+    try_basis_closure(omega).expect("basis_closure expects the full 18-vector curvature cochain")
+}
+
+pub fn try_wall_functional(omega: &[Cyc24]) -> Result<Cyc24, &'static str> {
+    if omega.len() != COLUMN_COUNT {
+        return Err("wall_functional expects the full 18-vector curvature cochain");
+    }
+    omega_functional::MubFeasibilityWallFunctional::exact_d6_wall(omega)
+        .map_err(|_| "eighteen residuals required for exact_d6_wall")
 }
 
 pub fn wall_functional(omega: &[Cyc24]) -> Cyc24 {
-    assert_eq!(
-        omega.len(),
-        COLUMN_COUNT,
-        "wall_functional expects the full {COLUMN_COUNT}-vector curvature cochain"
-    );
-    omega_functional::MubFeasibilityWallFunctional::exact_d6_wall(omega)
-        .expect("eighteen residuals checked above")
+    try_wall_functional(omega)
+        .expect("wall_functional expects the full 18-vector curvature cochain")
+}
+
+fn column_pair_is_mu(
+    columns: &[ExactVec],
+    ci: usize,
+    cj: usize,
+    one: &Cyc24,
+    zero: &Cyc24,
+    target: &Cyc24,
+) -> bool {
+    let ip = inner(&columns[ci], &columns[cj]);
+    if ci / D == cj / D {
+        let want = if ci == cj { one } else { zero };
+        &ip == want
+    } else {
+        &abs_sq(&ip) == target
+    }
 }
 
 pub fn is_mutually_unbiased_triple_exact(columns: &[ExactVec]) -> bool {
@@ -145,19 +167,9 @@ pub fn is_mutually_unbiased_triple_exact(columns: &[ExactVec]) -> bool {
     let zero = Cyc24::zero();
     let target = rat(1, D as i64);
     for ci in 0..COLUMN_COUNT {
-        let bi = ci / D;
         for cj in 0..COLUMN_COUNT {
-            let bj = cj / D;
-            let ip = inner(&columns[ci], &columns[cj]);
-            if bi == bj {
-                let want = if ci == cj { &one } else { &zero };
-                if &ip != want {
-                    return false;
-                }
-            } else {
-                if abs_sq(&ip) != target {
-                    return false;
-                }
+            if !column_pair_is_mu(columns, ci, cj, &one, &zero, &target) {
+                return false;
             }
         }
     }
@@ -198,6 +210,9 @@ mod tests {
             is_mutually_unbiased_triple_exact(&cols),
             "T0 must be an exact MU triple over Q(zeta_24)"
         );
+        assert!(!is_mutually_unbiased_triple_exact(&cols[..17]));
+        assert!(try_basis_closure(&[]).is_err());
+        assert!(try_wall_functional(&[]).is_err());
     }
 
     #[test]

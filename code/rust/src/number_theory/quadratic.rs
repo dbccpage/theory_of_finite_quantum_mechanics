@@ -842,6 +842,18 @@ impl QuadraticNumber {
         self.sub(other)?.sign()
     }
 
+    fn rational_sqrt_in_field(&self, field: &BigInt, d: &Rational) -> Option<Self> {
+        if let Some(root) = sqrt_exact(&self.a) {
+            return Some(Self::from_rational(root));
+        }
+        if !field.is_one() {
+            if let Some(z) = sqrt_exact(&(&self.a / d)) {
+                return Some(Self::normalised(field.clone(), r_zero(), z));
+            }
+        }
+        None
+    }
+
     pub fn sqrt_in(&self, field: &BigInt) -> Result<Option<Self>, QuadraticError> {
         check_radicand(field)?;
         if !self.b.is_zero() && self.radicand != *field {
@@ -852,15 +864,7 @@ impl QuadraticNumber {
         }
         let d = Rational::from_integer(field.clone());
         if self.b.is_zero() {
-            if let Some(root) = sqrt_exact(&self.a) {
-                return Ok(Some(Self::from_rational(root)));
-            }
-            if !field.is_one() {
-                if let Some(z) = sqrt_exact(&(&self.a / &d)) {
-                    return Ok(Some(Self::normalised(field.clone(), r_zero(), z)));
-                }
-            }
-            return Ok(None);
+            return Ok(self.rational_sqrt_in_field(field, &d));
         }
         let norm = &self.a * &self.a - &d * &self.b * &self.b;
         let Some(r) = sqrt_exact(&norm) else {
@@ -869,11 +873,10 @@ impl QuadraticNumber {
         for signed_r in [r.clone(), -r] {
             let half_sum = (&self.a + signed_r) * half();
             if let Some(s) = sqrt_exact(&half_sum) {
-                if s.is_zero() {
-                    continue;
+                if !s.is_zero() {
+                    let v = &self.b / (&s + &s);
+                    return Ok(Some(Self::normalised(field.clone(), s, v)));
                 }
-                let v = &self.b / (&s + &s);
-                return Ok(Some(Self::normalised(field.clone(), s, v)));
             }
         }
         Ok(None)

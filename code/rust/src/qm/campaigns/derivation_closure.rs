@@ -1,5 +1,11 @@
 
 pub fn verify() -> Result<Vec<i64>, &'static str> {
+    let by_rule = verify_leibniz_rule()?;
+    verify_fourth_derivative_cubic()?;
+    Ok(by_rule)
+}
+
+fn verify_leibniz_rule() -> Result<Vec<i64>, &'static str> {
     let left = vec![1i64, 0, 1];
     let right = vec![2i64, 1];
     let product = poly_mul(&left, &right)?;
@@ -8,19 +14,22 @@ pub fn verify() -> Result<Vec<i64>, &'static str> {
         &poly_mul(&derivative(&left)?, &right)?,
         &poly_mul(&left, &derivative(&right)?)?,
     )?;
-    if poly_trim(&by_product) != poly_trim(&by_rule) {
+    let trimmed = poly_trim(&by_rule);
+    if poly_trim(&by_product) != trimmed {
         return Err("Leibniz rule failed");
     }
-    let cubic = vec![3i64, 1, 0, 2];
-    let mut iterated = cubic.clone();
+    Ok(trimmed)
+}
+
+fn verify_fourth_derivative_cubic() -> Result<(), &'static str> {
+    let mut iterated = vec![3i64, 1, 0, 2];
     for _ in 0..4 {
         iterated = derivative(&iterated)?;
     }
-    let by_degree = vec![0i64];
-    if poly_trim(&iterated) != by_degree {
+    if poly_trim(&iterated) != vec![0i64] {
         return Err("fourth derivative of a cubic is not zero");
     }
-    Ok(poly_trim(&by_rule))
+    Ok(())
 }
 
 fn derivative(poly: &[i64]) -> Result<Vec<i64>, &'static str> {

@@ -144,6 +144,25 @@ impl RealEmbeddings {
         self.enclose_polynomial(&Polynomial::from_i64s(&[0, 1]), k, tolerance)
     }
 
+    fn certified_location_sign(
+        reduced: &Polynomial<Rational>,
+        location: &RootLocation,
+    ) -> Option<Ordering> {
+        match location {
+            RootLocation::Exact(root) => Some(reduced.sign_at(root)),
+            RootLocation::Isolated(interval) => {
+                let enclosure = reduced.eval_interval(interval);
+                if enclosure.lo().is_positive() {
+                    Some(Ordering::Greater)
+                } else if enclosure.hi().is_negative() {
+                    Some(Ordering::Less)
+                } else {
+                    None
+                }
+            }
+        }
+    }
+
     pub fn sign_of_polynomial(
         &mut self,
         g: &Polynomial<Rational>,
@@ -155,21 +174,12 @@ impl RealEmbeddings {
             return Ok(Ordering::Equal);
         }
         for _ in 0..MAX_REFINEMENTS {
-            match self
+            let location = self
                 .locations
                 .get(index)
-                .ok_or(EmbeddingError::Inconsistent("a class has no root"))?
-            {
-                RootLocation::Exact(root) => return Ok(reduced.sign_at(root)),
-                RootLocation::Isolated(interval) => {
-                    let enclosure = reduced.eval_interval(interval);
-                    if enclosure.lo().is_positive() {
-                        return Ok(Ordering::Greater);
-                    }
-                    if enclosure.hi().is_negative() {
-                        return Ok(Ordering::Less);
-                    }
-                }
+                .ok_or(EmbeddingError::Inconsistent("a class has no root"))?;
+            if let Some(sign) = Self::certified_location_sign(&reduced, location) {
+                return Ok(sign);
             }
             self.refine(index, 4)?;
         }

@@ -1,5 +1,10 @@
 
 pub fn verify() -> Result<i64, &'static str> {
+    verify_clifford_relations()?;
+    verify_dirac_square(2, 3)
+}
+
+fn verify_clifford_relations() -> Result<(), &'static str> {
     let gamma0 = [[1i64, 0], [0, -1]];
     let gamma1 = [[0i64, 1], [1, 0]];
     let identity = [[1i64, 0], [0, 1]];
@@ -10,8 +15,10 @@ pub fn verify() -> Result<i64, &'static str> {
     if mat_add(mat_mul(&gamma0, &gamma1)?, mat_mul(&gamma1, &gamma0)?)? != zero {
         return Err("gamma matrices do not anticommute");
     }
-    let mass = 2i64;
-    let momentum = 3i64;
+    Ok(())
+}
+
+fn verify_dirac_square(mass: i64, momentum: i64) -> Result<i64, &'static str> {
     let hamiltonian = [
         [mass, momentum],
         [momentum, mass.checked_neg().ok_or("mass")?],

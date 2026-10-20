@@ -1,4 +1,3 @@
-
 use serde_json::json;
 
 use num_bigint::BigInt;
@@ -40,7 +39,7 @@ fn checked_naimark_fixture() -> bool {
         vec![q(rq(2, 3)), q(rq(1, 3))],
     ]
     .into_iter()
-    .map(|d| matrix::diagonal(&d))
+    .map(|d| matrix::diagonal(&d)?.into_provider())
     .collect::<Result<Vec<_>, _>>();
     effects
         .ok()

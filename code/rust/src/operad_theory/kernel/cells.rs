@@ -94,6 +94,28 @@ pub struct ComparisonEvidence {
     pub authority_effect: AuthorityEffect,
 }
 
+fn require_optional_digest(value: &str, field: &str) -> Result<String, CanonicalError> {
+    if value.is_empty() {
+        Ok(String::new())
+    } else {
+        require_digest(value, field)
+    }
+}
+
+fn require_witness_quad(
+    fwd: &str,
+    inv: &str,
+    l_rt: &str,
+    r_rt: &str,
+) -> Result<(String, String, String, String), CanonicalError> {
+    Ok((
+        require_optional_digest(fwd, "forward_witness_digest")?,
+        require_optional_digest(inv, "inverse_witness_digest")?,
+        require_optional_digest(l_rt, "left_roundtrip_digest")?,
+        require_optional_digest(r_rt, "right_roundtrip_digest")?,
+    ))
+}
+
 impl ComparisonEvidence {
     #[allow(clippy::too_many_arguments)]
     pub fn new(
@@ -113,26 +135,12 @@ impl ComparisonEvidence {
         right_roundtrip_digest: &str,
         authority_effect: AuthorityEffect,
     ) -> Result<Self, CanonicalError> {
-        let fwd = if !forward_witness_digest.is_empty() {
-            require_digest(forward_witness_digest, "forward_witness_digest")?
-        } else {
-            String::new()
-        };
-        let inv = if !inverse_witness_digest.is_empty() {
-            require_digest(inverse_witness_digest, "inverse_witness_digest")?
-        } else {
-            String::new()
-        };
-        let l_rt = if !left_roundtrip_digest.is_empty() {
-            require_digest(left_roundtrip_digest, "left_roundtrip_digest")?
-        } else {
-            String::new()
-        };
-        let r_rt = if !right_roundtrip_digest.is_empty() {
-            require_digest(right_roundtrip_digest, "right_roundtrip_digest")?
-        } else {
-            String::new()
-        };
+        let (fwd, inv, l_rt, r_rt) = require_witness_quad(
+            forward_witness_digest,
+            inverse_witness_digest,
+            left_roundtrip_digest,
+            right_roundtrip_digest,
+        )?;
 
         Ok(Self {
             source_term_id: require_digest(source_term_id, "source_term_id")?,
@@ -192,6 +200,27 @@ pub struct Attestation {
     pub authority_effect: AuthorityEffect,
 }
 
+fn validate_attestation_identities(
+    producer_ref: &str,
+    verifier_ref: &str,
+    verifier_signature: &str,
+) -> Result<(String, String, String), KernelError> {
+    let p_ref = require_identifier(producer_ref, "producer_ref")?;
+    let v_ref = require_identifier(verifier_ref, "verifier_ref")?;
+    if p_ref == v_ref {
+        return Err(KernelError::Message(
+            "attestation producer and verifier must be independent identities".into(),
+        ));
+    }
+    let sig = require_identifier(verifier_signature, "verifier_signature")?;
+    if !sig.starts_with("hmac-sha256:") || sig.len() != 76 {
+        return Err(KernelError::Message(
+            "verifier_signature must be a canonical hmac-sha256 value".into(),
+        ));
+    }
+    Ok((p_ref, v_ref, sig))
+}
+
 impl Attestation {
     #[allow(clippy::too_many_arguments)]
     pub fn new(
@@ -206,19 +235,8 @@ impl Attestation {
         verifier_signature: &str,
         authority_effect: AuthorityEffect,
     ) -> Result<Self, KernelError> {
-        let p_ref = require_identifier(producer_ref, "producer_ref")?;
-        let v_ref = require_identifier(verifier_ref, "verifier_ref")?;
-        if p_ref == v_ref {
-            return Err(KernelError::Message(
-                "attestation producer and verifier must be independent identities".into(),
-            ));
-        }
-        let sig = require_identifier(verifier_signature, "verifier_signature")?;
-        if !sig.starts_with("hmac-sha256:") || sig.len() != 76 {
-            return Err(KernelError::Message(
-                "verifier_signature must be a canonical hmac-sha256 value".into(),
-            ));
-        }
+        let (p_ref, v_ref, sig) =
+            validate_attestation_identities(producer_ref, verifier_ref, verifier_signature)?;
 
         Ok(Self {
             subject_digest: require_digest(subject_digest, "subject_digest")?,
@@ -343,170 +361,154 @@ impl CertifiedPair {
     }
 }
 
+fn simple_refusal(code: &str, message: &str) -> Refusal {
+    Refusal {
+        code: code.into(),
+        message: message.into(),
+        locus: String::new(),
+        details: Vec::new(),
+    }
+}
+
+fn canonical_refusal(e: CanonicalError) -> Refusal {
+    simple_refusal("CANONICAL_ERROR", &e.to_string())
+}
+
+fn check_pair_endpoint_and_verifier_bindings(
+    left: &NormalizedTerm,
+    right: &NormalizedTerm,
+    comparison: &ComparisonEvidence,
+    raw_att: &Attestation,
+) -> Result<(String, String), Refusal> {
+    if !left.boundary().parallel_to(&right.boundary()) {
+        return Err(simple_refusal(
+            "NON_PARALLEL_TERMS",
+            "2-cell endpoints must have identical typed boundaries",
+        ));
+    }
+    let left_id = left.canonical_id().map_err(canonical_refusal)?;
+    let right_id = right.canonical_id().map_err(canonical_refusal)?;
+    if comparison.source_term_id != left_id || comparison.target_term_id != right_id {
+        return Err(simple_refusal(
+            "COMPARISON_ENDPOINT_MISMATCH",
+            "comparison evidence does not bind both term IDs",
+        ));
+    }
+    if comparison.verifier_ref != raw_att.verifier_ref
+        || comparison.verifier_digest != raw_att.verifier_digest
+    {
+        return Err(simple_refusal(
+            "VERIFIER_BINDING_MISMATCH",
+            "comparison and attestation name different verifiers",
+        ));
+    }
+    if comparison.replay_receipt_ref != raw_att.replay_receipt_ref {
+        return Err(simple_refusal(
+            "REPLAY_BINDING_MISMATCH",
+            "comparison and attestation name different replay receipts",
+        ));
+    }
+    Ok((left_id, right_id))
+}
+
+fn has_complete_isomorphism_witnesses(comparison: &ComparisonEvidence) -> bool {
+    !comparison.forward_witness_digest.is_empty()
+        && !comparison.inverse_witness_digest.is_empty()
+        && !comparison.left_roundtrip_digest.is_empty()
+        && !comparison.right_roundtrip_digest.is_empty()
+}
+
+fn check_pair_verdict_and_grade(
+    left_id: &str,
+    right_id: &str,
+    comparison: &ComparisonEvidence,
+    attestation: &AttestationKind,
+) -> Result<(), Refusal> {
+    if comparison.verdict != ComparisonVerdict::EquivalentOnScope {
+        return Err(simple_refusal(
+            "NON_ADMISSIBLE_COMPARISON",
+            "only equivalence evidence supports a Path2",
+        ));
+    }
+    match comparison.equivalence_grade {
+        EquivalenceGrade::Definitional => {
+            if left_id != right_id {
+                return Err(simple_refusal(
+                    "FALSE_DEFINITIONAL_EQUALITY",
+                    "definitional grade requires identical normalized term IDs",
+                ));
+            }
+        }
+        EquivalenceGrade::CertifiedIsomorphism => {
+            if !attestation.is_sealed() {
+                return Err(simple_refusal(
+                    "UNVERIFIED_REPLAY_ATTESTATION",
+                    "certified isomorphism requires an OEOS replay-sealed attestation",
+                ));
+            }
+            if !has_complete_isomorphism_witnesses(comparison) {
+                return Err(simple_refusal(
+                    "INCOMPLETE_ISOMORPHISM",
+                    "certified isomorphism requires forward, inverse, and both round-trip witnesses",
+                ));
+            }
+        }
+        _ => {
+            return Err(simple_refusal(
+                "WEAK_EQUIVALENCE_GRADE",
+                "scoped observations and candidates do not support a Path2",
+            ));
+        }
+    }
+    Ok(())
+}
+
+fn check_pair_attestation_digests(
+    left: &NormalizedTerm,
+    right: &NormalizedTerm,
+    comparison: &ComparisonEvidence,
+    raw_att: &Attestation,
+) -> Result<(), Refusal> {
+    let subject = pair_subject_digest(left, right, &comparison.relation_id, &comparison.scope_digest)
+        .map_err(canonical_refusal)?;
+    if raw_att.subject_digest != subject {
+        return Err(simple_refusal(
+            "ATTESTATION_SUBJECT_MISMATCH",
+            "attestation does not bind this parallel pair",
+        ));
+    }
+    let comp_id = comparison.canonical_id().map_err(canonical_refusal)?;
+    if raw_att.evidence_digest != comp_id {
+        return Err(simple_refusal(
+            "ATTESTATION_EVIDENCE_MISMATCH",
+            "attestation does not bind this comparison evidence",
+        ));
+    }
+    if raw_att.predicate_id != comparison.relation_id {
+        return Err(simple_refusal(
+            "ATTESTATION_PREDICATE_MISMATCH",
+            "attestation predicate differs from comparison relation",
+        ));
+    }
+    Ok(())
+}
+
 fn check_certified_pair_error(
     left: &NormalizedTerm,
     right: &NormalizedTerm,
     comparison: &ComparisonEvidence,
     attestation: &AttestationKind,
 ) -> Option<Refusal> {
-    if !left.boundary().parallel_to(&right.boundary()) {
-        return Some(Refusal {
-            code: "NON_PARALLEL_TERMS".into(),
-            message: "2-cell endpoints must have identical typed boundaries".into(),
-            locus: String::new(),
-            details: Vec::new(),
-        });
-    }
-
-    let left_id = match left.canonical_id() {
-        Ok(id) => id,
-        Err(e) => return Some(Refusal {
-            code: "CANONICAL_ERROR".into(),
-            message: e.to_string(),
-            locus: String::new(),
-            details: Vec::new(),
-        }),
-    };
-    let right_id = match right.canonical_id() {
-        Ok(id) => id,
-        Err(e) => return Some(Refusal {
-            code: "CANONICAL_ERROR".into(),
-            message: e.to_string(),
-            locus: String::new(),
-            details: Vec::new(),
-        }),
-    };
-
-    if comparison.source_term_id != left_id || comparison.target_term_id != right_id {
-        return Some(Refusal {
-            code: "COMPARISON_ENDPOINT_MISMATCH".into(),
-            message: "comparison evidence does not bind both term IDs".into(),
-            locus: String::new(),
-            details: Vec::new(),
-        });
-    }
-
     let raw_att = attestation.raw();
-    if comparison.verifier_ref != raw_att.verifier_ref
-        || comparison.verifier_digest != raw_att.verifier_digest
-    {
-        return Some(Refusal {
-            code: "VERIFIER_BINDING_MISMATCH".into(),
-            message: "comparison and attestation name different verifiers".into(),
-            locus: String::new(),
-            details: Vec::new(),
-        });
+    let (left_id, right_id) =
+        match check_pair_endpoint_and_verifier_bindings(left, right, comparison, raw_att) {
+            Ok(ids) => ids,
+            Err(e) => return Some(e),
+        };
+    if let Err(e) = check_pair_verdict_and_grade(&left_id, &right_id, comparison, attestation) {
+        return Some(e);
     }
-
-    if comparison.replay_receipt_ref != raw_att.replay_receipt_ref {
-        return Some(Refusal {
-            code: "REPLAY_BINDING_MISMATCH".into(),
-            message: "comparison and attestation name different replay receipts".into(),
-            locus: String::new(),
-            details: Vec::new(),
-        });
-    }
-
-    if comparison.verdict != ComparisonVerdict::EquivalentOnScope {
-        return Some(Refusal {
-            code: "NON_ADMISSIBLE_COMPARISON".into(),
-            message: "only equivalence evidence supports a Path2".into(),
-            locus: String::new(),
-            details: Vec::new(),
-        });
-    }
-
-    if comparison.equivalence_grade != EquivalenceGrade::Definitional
-        && comparison.equivalence_grade != EquivalenceGrade::CertifiedIsomorphism
-    {
-        return Some(Refusal {
-            code: "WEAK_EQUIVALENCE_GRADE".into(),
-            message: "scoped observations and candidates do not support a Path2".into(),
-            locus: String::new(),
-            details: Vec::new(),
-        });
-    }
-
-    if comparison.equivalence_grade == EquivalenceGrade::Definitional && left_id != right_id {
-        return Some(Refusal {
-            code: "FALSE_DEFINITIONAL_EQUALITY".into(),
-            message: "definitional grade requires identical normalized term IDs".into(),
-            locus: String::new(),
-            details: Vec::new(),
-        });
-    }
-
-    if comparison.equivalence_grade == EquivalenceGrade::CertifiedIsomorphism {
-        if !attestation.is_sealed() {
-            return Some(Refusal {
-                code: "UNVERIFIED_REPLAY_ATTESTATION".into(),
-                message: "certified isomorphism requires an OEOS replay-sealed attestation".into(),
-                locus: String::new(),
-                details: Vec::new(),
-            });
-        }
-        if comparison.forward_witness_digest.is_empty()
-            || comparison.inverse_witness_digest.is_empty()
-            || comparison.left_roundtrip_digest.is_empty()
-            || comparison.right_roundtrip_digest.is_empty()
-        {
-            return Some(Refusal {
-                code: "INCOMPLETE_ISOMORPHISM".into(),
-                message: "certified isomorphism requires forward, inverse, and both round-trip witnesses".into(),
-                locus: String::new(),
-                details: Vec::new(),
-            });
-        }
-    }
-
-    let subject = match pair_subject_digest(left, right, &comparison.relation_id, &comparison.scope_digest) {
-        Ok(s) => s,
-        Err(e) => return Some(Refusal {
-            code: "CANONICAL_ERROR".into(),
-            message: e.to_string(),
-            locus: String::new(),
-            details: Vec::new(),
-        }),
-    };
-
-    if raw_att.subject_digest != subject {
-        return Some(Refusal {
-            code: "ATTESTATION_SUBJECT_MISMATCH".into(),
-            message: "attestation does not bind this parallel pair".into(),
-            locus: String::new(),
-            details: Vec::new(),
-        });
-    }
-
-    let comp_id = match comparison.canonical_id() {
-        Ok(id) => id,
-        Err(e) => return Some(Refusal {
-            code: "CANONICAL_ERROR".into(),
-            message: e.to_string(),
-            locus: String::new(),
-            details: Vec::new(),
-        }),
-    };
-
-    if raw_att.evidence_digest != comp_id {
-        return Some(Refusal {
-            code: "ATTESTATION_EVIDENCE_MISMATCH".into(),
-            message: "attestation does not bind this comparison evidence".into(),
-            locus: String::new(),
-            details: Vec::new(),
-        });
-    }
-
-    if raw_att.predicate_id != comparison.relation_id {
-        return Some(Refusal {
-            code: "ATTESTATION_PREDICATE_MISMATCH".into(),
-            message: "attestation predicate differs from comparison relation".into(),
-            locus: String::new(),
-            details: Vec::new(),
-        });
-    }
-
-    None
+    check_pair_attestation_digests(left, right, comparison, raw_att).err()
 }
 
 pub fn admit_certified_pair(
@@ -681,49 +683,57 @@ fn reduce_path_word(word: PathWord) -> PathWord {
     reduced
 }
 
+fn horizontal_path_word(h: &HorizontalPath2) -> Result<PathWord, CanonicalError> {
+    let id = canonical_id(
+        "omega.oewas.path2.horizontal.v1",
+        &json!({
+            "outer": h.outer.canonical_id()?,
+            "slot": h.slot,
+            "inner": h.inner.canonical_id()?,
+            "admitted_composite": h.admitted_composite.canonical_id()?,
+        }),
+    )?;
+    Ok(vec![(id, 1)])
+}
+
+fn whisker_path_word(w: &WhiskerPath2) -> Result<PathWord, CanonicalError> {
+    let id = canonical_id(
+        "omega.oewas.path2.whisker.v1",
+        &json!({
+            "context": w.context.canonical_id()?,
+            "slot": w.slot,
+            "path": w.path.canonical_id()?,
+            "admitted_composite": w.admitted_composite.canonical_id()?,
+        }),
+    )?;
+    Ok(vec![(id, 1)])
+}
+
+fn vertical_path_word(v: &VerticalPath2) -> Result<PathWord, CanonicalError> {
+    let mut w1 = path_word(&v.first)?;
+    let w2 = path_word(&v.second)?;
+    w1.extend(w2);
+    Ok(reduce_path_word(w1))
+}
+
+fn inverse_path_word(inv: &InversePath2) -> Result<PathWord, CanonicalError> {
+    let inner_word = path_word(&inv.path)?;
+    let inverted = inner_word
+        .into_iter()
+        .rev()
+        .map(|(gen_id, orient)| (gen_id, -orient))
+        .collect();
+    Ok(reduce_path_word(inverted))
+}
+
 fn path_word(path: &Path2) -> Result<PathWord, CanonicalError> {
     match path {
         Path2::Identity(_) => Ok(Vec::new()),
-        Path2::Vertical(v) => {
-            let mut w1 = path_word(&v.first)?;
-            let w2 = path_word(&v.second)?;
-            w1.extend(w2);
-            Ok(reduce_path_word(w1))
-        }
-        Path2::Inverse(inv) => {
-            let inner_word = path_word(&inv.path)?;
-            let inverted = inner_word
-                .into_iter()
-                .rev()
-                .map(|(gen_id, orient)| (gen_id, -orient))
-                .collect();
-            Ok(reduce_path_word(inverted))
-        }
+        Path2::Vertical(v) => vertical_path_word(v),
+        Path2::Inverse(inv) => inverse_path_word(inv),
         Path2::Atomic(p) => Ok(vec![(p.canonical_id()?, 1)]),
-        Path2::Horizontal(h) => Ok(vec![(
-            canonical_id(
-                "omega.oewas.path2.horizontal.v1",
-                &json!({
-                    "outer": h.outer.canonical_id()?,
-                    "slot": h.slot,
-                    "inner": h.inner.canonical_id()?,
-                    "admitted_composite": h.admitted_composite.canonical_id()?,
-                }),
-            )?,
-            1,
-        )]),
-        Path2::Whisker(w) => Ok(vec![(
-            canonical_id(
-                "omega.oewas.path2.whisker.v1",
-                &json!({
-                    "context": w.context.canonical_id()?,
-                    "slot": w.slot,
-                    "path": w.path.canonical_id()?,
-                    "admitted_composite": w.admitted_composite.canonical_id()?,
-                }),
-            )?,
-            1,
-        )]),
+        Path2::Horizontal(h) => horizontal_path_word(h),
+        Path2::Whisker(w) => whisker_path_word(w),
     }
 }
 
@@ -869,6 +879,78 @@ impl Refinement {
     }
 }
 
+fn check_refinement_endpoints(
+    left: &NormalizedTerm,
+    right: &NormalizedTerm,
+    comparison: &ComparisonEvidence,
+) -> Result<(), Refusal> {
+    if !left.boundary().parallel_to(&right.boundary()) {
+        return Err(simple_refusal(
+            "NON_PARALLEL_TERMS",
+            "refinement endpoints must be parallel",
+        ));
+    }
+    if comparison.verdict != ComparisonVerdict::RefinesOnScope {
+        return Err(simple_refusal(
+            "NOT_A_REFINEMENT",
+            "comparison verdict is not RefinesOnScope",
+        ));
+    }
+    let left_id = left.canonical_id().map_err(canonical_refusal)?;
+    let right_id = right.canonical_id().map_err(canonical_refusal)?;
+    if comparison.source_term_id != left_id || comparison.target_term_id != right_id {
+        return Err(simple_refusal(
+            "COMPARISON_ENDPOINT_MISMATCH",
+            "comparison does not bind refinement endpoints",
+        ));
+    }
+    Ok(())
+}
+
+fn check_refinement_attestation(
+    left: &NormalizedTerm,
+    right: &NormalizedTerm,
+    comparison: &ComparisonEvidence,
+    attestation: &Attestation,
+) -> Result<(), Refusal> {
+    let subject = pair_subject_digest(left, right, &comparison.relation_id, &comparison.scope_digest)
+        .map_err(canonical_refusal)?;
+    if attestation.subject_digest != subject {
+        return Err(simple_refusal(
+            "ATTESTATION_SUBJECT_MISMATCH",
+            "attestation does not bind refinement endpoints",
+        ));
+    }
+    let comp_id = comparison.canonical_id().map_err(canonical_refusal)?;
+    if attestation.evidence_digest != comp_id {
+        return Err(simple_refusal(
+            "ATTESTATION_EVIDENCE_MISMATCH",
+            "attestation does not bind refinement evidence",
+        ));
+    }
+    if attestation.predicate_id != comparison.relation_id {
+        return Err(simple_refusal(
+            "ATTESTATION_PREDICATE_MISMATCH",
+            "attestation predicate differs from refinement relation",
+        ));
+    }
+    if comparison.verifier_ref != attestation.verifier_ref
+        || comparison.verifier_digest != attestation.verifier_digest
+    {
+        return Err(simple_refusal(
+            "VERIFIER_BINDING_MISMATCH",
+            "comparison and attestation name different verifiers",
+        ));
+    }
+    if comparison.replay_receipt_ref != attestation.replay_receipt_ref {
+        return Err(simple_refusal(
+            "REPLAY_BINDING_MISMATCH",
+            "comparison and attestation name different replay receipts",
+        ));
+    }
+    Ok(())
+}
+
 pub fn admit_refinement(
     source: &OperationTerm,
     target: &OperationTerm,
@@ -877,107 +959,8 @@ pub fn admit_refinement(
 ) -> Result<Refinement, Refusal> {
     let left = normalize_term(source)?;
     let right = normalize_term(target)?;
-
-    if !left.boundary().parallel_to(&right.boundary()) {
-        return Err(Refusal {
-            code: "NON_PARALLEL_TERMS".into(),
-            message: "refinement endpoints must be parallel".into(),
-            locus: String::new(),
-            details: Vec::new(),
-        });
-    }
-
-    if comparison.verdict != ComparisonVerdict::RefinesOnScope {
-        return Err(Refusal {
-            code: "NOT_A_REFINEMENT".into(),
-            message: "comparison verdict is not RefinesOnScope".into(),
-            locus: String::new(),
-            details: Vec::new(),
-        });
-    }
-
-    let left_id = left.canonical_id().map_err(|e| Refusal {
-        code: "CANONICAL_ERROR".into(),
-        message: e.to_string(),
-        locus: String::new(),
-        details: Vec::new(),
-    })?;
-    let right_id = right.canonical_id().map_err(|e| Refusal {
-        code: "CANONICAL_ERROR".into(),
-        message: e.to_string(),
-        locus: String::new(),
-        details: Vec::new(),
-    })?;
-
-    if comparison.source_term_id != left_id || comparison.target_term_id != right_id {
-        return Err(Refusal {
-            code: "COMPARISON_ENDPOINT_MISMATCH".into(),
-            message: "comparison does not bind refinement endpoints".into(),
-            locus: String::new(),
-            details: Vec::new(),
-        });
-    }
-
-    let subject = pair_subject_digest(&left, &right, &comparison.relation_id, &comparison.scope_digest).map_err(|e| Refusal {
-        code: "CANONICAL_ERROR".into(),
-        message: e.to_string(),
-        locus: String::new(),
-        details: Vec::new(),
-    })?;
-
-    if attestation.subject_digest != subject {
-        return Err(Refusal {
-            code: "ATTESTATION_SUBJECT_MISMATCH".into(),
-            message: "attestation does not bind refinement endpoints".into(),
-            locus: String::new(),
-            details: Vec::new(),
-        });
-    }
-
-    let comp_id = comparison.canonical_id().map_err(|e| Refusal {
-        code: "CANONICAL_ERROR".into(),
-        message: e.to_string(),
-        locus: String::new(),
-        details: Vec::new(),
-    })?;
-
-    if attestation.evidence_digest != comp_id {
-        return Err(Refusal {
-            code: "ATTESTATION_EVIDENCE_MISMATCH".into(),
-            message: "attestation does not bind refinement evidence".into(),
-            locus: String::new(),
-            details: Vec::new(),
-        });
-    }
-
-    if attestation.predicate_id != comparison.relation_id {
-        return Err(Refusal {
-            code: "ATTESTATION_PREDICATE_MISMATCH".into(),
-            message: "attestation predicate differs from refinement relation".into(),
-            locus: String::new(),
-            details: Vec::new(),
-        });
-    }
-
-    if comparison.verifier_ref != attestation.verifier_ref
-        || comparison.verifier_digest != attestation.verifier_digest
-    {
-        return Err(Refusal {
-            code: "VERIFIER_BINDING_MISMATCH".into(),
-            message: "comparison and attestation name different verifiers".into(),
-            locus: String::new(),
-            details: Vec::new(),
-        });
-    }
-
-    if comparison.replay_receipt_ref != attestation.replay_receipt_ref {
-        return Err(Refusal {
-            code: "REPLAY_BINDING_MISMATCH".into(),
-            message: "comparison and attestation name different replay receipts".into(),
-            locus: String::new(),
-            details: Vec::new(),
-        });
-    }
+    check_refinement_endpoints(&left, &right, comparison)?;
+    check_refinement_attestation(&left, &right, comparison, attestation)?;
 
     Ok(Refinement {
         source: left,

@@ -15,22 +15,27 @@ pub fn verify() -> Result<(usize, BigRational), &'static str> {
 fn max_independent_set() -> Result<usize, &'static str> {
     let mut best = 0usize;
     for mask in 0..32u32 {
-        let mut ok = true;
-        let mut size = 0usize;
-        for vertex in 0..5 {
-            if (mask >> vertex) & 1 == 1 {
-                size += 1;
-                let neighbor = (vertex + 1) % 5;
-                if (mask >> neighbor) & 1 == 1 {
-                    ok = false;
-                }
+        if let Some(size) = independent_set_size(mask) {
+            if size > best {
+                best = size;
             }
-        }
-        if ok && size > best {
-            best = size;
         }
     }
     Ok(best)
+}
+
+fn independent_set_size(mask: u32) -> Option<usize> {
+    let mut size = 0usize;
+    for vertex in 0..5 {
+        if (mask >> vertex) & 1 == 1 {
+            size += 1;
+            let neighbor = (vertex + 1) % 5;
+            if (mask >> neighbor) & 1 == 1 {
+                return None;
+            }
+        }
+    }
+    Some(size)
 }
 
 fn ratio(numer: i64, denom: i64) -> Result<BigRational, &'static str> {

@@ -127,21 +127,31 @@ fn evaluate_mub6_request_py(py: Python<'_>, request_json: &str) -> PyResult<Py<P
     }
 }
 
-#[pymodule]
-fn omega_mub(module: &Bound<'_, PyModule>) -> PyResult<()> {
+fn register_mub_functions_primary(module: &Bound<'_, PyModule>) -> PyResult<()> {
     module.add_function(wrap_pyfunction!(authority_effect, module)?)?;
     module.add_function(wrap_pyfunction!(package_info, module)?)?;
     module.add_function(wrap_pyfunction!(assess_general_mub_n_py, module)?)?;
     module.add_function(wrap_pyfunction!(assess_d6_pinned_wall_py, module)?)?;
+    Ok(())
+}
+
+fn register_mub_functions_extension(module: &Bound<'_, PyModule>) -> PyResult<()> {
     module.add_function(wrap_pyfunction!(extension_verdict_full_mub6_py, module)?)?;
     module.add_function(wrap_pyfunction!(extension_verdict_mub10_py, module)?)?;
     module.add_function(wrap_pyfunction!(
         extension_verdict_general_mub_n_py,
         module
     )?)?;
+    Ok(())
+}
+
+fn register_mub_functions_runtime(module: &Bound<'_, PyModule>) -> PyResult<()> {
     module.add_function(wrap_pyfunction!(d10_wall_status_py, module)?)?;
     module.add_function(wrap_pyfunction!(evaluate_mub6_request_py, module)?)?;
+    Ok(())
+}
 
+fn register_mub_aliases_primary(module: &Bound<'_, PyModule>) -> PyResult<()> {
     module.add(
         "assess_general_mub_n",
         module.getattr("assess_general_mub_n_py")?,
@@ -158,6 +168,10 @@ fn omega_mub(module: &Bound<'_, PyModule>) -> PyResult<()> {
         "extension_verdict_mub10",
         module.getattr("extension_verdict_mub10_py")?,
     )?;
+    Ok(())
+}
+
+fn register_mub_aliases_secondary(module: &Bound<'_, PyModule>) -> PyResult<()> {
     module.add(
         "extension_verdict_general_mub_n",
         module.getattr("extension_verdict_general_mub_n_py")?,
@@ -167,6 +181,15 @@ fn omega_mub(module: &Bound<'_, PyModule>) -> PyResult<()> {
         "evaluate_mub6_request",
         module.getattr("evaluate_mub6_request_py")?,
     )?;
+    Ok(())
+}
 
+#[pymodule]
+fn omega_mub(module: &Bound<'_, PyModule>) -> PyResult<()> {
+    register_mub_functions_primary(module)?;
+    register_mub_functions_extension(module)?;
+    register_mub_functions_runtime(module)?;
+    register_mub_aliases_primary(module)?;
+    register_mub_aliases_secondary(module)?;
     Ok(())
 }

@@ -308,6 +308,26 @@ pub fn evaluate_singular_segre_point(
     }
 }
 
+fn verify_singular_segre_cd_slice(
+    a: &BigRational,
+    b: &BigRational,
+    eps: &BigRational,
+) -> (usize, usize) {
+    let mut total = 0usize;
+    let mut passed = 0usize;
+    for c_i in 0..5 {
+        let c = BigRational::from_integer(c_i.into());
+        for d_i in 0..5 {
+            let d = BigRational::from_integer(d_i.into());
+            total += 1;
+            if evaluate_singular_segre_point(a, b, &c, &d, eps).identity_holds {
+                passed += 1;
+            }
+        }
+    }
+    (total, passed)
+}
+
 pub fn verify_singular_segre_5x5x5x5_grid(eps: &BigRational) -> (usize, usize, bool) {
     let mut total = 0usize;
     let mut passed = 0usize;
@@ -315,17 +335,9 @@ pub fn verify_singular_segre_5x5x5x5_grid(eps: &BigRational) -> (usize, usize, b
         let a = BigRational::from_integer(a_i.into());
         for b_i in 0..5 {
             let b = BigRational::from_integer(b_i.into());
-            for c_i in 0..5 {
-                let c = BigRational::from_integer(c_i.into());
-                for d_i in 0..5 {
-                    let d = BigRational::from_integer(d_i.into());
-                    total += 1;
-                    let ev = evaluate_singular_segre_point(&a, &b, &c, &d, eps);
-                    if ev.identity_holds {
-                        passed += 1;
-                    }
-                }
-            }
+            let (t, p) = verify_singular_segre_cd_slice(&a, &b, eps);
+            total += t;
+            passed += p;
         }
     }
     let all_passed = total == 625 && passed == 625;

@@ -835,24 +835,7 @@ impl GlobalAtlasAggregator {
             receipts.push(rc);
         }
 
-        let mut visited = BTreeSet::new();
-        let start = RegionalCoverComponent::ALL[0];
-        let mut queue = VecDeque::new();
-        queue.push_back(start);
-        visited.insert(start);
-
-        while let Some(curr) = queue.pop_front() {
-            if let Some(neighbors) = adj_graph.get(&curr) {
-                for &nxt in neighbors {
-                    if visited.insert(nxt) {
-                        queue.push_back(nxt);
-                    }
-                }
-            }
-        }
-
-        let is_atlas_connected = visited.len() == NUM_REGIONAL_COMPONENTS;
-        if !is_atlas_connected {
+        if !Self::is_adj_graph_connected(&adj_graph) {
             return Err(GlobalCoverError::DisconnectedAtlas);
         }
 
@@ -866,32 +849,48 @@ impl GlobalAtlasAggregator {
         })
     }
 
-    pub fn solve_loop_circulation(
-        &self,
-        loop_def: &CompositeCycleLoop,
-        scale: i128,
-    ) -> Result<CycleCirculationReceipt, GlobalCoverError> {
-        let k = loop_def.nodes.len();
-        if k < 3 {
-            return Err(GlobalCoverError::BoundaryGapDetected {
-                chart_a: loop_def.nodes[0],
-                chart_b: loop_def.nodes[0],
-                reason: format!("Loop '{}' has fewer than 3 nodes", loop_def.name),
-            });
+    fn enqueue_neighbors(
+        neighbors: &BTreeSet<RegionalCoverComponent>,
+        visited: &mut BTreeSet<RegionalCoverComponent>,
+        queue: &mut VecDeque<RegionalCoverComponent>,
+    ) {
+        for &nxt in neighbors {
+            if visited.insert(nxt) {
+                queue.push_back(nxt);
+            }
         }
-        if scale <= 0 {
-            return Err(GlobalCoverError::NonPositiveCirculation {
-                loop_name: loop_def.name.clone(),
-                circulation: scale,
-            });
+    }
+
+    fn is_adj_graph_connected(
+        adj_graph: &BTreeMap<RegionalCoverComponent, BTreeSet<RegionalCoverComponent>>,
+    ) -> bool {
+        let mut visited = BTreeSet::new();
+        let start = RegionalCoverComponent::ALL[0];
+        let mut queue = VecDeque::new();
+        queue.push_back(start);
+        visited.insert(start);
+
+        while let Some(curr) = queue.pop_front() {
+            if let Some(neighbors) = adj_graph.get(&curr) {
+                Self::enqueue_neighbors(neighbors, &mut visited, &mut queue);
+            }
         }
 
+        visited.len() == NUM_REGIONAL_COMPONENTS
+    }
+
+    fn build_scaled_loop_cochain(
+        loop_def: &CompositeCycleLoop,
+        scale: i128,
+    ) -> Result<(Boundary1, Vec<i128>, i128), GlobalCoverError> {
+        let k = loop_def.nodes.len();
         let mut edges = Vec::with_capacity(k);
         for i in 0..k {
-            let tail = i;
-            let head = (i + 1) % k;
-            let weight = loop_def.edge_weights[i];
-            edges.push(BoundaryEdge { tail, head, weight });
+            edges.push(BoundaryEdge {
+                tail: i,
+                head: (i + 1) % k,
+                weight: loop_def.edge_weights[i],
+            });
         }
         let boundary = Boundary1 {
             num_vertices: k,
@@ -900,7 +899,6 @@ impl GlobalAtlasAggregator {
 
         let scale_rat = BigRational::from_integer(BigInt::from(scale));
         let mut omega = Vec::with_capacity(k);
-
         for (i, m) in loop_def.edge_margins.iter().enumerate() {
             let scaled = (m * &scale_rat)
                 .to_integer()
@@ -923,6 +921,30 @@ impl GlobalAtlasAggregator {
                 circulation: net_circulation,
             });
         }
+        Ok((boundary, omega, net_circulation))
+    }
+
+    pub fn solve_loop_circulation(
+        &self,
+        loop_def: &CompositeCycleLoop,
+        scale: i128,
+    ) -> Result<CycleCirculationReceipt, GlobalCoverError> {
+        let k = loop_def.nodes.len();
+        if k < 3 {
+            return Err(GlobalCoverError::BoundaryGapDetected {
+                chart_a: loop_def.nodes[0],
+                chart_b: loop_def.nodes[0],
+                reason: format!("Loop '{}' has fewer than 3 nodes", loop_def.name),
+            });
+        }
+        if scale <= 0 {
+            return Err(GlobalCoverError::NonPositiveCirculation {
+                loop_name: loop_def.name.clone(),
+                circulation: scale,
+            });
+        }
+
+        let (boundary, omega, net_circulation) = Self::build_scaled_loop_cochain(loop_def, scale)?;
 
         let phi1_sol = solve_phi1(&boundary, &omega)
             .map_err(|e: NetworkSimplexError| GlobalCoverError::SimplexFailure(format!("{e:?}")))?;

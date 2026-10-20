@@ -104,14 +104,10 @@ pub struct VarietyEvaluationReport {
     pub sha256_digest: String,
 }
 
-pub fn evaluate_variety_constraints(point: &HadamardPoint50) -> VarietyEvaluationReport {
+fn compute_circle_residuals(point: &HadamardPoint50) -> (Vec<BigRational>, BigRational) {
     let one = BigRational::one();
-    let zero = BigRational::zero();
     let mut circle_residuals = Vec::with_capacity(25);
-    let mut real_orth_residuals = Vec::with_capacity(15);
-    let mut imag_orth_residuals = Vec::with_capacity(15);
     let mut max_res = BigRational::zero();
-
     for i in 0..5 {
         for j in 0..5 {
             let x_val = &point.x[i][j];
@@ -124,33 +120,50 @@ pub fn evaluate_variety_constraints(point: &HadamardPoint50) -> VarietyEvaluatio
             circle_residuals.push(res);
         }
     }
+    (circle_residuals, max_res)
+}
 
+fn compute_col_pair_orth(
+    point: &HadamardPoint50,
+    j: usize,
+    k: usize,
+) -> (BigRational, BigRational) {
+    let mut sum_re = BigRational::zero();
+    let mut sum_im = BigRational::zero();
+    for r in 0..D {
+        let x_rj = point.entry_re(r, j);
+        let y_rj = point.entry_im(r, j);
+        let x_rk = point.entry_re(r, k);
+        let y_rk = point.entry_im(r, k);
+
+        sum_re += &x_rj * &x_rk + &y_rj * &y_rk;
+        sum_im += &x_rk * &y_rj - &x_rj * &y_rk;
+    }
+    (sum_re.abs(), sum_im.abs())
+}
+
+fn compute_orth_residuals(
+    point: &HadamardPoint50,
+    mut max_res: BigRational,
+) -> (Vec<BigRational>, Vec<BigRational>, BigRational) {
+    let mut real_orth_residuals = Vec::with_capacity(15);
+    let mut imag_orth_residuals = Vec::with_capacity(15);
     for j in 0..D {
         for k in (j + 1)..D {
-            let mut sum_re = BigRational::zero();
-            let mut sum_im = BigRational::zero();
-            for r in 0..D {
-                let x_rj = point.entry_re(r, j);
-                let y_rj = point.entry_im(r, j);
-                let x_rk = point.entry_re(r, k);
-                let y_rk = point.entry_im(r, k);
-
-                sum_re += &x_rj * &x_rk + &y_rj * &y_rk;
-                sum_im += &x_rk * &y_rj - &x_rj * &y_rk;
-            }
-
-            let abs_re = sum_re.abs();
-            let abs_im = sum_im.abs();
-            if abs_re > max_res {
-                max_res = abs_re.clone();
-            }
-            if abs_im > max_res {
-                max_res = abs_im.clone();
-            }
+            let (abs_re, abs_im) = compute_col_pair_orth(point, j, k);
+            max_res = max_res.max(abs_re.clone()).max(abs_im.clone());
             real_orth_residuals.push(abs_re);
             imag_orth_residuals.push(abs_im);
         }
     }
+    (real_orth_residuals, imag_orth_residuals, max_res)
+}
+
+pub fn evaluate_variety_constraints(point: &HadamardPoint50) -> VarietyEvaluationReport {
+    let zero = BigRational::zero();
+    let (circle_residuals, max_circle) = compute_circle_residuals(point);
+    let (real_orth_residuals, imag_orth_residuals, max_res) =
+        compute_orth_residuals(point, max_circle);
 
     let is_variety_point = max_res == zero;
 
@@ -240,61 +253,68 @@ pub fn compute_transition_matrix(h1: &Matrix6, h2: &Matrix6) -> Matrix6 {
     })
 }
 
-pub fn check_triad_compatibility(h1: &Matrix6, h2: &Matrix6) -> TriadCompatibilityResult {
-    let u = compute_transition_matrix(h1, h2);
+fn find_unit_modulus_violation(u: &Matrix6) -> Option<(usize, usize)> {
     let six = Cyc24::rat(ri(6));
-    let thirty_six = Cyc24::rat(ri(36));
-    let zero = Cyc24::zero();
-
-    let mut unit_modulus_satisfied = true;
-    let mut viol_r = None;
-    let mut viol_c = None;
-    let mut reason = String::from("All entries unimodular and columns mutually orthogonal");
-
     for j in 0..D {
         for k in 0..D {
             let norm_sq = u[j][k].mul(&u[j][k].conj());
-            let diff = norm_sq.sub(&six);
-            if !diff.is_zero() {
-                unit_modulus_satisfied = false;
-                viol_r = Some(j);
-                viol_c = Some(k);
-                reason =
-                    format!("Flat-modulus violation at entry ({j}, {k}): |U_{{{j},{k}}}|^2 != 6");
-                break;
+            if !norm_sq.sub(&six).is_zero() {
+                return Some((j, k));
             }
         }
-        if !unit_modulus_satisfied {
-            break;
-        }
     }
+    None
+}
 
-    let mut orthogonality_satisfied = true;
-    {
-        for j in 0..D {
-            for k in 0..D {
-                let mut prod = Cyc24::zero();
-                for r in 0..D {
-                    prod = prod.add(&u[j][r].mul(&u[k][r].conj()));
-                }
-                let expected = if j == k { thirty_six.clone() } else { zero.clone() };
-                if !prod.sub(&expected).is_zero() {
-                    orthogonality_satisfied = false;
-                    if unit_modulus_satisfied {
-                        viol_r = Some(j);
-                        viol_c = Some(k);
-                        reason = format!(
-                            "Orthogonality violation at ({j}, {k}): row product != 36 delta"
-                        );
-                    }
-                    break;
-                }
-            }
-            if !orthogonality_satisfied {
-                break;
+fn row_inner_product(u: &Matrix6, j: usize, k: usize) -> Cyc24 {
+    let mut prod = Cyc24::zero();
+    for r in 0..D {
+        prod = prod.add(&u[j][r].mul(&u[k][r].conj()));
+    }
+    prod
+}
+
+fn find_orthogonality_violation(u: &Matrix6) -> Option<(usize, usize)> {
+    let thirty_six = Cyc24::rat(ri(36));
+    let zero = Cyc24::zero();
+    for j in 0..D {
+        for k in 0..D {
+            let prod = row_inner_product(u, j, k);
+            let expected = if j == k { &thirty_six } else { &zero };
+            if !prod.sub(expected).is_zero() {
+                return Some((j, k));
             }
         }
     }
+    None
+}
+
+pub fn check_triad_compatibility(h1: &Matrix6, h2: &Matrix6) -> TriadCompatibilityResult {
+    let u = compute_transition_matrix(h1, h2);
+    let mod_viol = find_unit_modulus_violation(&u);
+    let orth_viol = find_orthogonality_violation(&u);
+    let unit_modulus_satisfied = mod_viol.is_none();
+    let orthogonality_satisfied = orth_viol.is_none();
+
+    let (viol_r, viol_c, reason) = if let Some((j, k)) = mod_viol {
+        (
+            Some(j),
+            Some(k),
+            format!("Flat-modulus violation at entry ({j}, {k}): |U_{{{j},{k}}}|^2 != 6"),
+        )
+    } else if let Some((j, k)) = orth_viol {
+        (
+            Some(j),
+            Some(k),
+            format!("Orthogonality violation at ({j}, {k}): row product != 36 delta"),
+        )
+    } else {
+        (
+            None,
+            None,
+            String::from("All entries unimodular and columns mutually orthogonal"),
+        )
+    };
 
     let is_compatible = unit_modulus_satisfied && orthogonality_satisfied;
     let payload = format!(
@@ -443,24 +463,12 @@ pub struct MatolcsiSingleMatrixReport {
     pub max_g2_prod_mod_sq_rat: String,
 }
 
-pub fn evaluate_matolcsi_conjecture2_matrix(
-    matrix_name: &str,
-    h: &Matrix6,
-) -> MatolcsiSingleMatrixReport {
+fn evaluate_gamma1_stats(h: &Matrix6) -> (usize, BigRational) {
     let gamma1_all = canonical_gamma1_permutations();
-    let gamma2_all = canonical_gamma2_permutations();
-    let h_star = matrix_adjoint(h);
-
     let mut g1_zeros = 0usize;
-    let mut g2_zeros = 0usize;
-    let mut g2_prod_zeros = 0usize;
-
     let mut max_g1 = BigRational::zero();
-    let mut max_g2_prod = BigRational::zero();
-
     for g1 in &gamma1_all {
-        let val = evaluate_matolcsi_gh_sq(h, g1);
-        let rat = val.a[0].clone();
+        let rat = evaluate_matolcsi_gh_sq(h, g1).a[0].clone();
         if rat.is_zero() {
             g1_zeros += 1;
         }
@@ -468,12 +476,17 @@ pub fn evaluate_matolcsi_conjecture2_matrix(
             max_g1 = rat;
         }
     }
+    (g1_zeros, max_g1)
+}
 
+fn evaluate_gamma2_stats(h: &Matrix6, h_star: &Matrix6) -> (usize, usize, BigRational) {
+    let gamma2_all = canonical_gamma2_permutations();
+    let mut g2_zeros = 0usize;
+    let mut g2_prod_zeros = 0usize;
+    let mut max_g2_prod = BigRational::zero();
     for g2 in &gamma2_all {
-        let val_h = evaluate_matolcsi_gh_sq(h, g2);
-        let val_hstar = evaluate_matolcsi_gh_sq(&h_star, g2);
-        let rat_h = val_h.a[0].clone();
-        let rat_hstar = val_hstar.a[0].clone();
+        let rat_h = evaluate_matolcsi_gh_sq(h, g2).a[0].clone();
+        let rat_hstar = evaluate_matolcsi_gh_sq(h_star, g2).a[0].clone();
         let prod_rat = &rat_h * &rat_hstar;
 
         if rat_h.is_zero() {
@@ -486,29 +499,52 @@ pub fn evaluate_matolcsi_conjecture2_matrix(
             max_g2_prod = prod_rat;
         }
     }
+    (g2_zeros, g2_prod_zeros, max_g2_prod)
+}
 
-    let mut is_chm = true;
-    let six = Cyc24::rat(ri(6));
+fn has_unit_entries(h: &Matrix6) -> bool {
     let one = Cyc24::rat(ri(1));
     for j in 0..D {
         for k in 0..D {
             if h[j][k].mul(&h[j][k].conj()) != one {
-                is_chm = false;
+                return false;
             }
         }
     }
+    true
+}
+
+fn has_orthogonal_rows_with_adjoint(h: &Matrix6, h_star: &Matrix6) -> bool {
+    let six = Cyc24::rat(ri(6));
+    let zero = Cyc24::zero();
     for j in 0..D {
         for k in 0..D {
-            let mut acc = Cyc24::zero();
-            for r in 0..D {
-                acc = acc.add(&h[j][r].mul(&h_star[r][k]));
-            }
-            let exp = if j == k { six.clone() } else { Cyc24::zero() };
-            if acc != exp {
-                is_chm = false;
+            let prod = row_inner_product_with_adj(h, h_star, j, k);
+            let exp = if j == k { &six } else { &zero };
+            if &prod != exp {
+                return false;
             }
         }
     }
+    true
+}
+
+fn row_inner_product_with_adj(h: &Matrix6, h_star: &Matrix6, j: usize, k: usize) -> Cyc24 {
+    let mut acc = Cyc24::zero();
+    for r in 0..D {
+        acc = acc.add(&h[j][r].mul(&h_star[r][k]));
+    }
+    acc
+}
+
+pub fn evaluate_matolcsi_conjecture2_matrix(
+    matrix_name: &str,
+    h: &Matrix6,
+) -> MatolcsiSingleMatrixReport {
+    let h_star = matrix_adjoint(h);
+    let (g1_zeros, max_g1) = evaluate_gamma1_stats(h);
+    let (g2_zeros, g2_prod_zeros, max_g2_prod) = evaluate_gamma2_stats(h, &h_star);
+    let is_chm = has_unit_entries(h) && has_orthogonal_rows_with_adjoint(h, &h_star);
 
     let satisfies =
         g1_zeros == NUM_GAMMA_PERMUTATIONS_20 && g2_prod_zeros == NUM_GAMMA_PERMUTATIONS_20;

@@ -75,16 +75,39 @@ pub fn real_sign_cyc24(z: &Cyc24) -> i32 {
     0
 }
 
+fn zero_pivot_off_diagonal_clean(a: &[Vec<Cyc24>], k: usize, n: usize) -> bool {
+    for i in (k + 1)..n {
+        if !a[k][i].is_zero() || !a[i][k].is_zero() {
+            return false;
+        }
+    }
+    true
+}
+
+fn schur_update_cyc24(a: &mut [Vec<Cyc24>], k: usize, n: usize, pinv: &Cyc24) {
+    for i in (k + 1)..n {
+        if a[i][k].is_zero() {
+            continue;
+        }
+        let factor = a[i][k].mul(pinv);
+        for j in k..n {
+            let delta = factor.mul(&a[k][j]);
+            a[i][j] = a[i][j].sub(&delta);
+        }
+    }
+}
+
 pub fn is_psd_cyc24(m: &[Vec<Cyc24>]) -> bool {
     let n = m.len();
+    if m.iter().any(|row| row.len() != n) {
+        return false;
+    }
     let mut a: Vec<Vec<Cyc24>> = m.to_vec();
     for k in 0..n {
         let pivot = a[k][k].clone();
         if pivot.is_zero() {
-            for i in (k + 1)..n {
-                if !a[k][i].is_zero() || !a[i][k].is_zero() {
-                    return false;
-                }
+            if !zero_pivot_off_diagonal_clean(&a, k, n) {
+                return false;
             }
             continue;
         }
@@ -92,16 +115,7 @@ pub fn is_psd_cyc24(m: &[Vec<Cyc24>]) -> bool {
             return false;
         }
         let pinv = pivot.inv();
-        for i in (k + 1)..n {
-            if a[i][k].is_zero() {
-                continue;
-            }
-            let factor = a[i][k].mul(&pinv);
-            for j in k..n {
-                let delta = factor.mul(&a[k][j]);
-                a[i][j] = a[i][j].sub(&delta);
-            }
-        }
+        schur_update_cyc24(&mut a, k, n, &pinv);
     }
     true
 }
@@ -222,6 +236,10 @@ mod tests {
         ])));
         assert!(is_psd_cyc24(&cyc_mat(vec![
             vec![cr(1, 1), cr(1, 1)],
+            vec![cr(1, 1), cr(1, 1)]
+        ])));
+        assert!(!is_psd_cyc24(&cyc_mat(vec![
+            vec![cr(1, 1)],
             vec![cr(1, 1), cr(1, 1)]
         ])));
     }

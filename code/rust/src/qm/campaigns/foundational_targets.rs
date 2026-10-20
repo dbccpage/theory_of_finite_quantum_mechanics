@@ -1,14 +1,11 @@
-
-
-use crate::linear_algebra::basic_matrix::BasicMatrix;
-use crate::linear_algebra::matrix as mx;
+use crate::qm::bridge::matrix as mx;
+use ::linear_algebra::backend::basic_matrix::BasicMatrix;
 use num_traits::{Signed, Zero};
 use omega_number_theory::cyclotomic::Cyc12;
 use omega_number_theory::rational::{r_one, r_zero, ri, rq, Rational};
 use omega_quantum_physics::pauli::{pauli_commutes, Pauli};
 use omega_quantum_physics::stabilizer_code_distance::StabilizerCode;
 use serde::{Deserialize, Serialize};
-
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Target1PrimitiveDifferenceReceipt {
@@ -18,35 +15,31 @@ pub struct Target1PrimitiveDifferenceReceipt {
     pub sample_differences: Vec<i64>,
 }
 
+fn check_cocycle_for_pair(pts: &[i64], x: i64, y: i64) -> bool {
+    let d_xy = y - x;
+    for &z in pts {
+        if d_xy + (z - y) != z - x {
+            return false;
+        }
+    }
+    true
+}
+
 pub fn verify_target1_primitive_difference() -> Target1PrimitiveDifferenceReceipt {
     let pts = [0i64, 1, 3, 7, 12];
-    let diff = |x: i64, y: i64| y - x;
-    let mut id_ok = true;
+    let id_ok = pts.iter().all(|&x| x - x == 0);
     let mut anti_ok = true;
     let mut cocycle_ok = true;
     let mut samples = Vec::new();
 
     for &x in &pts {
-        if diff(x, x) != 0 {
-            id_ok = false;
-        }
-    }
-
-    for &x in &pts {
         for &y in &pts {
-            let d_xy = diff(x, y);
-            let d_yx = diff(y, x);
-            if d_xy + d_yx != 0 {
+            let d_xy = y - x;
+            if d_xy + (x - y) != 0 {
                 anti_ok = false;
             }
             samples.push(d_xy);
-            for &z in &pts {
-                let d_yz = diff(y, z);
-                let d_xz = diff(x, z);
-                if d_xy + d_yz != d_xz {
-                    cocycle_ok = false;
-                }
-            }
+            cocycle_ok &= check_cocycle_for_pair(&pts, x, y);
         }
     }
 
@@ -58,7 +51,6 @@ pub fn verify_target1_primitive_difference() -> Target1PrimitiveDifferenceReceip
     }
 }
 
-
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Target2DiamondComplexReceipt {
     pub order_4_boundary_cycle_verified: bool,
@@ -67,67 +59,66 @@ pub struct Target2DiamondComplexReceipt {
     pub selected_ring: String,
 }
 
-pub fn verify_target2_diamond_complex() -> Target2DiamondComplexReceipt {
-    let c4_vertices = [0usize, 1, 3, 2];
-    let j_perm = |v: usize| -> usize {
-        match v {
-            0 => 1,
-            1 => 3,
-            3 => 2,
-            2 => 0,
-            _ => unreachable!(),
-        }
-    };
-    let mut j_order4 = true;
-    for &v in &c4_vertices {
+fn j_perm(v: usize) -> usize {
+    match v {
+        0 => 1,
+        1 => 3,
+        3 => 2,
+        2 => 0,
+        _ => unreachable!(),
+    }
+}
+
+fn verify_c4_boundary_cycle() -> bool {
+    for v in [0usize, 1, 3, 2] {
         let v1 = j_perm(v);
         let v2 = j_perm(v1);
         let v4 = j_perm(j_perm(v2));
         if v4 != v || v2 == v {
-            j_order4 = false;
+            return false;
         }
     }
-
-    let tau_perm = |v: usize| -> usize {
-        match v {
-            0 => 1,
-            1 => 2,
-            2 => 0,
-            other => other,
-        }
-    };
-    let mut tau_order3 = true;
-    for &v in &[0usize, 1, 2] {
-        let v1 = tau_perm(v);
-        let v3 = tau_perm(tau_perm(v1));
-        if v3 != v || v1 == v {
-            tau_order3 = false;
-        }
-    }
-
     let i_elem = Cyc12::i();
     let i2 = i_elem.mul(&i_elem);
     let i4 = i2.mul(&i2);
-    let order_4_ok = j_order4 && i4 == Cyc12::one() && i2 == Cyc12::one().neg();
+    i4 == Cyc12::one() && i2 == Cyc12::one().neg()
+}
 
+fn tau_perm(v: usize) -> usize {
+    match v {
+        0 => 1,
+        1 => 2,
+        2 => 0,
+        other => other,
+    }
+}
+
+fn verify_c3_face_rotation() -> bool {
+    for v in [0usize, 1, 2] {
+        let v1 = tau_perm(v);
+        let v3 = tau_perm(tau_perm(v1));
+        if v3 != v || v1 == v {
+            return false;
+        }
+    }
     let zeta3 = Cyc12::zeta3();
     let zeta3_cubed = zeta3.mul(&zeta3).mul(&zeta3);
-    let order_3_ok = tau_order3 && zeta3_cubed == Cyc12::one() && zeta3 != Cyc12::one();
+    zeta3_cubed == Cyc12::one() && zeta3 != Cyc12::one()
+}
 
+pub fn verify_target2_diamond_complex() -> Target2DiamondComplexReceipt {
     let zeta12 = Cyc12::zeta12(1);
     let z2 = zeta12.mul(&zeta12);
     let z4 = z2.mul(&z2);
     let phi12 = z4.sub(&z2).add(&Cyc12::one());
-    let phi12_annihilated = phi12.is_zero();
 
     Target2DiamondComplexReceipt {
-        order_4_boundary_cycle_verified: order_4_ok,
-        order_3_face_rotation_verified: order_3_ok,
-        cyclotomic_minimal_polynomial_annihilated: phi12_annihilated,
+        order_4_boundary_cycle_verified: verify_c4_boundary_cycle(),
+        order_3_face_rotation_verified: verify_c3_face_rotation(),
+        cyclotomic_minimal_polynomial_annihilated: phi12.is_zero(),
         selected_ring: "Z[zeta_12] = Z[x]/(x^4 - x^2 + 1)".to_string(),
     }
 }
-
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Target3SorkinInterferenceReceipt {
@@ -171,7 +162,6 @@ pub fn verify_target3_sorkin_interference() -> Target3SorkinInterferenceReceipt 
     }
 }
 
-
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Target4RationalCayleyReceipt {
     pub dimension: usize,
@@ -208,7 +198,6 @@ pub fn verify_target4_rational_cayley() -> Target4RationalCayleyReceipt {
         is_exact_orthogonal_isometry: all_ok,
     }
 }
-
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Target5PentagonIdentityReceipt {
@@ -309,7 +298,6 @@ pub fn verify_target5_pentagon_identity() -> Target5PentagonIdentityReceipt {
     }
 }
 
-
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Target6CabelloPolytopeReceipt {
     pub ray_count: usize,
@@ -322,34 +310,71 @@ pub struct Target6CabelloPolytopeReceipt {
     pub interface_transfer_eliminates_non_bornian: bool,
 }
 
-pub fn verify_target6_cabello_polytope() -> Target6CabelloPolytopeReceipt {
-    let rays = omega_quantum_physics::kochen_specker::CABELLO_18_VECTORS;
+fn cabello_dot(u: &[i64; 4], v: &[i64; 4]) -> i64 {
+    u[0] * v[0] + u[1] * v[1] + u[2] * v[2] + u[3] * v[3]
+}
 
-    let dot = |u: &[i64; 4], v: &[i64; 4]| -> i64 {
-        u[0] * v[0] + u[1] * v[1] + u[2] * v[2] + u[3] * v[3]
-    };
-
-    let tetrads = omega_quantum_physics::kochen_specker::CABELLO_9_CONTEXTS;
-
-    let mut all_ortho = true;
-    for t in &tetrads {
-        for i in 0..4 {
-            for j in (i + 1)..4 {
-                if dot(&rays[t[i]], &rays[t[j]]) != 0 {
-                    all_ortho = false;
-                }
+fn is_tetrad_orthogonal(rays: &[[i64; 4]; 18], tet: &[usize; 4]) -> bool {
+    for i in 0..4 {
+        for j in (i + 1)..4 {
+            if cabello_dot(&rays[tet[i]], &rays[tet[j]]) != 0 {
+                return false;
             }
         }
     }
+    true
+}
 
+fn verify_cabello_tetrads_and_degrees(
+    rays: &[[i64; 4]; 18],
+    tetrads: &[[usize; 4]; 9],
+) -> (bool, bool) {
+    let all_ortho = tetrads.iter().all(|t| is_tetrad_orthogonal(rays, t));
     let mut degrees = [0usize; 18];
-    for t in &tetrads {
+    for t in tetrads {
         for &r in t {
             degrees[r] += 1;
         }
     }
     let all_deg_two = degrees.iter().all(|&d| d == 2);
+    (all_ortho, all_deg_two)
+}
 
+fn is_ray_pure_psd(r: &[i64; 4]) -> bool {
+    if cabello_dot(r, r) <= 0 {
+        return false;
+    }
+    for i in 0..4 {
+        for j in 0..4 {
+            let minor2 = (r[i] * r[i]) * (r[j] * r[j]) - (r[i] * r[j]) * (r[i] * r[j]);
+            if minor2 < 0 {
+                return false;
+            }
+        }
+    }
+    true
+}
+
+fn verify_cabello_interface_transfer(rays: &[[i64; 4]; 18], m_diag: &[i64; 4]) -> bool {
+    let normal = [0i64, 0, 0, 1];
+    for r in rays {
+        let n_dot_r = cabello_dot(&normal, r);
+        let exp = n_dot_r * n_dot_r;
+        if exp < 0 {
+            return false;
+        }
+    }
+    let bad_exp = m_diag[0] * normal[0] * normal[0]
+        + m_diag[1] * normal[1] * normal[1]
+        + m_diag[2] * normal[2] * normal[2]
+        + m_diag[3] * normal[3] * normal[3];
+    bad_exp < 0
+}
+
+pub fn verify_target6_cabello_polytope() -> Target6CabelloPolytopeReceipt {
+    let rays = omega_quantum_physics::kochen_specker::CABELLO_18_VECTORS;
+    let tetrads = omega_quantum_physics::kochen_specker::CABELLO_9_CONTEXTS;
+    let (all_ortho, all_deg_two) = verify_cabello_tetrads_and_degrees(&rays, &tetrads);
     let parity_ok = all_deg_two && (tetrads.len() % 2 == 1);
 
     let v17 = rays[17];
@@ -359,43 +384,8 @@ pub fn verify_target6_cabello_polytope() -> Target6CabelloPolytopeReceipt {
         + m_diag[2] * v17[2] * v17[2]
         + m_diag[3] * v17[3] * v17[3];
     let non_psd_detected = bad_vertex_expectation < 0;
-
-    let mut all_pure_psd = true;
-    for r in &rays {
-        let norm_sq = dot(r, r);
-        if norm_sq <= 0 {
-            all_pure_psd = false;
-        }
-        for i in 0..4 {
-            for j in 0..4 {
-                let minor2 = (r[i] * r[i]) * (r[j] * r[j]) - (r[i] * r[j]) * (r[i] * r[j]);
-                if minor2 < 0 {
-                    all_pure_psd = false;
-                }
-            }
-        }
-    }
-
-    let normal = [0i64, 0, 0, 1];
-
-    let mut all_pure_interface_continuous = true;
-    for r in &rays {
-        let n_dot_r = dot(&normal, r);
-        let exp = n_dot_r * n_dot_r;
-        let deficit = if exp < 0 { -exp } else { 0 };
-        if deficit != 0 {
-            all_pure_interface_continuous = false;
-        }
-    }
-
-    let bad_exp = m_diag[0] * normal[0] * normal[0]
-        + m_diag[1] * normal[1] * normal[1]
-        + m_diag[2] * normal[2] * normal[2]
-        + m_diag[3] * normal[3] * normal[3];
-    let bad_deficit = if bad_exp < 0 { -bad_exp } else { 0 };
-    let bad_eliminated = bad_deficit > 0;
-
-    let interface_eliminates = all_pure_interface_continuous && bad_eliminated;
+    let all_pure_psd = rays.iter().all(is_ray_pure_psd);
+    let interface_eliminates = verify_cabello_interface_transfer(&rays, &m_diag);
 
     Target6CabelloPolytopeReceipt {
         ray_count: 18,
@@ -408,7 +398,6 @@ pub fn verify_target6_cabello_polytope() -> Target6CabelloPolytopeReceipt {
         interface_transfer_eliminates_non_bornian: interface_eliminates,
     }
 }
-
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Target7MonotoneUnitarityReceipt {
@@ -456,7 +445,6 @@ pub fn verify_target7_monotone_unitarity() -> Target7MonotoneUnitarityReceipt {
     }
 }
 
-
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Target8BellChshReceipt {
     pub measurement_bases_orthonormal: bool,
@@ -467,43 +455,57 @@ pub struct Target8BellChshReceipt {
     pub pythagorean_inequality_satisfied: bool,
 }
 
+fn dot2_rat(u: &[Rational; 2], v: &[Rational; 2]) -> Rational {
+    &u[0] * &v[0] + &u[1] * &v[1]
+}
+
+fn lhv_chsh_for_mask(mask: u8) -> Rational {
+    let sign = |bit: u8| {
+        if (mask >> bit) & 1 == 0 {
+            ri(-1)
+        } else {
+            ri(1)
+        }
+    };
+    let a1_s = sign(0);
+    let a2_s = sign(1);
+    let b1_s = sign(2);
+    let b2_s = sign(3);
+    (&a1_s * &b1_s + &a1_s * &b2_s + &a2_s * &b1_s - &a2_s * &b2_s).abs()
+}
+
+fn max_lhv_chsh_value() -> Rational {
+    let mut max_lhv = r_zero();
+    for mask in 0..16u8 {
+        let val = lhv_chsh_for_mask(mask);
+        if val > max_lhv {
+            max_lhv = val;
+        }
+    }
+    max_lhv
+}
+
 pub fn verify_target8_bell_chsh() -> Target8BellChshReceipt {
     let a1 = [r_zero(), r_one()];
     let a2 = [r_one(), r_zero()];
     let b1 = [rq(-3, 5), rq(-4, 5)];
     let b2 = [rq(4, 5), rq(-3, 5)];
 
-    let dot2 = |u: &[Rational; 2], v: &[Rational; 2]| -> Rational { &u[0] * &v[0] + &u[1] * &v[1] };
+    let ortho_ok = dot2_rat(&a1, &a1) == r_one()
+        && dot2_rat(&a2, &a2) == r_one()
+        && dot2_rat(&b1, &b1) == r_one()
+        && dot2_rat(&b2, &b2) == r_one()
+        && dot2_rat(&a1, &a2) == r_zero()
+        && dot2_rat(&b1, &b2) == r_zero();
 
-    let ortho_ok = dot2(&a1, &a1) == r_one()
-        && dot2(&a2, &a2) == r_one()
-        && dot2(&b1, &b1) == r_one()
-        && dot2(&b2, &b2) == r_one()
-        && dot2(&a1, &a2) == r_zero()
-        && dot2(&b1, &b2) == r_zero();
-
-    let e11 = -dot2(&a1, &b1);
-    let e12 = -dot2(&a1, &b2);
-    let e21 = -dot2(&a2, &b1);
-    let e22 = -dot2(&a2, &b2);
+    let e11 = -dot2_rat(&a1, &b1);
+    let e12 = -dot2_rat(&a1, &b2);
+    let e21 = -dot2_rat(&a2, &b1);
+    let e22 = -dot2_rat(&a2, &b2);
 
     let s_val = (&e11 + &e12 + &e21 - &e22).abs();
     let violates_lr = s_val > ri(2);
-
-    let mut max_lhv = r_zero();
-    let signs = [ri(-1), ri(1)];
-    for a1_s in &signs {
-        for a2_s in &signs {
-            for b1_s in &signs {
-                for b2_s in &signs {
-                    let val = (a1_s * b1_s + a1_s * b2_s + a2_s * b1_s - a2_s * b2_s).abs();
-                    if val > max_lhv {
-                        max_lhv = val;
-                    }
-                }
-            }
-        }
-    }
+    let max_lhv = max_lhv_chsh_value();
 
     let half_s = &s_val * rq(1, 2);
     let pythagorean_ratio = &half_s * &half_s;
@@ -518,7 +520,6 @@ pub fn verify_target8_bell_chsh() -> Target8BellChshReceipt {
         pythagorean_inequality_satisfied: pythagorean_ok,
     }
 }
-
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Target9BitFlipCodeReceipt {
@@ -556,7 +557,6 @@ pub fn verify_target9_bitflip_code() -> Target9BitFlipCodeReceipt {
         deterministic_recovery_verified: unique_syndromes.len() == 4,
     }
 }
-
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Target10TeleportationReceipt {
@@ -600,7 +600,6 @@ pub fn verify_target10_teleportation() -> Target10TeleportationReceipt {
     }
 }
 
-
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Target11SuperdenseCodingReceipt {
     pub encoded_classical_bits: usize,
@@ -609,6 +608,81 @@ pub struct Target11SuperdenseCodingReceipt {
     pub decoding_circuit_verified: bool,
     pub all_four_messages_deterministic: bool,
     pub decoding_success_probability: Rational,
+}
+
+fn bell_inner_product(u: &[Cyc12; 4], v: &[Cyc12; 4]) -> Cyc12 {
+    let mut dot = Cyc12::zero();
+    for k in 0..4 {
+        dot = dot.add(&u[k].conj().mul(&v[k]));
+    }
+    dot
+}
+
+fn verify_bell_gram_scaled_identity(bell_states: &[[Cyc12; 4]; 4]) -> bool {
+    let two = Cyc12::one().add(&Cyc12::one());
+    for i in 0..4 {
+        for j in 0..4 {
+            let expected = if i == j { two.clone() } else { Cyc12::zero() };
+            if bell_inner_product(&bell_states[i], &bell_states[j]) != expected {
+                return false;
+            }
+        }
+    }
+    true
+}
+
+fn build_superdense_decoder() -> BasicMatrix<Cyc12> {
+    let one = Cyc12::one();
+    let neg_one = one.neg();
+    let mut cnot = mx::zeros::<Cyc12>(4, 4).expect("declared finite fixture");
+    for (r, c) in [(0, 0), (1, 1), (2, 3), (3, 2)] {
+        cnot.set(r, c, one.clone()).expect("fixture index");
+    }
+    let mut h_scaled = mx::zeros::<Cyc12>(4, 4).expect("declared finite fixture");
+    for (r, c) in [(0, 0), (0, 2), (1, 1), (1, 3), (2, 0), (3, 1)] {
+        h_scaled.set(r, c, one.clone()).expect("fixture index");
+    }
+    h_scaled.set(2, 2, neg_one.clone()).expect("fixture index");
+    h_scaled.set(3, 3, neg_one).expect("fixture index");
+    mx::multiply(&h_scaled, &cnot).expect("fixture shape")
+}
+
+fn verify_decoded_message(
+    u_dec: &BasicMatrix<Cyc12>,
+    msg_idx: usize,
+    v: &[Cyc12; 4],
+) -> (bool, Rational) {
+    let mut v_col = mx::zeros::<Cyc12>(4, 4).expect("declared finite fixture");
+    for (row, entry) in v.iter().enumerate() {
+        v_col.set(row, 0, entry.clone()).expect("fixture index");
+    }
+    let decoded = mx::multiply(u_dec, &v_col).expect("fixture shape");
+    let one = Cyc12::one();
+    let four = one.add(&one).add(&one).add(&one);
+    let mut norms = Vec::with_capacity(4);
+    let mut row_ok = true;
+    for row in 0..4 {
+        let val = decoded.get_ref(row, 0).expect("fixture index");
+        let norm_sq = val.mul(&val.conj());
+        norms.push(
+            norm_sq
+                .as_rational()
+                .expect("rational norm of Gaussian fixture"),
+        );
+        let expected_ok = if row == msg_idx {
+            norm_sq == four
+        } else {
+            val.is_zero()
+        };
+        row_ok &= expected_ok;
+    }
+    let total: Rational = norms.iter().cloned().sum();
+    let prob = if total == r_zero() {
+        r_zero()
+    } else {
+        &norms[msg_idx] / total
+    };
+    (row_ok, prob)
 }
 
 pub fn verify_target11_superdense_coding() -> Target11SuperdenseCodingReceipt {
@@ -621,80 +695,19 @@ pub fn verify_target11_superdense_coding() -> Target11SuperdenseCodingReceipt {
     let bell_states: [[Cyc12; 4]; 4] = [
         [one.clone(), zero.clone(), zero.clone(), one.clone()],
         [zero.clone(), one.clone(), one.clone(), zero.clone()],
-        [one.clone(), zero.clone(), zero.clone(), neg_one.clone()],
-        [zero.clone(), neg_i, i_phase, zero.clone()],
+        [one, zero.clone(), zero.clone(), neg_one],
+        [zero.clone(), neg_i, i_phase, zero],
     ];
 
-    let mut is_scaled_id = true;
-    for i in 0..4 {
-        for j in 0..4 {
-            let mut dot = Cyc12::zero();
-            for k in 0..4 {
-                let term = bell_states[i][k].conj().mul(&bell_states[j][k]);
-                dot = dot.add(&term);
-            }
-            let expected = if i == j { one.add(&one) } else { Cyc12::zero() };
-            if dot != expected {
-                is_scaled_id = false;
-            }
-        }
-    }
-
-    let mut cnot = mx::zeros::<Cyc12>(4, 4).expect("declared finite fixture");
-    cnot.set(0, 0, one.clone()).expect("fixture index");
-    cnot.set(1, 1, one.clone()).expect("fixture index");
-    cnot.set(2, 3, one.clone()).expect("fixture index");
-    cnot.set(3, 2, one.clone()).expect("fixture index");
-
-    let mut h_scaled = mx::zeros::<Cyc12>(4, 4).expect("declared finite fixture");
-    h_scaled.set(0, 0, one.clone()).expect("fixture index");
-    h_scaled.set(0, 2, one.clone()).expect("fixture index");
-    h_scaled.set(1, 1, one.clone()).expect("fixture index");
-    h_scaled.set(1, 3, one.clone()).expect("fixture index");
-    h_scaled.set(2, 0, one.clone()).expect("fixture index");
-    h_scaled.set(2, 2, neg_one.clone()).expect("fixture index");
-    h_scaled.set(3, 1, one.clone()).expect("fixture index");
-    h_scaled.set(3, 3, neg_one).expect("fixture index");
-
-    let u_dec = mx::multiply(&h_scaled, &cnot).expect("fixture shape");
+    let is_scaled_id = verify_bell_gram_scaled_identity(&bell_states);
+    let u_dec = build_superdense_decoder();
 
     let mut circuit_ok = true;
     let mut success_probabilities = Vec::new();
     for (msg_idx, v) in bell_states.iter().enumerate() {
-        let mut v_col = mx::zeros::<Cyc12>(4, 4).expect("declared finite fixture");
-        for row in 0..4 {
-            v_col.set(row, 0, v[row].clone()).expect("fixture index");
-        }
-        let decoded = mx::multiply(&u_dec, &v_col).expect("fixture shape");
-
-        let norms = (0..4)
-            .map(|row| {
-                let value = decoded.get_ref(row, 0).expect("fixture index");
-                value
-                    .mul(&value.conj())
-                    .as_rational()
-                    .expect("rational norm of Gaussian fixture")
-            })
-            .collect::<Vec<_>>();
-        let total: Rational = norms.iter().cloned().sum();
-        success_probabilities.push(if total == r_zero() {
-            r_zero()
-        } else {
-            &norms[msg_idx] / total
-        });
-
-        for row in 0..4 {
-            let val = decoded.get_ref(row, 0).expect("fixture index");
-            let norm_sq = val.mul(&val.conj());
-            if row == msg_idx {
-                let four = one.add(&one).add(&one).add(&one);
-                if norm_sq != four {
-                    circuit_ok = false;
-                }
-            } else if !val.is_zero() {
-                circuit_ok = false;
-            }
-        }
+        let (msg_ok, prob) = verify_decoded_message(&u_dec, msg_idx, v);
+        circuit_ok &= msg_ok;
+        success_probabilities.push(prob);
     }
 
     Target11SuperdenseCodingReceipt {
@@ -709,7 +722,6 @@ pub fn verify_target11_superdense_coding() -> Target11SuperdenseCodingReceipt {
             .unwrap_or_else(r_zero),
     }
 }
-
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Target12CssCodeReceipt {

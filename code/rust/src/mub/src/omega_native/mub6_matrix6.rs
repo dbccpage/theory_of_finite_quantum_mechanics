@@ -75,15 +75,19 @@ impl Submatrix2Index {
     }
 }
 
+fn append_submatrices_for_rows(r0: usize, r1: usize, indices: &mut Vec<Submatrix2Index>) {
+    for c0 in 0..D {
+        for c1 in (c0 + 1)..D {
+            indices.push(Submatrix2Index::new(r0, r1, c0, c1));
+        }
+    }
+}
+
 pub fn enumerate_225_submatrices() -> Vec<Submatrix2Index> {
     let mut indices = Vec::with_capacity(NUM_SUBMATRICES_225);
     for r0 in 0..D {
         for r1 in (r0 + 1)..D {
-            for c0 in 0..D {
-                for c1 in (c0 + 1)..D {
-                    indices.push(Submatrix2Index::new(r0, r1, c0, c1));
-                }
-            }
+            append_submatrices_for_rows(r0, r1, &mut indices);
         }
     }
     indices

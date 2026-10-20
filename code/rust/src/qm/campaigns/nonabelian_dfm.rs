@@ -2,26 +2,36 @@
 pub fn verify() -> Result<usize, &'static str> {
     let r = (1u8, 0u8);
     let s = (0u8, 1u8);
-    let srs = mul(mul(s, r)?, s)?;
-    let r_inv = (2u8, 0u8);
-    if srs != r_inv {
+    if mul(mul(s, r)?, s)? != (2u8, 0u8) {
         return Err("s r s is not r inverse");
     }
+    let checked = verify_s3_associativity()?;
+    if checked != 216 {
+        return Err("not every triple was checked");
+    }
+    Ok(checked)
+}
+
+fn verify_s3_pair(a: (u8, u8), b: (u8, u8)) -> Result<usize, &'static str> {
+    let ab = mul(a, b)?;
+    let mut count = 0usize;
+    for c in elements() {
+        let left = mul(ab, c)?;
+        let right = mul(a, mul(b, c)?)?;
+        if left != right {
+            return Err("S3 multiplication is not associative");
+        }
+        count += 1;
+    }
+    Ok(count)
+}
+
+fn verify_s3_associativity() -> Result<usize, &'static str> {
     let mut checked = 0usize;
     for a in elements() {
         for b in elements() {
-            for c in elements() {
-                let left = mul(mul(a, b)?, c)?;
-                let right = mul(a, mul(b, c)?)?;
-                if left != right {
-                    return Err("S3 multiplication is not associative");
-                }
-                checked += 1;
-            }
+            checked += verify_s3_pair(a, b)?;
         }
-    }
-    if checked != 216 {
-        return Err("not every triple was checked");
     }
     Ok(checked)
 }

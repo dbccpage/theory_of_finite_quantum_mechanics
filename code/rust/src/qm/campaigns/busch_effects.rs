@@ -424,54 +424,54 @@ pub struct BoundedSearchReport {
     pub termination: bool,
 }
 
-pub fn bounded_effect_algebraic_search(
+fn enumerate_single_elements(conductor: usize, h: i64) -> Vec<FieldElementF> {
+    let mut elements = Vec::new();
+    for c_re in -h..=h {
+        for c_im in -h..=h {
+            elements.push(FieldElementF::new(
+                conductor,
+                FieldElementFPlus::from_i64_slice(conductor, &[c_re]),
+                FieldElementFPlus::from_i64_slice(conductor, &[c_im]),
+            ));
+        }
+    }
+    elements
+}
+
+fn enumerate_candidate_vectors(
     conductor: usize,
     height_bound: i64,
-) -> Result<BoundedSearchReport, String> {
-    if ![4, 5, 8].contains(&conductor) || !(1..=2).contains(&height_bound) {
-        return Err("declared search budget/conductor refused".into());
-    }
-    let mut embedding = CyclotomicRealRoot::new(conductor);
+) -> Vec<(FieldElementF, FieldElementF)> {
+    let elements = enumerate_single_elements(conductor, height_bound);
     let mut candidates = Vec::new();
-
-    let h = height_bound;
-    for c1_re in -h..=h {
-        for c1_im in -h..=h {
-            let v1 = FieldElementF::new(
-                conductor,
-                FieldElementFPlus::from_i64_slice(conductor, &[c1_re]),
-                FieldElementFPlus::from_i64_slice(conductor, &[c1_im]),
-            );
-            for c2_re in -h..=h {
-                for c2_im in -h..=h {
-                    let v2 = FieldElementF::new(
-                        conductor,
-                        FieldElementFPlus::from_i64_slice(conductor, &[c2_re]),
-                        FieldElementFPlus::from_i64_slice(conductor, &[c2_im]),
-                    );
-                    if v1.is_zero() && v2.is_zero() {
-                        continue;
-                    }
-                    candidates.push((v1.clone(), v2));
-                }
+    for v1 in &elements {
+        for v2 in &elements {
+            if !(v1.is_zero() && v2.is_zero()) {
+                candidates.push((v1.clone(), v2.clone()));
             }
         }
     }
+    candidates
+}
 
-    let mut projectors: Vec<HermitianMatrix> = Vec::new();
-    for (v1, v2) in &candidates {
-        let norm_sq = &v1.norm() + &v2.norm();
-        if norm_sq.sign(&mut embedding) <= 0 {
-            continue;
-        }
-        let inv_norm = norm_sq.inverse();
+fn candidate_to_projector(
+    conductor: usize,
+    v1: &FieldElementF,
+    v2: &FieldElementF,
+    embedding: &mut CyclotomicRealRoot,
+) -> Option<HermitianMatrix> {
+    let norm_sq = &v1.norm() + &v2.norm();
+    if norm_sq.sign(embedding) <= 0 {
+        return None;
+    }
+    let inv_norm = norm_sq.inverse();
+    let p00 = &v1.norm() * &inv_norm;
+    let p11 = &v2.norm() * &inv_norm;
+    let p01 = &(v1 * &v2.conjugate()) * &inv_norm;
+    let p10 = p01.conjugate();
 
-        let p00 = &v1.norm() * &inv_norm;
-        let p11 = &v2.norm() * &inv_norm;
-        let p01 = &(v1 * &v2.conjugate()) * &inv_norm;
-        let p10 = p01.conjugate();
-
-        let p = HermitianMatrix::new(
+    Some(
+        HermitianMatrix::new(
             2,
             conductor,
             vec![
@@ -485,41 +485,94 @@ pub fn bounded_effect_algebraic_search(
                 ],
             ],
         )
-        .unwrap();
+        .unwrap(),
+    )
+}
 
-        if !projectors.iter().any(|prev| prev == &p) {
-            projectors.push(p);
+fn build_distinct_ray_projectors(
+    conductor: usize,
+    candidates: &[(FieldElementF, FieldElementF)],
+    embedding: &mut CyclotomicRealRoot,
+) -> Vec<HermitianMatrix> {
+    let mut projectors: Vec<HermitianMatrix> = Vec::new();
+    for (v1, v2) in candidates {
+        if let Some(p) = candidate_to_projector(conductor, v1, v2, embedding) {
+            if !projectors.contains(&p) {
+                projectors.push(p);
+            }
         }
     }
+    projectors
+}
 
+fn find_orthogonal_basis_pairs(
+    conductor: usize,
+    projectors: &[HermitianMatrix],
+) -> Vec<(usize, usize)> {
     let mut orthogonal_pairs = Vec::new();
     let ident = HermitianMatrix::identity(2, conductor).expect("checked fixed effect carrier");
     for i in 0..projectors.len() {
         for j in (i + 1)..projectors.len() {
-            let p_sum = projectors[i].add(&projectors[j]).unwrap();
-            if p_sum == ident {
+            if projectors[i].add(&projectors[j]).unwrap() == ident {
                 orthogonal_pairs.push((i, j));
             }
         }
     }
+    orthogonal_pairs
+}
 
+fn is_four_element_povm(
+    conductor: usize,
+    projectors: &[HermitianMatrix],
+    indices: [usize; 4],
+    ident: &HermitianMatrix,
+    embedding: &mut CyclotomicRealRoot,
+) -> bool {
+    let half = rq(1, 2);
+    let mut sum = HermitianMatrix::zero(2, conductor).expect("checked fixed effect carrier");
+    for idx in indices {
+        let eff = projectors[idx]
+            .scalar_mul_rational(&half)
+            .expect("checked fixed effect carrier");
+        if !eff.is_effect(embedding) {
+            return false;
+        }
+        sum = sum.add(&eff).expect("compatible fixed POVM effects");
+    }
+    &sum == ident
+}
+
+fn count_four_element_povms(
+    conductor: usize,
+    projectors: &[HermitianMatrix],
+    orthogonal_pairs: &[(usize, usize)],
+    embedding: &mut CyclotomicRealRoot,
+) -> usize {
+    let ident = HermitianMatrix::identity(2, conductor).expect("checked fixed effect carrier");
     let mut four_element_povms = 0;
     for (i, &(a, b)) in orthogonal_pairs.iter().enumerate() {
         for &(c, d) in &orthogonal_pairs[i + 1..] {
-            let effects = [a, b, c, d].map(|k| {
-                projectors[k]
-                    .scalar_mul_rational(&rq(1, 2))
-                    .expect("checked fixed effect carrier")
-            });
-            let sum = effects.iter().fold(
-                HermitianMatrix::zero(2, conductor).expect("checked fixed effect carrier"),
-                |s, e| s.add(e).expect("compatible fixed POVM effects"),
-            );
-            if sum == ident && effects.iter().all(|e| e.is_effect(&mut embedding)) {
+            if is_four_element_povm(conductor, projectors, [a, b, c, d], &ident, embedding) {
                 four_element_povms += 1;
             }
         }
     }
+    four_element_povms
+}
+
+pub fn bounded_effect_algebraic_search(
+    conductor: usize,
+    height_bound: i64,
+) -> Result<BoundedSearchReport, String> {
+    if ![4, 5, 8].contains(&conductor) || !(1..=2).contains(&height_bound) {
+        return Err("declared search budget/conductor refused".into());
+    }
+    let mut embedding = CyclotomicRealRoot::new(conductor);
+    let candidates = enumerate_candidate_vectors(conductor, height_bound);
+    let projectors = build_distinct_ray_projectors(conductor, &candidates, &mut embedding);
+    let orthogonal_pairs = find_orthogonal_basis_pairs(conductor, &projectors);
+    let four_element_povms =
+        count_four_element_povms(conductor, &projectors, &orthogonal_pairs, &mut embedding);
 
     Ok(BoundedSearchReport {
         conductor,

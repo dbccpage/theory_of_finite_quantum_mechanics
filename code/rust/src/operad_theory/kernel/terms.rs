@@ -161,6 +161,34 @@ impl NormalizedTerm {
     }
 }
 
+fn replace_leaf_in_children(
+    children: Vec<ChildNode>,
+    slot: usize,
+    replacement: &(OperationSpec, Vec<ChildNode>),
+) -> (Vec<ChildNode>, isize) {
+    let mut remaining = slot as isize;
+    let mut new_children = Vec::with_capacity(children.len());
+    let mut replaced = false;
+    for child in children {
+        if replaced {
+            new_children.push(child);
+            continue;
+        }
+        let (new_child, rem_after) = replace_leaf(
+            child,
+            remaining as usize,
+            (replacement.0.clone(), replacement.1.clone()),
+        );
+        if rem_after == -1 {
+            replaced = true;
+        } else {
+            remaining = rem_after;
+        }
+        new_children.push(new_child);
+    }
+    (new_children, if replaced { -1 } else { remaining })
+}
+
 fn replace_leaf(
     node: ChildNode,
     slot: usize,
@@ -184,33 +212,13 @@ fn replace_leaf(
             operation,
             children,
         } => {
-            let mut remaining = slot as isize;
-            let mut new_children = Vec::with_capacity(children.len());
-            let mut replaced = false;
-            for child in children {
-                if replaced {
-                    new_children.push(child);
-                    continue;
-                }
-                let (new_child, rem_after) = replace_leaf(
-                    child,
-                    remaining as usize,
-                    (replacement.0.clone(), replacement.1.clone()),
-                );
-                if rem_after == -1 {
-                    replaced = true;
-                    new_children.push(new_child);
-                } else {
-                    remaining = rem_after;
-                    new_children.push(new_child);
-                }
-            }
+            let (new_children, rem) = replace_leaf_in_children(children, slot, &replacement);
             (
                 ChildNode::Operation {
                     operation,
                     children: new_children,
                 },
-                if replaced { -1 } else { remaining },
+                rem,
             )
         }
     }
@@ -306,18 +314,97 @@ fn validate_children(operation: &OperationSpec, children: &[ChildNode]) -> Resul
     Ok(())
 }
 
+fn validate_substitution_slot(
+    outer_inputs: &[PortSpec],
+    slot: usize,
+    inner_out: &PortSpec,
+) -> Result<(), Refusal> {
+    if slot >= outer_inputs.len() {
+        return Err(Refusal {
+            code: "SLOT_OUT_OF_RANGE".into(),
+            message: format!("slot {} is outside outer arity {}", slot, outer_inputs.len()),
+            locus: String::new(),
+            details: vec![
+                ("slot".into(), slot.to_string()),
+                ("arity".into(), outer_inputs.len().to_string()),
+            ],
+        });
+    }
+    if !outer_inputs[slot].same_type(inner_out) {
+        return Err(Refusal {
+            code: "BOUNDARY_MISMATCH".into(),
+            message: "inner output does not match the selected outer input".into(),
+            locus: String::new(),
+            details: vec![
+                ("expected_colour".into(), outer_inputs[slot].colour_id.clone()),
+                ("expected_schema".into(), outer_inputs[slot].schema_ref.clone()),
+                ("actual_colour".into(), inner_out.colour_id.clone()),
+                ("actual_schema".into(), inner_out.schema_ref.clone()),
+            ],
+        });
+    }
+    Ok(())
+}
+
+fn normalize_substitution(
+    outer: &OperationTerm,
+    slot: usize,
+    inner: &OperationTerm,
+) -> Result<TreeNode, Refusal> {
+    let outer_tree = normalize_tree(outer)?;
+    let inner_tree = normalize_tree(inner)?;
+    let outer_inputs = outer_tree.inputs();
+    let inner_out = inner_tree.output();
+    validate_substitution_slot(&outer_inputs, slot, &inner_out)?;
+
+    match (&outer_tree, &inner_tree) {
+        (TreeNode::Identity(_), _) => Ok(inner_tree),
+        (_, TreeNode::Identity(_)) => Ok(outer_tree),
+        (
+            TreeNode::Operation {
+                operation,
+                children,
+            },
+            TreeNode::Operation {
+                operation: in_op,
+                children: in_children,
+            },
+        ) => {
+            let (new_children, rem) = replace_leaf_in_children(
+                children.clone(),
+                slot,
+                &(in_op.clone(), in_children.clone()),
+            );
+            if rem != -1 {
+                return Err(Refusal {
+                    code: "NORMALIZATION_FAILED".into(),
+                    message: "selected input leaf was not replaced".into(),
+                    locus: String::new(),
+                    details: Vec::new(),
+                });
+            }
+            Ok(TreeNode::Operation {
+                operation: operation.clone(),
+                children: new_children,
+            })
+        }
+    }
+}
+
+fn validate_admitted_tree(tree: &TreeNode) -> Result<TreeNode, Refusal> {
+    match tree {
+        TreeNode::Identity(port) => validate_port(port)?,
+        TreeNode::Operation {
+            operation,
+            children,
+        } => validate_children(operation, children)?,
+    }
+    Ok(tree.clone())
+}
+
 fn normalize_tree(term: &OperationTerm) -> Result<TreeNode, Refusal> {
     match term {
-        OperationTerm::Admitted(norm) => {
-            match &norm.tree {
-                TreeNode::Identity(port) => validate_port(port)?,
-                TreeNode::Operation {
-                    operation,
-                    children,
-                } => validate_children(operation, children)?,
-            }
-            Ok(norm.tree.clone())
-        }
+        OperationTerm::Admitted(norm) => validate_admitted_tree(&norm.tree),
         OperationTerm::Identity(port) => {
             validate_port(port)?;
             Ok(TreeNode::Identity(port.clone()))
@@ -336,92 +423,7 @@ fn normalize_tree(term: &OperationTerm) -> Result<TreeNode, Refusal> {
             })
         }
         OperationTerm::Substitute { outer, slot, inner } => {
-            let outer_tree = normalize_tree(outer)?;
-            let inner_tree = normalize_tree(inner)?;
-            let outer_inputs = outer_tree.inputs();
-            if *slot >= outer_inputs.len() {
-                return Err(Refusal {
-                    code: "SLOT_OUT_OF_RANGE".into(),
-                    message: format!(
-                        "slot {} is outside outer arity {}",
-                        slot,
-                        outer_inputs.len()
-                    ),
-                    locus: String::new(),
-                    details: vec![
-                        ("slot".into(), slot.to_string()),
-                        ("arity".into(), outer_inputs.len().to_string()),
-                    ],
-                });
-            }
-            let inner_out = inner_tree.output();
-            if !outer_inputs[*slot].same_type(&inner_out) {
-                return Err(Refusal {
-                    code: "BOUNDARY_MISMATCH".into(),
-                    message: "inner output does not match the selected outer input".into(),
-                    locus: String::new(),
-                    details: vec![
-                        (
-                            "expected_colour".into(),
-                            outer_inputs[*slot].colour_id.clone(),
-                        ),
-                        (
-                            "expected_schema".into(),
-                            outer_inputs[*slot].schema_ref.clone(),
-                        ),
-                        ("actual_colour".into(), inner_out.colour_id),
-                        ("actual_schema".into(), inner_out.schema_ref),
-                    ],
-                });
-            }
-            match (&outer_tree, &inner_tree) {
-                (TreeNode::Identity(_), _) => Ok(inner_tree),
-                (_, TreeNode::Identity(_)) => Ok(outer_tree),
-                (
-                    TreeNode::Operation {
-                        operation,
-                        children,
-                    },
-                    TreeNode::Operation {
-                        operation: in_op,
-                        children: in_children,
-                    },
-                ) => {
-                    let mut remaining = *slot as isize;
-                    let mut new_children = Vec::with_capacity(children.len());
-                    let mut replaced = false;
-                    for child in children {
-                        if replaced {
-                            new_children.push(child.clone());
-                            continue;
-                        }
-                        let (new_child, rem_after) = replace_leaf(
-                            child.clone(),
-                            remaining as usize,
-                            (in_op.clone(), in_children.clone()),
-                        );
-                        if rem_after == -1 {
-                            replaced = true;
-                            new_children.push(new_child);
-                        } else {
-                            remaining = rem_after;
-                            new_children.push(new_child);
-                        }
-                    }
-                    if !replaced {
-                        return Err(Refusal {
-                            code: "NORMALIZATION_FAILED".into(),
-                            message: "selected input leaf was not replaced".into(),
-                            locus: String::new(),
-                            details: Vec::new(),
-                        });
-                    }
-                    Ok(TreeNode::Operation {
-                        operation: operation.clone(),
-                        children: new_children,
-                    })
-                }
-            }
+            normalize_substitution(outer, *slot, inner)
         }
     }
 }
@@ -453,4 +455,53 @@ pub fn substitute(
 
 pub fn term_from_normalized(term: &NormalizedTerm) -> OperationTerm {
     OperationTerm::Admitted(term.clone())
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use crate::kernel::model::{AuthorityEffect, InvocationGrade};
+
+    const DIGEST: &str =
+        "sha256:0000000000000000000000000000000000000000000000000000000000000000";
+
+    fn port(id: &str, colour: &str) -> PortSpec {
+        PortSpec::new(id, colour, "any").unwrap()
+    }
+
+    fn op(in_colour: &str, out_colour: &str) -> OperationSpec {
+        OperationSpec::new(OperationSpecInput {
+            operation_id: "step",
+            version: "v1",
+            input_ports: vec![port("in_0", in_colour)],
+            output_port: port("out", out_colour),
+            executor_ref: "skill.step",
+            executor_digest: DIGEST,
+            tool_refs: vec![],
+            effects: vec![],
+            invocation_grade: InvocationGrade::Discipline,
+            authority_effect: AuthorityEffect::None,
+            authority_ceiling: AuthorityEffect::None,
+        })
+        .unwrap()
+    }
+
+    #[test]
+    fn normalize_and_substitute_preserve_boundaries_and_refuse_invalid_slots_or_types() {
+        let p_state = port("x", "State");
+        let id_term = identity(p_state.clone());
+        let step_op = op("State", "State");
+        let prim = OperationTerm::Primitive(step_op);
+        let left_unit = substitute(&id_term, 0, &prim).unwrap();
+        let right_unit = substitute(&prim, 0, &id_term).unwrap();
+        assert_eq!(left_unit, right_unit);
+        assert!(left_unit.canonical_id().unwrap().starts_with("sha256:"));
+
+        let slot_err = substitute(&prim, 1, &id_term).unwrap_err();
+        assert_eq!(slot_err.code, "SLOT_OUT_OF_RANGE");
+
+        let bad_id = identity(port("y", "Code"));
+        let type_err = substitute(&prim, 0, &bad_id).unwrap_err();
+        assert_eq!(type_err.code, "BOUNDARY_MISMATCH");
+    }
 }

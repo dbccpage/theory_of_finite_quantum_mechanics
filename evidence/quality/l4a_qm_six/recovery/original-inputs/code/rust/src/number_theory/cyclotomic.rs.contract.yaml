@@ -1,0 +1,738 @@
+# YAML 1.2 (JSON syntax). AuthorityEffect: None.
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/number_theory/cyclotomic.rs",
+    "sha256": "24f9039f4f067264efac8e7ef021c6ef7ed14c23fa41ab56d2d063acecc53023",
+    "language": "Rust"
+  },
+  "contract_urn": "urn:tfqm:contract:number_theory:cyclotomic.rs",
+  "status": "draft_requires_semantic_review",
+  "target": "L4A",
+  "profile": "Exact",
+  "purpose": "Finite fields, cyclotomic rings, exact rational arithmetic, modular arithmetic, quadratic forms, and Dirichlet character evaluations.",
+  "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+  "compilation": {
+    "disabled_by_cfg_any": false,
+    "test_or_support_file": false,
+    "compatibility_mirror_tree": false
+  },
+  "declaration_index": [
+    {
+      "kind": "struct",
+      "name": "GaussianRat",
+      "line": 10,
+      "declaration_line": "pub struct GaussianRat {"
+    },
+    {
+      "kind": "fn",
+      "name": "zero",
+      "line": 16,
+      "declaration_line": "pub fn zero() -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "one",
+      "line": 23,
+      "declaration_line": "pub fn one() -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "i",
+      "line": 30,
+      "declaration_line": "pub fn i() -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "from_rational",
+      "line": 37,
+      "declaration_line": "pub fn from_rational(r: Rational) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "from_ints",
+      "line": 44,
+      "declaration_line": "pub fn from_ints(re: i64, im: i64) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "is_integer_ring_element",
+      "line": 51,
+      "declaration_line": "pub fn is_integer_ring_element(&self) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "is_zero",
+      "line": 55,
+      "declaration_line": "pub fn is_zero(&self) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "is_real",
+      "line": 59,
+      "declaration_line": "pub fn is_real(&self) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "add",
+      "line": 63,
+      "declaration_line": "pub fn add(&self, other: &Self) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "sub",
+      "line": 70,
+      "declaration_line": "pub fn sub(&self, other: &Self) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "neg",
+      "line": 77,
+      "declaration_line": "pub fn neg(&self) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "mul",
+      "line": 84,
+      "declaration_line": "pub fn mul(&self, other: &Self) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "conj",
+      "line": 91,
+      "declaration_line": "pub fn conj(&self) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "norm_sq",
+      "line": 98,
+      "declaration_line": "pub fn norm_sq(&self) -> Rational {"
+    },
+    {
+      "kind": "fn",
+      "name": "inv",
+      "line": 102,
+      "declaration_line": "pub fn inv(&self) -> Self {"
+    },
+    {
+      "kind": "struct",
+      "name": "EisensteinRat",
+      "line": 116,
+      "declaration_line": "pub struct EisensteinRat {"
+    },
+    {
+      "kind": "fn",
+      "name": "zero",
+      "line": 122,
+      "declaration_line": "pub fn zero() -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "one",
+      "line": 129,
+      "declaration_line": "pub fn one() -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "zeta3",
+      "line": 136,
+      "declaration_line": "pub fn zeta3() -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "zeta3_sq",
+      "line": 143,
+      "declaration_line": "pub fn zeta3_sq() -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "from_rational",
+      "line": 150,
+      "declaration_line": "pub fn from_rational(r: Rational) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "from_ints",
+      "line": 157,
+      "declaration_line": "pub fn from_ints(a: i64, b: i64) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "is_integer_ring_element",
+      "line": 161,
+      "declaration_line": "pub fn is_integer_ring_element(&self) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "add",
+      "line": 165,
+      "declaration_line": "pub fn add(&self, other: &Self) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "sub",
+      "line": 172,
+      "declaration_line": "pub fn sub(&self, other: &Self) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "neg",
+      "line": 179,
+      "declaration_line": "pub fn neg(&self) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "mul",
+      "line": 186,
+      "declaration_line": "pub fn mul(&self, other: &Self) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "conj",
+      "line": 201,
+      "declaration_line": "pub fn conj(&self) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "norm_sq",
+      "line": 208,
+      "declaration_line": "pub fn norm_sq(&self) -> Rational {"
+    },
+    {
+      "kind": "fn",
+      "name": "inv",
+      "line": 212,
+      "declaration_line": "pub fn inv(&self) -> Self {"
+    },
+    {
+      "kind": "struct",
+      "name": "Cyc8",
+      "line": 227,
+      "declaration_line": "pub struct Cyc8 {"
+    },
+    {
+      "kind": "fn",
+      "name": "zero",
+      "line": 232,
+      "declaration_line": "pub fn zero() -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "one",
+      "line": 238,
+      "declaration_line": "pub fn one() -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "zeta8",
+      "line": 244,
+      "declaration_line": "pub fn zeta8(pow: i32) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "i",
+      "line": 255,
+      "declaration_line": "pub fn i() -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "sqrt2",
+      "line": 259,
+      "declaration_line": "pub fn sqrt2() -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "inv_sqrt2",
+      "line": 263,
+      "declaration_line": "pub fn inv_sqrt2() -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "sqrt2_inv",
+      "line": 274,
+      "declaration_line": "pub fn sqrt2_inv() -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "is_integer_ring_element",
+      "line": 278,
+      "declaration_line": "pub fn is_integer_ring_element(&self) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "add",
+      "line": 282,
+      "declaration_line": "pub fn add(&self, other: &Self) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "sub",
+      "line": 288,
+      "declaration_line": "pub fn sub(&self, other: &Self) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "neg",
+      "line": 294,
+      "declaration_line": "pub fn neg(&self) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "mul",
+      "line": 300,
+      "declaration_line": "pub fn mul(&self, other: &Self) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "conj",
+      "line": 311,
+      "declaration_line": "pub fn conj(&self) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "inv",
+      "line": 322,
+      "declaration_line": "pub fn inv(&self) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "as_rational",
+      "line": 334,
+      "declaration_line": "pub fn as_rational(&self) -> Option<Rational> {"
+    },
+    {
+      "kind": "struct",
+      "name": "Cyc12",
+      "line": 345,
+      "declaration_line": "pub struct Cyc12 {"
+    },
+    {
+      "kind": "fn",
+      "name": "zero",
+      "line": 350,
+      "declaration_line": "pub fn zero() -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "one",
+      "line": 356,
+      "declaration_line": "pub fn one() -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "zeta12",
+      "line": 362,
+      "declaration_line": "pub fn zeta12(pow: i32) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "i",
+      "line": 371,
+      "declaration_line": "pub fn i() -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "zeta3",
+      "line": 375,
+      "declaration_line": "pub fn zeta3() -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "is_integer_ring_element",
+      "line": 379,
+      "declaration_line": "pub fn is_integer_ring_element(&self) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "is_zero",
+      "line": 383,
+      "declaration_line": "pub fn is_zero(&self) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "is_rational",
+      "line": 387,
+      "declaration_line": "pub fn is_rational(&self) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "as_rational",
+      "line": 391,
+      "declaration_line": "pub fn as_rational(&self) -> Option<Rational> {"
+    },
+    {
+      "kind": "fn",
+      "name": "add",
+      "line": 399,
+      "declaration_line": "pub fn add(&self, other: &Self) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "sub",
+      "line": 405,
+      "declaration_line": "pub fn sub(&self, other: &Self) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "neg",
+      "line": 411,
+      "declaration_line": "pub fn neg(&self) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "mul",
+      "line": 417,
+      "declaration_line": "pub fn mul(&self, other: &Self) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "inv",
+      "line": 423,
+      "declaration_line": "pub fn inv(&self) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "conj",
+      "line": 435,
+      "declaration_line": "pub fn conj(&self) -> Self {"
+    },
+    {
+      "kind": "struct",
+      "name": "Cyc5",
+      "line": 469,
+      "declaration_line": "pub struct Cyc5 {"
+    },
+    {
+      "kind": "fn",
+      "name": "zero",
+      "line": 474,
+      "declaration_line": "pub fn zero() -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "one",
+      "line": 480,
+      "declaration_line": "pub fn one() -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "rat",
+      "line": 486,
+      "declaration_line": "pub fn rat(r: Rational) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "zeta5",
+      "line": 492,
+      "declaration_line": "pub fn zeta5(pow: i32) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "is_integer_ring_element",
+      "line": 501,
+      "declaration_line": "pub fn is_integer_ring_element(&self) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "is_zero",
+      "line": 505,
+      "declaration_line": "pub fn is_zero(&self) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "add",
+      "line": 509,
+      "declaration_line": "pub fn add(&self, other: &Self) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "sub",
+      "line": 515,
+      "declaration_line": "pub fn sub(&self, other: &Self) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "neg",
+      "line": 521,
+      "declaration_line": "pub fn neg(&self) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "mul",
+      "line": 527,
+      "declaration_line": "pub fn mul(&self, other: &Self) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "conj",
+      "line": 533,
+      "declaration_line": "pub fn conj(&self) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "trace",
+      "line": 546,
+      "declaration_line": "pub fn trace(&self) -> Rational {"
+    },
+    {
+      "kind": "fn",
+      "name": "inv",
+      "line": 550,
+      "declaration_line": "pub fn inv(&self) -> Self {"
+    },
+    {
+      "kind": "struct",
+      "name": "Cyc24",
+      "line": 591,
+      "declaration_line": "pub struct Cyc24 {"
+    },
+    {
+      "kind": "fn",
+      "name": "zero",
+      "line": 596,
+      "declaration_line": "pub fn zero() -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "one",
+      "line": 602,
+      "declaration_line": "pub fn one() -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "rat",
+      "line": 608,
+      "declaration_line": "pub fn rat(r: Rational) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "from_int",
+      "line": 614,
+      "declaration_line": "pub fn from_int(n: i64) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "zeta24",
+      "line": 618,
+      "declaration_line": "pub fn zeta24(pow: i32) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "i",
+      "line": 627,
+      "declaration_line": "pub fn i() -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "zeta3",
+      "line": 631,
+      "declaration_line": "pub fn zeta3() -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "zeta3_pow",
+      "line": 635,
+      "declaration_line": "pub fn zeta3_pow(k: i32) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "zeta8",
+      "line": 639,
+      "declaration_line": "pub fn zeta8() -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "zeta12",
+      "line": 643,
+      "declaration_line": "pub fn zeta12() -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "sqrt2",
+      "line": 647,
+      "declaration_line": "pub fn sqrt2() -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "sqrt3",
+      "line": 651,
+      "declaration_line": "pub fn sqrt3() -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "inv_sqrt2",
+      "line": 655,
+      "declaration_line": "pub fn inv_sqrt2() -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "sqrt2_inv",
+      "line": 659,
+      "declaration_line": "pub fn sqrt2_inv() -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "embed_gaussian",
+      "line": 663,
+      "declaration_line": "pub fn embed_gaussian(g: &GaussianRat) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "embed_eisenstein",
+      "line": 672,
+      "declaration_line": "pub fn embed_eisenstein(e: &EisensteinRat) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "is_zero",
+      "line": 681,
+      "declaration_line": "pub fn is_zero(&self) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "is_rational",
+      "line": 685,
+      "declaration_line": "pub fn is_rational(&self) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "as_rational",
+      "line": 689,
+      "declaration_line": "pub fn as_rational(&self) -> Option<Rational> {"
+    },
+    {
+      "kind": "fn",
+      "name": "add",
+      "line": 697,
+      "declaration_line": "pub fn add(&self, other: &Self) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "sub",
+      "line": 703,
+      "declaration_line": "pub fn sub(&self, other: &Self) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "neg",
+      "line": 709,
+      "declaration_line": "pub fn neg(&self) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "mul",
+      "line": 715,
+      "declaration_line": "pub fn mul(&self, other: &Self) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "conj",
+      "line": 721,
+      "declaration_line": "pub fn conj(&self) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "inv",
+      "line": 734,
+      "declaration_line": "pub fn inv(&self) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "scale_rat",
+      "line": 857,
+      "declaration_line": "pub fn scale_rat(&self, r: &Rational) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "scale_rat",
+      "line": 867,
+      "declaration_line": "pub fn scale_rat(&self, r: &Rational) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "scale_rat",
+      "line": 877,
+      "declaration_line": "pub fn scale_rat(&self, r: &Rational) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "scale_rat",
+      "line": 887,
+      "declaration_line": "pub fn scale_rat(&self, r: &Rational) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "scale_rat",
+      "line": 895,
+      "declaration_line": "pub fn scale_rat(&self, r: &Rational) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "scale_rat",
+      "line": 904,
+      "declaration_line": "pub fn scale_rat(&self, r: &Rational) -> Self {"
+    }
+  ],
+  "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+  "requirements": [
+    {
+      "id": "G1",
+      "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+    },
+    {
+      "id": "G2",
+      "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+    },
+    {
+      "id": "G3",
+      "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+    },
+    {
+      "id": "G4",
+      "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+    },
+    {
+      "id": "G5",
+      "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+    }
+  ],
+  "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+  "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+  "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+  "open_obligations": [
+    "Complete source-to-requirement and downstream consumer review is outstanding.",
+    "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+    "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+  ],
+  "evidence": [
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json",
+      "sha256": "3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98"
+    },
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json",
+      "sha256": "e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd"
+    },
+    {
+      "path": "code/rust/quality/l4a_qm_six/records.py",
+      "sha256": "0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706"
+    },
+    {
+      "path": "code/rust/quality/l4a_qm_six/specs.json",
+      "sha256": "bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12"
+    },
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json",
+      "sha256": "929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758"
+    },
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json",
+      "sha256": "9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78"
+    },
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json",
+      "sha256": "90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a"
+    }
+  ]
+}

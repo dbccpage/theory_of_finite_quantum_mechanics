@@ -2,6 +2,17 @@
 pub fn verify() -> Result<i64, &'static str> {
     let a = 3i64;
     let b = 4i64;
+    let initial = build_initial_state(a, b)?;
+    let rebuilt = rebuild_from_branches(a, b)?;
+    if rebuilt != initial {
+        return Err("Bell branches do not rebuild the teleported state");
+    }
+    let a_sq = a.checked_mul(a).ok_or("norm")?;
+    let b_sq = b.checked_mul(b).ok_or("norm")?;
+    a_sq.checked_add(b_sq).ok_or("norm")
+}
+
+fn build_initial_state(a: i64, b: i64) -> Result<[i64; 8], &'static str> {
     let mut initial = [0i64; 8];
     add(&mut initial, 0, 0, 0, a)?;
     add(&mut initial, 0, 1, 1, a)?;
@@ -10,18 +21,16 @@ pub fn verify() -> Result<i64, &'static str> {
     for amp in &mut initial {
         *amp = amp.checked_mul(2).ok_or("scale")?;
     }
+    Ok(initial)
+}
+
+fn rebuild_from_branches(a: i64, b: i64) -> Result<[i64; 8], &'static str> {
     let mut rebuilt = [0i64; 8];
     branch(&mut rebuilt, &[(0, 0, 1), (1, 1, 1)], &[a, b])?;
     branch(&mut rebuilt, &[(0, 0, 1), (1, 1, -1)], &[a, -b])?;
     branch(&mut rebuilt, &[(0, 1, 1), (1, 0, 1)], &[b, a])?;
     branch(&mut rebuilt, &[(0, 1, 1), (1, 0, -1)], &[-b, a])?;
-    if rebuilt != initial {
-        return Err("Bell branches do not rebuild the teleported state");
-    }
-    let a_sq = a.checked_mul(a).ok_or("norm")?;
-    let b_sq = b.checked_mul(b).ok_or("norm")?;
-    let norm = a_sq.checked_add(b_sq).ok_or("norm")?;
-    Ok(norm)
+    Ok(rebuilt)
 }
 
 fn branch(

@@ -1,0 +1,432 @@
+# YAML 1.2 (JSON syntax). AuthorityEffect: None.
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/mub/omega_native/mub6_global_gluing.rs",
+    "sha256": "ea19252fd2bd8fbfe996b6d3ba8b536ea84c83b4df07cb6104632dd6d68fe822",
+    "language": "Rust"
+  },
+  "contract_urn": "urn:tfqm:contract:mub:omega_native:mub6_global_gluing.rs",
+  "status": "draft_requires_semantic_review",
+  "target": "L4A",
+  "profile": "Exact",
+  "purpose": "Finite mutually unbiased bases (MUB) in dimension 6, cyclotomic/rational Gramian diagnostics, dual witnesses, Fourier landing verifiers, and cover-tree exclusions.",
+  "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+  "compilation": {
+    "disabled_by_cfg_any": false,
+    "test_or_support_file": false,
+    "compatibility_mirror_tree": false
+  },
+  "declaration_index": [
+    {
+      "kind": "const",
+      "name": "NUM_CHARTS",
+      "line": 20,
+      "declaration_line": "pub const NUM_CHARTS: usize = 5;"
+    },
+    {
+      "kind": "const",
+      "name": "AMBIENT_DIM",
+      "line": 22,
+      "declaration_line": "pub const AMBIENT_DIM: usize = D;"
+    },
+    {
+      "kind": "fn",
+      "name": "circulation_gamma_threshold",
+      "line": 24,
+      "declaration_line": "pub fn circulation_gamma_threshold() -> BigRational {"
+    },
+    {
+      "kind": "enum",
+      "name": "ModuliChart5",
+      "line": 29,
+      "declaration_line": "pub enum ModuliChart5 {"
+    },
+    {
+      "kind": "const",
+      "name": "ALL",
+      "line": 38,
+      "declaration_line": "pub const ALL: [ModuliChart5; NUM_CHARTS] = ["
+    },
+    {
+      "kind": "fn",
+      "name": "to_index",
+      "line": 46,
+      "declaration_line": "pub fn to_index(&self) -> usize {"
+    },
+    {
+      "kind": "fn",
+      "name": "from_index",
+      "line": 56,
+      "declaration_line": "pub fn from_index(index: usize) -> Option<Self> {"
+    },
+    {
+      "kind": "fn",
+      "name": "name",
+      "line": 67,
+      "declaration_line": "pub fn name(&self) -> &'static str {"
+    },
+    {
+      "kind": "fn",
+      "name": "canonical_id",
+      "line": 77,
+      "declaration_line": "pub fn canonical_id(&self) -> &'static str {"
+    },
+    {
+      "kind": "fn",
+      "name": "default_margin",
+      "line": 87,
+      "declaration_line": "pub fn default_margin(&self) -> BigRational {"
+    },
+    {
+      "kind": "fn",
+      "name": "is_nerve1",
+      "line": 98,
+      "declaration_line": "pub fn is_nerve1(i: ModuliChart5, j: ModuliChart5) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "is_nerve2",
+      "line": 109,
+      "declaration_line": "pub fn is_nerve2(i: ModuliChart5, j: ModuliChart5, k: ModuliChart5) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "enumerate_nerve1_edges",
+      "line": 113,
+      "declaration_line": "pub fn enumerate_nerve1_edges() -> Vec<(ModuliChart5, ModuliChart5)> {"
+    },
+    {
+      "kind": "fn",
+      "name": "enumerate_nerve2_triples",
+      "line": 137,
+      "declaration_line": "pub fn enumerate_nerve2_triples() -> Vec<(ModuliChart5, ModuliChart5, ModuliChart5)> {"
+    },
+    {
+      "kind": "fn",
+      "name": "is_matrix_identity",
+      "line": 147,
+      "declaration_line": "pub fn is_matrix_identity(m: &Matrix6) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "is_matrix_unitary",
+      "line": 159,
+      "declaration_line": "pub fn is_matrix_unitary(m: &Matrix6) -> bool {"
+    },
+    {
+      "kind": "struct",
+      "name": "Unitary6",
+      "line": 167,
+      "declaration_line": "pub struct Unitary6 {"
+    },
+    {
+      "kind": "fn",
+      "name": "identity",
+      "line": 172,
+      "declaration_line": "pub fn identity() -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "from_matrix",
+      "line": 178,
+      "declaration_line": "pub fn from_matrix(matrix: Matrix6) -> Result<Self, GlobalGluingError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "from_matrix_unchecked",
+      "line": 189,
+      "declaration_line": "pub fn from_matrix_unchecked(matrix: Matrix6) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "mul",
+      "line": 195,
+      "declaration_line": "pub fn mul(&self, other: &Self) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "inv",
+      "line": 201,
+      "declaration_line": "pub fn inv(&self) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "is_identity",
+      "line": 207,
+      "declaration_line": "pub fn is_identity(&self) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "trace",
+      "line": 211,
+      "declaration_line": "pub fn trace(&self) -> Cyc24 {"
+    },
+    {
+      "kind": "fn",
+      "name": "act_on_vector",
+      "line": 219,
+      "declaration_line": "pub fn act_on_vector(&self, v: &[Cyc24; D]) -> [Cyc24; D] {"
+    },
+    {
+      "kind": "fn",
+      "name": "act_on_basis",
+      "line": 229,
+      "declaration_line": "pub fn act_on_basis(&self, basis: &BasisCyc) -> BasisCyc {"
+    },
+    {
+      "kind": "fn",
+      "name": "act_on_triple",
+      "line": 233,
+      "declaration_line": "pub fn act_on_triple(&self, triple: &MuTripleCyc) -> MuTripleCyc {"
+    },
+    {
+      "kind": "fn",
+      "name": "canonical_gauge_for_chart",
+      "line": 246,
+      "declaration_line": "pub fn canonical_gauge_for_chart(chart: ModuliChart5) -> Unitary6 {"
+    },
+    {
+      "kind": "struct",
+      "name": "TransitionCocycleFamily",
+      "line": 258,
+      "declaration_line": "pub struct TransitionCocycleFamily {"
+    },
+    {
+      "kind": "fn",
+      "name": "canonical",
+      "line": 263,
+      "declaration_line": "pub fn canonical() -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "get",
+      "line": 281,
+      "declaration_line": "pub fn get(&self, i: ModuliChart5, j: ModuliChart5) -> &Unitary6 {"
+    },
+    {
+      "kind": "fn",
+      "name": "verify_diagonal_identity",
+      "line": 285,
+      "declaration_line": "pub fn verify_diagonal_identity(&self) -> Result<(), GlobalGluingError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "verify_inversion_symmetry",
+      "line": 297,
+      "declaration_line": "pub fn verify_inversion_symmetry(&self) -> Result<(), GlobalGluingError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "verify_cech_cocycle",
+      "line": 313,
+      "declaration_line": "pub fn verify_cech_cocycle(&self) -> Result<CechVerificationReport, GlobalGluingError> {"
+    },
+    {
+      "kind": "fn",
+      "name": "corner_cocycle_holds",
+      "line": 341,
+      "declaration_line": "pub fn corner_cocycle_holds(&self, corner: &ModuliLoop) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "verify_all",
+      "line": 354,
+      "declaration_line": "pub fn verify_all(&self) -> Result<CechVerificationReport, GlobalGluingError> {"
+    },
+    {
+      "kind": "struct",
+      "name": "CechVerificationReport",
+      "line": 362,
+      "declaration_line": "pub struct CechVerificationReport {"
+    },
+    {
+      "kind": "struct",
+      "name": "ModuliLoop",
+      "line": 370,
+      "declaration_line": "pub struct ModuliLoop {"
+    },
+    {
+      "kind": "fn",
+      "name": "new",
+      "line": 377,
+      "declaration_line": "pub fn new("
+    },
+    {
+      "kind": "fn",
+      "name": "deltoid_3cycle",
+      "line": 399,
+      "declaration_line": "pub fn deltoid_3cycle() -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "tao_3cycle",
+      "line": 412,
+      "declaration_line": "pub fn tao_3cycle() -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "haagerup_excursion",
+      "line": 425,
+      "declaration_line": "pub fn haagerup_excursion() -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "torus_collar_generator",
+      "line": 437,
+      "declaration_line": "pub fn torus_collar_generator(phase_shift: i32) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "twisted_deltoid_loop",
+      "line": 470,
+      "declaration_line": "pub fn twisted_deltoid_loop(phase_shift: i32) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "composite_6cycle",
+      "line": 505,
+      "declaration_line": "pub fn composite_6cycle() -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "path_holonomy",
+      "line": 522,
+      "declaration_line": "pub fn path_holonomy(c_family: &TransitionCocycleFamily, nodes: &[ModuliChart5]) -> Unitary6 {"
+    },
+    {
+      "kind": "fn",
+      "name": "loop_holonomy",
+      "line": 536,
+      "declaration_line": "pub fn loop_holonomy(c_family: &TransitionCocycleFamily, loop_obj: &ModuliLoop) -> Unitary6 {"
+    },
+    {
+      "kind": "fn",
+      "name": "is_holonomy_non_trivial",
+      "line": 544,
+      "declaration_line": "pub fn is_holonomy_non_trivial(hol: &Unitary6) -> bool {"
+    },
+    {
+      "kind": "struct",
+      "name": "LoopCirculationReport",
+      "line": 549,
+      "declaration_line": "pub struct LoopCirculationReport {"
+    },
+    {
+      "kind": "fn",
+      "name": "scaled_verified_value",
+      "line": 564,
+      "declaration_line": "pub fn scaled_verified_value(&self, scale: i128) -> Option<BigRational> {"
+    },
+    {
+      "kind": "fn",
+      "name": "solve_loop_circulation",
+      "line": 622,
+      "declaration_line": "pub fn solve_loop_circulation("
+    },
+    {
+      "kind": "struct",
+      "name": "ModuliPoint6",
+      "line": 692,
+      "declaration_line": "pub struct ModuliPoint6 {"
+    },
+    {
+      "kind": "fn",
+      "name": "sample_for_chart",
+      "line": 698,
+      "declaration_line": "pub fn sample_for_chart(chart: ModuliChart5) -> Self {"
+    },
+    {
+      "kind": "fn",
+      "name": "verify_pointwise_obstruction",
+      "line": 707,
+      "declaration_line": "pub fn verify_pointwise_obstruction(p: &ModuliPoint6) -> bool {"
+    },
+    {
+      "kind": "fn",
+      "name": "verify_global_cross_section_obstruction",
+      "line": 712,
+      "declaration_line": "pub fn verify_global_cross_section_obstruction("
+    },
+    {
+      "kind": "struct",
+      "name": "GlobalGluingReport",
+      "line": 732,
+      "declaration_line": "pub struct GlobalGluingReport {"
+    },
+    {
+      "kind": "fn",
+      "name": "evaluate_target_b2_global_gluing",
+      "line": 751,
+      "declaration_line": "pub fn evaluate_target_b2_global_gluing() -> Result<GlobalGluingReport, GlobalGluingError> {"
+    },
+    {
+      "kind": "enum",
+      "name": "GlobalGluingError",
+      "line": 800,
+      "declaration_line": "pub enum GlobalGluingError {"
+    }
+  ],
+  "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+  "requirements": [
+    {
+      "id": "G1",
+      "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+    },
+    {
+      "id": "G2",
+      "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+    },
+    {
+      "id": "G3",
+      "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+    },
+    {
+      "id": "G4",
+      "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+    },
+    {
+      "id": "G5",
+      "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+    }
+  ],
+  "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+  "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+  "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+  "open_obligations": [
+    "Complete source-to-requirement and downstream consumer review is outstanding.",
+    "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+    "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+  ],
+  "evidence": [
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json",
+      "sha256": "3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98"
+    },
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json",
+      "sha256": "e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd"
+    },
+    {
+      "path": "code/rust/quality/l4a_qm_six/records.py",
+      "sha256": "0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706"
+    },
+    {
+      "path": "code/rust/quality/l4a_qm_six/specs.json",
+      "sha256": "bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12"
+    },
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json",
+      "sha256": "929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758"
+    },
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json",
+      "sha256": "9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78"
+    },
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json",
+      "sha256": "90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a"
+    }
+  ]
+}

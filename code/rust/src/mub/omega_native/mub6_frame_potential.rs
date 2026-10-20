@@ -197,37 +197,54 @@ pub struct NonUnitaryPovmAnalysis {
     pub etf_mub_incompatibility_certified: bool,
     pub example_eta_1_over_10_penalty_positive: bool,
 }
-pub fn solve_frame_potential_certificate() -> FramePotentialCertificate {
-    let bases = canonical_candidate_bases();
+fn is_basis_pair_orthonormal(
+    i: usize,
+    j: usize,
+    u: &[Cyc24; DIM_HILBERT],
+    v: &[Cyc24; DIM_HILBERT],
+) -> bool {
+    let ip_sq = inner_product_mod_sq(u, v);
+    if i == j {
+        ip_sq == BigRational::one()
+    } else {
+        ip_sq.is_zero()
+    }
+}
 
-    let mut vectors_normalized = true;
-    let mut bases_internal_orthonormality = Vec::with_capacity(NUM_BASES_4);
-
-    for basis in &bases {
-        let mut basis_ortho = true;
-        for (i, u) in basis.iter().enumerate() {
-            let n2 = vector_norm_sq(u);
-            if n2 != BigRational::one() {
-                vectors_normalized = false;
-            }
-            for (j, v) in basis.iter().enumerate() {
-                let ip_sq = inner_product_mod_sq(u, v);
-                if i == j {
-                    if ip_sq != BigRational::one() {
-                        basis_ortho = false;
-                    }
-                } else if !ip_sq.is_zero() {
-                    basis_ortho = false;
-                }
+fn check_single_basis(basis: &[[Cyc24; DIM_HILBERT]]) -> (bool, bool) {
+    let mut normalized = true;
+    let mut ortho = true;
+    for (i, u) in basis.iter().enumerate() {
+        if vector_norm_sq(u) != BigRational::one() {
+            normalized = false;
+        }
+        for (j, v) in basis.iter().enumerate() {
+            if !is_basis_pair_orthonormal(i, j, u, v) {
+                ortho = false;
             }
         }
-        bases_internal_orthonormality.push(basis_ortho);
     }
+    (normalized, ortho)
+}
 
-    let block_mat = compute_all_blocks(&bases);
+fn check_all_bases_orthonormality(bases: &[Vec<[Cyc24; DIM_HILBERT]>]) -> (bool, Vec<bool>) {
+    let mut vectors_normalized = true;
+    let mut bases_internal_orthonormality = Vec::with_capacity(bases.len());
+    for basis in bases {
+        let (norm_ok, ortho_ok) = check_single_basis(basis);
+        if !norm_ok {
+            vectors_normalized = false;
+        }
+        bases_internal_orthonormality.push(ortho_ok);
+    }
+    (vectors_normalized, bases_internal_orthonormality)
+}
+
+fn summarize_block_matrix(
+    block_mat: &[Vec<BigRational>],
+) -> (BigRational, BigRational, Vec<Vec<String>>) {
     let mut diag_sum = BigRational::zero();
     let mut off_diag_sum = BigRational::zero();
-
     let mut block_matrix_str = Vec::with_capacity(NUM_BASES_4);
     for i in 0..NUM_BASES_4 {
         let mut row_str = Vec::with_capacity(NUM_BASES_4);
@@ -242,6 +259,25 @@ pub fn solve_frame_potential_certificate() -> FramePotentialCertificate {
         }
         block_matrix_str.push(row_str);
     }
+    (diag_sum, off_diag_sum, block_matrix_str)
+}
+
+fn all_flags_true(flags: &[bool]) -> bool {
+    for &f in flags {
+        if !f {
+            return false;
+        }
+    }
+    true
+}
+
+pub fn solve_frame_potential_certificate() -> FramePotentialCertificate {
+    let bases = canonical_candidate_bases();
+    let (vectors_normalized, bases_internal_orthonormality) =
+        check_all_bases_orthonormality(&bases);
+
+    let block_mat = compute_all_blocks(&bases);
+    let (diag_sum, off_diag_sum, block_matrix_str) = summarize_block_matrix(&block_mat);
 
     let total_fp = &diag_sum + &off_diag_sum;
     let ideal_fp = ideal_mub_frame_potential(DIM_HILBERT, NUM_BASES_4);
@@ -260,15 +296,18 @@ pub fn solve_frame_potential_certificate() -> FramePotentialCertificate {
     let test_penalty = non_unitary_povm_intra_penalty(test_eta);
     let povm_defect_pos = test_penalty > BigRational::zero();
 
-    let verified_sound = vectors_normalized
-        && bases_internal_orthonormality.iter().all(|&b| b)
-        && defect_strictly_positive
-        && welch_bound_satisfied
-        && etf_incompatible
-        && povm_defect_pos
-        && total_fp == BigRational::from_integer(45.into())
-        && ideal_fp == BigRational::from_integer(36.into())
-        && defect == BigRational::from_integer(9.into());
+    let checks = [
+        vectors_normalized,
+        all_flags_true(&bases_internal_orthonormality),
+        defect_strictly_positive,
+        welch_bound_satisfied,
+        etf_incompatible,
+        povm_defect_pos,
+        total_fp == BigRational::from_integer(45.into()),
+        ideal_fp == BigRational::from_integer(36.into()),
+        defect == BigRational::from_integer(9.into()),
+    ];
+    let verified_sound = all_flags_true(&checks);
 
     FramePotentialCertificate {
         schema_version: "omega.mub.frame-potential.v2".to_string(),

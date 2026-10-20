@@ -73,31 +73,34 @@ pub fn commensurability(gaps: &[Q]) -> Result<(bool, Q), String> {
     }
     Ok((true, q))
 }
+fn is_sorted_prob_vec(v: &[Q]) -> bool {
+    v.len() <= 1024 && !v.windows(2).any(|a| a[0] < a[1])
+}
+
+fn build_rational_spectrum(
+    v: &[Q],
+) -> Result<omega_quantum_physics::exact_entropy::RationalSpectrum, String> {
+    omega_quantum_physics::exact_entropy::RationalSpectrum::try_new(
+        v.iter().cloned().map(|q| (q, 1)).collect(),
+    )
+    .map_err(|error| format!("INVALID_SPECTRUM:{error}"))
+}
+
 pub fn majorization(p: &[Q], q: &[Q]) -> Result<&'static str, String> {
     use omega_quantum_physics::majorization::Majorization;
-    if p.len() > 1024
-        || q.len() > 1024
-        || p.windows(2).any(|a| a[0] < a[1])
-        || q.windows(2).any(|a| a[0] < a[1])
-    {
+    if !is_sorted_prob_vec(p) || !is_sorted_prob_vec(q) {
         return Err("INVALID_SORTED_PROBABILITY_VECTORS".into());
     }
-    let first = omega_quantum_physics::exact_entropy::RationalSpectrum::try_new(
-        p.iter().cloned().map(|q| (q, 1)).collect(),
-    )
-    .map_err(|error| format!("INVALID_SPECTRUM:{error}"))?;
-    let second = omega_quantum_physics::exact_entropy::RationalSpectrum::try_new(
-        q.iter().cloned().map(|q| (q, 1)).collect(),
-    )
-    .map_err(|error| format!("INVALID_SPECTRUM:{error}"))?;
-    omega_quantum_physics::majorization::compare_spectra(&first, &second)
-        .map(|relation| match relation {
-            Majorization::Equal => "EQUAL",
-            Majorization::PMajorizesQ => "P_MAJORIZES_Q",
-            Majorization::QMajorizesP => "Q_MAJORIZES_P",
-            Majorization::Incomparable => "INCOMPARABLE",
-        })
-        .map_err(|error| format!("INVALID_SPECTRUM:{error}"))
+    let first = build_rational_spectrum(p)?;
+    let second = build_rational_spectrum(q)?;
+    let relation = omega_quantum_physics::majorization::compare_spectra(&first, &second)
+        .map_err(|error| format!("INVALID_SPECTRUM:{error}"))?;
+    Ok(match relation {
+        Majorization::Equal => "EQUAL",
+        Majorization::PMajorizesQ => "P_MAJORIZES_Q",
+        Majorization::QMajorizesP => "Q_MAJORIZES_P",
+        Majorization::Incomparable => "INCOMPARABLE",
+    })
 }
 pub fn numerical_semigroup(primes: &[usize], bound: usize) -> Result<Vec<usize>, String> {
     if bound > 100000 || primes.iter().any(|&p| p == 0) {
@@ -169,15 +172,7 @@ fn vector(input: &Value, key: &str, default: &[Q]) -> Result<Vec<Q>, String> {
         })
         .unwrap_or(Ok(default.to_vec()))
 }
-pub fn run(input: &Value) -> Result<Value, String> {
-    let p = vector(input, "p", &[rq(7, 10), rq(3, 20), rq(3, 20)])?;
-    let q = vector(input, "q", &[rq(3, 5), rq(7, 20), rq(1, 20)])?;
-    let r = field_q(input, "gibbs_ratio", rq(1, 2))?;
-    let spectrum = thermal(&r)?;
-    let sums: Vec<Q> = (1..=4)
-        .map(|k| spectrum.iter().map(|v| v.pow(k)).sum())
-        .collect();
-    let e = newton_p_to_e(&sums)?;
+fn compute_stoquastic_witness() -> Result<Value, String> {
     let h = mx::from_rows(vec![
         vec![ri(1), ri(0), ri(0), ri(0)],
         vec![ri(0), ri(-1), ri(2), ri(0)],
@@ -186,12 +181,25 @@ pub fn run(input: &Value) -> Result<Value, String> {
     ])
     .map_err(|error| error.to_string())?;
     let u = mx::diagonal(&[ri(1), ri(-1), ri(1), ri(-1)]).map_err(|error| error.to_string())?;
-    let transformed = mx::multiply(&h, &u)
-        .and_then(|hu| mx::multiply(&u, &hu))
-        .map_err(|error| error.to_string())?;
-    let transformed_rows = mx::to_rows(&transformed).map_err(|error| error.to_string())?;
-    let z = C::zeta(6)?;
-    let cancel = C::scalar(6, 1)?.sub(&z)?.add(&z.pow(2))?;
+    let hu = mx::multiply(&h, &u).map_err(|error| error.to_string())?;
+    let transformed = mx::multiply(&u, &hu).map_err(|error| error.to_string())?;
+    let rows = mx::to_rows(&transformed).map_err(|error| error.to_string())?;
+    let mut all_nonpos = true;
+    for (i, row) in rows.iter().enumerate() {
+        for (j, val) in row.iter().enumerate() {
+            if i != j && val > &ri(0) {
+                all_nonpos = false;
+            }
+        }
+    }
+    Ok(json!({
+        "witness": "I (x) Z",
+        "matrix": rows.iter().map(|v| qvec(v)).collect::<Vec<_>>(),
+        "all_offdiagonal_nonpositive": all_nonpos
+    }))
+}
+
+fn compute_conductor_semigroup(input: &Value) -> Result<(usize, Vec<usize>), String> {
     let conductor = field_usize(input, "conductor", 12, 120)?;
     if conductor == 0 {
         return Err("POSITIVE_CONDUCTOR_REQUIRED".into());
@@ -203,14 +211,65 @@ pub fn run(input: &Value) -> Result<Value, String> {
         },
     )
     .map_err(|error| error.to_string())?;
-    let primes = factors
-        .keys()
-        .map(|p| usize::try_from(p).map_err(|_| "PRIME_BASIS_REPRESENTATION".to_string()))
-        .collect::<Result<Vec<_>, _>>()?;
-    let semigroup = numerical_semigroup(&primes, field_usize(input, "bound", 60, 100000)?)?;
-    Ok(
-        json!({"authority_effect":"None","block01":solver::generate_c750_b01_parity_receipt()?,"invariants":{"power_sums":qvec(&sums),"elementary":qvec(&e),"newton_roundtrip":newton_e_to_p(&e)?==sums},"thermal":qvec(&spectrum),"majorization":majorization(&p,&q)?,"purity_damping":{"before":"1/2","after":"1","non_monotonicity":rq(1,2)<ri(1)},"rotation":rotation_orbit(field_usize(input,"rotation_steps",10,256)?)?,"semigroup":semigroup,"signed_cancellation":cancel==C::scalar(6,0)?,"stoquastic":{"witness":"I (x) Z","matrix":transformed_rows.iter().map(|v|qvec(v)).collect::<Vec<_>>(),"all_offdiagonal_nonpositive":(0..4).all(|i|(0..4).all(|j|i==j||transformed_rows[i][j]<=ri(0)))},"mobius":running_balance(conductor as u64)?,"declared_metadata":serde_json::from_str::<Value>(include_str!("data/entropy_meta.json")).map_err(|e|e.to_string())?,"limitations":["Semigroup generation does not prove the general Lam-Leung theorem.","The old LP function returned True without solving an LP; no LP certificate is claimed.","Historical prices and five-way partitions are declarations, not inferred from these computations."]}),
-    )
+    let mut primes = Vec::with_capacity(factors.len());
+    for p in factors.keys() {
+        primes.push(usize::try_from(p).map_err(|_| "PRIME_BASIS_REPRESENTATION".to_string())?);
+    }
+    let bound = field_usize(input, "bound", 60, 100000)?;
+    let semigroup = numerical_semigroup(&primes, bound)?;
+    Ok((conductor, semigroup))
+}
+
+fn compute_signed_cancellation() -> Result<bool, String> {
+    let z = C::zeta(6)?;
+    let cancel = C::scalar(6, 1)?.sub(&z)?.add(&z.pow(2))?;
+    Ok(cancel == C::scalar(6, 0)?)
+}
+
+fn compute_invariants_and_thermal(input: &Value) -> Result<(Value, Vec<String>), String> {
+    let r = field_q(input, "gibbs_ratio", rq(1, 2))?;
+    let spectrum = thermal(&r)?;
+    let sums: Vec<Q> = (1..=4)
+        .map(|k| spectrum.iter().map(|v| v.pow(k)).sum())
+        .collect();
+    let e = newton_p_to_e(&sums)?;
+    let roundtrip = newton_e_to_p(&e)? == sums;
+    let inv = json!({
+        "power_sums": qvec(&sums),
+        "elementary": qvec(&e),
+        "newton_roundtrip": roundtrip
+    });
+    Ok((inv, qvec(&spectrum)))
+}
+
+pub fn run(input: &Value) -> Result<Value, String> {
+    let p = vector(input, "p", &[rq(7, 10), rq(3, 20), rq(3, 20)])?;
+    let q = vector(input, "q", &[rq(3, 5), rq(7, 20), rq(1, 20)])?;
+    let (invariants, thermal_vec) = compute_invariants_and_thermal(input)?;
+    let stoquastic = compute_stoquastic_witness()?;
+    let (conductor, semigroup) = compute_conductor_semigroup(input)?;
+    let rot_steps = field_usize(input, "rotation_steps", 10, 256)?;
+    let meta: Value =
+        serde_json::from_str(include_str!("data/entropy_meta.json")).map_err(|e| e.to_string())?;
+    Ok(json!({
+        "authority_effect": "None",
+        "block01": solver::generate_c750_b01_parity_receipt()?,
+        "invariants": invariants,
+        "thermal": thermal_vec,
+        "majorization": majorization(&p, &q)?,
+        "purity_damping": {"before": "1/2", "after": "1", "non_monotonicity": rq(1, 2) < ri(1)},
+        "rotation": rotation_orbit(rot_steps)?,
+        "semigroup": semigroup,
+        "signed_cancellation": compute_signed_cancellation()?,
+        "stoquastic": stoquastic,
+        "mobius": running_balance(conductor as u64)?,
+        "declared_metadata": meta,
+        "limitations": [
+            "Semigroup generation does not prove the general Lam-Leung theorem.",
+            "The old LP function returned True without solving an LP; no LP certificate is claimed.",
+            "Historical prices and five-way partitions are declarations, not inferred from these computations."
+        ]
+    }))
 }
 #[cfg(test)]
 mod tests {

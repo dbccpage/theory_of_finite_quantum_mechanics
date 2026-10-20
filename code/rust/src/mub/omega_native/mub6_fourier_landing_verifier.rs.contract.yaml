@@ -1,0 +1,131 @@
+# YAML 1.2 (JSON syntax). AuthorityEffect: None.
+{
+  "schema_version": "1.0.0",
+  "AuthorityEffect": "None",
+  "artifact": {
+    "path": "code/rust/src/mub/omega_native/mub6_fourier_landing_verifier.rs",
+    "sha256": "42317e6797b457ffd0785a7125b455d9564d36f8258fbe9648aa9d4ae0231c44",
+    "language": "Rust"
+  },
+  "contract_urn": "urn:tfqm:contract:mub:omega_native:mub6_fourier_landing_verifier.rs",
+  "status": "individual_gate_review_L4A_complete",
+  "target": "L4A",
+  "profile": "Exact",
+  "purpose": "Finite mutually unbiased bases (MUB) in dimension 6, cyclotomic/rational Gramian diagnostics, dual witnesses, Fourier landing verifiers, and cover-tree exclusions.",
+  "subject_role": "Individual source review: verifies exact rational Fourier cross-ratio and diagonal gauge invariance across the four canonical F6(x, y) constituent seeds.",
+  "compilation": {
+    "disabled_by_cfg_any": false,
+    "test_or_support_file": false,
+    "compatibility_mirror_tree": false
+  },
+  "declaration_index": [
+    {
+      "kind": "struct",
+      "name": "FourierLandingReceipt",
+      "line": 7,
+      "declaration_line": "pub struct FourierLandingReceipt {"
+    },
+    {
+      "kind": "fn",
+      "name": "verify_fourier_landing",
+      "line": 20,
+      "declaration_line": "pub fn verify_fourier_landing() -> FourierLandingReceipt {"
+    }
+  ],
+  "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+  "requirements": [
+    {
+      "id": "G1",
+      "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+    },
+    {
+      "id": "G2",
+      "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+    },
+    {
+      "id": "G3",
+      "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+    },
+    {
+      "id": "G4",
+      "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+    },
+    {
+      "id": "G5",
+      "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+    }
+  ],
+  "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+  "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+  "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+  "open_obligations": [
+    "Scoped to the four declared constituent seeds in F6(x, y)."
+  ],
+  "evidence": [
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json",
+      "sha256": "3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98"
+    },
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json",
+      "sha256": "e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd"
+    },
+    {
+      "path": "code/rust/quality/l4a_qm_six/records.py",
+      "sha256": "0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706"
+    },
+    {
+      "path": "code/rust/quality/l4a_qm_six/specs.json",
+      "sha256": "bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12"
+    },
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json",
+      "sha256": "929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758"
+    },
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json",
+      "sha256": "9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78"
+    },
+    {
+      "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json",
+      "sha256": "90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a"
+    }
+  ],
+  "reviewed_specification": {
+    "status": "individual_gate_review_L4A_complete",
+    "capability_assessment": {
+      "source_sha256": "42317e6797b457ffd0785a7125b455d9564d36f8258fbe9648aa9d4ae0231c44",
+      "level": "L4",
+      "basis": "Individual source review: verifies exact rational Fourier cross-ratio and diagonal gauge invariance across the four canonical F6(x, y) constituent seeds."
+    },
+    "purpose": "Evaluate exact BigRational cross-ratio and diagonal gauge-scaling invariants on F6(x, y) Complex Hadamard seeds.",
+    "open_obligations": [
+      "Scoped to the four declared constituent seeds in F6(x, y)."
+    ],
+    "engineering_assessment": {
+      "source_sha256": "42317e6797b457ffd0785a7125b455d9564d36f8258fbe9648aa9d4ae0231c44",
+      "gates": {
+        "G1": {
+          "grade": "A",
+          "basis": "Clear receipt contract (FourierLandingReceipt) binding CHM admission, cross-ratio, and gauge invariance."
+        },
+        "G2": {
+          "grade": "A",
+          "basis": "Exact BigRational cross-ratio arithmetic with non-zero denominators on all constituent seeds."
+        },
+        "G3": {
+          "grade": "A",
+          "basis": "Total deterministic execution over fixed finite seeds with explicit FAIL status on invariant violation."
+        },
+        "G4": {
+          "grade": "A",
+          "basis": "Positive/negative unit tests and designated semantic mutation MUB02-fourier-cross-ratio (R = 1.0) verify invariant sensitivity."
+        },
+        "G5": {
+          "grade": "A",
+          "basis": "All explicit source functions satisfy Grade A structural ceilings (CCN <= 10, cognitive <= 15, nesting <= 3)."
+        }
+      }
+    }
+  }
+}

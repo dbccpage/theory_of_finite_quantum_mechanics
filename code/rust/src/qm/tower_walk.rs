@@ -77,37 +77,39 @@ pub fn declared_registry() -> Vec<DeclaredCandidate> {
     .collect()
 }
 
+fn adjudicate_classical_gluing() -> RegistryTerminal {
+    let square = MerminPeresSquare::standard();
+    match square.verify_no_noncontextual_assignment() {
+        Ok(true) => RegistryTerminal::Fail(FailureWitness::NoGlobalSection {
+            assignments_checked: 1 << square.observables().len(),
+        }),
+        Ok(false) => RegistryTerminal::Resolve,
+        Err(_) => RegistryTerminal::Refuse,
+    }
+}
+
+fn adjudicate_real_rebit() -> RegistryTerminal {
+    let Ok(report) = LocalTomographyReport::real_product_params(2, 2) else {
+        return RegistryTerminal::Refuse;
+    };
+    if report.identity_holds {
+        RegistryTerminal::Resolve
+    } else {
+        RegistryTerminal::Fail(FailureWitness::LocalTomography {
+            local: report.local_param_a * report.local_param_b,
+            joint: report.joint_param,
+        })
+    }
+}
+
 pub fn adjudicate(candidate: &DeclaredCandidate, m2: &M2Packet) -> RegistryTerminal {
     use CandidateInterface::*;
     match candidate.interface {
         ScalarL1 => RegistryTerminal::Fail(FailureWitness::NoStateEffectStructure),
         RotationalL1L2 => RegistryTerminal::Fail(FailureWitness::NoBornPairingOrCptp),
-        ClassicalContextualGluing => {
-            let square = MerminPeresSquare::standard();
-            match square.verify_no_noncontextual_assignment() {
-                Ok(true) => RegistryTerminal::Fail(FailureWitness::NoGlobalSection {
-                    assignments_checked: 1 << square.observables().len(),
-                }),
-                Ok(false) => RegistryTerminal::Resolve,
-                Err(_) => RegistryTerminal::Refuse,
-            }
-        }
-        GptConvex | QuaternionicGuarded => {
-            RegistryTerminal::Refuse
-        }
-        RealHilbertRebit => {
-            let Ok(report) = LocalTomographyReport::real_product_params(2, 2) else {
-                return RegistryTerminal::Refuse;
-            };
-            if report.identity_holds {
-                RegistryTerminal::Resolve
-            } else {
-                RegistryTerminal::Fail(FailureWitness::LocalTomography {
-                    local: report.local_param_a * report.local_param_b,
-                    joint: report.joint_param,
-                })
-            }
-        }
+        ClassicalContextualGluing => adjudicate_classical_gluing(),
+        GptConvex | QuaternionicGuarded => RegistryTerminal::Refuse,
+        RealHilbertRebit => adjudicate_real_rebit(),
         ComplexHilbertCptp => complex_packet_terminal(m2),
     }
 }

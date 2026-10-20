@@ -656,6 +656,26 @@ fn psd_factor(matrix: &[Vec<f64>], rank: usize, add_noise_columns: bool) -> Vec<
     factors
 }
 
+fn accumulate_fiber_entry_gradient(
+    row: usize,
+    col: usize,
+    rank: usize,
+    residual: f64,
+    factors: &[Vec<f64>],
+    gradient: &mut [Vec<f64>],
+) {
+    if row == col {
+        for k in 0..rank {
+            gradient[row][k] += 2.0 * residual * factors[row][k];
+        }
+    } else {
+        for k in 0..rank {
+            gradient[row][k] += 2.0 * residual * factors[col][k];
+            gradient[col][k] += 2.0 * residual * factors[row][k];
+        }
+    }
+}
+
 fn low_rank_residual_gradient(
     problem: &FloatMomentProblem,
     factors: &[Vec<f64>],
@@ -676,16 +696,14 @@ fn low_rank_residual_gradient(
         l2_sq += residual * residual;
 
         for entry in &fiber.entries {
-            if entry.row == entry.col {
-                for k in 0..rank {
-                    gradient[entry.row][k] += 2.0 * residual * factors[entry.row][k];
-                }
-            } else {
-                for k in 0..rank {
-                    gradient[entry.row][k] += 2.0 * residual * factors[entry.col][k];
-                    gradient[entry.col][k] += 2.0 * residual * factors[entry.row][k];
-                }
-            }
+            accumulate_fiber_entry_gradient(
+                entry.row,
+                entry.col,
+                rank,
+                residual,
+                factors,
+                &mut gradient,
+            );
         }
     }
 
@@ -729,6 +747,48 @@ fn relative_factor_step(next: &[Vec<f64>], prev: &[Vec<f64>]) -> f64 {
     diff_sq.sqrt() / prev_sq.sqrt().max(1.0)
 }
 
+fn try_spectral_step_sign(
+    problem: &FloatMomentProblem,
+    x: &mut Vec<Vec<f64>>,
+    direction: &[Vec<f64>],
+    current: SpectrumSummary,
+    margin: f64,
+    trial_step: f64,
+) -> Option<f64> {
+    for direction_sign in [1.0, -1.0] {
+        let mut next = matrix_linear_combination(1.0, x, direction_sign * trial_step, direction);
+        problem.project_affine(&mut next, margin);
+        let next_summary = spectrum_summary(&next);
+        if spectral_progress(next_summary, current) {
+            let rel = relative_frobenius_step(&next, x);
+            *x = next;
+            return Some(rel);
+        }
+    }
+    None
+}
+
+fn try_spectral_line_search(
+    problem: &FloatMomentProblem,
+    x: &mut Vec<Vec<f64>>,
+    direction: &[Vec<f64>],
+    current: SpectrumSummary,
+    margin: f64,
+    step: &mut f64,
+) -> Option<f64> {
+    let mut trial_step = *step;
+    for _ in 0..24 {
+        if let Some(rel) =
+            try_spectral_step_sign(problem, x, direction, current, margin, trial_step)
+        {
+            *step = (trial_step * 1.15).min(2.0);
+            return Some(rel);
+        }
+        trial_step *= 0.5;
+    }
+    None
+}
+
 fn run_spectral_ascent(
     problem: &FloatMomentProblem,
     target: Vec<Vec<f64>>,
@@ -748,30 +808,9 @@ fn run_spectral_ascent(
         }
         scale_matrix(&mut direction, 1.0 / direction_norm);
 
-        let mut accepted = false;
-        let mut trial_step = step;
-        for _ in 0..24 {
-            for direction_sign in [1.0, -1.0] {
-                let mut next =
-                    matrix_linear_combination(1.0, &x, direction_sign * trial_step, &direction);
-                problem.project_affine(&mut next, margin);
-                let next_summary = spectrum_summary(&next);
-                if spectral_progress(next_summary, current) {
-                    relative_step = relative_frobenius_step(&next, &x);
-                    x = next;
-                    step = (trial_step * 1.15).min(2.0);
-                    accepted = true;
-                    break;
-                }
-            }
-            if accepted {
-                break;
-            }
-            trial_step *= 0.5;
-        }
-
-        if !accepted {
-            break;
+        match try_spectral_line_search(problem, &mut x, &direction, current, margin, &mut step) {
+            Some(rel) => relative_step = rel,
+            None => break,
         }
     }
 
@@ -786,44 +825,57 @@ fn spectral_progress(next: SpectrumSummary, current: SpectrumSummary) -> bool {
     }
 }
 
-fn spectral_pressure_direction(matrix: &[Vec<f64>]) -> (Vec<Vec<f64>>, SpectrumSummary) {
-    let n = matrix.len();
-    let sym = DMatrix::from_fn(n, n, |r, c| 0.5 * (matrix[r][c] + matrix[c][r]));
-    let eig = SymmetricEigen::new(sym);
+fn summarize_eigenvalues(eigenvalues: &[f64]) -> (SpectrumSummary, f64) {
     let mut summary = SpectrumSummary {
         min: f64::INFINITY,
         max: f64::NEG_INFINITY,
         negative_mass: 0.0,
         negative_count: 0,
     };
-    for &lambda in eig.eigenvalues.iter() {
+    let mut has_material_negative = false;
+    for &lambda in eigenvalues {
         summary.min = summary.min.min(lambda);
         summary.max = summary.max.max(lambda);
         if lambda < 0.0 {
             summary.negative_mass += -lambda;
             summary.negative_count += 1;
         }
+        if lambda < -MATERIAL_NEGATIVE_EIGEN_TOL {
+            has_material_negative = true;
+        }
     }
-
-    let has_material_negative = eig
-        .eigenvalues
-        .iter()
-        .any(|&lambda| lambda < -MATERIAL_NEGATIVE_EIGEN_TOL);
     let cutoff = if has_material_negative {
         -MATERIAL_NEGATIVE_EIGEN_TOL
     } else {
         summary.min + 1.0e-9
     };
+    (summary, cutoff)
+}
+
+fn accumulate_eigenvector_outer_lower(
+    out: &mut [Vec<f64>],
+    eigenvectors: &DMatrix<f64>,
+    k: usize,
+) {
+    let n = out.len();
+    for r in 0..n {
+        let vr = eigenvectors[(r, k)];
+        for c in 0..=r {
+            out[r][c] += vr * eigenvectors[(c, k)];
+        }
+    }
+}
+
+fn spectral_pressure_direction(matrix: &[Vec<f64>]) -> (Vec<Vec<f64>>, SpectrumSummary) {
+    let n = matrix.len();
+    let sym = DMatrix::from_fn(n, n, |r, c| 0.5 * (matrix[r][c] + matrix[c][r]));
+    let eig = SymmetricEigen::new(sym);
+    let (summary, cutoff) = summarize_eigenvalues(eig.eigenvalues.as_slice());
+
     let mut out = vec![vec![0.0; n]; n];
     for k in 0..n {
-        if eig.eigenvalues[k] > cutoff {
-            continue;
-        }
-        for r in 0..n {
-            let vr = eig.eigenvectors[(r, k)];
-            for c in 0..=r {
-                out[r][c] += vr * eig.eigenvectors[(c, k)];
-            }
+        if eig.eigenvalues[k] <= cutoff {
+            accumulate_eigenvector_outer_lower(&mut out, &eig.eigenvectors, k);
         }
     }
     for r in 0..n {

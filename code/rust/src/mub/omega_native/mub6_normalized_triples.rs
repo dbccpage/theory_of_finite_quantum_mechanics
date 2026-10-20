@@ -66,35 +66,42 @@ pub fn is_singular_corner_cyc(p: &CornerParamCyc) -> bool {
     lhs == rhs
 }
 
-pub fn is_unscaled_hadamard(m: &Matrix6) -> bool {
+fn has_unit_entries_6(m: &Matrix6) -> bool {
     let one_cyc = Cyc24::zeta24(0);
-    let six_cyc = Cyc24::rat(rq(6, 1));
-
     for i in 0..D {
         for j in 0..D {
-            let norm_sq = m[i][j].mul(&m[i][j].conj());
-            if norm_sq != one_cyc {
-                return false;
-            }
-        }
-    }
-
-    for i in 0..D {
-        for j in 0..D {
-            let mut acc = Cyc24::zero();
-            for k in 0..D {
-                acc = acc.add(&m[i][k].mul(&m[j][k].conj()));
-            }
-            if i == j {
-                if acc != six_cyc {
-                    return false;
-                }
-            } else if !acc.is_zero() {
+            if m[i][j].mul(&m[i][j].conj()) != one_cyc {
                 return false;
             }
         }
     }
     true
+}
+
+fn row_hermitian_dot(m: &Matrix6, i: usize, j: usize) -> Cyc24 {
+    let mut acc = Cyc24::zero();
+    for k in 0..D {
+        acc = acc.add(&m[i][k].mul(&m[j][k].conj()));
+    }
+    acc
+}
+
+fn has_orthogonal_rows_6(m: &Matrix6) -> bool {
+    let six_cyc = Cyc24::rat(rq(6, 1));
+    for i in 0..D {
+        for j in 0..D {
+            let acc = row_hermitian_dot(m, i, j);
+            let ok = if i == j { acc == six_cyc } else { acc.is_zero() };
+            if !ok {
+                return false;
+            }
+        }
+    }
+    true
+}
+
+pub fn is_unscaled_hadamard(m: &Matrix6) -> bool {
+    has_unit_entries_6(m) && has_orthogonal_rows_6(m)
 }
 
 pub fn eval_transition_matrix(h: &Matrix6, k: &Matrix6) -> Matrix6 {

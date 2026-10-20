@@ -270,60 +270,70 @@ pub struct SpinFoamCensus {
 }
 
 impl SpinFoamCensus {
-    pub fn checks_hold(&self) -> bool {
+    fn local_checks_hold(&self) -> bool {
         self.q2_square_three
             && self.q6_zero
             && self.tetra_orientation
             && self.simplex_symmetries
             && self.boundary_projector
             && self.master_self_adjoint_on_basis
-            && self.diagonal_evolution_projector
+    }
+
+    fn global_checks_hold(&self) -> bool {
+        self.diagonal_evolution_projector
             && self.pachner_intertwining
             && self.sphere_euler_two
             && self.sphere_vacuum_partition
             && self.corrected_vacuum_transition_unitary
             && self.corrected_partition_unit_norm_and_pachner_invariance
     }
+
+    pub fn checks_hold(&self) -> bool {
+        self.local_checks_hold() && self.global_checks_hold()
+    }
 }
 
-pub fn census(level: usize) -> Result<SpinFoamCensus, SpinFoamModelError> {
-    if level == 0 || level > 3 {
-        return Err("INVALID_SPIN_LEVEL".into());
+fn decode_spins<const N: usize>(mut code: usize, level: usize) -> [u32; N] {
+    let mut s = [0; N];
+    for x in &mut s {
+        *x = (code % level) as u32;
+        code /= level;
     }
+    s
+}
+
+fn census_tetrahedra(level: usize) -> (bool, usize) {
+    let zero = C::scalar(12, 0).expect("fixed valid conductor");
     let mut tetra_sym = true;
-    let mut simplex_sym = true;
     let mut admissible_tets = 0;
-    let mut admissible_cells = 0;
     for code in 0..level.pow(6) {
-        let mut m = code;
-        let mut s = [0; 6];
-        for x in &mut s {
-            *x = (m % level) as u32;
-            m /= level
-        }
+        let s = decode_spins::<6>(code, level);
         let a = tetrahedron(&s);
         let r = [s[1], s[0], s[2], s[3], s[5], s[4]];
         tetra_sym &= tetrahedron(&r) == a.conj();
-        admissible_tets += usize::from(a != C::scalar(12, 0).expect("fixed valid conductor"));
+        admissible_tets += usize::from(a != zero);
     }
+    (tetra_sym, admissible_tets)
+}
+
+fn census_simplices(level: usize) -> (bool, usize) {
+    let zero = C::scalar(12, 0).expect("fixed valid conductor");
+    let mut simplex_sym = true;
+    let mut admissible_cells = 0;
     for code in 0..level.pow(10) {
-        let mut m = code;
-        let mut s = [0; 10];
-        for x in &mut s {
-            *x = (m % level) as u32;
-            m /= level
-        }
+        let s = decode_spins::<10>(code, level);
         let a = simplex4(&s);
         let c = [s[6], s[7], s[0], s[8], s[1], s[2], s[9], s[3], s[4], s[5]];
         simplex_sym &= simplex4(&adjoint_bulk(&s)) == a.conj() && simplex4(&c) == a;
-        admissible_cells += usize::from(a != C::scalar(12, 0).expect("fixed valid conductor"));
+        admissible_cells += usize::from(a != zero);
     }
+    (simplex_sym, admissible_cells)
+}
+
+fn census_boundary_states(z: &C) -> Result<(bool, bool, bool), SpinFoamModelError> {
     let mut projector = true;
     let mut adjoint = true;
     let mut duality = true;
-    let mut pachner = true;
-    let mut corrected_pachner = true;
-    let z = C::zeta(12)?;
     for code in 0..16 {
         let spins = std::array::from_fn(|i| ((code >> i) & 1) as u32);
         let b = BoundaryState {
@@ -334,20 +344,39 @@ pub fn census(level: usize) -> Result<SpinFoamCensus, SpinFoamModelError> {
         duality &= b.evolve(&[0; 10])? == b.projector();
         adjoint &= b.inner_product(&b.master())? == b.master().inner_product(&b)?;
     }
+    Ok((projector, adjoint, duality))
+}
+
+fn census_pachner_states(z: &C) -> Result<(bool, bool), SpinFoamModelError> {
+    let mut pachner = true;
+    let mut corrected_pachner = true;
     for code in 0..64 {
         let b = PachnerState {
             external: std::array::from_fn(|i| ((code >> i) & 1) as u32),
             internal: vec![1],
             amplitude: z.pow(code),
         };
-        pachner &= b.two_to_three()?.projector() == b.projector().two_to_three()?
-            && b.partition(ModelVersion::Published)?
-                == b.two_to_three()?.partition(ModelVersion::Published)?;
+        let b23 = b.two_to_three()?;
+        pachner &= b23.projector() == b.projector().two_to_three()?
+            && b.partition(ModelVersion::Published)? == b23.partition(ModelVersion::Published)?;
         let norm = b.partition(ModelVersion::Corrected)?;
-        corrected_pachner &= norm
-            == C::scalar(12, i64::from(admissible(&b.external))).expect("fixed valid conductor")
-            && b.two_to_three()?.partition(ModelVersion::Corrected)? == norm;
+        let expected_norm =
+            C::scalar(12, i64::from(admissible(&b.external))).expect("fixed valid conductor");
+        corrected_pachner &=
+            norm == expected_norm && b23.partition(ModelVersion::Corrected)? == norm;
     }
+    Ok((pachner, corrected_pachner))
+}
+
+pub fn census(level: usize) -> Result<SpinFoamCensus, SpinFoamModelError> {
+    if level == 0 || level > 3 {
+        return Err("INVALID_SPIN_LEVEL".into());
+    }
+    let (tetra_sym, admissible_tets) = census_tetrahedra(level);
+    let (simplex_sym, admissible_cells) = census_simplices(level);
+    let z = C::zeta(12)?;
+    let (projector, adjoint, duality) = census_boundary_states(&z)?;
+    let (pachner, corrected_pachner) = census_pachner_states(&z)?;
     let vacuum_unitary = iv::is_unitary(&transition_matrix(ModelVersion::Corrected, &[0; 10]))?;
     let euler = sphere_euler();
     Ok(SpinFoamCensus {

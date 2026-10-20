@@ -192,19 +192,26 @@ pub fn campaign_inventory_holds() -> Result<(), &'static str> {
     if NAMES.len() != 93 {
         return Err("campaign module count is not 93");
     }
+    let mass = verify_unique_names_and_mass(NAMES)?;
+    verify_triangular_mass(NAMES.len() as u64, mass)
+}
+
+fn verify_unique_names_and_mass(names: &[&str]) -> Result<u64, &'static str> {
     let mut mass = 0u64;
-    for (index, name) in NAMES.iter().enumerate() {
+    for (index, name) in names.iter().enumerate() {
         if name.is_empty() {
             return Err("campaign module name is empty");
         }
-        if NAMES[..index].contains(name) {
+        if names[..index].contains(name) {
             return Err("campaign module name is duplicated");
         }
-        mass = mass
-            .checked_add((index as u64).checked_add(1).ok_or("index")?)
-            .ok_or("index mass")?;
+        let step = (index as u64).checked_add(1).ok_or("index")?;
+        mass = mass.checked_add(step).ok_or("index mass")?;
     }
-    let n = NAMES.len() as u64;
+    Ok(mass)
+}
+
+fn verify_triangular_mass(n: u64, mass: u64) -> Result<(), &'static str> {
     let closed = n.checked_mul(n.checked_add(1).ok_or("count")?).ok_or("triangle")? / 2;
     if mass != closed {
         return Err("campaign index mass disagrees with n(n+1)/2");

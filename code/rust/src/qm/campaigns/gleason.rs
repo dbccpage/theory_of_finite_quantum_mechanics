@@ -218,20 +218,24 @@ pub fn count_binary_valuations(n_rays: usize, contexts: &[&[usize]]) -> Option<u
     Some(count as u64)
 }
 
-pub fn verify_cabello_hypergraph() -> CabelloHypergraphReport {
-    let mut all_ortho = true;
-    for ctx in &CABELLO_9_CONTEXTS {
-        for i in 0..4 {
-            for j in (i + 1)..4 {
-                let u = CABELLO_18_VECTORS[ctx[i]];
-                let v = CABELLO_18_VECTORS[ctx[j]];
-                let dot: i64 = u[0] * v[0] + u[1] * v[1] + u[2] * v[2] + u[3] * v[3];
-                if dot != 0 {
-                    all_ortho = false;
-                }
+fn is_cabello_context_orthogonal(ctx: &[usize; 4]) -> bool {
+    for i in 0..4 {
+        for j in (i + 1)..4 {
+            let u = CABELLO_18_VECTORS[ctx[i]];
+            let v = CABELLO_18_VECTORS[ctx[j]];
+            let dot: i64 = u[0] * v[0] + u[1] * v[1] + u[2] * v[2] + u[3] * v[3];
+            if dot != 0 {
+                return false;
             }
         }
     }
+    true
+}
+
+pub fn verify_cabello_hypergraph() -> CabelloHypergraphReport {
+    let all_ortho = CABELLO_9_CONTEXTS
+        .iter()
+        .all(is_cabello_context_orthogonal);
 
     let mut degrees = [0usize; 18];
     for ctx in &CABELLO_9_CONTEXTS {
@@ -258,6 +262,54 @@ pub fn verify_cabello_hypergraph() -> CabelloHypergraphReport {
     }
 }
 
+fn quadratic_ray_expectation(m: &[[Rational; 4]; 4], v: &[i64; 4]) -> Rational {
+    let norm_sq = v[0] * v[0] + v[1] * v[1] + v[2] * v[2] + v[3] * v[3];
+    let mut quad = Rational::zero();
+    for i in 0..4 {
+        for j in 0..4 {
+            let term = &m[i][j] * &rq(v[i] * v[j], 1);
+            quad = &quad + &term;
+        }
+    }
+    &quad / &rq(norm_sq, 1)
+}
+
+fn evaluate_cabello_ray_expectations(m: &[[Rational; 4]; 4]) -> (Vec<Rational>, bool) {
+    let mut ray_expectations = Vec::with_capacity(18);
+    let mut all_in_interval = true;
+    for v in &CABELLO_18_VECTORS {
+        let exp = quadratic_ray_expectation(m, v);
+        if exp < Rational::zero() || exp > Rational::one() {
+            all_in_interval = false;
+        }
+        ray_expectations.push(exp);
+    }
+    (ray_expectations, all_in_interval)
+}
+
+fn all_cabello_contexts_sum_to_one(ray_expectations: &[Rational]) -> bool {
+    for ctx in &CABELLO_9_CONTEXTS {
+        let mut sum_ctx = Rational::zero();
+        for &r in ctx {
+            sum_ctx = &sum_ctx + &ray_expectations[r];
+        }
+        if sum_ctx != Rational::one() {
+            return false;
+        }
+    }
+    true
+}
+
+fn check_witness_eigenvector(m: &[[Rational; 4]; 4], w: &[i64; 4], eig: &Rational) -> bool {
+    for i in 0..4 {
+        let image: Rational = (0..4).map(|j| &m[i][j] * rq(w[j], 1)).sum();
+        if image != eig * rq(w[i], 1) {
+            return false;
+        }
+    }
+    true
+}
+
 pub fn verify_non_psd_cabello_witness() -> NonPsdWitnessReport {
     let m: [[Rational; 4]; 4] = [
         [
@@ -272,61 +324,19 @@ pub fn verify_non_psd_cabello_witness() -> NonPsdWitnessReport {
     ];
 
     let trace = &m[0][0] + &m[1][1] + &m[2][2] + &m[3][3];
-
-    let mut ray_expectations = Vec::with_capacity(18);
-    let mut all_in_interval = true;
-    for v in &CABELLO_18_VECTORS {
-        let norm_sq = v[0] * v[0] + v[1] * v[1] + v[2] * v[2] + v[3] * v[3];
-        let mut quad = Rational::zero();
-        for i in 0..4 {
-            for j in 0..4 {
-                if v[i] != 0 && v[j] != 0 {
-                    let term = &m[i][j] * &rq(v[i] * v[j], 1);
-                    quad = &quad + &term;
-                }
-            }
-        }
-        let exp = &quad / &rq(norm_sq, 1);
-        if exp < Rational::zero() || exp > Rational::one() {
-            all_in_interval = false;
-        }
-        ray_expectations.push(exp);
-    }
-
-    let mut all_contexts_sum_to_one = true;
-    for ctx in &CABELLO_9_CONTEXTS {
-        let mut sum_ctx = Rational::zero();
-        for &r in ctx {
-            sum_ctx = &sum_ctx + &ray_expectations[r];
-        }
-        if sum_ctx != Rational::one() {
-            all_contexts_sum_to_one = false;
-        }
-    }
+    let (ray_expectations, all_in_interval) = evaluate_cabello_ray_expectations(&m);
+    let all_contexts_sum_to_one = all_cabello_contexts_sum_to_one(&ray_expectations);
 
     let w = [0i64, 0, 1, 1];
-    let norm_sq_w = 2i64;
-    let mut quad_w = Rational::zero();
-    for i in 0..4 {
-        for j in 0..4 {
-            if w[i] != 0 && w[j] != 0 {
-                let term = &m[i][j] * &rq(w[i] * w[j], 1);
-                quad_w = &quad_w + &term;
-            }
-        }
-    }
-    let exp_w = &quad_w / &rq(norm_sq_w, 1);
+    let exp_w = quadratic_ray_expectation(&m, &w);
     let matrix =
         crate::linear_algebra::matrix::from_rows(m.iter().map(|r| r.to_vec()).collect())
             .expect("fixed four-dimensional rational witness");
     let is_psd = crate::linear_algebra::ordered::hermitian_inertia(&matrix)
         .expect("fixed rational Hermitian witness")
-        .negative
+        .negative()
         == 0;
-    let eigenvector_verified = (0..4).all(|i| {
-        let image: Rational = (0..4).map(|j| &m[i][j] * rq(w[j], 1)).sum();
-        image == &exp_w * rq(w[i], 1)
-    });
+    let eigenvector_verified = check_witness_eigenvector(&m, &w, &exp_w);
 
     NonPsdWitnessReport {
         trace,
@@ -341,6 +351,16 @@ pub fn verify_non_psd_cabello_witness() -> NonPsdWitnessReport {
     }
 }
 
+fn diagonal_ray_expectation(diag: &[Rational; 4], v: &[i64; 4]) -> Rational {
+    let norm_sq = v[0] * v[0] + v[1] * v[1] + v[2] * v[2] + v[3] * v[3];
+    let mut quad = Rational::zero();
+    for i in 0..4 {
+        let term = &diag[i] * &rq(v[i] * v[i], 1);
+        quad = &quad + &term;
+    }
+    &quad / &rq(norm_sq, 1)
+}
+
 pub fn verify_pseudo_state_diagonal_witness() -> PseudoStateReport {
     let diag = [rq(1, 2), rq(1, 2), rq(1, 2), rq(-1, 2)];
     let trace = &(&(&diag[0] + &diag[1]) + &diag[2]) + &diag[3];
@@ -349,17 +369,7 @@ pub fn verify_pseudo_state_diagonal_witness() -> PseudoStateReport {
     for ctx in &CABELLO_9_CONTEXTS {
         let mut sum_ctx = Rational::zero();
         for &idx in ctx {
-            let v = CABELLO_18_VECTORS[idx];
-            let norm_sq = v[0] * v[0] + v[1] * v[1] + v[2] * v[2] + v[3] * v[3];
-            let mut quad = Rational::zero();
-            for i in 0..4 {
-                if v[i] != 0 {
-                    let term = &diag[i] * &rq(v[i] * v[i], 1);
-                    quad = &quad + &term;
-                }
-            }
-            let exp = &quad / &rq(norm_sq, 1);
-            sum_ctx = &sum_ctx + &exp;
+            sum_ctx = &sum_ctx + &diagonal_ray_expectation(&diag, &CABELLO_18_VECTORS[idx]);
         }
         if sum_ctx != Rational::one() {
             all_contexts_one = false;
@@ -367,8 +377,7 @@ pub fn verify_pseudo_state_diagonal_witness() -> PseudoStateReport {
     }
 
     let v17 = CABELLO_18_VECTORS[17];
-    let norm_v17 = 1i64;
-    let exp_v17 = &diag[3] * &rq(v17[3] * v17[3], norm_v17);
+    let exp_v17 = &diag[3] * &rq(v17[3] * v17[3], 1);
     let is_neg = exp_v17 < Rational::zero();
 
     PseudoStateReport {
@@ -612,27 +621,20 @@ pub fn verify_meyer_vs_cyclotomic_colorability() -> MeyerColorabilityReport {
     }
 }
 
-pub fn verify_clifton_kent_polytope() -> CliftonKentPolytopeReport {
-    let peres = generate_peres_33_rays();
-    let n_rays = peres.rays.len();
-
-    let mut a_triads = vec![vec![Rational::zero(); n_rays]; peres.triads.len()];
-    for (t_idx, t) in peres.triads.iter().enumerate() {
+fn build_triad_incidence_matrix(n_rays: usize, triads: &[[usize; 3]]) -> Vec<Vec<Rational>> {
+    let mut a_triads = vec![vec![Rational::zero(); n_rays]; triads.len()];
+    for (t_idx, t) in triads.iter().enumerate() {
         for &r in t {
             a_triads[t_idx][r] = Rational::one();
         }
     }
-    let (rank_a, _, _free_a, _) = rref_rational(&a_triads);
-    let affine_dim = n_rays - rank_a;
-    let trace1_dim = kochen_specker::peres_33()
-        .expect("fixed ray system")
-        .projector_span_rank()
-        .expect("bounded field rank")
-        - 1;
-    let excess_dim = affine_dim - trace1_dim;
+    a_triads
+}
 
+fn build_quadratic_rows(rays: &[Vec<Quadratic<2>>]) -> Vec<Vec<Rational>> {
+    let n_rays = rays.len();
     let mut q_rows = vec![vec![Rational::zero(); n_rays]; 10];
-    for (k, r) in peres.rays.iter().enumerate() {
+    for (k, r) in rays.iter().enumerate() {
         let norm = r
             .iter()
             .fold(Quadratic::<2>::zero(), |s, x| s + x.clone() * x.clone());
@@ -650,14 +652,10 @@ pub fn verify_clifton_kent_polytope() -> CliftonKentPolytopeReport {
             q_rows[2 * i + 1][k] = x.b;
         }
     }
+    q_rows
+}
 
-    let mut combined_mat = a_triads;
-    combined_mat.extend(q_rows.clone());
-    let (_c_rank, _, _c_free, c_null) = rref_rational(&combined_mat);
-
-    let z = c_null
-        .first()
-        .expect("fixed combined rank leaves a nonzero kernel");
+fn max_abs_entry(z: &[Rational]) -> Rational {
     let mut max_abs = Rational::zero();
     for x in z {
         let abs_x = if x < &Rational::zero() {
@@ -669,24 +667,56 @@ pub fn verify_clifton_kent_polytope() -> CliftonKentPolytopeReport {
             max_abs = abs_x;
         }
     }
+    max_abs
+}
 
-    let scale = rq(1, 10) / max_abs;
-    let mut f_vals = Vec::new();
-    for x in z {
-        f_vals.push(rq(1, 3) + (x * &scale));
+fn is_orthogonal_to_quadratic_rows(
+    z: &[Rational],
+    scale: &Rational,
+    q_rows: &[Vec<Rational>],
+) -> bool {
+    let n_rays = z.len();
+    for q_row in q_rows {
+        let dot: Rational = (0..n_rays).map(|r| (&z[r] * scale) * &q_row[r]).sum();
+        if !dot.is_zero() {
+            return false;
+        }
     }
+    true
+}
+
+pub fn verify_clifton_kent_polytope() -> CliftonKentPolytopeReport {
+    let peres = generate_peres_33_rays();
+    let n_rays = peres.rays.len();
+    let a_triads = build_triad_incidence_matrix(n_rays, &peres.triads);
+    let (rank_a, _, _free_a, _) = rref_rational(&a_triads);
+    let affine_dim = n_rays - rank_a;
+    let trace1_dim = kochen_specker::peres_33()
+        .expect("fixed ray system")
+        .projector_span_rank()
+        .expect("bounded field rank")
+        - 1;
+    let excess_dim = affine_dim - trace1_dim;
+
+    let q_rows = build_quadratic_rows(&peres.rays);
+    let mut combined_mat = a_triads;
+    combined_mat.extend(q_rows.clone());
+    let (_c_rank, _, _c_free, c_null) = rref_rational(&combined_mat);
+
+    let z = c_null
+        .first()
+        .expect("fixed combined rank leaves a nonzero kernel");
+    let scale = rq(1, 10) / max_abs_entry(z);
+    let f_vals: Vec<Rational> = z.iter().map(|x| rq(1, 3) + (x * &scale)).collect();
 
     let all_in_unit = f_vals
         .iter()
         .all(|x| x > &Rational::zero() && x < &Rational::one());
-    let all_sums_one = peres.triads.iter().all(|t| {
-        let sum = &f_vals[t[0]] + &f_vals[t[1]] + &f_vals[t[2]];
-        sum == Rational::one()
-    });
-    let orthogonal_to_quad = q_rows.iter().all(|q_row| {
-        let dot: Rational = (0..n_rays).map(|r| (&z[r] * &scale) * &q_row[r]).sum();
-        dot.is_zero()
-    });
+    let all_sums_one = peres
+        .triads
+        .iter()
+        .all(|t| &f_vals[t[0]] + &f_vals[t[1]] + &f_vals[t[2]] == Rational::one());
+    let orthogonal_to_quad = is_orthogonal_to_quadratic_rows(z, &scale, &q_rows);
 
     let min_val = f_vals.iter().cloned().min().unwrap();
     let max_val = f_vals.iter().cloned().max().unwrap();

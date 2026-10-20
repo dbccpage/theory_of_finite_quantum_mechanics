@@ -29,28 +29,22 @@ pub fn tao_s6_block() -> Vec<Vec<Cyc24>> {
     }
     mat
 }
-pub fn canonical_quad_gramian() -> Vec<Vec<Cyc24>> {
-    let cols = canonical_triple_exact();
-    let s6 = tao_s6_block();
-    let mut g = vec![vec![Cyc24::zero(); GRAMIAN_DIM]; GRAMIAN_DIM];
-
-    for a in 0..3 {
-        for b in 0..3 {
-            for j in 0..DIM_HILBERT {
-                for k in 0..DIM_HILBERT {
-                    let u_col = &cols[a * DIM_HILBERT + j];
-                    let v_col = &cols[b * DIM_HILBERT + k];
-                    g[a * DIM_HILBERT + j][b * DIM_HILBERT + k] = inner(u_col, v_col);
-                }
-            }
+fn fill_quad_gramian_pair(
+    g: &mut [Vec<Cyc24>],
+    cols: &[[Cyc24; DIM_HILBERT]],
+    a: usize,
+    b: usize,
+) {
+    for j in 0..DIM_HILBERT {
+        for k in 0..DIM_HILBERT {
+            let u_col = &cols[a * DIM_HILBERT + j];
+            let v_col = &cols[b * DIM_HILBERT + k];
+            g[a * DIM_HILBERT + j][b * DIM_HILBERT + k] = inner(u_col, v_col);
         }
     }
+}
 
-    let one = Cyc24::rat(BigRational::one());
-    for j in 0..DIM_HILBERT {
-        g[3 * DIM_HILBERT + j][3 * DIM_HILBERT + j] = one.clone();
-    }
-
+fn fill_quad_s6_column(g: &mut [Vec<Cyc24>], s6: &[Vec<Cyc24>]) {
     for a in 0..3 {
         for j in 0..DIM_HILBERT {
             for k in 0..DIM_HILBERT {
@@ -60,6 +54,25 @@ pub fn canonical_quad_gramian() -> Vec<Vec<Cyc24>> {
             }
         }
     }
+}
+
+pub fn canonical_quad_gramian() -> Vec<Vec<Cyc24>> {
+    let cols = canonical_triple_exact();
+    let s6 = tao_s6_block();
+    let mut g = vec![vec![Cyc24::zero(); GRAMIAN_DIM]; GRAMIAN_DIM];
+
+    for a in 0..3 {
+        for b in 0..3 {
+            fill_quad_gramian_pair(&mut g, &cols, a, b);
+        }
+    }
+
+    let one = Cyc24::rat(BigRational::one());
+    for j in 0..DIM_HILBERT {
+        g[3 * DIM_HILBERT + j][3 * DIM_HILBERT + j] = one.clone();
+    }
+
+    fill_quad_s6_column(&mut g, &s6);
 
     g
 }
@@ -138,6 +151,77 @@ pub struct GramianStructureReport {
     pub hermitian_exact: bool,
     pub verified_sound: bool,
 }
+fn is_quad_diag_block_identity(
+    g: &[Vec<Cyc24>],
+    a: usize,
+    one: &Cyc24,
+    zero: &Cyc24,
+) -> bool {
+    for i in 0..DIM_HILBERT {
+        for j in 0..DIM_HILBERT {
+            let expected = if i == j { one } else { zero };
+            if &g[a * DIM_HILBERT + i][a * DIM_HILBERT + j] != expected {
+                return false;
+            }
+        }
+    }
+    true
+}
+
+fn are_quad_diag_blocks_identity(g: &[Vec<Cyc24>]) -> bool {
+    let one = Cyc24::rat(BigRational::one());
+    let zero = Cyc24::zero();
+    for a in 0..NUM_BASES {
+        if !is_quad_diag_block_identity(g, a, &one, &zero) {
+            return false;
+        }
+    }
+    true
+}
+
+fn is_quad_off_diag_block_modulus_sixth(
+    g: &[Vec<Cyc24>],
+    a: usize,
+    b: usize,
+    sixth: &Cyc24,
+) -> bool {
+    if a == b {
+        return true;
+    }
+    for i in 0..DIM_HILBERT {
+        for j in 0..DIM_HILBERT {
+            let entry = &g[a * DIM_HILBERT + i][b * DIM_HILBERT + j];
+            if &entry.mul(&entry.conj()) != sixth {
+                return false;
+            }
+        }
+    }
+    true
+}
+
+fn are_quad_off_diag_blocks_modulus_sixth(g: &[Vec<Cyc24>]) -> bool {
+    let sixth = Cyc24::rat(BigRational::new(1.into(), 6.into()));
+    for a in 0..NUM_BASES {
+        for b in 0..NUM_BASES {
+            if !is_quad_off_diag_block_modulus_sixth(g, a, b, &sixth) {
+                return false;
+            }
+        }
+    }
+    true
+}
+
+fn is_quad_gramian_hermitian(g: &[Vec<Cyc24>]) -> bool {
+    for i in 0..GRAMIAN_DIM {
+        for j in 0..GRAMIAN_DIM {
+            if g[j][i] != g[i][j].conj() {
+                return false;
+            }
+        }
+    }
+    true
+}
+
 pub fn verify_gramian_structure(g: &[Vec<Cyc24>]) -> GramianStructureReport {
     if g.len() != GRAMIAN_DIM || g.iter().any(|row| row.len() != GRAMIAN_DIM) {
         return GramianStructureReport {
@@ -147,55 +231,10 @@ pub fn verify_gramian_structure(g: &[Vec<Cyc24>]) -> GramianStructureReport {
             verified_sound: false,
         };
     }
-    let sixth = Cyc24::rat(BigRational::new(1.into(), 6.into()));
-    let one = Cyc24::rat(BigRational::one());
-    let zero = Cyc24::zero();
 
-    let mut diag_ok = true;
-    for a in 0..NUM_BASES {
-        for i in 0..DIM_HILBERT {
-            for j in 0..DIM_HILBERT {
-                let idx_i = a * DIM_HILBERT + i;
-                let idx_j = a * DIM_HILBERT + j;
-                if i == j {
-                    if g[idx_i][idx_j] != one {
-                        diag_ok = false;
-                    }
-                } else if g[idx_i][idx_j] != zero {
-                    diag_ok = false;
-                }
-            }
-        }
-    }
-
-    let mut modulus_ok = true;
-    for a in 0..NUM_BASES {
-        for b in 0..NUM_BASES {
-            if a == b {
-                continue;
-            }
-            for i in 0..DIM_HILBERT {
-                for j in 0..DIM_HILBERT {
-                    let idx_i = a * DIM_HILBERT + i;
-                    let idx_j = b * DIM_HILBERT + j;
-                    let entry = &g[idx_i][idx_j];
-                    let mod_sq = entry.mul(&entry.conj());
-                    if mod_sq != sixth {
-                        modulus_ok = false;
-                    }
-                }
-            }
-        }
-    }
-
-    let mut herm_ok = true;
-    for i in 0..GRAMIAN_DIM {
-        for j in 0..GRAMIAN_DIM {
-            if g[j][i] != g[i][j].conj() {
-                herm_ok = false;
-            }
-        }
-    }
+    let diag_ok = are_quad_diag_blocks_identity(g);
+    let modulus_ok = are_quad_off_diag_blocks_modulus_sixth(g);
+    let herm_ok = is_quad_gramian_hermitian(g);
 
     let sound = diag_ok && modulus_ok && herm_ok;
     GramianStructureReport {
@@ -205,7 +244,8 @@ pub fn verify_gramian_structure(g: &[Vec<Cyc24>]) -> GramianStructureReport {
         verified_sound: sound,
     }
 }
-pub fn ldlt_pivots_rational(m: &[Vec<Cyc24>]) -> Result<Vec<BigRational>, String> {
+
+fn validate_hermitian_square_cyc(m: &[Vec<Cyc24>]) -> Result<(), String> {
     let n = m.len();
     if n == 0 || m.iter().any(|row| row.len() != n) {
         return Err("expected a nonempty square matrix".to_string());
@@ -217,6 +257,38 @@ pub fn ldlt_pivots_rational(m: &[Vec<Cyc24>]) -> Result<Vec<BigRational>, String
             }
         }
     }
+    Ok(())
+}
+
+fn check_zero_pivot_off_diagonals(a: &[Vec<Cyc24>], k: usize) -> Result<(), String> {
+    for i in (k + 1)..a.len() {
+        if !a[k][i].is_zero() || !a[i][k].is_zero() {
+            return Err(format!("Indefinite 2x2 minor at step {}", k));
+        }
+    }
+    Ok(())
+}
+
+fn eliminate_ldlt_row(row_i: &mut [Cyc24], row_k: &[Cyc24], k: usize, factor: &Cyc24) {
+    for j in k..row_i.len() {
+        let delta = factor.mul(&row_k[j]);
+        row_i[j] = row_i[j].sub(&delta);
+    }
+}
+
+fn eliminate_ldlt_step(a: &mut [Vec<Cyc24>], k: usize, piv_inv: &Cyc24) {
+    let row_k = a[k].clone();
+    for row_i in &mut a[(k + 1)..] {
+        if !row_i[k].is_zero() {
+            let factor = row_i[k].mul(piv_inv);
+            eliminate_ldlt_row(row_i, &row_k, k, &factor);
+        }
+    }
+}
+
+pub fn ldlt_pivots_rational(m: &[Vec<Cyc24>]) -> Result<Vec<BigRational>, String> {
+    validate_hermitian_square_cyc(m)?;
+    let n = m.len();
     let mut a: Vec<Vec<Cyc24>> = m.to_vec();
     let mut pivots = Vec::with_capacity(n);
 
@@ -230,25 +302,12 @@ pub fn ldlt_pivots_rational(m: &[Vec<Cyc24>]) -> Result<Vec<BigRational>, String
         }
 
         if piv_rat.is_zero() {
-            for i in (k + 1)..n {
-                if !a[k][i].is_zero() || !a[i][k].is_zero() {
-                    return Err(format!("Indefinite 2x2 minor at step {}", k));
-                }
-            }
+            check_zero_pivot_off_diagonals(&a, k)?;
             continue;
         }
 
         let piv_inv = piv_cyc.inv();
-        for i in (k + 1)..n {
-            if a[i][k].is_zero() {
-                continue;
-            }
-            let factor = a[i][k].mul(&piv_inv);
-            for j in k..n {
-                let delta = factor.mul(&a[k][j]);
-                a[i][j] = a[i][j].sub(&delta);
-            }
-        }
+        eliminate_ldlt_step(&mut a, k, &piv_inv);
     }
 
     Ok(pivots)
@@ -523,15 +582,23 @@ pub fn get_basis_triples() -> Vec<(usize, usize, usize)> {
     triples
 }
 
+fn append_quadruples_for_pair(
+    a: usize,
+    b: usize,
+    quadruples: &mut Vec<(usize, usize, usize, usize)>,
+) {
+    for c in (b + 1)..NUM_BASES {
+        for d in (c + 1)..NUM_BASES {
+            quadruples.push((a, b, c, d));
+        }
+    }
+}
+
 pub fn get_basis_quadruples() -> Vec<(usize, usize, usize, usize)> {
     let mut quadruples = Vec::with_capacity(1);
     for a in 0..NUM_BASES {
         for b in (a + 1)..NUM_BASES {
-            for c in (b + 1)..NUM_BASES {
-                for d in (c + 1)..NUM_BASES {
-                    quadruples.push((a, b, c, d));
-                }
-            }
+            append_quadruples_for_pair(a, b, &mut quadruples);
         }
     }
     quadruples
