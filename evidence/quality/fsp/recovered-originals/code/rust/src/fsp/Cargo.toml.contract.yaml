@@ -1,0 +1,102 @@
+# =============================================================================
+# OMEGA ENGINE / TFQM CANONICAL FILE CONTRACT (SCORING.md v2.0.0)
+# AuthorityEffect: None
+# =============================================================================
+schema_version: "omega.contract.v2"
+contract_id: "urn:tfqm:contract:rust:fsp:cargo:v2.0.0"
+title: "FSP Crate Build & Dependency Manifest"
+kind: "manifest_contract"
+layer: "10_math_crates"
+role: "PackageManifest"
+status: "active_with_recorded_obligations"
+AuthorityEffect: "None"
+artifact:
+  path: "code/rust/src/fsp/Cargo.toml"
+  language: "Other"
+  sha256: "fa51f434d1249084334fa2fa26b0aa452b8f6ff538940a585c33f8de3a984b93"
+target: "L4A"
+profile: "Non-Numeric"
+purpose: "Declare crate metadata, library entry point, `[profile.release] overflow-checks = true`, and exact-arithmetic / serialization dependencies for `tfqm_fsp`."
+subject_role: "Standalone Cargo package manifest declaring library target `lib.rs`, release overflow checks, and seven external dependencies (`num-rational`, `num-bigint`, `num-traits`, `num-integer`, `serde`, `serde_json`, `thiserror`)."
+descriptor:
+  authority_effect: "None"
+  evidence_ceiling: "ExactWitness"
+  runtime_enforcement: false
+  clean_architecture_layer: "domain"
+  dependencies:
+    contracts: []
+    lean4_theorems: []
+  refusals:
+    may_emit:
+      - "Cargo build/metadata refusal on missing offline crate or incompatible rustc edition."
+doctrine:
+  summary: "Declare crate metadata, library entry point, `[profile.release] overflow-checks = true`, and exact-arithmetic / serialization dependencies for `tfqm_fsp`."
+  invariants:
+    - "Package name is `tfqm_fsp` with edition `2021` and library root `lib.rs`."
+    - "`[profile.release] overflow-checks = true` enforces release-mode primitive integer overflow trapping (`RULE_RS_001`)."
+    - "Exact arithmetic dependencies (`num-rational`, `num-bigint`) are explicitly declared with `serde` feature support."
+  domain_preconditions:
+    - "Resolved offline via repository Cargo dependency cache."
+  non_roles:
+    - "authority_source"
+    - "promotion_granter"
+    - "continuum_equivalence_proof"
+  required_negative_capabilities:
+    - "no_self_certification"
+    - "no_implicit_authority_upgrade"
+    - "no_floating_point_in_exact_profile"
+declaration_index: []
+declaration_index_scope: "Lexical public declaration line index only; excludes private helpers and test-module items."
+specification:
+  algebraic_structure:
+    carrier_type: "CargoPackageManifest"
+    operations:
+      - "cargo metadata --offline"
+      - "cargo test --offline"
+  verification:
+    rust_test_command: "cargo test --manifest-path code/rust/src/fsp/Cargo.toml"
+    python_parity_test: "code/python/tests/test_fsp_Hubbard_Majorana_Parity.py"
+    lean4_targets: []
+requirements:
+  - {"id": "G1", "requirement": "Bind exact artifact SHA-256, public symbols, Lean 4 theorem correspondence, and AuthorityEffect: None."}
+  - {"id": "G2", "requirement": "Preserve exact rational (`BigRational`) and F2 arithmetic; validate all public entry preconditions and struct construction/deserialization invariants (`RULE_RS_001`, `RULE_RS_003`)."}
+  - {"id": "G3", "requirement": "Eliminate reachable panics (`.unwrap()`, `assert!`, unchecked bit shifts, unchecked slice indexing, and zero divisors) in favor of typed `Result` refusals (`RULE_RS_001`, `RULE_RS_002`)."}
+  - {"id": "G4", "requirement": "Maintain unit, cross-language JSON fixture, and negative boundary tests with honest six-outcome mutation accounting (`R >= 0.95` required for Grade A)."}
+  - {"id": "G5", "requirement": "Maintain CCN <= 10, cognitive complexity <= 15, and control nesting <= 3 for Grade A (`SCORING.md` Section 3.5)."}
+admission_policy: "Structs with `pub` fields or `serde::Deserialize` are untrusted carrier data until validated by a checked constructor; callers must not bypass constructor checks."
+resource_boundary: "Exact `BigRational` and Fock-space basis enumeration scale combinatorially with site count; callers must bound lattice size (`num_sites < 32` for `FockState`)."
+authority_ceiling: "Runtime finite algebraic checks only. AuthorityEffect: None."
+open_obligations:
+  - "No local `Cargo.lock` is committed inside `code/rust/src/fsp/`; dependency resolution relies on workspace/cache lock state."
+evidence:
+  - {"path": "evidence/quality/fsp/20261020T002611Z/baseline.json", "scope": "Scoped offline cargo test baseline receipt and log hash for tfqm_fsp.", "sha256": "db05d7096c8506a0bccc8812f236c9b417bd473a530cc6ec4cee7eacccb4a380"}
+  - {"path": "evidence/quality/fsp/20261020T002611Z/summary.json", "scope": "Source snapshot invariance and complete six-outcome mutation accounting summary.", "sha256": "89460c15f087cb112eeaceda284431481373fea15e34f68296d6531c96e8d3d5"}
+  - {"path": "evidence/quality/fsp/20261020T002611Z/mutations.json", "scope": "Designated semantic fault injection runs and per-mutant log hashes.", "sha256": "829e77a5a7944d14ebb4e53c3323a910592910c962e7af331fd405ab2cd6535f"}
+  - {"path": "evidence/quality/fsp/20261020T002611Z/metric_receipt.json", "scope": "Calibrated syn 3.0.9 source AST complexity receipt and tool-source hashes.", "sha256": "a96ad46c87d079dc2ff14f7fa7083631b76cc93507f515c8d9d2a784369f322b"}
+manifest:
+  package:
+    name: "tfqm_fsp"
+    version: "0.1.0"
+    edition: "2021"
+    license: "Apache-2.0"
+    description: "Sovereign exact rational algebraic certifiers for the Fermion Sign Problem (FSP)"
+  lib:
+    name: "tfqm_fsp"
+    path: "lib.rs"
+  dependencies:
+    num-rational:
+      version: "0.4"
+      features:
+        - "serde"
+    num-bigint:
+      version: "0.4"
+      features:
+        - "serde"
+    num-traits: "0.2"
+    num-integer: "0.1"
+    serde:
+      version: "1.0"
+      features:
+        - "derive"
+    serde_json: "1.0"
+    thiserror: "2"

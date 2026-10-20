@@ -1,0 +1,100 @@
+# =============================================================================
+# OMEGA ENGINE / TFQM CANONICAL FILE CONTRACT (SCORING.md v2.0.0)
+# AuthorityEffect: None
+# =============================================================================
+schema_version: "omega.contract.v2"
+contract_id: "urn:tfqm:contract:rust:fsp:bqnf:v2.0.0"
+title: "BQNF 5-Fold Sign Packet Router & Rational Cochain Complex"
+kind: "math_contract"
+layer: "10_math_crates"
+role: "MathematicalKernel"
+status: "active_with_recorded_obligations"
+AuthorityEffect: "None"
+artifact:
+  path: "code/rust/src/fsp/bqnf.rs"
+  language: "Rust"
+  sha256: "83a6aad845fe89a2f9089dcc0687bf5b7e2e4cf1aea74bcb949dd6c44dbfcea9"
+target: "L4A"
+profile: "Exact"
+purpose: "Classify finite sign obstruction packets into five terminal routes (`ExactRepair`, `ClosedResidual`, `OpenSignObstruction`, `SplitBrainRefusal`, `ClosureFailure`) and verify rational cochain complex nilpotence $d_1 \\circ d_0 = 0$."
+subject_role: "Bounded-domain rational cochain complex ($C^0 \\to C^1 \\to C^2$) nilpotence validator ($d_1 \\circ d_0 = 0$), $\\ell_1$ coboundary norm evaluator $\\Gamma_2 = \\|d_1 c^1\\|_1$, and deterministic 5-fold BQNF terminal router."
+descriptor:
+  authority_effect: "None"
+  evidence_ceiling: "ExactWitness"
+  runtime_enforcement: true
+  clean_architecture_layer: "domain"
+  dependencies:
+    contracts: []
+    lean4_theorems:
+      - "lean4/BqnfSignPacket.lean:routePacket"
+      - "lean4/BqnfSignPacket.lean:routePacket_exhaustive_fivefold"
+  refusals:
+    may_emit:
+      - "`d0 row count mismatch (expected dim_c1)`"
+      - "`d0 column count mismatch (expected dim_c0)`"
+      - "`d1 row count mismatch (expected dim_c2)`"
+      - "`d1 column count mismatch (expected dim_c1)`"
+      - "`nilpotence failure: d1 . d0 != 0`"
+      - "`c1 length must equal dim_c1`"
+doctrine:
+  summary: "Classify finite sign obstruction packets into five terminal routes (`ExactRepair`, `ClosedResidual`, `OpenSignObstruction`, `SplitBrainRefusal`, `ClosureFailure`) and verify rational cochain complex nilpotence $d_1 \\circ d_0 = 0$."
+  invariants:
+    - "Five-fold terminal partition: `!is_valid_complex -> ClosureFailure`, `disjoint_supports -> SplitBrainRefusal`, `closure_defect > 0 -> OpenSignObstruction`, `residual_mass == 0 || has_involution_witness -> ExactRepair`, otherwise `ClosedResidual`."
+    - "`CochainComplex::new` enforces `d0.len() == dim_c1`, row lengths `dim_c0`, `d1.len() == dim_c2`, row lengths `dim_c1`, and exact rational nilpotence $d_1 \\circ d_0 = 0$."
+  domain_preconditions:
+    - "`d0` is a `dim_c1 x dim_c0` matrix over `BigRational`; `d1` is a `dim_c2 x dim_c1` matrix over `BigRational` satisfying $d_1 d_0 = 0$."
+    - "`c1` has length `dim_c1`."
+  non_roles:
+    - "authority_source"
+    - "promotion_granter"
+    - "continuum_equivalence_proof"
+  required_negative_capabilities:
+    - "no_self_certification"
+    - "no_implicit_authority_upgrade"
+    - "no_floating_point_in_exact_profile"
+declaration_index:
+  - {"declaration_line": "pub enum TerminalRoute {", "kind": "enum", "line": 14, "name": "TerminalRoute"}
+  - {"declaration_line": "pub struct SignPacketMetrics {", "kind": "struct", "line": 30, "name": "SignPacketMetrics"}
+  - {"declaration_line": "pub fn new(", "kind": "fn", "line": 39, "name": "new"}
+  - {"declaration_line": "pub fn route_packet(m: &SignPacketMetrics) -> TerminalRoute {", "kind": "fn", "line": 58, "name": "route_packet"}
+  - {"declaration_line": "pub struct CochainComplex {", "kind": "struct", "line": 74, "name": "CochainComplex"}
+  - {"declaration_line": "pub fn new(", "kind": "fn", "line": 83, "name": "new"}
+  - {"declaration_line": "pub fn check_nilpotence(&self) -> bool {", "kind": "fn", "line": 120, "name": "check_nilpotence"}
+  - {"declaration_line": "pub fn apply_d1(&self, c1: &[BigRational]) -> Result<Vec<BigRational>, &'static str> {", "kind": "fn", "line": 136, "name": "apply_d1"}
+  - {"declaration_line": "pub fn l1_norm(vec: &[BigRational]) -> BigRational {", "kind": "fn", "line": 152, "name": "l1_norm"}
+  - {"declaration_line": "pub fn compute_closure_defect(&self, c1: &[BigRational]) -> Result<BigRational, &'static str> {", "kind": "fn", "line": 161, "name": "compute_closure_defect"}
+declaration_index_scope: "Lexical public declaration line index only; excludes private helpers and test-module items."
+specification:
+  algebraic_structure:
+    carrier_type: "CochainComplex / SignPacketMetrics / TerminalRoute"
+    operations:
+      - "SignPacketMetrics::new"
+      - "route_packet"
+      - "CochainComplex::new"
+      - "CochainComplex::check_nilpotence"
+      - "CochainComplex::apply_d1"
+      - "CochainComplex::l1_norm"
+      - "CochainComplex::compute_closure_defect"
+  verification:
+    rust_test_command: "cargo test --manifest-path code/rust/src/fsp/Cargo.toml"
+    python_parity_test: "code/python/tests/test_fsp_Hubbard_Majorana_Parity.py"
+    lean4_targets:
+      - "lean4/BqnfSignPacket.lean:routePacket"
+      - "lean4/BqnfSignPacket.lean:routePacket_exhaustive_fivefold"
+requirements:
+  - {"id": "G1", "requirement": "Bind exact artifact SHA-256, public symbols, Lean 4 theorem correspondence, and AuthorityEffect: None."}
+  - {"id": "G2", "requirement": "Preserve exact rational (`BigRational`) and F2 arithmetic; validate all public entry preconditions and struct construction/deserialization invariants (`RULE_RS_001`, `RULE_RS_003`)."}
+  - {"id": "G3", "requirement": "Eliminate reachable panics (`.unwrap()`, `assert!`, unchecked bit shifts, unchecked slice indexing, and zero divisors) in favor of typed `Result` refusals (`RULE_RS_001`, `RULE_RS_002`)."}
+  - {"id": "G4", "requirement": "Maintain unit, cross-language JSON fixture, and negative boundary tests with honest six-outcome mutation accounting (`R >= 0.95` required for Grade A)."}
+  - {"id": "G5", "requirement": "Maintain CCN <= 10, cognitive complexity <= 15, and control nesting <= 3 for Grade A (`SCORING.md` Section 3.5)."}
+admission_policy: "Structs with `pub` fields or `serde::Deserialize` are untrusted carrier data until validated by a checked constructor; callers must not bypass constructor checks."
+resource_boundary: "Exact `BigRational` and Fock-space basis enumeration scale combinatorially with site count; callers must bound lattice size (`num_sites < 32` for `FockState`)."
+authority_ceiling: "Runtime finite algebraic checks only. AuthorityEffect: None."
+open_obligations:
+  - "RULE_RS_003 (Gate 2 -> D, Gate 3 -> D): `CochainComplex` and `SignPacketMetrics` expose `pub` fields and unchecked `serde::Deserialize`, allowing callers to bypass `CochainComplex::new` nilpotence/dimension checks and trigger slice-indexing panics in `check_nilpotence` / `apply_d1`."
+  - "Gate 2 -> D: `SignPacketMetrics::new` does not reject negative `closure_defect` or negative `residual_mass` even though both represent $\\ell_1$ norms."
+evidence:
+  - {"path": "evidence/quality/fsp/20261020T002611Z/baseline.json", "scope": "Scoped offline cargo test baseline receipt and log hash for tfqm_fsp.", "sha256": "db05d7096c8506a0bccc8812f236c9b417bd473a530cc6ec4cee7eacccb4a380"}
+  - {"path": "evidence/quality/fsp/20261020T002611Z/summary.json", "scope": "Source snapshot invariance and complete six-outcome mutation accounting summary.", "sha256": "89460c15f087cb112eeaceda284431481373fea15e34f68296d6531c96e8d3d5"}
+  - {"path": "evidence/quality/fsp/20261020T002611Z/mutations.json", "scope": "Designated semantic fault injection runs and per-mutant log hashes.", "sha256": "829e77a5a7944d14ebb4e53c3323a910592910c962e7af331fd405ab2cd6535f"}
+  - {"path": "evidence/quality/fsp/20261020T002611Z/metric_receipt.json", "scope": "Calibrated syn 3.0.9 source AST complexity receipt and tool-source hashes.", "sha256": "a96ad46c87d079dc2ff14f7fa7083631b76cc93507f515c8d9d2a784369f322b"}

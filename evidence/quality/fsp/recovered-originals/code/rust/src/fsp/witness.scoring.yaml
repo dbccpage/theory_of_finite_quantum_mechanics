@@ -1,0 +1,130 @@
+# =============================================================================
+# SCORING.md v2.0.0 FIVE-GATE EVALUATION RECORD
+# AuthorityEffect: None
+# =============================================================================
+schema_version: "2.0.0"
+AuthorityEffect: "None"
+artifact:
+  path: "code/rust/src/fsp/witness.rs"
+  language: "Rust"
+  sha256: "f57e74de520594cfc18dfaf6fe013de0dab1b01d92497729645a82ef36d8502a"
+profile: "Exact"
+level: "L2"
+level_basis: "Fixed-parameter 4-site star exchange and $k=1$ character orbit witness record (`Witness`) and fixture refusal helpers matching `wdp_21_16_fsp`."
+architecture_target: "L4"
+engineering_target: "A"
+gates:
+  G1: "C"
+  G2: "C"
+  G3: "D"
+  G4: "C"
+  G5: "A"
+composite_grade: "D"
+score_token: "L2D"
+is_complete: true
+grade_ceiling: "A"
+evaluation_timestamp: "2026-10-20T00:26:11+00:00"
+claim:
+  urn: "urn:tfqm:rust:fsp:witness"
+  description: "Compute the fixed 6-step two-particle CAR hop holonomy on the 4-site star graph (`hop_product = -1`, `gauges_removing_holonomy = 0`) and the $k=1$ character orbit invariants (`z_u = 0`, `n_u = 2`), and refuse invalid holonomy or foreign fixture scalars."
+  scope: "Only the source-bound finite runtime behavior in code/rust/src/fsp; no continuum derivation or authority promotion is certified."
+contract:
+  status: "active_with_recorded_obligations"
+  path: "code/rust/src/fsp/witness.contract.yaml"
+  contract_id: "urn:tfqm:contract:rust:fsp:witness:v2.0.0"
+evidence:
+  - {"path": "evidence/quality/fsp/20261020T002611Z/baseline.json", "scope": "Scoped offline cargo test baseline receipt and log hash for tfqm_fsp.", "sha256": "db05d7096c8506a0bccc8812f236c9b417bd473a530cc6ec4cee7eacccb4a380"}
+  - {"path": "evidence/quality/fsp/20261020T002611Z/summary.json", "scope": "Source snapshot invariance and complete six-outcome mutation accounting summary.", "sha256": "89460c15f087cb112eeaceda284431481373fea15e34f68296d6531c96e8d3d5"}
+  - {"path": "evidence/quality/fsp/20261020T002611Z/mutations.json", "scope": "Designated semantic fault injection runs and per-mutant log hashes.", "sha256": "829e77a5a7944d14ebb4e53c3323a910592910c962e7af331fd405ab2cd6535f"}
+  - {"path": "evidence/quality/fsp/20261020T002611Z/metric_receipt.json", "scope": "Calibrated syn 3.0.9 source AST complexity receipt and tool-source hashes.", "sha256": "a96ad46c87d079dc2ff14f7fa7083631b76cc93507f515c8d9d2a784369f322b"}
+verification:
+  baseline_ok: true
+  restored_baseline_ok: true
+  source_snapshot_unchanged: true
+  compiled_scope: "tfqm_fsp standalone offline crate test suite (19 tests)"
+  local_mutant_ids:
+    - "FSP-WIT-01-hop-sign-formula"
+    - "FSP-WIT-02-refuse-holonomy-guard"
+mutation_accounting:
+  killed: 2
+  survived: 0
+  demonstrably_equivalent: 0
+  invalid: 0
+  inconclusive: 0
+  unrun: 0
+  conservative_ratio: 1.0
+structure:
+  tool: "syn 3.0.9 source AST"
+  source_ast_parsed: true
+  expanded_ast: false
+  physical_lines: 293
+  parsed_production_functions: 14
+  max_production_ccn: 6
+  cognitive_complexity_upper_bound: 9
+  control_nesting: 2
+  metric_ceiling: "A"
+  opaque_function_macros:
+    - function: "preceding"
+      line: 36
+      macros:
+        - "assert:37"
+    - function: "hop_sign"
+      line: 42
+      macros:
+        - "assert:43"
+        - "assert:44"
+        - "assert:45"
+        - "assert_eq:50"
+    - function: "distinct_two_particle_cycle"
+      line: 54
+      macros:
+        - "assert_eq:57"
+        - "assert_eq:59"
+        - "assert_eq:62"
+        - "assert_eq:69"
+    - function: "site_cycle_rank"
+      line: 80
+      macros:
+        - "assert:84"
+        - "assert:86"
+        - "assert:89"
+        - "assert_eq:94"
+    - function: "gauge_cycle"
+      line: 108
+      macros:
+        - "assert_eq:123"
+        - "assert_eq:125"
+    - function: "star_exchange"
+      line: 134
+      macros:
+        - "assert_eq:143"
+        - "assert_eq:151"
+        - "assert_eq:152"
+        - "assert_eq:154"
+    - function: "reduce"
+      line: 178
+      macros:
+        - "assert:179"
+        - "assert:181"
+    - function: "orbit"
+      line: 185
+      macros:
+        - "assert_eq:191"
+        - "assert_eq:206"
+        - "assert_eq:207"
+        - "assert_eq:209"
+        - "assert_eq:211"
+  functions_exceeding_A: []
+  scope: "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
+gate_review:
+  G1: "C: Declares `AuthorityEffect: None` and `#![forbid(unsafe_code)]`; matches `code/rust/src/wdp/derivation_controls/wdp_21_16_fsp.rs` and `code/python/src/fsp/__init__.py`."
+  G2: "C: Exact integer and $\\mathbb{F}_2$ bit operations on bounded compile-time constants (`MASKS`, `HOPS`, $k=1$). Capped at `C` because `Witness` exposes `pub` fields and derives `Deserialize` without invariant validation (`RULE_RS_003`)."
+  G3: "D: Contains 26 `assert!` / `assert_eq!` macros across 8 production helper functions (`preceding`, `hop_sign`, `distinct_two_particle_cycle`, `site_cycle_rank`, `gauge_cycle`, `star_exchange`, `reduce`, `orbit`) and 14 direct array/slice indexing expressions (`RULE_RS_002`). Although unreachable from public entry points because inputs are compile-time constants, failure handling is wired to panic rather than typed `Result` errors."
+  G4: "C: Unit test `exact_star_and_orbit_witness_parity` verifies all primary `Witness` fields and both refusal functions on valid and invalid inputs; both designated mutants (`FSP-WIT-01`, `FSP-WIT-02`) are killed ($R = 2/2 = 1.0$)."
+  G5: "A: Calibrated `syn 3.0.9` AST metrics across 14 production functions: max CCN = 6 (<= 10), cognitive upper bound = 9 (<= 15), control nesting = 2 (<= 3), 0 functions exceeding `A` (with 26 opaque `assert!`/`assert_eq!` macro invocations explicitly disclosed)."
+open_findings:
+  - "Gate 3 -> D: 8 internal helper functions rely on 26 `assert!`/`assert_eq!` panic macros and 14 direct indexing operations rather than returning typed `Result` errors."
+  - "RULE_RS_003 (Gate 2 -> C): `Witness` exposes 19 `pub` fields and derives `serde::Deserialize` without verifying invariant consistency on deserialized instances."
+assurance_limits:
+  - "Evaluation applies SCORING.md v2.0.0 fail-closed weakest-link grading (`composite_grade = min(G1..G5)`)."
+  - "No mechanized Rust-to-Lean extraction, MIR crash-freedom proof, or global allocator totality is claimed."
