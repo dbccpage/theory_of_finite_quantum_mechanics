@@ -3,128 +3,569 @@
   "AuthorityEffect": "None",
   "artifact": {
     "path": "code/rust/src/fusion_categories/fusion_ring.rs",
-    "sha256": "be67d1f5782df7428c799daa5447c5a424f60dade5d11b627d78cf82617cbd46",
+    "sha256": "3ca09b760cb523f8c6dbe80779612ebac2fcae907065897df1816838b3748655",
     "language": "Rust"
   },
-  "status": "boundary_reviewed",
+  "status": "source_reviewed",
   "formal_specification": {
     "profile": "Exact",
-    "domain": "Partial contract: selected rank admission, law-check traversal, exact matrix conversion and refactored scalar/generator operations. Complete ring semantics/provider/cost review remains pending.",
+    "claim_urn": "urn:tfqm:fusion-categories:bounded-based-ring:v2",
+    "domain": "Ranks 1..32 with shaped nonnegative-u64 coefficients; validated rings additionally satisfy checked-representable associativity sums, both units, unique involutive duals and reciprocity, allowing noncommutativity. Words have length<=16384 and admitted scalar-bit work. Generic Verlinde identities assume lawful exact scalar operations/embedding/conjugation; spectral calls may refuse under pinned provider budgets.",
     "behavior": [
-      "Admit exactly 1..=32 with no allocation, returning RankOutOfRange otherwise. This new common guard precedes convenience constructor allocations.",
-      "Admit rank before allocating default name strings; pass names and multiplicities to with_names. Invalid-rank requests allocate no constructor-owned heap storage.",
-      "Admit rank first, then exactly rank cubed multiplicities, then exactly rank names; own a raw shaped table. This constructor alone does not validate fusion-ring laws.",
-      "Admit const R before flattening the caller-supplied stack array; preserve the original row-major order and ordinary constructor behavior on admitted R.",
-      "Admit the cyclic modulus via pointed/AbelianGroup before generating names; preserve accepted default names for n=2..32 and legacy refusal of n=0,1.",
-      "checked_add the level-plus-one rank; return typed Overflow for usize::MAX, preserve the zero-level/rank error and admit levels 1..31 before allocation. For admitted i,j<=k, i+j<=2*k proves the high-limit subtraction exact without saturation.",
-      "Scan labels b ascending for the unique nonzero unit coefficient in a*b; require exactly one occurrence of multiplicity one, preserving the first failing a.",
-      "Collect unique duals in a order, then verify the same involution check as before; no acceptance predicate or error priority changes.",
-      "Evaluate both checked-u128 sums at one (a,b,c,d), returning the same mismatch or overflow witness with identical operands.",
-      "For fixed (a,b), scan c then d ascending and stop at the first outcome defect.",
-      "Scan a then b ascending and ask the pair helper for c,d; this preserves the complete original lexicographic defect ordering.",
-      "For fixed (a,b), compute the same dual fallbacks once and find the first violating c. No invalid-dual fallback semantics changes.",
-      "Scan a then b ascending and report the first c witness from the pair helper.",
-      "Factor the identical checked label lookup, integer fusion matrix and integer-to-rational map into one reusable conversion.",
-      "Accumulate the same ordered sum of N_a*N_a_star in exact rational matrices, then call the unchanged characteristic-polynomial and root providers.",
-      "Compute the same x-ordered scalar sum and final d_inverse multiplication for one (a,b,c). Field/scalar dependencies and coefficient conversion assumptions remain unreviewed at the full ring level.",
-      "For fixed (a,b), scan c ascending, compute each full scalar value before checked coefficient embedding and append the same mismatch witnesses into the existing output vector.",
-      "Preserve shape, d_inverse and first-row inverse admission order, then scan a,b and delegate c to the pair helper. No per-pair output vector allocation.",
-      "For admitted k/rank/i/j, fill the same low..high labels of correct parity in the existing row-major slice; no intermediate allocation."
-    ]
+      "Admit exactly 1..=32 before constructor-owned allocation; reject zero/excessive ranks with both actual rank and maximum.",
+      "Private bounded-R caller: reserve exactly R cubed entries and preserve row-major plane/row/column order without vector growth. Public array construction admits R first; catalog calls use fixed R=2 or 3.",
+      "Consume a borrowed factor list. Require each factor>=2, checked-multiply its prefix order, then require prefix order<=32 before copying moduli. Empty factors give the trivial order-one group. Report the first invalid factor, product overflow or excessive prefix order.",
+      "Borrow the private, admitted factor list without mutation.",
+      "Return its exact private product, at least one and at most 32.",
+      "Accept precisely labels below order, including the empty-product case; reject equality/above before coordinate arithmetic.",
+      "Admit the label then repeatedly divide/remainder by each positive modulus, producing least-significant-factor-first digits. Final remainder is zero and every digit is within its factor.",
+      "Check exact digit length before checking each digit bound. Encode the weighted sum with prefix-product strides; all prefixes and the final label fit below order<=32.",
+      "Admit a then b, stream their admitted residues into the same mixed-radix encoding, and perform componentwise modular addition without allocating digit vectors.",
+      "Admit the label and stream modular negatives into the encoding, using (m-digit)%m so zero remains zero, with no heap allocation.",
+      "Admit rank before generating default names, then delegate shape/name validation. Default name strings label indices; they are metadata, not mathematical identifiers.",
+      "Admit rank, then exactly rank cubed coefficients, then exactly rank names. Own the shaped nonnegative-u64 tensor and arbitrary strings privately; this raw table constructor does not assert fusion laws or uniqueness/nonemptiness of name strings.",
+      "Admit const R before flattening the caller-owned array. Use the exact-capacity row-major helper, then the ordinary constructor.",
+      "Return the immutable admitted tensor rank.",
+      "Return shared read-only metadata; numerical labels determine all algebra.",
+      "Admit label<rank; return the exact label or a typed Label error.",
+      "Private bounded-label lookup computes (a*r+b)*r+c. Production callers prove a,b,c<r; flattened index<r cubed<=32768. The zero get fallback is defensive, not validation of arbitrary oversized indices.",
+      "Admit a then b then c at the public boundary and return the exact u64 coefficient.",
+      "Private bounded-r loop: convert both u64 factors to u128, checked-multiply and checked-add. Individual products fit u128; aggregate overflow refuses rather than wraps.",
+      "For fixed bounded a, find the unique b with nonzero unit coefficient, requiring coefficient exactly one. Reject a on multiple hits, coefficient>1 or no hit.",
+      "Collect candidate duals in a order, then require dual(dual(a))=a for every a. All collected labels are below rank. Return the first offending a.",
+      "Check both left and right unit-zero laws against delta(c,label), scanning labels then c; report the first bad label.",
+      "Scan left<right in order and report the first pair with any unequal outcome coefficient. This optional test is not imposed by FusionRing::try_new.",
+      "At one bounded (a,b,c,d), compute both exact checked-u128 convolution sums. Return the two actual unequal values or an Overflow diagnostic; return None only for two successful equal sums.",
+      "For fixed a,b, scan c then d ascending and preserve the first exact mismatch/overflow witness.",
+      "Scan a then b and delegate c,d; helper factoring preserves the full original lexicographic witness order.",
+      "Map the first failed dual candidate/involution to a Duality defect without changing the label.",
+      "Private in-range candidate-dual entries, with missing entries falling back to their original labels: find first c violating either Frobenius coefficient equality. Production passes the complete admitted dual list.",
+      "Scan a,b ascending and report the first c reciprocity witness. Internal caller establishes bounded candidate dual entries.",
+      "Check unit, optional commutativity, then associativity/overflow, duality and reciprocity in that exact priority order.",
+      "Check unit and all remaining based-ring laws without requiring commutativity. Noncommutative finite group rings are intentionally admitted.",
+      "Check associativity/overflow first, duality next, then reciprocity with recomputed admitted duals. No failed law yields a successful certificate.",
+      "Clone this borrowed raw table into the owned validated-ring constructor. The owned table copy is required by the returned Ring API; failure leaves the borrowed input unchanged.",
+      "Admit label first, then copies<=16384, then conservative scalar-bit work. Only then compute exact right-fusion counts from the unit via the repeated label, including zero copies.",
+      "Compute the same admitted exact counts, then checked-narrow every entry. Refuse any count outside u64 and discard partial converted output.",
+      "Create exactly rank BigUint counts with one in slot zero and zeros elsewhere; this is the empty-word state.",
+      "For one admitted label compute D=max_a sum_c N(a,w,c) in u128. Return zero for D<=1, otherwise ceil(log2 D) using leading zeros of D-1. D<=32*(2^64-1)<2^69.",
+      "Private bounded-length, prevalidated labels only. Keep a fixed stack cache of label growths. Charge r squared*(prefix_bits+64) per step, reject at the first cumulative charge>2^32, and advance prefix_bits by that label growth. Equality is admitted. This conservative scalar-bit envelope is not a CPU-cycle or heap-byte bound.",
+      "Private rank-length disjoint count/output buffers and admitted w: clear the output, skip zero counts and zero coefficients, and sum count[a]*N(a,w,c) exactly using scalar-u64 multiplication. No coefficient BigUint copies or output-vector allocation occurs here.",
+      "Private previously admitted iterator: start at the unit, allocate the second rank-length buffer only if a step exists, clear/fill then swap buffers. Preserve right-multiplication word order; return owned final counts without cloning.",
+      "Return the literal rank-three, 27-entry Ising tensor and three fixed names. Literal dimensions satisfy the raw-table representation invariant; validated-ring construction is separate.",
+      "Own a raw shaped table, reject its first noncommutative-allowing law/overflow defect, then store its admitted involutive dual list privately. Success certifies a bounded based ring, not categorical realizability.",
+      "Return the certified carrier rank.",
+      "Borrow its owned label-name metadata.",
+      "Return the designated numeric unit label zero.",
+      "Borrow the raw table read-only; callers cannot mutate the certified representation.",
+      "Admit the public label and return its stored in-range dual; preserve typed defensive missing-entry failure.",
+      "Delegate the three-label admission and exact coefficient access.",
+      "Crate-only bounded-label coefficient access for validated consumer loops. This fast path does not admit arbitrary raw labels; consumers must establish all three bounds.",
+      "Admit a then b and return each c with positive coefficient, once in ascending order. This is support, not an expanded multiplicity list.",
+      "Report whether every tensor pair commutes, without changing the noncommutative Ring type invariant.",
+      "Return true exactly when every nonnegative coefficient is at most one.",
+      "Return true exactly when every product has total coefficient one. checked-u64 row-sum overflow makes the result false, never a spurious one.",
+      "Compute the admitted word counts first, then admit target, preserving word-error-before-target priority. Move the selected BigUint out of the owned count vector without cloning. Invalid target may follow bounded valid-word computation.",
+      "Reject word length>16384 before inspecting labels; validate every label before work admission and BigUint allocation; then compute the exact counts with two reusable buffers.",
+      "Admit a, then return integer matrix rows b/columns c with entries N(a,b,c); no truncating scalar representation.",
+      "Admit a before allocation; construct the same row-major entries directly as exact rationals through a bounded flat BasicMatrix builder. Avoid a temporary integer matrix and nested conversion vectors.",
+      "Require each provider rational coefficient to be integral before conversion to BigInt; reject an unexpected fractional coefficient with a typed Polynomial error instead of truncating it.",
+      "Build the exact integral fusion matrix in rational representation, obtain its monic characteristic polynomial from the pinned provider, and pass all coefficients through the integrality gate. Coefficients are returned constant-first.",
+      "Return the provider-certified largest real root of the integral nonnegative fusion matrix characteristic polynomial, or propagate its explicit algebraic budget/domain error. Perron-Frobenius identifies this root as the FP dimension; success is not promised beyond provider budgets.",
+      "Form the exact ordered sum over a of N_a*N_dual(a), obtain its checked integral characteristic polynomial, and return its largest real root or provider error. The based-ring positive character identifies it with sum of squared FP dimensions; no fusion category or physical authority follows.",
+      "For a lawful exact FusionScalar with compatible integer embedding/conjugation, reject wrong S shape before inversions, then invert d_squared and each first-row entry in order. Scan a,b,c lexicographically, collecting precisely unequal field identities; do not claim that S is itself modular/unitary.",
+      "For one admitted triple and rank-length weights, sum in x order S[a,x]*S[b,x]*conjugate(S[c,x])/S[0,x], then multiply by d_squared inverse. Preserve typed matrix errors; field operations are the declared lawful-scalar TCB.",
+      "Scan c in order, compute the formula value, then checked-convert the u64 coefficient to i64 for field embedding. On overflow return the exact embedding error and expose no partial defects; otherwise append each mismatch.",
+      "Construct the admitted cyclic pointed ring for n=2..32; zero/one or excessive n refuse through group admission before naming. The trivial group is available through empty moduli.",
+      "Admit the mixed-radix abelian group, allocate its bounded tensor and fill one product outcome using allocation-free group addition. Default or caller-supplied names are checked by the table constructor; validate all based-ring laws before return.",
+      "Validate the literal Ising table through the ordinary certified constructor.",
+      "Construct and validate the literal rank-two tensor with tau squared=1+tau and the two metadata names. No approximate golden ratio is used.",
+      "Return the named pointed Z2 fusion ring; braiding/spin data are outside this file.",
+      "Return the named pointed Z2-by-Z2 fusion ring only.",
+      "Return the same Z2-by-Z2 fusion multiplicities with different metadata names; no fermion statistics or braiding is certified here.",
+      "checked_add k+1 first, reject k=0 or rank>32 before allocation, then fill all bounded SU2 triangle/parity products, attach names and validate the complete based ring. Admitted levels are 1..31, with typed Overflow at usize::MAX.",
+      "Private admitted k/rank/i/j: set exactly labels from abs(i-j) to min(i+j,2k-i-j) of even i+j+l parity. i+j<=2k makes subtraction exact; bounded labels make flattened slots valid.",
+      "Construct and validate the fixed representation-ring tensor with unit, sign and standard labels; this is the commutative representation ring, distinct from the noncommutative S3 group-ring challenge."
+    ],
+    "capability": "L4 bounded based-ring algorithms and invariant-bearing API; no categorical realizability or physical authority."
   },
   "operations": {
-    "admit_rank": {
-      "obligation": "Admit exactly 1..=32 with no allocation, returning RankOutOfRange otherwise. This new common guard precedes convenience constructor allocations."
+    "module::admit_rank": {
+      "line": 18,
+      "signature": "fn admit_rank(rank: usize) -> Result<(), FusionError>",
+      "obligation": "Admit exactly 1..=32 before constructor-owned allocation; reject zero/excessive ranks with both actual rank and maximum."
+    },
+    "module::flatten_multiplicities": {
+      "line": 29,
+      "signature": "fn flatten_multiplicities<const R: usize>(n: &[[[u64; R]; R]; R]) -> Vec<u64>",
+      "obligation": "Private bounded-R caller: reserve exactly R cubed entries and preserve row-major plane/row/column order without vector growth. Public array construction admits R first; catalog calls use fixed R=2 or 3."
+    },
+    "AbelianGroup::new": {
+      "line": 69,
+      "signature": "pub fn new(moduli: &[usize]) -> Result<Self, FusionError>",
+      "obligation": "Consume a borrowed factor list. Require each factor>=2, checked-multiply its prefix order, then require prefix order<=32 before copying moduli. Empty factors give the trivial order-one group. Report the first invalid factor, product overflow or excessive prefix order."
+    },
+    "AbelianGroup::moduli": {
+      "line": 94,
+      "signature": "pub fn moduli(&self) -> &[usize]",
+      "obligation": "Borrow the private, admitted factor list without mutation."
+    },
+    "AbelianGroup::order": {
+      "line": 98,
+      "signature": "pub fn order(&self) -> usize",
+      "obligation": "Return its exact private product, at least one and at most 32."
+    },
+    "AbelianGroup::check_label": {
+      "line": 102,
+      "signature": "fn check_label(&self, label: usize) -> Result<(), FusionError>",
+      "obligation": "Accept precisely labels below order, including the empty-product case; reject equality/above before coordinate arithmetic."
+    },
+    "AbelianGroup::digits": {
+      "line": 112,
+      "signature": "pub fn digits(&self, label: usize) -> Result<Vec<usize>, FusionError>",
+      "obligation": "Admit the label then repeatedly divide/remainder by each positive modulus, producing least-significant-factor-first digits. Final remainder is zero and every digit is within its factor."
+    },
+    "AbelianGroup::label": {
+      "line": 126,
+      "signature": "pub fn label(&self, digits: &[usize]) -> Result<usize, FusionError>",
+      "obligation": "Check exact digit length before checking each digit bound. Encode the weighted sum with prefix-product strides; all prefixes and the final label fit below order<=32."
+    },
+    "AbelianGroup::add": {
+      "line": 149,
+      "signature": "pub fn add(&self, a: usize, b: usize) -> Result<usize, FusionError>",
+      "obligation": "Admit a then b, stream their admitted residues into the same mixed-radix encoding, and perform componentwise modular addition without allocating digit vectors."
+    },
+    "AbelianGroup::negate": {
+      "line": 162,
+      "signature": "pub fn negate(&self, a: usize) -> Result<usize, FusionError>",
+      "obligation": "Admit the label and stream modular negatives into the encoding, using (m-digit)%m so zero remains zero, with no heap allocation."
     },
     "FusionTable::new": {
-      "obligation": "Admit rank before allocating default name strings; pass names and multiplicities to with_names. Invalid-rank requests allocate no constructor-owned heap storage."
+      "line": 182,
+      "signature": "pub fn new(rank: usize, multiplicities: Vec<u64>) -> Result<Self, FusionError>",
+      "obligation": "Admit rank before generating default names, then delegate shape/name validation. Default name strings label indices; they are metadata, not mathematical identifiers."
     },
     "FusionTable::with_names": {
-      "obligation": "Admit rank first, then exactly rank cubed multiplicities, then exactly rank names; own a raw shaped table. This constructor alone does not validate fusion-ring laws."
+      "line": 188,
+      "signature": "pub fn with_names(\n        rank: usize,\n        names: Vec<String>,\n        multiplicities: Vec<u64>,\n    ) -> Result<Self, FusionError>",
+      "obligation": "Admit rank, then exactly rank cubed coefficients, then exactly rank names. Own the shaped nonnegative-u64 tensor and arbitrary strings privately; this raw table constructor does not assert fusion laws or uniqueness/nonemptiness of name strings."
     },
     "FusionTable::from_array": {
-      "obligation": "Admit const R before flattening the caller-supplied stack array; preserve the original row-major order and ordinary constructor behavior on admitted R."
+      "line": 216,
+      "signature": "pub fn from_array<const R: usize>(n: [[[u64; R]; R]; R]) -> Result<Self, FusionError>",
+      "obligation": "Admit const R before flattening the caller-owned array. Use the exact-capacity row-major helper, then the ordinary constructor."
+    },
+    "FusionTable::rank": {
+      "line": 222,
+      "signature": "pub fn rank(&self) -> usize",
+      "obligation": "Return the immutable admitted tensor rank."
+    },
+    "FusionTable::names": {
+      "line": 226,
+      "signature": "pub fn names(&self) -> &[String]",
+      "obligation": "Return shared read-only metadata; numerical labels determine all algebra."
+    },
+    "FusionTable::check": {
+      "line": 230,
+      "signature": "fn check(&self, label: usize) -> Result<usize, FusionError>",
+      "obligation": "Admit label<rank; return the exact label or a typed Label error."
+    },
+    "FusionTable::at": {
+      "line": 241,
+      "signature": "fn at(&self, a: usize, b: usize, c: usize) -> u64",
+      "obligation": "Private bounded-label lookup computes (a*r+b)*r+c. Production callers prove a,b,c<r; flattened index<r cubed<=32768. The zero get fallback is defensive, not validation of arbitrary oversized indices."
+    },
+    "FusionTable::multiplicity": {
+      "line": 248,
+      "signature": "pub fn multiplicity(&self, a: usize, b: usize, c: usize) -> Result<u64, FusionError>",
+      "obligation": "Admit a then b then c at the public boundary and return the exact u64 coefficient."
+    },
+    "FusionTable::associativity_sum": {
+      "line": 252,
+      "signature": "fn associativity_sum(&self, first: impl Fn(usize) -> (u64, u64)) -> Option<u128>",
+      "obligation": "Private bounded-r loop: convert both u64 factors to u128, checked-multiply and checked-add. Individual products fit u128; aggregate overflow refuses rather than wraps."
+    },
+    "FusionTable::unique_dual": {
+      "line": 259,
+      "signature": "fn unique_dual(&self, a: usize) -> Result<usize, usize>",
+      "obligation": "For fixed bounded a, find the unique b with nonzero unit coefficient, requiring coefficient exactly one. Reject a on multiple hits, coefficient>1 or no hit."
+    },
+    "FusionTable::dual_labels": {
+      "line": 273,
+      "signature": "fn dual_labels(&self) -> Result<Vec<usize>, usize>",
+      "obligation": "Collect candidate duals in a order, then require dual(dual(a))=a for every a. All collected labels are below rank. Return the first offending a."
+    },
+    "FusionTable::first_unit_defect": {
+      "line": 287,
+      "signature": "fn first_unit_defect(&self) -> Option<RingDefect>",
+      "obligation": "Check both left and right unit-zero laws against delta(c,label), scanning labels then c; report the first bad label."
+    },
+    "FusionTable::first_commutativity_defect": {
+      "line": 298,
+      "signature": "fn first_commutativity_defect(&self) -> Option<RingDefect>",
+      "obligation": "Scan left<right in order and report the first pair with any unequal outcome coefficient. This optional test is not imposed by FusionRing::try_new."
+    },
+    "FusionTable::associativity_defect_at": {
+      "line": 307,
+      "signature": "fn associativity_defect_at(\n        &self,\n        a: usize,\n        b: usize,\n        c: usize,\n        d: usize,\n    ) -> Option<RingDefect>",
+      "obligation": "At one bounded (a,b,c,d), compute both exact checked-u128 convolution sums. Return the two actual unequal values or an Overflow diagnostic; return None only for two successful equal sums."
+    },
+    "FusionTable::associativity_defect_for_pair": {
+      "line": 328,
+      "signature": "fn associativity_defect_for_pair(&self, a: usize, b: usize) -> Option<RingDefect>",
+      "obligation": "For fixed a,b, scan c then d ascending and preserve the first exact mismatch/overflow witness."
+    },
+    "FusionTable::first_associativity_defect": {
+      "line": 339,
+      "signature": "fn first_associativity_defect(&self) -> Option<RingDefect>",
+      "obligation": "Scan a then b and delegate c,d; helper factoring preserves the full original lexicographic witness order."
+    },
+    "FusionTable::first_duality_defect": {
+      "line": 350,
+      "signature": "fn first_duality_defect(&self) -> Option<RingDefect>",
+      "obligation": "Map the first failed dual candidate/involution to a Duality defect without changing the label."
+    },
+    "FusionTable::reciprocity_defect_for_pair": {
+      "line": 356,
+      "signature": "fn reciprocity_defect_for_pair(&self, dual: &[usize], a: usize, b: usize) -> Option<usize>",
+      "obligation": "Private in-range candidate-dual entries, with missing entries falling back to their original labels: find first c violating either Frobenius coefficient equality. Production passes the complete admitted dual list."
+    },
+    "FusionTable::first_reciprocity_defect": {
+      "line": 365,
+      "signature": "fn first_reciprocity_defect(&self, dual: &[usize]) -> Option<RingDefect>",
+      "obligation": "Scan a,b ascending and report the first c reciprocity witness. Internal caller establishes bounded candidate dual entries."
+    },
+    "FusionTable::first_defect": {
+      "line": 376,
+      "signature": "pub fn first_defect(&self) -> Option<RingDefect>",
+      "obligation": "Check unit, optional commutativity, then associativity/overflow, duality and reciprocity in that exact priority order."
+    },
+    "FusionTable::first_defect_allowing_noncommutative": {
+      "line": 382,
+      "signature": "pub fn first_defect_allowing_noncommutative(&self) -> Option<RingDefect>",
+      "obligation": "Check unit and all remaining based-ring laws without requiring commutativity. Noncommutative finite group rings are intentionally admitted."
+    },
+    "FusionTable::first_noncommutative_remainder": {
+      "line": 387,
+      "signature": "fn first_noncommutative_remainder(&self) -> Option<RingDefect>",
+      "obligation": "Check associativity/overflow first, duality next, then reciprocity with recomputed admitted duals. No failed law yields a successful certificate."
+    },
+    "FusionTable::validate": {
+      "line": 396,
+      "signature": "pub fn validate(&self) -> Result<FusionRing, FusionError>",
+      "obligation": "Clone this borrowed raw table into the owned validated-ring constructor. The owned table copy is required by the returned Ring API; failure leaves the borrowed input unchanged."
+    },
+    "FusionTable::charge_counts": {
+      "line": 400,
+      "signature": "pub fn charge_counts(&self, label: usize, copies: usize) -> Result<Vec<BigUint>, FusionError>",
+      "obligation": "Admit label first, then copies<=16384, then conservative scalar-bit work. Only then compute exact right-fusion counts from the unit via the repeated label, including zero copies."
+    },
+    "FusionTable::charge_counts_u64": {
+      "line": 413,
+      "signature": "pub fn charge_counts_u64(&self, label: usize, copies: usize) -> Result<Vec<u64>, FusionError>",
+      "obligation": "Compute the same admitted exact counts, then checked-narrow every entry. Refuse any count outside u64 and discard partial converted output."
+    },
+    "FusionTable::unit_counts": {
+      "line": 424,
+      "signature": "fn unit_counts(&self) -> Vec<BigUint>",
+      "obligation": "Create exactly rank BigUint counts with one in slot zero and zeros elsewhere; this is the empty-word state."
+    },
+    "FusionTable::path_growth": {
+      "line": 436,
+      "signature": "fn path_growth(&self, w: usize) -> u32",
+      "obligation": "For one admitted label compute D=max_a sum_c N(a,w,c) in u128. Return zero for D<=1, otherwise ceil(log2 D) using leading zeros of D-1. D<=32*(2^64-1)<2^69."
+    },
+    "FusionTable::admit_path_work": {
+      "line": 452,
+      "signature": "fn admit_path_work(&self, labels: impl Iterator<Item = usize>) -> Result<(), FusionError>",
+      "obligation": "Private bounded-length, prevalidated labels only. Keep a fixed stack cache of label growths. Charge r squared*(prefix_bits+64) per step, reject at the first cumulative charge>2^32, and advance prefix_bits by that label growth. Equality is admitted. This conservative scalar-bit envelope is not a CPU-cycle or heap-byte bound."
+    },
+    "FusionTable::step_into": {
+      "line": 471,
+      "signature": "fn step_into(&self, counts: &[BigUint], w: usize, next: &mut [BigUint])",
+      "obligation": "Private rank-length disjoint count/output buffers and admitted w: clear the output, skip zero counts and zero coefficients, and sum count[a]*N(a,w,c) exactly using scalar-u64 multiplication. No coefficient BigUint copies or output-vector allocation occurs here."
+    },
+    "FusionTable::path_counts": {
+      "line": 488,
+      "signature": "fn path_counts(&self, labels: impl Iterator<Item = usize>) -> Vec<BigUint>",
+      "obligation": "Private previously admitted iterator: start at the unit, allocate the second rank-length buffer only if a step exists, clear/fill then swap buffers. Preserve right-multiplication word order; return owned final counts without cloning."
+    },
+    "FusionTable::ising": {
+      "line": 501,
+      "signature": "pub fn ising() -> Self",
+      "obligation": "Return the literal rank-three, 27-entry Ising tensor and three fixed names. Literal dimensions satisfy the raw-table representation invariant; validated-ring construction is separate."
+    },
+    "FusionRing::try_new": {
+      "line": 523,
+      "signature": "pub fn try_new(table: FusionTable) -> Result<Self, FusionError>",
+      "obligation": "Own a raw shaped table, reject its first noncommutative-allowing law/overflow defect, then store its admitted involutive dual list privately. Success certifies a bounded based ring, not categorical realizability."
+    },
+    "FusionRing::rank": {
+      "line": 533,
+      "signature": "pub fn rank(&self) -> usize",
+      "obligation": "Return the certified carrier rank."
+    },
+    "FusionRing::names": {
+      "line": 537,
+      "signature": "pub fn names(&self) -> &[String]",
+      "obligation": "Borrow its owned label-name metadata."
+    },
+    "FusionRing::unit": {
+      "line": 541,
+      "signature": "pub fn unit(&self) -> usize",
+      "obligation": "Return the designated numeric unit label zero."
+    },
+    "FusionRing::table": {
+      "line": 545,
+      "signature": "pub fn table(&self) -> &FusionTable",
+      "obligation": "Borrow the raw table read-only; callers cannot mutate the certified representation."
+    },
+    "FusionRing::dual": {
+      "line": 549,
+      "signature": "pub fn dual(&self, a: usize) -> Result<usize, FusionError>",
+      "obligation": "Admit the public label and return its stored in-range dual; preserve typed defensive missing-entry failure."
+    },
+    "FusionRing::multiplicity": {
+      "line": 557,
+      "signature": "pub fn multiplicity(&self, a: usize, b: usize, c: usize) -> Result<u64, FusionError>",
+      "obligation": "Delegate the three-label admission and exact coefficient access."
+    },
+    "FusionRing::n": {
+      "line": 561,
+      "signature": "pub(crate) fn n(&self, a: usize, b: usize, c: usize) -> u64",
+      "obligation": "Crate-only bounded-label coefficient access for validated consumer loops. This fast path does not admit arbitrary raw labels; consumers must establish all three bounds."
+    },
+    "FusionRing::fuse": {
+      "line": 565,
+      "signature": "pub fn fuse(&self, a: usize, b: usize) -> Result<Vec<usize>, FusionError>",
+      "obligation": "Admit a then b and return each c with positive coefficient, once in ascending order. This is support, not an expanded multiplicity list."
+    },
+    "FusionRing::is_commutative": {
+      "line": 573,
+      "signature": "pub fn is_commutative(&self) -> bool",
+      "obligation": "Report whether every tensor pair commutes, without changing the noncommutative Ring type invariant."
+    },
+    "FusionRing::is_multiplicity_free": {
+      "line": 577,
+      "signature": "pub fn is_multiplicity_free(&self) -> bool",
+      "obligation": "Return true exactly when every nonnegative coefficient is at most one."
+    },
+    "FusionRing::is_pointed": {
+      "line": 581,
+      "signature": "pub fn is_pointed(&self) -> bool",
+      "obligation": "Return true exactly when every product has total coefficient one. checked-u64 row-sum overflow makes the result false, never a spurious one."
+    },
+    "FusionRing::fusion_paths": {
+      "line": 590,
+      "signature": "pub fn fusion_paths(&self, word: &[usize], target: usize) -> Result<BigUint, FusionError>",
+      "obligation": "Compute the admitted word counts first, then admit target, preserving word-error-before-target priority. Move the selected BigUint out of the owned count vector without cloning. Invalid target may follow bounded valid-word computation."
+    },
+    "FusionRing::fusion_path_counts": {
+      "line": 596,
+      "signature": "pub fn fusion_path_counts(&self, word: &[usize]) -> Result<Vec<BigUint>, FusionError>",
+      "obligation": "Reject word length>16384 before inspecting labels; validate every label before work admission and BigUint allocation; then compute the exact counts with two reusable buffers."
+    },
+    "FusionRing::fusion_matrix": {
+      "line": 611,
+      "signature": "pub fn fusion_matrix(&self, a: usize) -> Result<Vec<Vec<BigInt>>, FusionError>",
+      "obligation": "Admit a, then return integer matrix rows b/columns c with entries N(a,b,c); no truncating scalar representation."
+    },
+    "FusionRing::rational_fusion_matrix": {
+      "line": 622,
+      "signature": "fn rational_fusion_matrix(\n        &self,\n        a: usize,\n    ) -> Result<BasicMatrix<omega_number_theory::rational::Rational>, FusionError>",
+      "obligation": "Admit a before allocation; construct the same row-major entries directly as exact rationals through a bounded flat BasicMatrix builder. Avoid a temporary integer matrix and nested conversion vectors."
+    },
+    "FusionRing::integral_coefficients": {
+      "line": 640,
+      "signature": "fn integral_coefficients(\n        values: Vec<omega_number_theory::rational::Rational>,\n    ) -> Result<Vec<BigInt>, FusionError>",
+      "obligation": "Require each provider rational coefficient to be integral before conversion to BigInt; reject an unexpected fractional coefficient with a typed Polynomial error instead of truncating it."
+    },
+    "FusionRing::characteristic_polynomial": {
+      "line": 657,
+      "signature": "pub fn characteristic_polynomial(&self, a: usize) -> Result<Vec<BigInt>, FusionError>",
+      "obligation": "Build the exact integral fusion matrix in rational representation, obtain its monic characteristic polynomial from the pinned provider, and pass all coefficients through the integrality gate. Coefficients are returned constant-first."
+    },
+    "FusionRing::frobenius_perron_dimension": {
+      "line": 663,
+      "signature": "pub fn frobenius_perron_dimension(&self, a: usize) -> Result<RealAlgebraic, FusionError>",
+      "obligation": "Return the provider-certified largest real root of the integral nonnegative fusion matrix characteristic polynomial, or propagate its explicit algebraic budget/domain error. Perron-Frobenius identifies this root as the FP dimension; success is not promised beyond provider budgets."
+    },
+    "FusionRing::global_dimension_squared": {
+      "line": 667,
+      "signature": "pub fn global_dimension_squared(&self) -> Result<RealAlgebraic, FusionError>",
+      "obligation": "Form the exact ordered sum over a of N_a*N_dual(a), obtain its checked integral characteristic polynomial, and return its largest real root or provider error. The based-ring positive character identifies it with sum of squared FP dimensions; no fusion category or physical authority follows."
+    },
+    "FusionRing::verlinde_defects": {
+      "line": 682,
+      "signature": "pub fn verlinde_defects<K: FusionScalar>(\n        &self,\n        s_tilde: &BasicMatrix<K>,\n        d_squared: &K,\n    ) -> Result<Vec<[usize; 3]>, FusionError>",
+      "obligation": "For a lawful exact FusionScalar with compatible integer embedding/conjugation, reject wrong S shape before inversions, then invert d_squared and each first-row entry in order. Scan a,b,c lexicographically, collecting precisely unequal field identities; do not claim that S is itself modular/unitary."
+    },
+    "FusionRing::verlinde_value": {
+      "line": 720,
+      "signature": "fn verlinde_value<K: FusionScalar>(\n        &self,\n        s_tilde: &BasicMatrix<K>,\n        weights: &[K],\n        d_inverse: &K,\n        a: usize,\n        b: usize,\n        c: usize,\n    ) -> Result<K, FusionError>",
+      "obligation": "For one admitted triple and rank-length weights, sum in x order S[a,x]*S[b,x]*conjugate(S[c,x])/S[0,x], then multiply by d_squared inverse. Preserve typed matrix errors; field operations are the declared lawful-scalar TCB."
+    },
+    "FusionRing::collect_verlinde_pair": {
+      "line": 741,
+      "signature": "fn collect_verlinde_pair<K: FusionScalar>(\n        &self,\n        s_tilde: &BasicMatrix<K>,\n        weights: &[K],\n        d_inverse: &K,\n        a: usize,\n        b: usize,\n        defects: &mut Vec<[usize; 3]>,\n    ) -> Result<(), FusionError>",
+      "obligation": "Scan c in order, compute the formula value, then checked-convert the u64 coefficient to i64 for field embedding. On overflow return the exact embedding error and expose no partial defects; otherwise append each mismatch."
     },
     "FusionRing::z_n": {
-      "obligation": "Admit the cyclic modulus via pointed/AbelianGroup before generating names; preserve accepted default names for n=2..32 and legacy refusal of n=0,1."
+      "line": 764,
+      "signature": "pub fn z_n(n: usize) -> Result<Self, FusionError>",
+      "obligation": "Construct the admitted cyclic pointed ring for n=2..32; zero/one or excessive n refuse through group admission before naming. The trivial group is available through empty moduli."
+    },
+    "FusionRing::pointed": {
+      "line": 768,
+      "signature": "pub fn pointed(moduli: &[usize], names: Option<Vec<String>>) -> Result<Self, FusionError>",
+      "obligation": "Admit the mixed-radix abelian group, allocate its bounded tensor and fill one product outcome using allocation-free group addition. Default or caller-supplied names are checked by the table constructor; validate all based-ring laws before return."
+    },
+    "FusionRing::ising": {
+      "line": 784,
+      "signature": "pub fn ising() -> Result<Self, FusionError>",
+      "obligation": "Validate the literal Ising table through the ordinary certified constructor."
+    },
+    "FusionRing::fibonacci": {
+      "line": 788,
+      "signature": "pub fn fibonacci() -> Result<Self, FusionError>",
+      "obligation": "Construct and validate the literal rank-two tensor with tau squared=1+tau and the two metadata names. No approximate golden ratio is used."
+    },
+    "FusionRing::semion": {
+      "line": 795,
+      "signature": "pub fn semion() -> Result<Self, FusionError>",
+      "obligation": "Return the named pointed Z2 fusion ring; braiding/spin data are outside this file."
+    },
+    "FusionRing::toric_code": {
+      "line": 799,
+      "signature": "pub fn toric_code() -> Result<Self, FusionError>",
+      "obligation": "Return the named pointed Z2-by-Z2 fusion ring only."
+    },
+    "FusionRing::three_fermion": {
+      "line": 806,
+      "signature": "pub fn three_fermion() -> Result<Self, FusionError>",
+      "obligation": "Return the same Z2-by-Z2 fusion multiplicities with different metadata names; no fermion statistics or braiding is certified here."
     },
     "FusionRing::su2_level": {
-      "obligation": "checked_add the level-plus-one rank; return typed Overflow for usize::MAX, preserve the zero-level/rank error and admit levels 1..31 before allocation. For admitted i,j<=k, i+j<=2*k proves the high-limit subtraction exact without saturation."
+      "line": 813,
+      "signature": "pub fn su2_level(k: usize) -> Result<Self, FusionError>",
+      "obligation": "checked_add k+1 first, reject k=0 or rank>32 before allocation, then fill all bounded SU2 triangle/parity products, attach names and validate the complete based ring. Admitted levels are 1..31, with typed Overflow at usize::MAX."
     },
-    "unique_dual": {
-      "obligation": "Scan labels b ascending for the unique nonzero unit coefficient in a*b; require exactly one occurrence of multiplicity one, preserving the first failing a."
+    "FusionRing::fill_su2_product": {
+      "line": 833,
+      "signature": "fn fill_su2_product(n: &mut [u64], rank: usize, k: usize, i: usize, j: usize)",
+      "obligation": "Private admitted k/rank/i/j: set exactly labels from abs(i-j) to min(i+j,2k-i-j) of even i+j+l parity. i+j<=2k makes subtraction exact; bounded labels make flattened slots valid."
     },
-    "dual_labels": {
-      "obligation": "Collect unique duals in a order, then verify the same involution check as before; no acceptance predicate or error priority changes."
-    },
-    "associativity_defect_at": {
-      "obligation": "Evaluate both checked-u128 sums at one (a,b,c,d), returning the same mismatch or overflow witness with identical operands."
-    },
-    "associativity_defect_for_pair": {
-      "obligation": "For fixed (a,b), scan c then d ascending and stop at the first outcome defect."
-    },
-    "first_associativity_defect": {
-      "obligation": "Scan a then b ascending and ask the pair helper for c,d; this preserves the complete original lexicographic defect ordering."
-    },
-    "reciprocity_defect_for_pair": {
-      "obligation": "For fixed (a,b), compute the same dual fallbacks once and find the first violating c. No invalid-dual fallback semantics changes."
-    },
-    "first_reciprocity_defect": {
-      "obligation": "Scan a then b ascending and report the first c witness from the pair helper."
-    },
-    "rational_fusion_matrix": {
-      "obligation": "Factor the identical checked label lookup, integer fusion matrix and integer-to-rational map into one reusable conversion."
-    },
-    "global_dimension_squared": {
-      "obligation": "Accumulate the same ordered sum of N_a*N_a_star in exact rational matrices, then call the unchanged characteristic-polynomial and root providers."
-    },
-    "verlinde_value": {
-      "obligation": "Compute the same x-ordered scalar sum and final d_inverse multiplication for one (a,b,c). Field/scalar dependencies and coefficient conversion assumptions remain unreviewed at the full ring level."
-    },
-    "collect_verlinde_pair": {
-      "obligation": "For fixed (a,b), scan c ascending, compute each full scalar value before checked coefficient embedding and append the same mismatch witnesses into the existing output vector."
-    },
-    "verlinde_defects": {
-      "obligation": "Preserve shape, d_inverse and first-row inverse admission order, then scan a,b and delegate c to the pair helper. No per-pair output vector allocation."
-    },
-    "fill_su2_product": {
-      "obligation": "For admitted k/rank/i/j, fill the same low..high labels of correct parity in the existing row-major slice; no intermediate allocation."
+    "FusionRing::rep_s3": {
+      "line": 845,
+      "signature": "pub fn rep_s3() -> Result<Self, FusionError>",
+      "obligation": "Construct and validate the fixed representation-ring tensor with unit, sign and standard labels; this is the commutative representation ring, distinct from the noncommutative S3 group-ring challenge."
     }
   },
   "invariants": [
-    "For rank r in 1..32, r cubed<=32768, so table sizes and flattened indices are bounded before construction. The new guard itself is allocation-free and reaches every convenience path before its allocations. Caller-provided names, multiplicity vectors and arrays already exist and are outside this constructor-owned allocation claim.",
-    "For SU2 accepted k<=31 and rank=k+1, all i,j<=k imply i+j<=2*k; direct natural subtraction is exact and all intermediate usize products fit the compiled platform. The pre-admission k+1 has an explicit overflow error instead of a panic or wrap."
+    "Carrier and storage invariant: every raw table has 1<=rank<=32, exactly rank cubed nonnegative-u64 entries and rank arbitrary name strings. Names are metadata only. Unit is numeric label zero. All table/ring/group representation fields are private with shared views and owned clones, so safe public code cannot forge or mutate a certified carrier. Literal Ising data separately have rank 3, 27 entries and three names.",
+    "Group invariant: each factor is at least two; the checked prefix product stays <=32 before moduli are copied, so an admitted factor list has length<=5 and every arithmetic prefix fits usize on the compiled 64-bit target (also 32-bit). Empty moduli give order one. Division/remainder decodes digits; the prefix weighted sum encodes them and is always below the next prefix product. This proves round-trip, modular addition and negation. Direct streaming operations remove digit-vector allocations; digit-vector APIs still return their necessary owned outputs.",
+    "Coefficient lookup invariant: admitted a,b,c<r give flattened index (a*r+b)*r+c<r cubed<=32768. Every public label method checks its arguments before lookup; crate-only n and private helpers have explicit bounded-label preconditions. Law loops, admitted duals, generated group products, vector shapes and prevalidated words establish those bounds internally. A get fallback is not advertised as safe validation of arbitrary usize indices.",
+    "Law admission invariant: raw shaping alone asserts no fusion laws. The checker tests both unit laws, optional commutativity, all associativity coefficients, unique unit-pair duals with involution, then both reciprocity equalities. All loops are finite and scans preserve a,b,c,d lexicographic priority. u64 products fit u128 (kernel bound); checked sums either are exact or refuse. No wrapped result can certify a law. try_new intentionally uses the noncommutative path, so a successful Ring carries exactly a bounded unital based-ring invariant rather than commutativity or categorical realizability.",
+    "Closure of the declared based-ring structure: nonnegative coefficients extend bilinearly to the free integer module, unit/associativity hold on basis elements and hence all elements, and the unit coefficient supplies the standard basis pairing. Reciprocity plus dual involution gives N(a,b,c)=N(b_star,a_star,c_star), so the basis involution is anti-multiplicative and L_a transpose=L_a_star. The source law gates discharge these hypotheses; no realization by associators or braidings is assumed.",
+    "Path invariant: the empty word has one path at unit zero. At each word label w, next[c]=sum_a counts[a]*N(a,w,c), which counts the disjoint choices of previous endpoint and each multiplicity channel. This is right-fusion order, independently tested on a noncommutative S3 group ring. The kernel proves the exact finite matrix-product and concatenation form of this recurrence. All counts use BigUint; zeros are skipped without changing the sum, and two disjoint rank-length buffers are cleared then swapped. The second vector is allocated only when needed, and selected target counts are moved, not cloned.",
+    "Work invariant: for each admitted w, D_w=max_a sum_c N(a,w,c)<2^69 is computed exactly in u128. path_growth is zero for D<=1 and otherwise ceil(log2 D) from leading zeros of D-1. If the current total path mass has at most prefix_bits bits, then after this step it has at most prefix_bits+growth bits. Each intermediate output sum is at most total_input_mass*(2^64-1), so charging r squared*(prefix_bits+64) covers the declared scalar-bit envelope. The source admits the first prefix at equality to 2^32 and refuses the first greater charge before BigUint work. A stack cache computes each label growth once. Preflight is O(r cubed+word length) scalar metadata work, outside this deliberately abstract bit-work charge.",
+    "Failure/size invariant: repeated-label counting checks label, then copies<=16384, then bit work. Mixed words check length, then all labels, then bit work before count-vector allocation. Private iterators are finite copies of that same admitted immutable sequence. prefix_bits<=1+69*16384 and all preflight work arithmetic fits u128. Late invalid labels now refuse before prefix arithmetic. Oversized-word and coefficient-growth work refusals are typed Budget values; they intentionally narrow formerly impractical requests. They are not CPU-cycle, byte-precise heap or OS-memory guarantees.",
+    "Narrowing invariant: u64 path outputs are produced only by checked conversion after the exact count is computed. Rational spectral coefficients pass is_integer before to_integer; an unexpected fractional provider coefficient is a typed Polynomial error. Generic Verlinde expected coefficients are embedded only after u64-to-i64 admission, otherwise the entire local defect list is discarded with Overflow. No float, rounding, saturation or silent quotient truncation appears in admitted paths.",
+    "Matrix/spectral invariant: fusion_matrix(a)[b,c]=N(a,b,c), and the rational matrix builder lifts these same integers directly into one bounded flat buffer. The checked characteristic polynomial is monic and constant-first. The kernel proves characteristic-polynomial compatibility with Int-to-Rat embedding. Exact algebraic-root computation uses the pinned provider limits (degree 64, coefficient bits 4096, refinement steps 16384) and may return their typed errors even for an otherwise admitted ring. Successful results are certified rational/quadratic/isolated-root carriers, not floating approximations. The FP identification is justified by the separately recorded finite spectral argument, not by pretending the Rust or Perron-Frobenius theorem was extracted into Lean.",
+    "Verlinde invariant: for lawful exact FusionScalar operations, compatible integer/rational embedding and conjugation, the method checks the r-by-r shape first, then d_squared inverse, then the first-row inverses. It evaluates sum_x S[a,x]*S[b,x]*conjugate(S[c,x])/S[0,x]/d_squared in the original order and compares to the admitted coefficient in that field. It reports all mismatches lexicographically; an empty result proves these finite field identities only, not unitarity/nondegeneracy of S or existence of a modular category. Exactness/lawfulness and operation costs of caller-defined scalar implementations are explicit TCB assumptions, not runtime properties conferred by an open marker trait.",
+    "Catalog invariant: pointed tables use the actual admitted abelian group addition; Fibonacci, Ising and S3 representation tables are explicit finite tensors passed through ordinary validation. Semion/toric/three-fermion names refer to fusion multiplicities only, with no spin/braiding claim. SU2 accepts exactly k=1..31 after checked k+1; its admitted i,j<=k imply i+j<=2k, and triangle/parity filling is exact with bounded row-major indices. Constructor rank, shape and name errors remain ordered and constructor-owned allocation follows rank admission.",
+    "Lifecycle/cost invariant: every Result failure drops local work and returns no partial certified object, count vector, spectral coefficient vector or defect list. Borrowed inputs are not written by this module; effects of arbitrary scalar implementations belong to their declared TCB. Cloning a borrowed table into a returned owned ring is required by the API. Law validation uses O(r fifth) bounded u128 operations; group operations are O(number of factors); preflight uses O(r cubed+L); admitted DP uses two O(r)-value buffers and at most the declared scalar-bit envelope. Spectral matrix/characteristic/root methods use bounded matrix dimensions and pinned provider budgets; generic Verlinde uses O(r fourth) scalar operations plus input-field bit costs. No allocation for digit intermediates, coefficient BigUint copies, per-step count vectors, temporary integer-to-rational matrices, target-count clones or repeated flat-table growth remains. All 74 bodies meet measured maxima 10/9/3."
   ],
   "failure_paths": {
-    "rank": "Reject invalid rank before owned name/flat allocation.",
-    "level": "checked_add failure is typed Overflow; zero/excessive levels refuse before allocation."
+    "module::admit_rank": "Admit exactly 1..=32 before constructor-owned allocation; reject zero/excessive ranks with both actual rank and maximum.",
+    "module::flatten_multiplicities": "Private bounded-R caller: reserve exactly R cubed entries and preserve row-major plane/row/column order without vector growth. Public array construction admits R first; catalog calls use fixed R=2 or 3.",
+    "AbelianGroup::new": "Consume a borrowed factor list. Require each factor>=2, checked-multiply its prefix order, then require prefix order<=32 before copying moduli. Empty factors give the trivial order-one group. Report the first invalid factor, product overflow or excessive prefix order.",
+    "AbelianGroup::moduli": "Borrow the private, admitted factor list without mutation.",
+    "AbelianGroup::order": "Return its exact private product, at least one and at most 32.",
+    "AbelianGroup::check_label": "Accept precisely labels below order, including the empty-product case; reject equality/above before coordinate arithmetic.",
+    "AbelianGroup::digits": "Admit the label then repeatedly divide/remainder by each positive modulus, producing least-significant-factor-first digits. Final remainder is zero and every digit is within its factor.",
+    "AbelianGroup::label": "Check exact digit length before checking each digit bound. Encode the weighted sum with prefix-product strides; all prefixes and the final label fit below order<=32.",
+    "AbelianGroup::add": "Admit a then b, stream their admitted residues into the same mixed-radix encoding, and perform componentwise modular addition without allocating digit vectors.",
+    "AbelianGroup::negate": "Admit the label and stream modular negatives into the encoding, using (m-digit)%m so zero remains zero, with no heap allocation.",
+    "FusionTable::new": "Admit rank before generating default names, then delegate shape/name validation. Default name strings label indices; they are metadata, not mathematical identifiers.",
+    "FusionTable::with_names": "Admit rank, then exactly rank cubed coefficients, then exactly rank names. Own the shaped nonnegative-u64 tensor and arbitrary strings privately; this raw table constructor does not assert fusion laws or uniqueness/nonemptiness of name strings.",
+    "FusionTable::from_array": "Admit const R before flattening the caller-owned array. Use the exact-capacity row-major helper, then the ordinary constructor.",
+    "FusionTable::rank": "Return the immutable admitted tensor rank.",
+    "FusionTable::names": "Return shared read-only metadata; numerical labels determine all algebra.",
+    "FusionTable::check": "Admit label<rank; return the exact label or a typed Label error.",
+    "FusionTable::at": "Private bounded-label lookup computes (a*r+b)*r+c. Production callers prove a,b,c<r; flattened index<r cubed<=32768. The zero get fallback is defensive, not validation of arbitrary oversized indices.",
+    "FusionTable::multiplicity": "Admit a then b then c at the public boundary and return the exact u64 coefficient.",
+    "FusionTable::associativity_sum": "Private bounded-r loop: convert both u64 factors to u128, checked-multiply and checked-add. Individual products fit u128; aggregate overflow refuses rather than wraps.",
+    "FusionTable::unique_dual": "For fixed bounded a, find the unique b with nonzero unit coefficient, requiring coefficient exactly one. Reject a on multiple hits, coefficient>1 or no hit.",
+    "FusionTable::dual_labels": "Collect candidate duals in a order, then require dual(dual(a))=a for every a. All collected labels are below rank. Return the first offending a.",
+    "FusionTable::first_unit_defect": "Check both left and right unit-zero laws against delta(c,label), scanning labels then c; report the first bad label.",
+    "FusionTable::first_commutativity_defect": "Scan left<right in order and report the first pair with any unequal outcome coefficient. This optional test is not imposed by FusionRing::try_new.",
+    "FusionTable::associativity_defect_at": "At one bounded (a,b,c,d), compute both exact checked-u128 convolution sums. Return the two actual unequal values or an Overflow diagnostic; return None only for two successful equal sums.",
+    "FusionTable::associativity_defect_for_pair": "For fixed a,b, scan c then d ascending and preserve the first exact mismatch/overflow witness.",
+    "FusionTable::first_associativity_defect": "Scan a then b and delegate c,d; helper factoring preserves the full original lexicographic witness order.",
+    "FusionTable::first_duality_defect": "Map the first failed dual candidate/involution to a Duality defect without changing the label.",
+    "FusionTable::reciprocity_defect_for_pair": "Private in-range candidate-dual entries, with missing entries falling back to their original labels: find first c violating either Frobenius coefficient equality. Production passes the complete admitted dual list.",
+    "FusionTable::first_reciprocity_defect": "Scan a,b ascending and report the first c reciprocity witness. Internal caller establishes bounded candidate dual entries.",
+    "FusionTable::first_defect": "Check unit, optional commutativity, then associativity/overflow, duality and reciprocity in that exact priority order.",
+    "FusionTable::first_defect_allowing_noncommutative": "Check unit and all remaining based-ring laws without requiring commutativity. Noncommutative finite group rings are intentionally admitted.",
+    "FusionTable::first_noncommutative_remainder": "Check associativity/overflow first, duality next, then reciprocity with recomputed admitted duals. No failed law yields a successful certificate.",
+    "FusionTable::validate": "Clone this borrowed raw table into the owned validated-ring constructor. The owned table copy is required by the returned Ring API; failure leaves the borrowed input unchanged.",
+    "FusionTable::charge_counts": "Admit label first, then copies<=16384, then conservative scalar-bit work. Only then compute exact right-fusion counts from the unit via the repeated label, including zero copies.",
+    "FusionTable::charge_counts_u64": "Compute the same admitted exact counts, then checked-narrow every entry. Refuse any count outside u64 and discard partial converted output.",
+    "FusionTable::unit_counts": "Create exactly rank BigUint counts with one in slot zero and zeros elsewhere; this is the empty-word state.",
+    "FusionTable::path_growth": "For one admitted label compute D=max_a sum_c N(a,w,c) in u128. Return zero for D<=1, otherwise ceil(log2 D) using leading zeros of D-1. D<=32*(2^64-1)<2^69.",
+    "FusionTable::admit_path_work": "Private bounded-length, prevalidated labels only. Keep a fixed stack cache of label growths. Charge r squared*(prefix_bits+64) per step, reject at the first cumulative charge>2^32, and advance prefix_bits by that label growth. Equality is admitted. This conservative scalar-bit envelope is not a CPU-cycle or heap-byte bound.",
+    "FusionTable::step_into": "Private rank-length disjoint count/output buffers and admitted w: clear the output, skip zero counts and zero coefficients, and sum count[a]*N(a,w,c) exactly using scalar-u64 multiplication. No coefficient BigUint copies or output-vector allocation occurs here.",
+    "FusionTable::path_counts": "Private previously admitted iterator: start at the unit, allocate the second rank-length buffer only if a step exists, clear/fill then swap buffers. Preserve right-multiplication word order; return owned final counts without cloning.",
+    "FusionTable::ising": "Return the literal rank-three, 27-entry Ising tensor and three fixed names. Literal dimensions satisfy the raw-table representation invariant; validated-ring construction is separate.",
+    "FusionRing::try_new": "Own a raw shaped table, reject its first noncommutative-allowing law/overflow defect, then store its admitted involutive dual list privately. Success certifies a bounded based ring, not categorical realizability.",
+    "FusionRing::rank": "Return the certified carrier rank.",
+    "FusionRing::names": "Borrow its owned label-name metadata.",
+    "FusionRing::unit": "Return the designated numeric unit label zero.",
+    "FusionRing::table": "Borrow the raw table read-only; callers cannot mutate the certified representation.",
+    "FusionRing::dual": "Admit the public label and return its stored in-range dual; preserve typed defensive missing-entry failure.",
+    "FusionRing::multiplicity": "Delegate the three-label admission and exact coefficient access.",
+    "FusionRing::n": "Crate-only bounded-label coefficient access for validated consumer loops. This fast path does not admit arbitrary raw labels; consumers must establish all three bounds.",
+    "FusionRing::fuse": "Admit a then b and return each c with positive coefficient, once in ascending order. This is support, not an expanded multiplicity list.",
+    "FusionRing::is_commutative": "Report whether every tensor pair commutes, without changing the noncommutative Ring type invariant.",
+    "FusionRing::is_multiplicity_free": "Return true exactly when every nonnegative coefficient is at most one.",
+    "FusionRing::is_pointed": "Return true exactly when every product has total coefficient one. checked-u64 row-sum overflow makes the result false, never a spurious one.",
+    "FusionRing::fusion_paths": "Compute the admitted word counts first, then admit target, preserving word-error-before-target priority. Move the selected BigUint out of the owned count vector without cloning. Invalid target may follow bounded valid-word computation.",
+    "FusionRing::fusion_path_counts": "Reject word length>16384 before inspecting labels; validate every label before work admission and BigUint allocation; then compute the exact counts with two reusable buffers.",
+    "FusionRing::fusion_matrix": "Admit a, then return integer matrix rows b/columns c with entries N(a,b,c); no truncating scalar representation.",
+    "FusionRing::rational_fusion_matrix": "Admit a before allocation; construct the same row-major entries directly as exact rationals through a bounded flat BasicMatrix builder. Avoid a temporary integer matrix and nested conversion vectors.",
+    "FusionRing::integral_coefficients": "Require each provider rational coefficient to be integral before conversion to BigInt; reject an unexpected fractional coefficient with a typed Polynomial error instead of truncating it.",
+    "FusionRing::characteristic_polynomial": "Build the exact integral fusion matrix in rational representation, obtain its monic characteristic polynomial from the pinned provider, and pass all coefficients through the integrality gate. Coefficients are returned constant-first.",
+    "FusionRing::frobenius_perron_dimension": "Return the provider-certified largest real root of the integral nonnegative fusion matrix characteristic polynomial, or propagate its explicit algebraic budget/domain error. Perron-Frobenius identifies this root as the FP dimension; success is not promised beyond provider budgets.",
+    "FusionRing::global_dimension_squared": "Form the exact ordered sum over a of N_a*N_dual(a), obtain its checked integral characteristic polynomial, and return its largest real root or provider error. The based-ring positive character identifies it with sum of squared FP dimensions; no fusion category or physical authority follows.",
+    "FusionRing::verlinde_defects": "For a lawful exact FusionScalar with compatible integer embedding/conjugation, reject wrong S shape before inversions, then invert d_squared and each first-row entry in order. Scan a,b,c lexicographically, collecting precisely unequal field identities; do not claim that S is itself modular/unitary.",
+    "FusionRing::verlinde_value": "For one admitted triple and rank-length weights, sum in x order S[a,x]*S[b,x]*conjugate(S[c,x])/S[0,x], then multiply by d_squared inverse. Preserve typed matrix errors; field operations are the declared lawful-scalar TCB.",
+    "FusionRing::collect_verlinde_pair": "Scan c in order, compute the formula value, then checked-convert the u64 coefficient to i64 for field embedding. On overflow return the exact embedding error and expose no partial defects; otherwise append each mismatch.",
+    "FusionRing::z_n": "Construct the admitted cyclic pointed ring for n=2..32; zero/one or excessive n refuse through group admission before naming. The trivial group is available through empty moduli.",
+    "FusionRing::pointed": "Admit the mixed-radix abelian group, allocate its bounded tensor and fill one product outcome using allocation-free group addition. Default or caller-supplied names are checked by the table constructor; validate all based-ring laws before return.",
+    "FusionRing::ising": "Validate the literal Ising table through the ordinary certified constructor.",
+    "FusionRing::fibonacci": "Construct and validate the literal rank-two tensor with tau squared=1+tau and the two metadata names. No approximate golden ratio is used.",
+    "FusionRing::semion": "Return the named pointed Z2 fusion ring; braiding/spin data are outside this file.",
+    "FusionRing::toric_code": "Return the named pointed Z2-by-Z2 fusion ring only.",
+    "FusionRing::three_fermion": "Return the same Z2-by-Z2 fusion multiplicities with different metadata names; no fermion statistics or braiding is certified here.",
+    "FusionRing::su2_level": "checked_add k+1 first, reject k=0 or rank>32 before allocation, then fill all bounded SU2 triangle/parity products, attach names and validate the complete based ring. Admitted levels are 1..31, with typed Overflow at usize::MAX.",
+    "FusionRing::fill_su2_product": "Private admitted k/rank/i/j: set exactly labels from abs(i-j) to min(i+j,2k-i-j) of even i+j+l parity. i+j<=2k makes subtraction exact; bounded labels make flattened slots valid.",
+    "FusionRing::rep_s3": "Construct and validate the fixed representation-ring tensor with unit, sign and standard labels; this is the commutative representation ring, distinct from the noncommutative S3 group-ring challenge."
   },
-  "trust_boundary": "Source arithmetic/admission arguments plus scoped native and Lean model checks; compiler, exact arithmetic libraries, standard allocator and external path dependencies remain TCB. No full Rust refinement or allocator theorem.",
+  "trust_boundary": "Trust includes Rust/compiler, standard allocation, num_bigint/num_rational, BasicMatrix/exact-field implementations and exact algebraic-root isolation. Spectral provider budgets can refuse. Generic scalar lawfulness, compatible embedding/conjugation, and its arithmetic bit costs are a caller/domain assumption, not a sealed security guarantee. The 2^32 scalar-bit envelope is a conservative cost model with fixed rank/word caps, not measured CPU time or heap bytes; custom field operations and OS memory exhaustion are not controlled by it. Refusals of large-growth path requests are intentional new admission behavior. Crate-only n and private helpers require their documented label/shape/iterator preconditions; public entry points establish them. No arbitrary internal misuse or unsafe client mutation is covered.",
   "assurance_limits": [
-    "Only selected ring admission/refactor paths have partial contracts. Full ring law, spectral, provider, cost and mutation review remains pending.",
-    "Allocation instrumentation is confined to appended test fixtures and one native test thread. No production global allocator change or formal machine allocation proof is claimed.",
-    "Ring has 68 current bodies, all within A structural limits (9/7/3). Complete ring invariant/provider/cost review and critical mutation evidence remain pending; no ring grade is awarded."
+    "AuthorityEffect: None. This file delivers bounded based rings and exact algorithms/checks, not associators, categorical realizability, braiding/spin statistics, a classification theorem or physical authority.",
+    "Lean proves the listed arithmetic/matrix/admission facts. The complete Rust refinement, allocator behavior and finite PF interpretation are explicit source arguments; the latter uses the cited primary mathematical result and is not represented as a new kernel theorem.",
+    "Trust includes Rust/compiler, standard allocation, num_bigint/num_rational, BasicMatrix/exact-field implementations and exact algebraic-root isolation. Spectral provider budgets can refuse. Generic scalar lawfulness, compatible embedding/conjugation, and its arithmetic bit costs are a caller/domain assumption, not a sealed security guarantee.",
+    "The 2^32 scalar-bit envelope is a conservative cost model with fixed rank/word caps, not measured CPU time or heap bytes; custom field operations and OS memory exhaustion are not controlled by it. Refusals of large-growth path requests are intentional new admission behavior.",
+    "Crate-only n and private helpers require their documented label/shape/iterator preconditions; public entry points establish them. No arbitrary internal misuse or unsafe client mutation is covered.",
+    "Native scope is actual full fusion packages and both canonical crate roots, with all support sources content-bound. No main-workspace validation or origin/authority attestation is inferred. Historical passing intermediate sources and the rejected first matrix model remain distinct, without relabeling."
   ],
   "review_evidence": [
     {
-      "path": "code/rust/quality/six_module/fusion_boundary_review.json",
-      "sha256": "cd5d328408bd883fd32fc2087fdaca24d0c5599f22e68ce1ed68e0f584530464"
-    },
-    {
-      "path": "evidence/quality/six_module/checkpoint-007/repair-history.json",
-      "sha256": "bef8747e9d45d68beedceeb37d519b754c1806dfb98e4930b7558ed2c45b603d"
-    },
-    {
-      "path": "evidence/quality/six_module/20261020T014925Z-fusion-audit/receipt.json",
-      "sha256": "f0d0c42c80b5aeeeabe39b523ba06ad7c88e20cafd05422211c6ea4c7fa2b6ea"
-    },
-    {
-      "path": "evidence/quality/category_homology/20261020T014925Z-metrics/receipt.json",
-      "sha256": "2a0a1475ac7cd71fb6ebdb0063c6bc8c24aa2688e1863c0635df4ada1234f42e"
+      "path": "code/rust/quality/six_module/assessments/fusion_ring.json",
+      "sha256": "6ea3e0def7cfca70d6d164444a598a2f6014c85cdb991454f3e2857128f34057"
     }
   ],
-  "open_obligations": [
-    "Complete all 68 production-body contracts and five-gate invariant/provider/cost review.",
-    "Obtain a critical ring-law, count, spectral and error-order mutation campaign; structural ceilings alone award no grade."
-  ]
+  "open_obligations": []
 }

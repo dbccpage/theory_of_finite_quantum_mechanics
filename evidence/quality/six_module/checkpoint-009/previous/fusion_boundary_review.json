@@ -1,0 +1,134 @@
+{
+  "AuthorityEffect": "None",
+  "status": "partial_boundary_review",
+  "artifacts": [
+    {
+      "path": "code/rust/src/fusion_categories/fusion_ring.rs",
+      "sha256": "be67d1f5782df7428c799daa5447c5a424f60dade5d11b627d78cf82617cbd46"
+    },
+    {
+      "path": "code/rust/src/fusion_categories/lib.rs",
+      "sha256": "2e5ec53704ac51f6e0c51facad9f3ca8322296681b0d9700a1701d97f0cb7f89"
+    },
+    {
+      "path": "code/rust/src/fusion_categories/mod.rs",
+      "sha256": "ee0714484ee8dde3d8101b737b1d086ec0fac2d59442bbc1a99d1ab1eee33d7b"
+    }
+  ],
+  "operations": {
+    "admit_rank": {
+      "obligation": "Admit exactly 1..=32 with no allocation, returning RankOutOfRange otherwise. This new common guard precedes convenience constructor allocations."
+    },
+    "FusionTable::new": {
+      "obligation": "Admit rank before allocating default name strings; pass names and multiplicities to with_names. Invalid-rank requests allocate no constructor-owned heap storage."
+    },
+    "FusionTable::with_names": {
+      "obligation": "Admit rank first, then exactly rank cubed multiplicities, then exactly rank names; own a raw shaped table. This constructor alone does not validate fusion-ring laws."
+    },
+    "FusionTable::from_array": {
+      "obligation": "Admit const R before flattening the caller-supplied stack array; preserve the original row-major order and ordinary constructor behavior on admitted R."
+    },
+    "FusionRing::z_n": {
+      "obligation": "Admit the cyclic modulus via pointed/AbelianGroup before generating names; preserve accepted default names for n=2..32 and legacy refusal of n=0,1."
+    },
+    "FusionRing::su2_level": {
+      "obligation": "checked_add the level-plus-one rank; return typed Overflow for usize::MAX, preserve the zero-level/rank error and admit levels 1..31 before allocation. For admitted i,j<=k, i+j<=2*k proves the high-limit subtraction exact without saturation."
+    },
+    "unique_dual": {
+      "obligation": "Scan labels b ascending for the unique nonzero unit coefficient in a*b; require exactly one occurrence of multiplicity one, preserving the first failing a."
+    },
+    "dual_labels": {
+      "obligation": "Collect unique duals in a order, then verify the same involution check as before; no acceptance predicate or error priority changes."
+    },
+    "associativity_defect_at": {
+      "obligation": "Evaluate both checked-u128 sums at one (a,b,c,d), returning the same mismatch or overflow witness with identical operands."
+    },
+    "associativity_defect_for_pair": {
+      "obligation": "For fixed (a,b), scan c then d ascending and stop at the first outcome defect."
+    },
+    "first_associativity_defect": {
+      "obligation": "Scan a then b ascending and ask the pair helper for c,d; this preserves the complete original lexicographic defect ordering."
+    },
+    "reciprocity_defect_for_pair": {
+      "obligation": "For fixed (a,b), compute the same dual fallbacks once and find the first violating c. No invalid-dual fallback semantics changes."
+    },
+    "first_reciprocity_defect": {
+      "obligation": "Scan a then b ascending and report the first c witness from the pair helper."
+    },
+    "rational_fusion_matrix": {
+      "obligation": "Factor the identical checked label lookup, integer fusion matrix and integer-to-rational map into one reusable conversion."
+    },
+    "global_dimension_squared": {
+      "obligation": "Accumulate the same ordered sum of N_a*N_a_star in exact rational matrices, then call the unchanged characteristic-polynomial and root providers."
+    },
+    "verlinde_value": {
+      "obligation": "Compute the same x-ordered scalar sum and final d_inverse multiplication for one (a,b,c). Field/scalar dependencies and coefficient conversion assumptions remain unreviewed at the full ring level."
+    },
+    "collect_verlinde_pair": {
+      "obligation": "For fixed (a,b), scan c ascending, compute each full scalar value before checked coefficient embedding and append the same mismatch witnesses into the existing output vector."
+    },
+    "verlinde_defects": {
+      "obligation": "Preserve shape, d_inverse and first-row inverse admission order, then scan a,b and delegate c to the pair helper. No per-pair output vector allocation."
+    },
+    "fill_su2_product": {
+      "obligation": "For admitted k/rank/i/j, fill the same low..high labels of correct parity in the existing row-major slice; no intermediate allocation."
+    }
+  },
+  "rational_sum_specification": {
+    "profile": "Exact",
+    "domain": "Any finite slice of raw Ratio<i64> values and raw Ratio<i64> total. Every used denominator must be nonzero. Negative entries and cancellation remain admitted; acceptance concerns only the aggregate, not physical simple-object dimensions.",
+    "behavior": [
+      "Reject a zero total denominator before constructing a rational. Lift signed numerator and denominator separately to BigInt and normalize exactly in BigRational.",
+      "Reject a nonpositive exact total. Otherwise accumulate each ratio in BigRational, rejecting any zero entry denominator before its rational construction.",
+      "Return true exactly for a well-formed list whose exact sum equals the strictly positive total. No i64 arithmetic is used to combine values, and no saturation or floating-point rounding occurs.",
+      "The public signature and boolean refusal style are preserved. Individual negative entries may participate in a positive sum; no per-entry physical dimension validation is claimed."
+    ]
+  },
+  "invariant_arguments": [
+    "For rank r in 1..32, r cubed<=32768, so table sizes and flattened indices are bounded before construction. The new guard itself is allocation-free and reaches every convenience path before its allocations. Caller-provided names, multiplicity vectors and arrays already exist and are outside this constructor-owned allocation claim.",
+    "For SU2 accepted k<=31 and rank=k+1, all i,j<=k imply i+j<=2*k; direct natural subtraction is exact and all intermediate usize products fit the compiled platform. The pre-admission k+1 has an explicit overflow error instead of a panic or wrap.",
+    "A nonzero signed i64 denominator/numerator pair embeds exactly into arbitrary integers then into their normalized rational quotient, including i64::MIN and negative denominators. By induction over the list, each successful sum prefix equals its mathematical rational sum; large cancellation cannot overflow fixed-width storage.",
+    "The sum predicate has finite O(N) rational additions, but operand bit lengths grow with the rational input; no constant memory/time or whole-fusion-law guarantee is claimed. Compiler, num_bigint/num_rational, allocator and external path dependencies remain TCB."
+  ],
+  "assurance_limits": [
+    "Only selected ring admission/refactor paths have partial contracts. Full ring law, spectral, provider, cost and mutation review remains pending.",
+    "Allocation instrumentation is confined to appended test fixtures and one native test thread. No production global allocator change or formal machine allocation proof is claimed.",
+    "Ring has 68 current bodies, all within A structural limits (9/7/3). Complete ring invariant/provider/cost review and critical mutation evidence remain pending; no ring grade is awarded."
+  ],
+  "proof": {
+    "path": "evidence/quality/category_homology/20261020T013747Z-fusion-admission-proof/receipt.json",
+    "sha256": "7f8f7cfb78034273a278df1eb220406c5c838a03bff84f1710bc0301c9b4122e"
+  },
+  "evidence": [
+    {
+      "path": "evidence/quality/six_module/20261020T013226Z-fusion-audit/receipt.json",
+      "sha256": "b0271332bc6254d2a101f29d0b2a757c35ef89a2d376ba2de52cb6fa1a3a922a"
+    },
+    {
+      "path": "evidence/quality/six_module/20261020T013226Z-fusion-audit/sum-focus.json",
+      "sha256": "ed1c98b3357b44a1e9b634030e6493e81fe58ec4376bce44ce617df8dbb14b0b"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261020T013858Z-metrics/receipt.json",
+      "sha256": "b506e6defa590126b74d27a3a19e59970bd81934f2c01786ef9ddb38d8cbd4b0"
+    },
+    {
+      "path": "evidence/quality/six_module/20261020T013818Z-fusion-audit/receipt.json",
+      "sha256": "c47077743638f53cb72cdbf03473f8c7b8d8eead91589d1f3550e9ed24898799"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261020T013747Z-fusion-admission-proof/receipt.json",
+      "sha256": "7f8f7cfb78034273a278df1eb220406c5c838a03bff84f1710bc0301c9b4122e"
+    },
+    {
+      "path": "evidence/quality/six_module/20261020T014925Z-fusion-audit/receipt.json",
+      "sha256": "f0d0c42c80b5aeeeabe39b523ba06ad7c88e20cafd05422211c6ea4c7fa2b6ea"
+    },
+    {
+      "path": "evidence/quality/category_homology/20261020T014925Z-metrics/receipt.json",
+      "sha256": "2a0a1475ac7cd71fb6ebdb0063c6bc8c24aa2688e1863c0635df4ada1234f42e"
+    }
+  ],
+  "native_scope": "Both actual local fusion crate roots: pre-repair each 47 passed/5 failed; repaired each 52 passed. Full existing tests plus the five appended admission/aggregate tests, no source projection or stubs. External path dependencies are content-bound, not graded.",
+  "refactor_argument": "Responsibility-specific helper boundaries retain a,b,c,d or x traversal order, first-error priority, exact scalar steps and owned output buffers. No loops are widened or numeric types changed. The common rational matrix helper removes duplicated conversion code. Actual full crate replays pass all 52 tests each after the refactor."
+}

@@ -89,7 +89,7 @@ def reviewed(source):
             raise ValueError("Nested crate source coverage mismatch")
         if any(sha(ROOT / item["path"]) != item["sha256"] for item in records):
             raise ValueError("Nested crate source bytes changed")
-    if artifact["path"] in {"code/rust/src/fusion_categories/lib.rs", "code/rust/src/fusion_categories/mod.rs"}:
+    if artifact["path"] in {"code/rust/src/fusion_categories/lib.rs", "code/rust/src/fusion_categories/mod.rs", "code/rust/src/fusion_categories/fusion_ring.rs"}:
         support = load(assessment["native_support_sources"])
         work = Path(native["baseline"][0]["command"][0]).parent
         expected = {
