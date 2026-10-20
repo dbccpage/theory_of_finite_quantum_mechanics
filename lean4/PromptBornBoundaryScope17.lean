@@ -1,0 +1,3 @@
+import PromptBornBoundaries
+#print axioms QuantumMechanics.PromptBornBoundaries.ladder_law
+#print axioms QuantumMechanics.PromptBornBoundaries.ladder_control

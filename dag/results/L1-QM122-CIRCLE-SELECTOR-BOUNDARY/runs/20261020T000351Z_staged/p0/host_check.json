@@ -1,0 +1,488 @@
+{
+  "task_id": "L1-QM122-CIRCLE-SELECTOR-BOUNDARY",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "p0",
+  "input_sha256": "8bd1d81fb65d23cf287fa4f5f743091d66261eaa5588a595934537e3dacf6b06",
+  "candidate_sha256": "d8f0c37bc20488f6a71b3ede95677b92ff545c7a638f936e2c67c4bfec1ece35",
+  "status": "reviewed_for_next_step",
+  "predicate_results": {
+    "source_scope_review": "The source ConnectednessShadow is a finite non-exponent-two-style condition, not topological connectedness. Construct cyclic regular permutation matrices, their squares and identity. Both C3 and C4 have non-exponent-two elements, so excluding signs still does not select a circle. Output layout: shift_n²;square_n²;identity_n²;n;exponent_two;non_exponent_two",
+    "reviewed_sha256": "a2522f8fe90b3fef02a372b0883c33e3671fdb1659f62ffc9738aa6c21c422ea"
+  },
+  "bounded_failure_codes": [],
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "selector_regular_shift",
+        "ordered_inputs": [
+          "DeclaredCyclicOrder"
+        ],
+        "output": "RegularPermutationMatrix",
+        "arity": 1,
+        "carrier": "DeclaredCyclicOrder",
+        "coefficient_ring": "Exact rational coordinates, finite integer group/map indices and explicit validity tags",
+        "hypotheses": [
+          "n in{2,3,4}; order is exact cyclic group size, no topological claim."
+        ],
+        "semantic_predicate": "Build shift on the cyclic carrier.",
+        "source_pins": [
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_qm122_circle_selector_boundary_proved_lean.yaml",
+            "sha256": "76b3955bc023450c02c3129feeb56746b7c9913eb6a75282e6a9b71078518374"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/inputs/this_repository/dag/operads/l1_qm122_circle_selector_boundary.yaml",
+            "sha256": "365523f5b8885ce886ff0b333d7185c2c3f8ca10077ebf9fa346473929735687"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/inputs/this_repository/lean4/H011U1SelectorBoundary.lean",
+            "sha256": "214f187afdfc0ee196021aa3ce2ab96875b1c13de9b3a560ef1eaf0359622912"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/inputs/this_repository/lean4/H011Circle.lean",
+            "sha256": "6934713287756fd23f2f44a6bab2ed6ee50fbb128f99db492f926c839ff86d9b"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/complex_structure_selector.rs",
+            "sha256": "f34f70b5596cfb5d459af8a258f843f3731391db228a35f9f31b041ec9ab153e"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0294_circle_phases_as_an_imported_unit_group.md",
+            "sha256": "9c76c771cb03a3bf6146900e6299b36965daaccf2675e868e966af303a9657a5"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/p0/operation_sources/code/python/src/qm/born_boundary_exact.py",
+            "sha256": "04326ded1c1e17e88659e60498e5b7d92afab1bb8f0c5c91a7268013ca2f0738"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/p0/operation_sources/code/python/tests/test_born_boundary_exact.py",
+            "sha256": "fe382974658a106563ce5870da4a7d87477a0893b1669d0b123b3bc372b493ba"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/p0/operation_sources/code/rust/src/finite_probability/born_boundary_exact.rs",
+            "sha256": "80427803fced2970578ba5e9b223e2d51b2e494e5900e430db17a6eae8a666ce"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/born_boundary_exact_replay.rs",
+            "sha256": "37575b2bc4ba8fa23d397f66da9eaa0e290e21a79a051103401878cc356f1a33"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/born_boundary_checker.py",
+            "sha256": "7bc9e8b52f40f78cb85f78edfc31b55ceff79f649b6a499090e64df460fac182"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py",
+            "sha256": "c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/prepare.py",
+            "sha256": "e07ac6946888be24689ae63a52370d4d1588d3d048dd0ba1b30298c869ca7bdd"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/witness_cases.json",
+            "sha256": "5fa9d9d9532cab06d68e8e01257c436bd2ba10746576a5854110e850af92ae98"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/specs.py",
+            "sha256": "3dd63e06b01e17c6357223845a487490ab707ae27f137cbd0fbb83d2c0e8dcfd"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/custody.py",
+            "sha256": "cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/filename_custody.json",
+            "sha256": "20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/check_candidate.py",
+            "sha256": "6d34280c0760cd5fff74c22322f6dd98af5ef1cfe400c9cbfbb5eda64e93f73a"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/format_certificate.py",
+            "sha256": "d436259f2d8ca5a4f2da5674c99c63e64d3fc3eb6b6b6600c35d1d5840ffd070"
+          }
+        ],
+        "evidence_status": "Source semantics reviewed; actual native and candidate kernel acceptance remain P2 gates."
+      },
+      {
+        "id": "selector_matrix_square",
+        "ordered_inputs": [
+          "RegularPermutationMatrix"
+        ],
+        "output": "SquareAndIdentityMatrices",
+        "arity": 1,
+        "carrier": "RegularPermutationMatrix",
+        "coefficient_ring": "Exact rational coordinates, finite integer group/map indices and explicit validity tags",
+        "hypotheses": [
+          "n in{2,3,4}; order is exact cyclic group size, no topological claim."
+        ],
+        "semantic_predicate": "Compute its square by matrix multiplication.",
+        "source_pins": [
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_qm122_circle_selector_boundary_proved_lean.yaml",
+            "sha256": "76b3955bc023450c02c3129feeb56746b7c9913eb6a75282e6a9b71078518374"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/inputs/this_repository/dag/operads/l1_qm122_circle_selector_boundary.yaml",
+            "sha256": "365523f5b8885ce886ff0b333d7185c2c3f8ca10077ebf9fa346473929735687"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/inputs/this_repository/lean4/H011U1SelectorBoundary.lean",
+            "sha256": "214f187afdfc0ee196021aa3ce2ab96875b1c13de9b3a560ef1eaf0359622912"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/inputs/this_repository/lean4/H011Circle.lean",
+            "sha256": "6934713287756fd23f2f44a6bab2ed6ee50fbb128f99db492f926c839ff86d9b"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/complex_structure_selector.rs",
+            "sha256": "f34f70b5596cfb5d459af8a258f843f3731391db228a35f9f31b041ec9ab153e"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0294_circle_phases_as_an_imported_unit_group.md",
+            "sha256": "9c76c771cb03a3bf6146900e6299b36965daaccf2675e868e966af303a9657a5"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/p0/operation_sources/code/python/src/qm/born_boundary_exact.py",
+            "sha256": "04326ded1c1e17e88659e60498e5b7d92afab1bb8f0c5c91a7268013ca2f0738"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/p0/operation_sources/code/python/tests/test_born_boundary_exact.py",
+            "sha256": "fe382974658a106563ce5870da4a7d87477a0893b1669d0b123b3bc372b493ba"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/p0/operation_sources/code/rust/src/finite_probability/born_boundary_exact.rs",
+            "sha256": "80427803fced2970578ba5e9b223e2d51b2e494e5900e430db17a6eae8a666ce"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/born_boundary_exact_replay.rs",
+            "sha256": "37575b2bc4ba8fa23d397f66da9eaa0e290e21a79a051103401878cc356f1a33"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/born_boundary_checker.py",
+            "sha256": "7bc9e8b52f40f78cb85f78edfc31b55ceff79f649b6a499090e64df460fac182"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py",
+            "sha256": "c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/prepare.py",
+            "sha256": "e07ac6946888be24689ae63a52370d4d1588d3d048dd0ba1b30298c869ca7bdd"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/witness_cases.json",
+            "sha256": "5fa9d9d9532cab06d68e8e01257c436bd2ba10746576a5854110e850af92ae98"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/specs.py",
+            "sha256": "3dd63e06b01e17c6357223845a487490ab707ae27f137cbd0fbb83d2c0e8dcfd"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/custody.py",
+            "sha256": "cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/filename_custody.json",
+            "sha256": "20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/check_candidate.py",
+            "sha256": "6d34280c0760cd5fff74c22322f6dd98af5ef1cfe400c9cbfbb5eda64e93f73a"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/format_certificate.py",
+            "sha256": "d436259f2d8ca5a4f2da5674c99c63e64d3fc3eb6b6b6600c35d1d5840ffd070"
+          }
+        ],
+        "evidence_status": "Source semantics reviewed; actual native and candidate kernel acceptance remain P2 gates."
+      },
+      {
+        "id": "selector_selector_countermodels",
+        "ordered_inputs": [
+          "SquareAndIdentityMatrices"
+        ],
+        "output": "FiniteAlternativesToCircleSelection",
+        "arity": 1,
+        "carrier": "SquareAndIdentityMatrices",
+        "coefficient_ring": "Exact rational coordinates, finite integer group/map indices and explicit validity tags",
+        "hypotheses": [
+          "n in{2,3,4}; order is exact cyclic group size, no topological claim."
+        ],
+        "semantic_predicate": "Retain C3 and C4 as distinct non-exponent-two controls.",
+        "source_pins": [
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_qm122_circle_selector_boundary_proved_lean.yaml",
+            "sha256": "76b3955bc023450c02c3129feeb56746b7c9913eb6a75282e6a9b71078518374"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/inputs/this_repository/dag/operads/l1_qm122_circle_selector_boundary.yaml",
+            "sha256": "365523f5b8885ce886ff0b333d7185c2c3f8ca10077ebf9fa346473929735687"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/inputs/this_repository/lean4/H011U1SelectorBoundary.lean",
+            "sha256": "214f187afdfc0ee196021aa3ce2ab96875b1c13de9b3a560ef1eaf0359622912"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/inputs/this_repository/lean4/H011Circle.lean",
+            "sha256": "6934713287756fd23f2f44a6bab2ed6ee50fbb128f99db492f926c839ff86d9b"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/complex_structure_selector.rs",
+            "sha256": "f34f70b5596cfb5d459af8a258f843f3731391db228a35f9f31b041ec9ab153e"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0294_circle_phases_as_an_imported_unit_group.md",
+            "sha256": "9c76c771cb03a3bf6146900e6299b36965daaccf2675e868e966af303a9657a5"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/p0/operation_sources/code/python/src/qm/born_boundary_exact.py",
+            "sha256": "04326ded1c1e17e88659e60498e5b7d92afab1bb8f0c5c91a7268013ca2f0738"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/p0/operation_sources/code/python/tests/test_born_boundary_exact.py",
+            "sha256": "fe382974658a106563ce5870da4a7d87477a0893b1669d0b123b3bc372b493ba"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/p0/operation_sources/code/rust/src/finite_probability/born_boundary_exact.rs",
+            "sha256": "80427803fced2970578ba5e9b223e2d51b2e494e5900e430db17a6eae8a666ce"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/born_boundary_exact_replay.rs",
+            "sha256": "37575b2bc4ba8fa23d397f66da9eaa0e290e21a79a051103401878cc356f1a33"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/born_boundary_checker.py",
+            "sha256": "7bc9e8b52f40f78cb85f78edfc31b55ceff79f649b6a499090e64df460fac182"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py",
+            "sha256": "c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/prepare.py",
+            "sha256": "e07ac6946888be24689ae63a52370d4d1588d3d048dd0ba1b30298c869ca7bdd"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/witness_cases.json",
+            "sha256": "5fa9d9d9532cab06d68e8e01257c436bd2ba10746576a5854110e850af92ae98"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/specs.py",
+            "sha256": "3dd63e06b01e17c6357223845a487490ab707ae27f137cbd0fbb83d2c0e8dcfd"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/custody.py",
+            "sha256": "cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/filename_custody.json",
+            "sha256": "20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/check_candidate.py",
+            "sha256": "6d34280c0760cd5fff74c22322f6dd98af5ef1cfe400c9cbfbb5eda64e93f73a"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/format_certificate.py",
+            "sha256": "d436259f2d8ca5a4f2da5674c99c63e64d3fc3eb6b6b6600c35d1d5840ffd070"
+          }
+        ],
+        "evidence_status": "Source semantics reviewed; actual native and candidate kernel acceptance remain P2 gates."
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "selector_relation_0",
+        "equation_or_predicate": "C2 shift squares to identity; C3 and C4 do not, leaving multiple finite alternatives.",
+        "typing_conditions": "Literal declared operation domains; Provide genuine topological connectedness, selector uniqueness and source refinement. A Boolean selector pack or finite shadow cannot discharge U(1).",
+        "evidence_status": "P1 candidate; independent native and named kernel gates remain required.",
+        "scope": "Actual cyclic regular-representation shift/square matrices and group-order controls, plus finite modular alternatives in Lean.",
+        "source_pins": [
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_qm122_circle_selector_boundary_proved_lean.yaml",
+            "sha256": "76b3955bc023450c02c3129feeb56746b7c9913eb6a75282e6a9b71078518374"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/inputs/this_repository/dag/operads/l1_qm122_circle_selector_boundary.yaml",
+            "sha256": "365523f5b8885ce886ff0b333d7185c2c3f8ca10077ebf9fa346473929735687"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/inputs/this_repository/lean4/H011U1SelectorBoundary.lean",
+            "sha256": "214f187afdfc0ee196021aa3ce2ab96875b1c13de9b3a560ef1eaf0359622912"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/inputs/this_repository/lean4/H011Circle.lean",
+            "sha256": "6934713287756fd23f2f44a6bab2ed6ee50fbb128f99db492f926c839ff86d9b"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/complex_structure_selector.rs",
+            "sha256": "f34f70b5596cfb5d459af8a258f843f3731391db228a35f9f31b041ec9ab153e"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0294_circle_phases_as_an_imported_unit_group.md",
+            "sha256": "9c76c771cb03a3bf6146900e6299b36965daaccf2675e868e966af303a9657a5"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/p0/operation_sources/code/python/src/qm/born_boundary_exact.py",
+            "sha256": "04326ded1c1e17e88659e60498e5b7d92afab1bb8f0c5c91a7268013ca2f0738"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/p0/operation_sources/code/python/tests/test_born_boundary_exact.py",
+            "sha256": "fe382974658a106563ce5870da4a7d87477a0893b1669d0b123b3bc372b493ba"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/p0/operation_sources/code/rust/src/finite_probability/born_boundary_exact.rs",
+            "sha256": "80427803fced2970578ba5e9b223e2d51b2e494e5900e430db17a6eae8a666ce"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/born_boundary_exact_replay.rs",
+            "sha256": "37575b2bc4ba8fa23d397f66da9eaa0e290e21a79a051103401878cc356f1a33"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/born_boundary_checker.py",
+            "sha256": "7bc9e8b52f40f78cb85f78edfc31b55ceff79f649b6a499090e64df460fac182"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py",
+            "sha256": "c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/prepare.py",
+            "sha256": "e07ac6946888be24689ae63a52370d4d1588d3d048dd0ba1b30298c869ca7bdd"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/witness_cases.json",
+            "sha256": "5fa9d9d9532cab06d68e8e01257c436bd2ba10746576a5854110e850af92ae98"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/specs.py",
+            "sha256": "3dd63e06b01e17c6357223845a487490ab707ae27f137cbd0fbb83d2c0e8dcfd"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/custody.py",
+            "sha256": "cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/filename_custody.json",
+            "sha256": "20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/check_candidate.py",
+            "sha256": "6d34280c0760cd5fff74c22322f6dd98af5ef1cfe400c9cbfbb5eda64e93f73a"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/L1-QM122-CIRCLE-SELECTOR-BOUNDARY/runs/20261020T000351Z_staged/format_certificate.py",
+            "sha256": "d436259f2d8ca5a4f2da5674c99c63e64d3fc3eb6b6b6600c35d1d5840ffd070"
+          }
+        ]
+      }
+    ],
+    "checked_compositions": [
+      {
+        "outer_operation": "selector_matrix_square",
+        "input_slot": 0,
+        "inner_operation": "selector_regular_shift",
+        "colour_match": "RegularPermutationMatrix -> RegularPermutationMatrix",
+        "hypothesis_match": "Same declared coordinates, coefficients and context; all operation hypotheses must be carried into the graft.",
+        "licensing_relations": [
+          "selector_relation_0"
+        ],
+        "evidence_status": "Semantic substitution supported by the retained finite operation traces and separately scoped named kernel statements. A complete refined-carrier operad is not asserted."
+      },
+      {
+        "outer_operation": "selector_selector_countermodels",
+        "input_slot": 0,
+        "inner_operation": "selector_matrix_square",
+        "colour_match": "SquareAndIdentityMatrices -> SquareAndIdentityMatrices",
+        "hypothesis_match": "Same declared coordinates, coefficients and context; all operation hypotheses must be carried into the graft.",
+        "licensing_relations": [
+          "selector_relation_0"
+        ],
+        "evidence_status": "Semantic substitution supported by the retained finite operation traces and separately scoped named kernel statements. A complete refined-carrier operad is not asserted."
+      }
+    ],
+    "failed_compositions": [
+      {
+        "proposal": "Promote the selected step to the unrestricted original target",
+        "reason": "Provide genuine topological connectedness, selector uniqueness and source refinement. A Boolean selector pack or finite shadow cannot discharge U(1)."
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "Provide genuine topological connectedness, selector uniqueness and source refinement. A Boolean selector pack or finite shadow cannot discharge U(1).",
+      "Prove the full refined-carrier operad identity, substitution, symmetry and coherence laws; mere colour matches do not instantiate that formal structure."
+    ]
+  },
+  "claim_boundary": {
+    "supports": "Actual cyclic regular-representation shift/square matrices and group-order controls, plus finite modular alternatives in Lean.",
+    "does_not_support": "Provide genuine topological connectedness, selector uniqueness and source refinement. A Boolean selector pack or finite shadow cannot discharge U(1).",
+    "narrowest_claim": "Actual cyclic regular-representation shift/square matrices and group-order controls, plus finite modular alternatives in Lean.",
+    "next_test": "Challenge every output coordinate and strict custody/type boundary, then address the explicit unpaid mathematical bridge."
+  }
+}

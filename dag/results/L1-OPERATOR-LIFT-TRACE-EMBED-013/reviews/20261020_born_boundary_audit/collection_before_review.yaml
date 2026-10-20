@@ -1,0 +1,782 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: L1-OPERATOR-LIFT-TRACE-EMBED-013
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: 'For integer lists v the diagonal trace norm equals sum |v_i| (trace_norm_eq_mass).
+    Scaling by c != 0 keeps the normalized absolute weights and, for |c|>1, raises the mass. Reconstruction
+    without an admitted mass returns failure. The real operator embedding is not constructed in Lean.
+    C05: the trace embedding carries no physical state or quantum claim.'
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions:
+  - 'real operator / Banach embedding: lift'
+  source_bottleneck: Banach-space embedding, injectivity and the fibre statements are prose-only.
+  source_refs:
+  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/013_operator_lifts_trace_metrics_and_representation_limits/operator_lifts_trace_metrics_and_representation_limits_claim_ledger.md#C01
+  - omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/013_operator_lifts_trace_metrics_and_representation_limits/lean4/Lifts.lean:91
+  paper_refs:
+  - dag/derivations/08_l1_to_l2/tfq_0282_diagonal_presentation_and_lost_total_scale.md
+  source_claim_label: PROVED_LEAN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  historical_paper_refs:
+  - papers/derivations/08_l1_to_l2/tfq_0282_diagonal_presentation_and_lost_total_scale.md
+  paper_relocations:
+  - from: papers/derivations/08_l1_to_l2/tfq_0282_diagonal_presentation_and_lost_total_scale.md
+    to: dag/derivations/08_l1_to_l2/tfq_0282_diagonal_presentation_and_lost_total_scale.md
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/08_l1_to_l2/tfq_0282_diagonal_presentation_and_lost_total_scale.md
+    sha256: a6074d09c36c3ad9572912cee45440606f6810112f1f1eb0a6f45e174c2b15f5
+source_provenance:
+  repository: this_repository
+  commit: 642f5b95a116da6df805adbd745a4826c6739c2b
+  path: dag/prompts/l1_to_l2_l1_operator_lift_trace_embed_013_proved_lean.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: nsum
+  line: 8
+  signature_excerpt: 'def nsum : List Nat → Nat'
+  source: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/013_operator_lifts_trace_metrics_and_representation_limits/lean4/Lifts.lean
+  repository: the_symbol_game
+  source_sha256: f88694fc02e8592bf0320db84e63176b8ecefbf3eae0cd34c17aeb16004768a0
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: mass
+  line: 12
+  signature_excerpt: 'def mass : List Int → Nat'
+  source: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/013_operator_lifts_trace_metrics_and_representation_limits/lean4/Lifts.lean
+  repository: the_symbol_game
+  source_sha256: f88694fc02e8592bf0320db84e63176b8ecefbf3eae0cd34c17aeb16004768a0
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: trace_norm_eq_mass
+  line: 91
+  signature_excerpt: 'theorem trace_norm_eq_mass (v : List Int) : mass v = nsum (v.map Int.natAbs)'
+  source: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/013_operator_lifts_trace_metrics_and_representation_limits/lean4/Lifts.lean
+  repository: the_symbol_game
+  source_sha256: f88694fc02e8592bf0320db84e63176b8ecefbf3eae0cd34c17aeb16004768a0
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: pg_collapse_barrier_protected_questions_and_l1_kkt_trace_embed
+  line: 1157
+  signature_excerpt: "theorem pg_collapse_barrier_protected_questions_and_l1_kkt_trace_embed\n    (c :\
+    \ Nat) (g : Nat → Nat) (h0 h1 h2 v1 v2 v3 : Int) :\n    (let f (_ : Bool) : Nat"
+  source: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/013_operator_lifts_trace_metrics_and_representation_limits/lean4/Lifts.lean::trace_norm_eq_mass
+  availability: external
+  symbol: trace_norm_eq_mass
+  path: omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/013_operator_lifts_trace_metrics_and_representation_limits/lean4/Lifts.lean
+  repository: the_symbol_game
+  sha256: f88694fc02e8592bf0320db84e63176b8ecefbf3eae0cd34c17aeb16004768a0
+  declaration_status: declaration_found_not_proof_checked
+  line: 91
+  role: source_lead_only
+- original_ref: lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.pg_collapse_barrier_protected_questions_and_l1_kkt_trace_embed
+  availability: local
+  symbol: QuantumMechanics.DerivationDagQMClosure.pg_collapse_barrier_protected_questions_and_l1_kkt_trace_embed
+  path: lean4/DerivationDagQMClosure.lean
+  repository: this_repository
+  sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+  declaration_status: declaration_found_not_proof_checked
+  line: 1157
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche5_full_dag_177_node_coverage_witness
+  availability: external
+  symbol: verify_tranche5_full_dag_177_node_coverage_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 768
+  role: source_lead_only
+- original_ref: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness
+  availability: external
+  symbol: verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness
+  path: omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+  repository: the_symbol_game
+  sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+  declaration_status: declaration_found_not_executed
+  line: 1280
+  role: source_lead_only
+presentation:
+  status: scoped_stage_result_pending_batch_review
+  scope: Exact diagonal/singular-value mass, nonzero-scale invariance and declared-mass reconstruction
+    controls; generic absolute scaling and sign-loss statements in Lean.
+  colours:
+  - id: AdmittedMagnitudeReconstructionOrMissingMass
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: DiagonalMatrixAndSingularValues
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: NormalizedAbsoluteWeights
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: SignedTripleScaleAndMassContract
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  generators:
+  - id: trace_diagonal_lift
+    ordered_inputs:
+    - SignedTripleScaleAndMassContract
+    output: DiagonalMatrixAndSingularValues
+    arity: 1
+    carrier: SignedTripleScaleAndMassContract
+    coefficient_ring: Exact rational coordinates, finite integer group/map indices and explicit validity
+      tags
+    hypotheses:
+    - Input(v3,scale,has_mass,mass); has_mass0/1; scale nonzero and nonzero source mass required.
+    semantic_predicate: Construct diag(v).
+    source_pins:
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_operator_lift_trace_embed_013_proved_lean.yaml
+      sha256: 6ba88c907383872526d79cf52d562858a0ff06daf0161ae1ec6634a8a81345b0
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/inputs/this_repository/dag/operads/l1_operator_lift_trace_embed_013.yaml
+      sha256: 91c6585faa7fecce07a3a610461ee3361b93e7e03c58f753047a8e405261538d
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/013_operator_lifts_trace_metrics_and_representation_limits/lean4/Lifts.lean
+      sha256: f88694fc02e8592bf0320db84e63176b8ecefbf3eae0cd34c17aeb16004768a0
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0282_diagonal_presentation_and_lost_total_scale.md
+      sha256: af9d400903c5d2705b8b192d5533563489d7e6f2559858e9327a1ac4805b0bc8
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/code/python/src/qm/born_boundary_exact.py
+      sha256: 04326ded1c1e17e88659e60498e5b7d92afab1bb8f0c5c91a7268013ca2f0738
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/code/python/tests/test_born_boundary_exact.py
+      sha256: fe382974658a106563ce5870da4a7d87477a0893b1669d0b123b3bc372b493ba
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/code/rust/src/finite_probability/born_boundary_exact.rs
+      sha256: 80427803fced2970578ba5e9b223e2d51b2e494e5900e430db17a6eae8a666ce
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/born_boundary_exact_replay.rs
+      sha256: 37575b2bc4ba8fa23d397f66da9eaa0e290e21a79a051103401878cc356f1a33
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/born_boundary_checker.py
+      sha256: 7bc9e8b52f40f78cb85f78edfc31b55ceff79f649b6a499090e64df460fac182
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/prepare.py
+      sha256: e07ac6946888be24689ae63a52370d4d1588d3d048dd0ba1b30298c869ca7bdd
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/witness_cases.json
+      sha256: 5fa9d9d9532cab06d68e8e01257c436bd2ba10746576a5854110e850af92ae98
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/specs.py
+      sha256: 3dd63e06b01e17c6357223845a487490ab707ae27f137cbd0fbb83d2c0e8dcfd
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/check_candidate.py
+      sha256: bfb1b1d4ea13df0f916535ff24fd3254dda7c9673a9dc214fc25bbe9a8814a94
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/format_certificate.py
+      sha256: 1dfbd6aed00e16b14cd97b43622b325dc1b9725df47336850f0dab999a258ef8
+    evidence_status: Target-specific native predicates checked on retained inputs; relation-specific kernel
+      scope is separate. General refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p2/host_check.json
+  - id: trace_absolute_normalization
+    ordered_inputs:
+    - DiagonalMatrixAndSingularValues
+    output: NormalizedAbsoluteWeights
+    arity: 1
+    carrier: DiagonalMatrixAndSingularValues
+    coefficient_ring: Exact rational coordinates, finite integer group/map indices and explicit validity
+      tags
+    hypotheses:
+    - Input(v3,scale,has_mass,mass); has_mass0/1; scale nonzero and nonzero source mass required.
+    semantic_predicate: Normalize singular values and compare nonzero scaling.
+    source_pins:
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_operator_lift_trace_embed_013_proved_lean.yaml
+      sha256: 6ba88c907383872526d79cf52d562858a0ff06daf0161ae1ec6634a8a81345b0
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/inputs/this_repository/dag/operads/l1_operator_lift_trace_embed_013.yaml
+      sha256: 91c6585faa7fecce07a3a610461ee3361b93e7e03c58f753047a8e405261538d
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/013_operator_lifts_trace_metrics_and_representation_limits/lean4/Lifts.lean
+      sha256: f88694fc02e8592bf0320db84e63176b8ecefbf3eae0cd34c17aeb16004768a0
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0282_diagonal_presentation_and_lost_total_scale.md
+      sha256: af9d400903c5d2705b8b192d5533563489d7e6f2559858e9327a1ac4805b0bc8
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/code/python/src/qm/born_boundary_exact.py
+      sha256: 04326ded1c1e17e88659e60498e5b7d92afab1bb8f0c5c91a7268013ca2f0738
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/code/python/tests/test_born_boundary_exact.py
+      sha256: fe382974658a106563ce5870da4a7d87477a0893b1669d0b123b3bc372b493ba
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/code/rust/src/finite_probability/born_boundary_exact.rs
+      sha256: 80427803fced2970578ba5e9b223e2d51b2e494e5900e430db17a6eae8a666ce
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/born_boundary_exact_replay.rs
+      sha256: 37575b2bc4ba8fa23d397f66da9eaa0e290e21a79a051103401878cc356f1a33
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/born_boundary_checker.py
+      sha256: 7bc9e8b52f40f78cb85f78edfc31b55ceff79f649b6a499090e64df460fac182
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/prepare.py
+      sha256: e07ac6946888be24689ae63a52370d4d1588d3d048dd0ba1b30298c869ca7bdd
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/witness_cases.json
+      sha256: 5fa9d9d9532cab06d68e8e01257c436bd2ba10746576a5854110e850af92ae98
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/specs.py
+      sha256: 3dd63e06b01e17c6357223845a487490ab707ae27f137cbd0fbb83d2c0e8dcfd
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/check_candidate.py
+      sha256: bfb1b1d4ea13df0f916535ff24fd3254dda7c9673a9dc214fc25bbe9a8814a94
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/format_certificate.py
+      sha256: 1dfbd6aed00e16b14cd97b43622b325dc1b9725df47336850f0dab999a258ef8
+    evidence_status: Target-specific native predicates checked on retained inputs; relation-specific kernel
+      scope is separate. General refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p2/host_check.json
+  - id: trace_mass_reconstruction
+    ordered_inputs:
+    - NormalizedAbsoluteWeights
+    output: AdmittedMagnitudeReconstructionOrMissingMass
+    arity: 1
+    carrier: NormalizedAbsoluteWeights
+    coefficient_ring: Exact rational coordinates, finite integer group/map indices and explicit validity
+      tags
+    hypotheses:
+    - Input(v3,scale,has_mass,mass); has_mass0/1; scale nonzero and nonzero source mass required.
+    semantic_predicate: Reconstruct magnitudes only when mass is explicitly admitted.
+    source_pins:
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_operator_lift_trace_embed_013_proved_lean.yaml
+      sha256: 6ba88c907383872526d79cf52d562858a0ff06daf0161ae1ec6634a8a81345b0
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/inputs/this_repository/dag/operads/l1_operator_lift_trace_embed_013.yaml
+      sha256: 91c6585faa7fecce07a3a610461ee3361b93e7e03c58f753047a8e405261538d
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/013_operator_lifts_trace_metrics_and_representation_limits/lean4/Lifts.lean
+      sha256: f88694fc02e8592bf0320db84e63176b8ecefbf3eae0cd34c17aeb16004768a0
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0282_diagonal_presentation_and_lost_total_scale.md
+      sha256: af9d400903c5d2705b8b192d5533563489d7e6f2559858e9327a1ac4805b0bc8
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/code/python/src/qm/born_boundary_exact.py
+      sha256: 04326ded1c1e17e88659e60498e5b7d92afab1bb8f0c5c91a7268013ca2f0738
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/code/python/tests/test_born_boundary_exact.py
+      sha256: fe382974658a106563ce5870da4a7d87477a0893b1669d0b123b3bc372b493ba
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/code/rust/src/finite_probability/born_boundary_exact.rs
+      sha256: 80427803fced2970578ba5e9b223e2d51b2e494e5900e430db17a6eae8a666ce
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/born_boundary_exact_replay.rs
+      sha256: 37575b2bc4ba8fa23d397f66da9eaa0e290e21a79a051103401878cc356f1a33
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/born_boundary_checker.py
+      sha256: 7bc9e8b52f40f78cb85f78edfc31b55ceff79f649b6a499090e64df460fac182
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/prepare.py
+      sha256: e07ac6946888be24689ae63a52370d4d1588d3d048dd0ba1b30298c869ca7bdd
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/witness_cases.json
+      sha256: 5fa9d9d9532cab06d68e8e01257c436bd2ba10746576a5854110e850af92ae98
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/specs.py
+      sha256: 3dd63e06b01e17c6357223845a487490ab707ae27f137cbd0fbb83d2c0e8dcfd
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/check_candidate.py
+      sha256: bfb1b1d4ea13df0f916535ff24fd3254dda7c9673a9dc214fc25bbe9a8814a94
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/format_certificate.py
+      sha256: 1dfbd6aed00e16b14cd97b43622b325dc1b9725df47336850f0dab999a258ef8
+    evidence_status: Target-specific native predicates checked on retained inputs; relation-specific kernel
+      scope is separate. General refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p2/host_check.json
+  relations:
+  - id: trace_relation_0
+    equation_or_predicate: Diagonal trace mass=sum|v|; nonzero scale preserves normalized magnitudes,
+      while signs are lost.
+    typing_conditions: Literal declared operation domains; Construct the real Banach/operator embedding
+      and exact signed-data reconstruction contract. Retain sign data separately; probability weights
+      plus mass cannot recover signs.
+    evidence_status: P1 candidate; independent native and named kernel gates remain required.
+    scope: Exact diagonal/singular-value mass, nonzero-scale invariance and declared-mass reconstruction
+      controls; generic absolute scaling and sign-loss statements in Lean.
+    source_pins:
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_operator_lift_trace_embed_013_proved_lean.yaml
+      sha256: 6ba88c907383872526d79cf52d562858a0ff06daf0161ae1ec6634a8a81345b0
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/inputs/this_repository/dag/operads/l1_operator_lift_trace_embed_013.yaml
+      sha256: 91c6585faa7fecce07a3a610461ee3361b93e7e03c58f753047a8e405261538d
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/013_operator_lifts_trace_metrics_and_representation_limits/lean4/Lifts.lean
+      sha256: f88694fc02e8592bf0320db84e63176b8ecefbf3eae0cd34c17aeb16004768a0
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0282_diagonal_presentation_and_lost_total_scale.md
+      sha256: af9d400903c5d2705b8b192d5533563489d7e6f2559858e9327a1ac4805b0bc8
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/code/python/src/qm/born_boundary_exact.py
+      sha256: 04326ded1c1e17e88659e60498e5b7d92afab1bb8f0c5c91a7268013ca2f0738
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/code/python/tests/test_born_boundary_exact.py
+      sha256: fe382974658a106563ce5870da4a7d87477a0893b1669d0b123b3bc372b493ba
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/code/rust/src/finite_probability/born_boundary_exact.rs
+      sha256: 80427803fced2970578ba5e9b223e2d51b2e494e5900e430db17a6eae8a666ce
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/born_boundary_exact_replay.rs
+      sha256: 37575b2bc4ba8fa23d397f66da9eaa0e290e21a79a051103401878cc356f1a33
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/born_boundary_checker.py
+      sha256: 7bc9e8b52f40f78cb85f78edfc31b55ceff79f649b6a499090e64df460fac182
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/prepare.py
+      sha256: e07ac6946888be24689ae63a52370d4d1588d3d048dd0ba1b30298c869ca7bdd
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/witness_cases.json
+      sha256: 5fa9d9d9532cab06d68e8e01257c436bd2ba10746576a5854110e850af92ae98
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/specs.py
+      sha256: 3dd63e06b01e17c6357223845a487490ab707ae27f137cbd0fbb83d2c0e8dcfd
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/check_candidate.py
+      sha256: bfb1b1d4ea13df0f916535ff24fd3254dda7c9673a9dc214fc25bbe9a8814a94
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/format_certificate.py
+      sha256: 1dfbd6aed00e16b14cd97b43622b325dc1b9725df47336850f0dab999a258ef8
+    latest_host_check: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p2/host_check.json
+  compositions:
+  - outer_operation: trace_absolute_normalization
+    input_slot: 0
+    inner_operation: trace_diagonal_lift
+    colour_match: DiagonalMatrixAndSingularValues -> DiagonalMatrixAndSingularValues
+    hypothesis_match: Same declared coordinates, coefficients and context; all operation hypotheses must
+      be carried into the graft.
+    licensing_relations:
+    - trace_relation_0
+    evidence_status: Semantic substitution supported by the retained finite operation traces and separately
+      scoped named kernel statements. A complete refined-carrier operad is not asserted.
+  - outer_operation: trace_mass_reconstruction
+    input_slot: 0
+    inner_operation: trace_absolute_normalization
+    colour_match: NormalizedAbsoluteWeights -> NormalizedAbsoluteWeights
+    hypothesis_match: Same declared coordinates, coefficients and context; all operation hypotheses must
+      be carried into the graft.
+    licensing_relations:
+    - trace_relation_0
+    evidence_status: Semantic substitution supported by the retained finite operation traces and separately
+      scoped named kernel statements. A complete refined-carrier operad is not asserted.
+  identities:
+  - colour: AdmittedMagnitudeReconstructionOrMissingMass
+    proposed_operation: id_AdmittedMagnitudeReconstructionOrMissingMass
+    signature: AdmittedMagnitudeReconstructionOrMissingMass -> AdmittedMagnitudeReconstructionOrMissingMass
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: DiagonalMatrixAndSingularValues
+    proposed_operation: id_DiagonalMatrixAndSingularValues
+    signature: DiagonalMatrixAndSingularValues -> DiagonalMatrixAndSingularValues
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: NormalizedAbsoluteWeights
+    proposed_operation: id_NormalizedAbsoluteWeights
+    signature: NormalizedAbsoluteWeights -> NormalizedAbsoluteWeights
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: SignedTripleScaleAndMassContract
+    proposed_operation: id_SignedTripleScaleAndMassContract
+    signature: SignedTripleScaleAndMassContract -> SignedTripleScaleAndMassContract
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  symmetric_actions: []
+  coherence_obligations: &id001
+  - Construct the real Banach/operator embedding and exact signed-data reconstruction contract. Retain
+    sign data separately; probability weights plus mass cannot recover signs.
+  - Prove the full refined-carrier operad identity, substitution, symmetry and coherence laws; mere colour
+    matches do not instantiate that formal structure.
+  failed_compositions:
+  - proposal: Promote the selected step to the unrestricted original target
+    reason: Construct the real Banach/operator embedding and exact signed-data reconstruction contract.
+      Retain sign data separately; probability weights plus mass cannot recover signs.
+  counterexamples:
+  - id: retained_actual_domain_controls
+    records:
+    - input:
+      - '2'
+      - '-1'
+      - '1'
+      - '2'
+      - '0'
+      - '0'
+      output:
+      - '1'
+      - '2'
+      - '0'
+      - '0'
+      - '0'
+      - '-1'
+      - '0'
+      - '0'
+      - '0'
+      - '1'
+      - '2'
+      - '1'
+      - '1'
+      - '4'
+      - '8'
+      - 1/2
+      - 1/4
+      - 1/4
+      - 1/2
+      - 1/4
+      - 1/4
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+      - '0'
+    - input:
+      - '2'
+      - '-1'
+      - '1'
+      - '-2'
+      - '1'
+      - '4'
+      output:
+      - '1'
+      - '2'
+      - '0'
+      - '0'
+      - '0'
+      - '-1'
+      - '0'
+      - '0'
+      - '0'
+      - '1'
+      - '2'
+      - '1'
+      - '1'
+      - '4'
+      - '8'
+      - 1/2
+      - 1/4
+      - 1/4
+      - 1/2
+      - 1/4
+      - 1/4
+      - '1'
+      - '2'
+      - '1'
+      - '1'
+      - '1'
+    - input:
+      - '2'
+      - '-1'
+      - '1'
+      - '2'
+      - '1'
+      - '8'
+      output:
+      - '1'
+      - '2'
+      - '0'
+      - '0'
+      - '0'
+      - '-1'
+      - '0'
+      - '0'
+      - '0'
+      - '1'
+      - '2'
+      - '1'
+      - '1'
+      - '4'
+      - '8'
+      - 1/2
+      - 1/4
+      - 1/4
+      - 1/2
+      - 1/4
+      - 1/4
+      - '1'
+      - '4'
+      - '2'
+      - '2'
+      - '0'
+    - input:
+      - '0'
+      - '0'
+      - '0'
+      - '2'
+      - '1'
+      - '0'
+      output:
+      - '0'
+    scope: Computed values, with the source/kernel/native distinctions retained in claim_boundary.
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: FILLED
+    carrier: Literal per-operation finite or admitted scalar carriers
+    coefficient_ring: Exact Q, finite integer indices and explicit defined/refusal tags
+    source_pins:
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_operator_lift_trace_embed_013_proved_lean.yaml
+      sha256: 6ba88c907383872526d79cf52d562858a0ff06daf0161ae1ec6634a8a81345b0
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/inputs/this_repository/dag/operads/l1_operator_lift_trace_embed_013.yaml
+      sha256: 91c6585faa7fecce07a3a610461ee3361b93e7e03c58f753047a8e405261538d
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/013_operator_lifts_trace_metrics_and_representation_limits/lean4/Lifts.lean
+      sha256: f88694fc02e8592bf0320db84e63176b8ecefbf3eae0cd34c17aeb16004768a0
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0282_diagonal_presentation_and_lost_total_scale.md
+      sha256: af9d400903c5d2705b8b192d5533563489d7e6f2559858e9327a1ac4805b0bc8
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/code/python/src/qm/born_boundary_exact.py
+      sha256: 04326ded1c1e17e88659e60498e5b7d92afab1bb8f0c5c91a7268013ca2f0738
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/code/python/tests/test_born_boundary_exact.py
+      sha256: fe382974658a106563ce5870da4a7d87477a0893b1669d0b123b3bc372b493ba
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/code/rust/src/finite_probability/born_boundary_exact.rs
+      sha256: 80427803fced2970578ba5e9b223e2d51b2e494e5900e430db17a6eae8a666ce
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/born_boundary_exact_replay.rs
+      sha256: 37575b2bc4ba8fa23d397f66da9eaa0e290e21a79a051103401878cc356f1a33
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/born_boundary_checker.py
+      sha256: 7bc9e8b52f40f78cb85f78edfc31b55ceff79f649b6a499090e64df460fac182
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/prepare.py
+      sha256: e07ac6946888be24689ae63a52370d4d1588d3d048dd0ba1b30298c869ca7bdd
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/witness_cases.json
+      sha256: 5fa9d9d9532cab06d68e8e01257c436bd2ba10746576a5854110e850af92ae98
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/specs.py
+      sha256: 3dd63e06b01e17c6357223845a487490ab707ae27f137cbd0fbb83d2c0e8dcfd
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/check_candidate.py
+      sha256: bfb1b1d4ea13df0f916535ff24fd3254dda7c9673a9dc214fc25bbe9a8814a94
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/format_certificate.py
+      sha256: 1dfbd6aed00e16b14cd97b43622b325dc1b9725df47336850f0dab999a258ef8
+    public_input:
+      kind: trace
+      cases:
+      - - '2'
+        - '-1'
+        - '1'
+        - '2'
+        - '0'
+        - '0'
+      - - '2'
+        - '-1'
+        - '1'
+        - '-2'
+        - '1'
+        - '4'
+      - - '2'
+        - '-1'
+        - '1'
+        - '2'
+        - '1'
+        - '8'
+      - - '0'
+        - '0'
+        - '0'
+        - '2'
+        - '1'
+        - '0'
+      scope: Exact diagonal/singular-value mass, nonzero-scale invariance and declared-mass reconstruction
+        controls; generic absolute scaling and sign-loss statements in Lean.
+      unpaid_target: Construct the real Banach/operator embedding and exact signed-data reconstruction
+        contract. Retain sign data separately; probability weights plus mass cannot recover signs.
+    original_target: 'For integer lists v the diagonal trace norm equals sum |v_i| (trace_norm_eq_mass).
+      Scaling by c != 0 keeps the normalized absolute weights and, for |c|>1, raises the mass. Reconstruction
+      without an admitted mass returns failure. The real operator embedding is not constructed in Lean.
+      C05: the trace embedding carries no physical state or quantum claim.'
+    source_scope_review: 'The source trace_norm_eq_mass is an integer-list identity, not a real operator
+      embedding. Build the actual signed diagonal and singular-value list. Normalized absolute weights
+      lose scale and sign; an admitted mass reconstructs absolute magnitudes only, and an incorrect supplied
+      mass fails the original-data comparison. Output layout: status;diag9;singular3;mass;scaled_mass;p3;scaled_p3;mass_tag;reconstructed3;matches_original_magnitudes'
+    admitted_assumptions:
+    - 'real operator / Banach embedding: lift'
+  slot_m2_layer1_forward_morphisms:
+    mining_status: FILLED
+    operations:
+    - catalog_id: trace_diagonal_lift
+      inputs:
+      - SignedTripleScaleAndMassContract
+      output: DiagonalMatrixAndSingularValues
+      semantic_predicate: Construct diag(v).
+    - catalog_id: trace_absolute_normalization
+      inputs:
+      - DiagonalMatrixAndSingularValues
+      output: NormalizedAbsoluteWeights
+      semantic_predicate: Normalize singular values and compare nonzero scaling.
+    - catalog_id: trace_mass_reconstruction
+      inputs:
+      - NormalizedAbsoluteWeights
+      output: AdmittedMagnitudeReconstructionOrMissingMass
+      semantic_predicate: Reconstruct magnitudes only when mass is explicitly admitted.
+    composition_plan:
+    - outer_operation: trace_absolute_normalization
+      input_slot: 0
+      inner_operation: trace_diagonal_lift
+      colour_match: DiagonalMatrixAndSingularValues -> DiagonalMatrixAndSingularValues
+      hypothesis_match: Same declared coordinates, coefficients and context; all operation hypotheses
+        must be carried into the graft.
+      licensing_relations:
+      - trace_relation_0
+      evidence_status: Semantic substitution supported by the retained finite operation traces and separately
+        scoped named kernel statements. A complete refined-carrier operad is not asserted.
+    - outer_operation: trace_mass_reconstruction
+      input_slot: 0
+      inner_operation: trace_absolute_normalization
+      colour_match: NormalizedAbsoluteWeights -> NormalizedAbsoluteWeights
+      hypothesis_match: Same declared coordinates, coefficients and context; all operation hypotheses
+        must be carried into the graft.
+      licensing_relations:
+      - trace_relation_0
+      evidence_status: Semantic substitution supported by the retained finite operation traces and separately
+        scoped named kernel statements. A complete refined-carrier operad is not asserted.
+    tree:
+    - Diagonal trace mass=sum|v|; nonzero scale preserves normalized magnitudes, while signs are lost.
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: FILLED
+    algebraic_relations:
+    - id: trace_relation_0
+      equation_or_predicate: Diagonal trace mass=sum|v|; nonzero scale preserves normalized magnitudes,
+        while signs are lost.
+      typing_conditions: Literal declared operation domains; Construct the real Banach/operator embedding
+        and exact signed-data reconstruction contract. Retain sign data separately; probability weights
+        plus mass cannot recover signs.
+      evidence_status: P1 candidate; independent native and named kernel gates remain required.
+      scope: Exact diagonal/singular-value mass, nonzero-scale invariance and declared-mass reconstruction
+        controls; generic absolute scaling and sign-loss statements in Lean.
+      source_pins:
+      - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_operator_lift_trace_embed_013_proved_lean.yaml
+        sha256: 6ba88c907383872526d79cf52d562858a0ff06daf0161ae1ec6634a8a81345b0
+      - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/inputs/this_repository/dag/operads/l1_operator_lift_trace_embed_013.yaml
+        sha256: 91c6585faa7fecce07a3a610461ee3361b93e7e03c58f753047a8e405261538d
+      - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/013_operator_lifts_trace_metrics_and_representation_limits/lean4/Lifts.lean
+        sha256: f88694fc02e8592bf0320db84e63176b8ecefbf3eae0cd34c17aeb16004768a0
+      - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+        sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+      - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0282_diagonal_presentation_and_lost_total_scale.md
+        sha256: af9d400903c5d2705b8b192d5533563489d7e6f2559858e9327a1ac4805b0bc8
+      - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/code/python/src/qm/born_boundary_exact.py
+        sha256: 04326ded1c1e17e88659e60498e5b7d92afab1bb8f0c5c91a7268013ca2f0738
+      - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/code/python/tests/test_born_boundary_exact.py
+        sha256: fe382974658a106563ce5870da4a7d87477a0893b1669d0b123b3bc372b493ba
+      - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/code/rust/src/finite_probability/born_boundary_exact.rs
+        sha256: 80427803fced2970578ba5e9b223e2d51b2e494e5900e430db17a6eae8a666ce
+      - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/born_boundary_exact_replay.rs
+        sha256: 37575b2bc4ba8fa23d397f66da9eaa0e290e21a79a051103401878cc356f1a33
+      - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/born_boundary_checker.py
+        sha256: 7bc9e8b52f40f78cb85f78edfc31b55ceff79f649b6a499090e64df460fac182
+      - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+        sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+      - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/prepare.py
+        sha256: e07ac6946888be24689ae63a52370d4d1588d3d048dd0ba1b30298c869ca7bdd
+      - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/witness_cases.json
+        sha256: 5fa9d9d9532cab06d68e8e01257c436bd2ba10746576a5854110e850af92ae98
+      - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/specs.py
+        sha256: 3dd63e06b01e17c6357223845a487490ab707ae27f137cbd0fbb83d2c0e8dcfd
+      - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/custody.py
+        sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+      - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+        sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+      - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/check_candidate.py
+        sha256: bfb1b1d4ea13df0f916535ff24fd3254dda7c9673a9dc214fc25bbe9a8814a94
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/format_certificate.py
+        sha256: 1dfbd6aed00e16b14cd97b43622b325dc1b9725df47336850f0dab999a258ef8
+    rejection_predicates:
+    - Independent domain equations and actual matrix/graph/quotient arrays recompute every output.
+    - Exact public input, canonical rational primitive types, complete source pins and exact sealed request
+      bytes.
+    - Full native cross-language output equality and actual named Lean axiom reports; no label-based target
+      promotion.
+    negative_control_plan: Alter every output coordinate, input identity, primitive types, source set
+      and sealed request.
+  slot_m4_tri_language_witness_anchors:
+    mining_status: FILLED
+    certificate_predicates:
+    - Independent domain equations and actual matrix/graph/quotient arrays recompute every output.
+    - Exact public input, canonical rational primitive types, complete source pins and exact sealed request
+      bytes.
+    - Full native cross-language output equality and actual named Lean axiom reports; no label-based target
+      promotion.
+    anchors:
+    - code/python/src/qm/born_boundary_exact.py
+    - code/python/tests/test_born_boundary_exact.py
+    - code/rust/src/finite_probability/born_boundary_exact.rs
+    - code/rust/src/finite_probability/examples/born_boundary_exact_replay.rs
+    - dag/pfp/born_boundary_checker.py
+    - dag/pfp/exact_json.py
+    - dag/pfp/review_exact_json.py
+    - lean4/PromptBornBoundaries.lean
+    - dag/results/batches/20261020T000351Z_prompts_132_151/tools/prepare.py
+    - dag/results/batches/20261020T000351Z_prompts_132_151/tools/witness_cases.json
+    - dag/results/batches/20261020T000351Z_prompts_132_151/tools/specs.py
+    - dag/pfp/custody.py
+    - dag/pfp/filename_custody.json
+    - QuantumMechanics.PromptBornBoundaries.trace_law
+    - QuantumMechanics.PromptBornBoundaries.trace_control
+    unpaid_imports:
+    - Construct the real Banach/operator embedding and exact signed-data reconstruction contract. Retain
+      sign data separately; probability weights plus mass cannot recover signs.
+    - Prove the full refined-carrier operad identity, substitution, symmetry and coherence laws; mere
+      colour matches do not instantiate that formal structure.
+    anchor_status: New Lean anchors are candidate declarations until the retained P2 compiler runs; compiled
+      source leads retain their literal scope.
+stage_history:
+- stage: P0_MINE_OPERAD
+  attempt: p0
+  run: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged
+  operad_delta: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/operad_delta.yaml
+  host_check: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/host_check.json
+- stage: P1_DERIVE
+  attempt: p1
+  run: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged
+  operad_delta: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p1/operad_delta.yaml
+  host_check: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p1/host_check.json
+- stage: P2_VERIFY
+  attempt: p2
+  run: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged
+  operad_delta: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p2/operad_delta.yaml
+  host_check: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p2/host_check.json
+- stage: P4_CHALLENGE
+  attempt: p4
+  run: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged
+  operad_delta: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p4/operad_delta.yaml
+  host_check: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p4/host_check.json
+- stage: P5_RECORD
+  attempt: p5
+  run: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged
+  operad_delta: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p5/operad_delta.yaml
+  host_check: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p5/host_check.json
+open_obligations: *id001
+excluded_relation_leads: []
+operad_slots_scope:
+  work_unit: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged/p0/reviewed_missions.json
+  scope: FILLED means reviewed prerequisites for this selected step; original target and unpaid imports
+    retained.
+latest_run:
+  path: dag/results/L1-OPERATOR-LIFT-TRACE-EMBED-013/runs/20261020T000351Z_staged
+  stage: P5_RECORD
+  status: scoped_result_or_obstruction_pending_batch_review
+scope_notes:
+- 'The source trace_norm_eq_mass is an integer-list identity, not a real operator embedding. Build the
+  actual signed diagonal and singular-value list. Normalized absolute weights lose scale and sign; an
+  admitted mass reconstructs absolute magnitudes only, and an incorrect supplied mass fails the original-data
+  comparison. Output layout: status;diag9;singular3;mass;scaled_mass;p3;scaled_p3;mass_tag;reconstructed3;matches_original_magnitudes'

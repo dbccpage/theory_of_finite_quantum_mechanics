@@ -1,0 +1,504 @@
+{
+  "task_id": "L1-IMP-U1-PHASES",
+  "stage_id": "P0_MINE_OPERAD",
+  "attempt_id": "p0",
+  "input_sha256": "fe94790fec42167780de537a1a421829a684d00f3698f73d93efebf0e4545079",
+  "candidate_sha256": "da474276fff284d3b1f57bbd1f2189e0e5ccd73929b17378c9758ec951b80c23",
+  "status": "reviewed_for_next_step",
+  "predicate_results": {
+    "source_scope_review": "The finite sign carrier already separates same-weight amplitudes; C4 adds quarter turns without selecting U(1). Compute all relative C4 intensities and invariance under the independently declared common Gaussian phase(3/5,4/5). Output layout: weights2;relative4;common_intensity;plus;minus;cross",
+    "reviewed_sha256": "8422c162130f58bab12da56222b527dd00a98a0c4a0b7a8e1fc0cd7ccea24572"
+  },
+  "bounded_failure_codes": [],
+  "operad_delta": {
+    "add_or_refine_generators": [
+      {
+        "id": "phases_sector_weights",
+        "ordered_inputs": [
+          "TwoRationalAmplitudes"
+        ],
+        "output": "PhaseBlindWeights",
+        "arity": 1,
+        "carrier": "TwoRationalAmplitudes",
+        "coefficient_ring": "Exact rational coordinates, finite integer group/map indices and explicit validity tags",
+        "hypotheses": [
+          "C4 and the common phase are supplied; no continuous phase law is inferred."
+        ],
+        "semantic_predicate": "Compute squared sector weights.",
+        "source_pins": [
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_imp_u1_phases_imported_assumption.yaml",
+            "sha256": "cf9bfae3d1b167b372b27400439dfac93f46f875fa1c5339714826710a51faef"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/inputs/this_repository/dag/operads/l1_imp_u1_phases.yaml",
+            "sha256": "2d1594f6647468f2eb5ad93f439a3c2d1781f7c51ed4781fc6e12b5e649e5a2f"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/inputs/this_repository/lean4/H011U1SelectorBoundary.lean",
+            "sha256": "214f187afdfc0ee196021aa3ce2ab96875b1c13de9b3a560ef1eaf0359622912"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/inputs/this_repository/lean4/H011Circle.lean",
+            "sha256": "6934713287756fd23f2f44a6bab2ed6ee50fbb128f99db492f926c839ff86d9b"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/complex_structure_selector.rs",
+            "sha256": "f34f70b5596cfb5d459af8a258f843f3731391db228a35f9f31b041ec9ab153e"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/phase_blind_quotient.rs",
+            "sha256": "ff2874e2584f1df73fcee4976cabb826aace1b22ae81dea8d4ab2319a7de244b"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0294_circle_phases_as_an_imported_unit_group.md",
+            "sha256": "9c76c771cb03a3bf6146900e6299b36965daaccf2675e868e966af303a9657a5"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/p0/operation_sources/code/python/src/qm/born_boundary_exact.py",
+            "sha256": "04326ded1c1e17e88659e60498e5b7d92afab1bb8f0c5c91a7268013ca2f0738"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/p0/operation_sources/code/python/tests/test_born_boundary_exact.py",
+            "sha256": "fe382974658a106563ce5870da4a7d87477a0893b1669d0b123b3bc372b493ba"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/p0/operation_sources/code/rust/src/finite_probability/born_boundary_exact.rs",
+            "sha256": "80427803fced2970578ba5e9b223e2d51b2e494e5900e430db17a6eae8a666ce"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/born_boundary_exact_replay.rs",
+            "sha256": "37575b2bc4ba8fa23d397f66da9eaa0e290e21a79a051103401878cc356f1a33"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/born_boundary_checker.py",
+            "sha256": "7bc9e8b52f40f78cb85f78edfc31b55ceff79f649b6a499090e64df460fac182"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py",
+            "sha256": "c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/prepare.py",
+            "sha256": "e07ac6946888be24689ae63a52370d4d1588d3d048dd0ba1b30298c869ca7bdd"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/witness_cases.json",
+            "sha256": "5fa9d9d9532cab06d68e8e01257c436bd2ba10746576a5854110e850af92ae98"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/specs.py",
+            "sha256": "3dd63e06b01e17c6357223845a487490ab707ae27f137cbd0fbb83d2c0e8dcfd"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/custody.py",
+            "sha256": "cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/filename_custody.json",
+            "sha256": "20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/check_candidate.py",
+            "sha256": "0f81360d992ae94d5bc47777d2a9eb3dcf7517e2e017dc64dd87d4847b0a1976"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/format_certificate.py",
+            "sha256": "b150c225c8de3ceb490de23c82105a6ddfb765d673e7c462137a0e4099d8cf99"
+          }
+        ],
+        "evidence_status": "Source semantics reviewed; actual native and candidate kernel acceptance remain P2 gates."
+      },
+      {
+        "id": "phases_relative_phases",
+        "ordered_inputs": [
+          "PhaseBlindWeights"
+        ],
+        "output": "FourRelativeC4Intensities",
+        "arity": 1,
+        "carrier": "PhaseBlindWeights",
+        "coefficient_ring": "Exact rational coordinates, finite integer group/map indices and explicit validity tags",
+        "hypotheses": [
+          "C4 and the common phase are supplied; no continuous phase law is inferred."
+        ],
+        "semantic_predicate": "Use relative phases1,i,-1,-i.",
+        "source_pins": [
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_imp_u1_phases_imported_assumption.yaml",
+            "sha256": "cf9bfae3d1b167b372b27400439dfac93f46f875fa1c5339714826710a51faef"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/inputs/this_repository/dag/operads/l1_imp_u1_phases.yaml",
+            "sha256": "2d1594f6647468f2eb5ad93f439a3c2d1781f7c51ed4781fc6e12b5e649e5a2f"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/inputs/this_repository/lean4/H011U1SelectorBoundary.lean",
+            "sha256": "214f187afdfc0ee196021aa3ce2ab96875b1c13de9b3a560ef1eaf0359622912"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/inputs/this_repository/lean4/H011Circle.lean",
+            "sha256": "6934713287756fd23f2f44a6bab2ed6ee50fbb128f99db492f926c839ff86d9b"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/complex_structure_selector.rs",
+            "sha256": "f34f70b5596cfb5d459af8a258f843f3731391db228a35f9f31b041ec9ab153e"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/phase_blind_quotient.rs",
+            "sha256": "ff2874e2584f1df73fcee4976cabb826aace1b22ae81dea8d4ab2319a7de244b"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0294_circle_phases_as_an_imported_unit_group.md",
+            "sha256": "9c76c771cb03a3bf6146900e6299b36965daaccf2675e868e966af303a9657a5"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/p0/operation_sources/code/python/src/qm/born_boundary_exact.py",
+            "sha256": "04326ded1c1e17e88659e60498e5b7d92afab1bb8f0c5c91a7268013ca2f0738"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/p0/operation_sources/code/python/tests/test_born_boundary_exact.py",
+            "sha256": "fe382974658a106563ce5870da4a7d87477a0893b1669d0b123b3bc372b493ba"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/p0/operation_sources/code/rust/src/finite_probability/born_boundary_exact.rs",
+            "sha256": "80427803fced2970578ba5e9b223e2d51b2e494e5900e430db17a6eae8a666ce"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/born_boundary_exact_replay.rs",
+            "sha256": "37575b2bc4ba8fa23d397f66da9eaa0e290e21a79a051103401878cc356f1a33"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/born_boundary_checker.py",
+            "sha256": "7bc9e8b52f40f78cb85f78edfc31b55ceff79f649b6a499090e64df460fac182"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py",
+            "sha256": "c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/prepare.py",
+            "sha256": "e07ac6946888be24689ae63a52370d4d1588d3d048dd0ba1b30298c869ca7bdd"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/witness_cases.json",
+            "sha256": "5fa9d9d9532cab06d68e8e01257c436bd2ba10746576a5854110e850af92ae98"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/specs.py",
+            "sha256": "3dd63e06b01e17c6357223845a487490ab707ae27f137cbd0fbb83d2c0e8dcfd"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/custody.py",
+            "sha256": "cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/filename_custody.json",
+            "sha256": "20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/check_candidate.py",
+            "sha256": "0f81360d992ae94d5bc47777d2a9eb3dcf7517e2e017dc64dd87d4847b0a1976"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/format_certificate.py",
+            "sha256": "b150c225c8de3ceb490de23c82105a6ddfb765d673e7c462137a0e4099d8cf99"
+          }
+        ],
+        "evidence_status": "Source semantics reviewed; actual native and candidate kernel acceptance remain P2 gates."
+      },
+      {
+        "id": "phases_common_phase_compare",
+        "ordered_inputs": [
+          "FourRelativeC4Intensities"
+        ],
+        "output": "CommonPhaseAndSignInterference",
+        "arity": 1,
+        "carrier": "FourRelativeC4Intensities",
+        "coefficient_ring": "Exact rational coordinates, finite integer group/map indices and explicit validity tags",
+        "hypotheses": [
+          "C4 and the common phase are supplied; no continuous phase law is inferred."
+        ],
+        "semantic_predicate": "Rotate the coherent sum by the declared rational unit.",
+        "source_pins": [
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_imp_u1_phases_imported_assumption.yaml",
+            "sha256": "cf9bfae3d1b167b372b27400439dfac93f46f875fa1c5339714826710a51faef"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/inputs/this_repository/dag/operads/l1_imp_u1_phases.yaml",
+            "sha256": "2d1594f6647468f2eb5ad93f439a3c2d1781f7c51ed4781fc6e12b5e649e5a2f"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/inputs/this_repository/lean4/H011U1SelectorBoundary.lean",
+            "sha256": "214f187afdfc0ee196021aa3ce2ab96875b1c13de9b3a560ef1eaf0359622912"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/inputs/this_repository/lean4/H011Circle.lean",
+            "sha256": "6934713287756fd23f2f44a6bab2ed6ee50fbb128f99db492f926c839ff86d9b"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/complex_structure_selector.rs",
+            "sha256": "f34f70b5596cfb5d459af8a258f843f3731391db228a35f9f31b041ec9ab153e"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/phase_blind_quotient.rs",
+            "sha256": "ff2874e2584f1df73fcee4976cabb826aace1b22ae81dea8d4ab2319a7de244b"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0294_circle_phases_as_an_imported_unit_group.md",
+            "sha256": "9c76c771cb03a3bf6146900e6299b36965daaccf2675e868e966af303a9657a5"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/p0/operation_sources/code/python/src/qm/born_boundary_exact.py",
+            "sha256": "04326ded1c1e17e88659e60498e5b7d92afab1bb8f0c5c91a7268013ca2f0738"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/p0/operation_sources/code/python/tests/test_born_boundary_exact.py",
+            "sha256": "fe382974658a106563ce5870da4a7d87477a0893b1669d0b123b3bc372b493ba"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/p0/operation_sources/code/rust/src/finite_probability/born_boundary_exact.rs",
+            "sha256": "80427803fced2970578ba5e9b223e2d51b2e494e5900e430db17a6eae8a666ce"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/born_boundary_exact_replay.rs",
+            "sha256": "37575b2bc4ba8fa23d397f66da9eaa0e290e21a79a051103401878cc356f1a33"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/born_boundary_checker.py",
+            "sha256": "7bc9e8b52f40f78cb85f78edfc31b55ceff79f649b6a499090e64df460fac182"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py",
+            "sha256": "c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/prepare.py",
+            "sha256": "e07ac6946888be24689ae63a52370d4d1588d3d048dd0ba1b30298c869ca7bdd"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/witness_cases.json",
+            "sha256": "5fa9d9d9532cab06d68e8e01257c436bd2ba10746576a5854110e850af92ae98"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/specs.py",
+            "sha256": "3dd63e06b01e17c6357223845a487490ab707ae27f137cbd0fbb83d2c0e8dcfd"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/custody.py",
+            "sha256": "cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/filename_custody.json",
+            "sha256": "20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/check_candidate.py",
+            "sha256": "0f81360d992ae94d5bc47777d2a9eb3dcf7517e2e017dc64dd87d4847b0a1976"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/format_certificate.py",
+            "sha256": "b150c225c8de3ceb490de23c82105a6ddfb765d673e7c462137a0e4099d8cf99"
+          }
+        ],
+        "evidence_status": "Source semantics reviewed; actual native and candidate kernel acceptance remain P2 gates."
+      }
+    ],
+    "add_or_refine_relations": [
+      {
+        "id": "phases_relation_0",
+        "equation_or_predicate": "Common unit phase preserves intensity; relative sign can change intensity while weights stay fixed.",
+        "typing_conditions": "Literal declared operation domains; Supply a justified circle selector, continuity and source representation bridge. A finite subgroup or one rational unit phase is not U(1) selection.",
+        "evidence_status": "P1 candidate; independent native and named kernel gates remain required.",
+        "scope": "Full relative-phase readouts and common-phase invariance, with generic interference identities and the two sign controls in Lean.",
+        "source_pins": [
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_imp_u1_phases_imported_assumption.yaml",
+            "sha256": "cf9bfae3d1b167b372b27400439dfac93f46f875fa1c5339714826710a51faef"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/inputs/this_repository/dag/operads/l1_imp_u1_phases.yaml",
+            "sha256": "2d1594f6647468f2eb5ad93f439a3c2d1781f7c51ed4781fc6e12b5e649e5a2f"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/inputs/this_repository/lean4/H011U1SelectorBoundary.lean",
+            "sha256": "214f187afdfc0ee196021aa3ce2ab96875b1c13de9b3a560ef1eaf0359622912"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/inputs/this_repository/lean4/H011Circle.lean",
+            "sha256": "6934713287756fd23f2f44a6bab2ed6ee50fbb128f99db492f926c839ff86d9b"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean",
+            "sha256": "c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/complex_structure_selector.rs",
+            "sha256": "f34f70b5596cfb5d459af8a258f843f3731391db228a35f9f31b041ec9ab153e"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_quantum_physics/src/phase_blind_quotient.rs",
+            "sha256": "ff2874e2584f1df73fcee4976cabb826aace1b22ae81dea8d4ab2319a7de244b"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs",
+            "sha256": "f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0294_circle_phases_as_an_imported_unit_group.md",
+            "sha256": "9c76c771cb03a3bf6146900e6299b36965daaccf2675e868e966af303a9657a5"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/p0/operation_sources/code/python/src/qm/born_boundary_exact.py",
+            "sha256": "04326ded1c1e17e88659e60498e5b7d92afab1bb8f0c5c91a7268013ca2f0738"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/p0/operation_sources/code/python/tests/test_born_boundary_exact.py",
+            "sha256": "fe382974658a106563ce5870da4a7d87477a0893b1669d0b123b3bc372b493ba"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/p0/operation_sources/code/rust/src/finite_probability/born_boundary_exact.rs",
+            "sha256": "80427803fced2970578ba5e9b223e2d51b2e494e5900e430db17a6eae8a666ce"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/born_boundary_exact_replay.rs",
+            "sha256": "37575b2bc4ba8fa23d397f66da9eaa0e290e21a79a051103401878cc356f1a33"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/born_boundary_checker.py",
+            "sha256": "7bc9e8b52f40f78cb85f78edfc31b55ceff79f649b6a499090e64df460fac182"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py",
+            "sha256": "c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/prepare.py",
+            "sha256": "e07ac6946888be24689ae63a52370d4d1588d3d048dd0ba1b30298c869ca7bdd"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/witness_cases.json",
+            "sha256": "5fa9d9d9532cab06d68e8e01257c436bd2ba10746576a5854110e850af92ae98"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/specs.py",
+            "sha256": "3dd63e06b01e17c6357223845a487490ab707ae27f137cbd0fbb83d2c0e8dcfd"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/custody.py",
+            "sha256": "cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/filename_custody.json",
+            "sha256": "20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/check_candidate.py",
+            "sha256": "0f81360d992ae94d5bc47777d2a9eb3dcf7517e2e017dc64dd87d4847b0a1976"
+          },
+          {
+            "path": "dag/pfp/exact_json.py",
+            "sha256": "e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e"
+          },
+          {
+            "path": "dag/results/L1-IMP-U1-PHASES/runs/20261020T000351Z_staged/format_certificate.py",
+            "sha256": "b150c225c8de3ceb490de23c82105a6ddfb765d673e7c462137a0e4099d8cf99"
+          }
+        ]
+      }
+    ],
+    "checked_compositions": [
+      {
+        "outer_operation": "phases_relative_phases",
+        "input_slot": 0,
+        "inner_operation": "phases_sector_weights",
+        "colour_match": "PhaseBlindWeights -> PhaseBlindWeights",
+        "hypothesis_match": "Same declared coordinates, coefficients and context; all operation hypotheses must be carried into the graft.",
+        "licensing_relations": [
+          "phases_relation_0"
+        ],
+        "evidence_status": "Semantic substitution supported by the retained finite operation traces and separately scoped named kernel statements. A complete refined-carrier operad is not asserted."
+      },
+      {
+        "outer_operation": "phases_common_phase_compare",
+        "input_slot": 0,
+        "inner_operation": "phases_relative_phases",
+        "colour_match": "FourRelativeC4Intensities -> FourRelativeC4Intensities",
+        "hypothesis_match": "Same declared coordinates, coefficients and context; all operation hypotheses must be carried into the graft.",
+        "licensing_relations": [
+          "phases_relation_0"
+        ],
+        "evidence_status": "Semantic substitution supported by the retained finite operation traces and separately scoped named kernel statements. A complete refined-carrier operad is not asserted."
+      }
+    ],
+    "failed_compositions": [
+      {
+        "proposal": "Promote the selected step to the unrestricted original target",
+        "reason": "Supply a justified circle selector, continuity and source representation bridge. A finite subgroup or one rational unit phase is not U(1) selection."
+      }
+    ],
+    "counterexamples": [],
+    "open_obligations": [
+      "Supply a justified circle selector, continuity and source representation bridge. A finite subgroup or one rational unit phase is not U(1) selection.",
+      "Prove the full refined-carrier operad identity, substitution, symmetry and coherence laws; mere colour matches do not instantiate that formal structure."
+    ]
+  },
+  "claim_boundary": {
+    "supports": "Full relative-phase readouts and common-phase invariance, with generic interference identities and the two sign controls in Lean.",
+    "does_not_support": "Supply a justified circle selector, continuity and source representation bridge. A finite subgroup or one rational unit phase is not U(1) selection.",
+    "narrowest_claim": "Full relative-phase readouts and common-phase invariance, with generic interference identities and the two sign controls in Lean.",
+    "next_test": "Challenge every output coordinate and strict custody/type boundary, then address the explicit unpaid mathematical bridge."
+  }
+}

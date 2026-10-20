@@ -3,18 +3,19 @@ node_id: L1-QM020-THM2A-L1-ADDITIVITY-DEFECT
 authority_effect: None
 collection_status: source_candidates_collected_semantic_mining_open
 target:
-  source_statement: For disjoint supports the l1 additivity defect is zero iff the entries have the same sign
-    (D1). The strict l^p subadditivity for p>1 is stated for natural exponents in the finite kernel only.
+  source_statement: For disjoint supports the l1 additivity defect is zero iff the entries have the same
+    sign (D1). The strict l^p subadditivity for p>1 is stated for natural exponents in the finite kernel
+    only.
   statement_status: source_claim_to_scope_check_not_accepted_result
-  declared_assumptions: &id001 []
+  declared_assumptions: []
   source_bottleneck: Real-exponent p>1 is node L1-QM020-THM2B-MINKOWSKI. Lean covers integer D1 only.
   source_refs:
   - omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/020_born_normalization_and_conditional_hilbert_lift/born_normalization_and_conditional_hilbert_lift.md:232
   paper_refs:
   - dag/derivations/08_l1_to_l2/tfq_0291_disjoint_aggregation_and_the_real_p_1_import.md
   source_claim_label: PROVED_LEAN
-  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports before
-    reusing a result.
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
   historical_paper_refs:
   - papers/derivations/08_l1_to_l2/tfq_0291_disjoint_aggregation_and_the_real_p_1_import.md
   paper_relocations:
@@ -50,13 +51,14 @@ relation_candidates:
 - kind: theorem
   name: D1_zero_iff_same_sign
   line: 135
-  signature_excerpt: "theorem D1_zero_iff_same_sign (x y : Int) :\n    D1 x y = 0 ↔ (0 ≤ x ∧ 0 ≤ y) ∨ (x ≤ 0 ∧\
-    \ y ≤ 0)"
+  signature_excerpt: "theorem D1_zero_iff_same_sign (x y : Int) :\n    D1 x y = 0 ↔ (0 ≤ x ∧ 0 ≤ y) ∨\
+    \ (x ≤ 0 ∧ y ≤ 0)"
   source: lean4/BornRedundancy.lean
   repository: this_repository
   source_sha256: 8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b
   status: source_candidate_requires_semantic_review
-  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 - kind: theorem
   name: D1_zero_iff_mul_nonneg
   line: 170
@@ -65,20 +67,23 @@ relation_candidates:
   repository: this_repository
   source_sha256: 8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b
   status: source_candidate_requires_semantic_review
-  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 - kind: theorem
   name: l1_to_l2_and_cross_fragment_route_composition
   line: 1267
-  signature_excerpt: "theorem l1_to_l2_and_cross_fragment_route_composition\n    (w0 w1 re_cross : Int) :\n  \
-    \  ((w0 * 1 = w0 ∧ w1 * 1 = w1) ∧ ((w0 + w1 + 2 * re_cross = w0 + w1) ↔ re_cross = 0)) ∧\n    ((1 * 1 + 1\
-    \ * 1 = 2) ∧ (1 * 1 + 2 * 1 = 3) ∧ (2 ≠ 3)) ∧\n    (∀ i : Fin 7,\n      let f (j : Fin 7) : Bool"
+  signature_excerpt: "theorem l1_to_l2_and_cross_fragment_route_composition\n    (w0 w1 re_cross : Int)\
+    \ :\n    ((w0 * 1 = w0 ∧ w1 * 1 = w1) ∧ ((w0 + w1 + 2 * re_cross = w0 + w1) ↔ re_cross = 0)) ∧\n \
+    \   ((1 * 1 + 1 * 1 = 2) ∧ (1 * 1 + 2 * 1 = 3) ∧ (2 ≠ 3)) ∧\n    (∀ i : Fin 7,\n      let f (j : Fin\
+    \ 7) : Bool"
   source: lean4/DerivationDagQMClosure.lean
   repository: this_repository
   source_sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
   status: source_candidate_requires_semantic_review
-  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged proof.
-  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion follows
-    automatically.
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
 source_bindings:
 - original_ref: lean4/quantum_mechanics/BornRedundancy.lean::D1_zero_iff_same_sign
   availability: local
@@ -135,44 +140,603 @@ source_bindings:
   line: 1415
   role: source_lead_only
 presentation:
-  colours: []
-  generators: []
-  relations: []
-  compositions: []
-  identities: []
+  status: scoped_stage_result_reviewed
+  scope: Exact scalar and disjoint-vector defect arrays, with a universal disjoint-sign identity and the
+    opposite-sign counterexample in Lean.
+  colours:
+  - id: ScalarOverlapDefect
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: ScalarVsDisjointAdditivity
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: TwoDisjointCoordinateVectors
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  - id: TwoSignedRationals
+    meaning: Scoped semantic carrier with the declared hypotheses.
+  generators:
+  - id: defect_scalar_defect
+    ordered_inputs:
+    - TwoSignedRationals
+    output: ScalarOverlapDefect
+    arity: 1
+    carrier: TwoSignedRationals
+    coefficient_ring: Exact rational coordinates, finite integer group/map indices and explicit validity
+      tags
+    hypotheses:
+    - Real rational l1; disjointness is literal zero/nonzero coordinate placement.
+    semantic_predicate: Evaluate |a|+|b|-|a+b|.
+    source_pins:
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_qm020_thm2a_l1_additivity_defect_proved_lean.yaml
+      sha256: 9c8a2823a174831c7f182c9fb357bfb757f0ac87d3c34bd3d30d9f2c7e724a0a
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/inputs/this_repository/dag/operads/l1_qm020_thm2a_l1_additivity_defect.yaml
+      sha256: f669b9e284997168640956bbed572aa77efe425ba7680a23f49a93784b548968
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/inputs/this_repository/lean4/BornRedundancy.lean
+      sha256: 8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0291_disjoint_aggregation_and_the_real_p_1_import.md
+      sha256: c25a241ae8b5db2d245e43a14c242df7c4e5d32c7225e8cfc95d3dbefaa2f835
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/code/python/src/qm/born_boundary_exact.py
+      sha256: 04326ded1c1e17e88659e60498e5b7d92afab1bb8f0c5c91a7268013ca2f0738
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/code/python/tests/test_born_boundary_exact.py
+      sha256: fe382974658a106563ce5870da4a7d87477a0893b1669d0b123b3bc372b493ba
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/code/rust/src/finite_probability/born_boundary_exact.rs
+      sha256: 80427803fced2970578ba5e9b223e2d51b2e494e5900e430db17a6eae8a666ce
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/born_boundary_exact_replay.rs
+      sha256: 37575b2bc4ba8fa23d397f66da9eaa0e290e21a79a051103401878cc356f1a33
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/born_boundary_checker.py
+      sha256: 7bc9e8b52f40f78cb85f78edfc31b55ceff79f649b6a499090e64df460fac182
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/prepare.py
+      sha256: e07ac6946888be24689ae63a52370d4d1588d3d048dd0ba1b30298c869ca7bdd
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/witness_cases.json
+      sha256: 5fa9d9d9532cab06d68e8e01257c436bd2ba10746576a5854110e850af92ae98
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/specs.py
+      sha256: 3dd63e06b01e17c6357223845a487490ab707ae27f137cbd0fbb83d2c0e8dcfd
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/check_candidate.py
+      sha256: fc9da100b9eed11e1a1d7d64c0ce1a722332364ba52f2e139d0cd6a745495457
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/format_certificate.py
+      sha256: 425fa91bebdafa05eb3d94cf269076ab9c36b380fb0d4bdcabd96bd5c8bb4484
+    evidence_status: Reviewed exact finite native controls. Kernel signatures are separately scoped. Full
+      refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p2/host_check.json
+  - id: defect_disjoint_embedding
+    ordered_inputs:
+    - ScalarOverlapDefect
+    output: TwoDisjointCoordinateVectors
+    arity: 1
+    carrier: ScalarOverlapDefect
+    coefficient_ring: Exact rational coordinates, finite integer group/map indices and explicit validity
+      tags
+    hypotheses:
+    - Real rational l1; disjointness is literal zero/nonzero coordinate placement.
+    semantic_predicate: Place a,b in different coordinates.
+    source_pins:
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_qm020_thm2a_l1_additivity_defect_proved_lean.yaml
+      sha256: 9c8a2823a174831c7f182c9fb357bfb757f0ac87d3c34bd3d30d9f2c7e724a0a
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/inputs/this_repository/dag/operads/l1_qm020_thm2a_l1_additivity_defect.yaml
+      sha256: f669b9e284997168640956bbed572aa77efe425ba7680a23f49a93784b548968
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/inputs/this_repository/lean4/BornRedundancy.lean
+      sha256: 8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0291_disjoint_aggregation_and_the_real_p_1_import.md
+      sha256: c25a241ae8b5db2d245e43a14c242df7c4e5d32c7225e8cfc95d3dbefaa2f835
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/code/python/src/qm/born_boundary_exact.py
+      sha256: 04326ded1c1e17e88659e60498e5b7d92afab1bb8f0c5c91a7268013ca2f0738
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/code/python/tests/test_born_boundary_exact.py
+      sha256: fe382974658a106563ce5870da4a7d87477a0893b1669d0b123b3bc372b493ba
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/code/rust/src/finite_probability/born_boundary_exact.rs
+      sha256: 80427803fced2970578ba5e9b223e2d51b2e494e5900e430db17a6eae8a666ce
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/born_boundary_exact_replay.rs
+      sha256: 37575b2bc4ba8fa23d397f66da9eaa0e290e21a79a051103401878cc356f1a33
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/born_boundary_checker.py
+      sha256: 7bc9e8b52f40f78cb85f78edfc31b55ceff79f649b6a499090e64df460fac182
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/prepare.py
+      sha256: e07ac6946888be24689ae63a52370d4d1588d3d048dd0ba1b30298c869ca7bdd
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/witness_cases.json
+      sha256: 5fa9d9d9532cab06d68e8e01257c436bd2ba10746576a5854110e850af92ae98
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/specs.py
+      sha256: 3dd63e06b01e17c6357223845a487490ab707ae27f137cbd0fbb83d2c0e8dcfd
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/check_candidate.py
+      sha256: fc9da100b9eed11e1a1d7d64c0ce1a722332364ba52f2e139d0cd6a745495457
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/format_certificate.py
+      sha256: 425fa91bebdafa05eb3d94cf269076ab9c36b380fb0d4bdcabd96bd5c8bb4484
+    evidence_status: Reviewed exact finite native controls. Kernel signatures are separately scoped. Full
+      refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p2/host_check.json
+  - id: defect_sign_compare
+    ordered_inputs:
+    - TwoDisjointCoordinateVectors
+    output: ScalarVsDisjointAdditivity
+    arity: 1
+    carrier: TwoDisjointCoordinateVectors
+    coefficient_ring: Exact rational coordinates, finite integer group/map indices and explicit validity
+      tags
+    hypotheses:
+    - Real rational l1; disjointness is literal zero/nonzero coordinate placement.
+    semantic_predicate: Compare defects without imposing common sign.
+    source_pins:
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_qm020_thm2a_l1_additivity_defect_proved_lean.yaml
+      sha256: 9c8a2823a174831c7f182c9fb357bfb757f0ac87d3c34bd3d30d9f2c7e724a0a
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/inputs/this_repository/dag/operads/l1_qm020_thm2a_l1_additivity_defect.yaml
+      sha256: f669b9e284997168640956bbed572aa77efe425ba7680a23f49a93784b548968
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/inputs/this_repository/lean4/BornRedundancy.lean
+      sha256: 8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0291_disjoint_aggregation_and_the_real_p_1_import.md
+      sha256: c25a241ae8b5db2d245e43a14c242df7c4e5d32c7225e8cfc95d3dbefaa2f835
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/code/python/src/qm/born_boundary_exact.py
+      sha256: 04326ded1c1e17e88659e60498e5b7d92afab1bb8f0c5c91a7268013ca2f0738
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/code/python/tests/test_born_boundary_exact.py
+      sha256: fe382974658a106563ce5870da4a7d87477a0893b1669d0b123b3bc372b493ba
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/code/rust/src/finite_probability/born_boundary_exact.rs
+      sha256: 80427803fced2970578ba5e9b223e2d51b2e494e5900e430db17a6eae8a666ce
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/born_boundary_exact_replay.rs
+      sha256: 37575b2bc4ba8fa23d397f66da9eaa0e290e21a79a051103401878cc356f1a33
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/born_boundary_checker.py
+      sha256: 7bc9e8b52f40f78cb85f78edfc31b55ceff79f649b6a499090e64df460fac182
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/prepare.py
+      sha256: e07ac6946888be24689ae63a52370d4d1588d3d048dd0ba1b30298c869ca7bdd
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/witness_cases.json
+      sha256: 5fa9d9d9532cab06d68e8e01257c436bd2ba10746576a5854110e850af92ae98
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/specs.py
+      sha256: 3dd63e06b01e17c6357223845a487490ab707ae27f137cbd0fbb83d2c0e8dcfd
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/check_candidate.py
+      sha256: fc9da100b9eed11e1a1d7d64c0ce1a722332364ba52f2e139d0cd6a745495457
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/format_certificate.py
+      sha256: 425fa91bebdafa05eb3d94cf269076ab9c36b380fb0d4bdcabd96bd5c8bb4484
+    evidence_status: Reviewed exact finite native controls. Kernel signatures are separately scoped. Full
+      refined-carrier operad instantiation remains open.
+    latest_host_check: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p2/host_check.json
+  relations:
+  - id: defect_relation_0
+    equation_or_predicate: Disjoint-vector defect is always zero; scalar same-coordinate defect can be
+      positive for opposite signs.
+    typing_conditions: Literal declared operation domains; Prove source/list refinement and extend any
+      l^p statement only under its real/natural exponent hypotheses. The false disjoint-same-sign biconditional
+      is explicitly rejected.
+    evidence_status: Accepted actual P2 and P4 controls; only the literal named Lean signatures are kernel
+      theorems. Native array-to-signature and physical transports remain as stated.
+    scope: Exact scalar and disjoint-vector defect arrays, with a universal disjoint-sign identity and
+      the opposite-sign counterexample in Lean.
+    source_pins:
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_qm020_thm2a_l1_additivity_defect_proved_lean.yaml
+      sha256: 9c8a2823a174831c7f182c9fb357bfb757f0ac87d3c34bd3d30d9f2c7e724a0a
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/inputs/this_repository/dag/operads/l1_qm020_thm2a_l1_additivity_defect.yaml
+      sha256: f669b9e284997168640956bbed572aa77efe425ba7680a23f49a93784b548968
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/inputs/this_repository/lean4/BornRedundancy.lean
+      sha256: 8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0291_disjoint_aggregation_and_the_real_p_1_import.md
+      sha256: c25a241ae8b5db2d245e43a14c242df7c4e5d32c7225e8cfc95d3dbefaa2f835
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/code/python/src/qm/born_boundary_exact.py
+      sha256: 04326ded1c1e17e88659e60498e5b7d92afab1bb8f0c5c91a7268013ca2f0738
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/code/python/tests/test_born_boundary_exact.py
+      sha256: fe382974658a106563ce5870da4a7d87477a0893b1669d0b123b3bc372b493ba
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/code/rust/src/finite_probability/born_boundary_exact.rs
+      sha256: 80427803fced2970578ba5e9b223e2d51b2e494e5900e430db17a6eae8a666ce
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/born_boundary_exact_replay.rs
+      sha256: 37575b2bc4ba8fa23d397f66da9eaa0e290e21a79a051103401878cc356f1a33
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/born_boundary_checker.py
+      sha256: 7bc9e8b52f40f78cb85f78edfc31b55ceff79f649b6a499090e64df460fac182
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/prepare.py
+      sha256: e07ac6946888be24689ae63a52370d4d1588d3d048dd0ba1b30298c869ca7bdd
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/witness_cases.json
+      sha256: 5fa9d9d9532cab06d68e8e01257c436bd2ba10746576a5854110e850af92ae98
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/specs.py
+      sha256: 3dd63e06b01e17c6357223845a487490ab707ae27f137cbd0fbb83d2c0e8dcfd
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/check_candidate.py
+      sha256: fc9da100b9eed11e1a1d7d64c0ce1a722332364ba52f2e139d0cd6a745495457
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/format_certificate.py
+      sha256: 425fa91bebdafa05eb3d94cf269076ab9c36b380fb0d4bdcabd96bd5c8bb4484
+    latest_host_check: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p2/host_check.json
+    historical_evidence_annotation: P1 candidate; independent native and named kernel gates remain required.
+    named_Lean_scope:
+    - QuantumMechanics.PromptBornBoundaries.defect_law
+    - QuantumMechanics.PromptBornBoundaries.defect_control
+  compositions: &id001
+  - outer_operation: defect_disjoint_embedding
+    input_slot: 0
+    inner_operation: defect_scalar_defect
+    colour_match: ScalarOverlapDefect -> ScalarOverlapDefect
+    hypothesis_match: Same declared coordinates, coefficients and context; all operation hypotheses must
+      be carried into the graft. Fixed matrices, signs, gauge unit, original comparison table, row order,
+      sector and pairing (where relevant) must agree across both operations. Formal universal refined-carrier
+      closure is unpaid.
+    licensing_relations:
+    - defect_relation_0
+    evidence_status: Semantic substitution supported by the retained finite operation traces and separately
+      scoped named kernel statements. A complete refined-carrier operad is not asserted.
+  - outer_operation: defect_sign_compare
+    input_slot: 0
+    inner_operation: defect_disjoint_embedding
+    colour_match: TwoDisjointCoordinateVectors -> TwoDisjointCoordinateVectors
+    hypothesis_match: Same declared coordinates, coefficients and context; all operation hypotheses must
+      be carried into the graft. Fixed matrices, signs, gauge unit, original comparison table, row order,
+      sector and pairing (where relevant) must agree across both operations. Formal universal refined-carrier
+      closure is unpaid.
+    licensing_relations:
+    - defect_relation_0
+    evidence_status: Semantic substitution supported by the retained finite operation traces and separately
+      scoped named kernel statements. A complete refined-carrier operad is not asserted.
+  identities:
+  - colour: ScalarOverlapDefect
+    proposed_operation: id_ScalarOverlapDefect
+    signature: ScalarOverlapDefect -> ScalarOverlapDefect
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: ScalarVsDisjointAdditivity
+    proposed_operation: id_ScalarVsDisjointAdditivity
+    signature: ScalarVsDisjointAdditivity -> ScalarVsDisjointAdditivity
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: TwoDisjointCoordinateVectors
+    proposed_operation: id_TwoDisjointCoordinateVectors
+    signature: TwoDisjointCoordinateVectors -> TwoDisjointCoordinateVectors
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
+  - colour: TwoSignedRationals
+    proposed_operation: id_TwoSignedRationals
+    signature: TwoSignedRationals -> TwoSignedRationals
+    status: Semantic identity; generic function-substitution laws do not instantiate these refined carriers
+      in Lean.
   symmetric_actions: []
-  coherence_obligations:
-  - identity_operations
-  - unit_laws
-  - partial_composition_associativity
-  - symmetric_action_if_claimed
-  - relations_stable_under_grafting
+  coherence_obligations: &id002
+  - Prove source/list refinement and extend any l^p statement only under its real/natural exponent hypotheses.
+    The false disjoint-same-sign biconditional is explicitly rejected.
+  - Prove the full refined-carrier operad identity, substitution, symmetry and coherence laws; mere colour
+    matches do not instantiate that formal structure.
+  - A source provider PASS/hash, route index, census label or Boolean flag is not mathematical evidence
+    for the original target. No historical provider receipt is newly authenticated.
+  failed_compositions:
+  - proposal: Promote the selected step to the unrestricted original target
+    reason: Prove source/list refinement and extend any l^p statement only under its real/natural exponent
+      hypotheses. The false disjoint-same-sign biconditional is explicitly rejected.
+  counterexamples:
+  - id: retained_actual_domain_controls
+    records:
+    - input:
+      - '1'
+      - '-1'
+      output:
+      - '1'
+      - '1'
+      - '2'
+      - '2'
+      - '0'
+      - '0'
+      - '0'
+      - '1'
+    - input:
+      - '-2'
+      - '-3'
+      output:
+      - '2'
+      - '3'
+      - '0'
+      - '5'
+      - '0'
+      - '1'
+      - '1'
+      - '0'
+    - input:
+      - '0'
+      - '-1'
+      output:
+      - '0'
+      - '1'
+      - '0'
+      - '1'
+      - '0'
+      - '1'
+      - '1'
+      - '0'
+    - input:
+      - 1/2
+      - -3/4
+      output:
+      - 1/2
+      - 3/4
+      - '1'
+      - 5/4
+      - '0'
+      - '0'
+      - '0'
+      - '1'
+    scope: Computed values, with the source/kernel/native distinctions retained in claim_boundary.
 operad_slots:
   slot_m1_layer0_ambient_carrier:
-    mining_status: UNREVIEWED
-    carrier: null
-    coefficient_ring: null
-    assumptions: *id001
-    source_pins: []
-    public_input: {}
+    mining_status: FILLED
+    carrier: Literal per-operation finite or admitted scalar carriers
+    coefficient_ring: Exact Q, finite integer indices and explicit defined/refusal tags
+    source_pins:
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_qm020_thm2a_l1_additivity_defect_proved_lean.yaml
+      sha256: 9c8a2823a174831c7f182c9fb357bfb757f0ac87d3c34bd3d30d9f2c7e724a0a
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/inputs/this_repository/dag/operads/l1_qm020_thm2a_l1_additivity_defect.yaml
+      sha256: f669b9e284997168640956bbed572aa77efe425ba7680a23f49a93784b548968
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/inputs/this_repository/lean4/BornRedundancy.lean
+      sha256: 8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+      sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+      sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0291_disjoint_aggregation_and_the_real_p_1_import.md
+      sha256: c25a241ae8b5db2d245e43a14c242df7c4e5d32c7225e8cfc95d3dbefaa2f835
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/code/python/src/qm/born_boundary_exact.py
+      sha256: 04326ded1c1e17e88659e60498e5b7d92afab1bb8f0c5c91a7268013ca2f0738
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/code/python/tests/test_born_boundary_exact.py
+      sha256: fe382974658a106563ce5870da4a7d87477a0893b1669d0b123b3bc372b493ba
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/code/rust/src/finite_probability/born_boundary_exact.rs
+      sha256: 80427803fced2970578ba5e9b223e2d51b2e494e5900e430db17a6eae8a666ce
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/born_boundary_exact_replay.rs
+      sha256: 37575b2bc4ba8fa23d397f66da9eaa0e290e21a79a051103401878cc356f1a33
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/born_boundary_checker.py
+      sha256: 7bc9e8b52f40f78cb85f78edfc31b55ceff79f649b6a499090e64df460fac182
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+      sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/prepare.py
+      sha256: e07ac6946888be24689ae63a52370d4d1588d3d048dd0ba1b30298c869ca7bdd
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/witness_cases.json
+      sha256: 5fa9d9d9532cab06d68e8e01257c436bd2ba10746576a5854110e850af92ae98
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/specs.py
+      sha256: 3dd63e06b01e17c6357223845a487490ab707ae27f137cbd0fbb83d2c0e8dcfd
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/custody.py
+      sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+      sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/check_candidate.py
+      sha256: fc9da100b9eed11e1a1d7d64c0ce1a722332364ba52f2e139d0cd6a745495457
+    - path: dag/pfp/exact_json.py
+      sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+    - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/format_certificate.py
+      sha256: 425fa91bebdafa05eb3d94cf269076ab9c36b380fb0d4bdcabd96bd5c8bb4484
+    public_input:
+      kind: defect
+      cases:
+      - - '1'
+        - '-1'
+      - - '-2'
+        - '-3'
+      - - '0'
+        - '-1'
+      - - 1/2
+        - -3/4
+      scope: Exact scalar and disjoint-vector defect arrays, with a universal disjoint-sign identity and
+        the opposite-sign counterexample in Lean.
+      unpaid_target: Prove source/list refinement and extend any l^p statement only under its real/natural
+        exponent hypotheses. The false disjoint-same-sign biconditional is explicitly rejected.
+    original_target: For disjoint supports the l1 additivity defect is zero iff the entries have the same
+      sign (D1). The strict l^p subadditivity for p>1 is stated for natural exponents in the finite kernel
+      only.
+    source_scope_review: 'The target conflates a scalar overlap criterion with disjoint supports. BornRedundancy.D1
+      is scalar: D1(a,b)=0 iff a*b>=0. In contrast, vectors(a,0),(0,b) have disjoint supports and zero
+      l1 defect for every pair of signs, including(1,-1). This corrects the reviewed claim without rewriting
+      source history. Output layout: absolute2;scalar_defect;disjoint_norm;disjoint_defect;product_nonnegative;scalar_zero;opposite_sign'
+    admitted_assumptions:
+    - Real rational l1; disjointness is literal zero/nonzero coordinate placement.
+    historical_source_assumptions: []
+    work_unit_admitted_hypotheses:
+    - Real rational l1; disjointness is literal zero/nonzero coordinate placement.
   slot_m2_layer1_forward_morphisms:
-    mining_status: UNREVIEWED
-    operations: []
-    composition_plan: []
+    mining_status: FILLED
+    operations:
+    - catalog_id: defect_scalar_defect
+      inputs:
+      - TwoSignedRationals
+      output: ScalarOverlapDefect
+      semantic_predicate: Evaluate |a|+|b|-|a+b|.
+    - catalog_id: defect_disjoint_embedding
+      inputs:
+      - ScalarOverlapDefect
+      output: TwoDisjointCoordinateVectors
+      semantic_predicate: Place a,b in different coordinates.
+    - catalog_id: defect_sign_compare
+      inputs:
+      - TwoDisjointCoordinateVectors
+      output: ScalarVsDisjointAdditivity
+      semantic_predicate: Compare defects without imposing common sign.
+    composition_plan: *id001
+    tree:
+    - Disjoint-vector defect is always zero; scalar same-coordinate defect can be positive for opposite
+      signs.
   slot_m3_layer2_ideals_and_annihilators:
-    mining_status: UNREVIEWED
-    algebraic_relations: []
-    rejection_predicates: []
-    negative_control_plan: []
+    mining_status: FILLED
+    algebraic_relations:
+    - id: defect_relation_0
+      equation_or_predicate: Disjoint-vector defect is always zero; scalar same-coordinate defect can
+        be positive for opposite signs.
+      typing_conditions: Literal declared operation domains; Prove source/list refinement and extend any
+        l^p statement only under its real/natural exponent hypotheses. The false disjoint-same-sign biconditional
+        is explicitly rejected.
+      evidence_status: P1 candidate; independent native and named kernel gates remain required.
+      scope: Exact scalar and disjoint-vector defect arrays, with a universal disjoint-sign identity and
+        the opposite-sign counterexample in Lean.
+      source_pins:
+      - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/inputs/this_repository/dag/prompts/l1_to_l2_l1_qm020_thm2a_l1_additivity_defect_proved_lean.yaml
+        sha256: 9c8a2823a174831c7f182c9fb357bfb757f0ac87d3c34bd3d30d9f2c7e724a0a
+      - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/inputs/this_repository/dag/operads/l1_qm020_thm2a_l1_additivity_defect.yaml
+        sha256: f669b9e284997168640956bbed572aa77efe425ba7680a23f49a93784b548968
+      - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/inputs/this_repository/lean4/BornRedundancy.lean
+        sha256: 8868c1ceab52414128cac38a298bd28ca9cfc723613053c01ee90f23933b830b
+      - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/inputs/this_repository/lean4/DerivationDagQMClosure.lean
+        sha256: c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154
+      - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/inputs/the_symbol_game/omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs
+        sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
+      - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/inputs/this_repository/dag/derivations/08_l1_to_l2/tfq_0291_disjoint_aggregation_and_the_real_p_1_import.md
+        sha256: c25a241ae8b5db2d245e43a14c242df7c4e5d32c7225e8cfc95d3dbefaa2f835
+      - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/code/python/src/qm/born_boundary_exact.py
+        sha256: 04326ded1c1e17e88659e60498e5b7d92afab1bb8f0c5c91a7268013ca2f0738
+      - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/code/python/tests/test_born_boundary_exact.py
+        sha256: fe382974658a106563ce5870da4a7d87477a0893b1669d0b123b3bc372b493ba
+      - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/code/rust/src/finite_probability/born_boundary_exact.rs
+        sha256: 80427803fced2970578ba5e9b223e2d51b2e494e5900e430db17a6eae8a666ce
+      - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/code/rust/src/finite_probability/examples/born_boundary_exact_replay.rs
+        sha256: 37575b2bc4ba8fa23d397f66da9eaa0e290e21a79a051103401878cc356f1a33
+      - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/born_boundary_checker.py
+        sha256: 7bc9e8b52f40f78cb85f78edfc31b55ceff79f649b6a499090e64df460fac182
+      - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/review_exact_json.py
+        sha256: c4d71e39f0b4870e605f71b0a8639e693e8130ba0a3b651011ff420f279d190f
+      - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/prepare.py
+        sha256: e07ac6946888be24689ae63a52370d4d1588d3d048dd0ba1b30298c869ca7bdd
+      - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/witness_cases.json
+        sha256: 5fa9d9d9532cab06d68e8e01257c436bd2ba10746576a5854110e850af92ae98
+      - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/dag/results/batches/20261020T000351Z_prompts_132_151/tools/specs.py
+        sha256: 3dd63e06b01e17c6357223845a487490ab707ae27f137cbd0fbb83d2c0e8dcfd
+      - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/custody.py
+        sha256: cd766ea5d46a6b6e674c764a6f2c199022ba6a4071666679bfb5a52c32816356
+      - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operation_sources/dag/pfp/filename_custody.json
+        sha256: 20696e6153cdfa5e45018550249ee5cf27c4bf17701bffc436eead45cb38dbb2
+      - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/check_candidate.py
+        sha256: fc9da100b9eed11e1a1d7d64c0ce1a722332364ba52f2e139d0cd6a745495457
+      - path: dag/pfp/exact_json.py
+        sha256: e29ffc31c4bb960abaa08bdc76e6d571c3bd53b9cde48fab29e6f51c215c928e
+      - path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/format_certificate.py
+        sha256: 425fa91bebdafa05eb3d94cf269076ab9c36b380fb0d4bdcabd96bd5c8bb4484
+    rejection_predicates:
+    - Independent domain equations and actual matrix/graph/quotient arrays recompute every output.
+    - Exact public input, canonical rational primitive types, complete source pins and exact sealed request
+      bytes.
+    - Full native cross-language output equality and actual named Lean axiom reports; no label-based target
+      promotion.
+    negative_control_plan: Alter every output coordinate, input identity, primitive types, source set
+      and sealed request.
   slot_m4_tri_language_witness_anchors:
-    mining_status: UNREVIEWED
-    certificate_predicates: []
-    anchors: []
-    unpaid_imports: *id001
-stage_history: []
-open_obligations:
-- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
-- Select and semantically check the generators needed by one useful next step.
-- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
-- Bind independent certificate predicates and real checker anchors before P1.
+    mining_status: FILLED
+    certificate_predicates:
+    - Independent domain equations and actual matrix/graph/quotient arrays recompute every output.
+    - Exact public input, canonical rational primitive types, complete source pins and exact sealed request
+      bytes.
+    - Full native cross-language output equality and actual named Lean axiom reports; no label-based target
+      promotion.
+    anchors:
+    - code/python/src/qm/born_boundary_exact.py
+    - code/python/tests/test_born_boundary_exact.py
+    - code/rust/src/finite_probability/born_boundary_exact.rs
+    - code/rust/src/finite_probability/examples/born_boundary_exact_replay.rs
+    - dag/pfp/born_boundary_checker.py
+    - dag/pfp/exact_json.py
+    - dag/pfp/review_exact_json.py
+    - lean4/PromptBornBoundaries.lean
+    - dag/results/batches/20261020T000351Z_prompts_132_151/tools/prepare.py
+    - dag/results/batches/20261020T000351Z_prompts_132_151/tools/witness_cases.json
+    - dag/results/batches/20261020T000351Z_prompts_132_151/tools/specs.py
+    - dag/pfp/custody.py
+    - dag/pfp/filename_custody.json
+    - QuantumMechanics.PromptBornBoundaries.defect_law
+    - QuantumMechanics.PromptBornBoundaries.defect_control
+    unpaid_imports:
+    - Prove source/list refinement and extend any l^p statement only under its real/natural exponent hypotheses.
+      The false disjoint-same-sign biconditional is explicitly rejected.
+    - Prove the full refined-carrier operad identity, substitution, symmetry and coherence laws; mere
+      colour matches do not instantiate that formal structure.
+    anchor_status: New Lean anchors are candidate declarations until the retained P2 compiler runs; compiled
+      source leads retain their literal scope.
+stage_history:
+- stage: P0_MINE_OPERAD
+  attempt: p0
+  run: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged
+  operad_delta: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/operad_delta.yaml
+  host_check: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/host_check.json
+- stage: P1_DERIVE
+  attempt: p1
+  run: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged
+  operad_delta: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p1/operad_delta.yaml
+  host_check: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p1/host_check.json
+- stage: P2_VERIFY
+  attempt: p2
+  run: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged
+  operad_delta: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p2/operad_delta.yaml
+  host_check: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p2/host_check.json
+- stage: P4_CHALLENGE
+  attempt: p4
+  run: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged
+  operad_delta: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p4/operad_delta.yaml
+  host_check: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p4/host_check.json
+- stage: P5_RECORD
+  attempt: p5
+  run: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged
+  operad_delta: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p5/operad_delta.yaml
+  host_check: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p5/host_check.json
+open_obligations: *id002
 excluded_relation_leads: []
+operad_slots_scope:
+  work_unit: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged/p0/reviewed_missions.json
+  scope: FILLED means reviewed prerequisites for this selected step; original target and unpaid imports
+    retained.
+  review_refinement: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/reviews/20261020_born_boundary_audit/scope_review.json
+latest_run:
+  path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/runs/20261020T000351Z_staged
+  stage: P5_RECORD
+  status: scoped_result_or_obstruction_reviewed
+scope_notes:
+- 'The target conflates a scalar overlap criterion with disjoint supports. BornRedundancy.D1 is scalar:
+  D1(a,b)=0 iff a*b>=0. In contrast, vectors(a,0),(0,b) have disjoint supports and zero l1 defect for
+  every pair of signs, including(1,-1). This corrects the reviewed claim without rewriting source history.
+  Output layout: absolute2;scalar_defect;disjoint_norm;disjoint_defect;product_nonnegative;scalar_zero;opposite_sign'
+- '{"historical_target_status": "Original target retained verbatim as source history; the corrected narrow
+  scope governs this run.", "reviewed_target_qualification": "Corrected: disjoint supports have zero l1
+  defect regardless of signs. Same-sign equivalence applies to the scalar same-coordinate D1 predicate
+  only."}'
+reviewed_target_qualification:
+  text: 'Corrected: disjoint supports have zero l1 defect regardless of signs. Same-sign equivalence applies
+    to the scalar same-coordinate D1 predicate only.'
+  status: corrected_or_qualified_scope
+  review: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/reviews/20261020_born_boundary_audit/scope_review.json
+latest_review:
+  path: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/reviews/20261020_born_boundary_audit
+  status: scoped_result_or_obstruction_reviewed
+  operad_delta: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/reviews/20261020_born_boundary_audit/operad_delta.yaml
+  delivery_result: dag/results/L1-QM020-THM2A-L1-ADDITIVITY-DEFECT/reviews/20261020_born_boundary_audit/delivery_review_result.json
