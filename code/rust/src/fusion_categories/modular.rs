@@ -47,48 +47,62 @@ pub struct ModularData<K> {
 
 impl<K: FusionScalar> ModularData<K> {
     pub fn from_ribbon(ribbon: &RibbonFusionCategory<K>) -> Result<Self, FusionError> {
-        let ring = ribbon.ring().clone();
-        let n = ring.rank();
-        let dimensions = ribbon.dimensions().to_vec();
-        let twists = ribbon.twists().to_vec();
-        let s_tilde = BasicMatrix::try_from_fn_result(n, n, |a, b| -> Result<K, FusionError> {
-            let b_star = ring.dual(b)?;
-            let theta_a = twists
-                .get(a)
-                .ok_or(FusionError::Label { label: a, rank: n })?;
-            let theta_b = twists
-                .get(b)
-                .ok_or(FusionError::Label { label: b, rank: n })?;
-            let scale = omega_number_theory::scalar::inverse(&theta_a.mul(theta_b))
-                .map_err(FusionError::from)?;
-            let mut total = K::zero();
-            for c in 0..n {
-                let multiplicity = ring.n(a, b_star, c);
-                if multiplicity > 0 {
-                    let d_c = dimensions
-                        .get(c)
-                        .ok_or(FusionError::Label { label: c, rank: n })?;
-                    let theta_c = twists
-                        .get(c)
-                        .ok_or(FusionError::Label { label: c, rank: n })?;
-                    let weight = omega_number_theory::scalar::from_i64::<K>(
-                        i64::try_from(multiplicity).map_err(|_| FusionError::Overflow {
-                            context: "embedding a fusion coefficient",
-                        })?,
-                    );
-                    total = total.add(&weight.mul(d_c).mul(theta_c));
-                }
-            }
-            Ok(total.mul(&scale))
-        })?;
+        let s_tilde = Self::ribbon_s_matrix(ribbon.ring(), ribbon.dimensions(), ribbon.twists())?;
         Ok(Self {
+            ring: ribbon.ring().clone(),
+            dimensions: ribbon.dimensions().to_vec(),
+            twists: ribbon.twists().to_vec(),
+            s_tilde,
             d_squared: ribbon.global_dimension_squared(),
             p_plus: ribbon.gauss_sum(),
-            ring,
-            dimensions,
-            twists,
-            s_tilde,
         })
+    }
+
+    fn ribbon_s_matrix(
+        ring: &FusionRing,
+        dimensions: &[K],
+        twists: &[K],
+    ) -> Result<BasicMatrix<K>, FusionError> {
+        let n = ring.rank();
+        let inverses = twists
+            .iter()
+            .map(|theta| omega_number_theory::scalar::inverse(theta).map_err(FusionError::from))
+            .collect::<Result<Vec<_>, _>>()?;
+        let weighted = dimensions
+            .iter()
+            .zip(twists)
+            .map(|(d, t)| d.mul(t))
+            .collect::<Vec<_>>();
+        let duals = (0..n)
+            .map(|b| ring.dual(b))
+            .collect::<Result<Vec<_>, _>>()?;
+        BasicMatrix::try_from_fn_result(n, n, |a, b| {
+            let total = Self::fusion_sum(ring, a, duals[b], &weighted)?;
+            Ok(total.mul(&inverses[a]).mul(&inverses[b]))
+        })
+    }
+
+    fn add_multiple(total: K, value: &K, multiplicity: u64) -> Result<K, FusionError> {
+        match multiplicity {
+            0 => Ok(total),
+            1 => Ok(total.add(value)),
+            _ => {
+                let weight = omega_number_theory::scalar::from_i64::<K>(
+                    i64::try_from(multiplicity).map_err(|_| FusionError::Overflow {
+                        context: "embedding a fusion coefficient",
+                    })?,
+                );
+                Ok(total.add(&weight.mul(value)))
+            }
+        }
+    }
+
+    fn fusion_sum(ring: &FusionRing, a: usize, b: usize, values: &[K]) -> Result<K, FusionError> {
+        let mut total = K::zero();
+        for (c, value) in values.iter().enumerate() {
+            total = Self::add_multiple(total, value, ring.n(a, b, c))?;
+        }
+        Ok(total)
     }
 
     pub fn verified(ribbon: &RibbonFusionCategory<K>) -> Result<Self, FusionError> {
@@ -134,14 +148,24 @@ impl<K: FusionScalar> ModularData<K> {
     }
 
     pub fn charge_conjugation(&self) -> Result<BasicMatrix<K>, FusionError> {
+        self.scaled_charge_conjugation(&K::one())
+    }
+
+    fn scaled_charge_conjugation(&self, scale: &K) -> Result<BasicMatrix<K>, FusionError> {
         let n = self.rank();
-        BasicMatrix::try_from_fn_result(n, n, |a, b| -> Result<K, FusionError> {
+        BasicMatrix::try_from_fn_result(n, n, |a, b| {
             Ok(if self.ring.dual(a)? == b {
-                K::one()
+                scale.clone()
             } else {
                 K::zero()
             })
         })
+    }
+
+    fn scaled_identity(&self, scale: &K) -> Result<BasicMatrix<K>, FusionError> {
+        let n = self.rank();
+        BasicMatrix::try_from_fn(n, n, |a, b| if a == b { scale.clone() } else { K::zero() })
+            .map_err(FusionError::from)
     }
 
     fn first_difference(
@@ -166,47 +190,93 @@ impl<K: FusionScalar> ModularData<K> {
     }
 
     pub fn verify(&self) -> Result<(), FusionError> {
-        let n = self.rank();
-        let fail = |defect: ModularDefect| Err(FusionError::Modular(defect));
         if self.d_squared.is_zero() {
-            return fail(ModularDefect::ZeroGlobalDimension);
+            return Err(FusionError::Modular(ModularDefect::ZeroGlobalDimension));
         }
-        let s = &self.s_tilde;
-        for a in 0..n {
-            for b in a + 1..n {
-                if s.get_ref(a, b)? != s.get_ref(b, a)? {
-                    return fail(ModularDefect::NotSymmetric { a, b });
+        self.verify_symmetry()?;
+        self.verify_nondegenerate()?;
+        let squared = self.verify_square()?;
+        self.verify_unitarity()?;
+        self.verify_relation(&squared)?;
+        self.verify_verlinde()
+    }
+
+    fn require_equal(
+        left: &BasicMatrix<K>,
+        right: &BasicMatrix<K>,
+        defect: impl FnOnce(usize, usize) -> ModularDefect,
+    ) -> Result<(), FusionError> {
+        if let Some((a, b)) = Self::first_difference(left, right)? {
+            return Err(FusionError::Modular(defect(a, b)));
+        }
+        Ok(())
+    }
+
+    fn verify_symmetry(&self) -> Result<(), FusionError> {
+        for a in 0..self.rank() {
+            for b in a + 1..self.rank() {
+                if self.s_tilde.get_ref(a, b)? != self.s_tilde.get_ref(b, a)? {
+                    return Err(FusionError::Modular(ModularDefect::NotSymmetric { a, b }));
                 }
             }
         }
-        let rank = elimination::rank(s).map_err(FusionError::from)?;
-        if rank < n {
-            return fail(ModularDefect::Degenerate { rank, size: n });
+        Ok(())
+    }
+
+    fn verify_nondegenerate(&self) -> Result<(), FusionError> {
+        let rank = elimination::rank(&self.s_tilde).map_err(FusionError::from)?;
+        if rank < self.rank() {
+            return Err(FusionError::Modular(ModularDefect::Degenerate {
+                rank,
+                size: self.rank(),
+            }));
         }
-        let s_squared = matrix::multiply(s, s).map_err(FusionError::from)?;
-        let expected = matrix::scale(&self.charge_conjugation()?, &self.d_squared)
-            .map_err(FusionError::from)?;
-        if let Some((a, b)) = Self::first_difference(&s_squared, &expected)? {
-            return fail(ModularDefect::SSquared { a, b });
-        }
-        let unitarity = matrix::multiply(s, &involution::adjoint(s).map_err(FusionError::from)?)
-            .map_err(FusionError::from)?;
-        let expected = matrix::scale(
-            &matrix::identity::<K>(n).map_err(FusionError::from)?,
-            &self.d_squared,
+        Ok(())
+    }
+
+    fn verify_square(&self) -> Result<BasicMatrix<K>, FusionError> {
+        let squared = matrix::multiply(&self.s_tilde, &self.s_tilde).map_err(FusionError::from)?;
+        Self::require_equal(
+            &squared,
+            &self.scaled_charge_conjugation(&self.d_squared)?,
+            |a, b| ModularDefect::SSquared { a, b },
+        )?;
+        Ok(squared)
+    }
+
+    fn verify_unitarity(&self) -> Result<(), FusionError> {
+        let actual = matrix::multiply(
+            &self.s_tilde,
+            &involution::adjoint(&self.s_tilde).map_err(FusionError::from)?,
         )
         .map_err(FusionError::from)?;
-        if let Some((a, b)) = Self::first_difference(&unitarity, &expected)? {
-            return fail(ModularDefect::Unitarity { a, b });
-        }
-        let st = matrix::multiply(s, &self.t_matrix()?).map_err(FusionError::from)?;
-        let st_cubed = matrix::power(&st, 3).map_err(FusionError::from)?;
-        let expected = matrix::scale(&s_squared, &self.p_plus).map_err(FusionError::from)?;
-        if let Some((a, b)) = Self::first_difference(&st_cubed, &expected)? {
-            return fail(ModularDefect::Relation { a, b });
-        }
-        if let Some(&[a, b, c]) = self.ring.verlinde_defects(s, &self.d_squared)?.first() {
-            return fail(ModularDefect::Verlinde { a, b, c });
+        Self::require_equal(&actual, &self.scaled_identity(&self.d_squared)?, |a, b| {
+            ModularDefect::Unitarity { a, b }
+        })
+    }
+
+    fn st_matrix(&self) -> Result<BasicMatrix<K>, FusionError> {
+        let n = self.rank();
+        BasicMatrix::try_from_fn_result(n, n, |a, b| {
+            Ok(self.s_tilde.get_ref(a, b)?.mul(&self.twists[b]))
+        })
+    }
+
+    fn verify_relation(&self, squared: &BasicMatrix<K>) -> Result<(), FusionError> {
+        let st = self.st_matrix()?;
+        let square = matrix::multiply(&st, &st).map_err(FusionError::from)?;
+        let cube = matrix::multiply(&square, &st).map_err(FusionError::from)?;
+        let expected = matrix::scale(squared, &self.p_plus).map_err(FusionError::from)?;
+        Self::require_equal(&cube, &expected, |a, b| ModularDefect::Relation { a, b })
+    }
+
+    fn verify_verlinde(&self) -> Result<(), FusionError> {
+        if let Some(&[a, b, c]) = self
+            .ring
+            .verlinde_defects(&self.s_tilde, &self.d_squared)?
+            .first()
+        {
+            return Err(FusionError::Modular(ModularDefect::Verlinde { a, b, c }));
         }
         Ok(())
     }
@@ -255,43 +325,46 @@ impl<K: FusionScalar> ModularData<K> {
         if a >= n {
             return Err(FusionError::Label { label: a, rank: n });
         }
+        let weights = self.indicator_weights()?;
         let mut total = K::zero();
         for b in 0..n {
-            for c in 0..n {
-                let multiplicity = self.ring.n(b, c, a);
-                if multiplicity == 0 {
-                    continue;
-                }
-                let weight = omega_number_theory::scalar::from_i64::<K>(
-                    i64::try_from(multiplicity).map_err(|_| FusionError::Overflow {
-                        context: "embedding a fusion coefficient",
-                    })?,
-                );
-                let ratio = omega_number_theory::scalar::divide(
-                    self.twists
-                        .get(b)
-                        .ok_or(FusionError::Label { label: b, rank: n })?,
-                    self.twists
-                        .get(c)
-                        .ok_or(FusionError::Label { label: c, rank: n })?,
-                )
-                .map_err(FusionError::from)?;
-                let d_b = self
-                    .dimensions
-                    .get(b)
-                    .ok_or(FusionError::Label { label: b, rank: n })?;
-                let d_c = self
-                    .dimensions
-                    .get(c)
-                    .ok_or(FusionError::Label { label: c, rank: n })?;
-                total = total.add(&weight.mul(d_b).mul(d_c).mul(&ratio.mul(&ratio)));
-            }
+            total = total.add(&self.indicator_row(a, b, &weights)?);
         }
         let value = omega_number_theory::scalar::divide(&total, &self.d_squared)
             .map_err(FusionError::from)?;
-        if value == K::one() {
+        Self::indicator_result(a, &value)
+    }
+
+    fn indicator_weights(&self) -> Result<Vec<(K, K)>, FusionError> {
+        self.dimensions
+            .iter()
+            .zip(&self.twists)
+            .map(|(d, t)| {
+                let square = t.mul(t);
+                Ok((
+                    d.mul(&square),
+                    omega_number_theory::scalar::divide(d, &square).map_err(FusionError::from)?,
+                ))
+            })
+            .collect()
+    }
+
+    fn indicator_row(&self, a: usize, b: usize, weights: &[(K, K)]) -> Result<K, FusionError> {
+        let mut total = K::zero();
+        for (c, (_, right)) in weights.iter().enumerate() {
+            let multiplicity = self.ring.n(b, c, a);
+            if multiplicity == 0 {
+                continue;
+            }
+            total = Self::add_multiple(total, &weights[b].0.mul(right), multiplicity)?;
+        }
+        Ok(total)
+    }
+
+    fn indicator_result(a: usize, value: &K) -> Result<i8, FusionError> {
+        if *value == K::one() {
             Ok(1)
-        } else if value == K::one().neg() {
+        } else if *value == K::one().neg() {
             Ok(-1)
         } else if value.is_zero() {
             Ok(0)
@@ -303,14 +376,12 @@ impl<K: FusionScalar> ModularData<K> {
     }
 
     pub fn ground_state_degeneracy(&self, genus: u32) -> Result<BigInt, FusionError> {
-        let exponent = i64::from(genus) - 1;
+        let exponent = Self::genus_exponent(genus)?;
         let mut total = K::zero();
-        for d in &self.dimensions {
-            let ratio = omega_number_theory::scalar::divide(&self.d_squared, &d.mul(d))
-                .map_err(FusionError::from)?;
-            total = total.add(
-                &omega_number_theory::scalar::power(&ratio, exponent).map_err(FusionError::from)?,
-            );
+        for (ratio, multiplicity) in self.dimension_ratios()? {
+            let value =
+                omega_number_theory::scalar::power(&ratio, exponent).map_err(FusionError::from)?;
+            total = Self::add_multiple(total, &value, multiplicity)?;
         }
         let rational = total.to_rational().ok_or(FusionError::NotInSubfield {
             what: "the ground-state degeneracy",
@@ -323,5 +394,35 @@ impl<K: FusionScalar> ModularData<K> {
             });
         }
         Ok(rational.to_integer())
+    }
+    fn genus_exponent(genus: u32) -> Result<i64, FusionError> {
+        let exponent = i64::from(genus) - 1;
+        let requested = exponent.unsigned_abs();
+        let limit = omega_number_theory::scalar::MAX_SCALAR_EXPONENT;
+        if requested > limit {
+            return Err(FusionError::Budget {
+                what: "ground-state exponent",
+                requested: requested as u128,
+                limit: limit as u128,
+            });
+        }
+        Ok(exponent)
+    }
+
+    fn dimension_ratios(&self) -> Result<Vec<(K, u64)>, FusionError> {
+        let mut squares: Vec<(K, u64)> = Vec::new();
+        for d in &self.dimensions {
+            let square = d.mul(d);
+            if let Some((_, count)) = squares.iter_mut().find(|(s, _)| *s == square) {
+                *count += 1;
+            } else {
+                squares.push((square, 1));
+            }
+        }
+        for (square, _) in &mut squares {
+            *square = omega_number_theory::scalar::divide(&self.d_squared, square)
+                .map_err(FusionError::from)?;
+        }
+        Ok(squares)
     }
 }

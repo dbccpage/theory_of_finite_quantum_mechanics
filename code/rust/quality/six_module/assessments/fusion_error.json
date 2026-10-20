@@ -92,14 +92,15 @@
   "trust_boundary": "Rust enum/derive semantics, pinned thiserror proc macro and actual wrapped provider error implementations. Display/Clone/source behavior of providers is trusted and content-bound. No catch-all conversion or recovery is introduced.",
   "consumer_review": [
     "All actual fusion modules use this shared nominal enum, including typed ? conversions from native exact-field/matrix/scalar providers. The native fixtures compile whole packages, preserving nominal type composition; both canonical roots replay against the same source.",
-    "Constructors accept arbitrary witness values; consumers must establish the underlying failure condition. Diagnostic data alone authorizes no proof/score promotion."
+    "Constructors accept arbitrary witness values; consumers must establish the underlying failure condition. Diagnostic data alone authorizes no proof/score promotion.",
+    "Local declaration-preservation bridge for the existing diagnostic L1A review, backed by current actual-root compilation/replay. No equivalence of the full modular implementation, fresh error mutation execution or modular-file grade is inferred."
   ],
   "assurance_limits": [
     "AuthorityEffect: None. This L1 utility preserves diagnostics; it does not establish whether a reported defect holds.",
     "Derive-generated bodies are explicitly audited and native-challenged; the AST metric counts the four authored conversion bodies only. No compiler expansion theorem, provider-wide safety grade or general crash-freedom theorem is claimed."
   ],
   "open_findings": [],
-  "evaluation_timestamp": "2026-10-20T03:07:34.246267+00:00",
+  "evaluation_timestamp": "2026-10-20T14:38:00.703741+00:00",
   "reviewer": "Codex explicit exact scalar/typed-diagnostic source and generated-operation review",
   "rubric_sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de",
   "gates": {
@@ -132,7 +133,7 @@
     },
     {
       "path": "code/rust/src/fusion_categories/modular.rs",
-      "sha256": "6afaf4cd0a0af7fc18b2ebf0792f0c913688cbf68611d60c40bac8db92ebbeff"
+      "sha256": "aba2ed0e56a32a0fd6017e9084666e4673c4448a6a96d21f9a160d5f11539cda"
     },
     {
       "path": "code/rust/src/fusion_categories/Cargo.toml",
@@ -233,7 +234,7 @@
   "evidence": [
     {
       "path": "code/rust/quality/six_module/fusion_error_source_review.json",
-      "sha256": "b4acdbab3bef800af9ff52224bd542e4e3cf9728ad209b7212cbf2a1146fd4a9"
+      "sha256": "ef6cdcd17fb0c4d97c950217e45cbdb0a96c3aa5bbfb223e3d95f4ed84ad57fe"
     },
     {
       "path": "evidence/quality/six_module/20261020T030025Z-fusion-audit/receipt.json",
@@ -286,6 +287,18 @@
     {
       "path": "evidence/quality/category_homology/20261020T025927Z-metrics/source_manifest.json",
       "sha256": "a9432fe795927e25b4507f5efcbf48fc16d8d29e085845af5316184f06483c4c"
+    },
+    {
+      "path": "evidence/quality/six_module/checkpoint-012/error-provider-declaration.json",
+      "sha256": "ba457419caacac28933e300f5a435961a8ab97901421bc134972b618b1c058ec"
+    },
+    {
+      "path": "evidence/quality/six_module/20261020T035434Z-fusion-audit/receipt.json",
+      "sha256": "f1e2e982794b4722e978ac5f0a063263e5f703a5afdb88d5fec9e869a965e4ad"
     }
-  ]
+  ],
+  "provider_declaration_refresh": {
+    "path": "evidence/quality/six_module/checkpoint-012/error-provider-declaration.json",
+    "sha256": "ba457419caacac28933e300f5a435961a8ab97901421bc134972b618b1c058ec"
+  }
 }
