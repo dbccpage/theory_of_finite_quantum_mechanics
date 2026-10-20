@@ -1,0 +1,155 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/analysis/rust_omega_functional_finite_cyclic_transport_amplitude_file_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.file_contract.v1",
+    "kind": "rust_file_contract",
+    "contract_id": "urn:omega:rust:omega_functional:finite_cyclic_transport_amplitude:file:v1.0.0",
+    "title": "Bounded exact finite cyclic transport amplitude",
+    "status": "active_provisional",
+    "crate": "omega_functional",
+    "file": "crates_rs/omega_functional/src/transport_amplitude.rs",
+    "layer": "functional",
+    "role": "immutable_exact_finite_cyclic_transport_amplitude",
+    "authority_effect": "none",
+    "evidence_ceiling": "LocalReplay",
+    "customer_claim_allowed": false,
+    "runtime_enforcement": true,
+    "owns": [
+      "dimension_and_step_bounded_exact_rational_weighted_cyclic_transport",
+      "explicitly_oriented_column_vector_shift_matrix",
+      "exact_path_product_for_declared_finite_cycles",
+      "typed_refusal_of_empty_or_oversized_cycles_and_paths",
+      "exact_zero_for_an_unreachable_declared_endpoint",
+      "no_authority_promotion"
+    ],
+    "does_not_own": [
+      "arbitrary_path_network_or_cochain_boundary_transport",
+      "physical_transport_or_quantum_state_interpretation",
+      "optimization_or_certificate_generation",
+      "legacy_float_API_compatibility_or_python_migration",
+      "actor_authority_or_task_completion"
+    ],
+    "may_call": [],
+    "must_not": [
+      "treat_a_nilpotent_shift_as_a_cyclic_shift",
+      "silently_change_endpoint_or_cycle_orientation",
+      "accept_zero_denominator_rationals",
+      "promote_a_path_value_to_authority_or_acceptance"
+    ],
+    "exactness": {
+      "mode": "exact_dimension_and_step_bounded_rational_finite_cycle",
+      "exact_constructor_required": true,
+      "approximate_modes_allowed": false
+    },
+    "forbidden_substrings": [],
+    "required_substrings": [
+      "pub struct MinimalCyclicTransport",
+      "pub struct TransportAmplitude",
+      "pub fn shift_operator(",
+      "pub fn amplitude(",
+      "TransportAmplitudeError::ZeroDenominator"
+    ],
+    "required_tests": [
+      "transport_amplitude::tests::weighted_cycle_multiplies_exact_edges",
+      "transport_amplitude::tests::cyclic_shift_wraps_instead_of_nilpotently_ending",
+      "transport_amplitude::tests::weighted_shift_operator_matches_path_amplitude",
+      "transport_amplitude::tests::unreachable_endpoint_is_exact_zero",
+      "transport_amplitude::tests::zero_steps_is_identity",
+      "transport_amplitude::tests::invalid_inputs_are_typed_refusals",
+      "transport_amplitude::tests::unreduced_rationals_are_canonicalized_before_arithmetic"
+    ],
+    "lean_obligations": [],
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0",
+        "urn:omega:constitution:base_file_contract:file:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "cae23e3a40fe744fd587fe1bf197be8c4f89291e302e2b4db0ec4a55e7e4aa97",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "cae23e3a40fe744fd587fe1bf197be8c4f89291e302e2b4db0ec4a55e7e4aa97",
+      "bytes": 2266,
+      "record": {
+        "schema_version": "omega.file_contract.v1",
+        "kind": "rust_file_contract",
+        "contract_id": "urn:omega:rust:omega_functional:finite_cyclic_transport_amplitude:file:v1.0.0",
+        "title": "Bounded exact finite cyclic transport amplitude",
+        "status": "active_provisional",
+        "crate": "omega_functional",
+        "file": "crates_rs/omega_functional/src/transport_amplitude.rs",
+        "layer": "functional",
+        "role": "immutable_exact_finite_cyclic_transport_amplitude",
+        "authority_effect": "none",
+        "evidence_ceiling": "LocalReplay",
+        "customer_claim_allowed": false,
+        "runtime_enforcement": true,
+        "owns": [
+          "dimension_and_step_bounded_exact_rational_weighted_cyclic_transport",
+          "explicitly_oriented_column_vector_shift_matrix",
+          "exact_path_product_for_declared_finite_cycles",
+          "typed_refusal_of_empty_or_oversized_cycles_and_paths",
+          "exact_zero_for_an_unreachable_declared_endpoint",
+          "no_authority_promotion"
+        ],
+        "does_not_own": [
+          "arbitrary_path_network_or_cochain_boundary_transport",
+          "physical_transport_or_quantum_state_interpretation",
+          "optimization_or_certificate_generation",
+          "legacy_float_API_compatibility_or_python_migration",
+          "actor_authority_or_task_completion"
+        ],
+        "may_call": [],
+        "must_not": [
+          "treat_a_nilpotent_shift_as_a_cyclic_shift",
+          "silently_change_endpoint_or_cycle_orientation",
+          "accept_zero_denominator_rationals",
+          "promote_a_path_value_to_authority_or_acceptance"
+        ],
+        "exactness": {
+          "mode": "exact_dimension_and_step_bounded_rational_finite_cycle",
+          "exact_constructor_required": true,
+          "approximate_modes_allowed": false
+        },
+        "forbidden_substrings": [],
+        "required_substrings": [
+          "pub struct MinimalCyclicTransport",
+          "pub struct TransportAmplitude",
+          "pub fn shift_operator(",
+          "pub fn amplitude(",
+          "TransportAmplitudeError::ZeroDenominator"
+        ],
+        "required_tests": [
+          "transport_amplitude::tests::weighted_cycle_multiplies_exact_edges",
+          "transport_amplitude::tests::cyclic_shift_wraps_instead_of_nilpotently_ending",
+          "transport_amplitude::tests::weighted_shift_operator_matches_path_amplitude",
+          "transport_amplitude::tests::unreachable_endpoint_is_exact_zero",
+          "transport_amplitude::tests::zero_steps_is_identity",
+          "transport_amplitude::tests::invalid_inputs_are_typed_refusals",
+          "transport_amplitude::tests::unreduced_rationals_are_canonicalized_before_arithmetic"
+        ],
+        "lean_obligations": [],
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0",
+            "urn:omega:constitution:base_file_contract:file:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.file_contract.v1\nkind: rust_file_contract\ncontract_id: urn:omega:rust:omega_functional:finite_cyclic_transport_amplitude:file:v1.0.0\ntitle: Bounded exact finite cyclic transport amplitude\nstatus: active_provisional\ncrate: omega_functional\nfile: crates_rs/omega_functional/src/transport_amplitude.rs\nlayer: functional\nrole: immutable_exact_finite_cyclic_transport_amplitude\nauthority_effect: none\nevidence_ceiling: LocalReplay\ncustomer_claim_allowed: false\nruntime_enforcement: true\nowns:\n- dimension_and_step_bounded_exact_rational_weighted_cyclic_transport\n- explicitly_oriented_column_vector_shift_matrix\n- exact_path_product_for_declared_finite_cycles\n- typed_refusal_of_empty_or_oversized_cycles_and_paths\n- exact_zero_for_an_unreachable_declared_endpoint\n- no_authority_promotion\ndoes_not_own:\n- arbitrary_path_network_or_cochain_boundary_transport\n- physical_transport_or_quantum_state_interpretation\n- optimization_or_certificate_generation\n- legacy_float_API_compatibility_or_python_migration\n- actor_authority_or_task_completion\nmay_call: []\nmust_not:\n- treat_a_nilpotent_shift_as_a_cyclic_shift\n- silently_change_endpoint_or_cycle_orientation\n- accept_zero_denominator_rationals\n- promote_a_path_value_to_authority_or_acceptance\nexactness:\n  mode: exact_dimension_and_step_bounded_rational_finite_cycle\n  exact_constructor_required: true\n  approximate_modes_allowed: false\nforbidden_substrings: []\nrequired_substrings:\n- pub struct MinimalCyclicTransport\n- pub struct TransportAmplitude\n- pub fn shift_operator(\n- pub fn amplitude(\n- TransportAmplitudeError::ZeroDenominator\nrequired_tests:\n- transport_amplitude::tests::weighted_cycle_multiplies_exact_edges\n- transport_amplitude::tests::cyclic_shift_wraps_instead_of_nilpotently_ending\n- transport_amplitude::tests::weighted_shift_operator_matches_path_amplitude\n- transport_amplitude::tests::unreachable_endpoint_is_exact_zero\n- transport_amplitude::tests::zero_steps_is_identity\n- transport_amplitude::tests::invalid_inputs_are_typed_refusals\n- transport_amplitude::tests::unreduced_rationals_are_canonicalized_before_arithmetic\nlean_obligations: []\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n  - urn:omega:constitution:base_file_contract:file:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/10_math/analysis/rust_omega_functional_finite_cyclic_transport_amplitude_file_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/analysis/rust_omega_functional_finite_cyclic_transport_amplitude_file_v1_0_0.contract.yaml": "cae23e3a40fe744fd587fe1bf197be8c4f89291e302e2b4db0ec4a55e7e4aa97"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

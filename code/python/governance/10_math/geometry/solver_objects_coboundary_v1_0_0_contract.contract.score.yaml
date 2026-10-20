@@ -1,0 +1,163 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/geometry/solver_objects_coboundary_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:solver_objects:coboundary:v1.0.0",
+    "title": "Cohomological Coboundary",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "role": "MathObject",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "abstract": false,
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0",
+        "urn:omega:constitution:base_math_contract:v1.0.0"
+      ],
+      "semantic_contracts": [
+        "omega_engine_governance/contracts/contracts_math/coboundary.contract.yaml",
+        "omega_engine_governance/contracts/contracts_math/coboundary_map.contract.yaml"
+      ],
+      "runtime_bindings": [
+        "omega_engine.crates.coboundary",
+        "omega_engine.crates.homology_theory.coboundary"
+      ],
+      "used_by": [
+        "OESOS",
+        "Prime000",
+        "Prime001",
+        "Prime002"
+      ]
+    },
+    "math": {
+      "object_kind": "coboundary",
+      "symbol": "d_k: C^k -> C^{k+1}",
+      "definition": "The degree-raising cochain differential dual to the admitted boundary data.",
+      "laws": [
+        "d_{k+1} composed with d_k is zero.",
+        "No coboundary may be fabricated for a missing degree."
+      ]
+    },
+    "doctrine": {
+      "summary": "OESOS and Prime binding contract for Cohomological Coboundary.",
+      "non_role": [
+        "authority_minting",
+        "policy_decision",
+        "self_certification",
+        "state_transition"
+      ],
+      "canonical_invariant": "This contract is structural and AuthorityEffect None. Inheritance supplies shared shape and negative-capability rules without increasing authority."
+    }
+  },
+  "current_contract": "5cc61029cad2a195a0421aefcc5e7a48b4a07634a26c6fc3aff877f649392658",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "5cc61029cad2a195a0421aefcc5e7a48b4a07634a26c6fc3aff877f649392658",
+      "bytes": 1645,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:solver_objects:coboundary:v1.0.0",
+        "title": "Cohomological Coboundary",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "role": "MathObject",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "abstract": false,
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0",
+            "urn:omega:constitution:base_math_contract:v1.0.0"
+          ],
+          "semantic_contracts": [
+            "omega_engine_governance/contracts/contracts_math/coboundary.contract.yaml",
+            "omega_engine_governance/contracts/contracts_math/coboundary_map.contract.yaml"
+          ],
+          "runtime_bindings": [
+            "omega_engine.crates.coboundary",
+            "omega_engine.crates.homology_theory.coboundary"
+          ],
+          "used_by": [
+            "OESOS",
+            "Prime000",
+            "Prime001",
+            "Prime002"
+          ]
+        },
+        "math": {
+          "object_kind": "coboundary",
+          "symbol": "d_k: C^k -> C^{k+1}",
+          "definition": "The degree-raising cochain differential dual to the admitted boundary data.",
+          "laws": [
+            "d_{k+1} composed with d_k is zero.",
+            "No coboundary may be fabricated for a missing degree."
+          ]
+        },
+        "doctrine": {
+          "summary": "OESOS and Prime binding contract for Cohomological Coboundary.",
+          "non_role": [
+            "authority_minting",
+            "policy_decision",
+            "self_certification",
+            "state_transition"
+          ],
+          "canonical_invariant": "This contract is structural and AuthorityEffect None. Inheritance supplies shared shape and negative-capability rules without increasing authority."
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:solver_objects:coboundary:v1.0.0\ntitle: Cohomological Coboundary\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\nrole: MathObject\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  abstract: false\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n  - urn:omega:constitution:base_math_contract:v1.0.0\n  semantic_contracts:\n  - omega_engine_governance/contracts/contracts_math/coboundary.contract.yaml\n  - omega_engine_governance/contracts/contracts_math/coboundary_map.contract.yaml\n  runtime_bindings:\n  - omega_engine.crates.coboundary\n  - omega_engine.crates.homology_theory.coboundary\n  used_by:\n  - OESOS\n  - Prime000\n  - Prime001\n  - Prime002\nmath:\n  object_kind: coboundary\n  symbol: 'd_k: C^k -> C^{k+1}'\n  definition: The degree-raising cochain differential dual to the admitted boundary\n    data.\n  laws:\n  - d_{k+1} composed with d_k is zero.\n  - No coboundary may be fabricated for a missing degree.\ndoctrine:\n  summary: OESOS and Prime binding contract for Cohomological Coboundary.\n  non_role:\n  - authority_minting\n  - policy_decision\n  - self_certification\n  - state_transition\n  canonical_invariant: This contract is structural and AuthorityEffect None. Inheritance\n    supplies shared shape and negative-capability rules without increasing authority.\n",
+      "original_paths": [
+        "code/python/governance/10_math/geometry/solver_objects_coboundary_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/geometry/solver_objects_coboundary_v1_0_0.contract.yaml": "5cc61029cad2a195a0421aefcc5e7a48b4a07634a26c6fc3aff877f649392658"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

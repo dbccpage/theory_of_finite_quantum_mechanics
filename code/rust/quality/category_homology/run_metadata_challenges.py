@@ -10,7 +10,10 @@ import argparse
 from collections import Counter
 from datetime import datetime, timezone
 import json
-from pathlib import Path
+from pathlib import Path as _FilesystemPath
+import sys as _contract_sys
+_contract_sys.path.insert(0, str(_FilesystemPath(__file__).resolve().parents[4] / "scripts"))
+from contract_scores import RecordPath as Path, copy_file as _copy_record_file
 import shutil
 import subprocess
 
@@ -181,15 +184,15 @@ def main():
     work = RUST / "target/ms" / stamp[2:15]
     inputs = inventory()
     write_json(output / "source_manifest.json", inputs)
-    shutil.copyfile(__file__, output / "run_metadata_challenges.py")
-    shutil.copyfile(policy, output / policy.name)
+    _copy_record_file(__file__, output / "run_metadata_challenges.py")
+    _copy_record_file(policy, output / policy.name)
     if any(record.get("parameter_schema") for record in records):
-        shutil.copyfile(Path(__file__).with_name("parameter_metadata.py"), output / "parameter_metadata.py")
+        _copy_record_file(Path(__file__).with_name("parameter_metadata.py"), output / "parameter_metadata.py")
     if any(record.get("collection_schema") for record in records):
-        shutil.copyfile(Path(__file__).with_name("collection_metadata.py"), output / "collection_metadata.py")
+        _copy_record_file(Path(__file__).with_name("collection_metadata.py"), output / "collection_metadata.py")
     if any(record.get("finite_set_schema") for record in records):
         for name in ("finite_set_challenges.py", "finite_set_oracle.rs"):
-            shutil.copyfile(Path(__file__).with_name(name), output / name)
+            _copy_record_file(Path(__file__).with_name(name), output / name)
     snapshot(work, "category")
     build = work / "target"
     members, campaigns = [], []
@@ -252,7 +255,7 @@ def main():
                             continue
                         if message.get("reason") == "compiler-artifact" and message.get("executable"):
                             name = message["target"]["name"]
-                            shutil.copyfile(message["executable"], category_binary if name == "tfqm_category_theory" else binary)
+                            _copy_record_file(message["executable"], category_binary if name == "tfqm_category_theory" else binary)
             finally:
                 clear_debug_outputs(build, work)
             if run["exit_code"] != 0:

@@ -8,7 +8,10 @@ Compiler output is deleted as soon as its test executable has been copied.
 from collections import Counter
 from datetime import datetime, timezone
 import json
-from pathlib import Path
+from pathlib import Path as _FilesystemPath
+import sys as _contract_sys
+_contract_sys.path.insert(0, str(_FilesystemPath(__file__).resolve().parents[4] / "scripts"))
+from contract_scores import RecordPath as Path, copy_file as _copy_record_file
 import re
 import shutil
 import subprocess
@@ -45,7 +48,7 @@ def main():
     work = RUST / "target/rc" / stamp[2:15]
     inputs = inventory()
     write_json(output / "source_manifest.json",inputs)
-    shutil.copyfile(__file__,output / "run_rank_context_replay.py")
+    _copy_record_file(__file__,output / "run_rank_context_replay.py")
     snapshot(work,"homology")
     source = (RUST / "src/homology/rank_certificate.rs").read_text(encoding="utf-8")
     recipes = [(i,p,a,b) for i,p,a,b in mutations() if i.startswith("RK")]
@@ -91,7 +94,7 @@ def main():
                     except ValueError:
                         continue
                     if item.get("reason") == "compiler-artifact" and item.get("executable"):
-                        shutil.copyfile(item["executable"],binary)
+                        _copy_record_file(item["executable"],binary)
         finally:
             clear_debug_outputs(build,work)
         if run["exit_code"] == 0:

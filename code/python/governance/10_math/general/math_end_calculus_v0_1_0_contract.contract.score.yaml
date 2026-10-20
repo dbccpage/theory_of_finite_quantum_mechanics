@@ -1,0 +1,227 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/general/math_end_calculus_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:end_calculus:v0.1.0",
+    "title": "End Calculus Contract",
+    "kind": "math_contract",
+    "status": "exact_rational_classifier_implemented",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "computational_calculus",
+      "symbol": "∫_c F(c,c)",
+      "ascii_symbol": "end_calculus",
+      "notation": "∫_c F(c,c)",
+      "domain": [
+        "categories: Category instances involved",
+        "bifunctors: Bifunctors F: C^op × C → D",
+        "end_expression: ∫_c F(c,c) formula"
+      ],
+      "codomain": {
+        "description": "End formulas over bifunctors F: C^op × C → D, producing universal wedges satisfying dinaturality conditions\n"
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "All bifunctors must be well-defined functors",
+        "Dinaturality conditions must be satisfied",
+        "End computation must follow standard formulas",
+        "Artifact hash must be deterministic SHA-256"
+      ]
+    },
+    "laws": [
+      "For each f: c → c' in C, the diagram F(c,c) → F(c,c') → F(c',c') equals F(c,c) → F(c',c) → F(c',c')\n",
+      "End ∫_c F(c,c) is universal among all wedges satisfying dinaturality\n",
+      "∫_c ∫_d F(c,d) ≃ ∫_{(c,d)} F(c,d)"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No randomness",
+        "No time-dependent data",
+        "Validators are content-addressed",
+        "Computation functions are content-addressed"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "negative_tests": [
+      "Invalid bifunctors must be rejected",
+      "Dinaturality failure must be rejected",
+      "Incorrect computation must be rejected"
+    ],
+    "doctrine": {
+      "summary": "End calculus is the systematic use of ends and their properties to compute and manipulate categorical constructions. End calculus provides computational tools for natural transformations, limits, and representation theory.",
+      "non_role": [
+        "Does not provide enriched end calculus",
+        "Does not handle ∞-categorical end calculus",
+        "Does not support weighted ends"
+      ]
+    },
+    "wip": [
+      "Enriched end calculus",
+      "∞-categorical end calculus",
+      "Weighted ends",
+      "Contract version 0.1.0 covers basic end calculus",
+      "Future versions will add enriched and ∞-categorical variants",
+      "Weighted ends require monoidal category infrastructure"
+    ],
+    "rust_binding": {
+      "crate": "omega_category_theory",
+      "module": "limits_colimits::end",
+      "symbols": [
+        "End"
+      ],
+      "required_tests": [
+        "validate_ok",
+        "validate_rejects_empty"
+      ]
+    }
+  },
+  "current_contract": "14e208699bfaffac80af1a92b1d45b9008ec7ef7e3b839e5481d1aad45fc3b23",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "14e208699bfaffac80af1a92b1d45b9008ec7ef7e3b839e5481d1aad45fc3b23",
+      "bytes": 2616,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:end_calculus:v0.1.0",
+        "title": "End Calculus Contract",
+        "kind": "math_contract",
+        "status": "exact_rational_classifier_implemented",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "computational_calculus",
+          "symbol": "∫_c F(c,c)",
+          "ascii_symbol": "end_calculus",
+          "notation": "∫_c F(c,c)",
+          "domain": [
+            "categories: Category instances involved",
+            "bifunctors: Bifunctors F: C^op × C → D",
+            "end_expression: ∫_c F(c,c) formula"
+          ],
+          "codomain": {
+            "description": "End formulas over bifunctors F: C^op × C → D, producing universal wedges satisfying dinaturality conditions\n"
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "All bifunctors must be well-defined functors",
+            "Dinaturality conditions must be satisfied",
+            "End computation must follow standard formulas",
+            "Artifact hash must be deterministic SHA-256"
+          ]
+        },
+        "laws": [
+          "For each f: c → c' in C, the diagram F(c,c) → F(c,c') → F(c',c') equals F(c,c) → F(c',c) → F(c',c')\n",
+          "End ∫_c F(c,c) is universal among all wedges satisfying dinaturality\n",
+          "∫_c ∫_d F(c,d) ≃ ∫_{(c,d)} F(c,d)"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "Validators are content-addressed",
+            "Computation functions are content-addressed"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "negative_tests": [
+          "Invalid bifunctors must be rejected",
+          "Dinaturality failure must be rejected",
+          "Incorrect computation must be rejected"
+        ],
+        "doctrine": {
+          "summary": "End calculus is the systematic use of ends and their properties to compute and manipulate categorical constructions. End calculus provides computational tools for natural transformations, limits, and representation theory.",
+          "non_role": [
+            "Does not provide enriched end calculus",
+            "Does not handle ∞-categorical end calculus",
+            "Does not support weighted ends"
+          ]
+        },
+        "wip": [
+          "Enriched end calculus",
+          "∞-categorical end calculus",
+          "Weighted ends",
+          "Contract version 0.1.0 covers basic end calculus",
+          "Future versions will add enriched and ∞-categorical variants",
+          "Weighted ends require monoidal category infrastructure"
+        ],
+        "rust_binding": {
+          "crate": "omega_category_theory",
+          "module": "limits_colimits::end",
+          "symbols": [
+            "End"
+          ],
+          "required_tests": [
+            "validate_ok",
+            "validate_rejects_empty"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:end_calculus:v0.1.0\ntitle: End Calculus Contract\nkind: math_contract\nstatus: exact_rational_classifier_implemented\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: computational_calculus\n  symbol: ∫_c F(c,c)\n  ascii_symbol: end_calculus\n  notation: ∫_c F(c,c)\n  domain:\n  - 'categories: Category instances involved'\n  - 'bifunctors: Bifunctors F: C^op × C → D'\n  - 'end_expression: ∫_c F(c,c) formula'\n  codomain:\n    description: 'End formulas over bifunctors F: C^op × C → D, producing universal\n      wedges satisfying dinaturality conditions\n\n      '\nrequirements:\n  required_structures:\n  - All bifunctors must be well-defined functors\n  - Dinaturality conditions must be satisfied\n  - End computation must follow standard formulas\n  - Artifact hash must be deterministic SHA-256\nlaws:\n- 'For each f: c → c'' in C, the diagram F(c,c) → F(c,c'') → F(c'',c'') equals F(c,c)\n  → F(c'',c) → F(c'',c'')\n\n  '\n- 'End ∫_c F(c,c) is universal among all wedges satisfying dinaturality\n\n  '\n- ∫_c ∫_d F(c,d) ≃ ∫_{(c,d)} F(c,d)\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Validators are content-addressed\n  - Computation functions are content-addressed\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nnegative_tests:\n- Invalid bifunctors must be rejected\n- Dinaturality failure must be rejected\n- Incorrect computation must be rejected\ndoctrine:\n  summary: End calculus is the systematic use of ends and their properties to compute\n    and manipulate categorical constructions. End calculus provides computational\n    tools for natural transformations, limits, and representation theory.\n  non_role:\n  - Does not provide enriched end calculus\n  - Does not handle ∞-categorical end calculus\n  - Does not support weighted ends\nwip:\n- Enriched end calculus\n- ∞-categorical end calculus\n- Weighted ends\n- Contract version 0.1.0 covers basic end calculus\n- Future versions will add enriched and ∞-categorical variants\n- Weighted ends require monoidal category infrastructure\nrust_binding:\n  crate: omega_category_theory\n  module: limits_colimits::end\n  symbols:\n  - End\n  required_tests:\n  - validate_ok\n  - validate_rejects_empty\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_end_calculus_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_end_calculus_v0_1_0.contract.yaml": "14e208699bfaffac80af1a92b1d45b9008ec7ef7e3b839e5481d1aad45fc3b23"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

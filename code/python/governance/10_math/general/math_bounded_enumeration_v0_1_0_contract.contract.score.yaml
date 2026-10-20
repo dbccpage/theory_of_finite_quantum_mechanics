@@ -1,0 +1,205 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/general/math_bounded_enumeration_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:bounded_enumeration:v0.1.0",
+    "title": "Bounded Exact Combinatorial Enumeration",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "bounded_enumeration",
+      "symbol": "bounded_enumeration",
+      "ascii_symbol": "bounded_enumeration",
+      "notation": "Bounded Exact Combinatorial Enumeration",
+      "domain": [
+        "Natural carrier sizes and explicit enumeration limits"
+      ],
+      "codomain": {
+        "description": "Exact finite constructions implemented by omega_combinatorics::enumeration; results remain scoped to the declared carrier and budgets."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Exact arithmetic and explicit finite carrier validation",
+        "A typed refusal for unsupported or exhausted computations"
+      ]
+    },
+    "laws": [
+      "Permutation count is n! and subset count is binomial(n,k)",
+      "Enumeration is deterministic, complete, unique and lexicographic",
+      "Output size is checked exactly before enumeration begins"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No randomness",
+        "No time-dependent data",
+        "Exact independent witness replay where a witness is returned"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_combinatorics",
+      "module": "enumeration",
+      "symbols": [
+        "CombinatoricsError",
+        "permutations",
+        "combinations",
+        "weak_compositions"
+      ],
+      "required_tests": [
+        "finite_enumerations_match_independent_counting_laws_and_limits"
+      ]
+    },
+    "negative_tests": [
+      "Refuse requested counts above the caller limit and arguments above declared bounds"
+    ],
+    "doctrine": {
+      "summary": "Bounded Exact Combinatorial Enumeration on a declared finite carrier.",
+      "non_role": [
+        "PROVED, GlobalGreen, or operational authority",
+        "Continuum or infinite-carrier completion claims"
+      ]
+    },
+    "wip": [
+      "Executable finite checks are local evidence; no theorem-prover discharge is asserted."
+    ]
+  },
+  "current_contract": "19c1f0fe7cf08606c8f7c6c5efb399516987f9e9d0448ca6ce0695fed803bcd2",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "19c1f0fe7cf08606c8f7c6c5efb399516987f9e9d0448ca6ce0695fed803bcd2",
+      "bytes": 2148,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:bounded_enumeration:v0.1.0",
+        "title": "Bounded Exact Combinatorial Enumeration",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "bounded_enumeration",
+          "symbol": "bounded_enumeration",
+          "ascii_symbol": "bounded_enumeration",
+          "notation": "Bounded Exact Combinatorial Enumeration",
+          "domain": [
+            "Natural carrier sizes and explicit enumeration limits"
+          ],
+          "codomain": {
+            "description": "Exact finite constructions implemented by omega_combinatorics::enumeration; results remain scoped to the declared carrier and budgets."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Exact arithmetic and explicit finite carrier validation",
+            "A typed refusal for unsupported or exhausted computations"
+          ]
+        },
+        "laws": [
+          "Permutation count is n! and subset count is binomial(n,k)",
+          "Enumeration is deterministic, complete, unique and lexicographic",
+          "Output size is checked exactly before enumeration begins"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "Exact independent witness replay where a witness is returned"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_combinatorics",
+          "module": "enumeration",
+          "symbols": [
+            "CombinatoricsError",
+            "permutations",
+            "combinations",
+            "weak_compositions"
+          ],
+          "required_tests": [
+            "finite_enumerations_match_independent_counting_laws_and_limits"
+          ]
+        },
+        "negative_tests": [
+          "Refuse requested counts above the caller limit and arguments above declared bounds"
+        ],
+        "doctrine": {
+          "summary": "Bounded Exact Combinatorial Enumeration on a declared finite carrier.",
+          "non_role": [
+            "PROVED, GlobalGreen, or operational authority",
+            "Continuum or infinite-carrier completion claims"
+          ]
+        },
+        "wip": [
+          "Executable finite checks are local evidence; no theorem-prover discharge is asserted."
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:bounded_enumeration:v0.1.0\ntitle: Bounded Exact Combinatorial Enumeration\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: bounded_enumeration\n  symbol: bounded_enumeration\n  ascii_symbol: bounded_enumeration\n  notation: Bounded Exact Combinatorial Enumeration\n  domain:\n  - Natural carrier sizes and explicit enumeration limits\n  codomain:\n    description: Exact finite constructions implemented by omega_combinatorics::enumeration;\n      results remain scoped to the declared carrier and budgets.\nrequirements:\n  required_structures:\n  - Exact arithmetic and explicit finite carrier validation\n  - A typed refusal for unsupported or exhausted computations\nlaws:\n- Permutation count is n! and subset count is binomial(n,k)\n- Enumeration is deterministic, complete, unique and lexicographic\n- Output size is checked exactly before enumeration begins\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Exact independent witness replay where a witness is returned\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nrust_binding:\n  crate: omega_combinatorics\n  module: enumeration\n  symbols:\n  - CombinatoricsError\n  - permutations\n  - combinations\n  - weak_compositions\n  required_tests:\n  - finite_enumerations_match_independent_counting_laws_and_limits\nnegative_tests:\n- Refuse requested counts above the caller limit and arguments above declared bounds\ndoctrine:\n  summary: Bounded Exact Combinatorial Enumeration on a declared finite carrier.\n  non_role:\n  - PROVED, GlobalGreen, or operational authority\n  - Continuum or infinite-carrier completion claims\nwip:\n- Executable finite checks are local evidence; no theorem-prover discharge is asserted.\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_bounded_enumeration_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_bounded_enumeration_v0_1_0.contract.yaml": "19c1f0fe7cf08606c8f7c6c5efb399516987f9e9d0448ca6ce0695fed803bcd2"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

@@ -1,0 +1,129 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/20_execution/rust_omega_certifiers_checked_packet_v1_2_0_contract.py",
+  "contract": {
+    "schema_version": "omega.file_contract.v1",
+    "kind": "rust_file_contract",
+    "contract_id": "urn:omega:rust:omega_certifiers:checked_packet:v1.2.0",
+    "title": "CheckedPacket",
+    "status": "active",
+    "crate": "omega_certifiers",
+    "file": "crates_rs/omega_certifiers/src/checked_packet.rs",
+    "role": "canonical_evidence_certifier",
+    "authority_effect": "none",
+    "evidence_ceiling": "LocalReplay",
+    "customer_claim_allowed": false,
+    "runtime_enforcement": true,
+    "owns": [
+      "CheckedPacket construction",
+      "packet-bound evidence certification"
+    ],
+    "does_not_own": [
+      "authority promotion",
+      "receipt DAG verification",
+      "human promotion"
+    ],
+    "may_call": [],
+    "must_not": [
+      "compute Phi1",
+      "compute Gamma2",
+      "classify trichotomy",
+      "accept raw status strings",
+      "call CertifiedAuthority::certify directly",
+      "call authority_from_outcome_f13 directly",
+      "call promote_authorized_local_result_v1"
+    ],
+    "exactness": {
+      "mode": "not_applicable",
+      "exact_constructor_required": false,
+      "approximate_modes_allowed": false
+    },
+    "forbidden_substrings": [],
+    "required_substrings": [
+      "CheckedPacket",
+      "CheckedPacketCertificateV1",
+      "certify_evidence"
+    ],
+    "required_tests": [
+      "certify_evidence_seals_bound_exact_witness_without_authority"
+    ],
+    "lean_obligations": [],
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "71b1ea6a7de8b5a38c1fbc089b16d090427b91ce308ff3255b084f3c6a6ed078",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "71b1ea6a7de8b5a38c1fbc089b16d090427b91ce308ff3255b084f3c6a6ed078",
+      "bytes": 1165,
+      "record": {
+        "schema_version": "omega.file_contract.v1",
+        "kind": "rust_file_contract",
+        "contract_id": "urn:omega:rust:omega_certifiers:checked_packet:v1.2.0",
+        "title": "CheckedPacket",
+        "status": "active",
+        "crate": "omega_certifiers",
+        "file": "crates_rs/omega_certifiers/src/checked_packet.rs",
+        "role": "canonical_evidence_certifier",
+        "authority_effect": "none",
+        "evidence_ceiling": "LocalReplay",
+        "customer_claim_allowed": false,
+        "runtime_enforcement": true,
+        "owns": [
+          "CheckedPacket construction",
+          "packet-bound evidence certification"
+        ],
+        "does_not_own": [
+          "authority promotion",
+          "receipt DAG verification",
+          "human promotion"
+        ],
+        "may_call": [],
+        "must_not": [
+          "compute Phi1",
+          "compute Gamma2",
+          "classify trichotomy",
+          "accept raw status strings",
+          "call CertifiedAuthority::certify directly",
+          "call authority_from_outcome_f13 directly",
+          "call promote_authorized_local_result_v1"
+        ],
+        "exactness": {
+          "mode": "not_applicable",
+          "exact_constructor_required": false,
+          "approximate_modes_allowed": false
+        },
+        "forbidden_substrings": [],
+        "required_substrings": [
+          "CheckedPacket",
+          "CheckedPacketCertificateV1",
+          "certify_evidence"
+        ],
+        "required_tests": [
+          "certify_evidence_seals_bound_exact_witness_without_authority"
+        ],
+        "lean_obligations": [],
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.file_contract.v1\nkind: rust_file_contract\ncontract_id: urn:omega:rust:omega_certifiers:checked_packet:v1.2.0\ntitle: CheckedPacket\nstatus: active\ncrate: omega_certifiers\nfile: crates_rs/omega_certifiers/src/checked_packet.rs\nrole: canonical_evidence_certifier\nauthority_effect: none\nevidence_ceiling: LocalReplay\ncustomer_claim_allowed: false\nruntime_enforcement: true\nowns:\n- CheckedPacket construction\n- packet-bound evidence certification\ndoes_not_own:\n- authority promotion\n- receipt DAG verification\n- human promotion\nmay_call: []\nmust_not:\n- compute Phi1\n- compute Gamma2\n- classify trichotomy\n- accept raw status strings\n- call CertifiedAuthority::certify directly\n- call authority_from_outcome_f13 directly\n- call promote_authorized_local_result_v1\nexactness:\n  mode: not_applicable\n  exact_constructor_required: false\n  approximate_modes_allowed: false\nforbidden_substrings: []\nrequired_substrings:\n- CheckedPacket\n- CheckedPacketCertificateV1\n- certify_evidence\nrequired_tests:\n- certify_evidence_seals_bound_exact_witness_without_authority\nlean_obligations: []\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/20_execution/rust_omega_certifiers_checked_packet_v1_2_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/20_execution/rust_omega_certifiers_checked_packet_v1_2_0.contract.yaml": "71b1ea6a7de8b5a38c1fbc089b16d090427b91ce308ff3255b084f3c6a6ed078"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

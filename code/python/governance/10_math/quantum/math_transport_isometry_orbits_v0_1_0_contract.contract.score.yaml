@@ -1,0 +1,207 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/quantum/math_transport_isometry_orbits_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:transport_isometry_orbits:v0.1.0",
+    "title": "Exact Metric Isometry Replay",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "transport_isometry_orbits",
+      "symbol": "transport_isometry_orbits",
+      "ascii_symbol": "transport_isometry_orbits",
+      "notation": "Exact Metric Isometry Replay",
+      "domain": [
+        "A finite square exact-field transport and a conformable Hermitian Gram matrix, with dimension at most 128."
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_quantum_physics::transport_isometry_orbits; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "Isometry means exactly T dagger G T = G.",
+      "Complex Hermitian and real indefinite metrics use the same involution-aware replay.",
+      "A perturbed transport returns false rather than being accepted by an approximate tolerance."
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_quantum_physics",
+      "module": "transport_isometry_orbits",
+      "symbols": [
+        "is_isometry",
+        "IsometryError"
+      ],
+      "required_tests": [
+        "complex_and_real_transports_preserve_exactly_the_declared_pairing"
+      ]
+    },
+    "negative_tests": [
+      "Non-Hermitian Gram data, shape mismatch and storage/operation budget excess are typed refusals."
+    ],
+    "doctrine": {
+      "summary": "Isometry means exactly T dagger G T = G.; Complex Hermitian and real indefinite metrics use the same involution-aware replay.; A perturbed transport returns false rather than being accepted by an approximate tolerance..",
+      "non_role": [
+        "No spacetime dynamics or general-relativistic field equation.",
+        "No operational authority.",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "fc3bd4790dd332e726f8edb2bfdb6718318320c2e029e9d62afe7569b0bd2632",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "fc3bd4790dd332e726f8edb2bfdb6718318320c2e029e9d62afe7569b0bd2632",
+      "bytes": 2749,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:transport_isometry_orbits:v0.1.0",
+        "title": "Exact Metric Isometry Replay",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "transport_isometry_orbits",
+          "symbol": "transport_isometry_orbits",
+          "ascii_symbol": "transport_isometry_orbits",
+          "notation": "Exact Metric Isometry Replay",
+          "domain": [
+            "A finite square exact-field transport and a conformable Hermitian Gram matrix, with dimension at most 128."
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_quantum_physics::transport_isometry_orbits; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "Isometry means exactly T dagger G T = G.",
+          "Complex Hermitian and real indefinite metrics use the same involution-aware replay.",
+          "A perturbed transport returns false rather than being accepted by an approximate tolerance."
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_quantum_physics",
+          "module": "transport_isometry_orbits",
+          "symbols": [
+            "is_isometry",
+            "IsometryError"
+          ],
+          "required_tests": [
+            "complex_and_real_transports_preserve_exactly_the_declared_pairing"
+          ]
+        },
+        "negative_tests": [
+          "Non-Hermitian Gram data, shape mismatch and storage/operation budget excess are typed refusals."
+        ],
+        "doctrine": {
+          "summary": "Isometry means exactly T dagger G T = G.; Complex Hermitian and real indefinite metrics use the same involution-aware replay.; A perturbed transport returns false rather than being accepted by an approximate tolerance..",
+          "non_role": [
+            "No spacetime dynamics or general-relativistic field equation.",
+            "No operational authority.",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:transport_isometry_orbits:v0.1.0\ntitle: Exact Metric Isometry Replay\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: transport_isometry_orbits\n  symbol: transport_isometry_orbits\n  ascii_symbol: transport_isometry_orbits\n  notation: Exact Metric Isometry Replay\n  domain:\n  - A finite square exact-field transport and a conformable Hermitian Gram matrix,\n    with dimension at most 128.\n  codomain:\n    description: Declared finite results of omega_quantum_physics::transport_isometry_orbits;\n      exact and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- Isometry means exactly T dagger G T = G.\n- Complex Hermitian and real indefinite metrics use the same involution-aware replay.\n- A perturbed transport returns false rather than being accepted by an approximate\n  tolerance.\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_quantum_physics\n  module: transport_isometry_orbits\n  symbols:\n  - is_isometry\n  - IsometryError\n  required_tests:\n  - complex_and_real_transports_preserve_exactly_the_declared_pairing\nnegative_tests:\n- Non-Hermitian Gram data, shape mismatch and storage/operation budget excess are\n  typed refusals.\ndoctrine:\n  summary: Isometry means exactly T dagger G T = G.; Complex Hermitian and real indefinite\n    metrics use the same involution-aware replay.; A perturbed transport returns false\n    rather than being accepted by an approximate tolerance..\n  non_role:\n  - No spacetime dynamics or general-relativistic field equation.\n  - No operational authority.\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/math_transport_isometry_orbits_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/quantum/math_transport_isometry_orbits_v0_1_0.contract.yaml": "fc3bd4790dd332e726f8edb2bfdb6718318320c2e029e9d62afe7569b0bd2632"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

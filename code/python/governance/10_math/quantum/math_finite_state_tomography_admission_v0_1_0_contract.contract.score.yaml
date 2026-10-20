@@ -1,0 +1,205 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/quantum/math_finite_state_tomography_admission_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:finite_state_tomography_admission:v0.1.0",
+    "title": "Tomographic inversion with independent state admission",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "finite_state_tomography_admission",
+      "symbol": "finite_state_tomography_admission",
+      "ascii_symbol": "finite_state_tomography_admission",
+      "notation": "Tomographic inversion with independent state admission",
+      "domain": [
+        "Finite complete Cyc24 MUB carrier and normalized rational data"
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_quantum_physics::tomography; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "Born traces and Wootters-Fields inversion are exact",
+      "State admission independently checks Hermitian trace one and ordered inertia PSD"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_quantum_physics",
+      "module": "tomography",
+      "symbols": [
+        "ExactStateTomographerSystem",
+        "check_density_operator",
+        "reconstruct_admitted_state"
+      ],
+      "required_tests": [
+        "measurement_exact_laws::tomography_normalization_and_algebra_are_separate_from_state_admission"
+      ]
+    },
+    "negative_tests": [
+      "measurement_exact_laws::tomography_normalization_and_algebra_are_separate_from_state_admission"
+    ],
+    "doctrine": {
+      "summary": "Born traces and Wootters-Fields inversion are exact; State admission independently checks Hermitian trace one and ordered inertia PSD.",
+      "non_role": [
+        "Tomographic normalization is not positivity",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "ba8617d1443792e495f15d5416b6cd15add4304f6d907bd88c511426a647a222",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "ba8617d1443792e495f15d5416b6cd15add4304f6d907bd88c511426a647a222",
+      "bytes": 2612,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:finite_state_tomography_admission:v0.1.0",
+        "title": "Tomographic inversion with independent state admission",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "finite_state_tomography_admission",
+          "symbol": "finite_state_tomography_admission",
+          "ascii_symbol": "finite_state_tomography_admission",
+          "notation": "Tomographic inversion with independent state admission",
+          "domain": [
+            "Finite complete Cyc24 MUB carrier and normalized rational data"
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_quantum_physics::tomography; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "Born traces and Wootters-Fields inversion are exact",
+          "State admission independently checks Hermitian trace one and ordered inertia PSD"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_quantum_physics",
+          "module": "tomography",
+          "symbols": [
+            "ExactStateTomographerSystem",
+            "check_density_operator",
+            "reconstruct_admitted_state"
+          ],
+          "required_tests": [
+            "measurement_exact_laws::tomography_normalization_and_algebra_are_separate_from_state_admission"
+          ]
+        },
+        "negative_tests": [
+          "measurement_exact_laws::tomography_normalization_and_algebra_are_separate_from_state_admission"
+        ],
+        "doctrine": {
+          "summary": "Born traces and Wootters-Fields inversion are exact; State admission independently checks Hermitian trace one and ordered inertia PSD.",
+          "non_role": [
+            "Tomographic normalization is not positivity",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:finite_state_tomography_admission:v0.1.0\ntitle: Tomographic inversion with independent state admission\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: finite_state_tomography_admission\n  symbol: finite_state_tomography_admission\n  ascii_symbol: finite_state_tomography_admission\n  notation: Tomographic inversion with independent state admission\n  domain:\n  - Finite complete Cyc24 MUB carrier and normalized rational data\n  codomain:\n    description: Declared finite results of omega_quantum_physics::tomography; exact\n      and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- Born traces and Wootters-Fields inversion are exact\n- State admission independently checks Hermitian trace one and ordered inertia PSD\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_quantum_physics\n  module: tomography\n  symbols:\n  - ExactStateTomographerSystem\n  - check_density_operator\n  - reconstruct_admitted_state\n  required_tests:\n  - measurement_exact_laws::tomography_normalization_and_algebra_are_separate_from_state_admission\nnegative_tests:\n- measurement_exact_laws::tomography_normalization_and_algebra_are_separate_from_state_admission\ndoctrine:\n  summary: Born traces and Wootters-Fields inversion are exact; State admission independently\n    checks Hermitian trace one and ordered inertia PSD.\n  non_role:\n  - Tomographic normalization is not positivity\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/math_finite_state_tomography_admission_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/quantum/math_finite_state_tomography_admission_v0_1_0.contract.yaml": "ba8617d1443792e495f15d5416b6cd15add4304f6d907bd88c511426a647a222"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

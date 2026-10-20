@@ -1,0 +1,1323 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": null,
+  "contract": {
+    "schema_version": "1.0.0",
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/rust/src/holonomy/gauge_fixing.rs",
+      "sha256": "51dc0e374c44fe43c0140c9f6712f7e3ac1e91752377b99348b2f565aeeaa473",
+      "language": "Rust"
+    },
+    "contract_urn": "urn:tfqm:contract:holonomy:gauge_fixing.rs",
+    "status": "draft_requires_semantic_review",
+    "target": "L4A",
+    "profile": "Exact",
+    "purpose": "Finite graph connections, exact matrix transport, loop holonomy and gauge calculations.",
+    "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+    "compilation": {
+      "disabled_by_cfg_any": false,
+      "test_or_support_file": false
+    },
+    "declaration_index": [
+      {
+        "kind": "fn",
+        "name": "cycle_rank",
+        "line": 117,
+        "declaration_line": "pub fn cycle_rank(complex: &CellComplex) -> Result<usize, HolonomyError> {"
+      },
+      {
+        "kind": "struct",
+        "name": "EdgeConnection",
+        "line": 124,
+        "declaration_line": "pub struct EdgeConnection<T: ExactScalar> {"
+      },
+      {
+        "kind": "fn",
+        "name": "new",
+        "line": 131,
+        "declaration_line": "pub fn new("
+      },
+      {
+        "kind": "fn",
+        "name": "from_scalars",
+        "line": 182,
+        "declaration_line": "pub fn from_scalars(complex: &CellComplex, scalars: Vec<T>) -> Result<Self, HolonomyError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "trivial",
+        "line": 190,
+        "declaration_line": "pub fn trivial(complex: &CellComplex, dim: usize) -> Result<Self, HolonomyError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "pure_gauge",
+        "line": 197,
+        "declaration_line": "pub fn pure_gauge("
+      },
+      {
+        "kind": "fn",
+        "name": "from_discrete_connection",
+        "line": 205,
+        "declaration_line": "pub fn from_discrete_connection("
+      },
+      {
+        "kind": "fn",
+        "name": "to_discrete_connection",
+        "line": 218,
+        "declaration_line": "pub fn to_discrete_connection("
+      },
+      {
+        "kind": "fn",
+        "name": "dim",
+        "line": 231,
+        "declaration_line": "pub fn dim(&self) -> usize {"
+      },
+      {
+        "kind": "fn",
+        "name": "edge_count",
+        "line": 235,
+        "declaration_line": "pub fn edge_count(&self) -> usize {"
+      },
+      {
+        "kind": "fn",
+        "name": "value",
+        "line": 250,
+        "declaration_line": "pub fn value(&self, edge: usize) -> Result<&ExactMatrix<T>, HolonomyError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "step",
+        "line": 255,
+        "declaration_line": "pub fn step(&self, step: OrientedStep) -> Result<&ExactMatrix<T>, HolonomyError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "walk",
+        "line": 264,
+        "declaration_line": "pub fn walk("
+      },
+      {
+        "kind": "fn",
+        "name": "loop_holonomy",
+        "line": 318,
+        "declaration_line": "pub fn loop_holonomy("
+      },
+      {
+        "kind": "fn",
+        "name": "gauge_transform",
+        "line": 334,
+        "declaration_line": "pub fn gauge_transform("
+      },
+      {
+        "kind": "fn",
+        "name": "covariant_difference_matrix",
+        "line": 382,
+        "declaration_line": "pub fn covariant_difference_matrix("
+      },
+      {
+        "kind": "fn",
+        "name": "connection_laplacian",
+        "line": 432,
+        "declaration_line": "pub fn connection_laplacian("
+      },
+      {
+        "kind": "fn",
+        "name": "face_holonomy",
+        "line": 473,
+        "declaration_line": "pub fn face_holonomy("
+      },
+      {
+        "kind": "struct",
+        "name": "FundamentalCycle",
+        "line": 539,
+        "declaration_line": "pub struct FundamentalCycle {"
+      },
+      {
+        "kind": "struct",
+        "name": "HolonomyWitness",
+        "line": 547,
+        "declaration_line": "pub struct HolonomyWitness<T: ExactScalar> {"
+      },
+      {
+        "kind": "enum",
+        "name": "PureGaugeVerdict",
+        "line": 554,
+        "declaration_line": "pub enum PureGaugeVerdict<T: ExactScalar> {"
+      },
+      {
+        "kind": "struct",
+        "name": "TreeGauge",
+        "line": 560,
+        "declaration_line": "pub struct TreeGauge<T: ExactScalar> {"
+      },
+      {
+        "kind": "fn",
+        "name": "dim",
+        "line": 571,
+        "declaration_line": "pub fn dim(&self) -> usize {"
+      },
+      {
+        "kind": "fn",
+        "name": "gauge",
+        "line": 575,
+        "declaration_line": "pub fn gauge(&self) -> &[ExactMatrix<T>] {"
+      },
+      {
+        "kind": "fn",
+        "name": "gauge_map",
+        "line": 579,
+        "declaration_line": "pub fn gauge_map(&self) -> BTreeMap<String, ExactMatrix<T>> {"
+      },
+      {
+        "kind": "fn",
+        "name": "transport_from_root",
+        "line": 587,
+        "declaration_line": "pub fn transport_from_root(&self, vertex: usize) -> Result<&ExactMatrix<T>, HolonomyError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "residual",
+        "line": 592,
+        "declaration_line": "pub fn residual(&self) -> &EdgeConnection<T> {"
+      },
+      {
+        "kind": "fn",
+        "name": "residual_value",
+        "line": 596,
+        "declaration_line": "pub fn residual_value(&self, edge: usize) -> Result<&ExactMatrix<T>, HolonomyError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "is_tree_edge",
+        "line": 600,
+        "declaration_line": "pub fn is_tree_edge(&self, edge: usize) -> Result<bool, HolonomyError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "tree_edges",
+        "line": 605,
+        "declaration_line": "pub fn tree_edges(&self) -> Vec<usize> {"
+      },
+      {
+        "kind": "fn",
+        "name": "root_of",
+        "line": 611,
+        "declaration_line": "pub fn root_of(&self, vertex: usize) -> Result<usize, HolonomyError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "cycle_holonomies",
+        "line": 616,
+        "declaration_line": "pub fn cycle_holonomies(&self) -> Vec<(usize, ExactMatrix<T>)> {"
+      },
+      {
+        "kind": "fn",
+        "name": "is_gauge_trivial",
+        "line": 623,
+        "declaration_line": "pub fn is_gauge_trivial(&self) -> bool {"
+      },
+      {
+        "kind": "fn",
+        "name": "fundamental_cycle",
+        "line": 644,
+        "declaration_line": "pub fn fundamental_cycle(&self, edge: usize) -> Result<FundamentalCycle, HolonomyError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "pure_gauge_verdict",
+        "line": 680,
+        "declaration_line": "pub fn pure_gauge_verdict(&self) -> Result<PureGaugeVerdict<T>, HolonomyError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "tree_gauge",
+        "line": 699,
+        "declaration_line": "pub fn tree_gauge<T: ExactScalar>("
+      },
+      {
+        "kind": "fn",
+        "name": "tree_gauge_indexed",
+        "line": 709,
+        "declaration_line": "pub fn tree_gauge_indexed<T: ExactScalar>("
+      },
+      {
+        "kind": "enum",
+        "name": "GaugeEquivalence",
+        "line": 781,
+        "declaration_line": "pub enum GaugeEquivalence<T: ExactScalar> {"
+      },
+      {
+        "kind": "fn",
+        "name": "gauge_equivalence",
+        "line": 787,
+        "declaration_line": "pub fn gauge_equivalence<T: ExactScalar>("
+      },
+      {
+        "kind": "fn",
+        "name": "face_holonomies",
+        "line": 825,
+        "declaration_line": "pub fn face_holonomies<T: ExactScalar>("
+      },
+      {
+        "kind": "enum",
+        "name": "HolonomyVerdict",
+        "line": 837,
+        "declaration_line": "pub enum HolonomyVerdict<T: ExactScalar> {"
+      },
+      {
+        "kind": "fn",
+        "name": "holonomy_verdict",
+        "line": 848,
+        "declaration_line": "pub fn holonomy_verdict<T: ExactScalar>("
+      },
+      {
+        "kind": "fn",
+        "name": "flat_cyclic_gauge_classes",
+        "line": 877,
+        "declaration_line": "pub fn flat_cyclic_gauge_classes("
+      }
+    ],
+    "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+    "requirements": [
+      {
+        "id": "G1",
+        "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+      },
+      {
+        "id": "G2",
+        "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+      },
+      {
+        "id": "G3",
+        "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+      },
+      {
+        "id": "G4",
+        "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+      },
+      {
+        "id": "G5",
+        "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+      }
+    ],
+    "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+    "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+    "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+    "open_obligations": [
+      "Complete source-to-requirement and downstream consumer review is outstanding.",
+      "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+      "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+      "One or more source functions exceed an A structural ceiling; see structure.exceeding_A."
+    ],
+    "evidence": [
+      {
+        "path": "evidence/quality/l4a_six/20261020T074554Z/receipt.json",
+        "sha256": "2a8a7c24316de85ce0c26f04e751fb6ff1ec0ee635defde5c01d76eab3f3fdfd"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T074554Z/source_manifest.json",
+        "sha256": "4d8a488592e2c9166b812ac1188b34baeb4d97de07590f31bf5f006bad071626"
+      },
+      {
+        "path": "code/rust/quality/l4a_six/records.py",
+        "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+      },
+      {
+        "path": "code/rust/quality/l4a_six/specs.json",
+        "sha256": "8d5f25afe4e999b3a92c835b2910d2b81e6bd991b47abbe3ee2a204f1f363a09"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json",
+        "sha256": "f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json",
+        "sha256": "50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T074554Z/metrics.json",
+        "sha256": "a297bf450b9c7f0504e2fc3f3dc6589663d94a5e73dc2d5d6c03079645b97030"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json",
+        "sha256": "b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/mutations.json",
+        "sha256": "00fa693c6f05422ed8b6be92780f5970691494e31b82ecaa20985a6a1e370860"
+      }
+    ]
+  },
+  "current_contract": "83e8c1626bac62c141c9d440734c9e27c88155b6c3fc285d3fa0c8e50a2dd525",
+  "current_scoring": "592634dbd0ae05ddf26a74fae677dbba209b7219c590e94d0e19cd705b1801b2",
+  "contract_history": [
+    {
+      "sha256": "83e8c1626bac62c141c9d440734c9e27c88155b6c3fc285d3fa0c8e50a2dd525",
+      "bytes": 11098,
+      "record": {
+        "schema_version": "1.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/holonomy/gauge_fixing.rs",
+          "sha256": "51dc0e374c44fe43c0140c9f6712f7e3ac1e91752377b99348b2f565aeeaa473",
+          "language": "Rust"
+        },
+        "contract_urn": "urn:tfqm:contract:holonomy:gauge_fixing.rs",
+        "status": "draft_requires_semantic_review",
+        "target": "L4A",
+        "profile": "Exact",
+        "purpose": "Finite graph connections, exact matrix transport, loop holonomy and gauge calculations.",
+        "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+        "compilation": {
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false
+        },
+        "declaration_index": [
+          {
+            "kind": "fn",
+            "name": "cycle_rank",
+            "line": 117,
+            "declaration_line": "pub fn cycle_rank(complex: &CellComplex) -> Result<usize, HolonomyError> {"
+          },
+          {
+            "kind": "struct",
+            "name": "EdgeConnection",
+            "line": 124,
+            "declaration_line": "pub struct EdgeConnection<T: ExactScalar> {"
+          },
+          {
+            "kind": "fn",
+            "name": "new",
+            "line": 131,
+            "declaration_line": "pub fn new("
+          },
+          {
+            "kind": "fn",
+            "name": "from_scalars",
+            "line": 182,
+            "declaration_line": "pub fn from_scalars(complex: &CellComplex, scalars: Vec<T>) -> Result<Self, HolonomyError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "trivial",
+            "line": 190,
+            "declaration_line": "pub fn trivial(complex: &CellComplex, dim: usize) -> Result<Self, HolonomyError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "pure_gauge",
+            "line": 197,
+            "declaration_line": "pub fn pure_gauge("
+          },
+          {
+            "kind": "fn",
+            "name": "from_discrete_connection",
+            "line": 205,
+            "declaration_line": "pub fn from_discrete_connection("
+          },
+          {
+            "kind": "fn",
+            "name": "to_discrete_connection",
+            "line": 218,
+            "declaration_line": "pub fn to_discrete_connection("
+          },
+          {
+            "kind": "fn",
+            "name": "dim",
+            "line": 231,
+            "declaration_line": "pub fn dim(&self) -> usize {"
+          },
+          {
+            "kind": "fn",
+            "name": "edge_count",
+            "line": 235,
+            "declaration_line": "pub fn edge_count(&self) -> usize {"
+          },
+          {
+            "kind": "fn",
+            "name": "value",
+            "line": 250,
+            "declaration_line": "pub fn value(&self, edge: usize) -> Result<&ExactMatrix<T>, HolonomyError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "step",
+            "line": 255,
+            "declaration_line": "pub fn step(&self, step: OrientedStep) -> Result<&ExactMatrix<T>, HolonomyError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "walk",
+            "line": 264,
+            "declaration_line": "pub fn walk("
+          },
+          {
+            "kind": "fn",
+            "name": "loop_holonomy",
+            "line": 318,
+            "declaration_line": "pub fn loop_holonomy("
+          },
+          {
+            "kind": "fn",
+            "name": "gauge_transform",
+            "line": 334,
+            "declaration_line": "pub fn gauge_transform("
+          },
+          {
+            "kind": "fn",
+            "name": "covariant_difference_matrix",
+            "line": 382,
+            "declaration_line": "pub fn covariant_difference_matrix("
+          },
+          {
+            "kind": "fn",
+            "name": "connection_laplacian",
+            "line": 432,
+            "declaration_line": "pub fn connection_laplacian("
+          },
+          {
+            "kind": "fn",
+            "name": "face_holonomy",
+            "line": 473,
+            "declaration_line": "pub fn face_holonomy("
+          },
+          {
+            "kind": "struct",
+            "name": "FundamentalCycle",
+            "line": 539,
+            "declaration_line": "pub struct FundamentalCycle {"
+          },
+          {
+            "kind": "struct",
+            "name": "HolonomyWitness",
+            "line": 547,
+            "declaration_line": "pub struct HolonomyWitness<T: ExactScalar> {"
+          },
+          {
+            "kind": "enum",
+            "name": "PureGaugeVerdict",
+            "line": 554,
+            "declaration_line": "pub enum PureGaugeVerdict<T: ExactScalar> {"
+          },
+          {
+            "kind": "struct",
+            "name": "TreeGauge",
+            "line": 560,
+            "declaration_line": "pub struct TreeGauge<T: ExactScalar> {"
+          },
+          {
+            "kind": "fn",
+            "name": "dim",
+            "line": 571,
+            "declaration_line": "pub fn dim(&self) -> usize {"
+          },
+          {
+            "kind": "fn",
+            "name": "gauge",
+            "line": 575,
+            "declaration_line": "pub fn gauge(&self) -> &[ExactMatrix<T>] {"
+          },
+          {
+            "kind": "fn",
+            "name": "gauge_map",
+            "line": 579,
+            "declaration_line": "pub fn gauge_map(&self) -> BTreeMap<String, ExactMatrix<T>> {"
+          },
+          {
+            "kind": "fn",
+            "name": "transport_from_root",
+            "line": 587,
+            "declaration_line": "pub fn transport_from_root(&self, vertex: usize) -> Result<&ExactMatrix<T>, HolonomyError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "residual",
+            "line": 592,
+            "declaration_line": "pub fn residual(&self) -> &EdgeConnection<T> {"
+          },
+          {
+            "kind": "fn",
+            "name": "residual_value",
+            "line": 596,
+            "declaration_line": "pub fn residual_value(&self, edge: usize) -> Result<&ExactMatrix<T>, HolonomyError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "is_tree_edge",
+            "line": 600,
+            "declaration_line": "pub fn is_tree_edge(&self, edge: usize) -> Result<bool, HolonomyError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "tree_edges",
+            "line": 605,
+            "declaration_line": "pub fn tree_edges(&self) -> Vec<usize> {"
+          },
+          {
+            "kind": "fn",
+            "name": "root_of",
+            "line": 611,
+            "declaration_line": "pub fn root_of(&self, vertex: usize) -> Result<usize, HolonomyError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "cycle_holonomies",
+            "line": 616,
+            "declaration_line": "pub fn cycle_holonomies(&self) -> Vec<(usize, ExactMatrix<T>)> {"
+          },
+          {
+            "kind": "fn",
+            "name": "is_gauge_trivial",
+            "line": 623,
+            "declaration_line": "pub fn is_gauge_trivial(&self) -> bool {"
+          },
+          {
+            "kind": "fn",
+            "name": "fundamental_cycle",
+            "line": 644,
+            "declaration_line": "pub fn fundamental_cycle(&self, edge: usize) -> Result<FundamentalCycle, HolonomyError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "pure_gauge_verdict",
+            "line": 680,
+            "declaration_line": "pub fn pure_gauge_verdict(&self) -> Result<PureGaugeVerdict<T>, HolonomyError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "tree_gauge",
+            "line": 699,
+            "declaration_line": "pub fn tree_gauge<T: ExactScalar>("
+          },
+          {
+            "kind": "fn",
+            "name": "tree_gauge_indexed",
+            "line": 709,
+            "declaration_line": "pub fn tree_gauge_indexed<T: ExactScalar>("
+          },
+          {
+            "kind": "enum",
+            "name": "GaugeEquivalence",
+            "line": 781,
+            "declaration_line": "pub enum GaugeEquivalence<T: ExactScalar> {"
+          },
+          {
+            "kind": "fn",
+            "name": "gauge_equivalence",
+            "line": 787,
+            "declaration_line": "pub fn gauge_equivalence<T: ExactScalar>("
+          },
+          {
+            "kind": "fn",
+            "name": "face_holonomies",
+            "line": 825,
+            "declaration_line": "pub fn face_holonomies<T: ExactScalar>("
+          },
+          {
+            "kind": "enum",
+            "name": "HolonomyVerdict",
+            "line": 837,
+            "declaration_line": "pub enum HolonomyVerdict<T: ExactScalar> {"
+          },
+          {
+            "kind": "fn",
+            "name": "holonomy_verdict",
+            "line": 848,
+            "declaration_line": "pub fn holonomy_verdict<T: ExactScalar>("
+          },
+          {
+            "kind": "fn",
+            "name": "flat_cyclic_gauge_classes",
+            "line": 877,
+            "declaration_line": "pub fn flat_cyclic_gauge_classes("
+          }
+        ],
+        "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+        "requirements": [
+          {
+            "id": "G1",
+            "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+          },
+          {
+            "id": "G2",
+            "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+          },
+          {
+            "id": "G3",
+            "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+          },
+          {
+            "id": "G4",
+            "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+          },
+          {
+            "id": "G5",
+            "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+          }
+        ],
+        "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+        "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+        "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+        "open_obligations": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+          "One or more source functions exceed an A structural ceiling; see structure.exceeding_A."
+        ],
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/receipt.json",
+            "sha256": "2a8a7c24316de85ce0c26f04e751fb6ff1ec0ee635defde5c01d76eab3f3fdfd"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/source_manifest.json",
+            "sha256": "4d8a488592e2c9166b812ac1188b34baeb4d97de07590f31bf5f006bad071626"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "8d5f25afe4e999b3a92c835b2910d2b81e6bd991b47abbe3ee2a204f1f363a09"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json",
+            "sha256": "f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json",
+            "sha256": "50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/metrics.json",
+            "sha256": "a297bf450b9c7f0504e2fc3f3dc6589663d94a5e73dc2d5d6c03079645b97030"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json",
+            "sha256": "b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/mutations.json",
+            "sha256": "00fa693c6f05422ed8b6be92780f5970691494e31b82ecaa20985a6a1e370860"
+          }
+        ]
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/holonomy/gauge_fixing.rs\",\n    \"sha256\": \"51dc0e374c44fe43c0140c9f6712f7e3ac1e91752377b99348b2f565aeeaa473\",\n    \"language\": \"Rust\"\n  },\n  \"contract_urn\": \"urn:tfqm:contract:holonomy:gauge_fixing.rs\",\n  \"status\": \"draft_requires_semantic_review\",\n  \"target\": \"L4A\",\n  \"profile\": \"Exact\",\n  \"purpose\": \"Finite graph connections, exact matrix transport, loop holonomy and gauge calculations.\",\n  \"subject_role\": \"Provisional bounded-domain classification; requires individual capability review before promotion.\",\n  \"compilation\": {\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false\n  },\n  \"declaration_index\": [\n    {\n      \"kind\": \"fn\",\n      \"name\": \"cycle_rank\",\n      \"line\": 117,\n      \"declaration_line\": \"pub fn cycle_rank(complex: &CellComplex) -> Result<usize, HolonomyError> {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"EdgeConnection\",\n      \"line\": 124,\n      \"declaration_line\": \"pub struct EdgeConnection<T: ExactScalar> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"new\",\n      \"line\": 131,\n      \"declaration_line\": \"pub fn new(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"from_scalars\",\n      \"line\": 182,\n      \"declaration_line\": \"pub fn from_scalars(complex: &CellComplex, scalars: Vec<T>) -> Result<Self, HolonomyError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"trivial\",\n      \"line\": 190,\n      \"declaration_line\": \"pub fn trivial(complex: &CellComplex, dim: usize) -> Result<Self, HolonomyError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"pure_gauge\",\n      \"line\": 197,\n      \"declaration_line\": \"pub fn pure_gauge(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"from_discrete_connection\",\n      \"line\": 205,\n      \"declaration_line\": \"pub fn from_discrete_connection(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"to_discrete_connection\",\n      \"line\": 218,\n      \"declaration_line\": \"pub fn to_discrete_connection(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"dim\",\n      \"line\": 231,\n      \"declaration_line\": \"pub fn dim(&self) -> usize {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"edge_count\",\n      \"line\": 235,\n      \"declaration_line\": \"pub fn edge_count(&self) -> usize {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"value\",\n      \"line\": 250,\n      \"declaration_line\": \"pub fn value(&self, edge: usize) -> Result<&ExactMatrix<T>, HolonomyError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"step\",\n      \"line\": 255,\n      \"declaration_line\": \"pub fn step(&self, step: OrientedStep) -> Result<&ExactMatrix<T>, HolonomyError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"walk\",\n      \"line\": 264,\n      \"declaration_line\": \"pub fn walk(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"loop_holonomy\",\n      \"line\": 318,\n      \"declaration_line\": \"pub fn loop_holonomy(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"gauge_transform\",\n      \"line\": 334,\n      \"declaration_line\": \"pub fn gauge_transform(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"covariant_difference_matrix\",\n      \"line\": 382,\n      \"declaration_line\": \"pub fn covariant_difference_matrix(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"connection_laplacian\",\n      \"line\": 432,\n      \"declaration_line\": \"pub fn connection_laplacian(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"face_holonomy\",\n      \"line\": 473,\n      \"declaration_line\": \"pub fn face_holonomy(\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"FundamentalCycle\",\n      \"line\": 539,\n      \"declaration_line\": \"pub struct FundamentalCycle {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"HolonomyWitness\",\n      \"line\": 547,\n      \"declaration_line\": \"pub struct HolonomyWitness<T: ExactScalar> {\"\n    },\n    {\n      \"kind\": \"enum\",\n      \"name\": \"PureGaugeVerdict\",\n      \"line\": 554,\n      \"declaration_line\": \"pub enum PureGaugeVerdict<T: ExactScalar> {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"TreeGauge\",\n      \"line\": 560,\n      \"declaration_line\": \"pub struct TreeGauge<T: ExactScalar> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"dim\",\n      \"line\": 571,\n      \"declaration_line\": \"pub fn dim(&self) -> usize {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"gauge\",\n      \"line\": 575,\n      \"declaration_line\": \"pub fn gauge(&self) -> &[ExactMatrix<T>] {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"gauge_map\",\n      \"line\": 579,\n      \"declaration_line\": \"pub fn gauge_map(&self) -> BTreeMap<String, ExactMatrix<T>> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"transport_from_root\",\n      \"line\": 587,\n      \"declaration_line\": \"pub fn transport_from_root(&self, vertex: usize) -> Result<&ExactMatrix<T>, HolonomyError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"residual\",\n      \"line\": 592,\n      \"declaration_line\": \"pub fn residual(&self) -> &EdgeConnection<T> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"residual_value\",\n      \"line\": 596,\n      \"declaration_line\": \"pub fn residual_value(&self, edge: usize) -> Result<&ExactMatrix<T>, HolonomyError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"is_tree_edge\",\n      \"line\": 600,\n      \"declaration_line\": \"pub fn is_tree_edge(&self, edge: usize) -> Result<bool, HolonomyError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"tree_edges\",\n      \"line\": 605,\n      \"declaration_line\": \"pub fn tree_edges(&self) -> Vec<usize> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"root_of\",\n      \"line\": 611,\n      \"declaration_line\": \"pub fn root_of(&self, vertex: usize) -> Result<usize, HolonomyError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"cycle_holonomies\",\n      \"line\": 616,\n      \"declaration_line\": \"pub fn cycle_holonomies(&self) -> Vec<(usize, ExactMatrix<T>)> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"is_gauge_trivial\",\n      \"line\": 623,\n      \"declaration_line\": \"pub fn is_gauge_trivial(&self) -> bool {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"fundamental_cycle\",\n      \"line\": 644,\n      \"declaration_line\": \"pub fn fundamental_cycle(&self, edge: usize) -> Result<FundamentalCycle, HolonomyError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"pure_gauge_verdict\",\n      \"line\": 680,\n      \"declaration_line\": \"pub fn pure_gauge_verdict(&self) -> Result<PureGaugeVerdict<T>, HolonomyError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"tree_gauge\",\n      \"line\": 699,\n      \"declaration_line\": \"pub fn tree_gauge<T: ExactScalar>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"tree_gauge_indexed\",\n      \"line\": 709,\n      \"declaration_line\": \"pub fn tree_gauge_indexed<T: ExactScalar>(\"\n    },\n    {\n      \"kind\": \"enum\",\n      \"name\": \"GaugeEquivalence\",\n      \"line\": 781,\n      \"declaration_line\": \"pub enum GaugeEquivalence<T: ExactScalar> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"gauge_equivalence\",\n      \"line\": 787,\n      \"declaration_line\": \"pub fn gauge_equivalence<T: ExactScalar>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"face_holonomies\",\n      \"line\": 825,\n      \"declaration_line\": \"pub fn face_holonomies<T: ExactScalar>(\"\n    },\n    {\n      \"kind\": \"enum\",\n      \"name\": \"HolonomyVerdict\",\n      \"line\": 837,\n      \"declaration_line\": \"pub enum HolonomyVerdict<T: ExactScalar> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"holonomy_verdict\",\n      \"line\": 848,\n      \"declaration_line\": \"pub fn holonomy_verdict<T: ExactScalar>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"flat_cyclic_gauge_classes\",\n      \"line\": 877,\n      \"declaration_line\": \"pub fn flat_cyclic_gauge_classes(\"\n    }\n  ],\n  \"declaration_index_scope\": \"Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.\",\n  \"requirements\": [\n    {\n      \"id\": \"G1\",\n      \"requirement\": \"Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries.\"\n    },\n    {\n      \"id\": \"G2\",\n      \"requirement\": \"Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path.\"\n    },\n    {\n      \"id\": \"G3\",\n      \"requirement\": \"Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions.\"\n    },\n    {\n      \"id\": \"G4\",\n      \"requirement\": \"Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A.\"\n    },\n    {\n      \"id\": \"G5\",\n      \"requirement\": \"Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately.\"\n    }\n  ],\n  \"admission_policy\": \"Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.\",\n  \"resource_boundary\": \"No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.\",\n  \"authority_ceiling\": \"Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.\",\n  \"open_obligations\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\",\n    \"One or more source functions exceed an A structural ceiling; see structure.exceeding_A.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/receipt.json\",\n      \"sha256\": \"2a8a7c24316de85ce0c26f04e751fb6ff1ec0ee635defde5c01d76eab3f3fdfd\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/source_manifest.json\",\n      \"sha256\": \"4d8a488592e2c9166b812ac1188b34baeb4d97de07590f31bf5f006bad071626\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"8d5f25afe4e999b3a92c835b2910d2b81e6bd991b47abbe3ee2a204f1f363a09\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json\",\n      \"sha256\": \"f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json\",\n      \"sha256\": \"50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/metrics.json\",\n      \"sha256\": \"a297bf450b9c7f0504e2fc3f3dc6589663d94a5e73dc2d5d6c03079645b97030\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json\",\n      \"sha256\": \"b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/mutations.json\",\n      \"sha256\": \"00fa693c6f05422ed8b6be92780f5970691494e31b82ecaa20985a6a1e370860\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_six/20261020T104119Z-scalar-activation/previous_assessment/code/rust/src/holonomy/gauge_fixing.rs.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "592634dbd0ae05ddf26a74fae677dbba209b7219c590e94d0e19cd705b1801b2",
+      "bytes": 16078,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/holonomy/gauge_fixing.rs",
+          "sha256": "51dc0e374c44fe43c0140c9f6712f7e3ac1e91752377b99348b2f565aeeaa473",
+          "language": "Rust"
+        },
+        "profile": "Exact",
+        "level": "L3",
+        "level_basis": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+        "engineering_target": "A",
+        "requested_target": "L4A",
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "composite_grade": null,
+        "score_token": null,
+        "is_complete": false,
+        "grade_ceiling": "D",
+        "evaluation_timestamp": "2026-10-20T08:25:06.744531+00:00",
+        "grade_ceiling_basis": "Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.",
+        "contract": {
+          "path": "code/rust/src/holonomy/gauge_fixing.rs.contract.yaml",
+          "status": "draft_requires_semantic_review",
+          "sha256": "83e8c1626bac62c141c9d440734c9e27c88155b6c3fc285d3fa0c8e50a2dd525"
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/receipt.json",
+            "sha256": "2a8a7c24316de85ce0c26f04e751fb6ff1ec0ee635defde5c01d76eab3f3fdfd"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/source_manifest.json",
+            "sha256": "4d8a488592e2c9166b812ac1188b34baeb4d97de07590f31bf5f006bad071626"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "8d5f25afe4e999b3a92c835b2910d2b81e6bd991b47abbe3ee2a204f1f363a09"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json",
+            "sha256": "f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json",
+            "sha256": "50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/metrics.json",
+            "sha256": "a297bf450b9c7f0504e2fc3f3dc6589663d94a5e73dc2d5d6c03079645b97030"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json",
+            "sha256": "b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/mutations.json",
+            "sha256": "00fa693c6f05422ed8b6be92780f5970691494e31b82ecaa20985a6a1e370860"
+          }
+        ],
+        "verification": {
+          "baseline": {
+            "command": [
+              "cargo",
+              "test",
+              "--offline",
+              "--target-dir",
+              "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T074603Z-mutations\\build",
+              "--quiet",
+              "-p",
+              "tfqm_holonomy"
+            ],
+            "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T074603Z-mutations",
+            "disk_observation": {
+              "completed_cache_file_bytes": 384085379,
+              "free_after": 3291734016,
+              "free_before": 3608018944,
+              "scope": "Endpoint observations only; not a peak-space or external-activity guarantee."
+            },
+            "elapsed_seconds": 42.969,
+            "environment": {
+              "CARGO_BUILD_JOBS": "2",
+              "CARGO_INCREMENTAL": "0"
+            },
+            "exit_code": 0,
+            "log": "evidence/quality/l4a_six/20261020T074603Z-mutations/tfqm_holonomy-baseline.log",
+            "log_sha256": "2c903447babb9ecf662956a08175e142a3c069329abbcc817cb36101cbd48944",
+            "package": "tfqm_holonomy",
+            "timed_out": false
+          },
+          "sources_unchanged": true,
+          "doctests": [],
+          "composition_runs": [],
+          "differential_controls": [],
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false,
+          "dependency_sources_unchanged": true,
+          "compiled_scope": "Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.",
+          "designated_mutations": [],
+          "designated_challenges_present": true,
+          "linked_challenges": {},
+          "mutation_campaign": {
+            "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json",
+            "sha256": "b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08"
+          },
+          "mutation_restoration_baselines_ok": null,
+          "reproduced_defects": []
+        },
+        "mutation_accounting": {
+          "killed": 0,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": null
+        },
+        "structure": {
+          "tool": "syn source AST (see pinned metric_tool_sources in receipt)",
+          "functions": [
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 2,
+              "line": 12,
+              "name": "edge_endpoints",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 39,
+              "name": "check_edge",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 47,
+              "name": "check_vertex",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 7,
+              "cognitive_upper_bound": 13,
+              "control_nesting": 4,
+              "line": 73,
+              "name": "spanning_forest",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 117,
+              "name": "cycle_rank",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 11,
+              "cognitive_upper_bound": 11,
+              "control_nesting": 3,
+              "line": 131,
+              "name": "new",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 182,
+              "name": "from_scalars",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 190,
+              "name": "trivial",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 197,
+              "name": "pure_gauge",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 205,
+              "name": "from_discrete_connection",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 218,
+              "name": "to_discrete_connection",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 231,
+              "name": "dim",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 235,
+              "name": "edge_count",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 239,
+              "name": "check_complex",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 250,
+              "name": "value",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 255,
+              "name": "step",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 264,
+              "name": "walk",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 12,
+              "cognitive_upper_bound": 6,
+              "control_nesting": 2,
+              "line": 275,
+              "name": "walk_with_endpoints",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 318,
+              "name": "loop_holonomy",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 15,
+              "cognitive_upper_bound": 6,
+              "control_nesting": 2,
+              "line": 334,
+              "name": "gauge_transform",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 16,
+              "cognitive_upper_bound": 7,
+              "control_nesting": 3,
+              "line": 382,
+              "name": "covariant_difference_matrix",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 12,
+              "cognitive_upper_bound": 8,
+              "control_nesting": 3,
+              "line": 432,
+              "name": "connection_laplacian",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 473,
+              "name": "face_holonomy",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 6,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 483,
+              "name": "face_holonomy_with_endpoints",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 5,
+              "control_nesting": 2,
+              "line": 520,
+              "name": "refuse_antiparallel_edges",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 571,
+              "name": "dim",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 575,
+              "name": "gauge",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 579,
+              "name": "gauge_map",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 587,
+              "name": "transport_from_root",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 592,
+              "name": "residual",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 596,
+              "name": "residual_value",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 600,
+              "name": "is_tree_edge",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 605,
+              "name": "tree_edges",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 611,
+              "name": "root_of",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 616,
+              "name": "cycle_holonomies",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 2,
+              "line": 623,
+              "name": "is_gauge_trivial",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 630,
+              "name": "steps_down_to",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 4,
+              "control_nesting": 2,
+              "line": 644,
+              "name": "fundamental_cycle",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 680,
+              "name": "pure_gauge_verdict",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 699,
+              "name": "tree_gauge",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 20,
+              "cognitive_upper_bound": 5,
+              "control_nesting": 2,
+              "line": 709,
+              "name": "tree_gauge_indexed",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 15,
+              "cognitive_upper_bound": 8,
+              "control_nesting": 2,
+              "line": 787,
+              "name": "gauge_equivalence",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 825,
+              "name": "face_holonomies",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 6,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 848,
+              "name": "holonomy_verdict",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 870,
+              "name": "gcd",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 23,
+              "cognitive_upper_bound": 19,
+              "control_nesting": 3,
+              "line": 877,
+              "name": "flat_cyclic_gauge_classes",
+              "opaque_macros": []
+            }
+          ],
+          "exceeding_A": [
+            {
+              "ccn": 7,
+              "cognitive_upper_bound": 13,
+              "control_nesting": 4,
+              "line": 73,
+              "name": "spanning_forest",
+              "opaque_macros": [],
+              "metric_ceiling": "B"
+            },
+            {
+              "ccn": 11,
+              "cognitive_upper_bound": 11,
+              "control_nesting": 3,
+              "line": 131,
+              "name": "new",
+              "opaque_macros": [],
+              "metric_ceiling": "B"
+            },
+            {
+              "ccn": 12,
+              "cognitive_upper_bound": 6,
+              "control_nesting": 2,
+              "line": 275,
+              "name": "walk_with_endpoints",
+              "opaque_macros": [],
+              "metric_ceiling": "B"
+            },
+            {
+              "ccn": 15,
+              "cognitive_upper_bound": 6,
+              "control_nesting": 2,
+              "line": 334,
+              "name": "gauge_transform",
+              "opaque_macros": [],
+              "metric_ceiling": "B"
+            },
+            {
+              "ccn": 16,
+              "cognitive_upper_bound": 7,
+              "control_nesting": 3,
+              "line": 382,
+              "name": "covariant_difference_matrix",
+              "opaque_macros": [],
+              "metric_ceiling": "C"
+            },
+            {
+              "ccn": 12,
+              "cognitive_upper_bound": 8,
+              "control_nesting": 3,
+              "line": 432,
+              "name": "connection_laplacian",
+              "opaque_macros": [],
+              "metric_ceiling": "B"
+            },
+            {
+              "ccn": 20,
+              "cognitive_upper_bound": 5,
+              "control_nesting": 2,
+              "line": 709,
+              "name": "tree_gauge_indexed",
+              "opaque_macros": [],
+              "metric_ceiling": "C"
+            },
+            {
+              "ccn": 15,
+              "cognitive_upper_bound": 8,
+              "control_nesting": 2,
+              "line": 787,
+              "name": "gauge_equivalence",
+              "opaque_macros": [],
+              "metric_ceiling": "B"
+            },
+            {
+              "ccn": 23,
+              "cognitive_upper_bound": 19,
+              "control_nesting": 3,
+              "line": 877,
+              "name": "flat_cyclic_gauge_classes",
+              "opaque_macros": [],
+              "metric_ceiling": "D"
+            }
+          ],
+          "metric_ceiling": "D",
+          "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
+        },
+        "open_findings": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+          "One or more source functions exceed an A structural ceiling; see structure.exceeding_A."
+        ],
+        "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts."
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/holonomy/gauge_fixing.rs\",\n    \"sha256\": \"51dc0e374c44fe43c0140c9f6712f7e3ac1e91752377b99348b2f565aeeaa473\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"level\": \"L3\",\n  \"level_basis\": \"Provisional bounded-domain classification; requires individual capability review before promotion.\",\n  \"engineering_target\": \"A\",\n  \"requested_target\": \"L4A\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"is_complete\": false,\n  \"grade_ceiling\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-20T08:25:06.744531+00:00\",\n  \"grade_ceiling_basis\": \"Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.\",\n  \"contract\": {\n    \"path\": \"code/rust/src/holonomy/gauge_fixing.rs.contract.yaml\",\n    \"status\": \"draft_requires_semantic_review\",\n    \"sha256\": \"83e8c1626bac62c141c9d440734c9e27c88155b6c3fc285d3fa0c8e50a2dd525\"\n  },\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/receipt.json\",\n      \"sha256\": \"2a8a7c24316de85ce0c26f04e751fb6ff1ec0ee635defde5c01d76eab3f3fdfd\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/source_manifest.json\",\n      \"sha256\": \"4d8a488592e2c9166b812ac1188b34baeb4d97de07590f31bf5f006bad071626\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"8d5f25afe4e999b3a92c835b2910d2b81e6bd991b47abbe3ee2a204f1f363a09\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json\",\n      \"sha256\": \"f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json\",\n      \"sha256\": \"50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/metrics.json\",\n      \"sha256\": \"a297bf450b9c7f0504e2fc3f3dc6589663d94a5e73dc2d5d6c03079645b97030\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json\",\n      \"sha256\": \"b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/mutations.json\",\n      \"sha256\": \"00fa693c6f05422ed8b6be92780f5970691494e31b82ecaa20985a6a1e370860\"\n    }\n  ],\n  \"verification\": {\n    \"baseline\": {\n      \"command\": [\n        \"cargo\",\n        \"test\",\n        \"--offline\",\n        \"--target-dir\",\n        \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-six\\\\20261020T074603Z-mutations\\\\build\",\n        \"--quiet\",\n        \"-p\",\n        \"tfqm_holonomy\"\n      ],\n      \"cwd\": \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-six\\\\20261020T074603Z-mutations\",\n      \"disk_observation\": {\n        \"completed_cache_file_bytes\": 384085379,\n        \"free_after\": 3291734016,\n        \"free_before\": 3608018944,\n        \"scope\": \"Endpoint observations only; not a peak-space or external-activity guarantee.\"\n      },\n      \"elapsed_seconds\": 42.969,\n      \"environment\": {\n        \"CARGO_BUILD_JOBS\": \"2\",\n        \"CARGO_INCREMENTAL\": \"0\"\n      },\n      \"exit_code\": 0,\n      \"log\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/tfqm_holonomy-baseline.log\",\n      \"log_sha256\": \"2c903447babb9ecf662956a08175e142a3c069329abbcc817cb36101cbd48944\",\n      \"package\": \"tfqm_holonomy\",\n      \"timed_out\": false\n    },\n    \"sources_unchanged\": true,\n    \"doctests\": [],\n    \"composition_runs\": [],\n    \"differential_controls\": [],\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false,\n    \"dependency_sources_unchanged\": true,\n    \"compiled_scope\": \"Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.\",\n    \"designated_mutations\": [],\n    \"designated_challenges_present\": true,\n    \"linked_challenges\": {},\n    \"mutation_campaign\": {\n      \"path\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json\",\n      \"sha256\": \"b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08\"\n    },\n    \"mutation_restoration_baselines_ok\": null,\n    \"reproduced_defects\": []\n  },\n  \"mutation_accounting\": {\n    \"killed\": 0,\n    \"survived\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"unrun\": 0,\n    \"conservative_ratio\": null\n  },\n  \"structure\": {\n    \"tool\": \"syn source AST (see pinned metric_tool_sources in receipt)\",\n    \"functions\": [\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 2,\n        \"line\": 12,\n        \"name\": \"edge_endpoints\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 39,\n        \"name\": \"check_edge\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 47,\n        \"name\": \"check_vertex\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 7,\n        \"cognitive_upper_bound\": 13,\n        \"control_nesting\": 4,\n        \"line\": 73,\n        \"name\": \"spanning_forest\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 117,\n        \"name\": \"cycle_rank\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 11,\n        \"cognitive_upper_bound\": 11,\n        \"control_nesting\": 3,\n        \"line\": 131,\n        \"name\": \"new\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 182,\n        \"name\": \"from_scalars\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 190,\n        \"name\": \"trivial\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 197,\n        \"name\": \"pure_gauge\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 205,\n        \"name\": \"from_discrete_connection\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 218,\n        \"name\": \"to_discrete_connection\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 231,\n        \"name\": \"dim\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 235,\n        \"name\": \"edge_count\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 239,\n        \"name\": \"check_complex\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 250,\n        \"name\": \"value\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 255,\n        \"name\": \"step\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 264,\n        \"name\": \"walk\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 12,\n        \"cognitive_upper_bound\": 6,\n        \"control_nesting\": 2,\n        \"line\": 275,\n        \"name\": \"walk_with_endpoints\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 318,\n        \"name\": \"loop_holonomy\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 15,\n        \"cognitive_upper_bound\": 6,\n        \"control_nesting\": 2,\n        \"line\": 334,\n        \"name\": \"gauge_transform\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 16,\n        \"cognitive_upper_bound\": 7,\n        \"control_nesting\": 3,\n        \"line\": 382,\n        \"name\": \"covariant_difference_matrix\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 12,\n        \"cognitive_upper_bound\": 8,\n        \"control_nesting\": 3,\n        \"line\": 432,\n        \"name\": \"connection_laplacian\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 473,\n        \"name\": \"face_holonomy\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 483,\n        \"name\": \"face_holonomy_with_endpoints\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 5,\n        \"control_nesting\": 2,\n        \"line\": 520,\n        \"name\": \"refuse_antiparallel_edges\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 571,\n        \"name\": \"dim\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 575,\n        \"name\": \"gauge\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 579,\n        \"name\": \"gauge_map\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 587,\n        \"name\": \"transport_from_root\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 592,\n        \"name\": \"residual\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 596,\n        \"name\": \"residual_value\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 600,\n        \"name\": \"is_tree_edge\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 605,\n        \"name\": \"tree_edges\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 611,\n        \"name\": \"root_of\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 616,\n        \"name\": \"cycle_holonomies\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 2,\n        \"line\": 623,\n        \"name\": \"is_gauge_trivial\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 630,\n        \"name\": \"steps_down_to\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 2,\n        \"line\": 644,\n        \"name\": \"fundamental_cycle\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 680,\n        \"name\": \"pure_gauge_verdict\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 699,\n        \"name\": \"tree_gauge\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 20,\n        \"cognitive_upper_bound\": 5,\n        \"control_nesting\": 2,\n        \"line\": 709,\n        \"name\": \"tree_gauge_indexed\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 15,\n        \"cognitive_upper_bound\": 8,\n        \"control_nesting\": 2,\n        \"line\": 787,\n        \"name\": \"gauge_equivalence\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 825,\n        \"name\": \"face_holonomies\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 848,\n        \"name\": \"holonomy_verdict\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 870,\n        \"name\": \"gcd\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 23,\n        \"cognitive_upper_bound\": 19,\n        \"control_nesting\": 3,\n        \"line\": 877,\n        \"name\": \"flat_cyclic_gauge_classes\",\n        \"opaque_macros\": []\n      }\n    ],\n    \"exceeding_A\": [\n      {\n        \"ccn\": 7,\n        \"cognitive_upper_bound\": 13,\n        \"control_nesting\": 4,\n        \"line\": 73,\n        \"name\": \"spanning_forest\",\n        \"opaque_macros\": [],\n        \"metric_ceiling\": \"B\"\n      },\n      {\n        \"ccn\": 11,\n        \"cognitive_upper_bound\": 11,\n        \"control_nesting\": 3,\n        \"line\": 131,\n        \"name\": \"new\",\n        \"opaque_macros\": [],\n        \"metric_ceiling\": \"B\"\n      },\n      {\n        \"ccn\": 12,\n        \"cognitive_upper_bound\": 6,\n        \"control_nesting\": 2,\n        \"line\": 275,\n        \"name\": \"walk_with_endpoints\",\n        \"opaque_macros\": [],\n        \"metric_ceiling\": \"B\"\n      },\n      {\n        \"ccn\": 15,\n        \"cognitive_upper_bound\": 6,\n        \"control_nesting\": 2,\n        \"line\": 334,\n        \"name\": \"gauge_transform\",\n        \"opaque_macros\": [],\n        \"metric_ceiling\": \"B\"\n      },\n      {\n        \"ccn\": 16,\n        \"cognitive_upper_bound\": 7,\n        \"control_nesting\": 3,\n        \"line\": 382,\n        \"name\": \"covariant_difference_matrix\",\n        \"opaque_macros\": [],\n        \"metric_ceiling\": \"C\"\n      },\n      {\n        \"ccn\": 12,\n        \"cognitive_upper_bound\": 8,\n        \"control_nesting\": 3,\n        \"line\": 432,\n        \"name\": \"connection_laplacian\",\n        \"opaque_macros\": [],\n        \"metric_ceiling\": \"B\"\n      },\n      {\n        \"ccn\": 20,\n        \"cognitive_upper_bound\": 5,\n        \"control_nesting\": 2,\n        \"line\": 709,\n        \"name\": \"tree_gauge_indexed\",\n        \"opaque_macros\": [],\n        \"metric_ceiling\": \"C\"\n      },\n      {\n        \"ccn\": 15,\n        \"cognitive_upper_bound\": 8,\n        \"control_nesting\": 2,\n        \"line\": 787,\n        \"name\": \"gauge_equivalence\",\n        \"opaque_macros\": [],\n        \"metric_ceiling\": \"B\"\n      },\n      {\n        \"ccn\": 23,\n        \"cognitive_upper_bound\": 19,\n        \"control_nesting\": 3,\n        \"line\": 877,\n        \"name\": \"flat_cyclic_gauge_classes\",\n        \"opaque_macros\": [],\n        \"metric_ceiling\": \"D\"\n      }\n    ],\n    \"metric_ceiling\": \"D\",\n    \"scope\": \"Explicit source bodies only; opaque macros and compiler expansion remain unassessed.\"\n  },\n  \"open_findings\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\",\n    \"One or more source functions exceed an A structural ceiling; see structure.exceeding_A.\"\n  ],\n  \"evaluation_timestamp_basis\": \"Start of the latest bound assessment execution; execution durations are recorded in receipts.\"\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_six/20261020T104119Z-scalar-activation/previous_assessment/code/rust/src/holonomy/gauge_fixing.rs.scoring.yaml"
+      ]
+    }
+  ],
+  "legacy_paths": {
+    "evidence/quality/l4a_six/20261020T104119Z-scalar-activation/previous_assessment/code/rust/src/holonomy/gauge_fixing.rs.contract.yaml": "83e8c1626bac62c141c9d440734c9e27c88155b6c3fc285d3fa0c8e50a2dd525",
+    "evidence/quality/l4a_six/20261020T104119Z-scalar-activation/previous_assessment/code/rust/src/holonomy/gauge_fixing.rs.scoring.yaml": "592634dbd0ae05ddf26a74fae677dbba209b7219c590e94d0e19cd705b1801b2"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

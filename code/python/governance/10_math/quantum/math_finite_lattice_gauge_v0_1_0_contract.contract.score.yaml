@@ -1,0 +1,205 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/quantum/math_finite_lattice_gauge_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:finite_lattice_gauge:v0.1.0",
+    "title": "Finite Ising and Z2 Gauss carriers",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "finite_lattice_gauge",
+      "symbol": "finite_lattice_gauge",
+      "ascii_symbol": "finite_lattice_gauge",
+      "notation": "Finite Ising and Z2 Gauss carriers",
+      "domain": [
+        "Open TFIM1..8 sites and admitted finite F2 chain complex."
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_quantum_physics::lattice_gauge_manybody_benchmark; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "The bit-basis Ising Hamiltonian is computed exactly.",
+      "Gauss states are the kernel of d1 and have dimension2^(E-rank d1).",
+      "Magnetic cycle flips preserve Gauss constraints and noncycles are refused."
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_quantum_physics",
+      "module": "lattice_gauge_manybody_benchmark",
+      "symbols": [
+        "open_tfim",
+        "Z2LatticeGauge"
+      ],
+      "required_tests": [
+        "finite_ising_spectrum_and_gauss_constraints_use_declared_carriers"
+      ]
+    },
+    "negative_tests": [
+      "finite_ising_spectrum_and_gauss_constraints_use_declared_carriers"
+    ],
+    "doctrine": {
+      "summary": "The bit-basis Ising Hamiltonian is computed exactly.; Gauss states are the kernel of d1 and have dimension2^(E-rank d1).; Magnetic cycle flips preserve Gauss constraints and noncycles are refused..",
+      "non_role": [
+        "Finite physical declarations do not confer program admission or certify an undeclared continuum limit.",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "87384f923699da7a116b1c8fed09d9bba1fba62fcd957d750a097ce29cd87552",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "87384f923699da7a116b1c8fed09d9bba1fba62fcd957d750a097ce29cd87552",
+      "bytes": 2638,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:finite_lattice_gauge:v0.1.0",
+        "title": "Finite Ising and Z2 Gauss carriers",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "finite_lattice_gauge",
+          "symbol": "finite_lattice_gauge",
+          "ascii_symbol": "finite_lattice_gauge",
+          "notation": "Finite Ising and Z2 Gauss carriers",
+          "domain": [
+            "Open TFIM1..8 sites and admitted finite F2 chain complex."
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_quantum_physics::lattice_gauge_manybody_benchmark; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "The bit-basis Ising Hamiltonian is computed exactly.",
+          "Gauss states are the kernel of d1 and have dimension2^(E-rank d1).",
+          "Magnetic cycle flips preserve Gauss constraints and noncycles are refused."
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_quantum_physics",
+          "module": "lattice_gauge_manybody_benchmark",
+          "symbols": [
+            "open_tfim",
+            "Z2LatticeGauge"
+          ],
+          "required_tests": [
+            "finite_ising_spectrum_and_gauss_constraints_use_declared_carriers"
+          ]
+        },
+        "negative_tests": [
+          "finite_ising_spectrum_and_gauss_constraints_use_declared_carriers"
+        ],
+        "doctrine": {
+          "summary": "The bit-basis Ising Hamiltonian is computed exactly.; Gauss states are the kernel of d1 and have dimension2^(E-rank d1).; Magnetic cycle flips preserve Gauss constraints and noncycles are refused..",
+          "non_role": [
+            "Finite physical declarations do not confer program admission or certify an undeclared continuum limit.",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:finite_lattice_gauge:v0.1.0\ntitle: Finite Ising and Z2 Gauss carriers\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: finite_lattice_gauge\n  symbol: finite_lattice_gauge\n  ascii_symbol: finite_lattice_gauge\n  notation: Finite Ising and Z2 Gauss carriers\n  domain:\n  - Open TFIM1..8 sites and admitted finite F2 chain complex.\n  codomain:\n    description: Declared finite results of omega_quantum_physics::lattice_gauge_manybody_benchmark;\n      exact and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- The bit-basis Ising Hamiltonian is computed exactly.\n- Gauss states are the kernel of d1 and have dimension2^(E-rank d1).\n- Magnetic cycle flips preserve Gauss constraints and noncycles are refused.\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_quantum_physics\n  module: lattice_gauge_manybody_benchmark\n  symbols:\n  - open_tfim\n  - Z2LatticeGauge\n  required_tests:\n  - finite_ising_spectrum_and_gauss_constraints_use_declared_carriers\nnegative_tests:\n- finite_ising_spectrum_and_gauss_constraints_use_declared_carriers\ndoctrine:\n  summary: The bit-basis Ising Hamiltonian is computed exactly.; Gauss states are\n    the kernel of d1 and have dimension2^(E-rank d1).; Magnetic cycle flips preserve\n    Gauss constraints and noncycles are refused..\n  non_role:\n  - Finite physical declarations do not confer program admission or certify an undeclared\n    continuum limit.\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/math_finite_lattice_gauge_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/quantum/math_finite_lattice_gauge_v0_1_0.contract.yaml": "87384f923699da7a116b1c8fed09d9bba1fba62fcd957d750a097ce29cd87552"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

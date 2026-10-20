@@ -1,0 +1,370 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/rust/src/category_theory/monoidal/compact_closed.rs",
+  "contract": {
+    "schema_version": "1.0.0",
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/rust/src/category_theory/monoidal/compact_closed.rs",
+      "sha256": "2045c8b83a26fb870ee49dcdc8fe73b5c48232d9ddec4bcea97d6de0f953ae3c",
+      "language": "Rust"
+    },
+    "status": "source_reviewed",
+    "formal_specification": {
+      "domain": "A raw mutable metadata record. validate_shell checks only the listed nonempty byte strings in order; whitespace and arbitrary Unicode labels are allowed. Optional declarations never establish the named mathematical laws.",
+      "acceptance": "AND of nonempty String byte lengths for the ordered required_fields; no law claim is admitted.",
+      "required_fields": [
+        "label",
+        "monoidal_ref",
+        "left_dual_ref",
+        "right_dual_ref",
+        "unit_ref",
+        "counit_ref"
+      ],
+      "failure": "First empty field returns ArithmosError::InvalidShape(\"empty FIELD\"). The raw record is read without mutation.",
+      "construction": "Raw data constructors and setters intentionally do not certify a valid record. Boolean flags, notes and other optional fields remain declarations."
+    },
+    "operations": {
+      "new": {
+        "signature": "pub fn new(label: impl Into<String>) -> Self",
+        "classification": "raw data constructor/setter; no mathematical admission claim"
+      },
+      "with_duals": {
+        "signature": "pub fn with_duals( label: impl Into<String>, monoidal_ref: impl Into<String>, dual_ref: impl Into<String>, unit_ref: impl Into<String>, counit_ref: impl Into<String>, ) -> Self",
+        "classification": "raw data constructor/setter; no mathematical admission claim"
+      },
+      "validate_shell": {
+        "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+        "classification": "ordered nonempty-label admission and first InvalidShape refusal"
+      }
+    },
+    "invariants": [
+      "The validator reads each listed String length in the policy order and returns the first typed InvalidShape. Constructors and setters store raw declared values and can intentionally create an invalid candidate. No admitted mathematical wrapper is constructed.",
+      "All listed public constructors/setters were reviewed as direct moves, explicit constant defaults, String formatting/cloning or raw Boolean checklist conjunction. None constructs an admitted mathematical value.",
+      "The finite Boolean model proves exact acceptance, first-failure preservation, absence of a success value after refusal and observation without changing the raw value. The source relation maps each concrete .is_empty guard and sole Ok return to that model. This relation is source reviewed, not Rust/MIR mechanized."
+    ],
+    "failure_paths": {
+      "required_labels": {
+        "label": "First InvalidShape(\"empty label\") when all earlier required labels are nonempty.",
+        "monoidal_ref": "First InvalidShape(\"empty monoidal_ref\") when all earlier required labels are nonempty.",
+        "left_dual_ref": "First InvalidShape(\"empty left_dual_ref\") when all earlier required labels are nonempty.",
+        "right_dual_ref": "First InvalidShape(\"empty right_dual_ref\") when all earlier required labels are nonempty.",
+        "unit_ref": "First InvalidShape(\"empty unit_ref\") when all earlier required labels are nonempty.",
+        "counit_ref": "First InvalidShape(\"empty counit_ref\") when all earlier required labels are nonempty."
+      },
+      "conversion_and_allocation": "Constructors accept standard String/&str conversions; arbitrary caller-supplied Into implementations and process-level allocator failure remain the ordinary external Rust runtime boundary. Validation itself invokes no user-supplied conversion.",
+      "serde": "Derived deserialization returns the raw metadata type. Callers must explicitly validate it before relying even on the shape predicate; it cannot mint a mathematical certificate."
+    },
+    "trust_boundary": {
+      "runtime": "Pinned safe Rust compiler, std String/Vec, serde and its derive macro. No unsafe, indexing, division, recursion or mutable validation state occurs in the reviewed production bodies.",
+      "proof_model": "Lean kernel and pinned clean Mathlib; axiom reports contain propext and Quot.sound only. No unfinished obligations.",
+      "claim": "All category, functor, adjunction, limit and monoidal names here are references or flags. No corresponding law, existence theorem or physical authority is established."
+    },
+    "assurance_limits": [
+      "The capability remains L2 raw metadata; no underlying category-theoretic law is certified.",
+      "Contracts remain pending by user request.",
+      "No A+, alternate compiler, mechanized Rust/MIR refinement, allocator totality, cross-repository authorship attestation or whole-workspace pass is claimed.",
+      "Current compiled consumer scope is the category package and the isolated source challenge harness."
+    ],
+    "review_evidence": [
+      {
+        "path": "code/rust/src/category_theory/monoidal/compact_closed.score.yaml",
+        "sha256": "27ad513639657ad796610d1352e73c2e6055cfb167708e27993f6f18d5cebb32"
+      }
+    ],
+    "open_obligations": []
+  },
+  "current_contract": "a41d6fb61d51e919eecd8d07147f86b406e9a29ffdb797fa6b8ff8d3b264319a",
+  "current_scoring": "710d15852b65209861d8d9c844f86507c8b4467dea3fad51f067a1f23d4cbdb8",
+  "contract_history": [
+    {
+      "sha256": "a41d6fb61d51e919eecd8d07147f86b406e9a29ffdb797fa6b8ff8d3b264319a",
+      "bytes": 5089,
+      "record": {
+        "schema_version": "1.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/category_theory/monoidal/compact_closed.rs",
+          "sha256": "2045c8b83a26fb870ee49dcdc8fe73b5c48232d9ddec4bcea97d6de0f953ae3c",
+          "language": "Rust"
+        },
+        "status": "source_reviewed",
+        "formal_specification": {
+          "domain": "A raw mutable metadata record. validate_shell checks only the listed nonempty byte strings in order; whitespace and arbitrary Unicode labels are allowed. Optional declarations never establish the named mathematical laws.",
+          "acceptance": "AND of nonempty String byte lengths for the ordered required_fields; no law claim is admitted.",
+          "required_fields": [
+            "label",
+            "monoidal_ref",
+            "left_dual_ref",
+            "right_dual_ref",
+            "unit_ref",
+            "counit_ref"
+          ],
+          "failure": "First empty field returns ArithmosError::InvalidShape(\"empty FIELD\"). The raw record is read without mutation.",
+          "construction": "Raw data constructors and setters intentionally do not certify a valid record. Boolean flags, notes and other optional fields remain declarations."
+        },
+        "operations": {
+          "new": {
+            "signature": "pub fn new(label: impl Into<String>) -> Self",
+            "classification": "raw data constructor/setter; no mathematical admission claim"
+          },
+          "with_duals": {
+            "signature": "pub fn with_duals( label: impl Into<String>, monoidal_ref: impl Into<String>, dual_ref: impl Into<String>, unit_ref: impl Into<String>, counit_ref: impl Into<String>, ) -> Self",
+            "classification": "raw data constructor/setter; no mathematical admission claim"
+          },
+          "validate_shell": {
+            "signature": "pub fn validate_shell(&self) -> Result<(), ArithmosError>",
+            "classification": "ordered nonempty-label admission and first InvalidShape refusal"
+          }
+        },
+        "invariants": [
+          "The validator reads each listed String length in the policy order and returns the first typed InvalidShape. Constructors and setters store raw declared values and can intentionally create an invalid candidate. No admitted mathematical wrapper is constructed.",
+          "All listed public constructors/setters were reviewed as direct moves, explicit constant defaults, String formatting/cloning or raw Boolean checklist conjunction. None constructs an admitted mathematical value.",
+          "The finite Boolean model proves exact acceptance, first-failure preservation, absence of a success value after refusal and observation without changing the raw value. The source relation maps each concrete .is_empty guard and sole Ok return to that model. This relation is source reviewed, not Rust/MIR mechanized."
+        ],
+        "failure_paths": {
+          "required_labels": {
+            "label": "First InvalidShape(\"empty label\") when all earlier required labels are nonempty.",
+            "monoidal_ref": "First InvalidShape(\"empty monoidal_ref\") when all earlier required labels are nonempty.",
+            "left_dual_ref": "First InvalidShape(\"empty left_dual_ref\") when all earlier required labels are nonempty.",
+            "right_dual_ref": "First InvalidShape(\"empty right_dual_ref\") when all earlier required labels are nonempty.",
+            "unit_ref": "First InvalidShape(\"empty unit_ref\") when all earlier required labels are nonempty.",
+            "counit_ref": "First InvalidShape(\"empty counit_ref\") when all earlier required labels are nonempty."
+          },
+          "conversion_and_allocation": "Constructors accept standard String/&str conversions; arbitrary caller-supplied Into implementations and process-level allocator failure remain the ordinary external Rust runtime boundary. Validation itself invokes no user-supplied conversion.",
+          "serde": "Derived deserialization returns the raw metadata type. Callers must explicitly validate it before relying even on the shape predicate; it cannot mint a mathematical certificate."
+        },
+        "trust_boundary": {
+          "runtime": "Pinned safe Rust compiler, std String/Vec, serde and its derive macro. No unsafe, indexing, division, recursion or mutable validation state occurs in the reviewed production bodies.",
+          "proof_model": "Lean kernel and pinned clean Mathlib; axiom reports contain propext and Quot.sound only. No unfinished obligations.",
+          "claim": "All category, functor, adjunction, limit and monoidal names here are references or flags. No corresponding law, existence theorem or physical authority is established."
+        },
+        "assurance_limits": [
+          "The capability remains L2 raw metadata; no underlying category-theoretic law is certified.",
+          "Contracts remain pending by user request.",
+          "No A+, alternate compiler, mechanized Rust/MIR refinement, allocator totality, cross-repository authorship attestation or whole-workspace pass is claimed.",
+          "Current compiled consumer scope is the category package and the isolated source challenge harness."
+        ],
+        "review_evidence": [
+          {
+            "path": "code/rust/src/category_theory/monoidal/compact_closed.score.yaml",
+            "sha256": "27ad513639657ad796610d1352e73c2e6055cfb167708e27993f6f18d5cebb32"
+          }
+        ],
+        "open_obligations": []
+      },
+      "raw_utf8": "{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/monoidal/compact_closed.rs\",\n    \"sha256\": \"2045c8b83a26fb870ee49dcdc8fe73b5c48232d9ddec4bcea97d6de0f953ae3c\",\n    \"language\": \"Rust\"\n  },\n  \"status\": \"source_reviewed\",\n  \"formal_specification\": {\n    \"domain\": \"A raw mutable metadata record. validate_shell checks only the listed nonempty byte strings in order; whitespace and arbitrary Unicode labels are allowed. Optional declarations never establish the named mathematical laws.\",\n    \"acceptance\": \"AND of nonempty String byte lengths for the ordered required_fields; no law claim is admitted.\",\n    \"required_fields\": [\n      \"label\",\n      \"monoidal_ref\",\n      \"left_dual_ref\",\n      \"right_dual_ref\",\n      \"unit_ref\",\n      \"counit_ref\"\n    ],\n    \"failure\": \"First empty field returns ArithmosError::InvalidShape(\\\"empty FIELD\\\"). The raw record is read without mutation.\",\n    \"construction\": \"Raw data constructors and setters intentionally do not certify a valid record. Boolean flags, notes and other optional fields remain declarations.\"\n  },\n  \"operations\": {\n    \"new\": {\n      \"signature\": \"pub fn new(label: impl Into<String>) -> Self\",\n      \"classification\": \"raw data constructor/setter; no mathematical admission claim\"\n    },\n    \"with_duals\": {\n      \"signature\": \"pub fn with_duals( label: impl Into<String>, monoidal_ref: impl Into<String>, dual_ref: impl Into<String>, unit_ref: impl Into<String>, counit_ref: impl Into<String>, ) -> Self\",\n      \"classification\": \"raw data constructor/setter; no mathematical admission claim\"\n    },\n    \"validate_shell\": {\n      \"signature\": \"pub fn validate_shell(&self) -> Result<(), ArithmosError>\",\n      \"classification\": \"ordered nonempty-label admission and first InvalidShape refusal\"\n    }\n  },\n  \"invariants\": [\n    \"The validator reads each listed String length in the policy order and returns the first typed InvalidShape. Constructors and setters store raw declared values and can intentionally create an invalid candidate. No admitted mathematical wrapper is constructed.\",\n    \"All listed public constructors/setters were reviewed as direct moves, explicit constant defaults, String formatting/cloning or raw Boolean checklist conjunction. None constructs an admitted mathematical value.\",\n    \"The finite Boolean model proves exact acceptance, first-failure preservation, absence of a success value after refusal and observation without changing the raw value. The source relation maps each concrete .is_empty guard and sole Ok return to that model. This relation is source reviewed, not Rust/MIR mechanized.\"\n  ],\n  \"failure_paths\": {\n    \"required_labels\": {\n      \"label\": \"First InvalidShape(\\\"empty label\\\") when all earlier required labels are nonempty.\",\n      \"monoidal_ref\": \"First InvalidShape(\\\"empty monoidal_ref\\\") when all earlier required labels are nonempty.\",\n      \"left_dual_ref\": \"First InvalidShape(\\\"empty left_dual_ref\\\") when all earlier required labels are nonempty.\",\n      \"right_dual_ref\": \"First InvalidShape(\\\"empty right_dual_ref\\\") when all earlier required labels are nonempty.\",\n      \"unit_ref\": \"First InvalidShape(\\\"empty unit_ref\\\") when all earlier required labels are nonempty.\",\n      \"counit_ref\": \"First InvalidShape(\\\"empty counit_ref\\\") when all earlier required labels are nonempty.\"\n    },\n    \"conversion_and_allocation\": \"Constructors accept standard String/&str conversions; arbitrary caller-supplied Into implementations and process-level allocator failure remain the ordinary external Rust runtime boundary. Validation itself invokes no user-supplied conversion.\",\n    \"serde\": \"Derived deserialization returns the raw metadata type. Callers must explicitly validate it before relying even on the shape predicate; it cannot mint a mathematical certificate.\"\n  },\n  \"trust_boundary\": {\n    \"runtime\": \"Pinned safe Rust compiler, std String/Vec, serde and its derive macro. No unsafe, indexing, division, recursion or mutable validation state occurs in the reviewed production bodies.\",\n    \"proof_model\": \"Lean kernel and pinned clean Mathlib; axiom reports contain propext and Quot.sound only. No unfinished obligations.\",\n    \"claim\": \"All category, functor, adjunction, limit and monoidal names here are references or flags. No corresponding law, existence theorem or physical authority is established.\"\n  },\n  \"assurance_limits\": [\n    \"The capability remains L2 raw metadata; no underlying category-theoretic law is certified.\",\n    \"Contracts remain pending by user request.\",\n    \"No A+, alternate compiler, mechanized Rust/MIR refinement, allocator totality, cross-repository authorship attestation or whole-workspace pass is claimed.\",\n    \"Current compiled consumer scope is the category package and the isolated source challenge harness.\"\n  ],\n  \"review_evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/monoidal/compact_closed.score.yaml\",\n      \"sha256\": \"27ad513639657ad796610d1352e73c2e6055cfb167708e27993f6f18d5cebb32\"\n    }\n  ],\n  \"open_obligations\": []\n}\n",
+      "original_paths": [
+        "code/rust/src/category_theory/monoidal/compact_closed.rs.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "27ad513639657ad796610d1352e73c2e6055cfb167708e27993f6f18d5cebb32",
+      "bytes": 4655,
+      "record": {
+        "schema_version": "2.0.0",
+        "artifact": {
+          "path": "code/rust/src/category_theory/monoidal/compact_closed.rs",
+          "language": "Rust",
+          "sha256": "2045c8b83a26fb870ee49dcdc8fe73b5c48232d9ddec4bcea97d6de0f953ae3c"
+        },
+        "profile": "Non-Numeric",
+        "level": "L2",
+        "level_basis": "Explicit metadata/shape shell; categorical titles do not establish mathematical capabilities.",
+        "architecture_target": "L5",
+        "engineering_target": "A",
+        "gates": {
+          "G1": "A",
+          "G2": "A",
+          "G3": "A",
+          "G4": "A",
+          "G5": "A"
+        },
+        "composite_grade": "A",
+        "score_token": "L2A",
+        "is_complete": true,
+        "grade_ceiling": "A",
+        "evaluation_timestamp": "2026-10-18T23:41:35.152308+00:00",
+        "AuthorityEffect": "None",
+        "claim": {
+          "urn": "urn:tfqm:rust:category_theory:monoidal:compact_closed",
+          "description": "compact_closed shell for omega_category_theory. AuthorityEffect: None. Not PROVED / GlobalGreen.",
+          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified."
+        },
+        "contract": {
+          "status": "pending",
+          "path": null,
+          "note": "Reserved for a later user-requested contract; none created or asserted here."
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/category_homology/20261018T233209Z/baseline.json",
+            "sha256": "47197d38d88a1d5855148461640ab5f006c9beda948a9bb55bffb32c88c5f705",
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T233209Z/summary.json",
+            "sha256": "6c7c22f7033964caab2e047c2cae35c4ee5bdbdd19ec88c8267be5098255d36a",
+            "scope": "Source snapshot binding and complete six-outcome accounting."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T233209Z/mutations.json",
+            "sha256": "d098246c853d6026c412dc94f07f3d3c0e2305a56acde10801934f6c4e5dc3ef",
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T233820Z-metrics/receipt.json",
+            "sha256": "2f92a028584500fa0f425d4946064123cf1113af6c644d9efcc45c05250849bd",
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T233209Z/dependency_receipt.json",
+            "sha256": "14743e6b84c43849fba62981ce12f2a7239e56dfa6595ab64564671aa1b36042",
+            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred."
+          },
+          {
+            "path": "code/rust/quality/category_homology/assessments/metadata/monoidal/compact_closed.json",
+            "sha256": "a6f1d3435b597759f16e1a7d6a87f461a029c95039a8a24ce71e71715471abb1",
+            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping."
+          }
+        ],
+        "verification": {
+          "baseline_ok": true,
+          "source_snapshot_unchanged": true,
+          "compiled_scope": "shared scoped crate build",
+          "local_mutant_ids": [
+            "monoidal-compact_closed-label-skip",
+            "monoidal-compact_closed-label-diagnostic",
+            "monoidal-compact_closed-monoidal_ref-skip",
+            "monoidal-compact_closed-monoidal_ref-diagnostic",
+            "monoidal-compact_closed-left_dual_ref-skip",
+            "monoidal-compact_closed-left_dual_ref-diagnostic",
+            "monoidal-compact_closed-right_dual_ref-skip",
+            "monoidal-compact_closed-right_dual_ref-diagnostic",
+            "monoidal-compact_closed-unit_ref-skip",
+            "monoidal-compact_closed-unit_ref-diagnostic",
+            "monoidal-compact_closed-counit_ref-skip",
+            "monoidal-compact_closed-counit_ref-diagnostic",
+            "monoidal-compact_closed-reject-valid",
+            "monoidal-compact_closed-drop-new-label"
+          ],
+          "dependency_contents_stable": true
+        },
+        "mutation_accounting": {
+          "killed": 14,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": 1.0
+        },
+        "structure": {
+          "tool": "syn 3.0.9 source AST",
+          "source_ast_parsed": true,
+          "expanded_ast": false,
+          "physical_lines": 97,
+          "parsed_production_functions": 3,
+          "max_production_ccn": 7,
+          "cognitive_complexity_upper_bound": 6,
+          "control_nesting": 1,
+          "opaque_function_macros": [],
+          "functions_exceeding_A": [],
+          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
+        },
+        "open_findings": [],
+        "assurance_limits": [
+          "The capability remains L2 raw metadata; no underlying category-theoretic law is certified.",
+          "Contracts remain pending by user request.",
+          "No A+, alternate compiler, mechanized Rust/MIR refinement, allocator totality, cross-repository authorship attestation or whole-workspace pass is claimed.",
+          "Current compiled consumer scope is the category package and the isolated source challenge harness."
+        ]
+      },
+      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\nschema_version: \"2.0.0\"\nartifact:\n  path: \"code/rust/src/category_theory/monoidal/compact_closed.rs\"\n  language: \"Rust\"\n  sha256: \"2045c8b83a26fb870ee49dcdc8fe73b5c48232d9ddec4bcea97d6de0f953ae3c\"\nprofile: \"Non-Numeric\"\nlevel: \"L2\"\nlevel_basis: \"Explicit metadata/shape shell; categorical titles do not establish mathematical capabilities.\"\narchitecture_target: \"L5\"\nengineering_target: \"A\"\ngates:\n  G1: \"A\"\n  G2: \"A\"\n  G3: \"A\"\n  G4: \"A\"\n  G5: \"A\"\ncomposite_grade: \"A\"\nscore_token: \"L2A\"\nis_complete: true\ngrade_ceiling: \"A\"\nevaluation_timestamp: \"2026-10-18T23:41:35.152308+00:00\"\nAuthorityEffect: \"None\"\nclaim:\n  urn: \"urn:tfqm:rust:category_theory:monoidal:compact_closed\"\n  description: \"compact_closed shell for omega_category_theory. AuthorityEffect: None. Not PROVED / GlobalGreen.\"\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\ncontract:\n  status: \"pending\"\n  path: null\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\nevidence:\n  - {\"path\": \"evidence/quality/category_homology/20261018T233209Z/baseline.json\", \"sha256\": \"47197d38d88a1d5855148461640ab5f006c9beda948a9bb55bffb32c88c5f705\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261018T233209Z/summary.json\", \"sha256\": \"6c7c22f7033964caab2e047c2cae35c4ee5bdbdd19ec88c8267be5098255d36a\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261018T233209Z/mutations.json\", \"sha256\": \"d098246c853d6026c412dc94f07f3d3c0e2305a56acde10801934f6c4e5dc3ef\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261018T233820Z-metrics/receipt.json\", \"sha256\": \"2f92a028584500fa0f425d4946064123cf1113af6c644d9efcc45c05250849bd\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261018T233209Z/dependency_receipt.json\", \"sha256\": \"14743e6b84c43849fba62981ce12f2a7239e56dfa6595ab64564671aa1b36042\", \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"}\n  - {\"path\": \"code/rust/quality/category_homology/assessments/metadata/monoidal/compact_closed.json\", \"sha256\": \"a6f1d3435b597759f16e1a7d6a87f461a029c95039a8a24ce71e71715471abb1\", \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"}\nverification:\n  baseline_ok: true\n  source_snapshot_unchanged: true\n  compiled_scope: \"shared scoped crate build\"\n  local_mutant_ids:\n    - \"monoidal-compact_closed-label-skip\"\n    - \"monoidal-compact_closed-label-diagnostic\"\n    - \"monoidal-compact_closed-monoidal_ref-skip\"\n    - \"monoidal-compact_closed-monoidal_ref-diagnostic\"\n    - \"monoidal-compact_closed-left_dual_ref-skip\"\n    - \"monoidal-compact_closed-left_dual_ref-diagnostic\"\n    - \"monoidal-compact_closed-right_dual_ref-skip\"\n    - \"monoidal-compact_closed-right_dual_ref-diagnostic\"\n    - \"monoidal-compact_closed-unit_ref-skip\"\n    - \"monoidal-compact_closed-unit_ref-diagnostic\"\n    - \"monoidal-compact_closed-counit_ref-skip\"\n    - \"monoidal-compact_closed-counit_ref-diagnostic\"\n    - \"monoidal-compact_closed-reject-valid\"\n    - \"monoidal-compact_closed-drop-new-label\"\n  dependency_contents_stable: true\nmutation_accounting:\n  killed: 14\n  survived: 0\n  demonstrably_equivalent: 0\n  invalid: 0\n  inconclusive: 0\n  unrun: 0\n  conservative_ratio: 1.0\nstructure:\n  tool: \"syn 3.0.9 source AST\"\n  source_ast_parsed: true\n  expanded_ast: false\n  physical_lines: 97\n  parsed_production_functions: 3\n  max_production_ccn: 7\n  cognitive_complexity_upper_bound: 6\n  control_nesting: 1\n  opaque_function_macros: []\n  functions_exceeding_A: []\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\nopen_findings: []\nassurance_limits:\n  - \"The capability remains L2 raw metadata; no underlying category-theoretic law is certified.\"\n  - \"Contracts remain pending by user request.\"\n  - \"No A+, alternate compiler, mechanized Rust/MIR refinement, allocator totality, cross-repository authorship attestation or whole-workspace pass is claimed.\"\n  - \"Current compiled consumer scope is the category package and the isolated source challenge harness.\"\n",
+      "original_paths": [
+        "code/rust/src/category_theory/monoidal/compact_closed.score.yaml"
+      ]
+    },
+    {
+      "sha256": "710d15852b65209861d8d9c844f86507c8b4467dea3fad51f067a1f23d4cbdb8",
+      "bytes": 2349,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/category_theory/monoidal/compact_closed.rs",
+          "sha256": "2045c8b83a26fb870ee49dcdc8fe73b5c48232d9ddec4bcea97d6de0f953ae3c",
+          "language": "Rust"
+        },
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "architecture_target": "L4",
+        "engineering_target": "A",
+        "level": "L2",
+        "gates": {
+          "G1": "A",
+          "G2": "A",
+          "G3": "A",
+          "G4": "A",
+          "G5": "A"
+        },
+        "composite_grade": "A",
+        "score_token": "L2A",
+        "is_complete": true,
+        "assessment_status": "existing_source_review_referenced",
+        "assessment_source": {
+          "path": "code/rust/src/category_theory/monoidal/compact_closed.score.yaml",
+          "sha256": "27ad513639657ad796610d1352e73c2e6055cfb167708e27993f6f18d5cebb32"
+        },
+        "contract": {
+          "path": "code/rust/src/category_theory/monoidal/compact_closed.rs.contract.yaml",
+          "sha256": "a41d6fb61d51e919eecd8d07147f86b406e9a29ffdb797fa6b8ff8d3b264319a"
+        },
+        "assessment_note": "Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.",
+        "open_obligations": [],
+        "structural_measurement": {
+          "source_sha256": "2045c8b83a26fb870ee49dcdc8fe73b5c48232d9ddec4bcea97d6de0f953ae3c",
+          "function_count": 3,
+          "maxima": {
+            "ccn": 7,
+            "cognitive_upper_bound": 6,
+            "control_nesting": 1
+          },
+          "structural_ceiling": "A",
+          "opaque_macros": [],
+          "evidence": [
+            {
+              "path": "evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json",
+              "sha256": "03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3"
+            },
+            {
+              "path": "evidence/quality/category_homology/20261019T234440Z-metrics/metrics.json",
+              "sha256": "f1cd57a774df89c14758566aa0ea903e2b5cbdd5c47f0e536eedd525b9e891cc"
+            },
+            {
+              "path": "evidence/quality/category_homology/20261019T234440Z-metrics/six_module_scope.json",
+              "sha256": "0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf"
+            }
+          ],
+          "scope": "Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate."
+        }
+      },
+      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/monoidal/compact_closed.rs\",\n    \"sha256\": \"2045c8b83a26fb870ee49dcdc8fe73b5c48232d9ddec4bcea97d6de0f953ae3c\",\n    \"language\": \"Rust\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"architecture_target\": \"L4\",\n  \"engineering_target\": \"A\",\n  \"level\": \"L2\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L2A\",\n  \"is_complete\": true,\n  \"assessment_status\": \"existing_source_review_referenced\",\n  \"assessment_source\": {\n    \"path\": \"code/rust/src/category_theory/monoidal/compact_closed.score.yaml\",\n    \"sha256\": \"27ad513639657ad796610d1352e73c2e6055cfb167708e27993f6f18d5cebb32\"\n  },\n  \"contract\": {\n    \"path\": \"code/rust/src/category_theory/monoidal/compact_closed.rs.contract.yaml\",\n    \"sha256\": \"a41d6fb61d51e919eecd8d07147f86b406e9a29ffdb797fa6b8ff8d3b264319a\"\n  },\n  \"assessment_note\": \"Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.\",\n  \"open_obligations\": [],\n  \"structural_measurement\": {\n    \"source_sha256\": \"2045c8b83a26fb870ee49dcdc8fe73b5c48232d9ddec4bcea97d6de0f953ae3c\",\n    \"function_count\": 3,\n    \"maxima\": {\n      \"ccn\": 7,\n      \"cognitive_upper_bound\": 6,\n      \"control_nesting\": 1\n    },\n    \"structural_ceiling\": \"A\",\n    \"opaque_macros\": [],\n    \"evidence\": [\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json\",\n        \"sha256\": \"03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/metrics.json\",\n        \"sha256\": \"f1cd57a774df89c14758566aa0ea903e2b5cbdd5c47f0e536eedd525b9e891cc\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/six_module_scope.json\",\n        \"sha256\": \"0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf\"\n      }\n    ],\n    \"scope\": \"Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate.\"\n  }\n}\n",
+      "original_paths": [
+        "code/rust/src/category_theory/monoidal/compact_closed.rs.scoring.yaml"
+      ]
+    }
+  ],
+  "legacy_paths": {
+    "code/rust/src/category_theory/monoidal/compact_closed.rs.contract.yaml": "a41d6fb61d51e919eecd8d07147f86b406e9a29ffdb797fa6b8ff8d3b264319a",
+    "code/rust/src/category_theory/monoidal/compact_closed.score.yaml": "27ad513639657ad796610d1352e73c2e6055cfb167708e27993f6f18d5cebb32",
+    "code/rust/src/category_theory/monoidal/compact_closed.rs.scoring.yaml": "710d15852b65209861d8d9c844f86507c8b4467dea3fad51f067a1f23d4cbdb8"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

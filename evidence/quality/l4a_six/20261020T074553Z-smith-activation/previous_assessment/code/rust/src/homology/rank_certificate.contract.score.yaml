@@ -1,0 +1,1186 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": null,
+  "contract": {
+    "schema_version": "1.0.0",
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/rust/src/homology/rank_certificate.rs",
+      "sha256": "ad7de074a639be1cbcf817fe609e2205ae7d3eac3e48cd8361549bd5d0514694",
+      "language": "Rust"
+    },
+    "contract_urn": "urn:tfqm:contract:homology:rank_certificate.rs",
+    "status": "canonical_borrowed_Q_rank_individual_gate_review",
+    "target": "L4A",
+    "profile": "Exact",
+    "purpose": "Finite rational chain/cochain data, admitted carriers and rank certificates.",
+    "subject_role": "Individual source review: immutable admitted rank certificates with typed canonical-domain, dimension, identity and matrix-binding refusals; an independently replayed M=UV/LU=I/VR=I boundary; exact-Q producer with explicit dependency trust; constant-time zero-area metadata paths; borrowed checker products and independently forged-candidate challenges. This capability judgment does not certify all five engineering gates.",
+    "compilation": {
+      "disabled_by_cfg_any": false,
+      "test_or_support_file": false
+    },
+    "declaration_index": [
+      {
+        "kind": "struct",
+        "name": "RankLimits",
+        "line": 22,
+        "declaration_line": "pub struct RankLimits {"
+      },
+      {
+        "kind": "struct",
+        "name": "RankCandidate",
+        "line": 76,
+        "declaration_line": "pub struct RankCandidate {"
+      },
+      {
+        "kind": "struct",
+        "name": "RankCertificate",
+        "line": 91,
+        "declaration_line": "pub struct RankCertificate {"
+      },
+      {
+        "kind": "fn",
+        "name": "try_admit",
+        "line": 98,
+        "declaration_line": "pub fn try_admit("
+      },
+      {
+        "kind": "fn",
+        "name": "try_admit_with_limits",
+        "line": 105,
+        "declaration_line": "pub fn try_admit_with_limits("
+      },
+      {
+        "kind": "fn",
+        "name": "rank",
+        "line": 135,
+        "declaration_line": "pub fn rank(&self) -> usize {"
+      },
+      {
+        "kind": "fn",
+        "name": "matrix_hash",
+        "line": 138,
+        "declaration_line": "pub fn matrix_hash(&self) -> &Hash256 {"
+      },
+      {
+        "kind": "fn",
+        "name": "candidate",
+        "line": 141,
+        "declaration_line": "pub fn candidate(&self) -> &RankCandidate {"
+      },
+      {
+        "kind": "fn",
+        "name": "verify_against",
+        "line": 146,
+        "declaration_line": "pub fn verify_against(&self, matrix: &BasicMatrix<Q>) -> Result<(), HomologicalError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "verify_against_with_limits",
+        "line": 150,
+        "declaration_line": "pub fn verify_against_with_limits("
+      },
+      {
+        "kind": "fn",
+        "name": "certify_rank",
+        "line": 307,
+        "declaration_line": "pub fn certify_rank(matrix: &BasicMatrix<Q>) -> Result<RankCertificate, HomologicalError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "certify_rank_with_limits",
+        "line": 311,
+        "declaration_line": "pub fn certify_rank_with_limits("
+      }
+    ],
+    "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+    "requirements": [
+      {
+        "id": "G1",
+        "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+      },
+      {
+        "id": "G2",
+        "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+      },
+      {
+        "id": "G3",
+        "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+      },
+      {
+        "id": "G4",
+        "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+      },
+      {
+        "id": "G5",
+        "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+      }
+    ],
+    "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+    "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+    "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+    "open_obligations": [],
+    "evidence": [
+      {
+        "path": "evidence/quality/l4a_six/20261020T064257Z/receipt.json",
+        "sha256": "51613b0c9b9841f5bd58f732f04af13ab7e0b423d6fcfd00b5bba0d8104c6579"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T064257Z/source_manifest.json",
+        "sha256": "684a70128a9b855d38641d5caf8ff06dbbed219ecf7ddaf745207a42584425ae"
+      },
+      {
+        "path": "code/rust/quality/l4a_six/records.py",
+        "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+      },
+      {
+        "path": "code/rust/quality/l4a_six/specs.json",
+        "sha256": "06dc10da559e38474966c2d318615204284210a7fd2b412c91b1f2bdf91a98e3"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T064416Z-native-scalar-control/receipt.json",
+        "sha256": "0766aa9b99debe1358f6d8875fd7f375f0f81919491614eec1a640b2839bfa51"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T064257Z/metrics.json",
+        "sha256": "4a56a75becd2862da73b9876563e490bf570e9dee24a4816667cec6684dffcb1"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T064307Z-mutations/receipt.json",
+        "sha256": "f33e08380b111005a6d5a9897fae4c86ba2b18b7c39bdc3e4d8ee49232cc0e11"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T064307Z-mutations/mutations.json",
+        "sha256": "0a6dac1623a7edf2f6a369b765e755221a0f9bdc232349ac2d202d4c9b7676dc"
+      }
+    ],
+    "reviewed_specification": {
+      "status": "canonical_borrowed_Q_rank_individual_gate_review",
+      "purpose": "Admit finite rank certificates through canonical coefficients, dimensions, exact split identities and a fallible matrix binding.",
+      "symbol_contracts": {
+        "RankCertificate::try_admit/check_split_identities": {
+          "postcondition": "Admit coefficients, rank and shapes before checking M=UV, LU=I and VR=I in that order. Hash the matrix only after those identities pass. Factoring the identity phase preserves every refusal and keeps typed hash propagation.",
+          "scope": "The private certificate remains an exact finite rank witness; the producer's elimination result is not trusted without replaying the identities.",
+          "zero_rank": "After coefficient and complete shape admission, rank zero requires every input entry zero. U,V,L,R then have empty storage and LU=VR=I_0 is vacuous. Zero-area usize::MAX metadata is not enumerated."
+        },
+        "certify_rank": {
+          "postcondition": "Canonical input only; produce a rank factorization and split maps, then replay the public checker before emitting a certificate. For zero matrices construct the four zero-area maps directly.",
+          "proof_argument": "M=UV bounds rank(M)<=r; LU=I gives rank(U)>=r, and VR=I gives rank(V)>=r. Together rank(UV)=r. Rational Gram matrices U^T U are invertible for independent columns because sums of rational squares vanish only when each term is zero.",
+          "cost": "Private rational_rref/rational_inverse use admitted, fallibly reserved flat buffers. Input and transpose copies are made once where ownership requires them; coordinates and inverse outputs move coefficients out of working storage. Pivot divisors and elimination factors move out of the row rather than cloning operands in its arithmetic loop. Conservative phase field-operation counts are charged without refunds; scalar bit sizes, validation, hashing, comparison, allocator internals and elapsed time are outside this count."
+        },
+        "RankLimits/RankBudget": {
+          "admission": "Default limits are 4096 cells per matrix and 1000000 conservative scalar operations per producer/checker call. Explicit overrides are inclusive. Cell products, operation products and aggregate charges use checked usize arithmetic. Failed charges leave spent unchanged.",
+          "order": "Producer admits input cells before canonical validation. Checker candidate admission validates canonical coefficients and shapes, then cells for input and all four maps. Positive-rank identity replay checks the sum of all three product work bounds before allocating I_r; individual products debit that same sum. verify_against checks input cells and binding before replay, without cloning the candidate.",
+          "zero": "Canonical zero matrices require no field work; rank-zero maps have zero-area buffers, including usize::MAX by zero metadata. Nonzero storage remains subject to the cell limit.",
+          "limits": "Counts are phase bounds, not an exact event counter, byte limit, BigInt bound, deadline or aggregate memory bound."
+        },
+        "RationalRows/rational_rref/rational_inverse": {
+          "invariants": "rows*cols equals flat storage length; width<=cols; selected pivots are nonzero. Earlier pivot columns are zero in every later pivot row. Normalization moves the pivot to an owned divisor and writes one; clear_row uses disjoint slices, moves its factor and writes zero. Remaining entries use borrowed exact Q arithmetic. All private ranges follow admitted shape and row bounds.",
+          "factorization": "Pivot columns of the original M form U. The first rank rows of reduced M form V; truncating and moving the row buffer preserves M=UV. A full-column-rank Q matrix has positive-definite Gram matrix, giving L=(U^T U)^-1 U^T and the analogous section of V. Public identity replay is required before evidence construction.",
+          "inverse": "Square check, checked 2n, per-matrix n*2n admission and conservative work charge precede augmented-buffer allocation. Reduction scans only the left n columns. Missing pivots return typed Singular. On success left block I proves the moved right block is the inverse.",
+          "cost": "Reduction bound min(rows,width)*cols*(2*rows+1) counts at most cols divisions and rows*cols multiply/subtract pairs per pivot. Product bound is 2*rows*cols*inner. Both deliberately omit comparisons and coefficient representation costs."
+        },
+        "AdmittedMatrix integration": "All public matrix entries first acquire a canonical immutable borrow token. The producer keeps that token through independent candidate replay; the checker hashes canonical numerators/denominators directly through its lifetime-bound token. Canonical input admission is performed once, without a second reduction or full-rational clone for hashing. Candidate coefficients are separately admitted before exact identity checks. The digest frame is shared with hashing::MATRIX_Q_DOMAIN."
+      },
+      "capability_assessment": {
+        "source_sha256": "ad7de074a639be1cbcf817fe609e2205ae7d3eac3e48cd8361549bd5d0514694",
+        "level": "L4",
+        "basis": "Individual source review: immutable admitted rank certificates with typed canonical-domain, dimension, identity and matrix-binding refusals; an independently replayed M=UV/LU=I/VR=I boundary; exact-Q producer with explicit dependency trust; constant-time zero-area metadata paths; borrowed checker products and independently forged-candidate challenges. This capability judgment does not certify all five engineering gates."
+      },
+      "consumer_review": [
+        "homology/carrier.rs stores two admitted certificates for boundary matrices; failure propagates from certify_rank before constructing the carrier.",
+        "homology/l5a_challenges.rs compares ranks of all 81 two-by-two {-1,0,1} matrices against integer determinant/zero-entry cases and forges identities/binding separately.",
+        "The canonical adapter uses pinned BasicMatrix shape/storage and get_ref/checked construction methods, num-rational BigRational arithmetic, num-bigint/num-integer canonical representation and BLAKE3 byte serialization. The provider shape invariant and typed access/reservation paths are inspected; no provider row-reduction, generic field callback or matrix multiplication is used.",
+        "Staged 20261020T062113Z and 20261020T062911Z-rank-trial evidence is separate from current integrated baselines and mutation receipts. None is inferred from another source epoch."
+      ],
+      "open_obligations": [],
+      "requirement_symbol_map": {
+        "canonical domain": [
+          "RankCertificate::try_admit",
+          "check_coefficients",
+          "certify_rank",
+          "AdmittedMatrix::try_new",
+          "AdmittedMatrix::matrix",
+          "RankCertificate::admit_input"
+        ],
+        "shape and impossible-rank admission": [
+          "check_shapes",
+          "shape"
+        ],
+        "exact split rank argument": [
+          "check_split_identities",
+          "require_equal",
+          "identity",
+          "multiply",
+          "check_positive_split_identities"
+        ],
+        "immutable evidence and binding": [
+          "RankCandidate",
+          "RankCertificate",
+          "rank",
+          "matrix_hash",
+          "candidate",
+          "verify_against",
+          "AdmittedMatrix::digest"
+        ],
+        "producer and empty lifecycle": [
+          "factorization",
+          "left_inverse",
+          "inverse",
+          "empty_candidate",
+          "certify_rank"
+        ],
+        "resource lifecycle": [
+          "RankLimits",
+          "RankBudget::new",
+          "RankBudget::cells",
+          "RankBudget::requested",
+          "RankBudget::charge",
+          "product_work",
+          "preflight_split_work",
+          "admit_rank_product",
+          "rational_buffer",
+          "reduction_work"
+        ],
+        "closed Q elimination": [
+          "RationalRows::copy",
+          "RationalRows::augmented_identity",
+          "RationalRows::at",
+          "RationalRows::swap_rows",
+          "RationalRows::normalize",
+          "RationalRows::clear_row",
+          "RationalRows::reduce_column",
+          "RationalRows::reduce",
+          "RationalRows::into_prefix_matrix",
+          "RationalRows::into_right_block",
+          "distinct_rational_rows",
+          "rational_rref",
+          "rational_inverse",
+          "inverse_with_budget"
+        ],
+        "configurable public boundaries": [
+          "certify_rank_with_limits",
+          "RankCertificate::try_admit_with_limits",
+          "RankCertificate::verify_against_with_limits",
+          "RankCertificate::admit_with_budget",
+          "check_candidate"
+        ]
+      },
+      "engineering_assessment": {
+        "source_sha256": "ad7de074a639be1cbcf817fe609e2205ae7d3eac3e48cd8361549bd5d0514694",
+        "gates": {
+          "G1": {
+            "grade": "A",
+            "basis": "Source SHA and complete public requirement/symbol map are in this specification, bound into the generated contract and execution receipt. Concrete Q domain, exact split-rank argument, producer dependencies, carrier consumers and AuthorityEffect None are explicit. No assumption that a producer output is correct replaces identity replay."
+          },
+          "G2": {
+            "grade": "A",
+            "basis": "Both public admitting operations validate canonical positive-denominator reduced Q before arithmetic. Rank/shape constraints precede products. The admitted M=UV, LU=I_r and VR=I_r identities imply exactly rank(M)=r over Q; rank zero checks the only nonvacuous identity M=0. Stored private evidence cannot be forged through serialization or mutable access. The producer uses exact rational factorization and is accepted only by this checker."
+          },
+          "G3": {
+            "grade": "A",
+            "basis": "The source invariant argument covers public canonical admission, every index/divisor/count, disjoint mutable rows, finite workspace reservation and error propagation. The immutable canonical matrix token is carried to digest/identity replay; private certificate storage excludes unchecked decoding or mutation. BasicMatrix private shape/storage and typed get_ref/try_from_fn/from_row_major paths are inspected and source-pinned. Exact rational closure, num-bigint/num-integer, BLAKE3, Rust/std/compiler and allocator behavior are explicit runtime trust assumptions. Owned vector capacity is reserved fallibly; scalar-internal allocations remain standard dependency behavior. Failures publish no partial certificate. This is not a machine-checked crash-freedom or process-OOM guarantee."
+          },
+          "G4": {
+            "grade": "A",
+            "basis": "Conditional on current R>=0.95 and successful untouched/restored baselines for 24 separately designated rank faults. Independent integer-minor oracles cover 729 two-by-three matrices and their transposes; 81 inverse cases use integer adjugate/determinant expectations. Forged split maps, all shape and raw-rational roles, exact binding diagnostics, inclusive aggregate budgets/overflow/atomic counters and extreme zero-area metadata are challenged. A dedicated integration binary observes public-boundary allocation order with positive controls, and a compile-fail doctest checks certificate privacy. All six mutant outcomes remain disclosed; the conditional judgement is withheld if this source snapshot lacks the required execution."
+          },
+          "G5": {
+            "grade": "A",
+            "basis": "All production functions must meet calibrated A metric ceilings without opaque source macros. Borrowed arithmetic kernels and moved factor/output extraction perform no redundant inner-loop matrix/operand copies. Canonical source admission is carried through hashing without repeated rational reduction or full-value clones. Candidate validation is necessary to independent identity replay. Workspace copies create the required mutable elimination state; output factor entries and signed integer byte buffers create necessary owned results/serialization. Rational bit growth, canonicality GCD and byte hashing costs are explicit, outside the matrix-cell/scalar-operation counters; no constant bit-cost or process memory/time bound is claimed."
+          }
+        }
+      },
+      "origin_review": "Integrated byte-for-byte from the staged candidate after successful staged checks. Original source, prior specifications and all 266 previous assessment sidecars are sealed in evidence/quality/l4a_six/20261020T064227Z-rank-activation. Fresh source/dependency/metric/mutation receipts bind this current epoch."
+    }
+  },
+  "current_contract": "4810841da094352730838090917f62bb9c21712fe32e283a97c08ad1e3e8b4f7",
+  "current_scoring": "413a171e95b477d142c954505d3eb152c031d28ef1cbd540d6063fb939fe6a73",
+  "contract_history": [
+    {
+      "sha256": "4810841da094352730838090917f62bb9c21712fe32e283a97c08ad1e3e8b4f7",
+      "bytes": 18335,
+      "record": {
+        "schema_version": "1.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/homology/rank_certificate.rs",
+          "sha256": "ad7de074a639be1cbcf817fe609e2205ae7d3eac3e48cd8361549bd5d0514694",
+          "language": "Rust"
+        },
+        "contract_urn": "urn:tfqm:contract:homology:rank_certificate.rs",
+        "status": "canonical_borrowed_Q_rank_individual_gate_review",
+        "target": "L4A",
+        "profile": "Exact",
+        "purpose": "Finite rational chain/cochain data, admitted carriers and rank certificates.",
+        "subject_role": "Individual source review: immutable admitted rank certificates with typed canonical-domain, dimension, identity and matrix-binding refusals; an independently replayed M=UV/LU=I/VR=I boundary; exact-Q producer with explicit dependency trust; constant-time zero-area metadata paths; borrowed checker products and independently forged-candidate challenges. This capability judgment does not certify all five engineering gates.",
+        "compilation": {
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false
+        },
+        "declaration_index": [
+          {
+            "kind": "struct",
+            "name": "RankLimits",
+            "line": 22,
+            "declaration_line": "pub struct RankLimits {"
+          },
+          {
+            "kind": "struct",
+            "name": "RankCandidate",
+            "line": 76,
+            "declaration_line": "pub struct RankCandidate {"
+          },
+          {
+            "kind": "struct",
+            "name": "RankCertificate",
+            "line": 91,
+            "declaration_line": "pub struct RankCertificate {"
+          },
+          {
+            "kind": "fn",
+            "name": "try_admit",
+            "line": 98,
+            "declaration_line": "pub fn try_admit("
+          },
+          {
+            "kind": "fn",
+            "name": "try_admit_with_limits",
+            "line": 105,
+            "declaration_line": "pub fn try_admit_with_limits("
+          },
+          {
+            "kind": "fn",
+            "name": "rank",
+            "line": 135,
+            "declaration_line": "pub fn rank(&self) -> usize {"
+          },
+          {
+            "kind": "fn",
+            "name": "matrix_hash",
+            "line": 138,
+            "declaration_line": "pub fn matrix_hash(&self) -> &Hash256 {"
+          },
+          {
+            "kind": "fn",
+            "name": "candidate",
+            "line": 141,
+            "declaration_line": "pub fn candidate(&self) -> &RankCandidate {"
+          },
+          {
+            "kind": "fn",
+            "name": "verify_against",
+            "line": 146,
+            "declaration_line": "pub fn verify_against(&self, matrix: &BasicMatrix<Q>) -> Result<(), HomologicalError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "verify_against_with_limits",
+            "line": 150,
+            "declaration_line": "pub fn verify_against_with_limits("
+          },
+          {
+            "kind": "fn",
+            "name": "certify_rank",
+            "line": 307,
+            "declaration_line": "pub fn certify_rank(matrix: &BasicMatrix<Q>) -> Result<RankCertificate, HomologicalError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "certify_rank_with_limits",
+            "line": 311,
+            "declaration_line": "pub fn certify_rank_with_limits("
+          }
+        ],
+        "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+        "requirements": [
+          {
+            "id": "G1",
+            "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+          },
+          {
+            "id": "G2",
+            "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+          },
+          {
+            "id": "G3",
+            "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+          },
+          {
+            "id": "G4",
+            "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+          },
+          {
+            "id": "G5",
+            "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+          }
+        ],
+        "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+        "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+        "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+        "open_obligations": [],
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T064257Z/receipt.json",
+            "sha256": "51613b0c9b9841f5bd58f732f04af13ab7e0b423d6fcfd00b5bba0d8104c6579"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064257Z/source_manifest.json",
+            "sha256": "684a70128a9b855d38641d5caf8ff06dbbed219ecf7ddaf745207a42584425ae"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "06dc10da559e38474966c2d318615204284210a7fd2b412c91b1f2bdf91a98e3"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064416Z-native-scalar-control/receipt.json",
+            "sha256": "0766aa9b99debe1358f6d8875fd7f375f0f81919491614eec1a640b2839bfa51"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064257Z/metrics.json",
+            "sha256": "4a56a75becd2862da73b9876563e490bf570e9dee24a4816667cec6684dffcb1"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064307Z-mutations/receipt.json",
+            "sha256": "f33e08380b111005a6d5a9897fae4c86ba2b18b7c39bdc3e4d8ee49232cc0e11"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064307Z-mutations/mutations.json",
+            "sha256": "0a6dac1623a7edf2f6a369b765e755221a0f9bdc232349ac2d202d4c9b7676dc"
+          }
+        ],
+        "reviewed_specification": {
+          "status": "canonical_borrowed_Q_rank_individual_gate_review",
+          "purpose": "Admit finite rank certificates through canonical coefficients, dimensions, exact split identities and a fallible matrix binding.",
+          "symbol_contracts": {
+            "RankCertificate::try_admit/check_split_identities": {
+              "postcondition": "Admit coefficients, rank and shapes before checking M=UV, LU=I and VR=I in that order. Hash the matrix only after those identities pass. Factoring the identity phase preserves every refusal and keeps typed hash propagation.",
+              "scope": "The private certificate remains an exact finite rank witness; the producer's elimination result is not trusted without replaying the identities.",
+              "zero_rank": "After coefficient and complete shape admission, rank zero requires every input entry zero. U,V,L,R then have empty storage and LU=VR=I_0 is vacuous. Zero-area usize::MAX metadata is not enumerated."
+            },
+            "certify_rank": {
+              "postcondition": "Canonical input only; produce a rank factorization and split maps, then replay the public checker before emitting a certificate. For zero matrices construct the four zero-area maps directly.",
+              "proof_argument": "M=UV bounds rank(M)<=r; LU=I gives rank(U)>=r, and VR=I gives rank(V)>=r. Together rank(UV)=r. Rational Gram matrices U^T U are invertible for independent columns because sums of rational squares vanish only when each term is zero.",
+              "cost": "Private rational_rref/rational_inverse use admitted, fallibly reserved flat buffers. Input and transpose copies are made once where ownership requires them; coordinates and inverse outputs move coefficients out of working storage. Pivot divisors and elimination factors move out of the row rather than cloning operands in its arithmetic loop. Conservative phase field-operation counts are charged without refunds; scalar bit sizes, validation, hashing, comparison, allocator internals and elapsed time are outside this count."
+            },
+            "RankLimits/RankBudget": {
+              "admission": "Default limits are 4096 cells per matrix and 1000000 conservative scalar operations per producer/checker call. Explicit overrides are inclusive. Cell products, operation products and aggregate charges use checked usize arithmetic. Failed charges leave spent unchanged.",
+              "order": "Producer admits input cells before canonical validation. Checker candidate admission validates canonical coefficients and shapes, then cells for input and all four maps. Positive-rank identity replay checks the sum of all three product work bounds before allocating I_r; individual products debit that same sum. verify_against checks input cells and binding before replay, without cloning the candidate.",
+              "zero": "Canonical zero matrices require no field work; rank-zero maps have zero-area buffers, including usize::MAX by zero metadata. Nonzero storage remains subject to the cell limit.",
+              "limits": "Counts are phase bounds, not an exact event counter, byte limit, BigInt bound, deadline or aggregate memory bound."
+            },
+            "RationalRows/rational_rref/rational_inverse": {
+              "invariants": "rows*cols equals flat storage length; width<=cols; selected pivots are nonzero. Earlier pivot columns are zero in every later pivot row. Normalization moves the pivot to an owned divisor and writes one; clear_row uses disjoint slices, moves its factor and writes zero. Remaining entries use borrowed exact Q arithmetic. All private ranges follow admitted shape and row bounds.",
+              "factorization": "Pivot columns of the original M form U. The first rank rows of reduced M form V; truncating and moving the row buffer preserves M=UV. A full-column-rank Q matrix has positive-definite Gram matrix, giving L=(U^T U)^-1 U^T and the analogous section of V. Public identity replay is required before evidence construction.",
+              "inverse": "Square check, checked 2n, per-matrix n*2n admission and conservative work charge precede augmented-buffer allocation. Reduction scans only the left n columns. Missing pivots return typed Singular. On success left block I proves the moved right block is the inverse.",
+              "cost": "Reduction bound min(rows,width)*cols*(2*rows+1) counts at most cols divisions and rows*cols multiply/subtract pairs per pivot. Product bound is 2*rows*cols*inner. Both deliberately omit comparisons and coefficient representation costs."
+            },
+            "AdmittedMatrix integration": "All public matrix entries first acquire a canonical immutable borrow token. The producer keeps that token through independent candidate replay; the checker hashes canonical numerators/denominators directly through its lifetime-bound token. Canonical input admission is performed once, without a second reduction or full-rational clone for hashing. Candidate coefficients are separately admitted before exact identity checks. The digest frame is shared with hashing::MATRIX_Q_DOMAIN."
+          },
+          "capability_assessment": {
+            "source_sha256": "ad7de074a639be1cbcf817fe609e2205ae7d3eac3e48cd8361549bd5d0514694",
+            "level": "L4",
+            "basis": "Individual source review: immutable admitted rank certificates with typed canonical-domain, dimension, identity and matrix-binding refusals; an independently replayed M=UV/LU=I/VR=I boundary; exact-Q producer with explicit dependency trust; constant-time zero-area metadata paths; borrowed checker products and independently forged-candidate challenges. This capability judgment does not certify all five engineering gates."
+          },
+          "consumer_review": [
+            "homology/carrier.rs stores two admitted certificates for boundary matrices; failure propagates from certify_rank before constructing the carrier.",
+            "homology/l5a_challenges.rs compares ranks of all 81 two-by-two {-1,0,1} matrices against integer determinant/zero-entry cases and forges identities/binding separately.",
+            "The canonical adapter uses pinned BasicMatrix shape/storage and get_ref/checked construction methods, num-rational BigRational arithmetic, num-bigint/num-integer canonical representation and BLAKE3 byte serialization. The provider shape invariant and typed access/reservation paths are inspected; no provider row-reduction, generic field callback or matrix multiplication is used.",
+            "Staged 20261020T062113Z and 20261020T062911Z-rank-trial evidence is separate from current integrated baselines and mutation receipts. None is inferred from another source epoch."
+          ],
+          "open_obligations": [],
+          "requirement_symbol_map": {
+            "canonical domain": [
+              "RankCertificate::try_admit",
+              "check_coefficients",
+              "certify_rank",
+              "AdmittedMatrix::try_new",
+              "AdmittedMatrix::matrix",
+              "RankCertificate::admit_input"
+            ],
+            "shape and impossible-rank admission": [
+              "check_shapes",
+              "shape"
+            ],
+            "exact split rank argument": [
+              "check_split_identities",
+              "require_equal",
+              "identity",
+              "multiply",
+              "check_positive_split_identities"
+            ],
+            "immutable evidence and binding": [
+              "RankCandidate",
+              "RankCertificate",
+              "rank",
+              "matrix_hash",
+              "candidate",
+              "verify_against",
+              "AdmittedMatrix::digest"
+            ],
+            "producer and empty lifecycle": [
+              "factorization",
+              "left_inverse",
+              "inverse",
+              "empty_candidate",
+              "certify_rank"
+            ],
+            "resource lifecycle": [
+              "RankLimits",
+              "RankBudget::new",
+              "RankBudget::cells",
+              "RankBudget::requested",
+              "RankBudget::charge",
+              "product_work",
+              "preflight_split_work",
+              "admit_rank_product",
+              "rational_buffer",
+              "reduction_work"
+            ],
+            "closed Q elimination": [
+              "RationalRows::copy",
+              "RationalRows::augmented_identity",
+              "RationalRows::at",
+              "RationalRows::swap_rows",
+              "RationalRows::normalize",
+              "RationalRows::clear_row",
+              "RationalRows::reduce_column",
+              "RationalRows::reduce",
+              "RationalRows::into_prefix_matrix",
+              "RationalRows::into_right_block",
+              "distinct_rational_rows",
+              "rational_rref",
+              "rational_inverse",
+              "inverse_with_budget"
+            ],
+            "configurable public boundaries": [
+              "certify_rank_with_limits",
+              "RankCertificate::try_admit_with_limits",
+              "RankCertificate::verify_against_with_limits",
+              "RankCertificate::admit_with_budget",
+              "check_candidate"
+            ]
+          },
+          "engineering_assessment": {
+            "source_sha256": "ad7de074a639be1cbcf817fe609e2205ae7d3eac3e48cd8361549bd5d0514694",
+            "gates": {
+              "G1": {
+                "grade": "A",
+                "basis": "Source SHA and complete public requirement/symbol map are in this specification, bound into the generated contract and execution receipt. Concrete Q domain, exact split-rank argument, producer dependencies, carrier consumers and AuthorityEffect None are explicit. No assumption that a producer output is correct replaces identity replay."
+              },
+              "G2": {
+                "grade": "A",
+                "basis": "Both public admitting operations validate canonical positive-denominator reduced Q before arithmetic. Rank/shape constraints precede products. The admitted M=UV, LU=I_r and VR=I_r identities imply exactly rank(M)=r over Q; rank zero checks the only nonvacuous identity M=0. Stored private evidence cannot be forged through serialization or mutable access. The producer uses exact rational factorization and is accepted only by this checker."
+              },
+              "G3": {
+                "grade": "A",
+                "basis": "The source invariant argument covers public canonical admission, every index/divisor/count, disjoint mutable rows, finite workspace reservation and error propagation. The immutable canonical matrix token is carried to digest/identity replay; private certificate storage excludes unchecked decoding or mutation. BasicMatrix private shape/storage and typed get_ref/try_from_fn/from_row_major paths are inspected and source-pinned. Exact rational closure, num-bigint/num-integer, BLAKE3, Rust/std/compiler and allocator behavior are explicit runtime trust assumptions. Owned vector capacity is reserved fallibly; scalar-internal allocations remain standard dependency behavior. Failures publish no partial certificate. This is not a machine-checked crash-freedom or process-OOM guarantee."
+              },
+              "G4": {
+                "grade": "A",
+                "basis": "Conditional on current R>=0.95 and successful untouched/restored baselines for 24 separately designated rank faults. Independent integer-minor oracles cover 729 two-by-three matrices and their transposes; 81 inverse cases use integer adjugate/determinant expectations. Forged split maps, all shape and raw-rational roles, exact binding diagnostics, inclusive aggregate budgets/overflow/atomic counters and extreme zero-area metadata are challenged. A dedicated integration binary observes public-boundary allocation order with positive controls, and a compile-fail doctest checks certificate privacy. All six mutant outcomes remain disclosed; the conditional judgement is withheld if this source snapshot lacks the required execution."
+              },
+              "G5": {
+                "grade": "A",
+                "basis": "All production functions must meet calibrated A metric ceilings without opaque source macros. Borrowed arithmetic kernels and moved factor/output extraction perform no redundant inner-loop matrix/operand copies. Canonical source admission is carried through hashing without repeated rational reduction or full-value clones. Candidate validation is necessary to independent identity replay. Workspace copies create the required mutable elimination state; output factor entries and signed integer byte buffers create necessary owned results/serialization. Rational bit growth, canonicality GCD and byte hashing costs are explicit, outside the matrix-cell/scalar-operation counters; no constant bit-cost or process memory/time bound is claimed."
+              }
+            }
+          },
+          "origin_review": "Integrated byte-for-byte from the staged candidate after successful staged checks. Original source, prior specifications and all 266 previous assessment sidecars are sealed in evidence/quality/l4a_six/20261020T064227Z-rank-activation. Fresh source/dependency/metric/mutation receipts bind this current epoch."
+        }
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/homology/rank_certificate.rs\",\n    \"sha256\": \"ad7de074a639be1cbcf817fe609e2205ae7d3eac3e48cd8361549bd5d0514694\",\n    \"language\": \"Rust\"\n  },\n  \"contract_urn\": \"urn:tfqm:contract:homology:rank_certificate.rs\",\n  \"status\": \"canonical_borrowed_Q_rank_individual_gate_review\",\n  \"target\": \"L4A\",\n  \"profile\": \"Exact\",\n  \"purpose\": \"Finite rational chain/cochain data, admitted carriers and rank certificates.\",\n  \"subject_role\": \"Individual source review: immutable admitted rank certificates with typed canonical-domain, dimension, identity and matrix-binding refusals; an independently replayed M=UV/LU=I/VR=I boundary; exact-Q producer with explicit dependency trust; constant-time zero-area metadata paths; borrowed checker products and independently forged-candidate challenges. This capability judgment does not certify all five engineering gates.\",\n  \"compilation\": {\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false\n  },\n  \"declaration_index\": [\n    {\n      \"kind\": \"struct\",\n      \"name\": \"RankLimits\",\n      \"line\": 22,\n      \"declaration_line\": \"pub struct RankLimits {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"RankCandidate\",\n      \"line\": 76,\n      \"declaration_line\": \"pub struct RankCandidate {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"RankCertificate\",\n      \"line\": 91,\n      \"declaration_line\": \"pub struct RankCertificate {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"try_admit\",\n      \"line\": 98,\n      \"declaration_line\": \"pub fn try_admit(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"try_admit_with_limits\",\n      \"line\": 105,\n      \"declaration_line\": \"pub fn try_admit_with_limits(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"rank\",\n      \"line\": 135,\n      \"declaration_line\": \"pub fn rank(&self) -> usize {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"matrix_hash\",\n      \"line\": 138,\n      \"declaration_line\": \"pub fn matrix_hash(&self) -> &Hash256 {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"candidate\",\n      \"line\": 141,\n      \"declaration_line\": \"pub fn candidate(&self) -> &RankCandidate {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"verify_against\",\n      \"line\": 146,\n      \"declaration_line\": \"pub fn verify_against(&self, matrix: &BasicMatrix<Q>) -> Result<(), HomologicalError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"verify_against_with_limits\",\n      \"line\": 150,\n      \"declaration_line\": \"pub fn verify_against_with_limits(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"certify_rank\",\n      \"line\": 307,\n      \"declaration_line\": \"pub fn certify_rank(matrix: &BasicMatrix<Q>) -> Result<RankCertificate, HomologicalError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"certify_rank_with_limits\",\n      \"line\": 311,\n      \"declaration_line\": \"pub fn certify_rank_with_limits(\"\n    }\n  ],\n  \"declaration_index_scope\": \"Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.\",\n  \"requirements\": [\n    {\n      \"id\": \"G1\",\n      \"requirement\": \"Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries.\"\n    },\n    {\n      \"id\": \"G2\",\n      \"requirement\": \"Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path.\"\n    },\n    {\n      \"id\": \"G3\",\n      \"requirement\": \"Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions.\"\n    },\n    {\n      \"id\": \"G4\",\n      \"requirement\": \"Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A.\"\n    },\n    {\n      \"id\": \"G5\",\n      \"requirement\": \"Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately.\"\n    }\n  ],\n  \"admission_policy\": \"Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.\",\n  \"resource_boundary\": \"No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.\",\n  \"authority_ceiling\": \"Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.\",\n  \"open_obligations\": [],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064257Z/receipt.json\",\n      \"sha256\": \"51613b0c9b9841f5bd58f732f04af13ab7e0b423d6fcfd00b5bba0d8104c6579\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064257Z/source_manifest.json\",\n      \"sha256\": \"684a70128a9b855d38641d5caf8ff06dbbed219ecf7ddaf745207a42584425ae\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"06dc10da559e38474966c2d318615204284210a7fd2b412c91b1f2bdf91a98e3\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064416Z-native-scalar-control/receipt.json\",\n      \"sha256\": \"0766aa9b99debe1358f6d8875fd7f375f0f81919491614eec1a640b2839bfa51\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064257Z/metrics.json\",\n      \"sha256\": \"4a56a75becd2862da73b9876563e490bf570e9dee24a4816667cec6684dffcb1\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064307Z-mutations/receipt.json\",\n      \"sha256\": \"f33e08380b111005a6d5a9897fae4c86ba2b18b7c39bdc3e4d8ee49232cc0e11\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064307Z-mutations/mutations.json\",\n      \"sha256\": \"0a6dac1623a7edf2f6a369b765e755221a0f9bdc232349ac2d202d4c9b7676dc\"\n    }\n  ],\n  \"reviewed_specification\": {\n    \"status\": \"canonical_borrowed_Q_rank_individual_gate_review\",\n    \"purpose\": \"Admit finite rank certificates through canonical coefficients, dimensions, exact split identities and a fallible matrix binding.\",\n    \"symbol_contracts\": {\n      \"RankCertificate::try_admit/check_split_identities\": {\n        \"postcondition\": \"Admit coefficients, rank and shapes before checking M=UV, LU=I and VR=I in that order. Hash the matrix only after those identities pass. Factoring the identity phase preserves every refusal and keeps typed hash propagation.\",\n        \"scope\": \"The private certificate remains an exact finite rank witness; the producer's elimination result is not trusted without replaying the identities.\",\n        \"zero_rank\": \"After coefficient and complete shape admission, rank zero requires every input entry zero. U,V,L,R then have empty storage and LU=VR=I_0 is vacuous. Zero-area usize::MAX metadata is not enumerated.\"\n      },\n      \"certify_rank\": {\n        \"postcondition\": \"Canonical input only; produce a rank factorization and split maps, then replay the public checker before emitting a certificate. For zero matrices construct the four zero-area maps directly.\",\n        \"proof_argument\": \"M=UV bounds rank(M)<=r; LU=I gives rank(U)>=r, and VR=I gives rank(V)>=r. Together rank(UV)=r. Rational Gram matrices U^T U are invertible for independent columns because sums of rational squares vanish only when each term is zero.\",\n        \"cost\": \"Private rational_rref/rational_inverse use admitted, fallibly reserved flat buffers. Input and transpose copies are made once where ownership requires them; coordinates and inverse outputs move coefficients out of working storage. Pivot divisors and elimination factors move out of the row rather than cloning operands in its arithmetic loop. Conservative phase field-operation counts are charged without refunds; scalar bit sizes, validation, hashing, comparison, allocator internals and elapsed time are outside this count.\"\n      },\n      \"RankLimits/RankBudget\": {\n        \"admission\": \"Default limits are 4096 cells per matrix and 1000000 conservative scalar operations per producer/checker call. Explicit overrides are inclusive. Cell products, operation products and aggregate charges use checked usize arithmetic. Failed charges leave spent unchanged.\",\n        \"order\": \"Producer admits input cells before canonical validation. Checker candidate admission validates canonical coefficients and shapes, then cells for input and all four maps. Positive-rank identity replay checks the sum of all three product work bounds before allocating I_r; individual products debit that same sum. verify_against checks input cells and binding before replay, without cloning the candidate.\",\n        \"zero\": \"Canonical zero matrices require no field work; rank-zero maps have zero-area buffers, including usize::MAX by zero metadata. Nonzero storage remains subject to the cell limit.\",\n        \"limits\": \"Counts are phase bounds, not an exact event counter, byte limit, BigInt bound, deadline or aggregate memory bound.\"\n      },\n      \"RationalRows/rational_rref/rational_inverse\": {\n        \"invariants\": \"rows*cols equals flat storage length; width<=cols; selected pivots are nonzero. Earlier pivot columns are zero in every later pivot row. Normalization moves the pivot to an owned divisor and writes one; clear_row uses disjoint slices, moves its factor and writes zero. Remaining entries use borrowed exact Q arithmetic. All private ranges follow admitted shape and row bounds.\",\n        \"factorization\": \"Pivot columns of the original M form U. The first rank rows of reduced M form V; truncating and moving the row buffer preserves M=UV. A full-column-rank Q matrix has positive-definite Gram matrix, giving L=(U^T U)^-1 U^T and the analogous section of V. Public identity replay is required before evidence construction.\",\n        \"inverse\": \"Square check, checked 2n, per-matrix n*2n admission and conservative work charge precede augmented-buffer allocation. Reduction scans only the left n columns. Missing pivots return typed Singular. On success left block I proves the moved right block is the inverse.\",\n        \"cost\": \"Reduction bound min(rows,width)*cols*(2*rows+1) counts at most cols divisions and rows*cols multiply/subtract pairs per pivot. Product bound is 2*rows*cols*inner. Both deliberately omit comparisons and coefficient representation costs.\"\n      },\n      \"AdmittedMatrix integration\": \"All public matrix entries first acquire a canonical immutable borrow token. The producer keeps that token through independent candidate replay; the checker hashes canonical numerators/denominators directly through its lifetime-bound token. Canonical input admission is performed once, without a second reduction or full-rational clone for hashing. Candidate coefficients are separately admitted before exact identity checks. The digest frame is shared with hashing::MATRIX_Q_DOMAIN.\"\n    },\n    \"capability_assessment\": {\n      \"source_sha256\": \"ad7de074a639be1cbcf817fe609e2205ae7d3eac3e48cd8361549bd5d0514694\",\n      \"level\": \"L4\",\n      \"basis\": \"Individual source review: immutable admitted rank certificates with typed canonical-domain, dimension, identity and matrix-binding refusals; an independently replayed M=UV/LU=I/VR=I boundary; exact-Q producer with explicit dependency trust; constant-time zero-area metadata paths; borrowed checker products and independently forged-candidate challenges. This capability judgment does not certify all five engineering gates.\"\n    },\n    \"consumer_review\": [\n      \"homology/carrier.rs stores two admitted certificates for boundary matrices; failure propagates from certify_rank before constructing the carrier.\",\n      \"homology/l5a_challenges.rs compares ranks of all 81 two-by-two {-1,0,1} matrices against integer determinant/zero-entry cases and forges identities/binding separately.\",\n      \"The canonical adapter uses pinned BasicMatrix shape/storage and get_ref/checked construction methods, num-rational BigRational arithmetic, num-bigint/num-integer canonical representation and BLAKE3 byte serialization. The provider shape invariant and typed access/reservation paths are inspected; no provider row-reduction, generic field callback or matrix multiplication is used.\",\n      \"Staged 20261020T062113Z and 20261020T062911Z-rank-trial evidence is separate from current integrated baselines and mutation receipts. None is inferred from another source epoch.\"\n    ],\n    \"open_obligations\": [],\n    \"requirement_symbol_map\": {\n      \"canonical domain\": [\n        \"RankCertificate::try_admit\",\n        \"check_coefficients\",\n        \"certify_rank\",\n        \"AdmittedMatrix::try_new\",\n        \"AdmittedMatrix::matrix\",\n        \"RankCertificate::admit_input\"\n      ],\n      \"shape and impossible-rank admission\": [\n        \"check_shapes\",\n        \"shape\"\n      ],\n      \"exact split rank argument\": [\n        \"check_split_identities\",\n        \"require_equal\",\n        \"identity\",\n        \"multiply\",\n        \"check_positive_split_identities\"\n      ],\n      \"immutable evidence and binding\": [\n        \"RankCandidate\",\n        \"RankCertificate\",\n        \"rank\",\n        \"matrix_hash\",\n        \"candidate\",\n        \"verify_against\",\n        \"AdmittedMatrix::digest\"\n      ],\n      \"producer and empty lifecycle\": [\n        \"factorization\",\n        \"left_inverse\",\n        \"inverse\",\n        \"empty_candidate\",\n        \"certify_rank\"\n      ],\n      \"resource lifecycle\": [\n        \"RankLimits\",\n        \"RankBudget::new\",\n        \"RankBudget::cells\",\n        \"RankBudget::requested\",\n        \"RankBudget::charge\",\n        \"product_work\",\n        \"preflight_split_work\",\n        \"admit_rank_product\",\n        \"rational_buffer\",\n        \"reduction_work\"\n      ],\n      \"closed Q elimination\": [\n        \"RationalRows::copy\",\n        \"RationalRows::augmented_identity\",\n        \"RationalRows::at\",\n        \"RationalRows::swap_rows\",\n        \"RationalRows::normalize\",\n        \"RationalRows::clear_row\",\n        \"RationalRows::reduce_column\",\n        \"RationalRows::reduce\",\n        \"RationalRows::into_prefix_matrix\",\n        \"RationalRows::into_right_block\",\n        \"distinct_rational_rows\",\n        \"rational_rref\",\n        \"rational_inverse\",\n        \"inverse_with_budget\"\n      ],\n      \"configurable public boundaries\": [\n        \"certify_rank_with_limits\",\n        \"RankCertificate::try_admit_with_limits\",\n        \"RankCertificate::verify_against_with_limits\",\n        \"RankCertificate::admit_with_budget\",\n        \"check_candidate\"\n      ]\n    },\n    \"engineering_assessment\": {\n      \"source_sha256\": \"ad7de074a639be1cbcf817fe609e2205ae7d3eac3e48cd8361549bd5d0514694\",\n      \"gates\": {\n        \"G1\": {\n          \"grade\": \"A\",\n          \"basis\": \"Source SHA and complete public requirement/symbol map are in this specification, bound into the generated contract and execution receipt. Concrete Q domain, exact split-rank argument, producer dependencies, carrier consumers and AuthorityEffect None are explicit. No assumption that a producer output is correct replaces identity replay.\"\n        },\n        \"G2\": {\n          \"grade\": \"A\",\n          \"basis\": \"Both public admitting operations validate canonical positive-denominator reduced Q before arithmetic. Rank/shape constraints precede products. The admitted M=UV, LU=I_r and VR=I_r identities imply exactly rank(M)=r over Q; rank zero checks the only nonvacuous identity M=0. Stored private evidence cannot be forged through serialization or mutable access. The producer uses exact rational factorization and is accepted only by this checker.\"\n        },\n        \"G3\": {\n          \"grade\": \"A\",\n          \"basis\": \"The source invariant argument covers public canonical admission, every index/divisor/count, disjoint mutable rows, finite workspace reservation and error propagation. The immutable canonical matrix token is carried to digest/identity replay; private certificate storage excludes unchecked decoding or mutation. BasicMatrix private shape/storage and typed get_ref/try_from_fn/from_row_major paths are inspected and source-pinned. Exact rational closure, num-bigint/num-integer, BLAKE3, Rust/std/compiler and allocator behavior are explicit runtime trust assumptions. Owned vector capacity is reserved fallibly; scalar-internal allocations remain standard dependency behavior. Failures publish no partial certificate. This is not a machine-checked crash-freedom or process-OOM guarantee.\"\n        },\n        \"G4\": {\n          \"grade\": \"A\",\n          \"basis\": \"Conditional on current R>=0.95 and successful untouched/restored baselines for 24 separately designated rank faults. Independent integer-minor oracles cover 729 two-by-three matrices and their transposes; 81 inverse cases use integer adjugate/determinant expectations. Forged split maps, all shape and raw-rational roles, exact binding diagnostics, inclusive aggregate budgets/overflow/atomic counters and extreme zero-area metadata are challenged. A dedicated integration binary observes public-boundary allocation order with positive controls, and a compile-fail doctest checks certificate privacy. All six mutant outcomes remain disclosed; the conditional judgement is withheld if this source snapshot lacks the required execution.\"\n        },\n        \"G5\": {\n          \"grade\": \"A\",\n          \"basis\": \"All production functions must meet calibrated A metric ceilings without opaque source macros. Borrowed arithmetic kernels and moved factor/output extraction perform no redundant inner-loop matrix/operand copies. Canonical source admission is carried through hashing without repeated rational reduction or full-value clones. Candidate validation is necessary to independent identity replay. Workspace copies create the required mutable elimination state; output factor entries and signed integer byte buffers create necessary owned results/serialization. Rational bit growth, canonicality GCD and byte hashing costs are explicit, outside the matrix-cell/scalar-operation counters; no constant bit-cost or process memory/time bound is claimed.\"\n        }\n      }\n    },\n    \"origin_review\": \"Integrated byte-for-byte from the staged candidate after successful staged checks. Original source, prior specifications and all 266 previous assessment sidecars are sealed in evidence/quality/l4a_six/20261020T064227Z-rank-activation. Fresh source/dependency/metric/mutation receipts bind this current epoch.\"\n  }\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_six/20261020T074553Z-smith-activation/previous_assessment/code/rust/src/homology/rank_certificate.rs.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "413a171e95b477d142c954505d3eb152c031d28ef1cbd540d6063fb939fe6a73",
+      "bytes": 18451,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/homology/rank_certificate.rs",
+          "sha256": "ad7de074a639be1cbcf817fe609e2205ae7d3eac3e48cd8361549bd5d0514694",
+          "language": "Rust"
+        },
+        "profile": "Exact",
+        "level": "L4",
+        "level_basis": "Individual source review: immutable admitted rank certificates with typed canonical-domain, dimension, identity and matrix-binding refusals; an independently replayed M=UV/LU=I/VR=I boundary; exact-Q producer with explicit dependency trust; constant-time zero-area metadata paths; borrowed checker products and independently forged-candidate challenges. This capability judgment does not certify all five engineering gates.",
+        "engineering_target": "A",
+        "requested_target": "L4A",
+        "gates": {
+          "G1": "A",
+          "G2": "A",
+          "G3": "A",
+          "G4": "A",
+          "G5": "A"
+        },
+        "composite_grade": "A",
+        "score_token": "L4A",
+        "is_complete": true,
+        "grade_ceiling": "A",
+        "evaluation_timestamp": "2026-10-20T06:44:16.623074+00:00",
+        "grade_ceiling_basis": "Minimum of explicit individual gate decisions and measured structural eligibility.",
+        "contract": {
+          "path": "code/rust/src/homology/rank_certificate.rs.contract.yaml",
+          "status": "canonical_borrowed_Q_rank_individual_gate_review",
+          "sha256": "4810841da094352730838090917f62bb9c21712fe32e283a97c08ad1e3e8b4f7"
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T064257Z/receipt.json",
+            "sha256": "51613b0c9b9841f5bd58f732f04af13ab7e0b423d6fcfd00b5bba0d8104c6579"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064257Z/source_manifest.json",
+            "sha256": "684a70128a9b855d38641d5caf8ff06dbbed219ecf7ddaf745207a42584425ae"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "06dc10da559e38474966c2d318615204284210a7fd2b412c91b1f2bdf91a98e3"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064416Z-native-scalar-control/receipt.json",
+            "sha256": "0766aa9b99debe1358f6d8875fd7f375f0f81919491614eec1a640b2839bfa51"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064257Z/metrics.json",
+            "sha256": "4a56a75becd2862da73b9876563e490bf570e9dee24a4816667cec6684dffcb1"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064307Z-mutations/receipt.json",
+            "sha256": "f33e08380b111005a6d5a9897fae4c86ba2b18b7c39bdc3e4d8ee49232cc0e11"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064307Z-mutations/mutations.json",
+            "sha256": "0a6dac1623a7edf2f6a369b765e755221a0f9bdc232349ac2d202d4c9b7676dc"
+          }
+        ],
+        "verification": {
+          "baseline": {
+            "command": [
+              "cargo",
+              "test",
+              "--offline",
+              "--target-dir",
+              "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T064307Z-mutations\\build",
+              "--quiet",
+              "-p",
+              "tfqm_homology_linear_audit"
+            ],
+            "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T064307Z-mutations",
+            "disk_observation": {
+              "completed_cache_file_bytes": 525515112,
+              "free_after": 4049068032,
+              "free_before": 4194275328,
+              "scope": "Endpoint observations only; not a peak-space or external-activity guarantee."
+            },
+            "elapsed_seconds": 67.562,
+            "environment": {
+              "CARGO_BUILD_JOBS": "2",
+              "CARGO_INCREMENTAL": "0"
+            },
+            "exit_code": 0,
+            "log": "evidence/quality/l4a_six/20261020T064307Z-mutations/tfqm_homology_linear_audit-baseline.log",
+            "log_sha256": "00768738cf4e95ae56183052da15d6259714327a2fa580301191582b5e24f6a4",
+            "package": "tfqm_homology_linear_audit",
+            "timed_out": false
+          },
+          "sources_unchanged": true,
+          "doctests": [],
+          "composition_runs": [],
+          "differential_controls": [],
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false,
+          "dependency_sources_unchanged": true,
+          "compiled_scope": "Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.",
+          "designated_mutations": [
+            "RK01-coefficient-admission",
+            "RK02-shape-admission",
+            "RK03-identity-admission",
+            "RK04-zero-identity",
+            "RK05-matrix-binding",
+            "RK06-identity-equality",
+            "RK07-rank-dimension",
+            "RK08-elimination-sign",
+            "RK09-pivot-normalization",
+            "RK10-pivot-clearing",
+            "RK11-coordinate-extraction",
+            "RK12-inverse-extraction",
+            "RK13-certificate-privacy",
+            "RB01-inclusive-cells",
+            "RB02-inclusive-work",
+            "RB03-work-refusal",
+            "RB04-product-debit",
+            "RB05-cell-refusal",
+            "RB06-product-work",
+            "RB07-reduction-work",
+            "RP01-inverse-admission-order",
+            "RP02-checker-admission-order",
+            "RP03-checker-preflight",
+            "RP04-checker-candidate-clone"
+          ],
+          "designated_challenges_present": true,
+          "linked_challenges": {},
+          "mutation_campaign": {
+            "path": "evidence/quality/l4a_six/20261020T064307Z-mutations/receipt.json",
+            "sha256": "f33e08380b111005a6d5a9897fae4c86ba2b18b7c39bdc3e4d8ee49232cc0e11"
+          },
+          "mutation_restoration_baselines_ok": true,
+          "reproduced_defects": []
+        },
+        "mutation_accounting": {
+          "killed": 24,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": 1.0
+        },
+        "structure": {
+          "tool": "syn source AST (see pinned metric_tool_sources in receipt)",
+          "functions": [
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 27,
+              "name": "default",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 40,
+              "name": "new",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 43,
+              "name": "cells",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 55,
+              "name": "requested",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 68,
+              "name": "charge",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 98,
+              "name": "try_admit",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 105,
+              "name": "try_admit_with_limits",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 113,
+              "name": "admit_with_budget",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 122,
+              "name": "admit_input",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 135,
+              "name": "rank",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 138,
+              "name": "matrix_hash",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 141,
+              "name": "candidate",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 146,
+              "name": "verify_against",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 150,
+              "name": "verify_against_with_limits",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 167,
+              "name": "check_candidate",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 188,
+              "name": "check_split_identities",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 7,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 207,
+              "name": "check_positive_split_identities",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 235,
+              "name": "product_work",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 242,
+              "name": "preflight_split_work",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 1,
+              "line": 259,
+              "name": "shape",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 269,
+              "name": "check_shapes",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 285,
+              "name": "require_equal",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 296,
+              "name": "identity",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 307,
+              "name": "certify_rank",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 10,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 311,
+              "name": "certify_rank_with_limits",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 337,
+              "name": "empty_candidate",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 346,
+              "name": "check_coefficients",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 6,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 358,
+              "name": "factorization",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 378,
+              "name": "left_inverse",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 9,
+              "cognitive_upper_bound": 4,
+              "control_nesting": 2,
+              "line": 390,
+              "name": "multiply",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 416,
+              "name": "admit_rank_product",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 432,
+              "name": "inverse",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 436,
+              "name": "inverse_with_budget",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 444,
+              "name": "rational_buffer",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 452,
+              "name": "reduction_work",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 476,
+              "name": "copy",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 6,
+              "cognitive_upper_bound": 4,
+              "control_nesting": 2,
+              "line": 486,
+              "name": "augmented_identity",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 511,
+              "name": "at",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 514,
+              "name": "swap_rows",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 523,
+              "name": "normalize",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 530,
+              "name": "clear_row",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 4,
+              "control_nesting": 2,
+              "line": 540,
+              "name": "reduce_column",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 5,
+              "control_nesting": 2,
+              "line": 554,
+              "name": "reduce",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 566,
+              "name": "into_prefix_matrix",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 571,
+              "name": "into_right_block",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 585,
+              "name": "distinct_rational_rows",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 606,
+              "name": "rational_rref",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 10,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 616,
+              "name": "rational_inverse",
+              "opaque_macros": []
+            }
+          ],
+          "exceeding_A": [],
+          "metric_ceiling": "A",
+          "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
+        },
+        "open_findings": [],
+        "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts.",
+        "engineering_review": {
+          "source_sha256": "ad7de074a639be1cbcf817fe609e2205ae7d3eac3e48cd8361549bd5d0514694",
+          "gates": {
+            "G1": {
+              "grade": "A",
+              "basis": "Source SHA and complete public requirement/symbol map are in this specification, bound into the generated contract and execution receipt. Concrete Q domain, exact split-rank argument, producer dependencies, carrier consumers and AuthorityEffect None are explicit. No assumption that a producer output is correct replaces identity replay."
+            },
+            "G2": {
+              "grade": "A",
+              "basis": "Both public admitting operations validate canonical positive-denominator reduced Q before arithmetic. Rank/shape constraints precede products. The admitted M=UV, LU=I_r and VR=I_r identities imply exactly rank(M)=r over Q; rank zero checks the only nonvacuous identity M=0. Stored private evidence cannot be forged through serialization or mutable access. The producer uses exact rational factorization and is accepted only by this checker."
+            },
+            "G3": {
+              "grade": "A",
+              "basis": "The source invariant argument covers public canonical admission, every index/divisor/count, disjoint mutable rows, finite workspace reservation and error propagation. The immutable canonical matrix token is carried to digest/identity replay; private certificate storage excludes unchecked decoding or mutation. BasicMatrix private shape/storage and typed get_ref/try_from_fn/from_row_major paths are inspected and source-pinned. Exact rational closure, num-bigint/num-integer, BLAKE3, Rust/std/compiler and allocator behavior are explicit runtime trust assumptions. Owned vector capacity is reserved fallibly; scalar-internal allocations remain standard dependency behavior. Failures publish no partial certificate. This is not a machine-checked crash-freedom or process-OOM guarantee."
+            },
+            "G4": {
+              "grade": "A",
+              "basis": "Conditional on current R>=0.95 and successful untouched/restored baselines for 24 separately designated rank faults. Independent integer-minor oracles cover 729 two-by-three matrices and their transposes; 81 inverse cases use integer adjugate/determinant expectations. Forged split maps, all shape and raw-rational roles, exact binding diagnostics, inclusive aggregate budgets/overflow/atomic counters and extreme zero-area metadata are challenged. A dedicated integration binary observes public-boundary allocation order with positive controls, and a compile-fail doctest checks certificate privacy. All six mutant outcomes remain disclosed; the conditional judgement is withheld if this source snapshot lacks the required execution."
+            },
+            "G5": {
+              "grade": "A",
+              "basis": "All production functions must meet calibrated A metric ceilings without opaque source macros. Borrowed arithmetic kernels and moved factor/output extraction perform no redundant inner-loop matrix/operand copies. Canonical source admission is carried through hashing without repeated rational reduction or full-value clones. Candidate validation is necessary to independent identity replay. Workspace copies create the required mutable elimination state; output factor entries and signed integer byte buffers create necessary owned results/serialization. Rational bit growth, canonicality GCD and byte hashing costs are explicit, outside the matrix-cell/scalar-operation counters; no constant bit-cost or process memory/time bound is claimed."
+            }
+          }
+        }
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/homology/rank_certificate.rs\",\n    \"sha256\": \"ad7de074a639be1cbcf817fe609e2205ae7d3eac3e48cd8361549bd5d0514694\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Individual source review: immutable admitted rank certificates with typed canonical-domain, dimension, identity and matrix-binding refusals; an independently replayed M=UV/LU=I/VR=I boundary; exact-Q producer with explicit dependency trust; constant-time zero-area metadata paths; borrowed checker products and independently forged-candidate challenges. This capability judgment does not certify all five engineering gates.\",\n  \"engineering_target\": \"A\",\n  \"requested_target\": \"L4A\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L4A\",\n  \"is_complete\": true,\n  \"grade_ceiling\": \"A\",\n  \"evaluation_timestamp\": \"2026-10-20T06:44:16.623074+00:00\",\n  \"grade_ceiling_basis\": \"Minimum of explicit individual gate decisions and measured structural eligibility.\",\n  \"contract\": {\n    \"path\": \"code/rust/src/homology/rank_certificate.rs.contract.yaml\",\n    \"status\": \"canonical_borrowed_Q_rank_individual_gate_review\",\n    \"sha256\": \"4810841da094352730838090917f62bb9c21712fe32e283a97c08ad1e3e8b4f7\"\n  },\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064257Z/receipt.json\",\n      \"sha256\": \"51613b0c9b9841f5bd58f732f04af13ab7e0b423d6fcfd00b5bba0d8104c6579\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064257Z/source_manifest.json\",\n      \"sha256\": \"684a70128a9b855d38641d5caf8ff06dbbed219ecf7ddaf745207a42584425ae\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"06dc10da559e38474966c2d318615204284210a7fd2b412c91b1f2bdf91a98e3\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064416Z-native-scalar-control/receipt.json\",\n      \"sha256\": \"0766aa9b99debe1358f6d8875fd7f375f0f81919491614eec1a640b2839bfa51\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064257Z/metrics.json\",\n      \"sha256\": \"4a56a75becd2862da73b9876563e490bf570e9dee24a4816667cec6684dffcb1\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064307Z-mutations/receipt.json\",\n      \"sha256\": \"f33e08380b111005a6d5a9897fae4c86ba2b18b7c39bdc3e4d8ee49232cc0e11\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064307Z-mutations/mutations.json\",\n      \"sha256\": \"0a6dac1623a7edf2f6a369b765e755221a0f9bdc232349ac2d202d4c9b7676dc\"\n    }\n  ],\n  \"verification\": {\n    \"baseline\": {\n      \"command\": [\n        \"cargo\",\n        \"test\",\n        \"--offline\",\n        \"--target-dir\",\n        \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-six\\\\20261020T064307Z-mutations\\\\build\",\n        \"--quiet\",\n        \"-p\",\n        \"tfqm_homology_linear_audit\"\n      ],\n      \"cwd\": \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-six\\\\20261020T064307Z-mutations\",\n      \"disk_observation\": {\n        \"completed_cache_file_bytes\": 525515112,\n        \"free_after\": 4049068032,\n        \"free_before\": 4194275328,\n        \"scope\": \"Endpoint observations only; not a peak-space or external-activity guarantee.\"\n      },\n      \"elapsed_seconds\": 67.562,\n      \"environment\": {\n        \"CARGO_BUILD_JOBS\": \"2\",\n        \"CARGO_INCREMENTAL\": \"0\"\n      },\n      \"exit_code\": 0,\n      \"log\": \"evidence/quality/l4a_six/20261020T064307Z-mutations/tfqm_homology_linear_audit-baseline.log\",\n      \"log_sha256\": \"00768738cf4e95ae56183052da15d6259714327a2fa580301191582b5e24f6a4\",\n      \"package\": \"tfqm_homology_linear_audit\",\n      \"timed_out\": false\n    },\n    \"sources_unchanged\": true,\n    \"doctests\": [],\n    \"composition_runs\": [],\n    \"differential_controls\": [],\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false,\n    \"dependency_sources_unchanged\": true,\n    \"compiled_scope\": \"Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.\",\n    \"designated_mutations\": [\n      \"RK01-coefficient-admission\",\n      \"RK02-shape-admission\",\n      \"RK03-identity-admission\",\n      \"RK04-zero-identity\",\n      \"RK05-matrix-binding\",\n      \"RK06-identity-equality\",\n      \"RK07-rank-dimension\",\n      \"RK08-elimination-sign\",\n      \"RK09-pivot-normalization\",\n      \"RK10-pivot-clearing\",\n      \"RK11-coordinate-extraction\",\n      \"RK12-inverse-extraction\",\n      \"RK13-certificate-privacy\",\n      \"RB01-inclusive-cells\",\n      \"RB02-inclusive-work\",\n      \"RB03-work-refusal\",\n      \"RB04-product-debit\",\n      \"RB05-cell-refusal\",\n      \"RB06-product-work\",\n      \"RB07-reduction-work\",\n      \"RP01-inverse-admission-order\",\n      \"RP02-checker-admission-order\",\n      \"RP03-checker-preflight\",\n      \"RP04-checker-candidate-clone\"\n    ],\n    \"designated_challenges_present\": true,\n    \"linked_challenges\": {},\n    \"mutation_campaign\": {\n      \"path\": \"evidence/quality/l4a_six/20261020T064307Z-mutations/receipt.json\",\n      \"sha256\": \"f33e08380b111005a6d5a9897fae4c86ba2b18b7c39bdc3e4d8ee49232cc0e11\"\n    },\n    \"mutation_restoration_baselines_ok\": true,\n    \"reproduced_defects\": []\n  },\n  \"mutation_accounting\": {\n    \"killed\": 24,\n    \"survived\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"unrun\": 0,\n    \"conservative_ratio\": 1.0\n  },\n  \"structure\": {\n    \"tool\": \"syn source AST (see pinned metric_tool_sources in receipt)\",\n    \"functions\": [\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 27,\n        \"name\": \"default\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 40,\n        \"name\": \"new\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 43,\n        \"name\": \"cells\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 55,\n        \"name\": \"requested\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 68,\n        \"name\": \"charge\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 98,\n        \"name\": \"try_admit\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 105,\n        \"name\": \"try_admit_with_limits\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 113,\n        \"name\": \"admit_with_budget\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 122,\n        \"name\": \"admit_input\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 135,\n        \"name\": \"rank\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 138,\n        \"name\": \"matrix_hash\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 141,\n        \"name\": \"candidate\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 146,\n        \"name\": \"verify_against\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 150,\n        \"name\": \"verify_against_with_limits\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 167,\n        \"name\": \"check_candidate\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 188,\n        \"name\": \"check_split_identities\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 7,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 207,\n        \"name\": \"check_positive_split_identities\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 235,\n        \"name\": \"product_work\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 242,\n        \"name\": \"preflight_split_work\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 1,\n        \"line\": 259,\n        \"name\": \"shape\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 269,\n        \"name\": \"check_shapes\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 285,\n        \"name\": \"require_equal\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 296,\n        \"name\": \"identity\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 307,\n        \"name\": \"certify_rank\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 10,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 311,\n        \"name\": \"certify_rank_with_limits\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 337,\n        \"name\": \"empty_candidate\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 346,\n        \"name\": \"check_coefficients\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 358,\n        \"name\": \"factorization\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 378,\n        \"name\": \"left_inverse\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 9,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 2,\n        \"line\": 390,\n        \"name\": \"multiply\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 416,\n        \"name\": \"admit_rank_product\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 432,\n        \"name\": \"inverse\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 436,\n        \"name\": \"inverse_with_budget\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 444,\n        \"name\": \"rational_buffer\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 452,\n        \"name\": \"reduction_work\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 476,\n        \"name\": \"copy\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 2,\n        \"line\": 486,\n        \"name\": \"augmented_identity\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 511,\n        \"name\": \"at\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 514,\n        \"name\": \"swap_rows\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 523,\n        \"name\": \"normalize\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 530,\n        \"name\": \"clear_row\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 2,\n        \"line\": 540,\n        \"name\": \"reduce_column\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 5,\n        \"control_nesting\": 2,\n        \"line\": 554,\n        \"name\": \"reduce\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 566,\n        \"name\": \"into_prefix_matrix\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 571,\n        \"name\": \"into_right_block\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 585,\n        \"name\": \"distinct_rational_rows\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 606,\n        \"name\": \"rational_rref\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 10,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 616,\n        \"name\": \"rational_inverse\",\n        \"opaque_macros\": []\n      }\n    ],\n    \"exceeding_A\": [],\n    \"metric_ceiling\": \"A\",\n    \"scope\": \"Explicit source bodies only; opaque macros and compiler expansion remain unassessed.\"\n  },\n  \"open_findings\": [],\n  \"evaluation_timestamp_basis\": \"Start of the latest bound assessment execution; execution durations are recorded in receipts.\",\n  \"engineering_review\": {\n    \"source_sha256\": \"ad7de074a639be1cbcf817fe609e2205ae7d3eac3e48cd8361549bd5d0514694\",\n    \"gates\": {\n      \"G1\": {\n        \"grade\": \"A\",\n        \"basis\": \"Source SHA and complete public requirement/symbol map are in this specification, bound into the generated contract and execution receipt. Concrete Q domain, exact split-rank argument, producer dependencies, carrier consumers and AuthorityEffect None are explicit. No assumption that a producer output is correct replaces identity replay.\"\n      },\n      \"G2\": {\n        \"grade\": \"A\",\n        \"basis\": \"Both public admitting operations validate canonical positive-denominator reduced Q before arithmetic. Rank/shape constraints precede products. The admitted M=UV, LU=I_r and VR=I_r identities imply exactly rank(M)=r over Q; rank zero checks the only nonvacuous identity M=0. Stored private evidence cannot be forged through serialization or mutable access. The producer uses exact rational factorization and is accepted only by this checker.\"\n      },\n      \"G3\": {\n        \"grade\": \"A\",\n        \"basis\": \"The source invariant argument covers public canonical admission, every index/divisor/count, disjoint mutable rows, finite workspace reservation and error propagation. The immutable canonical matrix token is carried to digest/identity replay; private certificate storage excludes unchecked decoding or mutation. BasicMatrix private shape/storage and typed get_ref/try_from_fn/from_row_major paths are inspected and source-pinned. Exact rational closure, num-bigint/num-integer, BLAKE3, Rust/std/compiler and allocator behavior are explicit runtime trust assumptions. Owned vector capacity is reserved fallibly; scalar-internal allocations remain standard dependency behavior. Failures publish no partial certificate. This is not a machine-checked crash-freedom or process-OOM guarantee.\"\n      },\n      \"G4\": {\n        \"grade\": \"A\",\n        \"basis\": \"Conditional on current R>=0.95 and successful untouched/restored baselines for 24 separately designated rank faults. Independent integer-minor oracles cover 729 two-by-three matrices and their transposes; 81 inverse cases use integer adjugate/determinant expectations. Forged split maps, all shape and raw-rational roles, exact binding diagnostics, inclusive aggregate budgets/overflow/atomic counters and extreme zero-area metadata are challenged. A dedicated integration binary observes public-boundary allocation order with positive controls, and a compile-fail doctest checks certificate privacy. All six mutant outcomes remain disclosed; the conditional judgement is withheld if this source snapshot lacks the required execution.\"\n      },\n      \"G5\": {\n        \"grade\": \"A\",\n        \"basis\": \"All production functions must meet calibrated A metric ceilings without opaque source macros. Borrowed arithmetic kernels and moved factor/output extraction perform no redundant inner-loop matrix/operand copies. Canonical source admission is carried through hashing without repeated rational reduction or full-value clones. Candidate validation is necessary to independent identity replay. Workspace copies create the required mutable elimination state; output factor entries and signed integer byte buffers create necessary owned results/serialization. Rational bit growth, canonicality GCD and byte hashing costs are explicit, outside the matrix-cell/scalar-operation counters; no constant bit-cost or process memory/time bound is claimed.\"\n      }\n    }\n  }\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_six/20261020T074553Z-smith-activation/previous_assessment/code/rust/src/homology/rank_certificate.rs.scoring.yaml"
+      ]
+    }
+  ],
+  "legacy_paths": {
+    "evidence/quality/l4a_six/20261020T074553Z-smith-activation/previous_assessment/code/rust/src/homology/rank_certificate.rs.contract.yaml": "4810841da094352730838090917f62bb9c21712fe32e283a97c08ad1e3e8b4f7",
+    "evidence/quality/l4a_six/20261020T074553Z-smith-activation/previous_assessment/code/rust/src/homology/rank_certificate.rs.scoring.yaml": "413a171e95b477d142c954505d3eb152c031d28ef1cbd540d6063fb939fe6a73"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

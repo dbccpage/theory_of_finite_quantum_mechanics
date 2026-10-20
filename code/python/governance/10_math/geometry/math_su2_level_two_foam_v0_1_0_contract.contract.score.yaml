@@ -1,0 +1,219 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/geometry/math_su2_level_two_foam_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:su2_level_two_foam:v0.1.0",
+    "title": "Exact SU2 level2 Racah recoupling",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "su2_level_two_foam",
+      "symbol": "su2_level_two_foam",
+      "ascii_symbol": "su2_level_two_foam",
+      "notation": "Exact SU2 level2 Racah recoupling",
+      "domain": [
+        "Integrable labels0..2; normalized F coefficients over Q(sqrt2), full raw six-j amplitudes as exact signed factor/positive-root certificates, and at most4096 declared tetrahedra."
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_general_relativity::spin_foam; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "Quantum dimensions are1,sqrt2,1.",
+      "Racah six-j coefficients use exact q-factorials and admissibility.",
+      "Every admitted F recoupling block is orthogonal.",
+      "Raw amplitudes requiring fourth roots retain the root certificate; quadratic narrowing is a typed refusal.",
+      "Normalized F radicands combine dimensions and Racah prefactors before root extraction."
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_general_relativity",
+      "module": "spin_foam",
+      "symbols": [
+        "ising_admissible",
+        "quantum_dimension",
+        "ising_six_j",
+        "ising_f",
+        "ising_six_j_radical",
+        "RacahCoefficient",
+        "SpinFoam"
+      ],
+      "required_tests": [
+        "su2_level_two_racah_recouplings_are_orthogonal_for_every_admissible_sector"
+      ]
+    },
+    "negative_tests": [
+      "su2_level_two_racah_recouplings_are_orthogonal_for_every_admissible_sector"
+    ],
+    "doctrine": {
+      "summary": "Quantum dimensions are1,sqrt2,1.; Racah six-j coefficients use exact q-factorials and admissibility.; Every admitted F recoupling block is orthogonal.; Raw amplitudes requiring fourth roots retain the root certificate; quadratic narrowing is a typed refusal.; Normalized F radicands combine dimensions and Racah prefactors before root extraction..",
+      "non_role": [
+        "This finite Ising/SU2_2 model is not an EPRL amplitude or continuum gravitational path integral.",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "c8b7f7b72b8f285cb343f5ea5a3f4479db3272ca43ed7097c822fcbd0e451d7b",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "c8b7f7b72b8f285cb343f5ea5a3f4479db3272ca43ed7097c822fcbd0e451d7b",
+      "bytes": 3136,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:su2_level_two_foam:v0.1.0",
+        "title": "Exact SU2 level2 Racah recoupling",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "su2_level_two_foam",
+          "symbol": "su2_level_two_foam",
+          "ascii_symbol": "su2_level_two_foam",
+          "notation": "Exact SU2 level2 Racah recoupling",
+          "domain": [
+            "Integrable labels0..2; normalized F coefficients over Q(sqrt2), full raw six-j amplitudes as exact signed factor/positive-root certificates, and at most4096 declared tetrahedra."
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_general_relativity::spin_foam; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "Quantum dimensions are1,sqrt2,1.",
+          "Racah six-j coefficients use exact q-factorials and admissibility.",
+          "Every admitted F recoupling block is orthogonal.",
+          "Raw amplitudes requiring fourth roots retain the root certificate; quadratic narrowing is a typed refusal.",
+          "Normalized F radicands combine dimensions and Racah prefactors before root extraction."
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_general_relativity",
+          "module": "spin_foam",
+          "symbols": [
+            "ising_admissible",
+            "quantum_dimension",
+            "ising_six_j",
+            "ising_f",
+            "ising_six_j_radical",
+            "RacahCoefficient",
+            "SpinFoam"
+          ],
+          "required_tests": [
+            "su2_level_two_racah_recouplings_are_orthogonal_for_every_admissible_sector"
+          ]
+        },
+        "negative_tests": [
+          "su2_level_two_racah_recouplings_are_orthogonal_for_every_admissible_sector"
+        ],
+        "doctrine": {
+          "summary": "Quantum dimensions are1,sqrt2,1.; Racah six-j coefficients use exact q-factorials and admissibility.; Every admitted F recoupling block is orthogonal.; Raw amplitudes requiring fourth roots retain the root certificate; quadratic narrowing is a typed refusal.; Normalized F radicands combine dimensions and Racah prefactors before root extraction..",
+          "non_role": [
+            "This finite Ising/SU2_2 model is not an EPRL amplitude or continuum gravitational path integral.",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:su2_level_two_foam:v0.1.0\ntitle: Exact SU2 level2 Racah recoupling\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: su2_level_two_foam\n  symbol: su2_level_two_foam\n  ascii_symbol: su2_level_two_foam\n  notation: Exact SU2 level2 Racah recoupling\n  domain:\n  - Integrable labels0..2; normalized F coefficients over Q(sqrt2), full raw six-j\n    amplitudes as exact signed factor/positive-root certificates, and at most4096\n    declared tetrahedra.\n  codomain:\n    description: Declared finite results of omega_general_relativity::spin_foam; exact\n      and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- Quantum dimensions are1,sqrt2,1.\n- Racah six-j coefficients use exact q-factorials and admissibility.\n- Every admitted F recoupling block is orthogonal.\n- Raw amplitudes requiring fourth roots retain the root certificate; quadratic narrowing\n  is a typed refusal.\n- Normalized F radicands combine dimensions and Racah prefactors before root extraction.\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_general_relativity\n  module: spin_foam\n  symbols:\n  - ising_admissible\n  - quantum_dimension\n  - ising_six_j\n  - ising_f\n  - ising_six_j_radical\n  - RacahCoefficient\n  - SpinFoam\n  required_tests:\n  - su2_level_two_racah_recouplings_are_orthogonal_for_every_admissible_sector\nnegative_tests:\n- su2_level_two_racah_recouplings_are_orthogonal_for_every_admissible_sector\ndoctrine:\n  summary: Quantum dimensions are1,sqrt2,1.; Racah six-j coefficients use exact q-factorials\n    and admissibility.; Every admitted F recoupling block is orthogonal.; Raw amplitudes\n    requiring fourth roots retain the root certificate; quadratic narrowing is a typed\n    refusal.; Normalized F radicands combine dimensions and Racah prefactors before\n    root extraction..\n  non_role:\n  - This finite Ising/SU2_2 model is not an EPRL amplitude or continuum gravitational\n    path integral.\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/geometry/math_su2_level_two_foam_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/geometry/math_su2_level_two_foam_v0_1_0.contract.yaml": "c8b7f7b72b8f285cb343f5ea5a3f4479db3272ca43ed7097c822fcbd0e451d7b"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

@@ -1,0 +1,504 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": null,
+  "contract": {
+    "schema_version": "1.0.0",
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/rust/src/combinatorics/enumeration.rs",
+      "sha256": "7e952dc5fe3b1322f286093c674393735bacdae9c281efc8e687ce5691e5cb8c",
+      "language": "Rust"
+    },
+    "status": "resource_and_semantic_source_review_complete_gates_pending",
+    "formal_specification": {
+      "profile": "Exact",
+      "domain": "All public inputs, with explicit typed factorial, choice, row-count, width and eager-cell admission; bool successors reject invalid slices without writes.",
+      "behavior": [
+        "Map the two raw error variants to their exact declared invariant strings; no claim that arbitrary raw error fields were admitted.",
+        "Return the exact ordered diagnostic key/value pairs for either variant using decimal formatting. Formatting is observational and does not admit an error record as a certificate.",
+        "Reject n>20000 before arithmetic, otherwise return exactly n! as BigUint, including 0!=1.",
+        "Return zero for k>n. Otherwise reduce to m=min(k,n-k), reject m>16384, and compute exact choose(n,k) by the integral multiplicative recurrence. No float or truncation error is admitted.",
+        "Compare exact BigUint requested cardinality against the usize limit. Equality is allowed; only a larger request returns BudgetExceeded with a cloned exact request.",
+        "On an arbitrary mutable usize word, return the next lexicographic distinct permutation of its multiset. If no successor exists, return false and leave the slice unchanged. Find the longest decreasing suffix and swap the pivot with the rightmost greater item, then reverse only that suffix.",
+        "Reject invalid, out-of-range or non-increasing coordinates with false and no mutation. For a valid sorted k-subset of 0..n, increment the rightmost coordinate below n-k+i and rebuild its minimal increasing suffix; terminal or empty subsets return false unchanged.",
+        "Collect the admitted Permutations iterator. The row count limit is checked before allocation; output ownership and allocator availability remain explicit caller/runtime boundaries.",
+        "Collect the admitted Combinations iterator; preserve its cardinality, width, zero-result convention and error order.",
+        "First admit parts<=4096. Compute exact stars-and-bars count, with zero parts giving one empty row exactly when total is zero. Reject checked upper-index overflow or excessive binomial choice, then reject row count above caller limit, then exact count*parts above 1048576 cells. Only then enumerate rows lexicographically with nonnegative entries summing to total.",
+        "Accept equality at width 4096; reject larger widths with ArgumentTooLarge carrying the declared operation and width, before any output vector allocation.",
+        "Private admitted inputs only. Handle zero parts directly; otherwise start at [0,...,total], emit each row and apply the iterative lexicographic successor. Constant call-stack depth, one width-sized scratch vector, and one required owned clone per output row.",
+        "Private nonempty admitted row only. Locate the rightmost positive coordinate after the first, move one unit to its predecessor, and put the remainder in the final slot. The suffix was zero; preserve sum, positivity, width and lexicographic order. Return false exactly at [total,0,...,0].",
+        "Compute admitted exact factorial, then check row budget before allocating [0,..,n). Own a private initial state; the first item exists also at n=0.",
+        "Emit the initial word once, then each next permutation exactly once; set current=None at exhaustion and remain exhausted on repeated next calls. Clone returns independently owned iterator state.",
+        "Compute admitted binomial, check row budget, and only for nonempty mathematical families check k<=4096 before allocating [0,..,k). k>n creates an exhausted iterator even for huge k. Exact equality of n and k does not bypass width admission.",
+        "Emit initial subset once, then each successor; clear state on exhaustion. Empty subset is one row when k=0, while k>n starts exhausted. Returned rows are owned.",
+        "Return Some exact value only when the BigUint fits u64; larger counts return None without truncation."
+      ],
+      "capability": "L4 production enumeration API grain: private admitted lazy iterators, exact arithmetic, typed resource refusal before output allocation, bounded eager composition storage and iterative stack usage."
+    },
+    "operations": {
+      "CombinatoricsError::violated_invariant": {
+        "line": 34,
+        "signature": "pub fn violated_invariant(&self) -> &'static str",
+        "obligation": "Map the two raw error variants to their exact declared invariant strings; no claim that arbitrary raw error fields were admitted."
+      },
+      "CombinatoricsError::measured_parameters": {
+        "line": 41,
+        "signature": "pub fn measured_parameters(&self) -> Vec<(&'static str, String)>",
+        "obligation": "Return the exact ordered diagnostic key/value pairs for either variant using decimal formatting. Formatting is observational and does not admit an error record as a certificate."
+      },
+      "factorial": {
+        "line": 65,
+        "signature": "pub fn factorial(n: usize) -> Result<BigUint, CombinatoricsError>",
+        "obligation": "Reject n>20000 before arithmetic, otherwise return exactly n! as BigUint, including 0!=1."
+      },
+      "binomial": {
+        "line": 80,
+        "signature": "pub fn binomial(n: u64, k: u64) -> Result<BigUint, CombinatoricsError>",
+        "obligation": "Return zero for k>n. Otherwise reduce to m=min(k,n-k), reject m>16384, and compute exact choose(n,k) by the integral multiplicative recurrence. No float or truncation error is admitted."
+      },
+      "budget": {
+        "line": 100,
+        "signature": "fn budget(what: &'static str, requested: &BigUint, limit: usize) -> Result<(), CombinatoricsError>",
+        "obligation": "Compare exact BigUint requested cardinality against the usize limit. Equality is allowed; only a larger request returns BudgetExceeded with a cloned exact request."
+      },
+      "next_permutation": {
+        "line": 112,
+        "signature": "pub fn next_permutation(items: &mut [usize]) -> bool",
+        "obligation": "On an arbitrary mutable usize word, return the next lexicographic distinct permutation of its multiset. If no successor exists, return false and leave the slice unchanged. Find the longest decreasing suffix and swap the pivot with the rightmost greater item, then reverse only that suffix."
+      },
+      "next_combination": {
+        "line": 133,
+        "signature": "pub fn next_combination(combination: &mut [usize], n: usize) -> bool",
+        "obligation": "Reject invalid, out-of-range or non-increasing coordinates with false and no mutation. For a valid sorted k-subset of 0..n, increment the rightmost coordinate below n-k+i and rebuild its minimal increasing suffix; terminal or empty subsets return false unchanged."
+      },
+      "permutations": {
+        "line": 153,
+        "signature": "pub fn permutations(n: usize, limit: usize) -> Result<Vec<Vec<usize>>, CombinatoricsError>",
+        "obligation": "Collect the admitted Permutations iterator. The row count limit is checked before allocation; output ownership and allocator availability remain explicit caller/runtime boundaries."
+      },
+      "combinations": {
+        "line": 157,
+        "signature": "pub fn combinations(\n    n: usize,\n    k: usize,\n    limit: usize,\n) -> Result<Vec<Vec<usize>>, CombinatoricsError>",
+        "obligation": "Collect the admitted Combinations iterator; preserve its cardinality, width, zero-result convention and error order."
+      },
+      "weak_compositions": {
+        "line": 165,
+        "signature": "pub fn weak_compositions(\n    total: usize,\n    parts: usize,\n    limit: usize,\n) -> Result<Vec<Vec<usize>>, CombinatoricsError>",
+        "obligation": "First admit parts<=4096. Compute exact stars-and-bars count, with zero parts giving one empty row exactly when total is zero. Reject checked upper-index overflow or excessive binomial choice, then reject row count above caller limit, then exact count*parts above 1048576 cells. Only then enumerate rows lexicographically with nonnegative entries summing to total."
+      },
+      "admit_width": {
+        "line": 197,
+        "signature": "fn admit_width(what: &'static str, width: usize) -> Result<(), CombinatoricsError>",
+        "obligation": "Accept equality at width 4096; reject larger widths with ArgumentTooLarge carrying the declared operation and width, before any output vector allocation."
+      },
+      "collect_compositions": {
+        "line": 208,
+        "signature": "fn collect_compositions(total: usize, parts: usize) -> Vec<Vec<usize>>",
+        "obligation": "Private admitted inputs only. Handle zero parts directly; otherwise start at [0,...,total], emit each row and apply the iterative lexicographic successor. Constant call-stack depth, one width-sized scratch vector, and one required owned clone per output row."
+      },
+      "next_composition": {
+        "line": 226,
+        "signature": "fn next_composition(current: &mut [usize]) -> bool",
+        "obligation": "Private nonempty admitted row only. Locate the rightmost positive coordinate after the first, move one unit to its predecessor, and put the remainder in the final slot. The suffix was zero; preserve sum, positivity, width and lexicographic order. Return false exactly at [total,0,...,0]."
+      },
+      "Permutations::new": {
+        "line": 246,
+        "signature": "pub fn new(n: usize, limit: usize) -> Result<Self, CombinatoricsError>",
+        "obligation": "Compute admitted exact factorial, then check row budget before allocating [0,..,n). Own a private initial state; the first item exists also at n=0."
+      },
+      "Permutations::next": {
+        "line": 259,
+        "signature": "fn next(&mut self) -> Option<Vec<usize>>",
+        "obligation": "Emit the initial word once, then each next permutation exactly once; set current=None at exhaustion and remain exhausted on repeated next calls. Clone returns independently owned iterator state."
+      },
+      "Combinations::new": {
+        "line": 282,
+        "signature": "pub fn new(n: usize, k: usize, limit: usize) -> Result<Self, CombinatoricsError>",
+        "obligation": "Compute admitted binomial, check row budget, and only for nonempty mathematical families check k<=4096 before allocating [0,..,k). k>n creates an exhausted iterator even for huge k. Exact equality of n and k does not bypass width admission."
+      },
+      "Combinations::next": {
+        "line": 302,
+        "signature": "fn next(&mut self) -> Option<Vec<usize>>",
+        "obligation": "Emit initial subset once, then each successor; clear state on exhaustion. Empty subset is one row when k=0, while k>n starts exhausted. Returned rows are owned."
+      },
+      "to_u64": {
+        "line": 317,
+        "signature": "pub fn to_u64(count: &BigUint) -> Option<u64>",
+        "obligation": "Return Some exact value only when the BigUint fits u64; larger counts return None without truncation."
+      }
+    },
+    "invariants": [
+      "Factorial maintains product=i! after processing i. Binomial maintains result=choose(n-m+i,i); multiplying by n-m+i then dividing by i is integral by the standard subset-counting identity. BigUint multiplication cannot wrap; n-m+i<=n and i>=1 prevent machine overflow and zero division. Choice m is bounded before the loop. No factorial or binomial value is converted approximately.",
+      "Permutation suffix search first proves n>=2, then maintains 0<=i<n while decreasing it. If i=0, no successor exists and the word has not been touched. Otherwise a greater suffix element exists because items[i]>items[i-1]; the decreasing j search must stop at or above i. The swap and reversal are in range and construct the least lexicographic greater multiset permutation. Iteration therefore terminates on the finite family without repeats.",
+      "Combination validation precedes n-k subtraction. For a valid increasing subset, coordinate i is at most n-k+i<=n-1. A strict smaller-than guard makes increment safe and leaves room for every reconstructed suffix coordinate. Lexicographic successor is therefore total on admitted slices, strictly increasing until the final subset, and preserves cardinality and bounds. Invalid input returns false without writes.",
+      "Weak-composition zero-part cases are explicit. Positive parts satisfy the stars-and-bars bijection between nonnegative rows summing to total and subsets of total+parts-1 positions; upper-index addition is checked before binomial. Width is bounded before counting, row count before cells, and exact BigUint cell count before scratch/output allocation. Count zero implies no emitted rows; parts zero with total zero emits precisely one empty row.",
+      "In an admitted nonempty composition row, every entry is at most total and the sum is total. The chosen rightmost positive coordinate after index zero has only zeros to its right. Removing that coordinate, transferring one unit left and moving its remainder to the last coordinate preserves total. The predecessor is strictly below total before increment, so even total=usize::MAX cannot overflow. This is exactly the next lexicographic row: keep the longest possible prefix, increase its last mutable coordinate minimally, and minimize the suffix by concentrating its sum at the final coordinate. The terminal row has all mass in coordinate zero. Every row occurs once, and the finite admitted count bounds traversal.",
+      "Private iterator fields cannot be replaced by callers. Constructors check domain, row budget and owned-width bounds before vector construction. Clone preserves these invariants. Iterator failure/exhaustion clears state; raw error records and diagnostic strings do not certify mathematical models. No deserialization, unsafe block, arbitrary callback or unchecked public model constructor appears.",
+      "Weak compositions retain at most 1048576 scalar cells and a width<=4096 scratch row, with constant call-stack depth instead of recursive depth=parts. On the tested 64-bit target a conservative row-header overhead is at most 24 times the cell bound, plus scalar cells and scratch. This is a logical storage bound, not an allocator or process-memory guarantee. Eager permutations/combinations honor caller row limits; their aggregate memory budget is not promised independently of caller limits. Lazy iterators keep only one bounded row; each emitted row is necessarily owned.",
+      "Derived thiserror formatting, Debug/Clone/Eq, concrete Vec and BigUint operations are standard-library/compiler/dependency trust. The source metric parser does not expand their implementations. No Rust/MIR proof or cross-repository provider attestation is claimed. Native exact oracles and source invariant arguments remain distinct from machine-checked mathematical proof."
+    ],
+    "failure_paths": {
+      "CombinatoricsError::violated_invariant": "Map the two raw error variants to their exact declared invariant strings; no claim that arbitrary raw error fields were admitted.",
+      "CombinatoricsError::measured_parameters": "Return the exact ordered diagnostic key/value pairs for either variant using decimal formatting. Formatting is observational and does not admit an error record as a certificate.",
+      "factorial": "Reject n>20000 before arithmetic, otherwise return exactly n! as BigUint, including 0!=1.",
+      "binomial": "Return zero for k>n. Otherwise reduce to m=min(k,n-k), reject m>16384, and compute exact choose(n,k) by the integral multiplicative recurrence. No float or truncation error is admitted.",
+      "budget": "Compare exact BigUint requested cardinality against the usize limit. Equality is allowed; only a larger request returns BudgetExceeded with a cloned exact request.",
+      "next_permutation": "On an arbitrary mutable usize word, return the next lexicographic distinct permutation of its multiset. If no successor exists, return false and leave the slice unchanged. Find the longest decreasing suffix and swap the pivot with the rightmost greater item, then reverse only that suffix.",
+      "next_combination": "Reject invalid, out-of-range or non-increasing coordinates with false and no mutation. For a valid sorted k-subset of 0..n, increment the rightmost coordinate below n-k+i and rebuild its minimal increasing suffix; terminal or empty subsets return false unchanged.",
+      "permutations": "Collect the admitted Permutations iterator. The row count limit is checked before allocation; output ownership and allocator availability remain explicit caller/runtime boundaries.",
+      "combinations": "Collect the admitted Combinations iterator; preserve its cardinality, width, zero-result convention and error order.",
+      "weak_compositions": "First admit parts<=4096. Compute exact stars-and-bars count, with zero parts giving one empty row exactly when total is zero. Reject checked upper-index overflow or excessive binomial choice, then reject row count above caller limit, then exact count*parts above 1048576 cells. Only then enumerate rows lexicographically with nonnegative entries summing to total.",
+      "admit_width": "Accept equality at width 4096; reject larger widths with ArgumentTooLarge carrying the declared operation and width, before any output vector allocation.",
+      "collect_compositions": "Private admitted inputs only. Handle zero parts directly; otherwise start at [0,...,total], emit each row and apply the iterative lexicographic successor. Constant call-stack depth, one width-sized scratch vector, and one required owned clone per output row.",
+      "next_composition": "Private nonempty admitted row only. Locate the rightmost positive coordinate after the first, move one unit to its predecessor, and put the remainder in the final slot. The suffix was zero; preserve sum, positivity, width and lexicographic order. Return false exactly at [total,0,...,0].",
+      "Permutations::new": "Compute admitted exact factorial, then check row budget before allocating [0,..,n). Own a private initial state; the first item exists also at n=0.",
+      "Permutations::next": "Emit the initial word once, then each next permutation exactly once; set current=None at exhaustion and remain exhausted on repeated next calls. Clone returns independently owned iterator state.",
+      "Combinations::new": "Compute admitted binomial, check row budget, and only for nonempty mathematical families check k<=4096 before allocating [0,..,k). k>n creates an exhausted iterator even for huge k. Exact equality of n and k does not bypass width admission.",
+      "Combinations::next": "Emit initial subset once, then each successor; clear state on exhaustion. Empty subset is one row when k=0, while k>n starts exhausted. Returned rows are owned.",
+      "to_u64": "Return Some exact value only when the BigUint fits u64; larger counts return None without truncation."
+    },
+    "trust_boundary": "Derived thiserror formatting, Debug/Clone/Eq, concrete Vec and BigUint operations are standard-library/compiler/dependency trust. The source metric parser does not expand their implementations. No Rust/MIR proof or cross-repository provider attestation is claimed. Native exact oracles and source invariant arguments remain distinct from machine-checked mathematical proof.",
+    "assurance_limits": [
+      "Complete five-gate assessment remains pending; the concrete resource fixes and source invariants do not automatically award A.",
+      "Source-level arithmetic and enumeration arguments are not extracted Rust proofs. Allocator availability remains in the TCB.",
+      "Only the actual standalone combinatorics crate and copied enumeration controls are compiled; other goal modules remain independently unreviewed."
+    ],
+    "review_evidence": [
+      {
+        "path": "code/rust/quality/six_module/enumeration_source_review.json",
+        "sha256": "110e483c3a1782f528fb73700cda16047554dd3cf865bf9642e20f941e2f0e6a"
+      },
+      {
+        "path": "evidence/quality/six_module/20261019T234341Z-enumeration/summary.json",
+        "sha256": "f391576f57241b0c071534cf35f7714c7250e8c927371b5372cd433d8a0350a3"
+      },
+      {
+        "path": "evidence/quality/six_module/20261019T234341Z-enumeration/mutations.json",
+        "sha256": "fe8ea125b739df1e685fda6eac6fda15aa2a14210e2c822f075b5ee848882584"
+      },
+      {
+        "path": "evidence/quality/six_module/20261019T234341Z-enumeration/control.log",
+        "sha256": "e2ec723cd6b66e90688046c6f7b12eb45be353b8e55f8da003d674f74ad50815"
+      },
+      {
+        "path": "evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json",
+        "sha256": "03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3"
+      }
+    ],
+    "open_obligations": [
+      "Finish gate-by-gate approval, bind the complete caller/dependency review, and audit the new contract/evidence against the rubric before emitting a completed score."
+    ]
+  },
+  "current_contract": "a9d2187626dda90d856f61e9e5b4eefe68ae88fb40f9c7bd67ef09ce6086bf53",
+  "current_scoring": "3b5882cd8fdddd8440544b11e16a68410320900f25a1e57c52f85a7aceeaa3ef",
+  "contract_history": [
+    {
+      "sha256": "a9d2187626dda90d856f61e9e5b4eefe68ae88fb40f9c7bd67ef09ce6086bf53",
+      "bytes": 20864,
+      "record": {
+        "schema_version": "1.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/combinatorics/enumeration.rs",
+          "sha256": "7e952dc5fe3b1322f286093c674393735bacdae9c281efc8e687ce5691e5cb8c",
+          "language": "Rust"
+        },
+        "status": "resource_and_semantic_source_review_complete_gates_pending",
+        "formal_specification": {
+          "profile": "Exact",
+          "domain": "All public inputs, with explicit typed factorial, choice, row-count, width and eager-cell admission; bool successors reject invalid slices without writes.",
+          "behavior": [
+            "Map the two raw error variants to their exact declared invariant strings; no claim that arbitrary raw error fields were admitted.",
+            "Return the exact ordered diagnostic key/value pairs for either variant using decimal formatting. Formatting is observational and does not admit an error record as a certificate.",
+            "Reject n>20000 before arithmetic, otherwise return exactly n! as BigUint, including 0!=1.",
+            "Return zero for k>n. Otherwise reduce to m=min(k,n-k), reject m>16384, and compute exact choose(n,k) by the integral multiplicative recurrence. No float or truncation error is admitted.",
+            "Compare exact BigUint requested cardinality against the usize limit. Equality is allowed; only a larger request returns BudgetExceeded with a cloned exact request.",
+            "On an arbitrary mutable usize word, return the next lexicographic distinct permutation of its multiset. If no successor exists, return false and leave the slice unchanged. Find the longest decreasing suffix and swap the pivot with the rightmost greater item, then reverse only that suffix.",
+            "Reject invalid, out-of-range or non-increasing coordinates with false and no mutation. For a valid sorted k-subset of 0..n, increment the rightmost coordinate below n-k+i and rebuild its minimal increasing suffix; terminal or empty subsets return false unchanged.",
+            "Collect the admitted Permutations iterator. The row count limit is checked before allocation; output ownership and allocator availability remain explicit caller/runtime boundaries.",
+            "Collect the admitted Combinations iterator; preserve its cardinality, width, zero-result convention and error order.",
+            "First admit parts<=4096. Compute exact stars-and-bars count, with zero parts giving one empty row exactly when total is zero. Reject checked upper-index overflow or excessive binomial choice, then reject row count above caller limit, then exact count*parts above 1048576 cells. Only then enumerate rows lexicographically with nonnegative entries summing to total.",
+            "Accept equality at width 4096; reject larger widths with ArgumentTooLarge carrying the declared operation and width, before any output vector allocation.",
+            "Private admitted inputs only. Handle zero parts directly; otherwise start at [0,...,total], emit each row and apply the iterative lexicographic successor. Constant call-stack depth, one width-sized scratch vector, and one required owned clone per output row.",
+            "Private nonempty admitted row only. Locate the rightmost positive coordinate after the first, move one unit to its predecessor, and put the remainder in the final slot. The suffix was zero; preserve sum, positivity, width and lexicographic order. Return false exactly at [total,0,...,0].",
+            "Compute admitted exact factorial, then check row budget before allocating [0,..,n). Own a private initial state; the first item exists also at n=0.",
+            "Emit the initial word once, then each next permutation exactly once; set current=None at exhaustion and remain exhausted on repeated next calls. Clone returns independently owned iterator state.",
+            "Compute admitted binomial, check row budget, and only for nonempty mathematical families check k<=4096 before allocating [0,..,k). k>n creates an exhausted iterator even for huge k. Exact equality of n and k does not bypass width admission.",
+            "Emit initial subset once, then each successor; clear state on exhaustion. Empty subset is one row when k=0, while k>n starts exhausted. Returned rows are owned.",
+            "Return Some exact value only when the BigUint fits u64; larger counts return None without truncation."
+          ],
+          "capability": "L4 production enumeration API grain: private admitted lazy iterators, exact arithmetic, typed resource refusal before output allocation, bounded eager composition storage and iterative stack usage."
+        },
+        "operations": {
+          "CombinatoricsError::violated_invariant": {
+            "line": 34,
+            "signature": "pub fn violated_invariant(&self) -> &'static str",
+            "obligation": "Map the two raw error variants to their exact declared invariant strings; no claim that arbitrary raw error fields were admitted."
+          },
+          "CombinatoricsError::measured_parameters": {
+            "line": 41,
+            "signature": "pub fn measured_parameters(&self) -> Vec<(&'static str, String)>",
+            "obligation": "Return the exact ordered diagnostic key/value pairs for either variant using decimal formatting. Formatting is observational and does not admit an error record as a certificate."
+          },
+          "factorial": {
+            "line": 65,
+            "signature": "pub fn factorial(n: usize) -> Result<BigUint, CombinatoricsError>",
+            "obligation": "Reject n>20000 before arithmetic, otherwise return exactly n! as BigUint, including 0!=1."
+          },
+          "binomial": {
+            "line": 80,
+            "signature": "pub fn binomial(n: u64, k: u64) -> Result<BigUint, CombinatoricsError>",
+            "obligation": "Return zero for k>n. Otherwise reduce to m=min(k,n-k), reject m>16384, and compute exact choose(n,k) by the integral multiplicative recurrence. No float or truncation error is admitted."
+          },
+          "budget": {
+            "line": 100,
+            "signature": "fn budget(what: &'static str, requested: &BigUint, limit: usize) -> Result<(), CombinatoricsError>",
+            "obligation": "Compare exact BigUint requested cardinality against the usize limit. Equality is allowed; only a larger request returns BudgetExceeded with a cloned exact request."
+          },
+          "next_permutation": {
+            "line": 112,
+            "signature": "pub fn next_permutation(items: &mut [usize]) -> bool",
+            "obligation": "On an arbitrary mutable usize word, return the next lexicographic distinct permutation of its multiset. If no successor exists, return false and leave the slice unchanged. Find the longest decreasing suffix and swap the pivot with the rightmost greater item, then reverse only that suffix."
+          },
+          "next_combination": {
+            "line": 133,
+            "signature": "pub fn next_combination(combination: &mut [usize], n: usize) -> bool",
+            "obligation": "Reject invalid, out-of-range or non-increasing coordinates with false and no mutation. For a valid sorted k-subset of 0..n, increment the rightmost coordinate below n-k+i and rebuild its minimal increasing suffix; terminal or empty subsets return false unchanged."
+          },
+          "permutations": {
+            "line": 153,
+            "signature": "pub fn permutations(n: usize, limit: usize) -> Result<Vec<Vec<usize>>, CombinatoricsError>",
+            "obligation": "Collect the admitted Permutations iterator. The row count limit is checked before allocation; output ownership and allocator availability remain explicit caller/runtime boundaries."
+          },
+          "combinations": {
+            "line": 157,
+            "signature": "pub fn combinations(\n    n: usize,\n    k: usize,\n    limit: usize,\n) -> Result<Vec<Vec<usize>>, CombinatoricsError>",
+            "obligation": "Collect the admitted Combinations iterator; preserve its cardinality, width, zero-result convention and error order."
+          },
+          "weak_compositions": {
+            "line": 165,
+            "signature": "pub fn weak_compositions(\n    total: usize,\n    parts: usize,\n    limit: usize,\n) -> Result<Vec<Vec<usize>>, CombinatoricsError>",
+            "obligation": "First admit parts<=4096. Compute exact stars-and-bars count, with zero parts giving one empty row exactly when total is zero. Reject checked upper-index overflow or excessive binomial choice, then reject row count above caller limit, then exact count*parts above 1048576 cells. Only then enumerate rows lexicographically with nonnegative entries summing to total."
+          },
+          "admit_width": {
+            "line": 197,
+            "signature": "fn admit_width(what: &'static str, width: usize) -> Result<(), CombinatoricsError>",
+            "obligation": "Accept equality at width 4096; reject larger widths with ArgumentTooLarge carrying the declared operation and width, before any output vector allocation."
+          },
+          "collect_compositions": {
+            "line": 208,
+            "signature": "fn collect_compositions(total: usize, parts: usize) -> Vec<Vec<usize>>",
+            "obligation": "Private admitted inputs only. Handle zero parts directly; otherwise start at [0,...,total], emit each row and apply the iterative lexicographic successor. Constant call-stack depth, one width-sized scratch vector, and one required owned clone per output row."
+          },
+          "next_composition": {
+            "line": 226,
+            "signature": "fn next_composition(current: &mut [usize]) -> bool",
+            "obligation": "Private nonempty admitted row only. Locate the rightmost positive coordinate after the first, move one unit to its predecessor, and put the remainder in the final slot. The suffix was zero; preserve sum, positivity, width and lexicographic order. Return false exactly at [total,0,...,0]."
+          },
+          "Permutations::new": {
+            "line": 246,
+            "signature": "pub fn new(n: usize, limit: usize) -> Result<Self, CombinatoricsError>",
+            "obligation": "Compute admitted exact factorial, then check row budget before allocating [0,..,n). Own a private initial state; the first item exists also at n=0."
+          },
+          "Permutations::next": {
+            "line": 259,
+            "signature": "fn next(&mut self) -> Option<Vec<usize>>",
+            "obligation": "Emit the initial word once, then each next permutation exactly once; set current=None at exhaustion and remain exhausted on repeated next calls. Clone returns independently owned iterator state."
+          },
+          "Combinations::new": {
+            "line": 282,
+            "signature": "pub fn new(n: usize, k: usize, limit: usize) -> Result<Self, CombinatoricsError>",
+            "obligation": "Compute admitted binomial, check row budget, and only for nonempty mathematical families check k<=4096 before allocating [0,..,k). k>n creates an exhausted iterator even for huge k. Exact equality of n and k does not bypass width admission."
+          },
+          "Combinations::next": {
+            "line": 302,
+            "signature": "fn next(&mut self) -> Option<Vec<usize>>",
+            "obligation": "Emit initial subset once, then each successor; clear state on exhaustion. Empty subset is one row when k=0, while k>n starts exhausted. Returned rows are owned."
+          },
+          "to_u64": {
+            "line": 317,
+            "signature": "pub fn to_u64(count: &BigUint) -> Option<u64>",
+            "obligation": "Return Some exact value only when the BigUint fits u64; larger counts return None without truncation."
+          }
+        },
+        "invariants": [
+          "Factorial maintains product=i! after processing i. Binomial maintains result=choose(n-m+i,i); multiplying by n-m+i then dividing by i is integral by the standard subset-counting identity. BigUint multiplication cannot wrap; n-m+i<=n and i>=1 prevent machine overflow and zero division. Choice m is bounded before the loop. No factorial or binomial value is converted approximately.",
+          "Permutation suffix search first proves n>=2, then maintains 0<=i<n while decreasing it. If i=0, no successor exists and the word has not been touched. Otherwise a greater suffix element exists because items[i]>items[i-1]; the decreasing j search must stop at or above i. The swap and reversal are in range and construct the least lexicographic greater multiset permutation. Iteration therefore terminates on the finite family without repeats.",
+          "Combination validation precedes n-k subtraction. For a valid increasing subset, coordinate i is at most n-k+i<=n-1. A strict smaller-than guard makes increment safe and leaves room for every reconstructed suffix coordinate. Lexicographic successor is therefore total on admitted slices, strictly increasing until the final subset, and preserves cardinality and bounds. Invalid input returns false without writes.",
+          "Weak-composition zero-part cases are explicit. Positive parts satisfy the stars-and-bars bijection between nonnegative rows summing to total and subsets of total+parts-1 positions; upper-index addition is checked before binomial. Width is bounded before counting, row count before cells, and exact BigUint cell count before scratch/output allocation. Count zero implies no emitted rows; parts zero with total zero emits precisely one empty row.",
+          "In an admitted nonempty composition row, every entry is at most total and the sum is total. The chosen rightmost positive coordinate after index zero has only zeros to its right. Removing that coordinate, transferring one unit left and moving its remainder to the last coordinate preserves total. The predecessor is strictly below total before increment, so even total=usize::MAX cannot overflow. This is exactly the next lexicographic row: keep the longest possible prefix, increase its last mutable coordinate minimally, and minimize the suffix by concentrating its sum at the final coordinate. The terminal row has all mass in coordinate zero. Every row occurs once, and the finite admitted count bounds traversal.",
+          "Private iterator fields cannot be replaced by callers. Constructors check domain, row budget and owned-width bounds before vector construction. Clone preserves these invariants. Iterator failure/exhaustion clears state; raw error records and diagnostic strings do not certify mathematical models. No deserialization, unsafe block, arbitrary callback or unchecked public model constructor appears.",
+          "Weak compositions retain at most 1048576 scalar cells and a width<=4096 scratch row, with constant call-stack depth instead of recursive depth=parts. On the tested 64-bit target a conservative row-header overhead is at most 24 times the cell bound, plus scalar cells and scratch. This is a logical storage bound, not an allocator or process-memory guarantee. Eager permutations/combinations honor caller row limits; their aggregate memory budget is not promised independently of caller limits. Lazy iterators keep only one bounded row; each emitted row is necessarily owned.",
+          "Derived thiserror formatting, Debug/Clone/Eq, concrete Vec and BigUint operations are standard-library/compiler/dependency trust. The source metric parser does not expand their implementations. No Rust/MIR proof or cross-repository provider attestation is claimed. Native exact oracles and source invariant arguments remain distinct from machine-checked mathematical proof."
+        ],
+        "failure_paths": {
+          "CombinatoricsError::violated_invariant": "Map the two raw error variants to their exact declared invariant strings; no claim that arbitrary raw error fields were admitted.",
+          "CombinatoricsError::measured_parameters": "Return the exact ordered diagnostic key/value pairs for either variant using decimal formatting. Formatting is observational and does not admit an error record as a certificate.",
+          "factorial": "Reject n>20000 before arithmetic, otherwise return exactly n! as BigUint, including 0!=1.",
+          "binomial": "Return zero for k>n. Otherwise reduce to m=min(k,n-k), reject m>16384, and compute exact choose(n,k) by the integral multiplicative recurrence. No float or truncation error is admitted.",
+          "budget": "Compare exact BigUint requested cardinality against the usize limit. Equality is allowed; only a larger request returns BudgetExceeded with a cloned exact request.",
+          "next_permutation": "On an arbitrary mutable usize word, return the next lexicographic distinct permutation of its multiset. If no successor exists, return false and leave the slice unchanged. Find the longest decreasing suffix and swap the pivot with the rightmost greater item, then reverse only that suffix.",
+          "next_combination": "Reject invalid, out-of-range or non-increasing coordinates with false and no mutation. For a valid sorted k-subset of 0..n, increment the rightmost coordinate below n-k+i and rebuild its minimal increasing suffix; terminal or empty subsets return false unchanged.",
+          "permutations": "Collect the admitted Permutations iterator. The row count limit is checked before allocation; output ownership and allocator availability remain explicit caller/runtime boundaries.",
+          "combinations": "Collect the admitted Combinations iterator; preserve its cardinality, width, zero-result convention and error order.",
+          "weak_compositions": "First admit parts<=4096. Compute exact stars-and-bars count, with zero parts giving one empty row exactly when total is zero. Reject checked upper-index overflow or excessive binomial choice, then reject row count above caller limit, then exact count*parts above 1048576 cells. Only then enumerate rows lexicographically with nonnegative entries summing to total.",
+          "admit_width": "Accept equality at width 4096; reject larger widths with ArgumentTooLarge carrying the declared operation and width, before any output vector allocation.",
+          "collect_compositions": "Private admitted inputs only. Handle zero parts directly; otherwise start at [0,...,total], emit each row and apply the iterative lexicographic successor. Constant call-stack depth, one width-sized scratch vector, and one required owned clone per output row.",
+          "next_composition": "Private nonempty admitted row only. Locate the rightmost positive coordinate after the first, move one unit to its predecessor, and put the remainder in the final slot. The suffix was zero; preserve sum, positivity, width and lexicographic order. Return false exactly at [total,0,...,0].",
+          "Permutations::new": "Compute admitted exact factorial, then check row budget before allocating [0,..,n). Own a private initial state; the first item exists also at n=0.",
+          "Permutations::next": "Emit the initial word once, then each next permutation exactly once; set current=None at exhaustion and remain exhausted on repeated next calls. Clone returns independently owned iterator state.",
+          "Combinations::new": "Compute admitted binomial, check row budget, and only for nonempty mathematical families check k<=4096 before allocating [0,..,k). k>n creates an exhausted iterator even for huge k. Exact equality of n and k does not bypass width admission.",
+          "Combinations::next": "Emit initial subset once, then each successor; clear state on exhaustion. Empty subset is one row when k=0, while k>n starts exhausted. Returned rows are owned.",
+          "to_u64": "Return Some exact value only when the BigUint fits u64; larger counts return None without truncation."
+        },
+        "trust_boundary": "Derived thiserror formatting, Debug/Clone/Eq, concrete Vec and BigUint operations are standard-library/compiler/dependency trust. The source metric parser does not expand their implementations. No Rust/MIR proof or cross-repository provider attestation is claimed. Native exact oracles and source invariant arguments remain distinct from machine-checked mathematical proof.",
+        "assurance_limits": [
+          "Complete five-gate assessment remains pending; the concrete resource fixes and source invariants do not automatically award A.",
+          "Source-level arithmetic and enumeration arguments are not extracted Rust proofs. Allocator availability remains in the TCB.",
+          "Only the actual standalone combinatorics crate and copied enumeration controls are compiled; other goal modules remain independently unreviewed."
+        ],
+        "review_evidence": [
+          {
+            "path": "code/rust/quality/six_module/enumeration_source_review.json",
+            "sha256": "110e483c3a1782f528fb73700cda16047554dd3cf865bf9642e20f941e2f0e6a"
+          },
+          {
+            "path": "evidence/quality/six_module/20261019T234341Z-enumeration/summary.json",
+            "sha256": "f391576f57241b0c071534cf35f7714c7250e8c927371b5372cd433d8a0350a3"
+          },
+          {
+            "path": "evidence/quality/six_module/20261019T234341Z-enumeration/mutations.json",
+            "sha256": "fe8ea125b739df1e685fda6eac6fda15aa2a14210e2c822f075b5ee848882584"
+          },
+          {
+            "path": "evidence/quality/six_module/20261019T234341Z-enumeration/control.log",
+            "sha256": "e2ec723cd6b66e90688046c6f7b12eb45be353b8e55f8da003d674f74ad50815"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json",
+            "sha256": "03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3"
+          }
+        ],
+        "open_obligations": [
+          "Finish gate-by-gate approval, bind the complete caller/dependency review, and audit the new contract/evidence against the rubric before emitting a completed score."
+        ]
+      },
+      "raw_utf8": "{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/combinatorics/enumeration.rs\",\n    \"sha256\": \"7e952dc5fe3b1322f286093c674393735bacdae9c281efc8e687ce5691e5cb8c\",\n    \"language\": \"Rust\"\n  },\n  \"status\": \"resource_and_semantic_source_review_complete_gates_pending\",\n  \"formal_specification\": {\n    \"profile\": \"Exact\",\n    \"domain\": \"All public inputs, with explicit typed factorial, choice, row-count, width and eager-cell admission; bool successors reject invalid slices without writes.\",\n    \"behavior\": [\n      \"Map the two raw error variants to their exact declared invariant strings; no claim that arbitrary raw error fields were admitted.\",\n      \"Return the exact ordered diagnostic key/value pairs for either variant using decimal formatting. Formatting is observational and does not admit an error record as a certificate.\",\n      \"Reject n>20000 before arithmetic, otherwise return exactly n! as BigUint, including 0!=1.\",\n      \"Return zero for k>n. Otherwise reduce to m=min(k,n-k), reject m>16384, and compute exact choose(n,k) by the integral multiplicative recurrence. No float or truncation error is admitted.\",\n      \"Compare exact BigUint requested cardinality against the usize limit. Equality is allowed; only a larger request returns BudgetExceeded with a cloned exact request.\",\n      \"On an arbitrary mutable usize word, return the next lexicographic distinct permutation of its multiset. If no successor exists, return false and leave the slice unchanged. Find the longest decreasing suffix and swap the pivot with the rightmost greater item, then reverse only that suffix.\",\n      \"Reject invalid, out-of-range or non-increasing coordinates with false and no mutation. For a valid sorted k-subset of 0..n, increment the rightmost coordinate below n-k+i and rebuild its minimal increasing suffix; terminal or empty subsets return false unchanged.\",\n      \"Collect the admitted Permutations iterator. The row count limit is checked before allocation; output ownership and allocator availability remain explicit caller/runtime boundaries.\",\n      \"Collect the admitted Combinations iterator; preserve its cardinality, width, zero-result convention and error order.\",\n      \"First admit parts<=4096. Compute exact stars-and-bars count, with zero parts giving one empty row exactly when total is zero. Reject checked upper-index overflow or excessive binomial choice, then reject row count above caller limit, then exact count*parts above 1048576 cells. Only then enumerate rows lexicographically with nonnegative entries summing to total.\",\n      \"Accept equality at width 4096; reject larger widths with ArgumentTooLarge carrying the declared operation and width, before any output vector allocation.\",\n      \"Private admitted inputs only. Handle zero parts directly; otherwise start at [0,...,total], emit each row and apply the iterative lexicographic successor. Constant call-stack depth, one width-sized scratch vector, and one required owned clone per output row.\",\n      \"Private nonempty admitted row only. Locate the rightmost positive coordinate after the first, move one unit to its predecessor, and put the remainder in the final slot. The suffix was zero; preserve sum, positivity, width and lexicographic order. Return false exactly at [total,0,...,0].\",\n      \"Compute admitted exact factorial, then check row budget before allocating [0,..,n). Own a private initial state; the first item exists also at n=0.\",\n      \"Emit the initial word once, then each next permutation exactly once; set current=None at exhaustion and remain exhausted on repeated next calls. Clone returns independently owned iterator state.\",\n      \"Compute admitted binomial, check row budget, and only for nonempty mathematical families check k<=4096 before allocating [0,..,k). k>n creates an exhausted iterator even for huge k. Exact equality of n and k does not bypass width admission.\",\n      \"Emit initial subset once, then each successor; clear state on exhaustion. Empty subset is one row when k=0, while k>n starts exhausted. Returned rows are owned.\",\n      \"Return Some exact value only when the BigUint fits u64; larger counts return None without truncation.\"\n    ],\n    \"capability\": \"L4 production enumeration API grain: private admitted lazy iterators, exact arithmetic, typed resource refusal before output allocation, bounded eager composition storage and iterative stack usage.\"\n  },\n  \"operations\": {\n    \"CombinatoricsError::violated_invariant\": {\n      \"line\": 34,\n      \"signature\": \"pub fn violated_invariant(&self) -> &'static str\",\n      \"obligation\": \"Map the two raw error variants to their exact declared invariant strings; no claim that arbitrary raw error fields were admitted.\"\n    },\n    \"CombinatoricsError::measured_parameters\": {\n      \"line\": 41,\n      \"signature\": \"pub fn measured_parameters(&self) -> Vec<(&'static str, String)>\",\n      \"obligation\": \"Return the exact ordered diagnostic key/value pairs for either variant using decimal formatting. Formatting is observational and does not admit an error record as a certificate.\"\n    },\n    \"factorial\": {\n      \"line\": 65,\n      \"signature\": \"pub fn factorial(n: usize) -> Result<BigUint, CombinatoricsError>\",\n      \"obligation\": \"Reject n>20000 before arithmetic, otherwise return exactly n! as BigUint, including 0!=1.\"\n    },\n    \"binomial\": {\n      \"line\": 80,\n      \"signature\": \"pub fn binomial(n: u64, k: u64) -> Result<BigUint, CombinatoricsError>\",\n      \"obligation\": \"Return zero for k>n. Otherwise reduce to m=min(k,n-k), reject m>16384, and compute exact choose(n,k) by the integral multiplicative recurrence. No float or truncation error is admitted.\"\n    },\n    \"budget\": {\n      \"line\": 100,\n      \"signature\": \"fn budget(what: &'static str, requested: &BigUint, limit: usize) -> Result<(), CombinatoricsError>\",\n      \"obligation\": \"Compare exact BigUint requested cardinality against the usize limit. Equality is allowed; only a larger request returns BudgetExceeded with a cloned exact request.\"\n    },\n    \"next_permutation\": {\n      \"line\": 112,\n      \"signature\": \"pub fn next_permutation(items: &mut [usize]) -> bool\",\n      \"obligation\": \"On an arbitrary mutable usize word, return the next lexicographic distinct permutation of its multiset. If no successor exists, return false and leave the slice unchanged. Find the longest decreasing suffix and swap the pivot with the rightmost greater item, then reverse only that suffix.\"\n    },\n    \"next_combination\": {\n      \"line\": 133,\n      \"signature\": \"pub fn next_combination(combination: &mut [usize], n: usize) -> bool\",\n      \"obligation\": \"Reject invalid, out-of-range or non-increasing coordinates with false and no mutation. For a valid sorted k-subset of 0..n, increment the rightmost coordinate below n-k+i and rebuild its minimal increasing suffix; terminal or empty subsets return false unchanged.\"\n    },\n    \"permutations\": {\n      \"line\": 153,\n      \"signature\": \"pub fn permutations(n: usize, limit: usize) -> Result<Vec<Vec<usize>>, CombinatoricsError>\",\n      \"obligation\": \"Collect the admitted Permutations iterator. The row count limit is checked before allocation; output ownership and allocator availability remain explicit caller/runtime boundaries.\"\n    },\n    \"combinations\": {\n      \"line\": 157,\n      \"signature\": \"pub fn combinations(\\n    n: usize,\\n    k: usize,\\n    limit: usize,\\n) -> Result<Vec<Vec<usize>>, CombinatoricsError>\",\n      \"obligation\": \"Collect the admitted Combinations iterator; preserve its cardinality, width, zero-result convention and error order.\"\n    },\n    \"weak_compositions\": {\n      \"line\": 165,\n      \"signature\": \"pub fn weak_compositions(\\n    total: usize,\\n    parts: usize,\\n    limit: usize,\\n) -> Result<Vec<Vec<usize>>, CombinatoricsError>\",\n      \"obligation\": \"First admit parts<=4096. Compute exact stars-and-bars count, with zero parts giving one empty row exactly when total is zero. Reject checked upper-index overflow or excessive binomial choice, then reject row count above caller limit, then exact count*parts above 1048576 cells. Only then enumerate rows lexicographically with nonnegative entries summing to total.\"\n    },\n    \"admit_width\": {\n      \"line\": 197,\n      \"signature\": \"fn admit_width(what: &'static str, width: usize) -> Result<(), CombinatoricsError>\",\n      \"obligation\": \"Accept equality at width 4096; reject larger widths with ArgumentTooLarge carrying the declared operation and width, before any output vector allocation.\"\n    },\n    \"collect_compositions\": {\n      \"line\": 208,\n      \"signature\": \"fn collect_compositions(total: usize, parts: usize) -> Vec<Vec<usize>>\",\n      \"obligation\": \"Private admitted inputs only. Handle zero parts directly; otherwise start at [0,...,total], emit each row and apply the iterative lexicographic successor. Constant call-stack depth, one width-sized scratch vector, and one required owned clone per output row.\"\n    },\n    \"next_composition\": {\n      \"line\": 226,\n      \"signature\": \"fn next_composition(current: &mut [usize]) -> bool\",\n      \"obligation\": \"Private nonempty admitted row only. Locate the rightmost positive coordinate after the first, move one unit to its predecessor, and put the remainder in the final slot. The suffix was zero; preserve sum, positivity, width and lexicographic order. Return false exactly at [total,0,...,0].\"\n    },\n    \"Permutations::new\": {\n      \"line\": 246,\n      \"signature\": \"pub fn new(n: usize, limit: usize) -> Result<Self, CombinatoricsError>\",\n      \"obligation\": \"Compute admitted exact factorial, then check row budget before allocating [0,..,n). Own a private initial state; the first item exists also at n=0.\"\n    },\n    \"Permutations::next\": {\n      \"line\": 259,\n      \"signature\": \"fn next(&mut self) -> Option<Vec<usize>>\",\n      \"obligation\": \"Emit the initial word once, then each next permutation exactly once; set current=None at exhaustion and remain exhausted on repeated next calls. Clone returns independently owned iterator state.\"\n    },\n    \"Combinations::new\": {\n      \"line\": 282,\n      \"signature\": \"pub fn new(n: usize, k: usize, limit: usize) -> Result<Self, CombinatoricsError>\",\n      \"obligation\": \"Compute admitted binomial, check row budget, and only for nonempty mathematical families check k<=4096 before allocating [0,..,k). k>n creates an exhausted iterator even for huge k. Exact equality of n and k does not bypass width admission.\"\n    },\n    \"Combinations::next\": {\n      \"line\": 302,\n      \"signature\": \"fn next(&mut self) -> Option<Vec<usize>>\",\n      \"obligation\": \"Emit initial subset once, then each successor; clear state on exhaustion. Empty subset is one row when k=0, while k>n starts exhausted. Returned rows are owned.\"\n    },\n    \"to_u64\": {\n      \"line\": 317,\n      \"signature\": \"pub fn to_u64(count: &BigUint) -> Option<u64>\",\n      \"obligation\": \"Return Some exact value only when the BigUint fits u64; larger counts return None without truncation.\"\n    }\n  },\n  \"invariants\": [\n    \"Factorial maintains product=i! after processing i. Binomial maintains result=choose(n-m+i,i); multiplying by n-m+i then dividing by i is integral by the standard subset-counting identity. BigUint multiplication cannot wrap; n-m+i<=n and i>=1 prevent machine overflow and zero division. Choice m is bounded before the loop. No factorial or binomial value is converted approximately.\",\n    \"Permutation suffix search first proves n>=2, then maintains 0<=i<n while decreasing it. If i=0, no successor exists and the word has not been touched. Otherwise a greater suffix element exists because items[i]>items[i-1]; the decreasing j search must stop at or above i. The swap and reversal are in range and construct the least lexicographic greater multiset permutation. Iteration therefore terminates on the finite family without repeats.\",\n    \"Combination validation precedes n-k subtraction. For a valid increasing subset, coordinate i is at most n-k+i<=n-1. A strict smaller-than guard makes increment safe and leaves room for every reconstructed suffix coordinate. Lexicographic successor is therefore total on admitted slices, strictly increasing until the final subset, and preserves cardinality and bounds. Invalid input returns false without writes.\",\n    \"Weak-composition zero-part cases are explicit. Positive parts satisfy the stars-and-bars bijection between nonnegative rows summing to total and subsets of total+parts-1 positions; upper-index addition is checked before binomial. Width is bounded before counting, row count before cells, and exact BigUint cell count before scratch/output allocation. Count zero implies no emitted rows; parts zero with total zero emits precisely one empty row.\",\n    \"In an admitted nonempty composition row, every entry is at most total and the sum is total. The chosen rightmost positive coordinate after index zero has only zeros to its right. Removing that coordinate, transferring one unit left and moving its remainder to the last coordinate preserves total. The predecessor is strictly below total before increment, so even total=usize::MAX cannot overflow. This is exactly the next lexicographic row: keep the longest possible prefix, increase its last mutable coordinate minimally, and minimize the suffix by concentrating its sum at the final coordinate. The terminal row has all mass in coordinate zero. Every row occurs once, and the finite admitted count bounds traversal.\",\n    \"Private iterator fields cannot be replaced by callers. Constructors check domain, row budget and owned-width bounds before vector construction. Clone preserves these invariants. Iterator failure/exhaustion clears state; raw error records and diagnostic strings do not certify mathematical models. No deserialization, unsafe block, arbitrary callback or unchecked public model constructor appears.\",\n    \"Weak compositions retain at most 1048576 scalar cells and a width<=4096 scratch row, with constant call-stack depth instead of recursive depth=parts. On the tested 64-bit target a conservative row-header overhead is at most 24 times the cell bound, plus scalar cells and scratch. This is a logical storage bound, not an allocator or process-memory guarantee. Eager permutations/combinations honor caller row limits; their aggregate memory budget is not promised independently of caller limits. Lazy iterators keep only one bounded row; each emitted row is necessarily owned.\",\n    \"Derived thiserror formatting, Debug/Clone/Eq, concrete Vec and BigUint operations are standard-library/compiler/dependency trust. The source metric parser does not expand their implementations. No Rust/MIR proof or cross-repository provider attestation is claimed. Native exact oracles and source invariant arguments remain distinct from machine-checked mathematical proof.\"\n  ],\n  \"failure_paths\": {\n    \"CombinatoricsError::violated_invariant\": \"Map the two raw error variants to their exact declared invariant strings; no claim that arbitrary raw error fields were admitted.\",\n    \"CombinatoricsError::measured_parameters\": \"Return the exact ordered diagnostic key/value pairs for either variant using decimal formatting. Formatting is observational and does not admit an error record as a certificate.\",\n    \"factorial\": \"Reject n>20000 before arithmetic, otherwise return exactly n! as BigUint, including 0!=1.\",\n    \"binomial\": \"Return zero for k>n. Otherwise reduce to m=min(k,n-k), reject m>16384, and compute exact choose(n,k) by the integral multiplicative recurrence. No float or truncation error is admitted.\",\n    \"budget\": \"Compare exact BigUint requested cardinality against the usize limit. Equality is allowed; only a larger request returns BudgetExceeded with a cloned exact request.\",\n    \"next_permutation\": \"On an arbitrary mutable usize word, return the next lexicographic distinct permutation of its multiset. If no successor exists, return false and leave the slice unchanged. Find the longest decreasing suffix and swap the pivot with the rightmost greater item, then reverse only that suffix.\",\n    \"next_combination\": \"Reject invalid, out-of-range or non-increasing coordinates with false and no mutation. For a valid sorted k-subset of 0..n, increment the rightmost coordinate below n-k+i and rebuild its minimal increasing suffix; terminal or empty subsets return false unchanged.\",\n    \"permutations\": \"Collect the admitted Permutations iterator. The row count limit is checked before allocation; output ownership and allocator availability remain explicit caller/runtime boundaries.\",\n    \"combinations\": \"Collect the admitted Combinations iterator; preserve its cardinality, width, zero-result convention and error order.\",\n    \"weak_compositions\": \"First admit parts<=4096. Compute exact stars-and-bars count, with zero parts giving one empty row exactly when total is zero. Reject checked upper-index overflow or excessive binomial choice, then reject row count above caller limit, then exact count*parts above 1048576 cells. Only then enumerate rows lexicographically with nonnegative entries summing to total.\",\n    \"admit_width\": \"Accept equality at width 4096; reject larger widths with ArgumentTooLarge carrying the declared operation and width, before any output vector allocation.\",\n    \"collect_compositions\": \"Private admitted inputs only. Handle zero parts directly; otherwise start at [0,...,total], emit each row and apply the iterative lexicographic successor. Constant call-stack depth, one width-sized scratch vector, and one required owned clone per output row.\",\n    \"next_composition\": \"Private nonempty admitted row only. Locate the rightmost positive coordinate after the first, move one unit to its predecessor, and put the remainder in the final slot. The suffix was zero; preserve sum, positivity, width and lexicographic order. Return false exactly at [total,0,...,0].\",\n    \"Permutations::new\": \"Compute admitted exact factorial, then check row budget before allocating [0,..,n). Own a private initial state; the first item exists also at n=0.\",\n    \"Permutations::next\": \"Emit the initial word once, then each next permutation exactly once; set current=None at exhaustion and remain exhausted on repeated next calls. Clone returns independently owned iterator state.\",\n    \"Combinations::new\": \"Compute admitted binomial, check row budget, and only for nonempty mathematical families check k<=4096 before allocating [0,..,k). k>n creates an exhausted iterator even for huge k. Exact equality of n and k does not bypass width admission.\",\n    \"Combinations::next\": \"Emit initial subset once, then each successor; clear state on exhaustion. Empty subset is one row when k=0, while k>n starts exhausted. Returned rows are owned.\",\n    \"to_u64\": \"Return Some exact value only when the BigUint fits u64; larger counts return None without truncation.\"\n  },\n  \"trust_boundary\": \"Derived thiserror formatting, Debug/Clone/Eq, concrete Vec and BigUint operations are standard-library/compiler/dependency trust. The source metric parser does not expand their implementations. No Rust/MIR proof or cross-repository provider attestation is claimed. Native exact oracles and source invariant arguments remain distinct from machine-checked mathematical proof.\",\n  \"assurance_limits\": [\n    \"Complete five-gate assessment remains pending; the concrete resource fixes and source invariants do not automatically award A.\",\n    \"Source-level arithmetic and enumeration arguments are not extracted Rust proofs. Allocator availability remains in the TCB.\",\n    \"Only the actual standalone combinatorics crate and copied enumeration controls are compiled; other goal modules remain independently unreviewed.\"\n  ],\n  \"review_evidence\": [\n    {\n      \"path\": \"code/rust/quality/six_module/enumeration_source_review.json\",\n      \"sha256\": \"110e483c3a1782f528fb73700cda16047554dd3cf865bf9642e20f941e2f0e6a\"\n    },\n    {\n      \"path\": \"evidence/quality/six_module/20261019T234341Z-enumeration/summary.json\",\n      \"sha256\": \"f391576f57241b0c071534cf35f7714c7250e8c927371b5372cd433d8a0350a3\"\n    },\n    {\n      \"path\": \"evidence/quality/six_module/20261019T234341Z-enumeration/mutations.json\",\n      \"sha256\": \"fe8ea125b739df1e685fda6eac6fda15aa2a14210e2c822f075b5ee848882584\"\n    },\n    {\n      \"path\": \"evidence/quality/six_module/20261019T234341Z-enumeration/control.log\",\n      \"sha256\": \"e2ec723cd6b66e90688046c6f7b12eb45be353b8e55f8da003d674f74ad50815\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json\",\n      \"sha256\": \"03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3\"\n    }\n  ],\n  \"open_obligations\": [\n    \"Finish gate-by-gate approval, bind the complete caller/dependency review, and audit the new contract/evidence against the rubric before emitting a completed score.\"\n  ]\n}\n",
+      "original_paths": [
+        "evidence/quality/six_module/checkpoint-002/prior-enumeration.rs.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "3b5882cd8fdddd8440544b11e16a68410320900f25a1e57c52f85a7aceeaa3ef",
+      "bytes": 3722,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/combinatorics/enumeration.rs",
+          "sha256": "7e952dc5fe3b1322f286093c674393735bacdae9c281efc8e687ce5691e5cb8c",
+          "language": "Rust"
+        },
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "architecture_target": "L4",
+        "engineering_target": "A",
+        "level": "L4",
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "composite_grade": null,
+        "score_token": null,
+        "is_complete": false,
+        "assessment_status": "incomplete",
+        "assessment_source": null,
+        "contract": {
+          "path": "code/rust/src/combinatorics/enumeration.rs.contract.yaml",
+          "sha256": "a9d2187626dda90d856f61e9e5b4eefe68ae88fb40f9c7bd67ef09ce6086bf53"
+        },
+        "assessment_note": "Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.",
+        "open_obligations": [
+          "Complete each missing sovereign gate; no completed token until all five have adequate evidence."
+        ],
+        "known_findings": [
+          {
+            "gate": "G3",
+            "status": "resolved_on_current_bytes",
+            "historical_finding": {
+              "path": "evidence/quality/six_module/20261019T233833Z-enumeration-before/finding.json",
+              "sha256": "54c5c844c0eea319eda92bcd8782ccf81f3fa544749b150ea884b93ce3a3a252"
+            },
+            "resolution": "Admit owned width and total eager cells before allocation; iterative composition traversal. Both original counterexamples now return typed ArgumentTooLarge in the independent native control."
+          }
+        ],
+        "partial_evidence": [
+          {
+            "path": "code/rust/quality/six_module/enumeration_source_review.json",
+            "sha256": "110e483c3a1782f528fb73700cda16047554dd3cf865bf9642e20f941e2f0e6a"
+          },
+          {
+            "path": "evidence/quality/six_module/20261019T234341Z-enumeration/summary.json",
+            "sha256": "f391576f57241b0c071534cf35f7714c7250e8c927371b5372cd433d8a0350a3"
+          },
+          {
+            "path": "evidence/quality/six_module/20261019T234341Z-enumeration/mutations.json",
+            "sha256": "fe8ea125b739df1e685fda6eac6fda15aa2a14210e2c822f075b5ee848882584"
+          },
+          {
+            "path": "evidence/quality/six_module/20261019T234341Z-enumeration/control.log",
+            "sha256": "e2ec723cd6b66e90688046c6f7b12eb45be353b8e55f8da003d674f74ad50815"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json",
+            "sha256": "03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3"
+          }
+        ],
+        "structural_measurement": {
+          "source_sha256": "7e952dc5fe3b1322f286093c674393735bacdae9c281efc8e687ce5691e5cb8c",
+          "function_count": 18,
+          "maxima": {
+            "ccn": 8,
+            "cognitive_upper_bound": 9,
+            "control_nesting": 3
+          },
+          "structural_ceiling": "A",
+          "opaque_macros": [],
+          "evidence": [
+            {
+              "path": "evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json",
+              "sha256": "03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3"
+            },
+            {
+              "path": "evidence/quality/category_homology/20261019T234440Z-metrics/metrics.json",
+              "sha256": "f1cd57a774df89c14758566aa0ea903e2b5cbdd5c47f0e536eedd525b9e891cc"
+            },
+            {
+              "path": "evidence/quality/category_homology/20261019T234440Z-metrics/six_module_scope.json",
+              "sha256": "0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf"
+            }
+          ],
+          "scope": "Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate."
+        }
+      },
+      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/combinatorics/enumeration.rs\",\n    \"sha256\": \"7e952dc5fe3b1322f286093c674393735bacdae9c281efc8e687ce5691e5cb8c\",\n    \"language\": \"Rust\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"architecture_target\": \"L4\",\n  \"engineering_target\": \"A\",\n  \"level\": \"L4\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"is_complete\": false,\n  \"assessment_status\": \"incomplete\",\n  \"assessment_source\": null,\n  \"contract\": {\n    \"path\": \"code/rust/src/combinatorics/enumeration.rs.contract.yaml\",\n    \"sha256\": \"a9d2187626dda90d856f61e9e5b4eefe68ae88fb40f9c7bd67ef09ce6086bf53\"\n  },\n  \"assessment_note\": \"Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.\",\n  \"open_obligations\": [\n    \"Complete each missing sovereign gate; no completed token until all five have adequate evidence.\"\n  ],\n  \"known_findings\": [\n    {\n      \"gate\": \"G3\",\n      \"status\": \"resolved_on_current_bytes\",\n      \"historical_finding\": {\n        \"path\": \"evidence/quality/six_module/20261019T233833Z-enumeration-before/finding.json\",\n        \"sha256\": \"54c5c844c0eea319eda92bcd8782ccf81f3fa544749b150ea884b93ce3a3a252\"\n      },\n      \"resolution\": \"Admit owned width and total eager cells before allocation; iterative composition traversal. Both original counterexamples now return typed ArgumentTooLarge in the independent native control.\"\n    }\n  ],\n  \"partial_evidence\": [\n    {\n      \"path\": \"code/rust/quality/six_module/enumeration_source_review.json\",\n      \"sha256\": \"110e483c3a1782f528fb73700cda16047554dd3cf865bf9642e20f941e2f0e6a\"\n    },\n    {\n      \"path\": \"evidence/quality/six_module/20261019T234341Z-enumeration/summary.json\",\n      \"sha256\": \"f391576f57241b0c071534cf35f7714c7250e8c927371b5372cd433d8a0350a3\"\n    },\n    {\n      \"path\": \"evidence/quality/six_module/20261019T234341Z-enumeration/mutations.json\",\n      \"sha256\": \"fe8ea125b739df1e685fda6eac6fda15aa2a14210e2c822f075b5ee848882584\"\n    },\n    {\n      \"path\": \"evidence/quality/six_module/20261019T234341Z-enumeration/control.log\",\n      \"sha256\": \"e2ec723cd6b66e90688046c6f7b12eb45be353b8e55f8da003d674f74ad50815\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json\",\n      \"sha256\": \"03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3\"\n    }\n  ],\n  \"structural_measurement\": {\n    \"source_sha256\": \"7e952dc5fe3b1322f286093c674393735bacdae9c281efc8e687ce5691e5cb8c\",\n    \"function_count\": 18,\n    \"maxima\": {\n      \"ccn\": 8,\n      \"cognitive_upper_bound\": 9,\n      \"control_nesting\": 3\n    },\n    \"structural_ceiling\": \"A\",\n    \"opaque_macros\": [],\n    \"evidence\": [\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json\",\n        \"sha256\": \"03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/metrics.json\",\n        \"sha256\": \"f1cd57a774df89c14758566aa0ea903e2b5cbdd5c47f0e536eedd525b9e891cc\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/six_module_scope.json\",\n        \"sha256\": \"0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf\"\n      }\n    ],\n    \"scope\": \"Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate.\"\n  }\n}\n",
+      "original_paths": [
+        "evidence/quality/six_module/checkpoint-002/prior-enumeration.rs.scoring.yaml"
+      ]
+    }
+  ],
+  "legacy_paths": {
+    "evidence/quality/six_module/checkpoint-002/prior-enumeration.rs.contract.yaml": "a9d2187626dda90d856f61e9e5b4eefe68ae88fb40f9c7bd67ef09ce6086bf53",
+    "evidence/quality/six_module/checkpoint-002/prior-enumeration.rs.scoring.yaml": "3b5882cd8fdddd8440544b11e16a68410320900f25a1e57c52f85a7aceeaa3ef"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

@@ -1,0 +1,145 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/30_evidence/evidence_append_log_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:evidence:append_log:v1.0.0",
+    "title": "AppendLog",
+    "kind": "evidence_contract",
+    "status": "active",
+    "layer": "02_evidence",
+    "role": "Trace",
+    "descriptor": {
+      "authority_effect": "evidence_only",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      },
+      "constitution": {
+        "contract_dependencies": [],
+        "emits": "EvidenceEnvelope",
+        "authority_layer": "Evidence",
+        "replay_certificates": [
+          "schema_hash"
+        ]
+      },
+      "constraints": {
+        "immutable_after_emit": true,
+        "mutation_forbidden": true
+      }
+    },
+    "doctrine": {
+      "summary": "Append-only hash-chained JSONL decision log. Each record seals sequence, parent digest, and payload under SHA-256; open replays and verifies the ENTIRE chain before returning, refusing tampered, truncated, reordered, or blank-padded files as typed violations. Records are only ever appended (fsync before acknowledge); existing bytes are never rewritten. Appending a record is diagnostic evidence only and mints no authority. Carrier for the M1 Stripe webhook claim/complete idempotency ledger (PKT-20260722-M1-EPOCH3).",
+      "non_role": []
+    },
+    "rust_binding": {
+      "crate": "omega_replay",
+      "module": "append_log",
+      "symbols": [
+        "AppendLogV1",
+        "AppendLogRecordV1",
+        "AppendLogError"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0",
+        "urn:omega:constitution:base_evidence_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "dd636741f7ed12912bdc3e5ffd8c255aaa206acf6500514614c15ab71abe46ff",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "dd636741f7ed12912bdc3e5ffd8c255aaa206acf6500514614c15ab71abe46ff",
+      "bytes": 1576,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:evidence:append_log:v1.0.0",
+        "title": "AppendLog",
+        "kind": "evidence_contract",
+        "status": "active",
+        "layer": "02_evidence",
+        "role": "Trace",
+        "descriptor": {
+          "authority_effect": "evidence_only",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          },
+          "constitution": {
+            "contract_dependencies": [],
+            "emits": "EvidenceEnvelope",
+            "authority_layer": "Evidence",
+            "replay_certificates": [
+              "schema_hash"
+            ]
+          },
+          "constraints": {
+            "immutable_after_emit": true,
+            "mutation_forbidden": true
+          }
+        },
+        "doctrine": {
+          "summary": "Append-only hash-chained JSONL decision log. Each record seals sequence, parent digest, and payload under SHA-256; open replays and verifies the ENTIRE chain before returning, refusing tampered, truncated, reordered, or blank-padded files as typed violations. Records are only ever appended (fsync before acknowledge); existing bytes are never rewritten. Appending a record is diagnostic evidence only and mints no authority. Carrier for the M1 Stripe webhook claim/complete idempotency ledger (PKT-20260722-M1-EPOCH3).",
+          "non_role": []
+        },
+        "rust_binding": {
+          "crate": "omega_replay",
+          "module": "append_log",
+          "symbols": [
+            "AppendLogV1",
+            "AppendLogRecordV1",
+            "AppendLogError"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0",
+            "urn:omega:constitution:base_evidence_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:evidence:append_log:v1.0.0\ntitle: AppendLog\nkind: evidence_contract\nstatus: active\nlayer: 02_evidence\nrole: Trace\ndescriptor:\n  authority_effect: evidence_only\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\n  constitution:\n    contract_dependencies: []\n    emits: EvidenceEnvelope\n    authority_layer: Evidence\n    replay_certificates:\n    - schema_hash\n  constraints:\n    immutable_after_emit: true\n    mutation_forbidden: true\ndoctrine:\n  summary: Append-only hash-chained JSONL decision log. Each record seals sequence,\n    parent digest, and payload under SHA-256; open replays and verifies the ENTIRE\n    chain before returning, refusing tampered, truncated, reordered, or blank-padded\n    files as typed violations. Records are only ever appended (fsync before acknowledge);\n    existing bytes are never rewritten. Appending a record is diagnostic evidence\n    only and mints no authority. Carrier for the M1 Stripe webhook claim/complete\n    idempotency ledger (PKT-20260722-M1-EPOCH3).\n  non_role: []\nrust_binding:\n  crate: omega_replay\n  module: append_log\n  symbols:\n  - AppendLogV1\n  - AppendLogRecordV1\n  - AppendLogError\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n  - urn:omega:constitution:base_evidence_contract:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/30_evidence/evidence_append_log_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/30_evidence/evidence_append_log_v1_0_0.contract.yaml": "dd636741f7ed12912bdc3e5ffd8c255aaa206acf6500514614c15ab71abe46ff"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

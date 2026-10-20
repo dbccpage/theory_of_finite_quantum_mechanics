@@ -1,0 +1,401 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": null,
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:gamma2_closure_defect:v1.0.0",
+    "title": "Γ₂ closure defect",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [
+          "urn:omega:math:validated_cochain_complex:v1.0.0",
+          "urn:omega:math:raw_closure_defect:v1.0.0",
+          "urn:omega:math:hashes:v1.0.0",
+          "urn:omega:math:binary_degree_functional:v1.0.0"
+        ],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "gamma2_closure_defect",
+      "symbol": "Γ₂",
+      "ascii_symbol": "Gamma2",
+      "notation": "Γ₂(h) = ‖d₁ h‖₁  (quotient-level when d₁d₀=0)",
+      "domain": [
+        "finite cochain data C¹, C² with d₁ : C¹ → C²",
+        "residual h ∈ C¹ (often Φ₁-selected residual h*)",
+        "norm profile on C² (default unweighted ℓ¹)",
+        "exactness status of d₁ ∘ d₀ for quotient interpretation"
+      ],
+      "codomain": {
+        "description": "Nonnegative scalar measuring failure of closedness of h under d₁. Secondary after Φ₁. Not obstruction mass; not cohomology Γ² notation smash."
+      },
+      "definition": {
+        "formula": "Γ₂(h) = ‖d₁ h‖₁; if d₁d₀=0 then Γ₂ descends to [h] ∈ Q¹",
+        "closed": "Γ₂ = 0 (exact mode) means residual is closed (in Z¹)",
+        "open": "Γ₂ > 0 means open obstruction residual"
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "C¹, C² with declared bases",
+        {
+          "Map d₁": "C¹ → C²"
+        },
+        "Residual h ∈ C¹",
+        "Norm on C²",
+        {
+          "For quotient-level claims": "witness that d₁ ∘ d₀ = 0"
+        }
+      ]
+    },
+    "laws": [
+      "Closure-defect law: Γ₂(h) = ‖d₁ h‖₁ under declared C² norm.",
+      "Nonnegativity: Γ₂ ≥ 0.",
+      "Closedness: in exact mode, Γ₂(h)=0 iff d₁h = 0.",
+      "Quotient well-definedness: Γ₂(h+d₀α)=Γ₂(h) for all α iff d₁d₀=0.",
+      "Hierarchy law: Γ₂ is secondary after Φ₁; must not accept Φ₁-worsening proposals.",
+      "Separation fence: Γ₂ is not Φ₁; never identify closure defect with obstruction mass.",
+      "Notation fence: Γ₂ here is FOC closure defect, not cohomological γ-square smash.",
+      "Authority law: Γ₂ alone mints no AuthorityEffect, PROVED, or GlobalGreen."
+    ],
+    "replay": {
+      "requirements": [
+        "Deterministic d₁h and C² norm evaluation",
+        "Exactness witness replay when quotient interpretation claimed",
+        "No NaN / infinities"
+      ]
+    },
+    "relationships": [
+      "urn:omega:math:phi1:v1.0.0 — primary residual functional",
+      "urn:omega:math:closure_defect:v1.0.0 — general closure-defect language",
+      "urn:omega:math:finite_obstruction_trichotomy:v0.2.0 — StabilizedSurvivor vs OpenObstruction",
+      "urn:omega:math:cochain_complex:v1.0.0 — ambient graded data",
+      "urn:omega:math:cohomology:v1.0.0 — Γ₂=0 needed for closed H¹ representatives"
+    ],
+    "rust_binding": {
+      "crate": "omega_functional",
+      "module": "gamma2",
+      "symbols": [
+        "ExactCochainComplexQ",
+        "DegreeOneResidualQ",
+        "ExactGamma2Result",
+        "ClosureStatus",
+        "IntegerGamma2Error"
+      ],
+      "required_tests": [
+        "rejects_missing_complex2",
+        "test_exact_gamma2_rejects_nonzero_d1_d0"
+      ]
+    },
+    "negative_tests": [
+      "Γ₂ without d₁ or C² must be rejected",
+      "Quotient-level Γ₂ claimed when d₁d₀ ≠ 0 must be rejected",
+      "Γ₂ used to accept Φ₁-worsening proposal must be rejected",
+      "Closure claimed with d₁h ≠ 0 in exact mode must be rejected",
+      "Γ₂ identified with Φ₁ must be rejected",
+      "Γ₂ confused with algebraic γ-square notation smash must be rejected",
+      "Authority / PROVED / GlobalGreen from Γ₂ alone must be rejected"
+    ],
+    "doctrine": {
+      "compact_yaml": {
+        "QUOTIENT_GAMMA2_CONTRACT": {
+          "symbol": "Γ₂",
+          "ascii_symbol": "Gamma2",
+          "formula": "Γ₂(h) = ‖d₁ h‖₁",
+          "status": "mathematical_definition_wip",
+          "authority_effect": "none",
+          "customer_claim_allowed": false,
+          "domain": "h ∈ C¹ with d₁ : C¹ → C²",
+          "codomain": "Γ₂ ∈ ℚ≥0 (exact)",
+          "required_structures": [
+            "d₁",
+            "C¹ basis",
+            "C² basis",
+            "coefficient domain ℚ"
+          ],
+          "definition": "the weighted ℓ¹ closure defect; descends to [h] ∈ Q¹ when d₁d₀ = 0",
+          "laws": [
+            "Γ₂ = 0 iff h ∈ Z¹ = ker(d₁)",
+            "Γ₂(h − d₀p) = Γ₂(h) since d₁d₀ = 0",
+            "Γ₂ > 0 is an open obstruction residual"
+          ]
+        }
+      },
+      "summary": "Γ₂ is the FOC closure defect ‖d₁h‖₁. Secondary after Φ₁. Nonclaim: not Φ₁; not authority; not PROVED; not GlobalGreen; not cohomological γ-square.",
+      "non_role": [
+        "Computing Φ₁ obstruction mass",
+        "Policy admissibility / ActionLicense",
+        "Authority / PROVED / GlobalGreen / HoTT",
+        "Full spectral sequence / double-complex machinery"
+      ]
+    },
+    "wip": [
+      "Weighted C² norms catalog",
+      "Explicit representative-level vs quotient-level naming"
+    ],
+    "nomos_debate_NOT_CANONICAL": {
+      "banner": "NON-CANONICAL DEBATE ONLY — not contract law; not enforced; AuthorityEffect None",
+      "not_part_of_contract_law": true,
+      "authority_effect": "none",
+      "potential_defects": [
+        {
+          "reviewer": "panepistimion-math-prof",
+          "role": "MATH_CANONICAL_REVIEW",
+          "code": "METH_B4_FOC_RESIDUAL",
+          "severity": "info",
+          "claim_class": "[STANDARD]",
+          "detail": "Meth B4: lifted Γ₂ laws from buried doctrine; Φ₁ hierarchy and notation fence.",
+          "recommendation": "Stage-2 dual-path audit with phi1 residual selection.",
+          "pass": "meth_b4_foc_residual"
+        }
+      ],
+      "realization_delta_vs_implemented_math_file": [
+        {
+          "reviewer": "panepistimion-cs-prof-ml-ai-info",
+          "role": "CS_IMPL_DELTA_REVIEW",
+          "code": "HAS_RS_BINDING",
+          "severity": "low",
+          "claim_class": "[CODE_DEMO_RUST]",
+          "detail": "omega_functional gamma2 module exports ExactGamma2Result / ClosureStatus.",
+          "file": "omega_engine/crates_rs/omega_functional/src/gamma2.rs",
+          "delta": "MATCH"
+        },
+        {
+          "reviewer": "techne-master-of-proofs-and-derivations",
+          "role": "PROOF_META_REVIEW",
+          "code": "PANEL_CONSISTENT",
+          "severity": "info",
+          "claim_class": "[SCOPE FENCE]",
+          "detail": "Φ₁/Γ₂ non-identity is FOC standing law. Not PROVED."
+        }
+      ]
+    }
+  },
+  "current_contract": "b843c27ea74f89485a1b7edebe9b08b4971961457c10f7bb12474ad233ba6de4",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "b843c27ea74f89485a1b7edebe9b08b4971961457c10f7bb12474ad233ba6de4",
+      "bytes": 5921,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:gamma2_closure_defect:v1.0.0",
+        "title": "Γ₂ closure defect",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [
+              "urn:omega:math:validated_cochain_complex:v1.0.0",
+              "urn:omega:math:raw_closure_defect:v1.0.0",
+              "urn:omega:math:hashes:v1.0.0",
+              "urn:omega:math:binary_degree_functional:v1.0.0"
+            ],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "gamma2_closure_defect",
+          "symbol": "Γ₂",
+          "ascii_symbol": "Gamma2",
+          "notation": "Γ₂(h) = ‖d₁ h‖₁  (quotient-level when d₁d₀=0)",
+          "domain": [
+            "finite cochain data C¹, C² with d₁ : C¹ → C²",
+            "residual h ∈ C¹ (often Φ₁-selected residual h*)",
+            "norm profile on C² (default unweighted ℓ¹)",
+            "exactness status of d₁ ∘ d₀ for quotient interpretation"
+          ],
+          "codomain": {
+            "description": "Nonnegative scalar measuring failure of closedness of h under d₁. Secondary after Φ₁. Not obstruction mass; not cohomology Γ² notation smash."
+          },
+          "definition": {
+            "formula": "Γ₂(h) = ‖d₁ h‖₁; if d₁d₀=0 then Γ₂ descends to [h] ∈ Q¹",
+            "closed": "Γ₂ = 0 (exact mode) means residual is closed (in Z¹)",
+            "open": "Γ₂ > 0 means open obstruction residual"
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "C¹, C² with declared bases",
+            {
+              "Map d₁": "C¹ → C²"
+            },
+            "Residual h ∈ C¹",
+            "Norm on C²",
+            {
+              "For quotient-level claims": "witness that d₁ ∘ d₀ = 0"
+            }
+          ]
+        },
+        "laws": [
+          "Closure-defect law: Γ₂(h) = ‖d₁ h‖₁ under declared C² norm.",
+          "Nonnegativity: Γ₂ ≥ 0.",
+          "Closedness: in exact mode, Γ₂(h)=0 iff d₁h = 0.",
+          "Quotient well-definedness: Γ₂(h+d₀α)=Γ₂(h) for all α iff d₁d₀=0.",
+          "Hierarchy law: Γ₂ is secondary after Φ₁; must not accept Φ₁-worsening proposals.",
+          "Separation fence: Γ₂ is not Φ₁; never identify closure defect with obstruction mass.",
+          "Notation fence: Γ₂ here is FOC closure defect, not cohomological γ-square smash.",
+          "Authority law: Γ₂ alone mints no AuthorityEffect, PROVED, or GlobalGreen."
+        ],
+        "replay": {
+          "requirements": [
+            "Deterministic d₁h and C² norm evaluation",
+            "Exactness witness replay when quotient interpretation claimed",
+            "No NaN / infinities"
+          ]
+        },
+        "relationships": [
+          "urn:omega:math:phi1:v1.0.0 — primary residual functional",
+          "urn:omega:math:closure_defect:v1.0.0 — general closure-defect language",
+          "urn:omega:math:finite_obstruction_trichotomy:v0.2.0 — StabilizedSurvivor vs OpenObstruction",
+          "urn:omega:math:cochain_complex:v1.0.0 — ambient graded data",
+          "urn:omega:math:cohomology:v1.0.0 — Γ₂=0 needed for closed H¹ representatives"
+        ],
+        "rust_binding": {
+          "crate": "omega_functional",
+          "module": "gamma2",
+          "symbols": [
+            "ExactCochainComplexQ",
+            "DegreeOneResidualQ",
+            "ExactGamma2Result",
+            "ClosureStatus",
+            "IntegerGamma2Error"
+          ],
+          "required_tests": [
+            "rejects_missing_complex2",
+            "test_exact_gamma2_rejects_nonzero_d1_d0"
+          ]
+        },
+        "negative_tests": [
+          "Γ₂ without d₁ or C² must be rejected",
+          "Quotient-level Γ₂ claimed when d₁d₀ ≠ 0 must be rejected",
+          "Γ₂ used to accept Φ₁-worsening proposal must be rejected",
+          "Closure claimed with d₁h ≠ 0 in exact mode must be rejected",
+          "Γ₂ identified with Φ₁ must be rejected",
+          "Γ₂ confused with algebraic γ-square notation smash must be rejected",
+          "Authority / PROVED / GlobalGreen from Γ₂ alone must be rejected"
+        ],
+        "doctrine": {
+          "compact_yaml": {
+            "QUOTIENT_GAMMA2_CONTRACT": {
+              "symbol": "Γ₂",
+              "ascii_symbol": "Gamma2",
+              "formula": "Γ₂(h) = ‖d₁ h‖₁",
+              "status": "mathematical_definition_wip",
+              "authority_effect": "none",
+              "customer_claim_allowed": false,
+              "domain": "h ∈ C¹ with d₁ : C¹ → C²",
+              "codomain": "Γ₂ ∈ ℚ≥0 (exact)",
+              "required_structures": [
+                "d₁",
+                "C¹ basis",
+                "C² basis",
+                "coefficient domain ℚ"
+              ],
+              "definition": "the weighted ℓ¹ closure defect; descends to [h] ∈ Q¹ when d₁d₀ = 0",
+              "laws": [
+                "Γ₂ = 0 iff h ∈ Z¹ = ker(d₁)",
+                "Γ₂(h − d₀p) = Γ₂(h) since d₁d₀ = 0",
+                "Γ₂ > 0 is an open obstruction residual"
+              ]
+            }
+          },
+          "summary": "Γ₂ is the FOC closure defect ‖d₁h‖₁. Secondary after Φ₁. Nonclaim: not Φ₁; not authority; not PROVED; not GlobalGreen; not cohomological γ-square.",
+          "non_role": [
+            "Computing Φ₁ obstruction mass",
+            "Policy admissibility / ActionLicense",
+            "Authority / PROVED / GlobalGreen / HoTT",
+            "Full spectral sequence / double-complex machinery"
+          ]
+        },
+        "wip": [
+          "Weighted C² norms catalog",
+          "Explicit representative-level vs quotient-level naming"
+        ],
+        "nomos_debate_NOT_CANONICAL": {
+          "banner": "NON-CANONICAL DEBATE ONLY — not contract law; not enforced; AuthorityEffect None",
+          "not_part_of_contract_law": true,
+          "authority_effect": "none",
+          "potential_defects": [
+            {
+              "reviewer": "panepistimion-math-prof",
+              "role": "MATH_CANONICAL_REVIEW",
+              "code": "METH_B4_FOC_RESIDUAL",
+              "severity": "info",
+              "claim_class": "[STANDARD]",
+              "detail": "Meth B4: lifted Γ₂ laws from buried doctrine; Φ₁ hierarchy and notation fence.",
+              "recommendation": "Stage-2 dual-path audit with phi1 residual selection.",
+              "pass": "meth_b4_foc_residual"
+            }
+          ],
+          "realization_delta_vs_implemented_math_file": [
+            {
+              "reviewer": "panepistimion-cs-prof-ml-ai-info",
+              "role": "CS_IMPL_DELTA_REVIEW",
+              "code": "HAS_RS_BINDING",
+              "severity": "low",
+              "claim_class": "[CODE_DEMO_RUST]",
+              "detail": "omega_functional gamma2 module exports ExactGamma2Result / ClosureStatus.",
+              "file": "omega_engine/crates_rs/omega_functional/src/gamma2.rs",
+              "delta": "MATCH"
+            },
+            {
+              "reviewer": "techne-master-of-proofs-and-derivations",
+              "role": "PROOF_META_REVIEW",
+              "code": "PANEL_CONSISTENT",
+              "severity": "info",
+              "claim_class": "[SCOPE FENCE]",
+              "detail": "Φ₁/Γ₂ non-identity is FOC standing law. Not PROVED."
+            }
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:gamma2_closure_defect:v1.0.0\ntitle: Γ₂ closure defect\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts:\n    - urn:omega:math:validated_cochain_complex:v1.0.0\n    - urn:omega:math:raw_closure_defect:v1.0.0\n    - urn:omega:math:hashes:v1.0.0\n    - urn:omega:math:binary_degree_functional:v1.0.0\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: gamma2_closure_defect\n  symbol: Γ₂\n  ascii_symbol: Gamma2\n  notation: Γ₂(h) = ‖d₁ h‖₁  (quotient-level when d₁d₀=0)\n  domain:\n  - 'finite cochain data C¹, C² with d₁ : C¹ → C²'\n  - residual h ∈ C¹ (often Φ₁-selected residual h*)\n  - norm profile on C² (default unweighted ℓ¹)\n  - exactness status of d₁ ∘ d₀ for quotient interpretation\n  codomain:\n    description: Nonnegative scalar measuring failure of closedness of h under d₁. Secondary after Φ₁. Not obstruction\n      mass; not cohomology Γ² notation smash.\n  definition:\n    formula: Γ₂(h) = ‖d₁ h‖₁; if d₁d₀=0 then Γ₂ descends to [h] ∈ Q¹\n    closed: Γ₂ = 0 (exact mode) means residual is closed (in Z¹)\n    open: Γ₂ > 0 means open obstruction residual\nrequirements:\n  required_structures:\n  - C¹, C² with declared bases\n  - Map d₁: C¹ → C²\n  - Residual h ∈ C¹\n  - Norm on C²\n  - For quotient-level claims: witness that d₁ ∘ d₀ = 0\nlaws:\n- 'Closure-defect law: Γ₂(h) = ‖d₁ h‖₁ under declared C² norm.'\n- 'Nonnegativity: Γ₂ ≥ 0.'\n- 'Closedness: in exact mode, Γ₂(h)=0 iff d₁h = 0.'\n- 'Quotient well-definedness: Γ₂(h+d₀α)=Γ₂(h) for all α iff d₁d₀=0.'\n- 'Hierarchy law: Γ₂ is secondary after Φ₁; must not accept Φ₁-worsening proposals.'\n- 'Separation fence: Γ₂ is not Φ₁; never identify closure defect with obstruction mass.'\n- 'Notation fence: Γ₂ here is FOC closure defect, not cohomological γ-square smash.'\n- 'Authority law: Γ₂ alone mints no AuthorityEffect, PROVED, or GlobalGreen.'\nreplay:\n  requirements:\n  - Deterministic d₁h and C² norm evaluation\n  - Exactness witness replay when quotient interpretation claimed\n  - No NaN / infinities\nrelationships:\n- urn:omega:math:phi1:v1.0.0 — primary residual functional\n- urn:omega:math:closure_defect:v1.0.0 — general closure-defect language\n- urn:omega:math:finite_obstruction_trichotomy:v0.2.0 — StabilizedSurvivor vs OpenObstruction\n- urn:omega:math:cochain_complex:v1.0.0 — ambient graded data\n- urn:omega:math:cohomology:v1.0.0 — Γ₂=0 needed for closed H¹ representatives\nrust_binding:\n  crate: omega_functional\n  module: gamma2\n  symbols:\n  - ExactCochainComplexQ\n  - DegreeOneResidualQ\n  - ExactGamma2Result\n  - ClosureStatus\n  - IntegerGamma2Error\n  required_tests:\n  - rejects_missing_complex2\n  - test_exact_gamma2_rejects_nonzero_d1_d0\nnegative_tests:\n- Γ₂ without d₁ or C² must be rejected\n- Quotient-level Γ₂ claimed when d₁d₀ ≠ 0 must be rejected\n- Γ₂ used to accept Φ₁-worsening proposal must be rejected\n- Closure claimed with d₁h ≠ 0 in exact mode must be rejected\n- Γ₂ identified with Φ₁ must be rejected\n- Γ₂ confused with algebraic γ-square notation smash must be rejected\n- Authority / PROVED / GlobalGreen from Γ₂ alone must be rejected\ndoctrine:\n  compact_yaml:\n    QUOTIENT_GAMMA2_CONTRACT:\n      symbol: Γ₂\n      ascii_symbol: Gamma2\n      formula: Γ₂(h) = ‖d₁ h‖₁\n      status: mathematical_definition_wip\n      authority_effect: none\n      customer_claim_allowed: false\n      domain: 'h ∈ C¹ with d₁ : C¹ → C²'\n      codomain: Γ₂ ∈ ℚ≥0 (exact)\n      required_structures:\n      - d₁\n      - C¹ basis\n      - C² basis\n      - coefficient domain ℚ\n      definition: the weighted ℓ¹ closure defect; descends to [h] ∈ Q¹ when d₁d₀ = 0\n      laws:\n      - Γ₂ = 0 iff h ∈ Z¹ = ker(d₁)\n      - Γ₂(h − d₀p) = Γ₂(h) since d₁d₀ = 0\n      - Γ₂ > 0 is an open obstruction residual\n  summary: 'Γ₂ is the FOC closure defect ‖d₁h‖₁. Secondary after Φ₁. Nonclaim: not Φ₁; not authority; not PROVED;\n    not GlobalGreen; not cohomological γ-square.'\n  non_role:\n  - Computing Φ₁ obstruction mass\n  - Policy admissibility / ActionLicense\n  - Authority / PROVED / GlobalGreen / HoTT\n  - Full spectral sequence / double-complex machinery\nwip:\n- Weighted C² norms catalog\n- Explicit representative-level vs quotient-level naming\nnomos_debate_NOT_CANONICAL:\n  banner: NON-CANONICAL DEBATE ONLY — not contract law; not enforced; AuthorityEffect None\n  not_part_of_contract_law: true\n  authority_effect: none\n  potential_defects:\n  - reviewer: panepistimion-math-prof\n    role: MATH_CANONICAL_REVIEW\n    code: METH_B4_FOC_RESIDUAL\n    severity: info\n    claim_class: '[STANDARD]'\n    detail: 'Meth B4: lifted Γ₂ laws from buried doctrine; Φ₁ hierarchy and notation fence.'\n    recommendation: Stage-2 dual-path audit with phi1 residual selection.\n    pass: meth_b4_foc_residual\n  realization_delta_vs_implemented_math_file:\n  - reviewer: panepistimion-cs-prof-ml-ai-info\n    role: CS_IMPL_DELTA_REVIEW\n    code: HAS_RS_BINDING\n    severity: low\n    claim_class: '[CODE_DEMO_RUST]'\n    detail: omega_functional gamma2 module exports ExactGamma2Result / ClosureStatus.\n    file: omega_engine/crates_rs/omega_functional/src/gamma2.rs\n    delta: MATCH\n  - reviewer: techne-master-of-proofs-and-derivations\n    role: PROOF_META_REVIEW\n    code: PANEL_CONSISTENT\n    severity: info\n    claim_class: '[SCOPE FENCE]'\n    detail: Φ₁/Γ₂ non-identity is FOC standing law. Not PROVED.\n",
+      "original_paths": [
+        "code/python/governance/contract_canonical_definitions/math/gamma2_closure_defect.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/contract_canonical_definitions/math/gamma2_closure_defect.contract.yaml": "b843c27ea74f89485a1b7edebe9b08b4971961457c10f7bb12474ad233ba6de4"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

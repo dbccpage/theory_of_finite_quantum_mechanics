@@ -1,0 +1,235 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/algebra/math_basic_matrix_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:basic_matrix:v1.0.0",
+    "title": "Basic Matrix Contract",
+    "kind": "math_contract",
+    "status": "active",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "finite_rectangular_matrix",
+      "symbol": "A ∈ K^{m×n}",
+      "ascii_symbol": "basic_matrix",
+      "notation": "A ∈ K^{m×n}",
+      "domain": [
+        "rows: finite_index_set",
+        "cols: finite_index_set",
+        "entries: scalar_domain"
+      ],
+      "codomain": {
+        "description": "A finite rectangular array with fixed shape (rows, cols) and entries from a scalar domain (typically a field).\n"
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "rows and cols are finite natural numbers (rows, cols > 0)",
+        "every access must satisfy 0 <= i < rows and 0 <= j < cols",
+        "stored data length must equal rows * cols",
+        "same matrix, row, and col always resolve to the same entry",
+        "operations may not silently change shape"
+      ]
+    },
+    "laws": [
+      "rows and cols are finite natural numbers (rows, cols > 0)",
+      "every access must satisfy 0 <= i < rows and 0 <= j < cols",
+      "stored data length must equal rows * cols",
+      "same matrix, row, and col always resolve to the same entry"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No randomness",
+        "No time-dependent data",
+        "All serializations are fixed byte arrays",
+        "Operation functions are content-addressed"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_linear_algebra",
+      "module": "backend::basic_matrix",
+      "symbols": [
+        "BasicMatrix",
+        "MatrixError"
+      ],
+      "required_tests": [
+        "test_from_row_major_mismatch",
+        "test_out_of_bounds",
+        "test_add_sub_mismatch",
+        "test_mul_dimension_mismatch",
+        "test_shape_preserved"
+      ]
+    },
+    "negative_tests": [
+      "Matrix with rows=0 must be rejected",
+      "Matrix with cols=0 must be rejected",
+      "Data length not equal to rows*cols must be rejected",
+      "Accessing index >= rows or >= cols must fail",
+      "Matmul with lhs_cols != rhs_rows must be rejected",
+      "Add with different shapes must be rejected",
+      "Operations on matrices from different fields must be rejected"
+    ],
+    "doctrine": {
+      "summary": "Defines the canonical finite rectangular matrix representation used by linear algebra, cochain complexes, incidence maps, solvers, and validators. A BasicMatrix is a finite rectangular array of scalars over a declared field, with well-defined shape (rows × cols), deterministic indexing, and shape- preserving operations. This contract is purely structural and does not confer authority.",
+      "non_role": [
+        "Symbolic tensor algebra (deferred to symbolic computation contract)",
+        "Infinite-dimensional operators (out of scope)",
+        "Implicit shape coercion (always rejected)",
+        "Unchecked floating-point authority (requires explicit policy)",
+        "Sparse matrix optimization (separate sparse_matrix contract)"
+      ]
+    }
+  },
+  "current_contract": "9e806da49eea1d087fa690a11dc581b264506d2d512a4b763ebcc913c91b9035",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "9e806da49eea1d087fa690a11dc581b264506d2d512a4b763ebcc913c91b9035",
+      "bytes": 3044,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:basic_matrix:v1.0.0",
+        "title": "Basic Matrix Contract",
+        "kind": "math_contract",
+        "status": "active",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "finite_rectangular_matrix",
+          "symbol": "A ∈ K^{m×n}",
+          "ascii_symbol": "basic_matrix",
+          "notation": "A ∈ K^{m×n}",
+          "domain": [
+            "rows: finite_index_set",
+            "cols: finite_index_set",
+            "entries: scalar_domain"
+          ],
+          "codomain": {
+            "description": "A finite rectangular array with fixed shape (rows, cols) and entries from a scalar domain (typically a field).\n"
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "rows and cols are finite natural numbers (rows, cols > 0)",
+            "every access must satisfy 0 <= i < rows and 0 <= j < cols",
+            "stored data length must equal rows * cols",
+            "same matrix, row, and col always resolve to the same entry",
+            "operations may not silently change shape"
+          ]
+        },
+        "laws": [
+          "rows and cols are finite natural numbers (rows, cols > 0)",
+          "every access must satisfy 0 <= i < rows and 0 <= j < cols",
+          "stored data length must equal rows * cols",
+          "same matrix, row, and col always resolve to the same entry"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "All serializations are fixed byte arrays",
+            "Operation functions are content-addressed"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_linear_algebra",
+          "module": "backend::basic_matrix",
+          "symbols": [
+            "BasicMatrix",
+            "MatrixError"
+          ],
+          "required_tests": [
+            "test_from_row_major_mismatch",
+            "test_out_of_bounds",
+            "test_add_sub_mismatch",
+            "test_mul_dimension_mismatch",
+            "test_shape_preserved"
+          ]
+        },
+        "negative_tests": [
+          "Matrix with rows=0 must be rejected",
+          "Matrix with cols=0 must be rejected",
+          "Data length not equal to rows*cols must be rejected",
+          "Accessing index >= rows or >= cols must fail",
+          "Matmul with lhs_cols != rhs_rows must be rejected",
+          "Add with different shapes must be rejected",
+          "Operations on matrices from different fields must be rejected"
+        ],
+        "doctrine": {
+          "summary": "Defines the canonical finite rectangular matrix representation used by linear algebra, cochain complexes, incidence maps, solvers, and validators. A BasicMatrix is a finite rectangular array of scalars over a declared field, with well-defined shape (rows × cols), deterministic indexing, and shape- preserving operations. This contract is purely structural and does not confer authority.",
+          "non_role": [
+            "Symbolic tensor algebra (deferred to symbolic computation contract)",
+            "Infinite-dimensional operators (out of scope)",
+            "Implicit shape coercion (always rejected)",
+            "Unchecked floating-point authority (requires explicit policy)",
+            "Sparse matrix optimization (separate sparse_matrix contract)"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:basic_matrix:v1.0.0\ntitle: Basic Matrix Contract\nkind: math_contract\nstatus: active\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: finite_rectangular_matrix\n  symbol: A ∈ K^{m×n}\n  ascii_symbol: basic_matrix\n  notation: A ∈ K^{m×n}\n  domain:\n  - 'rows: finite_index_set'\n  - 'cols: finite_index_set'\n  - 'entries: scalar_domain'\n  codomain:\n    description: 'A finite rectangular array with fixed shape (rows, cols) and entries\n      from a scalar domain (typically a field).\n\n      '\nrequirements:\n  required_structures:\n  - rows and cols are finite natural numbers (rows, cols > 0)\n  - every access must satisfy 0 <= i < rows and 0 <= j < cols\n  - stored data length must equal rows * cols\n  - same matrix, row, and col always resolve to the same entry\n  - operations may not silently change shape\nlaws:\n- rows and cols are finite natural numbers (rows, cols > 0)\n- every access must satisfy 0 <= i < rows and 0 <= j < cols\n- stored data length must equal rows * cols\n- same matrix, row, and col always resolve to the same entry\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - All serializations are fixed byte arrays\n  - Operation functions are content-addressed\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nrust_binding:\n  crate: omega_linear_algebra\n  module: backend::basic_matrix\n  symbols:\n  - BasicMatrix\n  - MatrixError\n  required_tests:\n  - test_from_row_major_mismatch\n  - test_out_of_bounds\n  - test_add_sub_mismatch\n  - test_mul_dimension_mismatch\n  - test_shape_preserved\nnegative_tests:\n- Matrix with rows=0 must be rejected\n- Matrix with cols=0 must be rejected\n- Data length not equal to rows*cols must be rejected\n- Accessing index >= rows or >= cols must fail\n- Matmul with lhs_cols != rhs_rows must be rejected\n- Add with different shapes must be rejected\n- Operations on matrices from different fields must be rejected\ndoctrine:\n  summary: Defines the canonical finite rectangular matrix representation used by\n    linear algebra, cochain complexes, incidence maps, solvers, and validators. A\n    BasicMatrix is a finite rectangular array of scalars over a declared field, with\n    well-defined shape (rows × cols), deterministic indexing, and shape- preserving\n    operations. This contract is purely structural and does not confer authority.\n  non_role:\n  - Symbolic tensor algebra (deferred to symbolic computation contract)\n  - Infinite-dimensional operators (out of scope)\n  - Implicit shape coercion (always rejected)\n  - Unchecked floating-point authority (requires explicit policy)\n  - Sparse matrix optimization (separate sparse_matrix contract)\n",
+      "original_paths": [
+        "code/python/governance/10_math/algebra/math_basic_matrix_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/algebra/math_basic_matrix_v1_0_0.contract.yaml": "9e806da49eea1d087fa690a11dc581b264506d2d512a4b763ebcc913c91b9035"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

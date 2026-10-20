@@ -1,0 +1,1514 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": null,
+  "contract": {
+    "schema_version": "1.0.0",
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/rust/src/linear_algebra/basic_matrix.rs",
+      "sha256": "1e87357a6519498a6f28094798fa217444a93c9787035ce9a0fb14c2d74f2007",
+      "language": "Rust"
+    },
+    "contract_urn": "urn:tfqm:contract:linear_algebra:basic_matrix.rs",
+    "status": "individual_checked_protocol_review_requires_current_integration",
+    "target": "L4A",
+    "profile": "Exact",
+    "purpose": "Exact matrix, elimination, polynomial and finite algebraic calculations with explicit domain/resource refusals.",
+    "subject_role": "Individual source review: the former provider facade is now an owned private storage abstraction with complete numeric operand admission, typed scalar failures, configurable element/work preflight, borrowed arithmetic and explicit private interoperability. This is actual L4 API/resource design rather than a reexport label.",
+    "compilation": {
+      "disabled_by_cfg_any": false,
+      "test_or_support_file": false
+    },
+    "declaration_index": [
+      {
+        "kind": "const",
+        "name": "DEFAULT_LIMITS",
+        "line": 11,
+        "declaration_line": "pub const DEFAULT_LIMITS: OperationLimits = OperationLimits {"
+      },
+      {
+        "kind": "struct",
+        "name": "BasicMatrix",
+        "line": 34,
+        "declaration_line": "pub struct BasicMatrix<T>(storage::BasicMatrix<T>);"
+      },
+      {
+        "kind": "fn",
+        "name": "from_row_major",
+        "line": 36,
+        "declaration_line": "pub fn from_row_major(rows: usize, cols: usize, data: Vec<T>) -> Result<Self, MatrixError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "from_row_major_with_limit",
+        "line": 39,
+        "declaration_line": "pub fn from_row_major_with_limit("
+      },
+      {
+        "kind": "fn",
+        "name": "try_from_fn",
+        "line": 47,
+        "declaration_line": "pub fn try_from_fn<F: FnMut(usize, usize) -> T>("
+      },
+      {
+        "kind": "fn",
+        "name": "try_from_fn_with_limit",
+        "line": 54,
+        "declaration_line": "pub fn try_from_fn_with_limit<F: FnMut(usize, usize) -> T>("
+      },
+      {
+        "kind": "fn",
+        "name": "try_from_fn_result",
+        "line": 62,
+        "declaration_line": "pub fn try_from_fn_result<F: FnMut(usize, usize) -> Result<T, E>, E: From<MatrixError>>("
+      },
+      {
+        "kind": "fn",
+        "name": "try_from_fn_result_with_limit",
+        "line": 69,
+        "declaration_line": "pub fn try_from_fn_result_with_limit<"
+      },
+      {
+        "kind": "fn",
+        "name": "rows",
+        "line": 80,
+        "declaration_line": "pub fn rows(&self) -> usize {"
+      },
+      {
+        "kind": "fn",
+        "name": "cols",
+        "line": 83,
+        "declaration_line": "pub fn cols(&self) -> usize {"
+      },
+      {
+        "kind": "fn",
+        "name": "shape",
+        "line": 86,
+        "declaration_line": "pub fn shape(&self) -> (usize, usize) {"
+      },
+      {
+        "kind": "fn",
+        "name": "as_slice",
+        "line": 89,
+        "declaration_line": "pub fn as_slice(&self) -> &[T] {"
+      },
+      {
+        "kind": "fn",
+        "name": "get_ref",
+        "line": 92,
+        "declaration_line": "pub fn get_ref(&self, row: usize, col: usize) -> Result<&T, MatrixError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "try_to_nalgebra",
+        "line": 95,
+        "declaration_line": "pub fn try_to_nalgebra(&self) -> Result<nalgebra::DMatrix<T>, MatrixError>"
+      },
+      {
+        "kind": "fn",
+        "name": "try_from_nalgebra",
+        "line": 101,
+        "declaration_line": "pub fn try_from_nalgebra(m: &nalgebra::DMatrix<T>) -> Result<Self, MatrixError>"
+      },
+      {
+        "kind": "fn",
+        "name": "get",
+        "line": 109,
+        "declaration_line": "pub fn get(&self, row: usize, col: usize) -> Result<T, MatrixError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "set",
+        "line": 112,
+        "declaration_line": "pub fn set(&mut self, row: usize, col: usize, value: T) -> Result<(), MatrixError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "try_transpose",
+        "line": 115,
+        "declaration_line": "pub fn try_transpose(&self) -> Result<Self, MatrixError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "try_map",
+        "line": 118,
+        "declaration_line": "pub fn try_map<U, E: From<MatrixError>, F: FnMut(&T) -> Result<U, E>>("
+      },
+      {
+        "kind": "fn",
+        "name": "try_from_provider",
+        "line": 149,
+        "declaration_line": "pub(crate) fn try_from_provider("
+      },
+      {
+        "kind": "fn",
+        "name": "into_provider",
+        "line": 161,
+        "declaration_line": "pub(crate) fn into_provider(self) -> Result<storage::BasicMatrix<T>, super::ExactFieldError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "zero",
+        "line": 165,
+        "declaration_line": "pub fn zero(rows: usize, cols: usize) -> Result<Self, MatrixError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "mul",
+        "line": 168,
+        "declaration_line": "pub fn mul(&self, rhs: &Self) -> ArithmeticResult<Self> {"
+      },
+      {
+        "kind": "fn",
+        "name": "mul_vec",
+        "line": 171,
+        "declaration_line": "pub fn mul_vec(&self, rhs: &[T]) -> ArithmeticResult<Vec<T>> {"
+      },
+      {
+        "kind": "fn",
+        "name": "add",
+        "line": 174,
+        "declaration_line": "pub fn add(&self, rhs: &Self) -> ArithmeticResult<Self> {"
+      },
+      {
+        "kind": "fn",
+        "name": "checked_add",
+        "line": 177,
+        "declaration_line": "pub fn checked_add(&self, rhs: &Self) -> ArithmeticResult<Self> {"
+      },
+      {
+        "kind": "fn",
+        "name": "checked_add_with_limit",
+        "line": 180,
+        "declaration_line": "pub fn checked_add_with_limit(&self, rhs: &Self, limit: usize) -> ArithmeticResult<Self> {"
+      },
+      {
+        "kind": "fn",
+        "name": "checked_mul",
+        "line": 212,
+        "declaration_line": "pub fn checked_mul(&self, rhs: &Self) -> ArithmeticResult<Self> {"
+      },
+      {
+        "kind": "fn",
+        "name": "checked_mul_with_limit",
+        "line": 215,
+        "declaration_line": "pub fn checked_mul_with_limit(&self, rhs: &Self, limit: usize) -> ArithmeticResult<Self> {"
+      },
+      {
+        "kind": "fn",
+        "name": "checked_mul_with_limits",
+        "line": 224,
+        "declaration_line": "pub fn checked_mul_with_limits("
+      },
+      {
+        "kind": "fn",
+        "name": "checked_mul_vec",
+        "line": 258,
+        "declaration_line": "pub fn checked_mul_vec(&self, rhs: &[T]) -> ArithmeticResult<Vec<T>> {"
+      },
+      {
+        "kind": "fn",
+        "name": "checked_mul_vec_with_limit",
+        "line": 261,
+        "declaration_line": "pub fn checked_mul_vec_with_limit(&self, rhs: &[T], limit: usize) -> ArithmeticResult<Vec<T>> {"
+      },
+      {
+        "kind": "fn",
+        "name": "checked_mul_vec_with_limits",
+        "line": 270,
+        "declaration_line": "pub fn checked_mul_vec_with_limits("
+      },
+      {
+        "kind": "fn",
+        "name": "sub",
+        "line": 300,
+        "declaration_line": "pub fn sub(&self, rhs: &Self) -> ArithmeticResult<Self> {"
+      },
+      {
+        "kind": "fn",
+        "name": "checked_sub",
+        "line": 303,
+        "declaration_line": "pub fn checked_sub(&self, rhs: &Self) -> ArithmeticResult<Self> {"
+      },
+      {
+        "kind": "fn",
+        "name": "checked_sub_with_limit",
+        "line": 306,
+        "declaration_line": "pub fn checked_sub_with_limit(&self, rhs: &Self, limit: usize) -> ArithmeticResult<Self> {"
+      }
+    ],
+    "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+    "requirements": [
+      {
+        "id": "G1",
+        "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+      },
+      {
+        "id": "G2",
+        "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+      },
+      {
+        "id": "G3",
+        "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+      },
+      {
+        "id": "G4",
+        "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+      },
+      {
+        "id": "G5",
+        "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+      }
+    ],
+    "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+    "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+    "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+    "open_obligations": [
+      "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+      "Individual G4 judgement withheld: execution or mutation prerequisite unmet."
+    ],
+    "evidence": [
+      {
+        "path": "evidence/quality/l4a_six/20261020T145316Z/receipt.json",
+        "sha256": "02ef86c6eaaa341749b93cd0cff2463b8c7a462b0c14080b483b5c13cb518935"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T145316Z/source_manifest.json",
+        "sha256": "b426c649d3ed095a576113062ea18b876fbd794e6eca1921ae2a296512eb5f63"
+      },
+      {
+        "path": "code/rust/quality/l4a_six/records.py",
+        "sha256": "67b30ce4848112715d67386e9af9e83322a3643e50585f754ceb4e5c439b7819"
+      },
+      {
+        "path": "code/rust/quality/l4a_six/specs.json",
+        "sha256": "6e319e84dc25e76ffda0c3f8009c75cd36f36aacb18a24fad7a44c3899e67c84"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T104119Z-scalar-activation/activation.json",
+        "sha256": "0121f918b37a92c36a0d3cf4ab29bfcf91bafbe4df09115cbffe9cb931870daf"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T102150Z-scalar-port-faults/receipt.json",
+        "sha256": "c8ae8e9c477b3a870ad52b7bbdf3d1400f24d012de6311cfbebd19620177cf26"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T103621Z-scalar-composition/receipt.json",
+        "sha256": "112e2e31bc77781636545f7948a530075df7768fe6542069f47baacb2abfdc55"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T104923Z-mutations/INTERRUPTION.json",
+        "sha256": "8a6313af9bc23cc92f74bbd23953a52bc6d48e95e7778a56da6a003539a8ce6f"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T105520Z-scalar-regression-restoration/restoration.json",
+        "sha256": "95e15f84927602d4eb3840425bba0741a6b9b829d210c2fc2d02204964cbd213"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T105539Z-mutations/receipt.json",
+        "sha256": "22147785240c8daa095002f24f2f7617771999c50ca4bb02fa3b2151f70e2b51"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json",
+        "sha256": "50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json",
+        "sha256": "cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T145316Z/metrics.json",
+        "sha256": "c0f6c92c146ff0cf7d91b3a78bf74c7d26b455cd9b0547dd1d36ccc6260b19ec"
+      }
+    ],
+    "reviewed_specification": {
+      "capability_assessment": {
+        "basis": "Individual source review: the former provider facade is now an owned private storage abstraction with complete numeric operand admission, typed scalar failures, configurable element/work preflight, borrowed arithmetic and explicit private interoperability. This is actual L4 API/resource design rather than a reexport label.",
+        "level": "L4",
+        "source_sha256": "1e87357a6519498a6f28094798fa217444a93c9787035ce9a0fb14c2d74f2007"
+      },
+      "consumer_review": [
+        "Core matrix/elimination and homology callers use this owned storage. QM consumers needing foreign nominal matrix records go through a private explicit bridge; no public conversion backdoor exposes provider Numeric multiplication.",
+        "Pinned provider shape, access, serde, fallible callback/map/transpose and nalgebra storage bodies were inspected. Its legacy Numeric arithmetic is never invoked by the local numeric methods."
+      ],
+      "engineering_assessment": {
+        "gates": {
+          "G1": {
+            "basis": "SHA-bound storage/arithmetic/interoperability maps and current execution receipts separate raw coefficient transport from admitted numeric operations. Inspected pinned provider primitives supply shape storage only. The old MAX*2 panic is archived with its original source and the replacement API is explicitly documented.",
+            "grade": "A"
+          },
+          "G2": {
+            "basis": "Private storage guarantees checked rows*cols equals length. Numeric entry points check compatible dimensions, inclusive element/work counters and every coefficient before output allocation, even for unused empty-product inputs. Each output dot is the exact ordered multiply/add sequence under the declared partial scalar protocol; zip operations preserve shape. A returned scalar refusal is propagated without inventing a value.",
+            "grade": "A"
+          },
+          "G3": {
+            "basis": "Output counts and arithmetic charges use checked usize operations. Admission/reservation precede buffers; division by output column count occurs only in a nonempty flat range. Product indices are bounded by admitted input shapes. Errors drop local partial outputs without input mutation. Provider storage field and outgoing conversion are private; no Numeric/Deref escape is public. Lawful scalar/callback/Clone/Drop behavior and allocator internals remain explicit environment assumptions.",
+            "grade": "A"
+          },
+          "G4": {
+            "basis": "Conditional on fresh untouched/restored integrated baselines and R>=0.95 for MB/PV storage faults, with compiler field/outgoing privacy controls. 6561 independent small matrix pairs, i128 dot/sum/difference models, every native overflow class, malformed coefficient roles, empty metadata, inclusive boundaries, serde shape and thread-local output-layout positive controls exercise declared failure classes.",
+            "grade": "A"
+          },
+          "G5": {
+            "basis": "All 39 explicit production bodies meet calibrated A ceilings. Products borrow coefficients and reserve the final flat buffer once. Full admission scans precede allocation; no per-entry operand clones or row buffers occur. Internal provider import copies once to establish separately owned storage, and export moves storage. Work counts exactly 2*m*n*k scalar calls, excluding validation/scalar internals; element counts are not byte/RSS/time bounds.",
+            "grade": "A"
+          }
+        },
+        "source_sha256": "1e87357a6519498a6f28094798fa217444a93c9787035ce9a0fb14c2d74f2007"
+      },
+      "open_obligations": [],
+      "origin_and_staged_evidence": [
+        {
+          "path": "evidence/quality/l4a_six/20261020T104119Z-scalar-activation/activation.json",
+          "sha256": "0121f918b37a92c36a0d3cf4ab29bfcf91bafbe4df09115cbffe9cb931870daf"
+        },
+        {
+          "path": "evidence/quality/l4a_six/20261020T102150Z-scalar-port-faults/receipt.json",
+          "sha256": "c8ae8e9c477b3a870ad52b7bbdf3d1400f24d012de6311cfbebd19620177cf26"
+        },
+        {
+          "path": "evidence/quality/l4a_six/20261020T103621Z-scalar-composition/receipt.json",
+          "sha256": "112e2e31bc77781636545f7948a530075df7768fe6542069f47baacb2abfdc55"
+        },
+        {
+          "path": "evidence/quality/l4a_six/20261020T104923Z-mutations/INTERRUPTION.json",
+          "sha256": "8a6313af9bc23cc92f74bbd23953a52bc6d48e95e7778a56da6a003539a8ce6f"
+        },
+        {
+          "path": "evidence/quality/l4a_six/20261020T105520Z-scalar-regression-restoration/restoration.json",
+          "sha256": "95e15f84927602d4eb3840425bba0741a6b9b829d210c2fc2d02204964cbd213"
+        },
+        {
+          "path": "evidence/quality/l4a_six/20261020T105539Z-mutations/receipt.json",
+          "sha256": "22147785240c8daa095002f24f2f7617771999c50ca4bb02fa3b2151f70e2b51"
+        }
+      ],
+      "profile": "Exact",
+      "purpose": "Preserve private shape-checked coefficient transport while providing owned partial exact matrix arithmetic with typed refusals and pre-allocation domain/resource admission.",
+      "repaired_historical_findings": {
+        "controls": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json",
+            "sha256": "50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4"
+          }
+        ],
+        "witness": "Previously the unchanged exported provider matrix mul panicked for valid 1x1 i64 MAX times 2. The owned numeric method now propagates ScalarError::OutOfRange(Multiply); private storage blocks bypass through the local type."
+      },
+      "requirement_symbol_map": {
+        "audited private interoperability": [
+          "try_from_provider",
+          "into_provider"
+        ],
+        "complete pre-allocation admission": [
+          "preflight",
+          "admit",
+          "DEFAULT_LIMITS",
+          "checked_mul_with_limits",
+          "checked_mul_vec_with_limits",
+          "zip"
+        ],
+        "partial exact borrowed arithmetic": [
+          "product_entry",
+          "checked_add_with_limit",
+          "checked_sub_with_limit"
+        ],
+        "private shape storage and transport": [
+          "BasicMatrix",
+          "from_row_major",
+          "get_ref",
+          "set",
+          "try_transpose",
+          "try_map"
+        ]
+      },
+      "scope_limits": [
+        "Raw transport is intentionally distinct from admitted numeric values. Custom scalar implementations must uphold their own protocol.",
+        "No bit-length, byte-allocation, process-memory, timeout or foreign algorithm certification is implied."
+      ],
+      "status": "individual_checked_protocol_review_requires_current_integration",
+      "symbol_contracts": {
+        "BasicMatrix/from_row_major/from_row_major_with_limit/serde": "Private transparent provider storage. Checked dimensions and exact vector length are maintained. Raw coefficient transport, mutation, serialization and layout conversion do not assert numeric domain admission. Numeric operations always revalidate inputs.",
+        "DEFAULT_LIMITS/OperationLimits/preflight": "Numeric defaults: 4096 output slots and 1000000 multiply/accumulate calls. Check dimensions, rows*cols, cell charge, 2*elements*inner with checked arithmetic, then work charge, all coefficients, then reserve. Limits are inclusive; huge zero-area metadata runs no output iterations.",
+        "add/checked_add*/sub/checked_sub*/zip": "Require identical shapes and output slot admission, validate both full coefficient slices, reserve once and apply scalar add/subtract in storage order. No input is mutated; error returns no partial matrix.",
+        "mul/checked_mul*/product_entry/mul_vec/checked_mul_vec*": "Admit both complete inputs, including unused coefficients. Reserve once; enumerate row-major outputs and accumulate each exact product through typed scalar calls. Any scalar failure drops partial output. Work limit counts multiplication plus addition, not queries/validation or scalar bit cost.",
+        "try_from_fn*/try_map/try_transpose/try_*nalgebra/get*/set/as_slice/shape/rows/cols": "Use inspected provider shape/index/fallible storage primitives only. Callbacks, coefficient Clone/Drop and nalgebra internals retain their stated behavior. A failing set leaves storage unchanged. Shape-only constructors default to usize::MAX, with explicit limits where offered; this differs from numeric defaults.",
+        "try_from_provider/into_provider": "Crate-only interoperability. Import charges default input slots and admits all values before one fallible storage copy. Export re-admits every value then moves the provider storage. This does not approve arithmetic performed later by a receiving foreign API.",
+        "zero": "Construct valid additive identities through the declared Semiring provider, with default numeric slot limit and fallible buffer reservation. Identity validity is part of the custom Semiring obligation."
+      },
+      "verification_challenges": {
+        "CP21-unaccounted-polynomial-product": {
+          "claim": "The allocation fixture positive control also detects a discarded output product. This is an observed redundant-buffer fault, not proof of a formerly invalid conservative arithmetic budget.",
+          "source": "code/rust/src/linear_algebra/char_poly.rs"
+        },
+        "MB01-left-admission": {
+          "claim": "Detect the designated MB01-left-admission fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/basic_matrix.rs"
+        },
+        "MB02-right-admission": {
+          "claim": "Detect the designated MB02-right-admission fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/basic_matrix.rs"
+        },
+        "MB03-output-order": {
+          "claim": "Detect the designated MB03-output-order fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/basic_matrix.rs"
+        },
+        "MB04-work-accounting": {
+          "claim": "Detect the designated MB04-work-accounting fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/basic_matrix.rs"
+        },
+        "MB05-work-admission": {
+          "claim": "Detect the designated MB05-work-admission fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/basic_matrix.rs"
+        },
+        "MB06-product-coordinate": {
+          "claim": "Detect the designated MB06-product-coordinate fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/basic_matrix.rs"
+        },
+        "MB07-accumulation": {
+          "claim": "Detect the designated MB07-accumulation fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/basic_matrix.rs"
+        },
+        "MB08-vector-domain": {
+          "claim": "Detect the designated MB08-vector-domain fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/basic_matrix.rs"
+        },
+        "MB09-vector-output-order": {
+          "claim": "Detect the designated MB09-vector-output-order fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/basic_matrix.rs"
+        },
+        "MB10-provider-escape": {
+          "claim": "Detect the designated MB10-provider-escape fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/basic_matrix.rs"
+        },
+        "PV07-incoming-transport-domain": {
+          "claim": "Detect the designated PV07-incoming-transport-domain fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/basic_matrix.rs"
+        },
+        "PV08-outgoing-transport-domain": {
+          "claim": "Detect the designated PV08-outgoing-transport-domain fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/basic_matrix.rs"
+        },
+        "PV12-outgoing-visibility": {
+          "claim": "Detect the designated PV12-outgoing-visibility fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+          "source": "code/rust/src/linear_algebra/basic_matrix.rs"
+        }
+      }
+    }
+  },
+  "current_contract": "2458013198d28518c6f25e4f28b374f493425f670a54435b4f6101d58631d2e9",
+  "current_scoring": "dc6e4656ab84fc524d255a974ff638f0cf92a08639726b56bc7e0867ab9faf59",
+  "contract_history": [
+    {
+      "sha256": "2458013198d28518c6f25e4f28b374f493425f670a54435b4f6101d58631d2e9",
+      "bytes": 23913,
+      "record": {
+        "schema_version": "1.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/linear_algebra/basic_matrix.rs",
+          "sha256": "1e87357a6519498a6f28094798fa217444a93c9787035ce9a0fb14c2d74f2007",
+          "language": "Rust"
+        },
+        "contract_urn": "urn:tfqm:contract:linear_algebra:basic_matrix.rs",
+        "status": "individual_checked_protocol_review_requires_current_integration",
+        "target": "L4A",
+        "profile": "Exact",
+        "purpose": "Exact matrix, elimination, polynomial and finite algebraic calculations with explicit domain/resource refusals.",
+        "subject_role": "Individual source review: the former provider facade is now an owned private storage abstraction with complete numeric operand admission, typed scalar failures, configurable element/work preflight, borrowed arithmetic and explicit private interoperability. This is actual L4 API/resource design rather than a reexport label.",
+        "compilation": {
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false
+        },
+        "declaration_index": [
+          {
+            "kind": "const",
+            "name": "DEFAULT_LIMITS",
+            "line": 11,
+            "declaration_line": "pub const DEFAULT_LIMITS: OperationLimits = OperationLimits {"
+          },
+          {
+            "kind": "struct",
+            "name": "BasicMatrix",
+            "line": 34,
+            "declaration_line": "pub struct BasicMatrix<T>(storage::BasicMatrix<T>);"
+          },
+          {
+            "kind": "fn",
+            "name": "from_row_major",
+            "line": 36,
+            "declaration_line": "pub fn from_row_major(rows: usize, cols: usize, data: Vec<T>) -> Result<Self, MatrixError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "from_row_major_with_limit",
+            "line": 39,
+            "declaration_line": "pub fn from_row_major_with_limit("
+          },
+          {
+            "kind": "fn",
+            "name": "try_from_fn",
+            "line": 47,
+            "declaration_line": "pub fn try_from_fn<F: FnMut(usize, usize) -> T>("
+          },
+          {
+            "kind": "fn",
+            "name": "try_from_fn_with_limit",
+            "line": 54,
+            "declaration_line": "pub fn try_from_fn_with_limit<F: FnMut(usize, usize) -> T>("
+          },
+          {
+            "kind": "fn",
+            "name": "try_from_fn_result",
+            "line": 62,
+            "declaration_line": "pub fn try_from_fn_result<F: FnMut(usize, usize) -> Result<T, E>, E: From<MatrixError>>("
+          },
+          {
+            "kind": "fn",
+            "name": "try_from_fn_result_with_limit",
+            "line": 69,
+            "declaration_line": "pub fn try_from_fn_result_with_limit<"
+          },
+          {
+            "kind": "fn",
+            "name": "rows",
+            "line": 80,
+            "declaration_line": "pub fn rows(&self) -> usize {"
+          },
+          {
+            "kind": "fn",
+            "name": "cols",
+            "line": 83,
+            "declaration_line": "pub fn cols(&self) -> usize {"
+          },
+          {
+            "kind": "fn",
+            "name": "shape",
+            "line": 86,
+            "declaration_line": "pub fn shape(&self) -> (usize, usize) {"
+          },
+          {
+            "kind": "fn",
+            "name": "as_slice",
+            "line": 89,
+            "declaration_line": "pub fn as_slice(&self) -> &[T] {"
+          },
+          {
+            "kind": "fn",
+            "name": "get_ref",
+            "line": 92,
+            "declaration_line": "pub fn get_ref(&self, row: usize, col: usize) -> Result<&T, MatrixError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "try_to_nalgebra",
+            "line": 95,
+            "declaration_line": "pub fn try_to_nalgebra(&self) -> Result<nalgebra::DMatrix<T>, MatrixError>"
+          },
+          {
+            "kind": "fn",
+            "name": "try_from_nalgebra",
+            "line": 101,
+            "declaration_line": "pub fn try_from_nalgebra(m: &nalgebra::DMatrix<T>) -> Result<Self, MatrixError>"
+          },
+          {
+            "kind": "fn",
+            "name": "get",
+            "line": 109,
+            "declaration_line": "pub fn get(&self, row: usize, col: usize) -> Result<T, MatrixError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "set",
+            "line": 112,
+            "declaration_line": "pub fn set(&mut self, row: usize, col: usize, value: T) -> Result<(), MatrixError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "try_transpose",
+            "line": 115,
+            "declaration_line": "pub fn try_transpose(&self) -> Result<Self, MatrixError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "try_map",
+            "line": 118,
+            "declaration_line": "pub fn try_map<U, E: From<MatrixError>, F: FnMut(&T) -> Result<U, E>>("
+          },
+          {
+            "kind": "fn",
+            "name": "try_from_provider",
+            "line": 149,
+            "declaration_line": "pub(crate) fn try_from_provider("
+          },
+          {
+            "kind": "fn",
+            "name": "into_provider",
+            "line": 161,
+            "declaration_line": "pub(crate) fn into_provider(self) -> Result<storage::BasicMatrix<T>, super::ExactFieldError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "zero",
+            "line": 165,
+            "declaration_line": "pub fn zero(rows: usize, cols: usize) -> Result<Self, MatrixError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "mul",
+            "line": 168,
+            "declaration_line": "pub fn mul(&self, rhs: &Self) -> ArithmeticResult<Self> {"
+          },
+          {
+            "kind": "fn",
+            "name": "mul_vec",
+            "line": 171,
+            "declaration_line": "pub fn mul_vec(&self, rhs: &[T]) -> ArithmeticResult<Vec<T>> {"
+          },
+          {
+            "kind": "fn",
+            "name": "add",
+            "line": 174,
+            "declaration_line": "pub fn add(&self, rhs: &Self) -> ArithmeticResult<Self> {"
+          },
+          {
+            "kind": "fn",
+            "name": "checked_add",
+            "line": 177,
+            "declaration_line": "pub fn checked_add(&self, rhs: &Self) -> ArithmeticResult<Self> {"
+          },
+          {
+            "kind": "fn",
+            "name": "checked_add_with_limit",
+            "line": 180,
+            "declaration_line": "pub fn checked_add_with_limit(&self, rhs: &Self, limit: usize) -> ArithmeticResult<Self> {"
+          },
+          {
+            "kind": "fn",
+            "name": "checked_mul",
+            "line": 212,
+            "declaration_line": "pub fn checked_mul(&self, rhs: &Self) -> ArithmeticResult<Self> {"
+          },
+          {
+            "kind": "fn",
+            "name": "checked_mul_with_limit",
+            "line": 215,
+            "declaration_line": "pub fn checked_mul_with_limit(&self, rhs: &Self, limit: usize) -> ArithmeticResult<Self> {"
+          },
+          {
+            "kind": "fn",
+            "name": "checked_mul_with_limits",
+            "line": 224,
+            "declaration_line": "pub fn checked_mul_with_limits("
+          },
+          {
+            "kind": "fn",
+            "name": "checked_mul_vec",
+            "line": 258,
+            "declaration_line": "pub fn checked_mul_vec(&self, rhs: &[T]) -> ArithmeticResult<Vec<T>> {"
+          },
+          {
+            "kind": "fn",
+            "name": "checked_mul_vec_with_limit",
+            "line": 261,
+            "declaration_line": "pub fn checked_mul_vec_with_limit(&self, rhs: &[T], limit: usize) -> ArithmeticResult<Vec<T>> {"
+          },
+          {
+            "kind": "fn",
+            "name": "checked_mul_vec_with_limits",
+            "line": 270,
+            "declaration_line": "pub fn checked_mul_vec_with_limits("
+          },
+          {
+            "kind": "fn",
+            "name": "sub",
+            "line": 300,
+            "declaration_line": "pub fn sub(&self, rhs: &Self) -> ArithmeticResult<Self> {"
+          },
+          {
+            "kind": "fn",
+            "name": "checked_sub",
+            "line": 303,
+            "declaration_line": "pub fn checked_sub(&self, rhs: &Self) -> ArithmeticResult<Self> {"
+          },
+          {
+            "kind": "fn",
+            "name": "checked_sub_with_limit",
+            "line": 306,
+            "declaration_line": "pub fn checked_sub_with_limit(&self, rhs: &Self, limit: usize) -> ArithmeticResult<Self> {"
+          }
+        ],
+        "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+        "requirements": [
+          {
+            "id": "G1",
+            "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+          },
+          {
+            "id": "G2",
+            "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+          },
+          {
+            "id": "G3",
+            "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+          },
+          {
+            "id": "G4",
+            "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+          },
+          {
+            "id": "G5",
+            "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+          }
+        ],
+        "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+        "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+        "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+        "open_obligations": [
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+          "Individual G4 judgement withheld: execution or mutation prerequisite unmet."
+        ],
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T145316Z/receipt.json",
+            "sha256": "02ef86c6eaaa341749b93cd0cff2463b8c7a462b0c14080b483b5c13cb518935"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T145316Z/source_manifest.json",
+            "sha256": "b426c649d3ed095a576113062ea18b876fbd794e6eca1921ae2a296512eb5f63"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "67b30ce4848112715d67386e9af9e83322a3643e50585f754ceb4e5c439b7819"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "6e319e84dc25e76ffda0c3f8009c75cd36f36aacb18a24fad7a44c3899e67c84"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T104119Z-scalar-activation/activation.json",
+            "sha256": "0121f918b37a92c36a0d3cf4ab29bfcf91bafbe4df09115cbffe9cb931870daf"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T102150Z-scalar-port-faults/receipt.json",
+            "sha256": "c8ae8e9c477b3a870ad52b7bbdf3d1400f24d012de6311cfbebd19620177cf26"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T103621Z-scalar-composition/receipt.json",
+            "sha256": "112e2e31bc77781636545f7948a530075df7768fe6542069f47baacb2abfdc55"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T104923Z-mutations/INTERRUPTION.json",
+            "sha256": "8a6313af9bc23cc92f74bbd23953a52bc6d48e95e7778a56da6a003539a8ce6f"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T105520Z-scalar-regression-restoration/restoration.json",
+            "sha256": "95e15f84927602d4eb3840425bba0741a6b9b829d210c2fc2d02204964cbd213"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T105539Z-mutations/receipt.json",
+            "sha256": "22147785240c8daa095002f24f2f7617771999c50ca4bb02fa3b2151f70e2b51"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json",
+            "sha256": "50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json",
+            "sha256": "cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T145316Z/metrics.json",
+            "sha256": "c0f6c92c146ff0cf7d91b3a78bf74c7d26b455cd9b0547dd1d36ccc6260b19ec"
+          }
+        ],
+        "reviewed_specification": {
+          "capability_assessment": {
+            "basis": "Individual source review: the former provider facade is now an owned private storage abstraction with complete numeric operand admission, typed scalar failures, configurable element/work preflight, borrowed arithmetic and explicit private interoperability. This is actual L4 API/resource design rather than a reexport label.",
+            "level": "L4",
+            "source_sha256": "1e87357a6519498a6f28094798fa217444a93c9787035ce9a0fb14c2d74f2007"
+          },
+          "consumer_review": [
+            "Core matrix/elimination and homology callers use this owned storage. QM consumers needing foreign nominal matrix records go through a private explicit bridge; no public conversion backdoor exposes provider Numeric multiplication.",
+            "Pinned provider shape, access, serde, fallible callback/map/transpose and nalgebra storage bodies were inspected. Its legacy Numeric arithmetic is never invoked by the local numeric methods."
+          ],
+          "engineering_assessment": {
+            "gates": {
+              "G1": {
+                "basis": "SHA-bound storage/arithmetic/interoperability maps and current execution receipts separate raw coefficient transport from admitted numeric operations. Inspected pinned provider primitives supply shape storage only. The old MAX*2 panic is archived with its original source and the replacement API is explicitly documented.",
+                "grade": "A"
+              },
+              "G2": {
+                "basis": "Private storage guarantees checked rows*cols equals length. Numeric entry points check compatible dimensions, inclusive element/work counters and every coefficient before output allocation, even for unused empty-product inputs. Each output dot is the exact ordered multiply/add sequence under the declared partial scalar protocol; zip operations preserve shape. A returned scalar refusal is propagated without inventing a value.",
+                "grade": "A"
+              },
+              "G3": {
+                "basis": "Output counts and arithmetic charges use checked usize operations. Admission/reservation precede buffers; division by output column count occurs only in a nonempty flat range. Product indices are bounded by admitted input shapes. Errors drop local partial outputs without input mutation. Provider storage field and outgoing conversion are private; no Numeric/Deref escape is public. Lawful scalar/callback/Clone/Drop behavior and allocator internals remain explicit environment assumptions.",
+                "grade": "A"
+              },
+              "G4": {
+                "basis": "Conditional on fresh untouched/restored integrated baselines and R>=0.95 for MB/PV storage faults, with compiler field/outgoing privacy controls. 6561 independent small matrix pairs, i128 dot/sum/difference models, every native overflow class, malformed coefficient roles, empty metadata, inclusive boundaries, serde shape and thread-local output-layout positive controls exercise declared failure classes.",
+                "grade": "A"
+              },
+              "G5": {
+                "basis": "All 39 explicit production bodies meet calibrated A ceilings. Products borrow coefficients and reserve the final flat buffer once. Full admission scans precede allocation; no per-entry operand clones or row buffers occur. Internal provider import copies once to establish separately owned storage, and export moves storage. Work counts exactly 2*m*n*k scalar calls, excluding validation/scalar internals; element counts are not byte/RSS/time bounds.",
+                "grade": "A"
+              }
+            },
+            "source_sha256": "1e87357a6519498a6f28094798fa217444a93c9787035ce9a0fb14c2d74f2007"
+          },
+          "open_obligations": [],
+          "origin_and_staged_evidence": [
+            {
+              "path": "evidence/quality/l4a_six/20261020T104119Z-scalar-activation/activation.json",
+              "sha256": "0121f918b37a92c36a0d3cf4ab29bfcf91bafbe4df09115cbffe9cb931870daf"
+            },
+            {
+              "path": "evidence/quality/l4a_six/20261020T102150Z-scalar-port-faults/receipt.json",
+              "sha256": "c8ae8e9c477b3a870ad52b7bbdf3d1400f24d012de6311cfbebd19620177cf26"
+            },
+            {
+              "path": "evidence/quality/l4a_six/20261020T103621Z-scalar-composition/receipt.json",
+              "sha256": "112e2e31bc77781636545f7948a530075df7768fe6542069f47baacb2abfdc55"
+            },
+            {
+              "path": "evidence/quality/l4a_six/20261020T104923Z-mutations/INTERRUPTION.json",
+              "sha256": "8a6313af9bc23cc92f74bbd23953a52bc6d48e95e7778a56da6a003539a8ce6f"
+            },
+            {
+              "path": "evidence/quality/l4a_six/20261020T105520Z-scalar-regression-restoration/restoration.json",
+              "sha256": "95e15f84927602d4eb3840425bba0741a6b9b829d210c2fc2d02204964cbd213"
+            },
+            {
+              "path": "evidence/quality/l4a_six/20261020T105539Z-mutations/receipt.json",
+              "sha256": "22147785240c8daa095002f24f2f7617771999c50ca4bb02fa3b2151f70e2b51"
+            }
+          ],
+          "profile": "Exact",
+          "purpose": "Preserve private shape-checked coefficient transport while providing owned partial exact matrix arithmetic with typed refusals and pre-allocation domain/resource admission.",
+          "repaired_historical_findings": {
+            "controls": [
+              {
+                "path": "evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json",
+                "sha256": "50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4"
+              }
+            ],
+            "witness": "Previously the unchanged exported provider matrix mul panicked for valid 1x1 i64 MAX times 2. The owned numeric method now propagates ScalarError::OutOfRange(Multiply); private storage blocks bypass through the local type."
+          },
+          "requirement_symbol_map": {
+            "audited private interoperability": [
+              "try_from_provider",
+              "into_provider"
+            ],
+            "complete pre-allocation admission": [
+              "preflight",
+              "admit",
+              "DEFAULT_LIMITS",
+              "checked_mul_with_limits",
+              "checked_mul_vec_with_limits",
+              "zip"
+            ],
+            "partial exact borrowed arithmetic": [
+              "product_entry",
+              "checked_add_with_limit",
+              "checked_sub_with_limit"
+            ],
+            "private shape storage and transport": [
+              "BasicMatrix",
+              "from_row_major",
+              "get_ref",
+              "set",
+              "try_transpose",
+              "try_map"
+            ]
+          },
+          "scope_limits": [
+            "Raw transport is intentionally distinct from admitted numeric values. Custom scalar implementations must uphold their own protocol.",
+            "No bit-length, byte-allocation, process-memory, timeout or foreign algorithm certification is implied."
+          ],
+          "status": "individual_checked_protocol_review_requires_current_integration",
+          "symbol_contracts": {
+            "BasicMatrix/from_row_major/from_row_major_with_limit/serde": "Private transparent provider storage. Checked dimensions and exact vector length are maintained. Raw coefficient transport, mutation, serialization and layout conversion do not assert numeric domain admission. Numeric operations always revalidate inputs.",
+            "DEFAULT_LIMITS/OperationLimits/preflight": "Numeric defaults: 4096 output slots and 1000000 multiply/accumulate calls. Check dimensions, rows*cols, cell charge, 2*elements*inner with checked arithmetic, then work charge, all coefficients, then reserve. Limits are inclusive; huge zero-area metadata runs no output iterations.",
+            "add/checked_add*/sub/checked_sub*/zip": "Require identical shapes and output slot admission, validate both full coefficient slices, reserve once and apply scalar add/subtract in storage order. No input is mutated; error returns no partial matrix.",
+            "mul/checked_mul*/product_entry/mul_vec/checked_mul_vec*": "Admit both complete inputs, including unused coefficients. Reserve once; enumerate row-major outputs and accumulate each exact product through typed scalar calls. Any scalar failure drops partial output. Work limit counts multiplication plus addition, not queries/validation or scalar bit cost.",
+            "try_from_fn*/try_map/try_transpose/try_*nalgebra/get*/set/as_slice/shape/rows/cols": "Use inspected provider shape/index/fallible storage primitives only. Callbacks, coefficient Clone/Drop and nalgebra internals retain their stated behavior. A failing set leaves storage unchanged. Shape-only constructors default to usize::MAX, with explicit limits where offered; this differs from numeric defaults.",
+            "try_from_provider/into_provider": "Crate-only interoperability. Import charges default input slots and admits all values before one fallible storage copy. Export re-admits every value then moves the provider storage. This does not approve arithmetic performed later by a receiving foreign API.",
+            "zero": "Construct valid additive identities through the declared Semiring provider, with default numeric slot limit and fallible buffer reservation. Identity validity is part of the custom Semiring obligation."
+          },
+          "verification_challenges": {
+            "CP21-unaccounted-polynomial-product": {
+              "claim": "The allocation fixture positive control also detects a discarded output product. This is an observed redundant-buffer fault, not proof of a formerly invalid conservative arithmetic budget.",
+              "source": "code/rust/src/linear_algebra/char_poly.rs"
+            },
+            "MB01-left-admission": {
+              "claim": "Detect the designated MB01-left-admission fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+              "source": "code/rust/src/linear_algebra/basic_matrix.rs"
+            },
+            "MB02-right-admission": {
+              "claim": "Detect the designated MB02-right-admission fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+              "source": "code/rust/src/linear_algebra/basic_matrix.rs"
+            },
+            "MB03-output-order": {
+              "claim": "Detect the designated MB03-output-order fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+              "source": "code/rust/src/linear_algebra/basic_matrix.rs"
+            },
+            "MB04-work-accounting": {
+              "claim": "Detect the designated MB04-work-accounting fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+              "source": "code/rust/src/linear_algebra/basic_matrix.rs"
+            },
+            "MB05-work-admission": {
+              "claim": "Detect the designated MB05-work-admission fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+              "source": "code/rust/src/linear_algebra/basic_matrix.rs"
+            },
+            "MB06-product-coordinate": {
+              "claim": "Detect the designated MB06-product-coordinate fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+              "source": "code/rust/src/linear_algebra/basic_matrix.rs"
+            },
+            "MB07-accumulation": {
+              "claim": "Detect the designated MB07-accumulation fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+              "source": "code/rust/src/linear_algebra/basic_matrix.rs"
+            },
+            "MB08-vector-domain": {
+              "claim": "Detect the designated MB08-vector-domain fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+              "source": "code/rust/src/linear_algebra/basic_matrix.rs"
+            },
+            "MB09-vector-output-order": {
+              "claim": "Detect the designated MB09-vector-output-order fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+              "source": "code/rust/src/linear_algebra/basic_matrix.rs"
+            },
+            "MB10-provider-escape": {
+              "claim": "Detect the designated MB10-provider-escape fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+              "source": "code/rust/src/linear_algebra/basic_matrix.rs"
+            },
+            "PV07-incoming-transport-domain": {
+              "claim": "Detect the designated PV07-incoming-transport-domain fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+              "source": "code/rust/src/linear_algebra/basic_matrix.rs"
+            },
+            "PV08-outgoing-transport-domain": {
+              "claim": "Detect the designated PV08-outgoing-transport-domain fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+              "source": "code/rust/src/linear_algebra/basic_matrix.rs"
+            },
+            "PV12-outgoing-visibility": {
+              "claim": "Detect the designated PV12-outgoing-visibility fault at the specified exact domain, arithmetic, representation or privacy boundary.",
+              "source": "code/rust/src/linear_algebra/basic_matrix.rs"
+            }
+          }
+        }
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/linear_algebra/basic_matrix.rs\",\n    \"sha256\": \"1e87357a6519498a6f28094798fa217444a93c9787035ce9a0fb14c2d74f2007\",\n    \"language\": \"Rust\"\n  },\n  \"contract_urn\": \"urn:tfqm:contract:linear_algebra:basic_matrix.rs\",\n  \"status\": \"individual_checked_protocol_review_requires_current_integration\",\n  \"target\": \"L4A\",\n  \"profile\": \"Exact\",\n  \"purpose\": \"Exact matrix, elimination, polynomial and finite algebraic calculations with explicit domain/resource refusals.\",\n  \"subject_role\": \"Individual source review: the former provider facade is now an owned private storage abstraction with complete numeric operand admission, typed scalar failures, configurable element/work preflight, borrowed arithmetic and explicit private interoperability. This is actual L4 API/resource design rather than a reexport label.\",\n  \"compilation\": {\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false\n  },\n  \"declaration_index\": [\n    {\n      \"kind\": \"const\",\n      \"name\": \"DEFAULT_LIMITS\",\n      \"line\": 11,\n      \"declaration_line\": \"pub const DEFAULT_LIMITS: OperationLimits = OperationLimits {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"BasicMatrix\",\n      \"line\": 34,\n      \"declaration_line\": \"pub struct BasicMatrix<T>(storage::BasicMatrix<T>);\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"from_row_major\",\n      \"line\": 36,\n      \"declaration_line\": \"pub fn from_row_major(rows: usize, cols: usize, data: Vec<T>) -> Result<Self, MatrixError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"from_row_major_with_limit\",\n      \"line\": 39,\n      \"declaration_line\": \"pub fn from_row_major_with_limit(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"try_from_fn\",\n      \"line\": 47,\n      \"declaration_line\": \"pub fn try_from_fn<F: FnMut(usize, usize) -> T>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"try_from_fn_with_limit\",\n      \"line\": 54,\n      \"declaration_line\": \"pub fn try_from_fn_with_limit<F: FnMut(usize, usize) -> T>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"try_from_fn_result\",\n      \"line\": 62,\n      \"declaration_line\": \"pub fn try_from_fn_result<F: FnMut(usize, usize) -> Result<T, E>, E: From<MatrixError>>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"try_from_fn_result_with_limit\",\n      \"line\": 69,\n      \"declaration_line\": \"pub fn try_from_fn_result_with_limit<\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"rows\",\n      \"line\": 80,\n      \"declaration_line\": \"pub fn rows(&self) -> usize {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"cols\",\n      \"line\": 83,\n      \"declaration_line\": \"pub fn cols(&self) -> usize {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"shape\",\n      \"line\": 86,\n      \"declaration_line\": \"pub fn shape(&self) -> (usize, usize) {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"as_slice\",\n      \"line\": 89,\n      \"declaration_line\": \"pub fn as_slice(&self) -> &[T] {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"get_ref\",\n      \"line\": 92,\n      \"declaration_line\": \"pub fn get_ref(&self, row: usize, col: usize) -> Result<&T, MatrixError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"try_to_nalgebra\",\n      \"line\": 95,\n      \"declaration_line\": \"pub fn try_to_nalgebra(&self) -> Result<nalgebra::DMatrix<T>, MatrixError>\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"try_from_nalgebra\",\n      \"line\": 101,\n      \"declaration_line\": \"pub fn try_from_nalgebra(m: &nalgebra::DMatrix<T>) -> Result<Self, MatrixError>\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"get\",\n      \"line\": 109,\n      \"declaration_line\": \"pub fn get(&self, row: usize, col: usize) -> Result<T, MatrixError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"set\",\n      \"line\": 112,\n      \"declaration_line\": \"pub fn set(&mut self, row: usize, col: usize, value: T) -> Result<(), MatrixError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"try_transpose\",\n      \"line\": 115,\n      \"declaration_line\": \"pub fn try_transpose(&self) -> Result<Self, MatrixError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"try_map\",\n      \"line\": 118,\n      \"declaration_line\": \"pub fn try_map<U, E: From<MatrixError>, F: FnMut(&T) -> Result<U, E>>(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"try_from_provider\",\n      \"line\": 149,\n      \"declaration_line\": \"pub(crate) fn try_from_provider(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"into_provider\",\n      \"line\": 161,\n      \"declaration_line\": \"pub(crate) fn into_provider(self) -> Result<storage::BasicMatrix<T>, super::ExactFieldError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"zero\",\n      \"line\": 165,\n      \"declaration_line\": \"pub fn zero(rows: usize, cols: usize) -> Result<Self, MatrixError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"mul\",\n      \"line\": 168,\n      \"declaration_line\": \"pub fn mul(&self, rhs: &Self) -> ArithmeticResult<Self> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"mul_vec\",\n      \"line\": 171,\n      \"declaration_line\": \"pub fn mul_vec(&self, rhs: &[T]) -> ArithmeticResult<Vec<T>> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"add\",\n      \"line\": 174,\n      \"declaration_line\": \"pub fn add(&self, rhs: &Self) -> ArithmeticResult<Self> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"checked_add\",\n      \"line\": 177,\n      \"declaration_line\": \"pub fn checked_add(&self, rhs: &Self) -> ArithmeticResult<Self> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"checked_add_with_limit\",\n      \"line\": 180,\n      \"declaration_line\": \"pub fn checked_add_with_limit(&self, rhs: &Self, limit: usize) -> ArithmeticResult<Self> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"checked_mul\",\n      \"line\": 212,\n      \"declaration_line\": \"pub fn checked_mul(&self, rhs: &Self) -> ArithmeticResult<Self> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"checked_mul_with_limit\",\n      \"line\": 215,\n      \"declaration_line\": \"pub fn checked_mul_with_limit(&self, rhs: &Self, limit: usize) -> ArithmeticResult<Self> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"checked_mul_with_limits\",\n      \"line\": 224,\n      \"declaration_line\": \"pub fn checked_mul_with_limits(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"checked_mul_vec\",\n      \"line\": 258,\n      \"declaration_line\": \"pub fn checked_mul_vec(&self, rhs: &[T]) -> ArithmeticResult<Vec<T>> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"checked_mul_vec_with_limit\",\n      \"line\": 261,\n      \"declaration_line\": \"pub fn checked_mul_vec_with_limit(&self, rhs: &[T], limit: usize) -> ArithmeticResult<Vec<T>> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"checked_mul_vec_with_limits\",\n      \"line\": 270,\n      \"declaration_line\": \"pub fn checked_mul_vec_with_limits(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"sub\",\n      \"line\": 300,\n      \"declaration_line\": \"pub fn sub(&self, rhs: &Self) -> ArithmeticResult<Self> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"checked_sub\",\n      \"line\": 303,\n      \"declaration_line\": \"pub fn checked_sub(&self, rhs: &Self) -> ArithmeticResult<Self> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"checked_sub_with_limit\",\n      \"line\": 306,\n      \"declaration_line\": \"pub fn checked_sub_with_limit(&self, rhs: &Self, limit: usize) -> ArithmeticResult<Self> {\"\n    }\n  ],\n  \"declaration_index_scope\": \"Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.\",\n  \"requirements\": [\n    {\n      \"id\": \"G1\",\n      \"requirement\": \"Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries.\"\n    },\n    {\n      \"id\": \"G2\",\n      \"requirement\": \"Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path.\"\n    },\n    {\n      \"id\": \"G3\",\n      \"requirement\": \"Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions.\"\n    },\n    {\n      \"id\": \"G4\",\n      \"requirement\": \"Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A.\"\n    },\n    {\n      \"id\": \"G5\",\n      \"requirement\": \"Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately.\"\n    }\n  ],\n  \"admission_policy\": \"Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.\",\n  \"resource_boundary\": \"No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.\",\n  \"authority_ceiling\": \"Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.\",\n  \"open_obligations\": [\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\",\n    \"Individual G4 judgement withheld: execution or mutation prerequisite unmet.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/receipt.json\",\n      \"sha256\": \"02ef86c6eaaa341749b93cd0cff2463b8c7a462b0c14080b483b5c13cb518935\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/source_manifest.json\",\n      \"sha256\": \"b426c649d3ed095a576113062ea18b876fbd794e6eca1921ae2a296512eb5f63\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"67b30ce4848112715d67386e9af9e83322a3643e50585f754ceb4e5c439b7819\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"6e319e84dc25e76ffda0c3f8009c75cd36f36aacb18a24fad7a44c3899e67c84\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T104119Z-scalar-activation/activation.json\",\n      \"sha256\": \"0121f918b37a92c36a0d3cf4ab29bfcf91bafbe4df09115cbffe9cb931870daf\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T102150Z-scalar-port-faults/receipt.json\",\n      \"sha256\": \"c8ae8e9c477b3a870ad52b7bbdf3d1400f24d012de6311cfbebd19620177cf26\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T103621Z-scalar-composition/receipt.json\",\n      \"sha256\": \"112e2e31bc77781636545f7948a530075df7768fe6542069f47baacb2abfdc55\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T104923Z-mutations/INTERRUPTION.json\",\n      \"sha256\": \"8a6313af9bc23cc92f74bbd23953a52bc6d48e95e7778a56da6a003539a8ce6f\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T105520Z-scalar-regression-restoration/restoration.json\",\n      \"sha256\": \"95e15f84927602d4eb3840425bba0741a6b9b829d210c2fc2d02204964cbd213\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T105539Z-mutations/receipt.json\",\n      \"sha256\": \"22147785240c8daa095002f24f2f7617771999c50ca4bb02fa3b2151f70e2b51\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json\",\n      \"sha256\": \"50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json\",\n      \"sha256\": \"cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/metrics.json\",\n      \"sha256\": \"c0f6c92c146ff0cf7d91b3a78bf74c7d26b455cd9b0547dd1d36ccc6260b19ec\"\n    }\n  ],\n  \"reviewed_specification\": {\n    \"capability_assessment\": {\n      \"basis\": \"Individual source review: the former provider facade is now an owned private storage abstraction with complete numeric operand admission, typed scalar failures, configurable element/work preflight, borrowed arithmetic and explicit private interoperability. This is actual L4 API/resource design rather than a reexport label.\",\n      \"level\": \"L4\",\n      \"source_sha256\": \"1e87357a6519498a6f28094798fa217444a93c9787035ce9a0fb14c2d74f2007\"\n    },\n    \"consumer_review\": [\n      \"Core matrix/elimination and homology callers use this owned storage. QM consumers needing foreign nominal matrix records go through a private explicit bridge; no public conversion backdoor exposes provider Numeric multiplication.\",\n      \"Pinned provider shape, access, serde, fallible callback/map/transpose and nalgebra storage bodies were inspected. Its legacy Numeric arithmetic is never invoked by the local numeric methods.\"\n    ],\n    \"engineering_assessment\": {\n      \"gates\": {\n        \"G1\": {\n          \"basis\": \"SHA-bound storage/arithmetic/interoperability maps and current execution receipts separate raw coefficient transport from admitted numeric operations. Inspected pinned provider primitives supply shape storage only. The old MAX*2 panic is archived with its original source and the replacement API is explicitly documented.\",\n          \"grade\": \"A\"\n        },\n        \"G2\": {\n          \"basis\": \"Private storage guarantees checked rows*cols equals length. Numeric entry points check compatible dimensions, inclusive element/work counters and every coefficient before output allocation, even for unused empty-product inputs. Each output dot is the exact ordered multiply/add sequence under the declared partial scalar protocol; zip operations preserve shape. A returned scalar refusal is propagated without inventing a value.\",\n          \"grade\": \"A\"\n        },\n        \"G3\": {\n          \"basis\": \"Output counts and arithmetic charges use checked usize operations. Admission/reservation precede buffers; division by output column count occurs only in a nonempty flat range. Product indices are bounded by admitted input shapes. Errors drop local partial outputs without input mutation. Provider storage field and outgoing conversion are private; no Numeric/Deref escape is public. Lawful scalar/callback/Clone/Drop behavior and allocator internals remain explicit environment assumptions.\",\n          \"grade\": \"A\"\n        },\n        \"G4\": {\n          \"basis\": \"Conditional on fresh untouched/restored integrated baselines and R>=0.95 for MB/PV storage faults, with compiler field/outgoing privacy controls. 6561 independent small matrix pairs, i128 dot/sum/difference models, every native overflow class, malformed coefficient roles, empty metadata, inclusive boundaries, serde shape and thread-local output-layout positive controls exercise declared failure classes.\",\n          \"grade\": \"A\"\n        },\n        \"G5\": {\n          \"basis\": \"All 39 explicit production bodies meet calibrated A ceilings. Products borrow coefficients and reserve the final flat buffer once. Full admission scans precede allocation; no per-entry operand clones or row buffers occur. Internal provider import copies once to establish separately owned storage, and export moves storage. Work counts exactly 2*m*n*k scalar calls, excluding validation/scalar internals; element counts are not byte/RSS/time bounds.\",\n          \"grade\": \"A\"\n        }\n      },\n      \"source_sha256\": \"1e87357a6519498a6f28094798fa217444a93c9787035ce9a0fb14c2d74f2007\"\n    },\n    \"open_obligations\": [],\n    \"origin_and_staged_evidence\": [\n      {\n        \"path\": \"evidence/quality/l4a_six/20261020T104119Z-scalar-activation/activation.json\",\n        \"sha256\": \"0121f918b37a92c36a0d3cf4ab29bfcf91bafbe4df09115cbffe9cb931870daf\"\n      },\n      {\n        \"path\": \"evidence/quality/l4a_six/20261020T102150Z-scalar-port-faults/receipt.json\",\n        \"sha256\": \"c8ae8e9c477b3a870ad52b7bbdf3d1400f24d012de6311cfbebd19620177cf26\"\n      },\n      {\n        \"path\": \"evidence/quality/l4a_six/20261020T103621Z-scalar-composition/receipt.json\",\n        \"sha256\": \"112e2e31bc77781636545f7948a530075df7768fe6542069f47baacb2abfdc55\"\n      },\n      {\n        \"path\": \"evidence/quality/l4a_six/20261020T104923Z-mutations/INTERRUPTION.json\",\n        \"sha256\": \"8a6313af9bc23cc92f74bbd23953a52bc6d48e95e7778a56da6a003539a8ce6f\"\n      },\n      {\n        \"path\": \"evidence/quality/l4a_six/20261020T105520Z-scalar-regression-restoration/restoration.json\",\n        \"sha256\": \"95e15f84927602d4eb3840425bba0741a6b9b829d210c2fc2d02204964cbd213\"\n      },\n      {\n        \"path\": \"evidence/quality/l4a_six/20261020T105539Z-mutations/receipt.json\",\n        \"sha256\": \"22147785240c8daa095002f24f2f7617771999c50ca4bb02fa3b2151f70e2b51\"\n      }\n    ],\n    \"profile\": \"Exact\",\n    \"purpose\": \"Preserve private shape-checked coefficient transport while providing owned partial exact matrix arithmetic with typed refusals and pre-allocation domain/resource admission.\",\n    \"repaired_historical_findings\": {\n      \"controls\": [\n        {\n          \"path\": \"evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json\",\n          \"sha256\": \"50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4\"\n        }\n      ],\n      \"witness\": \"Previously the unchanged exported provider matrix mul panicked for valid 1x1 i64 MAX times 2. The owned numeric method now propagates ScalarError::OutOfRange(Multiply); private storage blocks bypass through the local type.\"\n    },\n    \"requirement_symbol_map\": {\n      \"audited private interoperability\": [\n        \"try_from_provider\",\n        \"into_provider\"\n      ],\n      \"complete pre-allocation admission\": [\n        \"preflight\",\n        \"admit\",\n        \"DEFAULT_LIMITS\",\n        \"checked_mul_with_limits\",\n        \"checked_mul_vec_with_limits\",\n        \"zip\"\n      ],\n      \"partial exact borrowed arithmetic\": [\n        \"product_entry\",\n        \"checked_add_with_limit\",\n        \"checked_sub_with_limit\"\n      ],\n      \"private shape storage and transport\": [\n        \"BasicMatrix\",\n        \"from_row_major\",\n        \"get_ref\",\n        \"set\",\n        \"try_transpose\",\n        \"try_map\"\n      ]\n    },\n    \"scope_limits\": [\n      \"Raw transport is intentionally distinct from admitted numeric values. Custom scalar implementations must uphold their own protocol.\",\n      \"No bit-length, byte-allocation, process-memory, timeout or foreign algorithm certification is implied.\"\n    ],\n    \"status\": \"individual_checked_protocol_review_requires_current_integration\",\n    \"symbol_contracts\": {\n      \"BasicMatrix/from_row_major/from_row_major_with_limit/serde\": \"Private transparent provider storage. Checked dimensions and exact vector length are maintained. Raw coefficient transport, mutation, serialization and layout conversion do not assert numeric domain admission. Numeric operations always revalidate inputs.\",\n      \"DEFAULT_LIMITS/OperationLimits/preflight\": \"Numeric defaults: 4096 output slots and 1000000 multiply/accumulate calls. Check dimensions, rows*cols, cell charge, 2*elements*inner with checked arithmetic, then work charge, all coefficients, then reserve. Limits are inclusive; huge zero-area metadata runs no output iterations.\",\n      \"add/checked_add*/sub/checked_sub*/zip\": \"Require identical shapes and output slot admission, validate both full coefficient slices, reserve once and apply scalar add/subtract in storage order. No input is mutated; error returns no partial matrix.\",\n      \"mul/checked_mul*/product_entry/mul_vec/checked_mul_vec*\": \"Admit both complete inputs, including unused coefficients. Reserve once; enumerate row-major outputs and accumulate each exact product through typed scalar calls. Any scalar failure drops partial output. Work limit counts multiplication plus addition, not queries/validation or scalar bit cost.\",\n      \"try_from_fn*/try_map/try_transpose/try_*nalgebra/get*/set/as_slice/shape/rows/cols\": \"Use inspected provider shape/index/fallible storage primitives only. Callbacks, coefficient Clone/Drop and nalgebra internals retain their stated behavior. A failing set leaves storage unchanged. Shape-only constructors default to usize::MAX, with explicit limits where offered; this differs from numeric defaults.\",\n      \"try_from_provider/into_provider\": \"Crate-only interoperability. Import charges default input slots and admits all values before one fallible storage copy. Export re-admits every value then moves the provider storage. This does not approve arithmetic performed later by a receiving foreign API.\",\n      \"zero\": \"Construct valid additive identities through the declared Semiring provider, with default numeric slot limit and fallible buffer reservation. Identity validity is part of the custom Semiring obligation.\"\n    },\n    \"verification_challenges\": {\n      \"CP21-unaccounted-polynomial-product\": {\n        \"claim\": \"The allocation fixture positive control also detects a discarded output product. This is an observed redundant-buffer fault, not proof of a formerly invalid conservative arithmetic budget.\",\n        \"source\": \"code/rust/src/linear_algebra/char_poly.rs\"\n      },\n      \"MB01-left-admission\": {\n        \"claim\": \"Detect the designated MB01-left-admission fault at the specified exact domain, arithmetic, representation or privacy boundary.\",\n        \"source\": \"code/rust/src/linear_algebra/basic_matrix.rs\"\n      },\n      \"MB02-right-admission\": {\n        \"claim\": \"Detect the designated MB02-right-admission fault at the specified exact domain, arithmetic, representation or privacy boundary.\",\n        \"source\": \"code/rust/src/linear_algebra/basic_matrix.rs\"\n      },\n      \"MB03-output-order\": {\n        \"claim\": \"Detect the designated MB03-output-order fault at the specified exact domain, arithmetic, representation or privacy boundary.\",\n        \"source\": \"code/rust/src/linear_algebra/basic_matrix.rs\"\n      },\n      \"MB04-work-accounting\": {\n        \"claim\": \"Detect the designated MB04-work-accounting fault at the specified exact domain, arithmetic, representation or privacy boundary.\",\n        \"source\": \"code/rust/src/linear_algebra/basic_matrix.rs\"\n      },\n      \"MB05-work-admission\": {\n        \"claim\": \"Detect the designated MB05-work-admission fault at the specified exact domain, arithmetic, representation or privacy boundary.\",\n        \"source\": \"code/rust/src/linear_algebra/basic_matrix.rs\"\n      },\n      \"MB06-product-coordinate\": {\n        \"claim\": \"Detect the designated MB06-product-coordinate fault at the specified exact domain, arithmetic, representation or privacy boundary.\",\n        \"source\": \"code/rust/src/linear_algebra/basic_matrix.rs\"\n      },\n      \"MB07-accumulation\": {\n        \"claim\": \"Detect the designated MB07-accumulation fault at the specified exact domain, arithmetic, representation or privacy boundary.\",\n        \"source\": \"code/rust/src/linear_algebra/basic_matrix.rs\"\n      },\n      \"MB08-vector-domain\": {\n        \"claim\": \"Detect the designated MB08-vector-domain fault at the specified exact domain, arithmetic, representation or privacy boundary.\",\n        \"source\": \"code/rust/src/linear_algebra/basic_matrix.rs\"\n      },\n      \"MB09-vector-output-order\": {\n        \"claim\": \"Detect the designated MB09-vector-output-order fault at the specified exact domain, arithmetic, representation or privacy boundary.\",\n        \"source\": \"code/rust/src/linear_algebra/basic_matrix.rs\"\n      },\n      \"MB10-provider-escape\": {\n        \"claim\": \"Detect the designated MB10-provider-escape fault at the specified exact domain, arithmetic, representation or privacy boundary.\",\n        \"source\": \"code/rust/src/linear_algebra/basic_matrix.rs\"\n      },\n      \"PV07-incoming-transport-domain\": {\n        \"claim\": \"Detect the designated PV07-incoming-transport-domain fault at the specified exact domain, arithmetic, representation or privacy boundary.\",\n        \"source\": \"code/rust/src/linear_algebra/basic_matrix.rs\"\n      },\n      \"PV08-outgoing-transport-domain\": {\n        \"claim\": \"Detect the designated PV08-outgoing-transport-domain fault at the specified exact domain, arithmetic, representation or privacy boundary.\",\n        \"source\": \"code/rust/src/linear_algebra/basic_matrix.rs\"\n      },\n      \"PV12-outgoing-visibility\": {\n        \"claim\": \"Detect the designated PV12-outgoing-visibility fault at the specified exact domain, arithmetic, representation or privacy boundary.\",\n        \"source\": \"code/rust/src/linear_algebra/basic_matrix.rs\"\n      }\n    }\n  }\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_six/recovery/original-sidecars/code/rust/src/linear_algebra/basic_matrix.rs.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "dc6e4656ab84fc524d255a974ff638f0cf92a08639726b56bc7e0867ab9faf59",
+      "bytes": 16043,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/linear_algebra/basic_matrix.rs",
+          "sha256": "1e87357a6519498a6f28094798fa217444a93c9787035ce9a0fb14c2d74f2007",
+          "language": "Rust"
+        },
+        "profile": "Exact",
+        "level": "L4",
+        "level_basis": "Individual source review: the former provider facade is now an owned private storage abstraction with complete numeric operand admission, typed scalar failures, configurable element/work preflight, borrowed arithmetic and explicit private interoperability. This is actual L4 API/resource design rather than a reexport label.",
+        "engineering_target": "A",
+        "requested_target": "L4A",
+        "gates": {
+          "G1": "A",
+          "G2": "A",
+          "G3": "A",
+          "G4": null,
+          "G5": "A"
+        },
+        "composite_grade": null,
+        "score_token": null,
+        "is_complete": false,
+        "grade_ceiling": "A",
+        "evaluation_timestamp": "2026-10-20T14:53:16+00:00",
+        "grade_ceiling_basis": "Minimum of explicit individual gate decisions and measured structural eligibility.",
+        "contract": {
+          "path": "code/rust/src/linear_algebra/basic_matrix.rs.contract.yaml",
+          "status": "individual_checked_protocol_review_requires_current_integration",
+          "sha256": "2458013198d28518c6f25e4f28b374f493425f670a54435b4f6101d58631d2e9"
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T145316Z/receipt.json",
+            "sha256": "02ef86c6eaaa341749b93cd0cff2463b8c7a462b0c14080b483b5c13cb518935"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T145316Z/source_manifest.json",
+            "sha256": "b426c649d3ed095a576113062ea18b876fbd794e6eca1921ae2a296512eb5f63"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "67b30ce4848112715d67386e9af9e83322a3643e50585f754ceb4e5c439b7819"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "6e319e84dc25e76ffda0c3f8009c75cd36f36aacb18a24fad7a44c3899e67c84"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T104119Z-scalar-activation/activation.json",
+            "sha256": "0121f918b37a92c36a0d3cf4ab29bfcf91bafbe4df09115cbffe9cb931870daf"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T102150Z-scalar-port-faults/receipt.json",
+            "sha256": "c8ae8e9c477b3a870ad52b7bbdf3d1400f24d012de6311cfbebd19620177cf26"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T103621Z-scalar-composition/receipt.json",
+            "sha256": "112e2e31bc77781636545f7948a530075df7768fe6542069f47baacb2abfdc55"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T104923Z-mutations/INTERRUPTION.json",
+            "sha256": "8a6313af9bc23cc92f74bbd23953a52bc6d48e95e7778a56da6a003539a8ce6f"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T105520Z-scalar-regression-restoration/restoration.json",
+            "sha256": "95e15f84927602d4eb3840425bba0741a6b9b829d210c2fc2d02204964cbd213"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T105539Z-mutations/receipt.json",
+            "sha256": "22147785240c8daa095002f24f2f7617771999c50ca4bb02fa3b2151f70e2b51"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json",
+            "sha256": "50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json",
+            "sha256": "cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T145316Z/metrics.json",
+            "sha256": "c0f6c92c146ff0cf7d91b3a78bf74c7d26b455cd9b0547dd1d36ccc6260b19ec"
+          }
+        ],
+        "verification": {
+          "baseline": null,
+          "sources_unchanged": true,
+          "doctests": [],
+          "composition_runs": [
+            {
+              "receipt": {
+                "path": "evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json",
+                "sha256": "cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f"
+              },
+              "claim": "Actual root library compilation plus the explicitly selected consumer tests; not a full root or workspace test run.",
+              "run": {
+                "command": [
+                  "cargo",
+                  "--config",
+                  "profile.dev.debug=0",
+                  "--config",
+                  "profile.test.debug=0",
+                  "test",
+                  "--frozen",
+                  "--target-dir",
+                  "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T145120Z-qm-consumer\\build",
+                  "--quiet",
+                  "-p",
+                  "theory_of_finite_qm",
+                  "--lib",
+                  "qm::campaigns::gleason"
+                ],
+                "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust",
+                "elapsed_seconds": 1.688,
+                "environment": {
+                  "CARGO_BUILD_JOBS": "2",
+                  "CARGO_INCREMENTAL": "0"
+                },
+                "exit_code": 0,
+                "log": "evidence/quality/l4a_six/20261020T145120Z-qm-consumer/consumer-5.log",
+                "log_sha256": "1551c12a4e4233806a928e1203bcd1bb4fefaa01442640a1ea9e6d8fe596b23b",
+                "timed_out": false
+              }
+            }
+          ],
+          "differential_controls": [],
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false,
+          "dependency_sources_unchanged": true,
+          "compiled_scope": "Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.",
+          "reproduced_defects": []
+        },
+        "mutation_accounting": {
+          "killed": 0,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": null
+        },
+        "structure": {
+          "tool": "syn source AST (see pinned metric_tool_sources in receipt)",
+          "functions": [
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 36,
+              "name": "from_row_major",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 39,
+              "name": "from_row_major_with_limit",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 47,
+              "name": "try_from_fn",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 54,
+              "name": "try_from_fn_with_limit",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 62,
+              "name": "try_from_fn_result",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 69,
+              "name": "try_from_fn_result_with_limit",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 80,
+              "name": "rows",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 83,
+              "name": "cols",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 86,
+              "name": "shape",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 89,
+              "name": "as_slice",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 92,
+              "name": "get_ref",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 95,
+              "name": "try_to_nalgebra",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 101,
+              "name": "try_from_nalgebra",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 109,
+              "name": "get",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 112,
+              "name": "set",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 115,
+              "name": "try_transpose",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 118,
+              "name": "try_map",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 125,
+              "name": "scalar",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 128,
+              "name": "admit",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 6,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 134,
+              "name": "preflight",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 149,
+              "name": "try_from_provider",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 161,
+              "name": "into_provider",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 165,
+              "name": "zero",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 168,
+              "name": "mul",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 171,
+              "name": "mul_vec",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 174,
+              "name": "add",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 177,
+              "name": "checked_add",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 180,
+              "name": "checked_add_with_limit",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 9,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 1,
+              "line": 183,
+              "name": "zip",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 212,
+              "name": "checked_mul",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 215,
+              "name": "checked_mul_with_limit",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 9,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 224,
+              "name": "checked_mul_with_limits",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 248,
+              "name": "product_entry",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 258,
+              "name": "checked_mul_vec",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 261,
+              "name": "checked_mul_vec_with_limit",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 10,
+              "cognitive_upper_bound": 4,
+              "control_nesting": 2,
+              "line": 270,
+              "name": "checked_mul_vec_with_limits",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 300,
+              "name": "sub",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 303,
+              "name": "checked_sub",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 306,
+              "name": "checked_sub_with_limit",
+              "opaque_macros": []
+            }
+          ],
+          "exceeding_A": [],
+          "metric_ceiling": "A",
+          "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
+        },
+        "open_findings": [
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+          "Individual G4 judgement withheld: execution or mutation prerequisite unmet."
+        ],
+        "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts.",
+        "engineering_review": {
+          "gates": {
+            "G1": {
+              "basis": "SHA-bound storage/arithmetic/interoperability maps and current execution receipts separate raw coefficient transport from admitted numeric operations. Inspected pinned provider primitives supply shape storage only. The old MAX*2 panic is archived with its original source and the replacement API is explicitly documented.",
+              "grade": "A"
+            },
+            "G2": {
+              "basis": "Private storage guarantees checked rows*cols equals length. Numeric entry points check compatible dimensions, inclusive element/work counters and every coefficient before output allocation, even for unused empty-product inputs. Each output dot is the exact ordered multiply/add sequence under the declared partial scalar protocol; zip operations preserve shape. A returned scalar refusal is propagated without inventing a value.",
+              "grade": "A"
+            },
+            "G3": {
+              "basis": "Output counts and arithmetic charges use checked usize operations. Admission/reservation precede buffers; division by output column count occurs only in a nonempty flat range. Product indices are bounded by admitted input shapes. Errors drop local partial outputs without input mutation. Provider storage field and outgoing conversion are private; no Numeric/Deref escape is public. Lawful scalar/callback/Clone/Drop behavior and allocator internals remain explicit environment assumptions.",
+              "grade": "A"
+            },
+            "G4": {
+              "basis": "Conditional on fresh untouched/restored integrated baselines and R>=0.95 for MB/PV storage faults, with compiler field/outgoing privacy controls. 6561 independent small matrix pairs, i128 dot/sum/difference models, every native overflow class, malformed coefficient roles, empty metadata, inclusive boundaries, serde shape and thread-local output-layout positive controls exercise declared failure classes.",
+              "grade": "A"
+            },
+            "G5": {
+              "basis": "All 39 explicit production bodies meet calibrated A ceilings. Products borrow coefficients and reserve the final flat buffer once. Full admission scans precede allocation; no per-entry operand clones or row buffers occur. Internal provider import copies once to establish separately owned storage, and export moves storage. Work counts exactly 2*m*n*k scalar calls, excluding validation/scalar internals; element counts are not byte/RSS/time bounds.",
+              "grade": "A"
+            }
+          },
+          "source_sha256": "1e87357a6519498a6f28094798fa217444a93c9787035ce9a0fb14c2d74f2007"
+        }
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/linear_algebra/basic_matrix.rs\",\n    \"sha256\": \"1e87357a6519498a6f28094798fa217444a93c9787035ce9a0fb14c2d74f2007\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Individual source review: the former provider facade is now an owned private storage abstraction with complete numeric operand admission, typed scalar failures, configurable element/work preflight, borrowed arithmetic and explicit private interoperability. This is actual L4 API/resource design rather than a reexport label.\",\n  \"engineering_target\": \"A\",\n  \"requested_target\": \"L4A\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": null,\n    \"G5\": \"A\"\n  },\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"is_complete\": false,\n  \"grade_ceiling\": \"A\",\n  \"evaluation_timestamp\": \"2026-10-20T14:53:16+00:00\",\n  \"grade_ceiling_basis\": \"Minimum of explicit individual gate decisions and measured structural eligibility.\",\n  \"contract\": {\n    \"path\": \"code/rust/src/linear_algebra/basic_matrix.rs.contract.yaml\",\n    \"status\": \"individual_checked_protocol_review_requires_current_integration\",\n    \"sha256\": \"2458013198d28518c6f25e4f28b374f493425f670a54435b4f6101d58631d2e9\"\n  },\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/receipt.json\",\n      \"sha256\": \"02ef86c6eaaa341749b93cd0cff2463b8c7a462b0c14080b483b5c13cb518935\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/source_manifest.json\",\n      \"sha256\": \"b426c649d3ed095a576113062ea18b876fbd794e6eca1921ae2a296512eb5f63\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"67b30ce4848112715d67386e9af9e83322a3643e50585f754ceb4e5c439b7819\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"6e319e84dc25e76ffda0c3f8009c75cd36f36aacb18a24fad7a44c3899e67c84\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T104119Z-scalar-activation/activation.json\",\n      \"sha256\": \"0121f918b37a92c36a0d3cf4ab29bfcf91bafbe4df09115cbffe9cb931870daf\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T102150Z-scalar-port-faults/receipt.json\",\n      \"sha256\": \"c8ae8e9c477b3a870ad52b7bbdf3d1400f24d012de6311cfbebd19620177cf26\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T103621Z-scalar-composition/receipt.json\",\n      \"sha256\": \"112e2e31bc77781636545f7948a530075df7768fe6542069f47baacb2abfdc55\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T104923Z-mutations/INTERRUPTION.json\",\n      \"sha256\": \"8a6313af9bc23cc92f74bbd23953a52bc6d48e95e7778a56da6a003539a8ce6f\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T105520Z-scalar-regression-restoration/restoration.json\",\n      \"sha256\": \"95e15f84927602d4eb3840425bba0741a6b9b829d210c2fc2d02204964cbd213\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T105539Z-mutations/receipt.json\",\n      \"sha256\": \"22147785240c8daa095002f24f2f7617771999c50ca4bb02fa3b2151f70e2b51\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json\",\n      \"sha256\": \"50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json\",\n      \"sha256\": \"cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/metrics.json\",\n      \"sha256\": \"c0f6c92c146ff0cf7d91b3a78bf74c7d26b455cd9b0547dd1d36ccc6260b19ec\"\n    }\n  ],\n  \"verification\": {\n    \"baseline\": null,\n    \"sources_unchanged\": true,\n    \"doctests\": [],\n    \"composition_runs\": [\n      {\n        \"receipt\": {\n          \"path\": \"evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json\",\n          \"sha256\": \"cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f\"\n        },\n        \"claim\": \"Actual root library compilation plus the explicitly selected consumer tests; not a full root or workspace test run.\",\n        \"run\": {\n          \"command\": [\n            \"cargo\",\n            \"--config\",\n            \"profile.dev.debug=0\",\n            \"--config\",\n            \"profile.test.debug=0\",\n            \"test\",\n            \"--frozen\",\n            \"--target-dir\",\n            \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-six\\\\20261020T145120Z-qm-consumer\\\\build\",\n            \"--quiet\",\n            \"-p\",\n            \"theory_of_finite_qm\",\n            \"--lib\",\n            \"qm::campaigns::gleason\"\n          ],\n          \"cwd\": \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\",\n          \"elapsed_seconds\": 1.688,\n          \"environment\": {\n            \"CARGO_BUILD_JOBS\": \"2\",\n            \"CARGO_INCREMENTAL\": \"0\"\n          },\n          \"exit_code\": 0,\n          \"log\": \"evidence/quality/l4a_six/20261020T145120Z-qm-consumer/consumer-5.log\",\n          \"log_sha256\": \"1551c12a4e4233806a928e1203bcd1bb4fefaa01442640a1ea9e6d8fe596b23b\",\n          \"timed_out\": false\n        }\n      }\n    ],\n    \"differential_controls\": [],\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false,\n    \"dependency_sources_unchanged\": true,\n    \"compiled_scope\": \"Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.\",\n    \"reproduced_defects\": []\n  },\n  \"mutation_accounting\": {\n    \"killed\": 0,\n    \"survived\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"unrun\": 0,\n    \"conservative_ratio\": null\n  },\n  \"structure\": {\n    \"tool\": \"syn source AST (see pinned metric_tool_sources in receipt)\",\n    \"functions\": [\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 36,\n        \"name\": \"from_row_major\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 39,\n        \"name\": \"from_row_major_with_limit\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 47,\n        \"name\": \"try_from_fn\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 54,\n        \"name\": \"try_from_fn_with_limit\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 62,\n        \"name\": \"try_from_fn_result\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 69,\n        \"name\": \"try_from_fn_result_with_limit\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 80,\n        \"name\": \"rows\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 83,\n        \"name\": \"cols\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 86,\n        \"name\": \"shape\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 89,\n        \"name\": \"as_slice\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 92,\n        \"name\": \"get_ref\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 95,\n        \"name\": \"try_to_nalgebra\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 101,\n        \"name\": \"try_from_nalgebra\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 109,\n        \"name\": \"get\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 112,\n        \"name\": \"set\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 115,\n        \"name\": \"try_transpose\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 118,\n        \"name\": \"try_map\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 125,\n        \"name\": \"scalar\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 128,\n        \"name\": \"admit\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 134,\n        \"name\": \"preflight\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 149,\n        \"name\": \"try_from_provider\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 161,\n        \"name\": \"into_provider\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 165,\n        \"name\": \"zero\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 168,\n        \"name\": \"mul\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 171,\n        \"name\": \"mul_vec\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 174,\n        \"name\": \"add\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 177,\n        \"name\": \"checked_add\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 180,\n        \"name\": \"checked_add_with_limit\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 9,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 1,\n        \"line\": 183,\n        \"name\": \"zip\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 212,\n        \"name\": \"checked_mul\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 215,\n        \"name\": \"checked_mul_with_limit\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 9,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 224,\n        \"name\": \"checked_mul_with_limits\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 248,\n        \"name\": \"product_entry\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 258,\n        \"name\": \"checked_mul_vec\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 261,\n        \"name\": \"checked_mul_vec_with_limit\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 10,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 2,\n        \"line\": 270,\n        \"name\": \"checked_mul_vec_with_limits\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 300,\n        \"name\": \"sub\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 303,\n        \"name\": \"checked_sub\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 306,\n        \"name\": \"checked_sub_with_limit\",\n        \"opaque_macros\": []\n      }\n    ],\n    \"exceeding_A\": [],\n    \"metric_ceiling\": \"A\",\n    \"scope\": \"Explicit source bodies only; opaque macros and compiler expansion remain unassessed.\"\n  },\n  \"open_findings\": [\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\",\n    \"Individual G4 judgement withheld: execution or mutation prerequisite unmet.\"\n  ],\n  \"evaluation_timestamp_basis\": \"Start of the latest bound assessment execution; execution durations are recorded in receipts.\",\n  \"engineering_review\": {\n    \"gates\": {\n      \"G1\": {\n        \"basis\": \"SHA-bound storage/arithmetic/interoperability maps and current execution receipts separate raw coefficient transport from admitted numeric operations. Inspected pinned provider primitives supply shape storage only. The old MAX*2 panic is archived with its original source and the replacement API is explicitly documented.\",\n        \"grade\": \"A\"\n      },\n      \"G2\": {\n        \"basis\": \"Private storage guarantees checked rows*cols equals length. Numeric entry points check compatible dimensions, inclusive element/work counters and every coefficient before output allocation, even for unused empty-product inputs. Each output dot is the exact ordered multiply/add sequence under the declared partial scalar protocol; zip operations preserve shape. A returned scalar refusal is propagated without inventing a value.\",\n        \"grade\": \"A\"\n      },\n      \"G3\": {\n        \"basis\": \"Output counts and arithmetic charges use checked usize operations. Admission/reservation precede buffers; division by output column count occurs only in a nonempty flat range. Product indices are bounded by admitted input shapes. Errors drop local partial outputs without input mutation. Provider storage field and outgoing conversion are private; no Numeric/Deref escape is public. Lawful scalar/callback/Clone/Drop behavior and allocator internals remain explicit environment assumptions.\",\n        \"grade\": \"A\"\n      },\n      \"G4\": {\n        \"basis\": \"Conditional on fresh untouched/restored integrated baselines and R>=0.95 for MB/PV storage faults, with compiler field/outgoing privacy controls. 6561 independent small matrix pairs, i128 dot/sum/difference models, every native overflow class, malformed coefficient roles, empty metadata, inclusive boundaries, serde shape and thread-local output-layout positive controls exercise declared failure classes.\",\n        \"grade\": \"A\"\n      },\n      \"G5\": {\n        \"basis\": \"All 39 explicit production bodies meet calibrated A ceilings. Products borrow coefficients and reserve the final flat buffer once. Full admission scans precede allocation; no per-entry operand clones or row buffers occur. Internal provider import copies once to establish separately owned storage, and export moves storage. Work counts exactly 2*m*n*k scalar calls, excluding validation/scalar internals; element counts are not byte/RSS/time bounds.\",\n        \"grade\": \"A\"\n      }\n    },\n    \"source_sha256\": \"1e87357a6519498a6f28094798fa217444a93c9787035ce9a0fb14c2d74f2007\"\n  }\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_six/recovery/original-sidecars/code/rust/src/linear_algebra/basic_matrix.rs.scoring.yaml"
+      ]
+    }
+  ],
+  "legacy_paths": {
+    "evidence/quality/l4a_six/recovery/original-sidecars/code/rust/src/linear_algebra/basic_matrix.rs.contract.yaml": "2458013198d28518c6f25e4f28b374f493425f670a54435b4f6101d58631d2e9",
+    "evidence/quality/l4a_six/recovery/original-sidecars/code/rust/src/linear_algebra/basic_matrix.rs.scoring.yaml": "dc6e4656ab84fc524d255a974ff638f0cf92a08639726b56bc7e0867ab9faf59"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

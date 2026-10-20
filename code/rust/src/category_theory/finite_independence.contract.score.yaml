@@ -1,0 +1,568 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/rust/src/category_theory/finite_independence.rs",
+  "contract": {
+    "schema_version": "1.0.0",
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/rust/src/category_theory/finite_independence.rs",
+      "sha256": "6d3239d747f5aaa72e52264e513d5b51d13ad29258ec54b40cfe47884b68c21c",
+      "language": "Rust"
+    },
+    "status": "source_reviewed",
+    "formal_specification": {
+      "profile": "Exact retained: finite typed labels/Option availability, exact classes and raw answers, no floating/narrowing arithmetic.",
+      "domain": "Private admitted immutable PartialDynamics; arbitrary start/event indices and search budget; untrusted public self-described swap certificates.",
+      "behavior": [
+        "Private concrete four-Option endpoint record returns Some(ab,ba) iff ALL four entries are Some, otherwise None. No indexing/lookup/allocation; this is availability only, not future equivalence or raw endpoint equality.",
+        "Run start on [a],[b],[a,b],[b,a] in original order, preserving OutsideCarrier before alphabet errors; full words are validated even past unavailable prefixes. Return exact four Options, no trust in candidate data. Nonempty/rectangular private PartialDynamics invariants make all underlying accesses safe.",
+        "Precondition: both supplied final endpoints are genuine real states from admitted runs. Compute complete quotient once; equal classes produce Independent, even for unequal raw endpoints. Unequal classes invoke bounded distinguish; typed errors propagate, unexpected None becomes CertificateMismatch, only Some sound future becomes Distinguished with exact endpoints. max_pairs bounds only search, not the prior full quotient.",
+        "Compare the recomputed all-four-available final pair against submitted pair BEFORE quotient indexing. Missing/mismatched/outside endpoints fail false without indexing candidate IDs. Then equal complete future classes iff accepted. This does not demand ab==ba.",
+        "First require complete recomputed available pair equals submitted ab/ba. Then require future.left/right equal those same endpoints; only successful verify_distinction accepts its full word and saved unequal observations. No shortest-word requirement; all domain/future errors normalize to false here. Guard short-circuit prevents using unbound supplied endpoints.",
+        "Recompute four endpoints; missing either order returns exact Unavailable fields, including both-unavailable case, regardless of search budget. If all enabled delegate available_outcome. Preserve start/a/b as supplied. Only future-equivalence after both orders are enabled is independence; unavailable/search exhaustion never become independence. Every public invalid start/event is typed refusal.",
+        "Certificate self-describes start/a/b; replay all four runs against expected machine and propagate OutsideCarrier/OutsideAlphabet. Unavailable requires at least one missing order/prerequisite and exact four-field equality. Independent and Distinguished use the corresponding fully bound helper. Any false branch returns CertificateMismatch. It verifies the certificate tuple, not an externally supplied expected start/events or a cryptographic machine identity."
+      ],
+      "provider_refinement": {
+        "finite_continuation.rs": "Private PartialDynamics::new admits nonempty reports, exactly rectangular transition rows and only real Some targets; immutable getters/Clone preserve these. run validates start and every event before Option-folding, empty word identity. Totalization interns Some(report) and None as distinct readouts, appends absorbing unavailability, so completed machine word observations are exactly partial run output Some(label)/None. MAX is a valid report. distinguish BFS visits ordered completed state pairs, stores first discovered word and refuses max_pairs==0 or attempted new pair after limit; finite graph has at most(N=n+1)^2 pairs. FIFO in alphabet order finds shortest first word; verify_distinction replays word on both supplied endpoints, compares saved raw Option answers and requires inequality, with no shortest check. Return None only after complete finite graph search. No generic callback or public mutator.",
+        "finite_moore.rs": "Admitted total machine normalization uses first-state IDs; refinement retains old class and successor classes, so split-only with at most N-1 strict splits. At fixed point, induction on words gives equal readouts and stable successor classes; induction on iterations keeps every all-word-equal pair together. Thus fixed point iff all finite word observations equal. Stable quotient is total and state map length includes every admitted state plus dead; private caller real endpoints are in range. Internal nonempty/refinement/representative invariants justify unwrap/expect on this call path. This source/call-path proof and independent Option-product BFS support the used semantics; no full provider grade inferred."
+      }
+    },
+    "operations": {
+      "available": {
+        "line": 44,
+        "signature": "fn available(&self) -> Option<(usize, usize)>",
+        "obligation": "Private concrete four-Option endpoint record returns Some(ab,ba) iff ALL four entries are Some, otherwise None. No indexing/lookup/allocation; this is availability only, not future equivalence or raw endpoint equality."
+      },
+      "swap_endpoints": {
+        "line": 52,
+        "signature": "fn swap_endpoints(\n    machine: &PartialDynamics,\n    start: usize,\n    a: usize,\n    b: usize,\n) -> Result<SwapEndpoints, ContinuationError>",
+        "obligation": "Run start on [a],[b],[a,b],[b,a] in original order, preserving OutsideCarrier before alphabet errors; full words are validated even past unavailable prefixes. Return exact four Options, no trust in candidate data. Nonempty/rectangular private PartialDynamics invariants make all underlying accesses safe."
+      },
+      "available_outcome": {
+        "line": 67,
+        "signature": "fn available_outcome(\n    machine: &PartialDynamics,\n    ab: usize,\n    ba: usize,\n    max_pairs: usize,\n) -> Result<SwapOutcome, ContinuationError>",
+        "obligation": "Precondition: both supplied final endpoints are genuine real states from admitted runs. Compute complete quotient once; equal classes produce Independent, even for unequal raw endpoints. Unequal classes invoke bounded distinguish; typed errors propagate, unexpected None becomes CertificateMismatch, only Some sound future becomes Distinguished with exact endpoints. max_pairs bounds only search, not the prior full quotient."
+      },
+      "verify_independent": {
+        "line": 84,
+        "signature": "fn verify_independent(\n    machine: &PartialDynamics,\n    endpoints: &SwapEndpoints,\n    ab: usize,\n    ba: usize,\n) -> bool",
+        "obligation": "Compare the recomputed all-four-available final pair against submitted pair BEFORE quotient indexing. Missing/mismatched/outside endpoints fail false without indexing candidate IDs. Then equal complete future classes iff accepted. This does not demand ab==ba."
+      },
+      "verify_distinguished": {
+        "line": 97,
+        "signature": "fn verify_distinguished(\n    machine: &PartialDynamics,\n    endpoints: &SwapEndpoints,\n    ab: usize,\n    ba: usize,\n    future: &DistinguishingWord,\n) -> bool",
+        "obligation": "First require complete recomputed available pair equals submitted ab/ba. Then require future.left/right equal those same endpoints; only successful verify_distinction accepts its full word and saved unequal observations. No shortest-word requirement; all domain/future errors normalize to false here. Guard short-circuit prevents using unbound supplied endpoints."
+      },
+      "certify_swap": {
+        "line": 113,
+        "signature": "pub fn certify_swap(\n        &self,\n        start: usize,\n        a: usize,\n        b: usize,\n        max_pairs: usize,\n    ) -> Result<SwapCertificate, ContinuationError>",
+        "obligation": "Recompute four endpoints; missing either order returns exact Unavailable fields, including both-unavailable case, regardless of search budget. If all enabled delegate available_outcome. Preserve start/a/b as supplied. Only future-equivalence after both orders are enabled is independence; unavailable/search exhaustion never become independence. Every public invalid start/event is typed refusal."
+      },
+      "verify_swap": {
+        "line": 139,
+        "signature": "pub fn verify_swap(&self, c: &SwapCertificate) -> Result<(), ContinuationError>",
+        "obligation": "Certificate self-describes start/a/b; replay all four runs against expected machine and propagate OutsideCarrier/OutsideAlphabet. Unavailable requires at least one missing order/prerequisite and exact four-field equality. Independent and Distinguished use the corresponding fully bound helper. Any false branch returns CertificateMismatch. It verifies the certificate tuple, not an externally supplied expected start/events or a cryptographic machine identity."
+      }
+    },
+    "invariants": [
+      "Private concrete four-Option endpoint record returns Some(ab,ba) iff ALL four entries are Some, otherwise None. No indexing/lookup/allocation; this is availability only, not future equivalence or raw endpoint equality.",
+      "Run start on [a],[b],[a,b],[b,a] in original order, preserving OutsideCarrier before alphabet errors; full words are validated even past unavailable prefixes. Return exact four Options, no trust in candidate data. Nonempty/rectangular private PartialDynamics invariants make all underlying accesses safe.",
+      "Precondition: both supplied final endpoints are genuine real states from admitted runs. Compute complete quotient once; equal classes produce Independent, even for unequal raw endpoints. Unequal classes invoke bounded distinguish; typed errors propagate, unexpected None becomes CertificateMismatch, only Some sound future becomes Distinguished with exact endpoints. max_pairs bounds only search, not the prior full quotient.",
+      "Compare the recomputed all-four-available final pair against submitted pair BEFORE quotient indexing. Missing/mismatched/outside endpoints fail false without indexing candidate IDs. Then equal complete future classes iff accepted. This does not demand ab==ba.",
+      "First require complete recomputed available pair equals submitted ab/ba. Then require future.left/right equal those same endpoints; only successful verify_distinction accepts its full word and saved unequal observations. No shortest-word requirement; all domain/future errors normalize to false here. Guard short-circuit prevents using unbound supplied endpoints.",
+      "Recompute four endpoints; missing either order returns exact Unavailable fields, including both-unavailable case, regardless of search budget. If all enabled delegate available_outcome. Preserve start/a/b as supplied. Only future-equivalence after both orders are enabled is independence; unavailable/search exhaustion never become independence. Every public invalid start/event is typed refusal.",
+      "Certificate self-describes start/a/b; replay all four runs against expected machine and propagate OutsideCarrier/OutsideAlphabet. Unavailable requires at least one missing order/prerequisite and exact four-field equality. Independent and Distinguished use the corresponding fully bound helper. Any false branch returns CertificateMismatch. It verifies the certificate tuple, not an externally supplied expected start/events or a cryptographic machine identity.",
+      "Private PartialDynamics::new admits nonempty reports, exactly rectangular transition rows and only real Some targets; immutable getters/Clone preserve these. run validates start and every event before Option-folding, empty word identity. Totalization interns Some(report) and None as distinct readouts, appends absorbing unavailability, so completed machine word observations are exactly partial run output Some(label)/None. MAX is a valid report. distinguish BFS visits ordered completed state pairs, stores first discovered word and refuses max_pairs==0 or attempted new pair after limit; finite graph has at most(N=n+1)^2 pairs. FIFO in alphabet order finds shortest first word; verify_distinction replays word on both supplied endpoints, compares saved raw Option answers and requires inequality, with no shortest check. Return None only after complete finite graph search. No generic callback or public mutator.",
+      "Admitted total machine normalization uses first-state IDs; refinement retains old class and successor classes, so split-only with at most N-1 strict splits. At fixed point, induction on words gives equal readouts and stable successor classes; induction on iterations keeps every all-word-equal pair together. Thus fixed point iff all finite word observations equal. Stable quotient is total and state map length includes every admitted state plus dead; private caller real endpoints are in range. Internal nonempty/refinement/representative invariants justify unwrap/expect on this call path. This source/call-path proof and independent Option-product BFS support the used semantics; no full provider grade inferred.",
+      "Current continuation context refresh:own Rust source unchanged. New predecessor BFS preserves old observable outputs,first shortest input-order word and first distinct-pair resource refusal by all-machine FIFO/discovery induction;immutable constructor/run/quotient/replay public bodies unchanged. Actual new-context459category baseline plus independent324-machine product-distance/budget checks and10000-chain pass. Original own mutation receipts remain frozen old-provider executions,not newly executed/current-context kills.",
+      "Current Moore context refresh:own Rust source unchanged. Scratch-signature interning emits exactly old first-state normalized values for every length-valid partition by prefix induction;pair predicate/map guards are Boolean complements of old refusal predicates with same pure observation order. Therefore actual quotient chains/maps/factors/behavior sets and all unchanged caller observations preserved for admitted machines. New actual459category baseline,independent5832machine product fixed points/16384mapcases/4096crosspairs and16clean mathematical declarations support provider review. Original own mutation receipts remain historical old-provider snapshots,not fresh own-context executions."
+    ],
+    "failure_paths": {
+      "available": "Private concrete four-Option endpoint record returns Some(ab,ba) iff ALL four entries are Some, otherwise None. No indexing/lookup/allocation; this is availability only, not future equivalence or raw endpoint equality.",
+      "swap_endpoints": "Run start on [a],[b],[a,b],[b,a] in original order, preserving OutsideCarrier before alphabet errors; full words are validated even past unavailable prefixes. Return exact four Options, no trust in candidate data. Nonempty/rectangular private PartialDynamics invariants make all underlying accesses safe.",
+      "available_outcome": "Precondition: both supplied final endpoints are genuine real states from admitted runs. Compute complete quotient once; equal classes produce Independent, even for unequal raw endpoints. Unequal classes invoke bounded distinguish; typed errors propagate, unexpected None becomes CertificateMismatch, only Some sound future becomes Distinguished with exact endpoints. max_pairs bounds only search, not the prior full quotient.",
+      "verify_independent": "Compare the recomputed all-four-available final pair against submitted pair BEFORE quotient indexing. Missing/mismatched/outside endpoints fail false without indexing candidate IDs. Then equal complete future classes iff accepted. This does not demand ab==ba.",
+      "verify_distinguished": "First require complete recomputed available pair equals submitted ab/ba. Then require future.left/right equal those same endpoints; only successful verify_distinction accepts its full word and saved unequal observations. No shortest-word requirement; all domain/future errors normalize to false here. Guard short-circuit prevents using unbound supplied endpoints.",
+      "certify_swap": "Recompute four endpoints; missing either order returns exact Unavailable fields, including both-unavailable case, regardless of search budget. If all enabled delegate available_outcome. Preserve start/a/b as supplied. Only future-equivalence after both orders are enabled is independence; unavailable/search exhaustion never become independence. Every public invalid start/event is typed refusal.",
+      "verify_swap": "Certificate self-describes start/a/b; replay all four runs against expected machine and propagate OutsideCarrier/OutsideAlphabet. Unavailable requires at least one missing order/prerequisite and exact four-field equality. Independent and Distinguished use the corresponding fully bound helper. Any false branch returns CertificateMismatch. It verifies the certificate tuple, not an externally supplied expected start/events or a cryptographic machine identity.",
+      "runtime": "OutsideCarrier/OutsideAlphabet propagate from exact endpoint replay; max_pairs failure propagates only on genuinely distinguished enabled endpoints. Unavailable and future-equivalent endpoints require no distinguish budget. No untrusted endpoint indexes a quotient until exact recomputed Option binding; future domain/answer/word errors normalize to CertificateMismatch, and all comparisons short-circuit in original order. Unexpected missing distinction after unequal full classes fails closed as CertificateMismatch, but healthy provider invariants make it unreachable; no fake runtime branch claim. Inputs remain immutable; allocator/global memory failure is not promised away by pair budget."
+    },
+    "trust_boundary": {
+      "runtime": "Rust/std concrete primitive equality/order/Vec/Option, compiler and allocator, source-reviewed admitted local PartialDynamics/Moore call paths. No callback or mutable machine read.",
+      "formal": "Pinned prepared clean Lean/Mathlib/kernel standard axioms;16 clean declarations. All-word observation/Option enabledness/witness/binding/classification semantics; finite quotient/search/refinement and alpha adapter separately reviewed with exact native inputs."
+    },
+    "assurance_limits": [
+      "L3 bounded finite state-relative independence and typed witness replay; architecture target L5, no invented capability upgrade from certificate names. Full external provider/consumer grades independent.",
+      "Both orders must be enabled. Independence is equality of complete protected future observations, not raw endpoint equality, causal separation, spatial/tensor independence or physical preparation. Different real endpoints can be equivalent, explicitly tested.",
+      "Certificate carries its own start/a/b; verify_swap checks those against machine, not a separately supplied expected tuple or cryptographic model identity. Valid witness need not be shortest; different machine snapshots may accept the same observationally valid receipt.",
+      "max_pairs limits only distinction BFS, after complete quotient computation. No byte/time/allocator or arbitrary callback totality guarantee. Source/model/bounded independent oracles support refinement, not extraction/MIR/A+ independent toolchain. Test-only own-method alpha renaming retains actual receiver/provider identities; copied certificate nominal identity/ABI is not independently mutation tested. Contracts pending.",
+      "This refresh updates only the changed trace consumer context; it does not replace or extend independence own source/proof/native/metrics scope.",
+      "Continuation provider refreshed by source-level all-machine preservation argument and fresh actual category/independent provider replay. Historical own fault outcomes stay bound to their original provider snapshots;no new own-body fault execution inferred.",
+      "Moore provider refreshed by all-admitted-input source preservation and fresh actual provider/category replay. Historical own mutation outcomes retain original frozen providers;not relabeled current-context fault kills."
+    ],
+    "review_evidence": [
+      {
+        "path": "code/rust/src/category_theory/finite_independence.score.yaml",
+        "sha256": "aedadca6a429d396a7848313a2469a63fb57b5e46de1fc4b6001a0d3fba5a9fe"
+      }
+    ],
+    "open_obligations": []
+  },
+  "current_contract": "217e8b4dc4920cab620e16cecdb4cabb8a79701ee79ab2e6d3eb9ba3576fdfb1",
+  "current_scoring": "bb93fcc63e9c018a736ed13fe583765118f311b73eec8366b887ce98610f90a9",
+  "contract_history": [
+    {
+      "sha256": "217e8b4dc4920cab620e16cecdb4cabb8a79701ee79ab2e6d3eb9ba3576fdfb1",
+      "bytes": 20205,
+      "record": {
+        "schema_version": "1.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/category_theory/finite_independence.rs",
+          "sha256": "6d3239d747f5aaa72e52264e513d5b51d13ad29258ec54b40cfe47884b68c21c",
+          "language": "Rust"
+        },
+        "status": "source_reviewed",
+        "formal_specification": {
+          "profile": "Exact retained: finite typed labels/Option availability, exact classes and raw answers, no floating/narrowing arithmetic.",
+          "domain": "Private admitted immutable PartialDynamics; arbitrary start/event indices and search budget; untrusted public self-described swap certificates.",
+          "behavior": [
+            "Private concrete four-Option endpoint record returns Some(ab,ba) iff ALL four entries are Some, otherwise None. No indexing/lookup/allocation; this is availability only, not future equivalence or raw endpoint equality.",
+            "Run start on [a],[b],[a,b],[b,a] in original order, preserving OutsideCarrier before alphabet errors; full words are validated even past unavailable prefixes. Return exact four Options, no trust in candidate data. Nonempty/rectangular private PartialDynamics invariants make all underlying accesses safe.",
+            "Precondition: both supplied final endpoints are genuine real states from admitted runs. Compute complete quotient once; equal classes produce Independent, even for unequal raw endpoints. Unequal classes invoke bounded distinguish; typed errors propagate, unexpected None becomes CertificateMismatch, only Some sound future becomes Distinguished with exact endpoints. max_pairs bounds only search, not the prior full quotient.",
+            "Compare the recomputed all-four-available final pair against submitted pair BEFORE quotient indexing. Missing/mismatched/outside endpoints fail false without indexing candidate IDs. Then equal complete future classes iff accepted. This does not demand ab==ba.",
+            "First require complete recomputed available pair equals submitted ab/ba. Then require future.left/right equal those same endpoints; only successful verify_distinction accepts its full word and saved unequal observations. No shortest-word requirement; all domain/future errors normalize to false here. Guard short-circuit prevents using unbound supplied endpoints.",
+            "Recompute four endpoints; missing either order returns exact Unavailable fields, including both-unavailable case, regardless of search budget. If all enabled delegate available_outcome. Preserve start/a/b as supplied. Only future-equivalence after both orders are enabled is independence; unavailable/search exhaustion never become independence. Every public invalid start/event is typed refusal.",
+            "Certificate self-describes start/a/b; replay all four runs against expected machine and propagate OutsideCarrier/OutsideAlphabet. Unavailable requires at least one missing order/prerequisite and exact four-field equality. Independent and Distinguished use the corresponding fully bound helper. Any false branch returns CertificateMismatch. It verifies the certificate tuple, not an externally supplied expected start/events or a cryptographic machine identity."
+          ],
+          "provider_refinement": {
+            "finite_continuation.rs": "Private PartialDynamics::new admits nonempty reports, exactly rectangular transition rows and only real Some targets; immutable getters/Clone preserve these. run validates start and every event before Option-folding, empty word identity. Totalization interns Some(report) and None as distinct readouts, appends absorbing unavailability, so completed machine word observations are exactly partial run output Some(label)/None. MAX is a valid report. distinguish BFS visits ordered completed state pairs, stores first discovered word and refuses max_pairs==0 or attempted new pair after limit; finite graph has at most(N=n+1)^2 pairs. FIFO in alphabet order finds shortest first word; verify_distinction replays word on both supplied endpoints, compares saved raw Option answers and requires inequality, with no shortest check. Return None only after complete finite graph search. No generic callback or public mutator.",
+            "finite_moore.rs": "Admitted total machine normalization uses first-state IDs; refinement retains old class and successor classes, so split-only with at most N-1 strict splits. At fixed point, induction on words gives equal readouts and stable successor classes; induction on iterations keeps every all-word-equal pair together. Thus fixed point iff all finite word observations equal. Stable quotient is total and state map length includes every admitted state plus dead; private caller real endpoints are in range. Internal nonempty/refinement/representative invariants justify unwrap/expect on this call path. This source/call-path proof and independent Option-product BFS support the used semantics; no full provider grade inferred."
+          }
+        },
+        "operations": {
+          "available": {
+            "line": 44,
+            "signature": "fn available(&self) -> Option<(usize, usize)>",
+            "obligation": "Private concrete four-Option endpoint record returns Some(ab,ba) iff ALL four entries are Some, otherwise None. No indexing/lookup/allocation; this is availability only, not future equivalence or raw endpoint equality."
+          },
+          "swap_endpoints": {
+            "line": 52,
+            "signature": "fn swap_endpoints(\n    machine: &PartialDynamics,\n    start: usize,\n    a: usize,\n    b: usize,\n) -> Result<SwapEndpoints, ContinuationError>",
+            "obligation": "Run start on [a],[b],[a,b],[b,a] in original order, preserving OutsideCarrier before alphabet errors; full words are validated even past unavailable prefixes. Return exact four Options, no trust in candidate data. Nonempty/rectangular private PartialDynamics invariants make all underlying accesses safe."
+          },
+          "available_outcome": {
+            "line": 67,
+            "signature": "fn available_outcome(\n    machine: &PartialDynamics,\n    ab: usize,\n    ba: usize,\n    max_pairs: usize,\n) -> Result<SwapOutcome, ContinuationError>",
+            "obligation": "Precondition: both supplied final endpoints are genuine real states from admitted runs. Compute complete quotient once; equal classes produce Independent, even for unequal raw endpoints. Unequal classes invoke bounded distinguish; typed errors propagate, unexpected None becomes CertificateMismatch, only Some sound future becomes Distinguished with exact endpoints. max_pairs bounds only search, not the prior full quotient."
+          },
+          "verify_independent": {
+            "line": 84,
+            "signature": "fn verify_independent(\n    machine: &PartialDynamics,\n    endpoints: &SwapEndpoints,\n    ab: usize,\n    ba: usize,\n) -> bool",
+            "obligation": "Compare the recomputed all-four-available final pair against submitted pair BEFORE quotient indexing. Missing/mismatched/outside endpoints fail false without indexing candidate IDs. Then equal complete future classes iff accepted. This does not demand ab==ba."
+          },
+          "verify_distinguished": {
+            "line": 97,
+            "signature": "fn verify_distinguished(\n    machine: &PartialDynamics,\n    endpoints: &SwapEndpoints,\n    ab: usize,\n    ba: usize,\n    future: &DistinguishingWord,\n) -> bool",
+            "obligation": "First require complete recomputed available pair equals submitted ab/ba. Then require future.left/right equal those same endpoints; only successful verify_distinction accepts its full word and saved unequal observations. No shortest-word requirement; all domain/future errors normalize to false here. Guard short-circuit prevents using unbound supplied endpoints."
+          },
+          "certify_swap": {
+            "line": 113,
+            "signature": "pub fn certify_swap(\n        &self,\n        start: usize,\n        a: usize,\n        b: usize,\n        max_pairs: usize,\n    ) -> Result<SwapCertificate, ContinuationError>",
+            "obligation": "Recompute four endpoints; missing either order returns exact Unavailable fields, including both-unavailable case, regardless of search budget. If all enabled delegate available_outcome. Preserve start/a/b as supplied. Only future-equivalence after both orders are enabled is independence; unavailable/search exhaustion never become independence. Every public invalid start/event is typed refusal."
+          },
+          "verify_swap": {
+            "line": 139,
+            "signature": "pub fn verify_swap(&self, c: &SwapCertificate) -> Result<(), ContinuationError>",
+            "obligation": "Certificate self-describes start/a/b; replay all four runs against expected machine and propagate OutsideCarrier/OutsideAlphabet. Unavailable requires at least one missing order/prerequisite and exact four-field equality. Independent and Distinguished use the corresponding fully bound helper. Any false branch returns CertificateMismatch. It verifies the certificate tuple, not an externally supplied expected start/events or a cryptographic machine identity."
+          }
+        },
+        "invariants": [
+          "Private concrete four-Option endpoint record returns Some(ab,ba) iff ALL four entries are Some, otherwise None. No indexing/lookup/allocation; this is availability only, not future equivalence or raw endpoint equality.",
+          "Run start on [a],[b],[a,b],[b,a] in original order, preserving OutsideCarrier before alphabet errors; full words are validated even past unavailable prefixes. Return exact four Options, no trust in candidate data. Nonempty/rectangular private PartialDynamics invariants make all underlying accesses safe.",
+          "Precondition: both supplied final endpoints are genuine real states from admitted runs. Compute complete quotient once; equal classes produce Independent, even for unequal raw endpoints. Unequal classes invoke bounded distinguish; typed errors propagate, unexpected None becomes CertificateMismatch, only Some sound future becomes Distinguished with exact endpoints. max_pairs bounds only search, not the prior full quotient.",
+          "Compare the recomputed all-four-available final pair against submitted pair BEFORE quotient indexing. Missing/mismatched/outside endpoints fail false without indexing candidate IDs. Then equal complete future classes iff accepted. This does not demand ab==ba.",
+          "First require complete recomputed available pair equals submitted ab/ba. Then require future.left/right equal those same endpoints; only successful verify_distinction accepts its full word and saved unequal observations. No shortest-word requirement; all domain/future errors normalize to false here. Guard short-circuit prevents using unbound supplied endpoints.",
+          "Recompute four endpoints; missing either order returns exact Unavailable fields, including both-unavailable case, regardless of search budget. If all enabled delegate available_outcome. Preserve start/a/b as supplied. Only future-equivalence after both orders are enabled is independence; unavailable/search exhaustion never become independence. Every public invalid start/event is typed refusal.",
+          "Certificate self-describes start/a/b; replay all four runs against expected machine and propagate OutsideCarrier/OutsideAlphabet. Unavailable requires at least one missing order/prerequisite and exact four-field equality. Independent and Distinguished use the corresponding fully bound helper. Any false branch returns CertificateMismatch. It verifies the certificate tuple, not an externally supplied expected start/events or a cryptographic machine identity.",
+          "Private PartialDynamics::new admits nonempty reports, exactly rectangular transition rows and only real Some targets; immutable getters/Clone preserve these. run validates start and every event before Option-folding, empty word identity. Totalization interns Some(report) and None as distinct readouts, appends absorbing unavailability, so completed machine word observations are exactly partial run output Some(label)/None. MAX is a valid report. distinguish BFS visits ordered completed state pairs, stores first discovered word and refuses max_pairs==0 or attempted new pair after limit; finite graph has at most(N=n+1)^2 pairs. FIFO in alphabet order finds shortest first word; verify_distinction replays word on both supplied endpoints, compares saved raw Option answers and requires inequality, with no shortest check. Return None only after complete finite graph search. No generic callback or public mutator.",
+          "Admitted total machine normalization uses first-state IDs; refinement retains old class and successor classes, so split-only with at most N-1 strict splits. At fixed point, induction on words gives equal readouts and stable successor classes; induction on iterations keeps every all-word-equal pair together. Thus fixed point iff all finite word observations equal. Stable quotient is total and state map length includes every admitted state plus dead; private caller real endpoints are in range. Internal nonempty/refinement/representative invariants justify unwrap/expect on this call path. This source/call-path proof and independent Option-product BFS support the used semantics; no full provider grade inferred.",
+          "Current continuation context refresh:own Rust source unchanged. New predecessor BFS preserves old observable outputs,first shortest input-order word and first distinct-pair resource refusal by all-machine FIFO/discovery induction;immutable constructor/run/quotient/replay public bodies unchanged. Actual new-context459category baseline plus independent324-machine product-distance/budget checks and10000-chain pass. Original own mutation receipts remain frozen old-provider executions,not newly executed/current-context kills.",
+          "Current Moore context refresh:own Rust source unchanged. Scratch-signature interning emits exactly old first-state normalized values for every length-valid partition by prefix induction;pair predicate/map guards are Boolean complements of old refusal predicates with same pure observation order. Therefore actual quotient chains/maps/factors/behavior sets and all unchanged caller observations preserved for admitted machines. New actual459category baseline,independent5832machine product fixed points/16384mapcases/4096crosspairs and16clean mathematical declarations support provider review. Original own mutation receipts remain historical old-provider snapshots,not fresh own-context executions."
+        ],
+        "failure_paths": {
+          "available": "Private concrete four-Option endpoint record returns Some(ab,ba) iff ALL four entries are Some, otherwise None. No indexing/lookup/allocation; this is availability only, not future equivalence or raw endpoint equality.",
+          "swap_endpoints": "Run start on [a],[b],[a,b],[b,a] in original order, preserving OutsideCarrier before alphabet errors; full words are validated even past unavailable prefixes. Return exact four Options, no trust in candidate data. Nonempty/rectangular private PartialDynamics invariants make all underlying accesses safe.",
+          "available_outcome": "Precondition: both supplied final endpoints are genuine real states from admitted runs. Compute complete quotient once; equal classes produce Independent, even for unequal raw endpoints. Unequal classes invoke bounded distinguish; typed errors propagate, unexpected None becomes CertificateMismatch, only Some sound future becomes Distinguished with exact endpoints. max_pairs bounds only search, not the prior full quotient.",
+          "verify_independent": "Compare the recomputed all-four-available final pair against submitted pair BEFORE quotient indexing. Missing/mismatched/outside endpoints fail false without indexing candidate IDs. Then equal complete future classes iff accepted. This does not demand ab==ba.",
+          "verify_distinguished": "First require complete recomputed available pair equals submitted ab/ba. Then require future.left/right equal those same endpoints; only successful verify_distinction accepts its full word and saved unequal observations. No shortest-word requirement; all domain/future errors normalize to false here. Guard short-circuit prevents using unbound supplied endpoints.",
+          "certify_swap": "Recompute four endpoints; missing either order returns exact Unavailable fields, including both-unavailable case, regardless of search budget. If all enabled delegate available_outcome. Preserve start/a/b as supplied. Only future-equivalence after both orders are enabled is independence; unavailable/search exhaustion never become independence. Every public invalid start/event is typed refusal.",
+          "verify_swap": "Certificate self-describes start/a/b; replay all four runs against expected machine and propagate OutsideCarrier/OutsideAlphabet. Unavailable requires at least one missing order/prerequisite and exact four-field equality. Independent and Distinguished use the corresponding fully bound helper. Any false branch returns CertificateMismatch. It verifies the certificate tuple, not an externally supplied expected start/events or a cryptographic machine identity.",
+          "runtime": "OutsideCarrier/OutsideAlphabet propagate from exact endpoint replay; max_pairs failure propagates only on genuinely distinguished enabled endpoints. Unavailable and future-equivalent endpoints require no distinguish budget. No untrusted endpoint indexes a quotient until exact recomputed Option binding; future domain/answer/word errors normalize to CertificateMismatch, and all comparisons short-circuit in original order. Unexpected missing distinction after unequal full classes fails closed as CertificateMismatch, but healthy provider invariants make it unreachable; no fake runtime branch claim. Inputs remain immutable; allocator/global memory failure is not promised away by pair budget."
+        },
+        "trust_boundary": {
+          "runtime": "Rust/std concrete primitive equality/order/Vec/Option, compiler and allocator, source-reviewed admitted local PartialDynamics/Moore call paths. No callback or mutable machine read.",
+          "formal": "Pinned prepared clean Lean/Mathlib/kernel standard axioms;16 clean declarations. All-word observation/Option enabledness/witness/binding/classification semantics; finite quotient/search/refinement and alpha adapter separately reviewed with exact native inputs."
+        },
+        "assurance_limits": [
+          "L3 bounded finite state-relative independence and typed witness replay; architecture target L5, no invented capability upgrade from certificate names. Full external provider/consumer grades independent.",
+          "Both orders must be enabled. Independence is equality of complete protected future observations, not raw endpoint equality, causal separation, spatial/tensor independence or physical preparation. Different real endpoints can be equivalent, explicitly tested.",
+          "Certificate carries its own start/a/b; verify_swap checks those against machine, not a separately supplied expected tuple or cryptographic model identity. Valid witness need not be shortest; different machine snapshots may accept the same observationally valid receipt.",
+          "max_pairs limits only distinction BFS, after complete quotient computation. No byte/time/allocator or arbitrary callback totality guarantee. Source/model/bounded independent oracles support refinement, not extraction/MIR/A+ independent toolchain. Test-only own-method alpha renaming retains actual receiver/provider identities; copied certificate nominal identity/ABI is not independently mutation tested. Contracts pending.",
+          "This refresh updates only the changed trace consumer context; it does not replace or extend independence own source/proof/native/metrics scope.",
+          "Continuation provider refreshed by source-level all-machine preservation argument and fresh actual category/independent provider replay. Historical own fault outcomes stay bound to their original provider snapshots;no new own-body fault execution inferred.",
+          "Moore provider refreshed by all-admitted-input source preservation and fresh actual provider/category replay. Historical own mutation outcomes retain original frozen providers;not relabeled current-context fault kills."
+        ],
+        "review_evidence": [
+          {
+            "path": "code/rust/src/category_theory/finite_independence.score.yaml",
+            "sha256": "aedadca6a429d396a7848313a2469a63fb57b5e46de1fc4b6001a0d3fba5a9fe"
+          }
+        ],
+        "open_obligations": []
+      },
+      "raw_utf8": "{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/finite_independence.rs\",\n    \"sha256\": \"6d3239d747f5aaa72e52264e513d5b51d13ad29258ec54b40cfe47884b68c21c\",\n    \"language\": \"Rust\"\n  },\n  \"status\": \"source_reviewed\",\n  \"formal_specification\": {\n    \"profile\": \"Exact retained: finite typed labels/Option availability, exact classes and raw answers, no floating/narrowing arithmetic.\",\n    \"domain\": \"Private admitted immutable PartialDynamics; arbitrary start/event indices and search budget; untrusted public self-described swap certificates.\",\n    \"behavior\": [\n      \"Private concrete four-Option endpoint record returns Some(ab,ba) iff ALL four entries are Some, otherwise None. No indexing/lookup/allocation; this is availability only, not future equivalence or raw endpoint equality.\",\n      \"Run start on [a],[b],[a,b],[b,a] in original order, preserving OutsideCarrier before alphabet errors; full words are validated even past unavailable prefixes. Return exact four Options, no trust in candidate data. Nonempty/rectangular private PartialDynamics invariants make all underlying accesses safe.\",\n      \"Precondition: both supplied final endpoints are genuine real states from admitted runs. Compute complete quotient once; equal classes produce Independent, even for unequal raw endpoints. Unequal classes invoke bounded distinguish; typed errors propagate, unexpected None becomes CertificateMismatch, only Some sound future becomes Distinguished with exact endpoints. max_pairs bounds only search, not the prior full quotient.\",\n      \"Compare the recomputed all-four-available final pair against submitted pair BEFORE quotient indexing. Missing/mismatched/outside endpoints fail false without indexing candidate IDs. Then equal complete future classes iff accepted. This does not demand ab==ba.\",\n      \"First require complete recomputed available pair equals submitted ab/ba. Then require future.left/right equal those same endpoints; only successful verify_distinction accepts its full word and saved unequal observations. No shortest-word requirement; all domain/future errors normalize to false here. Guard short-circuit prevents using unbound supplied endpoints.\",\n      \"Recompute four endpoints; missing either order returns exact Unavailable fields, including both-unavailable case, regardless of search budget. If all enabled delegate available_outcome. Preserve start/a/b as supplied. Only future-equivalence after both orders are enabled is independence; unavailable/search exhaustion never become independence. Every public invalid start/event is typed refusal.\",\n      \"Certificate self-describes start/a/b; replay all four runs against expected machine and propagate OutsideCarrier/OutsideAlphabet. Unavailable requires at least one missing order/prerequisite and exact four-field equality. Independent and Distinguished use the corresponding fully bound helper. Any false branch returns CertificateMismatch. It verifies the certificate tuple, not an externally supplied expected start/events or a cryptographic machine identity.\"\n    ],\n    \"provider_refinement\": {\n      \"finite_continuation.rs\": \"Private PartialDynamics::new admits nonempty reports, exactly rectangular transition rows and only real Some targets; immutable getters/Clone preserve these. run validates start and every event before Option-folding, empty word identity. Totalization interns Some(report) and None as distinct readouts, appends absorbing unavailability, so completed machine word observations are exactly partial run output Some(label)/None. MAX is a valid report. distinguish BFS visits ordered completed state pairs, stores first discovered word and refuses max_pairs==0 or attempted new pair after limit; finite graph has at most(N=n+1)^2 pairs. FIFO in alphabet order finds shortest first word; verify_distinction replays word on both supplied endpoints, compares saved raw Option answers and requires inequality, with no shortest check. Return None only after complete finite graph search. No generic callback or public mutator.\",\n      \"finite_moore.rs\": \"Admitted total machine normalization uses first-state IDs; refinement retains old class and successor classes, so split-only with at most N-1 strict splits. At fixed point, induction on words gives equal readouts and stable successor classes; induction on iterations keeps every all-word-equal pair together. Thus fixed point iff all finite word observations equal. Stable quotient is total and state map length includes every admitted state plus dead; private caller real endpoints are in range. Internal nonempty/refinement/representative invariants justify unwrap/expect on this call path. This source/call-path proof and independent Option-product BFS support the used semantics; no full provider grade inferred.\"\n    }\n  },\n  \"operations\": {\n    \"available\": {\n      \"line\": 44,\n      \"signature\": \"fn available(&self) -> Option<(usize, usize)>\",\n      \"obligation\": \"Private concrete four-Option endpoint record returns Some(ab,ba) iff ALL four entries are Some, otherwise None. No indexing/lookup/allocation; this is availability only, not future equivalence or raw endpoint equality.\"\n    },\n    \"swap_endpoints\": {\n      \"line\": 52,\n      \"signature\": \"fn swap_endpoints(\\n    machine: &PartialDynamics,\\n    start: usize,\\n    a: usize,\\n    b: usize,\\n) -> Result<SwapEndpoints, ContinuationError>\",\n      \"obligation\": \"Run start on [a],[b],[a,b],[b,a] in original order, preserving OutsideCarrier before alphabet errors; full words are validated even past unavailable prefixes. Return exact four Options, no trust in candidate data. Nonempty/rectangular private PartialDynamics invariants make all underlying accesses safe.\"\n    },\n    \"available_outcome\": {\n      \"line\": 67,\n      \"signature\": \"fn available_outcome(\\n    machine: &PartialDynamics,\\n    ab: usize,\\n    ba: usize,\\n    max_pairs: usize,\\n) -> Result<SwapOutcome, ContinuationError>\",\n      \"obligation\": \"Precondition: both supplied final endpoints are genuine real states from admitted runs. Compute complete quotient once; equal classes produce Independent, even for unequal raw endpoints. Unequal classes invoke bounded distinguish; typed errors propagate, unexpected None becomes CertificateMismatch, only Some sound future becomes Distinguished with exact endpoints. max_pairs bounds only search, not the prior full quotient.\"\n    },\n    \"verify_independent\": {\n      \"line\": 84,\n      \"signature\": \"fn verify_independent(\\n    machine: &PartialDynamics,\\n    endpoints: &SwapEndpoints,\\n    ab: usize,\\n    ba: usize,\\n) -> bool\",\n      \"obligation\": \"Compare the recomputed all-four-available final pair against submitted pair BEFORE quotient indexing. Missing/mismatched/outside endpoints fail false without indexing candidate IDs. Then equal complete future classes iff accepted. This does not demand ab==ba.\"\n    },\n    \"verify_distinguished\": {\n      \"line\": 97,\n      \"signature\": \"fn verify_distinguished(\\n    machine: &PartialDynamics,\\n    endpoints: &SwapEndpoints,\\n    ab: usize,\\n    ba: usize,\\n    future: &DistinguishingWord,\\n) -> bool\",\n      \"obligation\": \"First require complete recomputed available pair equals submitted ab/ba. Then require future.left/right equal those same endpoints; only successful verify_distinction accepts its full word and saved unequal observations. No shortest-word requirement; all domain/future errors normalize to false here. Guard short-circuit prevents using unbound supplied endpoints.\"\n    },\n    \"certify_swap\": {\n      \"line\": 113,\n      \"signature\": \"pub fn certify_swap(\\n        &self,\\n        start: usize,\\n        a: usize,\\n        b: usize,\\n        max_pairs: usize,\\n    ) -> Result<SwapCertificate, ContinuationError>\",\n      \"obligation\": \"Recompute four endpoints; missing either order returns exact Unavailable fields, including both-unavailable case, regardless of search budget. If all enabled delegate available_outcome. Preserve start/a/b as supplied. Only future-equivalence after both orders are enabled is independence; unavailable/search exhaustion never become independence. Every public invalid start/event is typed refusal.\"\n    },\n    \"verify_swap\": {\n      \"line\": 139,\n      \"signature\": \"pub fn verify_swap(&self, c: &SwapCertificate) -> Result<(), ContinuationError>\",\n      \"obligation\": \"Certificate self-describes start/a/b; replay all four runs against expected machine and propagate OutsideCarrier/OutsideAlphabet. Unavailable requires at least one missing order/prerequisite and exact four-field equality. Independent and Distinguished use the corresponding fully bound helper. Any false branch returns CertificateMismatch. It verifies the certificate tuple, not an externally supplied expected start/events or a cryptographic machine identity.\"\n    }\n  },\n  \"invariants\": [\n    \"Private concrete four-Option endpoint record returns Some(ab,ba) iff ALL four entries are Some, otherwise None. No indexing/lookup/allocation; this is availability only, not future equivalence or raw endpoint equality.\",\n    \"Run start on [a],[b],[a,b],[b,a] in original order, preserving OutsideCarrier before alphabet errors; full words are validated even past unavailable prefixes. Return exact four Options, no trust in candidate data. Nonempty/rectangular private PartialDynamics invariants make all underlying accesses safe.\",\n    \"Precondition: both supplied final endpoints are genuine real states from admitted runs. Compute complete quotient once; equal classes produce Independent, even for unequal raw endpoints. Unequal classes invoke bounded distinguish; typed errors propagate, unexpected None becomes CertificateMismatch, only Some sound future becomes Distinguished with exact endpoints. max_pairs bounds only search, not the prior full quotient.\",\n    \"Compare the recomputed all-four-available final pair against submitted pair BEFORE quotient indexing. Missing/mismatched/outside endpoints fail false without indexing candidate IDs. Then equal complete future classes iff accepted. This does not demand ab==ba.\",\n    \"First require complete recomputed available pair equals submitted ab/ba. Then require future.left/right equal those same endpoints; only successful verify_distinction accepts its full word and saved unequal observations. No shortest-word requirement; all domain/future errors normalize to false here. Guard short-circuit prevents using unbound supplied endpoints.\",\n    \"Recompute four endpoints; missing either order returns exact Unavailable fields, including both-unavailable case, regardless of search budget. If all enabled delegate available_outcome. Preserve start/a/b as supplied. Only future-equivalence after both orders are enabled is independence; unavailable/search exhaustion never become independence. Every public invalid start/event is typed refusal.\",\n    \"Certificate self-describes start/a/b; replay all four runs against expected machine and propagate OutsideCarrier/OutsideAlphabet. Unavailable requires at least one missing order/prerequisite and exact four-field equality. Independent and Distinguished use the corresponding fully bound helper. Any false branch returns CertificateMismatch. It verifies the certificate tuple, not an externally supplied expected start/events or a cryptographic machine identity.\",\n    \"Private PartialDynamics::new admits nonempty reports, exactly rectangular transition rows and only real Some targets; immutable getters/Clone preserve these. run validates start and every event before Option-folding, empty word identity. Totalization interns Some(report) and None as distinct readouts, appends absorbing unavailability, so completed machine word observations are exactly partial run output Some(label)/None. MAX is a valid report. distinguish BFS visits ordered completed state pairs, stores first discovered word and refuses max_pairs==0 or attempted new pair after limit; finite graph has at most(N=n+1)^2 pairs. FIFO in alphabet order finds shortest first word; verify_distinction replays word on both supplied endpoints, compares saved raw Option answers and requires inequality, with no shortest check. Return None only after complete finite graph search. No generic callback or public mutator.\",\n    \"Admitted total machine normalization uses first-state IDs; refinement retains old class and successor classes, so split-only with at most N-1 strict splits. At fixed point, induction on words gives equal readouts and stable successor classes; induction on iterations keeps every all-word-equal pair together. Thus fixed point iff all finite word observations equal. Stable quotient is total and state map length includes every admitted state plus dead; private caller real endpoints are in range. Internal nonempty/refinement/representative invariants justify unwrap/expect on this call path. This source/call-path proof and independent Option-product BFS support the used semantics; no full provider grade inferred.\",\n    \"Current continuation context refresh:own Rust source unchanged. New predecessor BFS preserves old observable outputs,first shortest input-order word and first distinct-pair resource refusal by all-machine FIFO/discovery induction;immutable constructor/run/quotient/replay public bodies unchanged. Actual new-context459category baseline plus independent324-machine product-distance/budget checks and10000-chain pass. Original own mutation receipts remain frozen old-provider executions,not newly executed/current-context kills.\",\n    \"Current Moore context refresh:own Rust source unchanged. Scratch-signature interning emits exactly old first-state normalized values for every length-valid partition by prefix induction;pair predicate/map guards are Boolean complements of old refusal predicates with same pure observation order. Therefore actual quotient chains/maps/factors/behavior sets and all unchanged caller observations preserved for admitted machines. New actual459category baseline,independent5832machine product fixed points/16384mapcases/4096crosspairs and16clean mathematical declarations support provider review. Original own mutation receipts remain historical old-provider snapshots,not fresh own-context executions.\"\n  ],\n  \"failure_paths\": {\n    \"available\": \"Private concrete four-Option endpoint record returns Some(ab,ba) iff ALL four entries are Some, otherwise None. No indexing/lookup/allocation; this is availability only, not future equivalence or raw endpoint equality.\",\n    \"swap_endpoints\": \"Run start on [a],[b],[a,b],[b,a] in original order, preserving OutsideCarrier before alphabet errors; full words are validated even past unavailable prefixes. Return exact four Options, no trust in candidate data. Nonempty/rectangular private PartialDynamics invariants make all underlying accesses safe.\",\n    \"available_outcome\": \"Precondition: both supplied final endpoints are genuine real states from admitted runs. Compute complete quotient once; equal classes produce Independent, even for unequal raw endpoints. Unequal classes invoke bounded distinguish; typed errors propagate, unexpected None becomes CertificateMismatch, only Some sound future becomes Distinguished with exact endpoints. max_pairs bounds only search, not the prior full quotient.\",\n    \"verify_independent\": \"Compare the recomputed all-four-available final pair against submitted pair BEFORE quotient indexing. Missing/mismatched/outside endpoints fail false without indexing candidate IDs. Then equal complete future classes iff accepted. This does not demand ab==ba.\",\n    \"verify_distinguished\": \"First require complete recomputed available pair equals submitted ab/ba. Then require future.left/right equal those same endpoints; only successful verify_distinction accepts its full word and saved unequal observations. No shortest-word requirement; all domain/future errors normalize to false here. Guard short-circuit prevents using unbound supplied endpoints.\",\n    \"certify_swap\": \"Recompute four endpoints; missing either order returns exact Unavailable fields, including both-unavailable case, regardless of search budget. If all enabled delegate available_outcome. Preserve start/a/b as supplied. Only future-equivalence after both orders are enabled is independence; unavailable/search exhaustion never become independence. Every public invalid start/event is typed refusal.\",\n    \"verify_swap\": \"Certificate self-describes start/a/b; replay all four runs against expected machine and propagate OutsideCarrier/OutsideAlphabet. Unavailable requires at least one missing order/prerequisite and exact four-field equality. Independent and Distinguished use the corresponding fully bound helper. Any false branch returns CertificateMismatch. It verifies the certificate tuple, not an externally supplied expected start/events or a cryptographic machine identity.\",\n    \"runtime\": \"OutsideCarrier/OutsideAlphabet propagate from exact endpoint replay; max_pairs failure propagates only on genuinely distinguished enabled endpoints. Unavailable and future-equivalent endpoints require no distinguish budget. No untrusted endpoint indexes a quotient until exact recomputed Option binding; future domain/answer/word errors normalize to CertificateMismatch, and all comparisons short-circuit in original order. Unexpected missing distinction after unequal full classes fails closed as CertificateMismatch, but healthy provider invariants make it unreachable; no fake runtime branch claim. Inputs remain immutable; allocator/global memory failure is not promised away by pair budget.\"\n  },\n  \"trust_boundary\": {\n    \"runtime\": \"Rust/std concrete primitive equality/order/Vec/Option, compiler and allocator, source-reviewed admitted local PartialDynamics/Moore call paths. No callback or mutable machine read.\",\n    \"formal\": \"Pinned prepared clean Lean/Mathlib/kernel standard axioms;16 clean declarations. All-word observation/Option enabledness/witness/binding/classification semantics; finite quotient/search/refinement and alpha adapter separately reviewed with exact native inputs.\"\n  },\n  \"assurance_limits\": [\n    \"L3 bounded finite state-relative independence and typed witness replay; architecture target L5, no invented capability upgrade from certificate names. Full external provider/consumer grades independent.\",\n    \"Both orders must be enabled. Independence is equality of complete protected future observations, not raw endpoint equality, causal separation, spatial/tensor independence or physical preparation. Different real endpoints can be equivalent, explicitly tested.\",\n    \"Certificate carries its own start/a/b; verify_swap checks those against machine, not a separately supplied expected tuple or cryptographic model identity. Valid witness need not be shortest; different machine snapshots may accept the same observationally valid receipt.\",\n    \"max_pairs limits only distinction BFS, after complete quotient computation. No byte/time/allocator or arbitrary callback totality guarantee. Source/model/bounded independent oracles support refinement, not extraction/MIR/A+ independent toolchain. Test-only own-method alpha renaming retains actual receiver/provider identities; copied certificate nominal identity/ABI is not independently mutation tested. Contracts pending.\",\n    \"This refresh updates only the changed trace consumer context; it does not replace or extend independence own source/proof/native/metrics scope.\",\n    \"Continuation provider refreshed by source-level all-machine preservation argument and fresh actual category/independent provider replay. Historical own fault outcomes stay bound to their original provider snapshots;no new own-body fault execution inferred.\",\n    \"Moore provider refreshed by all-admitted-input source preservation and fresh actual provider/category replay. Historical own mutation outcomes retain original frozen providers;not relabeled current-context fault kills.\"\n  ],\n  \"review_evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/finite_independence.score.yaml\",\n      \"sha256\": \"aedadca6a429d396a7848313a2469a63fb57b5e46de1fc4b6001a0d3fba5a9fe\"\n    }\n  ],\n  \"open_obligations\": []\n}\n",
+      "original_paths": [
+        "code/rust/src/category_theory/finite_independence.rs.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "aedadca6a429d396a7848313a2469a63fb57b5e46de1fc4b6001a0d3fba5a9fe",
+      "bytes": 6238,
+      "record": {
+        "schema_version": "2.0.0",
+        "artifact": {
+          "path": "code/rust/src/category_theory/finite_independence.rs",
+          "language": "Rust",
+          "sha256": "6d3239d747f5aaa72e52264e513d5b51d13ad29258ec54b40cfe47884b68c21c"
+        },
+        "profile": "Exact",
+        "level": "L3",
+        "level_basis": "Conservative bounded-domain classification; no upgrade based solely on terminology or module size.",
+        "architecture_target": "L5",
+        "engineering_target": "A",
+        "gates": {
+          "G1": "A",
+          "G2": "A",
+          "G3": "A",
+          "G4": "A",
+          "G5": "A"
+        },
+        "composite_grade": "A",
+        "score_token": "L3A",
+        "is_complete": true,
+        "grade_ceiling": "A",
+        "evaluation_timestamp": "2026-10-19T21:34:55.901441+00:00",
+        "AuthorityEffect": "None",
+        "claim": {
+          "urn": "urn:tfqm:rust:category_theory:finite_independence",
+          "description": "State-relative interchange in a declared finite partial machine. Both orders must be enabled and their endpoints future-equivalent. Raw endpoints may differ; no spacelike causal premise is inferred. Certificates replay against the expected machine. Input/start errors are typed; only a successful distinction search can report distinguished futures. AuthorityEffect: None.",
+          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified."
+        },
+        "contract": {
+          "status": "pending",
+          "path": null,
+          "note": "Reserved for a later user-requested contract; none created or asserted here."
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/category_homology/20261019T191538Z/baseline.json",
+            "sha256": "13017f1e515164c06134ee89cdce8dcca64341ca9f84d233eee27634822d7c16",
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T191538Z/summary.json",
+            "sha256": "5b5ed0795e33247aa74f8a6b88bd4922145fbe9625f146399e18bc538b701bbc",
+            "scope": "Source snapshot binding and complete six-outcome accounting."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T191538Z/mutations.json",
+            "sha256": "af3e19d6fc12dbd19a88e5c37a411c458ee2d7f391d8c6a78a00336e116e3be6",
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T191346Z-metrics/receipt.json",
+            "sha256": "dd6007e07103cfb3e07d570030b55f9208bf240f6890c19600f328dcd16746b3",
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T191538Z/dependency_receipt.json",
+            "sha256": "a566f782faf7f2c769122fe916229378394e1904d67301ec8597250746fb90b1",
+            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred."
+          },
+          {
+            "path": "code/rust/quality/category_homology/assessments/moore_consumer_refresh/finite_independence.json",
+            "sha256": "607876c1e9aa158882f37b54c0626e7f9e89d2b4dd4b4aeb7cf60a7acd20060b",
+            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping."
+          }
+        ],
+        "verification": {
+          "baseline_ok": true,
+          "source_snapshot_unchanged": true,
+          "compiled_scope": "Actual category crate and one-fault copies inside their real parent scopes; no visibility widening or provider replacement",
+          "local_mutant_ids": [
+            "RR-1-0",
+            "RR-2-1",
+            "RR-3-2",
+            "RR-4-3",
+            "RR-5-4",
+            "RR-6-5",
+            "RR-7-6",
+            "RR-8-7",
+            "RR-9-8",
+            "RR-10-9",
+            "RR-11-10",
+            "RR-12-11",
+            "RR-13-12",
+            "RR-14-13",
+            "RR-15-14",
+            "RR-16-15",
+            "RR-17-16",
+            "RR-18-17",
+            "RR-19-18",
+            "RR-20-19",
+            "RR-21-20",
+            "RR-22-21",
+            "RR-23-22",
+            "RR-24-23",
+            "RR-25-24",
+            "RR-26-25",
+            "RR-27-26",
+            "RR-28-27",
+            "RR-29-28",
+            "RR-30-29",
+            "RR-31-30"
+          ],
+          "dependency_contents_stable": true
+        },
+        "mutation_accounting": {
+          "killed": 31,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": 1.0
+        },
+        "structure": {
+          "tool": "syn 3.0.9 source AST",
+          "source_ast_parsed": true,
+          "expanded_ast": false,
+          "physical_lines": 172,
+          "parsed_production_functions": 7,
+          "max_production_ccn": 7,
+          "cognitive_complexity_upper_bound": 4,
+          "control_nesting": 1,
+          "opaque_function_macros": [],
+          "functions_exceeding_A": [],
+          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
+        },
+        "open_findings": [],
+        "assurance_limits": [
+          "L3 bounded finite state-relative independence and typed witness replay; architecture target L5, no invented capability upgrade from certificate names. Full external provider/consumer grades independent.",
+          "Both orders must be enabled. Independence is equality of complete protected future observations, not raw endpoint equality, causal separation, spatial/tensor independence or physical preparation. Different real endpoints can be equivalent, explicitly tested.",
+          "Certificate carries its own start/a/b; verify_swap checks those against machine, not a separately supplied expected tuple or cryptographic model identity. Valid witness need not be shortest; different machine snapshots may accept the same observationally valid receipt.",
+          "max_pairs limits only distinction BFS, after complete quotient computation. No byte/time/allocator or arbitrary callback totality guarantee. Source/model/bounded independent oracles support refinement, not extraction/MIR/A+ independent toolchain. Test-only own-method alpha renaming retains actual receiver/provider identities; copied certificate nominal identity/ABI is not independently mutation tested. Contracts pending.",
+          "This refresh updates only the changed trace consumer context; it does not replace or extend independence own source/proof/native/metrics scope.",
+          "Continuation provider refreshed by source-level all-machine preservation argument and fresh actual category/independent provider replay. Historical own fault outcomes stay bound to their original provider snapshots;no new own-body fault execution inferred.",
+          "Moore provider refreshed by all-admitted-input source preservation and fresh actual provider/category replay. Historical own mutation outcomes retain original frozen providers;not relabeled current-context fault kills."
+        ]
+      },
+      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\nschema_version: \"2.0.0\"\nartifact:\n  path: \"code/rust/src/category_theory/finite_independence.rs\"\n  language: \"Rust\"\n  sha256: \"6d3239d747f5aaa72e52264e513d5b51d13ad29258ec54b40cfe47884b68c21c\"\nprofile: \"Exact\"\nlevel: \"L3\"\nlevel_basis: \"Conservative bounded-domain classification; no upgrade based solely on terminology or module size.\"\narchitecture_target: \"L5\"\nengineering_target: \"A\"\ngates:\n  G1: \"A\"\n  G2: \"A\"\n  G3: \"A\"\n  G4: \"A\"\n  G5: \"A\"\ncomposite_grade: \"A\"\nscore_token: \"L3A\"\nis_complete: true\ngrade_ceiling: \"A\"\nevaluation_timestamp: \"2026-10-19T21:34:55.901441+00:00\"\nAuthorityEffect: \"None\"\nclaim:\n  urn: \"urn:tfqm:rust:category_theory:finite_independence\"\n  description: \"State-relative interchange in a declared finite partial machine. Both orders must be enabled and their endpoints future-equivalent. Raw endpoints may differ; no spacelike causal premise is inferred. Certificates replay against the expected machine. Input/start errors are typed; only a successful distinction search can report distinguished futures. AuthorityEffect: None.\"\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\ncontract:\n  status: \"pending\"\n  path: null\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\nevidence:\n  - {\"path\": \"evidence/quality/category_homology/20261019T191538Z/baseline.json\", \"sha256\": \"13017f1e515164c06134ee89cdce8dcca64341ca9f84d233eee27634822d7c16\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T191538Z/summary.json\", \"sha256\": \"5b5ed0795e33247aa74f8a6b88bd4922145fbe9625f146399e18bc538b701bbc\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T191538Z/mutations.json\", \"sha256\": \"af3e19d6fc12dbd19a88e5c37a411c458ee2d7f391d8c6a78a00336e116e3be6\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T191346Z-metrics/receipt.json\", \"sha256\": \"dd6007e07103cfb3e07d570030b55f9208bf240f6890c19600f328dcd16746b3\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T191538Z/dependency_receipt.json\", \"sha256\": \"a566f782faf7f2c769122fe916229378394e1904d67301ec8597250746fb90b1\", \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"}\n  - {\"path\": \"code/rust/quality/category_homology/assessments/moore_consumer_refresh/finite_independence.json\", \"sha256\": \"607876c1e9aa158882f37b54c0626e7f9e89d2b4dd4b4aeb7cf60a7acd20060b\", \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"}\nverification:\n  baseline_ok: true\n  source_snapshot_unchanged: true\n  compiled_scope: \"Actual category crate and one-fault copies inside their real parent scopes; no visibility widening or provider replacement\"\n  local_mutant_ids:\n    - \"RR-1-0\"\n    - \"RR-2-1\"\n    - \"RR-3-2\"\n    - \"RR-4-3\"\n    - \"RR-5-4\"\n    - \"RR-6-5\"\n    - \"RR-7-6\"\n    - \"RR-8-7\"\n    - \"RR-9-8\"\n    - \"RR-10-9\"\n    - \"RR-11-10\"\n    - \"RR-12-11\"\n    - \"RR-13-12\"\n    - \"RR-14-13\"\n    - \"RR-15-14\"\n    - \"RR-16-15\"\n    - \"RR-17-16\"\n    - \"RR-18-17\"\n    - \"RR-19-18\"\n    - \"RR-20-19\"\n    - \"RR-21-20\"\n    - \"RR-22-21\"\n    - \"RR-23-22\"\n    - \"RR-24-23\"\n    - \"RR-25-24\"\n    - \"RR-26-25\"\n    - \"RR-27-26\"\n    - \"RR-28-27\"\n    - \"RR-29-28\"\n    - \"RR-30-29\"\n    - \"RR-31-30\"\n  dependency_contents_stable: true\nmutation_accounting:\n  killed: 31\n  survived: 0\n  demonstrably_equivalent: 0\n  invalid: 0\n  inconclusive: 0\n  unrun: 0\n  conservative_ratio: 1.0\nstructure:\n  tool: \"syn 3.0.9 source AST\"\n  source_ast_parsed: true\n  expanded_ast: false\n  physical_lines: 172\n  parsed_production_functions: 7\n  max_production_ccn: 7\n  cognitive_complexity_upper_bound: 4\n  control_nesting: 1\n  opaque_function_macros: []\n  functions_exceeding_A: []\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\nopen_findings: []\nassurance_limits:\n  - \"L3 bounded finite state-relative independence and typed witness replay; architecture target L5, no invented capability upgrade from certificate names. Full external provider/consumer grades independent.\"\n  - \"Both orders must be enabled. Independence is equality of complete protected future observations, not raw endpoint equality, causal separation, spatial/tensor independence or physical preparation. Different real endpoints can be equivalent, explicitly tested.\"\n  - \"Certificate carries its own start/a/b; verify_swap checks those against machine, not a separately supplied expected tuple or cryptographic model identity. Valid witness need not be shortest; different machine snapshots may accept the same observationally valid receipt.\"\n  - \"max_pairs limits only distinction BFS, after complete quotient computation. No byte/time/allocator or arbitrary callback totality guarantee. Source/model/bounded independent oracles support refinement, not extraction/MIR/A+ independent toolchain. Test-only own-method alpha renaming retains actual receiver/provider identities; copied certificate nominal identity/ABI is not independently mutation tested. Contracts pending.\"\n  - \"This refresh updates only the changed trace consumer context; it does not replace or extend independence own source/proof/native/metrics scope.\"\n  - \"Continuation provider refreshed by source-level all-machine preservation argument and fresh actual category/independent provider replay. Historical own fault outcomes stay bound to their original provider snapshots;no new own-body fault execution inferred.\"\n  - \"Moore provider refreshed by all-admitted-input source preservation and fresh actual provider/category replay. Historical own mutation outcomes retain original frozen providers;not relabeled current-context fault kills.\"\n",
+      "original_paths": [
+        "code/rust/src/category_theory/finite_independence.score.yaml"
+      ]
+    },
+    {
+      "sha256": "bb93fcc63e9c018a736ed13fe583765118f311b73eec8366b887ce98610f90a9",
+      "bytes": 2337,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/category_theory/finite_independence.rs",
+          "sha256": "6d3239d747f5aaa72e52264e513d5b51d13ad29258ec54b40cfe47884b68c21c",
+          "language": "Rust"
+        },
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "architecture_target": "L4",
+        "engineering_target": "A",
+        "level": "L3",
+        "gates": {
+          "G1": "A",
+          "G2": "A",
+          "G3": "A",
+          "G4": "A",
+          "G5": "A"
+        },
+        "composite_grade": "A",
+        "score_token": "L3A",
+        "is_complete": true,
+        "assessment_status": "existing_source_review_referenced",
+        "assessment_source": {
+          "path": "code/rust/src/category_theory/finite_independence.score.yaml",
+          "sha256": "aedadca6a429d396a7848313a2469a63fb57b5e46de1fc4b6001a0d3fba5a9fe"
+        },
+        "contract": {
+          "path": "code/rust/src/category_theory/finite_independence.rs.contract.yaml",
+          "sha256": "217e8b4dc4920cab620e16cecdb4cabb8a79701ee79ab2e6d3eb9ba3576fdfb1"
+        },
+        "assessment_note": "Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.",
+        "open_obligations": [],
+        "structural_measurement": {
+          "source_sha256": "6d3239d747f5aaa72e52264e513d5b51d13ad29258ec54b40cfe47884b68c21c",
+          "function_count": 7,
+          "maxima": {
+            "ccn": 7,
+            "cognitive_upper_bound": 4,
+            "control_nesting": 1
+          },
+          "structural_ceiling": "A",
+          "opaque_macros": [],
+          "evidence": [
+            {
+              "path": "evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json",
+              "sha256": "03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3"
+            },
+            {
+              "path": "evidence/quality/category_homology/20261019T234440Z-metrics/metrics.json",
+              "sha256": "f1cd57a774df89c14758566aa0ea903e2b5cbdd5c47f0e536eedd525b9e891cc"
+            },
+            {
+              "path": "evidence/quality/category_homology/20261019T234440Z-metrics/six_module_scope.json",
+              "sha256": "0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf"
+            }
+          ],
+          "scope": "Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate."
+        }
+      },
+      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/finite_independence.rs\",\n    \"sha256\": \"6d3239d747f5aaa72e52264e513d5b51d13ad29258ec54b40cfe47884b68c21c\",\n    \"language\": \"Rust\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"architecture_target\": \"L4\",\n  \"engineering_target\": \"A\",\n  \"level\": \"L3\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L3A\",\n  \"is_complete\": true,\n  \"assessment_status\": \"existing_source_review_referenced\",\n  \"assessment_source\": {\n    \"path\": \"code/rust/src/category_theory/finite_independence.score.yaml\",\n    \"sha256\": \"aedadca6a429d396a7848313a2469a63fb57b5e46de1fc4b6001a0d3fba5a9fe\"\n  },\n  \"contract\": {\n    \"path\": \"code/rust/src/category_theory/finite_independence.rs.contract.yaml\",\n    \"sha256\": \"217e8b4dc4920cab620e16cecdb4cabb8a79701ee79ab2e6d3eb9ba3576fdfb1\"\n  },\n  \"assessment_note\": \"Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.\",\n  \"open_obligations\": [],\n  \"structural_measurement\": {\n    \"source_sha256\": \"6d3239d747f5aaa72e52264e513d5b51d13ad29258ec54b40cfe47884b68c21c\",\n    \"function_count\": 7,\n    \"maxima\": {\n      \"ccn\": 7,\n      \"cognitive_upper_bound\": 4,\n      \"control_nesting\": 1\n    },\n    \"structural_ceiling\": \"A\",\n    \"opaque_macros\": [],\n    \"evidence\": [\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json\",\n        \"sha256\": \"03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/metrics.json\",\n        \"sha256\": \"f1cd57a774df89c14758566aa0ea903e2b5cbdd5c47f0e536eedd525b9e891cc\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/six_module_scope.json\",\n        \"sha256\": \"0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf\"\n      }\n    ],\n    \"scope\": \"Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate.\"\n  }\n}\n",
+      "original_paths": [
+        "code/rust/src/category_theory/finite_independence.rs.scoring.yaml"
+      ]
+    },
+    {
+      "sha256": "a275e52f3157479e74abd8b0bcfdbc2fe81572aecb967de7b789bbf40bc18ecf",
+      "bytes": 3673,
+      "record": {
+        "schema_version": "2.0.0",
+        "artifact": {
+          "path": "code/rust/src/category_theory/finite_independence.rs",
+          "language": "Rust",
+          "sha256": "9ebc77dbe5c4ae694817050a0568025680df59d417afb705d3d7f5a3782d3666"
+        },
+        "profile": "Exact",
+        "level": "L3",
+        "level_basis": "Conservative bounded-domain classification; no upgrade based solely on terminology or module size.",
+        "architecture_target": "L5",
+        "engineering_target": "A",
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "composite_grade": null,
+        "score_token": null,
+        "is_complete": false,
+        "grade_ceiling": "D",
+        "evaluation_timestamp": "2026-10-18T18:42:03+00:00",
+        "AuthorityEffect": "None",
+        "claim": {
+          "urn": "urn:tfqm:rust:category_theory:finite_independence",
+          "description": "State-relative interchange in a declared finite partial machine. Both orders must be enabled and their endpoints future-equivalent. Raw endpoints may differ; no spacelike causal premise is inferred.",
+          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified."
+        },
+        "contract": {
+          "status": "pending",
+          "path": null,
+          "note": "Reserved for a later user-requested contract; none created or asserted here."
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/category_homology/20261018T184203Z/baseline.json",
+            "sha256": "e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c",
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T184203Z/summary.json",
+            "sha256": "ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67",
+            "scope": "Source snapshot binding and complete six-outcome accounting."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T184203Z/mutations.json",
+            "sha256": "c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5",
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json",
+            "sha256": "86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1",
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
+          }
+        ],
+        "verification": {
+          "baseline_ok": true,
+          "source_snapshot_unchanged": true,
+          "compiled_scope": "shared scoped crate build",
+          "local_mutant_ids": []
+        },
+        "mutation_accounting": {
+          "killed": 0,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": null
+        },
+        "structure": {
+          "tool": "syn 3.0.9 source AST",
+          "source_ast_parsed": true,
+          "expanded_ast": false,
+          "physical_lines": 116,
+          "parsed_production_functions": 2,
+          "max_production_ccn": 23,
+          "cognitive_complexity_upper_bound": 19,
+          "control_nesting": 2,
+          "opaque_function_macros": [],
+          "functions_exceeding_A": [
+            {
+              "ccn": 23,
+              "cognitive_upper_bound": 19,
+              "control_nesting": 2,
+              "line": 73,
+              "name": "verify_swap",
+              "opaque_macros": []
+            }
+          ],
+          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
+        },
+        "open_findings": [
+          "A complete five-gate semantic, failure and consumer audit has not been established for this file.",
+          "Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds.",
+          "External path dependency source contents have not received a separate origin/content attestation.",
+          "Declared source metrics impose a conservative D ceiling; exceeding functions are listed in structure. Cognitive values are upper bounds, not counterexamples to semantic correctness."
+        ]
+      },
+      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\r\nschema_version: \"2.0.0\"\r\nartifact:\r\n  path: \"code/rust/src/category_theory/finite_independence.rs\"\r\n  language: \"Rust\"\r\n  sha256: \"9ebc77dbe5c4ae694817050a0568025680df59d417afb705d3d7f5a3782d3666\"\r\nprofile: \"Exact\"\r\nlevel: \"L3\"\r\nlevel_basis: \"Conservative bounded-domain classification; no upgrade based solely on terminology or module size.\"\r\narchitecture_target: \"L5\"\r\nengineering_target: \"A\"\r\ngates:\r\n  G1: null\r\n  G2: null\r\n  G3: null\r\n  G4: null\r\n  G5: null\r\ncomposite_grade: null\r\nscore_token: null\r\nis_complete: false\r\ngrade_ceiling: \"D\"\r\nevaluation_timestamp: \"2026-10-18T18:42:03+00:00\"\r\nAuthorityEffect: \"None\"\r\nclaim:\r\n  urn: \"urn:tfqm:rust:category_theory:finite_independence\"\r\n  description: \"State-relative interchange in a declared finite partial machine. Both orders must be enabled and their endpoints future-equivalent. Raw endpoints may differ; no spacelike causal premise is inferred.\"\r\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\r\ncontract:\r\n  status: \"pending\"\r\n  path: null\r\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\r\nevidence:\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/baseline.json\", \"sha256\": \"e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/summary.json\", \"sha256\": \"ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/mutations.json\", \"sha256\": \"c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json\", \"sha256\": \"86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\r\nverification:\r\n  baseline_ok: true\r\n  source_snapshot_unchanged: true\r\n  compiled_scope: \"shared scoped crate build\"\r\n  local_mutant_ids: []\r\nmutation_accounting:\r\n  killed: 0\r\n  survived: 0\r\n  demonstrably_equivalent: 0\r\n  invalid: 0\r\n  inconclusive: 0\r\n  unrun: 0\r\n  conservative_ratio: null\r\nstructure:\r\n  tool: \"syn 3.0.9 source AST\"\r\n  source_ast_parsed: true\r\n  expanded_ast: false\r\n  physical_lines: 116\r\n  parsed_production_functions: 2\r\n  max_production_ccn: 23\r\n  cognitive_complexity_upper_bound: 19\r\n  control_nesting: 2\r\n  opaque_function_macros: []\r\n  functions_exceeding_A:\r\n    - {\"ccn\": 23, \"cognitive_upper_bound\": 19, \"control_nesting\": 2, \"line\": 73, \"name\": \"verify_swap\", \"opaque_macros\": []}\r\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\r\nopen_findings:\r\n  - \"A complete five-gate semantic, failure and consumer audit has not been established for this file.\"\r\n  - \"Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds.\"\r\n  - \"External path dependency source contents have not received a separate origin/content attestation.\"\r\n  - \"Declared source metrics impose a conservative D ceiling; exceeding functions are listed in structure. Cognitive values are upper bounds, not counterexamples to semantic correctness.\"\r\n",
+      "original_paths": [
+        "evidence/quality/category_homology/resume-20261019/independence-previous/finite_independence.score.yaml"
+      ]
+    }
+  ],
+  "legacy_paths": {
+    "code/rust/src/category_theory/finite_independence.rs.contract.yaml": "217e8b4dc4920cab620e16cecdb4cabb8a79701ee79ab2e6d3eb9ba3576fdfb1",
+    "code/rust/src/category_theory/finite_independence.score.yaml": "aedadca6a429d396a7848313a2469a63fb57b5e46de1fc4b6001a0d3fba5a9fe",
+    "code/rust/src/category_theory/finite_independence.rs.scoring.yaml": "bb93fcc63e9c018a736ed13fe583765118f311b73eec8366b887ce98610f90a9",
+    "evidence/quality/category_homology/resume-20261019/independence-previous/finite_independence.score.yaml": "a275e52f3157479e74abd8b0bcfdbc2fe81572aecb967de7b789bbf40bc18ecf"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

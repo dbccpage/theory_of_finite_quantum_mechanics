@@ -7,7 +7,10 @@ import argparse
 from collections import Counter
 from datetime import datetime, timezone
 import json
-from pathlib import Path
+from pathlib import Path as _FilesystemPath
+import sys as _contract_sys
+_contract_sys.path.insert(0, str(_FilesystemPath(__file__).resolve().parents[4] / "scripts"))
+from contract_scores import RecordPath as Path, copy_file as _copy_record_file
 import re
 import shutil
 import sys
@@ -64,7 +67,7 @@ def main():
         package.mkdir();members.append(f'p{index}')
         for path,value in sources.items():
             dest=package/Path(path).name
-            shutil.copyfile(ROOT/path,dest)
+            _copy_record_file(ROOT/path,dest)
             if path.endswith('.rs') and Path(path).name!=name+'.rs':
                 support.append({'path':dest.relative_to(ROOT).as_posix(),'source':path,'sha256':value})
         manifest=package/'Cargo.toml'
@@ -77,7 +80,7 @@ def main():
     (work/'Cargo.toml').write_text('[workspace]\nmembers='+json.dumps(members)+'\nresolver="2"\n'
         '[profile.dev]\ndebug=0\nincremental=false\n[profile.test]\ndebug=0\nincremental=false\n',encoding='utf-8')
     for path in (Path(__file__),fixture_file,policy_file):
-        shutil.copyfile(path,output/path.name)
+        _copy_record_file(path,output/path.name)
     write_json(output/'support_sources.json',{'AuthorityEffect':'None','copies':support})
     write_json(output/'mutations.json',records)
     roots,dependencies=bind_dependencies(work,output)
@@ -98,7 +101,7 @@ def main():
                     except ValueError:continue
                     if item.get('reason')=='compiler-artifact' and item.get('executable'):
                         index=int(item['target']['name'].rsplit('_',1)[1])
-                        binary=work/f'tests{index}.exe';shutil.copyfile(item['executable'],binary);binaries[index]=binary
+                        binary=work/f'tests{index}.exe';_copy_record_file(item['executable'],binary);binaries[index]=binary
         finally:clear_debug_outputs(build,work)
         if len(binaries)==len(candidates):
             baseline=[execute([str(binaries[0]),test_filter,'--test-threads=1'],work,output/'control.log')]

@@ -1,0 +1,826 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/rust/src/category_theory/finite_relational.rs",
+  "contract": {
+    "schema_version": "1.0.0",
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/rust/src/category_theory/finite_relational.rs",
+      "sha256": "5360b3eedcf666da3181d93585e044290594ba42f68a5f1343d783c9764da846",
+      "language": "Rust"
+    },
+    "status": "source_reviewed",
+    "formal_specification": {
+      "profile": "Exact finite usize labels/indices,sorted successor sets and Boolean reachability;no approximation.",
+      "domain": "Nonempty report-relational state carriers,any finite labelcount including0,canonical distinct in-range successor cells. Preorders allow size0. Arbitrary partition IDs subject to length,exact onto bounded maps.",
+      "behavior": [
+        "Debug-format exact typed error with one std formatter delegation;no domain computation.",
+        "Private square boolean matrix,possibly zero size. In-place Warshall via/x/y order unions all positive finite-edge paths. No diagonal seed here;preorder caller adds reflexivity,succession caller deliberately does not.",
+        "Before allocating/indexing,refuse any edge endpoint>=size. Allocate size-square booleans,set diagonal and every supplied edge,close transitively. Duplicated edges harmless;size0empty valid. Standard allocation limits/availability outside typed error guarantee.",
+        "Borrow exact immutable preorder matrix storage.",
+        "Return stored reflexive-transitive entry if both indices inrange;otherwiseStateOutsideCarrier via checked gets.",
+        "For each unordered pair,no two-way comparability iff antisymmetric;reflexivity/transitivity already established by private constructor. Empty/singleton true.",
+        "Private usize report iterator:assign first-seen IDs using fresh current map length;repeat identical values reuse ID. IntoIterator avoids extra owned report clone/temporary value list.",
+        "Private valid successor indices and length-n partition/map. Clear reusable Vec,append image IDs,sort/deduplicate into canonical ascending set representation. No assumption IDs themselves are dense or small.",
+        "Private scratch tuple(oldblock,per-label sorted block vectors). Return previous class ID on equal key;only fresh key receives required owned deep copy. IDs first-state dense;no arbitrary payload clone/comparator.",
+        "Private admitted onto map and length-source stable IDs. Fill target slots,refuse conflicting fiber classes defensively,then each Option isSome by surjectivity. Return unique target-to-stable-class vector. No user input bypasses map validation.",
+        "Refuse empty carrier,then state/label shape. For each successor cell in state/label order,range check before sort then duplicate refusal. Own canonical sorted distinct cells,reports and exactlabelcount;zero labels allowed. Errors preserve original ordering.",
+        "Borrow exact caller-interned report labels;labels such asMAX are data.",
+        "Borrow exact canonical successor sets in state/label order;no mutable access.",
+        "Return stored admitted label alphabet cardinality,includingzero.",
+        "Return positive reports length;constructor enforces every state-aligned array.",
+        "Materialize one required sorted/deduplicated block-image Vec for output quotient cell,using fill_blocks;no intermediate BTreeSet conversion.",
+        "Private admitted state/partition and scratch withlabel_countcells. Set current old block and refill each cached per-label block image;inner Vec capacities reused across states.",
+        "Intern complete old-block/successor-block-set signatures in first-state order with one scratch. Only fresh signature keys copied. Lengthn,denseIDs;never merges existing equivalence classes. Exact old refinement equality relation and IDs retained.",
+        "Refuse length mismatch. Refine arbitrary usize class labels once;check each unordered pair for report compatibility and no split within same candidate class. Diagonal/symmetric reverse checks redundant by pure equality/set predicates;no allocations in pair loop.",
+        "Private admitted lengths:distinct oldclass pairs unconstrained;equal oldclass pairs require equal reports and equal refined signature ID,which means identical successor-block sets for every label.",
+        "Start normalized report kernel. Record initial and each strict round,stop before recording repeated stable partition. Strict split count<=n-1. Dense blocks use first source representative;reports and unique sorted block successors well-defined by stability. New quotient admission cannot fail under these invariants. Raw receipt includes full canonical history,map and owned quotient.",
+        "Recompute entire canonical quotient on actual current system and exact compare receipt,including history,map,payload. Stable but finer partition,repeated stable round,missing history or tampered payload rejected. Does not authenticate an external system identity.",
+        "Mismatch labelcounts false. Build actual disjoint union with offset successors and same report/label interpretation,compute greatest bisimulation classes,and compare exact class-ID sets covering both halves. Equivalent to unpointed minimal quotient isomorphism;no selected initial state or trace-equivalence substitution.",
+        "First map length,labelcount,range then image cardinality surjectivity. Validate per-state reports and exact labeled successor image using one shared scratch. Compute actual source greatest quotient then unique factor through onto map. Forward preservation alone insufficient;all typed invalid paths same InvalidBoundedMap.",
+        "Private admitted map/shape/canonical target. Reports equal then each source successor image sorted/deduplicated in reused buffer equals borrowed target successor Vec. Includes empty sets,branching and back condition;no per-cell target set allocation.",
+        "Seed union of declared edges only,not report-inferred/selected direction. Positive Warshall closure gives diagonal cycles/acyclicity. First unassigned ascending state is SCC root;assign its equality-or-mutual-positive-reach component. Return densefirst-root IDs and off-diagonal representative reachability as strict order on different component carrier,not raw states."
+      ],
+      "capability": "L3 exact finite coalgebra/refinement,preorder and graph algorithms;raw replay receipts remain distinct from immutable admitted systems."
+    },
+    "operations": {
+      "fmt": {
+        "line": 22,
+        "signature": "fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result",
+        "obligation": "Debug-format exact typed error with one std formatter delegation;no domain computation."
+      },
+      "close_transitively": {
+        "line": 36,
+        "signature": "fn close_transitively(relation: &mut [Vec<bool>])",
+        "obligation": "Private square boolean matrix,possibly zero size. In-place Warshall via/x/y order unions all positive finite-edge paths. No diagonal seed here;preorder caller adds reflexivity,succession caller deliberately does not."
+      },
+      "from_edges": {
+        "line": 48,
+        "signature": "pub fn from_edges(size: usize, edges: &[(usize, usize)]) -> Result<Self, RelationalError>",
+        "obligation": "Before allocating/indexing,refuse any edge endpoint>=size. Allocate size-square booleans,set diagonal and every supplied edge,close transitively. Duplicated edges harmless;size0empty valid. Standard allocation limits/availability outside typed error guarantee."
+      },
+      "relation": {
+        "line": 63,
+        "signature": "pub fn relation(&self) -> &[Vec<bool>]",
+        "obligation": "Borrow exact immutable preorder matrix storage."
+      },
+      "leq": {
+        "line": 67,
+        "signature": "pub fn leq(&self, x: usize, y: usize) -> Result<bool, RelationalError>",
+        "obligation": "Return stored reflexive-transitive entry if both indices inrange;otherwiseStateOutsideCarrier via checked gets."
+      },
+      "is_partial_order": {
+        "line": 75,
+        "signature": "pub fn is_partial_order(&self) -> bool",
+        "obligation": "For each unordered pair,no two-way comparability iff antisymmetric;reflexivity/transitivity already established by private constructor. Empty/singleton true."
+      },
+      "normalize": {
+        "line": 106,
+        "signature": "fn normalize<T: Ord>(values: impl IntoIterator<Item = T>) -> Vec<usize>",
+        "obligation": "Private usize report iterator:assign first-seen IDs using fresh current map length;repeat identical values reuse ID. IntoIterator avoids extra owned report clone/temporary value list."
+      },
+      "fill_blocks": {
+        "line": 119,
+        "signature": "fn fill_blocks(next: &[usize], partition: &[usize], blocks: &mut Vec<usize>)",
+        "obligation": "Private valid successor indices and length-n partition/map. Clear reusable Vec,append image IDs,sort/deduplicate into canonical ascending set representation. No assumption IDs themselves are dense or small."
+      },
+      "intern_blocks": {
+        "line": 126,
+        "signature": "fn intern_blocks(ids: &mut BTreeMap<BlockSignature, usize>, signature: &BlockSignature) -> usize",
+        "obligation": "Private scratch tuple(oldblock,per-label sorted block vectors). Return previous class ID on equal key;only fresh key receives required owned deep copy. IDs first-state dense;no arbitrary payload clone/comparator."
+      },
+      "factor_blocks": {
+        "line": 135,
+        "signature": "fn factor_blocks(\n    map: &[usize],\n    stable: &[usize],\n    target_size: usize,\n) -> Result<Vec<usize>, RelationalError>",
+        "obligation": "Private admitted onto map and length-source stable IDs. Fill target slots,refuse conflicting fiber classes defensively,then each Option isSome by surjectivity. Return unique target-to-stable-class vector. No user input bypasses map validation."
+      },
+      "new": {
+        "line": 156,
+        "signature": "pub fn new(\n        reports: Vec<usize>,\n        mut successors: Vec<Vec<Vec<usize>>>,\n        label_count: usize,\n    ) -> Result<Self, RelationalError>",
+        "obligation": "Refuse empty carrier,then state/label shape. For each successor cell in state/label order,range check before sort then duplicate refusal. Own canonical sorted distinct cells,reports and exactlabelcount;zero labels allowed. Errors preserve original ordering."
+      },
+      "reports": {
+        "line": 184,
+        "signature": "pub fn reports(&self) -> &[usize]",
+        "obligation": "Borrow exact caller-interned report labels;labels such asMAX are data."
+      },
+      "successors": {
+        "line": 187,
+        "signature": "pub fn successors(&self) -> &[Vec<Vec<usize>>]",
+        "obligation": "Borrow exact canonical successor sets in state/label order;no mutable access."
+      },
+      "label_count": {
+        "line": 190,
+        "signature": "pub fn label_count(&self) -> usize",
+        "obligation": "Return stored admitted label alphabet cardinality,includingzero."
+      },
+      "state_count": {
+        "line": 193,
+        "signature": "pub fn state_count(&self) -> usize",
+        "obligation": "Return positive reports length;constructor enforces every state-aligned array."
+      },
+      "block_successors": {
+        "line": 197,
+        "signature": "fn block_successors(&self, state: usize, label: usize, partition: &[usize]) -> Vec<usize>",
+        "obligation": "Materialize one required sorted/deduplicated block-image Vec for output quotient cell,using fill_blocks;no intermediate BTreeSet conversion."
+      },
+      "fill_signature": {
+        "line": 203,
+        "signature": "fn fill_signature(&self, state: usize, partition: &[usize], signature: &mut BlockSignature)",
+        "obligation": "Private admitted state/partition and scratch withlabel_countcells. Set current old block and refill each cached per-label block image;inner Vec capacities reused across states."
+      },
+      "refine": {
+        "line": 210,
+        "signature": "fn refine(&self, partition: &[usize]) -> Vec<usize>",
+        "obligation": "Intern complete old-block/successor-block-set signatures in first-state order with one scratch. Only fresh signature keys copied. Lengthn,denseIDs;never merges existing equivalence classes. Exact old refinement equality relation and IDs retained."
+      },
+      "is_report_bisimulation_partition": {
+        "line": 223,
+        "signature": "pub fn is_report_bisimulation_partition(&self, partition: &[usize]) -> bool",
+        "obligation": "Refuse length mismatch. Refine arbitrary usize class labels once;check each unordered pair for report compatibility and no split within same candidate class. Diagonal/symmetric reverse checks redundant by pure equality/set predicates;no allocations in pair loop."
+      },
+      "pair_compatible": {
+        "line": 238,
+        "signature": "fn pair_compatible(&self, x: usize, y: usize, partition: &[usize], refined: &[usize]) -> bool",
+        "obligation": "Private admitted lengths:distinct oldclass pairs unconstrained;equal oldclass pairs require equal reports and equal refined signature ID,which means identical successor-block sets for every label."
+      },
+      "bisimulation_quotient": {
+        "line": 245,
+        "signature": "pub fn bisimulation_quotient(&self) -> RelationalQuotient",
+        "obligation": "Start normalized report kernel. Record initial and each strict round,stop before recording repeated stable partition. Strict split count<=n-1. Dense blocks use first source representative;reports and unique sorted block successors well-defined by stability. New quotient admission cannot fail under these invariants. Raw receipt includes full canonical history,map and owned quotient."
+      },
+      "verify_quotient": {
+        "line": 284,
+        "signature": "pub fn verify_quotient(&self, receipt: &RelationalQuotient) -> bool",
+        "obligation": "Recompute entire canonical quotient on actual current system and exact compare receipt,including history,map,payload. Stable but finer partition,repeated stable round,missing history or tampered payload rejected. Does not authenticate an external system identity."
+      },
+      "same_behavior_set": {
+        "line": 292,
+        "signature": "pub fn same_behavior_set(&self, other: &Self) -> bool",
+        "obligation": "Mismatch labelcounts false. Build actual disjoint union with offset successors and same report/label interpretation,compute greatest bisimulation classes,and compare exact class-ID sets covering both halves. Equivalent to unpointed minimal quotient isomorphism;no selected initial state or trace-equivalence substitution."
+      },
+      "factor_through_bounded_quotient": {
+        "line": 315,
+        "signature": "pub fn factor_through_bounded_quotient(\n        &self,\n        target: &Self,\n        map: &[usize],\n    ) -> Result<Vec<usize>, RelationalError>",
+        "obligation": "First map length,labelcount,range then image cardinality surjectivity. Validate per-state reports and exact labeled successor image using one shared scratch. Compute actual source greatest quotient then unique factor through onto map. Forward preservation alone insufficient;all typed invalid paths same InvalidBoundedMap."
+      },
+      "bounded_state": {
+        "line": 337,
+        "signature": "fn bounded_state(\n        &self,\n        target: &Self,\n        map: &[usize],\n        state: usize,\n        image: &mut Vec<usize>,\n    ) -> bool",
+        "obligation": "Private admitted map/shape/canonical target. Reports equal then each source successor image sorted/deduplicated in reused buffer equals borrowed target successor Vec. Includes empty sets,branching and back condition;no per-cell target set allocation."
+      },
+      "succession_classification": {
+        "line": 359,
+        "signature": "pub fn succession_classification(&self) -> SuccessionClassification",
+        "obligation": "Seed union of declared edges only,not report-inferred/selected direction. Positive Warshall closure gives diagonal cycles/acyclicity. First unassigned ascending state is SCC root;assign its equality-or-mutual-positive-reach component. Return densefirst-root IDs and off-diagonal representative reachability as strict order on different component carrier,not raw states."
+      }
+    },
+    "invariants": [
+      "FiniteRelational owns private nonempty report/shape/range-checked vectors with sorted duplicate-free successor cells. Caller-interned reportIDs and labelpositions mean literal equality and same interpretation across systems. Empty label alphabets and empty successor sets are valid;successor multiplicity is set semantics,duplicates refused. FinitePreorder separately admits empty carriers and duplicate input edges;no public mutable storage. Derived Clone/Eq preserve validated data. Exposed quotient/classification receipts are raw mutable data and must be replayed,not admitted by field shape.",
+      "fill_blocks returns exactly ascending distinct images of supplied successor indices under arbitrary partition IDs. Clear removes old state/label content;sort/dedup is BTreeSet-equivalent forusize. Intern key equality and lexicographic order match old tuple-ofBTreeSet sequence;IDs assigned by first encounter so exact first-state normalization unchanged. One scratch oldblock/per-label Vec tuple is reused across states,with owned deep copy only for a new stored key. Input immutable throughout. Initial normalize now iterates copied scalar reportIDs instead of cloning whole reportsVec. All changes preserve original vectors/receipts on all admitted inputs by this equality/order correspondence.",
+      "Refinement starts with report kernel. A new key includes old block,so no two old classes merge. Equal new keys iff same old block and same successor-block sets at every label. Every strict nonidentical canonical round increases class count,at mostn-1 rounds;first-state canonical labels mean identical equivalence relation implies identical vector. Any report-bisimulation is contained in initial kernel and each later partition by induction:matched successors share old blocks,so image sets match. At fixed point,partition equality is itself a report-respecting strong bisimulation. Therefore it is greatest,not merely a stable possibly finer partition. Raw receipts record initial plus only strict rounds,not repeated stable. Native greatest-pair fixed point is independent of partition refinement;Lean proves greatest relation equivalence/maximality abstractly,not Rust loop extraction.",
+      "Candidate partition checking accepts arbitrary usizeIDs includingMAX;only vectorlength needs admission. Same ID pairs require reports and successor-block image equality. Computing refine once encodes exactly image sets plus oldID;for same oldID equal refinedID iff images equal. Predicate is reflexive and symmetric,so unordered x>y pairs suffice compared with old ordered all-pair loops. All allocation moves outside pair loop. This checker only stability;verify_quotient intentionally recomputes fullcanonical maximal receipt,including history and quotient;stable discrete over-refinements do not pass replay.",
+      "At stable dense partition each block nonempty and has a first source representative. All representatives in a block have equal reports and exactly same successor-block sets. Block IDs in0..blocks ensure quotient ranges/shape,and images deduplicated,so constructor expect is discharged. blocks=1+max safe because positive n and max<=n-1;owned Vecusize lengths are belowusizeMAX. Disjoint union copies both owned systems because a new independent admitted context is needed. Offset states fit concatenated carrier;for two actually allocated Vecusize reports,sumlen is belowusizeMAX by allocation layout bounds. No arbitrary requested usizeaddition. Same report/label interpretation required;coverage of union greatest-class IDs means each source class is represented on both sides. Minimal quotients then have a unique matching of classes preserving reports and successor sets. Unpointed fullclass coverage differs from trace equivalence;explicit branching trace-equal counterexample retained.",
+      "Exact bounded map requires same labels,valid total range and every target state covered. Cardinality check is surjectivity only after range check;equal-to-boundary invalidmaps must be isolated before it. Every source report equals target report and each labeled image set equals target set,both forth and back. Fiber relation of such a map is report-bisimulation:matching same target successor permits a preimage from the other source state by back condition. Thus each fiber lies within greatest source class;factor slots cannot conflict on valid map. Onto guarantees all slotsSome and unique factor. Lean bounded_kernel/bounded_fibers/factor_spec/unique prove abstract statement;source range/error/first-assignment/Vec storage separate. One image Vec reused for every state/label;canonical target Vec borrowed directly.",
+      "Warshall invariant:after processingvia prefix,boolean matrix contains exactly positive paths with interior vertices among processed prefix. Original edges supply length1;via join gives sound concatenated positive paths;finite path decomposition proves completeness at terminal layer. In-place updates preserve path soundness,including cycles;no inputedge invented. Preorder caller seeds identity first,so final relation is least reflexive/transitive closure. Succession caller seeds noidentity,so diagonal true exactly nonempty cycle. Independent per-start DFS tests positive reach rather than using Warshall. size0loops do nothing;leq checkedget never indexes outside.",
+      "SCC relation is identity or mutual positive reach. It is equivalence by reflexive closure and path transitivity. First unassigned ascending root represents a new whole equivalence class;all its members are>=root and unassigned by disjointness,so later assignments never overwrite previous class. DenseIDs are representation only. For distinct roots,positive forward reach cannot also have reverse reach,or roots would be sameSCC. Off-diagonal forward reach hence yields strict irrefl/transitive order,independent of chosen representatives. Lean reach_least,le/scc laws,representative_invariant and strict laws prove abstract graph boundary;finite Warshall/SCC loops remain source/native obligations. Raw carriercycles are not declared antisymmetric or strict;internal SCC edges do not become strict edges.",
+      "No arbitrary value payload or custom callback here:all comparators/keys are usize,Vec/BTreeMap/BTreeSet operations standard. Required owned snapshot/receipt clones remain distinct stored values;fresh signature copies and quotient cellVec are needed outputs. Scratch buffers eliminate redundant per-comparison and map-image/expected-set allocations. Vec macros build primitive square matrices/empty buffers/Option slots;fmt macro is one standard Debug delegation. No unsafe or hidden user macro law. Allocation failure,arbitrary source state/matrix/premise sizes and total byte/runtime limits are outside this exact finite algorithm contract;no explicit resource admission is invented."
+    ],
+    "failure_paths": {
+      "fmt": "Debug-format exact typed error with one std formatter delegation;no domain computation.",
+      "close_transitively": "Private square boolean matrix,possibly zero size. In-place Warshall via/x/y order unions all positive finite-edge paths. No diagonal seed here;preorder caller adds reflexivity,succession caller deliberately does not.",
+      "from_edges": "Before allocating/indexing,refuse any edge endpoint>=size. Allocate size-square booleans,set diagonal and every supplied edge,close transitively. Duplicated edges harmless;size0empty valid. Standard allocation limits/availability outside typed error guarantee.",
+      "relation": "Borrow exact immutable preorder matrix storage.",
+      "leq": "Return stored reflexive-transitive entry if both indices inrange;otherwiseStateOutsideCarrier via checked gets.",
+      "is_partial_order": "For each unordered pair,no two-way comparability iff antisymmetric;reflexivity/transitivity already established by private constructor. Empty/singleton true.",
+      "normalize": "Private usize report iterator:assign first-seen IDs using fresh current map length;repeat identical values reuse ID. IntoIterator avoids extra owned report clone/temporary value list.",
+      "fill_blocks": "Private valid successor indices and length-n partition/map. Clear reusable Vec,append image IDs,sort/deduplicate into canonical ascending set representation. No assumption IDs themselves are dense or small.",
+      "intern_blocks": "Private scratch tuple(oldblock,per-label sorted block vectors). Return previous class ID on equal key;only fresh key receives required owned deep copy. IDs first-state dense;no arbitrary payload clone/comparator.",
+      "factor_blocks": "Private admitted onto map and length-source stable IDs. Fill target slots,refuse conflicting fiber classes defensively,then each Option isSome by surjectivity. Return unique target-to-stable-class vector. No user input bypasses map validation.",
+      "new": "Refuse empty carrier,then state/label shape. For each successor cell in state/label order,range check before sort then duplicate refusal. Own canonical sorted distinct cells,reports and exactlabelcount;zero labels allowed. Errors preserve original ordering.",
+      "reports": "Borrow exact caller-interned report labels;labels such asMAX are data.",
+      "successors": "Borrow exact canonical successor sets in state/label order;no mutable access.",
+      "label_count": "Return stored admitted label alphabet cardinality,includingzero.",
+      "state_count": "Return positive reports length;constructor enforces every state-aligned array.",
+      "block_successors": "Materialize one required sorted/deduplicated block-image Vec for output quotient cell,using fill_blocks;no intermediate BTreeSet conversion.",
+      "fill_signature": "Private admitted state/partition and scratch withlabel_countcells. Set current old block and refill each cached per-label block image;inner Vec capacities reused across states.",
+      "refine": "Intern complete old-block/successor-block-set signatures in first-state order with one scratch. Only fresh signature keys copied. Lengthn,denseIDs;never merges existing equivalence classes. Exact old refinement equality relation and IDs retained.",
+      "is_report_bisimulation_partition": "Refuse length mismatch. Refine arbitrary usize class labels once;check each unordered pair for report compatibility and no split within same candidate class. Diagonal/symmetric reverse checks redundant by pure equality/set predicates;no allocations in pair loop.",
+      "pair_compatible": "Private admitted lengths:distinct oldclass pairs unconstrained;equal oldclass pairs require equal reports and equal refined signature ID,which means identical successor-block sets for every label.",
+      "bisimulation_quotient": "Start normalized report kernel. Record initial and each strict round,stop before recording repeated stable partition. Strict split count<=n-1. Dense blocks use first source representative;reports and unique sorted block successors well-defined by stability. New quotient admission cannot fail under these invariants. Raw receipt includes full canonical history,map and owned quotient.",
+      "verify_quotient": "Recompute entire canonical quotient on actual current system and exact compare receipt,including history,map,payload. Stable but finer partition,repeated stable round,missing history or tampered payload rejected. Does not authenticate an external system identity.",
+      "same_behavior_set": "Mismatch labelcounts false. Build actual disjoint union with offset successors and same report/label interpretation,compute greatest bisimulation classes,and compare exact class-ID sets covering both halves. Equivalent to unpointed minimal quotient isomorphism;no selected initial state or trace-equivalence substitution.",
+      "factor_through_bounded_quotient": "First map length,labelcount,range then image cardinality surjectivity. Validate per-state reports and exact labeled successor image using one shared scratch. Compute actual source greatest quotient then unique factor through onto map. Forward preservation alone insufficient;all typed invalid paths same InvalidBoundedMap.",
+      "bounded_state": "Private admitted map/shape/canonical target. Reports equal then each source successor image sorted/deduplicated in reused buffer equals borrowed target successor Vec. Includes empty sets,branching and back condition;no per-cell target set allocation.",
+      "succession_classification": "Seed union of declared edges only,not report-inferred/selected direction. Positive Warshall closure gives diagonal cycles/acyclicity. First unassigned ascending state is SCC root;assign its equality-or-mutual-positive-reach component. Return densefirst-root IDs and off-diagonal representative reachability as strict order on different component carrier,not raw states."
+    },
+    "trust_boundary": "Rust/std/compiler and preparedLean/Mathlib;literal report/label interpretation supplied bycaller. No trace/HoTT/clock/physical authority,wholeworkspace or extracted Rust/MIR proof. Heap availability is stdTCB,without arbitrary allocation budget guarantee.",
+    "assurance_limits": [
+      "Contracts pending;AuthorityEffectNone.",
+      "Strong report-respecting bisimulation and unpointed class coverage;not trace/HoTT/clock/Kan semantics.",
+      "Positive succession cycles and SCC strict order use different carriers;no raw-state antisymmetry inferred.",
+      "Abstract25declaration model separate from finite Rust refinement/Warshall/storage proof;no MIR/extraction claim.",
+      "Arbitrary model sizes have no allocation/work-budget admission;std heap/compiler TCB.",
+      "Scoped finite corpus/designated mutations;no external omega or whole-workspace build claim."
+    ],
+    "review_evidence": [
+      {
+        "path": "code/rust/src/category_theory/finite_relational.score.yaml",
+        "sha256": "8b636db122cb3f4443c6ce5dc27eae69561fb1e4389796df334387aab500e7f5"
+      }
+    ],
+    "open_obligations": []
+  },
+  "current_contract": "2dd50db7bcb53f63b9caf85a0d233edb58c5b6c8c43bc0cb746d8c3ff375e3ef",
+  "current_scoring": "0f4ed3fc2f3af4db608eb41f82f4016854d05d8bacb57632c774fcb5242b2348",
+  "contract_history": [
+    {
+      "sha256": "2dd50db7bcb53f63b9caf85a0d233edb58c5b6c8c43bc0cb746d8c3ff375e3ef",
+      "bytes": 29817,
+      "record": {
+        "schema_version": "1.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/category_theory/finite_relational.rs",
+          "sha256": "5360b3eedcf666da3181d93585e044290594ba42f68a5f1343d783c9764da846",
+          "language": "Rust"
+        },
+        "status": "source_reviewed",
+        "formal_specification": {
+          "profile": "Exact finite usize labels/indices,sorted successor sets and Boolean reachability;no approximation.",
+          "domain": "Nonempty report-relational state carriers,any finite labelcount including0,canonical distinct in-range successor cells. Preorders allow size0. Arbitrary partition IDs subject to length,exact onto bounded maps.",
+          "behavior": [
+            "Debug-format exact typed error with one std formatter delegation;no domain computation.",
+            "Private square boolean matrix,possibly zero size. In-place Warshall via/x/y order unions all positive finite-edge paths. No diagonal seed here;preorder caller adds reflexivity,succession caller deliberately does not.",
+            "Before allocating/indexing,refuse any edge endpoint>=size. Allocate size-square booleans,set diagonal and every supplied edge,close transitively. Duplicated edges harmless;size0empty valid. Standard allocation limits/availability outside typed error guarantee.",
+            "Borrow exact immutable preorder matrix storage.",
+            "Return stored reflexive-transitive entry if both indices inrange;otherwiseStateOutsideCarrier via checked gets.",
+            "For each unordered pair,no two-way comparability iff antisymmetric;reflexivity/transitivity already established by private constructor. Empty/singleton true.",
+            "Private usize report iterator:assign first-seen IDs using fresh current map length;repeat identical values reuse ID. IntoIterator avoids extra owned report clone/temporary value list.",
+            "Private valid successor indices and length-n partition/map. Clear reusable Vec,append image IDs,sort/deduplicate into canonical ascending set representation. No assumption IDs themselves are dense or small.",
+            "Private scratch tuple(oldblock,per-label sorted block vectors). Return previous class ID on equal key;only fresh key receives required owned deep copy. IDs first-state dense;no arbitrary payload clone/comparator.",
+            "Private admitted onto map and length-source stable IDs. Fill target slots,refuse conflicting fiber classes defensively,then each Option isSome by surjectivity. Return unique target-to-stable-class vector. No user input bypasses map validation.",
+            "Refuse empty carrier,then state/label shape. For each successor cell in state/label order,range check before sort then duplicate refusal. Own canonical sorted distinct cells,reports and exactlabelcount;zero labels allowed. Errors preserve original ordering.",
+            "Borrow exact caller-interned report labels;labels such asMAX are data.",
+            "Borrow exact canonical successor sets in state/label order;no mutable access.",
+            "Return stored admitted label alphabet cardinality,includingzero.",
+            "Return positive reports length;constructor enforces every state-aligned array.",
+            "Materialize one required sorted/deduplicated block-image Vec for output quotient cell,using fill_blocks;no intermediate BTreeSet conversion.",
+            "Private admitted state/partition and scratch withlabel_countcells. Set current old block and refill each cached per-label block image;inner Vec capacities reused across states.",
+            "Intern complete old-block/successor-block-set signatures in first-state order with one scratch. Only fresh signature keys copied. Lengthn,denseIDs;never merges existing equivalence classes. Exact old refinement equality relation and IDs retained.",
+            "Refuse length mismatch. Refine arbitrary usize class labels once;check each unordered pair for report compatibility and no split within same candidate class. Diagonal/symmetric reverse checks redundant by pure equality/set predicates;no allocations in pair loop.",
+            "Private admitted lengths:distinct oldclass pairs unconstrained;equal oldclass pairs require equal reports and equal refined signature ID,which means identical successor-block sets for every label.",
+            "Start normalized report kernel. Record initial and each strict round,stop before recording repeated stable partition. Strict split count<=n-1. Dense blocks use first source representative;reports and unique sorted block successors well-defined by stability. New quotient admission cannot fail under these invariants. Raw receipt includes full canonical history,map and owned quotient.",
+            "Recompute entire canonical quotient on actual current system and exact compare receipt,including history,map,payload. Stable but finer partition,repeated stable round,missing history or tampered payload rejected. Does not authenticate an external system identity.",
+            "Mismatch labelcounts false. Build actual disjoint union with offset successors and same report/label interpretation,compute greatest bisimulation classes,and compare exact class-ID sets covering both halves. Equivalent to unpointed minimal quotient isomorphism;no selected initial state or trace-equivalence substitution.",
+            "First map length,labelcount,range then image cardinality surjectivity. Validate per-state reports and exact labeled successor image using one shared scratch. Compute actual source greatest quotient then unique factor through onto map. Forward preservation alone insufficient;all typed invalid paths same InvalidBoundedMap.",
+            "Private admitted map/shape/canonical target. Reports equal then each source successor image sorted/deduplicated in reused buffer equals borrowed target successor Vec. Includes empty sets,branching and back condition;no per-cell target set allocation.",
+            "Seed union of declared edges only,not report-inferred/selected direction. Positive Warshall closure gives diagonal cycles/acyclicity. First unassigned ascending state is SCC root;assign its equality-or-mutual-positive-reach component. Return densefirst-root IDs and off-diagonal representative reachability as strict order on different component carrier,not raw states."
+          ],
+          "capability": "L3 exact finite coalgebra/refinement,preorder and graph algorithms;raw replay receipts remain distinct from immutable admitted systems."
+        },
+        "operations": {
+          "fmt": {
+            "line": 22,
+            "signature": "fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result",
+            "obligation": "Debug-format exact typed error with one std formatter delegation;no domain computation."
+          },
+          "close_transitively": {
+            "line": 36,
+            "signature": "fn close_transitively(relation: &mut [Vec<bool>])",
+            "obligation": "Private square boolean matrix,possibly zero size. In-place Warshall via/x/y order unions all positive finite-edge paths. No diagonal seed here;preorder caller adds reflexivity,succession caller deliberately does not."
+          },
+          "from_edges": {
+            "line": 48,
+            "signature": "pub fn from_edges(size: usize, edges: &[(usize, usize)]) -> Result<Self, RelationalError>",
+            "obligation": "Before allocating/indexing,refuse any edge endpoint>=size. Allocate size-square booleans,set diagonal and every supplied edge,close transitively. Duplicated edges harmless;size0empty valid. Standard allocation limits/availability outside typed error guarantee."
+          },
+          "relation": {
+            "line": 63,
+            "signature": "pub fn relation(&self) -> &[Vec<bool>]",
+            "obligation": "Borrow exact immutable preorder matrix storage."
+          },
+          "leq": {
+            "line": 67,
+            "signature": "pub fn leq(&self, x: usize, y: usize) -> Result<bool, RelationalError>",
+            "obligation": "Return stored reflexive-transitive entry if both indices inrange;otherwiseStateOutsideCarrier via checked gets."
+          },
+          "is_partial_order": {
+            "line": 75,
+            "signature": "pub fn is_partial_order(&self) -> bool",
+            "obligation": "For each unordered pair,no two-way comparability iff antisymmetric;reflexivity/transitivity already established by private constructor. Empty/singleton true."
+          },
+          "normalize": {
+            "line": 106,
+            "signature": "fn normalize<T: Ord>(values: impl IntoIterator<Item = T>) -> Vec<usize>",
+            "obligation": "Private usize report iterator:assign first-seen IDs using fresh current map length;repeat identical values reuse ID. IntoIterator avoids extra owned report clone/temporary value list."
+          },
+          "fill_blocks": {
+            "line": 119,
+            "signature": "fn fill_blocks(next: &[usize], partition: &[usize], blocks: &mut Vec<usize>)",
+            "obligation": "Private valid successor indices and length-n partition/map. Clear reusable Vec,append image IDs,sort/deduplicate into canonical ascending set representation. No assumption IDs themselves are dense or small."
+          },
+          "intern_blocks": {
+            "line": 126,
+            "signature": "fn intern_blocks(ids: &mut BTreeMap<BlockSignature, usize>, signature: &BlockSignature) -> usize",
+            "obligation": "Private scratch tuple(oldblock,per-label sorted block vectors). Return previous class ID on equal key;only fresh key receives required owned deep copy. IDs first-state dense;no arbitrary payload clone/comparator."
+          },
+          "factor_blocks": {
+            "line": 135,
+            "signature": "fn factor_blocks(\n    map: &[usize],\n    stable: &[usize],\n    target_size: usize,\n) -> Result<Vec<usize>, RelationalError>",
+            "obligation": "Private admitted onto map and length-source stable IDs. Fill target slots,refuse conflicting fiber classes defensively,then each Option isSome by surjectivity. Return unique target-to-stable-class vector. No user input bypasses map validation."
+          },
+          "new": {
+            "line": 156,
+            "signature": "pub fn new(\n        reports: Vec<usize>,\n        mut successors: Vec<Vec<Vec<usize>>>,\n        label_count: usize,\n    ) -> Result<Self, RelationalError>",
+            "obligation": "Refuse empty carrier,then state/label shape. For each successor cell in state/label order,range check before sort then duplicate refusal. Own canonical sorted distinct cells,reports and exactlabelcount;zero labels allowed. Errors preserve original ordering."
+          },
+          "reports": {
+            "line": 184,
+            "signature": "pub fn reports(&self) -> &[usize]",
+            "obligation": "Borrow exact caller-interned report labels;labels such asMAX are data."
+          },
+          "successors": {
+            "line": 187,
+            "signature": "pub fn successors(&self) -> &[Vec<Vec<usize>>]",
+            "obligation": "Borrow exact canonical successor sets in state/label order;no mutable access."
+          },
+          "label_count": {
+            "line": 190,
+            "signature": "pub fn label_count(&self) -> usize",
+            "obligation": "Return stored admitted label alphabet cardinality,includingzero."
+          },
+          "state_count": {
+            "line": 193,
+            "signature": "pub fn state_count(&self) -> usize",
+            "obligation": "Return positive reports length;constructor enforces every state-aligned array."
+          },
+          "block_successors": {
+            "line": 197,
+            "signature": "fn block_successors(&self, state: usize, label: usize, partition: &[usize]) -> Vec<usize>",
+            "obligation": "Materialize one required sorted/deduplicated block-image Vec for output quotient cell,using fill_blocks;no intermediate BTreeSet conversion."
+          },
+          "fill_signature": {
+            "line": 203,
+            "signature": "fn fill_signature(&self, state: usize, partition: &[usize], signature: &mut BlockSignature)",
+            "obligation": "Private admitted state/partition and scratch withlabel_countcells. Set current old block and refill each cached per-label block image;inner Vec capacities reused across states."
+          },
+          "refine": {
+            "line": 210,
+            "signature": "fn refine(&self, partition: &[usize]) -> Vec<usize>",
+            "obligation": "Intern complete old-block/successor-block-set signatures in first-state order with one scratch. Only fresh signature keys copied. Lengthn,denseIDs;never merges existing equivalence classes. Exact old refinement equality relation and IDs retained."
+          },
+          "is_report_bisimulation_partition": {
+            "line": 223,
+            "signature": "pub fn is_report_bisimulation_partition(&self, partition: &[usize]) -> bool",
+            "obligation": "Refuse length mismatch. Refine arbitrary usize class labels once;check each unordered pair for report compatibility and no split within same candidate class. Diagonal/symmetric reverse checks redundant by pure equality/set predicates;no allocations in pair loop."
+          },
+          "pair_compatible": {
+            "line": 238,
+            "signature": "fn pair_compatible(&self, x: usize, y: usize, partition: &[usize], refined: &[usize]) -> bool",
+            "obligation": "Private admitted lengths:distinct oldclass pairs unconstrained;equal oldclass pairs require equal reports and equal refined signature ID,which means identical successor-block sets for every label."
+          },
+          "bisimulation_quotient": {
+            "line": 245,
+            "signature": "pub fn bisimulation_quotient(&self) -> RelationalQuotient",
+            "obligation": "Start normalized report kernel. Record initial and each strict round,stop before recording repeated stable partition. Strict split count<=n-1. Dense blocks use first source representative;reports and unique sorted block successors well-defined by stability. New quotient admission cannot fail under these invariants. Raw receipt includes full canonical history,map and owned quotient."
+          },
+          "verify_quotient": {
+            "line": 284,
+            "signature": "pub fn verify_quotient(&self, receipt: &RelationalQuotient) -> bool",
+            "obligation": "Recompute entire canonical quotient on actual current system and exact compare receipt,including history,map,payload. Stable but finer partition,repeated stable round,missing history or tampered payload rejected. Does not authenticate an external system identity."
+          },
+          "same_behavior_set": {
+            "line": 292,
+            "signature": "pub fn same_behavior_set(&self, other: &Self) -> bool",
+            "obligation": "Mismatch labelcounts false. Build actual disjoint union with offset successors and same report/label interpretation,compute greatest bisimulation classes,and compare exact class-ID sets covering both halves. Equivalent to unpointed minimal quotient isomorphism;no selected initial state or trace-equivalence substitution."
+          },
+          "factor_through_bounded_quotient": {
+            "line": 315,
+            "signature": "pub fn factor_through_bounded_quotient(\n        &self,\n        target: &Self,\n        map: &[usize],\n    ) -> Result<Vec<usize>, RelationalError>",
+            "obligation": "First map length,labelcount,range then image cardinality surjectivity. Validate per-state reports and exact labeled successor image using one shared scratch. Compute actual source greatest quotient then unique factor through onto map. Forward preservation alone insufficient;all typed invalid paths same InvalidBoundedMap."
+          },
+          "bounded_state": {
+            "line": 337,
+            "signature": "fn bounded_state(\n        &self,\n        target: &Self,\n        map: &[usize],\n        state: usize,\n        image: &mut Vec<usize>,\n    ) -> bool",
+            "obligation": "Private admitted map/shape/canonical target. Reports equal then each source successor image sorted/deduplicated in reused buffer equals borrowed target successor Vec. Includes empty sets,branching and back condition;no per-cell target set allocation."
+          },
+          "succession_classification": {
+            "line": 359,
+            "signature": "pub fn succession_classification(&self) -> SuccessionClassification",
+            "obligation": "Seed union of declared edges only,not report-inferred/selected direction. Positive Warshall closure gives diagonal cycles/acyclicity. First unassigned ascending state is SCC root;assign its equality-or-mutual-positive-reach component. Return densefirst-root IDs and off-diagonal representative reachability as strict order on different component carrier,not raw states."
+          }
+        },
+        "invariants": [
+          "FiniteRelational owns private nonempty report/shape/range-checked vectors with sorted duplicate-free successor cells. Caller-interned reportIDs and labelpositions mean literal equality and same interpretation across systems. Empty label alphabets and empty successor sets are valid;successor multiplicity is set semantics,duplicates refused. FinitePreorder separately admits empty carriers and duplicate input edges;no public mutable storage. Derived Clone/Eq preserve validated data. Exposed quotient/classification receipts are raw mutable data and must be replayed,not admitted by field shape.",
+          "fill_blocks returns exactly ascending distinct images of supplied successor indices under arbitrary partition IDs. Clear removes old state/label content;sort/dedup is BTreeSet-equivalent forusize. Intern key equality and lexicographic order match old tuple-ofBTreeSet sequence;IDs assigned by first encounter so exact first-state normalization unchanged. One scratch oldblock/per-label Vec tuple is reused across states,with owned deep copy only for a new stored key. Input immutable throughout. Initial normalize now iterates copied scalar reportIDs instead of cloning whole reportsVec. All changes preserve original vectors/receipts on all admitted inputs by this equality/order correspondence.",
+          "Refinement starts with report kernel. A new key includes old block,so no two old classes merge. Equal new keys iff same old block and same successor-block sets at every label. Every strict nonidentical canonical round increases class count,at mostn-1 rounds;first-state canonical labels mean identical equivalence relation implies identical vector. Any report-bisimulation is contained in initial kernel and each later partition by induction:matched successors share old blocks,so image sets match. At fixed point,partition equality is itself a report-respecting strong bisimulation. Therefore it is greatest,not merely a stable possibly finer partition. Raw receipts record initial plus only strict rounds,not repeated stable. Native greatest-pair fixed point is independent of partition refinement;Lean proves greatest relation equivalence/maximality abstractly,not Rust loop extraction.",
+          "Candidate partition checking accepts arbitrary usizeIDs includingMAX;only vectorlength needs admission. Same ID pairs require reports and successor-block image equality. Computing refine once encodes exactly image sets plus oldID;for same oldID equal refinedID iff images equal. Predicate is reflexive and symmetric,so unordered x>y pairs suffice compared with old ordered all-pair loops. All allocation moves outside pair loop. This checker only stability;verify_quotient intentionally recomputes fullcanonical maximal receipt,including history and quotient;stable discrete over-refinements do not pass replay.",
+          "At stable dense partition each block nonempty and has a first source representative. All representatives in a block have equal reports and exactly same successor-block sets. Block IDs in0..blocks ensure quotient ranges/shape,and images deduplicated,so constructor expect is discharged. blocks=1+max safe because positive n and max<=n-1;owned Vecusize lengths are belowusizeMAX. Disjoint union copies both owned systems because a new independent admitted context is needed. Offset states fit concatenated carrier;for two actually allocated Vecusize reports,sumlen is belowusizeMAX by allocation layout bounds. No arbitrary requested usizeaddition. Same report/label interpretation required;coverage of union greatest-class IDs means each source class is represented on both sides. Minimal quotients then have a unique matching of classes preserving reports and successor sets. Unpointed fullclass coverage differs from trace equivalence;explicit branching trace-equal counterexample retained.",
+          "Exact bounded map requires same labels,valid total range and every target state covered. Cardinality check is surjectivity only after range check;equal-to-boundary invalidmaps must be isolated before it. Every source report equals target report and each labeled image set equals target set,both forth and back. Fiber relation of such a map is report-bisimulation:matching same target successor permits a preimage from the other source state by back condition. Thus each fiber lies within greatest source class;factor slots cannot conflict on valid map. Onto guarantees all slotsSome and unique factor. Lean bounded_kernel/bounded_fibers/factor_spec/unique prove abstract statement;source range/error/first-assignment/Vec storage separate. One image Vec reused for every state/label;canonical target Vec borrowed directly.",
+          "Warshall invariant:after processingvia prefix,boolean matrix contains exactly positive paths with interior vertices among processed prefix. Original edges supply length1;via join gives sound concatenated positive paths;finite path decomposition proves completeness at terminal layer. In-place updates preserve path soundness,including cycles;no inputedge invented. Preorder caller seeds identity first,so final relation is least reflexive/transitive closure. Succession caller seeds noidentity,so diagonal true exactly nonempty cycle. Independent per-start DFS tests positive reach rather than using Warshall. size0loops do nothing;leq checkedget never indexes outside.",
+          "SCC relation is identity or mutual positive reach. It is equivalence by reflexive closure and path transitivity. First unassigned ascending root represents a new whole equivalence class;all its members are>=root and unassigned by disjointness,so later assignments never overwrite previous class. DenseIDs are representation only. For distinct roots,positive forward reach cannot also have reverse reach,or roots would be sameSCC. Off-diagonal forward reach hence yields strict irrefl/transitive order,independent of chosen representatives. Lean reach_least,le/scc laws,representative_invariant and strict laws prove abstract graph boundary;finite Warshall/SCC loops remain source/native obligations. Raw carriercycles are not declared antisymmetric or strict;internal SCC edges do not become strict edges.",
+          "No arbitrary value payload or custom callback here:all comparators/keys are usize,Vec/BTreeMap/BTreeSet operations standard. Required owned snapshot/receipt clones remain distinct stored values;fresh signature copies and quotient cellVec are needed outputs. Scratch buffers eliminate redundant per-comparison and map-image/expected-set allocations. Vec macros build primitive square matrices/empty buffers/Option slots;fmt macro is one standard Debug delegation. No unsafe or hidden user macro law. Allocation failure,arbitrary source state/matrix/premise sizes and total byte/runtime limits are outside this exact finite algorithm contract;no explicit resource admission is invented."
+        ],
+        "failure_paths": {
+          "fmt": "Debug-format exact typed error with one std formatter delegation;no domain computation.",
+          "close_transitively": "Private square boolean matrix,possibly zero size. In-place Warshall via/x/y order unions all positive finite-edge paths. No diagonal seed here;preorder caller adds reflexivity,succession caller deliberately does not.",
+          "from_edges": "Before allocating/indexing,refuse any edge endpoint>=size. Allocate size-square booleans,set diagonal and every supplied edge,close transitively. Duplicated edges harmless;size0empty valid. Standard allocation limits/availability outside typed error guarantee.",
+          "relation": "Borrow exact immutable preorder matrix storage.",
+          "leq": "Return stored reflexive-transitive entry if both indices inrange;otherwiseStateOutsideCarrier via checked gets.",
+          "is_partial_order": "For each unordered pair,no two-way comparability iff antisymmetric;reflexivity/transitivity already established by private constructor. Empty/singleton true.",
+          "normalize": "Private usize report iterator:assign first-seen IDs using fresh current map length;repeat identical values reuse ID. IntoIterator avoids extra owned report clone/temporary value list.",
+          "fill_blocks": "Private valid successor indices and length-n partition/map. Clear reusable Vec,append image IDs,sort/deduplicate into canonical ascending set representation. No assumption IDs themselves are dense or small.",
+          "intern_blocks": "Private scratch tuple(oldblock,per-label sorted block vectors). Return previous class ID on equal key;only fresh key receives required owned deep copy. IDs first-state dense;no arbitrary payload clone/comparator.",
+          "factor_blocks": "Private admitted onto map and length-source stable IDs. Fill target slots,refuse conflicting fiber classes defensively,then each Option isSome by surjectivity. Return unique target-to-stable-class vector. No user input bypasses map validation.",
+          "new": "Refuse empty carrier,then state/label shape. For each successor cell in state/label order,range check before sort then duplicate refusal. Own canonical sorted distinct cells,reports and exactlabelcount;zero labels allowed. Errors preserve original ordering.",
+          "reports": "Borrow exact caller-interned report labels;labels such asMAX are data.",
+          "successors": "Borrow exact canonical successor sets in state/label order;no mutable access.",
+          "label_count": "Return stored admitted label alphabet cardinality,includingzero.",
+          "state_count": "Return positive reports length;constructor enforces every state-aligned array.",
+          "block_successors": "Materialize one required sorted/deduplicated block-image Vec for output quotient cell,using fill_blocks;no intermediate BTreeSet conversion.",
+          "fill_signature": "Private admitted state/partition and scratch withlabel_countcells. Set current old block and refill each cached per-label block image;inner Vec capacities reused across states.",
+          "refine": "Intern complete old-block/successor-block-set signatures in first-state order with one scratch. Only fresh signature keys copied. Lengthn,denseIDs;never merges existing equivalence classes. Exact old refinement equality relation and IDs retained.",
+          "is_report_bisimulation_partition": "Refuse length mismatch. Refine arbitrary usize class labels once;check each unordered pair for report compatibility and no split within same candidate class. Diagonal/symmetric reverse checks redundant by pure equality/set predicates;no allocations in pair loop.",
+          "pair_compatible": "Private admitted lengths:distinct oldclass pairs unconstrained;equal oldclass pairs require equal reports and equal refined signature ID,which means identical successor-block sets for every label.",
+          "bisimulation_quotient": "Start normalized report kernel. Record initial and each strict round,stop before recording repeated stable partition. Strict split count<=n-1. Dense blocks use first source representative;reports and unique sorted block successors well-defined by stability. New quotient admission cannot fail under these invariants. Raw receipt includes full canonical history,map and owned quotient.",
+          "verify_quotient": "Recompute entire canonical quotient on actual current system and exact compare receipt,including history,map,payload. Stable but finer partition,repeated stable round,missing history or tampered payload rejected. Does not authenticate an external system identity.",
+          "same_behavior_set": "Mismatch labelcounts false. Build actual disjoint union with offset successors and same report/label interpretation,compute greatest bisimulation classes,and compare exact class-ID sets covering both halves. Equivalent to unpointed minimal quotient isomorphism;no selected initial state or trace-equivalence substitution.",
+          "factor_through_bounded_quotient": "First map length,labelcount,range then image cardinality surjectivity. Validate per-state reports and exact labeled successor image using one shared scratch. Compute actual source greatest quotient then unique factor through onto map. Forward preservation alone insufficient;all typed invalid paths same InvalidBoundedMap.",
+          "bounded_state": "Private admitted map/shape/canonical target. Reports equal then each source successor image sorted/deduplicated in reused buffer equals borrowed target successor Vec. Includes empty sets,branching and back condition;no per-cell target set allocation.",
+          "succession_classification": "Seed union of declared edges only,not report-inferred/selected direction. Positive Warshall closure gives diagonal cycles/acyclicity. First unassigned ascending state is SCC root;assign its equality-or-mutual-positive-reach component. Return densefirst-root IDs and off-diagonal representative reachability as strict order on different component carrier,not raw states."
+        },
+        "trust_boundary": "Rust/std/compiler and preparedLean/Mathlib;literal report/label interpretation supplied bycaller. No trace/HoTT/clock/physical authority,wholeworkspace or extracted Rust/MIR proof. Heap availability is stdTCB,without arbitrary allocation budget guarantee.",
+        "assurance_limits": [
+          "Contracts pending;AuthorityEffectNone.",
+          "Strong report-respecting bisimulation and unpointed class coverage;not trace/HoTT/clock/Kan semantics.",
+          "Positive succession cycles and SCC strict order use different carriers;no raw-state antisymmetry inferred.",
+          "Abstract25declaration model separate from finite Rust refinement/Warshall/storage proof;no MIR/extraction claim.",
+          "Arbitrary model sizes have no allocation/work-budget admission;std heap/compiler TCB.",
+          "Scoped finite corpus/designated mutations;no external omega or whole-workspace build claim."
+        ],
+        "review_evidence": [
+          {
+            "path": "code/rust/src/category_theory/finite_relational.score.yaml",
+            "sha256": "8b636db122cb3f4443c6ce5dc27eae69561fb1e4389796df334387aab500e7f5"
+          }
+        ],
+        "open_obligations": []
+      },
+      "raw_utf8": "{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/finite_relational.rs\",\n    \"sha256\": \"5360b3eedcf666da3181d93585e044290594ba42f68a5f1343d783c9764da846\",\n    \"language\": \"Rust\"\n  },\n  \"status\": \"source_reviewed\",\n  \"formal_specification\": {\n    \"profile\": \"Exact finite usize labels/indices,sorted successor sets and Boolean reachability;no approximation.\",\n    \"domain\": \"Nonempty report-relational state carriers,any finite labelcount including0,canonical distinct in-range successor cells. Preorders allow size0. Arbitrary partition IDs subject to length,exact onto bounded maps.\",\n    \"behavior\": [\n      \"Debug-format exact typed error with one std formatter delegation;no domain computation.\",\n      \"Private square boolean matrix,possibly zero size. In-place Warshall via/x/y order unions all positive finite-edge paths. No diagonal seed here;preorder caller adds reflexivity,succession caller deliberately does not.\",\n      \"Before allocating/indexing,refuse any edge endpoint>=size. Allocate size-square booleans,set diagonal and every supplied edge,close transitively. Duplicated edges harmless;size0empty valid. Standard allocation limits/availability outside typed error guarantee.\",\n      \"Borrow exact immutable preorder matrix storage.\",\n      \"Return stored reflexive-transitive entry if both indices inrange;otherwiseStateOutsideCarrier via checked gets.\",\n      \"For each unordered pair,no two-way comparability iff antisymmetric;reflexivity/transitivity already established by private constructor. Empty/singleton true.\",\n      \"Private usize report iterator:assign first-seen IDs using fresh current map length;repeat identical values reuse ID. IntoIterator avoids extra owned report clone/temporary value list.\",\n      \"Private valid successor indices and length-n partition/map. Clear reusable Vec,append image IDs,sort/deduplicate into canonical ascending set representation. No assumption IDs themselves are dense or small.\",\n      \"Private scratch tuple(oldblock,per-label sorted block vectors). Return previous class ID on equal key;only fresh key receives required owned deep copy. IDs first-state dense;no arbitrary payload clone/comparator.\",\n      \"Private admitted onto map and length-source stable IDs. Fill target slots,refuse conflicting fiber classes defensively,then each Option isSome by surjectivity. Return unique target-to-stable-class vector. No user input bypasses map validation.\",\n      \"Refuse empty carrier,then state/label shape. For each successor cell in state/label order,range check before sort then duplicate refusal. Own canonical sorted distinct cells,reports and exactlabelcount;zero labels allowed. Errors preserve original ordering.\",\n      \"Borrow exact caller-interned report labels;labels such asMAX are data.\",\n      \"Borrow exact canonical successor sets in state/label order;no mutable access.\",\n      \"Return stored admitted label alphabet cardinality,includingzero.\",\n      \"Return positive reports length;constructor enforces every state-aligned array.\",\n      \"Materialize one required sorted/deduplicated block-image Vec for output quotient cell,using fill_blocks;no intermediate BTreeSet conversion.\",\n      \"Private admitted state/partition and scratch withlabel_countcells. Set current old block and refill each cached per-label block image;inner Vec capacities reused across states.\",\n      \"Intern complete old-block/successor-block-set signatures in first-state order with one scratch. Only fresh signature keys copied. Lengthn,denseIDs;never merges existing equivalence classes. Exact old refinement equality relation and IDs retained.\",\n      \"Refuse length mismatch. Refine arbitrary usize class labels once;check each unordered pair for report compatibility and no split within same candidate class. Diagonal/symmetric reverse checks redundant by pure equality/set predicates;no allocations in pair loop.\",\n      \"Private admitted lengths:distinct oldclass pairs unconstrained;equal oldclass pairs require equal reports and equal refined signature ID,which means identical successor-block sets for every label.\",\n      \"Start normalized report kernel. Record initial and each strict round,stop before recording repeated stable partition. Strict split count<=n-1. Dense blocks use first source representative;reports and unique sorted block successors well-defined by stability. New quotient admission cannot fail under these invariants. Raw receipt includes full canonical history,map and owned quotient.\",\n      \"Recompute entire canonical quotient on actual current system and exact compare receipt,including history,map,payload. Stable but finer partition,repeated stable round,missing history or tampered payload rejected. Does not authenticate an external system identity.\",\n      \"Mismatch labelcounts false. Build actual disjoint union with offset successors and same report/label interpretation,compute greatest bisimulation classes,and compare exact class-ID sets covering both halves. Equivalent to unpointed minimal quotient isomorphism;no selected initial state or trace-equivalence substitution.\",\n      \"First map length,labelcount,range then image cardinality surjectivity. Validate per-state reports and exact labeled successor image using one shared scratch. Compute actual source greatest quotient then unique factor through onto map. Forward preservation alone insufficient;all typed invalid paths same InvalidBoundedMap.\",\n      \"Private admitted map/shape/canonical target. Reports equal then each source successor image sorted/deduplicated in reused buffer equals borrowed target successor Vec. Includes empty sets,branching and back condition;no per-cell target set allocation.\",\n      \"Seed union of declared edges only,not report-inferred/selected direction. Positive Warshall closure gives diagonal cycles/acyclicity. First unassigned ascending state is SCC root;assign its equality-or-mutual-positive-reach component. Return densefirst-root IDs and off-diagonal representative reachability as strict order on different component carrier,not raw states.\"\n    ],\n    \"capability\": \"L3 exact finite coalgebra/refinement,preorder and graph algorithms;raw replay receipts remain distinct from immutable admitted systems.\"\n  },\n  \"operations\": {\n    \"fmt\": {\n      \"line\": 22,\n      \"signature\": \"fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result\",\n      \"obligation\": \"Debug-format exact typed error with one std formatter delegation;no domain computation.\"\n    },\n    \"close_transitively\": {\n      \"line\": 36,\n      \"signature\": \"fn close_transitively(relation: &mut [Vec<bool>])\",\n      \"obligation\": \"Private square boolean matrix,possibly zero size. In-place Warshall via/x/y order unions all positive finite-edge paths. No diagonal seed here;preorder caller adds reflexivity,succession caller deliberately does not.\"\n    },\n    \"from_edges\": {\n      \"line\": 48,\n      \"signature\": \"pub fn from_edges(size: usize, edges: &[(usize, usize)]) -> Result<Self, RelationalError>\",\n      \"obligation\": \"Before allocating/indexing,refuse any edge endpoint>=size. Allocate size-square booleans,set diagonal and every supplied edge,close transitively. Duplicated edges harmless;size0empty valid. Standard allocation limits/availability outside typed error guarantee.\"\n    },\n    \"relation\": {\n      \"line\": 63,\n      \"signature\": \"pub fn relation(&self) -> &[Vec<bool>]\",\n      \"obligation\": \"Borrow exact immutable preorder matrix storage.\"\n    },\n    \"leq\": {\n      \"line\": 67,\n      \"signature\": \"pub fn leq(&self, x: usize, y: usize) -> Result<bool, RelationalError>\",\n      \"obligation\": \"Return stored reflexive-transitive entry if both indices inrange;otherwiseStateOutsideCarrier via checked gets.\"\n    },\n    \"is_partial_order\": {\n      \"line\": 75,\n      \"signature\": \"pub fn is_partial_order(&self) -> bool\",\n      \"obligation\": \"For each unordered pair,no two-way comparability iff antisymmetric;reflexivity/transitivity already established by private constructor. Empty/singleton true.\"\n    },\n    \"normalize\": {\n      \"line\": 106,\n      \"signature\": \"fn normalize<T: Ord>(values: impl IntoIterator<Item = T>) -> Vec<usize>\",\n      \"obligation\": \"Private usize report iterator:assign first-seen IDs using fresh current map length;repeat identical values reuse ID. IntoIterator avoids extra owned report clone/temporary value list.\"\n    },\n    \"fill_blocks\": {\n      \"line\": 119,\n      \"signature\": \"fn fill_blocks(next: &[usize], partition: &[usize], blocks: &mut Vec<usize>)\",\n      \"obligation\": \"Private valid successor indices and length-n partition/map. Clear reusable Vec,append image IDs,sort/deduplicate into canonical ascending set representation. No assumption IDs themselves are dense or small.\"\n    },\n    \"intern_blocks\": {\n      \"line\": 126,\n      \"signature\": \"fn intern_blocks(ids: &mut BTreeMap<BlockSignature, usize>, signature: &BlockSignature) -> usize\",\n      \"obligation\": \"Private scratch tuple(oldblock,per-label sorted block vectors). Return previous class ID on equal key;only fresh key receives required owned deep copy. IDs first-state dense;no arbitrary payload clone/comparator.\"\n    },\n    \"factor_blocks\": {\n      \"line\": 135,\n      \"signature\": \"fn factor_blocks(\\n    map: &[usize],\\n    stable: &[usize],\\n    target_size: usize,\\n) -> Result<Vec<usize>, RelationalError>\",\n      \"obligation\": \"Private admitted onto map and length-source stable IDs. Fill target slots,refuse conflicting fiber classes defensively,then each Option isSome by surjectivity. Return unique target-to-stable-class vector. No user input bypasses map validation.\"\n    },\n    \"new\": {\n      \"line\": 156,\n      \"signature\": \"pub fn new(\\n        reports: Vec<usize>,\\n        mut successors: Vec<Vec<Vec<usize>>>,\\n        label_count: usize,\\n    ) -> Result<Self, RelationalError>\",\n      \"obligation\": \"Refuse empty carrier,then state/label shape. For each successor cell in state/label order,range check before sort then duplicate refusal. Own canonical sorted distinct cells,reports and exactlabelcount;zero labels allowed. Errors preserve original ordering.\"\n    },\n    \"reports\": {\n      \"line\": 184,\n      \"signature\": \"pub fn reports(&self) -> &[usize]\",\n      \"obligation\": \"Borrow exact caller-interned report labels;labels such asMAX are data.\"\n    },\n    \"successors\": {\n      \"line\": 187,\n      \"signature\": \"pub fn successors(&self) -> &[Vec<Vec<usize>>]\",\n      \"obligation\": \"Borrow exact canonical successor sets in state/label order;no mutable access.\"\n    },\n    \"label_count\": {\n      \"line\": 190,\n      \"signature\": \"pub fn label_count(&self) -> usize\",\n      \"obligation\": \"Return stored admitted label alphabet cardinality,includingzero.\"\n    },\n    \"state_count\": {\n      \"line\": 193,\n      \"signature\": \"pub fn state_count(&self) -> usize\",\n      \"obligation\": \"Return positive reports length;constructor enforces every state-aligned array.\"\n    },\n    \"block_successors\": {\n      \"line\": 197,\n      \"signature\": \"fn block_successors(&self, state: usize, label: usize, partition: &[usize]) -> Vec<usize>\",\n      \"obligation\": \"Materialize one required sorted/deduplicated block-image Vec for output quotient cell,using fill_blocks;no intermediate BTreeSet conversion.\"\n    },\n    \"fill_signature\": {\n      \"line\": 203,\n      \"signature\": \"fn fill_signature(&self, state: usize, partition: &[usize], signature: &mut BlockSignature)\",\n      \"obligation\": \"Private admitted state/partition and scratch withlabel_countcells. Set current old block and refill each cached per-label block image;inner Vec capacities reused across states.\"\n    },\n    \"refine\": {\n      \"line\": 210,\n      \"signature\": \"fn refine(&self, partition: &[usize]) -> Vec<usize>\",\n      \"obligation\": \"Intern complete old-block/successor-block-set signatures in first-state order with one scratch. Only fresh signature keys copied. Lengthn,denseIDs;never merges existing equivalence classes. Exact old refinement equality relation and IDs retained.\"\n    },\n    \"is_report_bisimulation_partition\": {\n      \"line\": 223,\n      \"signature\": \"pub fn is_report_bisimulation_partition(&self, partition: &[usize]) -> bool\",\n      \"obligation\": \"Refuse length mismatch. Refine arbitrary usize class labels once;check each unordered pair for report compatibility and no split within same candidate class. Diagonal/symmetric reverse checks redundant by pure equality/set predicates;no allocations in pair loop.\"\n    },\n    \"pair_compatible\": {\n      \"line\": 238,\n      \"signature\": \"fn pair_compatible(&self, x: usize, y: usize, partition: &[usize], refined: &[usize]) -> bool\",\n      \"obligation\": \"Private admitted lengths:distinct oldclass pairs unconstrained;equal oldclass pairs require equal reports and equal refined signature ID,which means identical successor-block sets for every label.\"\n    },\n    \"bisimulation_quotient\": {\n      \"line\": 245,\n      \"signature\": \"pub fn bisimulation_quotient(&self) -> RelationalQuotient\",\n      \"obligation\": \"Start normalized report kernel. Record initial and each strict round,stop before recording repeated stable partition. Strict split count<=n-1. Dense blocks use first source representative;reports and unique sorted block successors well-defined by stability. New quotient admission cannot fail under these invariants. Raw receipt includes full canonical history,map and owned quotient.\"\n    },\n    \"verify_quotient\": {\n      \"line\": 284,\n      \"signature\": \"pub fn verify_quotient(&self, receipt: &RelationalQuotient) -> bool\",\n      \"obligation\": \"Recompute entire canonical quotient on actual current system and exact compare receipt,including history,map,payload. Stable but finer partition,repeated stable round,missing history or tampered payload rejected. Does not authenticate an external system identity.\"\n    },\n    \"same_behavior_set\": {\n      \"line\": 292,\n      \"signature\": \"pub fn same_behavior_set(&self, other: &Self) -> bool\",\n      \"obligation\": \"Mismatch labelcounts false. Build actual disjoint union with offset successors and same report/label interpretation,compute greatest bisimulation classes,and compare exact class-ID sets covering both halves. Equivalent to unpointed minimal quotient isomorphism;no selected initial state or trace-equivalence substitution.\"\n    },\n    \"factor_through_bounded_quotient\": {\n      \"line\": 315,\n      \"signature\": \"pub fn factor_through_bounded_quotient(\\n        &self,\\n        target: &Self,\\n        map: &[usize],\\n    ) -> Result<Vec<usize>, RelationalError>\",\n      \"obligation\": \"First map length,labelcount,range then image cardinality surjectivity. Validate per-state reports and exact labeled successor image using one shared scratch. Compute actual source greatest quotient then unique factor through onto map. Forward preservation alone insufficient;all typed invalid paths same InvalidBoundedMap.\"\n    },\n    \"bounded_state\": {\n      \"line\": 337,\n      \"signature\": \"fn bounded_state(\\n        &self,\\n        target: &Self,\\n        map: &[usize],\\n        state: usize,\\n        image: &mut Vec<usize>,\\n    ) -> bool\",\n      \"obligation\": \"Private admitted map/shape/canonical target. Reports equal then each source successor image sorted/deduplicated in reused buffer equals borrowed target successor Vec. Includes empty sets,branching and back condition;no per-cell target set allocation.\"\n    },\n    \"succession_classification\": {\n      \"line\": 359,\n      \"signature\": \"pub fn succession_classification(&self) -> SuccessionClassification\",\n      \"obligation\": \"Seed union of declared edges only,not report-inferred/selected direction. Positive Warshall closure gives diagonal cycles/acyclicity. First unassigned ascending state is SCC root;assign its equality-or-mutual-positive-reach component. Return densefirst-root IDs and off-diagonal representative reachability as strict order on different component carrier,not raw states.\"\n    }\n  },\n  \"invariants\": [\n    \"FiniteRelational owns private nonempty report/shape/range-checked vectors with sorted duplicate-free successor cells. Caller-interned reportIDs and labelpositions mean literal equality and same interpretation across systems. Empty label alphabets and empty successor sets are valid;successor multiplicity is set semantics,duplicates refused. FinitePreorder separately admits empty carriers and duplicate input edges;no public mutable storage. Derived Clone/Eq preserve validated data. Exposed quotient/classification receipts are raw mutable data and must be replayed,not admitted by field shape.\",\n    \"fill_blocks returns exactly ascending distinct images of supplied successor indices under arbitrary partition IDs. Clear removes old state/label content;sort/dedup is BTreeSet-equivalent forusize. Intern key equality and lexicographic order match old tuple-ofBTreeSet sequence;IDs assigned by first encounter so exact first-state normalization unchanged. One scratch oldblock/per-label Vec tuple is reused across states,with owned deep copy only for a new stored key. Input immutable throughout. Initial normalize now iterates copied scalar reportIDs instead of cloning whole reportsVec. All changes preserve original vectors/receipts on all admitted inputs by this equality/order correspondence.\",\n    \"Refinement starts with report kernel. A new key includes old block,so no two old classes merge. Equal new keys iff same old block and same successor-block sets at every label. Every strict nonidentical canonical round increases class count,at mostn-1 rounds;first-state canonical labels mean identical equivalence relation implies identical vector. Any report-bisimulation is contained in initial kernel and each later partition by induction:matched successors share old blocks,so image sets match. At fixed point,partition equality is itself a report-respecting strong bisimulation. Therefore it is greatest,not merely a stable possibly finer partition. Raw receipts record initial plus only strict rounds,not repeated stable. Native greatest-pair fixed point is independent of partition refinement;Lean proves greatest relation equivalence/maximality abstractly,not Rust loop extraction.\",\n    \"Candidate partition checking accepts arbitrary usizeIDs includingMAX;only vectorlength needs admission. Same ID pairs require reports and successor-block image equality. Computing refine once encodes exactly image sets plus oldID;for same oldID equal refinedID iff images equal. Predicate is reflexive and symmetric,so unordered x>y pairs suffice compared with old ordered all-pair loops. All allocation moves outside pair loop. This checker only stability;verify_quotient intentionally recomputes fullcanonical maximal receipt,including history and quotient;stable discrete over-refinements do not pass replay.\",\n    \"At stable dense partition each block nonempty and has a first source representative. All representatives in a block have equal reports and exactly same successor-block sets. Block IDs in0..blocks ensure quotient ranges/shape,and images deduplicated,so constructor expect is discharged. blocks=1+max safe because positive n and max<=n-1;owned Vecusize lengths are belowusizeMAX. Disjoint union copies both owned systems because a new independent admitted context is needed. Offset states fit concatenated carrier;for two actually allocated Vecusize reports,sumlen is belowusizeMAX by allocation layout bounds. No arbitrary requested usizeaddition. Same report/label interpretation required;coverage of union greatest-class IDs means each source class is represented on both sides. Minimal quotients then have a unique matching of classes preserving reports and successor sets. Unpointed fullclass coverage differs from trace equivalence;explicit branching trace-equal counterexample retained.\",\n    \"Exact bounded map requires same labels,valid total range and every target state covered. Cardinality check is surjectivity only after range check;equal-to-boundary invalidmaps must be isolated before it. Every source report equals target report and each labeled image set equals target set,both forth and back. Fiber relation of such a map is report-bisimulation:matching same target successor permits a preimage from the other source state by back condition. Thus each fiber lies within greatest source class;factor slots cannot conflict on valid map. Onto guarantees all slotsSome and unique factor. Lean bounded_kernel/bounded_fibers/factor_spec/unique prove abstract statement;source range/error/first-assignment/Vec storage separate. One image Vec reused for every state/label;canonical target Vec borrowed directly.\",\n    \"Warshall invariant:after processingvia prefix,boolean matrix contains exactly positive paths with interior vertices among processed prefix. Original edges supply length1;via join gives sound concatenated positive paths;finite path decomposition proves completeness at terminal layer. In-place updates preserve path soundness,including cycles;no inputedge invented. Preorder caller seeds identity first,so final relation is least reflexive/transitive closure. Succession caller seeds noidentity,so diagonal true exactly nonempty cycle. Independent per-start DFS tests positive reach rather than using Warshall. size0loops do nothing;leq checkedget never indexes outside.\",\n    \"SCC relation is identity or mutual positive reach. It is equivalence by reflexive closure and path transitivity. First unassigned ascending root represents a new whole equivalence class;all its members are>=root and unassigned by disjointness,so later assignments never overwrite previous class. DenseIDs are representation only. For distinct roots,positive forward reach cannot also have reverse reach,or roots would be sameSCC. Off-diagonal forward reach hence yields strict irrefl/transitive order,independent of chosen representatives. Lean reach_least,le/scc laws,representative_invariant and strict laws prove abstract graph boundary;finite Warshall/SCC loops remain source/native obligations. Raw carriercycles are not declared antisymmetric or strict;internal SCC edges do not become strict edges.\",\n    \"No arbitrary value payload or custom callback here:all comparators/keys are usize,Vec/BTreeMap/BTreeSet operations standard. Required owned snapshot/receipt clones remain distinct stored values;fresh signature copies and quotient cellVec are needed outputs. Scratch buffers eliminate redundant per-comparison and map-image/expected-set allocations. Vec macros build primitive square matrices/empty buffers/Option slots;fmt macro is one standard Debug delegation. No unsafe or hidden user macro law. Allocation failure,arbitrary source state/matrix/premise sizes and total byte/runtime limits are outside this exact finite algorithm contract;no explicit resource admission is invented.\"\n  ],\n  \"failure_paths\": {\n    \"fmt\": \"Debug-format exact typed error with one std formatter delegation;no domain computation.\",\n    \"close_transitively\": \"Private square boolean matrix,possibly zero size. In-place Warshall via/x/y order unions all positive finite-edge paths. No diagonal seed here;preorder caller adds reflexivity,succession caller deliberately does not.\",\n    \"from_edges\": \"Before allocating/indexing,refuse any edge endpoint>=size. Allocate size-square booleans,set diagonal and every supplied edge,close transitively. Duplicated edges harmless;size0empty valid. Standard allocation limits/availability outside typed error guarantee.\",\n    \"relation\": \"Borrow exact immutable preorder matrix storage.\",\n    \"leq\": \"Return stored reflexive-transitive entry if both indices inrange;otherwiseStateOutsideCarrier via checked gets.\",\n    \"is_partial_order\": \"For each unordered pair,no two-way comparability iff antisymmetric;reflexivity/transitivity already established by private constructor. Empty/singleton true.\",\n    \"normalize\": \"Private usize report iterator:assign first-seen IDs using fresh current map length;repeat identical values reuse ID. IntoIterator avoids extra owned report clone/temporary value list.\",\n    \"fill_blocks\": \"Private valid successor indices and length-n partition/map. Clear reusable Vec,append image IDs,sort/deduplicate into canonical ascending set representation. No assumption IDs themselves are dense or small.\",\n    \"intern_blocks\": \"Private scratch tuple(oldblock,per-label sorted block vectors). Return previous class ID on equal key;only fresh key receives required owned deep copy. IDs first-state dense;no arbitrary payload clone/comparator.\",\n    \"factor_blocks\": \"Private admitted onto map and length-source stable IDs. Fill target slots,refuse conflicting fiber classes defensively,then each Option isSome by surjectivity. Return unique target-to-stable-class vector. No user input bypasses map validation.\",\n    \"new\": \"Refuse empty carrier,then state/label shape. For each successor cell in state/label order,range check before sort then duplicate refusal. Own canonical sorted distinct cells,reports and exactlabelcount;zero labels allowed. Errors preserve original ordering.\",\n    \"reports\": \"Borrow exact caller-interned report labels;labels such asMAX are data.\",\n    \"successors\": \"Borrow exact canonical successor sets in state/label order;no mutable access.\",\n    \"label_count\": \"Return stored admitted label alphabet cardinality,includingzero.\",\n    \"state_count\": \"Return positive reports length;constructor enforces every state-aligned array.\",\n    \"block_successors\": \"Materialize one required sorted/deduplicated block-image Vec for output quotient cell,using fill_blocks;no intermediate BTreeSet conversion.\",\n    \"fill_signature\": \"Private admitted state/partition and scratch withlabel_countcells. Set current old block and refill each cached per-label block image;inner Vec capacities reused across states.\",\n    \"refine\": \"Intern complete old-block/successor-block-set signatures in first-state order with one scratch. Only fresh signature keys copied. Lengthn,denseIDs;never merges existing equivalence classes. Exact old refinement equality relation and IDs retained.\",\n    \"is_report_bisimulation_partition\": \"Refuse length mismatch. Refine arbitrary usize class labels once;check each unordered pair for report compatibility and no split within same candidate class. Diagonal/symmetric reverse checks redundant by pure equality/set predicates;no allocations in pair loop.\",\n    \"pair_compatible\": \"Private admitted lengths:distinct oldclass pairs unconstrained;equal oldclass pairs require equal reports and equal refined signature ID,which means identical successor-block sets for every label.\",\n    \"bisimulation_quotient\": \"Start normalized report kernel. Record initial and each strict round,stop before recording repeated stable partition. Strict split count<=n-1. Dense blocks use first source representative;reports and unique sorted block successors well-defined by stability. New quotient admission cannot fail under these invariants. Raw receipt includes full canonical history,map and owned quotient.\",\n    \"verify_quotient\": \"Recompute entire canonical quotient on actual current system and exact compare receipt,including history,map,payload. Stable but finer partition,repeated stable round,missing history or tampered payload rejected. Does not authenticate an external system identity.\",\n    \"same_behavior_set\": \"Mismatch labelcounts false. Build actual disjoint union with offset successors and same report/label interpretation,compute greatest bisimulation classes,and compare exact class-ID sets covering both halves. Equivalent to unpointed minimal quotient isomorphism;no selected initial state or trace-equivalence substitution.\",\n    \"factor_through_bounded_quotient\": \"First map length,labelcount,range then image cardinality surjectivity. Validate per-state reports and exact labeled successor image using one shared scratch. Compute actual source greatest quotient then unique factor through onto map. Forward preservation alone insufficient;all typed invalid paths same InvalidBoundedMap.\",\n    \"bounded_state\": \"Private admitted map/shape/canonical target. Reports equal then each source successor image sorted/deduplicated in reused buffer equals borrowed target successor Vec. Includes empty sets,branching and back condition;no per-cell target set allocation.\",\n    \"succession_classification\": \"Seed union of declared edges only,not report-inferred/selected direction. Positive Warshall closure gives diagonal cycles/acyclicity. First unassigned ascending state is SCC root;assign its equality-or-mutual-positive-reach component. Return densefirst-root IDs and off-diagonal representative reachability as strict order on different component carrier,not raw states.\"\n  },\n  \"trust_boundary\": \"Rust/std/compiler and preparedLean/Mathlib;literal report/label interpretation supplied bycaller. No trace/HoTT/clock/physical authority,wholeworkspace or extracted Rust/MIR proof. Heap availability is stdTCB,without arbitrary allocation budget guarantee.\",\n  \"assurance_limits\": [\n    \"Contracts pending;AuthorityEffectNone.\",\n    \"Strong report-respecting bisimulation and unpointed class coverage;not trace/HoTT/clock/Kan semantics.\",\n    \"Positive succession cycles and SCC strict order use different carriers;no raw-state antisymmetry inferred.\",\n    \"Abstract25declaration model separate from finite Rust refinement/Warshall/storage proof;no MIR/extraction claim.\",\n    \"Arbitrary model sizes have no allocation/work-budget admission;std heap/compiler TCB.\",\n    \"Scoped finite corpus/designated mutations;no external omega or whole-workspace build claim.\"\n  ],\n  \"review_evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/finite_relational.score.yaml\",\n      \"sha256\": \"8b636db122cb3f4443c6ce5dc27eae69561fb1e4389796df334387aab500e7f5\"\n    }\n  ],\n  \"open_obligations\": []\n}\n",
+      "original_paths": [
+        "code/rust/src/category_theory/finite_relational.rs.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "8b636db122cb3f4443c6ce5dc27eae69561fb1e4389796df334387aab500e7f5",
+      "bytes": 4976,
+      "record": {
+        "schema_version": "2.0.0",
+        "artifact": {
+          "path": "code/rust/src/category_theory/finite_relational.rs",
+          "language": "Rust",
+          "sha256": "5360b3eedcf666da3181d93585e044290594ba42f68a5f1343d783c9764da846"
+        },
+        "profile": "Exact",
+        "level": "L3",
+        "level_basis": "Conservative bounded-domain classification; no upgrade based solely on terminology or module size.",
+        "architecture_target": "L5",
+        "engineering_target": "A",
+        "gates": {
+          "G1": "A",
+          "G2": "A",
+          "G3": "A",
+          "G4": "A",
+          "G5": "A"
+        },
+        "composite_grade": "A",
+        "score_token": "L3A",
+        "is_complete": true,
+        "grade_ceiling": "A",
+        "evaluation_timestamp": "2026-10-19T22:48:59.038947+00:00",
+        "AuthorityEffect": "None",
+        "claim": {
+          "urn": "urn:tfqm:rust:category_theory:finite_relational",
+          "description": "Finite labelled relational systems: strong report-respecting bisimulation.  Labels index declared successor sets, which may be empty or branching. This is exact set-level coalgebra, not trace equivalence, a clock, HoTT equivalence, or Kan fibrancy. Reports are caller-interned equality classes.",
+          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified."
+        },
+        "contract": {
+          "status": "pending",
+          "path": null,
+          "note": "Reserved for a later user-requested contract; none created or asserted here."
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/category_homology/20261019T224604Z/baseline.json",
+            "sha256": "a9e4b775257ead01d71d9247095867afd5e18cbdfefc2f8f676f0287ece69527",
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T224604Z/summary.json",
+            "sha256": "b6c70a25b246dd2f2a3573e572fa9800dc8fb95e368f5f4d2b199b6c816d2015",
+            "scope": "Source snapshot binding and complete six-outcome accounting."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T224604Z/mutations.json",
+            "sha256": "8108eab3f9760d229c6c9769d86e60b5e61b058e9cf64a3585b49b99e276ea0f",
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T224131Z-metrics/receipt.json",
+            "sha256": "f79e1ea43fefb03614775186f81496e1a470b922a2f23cedb91fbaf7673c2454",
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T224604Z/dependency_receipt.json",
+            "sha256": "dda59b6f0c6334fe380fe03fafa9c02e72457d1ae607c6006b253023177a0dee",
+            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred."
+          },
+          {
+            "path": "code/rust/quality/category_homology/assessments/finite_relational.json",
+            "sha256": "9d959fac65d2d2763a1a5617eb4cd43bf1a73134cf44ae7bb674e62df79d1a2a",
+            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping."
+          }
+        ],
+        "verification": {
+          "baseline_ok": true,
+          "source_snapshot_unchanged": true,
+          "compiled_scope": "Actual category crate and one-fault copies inside their real parent scopes; no visibility widening or provider replacement",
+          "local_mutant_ids": [
+            "RR-1-0",
+            "RR-2-1",
+            "RR-3-2",
+            "RR-4-3",
+            "RR-5-4",
+            "RR-6-5",
+            "RR-7-6",
+            "RR-8-7",
+            "RR-9-8",
+            "RR-10-9",
+            "RR-11-10",
+            "RR-12-11",
+            "RR-13-12",
+            "RR-14-13",
+            "RR-15-14",
+            "RR-16-15",
+            "RR-17-16",
+            "RR-18-17",
+            "RR-19-18",
+            "RR-20-19",
+            "RR-21-20",
+            "RR-22-21",
+            "RR-23-22",
+            "RR-24-23",
+            "RR-25-24",
+            "RR-26-25",
+            "RR-27-26",
+            "RR-28-27",
+            "RR-29-28",
+            "RR-30-29",
+            "RR-31-30",
+            "RR-32-31",
+            "RR-33-32",
+            "RR-34-33",
+            "RR-35-34",
+            "RR-36-35"
+          ],
+          "dependency_contents_stable": true
+        },
+        "mutation_accounting": {
+          "killed": 36,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": 1.0
+        },
+        "structure": {
+          "tool": "syn 3.0.9 source AST",
+          "source_ast_parsed": true,
+          "expanded_ast": false,
+          "physical_lines": 542,
+          "parsed_production_functions": 26,
+          "max_production_ccn": 10,
+          "cognitive_complexity_upper_bound": 14,
+          "control_nesting": 3,
+          "opaque_function_macros": [],
+          "functions_exceeding_A": [],
+          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
+        },
+        "open_findings": [],
+        "assurance_limits": [
+          "Contracts pending;AuthorityEffectNone.",
+          "Strong report-respecting bisimulation and unpointed class coverage;not trace/HoTT/clock/Kan semantics.",
+          "Positive succession cycles and SCC strict order use different carriers;no raw-state antisymmetry inferred.",
+          "Abstract25declaration model separate from finite Rust refinement/Warshall/storage proof;no MIR/extraction claim.",
+          "Arbitrary model sizes have no allocation/work-budget admission;std heap/compiler TCB.",
+          "Scoped finite corpus/designated mutations;no external omega or whole-workspace build claim."
+        ]
+      },
+      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\nschema_version: \"2.0.0\"\nartifact:\n  path: \"code/rust/src/category_theory/finite_relational.rs\"\n  language: \"Rust\"\n  sha256: \"5360b3eedcf666da3181d93585e044290594ba42f68a5f1343d783c9764da846\"\nprofile: \"Exact\"\nlevel: \"L3\"\nlevel_basis: \"Conservative bounded-domain classification; no upgrade based solely on terminology or module size.\"\narchitecture_target: \"L5\"\nengineering_target: \"A\"\ngates:\n  G1: \"A\"\n  G2: \"A\"\n  G3: \"A\"\n  G4: \"A\"\n  G5: \"A\"\ncomposite_grade: \"A\"\nscore_token: \"L3A\"\nis_complete: true\ngrade_ceiling: \"A\"\nevaluation_timestamp: \"2026-10-19T22:48:59.038947+00:00\"\nAuthorityEffect: \"None\"\nclaim:\n  urn: \"urn:tfqm:rust:category_theory:finite_relational\"\n  description: \"Finite labelled relational systems: strong report-respecting bisimulation.  Labels index declared successor sets, which may be empty or branching. This is exact set-level coalgebra, not trace equivalence, a clock, HoTT equivalence, or Kan fibrancy. Reports are caller-interned equality classes.\"\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\ncontract:\n  status: \"pending\"\n  path: null\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\nevidence:\n  - {\"path\": \"evidence/quality/category_homology/20261019T224604Z/baseline.json\", \"sha256\": \"a9e4b775257ead01d71d9247095867afd5e18cbdfefc2f8f676f0287ece69527\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T224604Z/summary.json\", \"sha256\": \"b6c70a25b246dd2f2a3573e572fa9800dc8fb95e368f5f4d2b199b6c816d2015\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T224604Z/mutations.json\", \"sha256\": \"8108eab3f9760d229c6c9769d86e60b5e61b058e9cf64a3585b49b99e276ea0f\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T224131Z-metrics/receipt.json\", \"sha256\": \"f79e1ea43fefb03614775186f81496e1a470b922a2f23cedb91fbaf7673c2454\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T224604Z/dependency_receipt.json\", \"sha256\": \"dda59b6f0c6334fe380fe03fafa9c02e72457d1ae607c6006b253023177a0dee\", \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"}\n  - {\"path\": \"code/rust/quality/category_homology/assessments/finite_relational.json\", \"sha256\": \"9d959fac65d2d2763a1a5617eb4cd43bf1a73134cf44ae7bb674e62df79d1a2a\", \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"}\nverification:\n  baseline_ok: true\n  source_snapshot_unchanged: true\n  compiled_scope: \"Actual category crate and one-fault copies inside their real parent scopes; no visibility widening or provider replacement\"\n  local_mutant_ids:\n    - \"RR-1-0\"\n    - \"RR-2-1\"\n    - \"RR-3-2\"\n    - \"RR-4-3\"\n    - \"RR-5-4\"\n    - \"RR-6-5\"\n    - \"RR-7-6\"\n    - \"RR-8-7\"\n    - \"RR-9-8\"\n    - \"RR-10-9\"\n    - \"RR-11-10\"\n    - \"RR-12-11\"\n    - \"RR-13-12\"\n    - \"RR-14-13\"\n    - \"RR-15-14\"\n    - \"RR-16-15\"\n    - \"RR-17-16\"\n    - \"RR-18-17\"\n    - \"RR-19-18\"\n    - \"RR-20-19\"\n    - \"RR-21-20\"\n    - \"RR-22-21\"\n    - \"RR-23-22\"\n    - \"RR-24-23\"\n    - \"RR-25-24\"\n    - \"RR-26-25\"\n    - \"RR-27-26\"\n    - \"RR-28-27\"\n    - \"RR-29-28\"\n    - \"RR-30-29\"\n    - \"RR-31-30\"\n    - \"RR-32-31\"\n    - \"RR-33-32\"\n    - \"RR-34-33\"\n    - \"RR-35-34\"\n    - \"RR-36-35\"\n  dependency_contents_stable: true\nmutation_accounting:\n  killed: 36\n  survived: 0\n  demonstrably_equivalent: 0\n  invalid: 0\n  inconclusive: 0\n  unrun: 0\n  conservative_ratio: 1.0\nstructure:\n  tool: \"syn 3.0.9 source AST\"\n  source_ast_parsed: true\n  expanded_ast: false\n  physical_lines: 542\n  parsed_production_functions: 26\n  max_production_ccn: 10\n  cognitive_complexity_upper_bound: 14\n  control_nesting: 3\n  opaque_function_macros: []\n  functions_exceeding_A: []\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\nopen_findings: []\nassurance_limits:\n  - \"Contracts pending;AuthorityEffectNone.\"\n  - \"Strong report-respecting bisimulation and unpointed class coverage;not trace/HoTT/clock/Kan semantics.\"\n  - \"Positive succession cycles and SCC strict order use different carriers;no raw-state antisymmetry inferred.\"\n  - \"Abstract25declaration model separate from finite Rust refinement/Warshall/storage proof;no MIR/extraction claim.\"\n  - \"Arbitrary model sizes have no allocation/work-budget admission;std heap/compiler TCB.\"\n  - \"Scoped finite corpus/designated mutations;no external omega or whole-workspace build claim.\"\n",
+      "original_paths": [
+        "code/rust/src/category_theory/finite_relational.score.yaml"
+      ]
+    },
+    {
+      "sha256": "0f4ed3fc2f3af4db608eb41f82f4016854d05d8bacb57632c774fcb5242b2348",
+      "bytes": 2334,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/category_theory/finite_relational.rs",
+          "sha256": "5360b3eedcf666da3181d93585e044290594ba42f68a5f1343d783c9764da846",
+          "language": "Rust"
+        },
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "architecture_target": "L4",
+        "engineering_target": "A",
+        "level": "L3",
+        "gates": {
+          "G1": "A",
+          "G2": "A",
+          "G3": "A",
+          "G4": "A",
+          "G5": "A"
+        },
+        "composite_grade": "A",
+        "score_token": "L3A",
+        "is_complete": true,
+        "assessment_status": "existing_source_review_referenced",
+        "assessment_source": {
+          "path": "code/rust/src/category_theory/finite_relational.score.yaml",
+          "sha256": "8b636db122cb3f4443c6ce5dc27eae69561fb1e4389796df334387aab500e7f5"
+        },
+        "contract": {
+          "path": "code/rust/src/category_theory/finite_relational.rs.contract.yaml",
+          "sha256": "2dd50db7bcb53f63b9caf85a0d233edb58c5b6c8c43bc0cb746d8c3ff375e3ef"
+        },
+        "assessment_note": "Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.",
+        "open_obligations": [],
+        "structural_measurement": {
+          "source_sha256": "5360b3eedcf666da3181d93585e044290594ba42f68a5f1343d783c9764da846",
+          "function_count": 26,
+          "maxima": {
+            "ccn": 10,
+            "cognitive_upper_bound": 14,
+            "control_nesting": 3
+          },
+          "structural_ceiling": "A",
+          "opaque_macros": [],
+          "evidence": [
+            {
+              "path": "evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json",
+              "sha256": "03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3"
+            },
+            {
+              "path": "evidence/quality/category_homology/20261019T234440Z-metrics/metrics.json",
+              "sha256": "f1cd57a774df89c14758566aa0ea903e2b5cbdd5c47f0e536eedd525b9e891cc"
+            },
+            {
+              "path": "evidence/quality/category_homology/20261019T234440Z-metrics/six_module_scope.json",
+              "sha256": "0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf"
+            }
+          ],
+          "scope": "Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate."
+        }
+      },
+      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/finite_relational.rs\",\n    \"sha256\": \"5360b3eedcf666da3181d93585e044290594ba42f68a5f1343d783c9764da846\",\n    \"language\": \"Rust\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"architecture_target\": \"L4\",\n  \"engineering_target\": \"A\",\n  \"level\": \"L3\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L3A\",\n  \"is_complete\": true,\n  \"assessment_status\": \"existing_source_review_referenced\",\n  \"assessment_source\": {\n    \"path\": \"code/rust/src/category_theory/finite_relational.score.yaml\",\n    \"sha256\": \"8b636db122cb3f4443c6ce5dc27eae69561fb1e4389796df334387aab500e7f5\"\n  },\n  \"contract\": {\n    \"path\": \"code/rust/src/category_theory/finite_relational.rs.contract.yaml\",\n    \"sha256\": \"2dd50db7bcb53f63b9caf85a0d233edb58c5b6c8c43bc0cb746d8c3ff375e3ef\"\n  },\n  \"assessment_note\": \"Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.\",\n  \"open_obligations\": [],\n  \"structural_measurement\": {\n    \"source_sha256\": \"5360b3eedcf666da3181d93585e044290594ba42f68a5f1343d783c9764da846\",\n    \"function_count\": 26,\n    \"maxima\": {\n      \"ccn\": 10,\n      \"cognitive_upper_bound\": 14,\n      \"control_nesting\": 3\n    },\n    \"structural_ceiling\": \"A\",\n    \"opaque_macros\": [],\n    \"evidence\": [\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json\",\n        \"sha256\": \"03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/metrics.json\",\n        \"sha256\": \"f1cd57a774df89c14758566aa0ea903e2b5cbdd5c47f0e536eedd525b9e891cc\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/six_module_scope.json\",\n        \"sha256\": \"0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf\"\n      }\n    ],\n    \"scope\": \"Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate.\"\n  }\n}\n",
+      "original_paths": [
+        "code/rust/src/category_theory/finite_relational.rs.scoring.yaml"
+      ]
+    },
+    {
+      "sha256": "5eb6d8493334ab0f324cc8fed92359ac16007956eecdc95a63fac8a6523ac5f1",
+      "bytes": 3934,
+      "record": {
+        "schema_version": "2.0.0",
+        "artifact": {
+          "path": "code/rust/src/category_theory/finite_relational.rs",
+          "language": "Rust",
+          "sha256": "103a643016983c8e2ee1c451ecb0f2949b5b219a4374304e0bdb26bfee627be4"
+        },
+        "profile": "Exact",
+        "level": "L3",
+        "level_basis": "Conservative bounded-domain classification; no upgrade based solely on terminology or module size.",
+        "architecture_target": "L5",
+        "engineering_target": "A",
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "composite_grade": null,
+        "score_token": null,
+        "is_complete": false,
+        "grade_ceiling": "C",
+        "evaluation_timestamp": "2026-10-18T18:42:03+00:00",
+        "AuthorityEffect": "None",
+        "claim": {
+          "urn": "urn:tfqm:rust:category_theory:finite_relational",
+          "description": "Finite labelled relational systems: strong report-respecting bisimulation.  Labels index declared successor sets, which may be empty or branching. This is exact set-level coalgebra, not trace equivalence, a clock, HoTT equivalence, or Kan fibrancy. Reports are caller-interned equality classes.",
+          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified."
+        },
+        "contract": {
+          "status": "pending",
+          "path": null,
+          "note": "Reserved for a later user-requested contract; none created or asserted here."
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/category_homology/20261018T184203Z/baseline.json",
+            "sha256": "e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c",
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T184203Z/summary.json",
+            "sha256": "ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67",
+            "scope": "Source snapshot binding and complete six-outcome accounting."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T184203Z/mutations.json",
+            "sha256": "c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5",
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json",
+            "sha256": "86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1",
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
+          }
+        ],
+        "verification": {
+          "baseline_ok": true,
+          "source_snapshot_unchanged": true,
+          "compiled_scope": "shared scoped crate build",
+          "local_mutant_ids": []
+        },
+        "mutation_accounting": {
+          "killed": 0,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": null
+        },
+        "structure": {
+          "tool": "syn 3.0.9 source AST",
+          "source_ast_parsed": true,
+          "expanded_ast": false,
+          "physical_lines": 514,
+          "parsed_production_functions": 20,
+          "max_production_ccn": 12,
+          "cognitive_complexity_upper_bound": 20,
+          "control_nesting": 5,
+          "opaque_function_macros": [],
+          "functions_exceeding_A": [
+            {
+              "ccn": 8,
+              "cognitive_upper_bound": 20,
+              "control_nesting": 5,
+              "line": 183,
+              "name": "is_report_bisimulation_partition",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 12,
+              "cognitive_upper_bound": 16,
+              "control_nesting": 3,
+              "line": 282,
+              "name": "factor_through_bounded_quotient",
+              "opaque_macros": []
+            }
+          ],
+          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
+        },
+        "open_findings": [
+          "A complete five-gate semantic, failure and consumer audit has not been established for this file.",
+          "Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds.",
+          "External path dependency source contents have not received a separate origin/content attestation.",
+          "Declared source metrics impose a conservative C ceiling; exceeding functions are listed in structure. Cognitive values are upper bounds, not counterexamples to semantic correctness."
+        ]
+      },
+      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\r\nschema_version: \"2.0.0\"\r\nartifact:\r\n  path: \"code/rust/src/category_theory/finite_relational.rs\"\r\n  language: \"Rust\"\r\n  sha256: \"103a643016983c8e2ee1c451ecb0f2949b5b219a4374304e0bdb26bfee627be4\"\r\nprofile: \"Exact\"\r\nlevel: \"L3\"\r\nlevel_basis: \"Conservative bounded-domain classification; no upgrade based solely on terminology or module size.\"\r\narchitecture_target: \"L5\"\r\nengineering_target: \"A\"\r\ngates:\r\n  G1: null\r\n  G2: null\r\n  G3: null\r\n  G4: null\r\n  G5: null\r\ncomposite_grade: null\r\nscore_token: null\r\nis_complete: false\r\ngrade_ceiling: \"C\"\r\nevaluation_timestamp: \"2026-10-18T18:42:03+00:00\"\r\nAuthorityEffect: \"None\"\r\nclaim:\r\n  urn: \"urn:tfqm:rust:category_theory:finite_relational\"\r\n  description: \"Finite labelled relational systems: strong report-respecting bisimulation.  Labels index declared successor sets, which may be empty or branching. This is exact set-level coalgebra, not trace equivalence, a clock, HoTT equivalence, or Kan fibrancy. Reports are caller-interned equality classes.\"\r\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\r\ncontract:\r\n  status: \"pending\"\r\n  path: null\r\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\r\nevidence:\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/baseline.json\", \"sha256\": \"e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/summary.json\", \"sha256\": \"ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/mutations.json\", \"sha256\": \"c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json\", \"sha256\": \"86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\r\nverification:\r\n  baseline_ok: true\r\n  source_snapshot_unchanged: true\r\n  compiled_scope: \"shared scoped crate build\"\r\n  local_mutant_ids: []\r\nmutation_accounting:\r\n  killed: 0\r\n  survived: 0\r\n  demonstrably_equivalent: 0\r\n  invalid: 0\r\n  inconclusive: 0\r\n  unrun: 0\r\n  conservative_ratio: null\r\nstructure:\r\n  tool: \"syn 3.0.9 source AST\"\r\n  source_ast_parsed: true\r\n  expanded_ast: false\r\n  physical_lines: 514\r\n  parsed_production_functions: 20\r\n  max_production_ccn: 12\r\n  cognitive_complexity_upper_bound: 20\r\n  control_nesting: 5\r\n  opaque_function_macros: []\r\n  functions_exceeding_A:\r\n    - {\"ccn\": 8, \"cognitive_upper_bound\": 20, \"control_nesting\": 5, \"line\": 183, \"name\": \"is_report_bisimulation_partition\", \"opaque_macros\": []}\r\n    - {\"ccn\": 12, \"cognitive_upper_bound\": 16, \"control_nesting\": 3, \"line\": 282, \"name\": \"factor_through_bounded_quotient\", \"opaque_macros\": []}\r\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\r\nopen_findings:\r\n  - \"A complete five-gate semantic, failure and consumer audit has not been established for this file.\"\r\n  - \"Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds.\"\r\n  - \"External path dependency source contents have not received a separate origin/content attestation.\"\r\n  - \"Declared source metrics impose a conservative C ceiling; exceeding functions are listed in structure. Cognitive values are upper bounds, not counterexamples to semantic correctness.\"\r\n",
+      "original_paths": [
+        "evidence/quality/category_homology/resume-20261019/relational-previous/finite_relational.score.yaml"
+      ]
+    }
+  ],
+  "legacy_paths": {
+    "code/rust/src/category_theory/finite_relational.rs.contract.yaml": "2dd50db7bcb53f63b9caf85a0d233edb58c5b6c8c43bc0cb746d8c3ff375e3ef",
+    "code/rust/src/category_theory/finite_relational.score.yaml": "8b636db122cb3f4443c6ce5dc27eae69561fb1e4389796df334387aab500e7f5",
+    "code/rust/src/category_theory/finite_relational.rs.scoring.yaml": "0f4ed3fc2f3af4db608eb41f82f4016854d05d8bacb57632c774fcb5242b2348",
+    "evidence/quality/category_homology/resume-20261019/relational-previous/finite_relational.score.yaml": "5eb6d8493334ab0f324cc8fed92359ac16007956eecdc95a63fac8a6523ac5f1"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

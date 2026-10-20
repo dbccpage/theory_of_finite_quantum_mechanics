@@ -1,0 +1,1466 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/rust/src/mub/omega_native/mub6_moment_ledger.rs",
+  "contract": {
+    "schema_version": "1.0.0",
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/rust/src/mub/omega_native/mub6_moment_ledger.rs",
+      "sha256": "408dd0f24879bf0764e795f48cafad2a74d4a30d7676759c932bb0942ffd4cd6",
+      "language": "Rust"
+    },
+    "contract_urn": "urn:tfqm:contract:mub:omega_native:mub6_moment_ledger.rs",
+    "status": "draft_requires_semantic_review",
+    "target": "L4A",
+    "profile": "Exact",
+    "purpose": "Finite mutually unbiased bases (MUB) in dimension 6, cyclotomic/rational Gramian diagnostics, dual witnesses, Fourier landing verifiers, and cover-tree exclusions.",
+    "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+    "compilation": {
+      "disabled_by_cfg_any": false,
+      "test_or_support_file": false,
+      "compatibility_mirror_tree": false
+    },
+    "declaration_index": [
+      {
+        "kind": "const",
+        "name": "SCHEMA_VERSION",
+        "line": 21,
+        "declaration_line": "pub const SCHEMA_VERSION: &str = \"omega.mub.moment-sdp-ledger.v1\";"
+      },
+      {
+        "kind": "const",
+        "name": "SCOPE_STRING",
+        "line": 22,
+        "declaration_line": "pub const SCOPE_STRING: &str = \"exact_moment_sdp_hierarchy_ledger_benchmarks\";"
+      },
+      {
+        "kind": "const",
+        "name": "STATUS_CERTIFIED_CANDIDATE_REFUTATION",
+        "line": 24,
+        "declaration_line": "pub const STATUS_CERTIFIED_CANDIDATE_REFUTATION: &str = \"CERTIFIED_CANDIDATE_REFUTATION\";"
+      },
+      {
+        "kind": "const",
+        "name": "STATUS_MISSING_PROOF_OBLIGATION",
+        "line": 25,
+        "declaration_line": "pub const STATUS_MISSING_PROOF_OBLIGATION: &str = \"MISSING_PROOF_OBLIGATION\";"
+      },
+      {
+        "kind": "const",
+        "name": "SUPPORTED_DEGREES",
+        "line": 27,
+        "declaration_line": "pub const SUPPORTED_DEGREES: &[usize] = &[2, 4, 6, 8];"
+      },
+      {
+        "kind": "const",
+        "name": "DEGREE_2_X0_TRACE",
+        "line": 29,
+        "declaration_line": "pub const DEGREE_2_X0_TRACE: (i64, i64) = (-9, 20);"
+      },
+      {
+        "kind": "const",
+        "name": "DEGREE_2_S6_TRACE",
+        "line": 30,
+        "declaration_line": "pub const DEGREE_2_S6_TRACE: (i64, i64) = (-6, 1);"
+      },
+      {
+        "kind": "const",
+        "name": "DEGREE_4_X0_EVALUATED_TRACE",
+        "line": 32,
+        "declaration_line": "pub const DEGREE_4_X0_EVALUATED_TRACE: (i64, i64) = (-21, 25);"
+      },
+      {
+        "kind": "const",
+        "name": "DEGREE_4_X0_NOMINAL_TRACE",
+        "line": 33,
+        "declaration_line": "pub const DEGREE_4_X0_NOMINAL_TRACE: (i64, i64) = (-33, 50);"
+      },
+      {
+        "kind": "const",
+        "name": "DEGREE_4_S6_TRACE",
+        "line": 34,
+        "declaration_line": "pub const DEGREE_4_S6_TRACE: (i64, i64) = (-1947, 50);"
+      },
+      {
+        "kind": "const",
+        "name": "DEGREE_6_X0_TRACE",
+        "line": 36,
+        "declaration_line": "pub const DEGREE_6_X0_TRACE: (i64, i64) = (-9071, 10800);"
+      },
+      {
+        "kind": "const",
+        "name": "DEGREE_6_S6_TRACE",
+        "line": 37,
+        "declaration_line": "pub const DEGREE_6_S6_TRACE: (i64, i64) = (-140183, 3600);"
+      },
+      {
+        "kind": "const",
+        "name": "DEGREE_8_X0_TRACE",
+        "line": 39,
+        "declaration_line": "pub const DEGREE_8_X0_TRACE: (i64, i64) = (-9071, 10800);"
+      },
+      {
+        "kind": "const",
+        "name": "DEGREE_8_S6_TRACE",
+        "line": 40,
+        "declaration_line": "pub const DEGREE_8_S6_TRACE: (i64, i64) = (-5046587, 129600);"
+      },
+      {
+        "kind": "fn",
+        "name": "rational_from_pair",
+        "line": 42,
+        "declaration_line": "pub fn rational_from_pair(pair: (i64, i64)) -> BigRational {"
+      },
+      {
+        "kind": "fn",
+        "name": "repeated_basis_gramian",
+        "line": 47,
+        "declaration_line": "pub fn repeated_basis_gramian() -> Vec<Vec<Cyc24>> {"
+      },
+      {
+        "kind": "fn",
+        "name": "build_candidate_gramians",
+        "line": 61,
+        "declaration_line": "pub fn build_candidate_gramians() -> BTreeMap<String, Vec<Vec<Cyc24>>> {"
+      },
+      {
+        "kind": "fn",
+        "name": "canonical_matrix_payload",
+        "line": 69,
+        "declaration_line": "pub fn canonical_matrix_payload(m: &[Vec<BigRational>]) -> String {"
+      },
+      {
+        "kind": "fn",
+        "name": "compute_matrix_fingerprint",
+        "line": 76,
+        "declaration_line": "pub fn compute_matrix_fingerprint(m: &[Vec<BigRational>]) -> String {"
+      },
+      {
+        "kind": "fn",
+        "name": "build_degree_matrices",
+        "line": 131,
+        "declaration_line": "pub fn build_degree_matrices("
+      },
+      {
+        "kind": "struct",
+        "name": "DualWitnessReceipt",
+        "line": 150,
+        "declaration_line": "pub struct DualWitnessReceipt {"
+      },
+      {
+        "kind": "struct",
+        "name": "DegreeBenchmarkEntry",
+        "line": 163,
+        "declaration_line": "pub struct DegreeBenchmarkEntry {"
+      },
+      {
+        "kind": "struct",
+        "name": "MomentSDPHierarchyLedger",
+        "line": 179,
+        "declaration_line": "pub struct MomentSDPHierarchyLedger {"
+      },
+      {
+        "kind": "struct",
+        "name": "MomentSdpLedgerFixtures",
+        "line": 196,
+        "declaration_line": "pub struct MomentSdpLedgerFixtures {"
+      },
+      {
+        "kind": "fn",
+        "name": "evaluate_degree_benchmark",
+        "line": 438,
+        "declaration_line": "pub fn evaluate_degree_benchmark("
+      },
+      {
+        "kind": "fn",
+        "name": "evaluate_moment_sdp_hierarchy_ledger",
+        "line": 481,
+        "declaration_line": "pub fn evaluate_moment_sdp_hierarchy_ledger() -> Result<MomentSDPHierarchyLedger, String> {"
+      },
+      {
+        "kind": "const",
+        "name": "CANONICAL_FIXTURES_JSON",
+        "line": 507,
+        "declaration_line": "pub const CANONICAL_FIXTURES_JSON: &str = include_str!(concat!("
+      },
+      {
+        "kind": "fn",
+        "name": "load_canonical_fixtures",
+        "line": 512,
+        "declaration_line": "pub fn load_canonical_fixtures() -> Result<MomentSdpLedgerFixtures, String> {"
+      },
+      {
+        "kind": "fn",
+        "name": "generate_moment_sdp_ledger_fixtures",
+        "line": 517,
+        "declaration_line": "pub fn generate_moment_sdp_ledger_fixtures() -> Result<MomentSdpLedgerFixtures, String> {"
+      },
+      {
+        "kind": "fn",
+        "name": "verify_moment_sdp_ledger_fixtures",
+        "line": 564,
+        "declaration_line": "pub fn verify_moment_sdp_ledger_fixtures("
+      },
+      {
+        "kind": "fn",
+        "name": "verify_canonical_fixtures",
+        "line": 578,
+        "declaration_line": "pub fn verify_canonical_fixtures() -> Result<bool, String> {"
+      },
+      {
+        "kind": "struct",
+        "name": "FlatExtensionReceipt",
+        "line": 585,
+        "declaration_line": "pub struct FlatExtensionReceipt {"
+      },
+      {
+        "kind": "fn",
+        "name": "certify_flat_extension_rank_gap",
+        "line": 597,
+        "declaration_line": "pub fn certify_flat_extension_rank_gap(level: usize) -> Result<FlatExtensionReceipt, String> {"
+      },
+      {
+        "kind": "fn",
+        "name": "claim_universal_mub6_nonexistence",
+        "line": 624,
+        "declaration_line": "pub fn claim_universal_mub6_nonexistence(degree: Option<usize>) -> Result<(), String> {"
+      },
+      {
+        "kind": "fn",
+        "name": "certify_universal_mub6_nonexistence",
+        "line": 635,
+        "declaration_line": "pub fn certify_universal_mub6_nonexistence(degree: Option<usize>) -> Result<(), String> {"
+      },
+      {
+        "kind": "fn",
+        "name": "solve_target_q5_moment_certificate",
+        "line": 639,
+        "declaration_line": "pub fn solve_target_q5_moment_certificate() -> Result<(), String> {"
+      },
+      {
+        "kind": "fn",
+        "name": "solve_target_q5_moment_certificate_for_degree",
+        "line": 643,
+        "declaration_line": "pub fn solve_target_q5_moment_certificate_for_degree(degree: usize) -> Result<(), String> {"
+      },
+      {
+        "kind": "fn",
+        "name": "build_degree_k_moment_matrix",
+        "line": 650,
+        "declaration_line": "pub fn build_degree_k_moment_matrix("
+      }
+    ],
+    "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+    "requirements": [
+      {
+        "id": "G1",
+        "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+      },
+      {
+        "id": "G2",
+        "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+      },
+      {
+        "id": "G3",
+        "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+      },
+      {
+        "id": "G4",
+        "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+      },
+      {
+        "id": "G5",
+        "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+      }
+    ],
+    "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+    "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+    "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+    "open_obligations": [
+      "Complete source-to-requirement and downstream consumer review is outstanding.",
+      "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+      "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+    ],
+    "evidence": [
+      {
+        "path": "evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json",
+        "sha256": "3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98"
+      },
+      {
+        "path": "evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json",
+        "sha256": "e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd"
+      },
+      {
+        "path": "code/rust/quality/l4a_qm_six/records.py",
+        "sha256": "0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706"
+      },
+      {
+        "path": "code/rust/quality/l4a_qm_six/specs.json",
+        "sha256": "bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12"
+      },
+      {
+        "path": "evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json",
+        "sha256": "929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758"
+      },
+      {
+        "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json",
+        "sha256": "9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78"
+      },
+      {
+        "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json",
+        "sha256": "90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a"
+      }
+    ]
+  },
+  "current_contract": "fe0e899637d26415c7209f5dee1d17c8b17b52db7fc7093ff7f9c270664294a4",
+  "current_scoring": "579b36b27d5bf47c6a10a34de7c151f62454074cd9172b0fbb42b6ae95f8bc10",
+  "contract_history": [
+    {
+      "sha256": "fe0e899637d26415c7209f5dee1d17c8b17b52db7fc7093ff7f9c270664294a4",
+      "bytes": 10995,
+      "record": {
+        "schema_version": "1.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/mub/omega_native/mub6_moment_ledger.rs",
+          "sha256": "408dd0f24879bf0764e795f48cafad2a74d4a30d7676759c932bb0942ffd4cd6",
+          "language": "Rust"
+        },
+        "contract_urn": "urn:tfqm:contract:mub:omega_native:mub6_moment_ledger.rs",
+        "status": "draft_requires_semantic_review",
+        "target": "L4A",
+        "profile": "Exact",
+        "purpose": "Finite mutually unbiased bases (MUB) in dimension 6, cyclotomic/rational Gramian diagnostics, dual witnesses, Fourier landing verifiers, and cover-tree exclusions.",
+        "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+        "compilation": {
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false,
+          "compatibility_mirror_tree": false
+        },
+        "declaration_index": [
+          {
+            "kind": "const",
+            "name": "SCHEMA_VERSION",
+            "line": 21,
+            "declaration_line": "pub const SCHEMA_VERSION: &str = \"omega.mub.moment-sdp-ledger.v1\";"
+          },
+          {
+            "kind": "const",
+            "name": "SCOPE_STRING",
+            "line": 22,
+            "declaration_line": "pub const SCOPE_STRING: &str = \"exact_moment_sdp_hierarchy_ledger_benchmarks\";"
+          },
+          {
+            "kind": "const",
+            "name": "STATUS_CERTIFIED_CANDIDATE_REFUTATION",
+            "line": 24,
+            "declaration_line": "pub const STATUS_CERTIFIED_CANDIDATE_REFUTATION: &str = \"CERTIFIED_CANDIDATE_REFUTATION\";"
+          },
+          {
+            "kind": "const",
+            "name": "STATUS_MISSING_PROOF_OBLIGATION",
+            "line": 25,
+            "declaration_line": "pub const STATUS_MISSING_PROOF_OBLIGATION: &str = \"MISSING_PROOF_OBLIGATION\";"
+          },
+          {
+            "kind": "const",
+            "name": "SUPPORTED_DEGREES",
+            "line": 27,
+            "declaration_line": "pub const SUPPORTED_DEGREES: &[usize] = &[2, 4, 6, 8];"
+          },
+          {
+            "kind": "const",
+            "name": "DEGREE_2_X0_TRACE",
+            "line": 29,
+            "declaration_line": "pub const DEGREE_2_X0_TRACE: (i64, i64) = (-9, 20);"
+          },
+          {
+            "kind": "const",
+            "name": "DEGREE_2_S6_TRACE",
+            "line": 30,
+            "declaration_line": "pub const DEGREE_2_S6_TRACE: (i64, i64) = (-6, 1);"
+          },
+          {
+            "kind": "const",
+            "name": "DEGREE_4_X0_EVALUATED_TRACE",
+            "line": 32,
+            "declaration_line": "pub const DEGREE_4_X0_EVALUATED_TRACE: (i64, i64) = (-21, 25);"
+          },
+          {
+            "kind": "const",
+            "name": "DEGREE_4_X0_NOMINAL_TRACE",
+            "line": 33,
+            "declaration_line": "pub const DEGREE_4_X0_NOMINAL_TRACE: (i64, i64) = (-33, 50);"
+          },
+          {
+            "kind": "const",
+            "name": "DEGREE_4_S6_TRACE",
+            "line": 34,
+            "declaration_line": "pub const DEGREE_4_S6_TRACE: (i64, i64) = (-1947, 50);"
+          },
+          {
+            "kind": "const",
+            "name": "DEGREE_6_X0_TRACE",
+            "line": 36,
+            "declaration_line": "pub const DEGREE_6_X0_TRACE: (i64, i64) = (-9071, 10800);"
+          },
+          {
+            "kind": "const",
+            "name": "DEGREE_6_S6_TRACE",
+            "line": 37,
+            "declaration_line": "pub const DEGREE_6_S6_TRACE: (i64, i64) = (-140183, 3600);"
+          },
+          {
+            "kind": "const",
+            "name": "DEGREE_8_X0_TRACE",
+            "line": 39,
+            "declaration_line": "pub const DEGREE_8_X0_TRACE: (i64, i64) = (-9071, 10800);"
+          },
+          {
+            "kind": "const",
+            "name": "DEGREE_8_S6_TRACE",
+            "line": 40,
+            "declaration_line": "pub const DEGREE_8_S6_TRACE: (i64, i64) = (-5046587, 129600);"
+          },
+          {
+            "kind": "fn",
+            "name": "rational_from_pair",
+            "line": 42,
+            "declaration_line": "pub fn rational_from_pair(pair: (i64, i64)) -> BigRational {"
+          },
+          {
+            "kind": "fn",
+            "name": "repeated_basis_gramian",
+            "line": 47,
+            "declaration_line": "pub fn repeated_basis_gramian() -> Vec<Vec<Cyc24>> {"
+          },
+          {
+            "kind": "fn",
+            "name": "build_candidate_gramians",
+            "line": 61,
+            "declaration_line": "pub fn build_candidate_gramians() -> BTreeMap<String, Vec<Vec<Cyc24>>> {"
+          },
+          {
+            "kind": "fn",
+            "name": "canonical_matrix_payload",
+            "line": 69,
+            "declaration_line": "pub fn canonical_matrix_payload(m: &[Vec<BigRational>]) -> String {"
+          },
+          {
+            "kind": "fn",
+            "name": "compute_matrix_fingerprint",
+            "line": 76,
+            "declaration_line": "pub fn compute_matrix_fingerprint(m: &[Vec<BigRational>]) -> String {"
+          },
+          {
+            "kind": "fn",
+            "name": "build_degree_matrices",
+            "line": 131,
+            "declaration_line": "pub fn build_degree_matrices("
+          },
+          {
+            "kind": "struct",
+            "name": "DualWitnessReceipt",
+            "line": 150,
+            "declaration_line": "pub struct DualWitnessReceipt {"
+          },
+          {
+            "kind": "struct",
+            "name": "DegreeBenchmarkEntry",
+            "line": 163,
+            "declaration_line": "pub struct DegreeBenchmarkEntry {"
+          },
+          {
+            "kind": "struct",
+            "name": "MomentSDPHierarchyLedger",
+            "line": 179,
+            "declaration_line": "pub struct MomentSDPHierarchyLedger {"
+          },
+          {
+            "kind": "struct",
+            "name": "MomentSdpLedgerFixtures",
+            "line": 196,
+            "declaration_line": "pub struct MomentSdpLedgerFixtures {"
+          },
+          {
+            "kind": "fn",
+            "name": "evaluate_degree_benchmark",
+            "line": 438,
+            "declaration_line": "pub fn evaluate_degree_benchmark("
+          },
+          {
+            "kind": "fn",
+            "name": "evaluate_moment_sdp_hierarchy_ledger",
+            "line": 481,
+            "declaration_line": "pub fn evaluate_moment_sdp_hierarchy_ledger() -> Result<MomentSDPHierarchyLedger, String> {"
+          },
+          {
+            "kind": "const",
+            "name": "CANONICAL_FIXTURES_JSON",
+            "line": 507,
+            "declaration_line": "pub const CANONICAL_FIXTURES_JSON: &str = include_str!(concat!("
+          },
+          {
+            "kind": "fn",
+            "name": "load_canonical_fixtures",
+            "line": 512,
+            "declaration_line": "pub fn load_canonical_fixtures() -> Result<MomentSdpLedgerFixtures, String> {"
+          },
+          {
+            "kind": "fn",
+            "name": "generate_moment_sdp_ledger_fixtures",
+            "line": 517,
+            "declaration_line": "pub fn generate_moment_sdp_ledger_fixtures() -> Result<MomentSdpLedgerFixtures, String> {"
+          },
+          {
+            "kind": "fn",
+            "name": "verify_moment_sdp_ledger_fixtures",
+            "line": 564,
+            "declaration_line": "pub fn verify_moment_sdp_ledger_fixtures("
+          },
+          {
+            "kind": "fn",
+            "name": "verify_canonical_fixtures",
+            "line": 578,
+            "declaration_line": "pub fn verify_canonical_fixtures() -> Result<bool, String> {"
+          },
+          {
+            "kind": "struct",
+            "name": "FlatExtensionReceipt",
+            "line": 585,
+            "declaration_line": "pub struct FlatExtensionReceipt {"
+          },
+          {
+            "kind": "fn",
+            "name": "certify_flat_extension_rank_gap",
+            "line": 597,
+            "declaration_line": "pub fn certify_flat_extension_rank_gap(level: usize) -> Result<FlatExtensionReceipt, String> {"
+          },
+          {
+            "kind": "fn",
+            "name": "claim_universal_mub6_nonexistence",
+            "line": 624,
+            "declaration_line": "pub fn claim_universal_mub6_nonexistence(degree: Option<usize>) -> Result<(), String> {"
+          },
+          {
+            "kind": "fn",
+            "name": "certify_universal_mub6_nonexistence",
+            "line": 635,
+            "declaration_line": "pub fn certify_universal_mub6_nonexistence(degree: Option<usize>) -> Result<(), String> {"
+          },
+          {
+            "kind": "fn",
+            "name": "solve_target_q5_moment_certificate",
+            "line": 639,
+            "declaration_line": "pub fn solve_target_q5_moment_certificate() -> Result<(), String> {"
+          },
+          {
+            "kind": "fn",
+            "name": "solve_target_q5_moment_certificate_for_degree",
+            "line": 643,
+            "declaration_line": "pub fn solve_target_q5_moment_certificate_for_degree(degree: usize) -> Result<(), String> {"
+          },
+          {
+            "kind": "fn",
+            "name": "build_degree_k_moment_matrix",
+            "line": 650,
+            "declaration_line": "pub fn build_degree_k_moment_matrix("
+          }
+        ],
+        "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+        "requirements": [
+          {
+            "id": "G1",
+            "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+          },
+          {
+            "id": "G2",
+            "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+          },
+          {
+            "id": "G3",
+            "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+          },
+          {
+            "id": "G4",
+            "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+          },
+          {
+            "id": "G5",
+            "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+          }
+        ],
+        "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+        "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+        "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+        "open_obligations": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+        ],
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json",
+            "sha256": "3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json",
+            "sha256": "e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd"
+          },
+          {
+            "path": "code/rust/quality/l4a_qm_six/records.py",
+            "sha256": "0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706"
+          },
+          {
+            "path": "code/rust/quality/l4a_qm_six/specs.json",
+            "sha256": "bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json",
+            "sha256": "929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json",
+            "sha256": "9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json",
+            "sha256": "90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a"
+          }
+        ]
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/mub/omega_native/mub6_moment_ledger.rs\",\n    \"sha256\": \"408dd0f24879bf0764e795f48cafad2a74d4a30d7676759c932bb0942ffd4cd6\",\n    \"language\": \"Rust\"\n  },\n  \"contract_urn\": \"urn:tfqm:contract:mub:omega_native:mub6_moment_ledger.rs\",\n  \"status\": \"draft_requires_semantic_review\",\n  \"target\": \"L4A\",\n  \"profile\": \"Exact\",\n  \"purpose\": \"Finite mutually unbiased bases (MUB) in dimension 6, cyclotomic/rational Gramian diagnostics, dual witnesses, Fourier landing verifiers, and cover-tree exclusions.\",\n  \"subject_role\": \"Provisional bounded-domain classification; requires individual capability review before promotion.\",\n  \"compilation\": {\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false,\n    \"compatibility_mirror_tree\": false\n  },\n  \"declaration_index\": [\n    {\n      \"kind\": \"const\",\n      \"name\": \"SCHEMA_VERSION\",\n      \"line\": 21,\n      \"declaration_line\": \"pub const SCHEMA_VERSION: &str = \\\"omega.mub.moment-sdp-ledger.v1\\\";\"\n    },\n    {\n      \"kind\": \"const\",\n      \"name\": \"SCOPE_STRING\",\n      \"line\": 22,\n      \"declaration_line\": \"pub const SCOPE_STRING: &str = \\\"exact_moment_sdp_hierarchy_ledger_benchmarks\\\";\"\n    },\n    {\n      \"kind\": \"const\",\n      \"name\": \"STATUS_CERTIFIED_CANDIDATE_REFUTATION\",\n      \"line\": 24,\n      \"declaration_line\": \"pub const STATUS_CERTIFIED_CANDIDATE_REFUTATION: &str = \\\"CERTIFIED_CANDIDATE_REFUTATION\\\";\"\n    },\n    {\n      \"kind\": \"const\",\n      \"name\": \"STATUS_MISSING_PROOF_OBLIGATION\",\n      \"line\": 25,\n      \"declaration_line\": \"pub const STATUS_MISSING_PROOF_OBLIGATION: &str = \\\"MISSING_PROOF_OBLIGATION\\\";\"\n    },\n    {\n      \"kind\": \"const\",\n      \"name\": \"SUPPORTED_DEGREES\",\n      \"line\": 27,\n      \"declaration_line\": \"pub const SUPPORTED_DEGREES: &[usize] = &[2, 4, 6, 8];\"\n    },\n    {\n      \"kind\": \"const\",\n      \"name\": \"DEGREE_2_X0_TRACE\",\n      \"line\": 29,\n      \"declaration_line\": \"pub const DEGREE_2_X0_TRACE: (i64, i64) = (-9, 20);\"\n    },\n    {\n      \"kind\": \"const\",\n      \"name\": \"DEGREE_2_S6_TRACE\",\n      \"line\": 30,\n      \"declaration_line\": \"pub const DEGREE_2_S6_TRACE: (i64, i64) = (-6, 1);\"\n    },\n    {\n      \"kind\": \"const\",\n      \"name\": \"DEGREE_4_X0_EVALUATED_TRACE\",\n      \"line\": 32,\n      \"declaration_line\": \"pub const DEGREE_4_X0_EVALUATED_TRACE: (i64, i64) = (-21, 25);\"\n    },\n    {\n      \"kind\": \"const\",\n      \"name\": \"DEGREE_4_X0_NOMINAL_TRACE\",\n      \"line\": 33,\n      \"declaration_line\": \"pub const DEGREE_4_X0_NOMINAL_TRACE: (i64, i64) = (-33, 50);\"\n    },\n    {\n      \"kind\": \"const\",\n      \"name\": \"DEGREE_4_S6_TRACE\",\n      \"line\": 34,\n      \"declaration_line\": \"pub const DEGREE_4_S6_TRACE: (i64, i64) = (-1947, 50);\"\n    },\n    {\n      \"kind\": \"const\",\n      \"name\": \"DEGREE_6_X0_TRACE\",\n      \"line\": 36,\n      \"declaration_line\": \"pub const DEGREE_6_X0_TRACE: (i64, i64) = (-9071, 10800);\"\n    },\n    {\n      \"kind\": \"const\",\n      \"name\": \"DEGREE_6_S6_TRACE\",\n      \"line\": 37,\n      \"declaration_line\": \"pub const DEGREE_6_S6_TRACE: (i64, i64) = (-140183, 3600);\"\n    },\n    {\n      \"kind\": \"const\",\n      \"name\": \"DEGREE_8_X0_TRACE\",\n      \"line\": 39,\n      \"declaration_line\": \"pub const DEGREE_8_X0_TRACE: (i64, i64) = (-9071, 10800);\"\n    },\n    {\n      \"kind\": \"const\",\n      \"name\": \"DEGREE_8_S6_TRACE\",\n      \"line\": 40,\n      \"declaration_line\": \"pub const DEGREE_8_S6_TRACE: (i64, i64) = (-5046587, 129600);\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"rational_from_pair\",\n      \"line\": 42,\n      \"declaration_line\": \"pub fn rational_from_pair(pair: (i64, i64)) -> BigRational {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"repeated_basis_gramian\",\n      \"line\": 47,\n      \"declaration_line\": \"pub fn repeated_basis_gramian() -> Vec<Vec<Cyc24>> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"build_candidate_gramians\",\n      \"line\": 61,\n      \"declaration_line\": \"pub fn build_candidate_gramians() -> BTreeMap<String, Vec<Vec<Cyc24>>> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"canonical_matrix_payload\",\n      \"line\": 69,\n      \"declaration_line\": \"pub fn canonical_matrix_payload(m: &[Vec<BigRational>]) -> String {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"compute_matrix_fingerprint\",\n      \"line\": 76,\n      \"declaration_line\": \"pub fn compute_matrix_fingerprint(m: &[Vec<BigRational>]) -> String {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"build_degree_matrices\",\n      \"line\": 131,\n      \"declaration_line\": \"pub fn build_degree_matrices(\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"DualWitnessReceipt\",\n      \"line\": 150,\n      \"declaration_line\": \"pub struct DualWitnessReceipt {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"DegreeBenchmarkEntry\",\n      \"line\": 163,\n      \"declaration_line\": \"pub struct DegreeBenchmarkEntry {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"MomentSDPHierarchyLedger\",\n      \"line\": 179,\n      \"declaration_line\": \"pub struct MomentSDPHierarchyLedger {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"MomentSdpLedgerFixtures\",\n      \"line\": 196,\n      \"declaration_line\": \"pub struct MomentSdpLedgerFixtures {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"evaluate_degree_benchmark\",\n      \"line\": 438,\n      \"declaration_line\": \"pub fn evaluate_degree_benchmark(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"evaluate_moment_sdp_hierarchy_ledger\",\n      \"line\": 481,\n      \"declaration_line\": \"pub fn evaluate_moment_sdp_hierarchy_ledger() -> Result<MomentSDPHierarchyLedger, String> {\"\n    },\n    {\n      \"kind\": \"const\",\n      \"name\": \"CANONICAL_FIXTURES_JSON\",\n      \"line\": 507,\n      \"declaration_line\": \"pub const CANONICAL_FIXTURES_JSON: &str = include_str!(concat!(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"load_canonical_fixtures\",\n      \"line\": 512,\n      \"declaration_line\": \"pub fn load_canonical_fixtures() -> Result<MomentSdpLedgerFixtures, String> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"generate_moment_sdp_ledger_fixtures\",\n      \"line\": 517,\n      \"declaration_line\": \"pub fn generate_moment_sdp_ledger_fixtures() -> Result<MomentSdpLedgerFixtures, String> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"verify_moment_sdp_ledger_fixtures\",\n      \"line\": 564,\n      \"declaration_line\": \"pub fn verify_moment_sdp_ledger_fixtures(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"verify_canonical_fixtures\",\n      \"line\": 578,\n      \"declaration_line\": \"pub fn verify_canonical_fixtures() -> Result<bool, String> {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"FlatExtensionReceipt\",\n      \"line\": 585,\n      \"declaration_line\": \"pub struct FlatExtensionReceipt {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"certify_flat_extension_rank_gap\",\n      \"line\": 597,\n      \"declaration_line\": \"pub fn certify_flat_extension_rank_gap(level: usize) -> Result<FlatExtensionReceipt, String> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"claim_universal_mub6_nonexistence\",\n      \"line\": 624,\n      \"declaration_line\": \"pub fn claim_universal_mub6_nonexistence(degree: Option<usize>) -> Result<(), String> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"certify_universal_mub6_nonexistence\",\n      \"line\": 635,\n      \"declaration_line\": \"pub fn certify_universal_mub6_nonexistence(degree: Option<usize>) -> Result<(), String> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"solve_target_q5_moment_certificate\",\n      \"line\": 639,\n      \"declaration_line\": \"pub fn solve_target_q5_moment_certificate() -> Result<(), String> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"solve_target_q5_moment_certificate_for_degree\",\n      \"line\": 643,\n      \"declaration_line\": \"pub fn solve_target_q5_moment_certificate_for_degree(degree: usize) -> Result<(), String> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"build_degree_k_moment_matrix\",\n      \"line\": 650,\n      \"declaration_line\": \"pub fn build_degree_k_moment_matrix(\"\n    }\n  ],\n  \"declaration_index_scope\": \"Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.\",\n  \"requirements\": [\n    {\n      \"id\": \"G1\",\n      \"requirement\": \"Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries.\"\n    },\n    {\n      \"id\": \"G2\",\n      \"requirement\": \"Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path.\"\n    },\n    {\n      \"id\": \"G3\",\n      \"requirement\": \"Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions.\"\n    },\n    {\n      \"id\": \"G4\",\n      \"requirement\": \"Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A.\"\n    },\n    {\n      \"id\": \"G5\",\n      \"requirement\": \"Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately.\"\n    }\n  ],\n  \"admission_policy\": \"Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.\",\n  \"resource_boundary\": \"No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.\",\n  \"authority_ceiling\": \"Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.\",\n  \"open_obligations\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json\",\n      \"sha256\": \"3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json\",\n      \"sha256\": \"e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/records.py\",\n      \"sha256\": \"0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/specs.json\",\n      \"sha256\": \"bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json\",\n      \"sha256\": \"929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json\",\n      \"sha256\": \"9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json\",\n      \"sha256\": \"90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/rust/src/mub/omega_native/mub6_moment_ledger.rs.contract.yaml",
+        "evidence/quality/l4a_qm_six/recovery/original-inputs/code/rust/src/mub/omega_native/mub6_moment_ledger.rs.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "579b36b27d5bf47c6a10a34de7c151f62454074cd9172b0fbb42b6ae95f8bc10",
+      "bytes": 12309,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/mub/omega_native/mub6_moment_ledger.rs",
+          "sha256": "408dd0f24879bf0764e795f48cafad2a74d4a30d7676759c932bb0942ffd4cd6",
+          "language": "Rust"
+        },
+        "profile": "Exact",
+        "level": "L3",
+        "level_basis": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+        "engineering_target": "A",
+        "requested_target": "L4A",
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "composite_grade": null,
+        "score_token": null,
+        "is_complete": false,
+        "grade_ceiling": "A",
+        "evaluation_timestamp": "2026-10-20T15:14:24+00:00",
+        "grade_ceiling_basis": "Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.",
+        "contract": {
+          "path": "code/rust/src/mub/omega_native/mub6_moment_ledger.rs.contract.yaml",
+          "status": "draft_requires_semantic_review",
+          "sha256": "fe0e899637d26415c7209f5dee1d17c8b17b52db7fc7093ff7f9c270664294a4"
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json",
+            "sha256": "3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json",
+            "sha256": "e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd"
+          },
+          {
+            "path": "code/rust/quality/l4a_qm_six/records.py",
+            "sha256": "0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706"
+          },
+          {
+            "path": "code/rust/quality/l4a_qm_six/specs.json",
+            "sha256": "bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json",
+            "sha256": "929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json",
+            "sha256": "9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json",
+            "sha256": "90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a"
+          }
+        ],
+        "verification": {
+          "baseline": {
+            "command": [
+              "cargo",
+              "test",
+              "--offline",
+              "--target-dir",
+              "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-qm-six\\20261020T151424Z\\build",
+              "--quiet",
+              "-p",
+              "tfqm_mub",
+              "--tests",
+              "--",
+              "--skip",
+              "deep_run::tests",
+              "--skip",
+              "base_mu_phase_stabilizer_on_step2_root_of_unity_grid",
+              "--skip",
+              "char_two_parametric_gate::tests",
+              "--skip",
+              "full_second_basepoint_campaign_usable_and_open",
+              "--skip",
+              "test_solve_continuous_manifold_residue_smoke"
+            ],
+            "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-qm-six\\20261020T151424Z\\code\\rust",
+            "elapsed_seconds": 235.323,
+            "environment": {
+              "CARGO_BUILD_JOBS": "2",
+              "CARGO_INCREMENTAL": "0",
+              "CARGO_PROFILE_DEV_DEBUG": "0",
+              "CARGO_PROFILE_TEST_DEBUG": "0"
+            },
+            "exit_code": 0,
+            "log": "evidence/quality/l4a_qm_six/20261020T151424Z/tfqm_mub.log",
+            "log_sha256": "55f19fcc732c76c68d598e4a5aee02a62c660e4748ca2c649b1e2731c3953078",
+            "timed_out": false
+          },
+          "sources_unchanged": true,
+          "doctests": [],
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false,
+          "compatibility_mirror_tree": false,
+          "dependency_sources_unchanged": true,
+          "compiled_scope": "Package unit/integration tests in the scoped six-directory snapshot. Compatibility mirror files under mub/src/ require separate compilation review.",
+          "designated_mutations": [],
+          "mutation_restoration_baselines_ok": null,
+          "reproduced_defects": [],
+          "current_manifest_assessment_complete": false
+        },
+        "mutation_accounting": {
+          "killed": 0,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": null
+        },
+        "structure": {
+          "tool": "syn source AST (see pinned metric_tool_sources in receipt)",
+          "functions": [
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 42,
+              "name": "rational_from_pair",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 6,
+              "control_nesting": 3,
+              "line": 47,
+              "name": "repeated_basis_gramian",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 61,
+              "name": "build_candidate_gramians",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 69,
+              "name": "canonical_matrix_payload",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 76,
+              "name": "compute_matrix_fingerprint",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 2,
+              "line": 84,
+              "name": "validate_gramian_dim",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 96,
+              "name": "build_inv_ext_map",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 106,
+              "name": "build_degree2_map",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 113,
+              "name": "build_degree4_map",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 119,
+              "name": "build_degree6_map",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 125,
+              "name": "build_degree8_map",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 6,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 131,
+              "name": "build_degree_matrices",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 215,
+              "name": "make_dual_witness_receipt",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 7,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 235,
+              "name": "eval_degree2_arm",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 9,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 271,
+              "name": "eval_degree4_arm",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 9,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 314,
+              "name": "eval_degree6_arm",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 9,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 351,
+              "name": "eval_degree8_arm",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 6,
+              "control_nesting": 3,
+              "line": 388,
+              "name": "collect_degree_fingerprints",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 410,
+              "name": "eval_degree_arm_dispatch",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 427,
+              "name": "validate_required_candidate_keys",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 7,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 438,
+              "name": "evaluate_degree_benchmark",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 481,
+              "name": "evaluate_moment_sdp_hierarchy_ledger",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 512,
+              "name": "load_canonical_fixtures",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 6,
+              "control_nesting": 3,
+              "line": 517,
+              "name": "generate_moment_sdp_ledger_fixtures",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 540,
+              "name": "verify_candidate_degree_fingerprints",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 564,
+              "name": "verify_moment_sdp_ledger_fixtures",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 578,
+              "name": "verify_canonical_fixtures",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 597,
+              "name": "certify_flat_extension_rank_gap",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 624,
+              "name": "claim_universal_mub6_nonexistence",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 635,
+              "name": "certify_universal_mub6_nonexistence",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 639,
+              "name": "solve_target_q5_moment_certificate",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 643,
+              "name": "solve_target_q5_moment_certificate_for_degree",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 650,
+              "name": "build_degree_k_moment_matrix",
+              "opaque_macros": []
+            }
+          ],
+          "exceeding_A": [],
+          "metric_ceiling": "A",
+          "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
+        },
+        "open_findings": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+          "User requested immediate merge and deferred further fixes. Five original native package baselines passed; QM release failed in omega_engines; strict_invariants dependency fix is committed but retry was interrupted. No fresh full source-bound assessment, full mutation campaign, or completed engineering grade is claimed.",
+          "Immediate merge requested; further validation deferred. Five original package baselines passed; QM release failed in omega_engines. strict_invariants fix is committed but its retry was interrupted. No current complete assessment or mutation certification is claimed."
+        ],
+        "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts.",
+        "assessment_status": "WITHDRAWN_PENDING_SOURCE_BOUND_REVIEW",
+        "capability_status": "provisional_unverified",
+        "profile_status": "declared_target_unverified"
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/mub/omega_native/mub6_moment_ledger.rs\",\n    \"sha256\": \"408dd0f24879bf0764e795f48cafad2a74d4a30d7676759c932bb0942ffd4cd6\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"level\": \"L3\",\n  \"level_basis\": \"Provisional bounded-domain classification; requires individual capability review before promotion.\",\n  \"engineering_target\": \"A\",\n  \"requested_target\": \"L4A\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"is_complete\": false,\n  \"grade_ceiling\": \"A\",\n  \"evaluation_timestamp\": \"2026-10-20T15:14:24+00:00\",\n  \"grade_ceiling_basis\": \"Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.\",\n  \"contract\": {\n    \"path\": \"code/rust/src/mub/omega_native/mub6_moment_ledger.rs.contract.yaml\",\n    \"status\": \"draft_requires_semantic_review\",\n    \"sha256\": \"fe0e899637d26415c7209f5dee1d17c8b17b52db7fc7093ff7f9c270664294a4\"\n  },\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json\",\n      \"sha256\": \"3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json\",\n      \"sha256\": \"e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/records.py\",\n      \"sha256\": \"0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/specs.json\",\n      \"sha256\": \"bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json\",\n      \"sha256\": \"929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json\",\n      \"sha256\": \"9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json\",\n      \"sha256\": \"90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a\"\n    }\n  ],\n  \"verification\": {\n    \"baseline\": {\n      \"command\": [\n        \"cargo\",\n        \"test\",\n        \"--offline\",\n        \"--target-dir\",\n        \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-qm-six\\\\20261020T151424Z\\\\build\",\n        \"--quiet\",\n        \"-p\",\n        \"tfqm_mub\",\n        \"--tests\",\n        \"--\",\n        \"--skip\",\n        \"deep_run::tests\",\n        \"--skip\",\n        \"base_mu_phase_stabilizer_on_step2_root_of_unity_grid\",\n        \"--skip\",\n        \"char_two_parametric_gate::tests\",\n        \"--skip\",\n        \"full_second_basepoint_campaign_usable_and_open\",\n        \"--skip\",\n        \"test_solve_continuous_manifold_residue_smoke\"\n      ],\n      \"cwd\": \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-qm-six\\\\20261020T151424Z\\\\code\\\\rust\",\n      \"elapsed_seconds\": 235.323,\n      \"environment\": {\n        \"CARGO_BUILD_JOBS\": \"2\",\n        \"CARGO_INCREMENTAL\": \"0\",\n        \"CARGO_PROFILE_DEV_DEBUG\": \"0\",\n        \"CARGO_PROFILE_TEST_DEBUG\": \"0\"\n      },\n      \"exit_code\": 0,\n      \"log\": \"evidence/quality/l4a_qm_six/20261020T151424Z/tfqm_mub.log\",\n      \"log_sha256\": \"55f19fcc732c76c68d598e4a5aee02a62c660e4748ca2c649b1e2731c3953078\",\n      \"timed_out\": false\n    },\n    \"sources_unchanged\": true,\n    \"doctests\": [],\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false,\n    \"compatibility_mirror_tree\": false,\n    \"dependency_sources_unchanged\": true,\n    \"compiled_scope\": \"Package unit/integration tests in the scoped six-directory snapshot. Compatibility mirror files under mub/src/ require separate compilation review.\",\n    \"designated_mutations\": [],\n    \"mutation_restoration_baselines_ok\": null,\n    \"reproduced_defects\": [],\n    \"current_manifest_assessment_complete\": false\n  },\n  \"mutation_accounting\": {\n    \"killed\": 0,\n    \"survived\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"unrun\": 0,\n    \"conservative_ratio\": null\n  },\n  \"structure\": {\n    \"tool\": \"syn source AST (see pinned metric_tool_sources in receipt)\",\n    \"functions\": [\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 42,\n        \"name\": \"rational_from_pair\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 6,\n        \"control_nesting\": 3,\n        \"line\": 47,\n        \"name\": \"repeated_basis_gramian\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 61,\n        \"name\": \"build_candidate_gramians\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 69,\n        \"name\": \"canonical_matrix_payload\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 76,\n        \"name\": \"compute_matrix_fingerprint\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 2,\n        \"line\": 84,\n        \"name\": \"validate_gramian_dim\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 96,\n        \"name\": \"build_inv_ext_map\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 106,\n        \"name\": \"build_degree2_map\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 113,\n        \"name\": \"build_degree4_map\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 119,\n        \"name\": \"build_degree6_map\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 125,\n        \"name\": \"build_degree8_map\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 131,\n        \"name\": \"build_degree_matrices\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 215,\n        \"name\": \"make_dual_witness_receipt\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 7,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 235,\n        \"name\": \"eval_degree2_arm\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 9,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 271,\n        \"name\": \"eval_degree4_arm\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 9,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 314,\n        \"name\": \"eval_degree6_arm\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 9,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 351,\n        \"name\": \"eval_degree8_arm\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 6,\n        \"control_nesting\": 3,\n        \"line\": 388,\n        \"name\": \"collect_degree_fingerprints\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 410,\n        \"name\": \"eval_degree_arm_dispatch\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 427,\n        \"name\": \"validate_required_candidate_keys\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 7,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 438,\n        \"name\": \"evaluate_degree_benchmark\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 481,\n        \"name\": \"evaluate_moment_sdp_hierarchy_ledger\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 512,\n        \"name\": \"load_canonical_fixtures\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 6,\n        \"control_nesting\": 3,\n        \"line\": 517,\n        \"name\": \"generate_moment_sdp_ledger_fixtures\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 540,\n        \"name\": \"verify_candidate_degree_fingerprints\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 564,\n        \"name\": \"verify_moment_sdp_ledger_fixtures\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 578,\n        \"name\": \"verify_canonical_fixtures\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 597,\n        \"name\": \"certify_flat_extension_rank_gap\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 624,\n        \"name\": \"claim_universal_mub6_nonexistence\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 635,\n        \"name\": \"certify_universal_mub6_nonexistence\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 639,\n        \"name\": \"solve_target_q5_moment_certificate\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 643,\n        \"name\": \"solve_target_q5_moment_certificate_for_degree\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 650,\n        \"name\": \"build_degree_k_moment_matrix\",\n        \"opaque_macros\": []\n      }\n    ],\n    \"exceeding_A\": [],\n    \"metric_ceiling\": \"A\",\n    \"scope\": \"Explicit source bodies only; opaque macros and compiler expansion remain unassessed.\"\n  },\n  \"open_findings\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\",\n    \"User requested immediate merge and deferred further fixes. Five original native package baselines passed; QM release failed in omega_engines; strict_invariants dependency fix is committed but retry was interrupted. No fresh full source-bound assessment, full mutation campaign, or completed engineering grade is claimed.\",\n    \"Immediate merge requested; further validation deferred. Five original package baselines passed; QM release failed in omega_engines. strict_invariants fix is committed but its retry was interrupted. No current complete assessment or mutation certification is claimed.\"\n  ],\n  \"evaluation_timestamp_basis\": \"Start of the latest bound assessment execution; execution durations are recorded in receipts.\",\n  \"assessment_status\": \"WITHDRAWN_PENDING_SOURCE_BOUND_REVIEW\",\n  \"capability_status\": \"provisional_unverified\",\n  \"profile_status\": \"declared_target_unverified\"\n}\n",
+      "original_paths": [
+        "code/rust/src/mub/omega_native/mub6_moment_ledger.rs.scoring.yaml"
+      ]
+    },
+    {
+      "sha256": "4f5c1e7651991e7029254480f529b752b663b7513cc255ab89febd6ba582d436",
+      "bytes": 11493,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/mub/omega_native/mub6_moment_ledger.rs",
+          "sha256": "408dd0f24879bf0764e795f48cafad2a74d4a30d7676759c932bb0942ffd4cd6",
+          "language": "Rust"
+        },
+        "profile": "Exact",
+        "level": "L3",
+        "level_basis": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+        "engineering_target": "A",
+        "requested_target": "L4A",
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "composite_grade": null,
+        "score_token": null,
+        "is_complete": false,
+        "grade_ceiling": "A",
+        "evaluation_timestamp": "2026-10-20T15:14:24+00:00",
+        "grade_ceiling_basis": "Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.",
+        "contract": {
+          "path": "code/rust/src/mub/omega_native/mub6_moment_ledger.rs.contract.yaml",
+          "status": "draft_requires_semantic_review",
+          "sha256": "fe0e899637d26415c7209f5dee1d17c8b17b52db7fc7093ff7f9c270664294a4"
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json",
+            "sha256": "3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json",
+            "sha256": "e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd"
+          },
+          {
+            "path": "code/rust/quality/l4a_qm_six/records.py",
+            "sha256": "0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706"
+          },
+          {
+            "path": "code/rust/quality/l4a_qm_six/specs.json",
+            "sha256": "bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json",
+            "sha256": "929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json",
+            "sha256": "9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json",
+            "sha256": "90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a"
+          }
+        ],
+        "verification": {
+          "baseline": {
+            "command": [
+              "cargo",
+              "test",
+              "--offline",
+              "--target-dir",
+              "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-qm-six\\20261020T151424Z\\build",
+              "--quiet",
+              "-p",
+              "tfqm_mub",
+              "--tests",
+              "--",
+              "--skip",
+              "deep_run::tests",
+              "--skip",
+              "base_mu_phase_stabilizer_on_step2_root_of_unity_grid",
+              "--skip",
+              "char_two_parametric_gate::tests",
+              "--skip",
+              "full_second_basepoint_campaign_usable_and_open",
+              "--skip",
+              "test_solve_continuous_manifold_residue_smoke"
+            ],
+            "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-qm-six\\20261020T151424Z\\code\\rust",
+            "elapsed_seconds": 235.323,
+            "environment": {
+              "CARGO_BUILD_JOBS": "2",
+              "CARGO_INCREMENTAL": "0",
+              "CARGO_PROFILE_DEV_DEBUG": "0",
+              "CARGO_PROFILE_TEST_DEBUG": "0"
+            },
+            "exit_code": 0,
+            "log": "evidence/quality/l4a_qm_six/20261020T151424Z/tfqm_mub.log",
+            "log_sha256": "55f19fcc732c76c68d598e4a5aee02a62c660e4748ca2c649b1e2731c3953078",
+            "timed_out": false
+          },
+          "sources_unchanged": true,
+          "doctests": [],
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false,
+          "compatibility_mirror_tree": false,
+          "dependency_sources_unchanged": true,
+          "compiled_scope": "Package unit/integration tests in the scoped six-directory snapshot. Compatibility mirror files under mub/src/ require separate compilation review.",
+          "designated_mutations": [],
+          "mutation_restoration_baselines_ok": null,
+          "reproduced_defects": []
+        },
+        "mutation_accounting": {
+          "killed": 0,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": null
+        },
+        "structure": {
+          "tool": "syn source AST (see pinned metric_tool_sources in receipt)",
+          "functions": [
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 42,
+              "name": "rational_from_pair",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 6,
+              "control_nesting": 3,
+              "line": 47,
+              "name": "repeated_basis_gramian",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 61,
+              "name": "build_candidate_gramians",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 69,
+              "name": "canonical_matrix_payload",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 76,
+              "name": "compute_matrix_fingerprint",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 2,
+              "line": 84,
+              "name": "validate_gramian_dim",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 96,
+              "name": "build_inv_ext_map",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 106,
+              "name": "build_degree2_map",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 113,
+              "name": "build_degree4_map",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 119,
+              "name": "build_degree6_map",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 125,
+              "name": "build_degree8_map",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 6,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 131,
+              "name": "build_degree_matrices",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 215,
+              "name": "make_dual_witness_receipt",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 7,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 235,
+              "name": "eval_degree2_arm",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 9,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 271,
+              "name": "eval_degree4_arm",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 9,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 314,
+              "name": "eval_degree6_arm",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 9,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 351,
+              "name": "eval_degree8_arm",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 6,
+              "control_nesting": 3,
+              "line": 388,
+              "name": "collect_degree_fingerprints",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 410,
+              "name": "eval_degree_arm_dispatch",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 427,
+              "name": "validate_required_candidate_keys",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 7,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 438,
+              "name": "evaluate_degree_benchmark",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 481,
+              "name": "evaluate_moment_sdp_hierarchy_ledger",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 512,
+              "name": "load_canonical_fixtures",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 6,
+              "control_nesting": 3,
+              "line": 517,
+              "name": "generate_moment_sdp_ledger_fixtures",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 540,
+              "name": "verify_candidate_degree_fingerprints",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 564,
+              "name": "verify_moment_sdp_ledger_fixtures",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 578,
+              "name": "verify_canonical_fixtures",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 597,
+              "name": "certify_flat_extension_rank_gap",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 624,
+              "name": "claim_universal_mub6_nonexistence",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 635,
+              "name": "certify_universal_mub6_nonexistence",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 639,
+              "name": "solve_target_q5_moment_certificate",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 643,
+              "name": "solve_target_q5_moment_certificate_for_degree",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 650,
+              "name": "build_degree_k_moment_matrix",
+              "opaque_macros": []
+            }
+          ],
+          "exceeding_A": [],
+          "metric_ceiling": "A",
+          "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
+        },
+        "open_findings": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+        ],
+        "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts."
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/mub/omega_native/mub6_moment_ledger.rs\",\n    \"sha256\": \"408dd0f24879bf0764e795f48cafad2a74d4a30d7676759c932bb0942ffd4cd6\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"level\": \"L3\",\n  \"level_basis\": \"Provisional bounded-domain classification; requires individual capability review before promotion.\",\n  \"engineering_target\": \"A\",\n  \"requested_target\": \"L4A\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"is_complete\": false,\n  \"grade_ceiling\": \"A\",\n  \"evaluation_timestamp\": \"2026-10-20T15:14:24+00:00\",\n  \"grade_ceiling_basis\": \"Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.\",\n  \"contract\": {\n    \"path\": \"code/rust/src/mub/omega_native/mub6_moment_ledger.rs.contract.yaml\",\n    \"status\": \"draft_requires_semantic_review\",\n    \"sha256\": \"fe0e899637d26415c7209f5dee1d17c8b17b52db7fc7093ff7f9c270664294a4\"\n  },\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json\",\n      \"sha256\": \"3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json\",\n      \"sha256\": \"e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/records.py\",\n      \"sha256\": \"0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/specs.json\",\n      \"sha256\": \"bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json\",\n      \"sha256\": \"929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json\",\n      \"sha256\": \"9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json\",\n      \"sha256\": \"90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a\"\n    }\n  ],\n  \"verification\": {\n    \"baseline\": {\n      \"command\": [\n        \"cargo\",\n        \"test\",\n        \"--offline\",\n        \"--target-dir\",\n        \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-qm-six\\\\20261020T151424Z\\\\build\",\n        \"--quiet\",\n        \"-p\",\n        \"tfqm_mub\",\n        \"--tests\",\n        \"--\",\n        \"--skip\",\n        \"deep_run::tests\",\n        \"--skip\",\n        \"base_mu_phase_stabilizer_on_step2_root_of_unity_grid\",\n        \"--skip\",\n        \"char_two_parametric_gate::tests\",\n        \"--skip\",\n        \"full_second_basepoint_campaign_usable_and_open\",\n        \"--skip\",\n        \"test_solve_continuous_manifold_residue_smoke\"\n      ],\n      \"cwd\": \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-qm-six\\\\20261020T151424Z\\\\code\\\\rust\",\n      \"elapsed_seconds\": 235.323,\n      \"environment\": {\n        \"CARGO_BUILD_JOBS\": \"2\",\n        \"CARGO_INCREMENTAL\": \"0\",\n        \"CARGO_PROFILE_DEV_DEBUG\": \"0\",\n        \"CARGO_PROFILE_TEST_DEBUG\": \"0\"\n      },\n      \"exit_code\": 0,\n      \"log\": \"evidence/quality/l4a_qm_six/20261020T151424Z/tfqm_mub.log\",\n      \"log_sha256\": \"55f19fcc732c76c68d598e4a5aee02a62c660e4748ca2c649b1e2731c3953078\",\n      \"timed_out\": false\n    },\n    \"sources_unchanged\": true,\n    \"doctests\": [],\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false,\n    \"compatibility_mirror_tree\": false,\n    \"dependency_sources_unchanged\": true,\n    \"compiled_scope\": \"Package unit/integration tests in the scoped six-directory snapshot. Compatibility mirror files under mub/src/ require separate compilation review.\",\n    \"designated_mutations\": [],\n    \"mutation_restoration_baselines_ok\": null,\n    \"reproduced_defects\": []\n  },\n  \"mutation_accounting\": {\n    \"killed\": 0,\n    \"survived\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"unrun\": 0,\n    \"conservative_ratio\": null\n  },\n  \"structure\": {\n    \"tool\": \"syn source AST (see pinned metric_tool_sources in receipt)\",\n    \"functions\": [\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 42,\n        \"name\": \"rational_from_pair\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 6,\n        \"control_nesting\": 3,\n        \"line\": 47,\n        \"name\": \"repeated_basis_gramian\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 61,\n        \"name\": \"build_candidate_gramians\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 69,\n        \"name\": \"canonical_matrix_payload\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 76,\n        \"name\": \"compute_matrix_fingerprint\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 2,\n        \"line\": 84,\n        \"name\": \"validate_gramian_dim\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 96,\n        \"name\": \"build_inv_ext_map\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 106,\n        \"name\": \"build_degree2_map\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 113,\n        \"name\": \"build_degree4_map\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 119,\n        \"name\": \"build_degree6_map\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 125,\n        \"name\": \"build_degree8_map\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 131,\n        \"name\": \"build_degree_matrices\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 215,\n        \"name\": \"make_dual_witness_receipt\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 7,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 235,\n        \"name\": \"eval_degree2_arm\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 9,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 271,\n        \"name\": \"eval_degree4_arm\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 9,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 314,\n        \"name\": \"eval_degree6_arm\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 9,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 351,\n        \"name\": \"eval_degree8_arm\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 6,\n        \"control_nesting\": 3,\n        \"line\": 388,\n        \"name\": \"collect_degree_fingerprints\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 410,\n        \"name\": \"eval_degree_arm_dispatch\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 427,\n        \"name\": \"validate_required_candidate_keys\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 7,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 438,\n        \"name\": \"evaluate_degree_benchmark\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 481,\n        \"name\": \"evaluate_moment_sdp_hierarchy_ledger\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 512,\n        \"name\": \"load_canonical_fixtures\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 6,\n        \"control_nesting\": 3,\n        \"line\": 517,\n        \"name\": \"generate_moment_sdp_ledger_fixtures\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 540,\n        \"name\": \"verify_candidate_degree_fingerprints\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 564,\n        \"name\": \"verify_moment_sdp_ledger_fixtures\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 578,\n        \"name\": \"verify_canonical_fixtures\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 597,\n        \"name\": \"certify_flat_extension_rank_gap\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 624,\n        \"name\": \"claim_universal_mub6_nonexistence\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 635,\n        \"name\": \"certify_universal_mub6_nonexistence\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 639,\n        \"name\": \"solve_target_q5_moment_certificate\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 643,\n        \"name\": \"solve_target_q5_moment_certificate_for_degree\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 650,\n        \"name\": \"build_degree_k_moment_matrix\",\n        \"opaque_macros\": []\n      }\n    ],\n    \"exceeding_A\": [],\n    \"metric_ceiling\": \"A\",\n    \"scope\": \"Explicit source bodies only; opaque macros and compiler expansion remain unassessed.\"\n  },\n  \"open_findings\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\"\n  ],\n  \"evaluation_timestamp_basis\": \"Start of the latest bound assessment execution; execution durations are recorded in receipts.\"\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_qm_six/recovery/original-inputs/code/rust/src/mub/omega_native/mub6_moment_ledger.rs.scoring.yaml"
+      ]
+    }
+  ],
+  "legacy_paths": {
+    "code/rust/src/mub/omega_native/mub6_moment_ledger.rs.contract.yaml": "fe0e899637d26415c7209f5dee1d17c8b17b52db7fc7093ff7f9c270664294a4",
+    "code/rust/src/mub/omega_native/mub6_moment_ledger.rs.scoring.yaml": "579b36b27d5bf47c6a10a34de7c151f62454074cd9172b0fbb42b6ae95f8bc10",
+    "evidence/quality/l4a_qm_six/recovery/original-inputs/code/rust/src/mub/omega_native/mub6_moment_ledger.rs.contract.yaml": "fe0e899637d26415c7209f5dee1d17c8b17b52db7fc7093ff7f9c270664294a4",
+    "evidence/quality/l4a_qm_six/recovery/original-inputs/code/rust/src/mub/omega_native/mub6_moment_ledger.rs.scoring.yaml": "4f5c1e7651991e7029254480f529b752b663b7513cc255ab89febd6ba582d436"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

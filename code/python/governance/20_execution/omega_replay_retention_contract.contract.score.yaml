@@ -1,0 +1,117 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/20_execution/omega_replay_retention_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:rust:omega_replay:retention:v1.0.0",
+    "title": "Retention: age out trace CONTENT while keeping the hash ledger auditable.  # Why redaction cannot be an in-place edit...",
+    "kind": "rust_file_contract",
+    "status": "active",
+    "crate": "omega_replay",
+    "file": "crates_rs/omega_replay/src/retention.rs",
+    "module": "retention",
+    "authority_effect": "none",
+    "evidence_ceiling": "LocalReplay",
+    "rust_binding": {
+      "crate": "omega_replay",
+      "module": "retention",
+      "file": "crates_rs/omega_replay/src/retention.rs"
+    },
+    "symbols": [
+      "LegalHold",
+      "RetentionClass",
+      "RetentionPolicy",
+      "RedactedEventV1",
+      "RedactedTraceV1",
+      "RetentionError",
+      "redact_trace_v1",
+      "verify_chain_linkage",
+      "to_json"
+    ],
+    "owns": [
+      "legal_hold",
+      "retention_class",
+      "retention_policy",
+      "redacted_event_v1",
+      "redacted_trace_v1",
+      "retention_error",
+      "redact_trace_v1",
+      "verify_chain_linkage"
+    ],
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "does_not_own": [
+      "authority_promotion",
+      "unscoped_claims"
+    ]
+  },
+  "current_contract": "19ff0b8647c36dd08203c62c96600bebab1f27540702f98941126e688a75dd99",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "19ff0b8647c36dd08203c62c96600bebab1f27540702f98941126e688a75dd99",
+      "bytes": 946,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:rust:omega_replay:retention:v1.0.0",
+        "title": "Retention: age out trace CONTENT while keeping the hash ledger auditable.  # Why redaction cannot be an in-place edit...",
+        "kind": "rust_file_contract",
+        "status": "active",
+        "crate": "omega_replay",
+        "file": "crates_rs/omega_replay/src/retention.rs",
+        "module": "retention",
+        "authority_effect": "none",
+        "evidence_ceiling": "LocalReplay",
+        "rust_binding": {
+          "crate": "omega_replay",
+          "module": "retention",
+          "file": "crates_rs/omega_replay/src/retention.rs"
+        },
+        "symbols": [
+          "LegalHold",
+          "RetentionClass",
+          "RetentionPolicy",
+          "RedactedEventV1",
+          "RedactedTraceV1",
+          "RetentionError",
+          "redact_trace_v1",
+          "verify_chain_linkage",
+          "to_json"
+        ],
+        "owns": [
+          "legal_hold",
+          "retention_class",
+          "retention_policy",
+          "redacted_event_v1",
+          "redacted_trace_v1",
+          "retention_error",
+          "redact_trace_v1",
+          "verify_chain_linkage"
+        ],
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "does_not_own": [
+          "authority_promotion",
+          "unscoped_claims"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:rust:omega_replay:retention:v1.0.0\ntitle: 'Retention: age out trace CONTENT while keeping the hash ledger auditable.  #\n  Why redaction cannot be an in-place edit...'\nkind: rust_file_contract\nstatus: active\ncrate: omega_replay\nfile: crates_rs/omega_replay/src/retention.rs\nmodule: retention\nauthority_effect: none\nevidence_ceiling: LocalReplay\nrust_binding:\n  crate: omega_replay\n  module: retention\n  file: crates_rs/omega_replay/src/retention.rs\nsymbols:\n- LegalHold\n- RetentionClass\n- RetentionPolicy\n- RedactedEventV1\n- RedactedTraceV1\n- RetentionError\n- redact_trace_v1\n- verify_chain_linkage\n- to_json\nowns:\n- legal_hold\n- retention_class\n- retention_policy\n- redacted_event_v1\n- redacted_trace_v1\n- retention_error\n- redact_trace_v1\n- verify_chain_linkage\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\ndoes_not_own:\n- authority_promotion\n- unscoped_claims\n",
+      "original_paths": [
+        "code/python/governance/20_execution/omega_replay_retention.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/20_execution/omega_replay_retention.contract.yaml": "19ff0b8647c36dd08203c62c96600bebab1f27540702f98941126e688a75dd99"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

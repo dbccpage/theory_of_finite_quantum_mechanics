@@ -1,0 +1,215 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/quantum/math_finite_superselection_sector_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:finite_superselection_sector:v0.1.0",
+    "title": "Exact Split Central Superselection Blocks",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "finite_superselection_sector",
+      "symbol": "finite_superselection_sector",
+      "ascii_symbol": "finite_superselection_sector",
+      "notation": "Exact Split Central Superselection Blocks",
+      "domain": [
+        "A finite exact star algebra whose center splits over Gaussian rationals.",
+        "A complete family of certified minimal central orthogonal projections."
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_quantum_physics::superselection_sector; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "Central projections sum to identity, are pairwise orthogonal and idempotent, and their count equals the center dimension.",
+      "Support, matrix block size and multiplicity are computed from actual algebra restrictions.",
+      "Central pinching is idempotent and preserves expectations of every algebra observable.",
+      "Parity pinching removes cross-sector phase coherence while retaining the sector populations."
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_quantum_physics",
+      "module": "superselection_sector",
+      "symbols": [
+        "SuperselectionSector",
+        "pinching",
+        "superselection_rule_holds"
+      ],
+      "required_tests": [
+        "parity_sectors_are_minimal_central_blocks_and_hide_cross_sector_phase"
+      ]
+    },
+    "negative_tests": [
+      "A center requiring unavailable algebraic spectral roots is a typed refusal.",
+      "Incomplete, noncentral or inconsistent sector projectors cannot certify a pinching rule."
+    ],
+    "doctrine": {
+      "summary": "Central projections sum to identity, are pairwise orthogonal and idempotent, and their count equals the center dimension.; Support, matrix block size and multiplicity are computed from actual algebra restrictions.; Central pinching is idempotent and preserves expectations of every algebra observable.; Parity pinching removes cross-sector phase coherence while retaining the sector populations..",
+      "non_role": [
+        "No PROVED, GlobalGreen, customer claim, or operational authority.",
+        "No extension beyond the declared finite carrier and exact computation budgets.",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "292f4c633ea6581666ce690f9dd3605b9fc005c0a1cb64936cd0a4c711998431",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "292f4c633ea6581666ce690f9dd3605b9fc005c0a1cb64936cd0a4c711998431",
+      "bytes": 3347,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:finite_superselection_sector:v0.1.0",
+        "title": "Exact Split Central Superselection Blocks",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "finite_superselection_sector",
+          "symbol": "finite_superselection_sector",
+          "ascii_symbol": "finite_superselection_sector",
+          "notation": "Exact Split Central Superselection Blocks",
+          "domain": [
+            "A finite exact star algebra whose center splits over Gaussian rationals.",
+            "A complete family of certified minimal central orthogonal projections."
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_quantum_physics::superselection_sector; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "Central projections sum to identity, are pairwise orthogonal and idempotent, and their count equals the center dimension.",
+          "Support, matrix block size and multiplicity are computed from actual algebra restrictions.",
+          "Central pinching is idempotent and preserves expectations of every algebra observable.",
+          "Parity pinching removes cross-sector phase coherence while retaining the sector populations."
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_quantum_physics",
+          "module": "superselection_sector",
+          "symbols": [
+            "SuperselectionSector",
+            "pinching",
+            "superselection_rule_holds"
+          ],
+          "required_tests": [
+            "parity_sectors_are_minimal_central_blocks_and_hide_cross_sector_phase"
+          ]
+        },
+        "negative_tests": [
+          "A center requiring unavailable algebraic spectral roots is a typed refusal.",
+          "Incomplete, noncentral or inconsistent sector projectors cannot certify a pinching rule."
+        ],
+        "doctrine": {
+          "summary": "Central projections sum to identity, are pairwise orthogonal and idempotent, and their count equals the center dimension.; Support, matrix block size and multiplicity are computed from actual algebra restrictions.; Central pinching is idempotent and preserves expectations of every algebra observable.; Parity pinching removes cross-sector phase coherence while retaining the sector populations..",
+          "non_role": [
+            "No PROVED, GlobalGreen, customer claim, or operational authority.",
+            "No extension beyond the declared finite carrier and exact computation budgets.",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:finite_superselection_sector:v0.1.0\ntitle: Exact Split Central Superselection Blocks\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: finite_superselection_sector\n  symbol: finite_superselection_sector\n  ascii_symbol: finite_superselection_sector\n  notation: Exact Split Central Superselection Blocks\n  domain:\n  - A finite exact star algebra whose center splits over Gaussian rationals.\n  - A complete family of certified minimal central orthogonal projections.\n  codomain:\n    description: Declared finite results of omega_quantum_physics::superselection_sector;\n      exact and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- Central projections sum to identity, are pairwise orthogonal and idempotent, and\n  their count equals the center dimension.\n- Support, matrix block size and multiplicity are computed from actual algebra restrictions.\n- Central pinching is idempotent and preserves expectations of every algebra observable.\n- Parity pinching removes cross-sector phase coherence while retaining the sector\n  populations.\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_quantum_physics\n  module: superselection_sector\n  symbols:\n  - SuperselectionSector\n  - pinching\n  - superselection_rule_holds\n  required_tests:\n  - parity_sectors_are_minimal_central_blocks_and_hide_cross_sector_phase\nnegative_tests:\n- A center requiring unavailable algebraic spectral roots is a typed refusal.\n- Incomplete, noncentral or inconsistent sector projectors cannot certify a pinching\n  rule.\ndoctrine:\n  summary: Central projections sum to identity, are pairwise orthogonal and idempotent,\n    and their count equals the center dimension.; Support, matrix block size and multiplicity\n    are computed from actual algebra restrictions.; Central pinching is idempotent\n    and preserves expectations of every algebra observable.; Parity pinching removes\n    cross-sector phase coherence while retaining the sector populations..\n  non_role:\n  - No PROVED, GlobalGreen, customer claim, or operational authority.\n  - No extension beyond the declared finite carrier and exact computation budgets.\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/math_finite_superselection_sector_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/quantum/math_finite_superselection_sector_v0_1_0.contract.yaml": "292f4c633ea6581666ce690f9dd3605b9fc005c0a1cb64936cd0a4c711998431"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

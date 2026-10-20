@@ -12,7 +12,10 @@ from datetime import datetime, timezone
 import hashlib
 import json
 import os
-from pathlib import Path
+from pathlib import Path as _FilesystemPath
+import sys as _contract_sys
+_contract_sys.path.insert(0, str(_FilesystemPath(__file__).resolve().parents[4] / "scripts"))
+from contract_scores import RecordPath as Path, copy_file as _copy_record_file
 import re
 import shutil
 import subprocess
@@ -636,11 +639,11 @@ def snapshot_fsp(work_dir: Path) -> None:
     fsp_dest = work_dir / "src" / "fsp"
     fsp_dest.mkdir(parents=True)
     for item in fsp_subjects():
-        shutil.copyfile(item, fsp_dest / item.name)
+        _copy_record_file(item, fsp_dest / item.name)
     fixtures_dir = fsp_dest / "fixtures"
     fixtures_dir.mkdir(parents=True, exist_ok=True)
     for fx in (FSP_DIR / "fixtures").glob("*.json"):
-        shutil.copyfile(fx, fixtures_dir / fx.name)
+        _copy_record_file(fx, fixtures_dir / fx.name)
     ws_toml = (
         '[workspace]\n'
         'members = ["src/fsp"]\n'
@@ -664,7 +667,7 @@ def run_audit(stamp: str) -> Path:
 
     initial_sources = source_inventory()
     write_json(out_dir / "source_manifest.json", initial_sources)
-    shutil.copyfile(__file__, out_dir / "run_fsp_scoring_audit.py")
+    _copy_record_file(__file__, out_dir / "run_fsp_scoring_audit.py")
 
     versions = {
         name: subprocess.check_output([name, "--version"], text=True).strip()
@@ -686,7 +689,7 @@ def run_audit(stamp: str) -> Path:
         meta_proc = subprocess.run(meta_cmd, cwd=work_dir, capture_output=True, text=True, check=True)
         (out_dir / "cargo_metadata.json").write_text(meta_proc.stdout, encoding="utf-8", newline="\n")
         if (work_dir / "Cargo.lock").is_file():
-            shutil.copyfile(work_dir / "Cargo.lock", out_dir / "snapshot_cargo.lock")
+            _copy_record_file(work_dir / "Cargo.lock", out_dir / "snapshot_cargo.lock")
 
         # 2. Baseline test run
         test_cmd = [

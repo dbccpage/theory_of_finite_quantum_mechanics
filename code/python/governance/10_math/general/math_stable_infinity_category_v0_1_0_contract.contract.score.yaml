@@ -1,0 +1,265 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/general/math_stable_infinity_category_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:stable_infinity_category:v0.1.0",
+    "title": "Stable Infinity Category Contract",
+    "kind": "math_contract",
+    "status": "exact_rational_classifier_implemented",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "stable_infinity_category",
+      "symbol": "C ∈ St∞Cat with 0, Ω, Σ, and Ω ≃ Σ^{-1}",
+      "ascii_symbol": "stable_infinity_category",
+      "notation": "C ∈ St∞Cat with 0, Ω, Σ, and Ω ≃ Σ^{-1}",
+      "domain": [
+        "infinity_category: underlying pointed ∞-category",
+        "zero_object: object 0 that is both initial and terminal",
+        "loop_functor: loop functor Ω : C → C",
+        "suspension_functor: suspension functor Σ : C → C",
+        "loop_suspension_equivalence: mutual equivalence Ω ⊣ Σ"
+      ],
+      "codomain": {
+        "description": "A stable ∞-category is a pointed ∞-category with finite limits and colimits where fiber sequences are equivalent to cofiber sequences, and the loop and suspension functors are mutually inverse equivalences."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "The category has an object that is both initial and terminal (zero object).",
+        "All finite limits and colimits exist in the category.",
+        "Loop functor Ω and suspension functor Σ are mutually inverse equivalences.",
+        "Unit η: X ≃ ΩΣX and counit ε: ΣΩY ≃ Y are weak equivalences.",
+        "Every fiber sequence corresponds to a cofiber sequence.",
+        "Ω-spectra levels E_n have structure equivalences E_n ≃ Ω E_{n+1}.",
+        "All operations respect OperationLimits and Soviet Builder allocation caps.",
+        "Structure hash is deterministically content-addressed."
+      ]
+    },
+    "laws": [
+      "Zero object: 0 is both initial and terminal",
+      "Fiber-cofiber equivalence: a square is a pushout iff it is a pullback",
+      "Loop-suspension equivalence: Ω and Σ are mutually inverse equivalences",
+      "Suspension identity composition: id_comp preserves suspension"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No randomness",
+        "No time-dependent data",
+        "All validators are content-addressed",
+        "Given same structural data, must produce identical artifact hash"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_higher_category_theory",
+      "module": "stable_infinity",
+      "symbols": [
+        "StableInfinityCategory",
+        "PointedObject",
+        "PointedMorphism",
+        "FiberSequence",
+        "SpectrumLevel"
+      ],
+      "required_tests": [
+        "test_stable_infinity_category_positive_verification",
+        "test_kill_mut_p3_05_stable_infinity_loop_suspension_violation"
+      ]
+    },
+    "lean4_binding": {
+      "module": "HigherCategoryTheory.StableInfinityCategory",
+      "symbols": [
+        "PointedCategory",
+        "FiberSequence",
+        "StableStructure",
+        "OmegaSpectrum",
+        "sigma_omega_counit_invertible",
+        "omega_sigma_unit_invertible",
+        "suspension_id_comp"
+      ]
+    },
+    "negative_tests": [
+      "Zero object is not both initial and terminal",
+      "Loop and suspension functors fail to be inverse equivalences (MUT-P3-05)",
+      "Unit or counit morphism is not an equivalence",
+      "Spectrum structure map is not an equivalence"
+    ],
+    "doctrine": {
+      "summary": "A stable ∞-category is an ∞-category with a zero object, where every morphism has a fiber and cofiber, and the loop-suspension adjunction Ω ⊣ Σ is an equivalence. Developed extensively in Lurie's Higher Algebra, stable ∞-categories axiomatize modern stable homotopy theory and homological algebra.",
+      "non_role": [
+        "Unstable spaces",
+        "Non-pointed ∞-categories"
+      ]
+    },
+    "wip": [
+      "t-structures and hearts",
+      "Symmetric monoidal stable ∞-categories"
+    ]
+  },
+  "current_contract": "d6f09006023603378486f54784c3140648c589800e74ef9499be89f33871cd21",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "d6f09006023603378486f54784c3140648c589800e74ef9499be89f33871cd21",
+      "bytes": 3746,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:stable_infinity_category:v0.1.0",
+        "title": "Stable Infinity Category Contract",
+        "kind": "math_contract",
+        "status": "exact_rational_classifier_implemented",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "stable_infinity_category",
+          "symbol": "C ∈ St∞Cat with 0, Ω, Σ, and Ω ≃ Σ^{-1}",
+          "ascii_symbol": "stable_infinity_category",
+          "notation": "C ∈ St∞Cat with 0, Ω, Σ, and Ω ≃ Σ^{-1}",
+          "domain": [
+            "infinity_category: underlying pointed ∞-category",
+            "zero_object: object 0 that is both initial and terminal",
+            "loop_functor: loop functor Ω : C → C",
+            "suspension_functor: suspension functor Σ : C → C",
+            "loop_suspension_equivalence: mutual equivalence Ω ⊣ Σ"
+          ],
+          "codomain": {
+            "description": "A stable ∞-category is a pointed ∞-category with finite limits and colimits where fiber sequences are equivalent to cofiber sequences, and the loop and suspension functors are mutually inverse equivalences."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "The category has an object that is both initial and terminal (zero object).",
+            "All finite limits and colimits exist in the category.",
+            "Loop functor Ω and suspension functor Σ are mutually inverse equivalences.",
+            "Unit η: X ≃ ΩΣX and counit ε: ΣΩY ≃ Y are weak equivalences.",
+            "Every fiber sequence corresponds to a cofiber sequence.",
+            "Ω-spectra levels E_n have structure equivalences E_n ≃ Ω E_{n+1}.",
+            "All operations respect OperationLimits and Soviet Builder allocation caps.",
+            "Structure hash is deterministically content-addressed."
+          ]
+        },
+        "laws": [
+          "Zero object: 0 is both initial and terminal",
+          "Fiber-cofiber equivalence: a square is a pushout iff it is a pullback",
+          "Loop-suspension equivalence: Ω and Σ are mutually inverse equivalences",
+          "Suspension identity composition: id_comp preserves suspension"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "All validators are content-addressed",
+            "Given same structural data, must produce identical artifact hash"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_higher_category_theory",
+          "module": "stable_infinity",
+          "symbols": [
+            "StableInfinityCategory",
+            "PointedObject",
+            "PointedMorphism",
+            "FiberSequence",
+            "SpectrumLevel"
+          ],
+          "required_tests": [
+            "test_stable_infinity_category_positive_verification",
+            "test_kill_mut_p3_05_stable_infinity_loop_suspension_violation"
+          ]
+        },
+        "lean4_binding": {
+          "module": "HigherCategoryTheory.StableInfinityCategory",
+          "symbols": [
+            "PointedCategory",
+            "FiberSequence",
+            "StableStructure",
+            "OmegaSpectrum",
+            "sigma_omega_counit_invertible",
+            "omega_sigma_unit_invertible",
+            "suspension_id_comp"
+          ]
+        },
+        "negative_tests": [
+          "Zero object is not both initial and terminal",
+          "Loop and suspension functors fail to be inverse equivalences (MUT-P3-05)",
+          "Unit or counit morphism is not an equivalence",
+          "Spectrum structure map is not an equivalence"
+        ],
+        "doctrine": {
+          "summary": "A stable ∞-category is an ∞-category with a zero object, where every morphism has a fiber and cofiber, and the loop-suspension adjunction Ω ⊣ Σ is an equivalence. Developed extensively in Lurie's Higher Algebra, stable ∞-categories axiomatize modern stable homotopy theory and homological algebra.",
+          "non_role": [
+            "Unstable spaces",
+            "Non-pointed ∞-categories"
+          ]
+        },
+        "wip": [
+          "t-structures and hearts",
+          "Symmetric monoidal stable ∞-categories"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:stable_infinity_category:v0.1.0\ntitle: Stable Infinity Category Contract\nkind: math_contract\nstatus: exact_rational_classifier_implemented\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: stable_infinity_category\n  symbol: C ∈ St∞Cat with 0, Ω, Σ, and Ω ≃ Σ^{-1}\n  ascii_symbol: stable_infinity_category\n  notation: C ∈ St∞Cat with 0, Ω, Σ, and Ω ≃ Σ^{-1}\n  domain:\n  - 'infinity_category: underlying pointed ∞-category'\n  - 'zero_object: object 0 that is both initial and terminal'\n  - 'loop_functor: loop functor Ω : C → C'\n  - 'suspension_functor: suspension functor Σ : C → C'\n  - 'loop_suspension_equivalence: mutual equivalence Ω ⊣ Σ'\n  codomain:\n    description: A stable ∞-category is a pointed ∞-category with finite limits and\n      colimits where fiber sequences are equivalent to cofiber sequences, and the\n      loop and suspension functors are mutually inverse equivalences.\nrequirements:\n  required_structures:\n  - The category has an object that is both initial and terminal (zero object).\n  - All finite limits and colimits exist in the category.\n  - Loop functor Ω and suspension functor Σ are mutually inverse equivalences.\n  - 'Unit η: X ≃ ΩΣX and counit ε: ΣΩY ≃ Y are weak equivalences.'\n  - Every fiber sequence corresponds to a cofiber sequence.\n  - Ω-spectra levels E_n have structure equivalences E_n ≃ Ω E_{n+1}.\n  - All operations respect OperationLimits and Soviet Builder allocation caps.\n  - Structure hash is deterministically content-addressed.\nlaws:\n- 'Zero object: 0 is both initial and terminal'\n- 'Fiber-cofiber equivalence: a square is a pushout iff it is a pullback'\n- 'Loop-suspension equivalence: Ω and Σ are mutually inverse equivalences'\n- 'Suspension identity composition: id_comp preserves suspension'\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - All validators are content-addressed\n  - Given same structural data, must produce identical artifact hash\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nrust_binding:\n  crate: omega_higher_category_theory\n  module: stable_infinity\n  symbols:\n  - StableInfinityCategory\n  - PointedObject\n  - PointedMorphism\n  - FiberSequence\n  - SpectrumLevel\n  required_tests:\n  - test_stable_infinity_category_positive_verification\n  - test_kill_mut_p3_05_stable_infinity_loop_suspension_violation\nlean4_binding:\n  module: HigherCategoryTheory.StableInfinityCategory\n  symbols:\n  - PointedCategory\n  - FiberSequence\n  - StableStructure\n  - OmegaSpectrum\n  - sigma_omega_counit_invertible\n  - omega_sigma_unit_invertible\n  - suspension_id_comp\nnegative_tests:\n- Zero object is not both initial and terminal\n- Loop and suspension functors fail to be inverse equivalences (MUT-P3-05)\n- Unit or counit morphism is not an equivalence\n- Spectrum structure map is not an equivalence\ndoctrine:\n  summary: A stable ∞-category is an ∞-category with a zero object, where every morphism\n    has a fiber and cofiber, and the loop-suspension adjunction Ω ⊣ Σ is an equivalence.\n    Developed extensively in Lurie's Higher Algebra, stable ∞-categories axiomatize\n    modern stable homotopy theory and homological algebra.\n  non_role:\n  - Unstable spaces\n  - Non-pointed ∞-categories\nwip:\n- t-structures and hearts\n- Symmetric monoidal stable ∞-categories\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_stable_infinity_category_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_stable_infinity_category_v0_1_0.contract.yaml": "d6f09006023603378486f54784c3140648c589800e74ef9499be89f33871cd21"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

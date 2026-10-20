@@ -1,0 +1,215 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/quantum/math_exact_trace_norm_and_helstrom_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:exact_trace_norm_and_helstrom:v0.1.0",
+    "title": "Exact trace-norm primal dual certificates",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "exact_trace_norm_and_helstrom",
+      "symbol": "exact_trace_norm_and_helstrom",
+      "ascii_symbol": "exact_trace_norm_and_helstrom",
+      "notation": "Exact trace-norm primal dual certificates",
+      "domain": [
+        "Bounded Hermitian exact operators, declared primal PSD parts and dual feasible sign, or isolated algebraic spectrum"
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_quantum_physics::trace_norm_certificate; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "PSD primal decomposition and dual operator ball give zero duality gap",
+      "Trace distance is half the trace norm of the full density difference",
+      "Helstrom effect realizes optimal discrimination for a checked sign",
+      "Algebraic intervals retain exact eigenvalue multiplicities"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_quantum_physics",
+      "module": "trace_norm_certificate",
+      "symbols": [
+        "TraceNormCertificate::try_new",
+        "SignCertificate::new",
+        "SignCertificate::helstrom_effect",
+        "trace_norm_enclosure",
+        "trace_distance_enclosure"
+      ],
+      "required_tests": [
+        "states_channels_exact_tests::uhlmann_fidelity_and_trace_norm_intervals_agree_on_pure_and_mixed_routes",
+        "trace_norm_certificate::tests::pauli_y_trace_norm_and_sign"
+      ]
+    },
+    "negative_tests": [
+      "trace_norm_certificate::tests::tampered_certificates_are_refused"
+    ],
+    "doctrine": {
+      "summary": "PSD primal decomposition and dual operator ball give zero duality gap; Trace distance is half the trace norm of the full density difference; Helstrom effect realizes optimal discrimination for a checked sign; Algebraic intervals retain exact eigenvalue multiplicities.",
+      "non_role": [
+        "No f64 singular-value output constitutes an exact sign certificate",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "3173cb33287206f64f75c7da3e0905fcebadc8a9135656da8e7fb7232a03463f",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "3173cb33287206f64f75c7da3e0905fcebadc8a9135656da8e7fb7232a03463f",
+      "bytes": 3052,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:exact_trace_norm_and_helstrom:v0.1.0",
+        "title": "Exact trace-norm primal dual certificates",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "exact_trace_norm_and_helstrom",
+          "symbol": "exact_trace_norm_and_helstrom",
+          "ascii_symbol": "exact_trace_norm_and_helstrom",
+          "notation": "Exact trace-norm primal dual certificates",
+          "domain": [
+            "Bounded Hermitian exact operators, declared primal PSD parts and dual feasible sign, or isolated algebraic spectrum"
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_quantum_physics::trace_norm_certificate; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "PSD primal decomposition and dual operator ball give zero duality gap",
+          "Trace distance is half the trace norm of the full density difference",
+          "Helstrom effect realizes optimal discrimination for a checked sign",
+          "Algebraic intervals retain exact eigenvalue multiplicities"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_quantum_physics",
+          "module": "trace_norm_certificate",
+          "symbols": [
+            "TraceNormCertificate::try_new",
+            "SignCertificate::new",
+            "SignCertificate::helstrom_effect",
+            "trace_norm_enclosure",
+            "trace_distance_enclosure"
+          ],
+          "required_tests": [
+            "states_channels_exact_tests::uhlmann_fidelity_and_trace_norm_intervals_agree_on_pure_and_mixed_routes",
+            "trace_norm_certificate::tests::pauli_y_trace_norm_and_sign"
+          ]
+        },
+        "negative_tests": [
+          "trace_norm_certificate::tests::tampered_certificates_are_refused"
+        ],
+        "doctrine": {
+          "summary": "PSD primal decomposition and dual operator ball give zero duality gap; Trace distance is half the trace norm of the full density difference; Helstrom effect realizes optimal discrimination for a checked sign; Algebraic intervals retain exact eigenvalue multiplicities.",
+          "non_role": [
+            "No f64 singular-value output constitutes an exact sign certificate",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:exact_trace_norm_and_helstrom:v0.1.0\ntitle: Exact trace-norm primal dual certificates\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: exact_trace_norm_and_helstrom\n  symbol: exact_trace_norm_and_helstrom\n  ascii_symbol: exact_trace_norm_and_helstrom\n  notation: Exact trace-norm primal dual certificates\n  domain:\n  - Bounded Hermitian exact operators, declared primal PSD parts and dual feasible\n    sign, or isolated algebraic spectrum\n  codomain:\n    description: Declared finite results of omega_quantum_physics::trace_norm_certificate;\n      exact and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- PSD primal decomposition and dual operator ball give zero duality gap\n- Trace distance is half the trace norm of the full density difference\n- Helstrom effect realizes optimal discrimination for a checked sign\n- Algebraic intervals retain exact eigenvalue multiplicities\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_quantum_physics\n  module: trace_norm_certificate\n  symbols:\n  - TraceNormCertificate::try_new\n  - SignCertificate::new\n  - SignCertificate::helstrom_effect\n  - trace_norm_enclosure\n  - trace_distance_enclosure\n  required_tests:\n  - states_channels_exact_tests::uhlmann_fidelity_and_trace_norm_intervals_agree_on_pure_and_mixed_routes\n  - trace_norm_certificate::tests::pauli_y_trace_norm_and_sign\nnegative_tests:\n- trace_norm_certificate::tests::tampered_certificates_are_refused\ndoctrine:\n  summary: PSD primal decomposition and dual operator ball give zero duality gap;\n    Trace distance is half the trace norm of the full density difference; Helstrom\n    effect realizes optimal discrimination for a checked sign; Algebraic intervals\n    retain exact eigenvalue multiplicities.\n  non_role:\n  - No f64 singular-value output constitutes an exact sign certificate\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/math_exact_trace_norm_and_helstrom_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/quantum/math_exact_trace_norm_and_helstrom_v0_1_0.contract.yaml": "3173cb33287206f64f75c7da3e0905fcebadc8a9135656da8e7fb7232a03463f"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

@@ -1,0 +1,105 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/50_os/os_retractor_contract.py",
+  "contract": {
+    "schema_version": "1.0.0",
+    "contract_id": "os:retractor",
+    "name": "Retractor Contract",
+    "version": "1.0.0",
+    "kind": "os_doctrine_contract",
+    "status": "active_doctrine",
+    "enforcement_status": "enforced",
+    "description": "A Retractor is a deterministic, stateless, single-step typed Operator that safely reverses or unwinds a previous proposal or transformation within the same carrier space. It restores the prior structure state without destructive mutation, enforcing identical endpoints (before/after matching).\n",
+    "layer": "OS",
+    "module_path": "operators::retractor",
+    "governs": [
+      "operators/retractors/**"
+    ],
+    "does_not_govern": [
+      "omega_functional/**",
+      "omega_certifiers/**"
+    ],
+    "claims": [
+      {
+        "id": "RET-L1",
+        "description": "Retractors safely reverse proposals within the same carrier without escalating authority.",
+        "status": "active",
+        "provenance": "Retractor OS Doctrine RET-L1"
+      }
+    ],
+    "rules": {
+      "authority_effect": "none",
+      "mutation": "forbidden",
+      "phi_nonincrease_required": true,
+      "deterministic": true,
+      "stateless": true,
+      "same_carrier_required": true
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0",
+        "urn:omega:constitution:base_file_contract:file:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "88bf89010644350934538b6664cb2e3733eae0a2330179fc7f2eb390f617ea7d",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "88bf89010644350934538b6664cb2e3733eae0a2330179fc7f2eb390f617ea7d",
+      "bytes": 1104,
+      "record": {
+        "schema_version": "1.0.0",
+        "contract_id": "os:retractor",
+        "name": "Retractor Contract",
+        "version": "1.0.0",
+        "kind": "os_doctrine_contract",
+        "status": "active_doctrine",
+        "enforcement_status": "enforced",
+        "description": "A Retractor is a deterministic, stateless, single-step typed Operator that safely reverses or unwinds a previous proposal or transformation within the same carrier space. It restores the prior structure state without destructive mutation, enforcing identical endpoints (before/after matching).\n",
+        "layer": "OS",
+        "module_path": "operators::retractor",
+        "governs": [
+          "operators/retractors/**"
+        ],
+        "does_not_govern": [
+          "omega_functional/**",
+          "omega_certifiers/**"
+        ],
+        "claims": [
+          {
+            "id": "RET-L1",
+            "description": "Retractors safely reverse proposals within the same carrier without escalating authority.",
+            "status": "active",
+            "provenance": "Retractor OS Doctrine RET-L1"
+          }
+        ],
+        "rules": {
+          "authority_effect": "none",
+          "mutation": "forbidden",
+          "phi_nonincrease_required": true,
+          "deterministic": true,
+          "stateless": true,
+          "same_carrier_required": true
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0",
+            "urn:omega:constitution:base_file_contract:file:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: 1.0.0\ncontract_id: os:retractor\nname: Retractor Contract\nversion: 1.0.0\nkind: os_doctrine_contract\nstatus: active_doctrine\nenforcement_status: enforced\ndescription: 'A Retractor is a deterministic, stateless, single-step typed Operator\n  that safely reverses or unwinds a previous proposal or transformation within the\n  same carrier space. It restores the prior structure state without destructive mutation,\n  enforcing identical endpoints (before/after matching).\n\n  '\nlayer: OS\nmodule_path: operators::retractor\ngoverns:\n- operators/retractors/**\ndoes_not_govern:\n- omega_functional/**\n- omega_certifiers/**\nclaims:\n- id: RET-L1\n  description: Retractors safely reverse proposals within the same carrier without\n    escalating authority.\n  status: active\n  provenance: Retractor OS Doctrine RET-L1\nrules:\n  authority_effect: none\n  mutation: forbidden\n  phi_nonincrease_required: true\n  deterministic: true\n  stateless: true\n  same_carrier_required: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n  - urn:omega:constitution:base_file_contract:file:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/50_os/os_retractor.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/50_os/os_retractor.contract.yaml": "88bf89010644350934538b6664cb2e3733eae0a2330179fc7f2eb390f617ea7d"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

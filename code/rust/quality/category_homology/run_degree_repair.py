@@ -9,7 +9,10 @@ import argparse
 import hashlib
 from datetime import datetime, timezone
 import json
-from pathlib import Path
+from pathlib import Path as _FilesystemPath
+import sys as _contract_sys
+_contract_sys.path.insert(0, str(_FilesystemPath(__file__).resolve().parents[4] / "scripts"))
+from contract_scores import RecordPath as Path, copy_file as _copy_record_file
 import re
 import shutil
 import subprocess
@@ -43,8 +46,8 @@ def main():
     inputs = inventory()
     write_json(output/"source_manifest.json",inputs)
     for name in (Path(__file__).name,"degree_repair.py","homology_protocols.py","storage_admission.py","vector_maps.py","carrier_facades.py"):
-        shutil.copyfile(Path(__file__).with_name(name),output/name)
-    shutil.copyfile(policy,output/policy.name)
+        _copy_record_file(Path(__file__).with_name(name),output/name)
+    _copy_record_file(policy,output/policy.name)
     snapshot(work,"homology")
     package = work/"src/homology"
     generated = package/"q"
@@ -146,7 +149,7 @@ def main():
                     except ValueError:
                         continue
                     if item.get("reason") == "compiler-artifact" and item.get("executable"):
-                        shutil.copyfile(item["executable"],binary)
+                        _copy_record_file(item["executable"],binary)
         finally:
             clear_debug_outputs(build,work)
         if run["exit_code"] == 0:

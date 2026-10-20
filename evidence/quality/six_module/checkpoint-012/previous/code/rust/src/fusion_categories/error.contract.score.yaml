@@ -1,0 +1,290 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": null,
+  "contract": {
+    "schema_version": "1.0.0",
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/rust/src/fusion_categories/error.rs",
+      "sha256": "67f005d8f3fbb1284b4544c86a952fd6e092251fe6c7ac395f9e12df41efb0e6",
+      "language": "Rust"
+    },
+    "status": "source_reviewed",
+    "formal_specification": {
+      "profile": "Non-Numeric",
+      "claim_urn": "urn:tfqm:fusion:typed-diagnostic-routing:v1",
+      "domain": "All constructible FusionError records and wrapped provider/domain defects. Numeric fields are witnesses supplied by callers, not validated by this enum.",
+      "behavior": [
+        "Preserve exact provider payload and transparent Display/source delegation.",
+        "Preserve exact algebraic provider payload and transparent Display/source delegation.",
+        "Preserve exact scalar provider payload and transparent Display/source delegation.",
+        "Preserve matrix provider payload, prefix Display with matrix storage, expose matrix as Error::source.",
+        "Render every local diagnostic with its actual named fields and nested defect prefix; no fabricated context or lost numeric witness.",
+        "Three transparent variants forward their provider source, Matrix returns the wrapped error, and local/domain-defect variants have no source. Nested defects are data payloads, not #[source] chains.",
+        "Derived structural value semantics retain the entire discriminant/payload; formatting itself does not assert the reported defect is true."
+      ]
+    },
+    "operations": {
+      "RingDefect::from": {
+        "line": 102,
+        "signature": "fn from(defect: RingDefect) -> Self",
+        "obligation": "Wrap the owned RingDefect in its matching FusionError variant without altering or discarding payload. No validation, arithmetic or allocation is introduced."
+      },
+      "CategoryDefect::from": {
+        "line": 108,
+        "signature": "fn from(defect: CategoryDefect) -> Self",
+        "obligation": "Wrap the owned CategoryDefect in its matching FusionError variant without altering or discarding payload. No validation, arithmetic or allocation is introduced."
+      },
+      "BraidedDefect::from": {
+        "line": 114,
+        "signature": "fn from(defect: BraidedDefect) -> Self",
+        "obligation": "Wrap the owned BraidedDefect in its matching FusionError variant without altering or discarding payload. No validation, arithmetic or allocation is introduced."
+      },
+      "ModularDefect::from": {
+        "line": 120,
+        "signature": "fn from(defect: ModularDefect) -> Self",
+        "obligation": "Wrap the owned ModularDefect in its matching FusionError variant without altering or discarding payload. No validation, arithmetic or allocation is introduced."
+      },
+      "From<ExactFieldError>": {
+        "obligation": "Preserve exact provider payload and transparent Display/source delegation.",
+        "origin": "derive(Debug,Clone,PartialEq,Eq,thiserror::Error) and field attributes"
+      },
+      "From<AlgebraicRealError>": {
+        "obligation": "Preserve exact algebraic provider payload and transparent Display/source delegation.",
+        "origin": "derive(Debug,Clone,PartialEq,Eq,thiserror::Error) and field attributes"
+      },
+      "From<ScalarError>": {
+        "obligation": "Preserve exact scalar provider payload and transparent Display/source delegation.",
+        "origin": "derive(Debug,Clone,PartialEq,Eq,thiserror::Error) and field attributes"
+      },
+      "From<MatrixError>": {
+        "obligation": "Preserve matrix provider payload, prefix Display with matrix storage, expose matrix as Error::source.",
+        "origin": "derive(Debug,Clone,PartialEq,Eq,thiserror::Error) and field attributes"
+      },
+      "Display": {
+        "obligation": "Render every local diagnostic with its actual named fields and nested defect prefix; no fabricated context or lost numeric witness.",
+        "origin": "derive(Debug,Clone,PartialEq,Eq,thiserror::Error) and field attributes"
+      },
+      "Error::source": {
+        "obligation": "Three transparent variants forward their provider source, Matrix returns the wrapped error, and local/domain-defect variants have no source. Nested defects are data payloads, not #[source] chains.",
+        "origin": "derive(Debug,Clone,PartialEq,Eq,thiserror::Error) and field attributes"
+      },
+      "Clone/PartialEq/Eq/Debug": {
+        "obligation": "Derived structural value semantics retain the entire discriminant/payload; formatting itself does not assert the reported defect is true.",
+        "origin": "derive(Debug,Clone,PartialEq,Eq,thiserror::Error) and field attributes"
+      }
+    },
+    "invariants": [
+      "Each explicit From body is exactly one matching enum constructor, retaining its entire owned defect. Rust enum constructors preserve fields and discriminate wrappers; no arithmetic, narrowing, search or exception suppression occurs.",
+      "All thiserror attributes were read against all 23 variants: three transparent provider wrappers, four prefixed domain wrappers, one matrix #[from] source wrapper and 15 local field-bearing diagnostics. Native challenges instantiate all variants, all eight From conversions, field-rich payloads, maximum-u128 display, clone/equality and explicit source behavior.",
+      "Direct conversions are constant work and allocate nothing; Display/Clone delegate payload-dependent work. Arbitrary string length and provider formatting/clone costs are outside an allocator or runtime guarantee. The enum is forgeable data and never treated as a mathematical certificate."
+    ],
+    "failure_paths": {
+      "RingDefect::from": "Wrap the owned RingDefect in its matching FusionError variant without altering or discarding payload. No validation, arithmetic or allocation is introduced.",
+      "CategoryDefect::from": "Wrap the owned CategoryDefect in its matching FusionError variant without altering or discarding payload. No validation, arithmetic or allocation is introduced.",
+      "BraidedDefect::from": "Wrap the owned BraidedDefect in its matching FusionError variant without altering or discarding payload. No validation, arithmetic or allocation is introduced.",
+      "ModularDefect::from": "Wrap the owned ModularDefect in its matching FusionError variant without altering or discarding payload. No validation, arithmetic or allocation is introduced."
+    },
+    "trust_boundary": "Rust enum/derive semantics, pinned thiserror proc macro and actual wrapped provider error implementations. Display/Clone/source behavior of providers is trusted and content-bound. No catch-all conversion or recovery is introduced.",
+    "assurance_limits": [
+      "AuthorityEffect: None. This L1 utility preserves diagnostics; it does not establish whether a reported defect holds.",
+      "Derive-generated bodies are explicitly audited and native-challenged; the AST metric counts the four authored conversion bodies only. No compiler expansion theorem, provider-wide safety grade or general crash-freedom theorem is claimed."
+    ],
+    "review_evidence": [
+      {
+        "path": "code/rust/quality/six_module/assessments/fusion_error.json",
+        "sha256": "9611651f9287e6b7dba96773ea4402747910417cc7793aa554d920183abe01d2"
+      }
+    ],
+    "open_obligations": []
+  },
+  "current_contract": "84324e3925363cbadbc64498721eba2c15f55f0af8285d975f01dbe570cf15e9",
+  "current_scoring": "61995600861bf4e4e13280879ae87264040a18b96ce336a4559229570c43f3d1",
+  "contract_history": [
+    {
+      "sha256": "84324e3925363cbadbc64498721eba2c15f55f0af8285d975f01dbe570cf15e9",
+      "bytes": 7096,
+      "record": {
+        "schema_version": "1.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/fusion_categories/error.rs",
+          "sha256": "67f005d8f3fbb1284b4544c86a952fd6e092251fe6c7ac395f9e12df41efb0e6",
+          "language": "Rust"
+        },
+        "status": "source_reviewed",
+        "formal_specification": {
+          "profile": "Non-Numeric",
+          "claim_urn": "urn:tfqm:fusion:typed-diagnostic-routing:v1",
+          "domain": "All constructible FusionError records and wrapped provider/domain defects. Numeric fields are witnesses supplied by callers, not validated by this enum.",
+          "behavior": [
+            "Preserve exact provider payload and transparent Display/source delegation.",
+            "Preserve exact algebraic provider payload and transparent Display/source delegation.",
+            "Preserve exact scalar provider payload and transparent Display/source delegation.",
+            "Preserve matrix provider payload, prefix Display with matrix storage, expose matrix as Error::source.",
+            "Render every local diagnostic with its actual named fields and nested defect prefix; no fabricated context or lost numeric witness.",
+            "Three transparent variants forward their provider source, Matrix returns the wrapped error, and local/domain-defect variants have no source. Nested defects are data payloads, not #[source] chains.",
+            "Derived structural value semantics retain the entire discriminant/payload; formatting itself does not assert the reported defect is true."
+          ]
+        },
+        "operations": {
+          "RingDefect::from": {
+            "line": 102,
+            "signature": "fn from(defect: RingDefect) -> Self",
+            "obligation": "Wrap the owned RingDefect in its matching FusionError variant without altering or discarding payload. No validation, arithmetic or allocation is introduced."
+          },
+          "CategoryDefect::from": {
+            "line": 108,
+            "signature": "fn from(defect: CategoryDefect) -> Self",
+            "obligation": "Wrap the owned CategoryDefect in its matching FusionError variant without altering or discarding payload. No validation, arithmetic or allocation is introduced."
+          },
+          "BraidedDefect::from": {
+            "line": 114,
+            "signature": "fn from(defect: BraidedDefect) -> Self",
+            "obligation": "Wrap the owned BraidedDefect in its matching FusionError variant without altering or discarding payload. No validation, arithmetic or allocation is introduced."
+          },
+          "ModularDefect::from": {
+            "line": 120,
+            "signature": "fn from(defect: ModularDefect) -> Self",
+            "obligation": "Wrap the owned ModularDefect in its matching FusionError variant without altering or discarding payload. No validation, arithmetic or allocation is introduced."
+          },
+          "From<ExactFieldError>": {
+            "obligation": "Preserve exact provider payload and transparent Display/source delegation.",
+            "origin": "derive(Debug,Clone,PartialEq,Eq,thiserror::Error) and field attributes"
+          },
+          "From<AlgebraicRealError>": {
+            "obligation": "Preserve exact algebraic provider payload and transparent Display/source delegation.",
+            "origin": "derive(Debug,Clone,PartialEq,Eq,thiserror::Error) and field attributes"
+          },
+          "From<ScalarError>": {
+            "obligation": "Preserve exact scalar provider payload and transparent Display/source delegation.",
+            "origin": "derive(Debug,Clone,PartialEq,Eq,thiserror::Error) and field attributes"
+          },
+          "From<MatrixError>": {
+            "obligation": "Preserve matrix provider payload, prefix Display with matrix storage, expose matrix as Error::source.",
+            "origin": "derive(Debug,Clone,PartialEq,Eq,thiserror::Error) and field attributes"
+          },
+          "Display": {
+            "obligation": "Render every local diagnostic with its actual named fields and nested defect prefix; no fabricated context or lost numeric witness.",
+            "origin": "derive(Debug,Clone,PartialEq,Eq,thiserror::Error) and field attributes"
+          },
+          "Error::source": {
+            "obligation": "Three transparent variants forward their provider source, Matrix returns the wrapped error, and local/domain-defect variants have no source. Nested defects are data payloads, not #[source] chains.",
+            "origin": "derive(Debug,Clone,PartialEq,Eq,thiserror::Error) and field attributes"
+          },
+          "Clone/PartialEq/Eq/Debug": {
+            "obligation": "Derived structural value semantics retain the entire discriminant/payload; formatting itself does not assert the reported defect is true.",
+            "origin": "derive(Debug,Clone,PartialEq,Eq,thiserror::Error) and field attributes"
+          }
+        },
+        "invariants": [
+          "Each explicit From body is exactly one matching enum constructor, retaining its entire owned defect. Rust enum constructors preserve fields and discriminate wrappers; no arithmetic, narrowing, search or exception suppression occurs.",
+          "All thiserror attributes were read against all 23 variants: three transparent provider wrappers, four prefixed domain wrappers, one matrix #[from] source wrapper and 15 local field-bearing diagnostics. Native challenges instantiate all variants, all eight From conversions, field-rich payloads, maximum-u128 display, clone/equality and explicit source behavior.",
+          "Direct conversions are constant work and allocate nothing; Display/Clone delegate payload-dependent work. Arbitrary string length and provider formatting/clone costs are outside an allocator or runtime guarantee. The enum is forgeable data and never treated as a mathematical certificate."
+        ],
+        "failure_paths": {
+          "RingDefect::from": "Wrap the owned RingDefect in its matching FusionError variant without altering or discarding payload. No validation, arithmetic or allocation is introduced.",
+          "CategoryDefect::from": "Wrap the owned CategoryDefect in its matching FusionError variant without altering or discarding payload. No validation, arithmetic or allocation is introduced.",
+          "BraidedDefect::from": "Wrap the owned BraidedDefect in its matching FusionError variant without altering or discarding payload. No validation, arithmetic or allocation is introduced.",
+          "ModularDefect::from": "Wrap the owned ModularDefect in its matching FusionError variant without altering or discarding payload. No validation, arithmetic or allocation is introduced."
+        },
+        "trust_boundary": "Rust enum/derive semantics, pinned thiserror proc macro and actual wrapped provider error implementations. Display/Clone/source behavior of providers is trusted and content-bound. No catch-all conversion or recovery is introduced.",
+        "assurance_limits": [
+          "AuthorityEffect: None. This L1 utility preserves diagnostics; it does not establish whether a reported defect holds.",
+          "Derive-generated bodies are explicitly audited and native-challenged; the AST metric counts the four authored conversion bodies only. No compiler expansion theorem, provider-wide safety grade or general crash-freedom theorem is claimed."
+        ],
+        "review_evidence": [
+          {
+            "path": "code/rust/quality/six_module/assessments/fusion_error.json",
+            "sha256": "9611651f9287e6b7dba96773ea4402747910417cc7793aa554d920183abe01d2"
+          }
+        ],
+        "open_obligations": []
+      },
+      "raw_utf8": "{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/fusion_categories/error.rs\",\n    \"sha256\": \"67f005d8f3fbb1284b4544c86a952fd6e092251fe6c7ac395f9e12df41efb0e6\",\n    \"language\": \"Rust\"\n  },\n  \"status\": \"source_reviewed\",\n  \"formal_specification\": {\n    \"profile\": \"Non-Numeric\",\n    \"claim_urn\": \"urn:tfqm:fusion:typed-diagnostic-routing:v1\",\n    \"domain\": \"All constructible FusionError records and wrapped provider/domain defects. Numeric fields are witnesses supplied by callers, not validated by this enum.\",\n    \"behavior\": [\n      \"Preserve exact provider payload and transparent Display/source delegation.\",\n      \"Preserve exact algebraic provider payload and transparent Display/source delegation.\",\n      \"Preserve exact scalar provider payload and transparent Display/source delegation.\",\n      \"Preserve matrix provider payload, prefix Display with matrix storage, expose matrix as Error::source.\",\n      \"Render every local diagnostic with its actual named fields and nested defect prefix; no fabricated context or lost numeric witness.\",\n      \"Three transparent variants forward their provider source, Matrix returns the wrapped error, and local/domain-defect variants have no source. Nested defects are data payloads, not #[source] chains.\",\n      \"Derived structural value semantics retain the entire discriminant/payload; formatting itself does not assert the reported defect is true.\"\n    ]\n  },\n  \"operations\": {\n    \"RingDefect::from\": {\n      \"line\": 102,\n      \"signature\": \"fn from(defect: RingDefect) -> Self\",\n      \"obligation\": \"Wrap the owned RingDefect in its matching FusionError variant without altering or discarding payload. No validation, arithmetic or allocation is introduced.\"\n    },\n    \"CategoryDefect::from\": {\n      \"line\": 108,\n      \"signature\": \"fn from(defect: CategoryDefect) -> Self\",\n      \"obligation\": \"Wrap the owned CategoryDefect in its matching FusionError variant without altering or discarding payload. No validation, arithmetic or allocation is introduced.\"\n    },\n    \"BraidedDefect::from\": {\n      \"line\": 114,\n      \"signature\": \"fn from(defect: BraidedDefect) -> Self\",\n      \"obligation\": \"Wrap the owned BraidedDefect in its matching FusionError variant without altering or discarding payload. No validation, arithmetic or allocation is introduced.\"\n    },\n    \"ModularDefect::from\": {\n      \"line\": 120,\n      \"signature\": \"fn from(defect: ModularDefect) -> Self\",\n      \"obligation\": \"Wrap the owned ModularDefect in its matching FusionError variant without altering or discarding payload. No validation, arithmetic or allocation is introduced.\"\n    },\n    \"From<ExactFieldError>\": {\n      \"obligation\": \"Preserve exact provider payload and transparent Display/source delegation.\",\n      \"origin\": \"derive(Debug,Clone,PartialEq,Eq,thiserror::Error) and field attributes\"\n    },\n    \"From<AlgebraicRealError>\": {\n      \"obligation\": \"Preserve exact algebraic provider payload and transparent Display/source delegation.\",\n      \"origin\": \"derive(Debug,Clone,PartialEq,Eq,thiserror::Error) and field attributes\"\n    },\n    \"From<ScalarError>\": {\n      \"obligation\": \"Preserve exact scalar provider payload and transparent Display/source delegation.\",\n      \"origin\": \"derive(Debug,Clone,PartialEq,Eq,thiserror::Error) and field attributes\"\n    },\n    \"From<MatrixError>\": {\n      \"obligation\": \"Preserve matrix provider payload, prefix Display with matrix storage, expose matrix as Error::source.\",\n      \"origin\": \"derive(Debug,Clone,PartialEq,Eq,thiserror::Error) and field attributes\"\n    },\n    \"Display\": {\n      \"obligation\": \"Render every local diagnostic with its actual named fields and nested defect prefix; no fabricated context or lost numeric witness.\",\n      \"origin\": \"derive(Debug,Clone,PartialEq,Eq,thiserror::Error) and field attributes\"\n    },\n    \"Error::source\": {\n      \"obligation\": \"Three transparent variants forward their provider source, Matrix returns the wrapped error, and local/domain-defect variants have no source. Nested defects are data payloads, not #[source] chains.\",\n      \"origin\": \"derive(Debug,Clone,PartialEq,Eq,thiserror::Error) and field attributes\"\n    },\n    \"Clone/PartialEq/Eq/Debug\": {\n      \"obligation\": \"Derived structural value semantics retain the entire discriminant/payload; formatting itself does not assert the reported defect is true.\",\n      \"origin\": \"derive(Debug,Clone,PartialEq,Eq,thiserror::Error) and field attributes\"\n    }\n  },\n  \"invariants\": [\n    \"Each explicit From body is exactly one matching enum constructor, retaining its entire owned defect. Rust enum constructors preserve fields and discriminate wrappers; no arithmetic, narrowing, search or exception suppression occurs.\",\n    \"All thiserror attributes were read against all 23 variants: three transparent provider wrappers, four prefixed domain wrappers, one matrix #[from] source wrapper and 15 local field-bearing diagnostics. Native challenges instantiate all variants, all eight From conversions, field-rich payloads, maximum-u128 display, clone/equality and explicit source behavior.\",\n    \"Direct conversions are constant work and allocate nothing; Display/Clone delegate payload-dependent work. Arbitrary string length and provider formatting/clone costs are outside an allocator or runtime guarantee. The enum is forgeable data and never treated as a mathematical certificate.\"\n  ],\n  \"failure_paths\": {\n    \"RingDefect::from\": \"Wrap the owned RingDefect in its matching FusionError variant without altering or discarding payload. No validation, arithmetic or allocation is introduced.\",\n    \"CategoryDefect::from\": \"Wrap the owned CategoryDefect in its matching FusionError variant without altering or discarding payload. No validation, arithmetic or allocation is introduced.\",\n    \"BraidedDefect::from\": \"Wrap the owned BraidedDefect in its matching FusionError variant without altering or discarding payload. No validation, arithmetic or allocation is introduced.\",\n    \"ModularDefect::from\": \"Wrap the owned ModularDefect in its matching FusionError variant without altering or discarding payload. No validation, arithmetic or allocation is introduced.\"\n  },\n  \"trust_boundary\": \"Rust enum/derive semantics, pinned thiserror proc macro and actual wrapped provider error implementations. Display/Clone/source behavior of providers is trusted and content-bound. No catch-all conversion or recovery is introduced.\",\n  \"assurance_limits\": [\n    \"AuthorityEffect: None. This L1 utility preserves diagnostics; it does not establish whether a reported defect holds.\",\n    \"Derive-generated bodies are explicitly audited and native-challenged; the AST metric counts the four authored conversion bodies only. No compiler expansion theorem, provider-wide safety grade or general crash-freedom theorem is claimed.\"\n  ],\n  \"review_evidence\": [\n    {\n      \"path\": \"code/rust/quality/six_module/assessments/fusion_error.json\",\n      \"sha256\": \"9611651f9287e6b7dba96773ea4402747910417cc7793aa554d920183abe01d2\"\n    }\n  ],\n  \"open_obligations\": []\n}\n",
+      "original_paths": [
+        "evidence/quality/six_module/checkpoint-012/previous/code/rust/src/fusion_categories/error.rs.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "61995600861bf4e4e13280879ae87264040a18b96ce336a4559229570c43f3d1",
+      "bytes": 2484,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/fusion_categories/error.rs",
+          "sha256": "67f005d8f3fbb1284b4544c86a952fd6e092251fe6c7ac395f9e12df41efb0e6",
+          "language": "Rust"
+        },
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "architecture_target": "L4",
+        "engineering_target": "A",
+        "level": "L1",
+        "gates": {
+          "G1": "A",
+          "G2": "A",
+          "G3": "A",
+          "G4": "A",
+          "G5": "A"
+        },
+        "composite_grade": "A",
+        "score_token": "L1A",
+        "is_complete": true,
+        "assessment_status": "explicit_source_review_referenced",
+        "assessment_source": {
+          "path": "code/rust/quality/six_module/assessments/fusion_error.json",
+          "sha256": "9611651f9287e6b7dba96773ea4402747910417cc7793aa554d920183abe01d2"
+        },
+        "contract": {
+          "path": "code/rust/src/fusion_categories/error.rs.contract.yaml",
+          "sha256": "84324e3925363cbadbc64498721eba2c15f55f0af8285d975f01dbe570cf15e9"
+        },
+        "assessment_note": "Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.",
+        "open_obligations": [],
+        "structural_measurement": {
+          "source_sha256": "67f005d8f3fbb1284b4544c86a952fd6e092251fe6c7ac395f9e12df41efb0e6",
+          "function_count": 4,
+          "maxima": {
+            "ccn": 1,
+            "cognitive_upper_bound": 0,
+            "control_nesting": 0
+          },
+          "structural_ceiling": "A",
+          "opaque_macros": [],
+          "evidence": [
+            {
+              "path": "evidence/quality/category_homology/20261020T025927Z-metrics/receipt.json",
+              "sha256": "c8518c5e512a12b014d6dba6dd8a58aa17b913649cd31423a074731ae827d181"
+            },
+            {
+              "path": "evidence/quality/category_homology/20261020T025927Z-metrics/metrics.json",
+              "sha256": "9995286a39fab3b21d0f6c4296f6ac11a58dc167c7062a9f2873c756a273f500"
+            },
+            {
+              "path": "evidence/quality/category_homology/20261020T025927Z-metrics/six_module_scope.json",
+              "sha256": "f3204609ac12e446e57f4bb42c355d61aba80d1b2507794b330a98a6ec169702"
+            }
+          ],
+          "scope": "Calibrated authored-body source measurements only. Scalar additionally has a separate literal macro substitution view with 32 measured bodies and an explicit template/argument correspondence; diagnostic derive generation has a separate reviewed contract. Full grades require authored semantic/failure/consumer/native evidence."
+        }
+      },
+      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/fusion_categories/error.rs\",\n    \"sha256\": \"67f005d8f3fbb1284b4544c86a952fd6e092251fe6c7ac395f9e12df41efb0e6\",\n    \"language\": \"Rust\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"architecture_target\": \"L4\",\n  \"engineering_target\": \"A\",\n  \"level\": \"L1\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L1A\",\n  \"is_complete\": true,\n  \"assessment_status\": \"explicit_source_review_referenced\",\n  \"assessment_source\": {\n    \"path\": \"code/rust/quality/six_module/assessments/fusion_error.json\",\n    \"sha256\": \"9611651f9287e6b7dba96773ea4402747910417cc7793aa554d920183abe01d2\"\n  },\n  \"contract\": {\n    \"path\": \"code/rust/src/fusion_categories/error.rs.contract.yaml\",\n    \"sha256\": \"84324e3925363cbadbc64498721eba2c15f55f0af8285d975f01dbe570cf15e9\"\n  },\n  \"assessment_note\": \"Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.\",\n  \"open_obligations\": [],\n  \"structural_measurement\": {\n    \"source_sha256\": \"67f005d8f3fbb1284b4544c86a952fd6e092251fe6c7ac395f9e12df41efb0e6\",\n    \"function_count\": 4,\n    \"maxima\": {\n      \"ccn\": 1,\n      \"cognitive_upper_bound\": 0,\n      \"control_nesting\": 0\n    },\n    \"structural_ceiling\": \"A\",\n    \"opaque_macros\": [],\n    \"evidence\": [\n      {\n        \"path\": \"evidence/quality/category_homology/20261020T025927Z-metrics/receipt.json\",\n        \"sha256\": \"c8518c5e512a12b014d6dba6dd8a58aa17b913649cd31423a074731ae827d181\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261020T025927Z-metrics/metrics.json\",\n        \"sha256\": \"9995286a39fab3b21d0f6c4296f6ac11a58dc167c7062a9f2873c756a273f500\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261020T025927Z-metrics/six_module_scope.json\",\n        \"sha256\": \"f3204609ac12e446e57f4bb42c355d61aba80d1b2507794b330a98a6ec169702\"\n      }\n    ],\n    \"scope\": \"Calibrated authored-body source measurements only. Scalar additionally has a separate literal macro substitution view with 32 measured bodies and an explicit template/argument correspondence; diagnostic derive generation has a separate reviewed contract. Full grades require authored semantic/failure/consumer/native evidence.\"\n  }\n}\n",
+      "original_paths": [
+        "evidence/quality/six_module/checkpoint-012/previous/code/rust/src/fusion_categories/error.rs.scoring.yaml"
+      ]
+    }
+  ],
+  "legacy_paths": {
+    "evidence/quality/six_module/checkpoint-012/previous/code/rust/src/fusion_categories/error.rs.contract.yaml": "84324e3925363cbadbc64498721eba2c15f55f0af8285d975f01dbe570cf15e9",
+    "evidence/quality/six_module/checkpoint-012/previous/code/rust/src/fusion_categories/error.rs.scoring.yaml": "61995600861bf4e4e13280879ae87264040a18b96ce336a4559229570c43f3d1"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

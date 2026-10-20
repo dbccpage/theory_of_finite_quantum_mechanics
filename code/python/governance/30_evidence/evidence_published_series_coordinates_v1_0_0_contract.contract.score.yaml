@@ -1,0 +1,319 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/30_evidence/evidence_published_series_coordinates_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:evidence:published_series_coordinates:v1.0.0",
+    "title": "PublishedSeriesCoordinates",
+    "kind": "evidence_contract",
+    "status": "mathematical_wip",
+    "layer": "02_evidence",
+    "role": "Carrier",
+    "descriptor": {
+      "authority_effect": "evidence_only",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "definition": {
+      "published_root": "omega_engine/research/published",
+      "required_row_action": "none; declared conditional, open, and VERIFY fences preserved",
+      "papers": [
+        {
+          "paper_id": "paper000",
+          "programme": "002_finite_obstruction_calculus",
+          "directory": "000_primitive_axiomatics",
+          "main": "000_primitive_axiomatics_v2_6.md",
+          "claim_ledger": "000_primitive_axiomatics_claim_ledger.md",
+          "claim_row_count": 71
+        },
+        {
+          "paper_id": "paper001",
+          "programme": "004_projection_obstruction",
+          "directory": "000_projection_obstruction_for_factorized_states_nonlinear_dynamics_conditional_l1_diagn",
+          "main": "000_projection_obstruction_v5_6.md",
+          "claim_ledger": "000_projection_obstruction_claim_ledger.md",
+          "claim_row_count": 42
+        },
+        {
+          "paper_id": "paper002",
+          "programme": "005_gauge_selection",
+          "directory": "001_m_compatible_gauge_classification",
+          "main": "001_m_compatible_gauge_classification.md",
+          "claim_ledger": "001_m_compatible_gauge_classification_claim_ledger.md",
+          "claim_row_count": 25
+        },
+        {
+          "paper_id": "paper003",
+          "programme": "005_gauge_selection",
+          "directory": "002_so_k_invariant_gauge_classification",
+          "main": "002_so_k_invariant_gauge_classification.md",
+          "claim_ledger": "002_so_k_invariant_gauge_classification_claim_ledger.md",
+          "claim_row_count": 48
+        },
+        {
+          "paper_id": "paper004",
+          "programme": "005_gauge_selection",
+          "directory": "003_coordinate_wise_additivity",
+          "main": "003_coordinate_wise_additivity.md",
+          "claim_ledger": "003_coordinate_wise_additivity_claim_ledger.md",
+          "claim_row_count": 21
+        },
+        {
+          "paper_id": "paper005",
+          "programme": "003_quantum_foundations",
+          "directory": "000_cptp_invariant_obstruction_theory_trace_norm_geometry_and_quantum_dual_witnesses",
+          "main": "000_cptp_invariant_obstruction_theory_trace_norm_geometry_and_quantum_dual_witnesses.md",
+          "claim_ledger": "000_cptp_invariant_obstruction_claim_ledger.md",
+          "claim_row_count": 24
+        },
+        {
+          "paper_id": "paper006",
+          "programme": "002_finite_obstruction_calculus",
+          "directory": "003_l1_native_cohomology",
+          "main": "003_l1_native_cohomology.md",
+          "claim_ledger": "003_l1_native_cohomology_claim_ledger.md",
+          "claim_row_count": 19
+        },
+        {
+          "paper_id": "paper007",
+          "programme": "002_finite_obstruction_calculus",
+          "directory": "004_l1_obstruction_framework",
+          "main": "004_l1_obstruction_framework.md",
+          "claim_ledger": "004_l1_obstruction_framework_claim_ledger.md",
+          "claim_row_count": 18
+        },
+        {
+          "paper_id": "paper008",
+          "programme": "002_finite_obstruction_calculus",
+          "directory": "005_conditional_lift_descent",
+          "main": "005_conditional_lift_descent.md",
+          "claim_ledger": "005_conditional_lift_descent_claim_ledger.md",
+          "claim_row_count": 17
+        },
+        {
+          "paper_id": "paper009",
+          "programme": "003_quantum_foundations",
+          "directory": "001_conditional_density_lift_and_dual_witness_xi_functional",
+          "main": "001_conditional_density_lift_and_dual_witness_xi_functional.md",
+          "claim_ledger": "001_conditional_density_lift_claim_ledger.md",
+          "claim_row_count": 12
+        },
+        {
+          "paper_id": "paper010",
+          "programme": "003_quantum_foundations",
+          "directory": "002_born_normalization_and_conditional_hilbert_lift_from_l1_weights",
+          "main": "002_born_normalization_and_conditional_hilbert_lift_from_l1_weights.md",
+          "claim_ledger": "002_born_normalization_claim_ledger.md",
+          "claim_row_count": 16
+        }
+      ]
+    },
+    "doctrine": {
+      "summary": "Canonical on-disk coordinates for the S07-005 published-series agreement matrix (papers 000-010).\nRepository paths are data, not Rust literals: a path buried in a const drifts silently because the\nagreement matrix is compared field-wise and never resolved against the filesystem. That is how the\nPR #1191 programme reorganization left every coordinate stale while the crate still compiled and\nevery test still passed.\n",
+      "authority_defaults": {
+        "coordinates": "EvidenceOnly. Locating a paper is not a claim about it. This contract pins where a manuscript and its claim ledger live and how many claim rows the ledger declares; it grants no authority over their content and upgrades no status."
+      },
+      "consumers": [
+        {
+          "crate": "omega_state",
+          "module": "published_series_agreement",
+          "use": "validate_published_series_matrix_v1 compares packet rows against these coordinates"
+        }
+      ],
+      "required_tests": [
+        "manifest_parses_and_is_ordered",
+        "every_coordinate_resolves_on_disk"
+      ],
+      "canonical_invariant": "Every coordinate resolves to a file that exists in the published tree, rows are ascending by\npaper_id, and no row points its manuscript and its claim ledger at the same file.\n"
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0",
+        "urn:omega:constitution:base_evidence_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "34e332218fdfee25bec1d6d7991e3b7056ac8b51b87b0fca6a69ed6e4b93efe5",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "34e332218fdfee25bec1d6d7991e3b7056ac8b51b87b0fca6a69ed6e4b93efe5",
+      "bytes": 5053,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:evidence:published_series_coordinates:v1.0.0",
+        "title": "PublishedSeriesCoordinates",
+        "kind": "evidence_contract",
+        "status": "mathematical_wip",
+        "layer": "02_evidence",
+        "role": "Carrier",
+        "descriptor": {
+          "authority_effect": "evidence_only",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "definition": {
+          "published_root": "omega_engine/research/published",
+          "required_row_action": "none; declared conditional, open, and VERIFY fences preserved",
+          "papers": [
+            {
+              "paper_id": "paper000",
+              "programme": "002_finite_obstruction_calculus",
+              "directory": "000_primitive_axiomatics",
+              "main": "000_primitive_axiomatics_v2_6.md",
+              "claim_ledger": "000_primitive_axiomatics_claim_ledger.md",
+              "claim_row_count": 71
+            },
+            {
+              "paper_id": "paper001",
+              "programme": "004_projection_obstruction",
+              "directory": "000_projection_obstruction_for_factorized_states_nonlinear_dynamics_conditional_l1_diagn",
+              "main": "000_projection_obstruction_v5_6.md",
+              "claim_ledger": "000_projection_obstruction_claim_ledger.md",
+              "claim_row_count": 42
+            },
+            {
+              "paper_id": "paper002",
+              "programme": "005_gauge_selection",
+              "directory": "001_m_compatible_gauge_classification",
+              "main": "001_m_compatible_gauge_classification.md",
+              "claim_ledger": "001_m_compatible_gauge_classification_claim_ledger.md",
+              "claim_row_count": 25
+            },
+            {
+              "paper_id": "paper003",
+              "programme": "005_gauge_selection",
+              "directory": "002_so_k_invariant_gauge_classification",
+              "main": "002_so_k_invariant_gauge_classification.md",
+              "claim_ledger": "002_so_k_invariant_gauge_classification_claim_ledger.md",
+              "claim_row_count": 48
+            },
+            {
+              "paper_id": "paper004",
+              "programme": "005_gauge_selection",
+              "directory": "003_coordinate_wise_additivity",
+              "main": "003_coordinate_wise_additivity.md",
+              "claim_ledger": "003_coordinate_wise_additivity_claim_ledger.md",
+              "claim_row_count": 21
+            },
+            {
+              "paper_id": "paper005",
+              "programme": "003_quantum_foundations",
+              "directory": "000_cptp_invariant_obstruction_theory_trace_norm_geometry_and_quantum_dual_witnesses",
+              "main": "000_cptp_invariant_obstruction_theory_trace_norm_geometry_and_quantum_dual_witnesses.md",
+              "claim_ledger": "000_cptp_invariant_obstruction_claim_ledger.md",
+              "claim_row_count": 24
+            },
+            {
+              "paper_id": "paper006",
+              "programme": "002_finite_obstruction_calculus",
+              "directory": "003_l1_native_cohomology",
+              "main": "003_l1_native_cohomology.md",
+              "claim_ledger": "003_l1_native_cohomology_claim_ledger.md",
+              "claim_row_count": 19
+            },
+            {
+              "paper_id": "paper007",
+              "programme": "002_finite_obstruction_calculus",
+              "directory": "004_l1_obstruction_framework",
+              "main": "004_l1_obstruction_framework.md",
+              "claim_ledger": "004_l1_obstruction_framework_claim_ledger.md",
+              "claim_row_count": 18
+            },
+            {
+              "paper_id": "paper008",
+              "programme": "002_finite_obstruction_calculus",
+              "directory": "005_conditional_lift_descent",
+              "main": "005_conditional_lift_descent.md",
+              "claim_ledger": "005_conditional_lift_descent_claim_ledger.md",
+              "claim_row_count": 17
+            },
+            {
+              "paper_id": "paper009",
+              "programme": "003_quantum_foundations",
+              "directory": "001_conditional_density_lift_and_dual_witness_xi_functional",
+              "main": "001_conditional_density_lift_and_dual_witness_xi_functional.md",
+              "claim_ledger": "001_conditional_density_lift_claim_ledger.md",
+              "claim_row_count": 12
+            },
+            {
+              "paper_id": "paper010",
+              "programme": "003_quantum_foundations",
+              "directory": "002_born_normalization_and_conditional_hilbert_lift_from_l1_weights",
+              "main": "002_born_normalization_and_conditional_hilbert_lift_from_l1_weights.md",
+              "claim_ledger": "002_born_normalization_claim_ledger.md",
+              "claim_row_count": 16
+            }
+          ]
+        },
+        "doctrine": {
+          "summary": "Canonical on-disk coordinates for the S07-005 published-series agreement matrix (papers 000-010).\nRepository paths are data, not Rust literals: a path buried in a const drifts silently because the\nagreement matrix is compared field-wise and never resolved against the filesystem. That is how the\nPR #1191 programme reorganization left every coordinate stale while the crate still compiled and\nevery test still passed.\n",
+          "authority_defaults": {
+            "coordinates": "EvidenceOnly. Locating a paper is not a claim about it. This contract pins where a manuscript and its claim ledger live and how many claim rows the ledger declares; it grants no authority over their content and upgrades no status."
+          },
+          "consumers": [
+            {
+              "crate": "omega_state",
+              "module": "published_series_agreement",
+              "use": "validate_published_series_matrix_v1 compares packet rows against these coordinates"
+            }
+          ],
+          "required_tests": [
+            "manifest_parses_and_is_ordered",
+            "every_coordinate_resolves_on_disk"
+          ],
+          "canonical_invariant": "Every coordinate resolves to a file that exists in the published tree, rows are ascending by\npaper_id, and no row points its manuscript and its claim ledger at the same file.\n"
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0",
+            "urn:omega:constitution:base_evidence_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:evidence:published_series_coordinates:v1.0.0\ntitle: PublishedSeriesCoordinates\nkind: evidence_contract\nstatus: mathematical_wip\nlayer: 02_evidence\nrole: Carrier\ndescriptor:\n  authority_effect: evidence_only\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\ndefinition:\n  published_root: omega_engine/research/published\n  required_row_action: none; declared conditional, open, and VERIFY fences preserved\n  papers:\n  - paper_id: paper000\n    programme: 002_finite_obstruction_calculus\n    directory: 000_primitive_axiomatics\n    main: 000_primitive_axiomatics_v2_6.md\n    claim_ledger: 000_primitive_axiomatics_claim_ledger.md\n    claim_row_count: 71\n  - paper_id: paper001\n    programme: 004_projection_obstruction\n    directory: 000_projection_obstruction_for_factorized_states_nonlinear_dynamics_conditional_l1_diagn\n    main: 000_projection_obstruction_v5_6.md\n    claim_ledger: 000_projection_obstruction_claim_ledger.md\n    claim_row_count: 42\n  - paper_id: paper002\n    programme: 005_gauge_selection\n    directory: 001_m_compatible_gauge_classification\n    main: 001_m_compatible_gauge_classification.md\n    claim_ledger: 001_m_compatible_gauge_classification_claim_ledger.md\n    claim_row_count: 25\n  - paper_id: paper003\n    programme: 005_gauge_selection\n    directory: 002_so_k_invariant_gauge_classification\n    main: 002_so_k_invariant_gauge_classification.md\n    claim_ledger: 002_so_k_invariant_gauge_classification_claim_ledger.md\n    claim_row_count: 48\n  - paper_id: paper004\n    programme: 005_gauge_selection\n    directory: 003_coordinate_wise_additivity\n    main: 003_coordinate_wise_additivity.md\n    claim_ledger: 003_coordinate_wise_additivity_claim_ledger.md\n    claim_row_count: 21\n  - paper_id: paper005\n    programme: 003_quantum_foundations\n    directory: 000_cptp_invariant_obstruction_theory_trace_norm_geometry_and_quantum_dual_witnesses\n    main: 000_cptp_invariant_obstruction_theory_trace_norm_geometry_and_quantum_dual_witnesses.md\n    claim_ledger: 000_cptp_invariant_obstruction_claim_ledger.md\n    claim_row_count: 24\n  - paper_id: paper006\n    programme: 002_finite_obstruction_calculus\n    directory: 003_l1_native_cohomology\n    main: 003_l1_native_cohomology.md\n    claim_ledger: 003_l1_native_cohomology_claim_ledger.md\n    claim_row_count: 19\n  - paper_id: paper007\n    programme: 002_finite_obstruction_calculus\n    directory: 004_l1_obstruction_framework\n    main: 004_l1_obstruction_framework.md\n    claim_ledger: 004_l1_obstruction_framework_claim_ledger.md\n    claim_row_count: 18\n  - paper_id: paper008\n    programme: 002_finite_obstruction_calculus\n    directory: 005_conditional_lift_descent\n    main: 005_conditional_lift_descent.md\n    claim_ledger: 005_conditional_lift_descent_claim_ledger.md\n    claim_row_count: 17\n  - paper_id: paper009\n    programme: 003_quantum_foundations\n    directory: 001_conditional_density_lift_and_dual_witness_xi_functional\n    main: 001_conditional_density_lift_and_dual_witness_xi_functional.md\n    claim_ledger: 001_conditional_density_lift_claim_ledger.md\n    claim_row_count: 12\n  - paper_id: paper010\n    programme: 003_quantum_foundations\n    directory: 002_born_normalization_and_conditional_hilbert_lift_from_l1_weights\n    main: 002_born_normalization_and_conditional_hilbert_lift_from_l1_weights.md\n    claim_ledger: 002_born_normalization_claim_ledger.md\n    claim_row_count: 16\ndoctrine:\n  summary: 'Canonical on-disk coordinates for the S07-005 published-series agreement\n    matrix (papers 000-010).\n\n    Repository paths are data, not Rust literals: a path buried in a const drifts\n    silently because the\n\n    agreement matrix is compared field-wise and never resolved against the filesystem.\n    That is how the\n\n    PR #1191 programme reorganization left every coordinate stale while the crate\n    still compiled and\n\n    every test still passed.\n\n    '\n  authority_defaults:\n    coordinates: EvidenceOnly. Locating a paper is not a claim about it. This contract\n      pins where a manuscript and its claim ledger live and how many claim rows the\n      ledger declares; it grants no authority over their content and upgrades no status.\n  consumers:\n  - crate: omega_state\n    module: published_series_agreement\n    use: validate_published_series_matrix_v1 compares packet rows against these coordinates\n  required_tests:\n  - manifest_parses_and_is_ordered\n  - every_coordinate_resolves_on_disk\n  canonical_invariant: 'Every coordinate resolves to a file that exists in the published\n    tree, rows are ascending by\n\n    paper_id, and no row points its manuscript and its claim ledger at the same file.\n\n    '\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n  - urn:omega:constitution:base_evidence_contract:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/30_evidence/evidence_published_series_coordinates_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/30_evidence/evidence_published_series_coordinates_v1_0_0.contract.yaml": "34e332218fdfee25bec1d6d7991e3b7056ac8b51b87b0fca6a69ed6e4b93efe5"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

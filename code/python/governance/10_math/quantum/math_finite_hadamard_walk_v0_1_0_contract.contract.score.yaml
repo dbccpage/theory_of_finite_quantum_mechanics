@@ -1,0 +1,207 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/quantum/math_finite_hadamard_walk_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:finite_hadamard_walk:v0.1.0",
+    "title": "Finite-time Hadamard line and coined walks",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "finite_hadamard_walk",
+      "symbol": "finite_hadamard_walk",
+      "ascii_symbol": "finite_hadamard_walk",
+      "notation": "Finite-time Hadamard line and coined walks",
+      "domain": [
+        "Declared finite coin/carrier; line simulation 0<=t<=256 with parity support inside [-t,t]."
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_quantum_physics::quantum_walk; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "The rational scaled symmetric initial state evolves by the exact Hadamard coin.",
+      "Finite-time probabilities normalize and mean/variance are computed.",
+      "Finite Cayley carrier light-cone results do not certify a positive asymptotic ballistic coefficient."
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_quantum_physics",
+      "module": "quantum_walk",
+      "symbols": [
+        "CoinedWalk",
+        "hadamard_line",
+        "HadamardLineDistribution"
+      ],
+      "required_tests": [
+        "infinite_line_hadamard_walk_has_exact_finite_time_light_cone_and_variance"
+      ]
+    },
+    "negative_tests": [
+      "infinite_line_hadamard_walk_has_exact_finite_time_light_cone_and_variance"
+    ],
+    "doctrine": {
+      "summary": "The rational scaled symmetric initial state evolves by the exact Hadamard coin.; Finite-time probabilities normalize and mean/variance are computed.; Finite Cayley carrier light-cone results do not certify a positive asymptotic ballistic coefficient..",
+      "non_role": [
+        "Finite physical declarations do not confer program admission or certify an undeclared continuum limit.",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "70de84b482e4e23f5e06f42f6281d95409e7efff6b04e137e055d07043802db9",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "70de84b482e4e23f5e06f42f6281d95409e7efff6b04e137e055d07043802db9",
+      "bytes": 2810,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:finite_hadamard_walk:v0.1.0",
+        "title": "Finite-time Hadamard line and coined walks",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "finite_hadamard_walk",
+          "symbol": "finite_hadamard_walk",
+          "ascii_symbol": "finite_hadamard_walk",
+          "notation": "Finite-time Hadamard line and coined walks",
+          "domain": [
+            "Declared finite coin/carrier; line simulation 0<=t<=256 with parity support inside [-t,t]."
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_quantum_physics::quantum_walk; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "The rational scaled symmetric initial state evolves by the exact Hadamard coin.",
+          "Finite-time probabilities normalize and mean/variance are computed.",
+          "Finite Cayley carrier light-cone results do not certify a positive asymptotic ballistic coefficient."
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_quantum_physics",
+          "module": "quantum_walk",
+          "symbols": [
+            "CoinedWalk",
+            "hadamard_line",
+            "HadamardLineDistribution"
+          ],
+          "required_tests": [
+            "infinite_line_hadamard_walk_has_exact_finite_time_light_cone_and_variance"
+          ]
+        },
+        "negative_tests": [
+          "infinite_line_hadamard_walk_has_exact_finite_time_light_cone_and_variance"
+        ],
+        "doctrine": {
+          "summary": "The rational scaled symmetric initial state evolves by the exact Hadamard coin.; Finite-time probabilities normalize and mean/variance are computed.; Finite Cayley carrier light-cone results do not certify a positive asymptotic ballistic coefficient..",
+          "non_role": [
+            "Finite physical declarations do not confer program admission or certify an undeclared continuum limit.",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:finite_hadamard_walk:v0.1.0\ntitle: Finite-time Hadamard line and coined walks\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: finite_hadamard_walk\n  symbol: finite_hadamard_walk\n  ascii_symbol: finite_hadamard_walk\n  notation: Finite-time Hadamard line and coined walks\n  domain:\n  - Declared finite coin/carrier; line simulation 0<=t<=256 with parity support inside\n    [-t,t].\n  codomain:\n    description: Declared finite results of omega_quantum_physics::quantum_walk; exact\n      and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- The rational scaled symmetric initial state evolves by the exact Hadamard coin.\n- Finite-time probabilities normalize and mean/variance are computed.\n- Finite Cayley carrier light-cone results do not certify a positive asymptotic ballistic\n  coefficient.\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_quantum_physics\n  module: quantum_walk\n  symbols:\n  - CoinedWalk\n  - hadamard_line\n  - HadamardLineDistribution\n  required_tests:\n  - infinite_line_hadamard_walk_has_exact_finite_time_light_cone_and_variance\nnegative_tests:\n- infinite_line_hadamard_walk_has_exact_finite_time_light_cone_and_variance\ndoctrine:\n  summary: The rational scaled symmetric initial state evolves by the exact Hadamard\n    coin.; Finite-time probabilities normalize and mean/variance are computed.; Finite\n    Cayley carrier light-cone results do not certify a positive asymptotic ballistic\n    coefficient..\n  non_role:\n  - Finite physical declarations do not confer program admission or certify an undeclared\n    continuum limit.\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/math_finite_hadamard_walk_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/quantum/math_finite_hadamard_walk_v0_1_0.contract.yaml": "70de84b482e4e23f5e06f42f6281d95409e7efff6b04e137e055d07043802db9"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

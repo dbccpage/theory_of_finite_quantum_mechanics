@@ -1,0 +1,237 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/general/math_colimit_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:colimit:v0.1.0",
+    "title": "Colimit Contract",
+    "kind": "math_contract",
+    "status": "exact_rational_classifier_implemented",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "universal_cocone",
+      "symbol": "colim D or lim→ D",
+      "ascii_symbol": "colimit",
+      "notation": "colim D or lim→ D",
+      "domain": [
+        "diagram: Functor D: J → C",
+        "colimit_object: Object L in C",
+        "coprojections: Family {ι_j: D(j) → L | j ∈ Ob(J)}"
+      ],
+      "codomain": {
+        "description": "A colimit consists of: - A diagram D: J → C (source functor) - An object L in C (the colimit object) - For each j ∈ Ob(J), a morphism ι_j: D(j) → L (coprojections)\n"
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "The diagram D: J → C must be a valid functor",
+        "L must be an object in category C",
+        "Each ι_j must be a morphism D(j) → L in C",
+        "For all morphisms f: j → k in J, ι_k ∘ D(f) = ι_j",
+        "Any cocone factors uniquely through L"
+      ]
+    },
+    "laws": [
+      "For every morphism f: j → k in J, ι_k ∘ D(f) = ι_j",
+      "For any cocone (M, μ_j: D(j) → M), there exists a unique morphism u: L → M such that u ∘ ι_j = μ_j for all j ∈ Ob(J)\n"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No randomness",
+        "No time-dependent data",
+        "Coprojections indexed by J's objects in canonical order",
+        "Validators and computation functions are content-addressed"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "negative_tests": [
+      "diagram_id does not resolve",
+      "colimit_object_id does not resolve",
+      "ι_j does not have codomain L",
+      "ι_k ∘ D(f) ≠ ι_j for some f: j → k",
+      "Another cocone cannot factor through L uniquely"
+    ],
+    "doctrine": {
+      "summary": "A Colimit of a diagram D: J → C is a universal cocone under D. It consists of an object L (the colimit) and morphisms ι_j: D(j) → L (the coprojections) such that any other cocone factors uniquely through L. The contract validates the cocone and universality.",
+      "non_role": [
+        "Does not provide specific colimit constructions (coproduct, pushout, etc.)",
+        "Does not compute colimits automatically, only validates given cocones",
+        "Does not handle large colimits (requires small diagrams)"
+      ]
+    },
+    "wip": [
+      "Dual to Limit; same verification issues apply",
+      "How to efficiently verify universal property for large cocones?",
+      "Should coproducts, initial objects, coequalizers, pushouts be separate contracts or special cases?",
+      "How to handle filtered colimits with special properties in specific categories?",
+      "Performance considerations for colimit computations in large diagrams",
+      "Coproducts, initial objects, coequalizers, pushouts are special cases of colimits",
+      "Filtered colimits have special properties in many categories (e.g., commute with finite limits in Set)",
+      "Universal property verification may require computational oracle for general categories",
+      "Consider caching factorization results for repeated cocone queries"
+    ],
+    "rust_binding": {
+      "crate": "omega_category_theory",
+      "module": "limits_colimits",
+      "symbols": [
+        "Colimit"
+      ],
+      "required_tests": [
+        "validate_ok",
+        "validate_rejects_bad_cocone"
+      ]
+    }
+  },
+  "current_contract": "a90fd948e86ff785c3eeeb55558b3d05197a4b27220865d360e35c756fb92a77",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "a90fd948e86ff785c3eeeb55558b3d05197a4b27220865d360e35c756fb92a77",
+      "bytes": 3399,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:colimit:v0.1.0",
+        "title": "Colimit Contract",
+        "kind": "math_contract",
+        "status": "exact_rational_classifier_implemented",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "universal_cocone",
+          "symbol": "colim D or lim→ D",
+          "ascii_symbol": "colimit",
+          "notation": "colim D or lim→ D",
+          "domain": [
+            "diagram: Functor D: J → C",
+            "colimit_object: Object L in C",
+            "coprojections: Family {ι_j: D(j) → L | j ∈ Ob(J)}"
+          ],
+          "codomain": {
+            "description": "A colimit consists of: - A diagram D: J → C (source functor) - An object L in C (the colimit object) - For each j ∈ Ob(J), a morphism ι_j: D(j) → L (coprojections)\n"
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "The diagram D: J → C must be a valid functor",
+            "L must be an object in category C",
+            "Each ι_j must be a morphism D(j) → L in C",
+            "For all morphisms f: j → k in J, ι_k ∘ D(f) = ι_j",
+            "Any cocone factors uniquely through L"
+          ]
+        },
+        "laws": [
+          "For every morphism f: j → k in J, ι_k ∘ D(f) = ι_j",
+          "For any cocone (M, μ_j: D(j) → M), there exists a unique morphism u: L → M such that u ∘ ι_j = μ_j for all j ∈ Ob(J)\n"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "Coprojections indexed by J's objects in canonical order",
+            "Validators and computation functions are content-addressed"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "negative_tests": [
+          "diagram_id does not resolve",
+          "colimit_object_id does not resolve",
+          "ι_j does not have codomain L",
+          "ι_k ∘ D(f) ≠ ι_j for some f: j → k",
+          "Another cocone cannot factor through L uniquely"
+        ],
+        "doctrine": {
+          "summary": "A Colimit of a diagram D: J → C is a universal cocone under D. It consists of an object L (the colimit) and morphisms ι_j: D(j) → L (the coprojections) such that any other cocone factors uniquely through L. The contract validates the cocone and universality.",
+          "non_role": [
+            "Does not provide specific colimit constructions (coproduct, pushout, etc.)",
+            "Does not compute colimits automatically, only validates given cocones",
+            "Does not handle large colimits (requires small diagrams)"
+          ]
+        },
+        "wip": [
+          "Dual to Limit; same verification issues apply",
+          "How to efficiently verify universal property for large cocones?",
+          "Should coproducts, initial objects, coequalizers, pushouts be separate contracts or special cases?",
+          "How to handle filtered colimits with special properties in specific categories?",
+          "Performance considerations for colimit computations in large diagrams",
+          "Coproducts, initial objects, coequalizers, pushouts are special cases of colimits",
+          "Filtered colimits have special properties in many categories (e.g., commute with finite limits in Set)",
+          "Universal property verification may require computational oracle for general categories",
+          "Consider caching factorization results for repeated cocone queries"
+        ],
+        "rust_binding": {
+          "crate": "omega_category_theory",
+          "module": "limits_colimits",
+          "symbols": [
+            "Colimit"
+          ],
+          "required_tests": [
+            "validate_ok",
+            "validate_rejects_bad_cocone"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:colimit:v0.1.0\ntitle: Colimit Contract\nkind: math_contract\nstatus: exact_rational_classifier_implemented\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: universal_cocone\n  symbol: colim D or lim→ D\n  ascii_symbol: colimit\n  notation: colim D or lim→ D\n  domain:\n  - 'diagram: Functor D: J → C'\n  - 'colimit_object: Object L in C'\n  - 'coprojections: Family {ι_j: D(j) → L | j ∈ Ob(J)}'\n  codomain:\n    description: 'A colimit consists of: - A diagram D: J → C (source functor) - An\n      object L in C (the colimit object) - For each j ∈ Ob(J), a morphism ι_j: D(j)\n      → L (coprojections)\n\n      '\nrequirements:\n  required_structures:\n  - 'The diagram D: J → C must be a valid functor'\n  - L must be an object in category C\n  - Each ι_j must be a morphism D(j) → L in C\n  - 'For all morphisms f: j → k in J, ι_k ∘ D(f) = ι_j'\n  - Any cocone factors uniquely through L\nlaws:\n- 'For every morphism f: j → k in J, ι_k ∘ D(f) = ι_j'\n- 'For any cocone (M, μ_j: D(j) → M), there exists a unique morphism u: L → M such\n  that u ∘ ι_j = μ_j for all j ∈ Ob(J)\n\n  '\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Coprojections indexed by J's objects in canonical order\n  - Validators and computation functions are content-addressed\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nnegative_tests:\n- diagram_id does not resolve\n- colimit_object_id does not resolve\n- ι_j does not have codomain L\n- 'ι_k ∘ D(f) ≠ ι_j for some f: j → k'\n- Another cocone cannot factor through L uniquely\ndoctrine:\n  summary: 'A Colimit of a diagram D: J → C is a universal cocone under D. It consists\n    of an object L (the colimit) and morphisms ι_j: D(j) → L (the coprojections) such\n    that any other cocone factors uniquely through L. The contract validates the cocone\n    and universality.'\n  non_role:\n  - Does not provide specific colimit constructions (coproduct, pushout, etc.)\n  - Does not compute colimits automatically, only validates given cocones\n  - Does not handle large colimits (requires small diagrams)\nwip:\n- Dual to Limit; same verification issues apply\n- How to efficiently verify universal property for large cocones?\n- Should coproducts, initial objects, coequalizers, pushouts be separate contracts\n  or special cases?\n- How to handle filtered colimits with special properties in specific categories?\n- Performance considerations for colimit computations in large diagrams\n- Coproducts, initial objects, coequalizers, pushouts are special cases of colimits\n- Filtered colimits have special properties in many categories (e.g., commute with\n  finite limits in Set)\n- Universal property verification may require computational oracle for general categories\n- Consider caching factorization results for repeated cocone queries\nrust_binding:\n  crate: omega_category_theory\n  module: limits_colimits\n  symbols:\n  - Colimit\n  required_tests:\n  - validate_ok\n  - validate_rejects_bad_cocone\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_colimit_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_colimit_v0_1_0.contract.yaml": "a90fd948e86ff785c3eeeb55558b3d05197a4b27220865d360e35c756fb92a77"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

@@ -1,0 +1,339 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/20_execution/products_symbol_game_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:products:symbol_game:v1.0.0",
+    "title": "SymbolGame",
+    "kind": "product_contract",
+    "status": "mathematical_wip",
+    "layer": "07_products",
+    "role": "SymbolGame",
+    "descriptor": {
+      "authority_effect": "evidence_only",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [
+          "PacketContract",
+          "BoundaryContract",
+          "Packetization"
+        ],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      },
+      "capabilities": {
+        "forbidden": [
+          "CertificateSigning",
+          "Terminalization"
+        ],
+        "required": []
+      }
+    },
+    "doctrine": {
+      "summary": "This contract defines the Symbol Game product boundary.\n\nThe Symbol Game is a finite-symbol reasoning wrapper. It converts math intents, prompts, proof\nsketches, solver requests, or model responses into constrained symbolic packets that can be parsed,\nlocally checked, globally boundary-checked, refused, or traced.\n\nThe Symbol Game does not prove correctness by itself. It produces replayable traces, validation\nreports, terminal statuses, and certificate material.\n\nIt may use S(n) context levels internally, but the public product boundary is not a tower-height claim.\n",
+      "non_role": [
+        "proving correctness by itself",
+        "certification",
+        "execution of state transitions",
+        "authority upgrade"
+      ],
+      "llm_boundary_law": {
+        "doctrine": 5,
+        "text": "LLM output entering the Symbol Game is treated as candidate material only (Doctrine 5). The Symbol\nGame parses, validates, and traces LLM-generated moves using the same rules as any other input\nsource. LLM provenance is recorded in the trace but confers no authority.\n"
+      },
+      "classification": {
+        "subsystem": "Product Layer",
+        "role": "Finite-symbol reasoning wrapper producing replayable traces and validation reports.",
+        "classification": "Product layer -- Symbol Game is a product boundary that wraps symbolic reasoning."
+      },
+      "admissibility_checklist": [
+        "Packet grammar is declared",
+        "Allowed alphabet is declared",
+        "Symbol payload parses unambiguously",
+        "Local rules are declared",
+        "Global boundary is declared",
+        "Terminal target is declared",
+        "Authority ceiling is declared",
+        "Seed / replay mode is declared"
+      ],
+      "refusal_conditions": [
+        "parse fails",
+        "undeclared symbol appears",
+        "local rule violation",
+        "global boundary violation",
+        "hidden problem mutation",
+        "unsupported lift",
+        "LLM self-certification attempt",
+        "unreplayable trace",
+        "authority claim exceeds evidence",
+        "seeded replay diverges"
+      ],
+      "replay_obligation": {
+        "description": "A completed Symbol Game run must produce a complete replay package.\n",
+        "required_fields": [
+          "packet_id",
+          "grammar_id",
+          "seed / replay metadata",
+          "raw input hash",
+          "symbol payload hash",
+          "parsed AST hash",
+          "move trace",
+          "local validation report",
+          "global boundary report",
+          "adversarial objections, if enabled",
+          "terminal status",
+          "certificate references"
+        ],
+        "note": "A Symbol Game trace attests only what the validators, replay trace, solver, proof checker,\nor oracle attest.\n"
+      },
+      "forbidden_implementation_tokens": {
+        "scope": "behavior, not substring",
+        "tokens": [
+          "certify",
+          "execute",
+          "evaluate",
+          "prove",
+          "terminalize",
+          "authority_upgrade",
+          "sign_certificate"
+        ]
+      },
+      "required_tests": [
+        "symbol_game_trace_is_replayable",
+        "symbol_game_rejects_undeclared_symbol",
+        "symbol_game_rejects_llm_self_certification",
+        "symbol_game_authority_does_not_exceed_evidence",
+        "symbol_game_seeded_replay_is_deterministic",
+        "symbol_game_records_llm_provenance"
+      ],
+      "canonical_invariant": "Symbol Game is a finite-symbol reasoning wrapper that produces replayable traces, validation reports,\nterminal statuses, and certificate material. It does not prove correctness by itself. It parses,\nvalidates, and traces symbolic moves, recording LLM provenance when applicable, but treating all input\nas candidate material. Authority derives from attached validators, replay traces, solver results, proof\ncheckers, or declared external oracles.\n",
+      "legacy_metadata": {
+        "name": "SymbolGame",
+        "role": "Finite-symbol reasoning wrapper producing replayable traces and validation reports",
+        "classification": "product",
+        "effect_class": "none",
+        "raw_output_authority_effect": "EvidenceOnly",
+        "checked_output_authority_effect": "FactOnly",
+        "promotion_condition": "grammar_rule_trace_and_replay_checks_pass",
+        "depends_on": [
+          "PacketContract",
+          "BoundaryContract",
+          "Packetization"
+        ],
+        "forbidden_authority": [
+          "proving correctness by itself",
+          "certification",
+          "execution of state transitions",
+          "authority upgrade"
+        ],
+        "primary_output_family": "EvidenceEnvelope",
+        "domain_output_kind": "SymbolGameOutput",
+        "referenced_output_families": [
+          "EvidenceEnvelope",
+          "FactEnvelope",
+          "Record"
+        ],
+        "referenced_domain_kinds": [
+          "Trace",
+          "ReplayReport"
+        ],
+        "llm_boundary": "LLM is candidate generator only. LLM output carries no authority."
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0",
+        "urn:omega:constitution:base_product_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "c04a4e863fd4df91adca45163bf19ca32a03b021fef1f109cd0c71962d165671",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "c04a4e863fd4df91adca45163bf19ca32a03b021fef1f109cd0c71962d165671",
+      "bytes": 5087,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:products:symbol_game:v1.0.0",
+        "title": "SymbolGame",
+        "kind": "product_contract",
+        "status": "mathematical_wip",
+        "layer": "07_products",
+        "role": "SymbolGame",
+        "descriptor": {
+          "authority_effect": "evidence_only",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [
+              "PacketContract",
+              "BoundaryContract",
+              "Packetization"
+            ],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          },
+          "capabilities": {
+            "forbidden": [
+              "CertificateSigning",
+              "Terminalization"
+            ],
+            "required": []
+          }
+        },
+        "doctrine": {
+          "summary": "This contract defines the Symbol Game product boundary.\n\nThe Symbol Game is a finite-symbol reasoning wrapper. It converts math intents, prompts, proof\nsketches, solver requests, or model responses into constrained symbolic packets that can be parsed,\nlocally checked, globally boundary-checked, refused, or traced.\n\nThe Symbol Game does not prove correctness by itself. It produces replayable traces, validation\nreports, terminal statuses, and certificate material.\n\nIt may use S(n) context levels internally, but the public product boundary is not a tower-height claim.\n",
+          "non_role": [
+            "proving correctness by itself",
+            "certification",
+            "execution of state transitions",
+            "authority upgrade"
+          ],
+          "llm_boundary_law": {
+            "doctrine": 5,
+            "text": "LLM output entering the Symbol Game is treated as candidate material only (Doctrine 5). The Symbol\nGame parses, validates, and traces LLM-generated moves using the same rules as any other input\nsource. LLM provenance is recorded in the trace but confers no authority.\n"
+          },
+          "classification": {
+            "subsystem": "Product Layer",
+            "role": "Finite-symbol reasoning wrapper producing replayable traces and validation reports.",
+            "classification": "Product layer -- Symbol Game is a product boundary that wraps symbolic reasoning."
+          },
+          "admissibility_checklist": [
+            "Packet grammar is declared",
+            "Allowed alphabet is declared",
+            "Symbol payload parses unambiguously",
+            "Local rules are declared",
+            "Global boundary is declared",
+            "Terminal target is declared",
+            "Authority ceiling is declared",
+            "Seed / replay mode is declared"
+          ],
+          "refusal_conditions": [
+            "parse fails",
+            "undeclared symbol appears",
+            "local rule violation",
+            "global boundary violation",
+            "hidden problem mutation",
+            "unsupported lift",
+            "LLM self-certification attempt",
+            "unreplayable trace",
+            "authority claim exceeds evidence",
+            "seeded replay diverges"
+          ],
+          "replay_obligation": {
+            "description": "A completed Symbol Game run must produce a complete replay package.\n",
+            "required_fields": [
+              "packet_id",
+              "grammar_id",
+              "seed / replay metadata",
+              "raw input hash",
+              "symbol payload hash",
+              "parsed AST hash",
+              "move trace",
+              "local validation report",
+              "global boundary report",
+              "adversarial objections, if enabled",
+              "terminal status",
+              "certificate references"
+            ],
+            "note": "A Symbol Game trace attests only what the validators, replay trace, solver, proof checker,\nor oracle attest.\n"
+          },
+          "forbidden_implementation_tokens": {
+            "scope": "behavior, not substring",
+            "tokens": [
+              "certify",
+              "execute",
+              "evaluate",
+              "prove",
+              "terminalize",
+              "authority_upgrade",
+              "sign_certificate"
+            ]
+          },
+          "required_tests": [
+            "symbol_game_trace_is_replayable",
+            "symbol_game_rejects_undeclared_symbol",
+            "symbol_game_rejects_llm_self_certification",
+            "symbol_game_authority_does_not_exceed_evidence",
+            "symbol_game_seeded_replay_is_deterministic",
+            "symbol_game_records_llm_provenance"
+          ],
+          "canonical_invariant": "Symbol Game is a finite-symbol reasoning wrapper that produces replayable traces, validation reports,\nterminal statuses, and certificate material. It does not prove correctness by itself. It parses,\nvalidates, and traces symbolic moves, recording LLM provenance when applicable, but treating all input\nas candidate material. Authority derives from attached validators, replay traces, solver results, proof\ncheckers, or declared external oracles.\n",
+          "legacy_metadata": {
+            "name": "SymbolGame",
+            "role": "Finite-symbol reasoning wrapper producing replayable traces and validation reports",
+            "classification": "product",
+            "effect_class": "none",
+            "raw_output_authority_effect": "EvidenceOnly",
+            "checked_output_authority_effect": "FactOnly",
+            "promotion_condition": "grammar_rule_trace_and_replay_checks_pass",
+            "depends_on": [
+              "PacketContract",
+              "BoundaryContract",
+              "Packetization"
+            ],
+            "forbidden_authority": [
+              "proving correctness by itself",
+              "certification",
+              "execution of state transitions",
+              "authority upgrade"
+            ],
+            "primary_output_family": "EvidenceEnvelope",
+            "domain_output_kind": "SymbolGameOutput",
+            "referenced_output_families": [
+              "EvidenceEnvelope",
+              "FactEnvelope",
+              "Record"
+            ],
+            "referenced_domain_kinds": [
+              "Trace",
+              "ReplayReport"
+            ],
+            "llm_boundary": "LLM is candidate generator only. LLM output carries no authority."
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0",
+            "urn:omega:constitution:base_product_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:products:symbol_game:v1.0.0\ntitle: SymbolGame\nkind: product_contract\nstatus: mathematical_wip\nlayer: 07_products\nrole: SymbolGame\ndescriptor:\n  authority_effect: evidence_only\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: &id001\n    - PacketContract\n    - BoundaryContract\n    - Packetization\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\n  capabilities:\n    forbidden:\n    - CertificateSigning\n    - Terminalization\n    required: []\ndoctrine:\n  summary: 'This contract defines the Symbol Game product boundary.\n\n\n    The Symbol Game is a finite-symbol reasoning wrapper. It converts math intents,\n    prompts, proof\n\n    sketches, solver requests, or model responses into constrained symbolic packets\n    that can be parsed,\n\n    locally checked, globally boundary-checked, refused, or traced.\n\n\n    The Symbol Game does not prove correctness by itself. It produces replayable traces,\n    validation\n\n    reports, terminal statuses, and certificate material.\n\n\n    It may use S(n) context levels internally, but the public product boundary is\n    not a tower-height claim.\n\n    '\n  non_role: &id002\n  - proving correctness by itself\n  - certification\n  - execution of state transitions\n  - authority upgrade\n  llm_boundary_law:\n    doctrine: 5\n    text: 'LLM output entering the Symbol Game is treated as candidate material only\n      (Doctrine 5). The Symbol\n\n      Game parses, validates, and traces LLM-generated moves using the same rules\n      as any other input\n\n      source. LLM provenance is recorded in the trace but confers no authority.\n\n      '\n  classification:\n    subsystem: Product Layer\n    role: Finite-symbol reasoning wrapper producing replayable traces and validation\n      reports.\n    classification: Product layer -- Symbol Game is a product boundary that wraps\n      symbolic reasoning.\n  admissibility_checklist:\n  - Packet grammar is declared\n  - Allowed alphabet is declared\n  - Symbol payload parses unambiguously\n  - Local rules are declared\n  - Global boundary is declared\n  - Terminal target is declared\n  - Authority ceiling is declared\n  - Seed / replay mode is declared\n  refusal_conditions:\n  - parse fails\n  - undeclared symbol appears\n  - local rule violation\n  - global boundary violation\n  - hidden problem mutation\n  - unsupported lift\n  - LLM self-certification attempt\n  - unreplayable trace\n  - authority claim exceeds evidence\n  - seeded replay diverges\n  replay_obligation:\n    description: 'A completed Symbol Game run must produce a complete replay package.\n\n      '\n    required_fields:\n    - packet_id\n    - grammar_id\n    - seed / replay metadata\n    - raw input hash\n    - symbol payload hash\n    - parsed AST hash\n    - move trace\n    - local validation report\n    - global boundary report\n    - adversarial objections, if enabled\n    - terminal status\n    - certificate references\n    note: 'A Symbol Game trace attests only what the validators, replay trace, solver,\n      proof checker,\n\n      or oracle attest.\n\n      '\n  forbidden_implementation_tokens:\n    scope: behavior, not substring\n    tokens:\n    - certify\n    - execute\n    - evaluate\n    - prove\n    - terminalize\n    - authority_upgrade\n    - sign_certificate\n  required_tests:\n  - symbol_game_trace_is_replayable\n  - symbol_game_rejects_undeclared_symbol\n  - symbol_game_rejects_llm_self_certification\n  - symbol_game_authority_does_not_exceed_evidence\n  - symbol_game_seeded_replay_is_deterministic\n  - symbol_game_records_llm_provenance\n  canonical_invariant: 'Symbol Game is a finite-symbol reasoning wrapper that produces\n    replayable traces, validation reports,\n\n    terminal statuses, and certificate material. It does not prove correctness by\n    itself. It parses,\n\n    validates, and traces symbolic moves, recording LLM provenance when applicable,\n    but treating all input\n\n    as candidate material. Authority derives from attached validators, replay traces,\n    solver results, proof\n\n    checkers, or declared external oracles.\n\n    '\n  legacy_metadata:\n    name: SymbolGame\n    role: Finite-symbol reasoning wrapper producing replayable traces and validation\n      reports\n    classification: product\n    effect_class: none\n    raw_output_authority_effect: EvidenceOnly\n    checked_output_authority_effect: FactOnly\n    promotion_condition: grammar_rule_trace_and_replay_checks_pass\n    depends_on: *id001\n    forbidden_authority: *id002\n    primary_output_family: EvidenceEnvelope\n    domain_output_kind: SymbolGameOutput\n    referenced_output_families:\n    - EvidenceEnvelope\n    - FactEnvelope\n    - Record\n    referenced_domain_kinds:\n    - Trace\n    - ReplayReport\n    llm_boundary: LLM is candidate generator only. LLM output carries no authority.\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n  - urn:omega:constitution:base_product_contract:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/20_execution/products_symbol_game_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/20_execution/products_symbol_game_v1_0_0.contract.yaml": "c04a4e863fd4df91adca45163bf19ca32a03b021fef1f109cd0c71962d165671"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

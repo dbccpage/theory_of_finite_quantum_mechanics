@@ -1,0 +1,213 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/quantum/math_finite_perturbation_theory_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:finite_perturbation_theory:v0.1.0",
+    "title": "Exact Finite Perturbative Eigenseries",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "finite_perturbation_theory",
+      "symbol": "finite_perturbation_theory",
+      "ascii_symbol": "finite_perturbation_theory",
+      "notation": "Exact Finite Perturbative Eigenseries",
+      "domain": [
+        "A finite Gaussian-rational Hermitian perturbation around a declared diagonal rational Hamiltonian.",
+        "A simple selected unperturbed eigenvalue, dimension at most eight and series order at most sixty-four."
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_quantum_physics::perturbation_theory; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "Rayleigh-Schrodinger recursion uses intermediate normalization and exact spectral gaps.",
+      "Independent characteristic-polynomial substitution has zero coefficients through the retained order.",
+      "Hellmann-Feynman coefficients agree through the highest derivative order available.",
+      "The two-level energy coefficients are the signed Catalan sequence; a degenerate first-order block uses its actual compressed spectrum."
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_quantum_physics",
+      "module": "perturbation_theory",
+      "symbols": [
+        "PerturbationTheory"
+      ],
+      "required_tests": [
+        "two_level_energy_series_is_the_signed_catalan_sequence",
+        "three_level_series_matches_the_independent_determinant_and_degenerate_block"
+      ]
+    },
+    "negative_tests": [
+      "Degenerate simple-state input, unavailable rational compressed spectra, shape mismatch and order excess are refused."
+    ],
+    "doctrine": {
+      "summary": "Rayleigh-Schrodinger recursion uses intermediate normalization and exact spectral gaps.; Independent characteristic-polynomial substitution has zero coefficients through the retained order.; Hellmann-Feynman coefficients agree through the highest derivative order available.; The two-level energy coefficients are the signed Catalan sequence; a degenerate first-order block uses its actual compressed spectrum..",
+      "non_role": [
+        "A truncated formal series is not an unconditional analytic convergence proof.",
+        "The Gershgorin radius is sufficient and conservative.",
+        "No operational authority.",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "7ac6e414e26c62f91eb27bbba8ea4530fbe42b86aba5e42f24d5b3271d742116",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "7ac6e414e26c62f91eb27bbba8ea4530fbe42b86aba5e42f24d5b3271d742116",
+      "bytes": 3412,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:finite_perturbation_theory:v0.1.0",
+        "title": "Exact Finite Perturbative Eigenseries",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "finite_perturbation_theory",
+          "symbol": "finite_perturbation_theory",
+          "ascii_symbol": "finite_perturbation_theory",
+          "notation": "Exact Finite Perturbative Eigenseries",
+          "domain": [
+            "A finite Gaussian-rational Hermitian perturbation around a declared diagonal rational Hamiltonian.",
+            "A simple selected unperturbed eigenvalue, dimension at most eight and series order at most sixty-four."
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_quantum_physics::perturbation_theory; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "Rayleigh-Schrodinger recursion uses intermediate normalization and exact spectral gaps.",
+          "Independent characteristic-polynomial substitution has zero coefficients through the retained order.",
+          "Hellmann-Feynman coefficients agree through the highest derivative order available.",
+          "The two-level energy coefficients are the signed Catalan sequence; a degenerate first-order block uses its actual compressed spectrum."
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_quantum_physics",
+          "module": "perturbation_theory",
+          "symbols": [
+            "PerturbationTheory"
+          ],
+          "required_tests": [
+            "two_level_energy_series_is_the_signed_catalan_sequence",
+            "three_level_series_matches_the_independent_determinant_and_degenerate_block"
+          ]
+        },
+        "negative_tests": [
+          "Degenerate simple-state input, unavailable rational compressed spectra, shape mismatch and order excess are refused."
+        ],
+        "doctrine": {
+          "summary": "Rayleigh-Schrodinger recursion uses intermediate normalization and exact spectral gaps.; Independent characteristic-polynomial substitution has zero coefficients through the retained order.; Hellmann-Feynman coefficients agree through the highest derivative order available.; The two-level energy coefficients are the signed Catalan sequence; a degenerate first-order block uses its actual compressed spectrum..",
+          "non_role": [
+            "A truncated formal series is not an unconditional analytic convergence proof.",
+            "The Gershgorin radius is sufficient and conservative.",
+            "No operational authority.",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:finite_perturbation_theory:v0.1.0\ntitle: Exact Finite Perturbative Eigenseries\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: finite_perturbation_theory\n  symbol: finite_perturbation_theory\n  ascii_symbol: finite_perturbation_theory\n  notation: Exact Finite Perturbative Eigenseries\n  domain:\n  - A finite Gaussian-rational Hermitian perturbation around a declared diagonal rational\n    Hamiltonian.\n  - A simple selected unperturbed eigenvalue, dimension at most eight and series order\n    at most sixty-four.\n  codomain:\n    description: Declared finite results of omega_quantum_physics::perturbation_theory;\n      exact and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- Rayleigh-Schrodinger recursion uses intermediate normalization and exact spectral\n  gaps.\n- Independent characteristic-polynomial substitution has zero coefficients through\n  the retained order.\n- Hellmann-Feynman coefficients agree through the highest derivative order available.\n- The two-level energy coefficients are the signed Catalan sequence; a degenerate\n  first-order block uses its actual compressed spectrum.\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_quantum_physics\n  module: perturbation_theory\n  symbols:\n  - PerturbationTheory\n  required_tests:\n  - two_level_energy_series_is_the_signed_catalan_sequence\n  - three_level_series_matches_the_independent_determinant_and_degenerate_block\nnegative_tests:\n- Degenerate simple-state input, unavailable rational compressed spectra, shape mismatch\n  and order excess are refused.\ndoctrine:\n  summary: Rayleigh-Schrodinger recursion uses intermediate normalization and exact\n    spectral gaps.; Independent characteristic-polynomial substitution has zero coefficients\n    through the retained order.; Hellmann-Feynman coefficients agree through the highest\n    derivative order available.; The two-level energy coefficients are the signed\n    Catalan sequence; a degenerate first-order block uses its actual compressed spectrum..\n  non_role:\n  - A truncated formal series is not an unconditional analytic convergence proof.\n  - The Gershgorin radius is sufficient and conservative.\n  - No operational authority.\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/math_finite_perturbation_theory_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/quantum/math_finite_perturbation_theory_v0_1_0.contract.yaml": "7ac6e414e26c62f91eb27bbba8ea4530fbe42b86aba5e42f24d5b3271d742116"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

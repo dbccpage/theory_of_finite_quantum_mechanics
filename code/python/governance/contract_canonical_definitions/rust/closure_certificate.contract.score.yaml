@@ -1,0 +1,171 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": null,
+  "contract": {
+    "schema_version": "omega.file_contract.v1",
+    "kind": "rust_file_contract",
+    "contract_id": "urn:omega:rust:omega_certifiers:closure_certificate:v1.1.0",
+    "title": "ClosureCertificate",
+    "status": "active",
+    "crate": "omega_certifiers",
+    "file": "crates_rs/omega_certifiers/src/closure_certificate.rs",
+    "layer": "02_evidence",
+    "role": "canonical_closure_certifier",
+    "authority_effect": "fact_only",
+    "evidence_ceiling": "LocalReplay",
+    "customer_claim_allowed": false,
+    "runtime_enforcement": true,
+    "owns": [
+      "closure_certificate_exact_status",
+      "closure_certificate_diagnostic_status",
+      "closure_replay_binding"
+    ],
+    "does_not_own": [
+      "Gamma2 computation",
+      "Phi1 computation",
+      "trichotomy classification",
+      "authority minting",
+      "lift acceptance",
+      "operator execution"
+    ],
+    "may_call": [
+      "omega_functional::gamma2::VerifiedExactGamma2",
+      "omega_policy::trichotomy",
+      "omega_replay::*"
+    ],
+    "must_not": [
+      "self-certify Gamma2",
+      "compute Gamma2 from raw d1/h matrices",
+      "classify exact closure through f64 tolerance",
+      "mint authority",
+      "terminalize",
+      "accept raw string closure status as certified",
+      "mutate packets or deposits"
+    ],
+    "exactness": {
+      "mode": "mixed_exact_and_diagnostic",
+      "exact_constructor_required": true,
+      "exact_status_rule": "Gamma2 == 0 -> Closed; Gamma2 > 0 -> Open",
+      "approximate_modes_allowed": true,
+      "approximate_modes_authority_effect": "none",
+      "approximate_modes_must_be_named_diagnostic": true
+    },
+    "forbidden_substrings": [
+      "CertifiedAuthority::certify",
+      "authority_from_outcome_f13",
+      "mint_authority(",
+      "AuthorityCeiling::FullCertifier"
+    ],
+    "required_substrings": [
+      "VerifiedExactGamma2",
+      "new_exact",
+      "diagnostic"
+    ],
+    "required_tests": [
+      "closure_certificate_exact_zero_gamma_is_closed",
+      "closure_certificate_exact_positive_gamma_is_open",
+      "closure_certificate_diagnostic_cannot_authorize",
+      "closure_certificate_rejects_unverified_gamma2"
+    ],
+    "lean_obligations": [
+      "L-CERT-4: exact closure certificate theorem: Gamma2 = 0 iff Closed; Gamma2 > 0 iff Open under exact rational Gamma2",
+      "L-M1.5: computed Gamma2 from d1 equals classifier input"
+    ],
+    "notes": [
+      "If exact and approximate closure remain in one file, tests must prove exact constructor never uses tolerance."
+    ]
+  },
+  "current_contract": "bcc1bc1c0a1d740a098cf3a5b15dbec7cfa157538f7c85721d8af0ba59c8ce4f",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "bcc1bc1c0a1d740a098cf3a5b15dbec7cfa157538f7c85721d8af0ba59c8ce4f",
+      "bytes": 2013,
+      "record": {
+        "schema_version": "omega.file_contract.v1",
+        "kind": "rust_file_contract",
+        "contract_id": "urn:omega:rust:omega_certifiers:closure_certificate:v1.1.0",
+        "title": "ClosureCertificate",
+        "status": "active",
+        "crate": "omega_certifiers",
+        "file": "crates_rs/omega_certifiers/src/closure_certificate.rs",
+        "layer": "02_evidence",
+        "role": "canonical_closure_certifier",
+        "authority_effect": "fact_only",
+        "evidence_ceiling": "LocalReplay",
+        "customer_claim_allowed": false,
+        "runtime_enforcement": true,
+        "owns": [
+          "closure_certificate_exact_status",
+          "closure_certificate_diagnostic_status",
+          "closure_replay_binding"
+        ],
+        "does_not_own": [
+          "Gamma2 computation",
+          "Phi1 computation",
+          "trichotomy classification",
+          "authority minting",
+          "lift acceptance",
+          "operator execution"
+        ],
+        "may_call": [
+          "omega_functional::gamma2::VerifiedExactGamma2",
+          "omega_policy::trichotomy",
+          "omega_replay::*"
+        ],
+        "must_not": [
+          "self-certify Gamma2",
+          "compute Gamma2 from raw d1/h matrices",
+          "classify exact closure through f64 tolerance",
+          "mint authority",
+          "terminalize",
+          "accept raw string closure status as certified",
+          "mutate packets or deposits"
+        ],
+        "exactness": {
+          "mode": "mixed_exact_and_diagnostic",
+          "exact_constructor_required": true,
+          "exact_status_rule": "Gamma2 == 0 -> Closed; Gamma2 > 0 -> Open",
+          "approximate_modes_allowed": true,
+          "approximate_modes_authority_effect": "none",
+          "approximate_modes_must_be_named_diagnostic": true
+        },
+        "forbidden_substrings": [
+          "CertifiedAuthority::certify",
+          "authority_from_outcome_f13",
+          "mint_authority(",
+          "AuthorityCeiling::FullCertifier"
+        ],
+        "required_substrings": [
+          "VerifiedExactGamma2",
+          "new_exact",
+          "diagnostic"
+        ],
+        "required_tests": [
+          "closure_certificate_exact_zero_gamma_is_closed",
+          "closure_certificate_exact_positive_gamma_is_open",
+          "closure_certificate_diagnostic_cannot_authorize",
+          "closure_certificate_rejects_unverified_gamma2"
+        ],
+        "lean_obligations": [
+          "L-CERT-4: exact closure certificate theorem: Gamma2 = 0 iff Closed; Gamma2 > 0 iff Open under exact rational Gamma2",
+          "L-M1.5: computed Gamma2 from d1 equals classifier input"
+        ],
+        "notes": [
+          "If exact and approximate closure remain in one file, tests must prove exact constructor never uses tolerance."
+        ]
+      },
+      "raw_utf8": "schema_version: omega.file_contract.v1\nkind: rust_file_contract\ncontract_id: urn:omega:rust:omega_certifiers:closure_certificate:v1.1.0\ntitle: ClosureCertificate\nstatus: active\ncrate: omega_certifiers\nfile: crates_rs/omega_certifiers/src/closure_certificate.rs\nlayer: 02_evidence\nrole: canonical_closure_certifier\nauthority_effect: fact_only\nevidence_ceiling: LocalReplay\ncustomer_claim_allowed: false\nruntime_enforcement: true\nowns:\n- closure_certificate_exact_status\n- closure_certificate_diagnostic_status\n- closure_replay_binding\ndoes_not_own:\n- Gamma2 computation\n- Phi1 computation\n- trichotomy classification\n- authority minting\n- lift acceptance\n- operator execution\nmay_call:\n- omega_functional::gamma2::VerifiedExactGamma2\n- omega_policy::trichotomy\n- omega_replay::*\nmust_not:\n- self-certify Gamma2\n- compute Gamma2 from raw d1/h matrices\n- classify exact closure through f64 tolerance\n- mint authority\n- terminalize\n- accept raw string closure status as certified\n- mutate packets or deposits\nexactness:\n  mode: mixed_exact_and_diagnostic\n  exact_constructor_required: true\n  exact_status_rule: Gamma2 == 0 -> Closed; Gamma2 > 0 -> Open\n  approximate_modes_allowed: true\n  approximate_modes_authority_effect: none\n  approximate_modes_must_be_named_diagnostic: true\nforbidden_substrings:\n- CertifiedAuthority::certify\n- authority_from_outcome_f13\n- mint_authority(\n- AuthorityCeiling::FullCertifier\nrequired_substrings:\n- VerifiedExactGamma2\n- new_exact\n- diagnostic\nrequired_tests:\n- closure_certificate_exact_zero_gamma_is_closed\n- closure_certificate_exact_positive_gamma_is_open\n- closure_certificate_diagnostic_cannot_authorize\n- closure_certificate_rejects_unverified_gamma2\nlean_obligations:\n- 'L-CERT-4: exact closure certificate theorem: Gamma2 = 0 iff Closed; Gamma2 > 0\n  iff Open under exact rational Gamma2'\n- 'L-M1.5: computed Gamma2 from d1 equals classifier input'\nnotes:\n- If exact and approximate closure remain in one file, tests must prove exact constructor\n  never uses tolerance.\n",
+      "original_paths": [
+        "code/python/governance/contract_canonical_definitions/rust/closure_certificate.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/contract_canonical_definitions/rust/closure_certificate.contract.yaml": "bcc1bc1c0a1d740a098cf3a5b15dbec7cfa157538f7c85721d8af0ba59c8ce4f"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

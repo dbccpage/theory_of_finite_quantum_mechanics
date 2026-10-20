@@ -1,0 +1,105 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": null,
+  "contract": {
+    "schema_version": "omega.file_contract.v1",
+    "kind": "rust_file_contract",
+    "contract_id": "urn:omega:qm:quantum_density_engine:file:v1.0.0",
+    "crate": "omega_engines",
+    "file": "crates_rs/omega_engines/src/quantum/quantum_density_engine.rs",
+    "role": "quantum_density_matrix_engine",
+    "status": "active_provisional",
+    "authority_effect": "none",
+    "customer_claim_allowed": false,
+    "runtime_enforcement": "required",
+    "owns": [
+      "real_and_complex_density_matrix_evaluations",
+      "trace_normalization_checks"
+    ],
+    "does_not_own": [
+      "born_rule_uniqueness",
+      "authority"
+    ],
+    "may_call": [
+      "omega_engines::quantum::density_matrix"
+    ],
+    "must_not": [
+      "claim physical state completeness",
+      "mint authority"
+    ],
+    "exactness": {
+      "numeric_mode": "f64_density_matrix_numeric",
+      "exact_certificate_allowed": false
+    },
+    "forbidden_substrings": [
+      "CertifiedAuthority",
+      "AuthorityEffect::Authorize"
+    ],
+    "required_substrings": [
+      "AuthorityEffect::None"
+    ],
+    "required_tests": [
+      "test_quantum_density_matrix_evaluations"
+    ]
+  },
+  "current_contract": "2058bece0258655c0c26f21f76b57348fe11c5cadb05877af968871b5f1bfa40",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "2058bece0258655c0c26f21f76b57348fe11c5cadb05877af968871b5f1bfa40",
+      "bytes": 896,
+      "record": {
+        "schema_version": "omega.file_contract.v1",
+        "kind": "rust_file_contract",
+        "contract_id": "urn:omega:qm:quantum_density_engine:file:v1.0.0",
+        "crate": "omega_engines",
+        "file": "crates_rs/omega_engines/src/quantum/quantum_density_engine.rs",
+        "role": "quantum_density_matrix_engine",
+        "status": "active_provisional",
+        "authority_effect": "none",
+        "customer_claim_allowed": false,
+        "runtime_enforcement": "required",
+        "owns": [
+          "real_and_complex_density_matrix_evaluations",
+          "trace_normalization_checks"
+        ],
+        "does_not_own": [
+          "born_rule_uniqueness",
+          "authority"
+        ],
+        "may_call": [
+          "omega_engines::quantum::density_matrix"
+        ],
+        "must_not": [
+          "claim physical state completeness",
+          "mint authority"
+        ],
+        "exactness": {
+          "numeric_mode": "f64_density_matrix_numeric",
+          "exact_certificate_allowed": false
+        },
+        "forbidden_substrings": [
+          "CertifiedAuthority",
+          "AuthorityEffect::Authorize"
+        ],
+        "required_substrings": [
+          "AuthorityEffect::None"
+        ],
+        "required_tests": [
+          "test_quantum_density_matrix_evaluations"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.file_contract.v1\nkind: rust_file_contract\ncontract_id: urn:omega:qm:quantum_density_engine:file:v1.0.0\ncrate: omega_engines\nfile: crates_rs/omega_engines/src/quantum/quantum_density_engine.rs\nrole: quantum_density_matrix_engine\nstatus: active_provisional\nauthority_effect: none\ncustomer_claim_allowed: false\nruntime_enforcement: required\nowns:\n  - real_and_complex_density_matrix_evaluations\n  - trace_normalization_checks\ndoes_not_own:\n  - born_rule_uniqueness\n  - authority\nmay_call:\n  - omega_engines::quantum::density_matrix\nmust_not:\n  - claim physical state completeness\n  - mint authority\nexactness:\n  numeric_mode: f64_density_matrix_numeric\n  exact_certificate_allowed: false\nforbidden_substrings:\n  - \"CertifiedAuthority\"\n  - \"AuthorityEffect::Authorize\"\nrequired_substrings:\n  - \"AuthorityEffect::None\"\nrequired_tests:\n  - test_quantum_density_matrix_evaluations\n",
+      "original_paths": [
+        "code/python/governance/contract_canonical_definitions/rust/engines/quantum_density_engine.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/contract_canonical_definitions/rust/engines/quantum_density_engine.contract.yaml": "2058bece0258655c0c26f21f76b57348fe11c5cadb05877af968871b5f1bfa40"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

@@ -1,0 +1,153 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/40_packets/packet_symbol_game_simplicial_boundary_report_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v2",
+    "contract_id": "urn:omega:packet:symbol_game:simplicial_boundary_report:v1.0.0",
+    "title": "Simplicial Boundary Report",
+    "kind": "packet_contract",
+    "layer": "40_packets",
+    "role": "PacketSpecification",
+    "status": "active",
+    "council_owner": "L3_logos_techne",
+    "descriptor": {
+      "authority_effect": "None",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": true,
+      "clean_architecture_layer": "domain",
+      "refusals": {
+        "may_emit": [
+          "FW-UNKNOWN-FIELD"
+        ]
+      }
+    },
+    "doctrine": {
+      "summary": "SimplicialBoundaryReport, a detailed boundary verification report for higher-dimensional complexes.",
+      "invariants": [
+        "Exhaustive shape destructure compiles in all builds.",
+        "boundary_law_verified is true iff all compositions d_{k-1} * d_k vanish identically."
+      ],
+      "non_roles": [
+        "authority_source",
+        "promotion_granter"
+      ],
+      "required_negative_capabilities": [
+        "no_self_certification",
+        "no_implicit_authority_upgrade"
+      ]
+    },
+    "structure": {
+      "language": "rust",
+      "rust_crate": "omega_symbol_game_runtime",
+      "rust_module": "homology_holonomy",
+      "rust_type": "SimplicialBoundaryReport",
+      "form": "struct",
+      "fields": [
+        {
+          "name": "max_dimension"
+        },
+        {
+          "name": "simplex_counts_by_dim"
+        },
+        {
+          "name": "euler_characteristic"
+        },
+        {
+          "name": "boundary_law_verified"
+        },
+        {
+          "name": "compositions"
+        }
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "7af455914ebbe71ec6fe9d8e94e7627951c4f6c85ca38e6f9a8282cefdee41d9",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "7af455914ebbe71ec6fe9d8e94e7627951c4f6c85ca38e6f9a8282cefdee41d9",
+      "bytes": 1250,
+      "record": {
+        "schema_version": "omega.contract.v2",
+        "contract_id": "urn:omega:packet:symbol_game:simplicial_boundary_report:v1.0.0",
+        "title": "Simplicial Boundary Report",
+        "kind": "packet_contract",
+        "layer": "40_packets",
+        "role": "PacketSpecification",
+        "status": "active",
+        "council_owner": "L3_logos_techne",
+        "descriptor": {
+          "authority_effect": "None",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": true,
+          "clean_architecture_layer": "domain",
+          "refusals": {
+            "may_emit": [
+              "FW-UNKNOWN-FIELD"
+            ]
+          }
+        },
+        "doctrine": {
+          "summary": "SimplicialBoundaryReport, a detailed boundary verification report for higher-dimensional complexes.",
+          "invariants": [
+            "Exhaustive shape destructure compiles in all builds.",
+            "boundary_law_verified is true iff all compositions d_{k-1} * d_k vanish identically."
+          ],
+          "non_roles": [
+            "authority_source",
+            "promotion_granter"
+          ],
+          "required_negative_capabilities": [
+            "no_self_certification",
+            "no_implicit_authority_upgrade"
+          ]
+        },
+        "structure": {
+          "language": "rust",
+          "rust_crate": "omega_symbol_game_runtime",
+          "rust_module": "homology_holonomy",
+          "rust_type": "SimplicialBoundaryReport",
+          "form": "struct",
+          "fields": [
+            {
+              "name": "max_dimension"
+            },
+            {
+              "name": "simplex_counts_by_dim"
+            },
+            {
+              "name": "euler_characteristic"
+            },
+            {
+              "name": "boundary_law_verified"
+            },
+            {
+              "name": "compositions"
+            }
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v2\ncontract_id: urn:omega:packet:symbol_game:simplicial_boundary_report:v1.0.0\ntitle: Simplicial Boundary Report\nkind: packet_contract\nlayer: 40_packets\nrole: PacketSpecification\nstatus: active\ncouncil_owner: L3_logos_techne\ndescriptor:\n  authority_effect: None\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: true\n  clean_architecture_layer: domain\n  refusals:\n    may_emit:\n    - FW-UNKNOWN-FIELD\ndoctrine:\n  summary: SimplicialBoundaryReport, a detailed boundary verification report for higher-dimensional\n    complexes.\n  invariants:\n  - Exhaustive shape destructure compiles in all builds.\n  - boundary_law_verified is true iff all compositions d_{k-1} * d_k vanish identically.\n  non_roles:\n  - authority_source\n  - promotion_granter\n  required_negative_capabilities:\n  - no_self_certification\n  - no_implicit_authority_upgrade\nstructure:\n  language: rust\n  rust_crate: omega_symbol_game_runtime\n  rust_module: homology_holonomy\n  rust_type: SimplicialBoundaryReport\n  form: struct\n  fields:\n  - name: max_dimension\n  - name: simplex_counts_by_dim\n  - name: euler_characteristic\n  - name: boundary_law_verified\n  - name: compositions\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/40_packets/packet_symbol_game_simplicial_boundary_report_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/40_packets/packet_symbol_game_simplicial_boundary_report_v1_0_0.contract.yaml": "7af455914ebbe71ec6fe9d8e94e7627951c4f6c85ca38e6f9a8282cefdee41d9"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

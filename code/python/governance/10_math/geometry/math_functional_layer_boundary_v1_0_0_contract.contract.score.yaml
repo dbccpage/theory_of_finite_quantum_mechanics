@@ -1,0 +1,193 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/geometry/math_functional_layer_boundary_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:functional_layer_boundary:v1.0.0",
+    "title": "FunctionalLayerBoundary",
+    "kind": "math_contract",
+    "status": "active",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      },
+      "dependencies": {
+        "contracts": [
+          "urn:omega:math:cochain_layer:v1.0.0",
+          "urn:omega:math:exact_repair_space:v1.0.0",
+          "urn:omega:math:closed_sector:v1.0.0",
+          "urn:omega:math:quotient_space:v1.0.0",
+          "urn:omega:math:cohomology:v1.0.0",
+          "urn:omega:math:phi1_obstruction_mass:v1.0.0",
+          "urn:omega:math:gamma2_closure_defect:v1.0.0",
+          "urn:omega:math:residual_projection:v1.0.0",
+          "urn:omega:math:xi_tie_breaker:v1.0.0",
+          "urn:omega:math:exact_repair_operator:v1.0.0",
+          "urn:omega:math:quotient_isometry_operator:v1.0.0",
+          "urn:omega:math:context_embedding_operator:v1.0.0",
+          "urn:omega:math:mutation_operator:v1.0.0",
+          "urn:omega:math:observer_quotient:v1.0.0",
+          "urn:omega:math:finite_obstruction_trichotomy:v0.2.0",
+          "urn:omega:math:evaluation_hierarchy:v1.0.0",
+          "urn:omega:math:validated_cochain_complex:v1.0.0",
+          "urn:omega:math:raw_closure_defect:v1.0.0",
+          "urn:omega:math:candidate_obstruction_window:v1.0.0",
+          "urn:omega:math:quotient_transport:v1.0.0",
+          "urn:omega:math:transport_loss_ledger:v1.0.0",
+          "urn:omega:math:tie_r:v1.0.0",
+          "urn:omega:math:contract_descriptors:v1.0.0",
+          "urn:omega:math:contract_property_witnesses:v1.0.0",
+          "urn:omega:math:diagnostic_vector:v1.0.0",
+          "urn:omega:math:exact_repair:v1.0.0",
+          "urn:omega:math:hashes:v1.0.0",
+          "urn:omega:math:mub_feasibility_wall:v1.0.0",
+          "urn:omega:math:phi1:v1.0.0",
+          "urn:omega:math:observer:v1.0.0",
+          "urn:omega:math:closure_defect:v1.0.0",
+          "urn:omega:math:dual_witness:v0.1.0",
+          "urn:omega:math:observer_family:v1.0.0",
+          "urn:omega:math:observer_comparison:v1.0.0",
+          "urn:omega:math:quotient_mass:v1.0.0",
+          "urn:omega:math:closure_regime:v1.0.0",
+          "urn:omega:math:xi_diagnostic:v1.0.0"
+        ],
+        "proof_obligations": []
+      }
+    },
+    "doctrine": {
+      "summary": "Functional layer boundary",
+      "core_constraints": [],
+      "invariants": [],
+      "forbidden_dependencies": [
+        "omega_solvers",
+        "omega_engines",
+        "omega_pipeline",
+        "omega_id_run",
+        "omega_lifts",
+        "omega_certifiers"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_functional",
+      "module": "lib",
+      "symbols": [
+        "FunctionalLayerBoundary"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "033385f79622a27b2a524f6f26c6ad27856fceb7de7202c2035d4da970ca30fd",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "033385f79622a27b2a524f6f26c6ad27856fceb7de7202c2035d4da970ca30fd",
+      "bytes": 2517,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:functional_layer_boundary:v1.0.0",
+        "title": "FunctionalLayerBoundary",
+        "kind": "math_contract",
+        "status": "active",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          },
+          "dependencies": {
+            "contracts": [
+              "urn:omega:math:cochain_layer:v1.0.0",
+              "urn:omega:math:exact_repair_space:v1.0.0",
+              "urn:omega:math:closed_sector:v1.0.0",
+              "urn:omega:math:quotient_space:v1.0.0",
+              "urn:omega:math:cohomology:v1.0.0",
+              "urn:omega:math:phi1_obstruction_mass:v1.0.0",
+              "urn:omega:math:gamma2_closure_defect:v1.0.0",
+              "urn:omega:math:residual_projection:v1.0.0",
+              "urn:omega:math:xi_tie_breaker:v1.0.0",
+              "urn:omega:math:exact_repair_operator:v1.0.0",
+              "urn:omega:math:quotient_isometry_operator:v1.0.0",
+              "urn:omega:math:context_embedding_operator:v1.0.0",
+              "urn:omega:math:mutation_operator:v1.0.0",
+              "urn:omega:math:observer_quotient:v1.0.0",
+              "urn:omega:math:finite_obstruction_trichotomy:v0.2.0",
+              "urn:omega:math:evaluation_hierarchy:v1.0.0",
+              "urn:omega:math:validated_cochain_complex:v1.0.0",
+              "urn:omega:math:raw_closure_defect:v1.0.0",
+              "urn:omega:math:candidate_obstruction_window:v1.0.0",
+              "urn:omega:math:quotient_transport:v1.0.0",
+              "urn:omega:math:transport_loss_ledger:v1.0.0",
+              "urn:omega:math:tie_r:v1.0.0",
+              "urn:omega:math:contract_descriptors:v1.0.0",
+              "urn:omega:math:contract_property_witnesses:v1.0.0",
+              "urn:omega:math:diagnostic_vector:v1.0.0",
+              "urn:omega:math:exact_repair:v1.0.0",
+              "urn:omega:math:hashes:v1.0.0",
+              "urn:omega:math:mub_feasibility_wall:v1.0.0",
+              "urn:omega:math:phi1:v1.0.0",
+              "urn:omega:math:observer:v1.0.0",
+              "urn:omega:math:closure_defect:v1.0.0",
+              "urn:omega:math:dual_witness:v0.1.0",
+              "urn:omega:math:observer_family:v1.0.0",
+              "urn:omega:math:observer_comparison:v1.0.0",
+              "urn:omega:math:quotient_mass:v1.0.0",
+              "urn:omega:math:closure_regime:v1.0.0",
+              "urn:omega:math:xi_diagnostic:v1.0.0"
+            ],
+            "proof_obligations": []
+          }
+        },
+        "doctrine": {
+          "summary": "Functional layer boundary",
+          "core_constraints": [],
+          "invariants": [],
+          "forbidden_dependencies": [
+            "omega_solvers",
+            "omega_engines",
+            "omega_pipeline",
+            "omega_id_run",
+            "omega_lifts",
+            "omega_certifiers"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_functional",
+          "module": "lib",
+          "symbols": [
+            "FunctionalLayerBoundary"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:functional_layer_boundary:v1.0.0\ntitle: FunctionalLayerBoundary\nkind: math_contract\nstatus: active\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\n  dependencies:\n    contracts:\n    - urn:omega:math:cochain_layer:v1.0.0\n    - urn:omega:math:exact_repair_space:v1.0.0\n    - urn:omega:math:closed_sector:v1.0.0\n    - urn:omega:math:quotient_space:v1.0.0\n    - urn:omega:math:cohomology:v1.0.0\n    - urn:omega:math:phi1_obstruction_mass:v1.0.0\n    - urn:omega:math:gamma2_closure_defect:v1.0.0\n    - urn:omega:math:residual_projection:v1.0.0\n    - urn:omega:math:xi_tie_breaker:v1.0.0\n    - urn:omega:math:exact_repair_operator:v1.0.0\n    - urn:omega:math:quotient_isometry_operator:v1.0.0\n    - urn:omega:math:context_embedding_operator:v1.0.0\n    - urn:omega:math:mutation_operator:v1.0.0\n    - urn:omega:math:observer_quotient:v1.0.0\n    - urn:omega:math:finite_obstruction_trichotomy:v0.2.0\n    - urn:omega:math:evaluation_hierarchy:v1.0.0\n    - urn:omega:math:validated_cochain_complex:v1.0.0\n    - urn:omega:math:raw_closure_defect:v1.0.0\n    - urn:omega:math:candidate_obstruction_window:v1.0.0\n    - urn:omega:math:quotient_transport:v1.0.0\n    - urn:omega:math:transport_loss_ledger:v1.0.0\n    - urn:omega:math:tie_r:v1.0.0\n    - urn:omega:math:contract_descriptors:v1.0.0\n    - urn:omega:math:contract_property_witnesses:v1.0.0\n    - urn:omega:math:diagnostic_vector:v1.0.0\n    - urn:omega:math:exact_repair:v1.0.0\n    - urn:omega:math:hashes:v1.0.0\n    - urn:omega:math:mub_feasibility_wall:v1.0.0\n    - urn:omega:math:phi1:v1.0.0\n    - urn:omega:math:observer:v1.0.0\n    - urn:omega:math:closure_defect:v1.0.0\n    - urn:omega:math:dual_witness:v0.1.0\n    - urn:omega:math:observer_family:v1.0.0\n    - urn:omega:math:observer_comparison:v1.0.0\n    - urn:omega:math:quotient_mass:v1.0.0\n    - urn:omega:math:closure_regime:v1.0.0\n    - urn:omega:math:xi_diagnostic:v1.0.0\n    proof_obligations: []\ndoctrine:\n  summary: Functional layer boundary\n  core_constraints: []\n  invariants: []\n  forbidden_dependencies:\n  - omega_solvers\n  - omega_engines\n  - omega_pipeline\n  - omega_id_run\n  - omega_lifts\n  - omega_certifiers\nrust_binding:\n  crate: omega_functional\n  module: lib\n  symbols:\n  - FunctionalLayerBoundary\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/10_math/geometry/math_functional_layer_boundary_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/geometry/math_functional_layer_boundary_v1_0_0.contract.yaml": "033385f79622a27b2a524f6f26c6ad27856fceb7de7202c2035d4da970ca30fd"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

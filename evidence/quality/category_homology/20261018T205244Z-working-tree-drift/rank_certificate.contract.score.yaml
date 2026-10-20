@@ -1,0 +1,136 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": null,
+  "contract": null,
+  "current_contract": null,
+  "current_scoring": "932bbbb99fdad0a0df0f4c062d7f1f67cbf94ddabfe92077a3c68085ab1aa709",
+  "contract_history": [],
+  "scoring_history": [
+    {
+      "sha256": "932bbbb99fdad0a0df0f4c062d7f1f67cbf94ddabfe92077a3c68085ab1aa709",
+      "bytes": 4461,
+      "record": {
+        "schema_version": "2.0.0",
+        "artifact": {
+          "path": "code/rust/src/homology/rank_certificate.rs",
+          "language": "Rust",
+          "sha256": "d10f292c869981053835b0afa088be72e2084b33abc7a9af153621281a5f7e2f"
+        },
+        "profile": "Exact",
+        "level": "L5",
+        "level_basis": "Exact rank factorization and split-map certificates with a separate identity checker.",
+        "architecture_target": "L5",
+        "engineering_target": "A",
+        "gates": {
+          "G1": "A",
+          "G2": "A",
+          "G3": "A",
+          "G4": "A",
+          "G5": "A"
+        },
+        "composite_grade": "A",
+        "score_token": "L5A",
+        "is_complete": true,
+        "grade_ceiling": "A",
+        "evaluation_timestamp": "2026-10-18T20:49:29.179693+00:00",
+        "AuthorityEffect": "None",
+        "claim": {
+          "urn": "urn:tfqm:rust:homology:rank_certificate",
+          "description": "Exact rank certificates over Q. AuthorityEffect: None.  For M=UV, LU=I_r and VR=I_r, rank(M)=r: factorization gives the upper bound and the two split maps give the lower bound. The checker uses matrix identities only; it does not trust the producer's elimination result. Trust boundary: exact rational arithmetic and checked dense matrix operations.",
+          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified."
+        },
+        "contract": {
+          "status": "pending",
+          "path": null,
+          "note": "Reserved for a later user-requested contract; none created or asserted here."
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/category_homology/20261018T200256Z/baseline.json",
+            "sha256": "751b1871d1d2b3d4e621420ea7d4b9c9ac39362a50c0c8785dda94ce63c55261",
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T200256Z/summary.json",
+            "sha256": "443696d2aed3064e745e4f2c8bdbab9bb9aa53c32ff0d2f831c32ab115d83148",
+            "scope": "Source snapshot binding and complete six-outcome accounting."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T200256Z/mutations.json",
+            "sha256": "b3beaab36a56cd53dcef03ddeca2137d501f9938580f22702f8789ad58469959",
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T195109Z-metrics/receipt.json",
+            "sha256": "3b93cf640570717a5717bd47598f914a809b309a1daf6877c634417c34b449da",
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T200256Z/dependency_receipt.json",
+            "sha256": "d05f4fc6722e2b0b16fe4a46da90122479c8d53b11e8a1421ec9e07edbc131e7",
+            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred."
+          },
+          {
+            "path": "code/rust/quality/category_homology/assessments/rank_certificate.json",
+            "sha256": "2e6bf2834848871103e3e4840d21161d72cb1465666d0a4d30ca832e9b808aa4",
+            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping."
+          }
+        ],
+        "verification": {
+          "baseline_ok": true,
+          "source_snapshot_unchanged": true,
+          "compiled_scope": "shared scoped crate build",
+          "local_mutant_ids": [
+            "RK01-LU",
+            "RK02-VR",
+            "RK03-MUV",
+            "RK04-rank-output",
+            "RK05-candidate-domain",
+            "RK06-empty-fast-path",
+            "RK07-typed-inverse",
+            "RK09-producer-domain-valid"
+          ],
+          "dependency_contents_stable": true
+        },
+        "mutation_accounting": {
+          "killed": 8,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": 1.0
+        },
+        "structure": {
+          "tool": "syn 3.0.9 source AST",
+          "source_ast_parsed": true,
+          "expanded_ast": false,
+          "physical_lines": 363,
+          "parsed_production_functions": 15,
+          "max_production_ccn": 10,
+          "cognitive_complexity_upper_bound": 3,
+          "control_nesting": 1,
+          "opaque_function_macros": [],
+          "functions_exceeding_A": [],
+          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
+        },
+        "open_findings": [],
+        "assurance_limits": [
+          "Contract attachment remains pending at the user request.",
+          "No cross-repository origin attestation, exact compiler-read trace, mechanized source-to-MIR equivalence, global allocator-totality/crash-freedom proof, benchmark-checked resource contract or whole-directory A score is inferred.",
+          "This completed component assessment uses a checked exact/refusal model plus an explicit source refinement audit. It is not a declaration that the Rust implementation was extracted from Lean or independently verified at MIR level."
+        ]
+      },
+      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\nschema_version: \"2.0.0\"\nartifact:\n  path: \"code/rust/src/homology/rank_certificate.rs\"\n  language: \"Rust\"\n  sha256: \"d10f292c869981053835b0afa088be72e2084b33abc7a9af153621281a5f7e2f\"\nprofile: \"Exact\"\nlevel: \"L5\"\nlevel_basis: \"Exact rank factorization and split-map certificates with a separate identity checker.\"\narchitecture_target: \"L5\"\nengineering_target: \"A\"\ngates:\n  G1: \"A\"\n  G2: \"A\"\n  G3: \"A\"\n  G4: \"A\"\n  G5: \"A\"\ncomposite_grade: \"A\"\nscore_token: \"L5A\"\nis_complete: true\ngrade_ceiling: \"A\"\nevaluation_timestamp: \"2026-10-18T20:49:29.179693+00:00\"\nAuthorityEffect: \"None\"\nclaim:\n  urn: \"urn:tfqm:rust:homology:rank_certificate\"\n  description: \"Exact rank certificates over Q. AuthorityEffect: None.  For M=UV, LU=I_r and VR=I_r, rank(M)=r: factorization gives the upper bound and the two split maps give the lower bound. The checker uses matrix identities only; it does not trust the producer's elimination result. Trust boundary: exact rational arithmetic and checked dense matrix operations.\"\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\ncontract:\n  status: \"pending\"\n  path: null\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\nevidence:\n  - {\"path\": \"evidence/quality/category_homology/20261018T200256Z/baseline.json\", \"sha256\": \"751b1871d1d2b3d4e621420ea7d4b9c9ac39362a50c0c8785dda94ce63c55261\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261018T200256Z/summary.json\", \"sha256\": \"443696d2aed3064e745e4f2c8bdbab9bb9aa53c32ff0d2f831c32ab115d83148\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261018T200256Z/mutations.json\", \"sha256\": \"b3beaab36a56cd53dcef03ddeca2137d501f9938580f22702f8789ad58469959\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261018T195109Z-metrics/receipt.json\", \"sha256\": \"3b93cf640570717a5717bd47598f914a809b309a1daf6877c634417c34b449da\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261018T200256Z/dependency_receipt.json\", \"sha256\": \"d05f4fc6722e2b0b16fe4a46da90122479c8d53b11e8a1421ec9e07edbc131e7\", \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"}\n  - {\"path\": \"code/rust/quality/category_homology/assessments/rank_certificate.json\", \"sha256\": \"2e6bf2834848871103e3e4840d21161d72cb1465666d0a4d30ca832e9b808aa4\", \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"}\nverification:\n  baseline_ok: true\n  source_snapshot_unchanged: true\n  compiled_scope: \"shared scoped crate build\"\n  local_mutant_ids:\n    - \"RK01-LU\"\n    - \"RK02-VR\"\n    - \"RK03-MUV\"\n    - \"RK04-rank-output\"\n    - \"RK05-candidate-domain\"\n    - \"RK06-empty-fast-path\"\n    - \"RK07-typed-inverse\"\n    - \"RK09-producer-domain-valid\"\n  dependency_contents_stable: true\nmutation_accounting:\n  killed: 8\n  survived: 0\n  demonstrably_equivalent: 0\n  invalid: 0\n  inconclusive: 0\n  unrun: 0\n  conservative_ratio: 1.0\nstructure:\n  tool: \"syn 3.0.9 source AST\"\n  source_ast_parsed: true\n  expanded_ast: false\n  physical_lines: 363\n  parsed_production_functions: 15\n  max_production_ccn: 10\n  cognitive_complexity_upper_bound: 3\n  control_nesting: 1\n  opaque_function_macros: []\n  functions_exceeding_A: []\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\nopen_findings: []\nassurance_limits:\n  - \"Contract attachment remains pending at the user request.\"\n  - \"No cross-repository origin attestation, exact compiler-read trace, mechanized source-to-MIR equivalence, global allocator-totality/crash-freedom proof, benchmark-checked resource contract or whole-directory A score is inferred.\"\n  - \"This completed component assessment uses a checked exact/refusal model plus an explicit source refinement audit. It is not a declaration that the Rust implementation was extracted from Lean or independently verified at MIR level.\"\n",
+      "original_paths": [
+        "evidence/quality/category_homology/20261018T205244Z-working-tree-drift/rank_certificate.score.yaml"
+      ]
+    }
+  ],
+  "legacy_paths": {
+    "evidence/quality/category_homology/20261018T205244Z-working-tree-drift/rank_certificate.score.yaml": "932bbbb99fdad0a0df0f4c062d7f1f67cbf94ddabfe92077a3c68085ab1aa709"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

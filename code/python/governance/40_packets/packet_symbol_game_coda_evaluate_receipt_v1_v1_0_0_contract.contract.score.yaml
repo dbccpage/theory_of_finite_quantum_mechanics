@@ -1,0 +1,179 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/40_packets/packet_symbol_game_coda_evaluate_receipt_v1_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v2",
+    "contract_id": "urn:omega:packet:symbol_game:coda_evaluate_receipt_v1:v1.0.0",
+    "title": "CODA Evaluate Receipt v1",
+    "kind": "packet_contract",
+    "layer": "40_packets",
+    "role": "PacketSpecification",
+    "status": "active",
+    "council_owner": "L3_logos_techne",
+    "descriptor": {
+      "authority_effect": "None",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": true,
+      "clean_architecture_layer": "domain",
+      "refusals": {
+        "may_emit": [
+          "FW-UNKNOWN-FIELD",
+          "FW-DUPLICATE-KEY"
+        ]
+      }
+    },
+    "doctrine": {
+      "summary": "CodaEvaluateReceiptV1, the answer of the coda_evaluate runtime action: diagnostic, routing, and authority axes produced by the Master Normal Form pipeline evaluator, bound to the request by input_digest.",
+      "invariants": [
+        "The shape declared here is the shape in coda.rs, enforced at compile time by an exhaustive destructure.",
+        "input_digest is framed SHA-256 over the sorted, whitespace-free request JSON under domain omega.symbol-game.coda-evaluate-request.v1.",
+        "Carries three distinct axes: diagnostic, routing, and authority."
+      ],
+      "non_roles": [
+        "authority_source",
+        "promotion_granter"
+      ],
+      "required_negative_capabilities": [
+        "no_self_certification",
+        "no_implicit_authority_upgrade"
+      ]
+    },
+    "structure": {
+      "rust_crate": "omega_symbol_game",
+      "rust_module": "coda",
+      "rust_type": "CodaEvaluateReceiptV1",
+      "form": "struct",
+      "serde": {
+        "deny_unknown_fields": true
+      },
+      "fields": [
+        {
+          "name": "schema_version"
+        },
+        {
+          "name": "input_digest"
+        },
+        {
+          "name": "input_id"
+        },
+        {
+          "name": "diagnostic"
+        },
+        {
+          "name": "routing"
+        },
+        {
+          "name": "authority"
+        },
+        {
+          "name": "detail"
+        },
+        {
+          "name": "authority_effect"
+        }
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "90ba156a54629b20c6b891cf7dee94d6a1fbc8587218813e5fcfef6015bf6b6d",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "90ba156a54629b20c6b891cf7dee94d6a1fbc8587218813e5fcfef6015bf6b6d",
+      "bytes": 1584,
+      "record": {
+        "schema_version": "omega.contract.v2",
+        "contract_id": "urn:omega:packet:symbol_game:coda_evaluate_receipt_v1:v1.0.0",
+        "title": "CODA Evaluate Receipt v1",
+        "kind": "packet_contract",
+        "layer": "40_packets",
+        "role": "PacketSpecification",
+        "status": "active",
+        "council_owner": "L3_logos_techne",
+        "descriptor": {
+          "authority_effect": "None",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": true,
+          "clean_architecture_layer": "domain",
+          "refusals": {
+            "may_emit": [
+              "FW-UNKNOWN-FIELD",
+              "FW-DUPLICATE-KEY"
+            ]
+          }
+        },
+        "doctrine": {
+          "summary": "CodaEvaluateReceiptV1, the answer of the coda_evaluate runtime action: diagnostic, routing, and authority axes produced by the Master Normal Form pipeline evaluator, bound to the request by input_digest.",
+          "invariants": [
+            "The shape declared here is the shape in coda.rs, enforced at compile time by an exhaustive destructure.",
+            "input_digest is framed SHA-256 over the sorted, whitespace-free request JSON under domain omega.symbol-game.coda-evaluate-request.v1.",
+            "Carries three distinct axes: diagnostic, routing, and authority."
+          ],
+          "non_roles": [
+            "authority_source",
+            "promotion_granter"
+          ],
+          "required_negative_capabilities": [
+            "no_self_certification",
+            "no_implicit_authority_upgrade"
+          ]
+        },
+        "structure": {
+          "rust_crate": "omega_symbol_game",
+          "rust_module": "coda",
+          "rust_type": "CodaEvaluateReceiptV1",
+          "form": "struct",
+          "serde": {
+            "deny_unknown_fields": true
+          },
+          "fields": [
+            {
+              "name": "schema_version"
+            },
+            {
+              "name": "input_digest"
+            },
+            {
+              "name": "input_id"
+            },
+            {
+              "name": "diagnostic"
+            },
+            {
+              "name": "routing"
+            },
+            {
+              "name": "authority"
+            },
+            {
+              "name": "detail"
+            },
+            {
+              "name": "authority_effect"
+            }
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v2\ncontract_id: urn:omega:packet:symbol_game:coda_evaluate_receipt_v1:v1.0.0\ntitle: CODA Evaluate Receipt v1\nkind: packet_contract\nlayer: 40_packets\nrole: PacketSpecification\nstatus: active\ncouncil_owner: L3_logos_techne\ndescriptor:\n  authority_effect: None\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: true\n  clean_architecture_layer: domain\n  refusals:\n    may_emit:\n    - FW-UNKNOWN-FIELD\n    - FW-DUPLICATE-KEY\ndoctrine:\n  summary: 'CodaEvaluateReceiptV1, the answer of the coda_evaluate runtime action:\n    diagnostic, routing, and authority axes produced by the Master Normal Form pipeline\n    evaluator, bound to the request by input_digest.'\n  invariants:\n  - The shape declared here is the shape in coda.rs, enforced at compile time by an\n    exhaustive destructure.\n  - input_digest is framed SHA-256 over the sorted, whitespace-free request JSON under\n    domain omega.symbol-game.coda-evaluate-request.v1.\n  - 'Carries three distinct axes: diagnostic, routing, and authority.'\n  non_roles:\n  - authority_source\n  - promotion_granter\n  required_negative_capabilities:\n  - no_self_certification\n  - no_implicit_authority_upgrade\nstructure:\n  rust_crate: omega_symbol_game\n  rust_module: coda\n  rust_type: CodaEvaluateReceiptV1\n  form: struct\n  serde:\n    deny_unknown_fields: true\n  fields:\n  - name: schema_version\n  - name: input_digest\n  - name: input_id\n  - name: diagnostic\n  - name: routing\n  - name: authority\n  - name: detail\n  - name: authority_effect\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/40_packets/packet_symbol_game_coda_evaluate_receipt_v1_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/40_packets/packet_symbol_game_coda_evaluate_receipt_v1_v1_0_0.contract.yaml": "90ba156a54629b20c6b891cf7dee94d6a1fbc8587218813e5fcfef6015bf6b6d"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

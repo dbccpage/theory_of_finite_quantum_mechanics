@@ -1,0 +1,894 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": null,
+  "contract": {
+    "schema_version": "1.0.0",
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/rust/src/linear_algebra/bareiss_det.rs",
+      "sha256": "be72b80655ceb6cd466243d83428b72f501ea7cccdbdc5b8256d8afd5ecf7deb",
+      "language": "Rust"
+    },
+    "contract_urn": "urn:tfqm:contract:linear_algebra:bareiss_det.rs",
+    "status": "draft_requires_semantic_review",
+    "target": "L4A",
+    "profile": "Exact",
+    "purpose": "Exact matrix, elimination, polynomial and finite algebraic calculations with explicit domain/resource refusals.",
+    "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+    "compilation": {
+      "disabled_by_cfg_any": false,
+      "test_or_support_file": false
+    },
+    "declaration_index": [
+      {
+        "kind": "struct",
+        "name": "RationalLimits",
+        "line": 8,
+        "declaration_line": "pub struct RationalLimits {"
+      },
+      {
+        "kind": "enum",
+        "name": "RationalError",
+        "line": 15,
+        "declaration_line": "pub enum RationalError {"
+      },
+      {
+        "kind": "struct",
+        "name": "RationalBudget",
+        "line": 41,
+        "declaration_line": "pub struct RationalBudget {"
+      },
+      {
+        "kind": "fn",
+        "name": "new",
+        "line": 47,
+        "declaration_line": "pub fn new(limits: RationalLimits) -> Self {"
+      },
+      {
+        "kind": "fn",
+        "name": "used",
+        "line": 50,
+        "declaration_line": "pub fn used(&self) -> usize {"
+      },
+      {
+        "kind": "fn",
+        "name": "limits",
+        "line": 53,
+        "declaration_line": "pub fn limits(&self) -> RationalLimits {"
+      },
+      {
+        "kind": "fn",
+        "name": "charge",
+        "line": 56,
+        "declaration_line": "pub fn charge(&mut self, count: usize) -> Result<(), RationalError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "elements",
+        "line": 67,
+        "declaration_line": "pub fn elements(&self, rows: usize, cols: usize) -> Result<usize, RationalError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "rational",
+        "line": 81,
+        "declaration_line": "pub fn rational(&mut self, x: &BigRational) -> Result<(), RationalError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "add",
+        "line": 99,
+        "declaration_line": "pub fn add(&mut self, a: &BigRational, b: &BigRational) -> Result<BigRational, RationalError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "sub",
+        "line": 105,
+        "declaration_line": "pub fn sub(&mut self, a: &BigRational, b: &BigRational) -> Result<BigRational, RationalError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "mul",
+        "line": 111,
+        "declaration_line": "pub fn mul(&mut self, a: &BigRational, b: &BigRational) -> Result<BigRational, RationalError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "div",
+        "line": 117,
+        "declaration_line": "pub fn div(&mut self, a: &BigRational, b: &BigRational) -> Result<BigRational, RationalError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "dot",
+        "line": 160,
+        "declaration_line": "pub fn dot("
+      },
+      {
+        "kind": "fn",
+        "name": "multiply",
+        "line": 180,
+        "declaration_line": "pub fn multiply("
+      },
+      {
+        "kind": "fn",
+        "name": "multiply_complex_parts",
+        "line": 215,
+        "declaration_line": "pub fn multiply_complex_parts("
+      },
+      {
+        "kind": "fn",
+        "name": "adjoint_complex_parts",
+        "line": 234,
+        "declaration_line": "pub fn adjoint_complex_parts("
+      },
+      {
+        "kind": "fn",
+        "name": "add_matrix",
+        "line": 258,
+        "declaration_line": "pub fn add_matrix("
+      },
+      {
+        "kind": "fn",
+        "name": "scale_matrix",
+        "line": 266,
+        "declaration_line": "pub fn scale_matrix("
+      },
+      {
+        "kind": "fn",
+        "name": "multiply_vector",
+        "line": 320,
+        "declaration_line": "pub fn multiply_vector("
+      },
+      {
+        "kind": "fn",
+        "name": "multiply_vector_into",
+        "line": 331,
+        "declaration_line": "pub fn multiply_vector_into("
+      },
+      {
+        "kind": "struct",
+        "name": "RationalSolution",
+        "line": 360,
+        "declaration_line": "pub struct RationalSolution {"
+      },
+      {
+        "kind": "fn",
+        "name": "certify_replay",
+        "line": 365,
+        "declaration_line": "pub(crate) fn certify_replay("
+      },
+      {
+        "kind": "fn",
+        "name": "solve",
+        "line": 377,
+        "declaration_line": "pub fn solve("
+      }
+    ],
+    "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+    "requirements": [
+      {
+        "id": "G1",
+        "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+      },
+      {
+        "id": "G2",
+        "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+      },
+      {
+        "id": "G3",
+        "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+      },
+      {
+        "id": "G4",
+        "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+      },
+      {
+        "id": "G5",
+        "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+      }
+    ],
+    "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+    "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+    "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+    "open_obligations": [
+      "Complete source-to-requirement and downstream consumer review is outstanding.",
+      "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+      "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+      "One or more source functions exceed an A structural ceiling; see structure.exceeding_A."
+    ],
+    "evidence": [
+      {
+        "path": "evidence/quality/l4a_six/20261020T064257Z/receipt.json",
+        "sha256": "51613b0c9b9841f5bd58f732f04af13ab7e0b423d6fcfd00b5bba0d8104c6579"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T064257Z/source_manifest.json",
+        "sha256": "684a70128a9b855d38641d5caf8ff06dbbed219ecf7ddaf745207a42584425ae"
+      },
+      {
+        "path": "code/rust/quality/l4a_six/records.py",
+        "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+      },
+      {
+        "path": "code/rust/quality/l4a_six/specs.json",
+        "sha256": "06dc10da559e38474966c2d318615204284210a7fd2b412c91b1f2bdf91a98e3"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T064416Z-native-scalar-control/receipt.json",
+        "sha256": "0766aa9b99debe1358f6d8875fd7f375f0f81919491614eec1a640b2839bfa51"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T064257Z/metrics.json",
+        "sha256": "4a56a75becd2862da73b9876563e490bf570e9dee24a4816667cec6684dffcb1"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T064307Z-mutations/receipt.json",
+        "sha256": "f33e08380b111005a6d5a9897fae4c86ba2b18b7c39bdc3e4d8ee49232cc0e11"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T064307Z-mutations/mutations.json",
+        "sha256": "0a6dac1623a7edf2f6a369b765e755221a0f9bdc232349ac2d202d4c9b7676dc"
+      }
+    ]
+  },
+  "current_contract": "da2416070c53f9b97638ad2bf0180ea68531e930024f9a92abb769f3725471c7",
+  "current_scoring": "085e2a21bec967ce8b4734436736ad0e53a4814af128c1e6600d6a27933f6276",
+  "contract_history": [
+    {
+      "sha256": "da2416070c53f9b97638ad2bf0180ea68531e930024f9a92abb769f3725471c7",
+      "bytes": 7740,
+      "record": {
+        "schema_version": "1.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/linear_algebra/bareiss_det.rs",
+          "sha256": "be72b80655ceb6cd466243d83428b72f501ea7cccdbdc5b8256d8afd5ecf7deb",
+          "language": "Rust"
+        },
+        "contract_urn": "urn:tfqm:contract:linear_algebra:bareiss_det.rs",
+        "status": "draft_requires_semantic_review",
+        "target": "L4A",
+        "profile": "Exact",
+        "purpose": "Exact matrix, elimination, polynomial and finite algebraic calculations with explicit domain/resource refusals.",
+        "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+        "compilation": {
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false
+        },
+        "declaration_index": [
+          {
+            "kind": "struct",
+            "name": "RationalLimits",
+            "line": 8,
+            "declaration_line": "pub struct RationalLimits {"
+          },
+          {
+            "kind": "enum",
+            "name": "RationalError",
+            "line": 15,
+            "declaration_line": "pub enum RationalError {"
+          },
+          {
+            "kind": "struct",
+            "name": "RationalBudget",
+            "line": 41,
+            "declaration_line": "pub struct RationalBudget {"
+          },
+          {
+            "kind": "fn",
+            "name": "new",
+            "line": 47,
+            "declaration_line": "pub fn new(limits: RationalLimits) -> Self {"
+          },
+          {
+            "kind": "fn",
+            "name": "used",
+            "line": 50,
+            "declaration_line": "pub fn used(&self) -> usize {"
+          },
+          {
+            "kind": "fn",
+            "name": "limits",
+            "line": 53,
+            "declaration_line": "pub fn limits(&self) -> RationalLimits {"
+          },
+          {
+            "kind": "fn",
+            "name": "charge",
+            "line": 56,
+            "declaration_line": "pub fn charge(&mut self, count: usize) -> Result<(), RationalError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "elements",
+            "line": 67,
+            "declaration_line": "pub fn elements(&self, rows: usize, cols: usize) -> Result<usize, RationalError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "rational",
+            "line": 81,
+            "declaration_line": "pub fn rational(&mut self, x: &BigRational) -> Result<(), RationalError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "add",
+            "line": 99,
+            "declaration_line": "pub fn add(&mut self, a: &BigRational, b: &BigRational) -> Result<BigRational, RationalError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "sub",
+            "line": 105,
+            "declaration_line": "pub fn sub(&mut self, a: &BigRational, b: &BigRational) -> Result<BigRational, RationalError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "mul",
+            "line": 111,
+            "declaration_line": "pub fn mul(&mut self, a: &BigRational, b: &BigRational) -> Result<BigRational, RationalError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "div",
+            "line": 117,
+            "declaration_line": "pub fn div(&mut self, a: &BigRational, b: &BigRational) -> Result<BigRational, RationalError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "dot",
+            "line": 160,
+            "declaration_line": "pub fn dot("
+          },
+          {
+            "kind": "fn",
+            "name": "multiply",
+            "line": 180,
+            "declaration_line": "pub fn multiply("
+          },
+          {
+            "kind": "fn",
+            "name": "multiply_complex_parts",
+            "line": 215,
+            "declaration_line": "pub fn multiply_complex_parts("
+          },
+          {
+            "kind": "fn",
+            "name": "adjoint_complex_parts",
+            "line": 234,
+            "declaration_line": "pub fn adjoint_complex_parts("
+          },
+          {
+            "kind": "fn",
+            "name": "add_matrix",
+            "line": 258,
+            "declaration_line": "pub fn add_matrix("
+          },
+          {
+            "kind": "fn",
+            "name": "scale_matrix",
+            "line": 266,
+            "declaration_line": "pub fn scale_matrix("
+          },
+          {
+            "kind": "fn",
+            "name": "multiply_vector",
+            "line": 320,
+            "declaration_line": "pub fn multiply_vector("
+          },
+          {
+            "kind": "fn",
+            "name": "multiply_vector_into",
+            "line": 331,
+            "declaration_line": "pub fn multiply_vector_into("
+          },
+          {
+            "kind": "struct",
+            "name": "RationalSolution",
+            "line": 360,
+            "declaration_line": "pub struct RationalSolution {"
+          },
+          {
+            "kind": "fn",
+            "name": "certify_replay",
+            "line": 365,
+            "declaration_line": "pub(crate) fn certify_replay("
+          },
+          {
+            "kind": "fn",
+            "name": "solve",
+            "line": 377,
+            "declaration_line": "pub fn solve("
+          }
+        ],
+        "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+        "requirements": [
+          {
+            "id": "G1",
+            "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+          },
+          {
+            "id": "G2",
+            "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+          },
+          {
+            "id": "G3",
+            "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+          },
+          {
+            "id": "G4",
+            "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+          },
+          {
+            "id": "G5",
+            "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+          }
+        ],
+        "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+        "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+        "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+        "open_obligations": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+          "One or more source functions exceed an A structural ceiling; see structure.exceeding_A."
+        ],
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T064257Z/receipt.json",
+            "sha256": "51613b0c9b9841f5bd58f732f04af13ab7e0b423d6fcfd00b5bba0d8104c6579"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064257Z/source_manifest.json",
+            "sha256": "684a70128a9b855d38641d5caf8ff06dbbed219ecf7ddaf745207a42584425ae"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "06dc10da559e38474966c2d318615204284210a7fd2b412c91b1f2bdf91a98e3"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064416Z-native-scalar-control/receipt.json",
+            "sha256": "0766aa9b99debe1358f6d8875fd7f375f0f81919491614eec1a640b2839bfa51"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064257Z/metrics.json",
+            "sha256": "4a56a75becd2862da73b9876563e490bf570e9dee24a4816667cec6684dffcb1"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064307Z-mutations/receipt.json",
+            "sha256": "f33e08380b111005a6d5a9897fae4c86ba2b18b7c39bdc3e4d8ee49232cc0e11"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064307Z-mutations/mutations.json",
+            "sha256": "0a6dac1623a7edf2f6a369b765e755221a0f9bdc232349ac2d202d4c9b7676dc"
+          }
+        ]
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/linear_algebra/bareiss_det.rs\",\n    \"sha256\": \"be72b80655ceb6cd466243d83428b72f501ea7cccdbdc5b8256d8afd5ecf7deb\",\n    \"language\": \"Rust\"\n  },\n  \"contract_urn\": \"urn:tfqm:contract:linear_algebra:bareiss_det.rs\",\n  \"status\": \"draft_requires_semantic_review\",\n  \"target\": \"L4A\",\n  \"profile\": \"Exact\",\n  \"purpose\": \"Exact matrix, elimination, polynomial and finite algebraic calculations with explicit domain/resource refusals.\",\n  \"subject_role\": \"Provisional bounded-domain classification; requires individual capability review before promotion.\",\n  \"compilation\": {\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false\n  },\n  \"declaration_index\": [\n    {\n      \"kind\": \"struct\",\n      \"name\": \"RationalLimits\",\n      \"line\": 8,\n      \"declaration_line\": \"pub struct RationalLimits {\"\n    },\n    {\n      \"kind\": \"enum\",\n      \"name\": \"RationalError\",\n      \"line\": 15,\n      \"declaration_line\": \"pub enum RationalError {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"RationalBudget\",\n      \"line\": 41,\n      \"declaration_line\": \"pub struct RationalBudget {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"new\",\n      \"line\": 47,\n      \"declaration_line\": \"pub fn new(limits: RationalLimits) -> Self {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"used\",\n      \"line\": 50,\n      \"declaration_line\": \"pub fn used(&self) -> usize {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"limits\",\n      \"line\": 53,\n      \"declaration_line\": \"pub fn limits(&self) -> RationalLimits {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"charge\",\n      \"line\": 56,\n      \"declaration_line\": \"pub fn charge(&mut self, count: usize) -> Result<(), RationalError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"elements\",\n      \"line\": 67,\n      \"declaration_line\": \"pub fn elements(&self, rows: usize, cols: usize) -> Result<usize, RationalError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"rational\",\n      \"line\": 81,\n      \"declaration_line\": \"pub fn rational(&mut self, x: &BigRational) -> Result<(), RationalError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"add\",\n      \"line\": 99,\n      \"declaration_line\": \"pub fn add(&mut self, a: &BigRational, b: &BigRational) -> Result<BigRational, RationalError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"sub\",\n      \"line\": 105,\n      \"declaration_line\": \"pub fn sub(&mut self, a: &BigRational, b: &BigRational) -> Result<BigRational, RationalError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"mul\",\n      \"line\": 111,\n      \"declaration_line\": \"pub fn mul(&mut self, a: &BigRational, b: &BigRational) -> Result<BigRational, RationalError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"div\",\n      \"line\": 117,\n      \"declaration_line\": \"pub fn div(&mut self, a: &BigRational, b: &BigRational) -> Result<BigRational, RationalError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"dot\",\n      \"line\": 160,\n      \"declaration_line\": \"pub fn dot(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"multiply\",\n      \"line\": 180,\n      \"declaration_line\": \"pub fn multiply(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"multiply_complex_parts\",\n      \"line\": 215,\n      \"declaration_line\": \"pub fn multiply_complex_parts(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"adjoint_complex_parts\",\n      \"line\": 234,\n      \"declaration_line\": \"pub fn adjoint_complex_parts(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"add_matrix\",\n      \"line\": 258,\n      \"declaration_line\": \"pub fn add_matrix(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"scale_matrix\",\n      \"line\": 266,\n      \"declaration_line\": \"pub fn scale_matrix(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"multiply_vector\",\n      \"line\": 320,\n      \"declaration_line\": \"pub fn multiply_vector(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"multiply_vector_into\",\n      \"line\": 331,\n      \"declaration_line\": \"pub fn multiply_vector_into(\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"RationalSolution\",\n      \"line\": 360,\n      \"declaration_line\": \"pub struct RationalSolution {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"certify_replay\",\n      \"line\": 365,\n      \"declaration_line\": \"pub(crate) fn certify_replay(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"solve\",\n      \"line\": 377,\n      \"declaration_line\": \"pub fn solve(\"\n    }\n  ],\n  \"declaration_index_scope\": \"Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.\",\n  \"requirements\": [\n    {\n      \"id\": \"G1\",\n      \"requirement\": \"Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries.\"\n    },\n    {\n      \"id\": \"G2\",\n      \"requirement\": \"Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path.\"\n    },\n    {\n      \"id\": \"G3\",\n      \"requirement\": \"Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions.\"\n    },\n    {\n      \"id\": \"G4\",\n      \"requirement\": \"Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A.\"\n    },\n    {\n      \"id\": \"G5\",\n      \"requirement\": \"Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately.\"\n    }\n  ],\n  \"admission_policy\": \"Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.\",\n  \"resource_boundary\": \"No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.\",\n  \"authority_ceiling\": \"Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.\",\n  \"open_obligations\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\",\n    \"One or more source functions exceed an A structural ceiling; see structure.exceeding_A.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064257Z/receipt.json\",\n      \"sha256\": \"51613b0c9b9841f5bd58f732f04af13ab7e0b423d6fcfd00b5bba0d8104c6579\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064257Z/source_manifest.json\",\n      \"sha256\": \"684a70128a9b855d38641d5caf8ff06dbbed219ecf7ddaf745207a42584425ae\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"06dc10da559e38474966c2d318615204284210a7fd2b412c91b1f2bdf91a98e3\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064416Z-native-scalar-control/receipt.json\",\n      \"sha256\": \"0766aa9b99debe1358f6d8875fd7f375f0f81919491614eec1a640b2839bfa51\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064257Z/metrics.json\",\n      \"sha256\": \"4a56a75becd2862da73b9876563e490bf570e9dee24a4816667cec6684dffcb1\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064307Z-mutations/receipt.json\",\n      \"sha256\": \"f33e08380b111005a6d5a9897fae4c86ba2b18b7c39bdc3e4d8ee49232cc0e11\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064307Z-mutations/mutations.json\",\n      \"sha256\": \"0a6dac1623a7edf2f6a369b765e755221a0f9bdc232349ac2d202d4c9b7676dc\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_six/20261020T074553Z-smith-activation/previous_assessment/code/rust/src/linear_algebra/bareiss_det.rs.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "085e2a21bec967ce8b4734436736ad0e53a4814af128c1e6600d6a27933f6276",
+      "bytes": 11384,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/linear_algebra/bareiss_det.rs",
+          "sha256": "be72b80655ceb6cd466243d83428b72f501ea7cccdbdc5b8256d8afd5ecf7deb",
+          "language": "Rust"
+        },
+        "profile": "Exact",
+        "level": "L3",
+        "level_basis": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+        "engineering_target": "A",
+        "requested_target": "L4A",
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "composite_grade": null,
+        "score_token": null,
+        "is_complete": false,
+        "grade_ceiling": "D",
+        "evaluation_timestamp": "2026-10-20T06:44:16.623074+00:00",
+        "grade_ceiling_basis": "Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.",
+        "contract": {
+          "path": "code/rust/src/linear_algebra/bareiss_det.rs.contract.yaml",
+          "status": "draft_requires_semantic_review",
+          "sha256": "da2416070c53f9b97638ad2bf0180ea68531e930024f9a92abb769f3725471c7"
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T064257Z/receipt.json",
+            "sha256": "51613b0c9b9841f5bd58f732f04af13ab7e0b423d6fcfd00b5bba0d8104c6579"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064257Z/source_manifest.json",
+            "sha256": "684a70128a9b855d38641d5caf8ff06dbbed219ecf7ddaf745207a42584425ae"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "06dc10da559e38474966c2d318615204284210a7fd2b412c91b1f2bdf91a98e3"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064416Z-native-scalar-control/receipt.json",
+            "sha256": "0766aa9b99debe1358f6d8875fd7f375f0f81919491614eec1a640b2839bfa51"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064257Z/metrics.json",
+            "sha256": "4a56a75becd2862da73b9876563e490bf570e9dee24a4816667cec6684dffcb1"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064307Z-mutations/receipt.json",
+            "sha256": "f33e08380b111005a6d5a9897fae4c86ba2b18b7c39bdc3e4d8ee49232cc0e11"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064307Z-mutations/mutations.json",
+            "sha256": "0a6dac1623a7edf2f6a369b765e755221a0f9bdc232349ac2d202d4c9b7676dc"
+          }
+        ],
+        "verification": {
+          "baseline": {
+            "command": [
+              "cargo",
+              "test",
+              "--offline",
+              "--target-dir",
+              "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T064307Z-mutations\\build",
+              "--quiet",
+              "-p",
+              "tfqm_homology_linear_audit"
+            ],
+            "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T064307Z-mutations",
+            "disk_observation": {
+              "completed_cache_file_bytes": 525515112,
+              "free_after": 4049068032,
+              "free_before": 4194275328,
+              "scope": "Endpoint observations only; not a peak-space or external-activity guarantee."
+            },
+            "elapsed_seconds": 67.562,
+            "environment": {
+              "CARGO_BUILD_JOBS": "2",
+              "CARGO_INCREMENTAL": "0"
+            },
+            "exit_code": 0,
+            "log": "evidence/quality/l4a_six/20261020T064307Z-mutations/tfqm_homology_linear_audit-baseline.log",
+            "log_sha256": "00768738cf4e95ae56183052da15d6259714327a2fa580301191582b5e24f6a4",
+            "package": "tfqm_homology_linear_audit",
+            "timed_out": false
+          },
+          "sources_unchanged": true,
+          "doctests": [],
+          "composition_runs": [],
+          "differential_controls": [],
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false,
+          "dependency_sources_unchanged": true,
+          "compiled_scope": "Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.",
+          "designated_mutations": [],
+          "designated_challenges_present": true,
+          "linked_challenges": {},
+          "mutation_campaign": {
+            "path": "evidence/quality/l4a_six/20261020T064307Z-mutations/receipt.json",
+            "sha256": "f33e08380b111005a6d5a9897fae4c86ba2b18b7c39bdc3e4d8ee49232cc0e11"
+          },
+          "mutation_restoration_baselines_ok": null,
+          "reproduced_defects": []
+        },
+        "mutation_accounting": {
+          "killed": 0,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": null
+        },
+        "structure": {
+          "tool": "syn source AST (see pinned metric_tool_sources in receipt)",
+          "functions": [
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 47,
+              "name": "new",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 50,
+              "name": "used",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 53,
+              "name": "limits",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 56,
+              "name": "charge",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 67,
+              "name": "elements",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 74,
+              "name": "integer",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 7,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 1,
+              "line": 81,
+              "name": "rational",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 94,
+              "name": "result",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 99,
+              "name": "add",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 105,
+              "name": "sub",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 111,
+              "name": "mul",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 117,
+              "name": "div",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 126,
+              "name": "int_mul",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 132,
+              "name": "int_sub",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 138,
+              "name": "int_div",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 152,
+              "name": "buffer",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 7,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 1,
+              "line": 160,
+              "name": "dot",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 21,
+              "cognitive_upper_bound": 12,
+              "control_nesting": 3,
+              "line": 180,
+              "name": "multiply",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 9,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 215,
+              "name": "multiply_complex_parts",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 13,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 234,
+              "name": "adjoint_complex_parts",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 258,
+              "name": "add_matrix",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 6,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 266,
+              "name": "scale_matrix",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 283,
+              "name": "same_shape",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 9,
+              "cognitive_upper_bound": 4,
+              "control_nesting": 2,
+              "line": 293,
+              "name": "combine_parts",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 320,
+              "name": "multiply_vector",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 13,
+              "cognitive_upper_bound": 6,
+              "control_nesting": 2,
+              "line": 331,
+              "name": "multiply_vector_into",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 365,
+              "name": "certify_replay",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 36,
+              "cognitive_upper_bound": 29,
+              "control_nesting": 3,
+              "line": 377,
+              "name": "solve",
+              "opaque_macros": []
+            }
+          ],
+          "exceeding_A": [
+            {
+              "ccn": 21,
+              "cognitive_upper_bound": 12,
+              "control_nesting": 3,
+              "line": 180,
+              "name": "multiply",
+              "opaque_macros": [],
+              "metric_ceiling": "D"
+            },
+            {
+              "ccn": 13,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 234,
+              "name": "adjoint_complex_parts",
+              "opaque_macros": [],
+              "metric_ceiling": "B"
+            },
+            {
+              "ccn": 13,
+              "cognitive_upper_bound": 6,
+              "control_nesting": 2,
+              "line": 331,
+              "name": "multiply_vector_into",
+              "opaque_macros": [],
+              "metric_ceiling": "B"
+            },
+            {
+              "ccn": 36,
+              "cognitive_upper_bound": 29,
+              "control_nesting": 3,
+              "line": 377,
+              "name": "solve",
+              "opaque_macros": [],
+              "metric_ceiling": "D"
+            }
+          ],
+          "metric_ceiling": "D",
+          "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
+        },
+        "open_findings": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+          "One or more source functions exceed an A structural ceiling; see structure.exceeding_A."
+        ],
+        "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts."
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/linear_algebra/bareiss_det.rs\",\n    \"sha256\": \"be72b80655ceb6cd466243d83428b72f501ea7cccdbdc5b8256d8afd5ecf7deb\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"level\": \"L3\",\n  \"level_basis\": \"Provisional bounded-domain classification; requires individual capability review before promotion.\",\n  \"engineering_target\": \"A\",\n  \"requested_target\": \"L4A\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"is_complete\": false,\n  \"grade_ceiling\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-20T06:44:16.623074+00:00\",\n  \"grade_ceiling_basis\": \"Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.\",\n  \"contract\": {\n    \"path\": \"code/rust/src/linear_algebra/bareiss_det.rs.contract.yaml\",\n    \"status\": \"draft_requires_semantic_review\",\n    \"sha256\": \"da2416070c53f9b97638ad2bf0180ea68531e930024f9a92abb769f3725471c7\"\n  },\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064257Z/receipt.json\",\n      \"sha256\": \"51613b0c9b9841f5bd58f732f04af13ab7e0b423d6fcfd00b5bba0d8104c6579\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064257Z/source_manifest.json\",\n      \"sha256\": \"684a70128a9b855d38641d5caf8ff06dbbed219ecf7ddaf745207a42584425ae\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"06dc10da559e38474966c2d318615204284210a7fd2b412c91b1f2bdf91a98e3\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064416Z-native-scalar-control/receipt.json\",\n      \"sha256\": \"0766aa9b99debe1358f6d8875fd7f375f0f81919491614eec1a640b2839bfa51\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064257Z/metrics.json\",\n      \"sha256\": \"4a56a75becd2862da73b9876563e490bf570e9dee24a4816667cec6684dffcb1\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064307Z-mutations/receipt.json\",\n      \"sha256\": \"f33e08380b111005a6d5a9897fae4c86ba2b18b7c39bdc3e4d8ee49232cc0e11\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064307Z-mutations/mutations.json\",\n      \"sha256\": \"0a6dac1623a7edf2f6a369b765e755221a0f9bdc232349ac2d202d4c9b7676dc\"\n    }\n  ],\n  \"verification\": {\n    \"baseline\": {\n      \"command\": [\n        \"cargo\",\n        \"test\",\n        \"--offline\",\n        \"--target-dir\",\n        \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-six\\\\20261020T064307Z-mutations\\\\build\",\n        \"--quiet\",\n        \"-p\",\n        \"tfqm_homology_linear_audit\"\n      ],\n      \"cwd\": \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-six\\\\20261020T064307Z-mutations\",\n      \"disk_observation\": {\n        \"completed_cache_file_bytes\": 525515112,\n        \"free_after\": 4049068032,\n        \"free_before\": 4194275328,\n        \"scope\": \"Endpoint observations only; not a peak-space or external-activity guarantee.\"\n      },\n      \"elapsed_seconds\": 67.562,\n      \"environment\": {\n        \"CARGO_BUILD_JOBS\": \"2\",\n        \"CARGO_INCREMENTAL\": \"0\"\n      },\n      \"exit_code\": 0,\n      \"log\": \"evidence/quality/l4a_six/20261020T064307Z-mutations/tfqm_homology_linear_audit-baseline.log\",\n      \"log_sha256\": \"00768738cf4e95ae56183052da15d6259714327a2fa580301191582b5e24f6a4\",\n      \"package\": \"tfqm_homology_linear_audit\",\n      \"timed_out\": false\n    },\n    \"sources_unchanged\": true,\n    \"doctests\": [],\n    \"composition_runs\": [],\n    \"differential_controls\": [],\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false,\n    \"dependency_sources_unchanged\": true,\n    \"compiled_scope\": \"Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.\",\n    \"designated_mutations\": [],\n    \"designated_challenges_present\": true,\n    \"linked_challenges\": {},\n    \"mutation_campaign\": {\n      \"path\": \"evidence/quality/l4a_six/20261020T064307Z-mutations/receipt.json\",\n      \"sha256\": \"f33e08380b111005a6d5a9897fae4c86ba2b18b7c39bdc3e4d8ee49232cc0e11\"\n    },\n    \"mutation_restoration_baselines_ok\": null,\n    \"reproduced_defects\": []\n  },\n  \"mutation_accounting\": {\n    \"killed\": 0,\n    \"survived\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"unrun\": 0,\n    \"conservative_ratio\": null\n  },\n  \"structure\": {\n    \"tool\": \"syn source AST (see pinned metric_tool_sources in receipt)\",\n    \"functions\": [\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 47,\n        \"name\": \"new\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 50,\n        \"name\": \"used\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 53,\n        \"name\": \"limits\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 56,\n        \"name\": \"charge\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 67,\n        \"name\": \"elements\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 74,\n        \"name\": \"integer\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 7,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 1,\n        \"line\": 81,\n        \"name\": \"rational\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 94,\n        \"name\": \"result\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 99,\n        \"name\": \"add\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 105,\n        \"name\": \"sub\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 111,\n        \"name\": \"mul\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 117,\n        \"name\": \"div\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 126,\n        \"name\": \"int_mul\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 132,\n        \"name\": \"int_sub\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 138,\n        \"name\": \"int_div\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 152,\n        \"name\": \"buffer\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 7,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 1,\n        \"line\": 160,\n        \"name\": \"dot\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 21,\n        \"cognitive_upper_bound\": 12,\n        \"control_nesting\": 3,\n        \"line\": 180,\n        \"name\": \"multiply\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 9,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 215,\n        \"name\": \"multiply_complex_parts\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 13,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 234,\n        \"name\": \"adjoint_complex_parts\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 258,\n        \"name\": \"add_matrix\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 266,\n        \"name\": \"scale_matrix\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 283,\n        \"name\": \"same_shape\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 9,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 2,\n        \"line\": 293,\n        \"name\": \"combine_parts\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 320,\n        \"name\": \"multiply_vector\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 13,\n        \"cognitive_upper_bound\": 6,\n        \"control_nesting\": 2,\n        \"line\": 331,\n        \"name\": \"multiply_vector_into\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 365,\n        \"name\": \"certify_replay\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 36,\n        \"cognitive_upper_bound\": 29,\n        \"control_nesting\": 3,\n        \"line\": 377,\n        \"name\": \"solve\",\n        \"opaque_macros\": []\n      }\n    ],\n    \"exceeding_A\": [\n      {\n        \"ccn\": 21,\n        \"cognitive_upper_bound\": 12,\n        \"control_nesting\": 3,\n        \"line\": 180,\n        \"name\": \"multiply\",\n        \"opaque_macros\": [],\n        \"metric_ceiling\": \"D\"\n      },\n      {\n        \"ccn\": 13,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 234,\n        \"name\": \"adjoint_complex_parts\",\n        \"opaque_macros\": [],\n        \"metric_ceiling\": \"B\"\n      },\n      {\n        \"ccn\": 13,\n        \"cognitive_upper_bound\": 6,\n        \"control_nesting\": 2,\n        \"line\": 331,\n        \"name\": \"multiply_vector_into\",\n        \"opaque_macros\": [],\n        \"metric_ceiling\": \"B\"\n      },\n      {\n        \"ccn\": 36,\n        \"cognitive_upper_bound\": 29,\n        \"control_nesting\": 3,\n        \"line\": 377,\n        \"name\": \"solve\",\n        \"opaque_macros\": [],\n        \"metric_ceiling\": \"D\"\n      }\n    ],\n    \"metric_ceiling\": \"D\",\n    \"scope\": \"Explicit source bodies only; opaque macros and compiler expansion remain unassessed.\"\n  },\n  \"open_findings\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\",\n    \"One or more source functions exceed an A structural ceiling; see structure.exceeding_A.\"\n  ],\n  \"evaluation_timestamp_basis\": \"Start of the latest bound assessment execution; execution durations are recorded in receipts.\"\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_six/20261020T074553Z-smith-activation/previous_assessment/code/rust/src/linear_algebra/bareiss_det.rs.scoring.yaml"
+      ]
+    }
+  ],
+  "legacy_paths": {
+    "evidence/quality/l4a_six/20261020T074553Z-smith-activation/previous_assessment/code/rust/src/linear_algebra/bareiss_det.rs.contract.yaml": "da2416070c53f9b97638ad2bf0180ea68531e930024f9a92abb769f3725471c7",
+    "evidence/quality/l4a_six/20261020T074553Z-smith-activation/previous_assessment/code/rust/src/linear_algebra/bareiss_det.rs.scoring.yaml": "085e2a21bec967ce8b4734436736ad0e53a4814af128c1e6600d6a27933f6276"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

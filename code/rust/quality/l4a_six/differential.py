@@ -6,7 +6,10 @@ The Smith workspace refusals intentionally have no legacy allocation replay.
 
 from datetime import datetime, timezone
 import json
-from pathlib import Path
+from pathlib import Path as _FilesystemPath
+import sys as _contract_sys
+_contract_sys.path.insert(0, str(_FilesystemPath(__file__).resolve().parents[4] / "scripts"))
+from contract_scores import RecordPath as Path, copy_file as _copy_record_file
 import shutil
 import subprocess
 
@@ -99,8 +102,8 @@ def main():
     work = RUST / "target/l4a-six" / (stamp + "-differential")
     sources = inventory()
     write(output / "source_manifest.json", sources)
-    shutil.copyfile(__file__, output / "differential.py")
-    shutil.copyfile(Path(__file__).with_name("replay.py"), output / "replay.py")
+    _copy_record_file(__file__, output / "differential.py")
+    _copy_record_file(Path(__file__).with_name("replay.py"), output / "replay.py")
     receipt = {"AuthorityEffect": "None", "claim": "Instrumented snapshot compares legacy and current outcomes on exercised cases only; not a production baseline or whole-file proof.",
                "source_manifest_sha256": digest(output / "source_manifest.json"),
                "runner_sha256": digest(output / "differential.py"), "helper_sha256": digest(output / "replay.py"), "runs": [],

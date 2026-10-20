@@ -1,0 +1,143 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/40_packets/packet_symbol_game_host_prime_replay_decide_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v2",
+    "contract_id": "urn:omega:packet:symbol_game:host_prime_replay_decide:v1.0.0",
+    "title": "Host Prime Replay Decide Request",
+    "kind": "packet_contract",
+    "layer": "40_packets",
+    "role": "PacketSpecification",
+    "status": "active",
+    "council_owner": "L3_logos_techne",
+    "descriptor": {
+      "authority_effect": "None",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": true,
+      "clean_architecture_layer": "infrastructure",
+      "refusals": {
+        "may_emit": [
+          "FW-UNKNOWN-FIELD"
+        ]
+      }
+    },
+    "doctrine": {
+      "summary": "Replays a Prime tape or checks a Prime receipt, deciding terminal or refusal status.",
+      "invariants": [
+        "AuthorityEffect is strictly None."
+      ],
+      "non_roles": [
+        "authority_source",
+        "promotion_granter"
+      ],
+      "required_negative_capabilities": [
+        "no_self_certification",
+        "no_implicit_authority_upgrade"
+      ]
+    },
+    "structure": {
+      "language": "rust",
+      "rust_crate": "omega_symbol_game",
+      "rust_module": "prime",
+      "rust_type": "HostPrimeReplayDecideRequestV1",
+      "form": "struct",
+      "serde": {
+        "deny_unknown_fields": true
+      },
+      "fields": [
+        {
+          "name": "receipt",
+          "rust_type": "Option<Value>"
+        },
+        {
+          "name": "steps",
+          "rust_type": "Option<Vec<PrimeReplayStepWire>>"
+        }
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "9a1d7eaa3653327dee1a441d53fea724afcff90d052809981ee6d8a2d5301af3",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "9a1d7eaa3653327dee1a441d53fea724afcff90d052809981ee6d8a2d5301af3",
+      "bytes": 1133,
+      "record": {
+        "schema_version": "omega.contract.v2",
+        "contract_id": "urn:omega:packet:symbol_game:host_prime_replay_decide:v1.0.0",
+        "title": "Host Prime Replay Decide Request",
+        "kind": "packet_contract",
+        "layer": "40_packets",
+        "role": "PacketSpecification",
+        "status": "active",
+        "council_owner": "L3_logos_techne",
+        "descriptor": {
+          "authority_effect": "None",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": true,
+          "clean_architecture_layer": "infrastructure",
+          "refusals": {
+            "may_emit": [
+              "FW-UNKNOWN-FIELD"
+            ]
+          }
+        },
+        "doctrine": {
+          "summary": "Replays a Prime tape or checks a Prime receipt, deciding terminal or refusal status.",
+          "invariants": [
+            "AuthorityEffect is strictly None."
+          ],
+          "non_roles": [
+            "authority_source",
+            "promotion_granter"
+          ],
+          "required_negative_capabilities": [
+            "no_self_certification",
+            "no_implicit_authority_upgrade"
+          ]
+        },
+        "structure": {
+          "language": "rust",
+          "rust_crate": "omega_symbol_game",
+          "rust_module": "prime",
+          "rust_type": "HostPrimeReplayDecideRequestV1",
+          "form": "struct",
+          "serde": {
+            "deny_unknown_fields": true
+          },
+          "fields": [
+            {
+              "name": "receipt",
+              "rust_type": "Option<Value>"
+            },
+            {
+              "name": "steps",
+              "rust_type": "Option<Vec<PrimeReplayStepWire>>"
+            }
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v2\ncontract_id: urn:omega:packet:symbol_game:host_prime_replay_decide:v1.0.0\ntitle: Host Prime Replay Decide Request\nkind: packet_contract\nlayer: 40_packets\nrole: PacketSpecification\nstatus: active\ncouncil_owner: L3_logos_techne\ndescriptor:\n  authority_effect: None\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: true\n  clean_architecture_layer: infrastructure\n  refusals:\n    may_emit:\n    - FW-UNKNOWN-FIELD\ndoctrine:\n  summary: Replays a Prime tape or checks a Prime receipt, deciding terminal or refusal\n    status.\n  invariants:\n  - AuthorityEffect is strictly None.\n  non_roles:\n  - authority_source\n  - promotion_granter\n  required_negative_capabilities:\n  - no_self_certification\n  - no_implicit_authority_upgrade\nstructure:\n  language: rust\n  rust_crate: omega_symbol_game\n  rust_module: prime\n  rust_type: HostPrimeReplayDecideRequestV1\n  form: struct\n  serde:\n    deny_unknown_fields: true\n  fields:\n  - name: receipt\n    rust_type: Option<Value>\n  - name: steps\n    rust_type: Option<Vec<PrimeReplayStepWire>>\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/40_packets/packet_symbol_game_host_prime_replay_decide_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/40_packets/packet_symbol_game_host_prime_replay_decide_v1_0_0.contract.yaml": "9a1d7eaa3653327dee1a441d53fea724afcff90d052809981ee6d8a2d5301af3"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

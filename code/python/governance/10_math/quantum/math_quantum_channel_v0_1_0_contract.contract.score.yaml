@@ -1,0 +1,219 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/quantum/math_quantum_channel_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:quantum_channel:v0.1.0",
+    "title": "QuantumChannel Contract",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "quantum_channel",
+      "symbol": "quantum_channel",
+      "ascii_symbol": "quantum_channel",
+      "notation": "Exact Finite Quantum Channel",
+      "domain": [
+        "Finite input/output operator spaces over Q(i), with weighted exact Kraus or Choi data"
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_quantum_physics::exact_channel; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "The full Choi operator is positive semidefinite and its output partial trace is input identity",
+      "The weighted Kraus completeness relation is sum w K dagger K=I",
+      "Application is linear, trace preserving and retains complex coherences",
+      "Rectangular Kraus, Choi and Stinespring routes replay the same channel"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "negative_tests": [
+      "Reject wrong Choi dimension, nonpositive Choi data, non-Hermitian candidates and failed trace preservation"
+    ],
+    "doctrine": {
+      "summary": "The full Choi operator is positive semidefinite and its output partial trace is input identity; The weighted Kraus completeness relation is sum w K dagger K=I; Application is linear, trace preserving and retains complex coherences; Rectangular Kraus, Choi and Stinespring routes replay the same channel.",
+      "non_role": [
+        "Unrelated artifact-addressing protocols",
+        "General continuum channels or customer-facing authority",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted",
+      "The former generic metadata scaffold remains outside this explicitly declared finite executable domain; its unsupported hash obligations are not claimed discharged."
+    ],
+    "rust_binding": {
+      "crate": "omega_quantum_physics",
+      "module": "exact_channel",
+      "symbols": [
+        "ExactKrausChannel",
+        "ExactChoiMatrix",
+        "ExactKrausChannel::try_weighted",
+        "ExactChoiMatrix::try_new"
+      ],
+      "required_tests": [
+        "channels_have_choi_kraus_metric_stinespring_and_ordinary_routes",
+        "rectangular_channel_factorization_and_malformed_choi_refusals",
+        "generalized_amplitude_damping_has_the_exact_thermal_fixed_state"
+      ]
+    }
+  },
+  "current_contract": "8cfdbd307f16a68758d007f7a82b438064346453a4fa79f2c392ab4ccf14d8c0",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "8cfdbd307f16a68758d007f7a82b438064346453a4fa79f2c392ab4ccf14d8c0",
+      "bytes": 3225,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:quantum_channel:v0.1.0",
+        "title": "QuantumChannel Contract",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "quantum_channel",
+          "symbol": "quantum_channel",
+          "ascii_symbol": "quantum_channel",
+          "notation": "Exact Finite Quantum Channel",
+          "domain": [
+            "Finite input/output operator spaces over Q(i), with weighted exact Kraus or Choi data"
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_quantum_physics::exact_channel; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "The full Choi operator is positive semidefinite and its output partial trace is input identity",
+          "The weighted Kraus completeness relation is sum w K dagger K=I",
+          "Application is linear, trace preserving and retains complex coherences",
+          "Rectangular Kraus, Choi and Stinespring routes replay the same channel"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "negative_tests": [
+          "Reject wrong Choi dimension, nonpositive Choi data, non-Hermitian candidates and failed trace preservation"
+        ],
+        "doctrine": {
+          "summary": "The full Choi operator is positive semidefinite and its output partial trace is input identity; The weighted Kraus completeness relation is sum w K dagger K=I; Application is linear, trace preserving and retains complex coherences; Rectangular Kraus, Choi and Stinespring routes replay the same channel.",
+          "non_role": [
+            "Unrelated artifact-addressing protocols",
+            "General continuum channels or customer-facing authority",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted",
+          "The former generic metadata scaffold remains outside this explicitly declared finite executable domain; its unsupported hash obligations are not claimed discharged."
+        ],
+        "rust_binding": {
+          "crate": "omega_quantum_physics",
+          "module": "exact_channel",
+          "symbols": [
+            "ExactKrausChannel",
+            "ExactChoiMatrix",
+            "ExactKrausChannel::try_weighted",
+            "ExactChoiMatrix::try_new"
+          ],
+          "required_tests": [
+            "channels_have_choi_kraus_metric_stinespring_and_ordinary_routes",
+            "rectangular_channel_factorization_and_malformed_choi_refusals",
+            "generalized_amplitude_damping_has_the_exact_thermal_fixed_state"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:quantum_channel:v0.1.0\ntitle: QuantumChannel Contract\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: quantum_channel\n  symbol: quantum_channel\n  ascii_symbol: quantum_channel\n  notation: Exact Finite Quantum Channel\n  domain:\n  - Finite input/output operator spaces over Q(i), with weighted exact Kraus or Choi\n    data\n  codomain:\n    description: Declared finite results of omega_quantum_physics::exact_channel;\n      exact and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- The full Choi operator is positive semidefinite and its output partial trace is\n  input identity\n- The weighted Kraus completeness relation is sum w K dagger K=I\n- Application is linear, trace preserving and retains complex coherences\n- Rectangular Kraus, Choi and Stinespring routes replay the same channel\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nnegative_tests:\n- Reject wrong Choi dimension, nonpositive Choi data, non-Hermitian candidates and\n  failed trace preservation\ndoctrine:\n  summary: The full Choi operator is positive semidefinite and its output partial\n    trace is input identity; The weighted Kraus completeness relation is sum w K dagger\n    K=I; Application is linear, trace preserving and retains complex coherences; Rectangular\n    Kraus, Choi and Stinespring routes replay the same channel.\n  non_role:\n  - Unrelated artifact-addressing protocols\n  - General continuum channels or customer-facing authority\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n- The former generic metadata scaffold remains outside this explicitly declared finite\n  executable domain; its unsupported hash obligations are not claimed discharged.\nrust_binding:\n  crate: omega_quantum_physics\n  module: exact_channel\n  symbols:\n  - ExactKrausChannel\n  - ExactChoiMatrix\n  - ExactKrausChannel::try_weighted\n  - ExactChoiMatrix::try_new\n  required_tests:\n  - channels_have_choi_kraus_metric_stinespring_and_ordinary_routes\n  - rectangular_channel_factorization_and_malformed_choi_refusals\n  - generalized_amplitude_damping_has_the_exact_thermal_fixed_state\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/math_quantum_channel_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/quantum/math_quantum_channel_v0_1_0.contract.yaml": "8cfdbd307f16a68758d007f7a82b438064346453a4fa79f2c392ab4ccf14d8c0"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

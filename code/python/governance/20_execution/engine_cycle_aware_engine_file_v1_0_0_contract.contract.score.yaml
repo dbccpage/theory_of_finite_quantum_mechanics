@@ -1,0 +1,125 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/20_execution/engine_cycle_aware_engine_file_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.file_contract.v1",
+    "contract_id": "urn:omega:engine:cycle_aware_engine:file:v1.0.0",
+    "title": "Cycle Aware Engine",
+    "crate": "omega_engines",
+    "file": "omega_engine/crates/omega_engines/src/cycle_aware.rs",
+    "role": "cycle_aware_traversal_engine",
+    "status": "active_provisional",
+    "authority_effect": "none",
+    "customer_claim_allowed": false,
+    "runtime_enforcement": "required",
+    "owns": [
+      "cycle_aware_graph_traversal",
+      "cycle_detection_and_pruning"
+    ],
+    "does_not_own": [
+      "infinite_loop_solver",
+      "authority"
+    ],
+    "may_call": [
+      "omega_engine_core"
+    ],
+    "must_not": [
+      "claim infinite cycle resolution",
+      "mint authority"
+    ],
+    "exactness": {
+      "numeric_mode": "integer_graph_traversal",
+      "exact_certificate_allowed": false
+    },
+    "forbidden_substrings": [
+      "CertifiedAuthority",
+      "AuthorityEffect::Authorize"
+    ],
+    "required_substrings": [
+      "AuthorityEffect::None"
+    ],
+    "required_tests": [
+      "test_cycle_aware_traversal"
+    ],
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0",
+        "urn:omega:constitution:base_file_contract:file:v1.0.0"
+      ],
+      "coalescence_mode": "specializes",
+      "coalesces_with": [
+        "urn:omega:execution:engine:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "30afff17fcea41f332fd7272582a28ff0f7c32cf70624ccede69c5b4f45bcfcd",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "30afff17fcea41f332fd7272582a28ff0f7c32cf70624ccede69c5b4f45bcfcd",
+      "bytes": 1023,
+      "record": {
+        "schema_version": "omega.file_contract.v1",
+        "contract_id": "urn:omega:engine:cycle_aware_engine:file:v1.0.0",
+        "title": "Cycle Aware Engine",
+        "crate": "omega_engines",
+        "file": "omega_engine/crates/omega_engines/src/cycle_aware.rs",
+        "role": "cycle_aware_traversal_engine",
+        "status": "active_provisional",
+        "authority_effect": "none",
+        "customer_claim_allowed": false,
+        "runtime_enforcement": "required",
+        "owns": [
+          "cycle_aware_graph_traversal",
+          "cycle_detection_and_pruning"
+        ],
+        "does_not_own": [
+          "infinite_loop_solver",
+          "authority"
+        ],
+        "may_call": [
+          "omega_engine_core"
+        ],
+        "must_not": [
+          "claim infinite cycle resolution",
+          "mint authority"
+        ],
+        "exactness": {
+          "numeric_mode": "integer_graph_traversal",
+          "exact_certificate_allowed": false
+        },
+        "forbidden_substrings": [
+          "CertifiedAuthority",
+          "AuthorityEffect::Authorize"
+        ],
+        "required_substrings": [
+          "AuthorityEffect::None"
+        ],
+        "required_tests": [
+          "test_cycle_aware_traversal"
+        ],
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0",
+            "urn:omega:constitution:base_file_contract:file:v1.0.0"
+          ],
+          "coalescence_mode": "specializes",
+          "coalesces_with": [
+            "urn:omega:execution:engine:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.file_contract.v1\ncontract_id: urn:omega:engine:cycle_aware_engine:file:v1.0.0\ntitle: Cycle Aware Engine\ncrate: omega_engines\nfile: omega_engine/crates/omega_engines/src/cycle_aware.rs\nrole: cycle_aware_traversal_engine\nstatus: active_provisional\nauthority_effect: none\ncustomer_claim_allowed: false\nruntime_enforcement: required\nowns:\n- cycle_aware_graph_traversal\n- cycle_detection_and_pruning\ndoes_not_own:\n- infinite_loop_solver\n- authority\nmay_call:\n- omega_engine_core\nmust_not:\n- claim infinite cycle resolution\n- mint authority\nexactness:\n  numeric_mode: integer_graph_traversal\n  exact_certificate_allowed: false\nforbidden_substrings:\n- CertifiedAuthority\n- AuthorityEffect::Authorize\nrequired_substrings:\n- AuthorityEffect::None\nrequired_tests:\n- test_cycle_aware_traversal\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n  - urn:omega:constitution:base_file_contract:file:v1.0.0\n  coalescence_mode: specializes\n  coalesces_with:\n  - urn:omega:execution:engine:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/20_execution/engine_cycle_aware_engine_file_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/20_execution/engine_cycle_aware_engine_file_v1_0_0.contract.yaml": "30afff17fcea41f332fd7272582a28ff0f7c32cf70624ccede69c5b4f45bcfcd"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

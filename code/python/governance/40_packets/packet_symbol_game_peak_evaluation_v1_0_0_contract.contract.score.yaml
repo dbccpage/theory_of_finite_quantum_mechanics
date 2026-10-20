@@ -1,0 +1,169 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/40_packets/packet_symbol_game_peak_evaluation_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v2",
+    "contract_id": "urn:omega:packet:symbol_game:peak_evaluation:v1.0.0",
+    "title": "Critical Peak Evaluation",
+    "kind": "packet_contract",
+    "layer": "40_packets",
+    "role": "PacketSpecification",
+    "status": "active",
+    "council_owner": "L3_logos_techne",
+    "descriptor": {
+      "authority_effect": "None",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": true,
+      "clean_architecture_layer": "domain",
+      "refusals": {
+        "may_emit": [
+          "FW-UNKNOWN-FIELD",
+          "FW-DUPLICATE-KEY",
+          "FW-PRESENTATION-UNKNOWN"
+        ]
+      }
+    },
+    "doctrine": {
+      "summary": "A peak verdict together with the provenance of the rules that produced it. The verdict alone is presentation-relative and reads as a host guarantee it is not; this packet is what makes the difference visible on the wire.",
+      "invariants": [
+        "presentation_digest is derived by the host from the presentation it evaluated, never copied from the claim.",
+        "A decision verdict (Joined or NotJoinable) reached under a ProducerDeclared presentation is reported by token() as SELF_CONSISTENT_ONLY, never as JOINED or NOT_JOINABLE.",
+        "NeedsEvidence and BoundedWithUnjoinedPeak decide nothing, so provenance does not change their token.",
+        "The FW-PRESENTATION-UNKNOWN obligation is raised whenever the presentation is unpinned, whatever the verdict is: it is a fact about the rules, not about the claim.",
+        "The verdict is never suppressed. The join really does exist under the declared rules; what is withheld is the host's endorsement of it."
+      ],
+      "non_roles": [
+        "authority_source",
+        "promotion_granter"
+      ],
+      "required_negative_capabilities": [
+        "no_self_certification",
+        "no_implicit_authority_upgrade"
+      ]
+    },
+    "structure": {
+      "rust_crate": "omega_symbol_game_runtime",
+      "rust_module": "rewriting",
+      "rust_type": "PeakEvaluation",
+      "form": "struct",
+      "serde": {
+        "deny_unknown_fields": true
+      },
+      "fields": [
+        {
+          "name": "verdict",
+          "rust_type": "PeakVerdict"
+        },
+        {
+          "name": "presentation_digest",
+          "rust_type": "String"
+        },
+        {
+          "name": "authority",
+          "rust_type": "PresentationAuthority"
+        },
+        {
+          "name": "obligations",
+          "rust_type": "Vec<String>"
+        }
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "a018317a1a04d296cd6ec2cba841115aa5066727eafc159698761919a0f49a4d",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "a018317a1a04d296cd6ec2cba841115aa5066727eafc159698761919a0f49a4d",
+      "bytes": 2059,
+      "record": {
+        "schema_version": "omega.contract.v2",
+        "contract_id": "urn:omega:packet:symbol_game:peak_evaluation:v1.0.0",
+        "title": "Critical Peak Evaluation",
+        "kind": "packet_contract",
+        "layer": "40_packets",
+        "role": "PacketSpecification",
+        "status": "active",
+        "council_owner": "L3_logos_techne",
+        "descriptor": {
+          "authority_effect": "None",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": true,
+          "clean_architecture_layer": "domain",
+          "refusals": {
+            "may_emit": [
+              "FW-UNKNOWN-FIELD",
+              "FW-DUPLICATE-KEY",
+              "FW-PRESENTATION-UNKNOWN"
+            ]
+          }
+        },
+        "doctrine": {
+          "summary": "A peak verdict together with the provenance of the rules that produced it. The verdict alone is presentation-relative and reads as a host guarantee it is not; this packet is what makes the difference visible on the wire.",
+          "invariants": [
+            "presentation_digest is derived by the host from the presentation it evaluated, never copied from the claim.",
+            "A decision verdict (Joined or NotJoinable) reached under a ProducerDeclared presentation is reported by token() as SELF_CONSISTENT_ONLY, never as JOINED or NOT_JOINABLE.",
+            "NeedsEvidence and BoundedWithUnjoinedPeak decide nothing, so provenance does not change their token.",
+            "The FW-PRESENTATION-UNKNOWN obligation is raised whenever the presentation is unpinned, whatever the verdict is: it is a fact about the rules, not about the claim.",
+            "The verdict is never suppressed. The join really does exist under the declared rules; what is withheld is the host's endorsement of it."
+          ],
+          "non_roles": [
+            "authority_source",
+            "promotion_granter"
+          ],
+          "required_negative_capabilities": [
+            "no_self_certification",
+            "no_implicit_authority_upgrade"
+          ]
+        },
+        "structure": {
+          "rust_crate": "omega_symbol_game_runtime",
+          "rust_module": "rewriting",
+          "rust_type": "PeakEvaluation",
+          "form": "struct",
+          "serde": {
+            "deny_unknown_fields": true
+          },
+          "fields": [
+            {
+              "name": "verdict",
+              "rust_type": "PeakVerdict"
+            },
+            {
+              "name": "presentation_digest",
+              "rust_type": "String"
+            },
+            {
+              "name": "authority",
+              "rust_type": "PresentationAuthority"
+            },
+            {
+              "name": "obligations",
+              "rust_type": "Vec<String>"
+            }
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v2\ncontract_id: urn:omega:packet:symbol_game:peak_evaluation:v1.0.0\ntitle: Critical Peak Evaluation\nkind: packet_contract\nlayer: 40_packets\nrole: PacketSpecification\nstatus: active\ncouncil_owner: L3_logos_techne\ndescriptor:\n  authority_effect: None\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: true\n  clean_architecture_layer: domain\n  refusals:\n    may_emit:\n    - FW-UNKNOWN-FIELD\n    - FW-DUPLICATE-KEY\n    - FW-PRESENTATION-UNKNOWN\ndoctrine:\n  summary: A peak verdict together with the provenance of the rules that produced\n    it. The verdict alone is presentation-relative and reads as a host guarantee it\n    is not; this packet is what makes the difference visible on the wire.\n  invariants:\n  - presentation_digest is derived by the host from the presentation it evaluated,\n    never copied from the claim.\n  - A decision verdict (Joined or NotJoinable) reached under a ProducerDeclared presentation\n    is reported by token() as SELF_CONSISTENT_ONLY, never as JOINED or NOT_JOINABLE.\n  - NeedsEvidence and BoundedWithUnjoinedPeak decide nothing, so provenance does not\n    change their token.\n  - 'The FW-PRESENTATION-UNKNOWN obligation is raised whenever the presentation is\n    unpinned, whatever the verdict is: it is a fact about the rules, not about the\n    claim.'\n  - The verdict is never suppressed. The join really does exist under the declared\n    rules; what is withheld is the host's endorsement of it.\n  non_roles:\n  - authority_source\n  - promotion_granter\n  required_negative_capabilities:\n  - no_self_certification\n  - no_implicit_authority_upgrade\nstructure:\n  rust_crate: omega_symbol_game_runtime\n  rust_module: rewriting\n  rust_type: PeakEvaluation\n  form: struct\n  serde:\n    deny_unknown_fields: true\n  fields:\n  - name: verdict\n    rust_type: PeakVerdict\n  - name: presentation_digest\n    rust_type: String\n  - name: authority\n    rust_type: PresentationAuthority\n  - name: obligations\n    rust_type: Vec<String>\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/40_packets/packet_symbol_game_peak_evaluation_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/40_packets/packet_symbol_game_peak_evaluation_v1_0_0.contract.yaml": "a018317a1a04d296cd6ec2cba841115aa5066727eafc159698761919a0f49a4d"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

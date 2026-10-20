@@ -1,0 +1,199 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/quantum/math_exact_hermitian_algebraic_spectrum_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:exact_hermitian_algebraic_spectrum:v0.1.0",
+    "title": "Exact full-degree real Hermitian spectrum",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "exact_hermitian_algebraic_spectrum",
+      "symbol": "exact_hermitian_algebraic_spectrum",
+      "ascii_symbol": "exact_hermitian_algebraic_spectrum",
+      "notation": "Exact full-degree real Hermitian spectrum",
+      "domain": [
+        "Bounded Hermitian operators over Q(i); shared exact characteristic polynomials and real-root isolation"
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_quantum_physics::exact_operator; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "Full-degree real algebraic roots retain exact multiplicity"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_quantum_physics",
+      "module": "exact_operator",
+      "symbols": [
+        "ExactOperator::spectrum"
+      ],
+      "required_tests": [
+        "exact_operator::tests::an_irrational_spectrum_is_isolated_not_approximated"
+      ]
+    },
+    "negative_tests": [
+      "exact_operator::tests::the_spectrum_of_a_non_hermitian_operator_is_refused"
+    ],
+    "doctrine": {
+      "summary": "Full-degree real algebraic roots retain exact multiplicity.",
+      "non_role": [
+        "Isolation evidence is not a claim that all algebraic eigenvectors belong to Q(i)",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "60e873b6ab657bf598da4a91d671fce886e4e8ab2709daefab8d7dcbf44a8001",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "60e873b6ab657bf598da4a91d671fce886e4e8ab2709daefab8d7dcbf44a8001",
+      "bytes": 2422,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:exact_hermitian_algebraic_spectrum:v0.1.0",
+        "title": "Exact full-degree real Hermitian spectrum",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "exact_hermitian_algebraic_spectrum",
+          "symbol": "exact_hermitian_algebraic_spectrum",
+          "ascii_symbol": "exact_hermitian_algebraic_spectrum",
+          "notation": "Exact full-degree real Hermitian spectrum",
+          "domain": [
+            "Bounded Hermitian operators over Q(i); shared exact characteristic polynomials and real-root isolation"
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_quantum_physics::exact_operator; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "Full-degree real algebraic roots retain exact multiplicity"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_quantum_physics",
+          "module": "exact_operator",
+          "symbols": [
+            "ExactOperator::spectrum"
+          ],
+          "required_tests": [
+            "exact_operator::tests::an_irrational_spectrum_is_isolated_not_approximated"
+          ]
+        },
+        "negative_tests": [
+          "exact_operator::tests::the_spectrum_of_a_non_hermitian_operator_is_refused"
+        ],
+        "doctrine": {
+          "summary": "Full-degree real algebraic roots retain exact multiplicity.",
+          "non_role": [
+            "Isolation evidence is not a claim that all algebraic eigenvectors belong to Q(i)",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:exact_hermitian_algebraic_spectrum:v0.1.0\ntitle: Exact full-degree real Hermitian spectrum\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: exact_hermitian_algebraic_spectrum\n  symbol: exact_hermitian_algebraic_spectrum\n  ascii_symbol: exact_hermitian_algebraic_spectrum\n  notation: Exact full-degree real Hermitian spectrum\n  domain:\n  - Bounded Hermitian operators over Q(i); shared exact characteristic polynomials\n    and real-root isolation\n  codomain:\n    description: Declared finite results of omega_quantum_physics::exact_operator;\n      exact and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- Full-degree real algebraic roots retain exact multiplicity\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_quantum_physics\n  module: exact_operator\n  symbols:\n  - ExactOperator::spectrum\n  required_tests:\n  - exact_operator::tests::an_irrational_spectrum_is_isolated_not_approximated\nnegative_tests:\n- exact_operator::tests::the_spectrum_of_a_non_hermitian_operator_is_refused\ndoctrine:\n  summary: Full-degree real algebraic roots retain exact multiplicity.\n  non_role:\n  - Isolation evidence is not a claim that all algebraic eigenvectors belong to Q(i)\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/math_exact_hermitian_algebraic_spectrum_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/quantum/math_exact_hermitian_algebraic_spectrum_v0_1_0.contract.yaml": "60e873b6ab657bf598da4a91d671fce886e4e8ab2709daefab8d7dcbf44a8001"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

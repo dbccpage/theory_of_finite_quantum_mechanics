@@ -4,7 +4,10 @@ AuthorityEffect: None. Never applies this judgement to changed source bytes.
 """
 import argparse
 import json
-from pathlib import Path
+from pathlib import Path as _FilesystemPath
+import sys as _contract_sys
+_contract_sys.path.insert(0, str(_FilesystemPath(__file__).resolve().parents[4] / "scripts"))
+from contract_scores import RecordPath as Path, copy_file as _copy_record_file
 from replay import ROOT, RUST, digest, write
 
 REVIEWED = "7b4a42bcb7d78985463307a9474ee9cb2878afa6862380f176268589346ed4d9"

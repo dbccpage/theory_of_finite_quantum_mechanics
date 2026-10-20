@@ -6,7 +6,11 @@ arbitrary text replacement, rounding or status promotion is supported.
 """
 import hashlib
 import re
-from pathlib import Path, PurePosixPath
+from pathlib import Path as _FilesystemPath
+import sys as _contract_sys
+_contract_sys.path.insert(0, str(_FilesystemPath(__file__).resolve().parents[2] / "scripts"))
+from contract_scores import RecordPath as Path
+from pathlib import PurePosixPath
 from exact_json import load, require
 
 SCHEMA = 'omega.pfp.filename-custody.v1'

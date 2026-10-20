@@ -1,0 +1,529 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/50_os/os_generator_contract.py",
+  "contract": {
+    "schema_version": "1.0.0",
+    "contract_id": "os:generator",
+    "name": "Generator Contract",
+    "version": "1.0.0",
+    "kind": "os_doctrine_contract",
+    "status": "active_doctrine",
+    "enforcement_status": "partially_enforced",
+    "description": "Generators are deterministic proposal mechanisms. They apply a declared syntactic, algebraic, structural, or topological proposal rule to an existing admitted Operator, Carrier, Obstruction, Packet, or Trace and emit detached candidate representations. A Generator does not execute an Engine state transition, does not accept or rank candidates, does not certify, does not authorize, does not terminalize, and does not compute canonical functionals.\n",
+    "layer": "OS",
+    "module_path": "generators",
+    "governs": [
+      "generators/**",
+      "operators/generators/**",
+      "omega_*/*generator*.rs"
+    ],
+    "does_not_govern": [
+      "operators/lambdas/**",
+      "operators/reducers/**",
+      "operators/transforms/**",
+      "omega_functional/**",
+      "omega_homological/**",
+      "omega_lifts/**",
+      "omega_certifiers/**",
+      "omega_replay/**",
+      "omega_id_run/**",
+      "omega_pipeline/**",
+      "omega_engines/**",
+      "meta/**"
+    ],
+    "claims": [
+      {
+        "id": "OP-GENERATOR",
+        "description": "A Generator only proposes detached candidates and never executes an Engine state transformation.",
+        "status": "active",
+        "provenance": "Operator OS Doctrine"
+      },
+      {
+        "id": "OP-GENERATOR-DETACHED",
+        "description": "Generated candidates are detached proposals, not admitted runtime state changes.",
+        "status": "active",
+        "provenance": "Operator OS Doctrine"
+      },
+      {
+        "id": "OP-GENERATOR-NO-EVAL",
+        "description": "A Generator does not rank, score, accept, reject, or select candidates.",
+        "status": "active",
+        "provenance": "Operator OS Doctrine"
+      },
+      {
+        "id": "OP-GENERATOR-NO-AUTH",
+        "description": "Generation does not mint authority, closure, repair, or lift license.",
+        "status": "active",
+        "provenance": "Operator OS Doctrine"
+      },
+      {
+        "id": "OP-GENERATOR-NO-OPERAD-CLAIM",
+        "description": "A Generator may emit operator-shaped candidates but does not prove operad closure or generativity.",
+        "status": "active",
+        "provenance": "Operator OS Doctrine"
+      }
+    ],
+    "rules": {
+      "authority_effect": "none",
+      "mutation": "forbidden",
+      "canonical_functional_computation": "forbidden",
+      "terminalize": "forbidden",
+      "certify": "forbidden",
+      "execute": "forbidden",
+      "accept_candidate": "forbidden",
+      "rank_candidate": "forbidden",
+      "search": "forbidden_except_declared_finite_enumeration",
+      "runtime_orchestration": "forbidden",
+      "side_effects": "forbidden",
+      "deterministic": true,
+      "stateless": true,
+      "typed_failure_required": true,
+      "detached_output_required": true
+    },
+    "allowed": [
+      "read admitted immutable input",
+      "apply one declared proposal rule",
+      "emit detached candidate",
+      "emit finite deterministic candidate set if bounded and declared",
+      "attach proposal provenance",
+      "attach precondition notes",
+      "attach non-authoritative local metadata",
+      "return typed generation failure"
+    ],
+    "forbidden": [
+      "compute Φ₁",
+      "compute Γ₂",
+      "compute R_cl",
+      "compute Ξ",
+      "classify trichotomy",
+      "mint CertifiedAuthority",
+      "call CertifiedAuthority::certify",
+      "call authority_from_outcome_f13",
+      "call terminalize",
+      "emit AuthorityEffect::Authorize",
+      "execute candidate",
+      "admit candidate as state",
+      "mark candidate as accepted",
+      "rank candidate alternatives",
+      "score candidate alternatives with canonical functionals",
+      "perform adaptive search",
+      "iterate until convergence",
+      "perform MCTS",
+      "mutate carrier in place",
+      "hide carrier enlargement",
+      "declare lift success",
+      "declare repair success",
+      "declare operad closure",
+      "claim generated operators compose unless executable composition law exists",
+      "return opaque string-only failure",
+      "return None as failure"
+    ],
+    "candidate_shape": {
+      "preferred": "Result<GeneratedCandidate<T>, GenerationFailure>",
+      "detached_wrapper_required": true,
+      "admitted_state_output_forbidden": true,
+      "candidate_must_include": [
+        "source_ref",
+        "generator_id",
+        "proposal_rule_id",
+        "candidate_kind",
+        "declared_preconditions",
+        "authority_effect_none"
+      ]
+    },
+    "candidate_kinds": {
+      "allowed": [
+        "SameCarrierCandidate",
+        "OperatorCandidate",
+        "ReducerCandidate",
+        "LambdaCandidate",
+        "TransformCandidate",
+        "AdapterCandidate",
+        "LiftCandidateDetached"
+      ],
+      "notes": [
+        "LiftCandidateDetached is only a proposal. Execution belongs to omega_lifts or Engine under explicit lift law.",
+        "OperatorCandidate is not admitted until registry validation succeeds."
+      ]
+    },
+    "failure_shape": {
+      "enum": "GenerationFailure",
+      "required_variants": [
+        "OutsideAdmissibleDomain",
+        "UnsupportedInputKind",
+        "ProposalRuleNotApplicable",
+        "FiniteEnumerationBoundExceeded",
+        "CarrierChangeNotDeclared",
+        "InvariantPreconditionMissing",
+        "MalformedCandidate",
+        "NonFiniteInput"
+      ]
+    },
+    "composition_and_operad_firewall": {
+      "closure_claim_status": "not_proven",
+      "generativity_claim_status": "not_proven",
+      "executable_apply_required_for_operator_claim": true,
+      "notes": [
+        "A generator tape is evidence of proposal history, not executable operad composition.",
+        "String labels are not operators.",
+        "Generated candidates must pass registry/admission before execution.",
+        "Obstruction management may motivate generators, but this contract does not assert that generators arise from obstruction management."
+      ]
+    },
+    "validator_requirements": {
+      "forbidden_substrings": [
+        "CertifiedAuthority",
+        "authority_from_outcome_f13",
+        "terminalize",
+        "mint_authority",
+        "Phi1Functional",
+        "Gamma2Functional",
+        "XiFunctional",
+        "classify_exact",
+        "ExactRepair",
+        "AuthorityEffect::Authorize",
+        "Accepted",
+        "accept_candidate",
+        "rank_candidates",
+        "score_candidates",
+        "while ",
+        "loop ",
+        "thread_rng",
+        "rand::",
+        "unwrap()",
+        "expect("
+      ],
+      "required_patterns": [
+        "Result<",
+        "GenerationFailure",
+        "GeneratedCandidate"
+      ],
+      "required_tests": [
+        "generator_is_deterministic",
+        "generator_outputs_detached_candidate",
+        "generator_does_not_execute_candidate",
+        "generator_does_not_mint_authority",
+        "generator_does_not_compute_functionals",
+        "generator_rejects_undeclared_carrier_change",
+        "generator_finite_enumeration_is_bounded"
+      ]
+    },
+    "lean_obligations": [
+      {
+        "id": "GEN-L0",
+        "theorem": "Generation produces detached candidates, not state transitions.",
+        "status": "needed"
+      },
+      {
+        "id": "GEN-L1",
+        "theorem": "Generation does not imply candidate admissibility.",
+        "status": "needed"
+      },
+      {
+        "id": "GEN-L2",
+        "theorem": "Generation does not imply lift license, repair, closure, or authority.",
+        "status": "needed"
+      },
+      {
+        "id": "GEN-L3",
+        "theorem": "Finite declared enumeration terminates and preserves candidate detachment.",
+        "status": "needed"
+      },
+      {
+        "id": "GEN-L4",
+        "theorem": "Operator-shaped candidate requires registry admission before execution.",
+        "status": "needed"
+      },
+      {
+        "id": "GEN-L5",
+        "theorem": "Generator tape is not executable composition without typed apply and composition law.",
+        "status": "needed"
+      }
+    ],
+    "notes": [
+      "Generators are proposal boundaries, not Engines.",
+      "Generators are not Evaluators.",
+      "Generators are not Certifiers.",
+      "Generators are not proof that operads arise from obstruction management.",
+      "If a generator grows carrier structure, its output must be a detached LiftCandidate, not an executed lift."
+    ],
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0",
+        "os:base_legacy_contract"
+      ]
+    }
+  },
+  "current_contract": "e494892ad72c217076fe5dc9b9844e024a0bc9ed8dcd8bd1a0120ab6873a723c",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "e494892ad72c217076fe5dc9b9844e024a0bc9ed8dcd8bd1a0120ab6873a723c",
+      "bytes": 6796,
+      "record": {
+        "schema_version": "1.0.0",
+        "contract_id": "os:generator",
+        "name": "Generator Contract",
+        "version": "1.0.0",
+        "kind": "os_doctrine_contract",
+        "status": "active_doctrine",
+        "enforcement_status": "partially_enforced",
+        "description": "Generators are deterministic proposal mechanisms. They apply a declared syntactic, algebraic, structural, or topological proposal rule to an existing admitted Operator, Carrier, Obstruction, Packet, or Trace and emit detached candidate representations. A Generator does not execute an Engine state transition, does not accept or rank candidates, does not certify, does not authorize, does not terminalize, and does not compute canonical functionals.\n",
+        "layer": "OS",
+        "module_path": "generators",
+        "governs": [
+          "generators/**",
+          "operators/generators/**",
+          "omega_*/*generator*.rs"
+        ],
+        "does_not_govern": [
+          "operators/lambdas/**",
+          "operators/reducers/**",
+          "operators/transforms/**",
+          "omega_functional/**",
+          "omega_homological/**",
+          "omega_lifts/**",
+          "omega_certifiers/**",
+          "omega_replay/**",
+          "omega_id_run/**",
+          "omega_pipeline/**",
+          "omega_engines/**",
+          "meta/**"
+        ],
+        "claims": [
+          {
+            "id": "OP-GENERATOR",
+            "description": "A Generator only proposes detached candidates and never executes an Engine state transformation.",
+            "status": "active",
+            "provenance": "Operator OS Doctrine"
+          },
+          {
+            "id": "OP-GENERATOR-DETACHED",
+            "description": "Generated candidates are detached proposals, not admitted runtime state changes.",
+            "status": "active",
+            "provenance": "Operator OS Doctrine"
+          },
+          {
+            "id": "OP-GENERATOR-NO-EVAL",
+            "description": "A Generator does not rank, score, accept, reject, or select candidates.",
+            "status": "active",
+            "provenance": "Operator OS Doctrine"
+          },
+          {
+            "id": "OP-GENERATOR-NO-AUTH",
+            "description": "Generation does not mint authority, closure, repair, or lift license.",
+            "status": "active",
+            "provenance": "Operator OS Doctrine"
+          },
+          {
+            "id": "OP-GENERATOR-NO-OPERAD-CLAIM",
+            "description": "A Generator may emit operator-shaped candidates but does not prove operad closure or generativity.",
+            "status": "active",
+            "provenance": "Operator OS Doctrine"
+          }
+        ],
+        "rules": {
+          "authority_effect": "none",
+          "mutation": "forbidden",
+          "canonical_functional_computation": "forbidden",
+          "terminalize": "forbidden",
+          "certify": "forbidden",
+          "execute": "forbidden",
+          "accept_candidate": "forbidden",
+          "rank_candidate": "forbidden",
+          "search": "forbidden_except_declared_finite_enumeration",
+          "runtime_orchestration": "forbidden",
+          "side_effects": "forbidden",
+          "deterministic": true,
+          "stateless": true,
+          "typed_failure_required": true,
+          "detached_output_required": true
+        },
+        "allowed": [
+          "read admitted immutable input",
+          "apply one declared proposal rule",
+          "emit detached candidate",
+          "emit finite deterministic candidate set if bounded and declared",
+          "attach proposal provenance",
+          "attach precondition notes",
+          "attach non-authoritative local metadata",
+          "return typed generation failure"
+        ],
+        "forbidden": [
+          "compute Φ₁",
+          "compute Γ₂",
+          "compute R_cl",
+          "compute Ξ",
+          "classify trichotomy",
+          "mint CertifiedAuthority",
+          "call CertifiedAuthority::certify",
+          "call authority_from_outcome_f13",
+          "call terminalize",
+          "emit AuthorityEffect::Authorize",
+          "execute candidate",
+          "admit candidate as state",
+          "mark candidate as accepted",
+          "rank candidate alternatives",
+          "score candidate alternatives with canonical functionals",
+          "perform adaptive search",
+          "iterate until convergence",
+          "perform MCTS",
+          "mutate carrier in place",
+          "hide carrier enlargement",
+          "declare lift success",
+          "declare repair success",
+          "declare operad closure",
+          "claim generated operators compose unless executable composition law exists",
+          "return opaque string-only failure",
+          "return None as failure"
+        ],
+        "candidate_shape": {
+          "preferred": "Result<GeneratedCandidate<T>, GenerationFailure>",
+          "detached_wrapper_required": true,
+          "admitted_state_output_forbidden": true,
+          "candidate_must_include": [
+            "source_ref",
+            "generator_id",
+            "proposal_rule_id",
+            "candidate_kind",
+            "declared_preconditions",
+            "authority_effect_none"
+          ]
+        },
+        "candidate_kinds": {
+          "allowed": [
+            "SameCarrierCandidate",
+            "OperatorCandidate",
+            "ReducerCandidate",
+            "LambdaCandidate",
+            "TransformCandidate",
+            "AdapterCandidate",
+            "LiftCandidateDetached"
+          ],
+          "notes": [
+            "LiftCandidateDetached is only a proposal. Execution belongs to omega_lifts or Engine under explicit lift law.",
+            "OperatorCandidate is not admitted until registry validation succeeds."
+          ]
+        },
+        "failure_shape": {
+          "enum": "GenerationFailure",
+          "required_variants": [
+            "OutsideAdmissibleDomain",
+            "UnsupportedInputKind",
+            "ProposalRuleNotApplicable",
+            "FiniteEnumerationBoundExceeded",
+            "CarrierChangeNotDeclared",
+            "InvariantPreconditionMissing",
+            "MalformedCandidate",
+            "NonFiniteInput"
+          ]
+        },
+        "composition_and_operad_firewall": {
+          "closure_claim_status": "not_proven",
+          "generativity_claim_status": "not_proven",
+          "executable_apply_required_for_operator_claim": true,
+          "notes": [
+            "A generator tape is evidence of proposal history, not executable operad composition.",
+            "String labels are not operators.",
+            "Generated candidates must pass registry/admission before execution.",
+            "Obstruction management may motivate generators, but this contract does not assert that generators arise from obstruction management."
+          ]
+        },
+        "validator_requirements": {
+          "forbidden_substrings": [
+            "CertifiedAuthority",
+            "authority_from_outcome_f13",
+            "terminalize",
+            "mint_authority",
+            "Phi1Functional",
+            "Gamma2Functional",
+            "XiFunctional",
+            "classify_exact",
+            "ExactRepair",
+            "AuthorityEffect::Authorize",
+            "Accepted",
+            "accept_candidate",
+            "rank_candidates",
+            "score_candidates",
+            "while ",
+            "loop ",
+            "thread_rng",
+            "rand::",
+            "unwrap()",
+            "expect("
+          ],
+          "required_patterns": [
+            "Result<",
+            "GenerationFailure",
+            "GeneratedCandidate"
+          ],
+          "required_tests": [
+            "generator_is_deterministic",
+            "generator_outputs_detached_candidate",
+            "generator_does_not_execute_candidate",
+            "generator_does_not_mint_authority",
+            "generator_does_not_compute_functionals",
+            "generator_rejects_undeclared_carrier_change",
+            "generator_finite_enumeration_is_bounded"
+          ]
+        },
+        "lean_obligations": [
+          {
+            "id": "GEN-L0",
+            "theorem": "Generation produces detached candidates, not state transitions.",
+            "status": "needed"
+          },
+          {
+            "id": "GEN-L1",
+            "theorem": "Generation does not imply candidate admissibility.",
+            "status": "needed"
+          },
+          {
+            "id": "GEN-L2",
+            "theorem": "Generation does not imply lift license, repair, closure, or authority.",
+            "status": "needed"
+          },
+          {
+            "id": "GEN-L3",
+            "theorem": "Finite declared enumeration terminates and preserves candidate detachment.",
+            "status": "needed"
+          },
+          {
+            "id": "GEN-L4",
+            "theorem": "Operator-shaped candidate requires registry admission before execution.",
+            "status": "needed"
+          },
+          {
+            "id": "GEN-L5",
+            "theorem": "Generator tape is not executable composition without typed apply and composition law.",
+            "status": "needed"
+          }
+        ],
+        "notes": [
+          "Generators are proposal boundaries, not Engines.",
+          "Generators are not Evaluators.",
+          "Generators are not Certifiers.",
+          "Generators are not proof that operads arise from obstruction management.",
+          "If a generator grows carrier structure, its output must be a detached LiftCandidate, not an executed lift."
+        ],
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0",
+            "os:base_legacy_contract"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: 1.0.0\ncontract_id: os:generator\nname: Generator Contract\nversion: 1.0.0\nkind: os_doctrine_contract\nstatus: active_doctrine\nenforcement_status: partially_enforced\ndescription: 'Generators are deterministic proposal mechanisms. They apply a declared\n  syntactic, algebraic, structural, or topological proposal rule to an existing admitted\n  Operator, Carrier, Obstruction, Packet, or Trace and emit detached candidate representations.\n  A Generator does not execute an Engine state transition, does not accept or rank\n  candidates, does not certify, does not authorize, does not terminalize, and does\n  not compute canonical functionals.\n\n  '\nlayer: OS\nmodule_path: generators\ngoverns:\n- generators/**\n- operators/generators/**\n- omega_*/*generator*.rs\ndoes_not_govern:\n- operators/lambdas/**\n- operators/reducers/**\n- operators/transforms/**\n- omega_functional/**\n- omega_homological/**\n- omega_lifts/**\n- omega_certifiers/**\n- omega_replay/**\n- omega_id_run/**\n- omega_pipeline/**\n- omega_engines/**\n- meta/**\nclaims:\n- id: OP-GENERATOR\n  description: A Generator only proposes detached candidates and never executes an\n    Engine state transformation.\n  status: active\n  provenance: Operator OS Doctrine\n- id: OP-GENERATOR-DETACHED\n  description: Generated candidates are detached proposals, not admitted runtime state\n    changes.\n  status: active\n  provenance: Operator OS Doctrine\n- id: OP-GENERATOR-NO-EVAL\n  description: A Generator does not rank, score, accept, reject, or select candidates.\n  status: active\n  provenance: Operator OS Doctrine\n- id: OP-GENERATOR-NO-AUTH\n  description: Generation does not mint authority, closure, repair, or lift license.\n  status: active\n  provenance: Operator OS Doctrine\n- id: OP-GENERATOR-NO-OPERAD-CLAIM\n  description: A Generator may emit operator-shaped candidates but does not prove\n    operad closure or generativity.\n  status: active\n  provenance: Operator OS Doctrine\nrules:\n  authority_effect: none\n  mutation: forbidden\n  canonical_functional_computation: forbidden\n  terminalize: forbidden\n  certify: forbidden\n  execute: forbidden\n  accept_candidate: forbidden\n  rank_candidate: forbidden\n  search: forbidden_except_declared_finite_enumeration\n  runtime_orchestration: forbidden\n  side_effects: forbidden\n  deterministic: true\n  stateless: true\n  typed_failure_required: true\n  detached_output_required: true\nallowed:\n- read admitted immutable input\n- apply one declared proposal rule\n- emit detached candidate\n- emit finite deterministic candidate set if bounded and declared\n- attach proposal provenance\n- attach precondition notes\n- attach non-authoritative local metadata\n- return typed generation failure\nforbidden:\n- compute Φ₁\n- compute Γ₂\n- compute R_cl\n- compute Ξ\n- classify trichotomy\n- mint CertifiedAuthority\n- call CertifiedAuthority::certify\n- call authority_from_outcome_f13\n- call terminalize\n- emit AuthorityEffect::Authorize\n- execute candidate\n- admit candidate as state\n- mark candidate as accepted\n- rank candidate alternatives\n- score candidate alternatives with canonical functionals\n- perform adaptive search\n- iterate until convergence\n- perform MCTS\n- mutate carrier in place\n- hide carrier enlargement\n- declare lift success\n- declare repair success\n- declare operad closure\n- claim generated operators compose unless executable composition law exists\n- return opaque string-only failure\n- return None as failure\ncandidate_shape:\n  preferred: Result<GeneratedCandidate<T>, GenerationFailure>\n  detached_wrapper_required: true\n  admitted_state_output_forbidden: true\n  candidate_must_include:\n  - source_ref\n  - generator_id\n  - proposal_rule_id\n  - candidate_kind\n  - declared_preconditions\n  - authority_effect_none\ncandidate_kinds:\n  allowed:\n  - SameCarrierCandidate\n  - OperatorCandidate\n  - ReducerCandidate\n  - LambdaCandidate\n  - TransformCandidate\n  - AdapterCandidate\n  - LiftCandidateDetached\n  notes:\n  - LiftCandidateDetached is only a proposal. Execution belongs to omega_lifts or\n    Engine under explicit lift law.\n  - OperatorCandidate is not admitted until registry validation succeeds.\nfailure_shape:\n  enum: GenerationFailure\n  required_variants:\n  - OutsideAdmissibleDomain\n  - UnsupportedInputKind\n  - ProposalRuleNotApplicable\n  - FiniteEnumerationBoundExceeded\n  - CarrierChangeNotDeclared\n  - InvariantPreconditionMissing\n  - MalformedCandidate\n  - NonFiniteInput\ncomposition_and_operad_firewall:\n  closure_claim_status: not_proven\n  generativity_claim_status: not_proven\n  executable_apply_required_for_operator_claim: true\n  notes:\n  - A generator tape is evidence of proposal history, not executable operad composition.\n  - String labels are not operators.\n  - Generated candidates must pass registry/admission before execution.\n  - Obstruction management may motivate generators, but this contract does not assert\n    that generators arise from obstruction management.\nvalidator_requirements:\n  forbidden_substrings:\n  - CertifiedAuthority\n  - authority_from_outcome_f13\n  - terminalize\n  - mint_authority\n  - Phi1Functional\n  - Gamma2Functional\n  - XiFunctional\n  - classify_exact\n  - ExactRepair\n  - AuthorityEffect::Authorize\n  - Accepted\n  - accept_candidate\n  - rank_candidates\n  - score_candidates\n  - 'while '\n  - 'loop '\n  - thread_rng\n  - 'rand::'\n  - unwrap()\n  - expect(\n  required_patterns:\n  - Result<\n  - GenerationFailure\n  - GeneratedCandidate\n  required_tests:\n  - generator_is_deterministic\n  - generator_outputs_detached_candidate\n  - generator_does_not_execute_candidate\n  - generator_does_not_mint_authority\n  - generator_does_not_compute_functionals\n  - generator_rejects_undeclared_carrier_change\n  - generator_finite_enumeration_is_bounded\nlean_obligations:\n- id: GEN-L0\n  theorem: Generation produces detached candidates, not state transitions.\n  status: needed\n- id: GEN-L1\n  theorem: Generation does not imply candidate admissibility.\n  status: needed\n- id: GEN-L2\n  theorem: Generation does not imply lift license, repair, closure, or authority.\n  status: needed\n- id: GEN-L3\n  theorem: Finite declared enumeration terminates and preserves candidate detachment.\n  status: needed\n- id: GEN-L4\n  theorem: Operator-shaped candidate requires registry admission before execution.\n  status: needed\n- id: GEN-L5\n  theorem: Generator tape is not executable composition without typed apply and composition\n    law.\n  status: needed\nnotes:\n- Generators are proposal boundaries, not Engines.\n- Generators are not Evaluators.\n- Generators are not Certifiers.\n- Generators are not proof that operads arise from obstruction management.\n- If a generator grows carrier structure, its output must be a detached LiftCandidate,\n  not an executed lift.\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n  - os:base_legacy_contract\n",
+      "original_paths": [
+        "code/python/governance/50_os/os_generator.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/50_os/os_generator.contract.yaml": "e494892ad72c217076fe5dc9b9844e024a0bc9ed8dcd8bd1a0120ab6873a723c"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

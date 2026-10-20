@@ -1,0 +1,413 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": null,
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:evidence:diagnostic:v1.0.0",
+    "title": "Diagnostic",
+    "kind": "evidence_contract",
+    "status": "mathematical_wip",
+    "layer": "02_evidence",
+    "role": "Diagnostic",
+    "descriptor": {
+      "authority_effect": "evidence_only",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [
+          "HealthModelKernel",
+          "AnalysisUnit"
+        ],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      },
+      "constitution": {
+        "contract_dependencies": [
+          "HealthModelKernel",
+          "AnalysisUnit"
+        ],
+        "emits": "EvidenceEnvelope",
+        "authority_layer": "Evidence",
+        "replay_certificates": [
+          "schema_hash"
+        ]
+      }
+    },
+    "doctrine": {
+      "summary": "Diagnostic is a read-only health reporting component. It emits factual findings and\nmeasurement references, but it does not prescribe treatment, schedule control flow,\nclassify admissibility, terminalize, mutate, authorize, or execute.\n",
+      "non_role": [
+        "action_prescription",
+        "escalation",
+        "policy_interpretation",
+        "terminal_mapping",
+        "transition_authorization",
+        "execution"
+      ],
+      "authority_defaults": {
+        "diagnostic_report": "EvidenceOnly",
+        "checked_diagnostic_report": "FactOnly only for checked structural and factual health claims."
+      },
+      "structural_representation": {
+        "raw": {
+          "struct_name": "DiagnosticReport",
+          "fields": [
+            {
+              "name": "subject",
+              "type": "BoundaryRef"
+            },
+            {
+              "name": "findings",
+              "type": "Vec<DiagnosticFinding>"
+            },
+            {
+              "name": "measurements",
+              "type": "Vec<MeasurementRef>"
+            },
+            {
+              "name": "certificate_refs",
+              "type": "Vec<CertificateId>"
+            },
+            {
+              "name": "diagnostic_id",
+              "type": "DiagnosticId"
+            },
+            {
+              "name": "report_hash",
+              "type": "Hash256"
+            },
+            {
+              "name": "authority_effect",
+              "type": "AuthorityEffect",
+              "default": "EvidenceOnly"
+            }
+          ]
+        },
+        "checked": {
+          "struct_name": "CheckedDiagnosticReport",
+          "fields": [
+            {
+              "name": "report_ref",
+              "type": "DiagnosticReportRef"
+            },
+            {
+              "name": "checked_subject_hash",
+              "type": "Hash256"
+            },
+            {
+              "name": "checked_finding_hashes",
+              "type": "Vec<Hash256>"
+            },
+            {
+              "name": "checker_ref",
+              "type": "CheckerRef"
+            },
+            {
+              "name": "replay_ref",
+              "type": "Option<ReplayRef>"
+            },
+            {
+              "name": "authority_effect",
+              "type": "AuthorityEffect",
+              "default": "FactOnly"
+            }
+          ]
+        }
+      },
+      "flow": "Declared subject / checked measurement refs\n-> DiagnosticReport\n-> CheckedDiagnosticReport when checked\n-> Evaluator / Policy if decision is needed\n-> TerminalMapper\n-> LicensingBoundary\n-> Engine\n",
+      "forbidden_implementation_tokens": {
+        "scope": "behavior, not substring",
+        "tokens": [
+          "execute(",
+          "terminalize(",
+          "mutate_state",
+          "authorize_transition",
+          "license_transition",
+          "self_certify",
+          "compute_phi",
+          "rank_candidates",
+          "score_candidate"
+        ]
+      },
+      "required_tests": [
+        "diagnostic_does_not_mutate_input",
+        "diagnostic_does_not_prescribe_action",
+        "diagnostic_report_defaults_to_evidence_only",
+        "checked_diagnostic_report_may_be_factonly_after_checks",
+        "diagnostic_does_not_emit_policy_decision",
+        "diagnostic_does_not_authorize_transition",
+        "diagnostic_does_not_execute",
+        "diagnostic_report_is_evidence_addressable"
+      ],
+      "canonical_invariant": "Diagnostics report health evidence. Checked diagnostics can support factual health claims,\nbut never action prescriptions, licenses, or transitions.\n",
+      "legacy_metadata": {
+        "name": "Diagnostic",
+        "source_file": "non-math/02_evidence/diagnostic_contract.md",
+        "active": true,
+        "machine_authority": true,
+        "role": "Health reporting over declared subjects",
+        "version": "2.0",
+        "classification": "evidence",
+        "effect_class": "none",
+        "depends_on": [
+          "HealthModelKernel",
+          "AnalysisUnit"
+        ],
+        "forbidden_authority": [
+          "action_prescription",
+          "escalation",
+          "policy_interpretation",
+          "terminal_mapping",
+          "transition_authorization",
+          "execution"
+        ],
+        "primary_output_family": "EvidenceEnvelope",
+        "domain_output_kind": "DiagnosticReport",
+        "referenced_output_families": [
+          "FactEnvelope",
+          "Record"
+        ]
+      }
+    },
+    "rust_binding": {
+      "crate": "omega_id_run",
+      "module": "run",
+      "symbols": [
+        "GeneratorEntry",
+        "GeneratorTape",
+        "RunResult",
+        "ExactSignature",
+        "InvariantDefectSignature"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:constitution:base_evidence_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "eebf0b69cc8b6c78d198170ee3d8513153b0d9bec9ba2f1c8de96b89914229c1",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "eebf0b69cc8b6c78d198170ee3d8513153b0d9bec9ba2f1c8de96b89914229c1",
+      "bytes": 4059,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:evidence:diagnostic:v1.0.0",
+        "title": "Diagnostic",
+        "kind": "evidence_contract",
+        "status": "mathematical_wip",
+        "layer": "02_evidence",
+        "role": "Diagnostic",
+        "descriptor": {
+          "authority_effect": "evidence_only",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [
+              "HealthModelKernel",
+              "AnalysisUnit"
+            ],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          },
+          "constitution": {
+            "contract_dependencies": [
+              "HealthModelKernel",
+              "AnalysisUnit"
+            ],
+            "emits": "EvidenceEnvelope",
+            "authority_layer": "Evidence",
+            "replay_certificates": [
+              "schema_hash"
+            ]
+          }
+        },
+        "doctrine": {
+          "summary": "Diagnostic is a read-only health reporting component. It emits factual findings and\nmeasurement references, but it does not prescribe treatment, schedule control flow,\nclassify admissibility, terminalize, mutate, authorize, or execute.\n",
+          "non_role": [
+            "action_prescription",
+            "escalation",
+            "policy_interpretation",
+            "terminal_mapping",
+            "transition_authorization",
+            "execution"
+          ],
+          "authority_defaults": {
+            "diagnostic_report": "EvidenceOnly",
+            "checked_diagnostic_report": "FactOnly only for checked structural and factual health claims."
+          },
+          "structural_representation": {
+            "raw": {
+              "struct_name": "DiagnosticReport",
+              "fields": [
+                {
+                  "name": "subject",
+                  "type": "BoundaryRef"
+                },
+                {
+                  "name": "findings",
+                  "type": "Vec<DiagnosticFinding>"
+                },
+                {
+                  "name": "measurements",
+                  "type": "Vec<MeasurementRef>"
+                },
+                {
+                  "name": "certificate_refs",
+                  "type": "Vec<CertificateId>"
+                },
+                {
+                  "name": "diagnostic_id",
+                  "type": "DiagnosticId"
+                },
+                {
+                  "name": "report_hash",
+                  "type": "Hash256"
+                },
+                {
+                  "name": "authority_effect",
+                  "type": "AuthorityEffect",
+                  "default": "EvidenceOnly"
+                }
+              ]
+            },
+            "checked": {
+              "struct_name": "CheckedDiagnosticReport",
+              "fields": [
+                {
+                  "name": "report_ref",
+                  "type": "DiagnosticReportRef"
+                },
+                {
+                  "name": "checked_subject_hash",
+                  "type": "Hash256"
+                },
+                {
+                  "name": "checked_finding_hashes",
+                  "type": "Vec<Hash256>"
+                },
+                {
+                  "name": "checker_ref",
+                  "type": "CheckerRef"
+                },
+                {
+                  "name": "replay_ref",
+                  "type": "Option<ReplayRef>"
+                },
+                {
+                  "name": "authority_effect",
+                  "type": "AuthorityEffect",
+                  "default": "FactOnly"
+                }
+              ]
+            }
+          },
+          "flow": "Declared subject / checked measurement refs\n-> DiagnosticReport\n-> CheckedDiagnosticReport when checked\n-> Evaluator / Policy if decision is needed\n-> TerminalMapper\n-> LicensingBoundary\n-> Engine\n",
+          "forbidden_implementation_tokens": {
+            "scope": "behavior, not substring",
+            "tokens": [
+              "execute(",
+              "terminalize(",
+              "mutate_state",
+              "authorize_transition",
+              "license_transition",
+              "self_certify",
+              "compute_phi",
+              "rank_candidates",
+              "score_candidate"
+            ]
+          },
+          "required_tests": [
+            "diagnostic_does_not_mutate_input",
+            "diagnostic_does_not_prescribe_action",
+            "diagnostic_report_defaults_to_evidence_only",
+            "checked_diagnostic_report_may_be_factonly_after_checks",
+            "diagnostic_does_not_emit_policy_decision",
+            "diagnostic_does_not_authorize_transition",
+            "diagnostic_does_not_execute",
+            "diagnostic_report_is_evidence_addressable"
+          ],
+          "canonical_invariant": "Diagnostics report health evidence. Checked diagnostics can support factual health claims,\nbut never action prescriptions, licenses, or transitions.\n",
+          "legacy_metadata": {
+            "name": "Diagnostic",
+            "source_file": "non-math/02_evidence/diagnostic_contract.md",
+            "active": true,
+            "machine_authority": true,
+            "role": "Health reporting over declared subjects",
+            "version": "2.0",
+            "classification": "evidence",
+            "effect_class": "none",
+            "depends_on": [
+              "HealthModelKernel",
+              "AnalysisUnit"
+            ],
+            "forbidden_authority": [
+              "action_prescription",
+              "escalation",
+              "policy_interpretation",
+              "terminal_mapping",
+              "transition_authorization",
+              "execution"
+            ],
+            "primary_output_family": "EvidenceEnvelope",
+            "domain_output_kind": "DiagnosticReport",
+            "referenced_output_families": [
+              "FactEnvelope",
+              "Record"
+            ]
+          }
+        },
+        "rust_binding": {
+          "crate": "omega_id_run",
+          "module": "run",
+          "symbols": [
+            "GeneratorEntry",
+            "GeneratorTape",
+            "RunResult",
+            "ExactSignature",
+            "InvariantDefectSignature"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:constitution:base_evidence_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:evidence:diagnostic:v1.0.0\ntitle: Diagnostic\nkind: evidence_contract\nstatus: mathematical_wip\nlayer: 02_evidence\nrole: Diagnostic\ndescriptor:\n  authority_effect: evidence_only\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: &id001\n    - HealthModelKernel\n    - AnalysisUnit\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\n  constitution:\n    contract_dependencies: *id001\n    emits: EvidenceEnvelope\n    authority_layer: Evidence\n    replay_certificates:\n    - schema_hash\ndoctrine:\n  summary: 'Diagnostic is a read-only health reporting component. It emits factual findings and\n\n    measurement references, but it does not prescribe treatment, schedule control flow,\n\n    classify admissibility, terminalize, mutate, authorize, or execute.\n\n    '\n  non_role: &id002\n  - action_prescription\n  - escalation\n  - policy_interpretation\n  - terminal_mapping\n  - transition_authorization\n  - execution\n  authority_defaults:\n    diagnostic_report: EvidenceOnly\n    checked_diagnostic_report: FactOnly only for checked structural and factual health claims.\n  structural_representation:\n    raw:\n      struct_name: DiagnosticReport\n      fields:\n      - name: subject\n        type: BoundaryRef\n      - name: findings\n        type: Vec<DiagnosticFinding>\n      - name: measurements\n        type: Vec<MeasurementRef>\n      - name: certificate_refs\n        type: Vec<CertificateId>\n      - name: diagnostic_id\n        type: DiagnosticId\n      - name: report_hash\n        type: Hash256\n      - name: authority_effect\n        type: AuthorityEffect\n        default: EvidenceOnly\n    checked:\n      struct_name: CheckedDiagnosticReport\n      fields:\n      - name: report_ref\n        type: DiagnosticReportRef\n      - name: checked_subject_hash\n        type: Hash256\n      - name: checked_finding_hashes\n        type: Vec<Hash256>\n      - name: checker_ref\n        type: CheckerRef\n      - name: replay_ref\n        type: Option<ReplayRef>\n      - name: authority_effect\n        type: AuthorityEffect\n        default: FactOnly\n  flow: 'Declared subject / checked measurement refs\n\n    -> DiagnosticReport\n\n    -> CheckedDiagnosticReport when checked\n\n    -> Evaluator / Policy if decision is needed\n\n    -> TerminalMapper\n\n    -> LicensingBoundary\n\n    -> Engine\n\n    '\n  forbidden_implementation_tokens:\n    scope: behavior, not substring\n    tokens:\n    - execute(\n    - terminalize(\n    - mutate_state\n    - authorize_transition\n    - license_transition\n    - self_certify\n    - compute_phi\n    - rank_candidates\n    - score_candidate\n  required_tests:\n  - diagnostic_does_not_mutate_input\n  - diagnostic_does_not_prescribe_action\n  - diagnostic_report_defaults_to_evidence_only\n  - checked_diagnostic_report_may_be_factonly_after_checks\n  - diagnostic_does_not_emit_policy_decision\n  - diagnostic_does_not_authorize_transition\n  - diagnostic_does_not_execute\n  - diagnostic_report_is_evidence_addressable\n  canonical_invariant: 'Diagnostics report health evidence. Checked diagnostics can support factual health\n    claims,\n\n    but never action prescriptions, licenses, or transitions.\n\n    '\n  legacy_metadata:\n    name: Diagnostic\n    source_file: non-math/02_evidence/diagnostic_contract.md\n    active: true\n    machine_authority: true\n    role: Health reporting over declared subjects\n    version: '2.0'\n    classification: evidence\n    effect_class: none\n    depends_on: *id001\n    forbidden_authority: *id002\n    primary_output_family: EvidenceEnvelope\n    domain_output_kind: DiagnosticReport\n    referenced_output_families:\n    - FactEnvelope\n    - Record\n\nrust_binding:\n  crate: omega_id_run\n  module: run\n  symbols:\n  - GeneratorEntry\n  - GeneratorTape\n  - RunResult\n  - ExactSignature\n  - InvariantDefectSignature\n\nrelationships:\n  extends:\n    - \"urn:omega:constitution:base_evidence_contract:v1.0.0\"\n",
+      "original_paths": [
+        "code/python/governance/contract_canonical_definitions/02_core_evidence/diagnostic.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/contract_canonical_definitions/02_core_evidence/diagnostic.contract.yaml": "eebf0b69cc8b6c78d198170ee3d8513153b0d9bec9ba2f1c8de96b89914229c1"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

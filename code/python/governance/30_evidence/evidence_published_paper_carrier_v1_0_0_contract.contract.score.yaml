@@ -1,0 +1,177 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/30_evidence/evidence_published_paper_carrier_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:evidence:published_paper_carrier:v1.0.0",
+    "title": "PublishedPaperCarrier",
+    "kind": "evidence_contract",
+    "status": "mathematical_wip",
+    "layer": "02_evidence",
+    "role": "Carrier",
+    "descriptor": {
+      "authority_effect": "evidence_only",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "definition": {
+      "claim_ledger_marker": "Claim_Ledger",
+      "claim_ledger_marker_lower": "claim_ledger",
+      "proof_ledger_prefix": "proof_ledger_",
+      "paper_id_grammar": {
+        "digits": 3,
+        "optional_lowercase_suffix": true,
+        "separators": [
+          "_",
+          " ",
+          "-"
+        ]
+      },
+      "scoped_paper_id": {
+        "separator": ".",
+        "root_scope_is_self": true
+      },
+      "gt_tower_prefix": {
+        "first": 993,
+        "last": 999
+      },
+      "programme_nesting_depth": 1
+    },
+    "doctrine": {
+      "summary": "Filename and folder grammar of the published paper carrier.\nThese were magic constants inside omega_rip_papers::carrier, which is why the PR #1191 programme\nreorganization silently broke enumeration: the grammar had no way to express that a folder may\ngroup papers rather than be one.\n",
+      "authority_defaults": {
+        "grammar": "EvidenceOnly. Parsing a folder name is a shape observation. Recognising a paper id grants no authority over the paper and upgrades no claim."
+      },
+      "consumers": [
+        {
+          "crate": "omega_rip_papers",
+          "module": "carrier",
+          "use": "enumerate_papers, paper_id_of, is_claim_ledger_name, programme descent.\npaper_id_of returns the LOCAL leaf key only. A ledger key for a paper is the scoped\nkey, scope + scoped_paper_id.separator + leaf, composed from the enclosing programme\nfolder; a paper with no paper-shaped parent is self-scoped.\n"
+        }
+      ],
+      "required_tests": [
+        "programme_folder_is_not_emitted_as_a_paper",
+        "papers_inside_a_programme_are_enumerated"
+      ],
+      "canonical_invariant": "A folder matching the paper-id grammar is a programme if it contains at least one child\nfolder that also matches the grammar; otherwise it is a paper. Enumeration descends exactly one\nlevel into a programme and never emits the programme itself as a paper. A GT-tower folder is never\na programme.\nA paper is named by its SCOPED key: the enclosing programme's local id, then scoped_paper_id.separator,\nthen the paper's own local id. A paper with no paper-shaped enclosing folder is self-scoped, so its\nscope and leaf coincide. scoped_paper_id.separator is disjoint from paper_id_grammar.separators, which is\nwhat makes a scoped key REFUSE the local grammar instead of truncating to its scope; GT-tower-ness is a\nproperty of the LEAF id and is decided before scoping.\n"
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0",
+        "urn:omega:constitution:base_evidence_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "8bb0bc4ff7ea59a6f43f3f4cb0e1241c8ac0cb0263ff88c4e0a577018fe8fc79",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "8bb0bc4ff7ea59a6f43f3f4cb0e1241c8ac0cb0263ff88c4e0a577018fe8fc79",
+      "bytes": 2970,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:evidence:published_paper_carrier:v1.0.0",
+        "title": "PublishedPaperCarrier",
+        "kind": "evidence_contract",
+        "status": "mathematical_wip",
+        "layer": "02_evidence",
+        "role": "Carrier",
+        "descriptor": {
+          "authority_effect": "evidence_only",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "definition": {
+          "claim_ledger_marker": "Claim_Ledger",
+          "claim_ledger_marker_lower": "claim_ledger",
+          "proof_ledger_prefix": "proof_ledger_",
+          "paper_id_grammar": {
+            "digits": 3,
+            "optional_lowercase_suffix": true,
+            "separators": [
+              "_",
+              " ",
+              "-"
+            ]
+          },
+          "scoped_paper_id": {
+            "separator": ".",
+            "root_scope_is_self": true
+          },
+          "gt_tower_prefix": {
+            "first": 993,
+            "last": 999
+          },
+          "programme_nesting_depth": 1
+        },
+        "doctrine": {
+          "summary": "Filename and folder grammar of the published paper carrier.\nThese were magic constants inside omega_rip_papers::carrier, which is why the PR #1191 programme\nreorganization silently broke enumeration: the grammar had no way to express that a folder may\ngroup papers rather than be one.\n",
+          "authority_defaults": {
+            "grammar": "EvidenceOnly. Parsing a folder name is a shape observation. Recognising a paper id grants no authority over the paper and upgrades no claim."
+          },
+          "consumers": [
+            {
+              "crate": "omega_rip_papers",
+              "module": "carrier",
+              "use": "enumerate_papers, paper_id_of, is_claim_ledger_name, programme descent.\npaper_id_of returns the LOCAL leaf key only. A ledger key for a paper is the scoped\nkey, scope + scoped_paper_id.separator + leaf, composed from the enclosing programme\nfolder; a paper with no paper-shaped parent is self-scoped.\n"
+            }
+          ],
+          "required_tests": [
+            "programme_folder_is_not_emitted_as_a_paper",
+            "papers_inside_a_programme_are_enumerated"
+          ],
+          "canonical_invariant": "A folder matching the paper-id grammar is a programme if it contains at least one child\nfolder that also matches the grammar; otherwise it is a paper. Enumeration descends exactly one\nlevel into a programme and never emits the programme itself as a paper. A GT-tower folder is never\na programme.\nA paper is named by its SCOPED key: the enclosing programme's local id, then scoped_paper_id.separator,\nthen the paper's own local id. A paper with no paper-shaped enclosing folder is self-scoped, so its\nscope and leaf coincide. scoped_paper_id.separator is disjoint from paper_id_grammar.separators, which is\nwhat makes a scoped key REFUSE the local grammar instead of truncating to its scope; GT-tower-ness is a\nproperty of the LEAF id and is decided before scoping.\n"
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0",
+            "urn:omega:constitution:base_evidence_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:evidence:published_paper_carrier:v1.0.0\ntitle: PublishedPaperCarrier\nkind: evidence_contract\nstatus: mathematical_wip\nlayer: 02_evidence\nrole: Carrier\ndescriptor:\n  authority_effect: evidence_only\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\ndefinition:\n  claim_ledger_marker: Claim_Ledger\n  claim_ledger_marker_lower: claim_ledger\n  proof_ledger_prefix: proof_ledger_\n  paper_id_grammar:\n    digits: 3\n    optional_lowercase_suffix: true\n    separators:\n    - _\n    - ' '\n    - '-'\n  scoped_paper_id:\n    separator: .\n    root_scope_is_self: true\n  gt_tower_prefix:\n    first: 993\n    last: 999\n  programme_nesting_depth: 1\ndoctrine:\n  summary: 'Filename and folder grammar of the published paper carrier.\n\n    These were magic constants inside omega_rip_papers::carrier, which is why the\n    PR #1191 programme\n\n    reorganization silently broke enumeration: the grammar had no way to express that\n    a folder may\n\n    group papers rather than be one.\n\n    '\n  authority_defaults:\n    grammar: EvidenceOnly. Parsing a folder name is a shape observation. Recognising\n      a paper id grants no authority over the paper and upgrades no claim.\n  consumers:\n  - crate: omega_rip_papers\n    module: carrier\n    use: 'enumerate_papers, paper_id_of, is_claim_ledger_name, programme descent.\n\n      paper_id_of returns the LOCAL leaf key only. A ledger key for a paper is the\n      scoped\n\n      key, scope + scoped_paper_id.separator + leaf, composed from the enclosing programme\n\n      folder; a paper with no paper-shaped parent is self-scoped.\n\n      '\n  required_tests:\n  - programme_folder_is_not_emitted_as_a_paper\n  - papers_inside_a_programme_are_enumerated\n  canonical_invariant: 'A folder matching the paper-id grammar is a programme if it\n    contains at least one child\n\n    folder that also matches the grammar; otherwise it is a paper. Enumeration descends\n    exactly one\n\n    level into a programme and never emits the programme itself as a paper. A GT-tower\n    folder is never\n\n    a programme.\n\n    A paper is named by its SCOPED key: the enclosing programme''s local id, then\n    scoped_paper_id.separator,\n\n    then the paper''s own local id. A paper with no paper-shaped enclosing folder\n    is self-scoped, so its\n\n    scope and leaf coincide. scoped_paper_id.separator is disjoint from paper_id_grammar.separators,\n    which is\n\n    what makes a scoped key REFUSE the local grammar instead of truncating to its\n    scope; GT-tower-ness is a\n\n    property of the LEAF id and is decided before scoping.\n\n    '\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n  - urn:omega:constitution:base_evidence_contract:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/30_evidence/evidence_published_paper_carrier_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/30_evidence/evidence_published_paper_carrier_v1_0_0.contract.yaml": "8bb0bc4ff7ea59a6f43f3f4cb0e1241c8ac0cb0263ff88c4e0a577018fe8fc79"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

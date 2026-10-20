@@ -1,0 +1,183 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/40_packets/packet_symbol_game_host_prime_admit_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v2",
+    "contract_id": "urn:omega:packet:symbol_game:host_prime_admit:v1.0.0",
+    "title": "Host Prime Admit Request",
+    "kind": "packet_contract",
+    "layer": "40_packets",
+    "role": "PacketSpecification",
+    "status": "active",
+    "council_owner": "L3_logos_techne",
+    "descriptor": {
+      "authority_effect": "None",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": true,
+      "clean_architecture_layer": "infrastructure",
+      "refusals": {
+        "may_emit": [
+          "FW-UNKNOWN-FIELD"
+        ]
+      }
+    },
+    "doctrine": {
+      "summary": "Runs the Prime 000 7-step admission gate on a declaration before measuring.",
+      "invariants": [
+        "AuthorityEffect is strictly None."
+      ],
+      "non_roles": [
+        "authority_source",
+        "promotion_granter"
+      ],
+      "required_negative_capabilities": [
+        "no_self_certification",
+        "no_implicit_authority_upgrade"
+      ]
+    },
+    "structure": {
+      "language": "rust",
+      "rust_crate": "omega_symbol_game",
+      "rust_module": "prime",
+      "rust_type": "HostPrimeAdmitRequestV1",
+      "form": "struct",
+      "serde": {
+        "deny_unknown_fields": true
+      },
+      "fields": [
+        {
+          "name": "carrier",
+          "rust_type": "Option<String>"
+        },
+        {
+          "name": "primitive_difference",
+          "rust_type": "Option<String>"
+        },
+        {
+          "name": "zero_rel",
+          "rust_type": "Option<String>"
+        },
+        {
+          "name": "observer",
+          "rust_type": "Option<String>"
+        },
+        {
+          "name": "witnesses",
+          "rust_type": "Vec<String>"
+        },
+        {
+          "name": "justify_cochain",
+          "rust_type": "bool"
+        },
+        {
+          "name": "window",
+          "rust_type": "Option<HostCochainWindowWire>"
+        }
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "202c1e956e8e151514879832991aca7e47736dda6fadb87e7b5543c4f7055f19",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "202c1e956e8e151514879832991aca7e47736dda6fadb87e7b5543c4f7055f19",
+      "bytes": 1348,
+      "record": {
+        "schema_version": "omega.contract.v2",
+        "contract_id": "urn:omega:packet:symbol_game:host_prime_admit:v1.0.0",
+        "title": "Host Prime Admit Request",
+        "kind": "packet_contract",
+        "layer": "40_packets",
+        "role": "PacketSpecification",
+        "status": "active",
+        "council_owner": "L3_logos_techne",
+        "descriptor": {
+          "authority_effect": "None",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": true,
+          "clean_architecture_layer": "infrastructure",
+          "refusals": {
+            "may_emit": [
+              "FW-UNKNOWN-FIELD"
+            ]
+          }
+        },
+        "doctrine": {
+          "summary": "Runs the Prime 000 7-step admission gate on a declaration before measuring.",
+          "invariants": [
+            "AuthorityEffect is strictly None."
+          ],
+          "non_roles": [
+            "authority_source",
+            "promotion_granter"
+          ],
+          "required_negative_capabilities": [
+            "no_self_certification",
+            "no_implicit_authority_upgrade"
+          ]
+        },
+        "structure": {
+          "language": "rust",
+          "rust_crate": "omega_symbol_game",
+          "rust_module": "prime",
+          "rust_type": "HostPrimeAdmitRequestV1",
+          "form": "struct",
+          "serde": {
+            "deny_unknown_fields": true
+          },
+          "fields": [
+            {
+              "name": "carrier",
+              "rust_type": "Option<String>"
+            },
+            {
+              "name": "primitive_difference",
+              "rust_type": "Option<String>"
+            },
+            {
+              "name": "zero_rel",
+              "rust_type": "Option<String>"
+            },
+            {
+              "name": "observer",
+              "rust_type": "Option<String>"
+            },
+            {
+              "name": "witnesses",
+              "rust_type": "Vec<String>"
+            },
+            {
+              "name": "justify_cochain",
+              "rust_type": "bool"
+            },
+            {
+              "name": "window",
+              "rust_type": "Option<HostCochainWindowWire>"
+            }
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v2\ncontract_id: urn:omega:packet:symbol_game:host_prime_admit:v1.0.0\ntitle: Host Prime Admit Request\nkind: packet_contract\nlayer: 40_packets\nrole: PacketSpecification\nstatus: active\ncouncil_owner: L3_logos_techne\ndescriptor:\n  authority_effect: None\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: true\n  clean_architecture_layer: infrastructure\n  refusals:\n    may_emit:\n    - FW-UNKNOWN-FIELD\ndoctrine:\n  summary: Runs the Prime 000 7-step admission gate on a declaration before measuring.\n  invariants:\n  - AuthorityEffect is strictly None.\n  non_roles:\n  - authority_source\n  - promotion_granter\n  required_negative_capabilities:\n  - no_self_certification\n  - no_implicit_authority_upgrade\nstructure:\n  language: rust\n  rust_crate: omega_symbol_game\n  rust_module: prime\n  rust_type: HostPrimeAdmitRequestV1\n  form: struct\n  serde:\n    deny_unknown_fields: true\n  fields:\n  - name: carrier\n    rust_type: Option<String>\n  - name: primitive_difference\n    rust_type: Option<String>\n  - name: zero_rel\n    rust_type: Option<String>\n  - name: observer\n    rust_type: Option<String>\n  - name: witnesses\n    rust_type: Vec<String>\n  - name: justify_cochain\n    rust_type: bool\n  - name: window\n    rust_type: Option<HostCochainWindowWire>\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/40_packets/packet_symbol_game_host_prime_admit_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/40_packets/packet_symbol_game_host_prime_admit_v1_0_0.contract.yaml": "202c1e956e8e151514879832991aca7e47736dda6fadb87e7b5543c4f7055f19"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

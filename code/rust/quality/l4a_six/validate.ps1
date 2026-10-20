@@ -1,6 +1,7 @@
 param([Parameter(Mandatory = $true)][string]$ReceiptDirectory)
 $ErrorActionPreference = 'Stop'
 $reviewRoot = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '../../../..'))
+. (Join-Path $reviewRoot 'scripts/contract_scores.ps1')
 $receiptRoot = [IO.Path]::GetFullPath((Join-Path $reviewRoot $ReceiptDirectory))
 $schemaText = [IO.File]::ReadAllText((Join-Path $reviewRoot 'SCORING.md'))
 $schemaMatch = [regex]::Match($schemaText, '```json\s*(?<body>[\s\S]*?)```')
@@ -12,12 +13,12 @@ $sidecarManifest = Get-Content -LiteralPath (Join-Path $receiptRoot 'sidecars.js
 $hashCache = @{}
 function Get-ReviewHash([string]$Path) {
     if (-not $hashCache.ContainsKey($Path)) {
-        $hashCache[$Path] = (Get-FileHash -LiteralPath $Path -Algorithm SHA256).Hash.ToLowerInvariant()
+        $hashCache[$Path] = (Get-ContractScoreHash -Path $Path)
     }
     return $hashCache[$Path]
 }
 function Read-ReviewYamlJson([string]$Path) {
-    $text = [IO.File]::ReadAllText($Path)
+    $text = Get-ContractScoreText -Path $Path
     if (-not $text.StartsWith('# YAML 1.2 (JSON syntax). AuthorityEffect: None.')) {
         throw "Unexpected sidecar encoding: $Path"
     }

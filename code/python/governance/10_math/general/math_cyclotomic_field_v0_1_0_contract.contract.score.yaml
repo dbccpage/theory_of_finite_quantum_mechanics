@@ -1,0 +1,281 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/general/math_cyclotomic_field_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:cyclotomic_field:v0.1.0",
+    "title": "Cyclotomic Field Contract",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "exact_number_field",
+      "symbol": "Q(zeta_n) = Q[x] / (Phi_n), zeta_n = exp(2 pi i / n)",
+      "ascii_symbol": "cyclotomic_field",
+      "notation": "Q(zeta_n) = Q[x] / (Phi_n), zeta_n = exp(2 pi i / n)",
+      "domain": [
+        "conductor n: integer with 1 <= n <= MAX_CONDUCTOR",
+        "element: phi(n) rational coefficients in the power basis 1, zeta, ..., zeta^(phi(n)-1)"
+      ],
+      "codomain": {
+        "description": "Elements of Q(zeta_n) with field arithmetic, Galois automorphisms, exact trace and norm to Q, the real subfield, quantum integers, Gauss sums and square roots of integers."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "An element has exactly phi(n) coefficients; a wrong count or a conductor outside 1..=MAX_CONDUCTOR is refused",
+        "Operands of different conductors are never combined",
+        "A Galois automorphism is sigma_k for k coprime to n; any other k is refused",
+        "sqrt(d) exists in Q(zeta_n) exactly when the conductor of Q(sqrt d) divides n, and the constructed element is the canonical (positive real or positive imaginary) root",
+        "No floating point appears in any operation"
+      ]
+    },
+    "laws": [
+      "zeta^n = 1, zeta^k != 1 for 0 < k < n, and Phi_n(zeta) = 0",
+      "conj(zeta) = zeta^-1, sigma_j o sigma_k = sigma_jk, every sigma_k is a ring automorphism",
+      "Tr(x) equals the Galois-orbit sum and the multiplication-matrix trace; N(x) equals the Galois-orbit product and the determinant, and N(xy) = N(x) N(y)",
+      "Psi_n(zeta + zeta^-1) = 0 where Phi_n(x) = x^m Psi_n(x + 1/x) and m = phi(n)/2",
+      "[k]_q (q - q^-1) = q^k - q^-k at q = zeta_n, and [m]_q = 0 at q = zeta_2m",
+      "g_p^2 = (-1)^((p-1)/2) p for the quadratic Gauss sum g_p",
+      "The fixed-conductor types Cyc5/8/12/24/28/44/52/120 agree with the generic field under conversion"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No randomness",
+        "No time-dependent data",
+        "Exact arithmetic only; no floating point and no tolerance"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_number_theory",
+      "module": "cyclotomic_field",
+      "symbols": [
+        "CyclotomicNumber",
+        "Cyclotomic",
+        "CyclotomicError",
+        "min_poly_of_2cos",
+        "quantum_integer",
+        "gauss_sum",
+        "quadratic_field_conductor",
+        "sqrt_of_integer"
+      ],
+      "required_tests": [
+        "min_poly_of_2cos_matches_the_known_table",
+        "t_is_a_root_of_psi_and_psi_has_degree_phi_over_two",
+        "zeta_has_exact_order_n_and_the_roots_sum_to_zero",
+        "typed_fields_satisfy_the_field_axioms",
+        "inverse_agrees_with_the_shared_multiplication_matrix_solver",
+        "operations_refuse_elements_of_different_fields",
+        "construction_refuses_bad_conductors_and_coefficient_counts",
+        "conjugation_is_an_involutive_ring_automorphism_fixing_the_real_subfield",
+        "galois_automorphisms_compose_like_the_unit_group",
+        "galois_refuses_exponents_that_share_a_factor_with_the_conductor",
+        "trace_agrees_with_the_galois_orbit_sum_and_the_matrix_trace",
+        "norm_agrees_with_the_galois_orbit_product_and_the_determinant",
+        "quantum_integers_satisfy_the_q_difference_identity",
+        "gauss_sums_square_to_plus_or_minus_p",
+        "square_roots_of_integers_appear_exactly_when_the_quadratic_conductor_divides_n",
+        "the_constructed_roots_match_the_hand_built_legacy_constants",
+        "the_fixed_conductor_types_agree_with_the_generic_field",
+        "wire_form_round_trips_and_rejects_a_forged_field"
+      ]
+    },
+    "negative_tests": [
+      "Conductor 0, a conductor above the maximum, or a wrong coefficient count must be refused",
+      "Operations on elements of different conductors must be refused",
+      "A Galois exponent not coprime to the conductor must be refused",
+      "sqrt(d) must be refused when the conductor of Q(sqrt d) does not divide n",
+      "A Gauss sum over a non-prime or a prime not dividing n must be refused",
+      "A wire form claiming a conductor inconsistent with its coefficient count must be refused",
+      "Division by zero must be refused"
+    ],
+    "doctrine": {
+      "summary": "Cyclotomic fields of any conductor up to a declared bound, in a run-time and a compile-time form, with Galois structure, exact trace and norm, the real subfield and the exact position of square roots of integers.",
+      "non_role": [
+        "Rings of cyclotomic integers and class numbers",
+        "Floating-point roots of unity",
+        "Conductors above the declared maximum"
+      ]
+    },
+    "wip": [
+      "Lam-Leung vanishing-sum lengths are not built",
+      "Restriction of an element of Q(zeta_m) to a subfield Q(zeta_n) is not built (only lift)",
+      "No Lean counterpart exists for the Gauss-sum sign or the Kronecker-Weber conductor criterion"
+    ]
+  },
+  "current_contract": "0e628dfa05331a9a80659ab46e830de92a90943e8a26c582ef8f61e6d6dbd9be",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "0e628dfa05331a9a80659ab46e830de92a90943e8a26c582ef8f61e6d6dbd9be",
+      "bytes": 4918,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:cyclotomic_field:v0.1.0",
+        "title": "Cyclotomic Field Contract",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "exact_number_field",
+          "symbol": "Q(zeta_n) = Q[x] / (Phi_n), zeta_n = exp(2 pi i / n)",
+          "ascii_symbol": "cyclotomic_field",
+          "notation": "Q(zeta_n) = Q[x] / (Phi_n), zeta_n = exp(2 pi i / n)",
+          "domain": [
+            "conductor n: integer with 1 <= n <= MAX_CONDUCTOR",
+            "element: phi(n) rational coefficients in the power basis 1, zeta, ..., zeta^(phi(n)-1)"
+          ],
+          "codomain": {
+            "description": "Elements of Q(zeta_n) with field arithmetic, Galois automorphisms, exact trace and norm to Q, the real subfield, quantum integers, Gauss sums and square roots of integers."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "An element has exactly phi(n) coefficients; a wrong count or a conductor outside 1..=MAX_CONDUCTOR is refused",
+            "Operands of different conductors are never combined",
+            "A Galois automorphism is sigma_k for k coprime to n; any other k is refused",
+            "sqrt(d) exists in Q(zeta_n) exactly when the conductor of Q(sqrt d) divides n, and the constructed element is the canonical (positive real or positive imaginary) root",
+            "No floating point appears in any operation"
+          ]
+        },
+        "laws": [
+          "zeta^n = 1, zeta^k != 1 for 0 < k < n, and Phi_n(zeta) = 0",
+          "conj(zeta) = zeta^-1, sigma_j o sigma_k = sigma_jk, every sigma_k is a ring automorphism",
+          "Tr(x) equals the Galois-orbit sum and the multiplication-matrix trace; N(x) equals the Galois-orbit product and the determinant, and N(xy) = N(x) N(y)",
+          "Psi_n(zeta + zeta^-1) = 0 where Phi_n(x) = x^m Psi_n(x + 1/x) and m = phi(n)/2",
+          "[k]_q (q - q^-1) = q^k - q^-k at q = zeta_n, and [m]_q = 0 at q = zeta_2m",
+          "g_p^2 = (-1)^((p-1)/2) p for the quadratic Gauss sum g_p",
+          "The fixed-conductor types Cyc5/8/12/24/28/44/52/120 agree with the generic field under conversion"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "Exact arithmetic only; no floating point and no tolerance"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_number_theory",
+          "module": "cyclotomic_field",
+          "symbols": [
+            "CyclotomicNumber",
+            "Cyclotomic",
+            "CyclotomicError",
+            "min_poly_of_2cos",
+            "quantum_integer",
+            "gauss_sum",
+            "quadratic_field_conductor",
+            "sqrt_of_integer"
+          ],
+          "required_tests": [
+            "min_poly_of_2cos_matches_the_known_table",
+            "t_is_a_root_of_psi_and_psi_has_degree_phi_over_two",
+            "zeta_has_exact_order_n_and_the_roots_sum_to_zero",
+            "typed_fields_satisfy_the_field_axioms",
+            "inverse_agrees_with_the_shared_multiplication_matrix_solver",
+            "operations_refuse_elements_of_different_fields",
+            "construction_refuses_bad_conductors_and_coefficient_counts",
+            "conjugation_is_an_involutive_ring_automorphism_fixing_the_real_subfield",
+            "galois_automorphisms_compose_like_the_unit_group",
+            "galois_refuses_exponents_that_share_a_factor_with_the_conductor",
+            "trace_agrees_with_the_galois_orbit_sum_and_the_matrix_trace",
+            "norm_agrees_with_the_galois_orbit_product_and_the_determinant",
+            "quantum_integers_satisfy_the_q_difference_identity",
+            "gauss_sums_square_to_plus_or_minus_p",
+            "square_roots_of_integers_appear_exactly_when_the_quadratic_conductor_divides_n",
+            "the_constructed_roots_match_the_hand_built_legacy_constants",
+            "the_fixed_conductor_types_agree_with_the_generic_field",
+            "wire_form_round_trips_and_rejects_a_forged_field"
+          ]
+        },
+        "negative_tests": [
+          "Conductor 0, a conductor above the maximum, or a wrong coefficient count must be refused",
+          "Operations on elements of different conductors must be refused",
+          "A Galois exponent not coprime to the conductor must be refused",
+          "sqrt(d) must be refused when the conductor of Q(sqrt d) does not divide n",
+          "A Gauss sum over a non-prime or a prime not dividing n must be refused",
+          "A wire form claiming a conductor inconsistent with its coefficient count must be refused",
+          "Division by zero must be refused"
+        ],
+        "doctrine": {
+          "summary": "Cyclotomic fields of any conductor up to a declared bound, in a run-time and a compile-time form, with Galois structure, exact trace and norm, the real subfield and the exact position of square roots of integers.",
+          "non_role": [
+            "Rings of cyclotomic integers and class numbers",
+            "Floating-point roots of unity",
+            "Conductors above the declared maximum"
+          ]
+        },
+        "wip": [
+          "Lam-Leung vanishing-sum lengths are not built",
+          "Restriction of an element of Q(zeta_m) to a subfield Q(zeta_n) is not built (only lift)",
+          "No Lean counterpart exists for the Gauss-sum sign or the Kronecker-Weber conductor criterion"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:cyclotomic_field:v0.1.0\ntitle: Cyclotomic Field Contract\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: exact_number_field\n  symbol: Q(zeta_n) = Q[x] / (Phi_n), zeta_n = exp(2 pi i / n)\n  ascii_symbol: cyclotomic_field\n  notation: Q(zeta_n) = Q[x] / (Phi_n), zeta_n = exp(2 pi i / n)\n  domain:\n  - 'conductor n: integer with 1 <= n <= MAX_CONDUCTOR'\n  - 'element: phi(n) rational coefficients in the power basis 1, zeta, ..., zeta^(phi(n)-1)'\n  codomain:\n    description: Elements of Q(zeta_n) with field arithmetic, Galois automorphisms,\n      exact trace and norm to Q, the real subfield, quantum integers, Gauss sums and\n      square roots of integers.\nrequirements:\n  required_structures:\n  - An element has exactly phi(n) coefficients; a wrong count or a conductor outside\n    1..=MAX_CONDUCTOR is refused\n  - Operands of different conductors are never combined\n  - A Galois automorphism is sigma_k for k coprime to n; any other k is refused\n  - sqrt(d) exists in Q(zeta_n) exactly when the conductor of Q(sqrt d) divides n,\n    and the constructed element is the canonical (positive real or positive imaginary)\n    root\n  - No floating point appears in any operation\nlaws:\n- zeta^n = 1, zeta^k != 1 for 0 < k < n, and Phi_n(zeta) = 0\n- conj(zeta) = zeta^-1, sigma_j o sigma_k = sigma_jk, every sigma_k is a ring automorphism\n- Tr(x) equals the Galois-orbit sum and the multiplication-matrix trace; N(x) equals\n  the Galois-orbit product and the determinant, and N(xy) = N(x) N(y)\n- Psi_n(zeta + zeta^-1) = 0 where Phi_n(x) = x^m Psi_n(x + 1/x) and m = phi(n)/2\n- '[k]_q (q - q^-1) = q^k - q^-k at q = zeta_n, and [m]_q = 0 at q = zeta_2m'\n- g_p^2 = (-1)^((p-1)/2) p for the quadratic Gauss sum g_p\n- The fixed-conductor types Cyc5/8/12/24/28/44/52/120 agree with the generic field\n  under conversion\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Exact arithmetic only; no floating point and no tolerance\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nrust_binding:\n  crate: omega_number_theory\n  module: cyclotomic_field\n  symbols:\n  - CyclotomicNumber\n  - Cyclotomic\n  - CyclotomicError\n  - min_poly_of_2cos\n  - quantum_integer\n  - gauss_sum\n  - quadratic_field_conductor\n  - sqrt_of_integer\n  required_tests:\n  - min_poly_of_2cos_matches_the_known_table\n  - t_is_a_root_of_psi_and_psi_has_degree_phi_over_two\n  - zeta_has_exact_order_n_and_the_roots_sum_to_zero\n  - typed_fields_satisfy_the_field_axioms\n  - inverse_agrees_with_the_shared_multiplication_matrix_solver\n  - operations_refuse_elements_of_different_fields\n  - construction_refuses_bad_conductors_and_coefficient_counts\n  - conjugation_is_an_involutive_ring_automorphism_fixing_the_real_subfield\n  - galois_automorphisms_compose_like_the_unit_group\n  - galois_refuses_exponents_that_share_a_factor_with_the_conductor\n  - trace_agrees_with_the_galois_orbit_sum_and_the_matrix_trace\n  - norm_agrees_with_the_galois_orbit_product_and_the_determinant\n  - quantum_integers_satisfy_the_q_difference_identity\n  - gauss_sums_square_to_plus_or_minus_p\n  - square_roots_of_integers_appear_exactly_when_the_quadratic_conductor_divides_n\n  - the_constructed_roots_match_the_hand_built_legacy_constants\n  - the_fixed_conductor_types_agree_with_the_generic_field\n  - wire_form_round_trips_and_rejects_a_forged_field\nnegative_tests:\n- Conductor 0, a conductor above the maximum, or a wrong coefficient count must be\n  refused\n- Operations on elements of different conductors must be refused\n- A Galois exponent not coprime to the conductor must be refused\n- sqrt(d) must be refused when the conductor of Q(sqrt d) does not divide n\n- A Gauss sum over a non-prime or a prime not dividing n must be refused\n- A wire form claiming a conductor inconsistent with its coefficient count must be\n  refused\n- Division by zero must be refused\ndoctrine:\n  summary: Cyclotomic fields of any conductor up to a declared bound, in a run-time\n    and a compile-time form, with Galois structure, exact trace and norm, the real\n    subfield and the exact position of square roots of integers.\n  non_role:\n  - Rings of cyclotomic integers and class numbers\n  - Floating-point roots of unity\n  - Conductors above the declared maximum\nwip:\n- Lam-Leung vanishing-sum lengths are not built\n- Restriction of an element of Q(zeta_m) to a subfield Q(zeta_n) is not built (only\n  lift)\n- No Lean counterpart exists for the Gauss-sum sign or the Kronecker-Weber conductor\n  criterion\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_cyclotomic_field_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_cyclotomic_field_v0_1_0.contract.yaml": "0e628dfa05331a9a80659ab46e830de92a90943e8a26c582ef8f61e6d6dbd9be"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

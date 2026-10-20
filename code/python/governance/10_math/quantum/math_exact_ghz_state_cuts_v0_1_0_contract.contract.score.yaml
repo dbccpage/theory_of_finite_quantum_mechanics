@@ -1,0 +1,203 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/quantum/math_exact_ghz_state_cuts_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:exact_ghz_state_cuts:v0.1.0",
+    "title": "Exact bounded GHZ state and coherent reductions",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "exact_ghz_state_cuts",
+      "symbol": "exact_ghz_state_cuts",
+      "ascii_symbol": "exact_ghz_state_cuts",
+      "notation": "Exact bounded GHZ state and coherent reductions",
+      "domain": [
+        "Bounded finite rays over Q(i), rational mixing parameters and exact tensor index order"
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_quantum_physics::ghz_state; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "GHZ has two exact nonzero coherent amplitudes",
+      "Every nontrivial one-qubit GHZ marginal is I/2",
+      "Invalid qubit counts and oversized dimensions refuse before allocation"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_quantum_physics",
+      "module": "ghz_state",
+      "symbols": [
+        "GhzState::exact"
+      ],
+      "required_tests": [
+        "states_channels_exact_tests::ghz_w_dicke_cuts_retain_coherences_and_distinguish_three_tangle"
+      ]
+    },
+    "negative_tests": [
+      "states_channels_exact_tests::ghz_w_dicke_cuts_retain_coherences_and_distinguish_three_tangle"
+    ],
+    "doctrine": {
+      "summary": "GHZ has two exact nonzero coherent amplitudes; Every nontrivial one-qubit GHZ marginal is I/2; Invalid qubit counts and oversized dimensions refuse before allocation.",
+      "non_role": [
+        "Does not assert a continuum state or a complete multipartite SLOCC classification",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "260302673c9777a55d89cfafce1e199ceffd55c62f6aae916599e35c8fb5a2c2",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "260302673c9777a55d89cfafce1e199ceffd55c62f6aae916599e35c8fb5a2c2",
+      "bytes": 2605,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:exact_ghz_state_cuts:v0.1.0",
+        "title": "Exact bounded GHZ state and coherent reductions",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "exact_ghz_state_cuts",
+          "symbol": "exact_ghz_state_cuts",
+          "ascii_symbol": "exact_ghz_state_cuts",
+          "notation": "Exact bounded GHZ state and coherent reductions",
+          "domain": [
+            "Bounded finite rays over Q(i), rational mixing parameters and exact tensor index order"
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_quantum_physics::ghz_state; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "GHZ has two exact nonzero coherent amplitudes",
+          "Every nontrivial one-qubit GHZ marginal is I/2",
+          "Invalid qubit counts and oversized dimensions refuse before allocation"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_quantum_physics",
+          "module": "ghz_state",
+          "symbols": [
+            "GhzState::exact"
+          ],
+          "required_tests": [
+            "states_channels_exact_tests::ghz_w_dicke_cuts_retain_coherences_and_distinguish_three_tangle"
+          ]
+        },
+        "negative_tests": [
+          "states_channels_exact_tests::ghz_w_dicke_cuts_retain_coherences_and_distinguish_three_tangle"
+        ],
+        "doctrine": {
+          "summary": "GHZ has two exact nonzero coherent amplitudes; Every nontrivial one-qubit GHZ marginal is I/2; Invalid qubit counts and oversized dimensions refuse before allocation.",
+          "non_role": [
+            "Does not assert a continuum state or a complete multipartite SLOCC classification",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:exact_ghz_state_cuts:v0.1.0\ntitle: Exact bounded GHZ state and coherent reductions\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: exact_ghz_state_cuts\n  symbol: exact_ghz_state_cuts\n  ascii_symbol: exact_ghz_state_cuts\n  notation: Exact bounded GHZ state and coherent reductions\n  domain:\n  - Bounded finite rays over Q(i), rational mixing parameters and exact tensor index\n    order\n  codomain:\n    description: Declared finite results of omega_quantum_physics::ghz_state; exact\n      and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- GHZ has two exact nonzero coherent amplitudes\n- Every nontrivial one-qubit GHZ marginal is I/2\n- Invalid qubit counts and oversized dimensions refuse before allocation\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_quantum_physics\n  module: ghz_state\n  symbols:\n  - GhzState::exact\n  required_tests:\n  - states_channels_exact_tests::ghz_w_dicke_cuts_retain_coherences_and_distinguish_three_tangle\nnegative_tests:\n- states_channels_exact_tests::ghz_w_dicke_cuts_retain_coherences_and_distinguish_three_tangle\ndoctrine:\n  summary: GHZ has two exact nonzero coherent amplitudes; Every nontrivial one-qubit\n    GHZ marginal is I/2; Invalid qubit counts and oversized dimensions refuse before\n    allocation.\n  non_role:\n  - Does not assert a continuum state or a complete multipartite SLOCC classification\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/math_exact_ghz_state_cuts_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/quantum/math_exact_ghz_state_cuts_v0_1_0.contract.yaml": "260302673c9777a55d89cfafce1e199ceffd55c62f6aae916599e35c8fb5a2c2"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

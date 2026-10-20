@@ -1,0 +1,139 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/40_packets/packet_symbol_game_py_corpus_file_ref_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v2",
+    "contract_id": "urn:omega:packet:symbol_game:py_corpus_file_ref:v1.0.0",
+    "title": "Corpus File Reference (Python)",
+    "kind": "packet_contract",
+    "layer": "40_packets",
+    "role": "PacketSpecification",
+    "status": "active",
+    "council_owner": "L3_logos_techne",
+    "descriptor": {
+      "authority_effect": "None",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": true,
+      "clean_architecture_layer": "domain",
+      "refusals": {
+        "may_emit": [
+          "FW-UNKNOWN-FIELD"
+        ]
+      }
+    },
+    "doctrine": {
+      "summary": "CorpusFileRef represents a single relative POSIX file entry with SHA-256 and byte size.",
+      "invariants": [
+        "path is a normalized relative POSIX path.",
+        "byte_count is nonnegative."
+      ],
+      "non_roles": [
+        "authority_source",
+        "promotion_granter"
+      ],
+      "required_negative_capabilities": [
+        "no_self_certification",
+        "no_implicit_authority_upgrade"
+      ]
+    },
+    "structure": {
+      "language": "python",
+      "python_module": "omega_engine_pfp.domain.entities.research_packets",
+      "python_type": "CorpusFileRef",
+      "form": "dataclass",
+      "fields": [
+        {
+          "name": "path"
+        },
+        {
+          "name": "sha256"
+        },
+        {
+          "name": "byte_count"
+        }
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "83e8a189e4be2deb007f20fd8a5ba596d056019b8c7f0e41c1c102539d930bfa",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "83e8a189e4be2deb007f20fd8a5ba596d056019b8c7f0e41c1c102539d930bfa",
+      "bytes": 1066,
+      "record": {
+        "schema_version": "omega.contract.v2",
+        "contract_id": "urn:omega:packet:symbol_game:py_corpus_file_ref:v1.0.0",
+        "title": "Corpus File Reference (Python)",
+        "kind": "packet_contract",
+        "layer": "40_packets",
+        "role": "PacketSpecification",
+        "status": "active",
+        "council_owner": "L3_logos_techne",
+        "descriptor": {
+          "authority_effect": "None",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": true,
+          "clean_architecture_layer": "domain",
+          "refusals": {
+            "may_emit": [
+              "FW-UNKNOWN-FIELD"
+            ]
+          }
+        },
+        "doctrine": {
+          "summary": "CorpusFileRef represents a single relative POSIX file entry with SHA-256 and byte size.",
+          "invariants": [
+            "path is a normalized relative POSIX path.",
+            "byte_count is nonnegative."
+          ],
+          "non_roles": [
+            "authority_source",
+            "promotion_granter"
+          ],
+          "required_negative_capabilities": [
+            "no_self_certification",
+            "no_implicit_authority_upgrade"
+          ]
+        },
+        "structure": {
+          "language": "python",
+          "python_module": "omega_engine_pfp.domain.entities.research_packets",
+          "python_type": "CorpusFileRef",
+          "form": "dataclass",
+          "fields": [
+            {
+              "name": "path"
+            },
+            {
+              "name": "sha256"
+            },
+            {
+              "name": "byte_count"
+            }
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v2\ncontract_id: urn:omega:packet:symbol_game:py_corpus_file_ref:v1.0.0\ntitle: Corpus File Reference (Python)\nkind: packet_contract\nlayer: 40_packets\nrole: PacketSpecification\nstatus: active\ncouncil_owner: L3_logos_techne\ndescriptor:\n  authority_effect: None\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: true\n  clean_architecture_layer: domain\n  refusals:\n    may_emit:\n    - FW-UNKNOWN-FIELD\ndoctrine:\n  summary: CorpusFileRef represents a single relative POSIX file entry with SHA-256\n    and byte size.\n  invariants:\n  - path is a normalized relative POSIX path.\n  - byte_count is nonnegative.\n  non_roles:\n  - authority_source\n  - promotion_granter\n  required_negative_capabilities:\n  - no_self_certification\n  - no_implicit_authority_upgrade\nstructure:\n  language: python\n  python_module: omega_engine_pfp.domain.entities.research_packets\n  python_type: CorpusFileRef\n  form: dataclass\n  fields:\n  - name: path\n  - name: sha256\n  - name: byte_count\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/40_packets/packet_symbol_game_py_corpus_file_ref_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/40_packets/packet_symbol_game_py_corpus_file_ref_v1_0_0.contract.yaml": "83e8a189e4be2deb007f20fd8a5ba596d056019b8c7f0e41c1c102539d930bfa"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

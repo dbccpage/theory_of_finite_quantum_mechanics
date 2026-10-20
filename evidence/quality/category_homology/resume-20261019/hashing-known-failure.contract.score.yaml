@@ -1,0 +1,122 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": null,
+  "contract": null,
+  "current_contract": null,
+  "current_scoring": "cf6e8421fedb554804fcdab85d69474f541c48f19188e6001fc389e7833d1967",
+  "contract_history": [],
+  "scoring_history": [
+    {
+      "sha256": "cf6e8421fedb554804fcdab85d69474f541c48f19188e6001fc389e7833d1967",
+      "bytes": 3540,
+      "record": {
+        "schema_version": "2.0.0",
+        "artifact": {
+          "path": "code/rust/src/homology/hashing.rs",
+          "language": "Rust",
+          "sha256": "5ec2e16f3cb9dcda7c54ae40a7f824b5878a106bc1d76b0c43c677a5ebc1dd5b"
+        },
+        "profile": "Exact",
+        "level": "L2",
+        "level_basis": "Structured data, identifiers, hashes, adapters or declarations; no independent foundational theorem is inferred.",
+        "architecture_target": "L5",
+        "engineering_target": "A",
+        "gates": {
+          "G1": null,
+          "G2": "D",
+          "G3": "E",
+          "G4": null,
+          "G5": null
+        },
+        "composite_grade": null,
+        "score_token": null,
+        "is_complete": false,
+        "grade_ceiling": "E",
+        "evaluation_timestamp": "2026-10-18T18:42:03+00:00",
+        "AuthorityEffect": "None",
+        "claim": {
+          "urn": "urn:tfqm:rust:homology:hashing",
+          "description": "Deterministic BLAKE3 hashing with domain-separated tags.  All hashing functions use domain separation to prevent hash collisions between different mathematical objects that might have the same raw data.",
+          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified."
+        },
+        "contract": {
+          "status": "pending",
+          "path": null,
+          "note": "Reserved for a later user-requested contract; none created or asserted here."
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/category_homology/20261018T184203Z/baseline.json",
+            "sha256": "e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c",
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T184203Z/summary.json",
+            "sha256": "ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67",
+            "scope": "Source snapshot binding and complete six-outcome accounting."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T184203Z/mutations.json",
+            "sha256": "c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5",
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json",
+            "sha256": "86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1",
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
+          }
+        ],
+        "verification": {
+          "baseline_ok": true,
+          "source_snapshot_unchanged": true,
+          "compiled_scope": "shared scoped crate build",
+          "local_mutant_ids": [
+            "H02-degree-hash",
+            "H03-basis-hash"
+          ]
+        },
+        "mutation_accounting": {
+          "killed": 2,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": 1.0
+        },
+        "structure": {
+          "tool": "syn 3.0.9 source AST",
+          "source_ast_parsed": true,
+          "expanded_ast": false,
+          "physical_lines": 252,
+          "parsed_production_functions": 13,
+          "max_production_ccn": 2,
+          "cognitive_complexity_upper_bound": 1,
+          "control_nesting": 1,
+          "opaque_function_macros": [],
+          "functions_exceeding_A": [],
+          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
+        },
+        "open_findings": [
+          "A complete five-gate semantic, failure and consumer audit has not been established for this file.",
+          "Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds.",
+          "External path dependency source contents have not received a separate origin/content attestation."
+        ],
+        "known_failure": {
+          "finding": "evidence/quality/category_homology/resume-20261019/rank-replay-finding.json",
+          "scope": "Shared hash normalization can panic on unchecked zero-denominator ratios; current A certification withheld."
+        }
+      },
+      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\nschema_version: \"2.0.0\"\nartifact:\n  path: \"code/rust/src/homology/hashing.rs\"\n  language: \"Rust\"\n  sha256: \"5ec2e16f3cb9dcda7c54ae40a7f824b5878a106bc1d76b0c43c677a5ebc1dd5b\"\nprofile: \"Exact\"\nlevel: \"L2\"\nlevel_basis: \"Structured data, identifiers, hashes, adapters or declarations; no independent foundational theorem is inferred.\"\narchitecture_target: \"L5\"\nengineering_target: \"A\"\ngates:\n  G1: null\n  G2: \"D\"\n  G3: \"E\"\n  G4: null\n  G5: null\ncomposite_grade: null\nscore_token: null\nis_complete: false\ngrade_ceiling: \"E\"\nevaluation_timestamp: \"2026-10-18T18:42:03+00:00\"\nAuthorityEffect: \"None\"\nclaim:\n  urn: \"urn:tfqm:rust:homology:hashing\"\n  description: \"Deterministic BLAKE3 hashing with domain-separated tags.  All hashing functions use domain separation to prevent hash collisions between different mathematical objects that might have the same raw data.\"\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\ncontract:\n  status: \"pending\"\n  path: null\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\nevidence:\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/baseline.json\", \"sha256\": \"e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/summary.json\", \"sha256\": \"ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/mutations.json\", \"sha256\": \"c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json\", \"sha256\": \"86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\nverification:\n  baseline_ok: true\n  source_snapshot_unchanged: true\n  compiled_scope: \"shared scoped crate build\"\n  local_mutant_ids:\n    - \"H02-degree-hash\"\n    - \"H03-basis-hash\"\nmutation_accounting:\n  killed: 2\n  survived: 0\n  demonstrably_equivalent: 0\n  invalid: 0\n  inconclusive: 0\n  unrun: 0\n  conservative_ratio: 1.0\nstructure:\n  tool: \"syn 3.0.9 source AST\"\n  source_ast_parsed: true\n  expanded_ast: false\n  physical_lines: 252\n  parsed_production_functions: 13\n  max_production_ccn: 2\n  cognitive_complexity_upper_bound: 1\n  control_nesting: 1\n  opaque_function_macros: []\n  functions_exceeding_A: []\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\nopen_findings:\n  - \"A complete five-gate semantic, failure and consumer audit has not been established for this file.\"\n  - \"Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds.\"\n  - \"External path dependency source contents have not received a separate origin/content attestation.\"\n\nknown_failure:\n  finding: \"evidence/quality/category_homology/resume-20261019/rank-replay-finding.json\"\n  scope: \"Shared hash normalization can panic on unchecked zero-denominator ratios; current A certification withheld.\"\n",
+      "original_paths": [
+        "evidence/quality/category_homology/resume-20261019/hashing-known-failure.score.yaml"
+      ]
+    }
+  ],
+  "legacy_paths": {
+    "evidence/quality/category_homology/resume-20261019/hashing-known-failure.score.yaml": "cf6e8421fedb554804fcdab85d69474f541c48f19188e6001fc389e7833d1967"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

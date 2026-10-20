@@ -6,7 +6,10 @@ AuthorityEffect: None. Injection affects an owned snapshot only.
 from datetime import datetime, timezone
 import argparse
 import json
-from pathlib import Path
+from pathlib import Path as _FilesystemPath
+import sys as _contract_sys
+_contract_sys.path.insert(0, str(_FilesystemPath(__file__).resolve().parents[4] / "scripts"))
+from contract_scores import RecordPath as Path, copy_file as _copy_record_file
 import shutil
 import subprocess
 import re
@@ -158,8 +161,8 @@ def main():
     work = RUST / "target/l4a-six" / (stamp + "-defect-controls")
     sources = inventory()
     write(output / "source_manifest.json", sources)
-    shutil.copyfile(__file__, output / "probes.py")
-    shutil.copyfile(Path(__file__).with_name("replay.py"), output / "replay.py")
+    _copy_record_file(__file__, output / "probes.py")
+    _copy_record_file(Path(__file__).with_name("replay.py"), output / "replay.py")
     (output / "expected_panic_controls.rs").write_text(controls, encoding="utf-8")
     receipt = {"AuthorityEffect": "None", "claim": "Counterexample observations distinguish the failure class in each witness: DEFECT_CONFIRMED establishes that witnessed failure, including panic or undefined-input coercion. NO_PANIC_OBSERVED is finite evidence only, not universal crash-freedom or quality certification.",
                "evaluation_timestamp": datetime.now(timezone.utc).isoformat(),
@@ -180,7 +183,7 @@ def main():
                 "[dependencies]\n", '[dependencies]\ntfqm_local_green_global_red_lggr = { path = "src/local_green_global_red_lggr" }\n'), encoding="utf-8")
         (work / "tests").mkdir(exist_ok=True)
         (work / "tests/expected_panic_controls.rs").write_text(controls, encoding="utf-8")
-        shutil.copyfile(manifest, output / "snapshot.Cargo.toml")
+        _copy_record_file(manifest, output / "snapshot.Cargo.toml")
         command = ["cargo", "metadata", "--offline", "--quiet", "--format-version", "1"]
         meta = subprocess.run(command, cwd=work, text=True, capture_output=True)
         (output / "cargo_metadata.json").write_text(meta.stdout, encoding="utf-8")
@@ -212,7 +215,7 @@ def main():
         receipt["findings_sha256"] = digest(output / "findings.json")
         receipt["dependency_sources_unchanged"] = all(Path(p).is_file() and digest(Path(p)) == h
                                                      for p, h in dependencies.items())
-        shutil.copyfile(work / "Cargo.lock", output / "Cargo.lock")
+        _copy_record_file(work / "Cargo.lock", output / "Cargo.lock")
         print([(f["id"], f["reproduced"]) for f in findings], flush=True)
     finally:
         receipt["sources_unchanged"] = sources == inventory()

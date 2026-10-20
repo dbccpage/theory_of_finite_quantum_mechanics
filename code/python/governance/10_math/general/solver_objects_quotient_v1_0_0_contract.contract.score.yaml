@@ -1,0 +1,159 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/general/solver_objects_quotient_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:solver_objects:quotient:v1.0.0",
+    "title": "Cohomological Quotient",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "role": "MathObject",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "abstract": false,
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0",
+        "urn:omega:constitution:base_math_contract:v1.0.0"
+      ],
+      "semantic_contracts": [
+        "omega_engine_governance/contracts/contracts_math/quotient_space.contract.yaml"
+      ],
+      "runtime_bindings": [
+        "omega_engine.crates.homology_theory.quotient"
+      ],
+      "used_by": [
+        "OESOS",
+        "Prime000",
+        "Prime001",
+        "Prime002"
+      ]
+    },
+    "math": {
+      "object_kind": "quotient",
+      "symbol": "Q^k = C^k / im(d_{k-1})",
+      "definition": "Gauge-equivalent cochains define one quotient class.",
+      "laws": [
+        "Projection kills exact coboundaries.",
+        "A quotient class is not a chosen representative."
+      ]
+    },
+    "doctrine": {
+      "summary": "OESOS and Prime binding contract for Cohomological Quotient.",
+      "non_role": [
+        "authority_minting",
+        "policy_decision",
+        "self_certification",
+        "state_transition"
+      ],
+      "canonical_invariant": "This contract is structural and AuthorityEffect None. Inheritance supplies shared shape and negative-capability rules without increasing authority."
+    }
+  },
+  "current_contract": "9008c2051ade62a9e89624eca4bdaa1a6aa73bf002570118867767af92e06d44",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "9008c2051ade62a9e89624eca4bdaa1a6aa73bf002570118867767af92e06d44",
+      "bytes": 1494,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:solver_objects:quotient:v1.0.0",
+        "title": "Cohomological Quotient",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "role": "MathObject",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "abstract": false,
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0",
+            "urn:omega:constitution:base_math_contract:v1.0.0"
+          ],
+          "semantic_contracts": [
+            "omega_engine_governance/contracts/contracts_math/quotient_space.contract.yaml"
+          ],
+          "runtime_bindings": [
+            "omega_engine.crates.homology_theory.quotient"
+          ],
+          "used_by": [
+            "OESOS",
+            "Prime000",
+            "Prime001",
+            "Prime002"
+          ]
+        },
+        "math": {
+          "object_kind": "quotient",
+          "symbol": "Q^k = C^k / im(d_{k-1})",
+          "definition": "Gauge-equivalent cochains define one quotient class.",
+          "laws": [
+            "Projection kills exact coboundaries.",
+            "A quotient class is not a chosen representative."
+          ]
+        },
+        "doctrine": {
+          "summary": "OESOS and Prime binding contract for Cohomological Quotient.",
+          "non_role": [
+            "authority_minting",
+            "policy_decision",
+            "self_certification",
+            "state_transition"
+          ],
+          "canonical_invariant": "This contract is structural and AuthorityEffect None. Inheritance supplies shared shape and negative-capability rules without increasing authority."
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:solver_objects:quotient:v1.0.0\ntitle: Cohomological Quotient\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\nrole: MathObject\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  abstract: false\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n  - urn:omega:constitution:base_math_contract:v1.0.0\n  semantic_contracts:\n  - omega_engine_governance/contracts/contracts_math/quotient_space.contract.yaml\n  runtime_bindings:\n  - omega_engine.crates.homology_theory.quotient\n  used_by:\n  - OESOS\n  - Prime000\n  - Prime001\n  - Prime002\nmath:\n  object_kind: quotient\n  symbol: Q^k = C^k / im(d_{k-1})\n  definition: Gauge-equivalent cochains define one quotient class.\n  laws:\n  - Projection kills exact coboundaries.\n  - A quotient class is not a chosen representative.\ndoctrine:\n  summary: OESOS and Prime binding contract for Cohomological Quotient.\n  non_role:\n  - authority_minting\n  - policy_decision\n  - self_certification\n  - state_transition\n  canonical_invariant: This contract is structural and AuthorityEffect None. Inheritance\n    supplies shared shape and negative-capability rules without increasing authority.\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/solver_objects_quotient_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/general/solver_objects_quotient_v1_0_0.contract.yaml": "9008c2051ade62a9e89624eca4bdaa1a6aa73bf002570118867767af92e06d44"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

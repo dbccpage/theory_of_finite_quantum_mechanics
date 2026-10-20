@@ -1,0 +1,241 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/general/math_sum_type_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:sum_type:v0.1.0",
+    "title": "Sum Type Contract",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "type_former",
+      "symbol": "coprod_{i in I} A_i or A_1 + A_2 + ... + A_n",
+      "ascii_symbol": "sum_type",
+      "notation": "coprod_{i in I} A_i or A_1 + A_2 + ... + A_n",
+      "domain": [
+        "index_set: finite_ordered_set",
+        "summand_types: indexed_family_of_types",
+        "total_space: tagged_union_set"
+      ],
+      "codomain": {
+        "description": "A Sum Type consists of: - Index set I: a finite set of tags - Summand types: {A_i}_{i in I}, a type for each tag - Total space: the disjoint union coprod_{i in I} A_i = {(i, a) | i in I, a: A_i} - Injections: inj_i: A_i -> coprod A_i for each i\n"
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Index set I must be non-empty",
+        "Each summand type A_i must resolve to a valid type artifact",
+        "All tags in I must be distinct",
+        "Total space equals the disjoint union of all summand types",
+        "StructureArtifact hash matches canonical serialization"
+      ]
+    },
+    "laws": [
+      "For each i in I and a: A_i, inj_i(a) is an element of the sum type",
+      "Every element of the sum type is inj_i(a) for exactly one i in I and one a: A_i",
+      "Given f_i: A_i -> C for all i, there exists a unique [f_i]: coprod A_i -> C",
+      "[f_i](inj_j(a)) = f_j(a) for all j in I and a: A_j",
+      "For g: coprod A_i -> C, g = [g o inj_i]_{i in I}"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No randomness",
+        "No time-dependent data",
+        "Tags serialized as sorted byte strings separated by U+001E",
+        "Summand type IDs serialized as 32-byte hashes in tag order",
+        "Tagged values serialized as (tag_length, tag_bytes, value_length, value_bytes)",
+        "All validators and computation functions are content-addressed"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "negative_tests": [
+      "Index set I is empty",
+      "Tags contain duplicates ['A', 'A']",
+      "Tags are not sorted ['B', 'A']",
+      "3 tags but only 2 summand types",
+      "A summand type artifact does not resolve",
+      "Value is not an element of the summand type for the given tag",
+      "Tag is not in the index set",
+      "Case analysis missing a case for one tag",
+      "Different serialization conventions produce different hashes"
+    ],
+    "doctrine": {
+      "summary": "A Sum Type (coproduct type) encodes a tagged disjoint union of a finite family of types. Given an index set I and types {A_i}_{i in I}, the sum type coprod_{i in I} A_i consists of pairs (i, a) where i in I is a tag and a: A_i. For the binary case, A + B has injections inl: A -> A + B and inr: B -> A + B. Elimination is by case analysis: given a function f_i: A_i -> C for each i, there is a unique function [f_i]: coprod A_i -> C. The contract validates injection, case analysis (elimination), and the computation rule (beta: [f_i](inj_j(a)) = f_j(a)).",
+      "non_role": [
+        "Does not encode dependent sums (use SigmaType for that)",
+        "Does not handle infinite index sets",
+        "Does not verify decidability of tag equality",
+        "Does not support quotient types or higher inductive types",
+        "Does not handle recursive sum types (inductive types)"
+      ]
+    },
+    "wip": [
+      "Should the contract support empty sum types (initial object / void type)?",
+      "How should recursive sum types (inductive types) be handled?",
+      "Should the contract encode the decidability of tag comparison?",
+      "How should sum types interact with the sigma type contract for dependent sums?",
+      "Should unique elimination (up to propositional equality) be verified?",
+      "Only finite index sets and finite summand types are directly encodable",
+      "Binary sum type A + B is the special case with I = {0, 1}",
+      "Tags are byte strings to support arbitrary naming conventions",
+      "Total space size is the sum of all summand type cardinalities",
+      "Case analysis exhaustiveness requires exactly one function per tag",
+      "All operations are deterministic and content-addressed for replay"
+    ]
+  },
+  "current_contract": "a79f850d07e532b4257dd0cd96e908d94b39e3218e87c0b44d2ce54463ca8578",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "a79f850d07e532b4257dd0cd96e908d94b39e3218e87c0b44d2ce54463ca8578",
+      "bytes": 4207,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:sum_type:v0.1.0",
+        "title": "Sum Type Contract",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "type_former",
+          "symbol": "coprod_{i in I} A_i or A_1 + A_2 + ... + A_n",
+          "ascii_symbol": "sum_type",
+          "notation": "coprod_{i in I} A_i or A_1 + A_2 + ... + A_n",
+          "domain": [
+            "index_set: finite_ordered_set",
+            "summand_types: indexed_family_of_types",
+            "total_space: tagged_union_set"
+          ],
+          "codomain": {
+            "description": "A Sum Type consists of: - Index set I: a finite set of tags - Summand types: {A_i}_{i in I}, a type for each tag - Total space: the disjoint union coprod_{i in I} A_i = {(i, a) | i in I, a: A_i} - Injections: inj_i: A_i -> coprod A_i for each i\n"
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Index set I must be non-empty",
+            "Each summand type A_i must resolve to a valid type artifact",
+            "All tags in I must be distinct",
+            "Total space equals the disjoint union of all summand types",
+            "StructureArtifact hash matches canonical serialization"
+          ]
+        },
+        "laws": [
+          "For each i in I and a: A_i, inj_i(a) is an element of the sum type",
+          "Every element of the sum type is inj_i(a) for exactly one i in I and one a: A_i",
+          "Given f_i: A_i -> C for all i, there exists a unique [f_i]: coprod A_i -> C",
+          "[f_i](inj_j(a)) = f_j(a) for all j in I and a: A_j",
+          "For g: coprod A_i -> C, g = [g o inj_i]_{i in I}"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "Tags serialized as sorted byte strings separated by U+001E",
+            "Summand type IDs serialized as 32-byte hashes in tag order",
+            "Tagged values serialized as (tag_length, tag_bytes, value_length, value_bytes)",
+            "All validators and computation functions are content-addressed"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "negative_tests": [
+          "Index set I is empty",
+          "Tags contain duplicates ['A', 'A']",
+          "Tags are not sorted ['B', 'A']",
+          "3 tags but only 2 summand types",
+          "A summand type artifact does not resolve",
+          "Value is not an element of the summand type for the given tag",
+          "Tag is not in the index set",
+          "Case analysis missing a case for one tag",
+          "Different serialization conventions produce different hashes"
+        ],
+        "doctrine": {
+          "summary": "A Sum Type (coproduct type) encodes a tagged disjoint union of a finite family of types. Given an index set I and types {A_i}_{i in I}, the sum type coprod_{i in I} A_i consists of pairs (i, a) where i in I is a tag and a: A_i. For the binary case, A + B has injections inl: A -> A + B and inr: B -> A + B. Elimination is by case analysis: given a function f_i: A_i -> C for each i, there is a unique function [f_i]: coprod A_i -> C. The contract validates injection, case analysis (elimination), and the computation rule (beta: [f_i](inj_j(a)) = f_j(a)).",
+          "non_role": [
+            "Does not encode dependent sums (use SigmaType for that)",
+            "Does not handle infinite index sets",
+            "Does not verify decidability of tag equality",
+            "Does not support quotient types or higher inductive types",
+            "Does not handle recursive sum types (inductive types)"
+          ]
+        },
+        "wip": [
+          "Should the contract support empty sum types (initial object / void type)?",
+          "How should recursive sum types (inductive types) be handled?",
+          "Should the contract encode the decidability of tag comparison?",
+          "How should sum types interact with the sigma type contract for dependent sums?",
+          "Should unique elimination (up to propositional equality) be verified?",
+          "Only finite index sets and finite summand types are directly encodable",
+          "Binary sum type A + B is the special case with I = {0, 1}",
+          "Tags are byte strings to support arbitrary naming conventions",
+          "Total space size is the sum of all summand type cardinalities",
+          "Case analysis exhaustiveness requires exactly one function per tag",
+          "All operations are deterministic and content-addressed for replay"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:sum_type:v0.1.0\ntitle: Sum Type Contract\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: type_former\n  symbol: coprod_{i in I} A_i or A_1 + A_2 + ... + A_n\n  ascii_symbol: sum_type\n  notation: coprod_{i in I} A_i or A_1 + A_2 + ... + A_n\n  domain:\n  - 'index_set: finite_ordered_set'\n  - 'summand_types: indexed_family_of_types'\n  - 'total_space: tagged_union_set'\n  codomain:\n    description: 'A Sum Type consists of: - Index set I: a finite set of tags - Summand\n      types: {A_i}_{i in I}, a type for each tag - Total space: the disjoint union\n      coprod_{i in I} A_i = {(i, a) | i in I, a: A_i} - Injections: inj_i: A_i ->\n      coprod A_i for each i\n\n      '\nrequirements:\n  required_structures:\n  - Index set I must be non-empty\n  - Each summand type A_i must resolve to a valid type artifact\n  - All tags in I must be distinct\n  - Total space equals the disjoint union of all summand types\n  - StructureArtifact hash matches canonical serialization\nlaws:\n- 'For each i in I and a: A_i, inj_i(a) is an element of the sum type'\n- 'Every element of the sum type is inj_i(a) for exactly one i in I and one a: A_i'\n- 'Given f_i: A_i -> C for all i, there exists a unique [f_i]: coprod A_i -> C'\n- '[f_i](inj_j(a)) = f_j(a) for all j in I and a: A_j'\n- 'For g: coprod A_i -> C, g = [g o inj_i]_{i in I}'\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Tags serialized as sorted byte strings separated by U+001E\n  - Summand type IDs serialized as 32-byte hashes in tag order\n  - Tagged values serialized as (tag_length, tag_bytes, value_length, value_bytes)\n  - All validators and computation functions are content-addressed\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nnegative_tests:\n- Index set I is empty\n- Tags contain duplicates ['A', 'A']\n- Tags are not sorted ['B', 'A']\n- 3 tags but only 2 summand types\n- A summand type artifact does not resolve\n- Value is not an element of the summand type for the given tag\n- Tag is not in the index set\n- Case analysis missing a case for one tag\n- Different serialization conventions produce different hashes\ndoctrine:\n  summary: 'A Sum Type (coproduct type) encodes a tagged disjoint union of a finite\n    family of types. Given an index set I and types {A_i}_{i in I}, the sum type coprod_{i\n    in I} A_i consists of pairs (i, a) where i in I is a tag and a: A_i. For the binary\n    case, A + B has injections inl: A -> A + B and inr: B -> A + B. Elimination is\n    by case analysis: given a function f_i: A_i -> C for each i, there is a unique\n    function [f_i]: coprod A_i -> C. The contract validates injection, case analysis\n    (elimination), and the computation rule (beta: [f_i](inj_j(a)) = f_j(a)).'\n  non_role:\n  - Does not encode dependent sums (use SigmaType for that)\n  - Does not handle infinite index sets\n  - Does not verify decidability of tag equality\n  - Does not support quotient types or higher inductive types\n  - Does not handle recursive sum types (inductive types)\nwip:\n- Should the contract support empty sum types (initial object / void type)?\n- How should recursive sum types (inductive types) be handled?\n- Should the contract encode the decidability of tag comparison?\n- How should sum types interact with the sigma type contract for dependent sums?\n- Should unique elimination (up to propositional equality) be verified?\n- Only finite index sets and finite summand types are directly encodable\n- Binary sum type A + B is the special case with I = {0, 1}\n- Tags are byte strings to support arbitrary naming conventions\n- Total space size is the sum of all summand type cardinalities\n- Case analysis exhaustiveness requires exactly one function per tag\n- All operations are deterministic and content-addressed for replay\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_sum_type_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_sum_type_v0_1_0.contract.yaml": "a79f850d07e532b4257dd0cd96e908d94b39e3218e87c0b44d2ce54463ca8578"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

@@ -1,0 +1,231 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/general/math_end_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:end:v0.1.0",
+    "title": "End Contract",
+    "kind": "math_contract",
+    "status": "exact_rational_classifier_implemented",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "universal_dinatural_transformation",
+      "symbol": "∫_c F(c,c)",
+      "ascii_symbol": "end",
+      "notation": "∫_c F(c,c)",
+      "domain": [
+        "bifunctor: F: C^op × C → D",
+        "end_object: e ∈ D",
+        "wedge: dinatural family ω_c: e → F(c,c)"
+      ],
+      "codomain": {
+        "description": "An end consists of: 1. A bifunctor F: C^op × C → D 2. An end object e ∈ D 3. A wedge ω: (ω_c: e → F(c,c))_c that is dinatural\n"
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "F must be a valid bifunctor C^op × C → D",
+        "Wedge ω must satisfy dinaturality condition for all morphisms",
+        "End must satisfy universal property among all wedges",
+        "All end artifacts must be content-addressed via SHA-256"
+      ]
+    },
+    "laws": [
+      "F must be a bifunctor from C^op × C to D",
+      "For each f: c → c', the diagram F(c',c) → F(c,c) → F(c,c') commutes",
+      "For any wedge (w, τ_c: w → F(c,c)), there exists unique h: w → e such that τ_c = ω_c ∘ h for all c\n"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No randomness",
+        "No time-dependent data",
+        "Validators are content-addressed",
+        "Given same data, must produce identical artifact hash"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "negative_tests": [
+      "Must reject when F is not a valid bifunctor",
+      "Must reject when wedge fails dinaturality",
+      "Must reject when universal property fails"
+    ],
+    "doctrine": {
+      "summary": "An end is a universal dinatural transformation for a bifunctor F: C^op × C → D, written ∫_c F(c,c). Ends generalize limits and equalizers, and compute natural transformation objects and Hom spaces in functor categories.",
+      "non_role": [
+        "Coends (dual construction, separate contract)",
+        "Weighted ends (future extension)",
+        "Enriched ends (requires enriched category theory)",
+        "∞-categorical ends (higher category theory)"
+      ]
+    },
+    "wip": [
+      "Weighted ends",
+      "Enriched ends",
+      "∞-categorical ends",
+      "Current implementation covers classical ends in ordinary categories",
+      "Equalizer formula provides computational foundation",
+      "Natural transformation space formula is primary use case",
+      "Future work: weighted and enriched variants"
+    ],
+    "rust_binding": {
+      "crate": "omega_category_theory",
+      "module": "limits_colimits",
+      "symbols": [
+        "End"
+      ],
+      "required_tests": [
+        "validate_ok",
+        "validate_rejects_missing_bifunctor"
+      ]
+    }
+  },
+  "current_contract": "89abbe4f88235469cd1228b79a42279ac61ac5032f2609c1bbb2ef469fd565fc",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "89abbe4f88235469cd1228b79a42279ac61ac5032f2609c1bbb2ef469fd565fc",
+      "bytes": 2773,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:end:v0.1.0",
+        "title": "End Contract",
+        "kind": "math_contract",
+        "status": "exact_rational_classifier_implemented",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "universal_dinatural_transformation",
+          "symbol": "∫_c F(c,c)",
+          "ascii_symbol": "end",
+          "notation": "∫_c F(c,c)",
+          "domain": [
+            "bifunctor: F: C^op × C → D",
+            "end_object: e ∈ D",
+            "wedge: dinatural family ω_c: e → F(c,c)"
+          ],
+          "codomain": {
+            "description": "An end consists of: 1. A bifunctor F: C^op × C → D 2. An end object e ∈ D 3. A wedge ω: (ω_c: e → F(c,c))_c that is dinatural\n"
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "F must be a valid bifunctor C^op × C → D",
+            "Wedge ω must satisfy dinaturality condition for all morphisms",
+            "End must satisfy universal property among all wedges",
+            "All end artifacts must be content-addressed via SHA-256"
+          ]
+        },
+        "laws": [
+          "F must be a bifunctor from C^op × C to D",
+          "For each f: c → c', the diagram F(c',c) → F(c,c) → F(c,c') commutes",
+          "For any wedge (w, τ_c: w → F(c,c)), there exists unique h: w → e such that τ_c = ω_c ∘ h for all c\n"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "Validators are content-addressed",
+            "Given same data, must produce identical artifact hash"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "negative_tests": [
+          "Must reject when F is not a valid bifunctor",
+          "Must reject when wedge fails dinaturality",
+          "Must reject when universal property fails"
+        ],
+        "doctrine": {
+          "summary": "An end is a universal dinatural transformation for a bifunctor F: C^op × C → D, written ∫_c F(c,c). Ends generalize limits and equalizers, and compute natural transformation objects and Hom spaces in functor categories.",
+          "non_role": [
+            "Coends (dual construction, separate contract)",
+            "Weighted ends (future extension)",
+            "Enriched ends (requires enriched category theory)",
+            "∞-categorical ends (higher category theory)"
+          ]
+        },
+        "wip": [
+          "Weighted ends",
+          "Enriched ends",
+          "∞-categorical ends",
+          "Current implementation covers classical ends in ordinary categories",
+          "Equalizer formula provides computational foundation",
+          "Natural transformation space formula is primary use case",
+          "Future work: weighted and enriched variants"
+        ],
+        "rust_binding": {
+          "crate": "omega_category_theory",
+          "module": "limits_colimits",
+          "symbols": [
+            "End"
+          ],
+          "required_tests": [
+            "validate_ok",
+            "validate_rejects_missing_bifunctor"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:end:v0.1.0\ntitle: End Contract\nkind: math_contract\nstatus: exact_rational_classifier_implemented\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: universal_dinatural_transformation\n  symbol: ∫_c F(c,c)\n  ascii_symbol: end\n  notation: ∫_c F(c,c)\n  domain:\n  - 'bifunctor: F: C^op × C → D'\n  - 'end_object: e ∈ D'\n  - 'wedge: dinatural family ω_c: e → F(c,c)'\n  codomain:\n    description: 'An end consists of: 1. A bifunctor F: C^op × C → D 2. An end object\n      e ∈ D 3. A wedge ω: (ω_c: e → F(c,c))_c that is dinatural\n\n      '\nrequirements:\n  required_structures:\n  - F must be a valid bifunctor C^op × C → D\n  - Wedge ω must satisfy dinaturality condition for all morphisms\n  - End must satisfy universal property among all wedges\n  - All end artifacts must be content-addressed via SHA-256\nlaws:\n- F must be a bifunctor from C^op × C to D\n- 'For each f: c → c'', the diagram F(c'',c) → F(c,c) → F(c,c'') commutes'\n- 'For any wedge (w, τ_c: w → F(c,c)), there exists unique h: w → e such that τ_c\n  = ω_c ∘ h for all c\n\n  '\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Validators are content-addressed\n  - Given same data, must produce identical artifact hash\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nnegative_tests:\n- Must reject when F is not a valid bifunctor\n- Must reject when wedge fails dinaturality\n- Must reject when universal property fails\ndoctrine:\n  summary: 'An end is a universal dinatural transformation for a bifunctor F: C^op\n    × C → D, written ∫_c F(c,c). Ends generalize limits and equalizers, and compute\n    natural transformation objects and Hom spaces in functor categories.'\n  non_role:\n  - Coends (dual construction, separate contract)\n  - Weighted ends (future extension)\n  - Enriched ends (requires enriched category theory)\n  - ∞-categorical ends (higher category theory)\nwip:\n- Weighted ends\n- Enriched ends\n- ∞-categorical ends\n- Current implementation covers classical ends in ordinary categories\n- Equalizer formula provides computational foundation\n- Natural transformation space formula is primary use case\n- 'Future work: weighted and enriched variants'\nrust_binding:\n  crate: omega_category_theory\n  module: limits_colimits\n  symbols:\n  - End\n  required_tests:\n  - validate_ok\n  - validate_rejects_missing_bifunctor\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_end_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_end_v0_1_0.contract.yaml": "89abbe4f88235469cd1228b79a42279ac61ac5032f2609c1bbb2ef469fd565fc"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

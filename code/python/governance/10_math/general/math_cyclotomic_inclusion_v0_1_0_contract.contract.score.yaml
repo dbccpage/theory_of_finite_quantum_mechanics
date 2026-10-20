@@ -1,0 +1,211 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/general/math_cyclotomic_inclusion_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:cyclotomic_inclusion:v0.1.0",
+    "title": "Canonical cyclotomic field arithmetic",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "cyclotomic_inclusion",
+      "symbol": "cyclotomic_inclusion",
+      "ascii_symbol": "cyclotomic_inclusion",
+      "notation": "Canonical cyclotomic field arithmetic",
+      "domain": [
+        "Conductors1..1024 with canonical polynomial basis."
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_number_theory::cyclotomic_field; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "Q(zeta_n)=Q(zeta_(n/2)) when n=2 mod4.",
+      "Containment, intersection and compositum use normalized conductors.",
+      "Embedding substitutes the appropriate target root and preserves arithmetic."
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_number_theory",
+      "module": "cyclotomic_field",
+      "symbols": [
+        "normalized_conductor",
+        "contains_cyclotomic_field",
+        "compositum_conductor",
+        "intersection_conductor",
+        "embed_cyclotomic"
+      ],
+      "required_tests": [
+        "normalized_conductor_inclusion_agrees_with_compositum_degree_and_embeddings"
+      ]
+    },
+    "negative_tests": [
+      "normalized_conductor_inclusion_agrees_with_compositum_degree_and_embeddings"
+    ],
+    "doctrine": {
+      "summary": "Q(zeta_n)=Q(zeta_(n/2)) when n=2 mod4.; Containment, intersection and compositum use normalized conductors.; Embedding substitutes the appropriate target root and preserves arithmetic..",
+      "non_role": [
+        "Field membership is not physical minimality of a campaign carrier.",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "e276bd69fc6969a2f45ea3a3c958fac52e5ffe1079e57d7e3ab8ef482272afb6",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "e276bd69fc6969a2f45ea3a3c958fac52e5ffe1079e57d7e3ab8ef482272afb6",
+      "bytes": 2652,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:cyclotomic_inclusion:v0.1.0",
+        "title": "Canonical cyclotomic field arithmetic",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "cyclotomic_inclusion",
+          "symbol": "cyclotomic_inclusion",
+          "ascii_symbol": "cyclotomic_inclusion",
+          "notation": "Canonical cyclotomic field arithmetic",
+          "domain": [
+            "Conductors1..1024 with canonical polynomial basis."
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_number_theory::cyclotomic_field; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "Q(zeta_n)=Q(zeta_(n/2)) when n=2 mod4.",
+          "Containment, intersection and compositum use normalized conductors.",
+          "Embedding substitutes the appropriate target root and preserves arithmetic."
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_number_theory",
+          "module": "cyclotomic_field",
+          "symbols": [
+            "normalized_conductor",
+            "contains_cyclotomic_field",
+            "compositum_conductor",
+            "intersection_conductor",
+            "embed_cyclotomic"
+          ],
+          "required_tests": [
+            "normalized_conductor_inclusion_agrees_with_compositum_degree_and_embeddings"
+          ]
+        },
+        "negative_tests": [
+          "normalized_conductor_inclusion_agrees_with_compositum_degree_and_embeddings"
+        ],
+        "doctrine": {
+          "summary": "Q(zeta_n)=Q(zeta_(n/2)) when n=2 mod4.; Containment, intersection and compositum use normalized conductors.; Embedding substitutes the appropriate target root and preserves arithmetic..",
+          "non_role": [
+            "Field membership is not physical minimality of a campaign carrier.",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:cyclotomic_inclusion:v0.1.0\ntitle: Canonical cyclotomic field arithmetic\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: cyclotomic_inclusion\n  symbol: cyclotomic_inclusion\n  ascii_symbol: cyclotomic_inclusion\n  notation: Canonical cyclotomic field arithmetic\n  domain:\n  - Conductors1..1024 with canonical polynomial basis.\n  codomain:\n    description: Declared finite results of omega_number_theory::cyclotomic_field;\n      exact and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- Q(zeta_n)=Q(zeta_(n/2)) when n=2 mod4.\n- Containment, intersection and compositum use normalized conductors.\n- Embedding substitutes the appropriate target root and preserves arithmetic.\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_number_theory\n  module: cyclotomic_field\n  symbols:\n  - normalized_conductor\n  - contains_cyclotomic_field\n  - compositum_conductor\n  - intersection_conductor\n  - embed_cyclotomic\n  required_tests:\n  - normalized_conductor_inclusion_agrees_with_compositum_degree_and_embeddings\nnegative_tests:\n- normalized_conductor_inclusion_agrees_with_compositum_degree_and_embeddings\ndoctrine:\n  summary: Q(zeta_n)=Q(zeta_(n/2)) when n=2 mod4.; Containment, intersection and compositum\n    use normalized conductors.; Embedding substitutes the appropriate target root\n    and preserves arithmetic..\n  non_role:\n  - Field membership is not physical minimality of a campaign carrier.\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_cyclotomic_inclusion_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_cyclotomic_inclusion_v0_1_0.contract.yaml": "e276bd69fc6969a2f45ea3a3c958fac52e5ffe1079e57d7e3ab8ef482272afb6"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

@@ -1,0 +1,225 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/general/math_exact_su_n_gell_mann_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:exact_su_n_gell_mann:v0.1.0",
+    "title": "Exact Generalized Gell-Mann Lie Basis",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "exact_su_n_gell_mann",
+      "symbol": "exact_su_n_gell_mann",
+      "ascii_symbol": "exact_su_n_gell_mann",
+      "notation": "Exact Generalized Gell-Mann Lie Basis",
+      "domain": [
+        "Exact Hermitian traceless matrices of dimension 2..=8 over Q(i)",
+        "Normalized square-root factors use canonical NT Surd"
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_lie_theory::su_n; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "The family has N^2-1 independent generators with Gram matrix 2I",
+      "Coordinate reconstruction returns the declared traceless Hermitian matrix exactly",
+      "Structure constants are antisymmetric, close the bracket and satisfy Jacobi",
+      "With T_a=lambda_a/2, the fundamental Casimir is (N^2-1)/(2N) times identity; Fierz and Killing identities hold with that declared normalization"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_lie_theory",
+      "module": "su_n",
+      "symbols": [
+        "GellMannBasis",
+        "GeneratorKind",
+        "GellMannBasis::coordinates",
+        "GellMannBasis::reconstruct",
+        "GellMannBasis::verify_jacobi",
+        "GellMannBasis::fundamental_casimir",
+        "GellMannBasis::fierz_entry",
+        "GellMannBasis::killing_entry"
+      ],
+      "required_tests": [
+        "gell_mann_gram_independence_and_sparse_structure_constants_are_exact",
+        "fundamental_casimir_killing_form_and_fierz_completeness_hold_through_su_six",
+        "basis_coordinates_refuse_nontraceless_nonhermitian_and_wrong_shape_inputs"
+      ]
+    },
+    "negative_tests": [
+      "Wrong shapes, nontraceless or non-Hermitian inputs and indices outside the declared basis are refused"
+    ],
+    "doctrine": {
+      "summary": "The family has N^2-1 independent generators with Gram matrix 2I; Coordinate reconstruction returns the declared traceless Hermitian matrix exactly; Structure constants are antisymmetric, close the bracket and satisfy Jacobi; With T_a=lambda_a/2, the fundamental Casimir is (N^2-1)/(2N) times identity; Fierz and Killing identities hold with that declared normalization.",
+      "non_role": [
+        "No unbounded-N solver, approximate basis, or claim that arbitrary real coefficients live in Q(i)",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "805baf9a74dd95468a51082ca5537068278baf987615cf09944c97dd18c4a378",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "805baf9a74dd95468a51082ca5537068278baf987615cf09944c97dd18c4a378",
+      "bytes": 3390,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:exact_su_n_gell_mann:v0.1.0",
+        "title": "Exact Generalized Gell-Mann Lie Basis",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "exact_su_n_gell_mann",
+          "symbol": "exact_su_n_gell_mann",
+          "ascii_symbol": "exact_su_n_gell_mann",
+          "notation": "Exact Generalized Gell-Mann Lie Basis",
+          "domain": [
+            "Exact Hermitian traceless matrices of dimension 2..=8 over Q(i)",
+            "Normalized square-root factors use canonical NT Surd"
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_lie_theory::su_n; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "The family has N^2-1 independent generators with Gram matrix 2I",
+          "Coordinate reconstruction returns the declared traceless Hermitian matrix exactly",
+          "Structure constants are antisymmetric, close the bracket and satisfy Jacobi",
+          "With T_a=lambda_a/2, the fundamental Casimir is (N^2-1)/(2N) times identity; Fierz and Killing identities hold with that declared normalization"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_lie_theory",
+          "module": "su_n",
+          "symbols": [
+            "GellMannBasis",
+            "GeneratorKind",
+            "GellMannBasis::coordinates",
+            "GellMannBasis::reconstruct",
+            "GellMannBasis::verify_jacobi",
+            "GellMannBasis::fundamental_casimir",
+            "GellMannBasis::fierz_entry",
+            "GellMannBasis::killing_entry"
+          ],
+          "required_tests": [
+            "gell_mann_gram_independence_and_sparse_structure_constants_are_exact",
+            "fundamental_casimir_killing_form_and_fierz_completeness_hold_through_su_six",
+            "basis_coordinates_refuse_nontraceless_nonhermitian_and_wrong_shape_inputs"
+          ]
+        },
+        "negative_tests": [
+          "Wrong shapes, nontraceless or non-Hermitian inputs and indices outside the declared basis are refused"
+        ],
+        "doctrine": {
+          "summary": "The family has N^2-1 independent generators with Gram matrix 2I; Coordinate reconstruction returns the declared traceless Hermitian matrix exactly; Structure constants are antisymmetric, close the bracket and satisfy Jacobi; With T_a=lambda_a/2, the fundamental Casimir is (N^2-1)/(2N) times identity; Fierz and Killing identities hold with that declared normalization.",
+          "non_role": [
+            "No unbounded-N solver, approximate basis, or claim that arbitrary real coefficients live in Q(i)",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:exact_su_n_gell_mann:v0.1.0\ntitle: Exact Generalized Gell-Mann Lie Basis\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: exact_su_n_gell_mann\n  symbol: exact_su_n_gell_mann\n  ascii_symbol: exact_su_n_gell_mann\n  notation: Exact Generalized Gell-Mann Lie Basis\n  domain:\n  - Exact Hermitian traceless matrices of dimension 2..=8 over Q(i)\n  - Normalized square-root factors use canonical NT Surd\n  codomain:\n    description: Declared finite results of omega_lie_theory::su_n; exact and diagnostic\n      routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- The family has N^2-1 independent generators with Gram matrix 2I\n- Coordinate reconstruction returns the declared traceless Hermitian matrix exactly\n- Structure constants are antisymmetric, close the bracket and satisfy Jacobi\n- With T_a=lambda_a/2, the fundamental Casimir is (N^2-1)/(2N) times identity; Fierz\n  and Killing identities hold with that declared normalization\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_lie_theory\n  module: su_n\n  symbols:\n  - GellMannBasis\n  - GeneratorKind\n  - GellMannBasis::coordinates\n  - GellMannBasis::reconstruct\n  - GellMannBasis::verify_jacobi\n  - GellMannBasis::fundamental_casimir\n  - GellMannBasis::fierz_entry\n  - GellMannBasis::killing_entry\n  required_tests:\n  - gell_mann_gram_independence_and_sparse_structure_constants_are_exact\n  - fundamental_casimir_killing_form_and_fierz_completeness_hold_through_su_six\n  - basis_coordinates_refuse_nontraceless_nonhermitian_and_wrong_shape_inputs\nnegative_tests:\n- Wrong shapes, nontraceless or non-Hermitian inputs and indices outside the declared\n  basis are refused\ndoctrine:\n  summary: The family has N^2-1 independent generators with Gram matrix 2I; Coordinate\n    reconstruction returns the declared traceless Hermitian matrix exactly; Structure\n    constants are antisymmetric, close the bracket and satisfy Jacobi; With T_a=lambda_a/2,\n    the fundamental Casimir is (N^2-1)/(2N) times identity; Fierz and Killing identities\n    hold with that declared normalization.\n  non_role:\n  - No unbounded-N solver, approximate basis, or claim that arbitrary real coefficients\n    live in Q(i)\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_exact_su_n_gell_mann_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_exact_su_n_gell_mann_v0_1_0.contract.yaml": "805baf9a74dd95468a51082ca5537068278baf987615cf09944c97dd18c4a378"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

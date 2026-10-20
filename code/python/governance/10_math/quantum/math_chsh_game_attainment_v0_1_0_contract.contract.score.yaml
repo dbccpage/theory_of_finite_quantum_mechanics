@@ -1,0 +1,207 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/quantum/math_chsh_game_attainment_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:chsh_game_attainment:v0.1.0",
+    "title": "Exact CHSH game attainment and interval enclosure",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "chsh_game_attainment",
+      "symbol": "chsh_game_attainment",
+      "ascii_symbol": "chsh_game_attainment",
+      "notation": "Exact CHSH game attainment and interval enclosure",
+      "domain": [
+        "Canonical conductor8 two-qubit Phi+ strategy; arbitrary-precision rational endpoints"
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_quantum_physics::tensor_commuting_correlation_frontier; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "The Born expectation attains the independently replayed operator bound",
+      "Winning probability is1/2+sqrt2/4",
+      "Enclosure endpoints compare against the actual algebraic strategy"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_quantum_physics",
+      "module": "tensor_commuting_correlation_frontier",
+      "symbols": [
+        "ChshGameCertificate",
+        "chsh_game_certificate",
+        "certify_chsh_interval"
+      ],
+      "required_tests": [
+        "measurement_exact_laws::chsh_square_sos_attainment_and_moment_replay_reject_corruption"
+      ]
+    },
+    "negative_tests": [
+      "measurement_exact_laws::chsh_square_sos_attainment_and_moment_replay_reject_corruption"
+    ],
+    "doctrine": {
+      "summary": "The Born expectation attains the independently replayed operator bound; Winning probability is1/2+sqrt2/4; Enclosure endpoints compare against the actual algebraic strategy.",
+      "non_role": [
+        "Does not prove infinite correlation hierarchy equality or decidability",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "bf9edee3520b05c405a5f4904d52edb7e9c16c197f236032867bcd6239610b3a",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "bf9edee3520b05c405a5f4904d52edb7e9c16c197f236032867bcd6239610b3a",
+      "bytes": 2706,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:chsh_game_attainment:v0.1.0",
+        "title": "Exact CHSH game attainment and interval enclosure",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "chsh_game_attainment",
+          "symbol": "chsh_game_attainment",
+          "ascii_symbol": "chsh_game_attainment",
+          "notation": "Exact CHSH game attainment and interval enclosure",
+          "domain": [
+            "Canonical conductor8 two-qubit Phi+ strategy; arbitrary-precision rational endpoints"
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_quantum_physics::tensor_commuting_correlation_frontier; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "The Born expectation attains the independently replayed operator bound",
+          "Winning probability is1/2+sqrt2/4",
+          "Enclosure endpoints compare against the actual algebraic strategy"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_quantum_physics",
+          "module": "tensor_commuting_correlation_frontier",
+          "symbols": [
+            "ChshGameCertificate",
+            "chsh_game_certificate",
+            "certify_chsh_interval"
+          ],
+          "required_tests": [
+            "measurement_exact_laws::chsh_square_sos_attainment_and_moment_replay_reject_corruption"
+          ]
+        },
+        "negative_tests": [
+          "measurement_exact_laws::chsh_square_sos_attainment_and_moment_replay_reject_corruption"
+        ],
+        "doctrine": {
+          "summary": "The Born expectation attains the independently replayed operator bound; Winning probability is1/2+sqrt2/4; Enclosure endpoints compare against the actual algebraic strategy.",
+          "non_role": [
+            "Does not prove infinite correlation hierarchy equality or decidability",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:chsh_game_attainment:v0.1.0\ntitle: Exact CHSH game attainment and interval enclosure\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: chsh_game_attainment\n  symbol: chsh_game_attainment\n  ascii_symbol: chsh_game_attainment\n  notation: Exact CHSH game attainment and interval enclosure\n  domain:\n  - Canonical conductor8 two-qubit Phi+ strategy; arbitrary-precision rational endpoints\n  codomain:\n    description: Declared finite results of omega_quantum_physics::tensor_commuting_correlation_frontier;\n      exact and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- The Born expectation attains the independently replayed operator bound\n- Winning probability is1/2+sqrt2/4\n- Enclosure endpoints compare against the actual algebraic strategy\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_quantum_physics\n  module: tensor_commuting_correlation_frontier\n  symbols:\n  - ChshGameCertificate\n  - chsh_game_certificate\n  - certify_chsh_interval\n  required_tests:\n  - measurement_exact_laws::chsh_square_sos_attainment_and_moment_replay_reject_corruption\nnegative_tests:\n- measurement_exact_laws::chsh_square_sos_attainment_and_moment_replay_reject_corruption\ndoctrine:\n  summary: The Born expectation attains the independently replayed operator bound;\n    Winning probability is1/2+sqrt2/4; Enclosure endpoints compare against the actual\n    algebraic strategy.\n  non_role:\n  - Does not prove infinite correlation hierarchy equality or decidability\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/math_chsh_game_attainment_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/quantum/math_chsh_game_attainment_v0_1_0.contract.yaml": "bf9edee3520b05c405a5f4904d52edb7e9c16c197f236032867bcd6239610b3a"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

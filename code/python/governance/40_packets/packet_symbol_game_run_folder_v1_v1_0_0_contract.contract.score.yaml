@@ -1,0 +1,189 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/40_packets/packet_symbol_game_run_folder_v1_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v2",
+    "contract_id": "urn:omega:packet:symbol_game:run_folder_v1:v1.0.0",
+    "title": "Run Folder v1",
+    "kind": "packet_contract",
+    "layer": "40_packets",
+    "role": "PacketSpecification",
+    "status": "active",
+    "council_owner": "L3_logos_techne",
+    "descriptor": {
+      "authority_effect": "None",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": true,
+      "clean_architecture_layer": "infrastructure",
+      "refusals": {
+        "may_emit": [
+          "RUN_FOLDER_EXISTS",
+          "MANIFEST_MISSING",
+          "RECEIPT_MISSING",
+          "DIGEST_MISMATCH",
+          "UNBOUND_FILE",
+          "CHAIN_TAMPERED"
+        ]
+      }
+    },
+    "doctrine": {
+      "summary": "RunFolderV1 encapsulates an immutable, content-addressed execution directory under _ic/darpa/symbol_game/runs/ sealed with a receipt binding all files and stream heads.",
+      "invariants": [
+        "Every execution produces exactly one sealed folder whose receipt.json binds all SHA-256 digests.",
+        "No file within a sealed run folder is modified after atomic rename.",
+        "A crashed run is sealed as ABORTED and never deleted.",
+        "Scrubbed plaintext is kept for packets.jsonl while secrets are redacted."
+      ],
+      "non_roles": [
+        "authority_source",
+        "truth_oracle"
+      ],
+      "required_negative_capabilities": [
+        "no_self_certification",
+        "no_implicit_authority_upgrade"
+      ]
+    },
+    "structure": {
+      "rust_crate": "omega_replay",
+      "rust_module": "run_folder",
+      "rust_type": "RunReceiptV1",
+      "form": "struct",
+      "serde": {
+        "deny_unknown_fields": true
+      },
+      "fields": [
+        {
+          "name": "schema_version"
+        },
+        {
+          "name": "run_id"
+        },
+        {
+          "name": "status"
+        },
+        {
+          "name": "reason"
+        },
+        {
+          "name": "files"
+        },
+        {
+          "name": "chain_heads"
+        },
+        {
+          "name": "sealed_at_utc"
+        },
+        {
+          "name": "authority_effect"
+        }
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "90a4155b630c895937945d79ad647a822facd9abf40c6343c6222eee1f47b81f",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "90a4155b630c895937945d79ad647a822facd9abf40c6343c6222eee1f47b81f",
+      "bytes": 1587,
+      "record": {
+        "schema_version": "omega.contract.v2",
+        "contract_id": "urn:omega:packet:symbol_game:run_folder_v1:v1.0.0",
+        "title": "Run Folder v1",
+        "kind": "packet_contract",
+        "layer": "40_packets",
+        "role": "PacketSpecification",
+        "status": "active",
+        "council_owner": "L3_logos_techne",
+        "descriptor": {
+          "authority_effect": "None",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": true,
+          "clean_architecture_layer": "infrastructure",
+          "refusals": {
+            "may_emit": [
+              "RUN_FOLDER_EXISTS",
+              "MANIFEST_MISSING",
+              "RECEIPT_MISSING",
+              "DIGEST_MISMATCH",
+              "UNBOUND_FILE",
+              "CHAIN_TAMPERED"
+            ]
+          }
+        },
+        "doctrine": {
+          "summary": "RunFolderV1 encapsulates an immutable, content-addressed execution directory under _ic/darpa/symbol_game/runs/ sealed with a receipt binding all files and stream heads.",
+          "invariants": [
+            "Every execution produces exactly one sealed folder whose receipt.json binds all SHA-256 digests.",
+            "No file within a sealed run folder is modified after atomic rename.",
+            "A crashed run is sealed as ABORTED and never deleted.",
+            "Scrubbed plaintext is kept for packets.jsonl while secrets are redacted."
+          ],
+          "non_roles": [
+            "authority_source",
+            "truth_oracle"
+          ],
+          "required_negative_capabilities": [
+            "no_self_certification",
+            "no_implicit_authority_upgrade"
+          ]
+        },
+        "structure": {
+          "rust_crate": "omega_replay",
+          "rust_module": "run_folder",
+          "rust_type": "RunReceiptV1",
+          "form": "struct",
+          "serde": {
+            "deny_unknown_fields": true
+          },
+          "fields": [
+            {
+              "name": "schema_version"
+            },
+            {
+              "name": "run_id"
+            },
+            {
+              "name": "status"
+            },
+            {
+              "name": "reason"
+            },
+            {
+              "name": "files"
+            },
+            {
+              "name": "chain_heads"
+            },
+            {
+              "name": "sealed_at_utc"
+            },
+            {
+              "name": "authority_effect"
+            }
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v2\ncontract_id: urn:omega:packet:symbol_game:run_folder_v1:v1.0.0\ntitle: Run Folder v1\nkind: packet_contract\nlayer: 40_packets\nrole: PacketSpecification\nstatus: active\ncouncil_owner: L3_logos_techne\ndescriptor:\n  authority_effect: None\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: true\n  clean_architecture_layer: infrastructure\n  refusals:\n    may_emit:\n    - RUN_FOLDER_EXISTS\n    - MANIFEST_MISSING\n    - RECEIPT_MISSING\n    - DIGEST_MISMATCH\n    - UNBOUND_FILE\n    - CHAIN_TAMPERED\ndoctrine:\n  summary: RunFolderV1 encapsulates an immutable, content-addressed execution directory\n    under _ic/darpa/symbol_game/runs/ sealed with a receipt binding all files and\n    stream heads.\n  invariants:\n  - Every execution produces exactly one sealed folder whose receipt.json binds all\n    SHA-256 digests.\n  - No file within a sealed run folder is modified after atomic rename.\n  - A crashed run is sealed as ABORTED and never deleted.\n  - Scrubbed plaintext is kept for packets.jsonl while secrets are redacted.\n  non_roles:\n  - authority_source\n  - truth_oracle\n  required_negative_capabilities:\n  - no_self_certification\n  - no_implicit_authority_upgrade\nstructure:\n  rust_crate: omega_replay\n  rust_module: run_folder\n  rust_type: RunReceiptV1\n  form: struct\n  serde:\n    deny_unknown_fields: true\n  fields:\n  - name: schema_version\n  - name: run_id\n  - name: status\n  - name: reason\n  - name: files\n  - name: chain_heads\n  - name: sealed_at_utc\n  - name: authority_effect\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/40_packets/packet_symbol_game_run_folder_v1_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/40_packets/packet_symbol_game_run_folder_v1_v1_0_0.contract.yaml": "90a4155b630c895937945d79ad647a822facd9abf40c6343c6222eee1f47b81f"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

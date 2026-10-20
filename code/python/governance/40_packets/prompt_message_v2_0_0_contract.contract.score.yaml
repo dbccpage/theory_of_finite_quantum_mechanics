@@ -1,0 +1,159 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/40_packets/prompt_message_v2_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v2",
+    "contract_id": "urn:omega:prompt:message:v2.0.0",
+    "title": "Dialectic Turn Message",
+    "kind": "prompt_contract",
+    "layer": "40_packets",
+    "role": "PromptSpecification",
+    "status": "active",
+    "council_owner": "L3_nous_glossa",
+    "descriptor": {
+      "authority_effect": "None",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "clean_architecture_layer": "domain",
+      "dependencies": {
+        "contracts": [],
+        "lean4_theorems": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": [
+          "REFUSAL_INVALID_ARGUMENTS",
+          "REFUSAL_GATE_FAILED",
+          "REFUSAL_INVARIANT_BREACH"
+        ]
+      }
+    },
+    "doctrine": {
+      "summary": "Seat turn request and reply envelope capturing prompt text, cognitive operators, and machine fields.",
+      "invariants": [
+        "Prompt specification must maintain complete provenance of input clauses.",
+        "AuthorityEffect is strictly bounded at None."
+      ],
+      "non_roles": [
+        "authority_source",
+        "promotion_granter",
+        "implicit_coercion"
+      ],
+      "required_negative_capabilities": [
+        "no_self_certification",
+        "no_implicit_authority_upgrade",
+        "no_undeclared_state_transition"
+      ]
+    },
+    "specification": {
+      "algebraic_structure": {
+        "carrier_type": "MessageCarrier",
+        "operations": []
+      },
+      "ports": {
+        "input_packet": "urn:omega:packet:work_packet:v1.0.0",
+        "output_packet": "urn:omega:packet:swarm_run_receipt:v1.0.0",
+        "error_type": "Refusal"
+      },
+      "verification": {
+        "fitness_test": null,
+        "lean4_file": null
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "a146317bcf2fe290ee79e6d09f795b0c38b7a7dc852ed1ea80d4de212be5949d",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "a146317bcf2fe290ee79e6d09f795b0c38b7a7dc852ed1ea80d4de212be5949d",
+      "bytes": 1416,
+      "record": {
+        "schema_version": "omega.contract.v2",
+        "contract_id": "urn:omega:prompt:message:v2.0.0",
+        "title": "Dialectic Turn Message",
+        "kind": "prompt_contract",
+        "layer": "40_packets",
+        "role": "PromptSpecification",
+        "status": "active",
+        "council_owner": "L3_nous_glossa",
+        "descriptor": {
+          "authority_effect": "None",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "clean_architecture_layer": "domain",
+          "dependencies": {
+            "contracts": [],
+            "lean4_theorems": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": [
+              "REFUSAL_INVALID_ARGUMENTS",
+              "REFUSAL_GATE_FAILED",
+              "REFUSAL_INVARIANT_BREACH"
+            ]
+          }
+        },
+        "doctrine": {
+          "summary": "Seat turn request and reply envelope capturing prompt text, cognitive operators, and machine fields.",
+          "invariants": [
+            "Prompt specification must maintain complete provenance of input clauses.",
+            "AuthorityEffect is strictly bounded at None."
+          ],
+          "non_roles": [
+            "authority_source",
+            "promotion_granter",
+            "implicit_coercion"
+          ],
+          "required_negative_capabilities": [
+            "no_self_certification",
+            "no_implicit_authority_upgrade",
+            "no_undeclared_state_transition"
+          ]
+        },
+        "specification": {
+          "algebraic_structure": {
+            "carrier_type": "MessageCarrier",
+            "operations": []
+          },
+          "ports": {
+            "input_packet": "urn:omega:packet:work_packet:v1.0.0",
+            "output_packet": "urn:omega:packet:swarm_run_receipt:v1.0.0",
+            "error_type": "Refusal"
+          },
+          "verification": {
+            "fitness_test": null,
+            "lean4_file": null
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v2\ncontract_id: urn:omega:prompt:message:v2.0.0\ntitle: Dialectic Turn Message\nkind: prompt_contract\nlayer: 40_packets\nrole: PromptSpecification\nstatus: active\ncouncil_owner: L3_nous_glossa\ndescriptor:\n  authority_effect: None\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  clean_architecture_layer: domain\n  dependencies:\n    contracts: []\n    lean4_theorems: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit:\n    - REFUSAL_INVALID_ARGUMENTS\n    - REFUSAL_GATE_FAILED\n    - REFUSAL_INVARIANT_BREACH\ndoctrine:\n  summary: Seat turn request and reply envelope capturing prompt text, cognitive operators,\n    and machine fields.\n  invariants:\n  - Prompt specification must maintain complete provenance of input clauses.\n  - AuthorityEffect is strictly bounded at None.\n  non_roles:\n  - authority_source\n  - promotion_granter\n  - implicit_coercion\n  required_negative_capabilities:\n  - no_self_certification\n  - no_implicit_authority_upgrade\n  - no_undeclared_state_transition\nspecification:\n  algebraic_structure:\n    carrier_type: MessageCarrier\n    operations: []\n  ports:\n    input_packet: urn:omega:packet:work_packet:v1.0.0\n    output_packet: urn:omega:packet:swarm_run_receipt:v1.0.0\n    error_type: Refusal\n  verification:\n    fitness_test: null\n    lean4_file: null\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/40_packets/prompt_message_v2_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/40_packets/prompt_message_v2_0_0.contract.yaml": "a146317bcf2fe290ee79e6d09f795b0c38b7a7dc852ed1ea80d4de212be5949d"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

@@ -1,0 +1,299 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/50_os/oeos_cas_store_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:oeos:cas_store:v1.0.0",
+    "title": "Immutable Content-Addressed Store",
+    "kind": "host_contract",
+    "status": "proposed",
+    "layer": "09_host",
+    "role": "ContentAddressableStorage",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "RequirementsOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [
+          "urn:omega:oeos:capability_guard:v1.0.0",
+          "urn:omega:oeos:filesystem_adapter:v1.0.0"
+        ],
+        "proof_obligations": [
+          {
+            "id": "CAS-INV-001",
+            "statement": "Stored objects are addressed only by SHA-256 of their exact stored bytes within one declared CAS root.",
+            "verification_status": "open"
+          },
+          {
+            "id": "CAS-INV-002",
+            "statement": "The immutable CAS interface exposes put, get, has, and verify operations but no deletion operation.",
+            "verification_status": "open"
+          },
+          {
+            "id": "CAS-INV-003",
+            "statement": "Reads independently recompute byte length and raw digest before returning an object.",
+            "verification_status": "open"
+          },
+          {
+            "id": "CAS-INV-004",
+            "statement": "Refusal leaves the admitted CAS tree census byte-for-byte unchanged for the verified transaction profile.",
+            "verification_status": "open"
+          }
+        ]
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": [
+          "CAS_COLLISION_REFUSED",
+          "CAS_CORRUPTION_REFUSED",
+          "CAS_OBJECT_LIMIT_REFUSED",
+          "CAS_REDIRECT_REFUSED"
+        ]
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "abstract": false,
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0",
+        "urn:omega:constitution:base_host_contract:v1.0.0"
+      ]
+    },
+    "requirements": {
+      "inputs": [
+        {
+          "name": "exact_object_bytes",
+          "type": "urn:omega:oeos:type:exact_bytes:v1.0.0",
+          "required": true
+        }
+      ],
+      "outputs": [
+        {
+          "name": "raw_sha256_artifact_ref",
+          "type": "urn:omega:oeos:type:artifact_ref:v1.0.0",
+          "required": true
+        }
+      ],
+      "typed_refusals": [
+        "CAS_COLLISION_REFUSED",
+        "CAS_CORRUPTION_REFUSED",
+        "CAS_OBJECT_LIMIT_REFUSED",
+        "CAS_REDIRECT_REFUSED"
+      ],
+      "platform_requirements": [
+        {
+          "profile": "windows_filesystem_cas",
+          "requirements": [
+            "exclusive_creation",
+            "static_reparse_point_refusal",
+            "verified_short_read_write_loops"
+          ],
+          "verification_status": "requirements_only"
+        },
+        {
+          "profile": "posix_filesystem_cas",
+          "requirements": [
+            "exclusive_creation",
+            "static_symlink_refusal",
+            "verified_short_read_write_loops"
+          ],
+          "verification_status": "requirements_only"
+        }
+      ],
+      "evidence_ceiling": "RequirementsOnly"
+    },
+    "doctrine": {
+      "summary": "Declares a write-once exact-byte store scoped to one configured CAS root.",
+      "non_role": [
+        "payload_execution",
+        "artifact_semantic_interpretation",
+        "evidence_promotion"
+      ],
+      "nonclaims": [
+        "does_not_create_mathematical_facts_or_witnesses",
+        "does_not_issue_action_licenses",
+        "does_not_authorize_engine_state_transitions",
+        "deduplication_is_not_claimed_beyond_one_declared_cas_root",
+        "static_redirect_checks_do_not_establish_general_toctou_safety"
+      ],
+      "invariants": [
+        "object_key_is_sha256_of_exact_stored_bytes",
+        "immutable_interface_has_no_delete_operation"
+      ],
+      "allowed_operations": [
+        "put_exact_bytes_exclusively",
+        "get_and_verify_exact_bytes",
+        "test_object_presence"
+      ],
+      "forbidden_operations": [
+        "delete_object",
+        "mutate_object_in_place",
+        "execute_stored_payload"
+      ]
+    }
+  },
+  "current_contract": "7c72a51f81bce6fbe951bae83ef572fffe39235fa7dc7ed8ddc5b8d029437324",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "7c72a51f81bce6fbe951bae83ef572fffe39235fa7dc7ed8ddc5b8d029437324",
+      "bytes": 3184,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:oeos:cas_store:v1.0.0",
+        "title": "Immutable Content-Addressed Store",
+        "kind": "host_contract",
+        "status": "proposed",
+        "layer": "09_host",
+        "role": "ContentAddressableStorage",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "RequirementsOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [
+              "urn:omega:oeos:capability_guard:v1.0.0",
+              "urn:omega:oeos:filesystem_adapter:v1.0.0"
+            ],
+            "proof_obligations": [
+              {
+                "id": "CAS-INV-001",
+                "statement": "Stored objects are addressed only by SHA-256 of their exact stored bytes within one declared CAS root.",
+                "verification_status": "open"
+              },
+              {
+                "id": "CAS-INV-002",
+                "statement": "The immutable CAS interface exposes put, get, has, and verify operations but no deletion operation.",
+                "verification_status": "open"
+              },
+              {
+                "id": "CAS-INV-003",
+                "statement": "Reads independently recompute byte length and raw digest before returning an object.",
+                "verification_status": "open"
+              },
+              {
+                "id": "CAS-INV-004",
+                "statement": "Refusal leaves the admitted CAS tree census byte-for-byte unchanged for the verified transaction profile.",
+                "verification_status": "open"
+              }
+            ]
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": [
+              "CAS_COLLISION_REFUSED",
+              "CAS_CORRUPTION_REFUSED",
+              "CAS_OBJECT_LIMIT_REFUSED",
+              "CAS_REDIRECT_REFUSED"
+            ]
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "abstract": false,
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0",
+            "urn:omega:constitution:base_host_contract:v1.0.0"
+          ]
+        },
+        "requirements": {
+          "inputs": [
+            {
+              "name": "exact_object_bytes",
+              "type": "urn:omega:oeos:type:exact_bytes:v1.0.0",
+              "required": true
+            }
+          ],
+          "outputs": [
+            {
+              "name": "raw_sha256_artifact_ref",
+              "type": "urn:omega:oeos:type:artifact_ref:v1.0.0",
+              "required": true
+            }
+          ],
+          "typed_refusals": [
+            "CAS_COLLISION_REFUSED",
+            "CAS_CORRUPTION_REFUSED",
+            "CAS_OBJECT_LIMIT_REFUSED",
+            "CAS_REDIRECT_REFUSED"
+          ],
+          "platform_requirements": [
+            {
+              "profile": "windows_filesystem_cas",
+              "requirements": [
+                "exclusive_creation",
+                "static_reparse_point_refusal",
+                "verified_short_read_write_loops"
+              ],
+              "verification_status": "requirements_only"
+            },
+            {
+              "profile": "posix_filesystem_cas",
+              "requirements": [
+                "exclusive_creation",
+                "static_symlink_refusal",
+                "verified_short_read_write_loops"
+              ],
+              "verification_status": "requirements_only"
+            }
+          ],
+          "evidence_ceiling": "RequirementsOnly"
+        },
+        "doctrine": {
+          "summary": "Declares a write-once exact-byte store scoped to one configured CAS root.",
+          "non_role": [
+            "payload_execution",
+            "artifact_semantic_interpretation",
+            "evidence_promotion"
+          ],
+          "nonclaims": [
+            "does_not_create_mathematical_facts_or_witnesses",
+            "does_not_issue_action_licenses",
+            "does_not_authorize_engine_state_transitions",
+            "deduplication_is_not_claimed_beyond_one_declared_cas_root",
+            "static_redirect_checks_do_not_establish_general_toctou_safety"
+          ],
+          "invariants": [
+            "object_key_is_sha256_of_exact_stored_bytes",
+            "immutable_interface_has_no_delete_operation"
+          ],
+          "allowed_operations": [
+            "put_exact_bytes_exclusively",
+            "get_and_verify_exact_bytes",
+            "test_object_presence"
+          ],
+          "forbidden_operations": [
+            "delete_object",
+            "mutate_object_in_place",
+            "execute_stored_payload"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:oeos:cas_store:v1.0.0\ntitle: Immutable Content-Addressed Store\nkind: host_contract\nstatus: proposed\nlayer: 09_host\nrole: ContentAddressableStorage\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: RequirementsOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts:\n    - urn:omega:oeos:capability_guard:v1.0.0\n    - urn:omega:oeos:filesystem_adapter:v1.0.0\n    proof_obligations:\n    - id: CAS-INV-001\n      statement: Stored objects are addressed only by SHA-256 of their exact stored\n        bytes within one declared CAS root.\n      verification_status: open\n    - id: CAS-INV-002\n      statement: The immutable CAS interface exposes put, get, has, and verify operations\n        but no deletion operation.\n      verification_status: open\n    - id: CAS-INV-003\n      statement: Reads independently recompute byte length and raw digest before returning\n        an object.\n      verification_status: open\n    - id: CAS-INV-004\n      statement: Refusal leaves the admitted CAS tree census byte-for-byte unchanged\n        for the verified transaction profile.\n      verification_status: open\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit:\n    - CAS_COLLISION_REFUSED\n    - CAS_CORRUPTION_REFUSED\n    - CAS_OBJECT_LIMIT_REFUSED\n    - CAS_REDIRECT_REFUSED\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  abstract: false\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n  - urn:omega:constitution:base_host_contract:v1.0.0\nrequirements:\n  inputs:\n  - name: exact_object_bytes\n    type: urn:omega:oeos:type:exact_bytes:v1.0.0\n    required: true\n  outputs:\n  - name: raw_sha256_artifact_ref\n    type: urn:omega:oeos:type:artifact_ref:v1.0.0\n    required: true\n  typed_refusals:\n  - CAS_COLLISION_REFUSED\n  - CAS_CORRUPTION_REFUSED\n  - CAS_OBJECT_LIMIT_REFUSED\n  - CAS_REDIRECT_REFUSED\n  platform_requirements:\n  - profile: windows_filesystem_cas\n    requirements:\n    - exclusive_creation\n    - static_reparse_point_refusal\n    - verified_short_read_write_loops\n    verification_status: requirements_only\n  - profile: posix_filesystem_cas\n    requirements:\n    - exclusive_creation\n    - static_symlink_refusal\n    - verified_short_read_write_loops\n    verification_status: requirements_only\n  evidence_ceiling: RequirementsOnly\ndoctrine:\n  summary: Declares a write-once exact-byte store scoped to one configured CAS root.\n  non_role:\n  - payload_execution\n  - artifact_semantic_interpretation\n  - evidence_promotion\n  nonclaims:\n  - does_not_create_mathematical_facts_or_witnesses\n  - does_not_issue_action_licenses\n  - does_not_authorize_engine_state_transitions\n  - deduplication_is_not_claimed_beyond_one_declared_cas_root\n  - static_redirect_checks_do_not_establish_general_toctou_safety\n  invariants:\n  - object_key_is_sha256_of_exact_stored_bytes\n  - immutable_interface_has_no_delete_operation\n  allowed_operations:\n  - put_exact_bytes_exclusively\n  - get_and_verify_exact_bytes\n  - test_object_presence\n  forbidden_operations:\n  - delete_object\n  - mutate_object_in_place\n  - execute_stored_payload\n",
+      "original_paths": [
+        "code/python/governance/50_os/oeos_cas_store_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/50_os/oeos_cas_store_v1_0_0.contract.yaml": "7c72a51f81bce6fbe951bae83ef572fffe39235fa7dc7ed8ddc5b8d029437324"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

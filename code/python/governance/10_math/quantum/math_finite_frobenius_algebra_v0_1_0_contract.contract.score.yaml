@@ -1,0 +1,213 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/quantum/math_finite_frobenius_algebra_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:finite_frobenius_algebra:v0.1.0",
+    "title": "Exact Finite Frobenius Algebras",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "finite_frobenius_algebra",
+      "symbol": "finite_frobenius_algebra",
+      "ascii_symbol": "finite_frobenius_algebra",
+      "notation": "Exact Finite Frobenius Algebras",
+      "domain": [
+        "Exact multiplication, unit, comultiplication and counit on one finite Gaussian-rational carrier.",
+        "A nondegenerate trace form when constructing the dual-basis coproduct."
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_quantum_physics::frobenius_algebra; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "Associativity, coassociativity, both unit and counit laws, and both Frobenius equations are replayed.",
+      "Copying has special scalar one and is commutative and dagger.",
+      "M2 is noncommutative with special scalar two; the cyclic group algebra on three elements has special scalar three.",
+      "Inverting the actual trace Gram matrix yields the exact dual-basis coproduct."
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_quantum_physics",
+      "module": "frobenius_algebra",
+      "symbols": [
+        "FrobeniusAlgebra",
+        "FrobeniusDefect"
+      ],
+      "required_tests": [
+        "copy_structure_is_special_commutative_dagger_frobenius",
+        "matrix_and_cyclic_group_algebras_have_computed_special_scalars"
+      ]
+    },
+    "negative_tests": [
+      "Dimension mismatch, degenerate trace form, storage excess and a nonzero structural defect are refused."
+    ],
+    "doctrine": {
+      "summary": "Associativity, coassociativity, both unit and counit laws, and both Frobenius equations are replayed.; Copying has special scalar one and is commutative and dagger.; M2 is noncommutative with special scalar two; the cyclic group algebra on three elements has special scalar three.; Inverting the actual trace Gram matrix yields the exact dual-basis coproduct..",
+      "non_role": [
+        "No PROVED, GlobalGreen, customer claim, or operational authority.",
+        "No extension beyond the declared finite carrier and exact computation budgets.",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "d837d17928be34449518525cee6ffd21cd38ae91b1977d0b95e58f2f774e4d1d",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "d837d17928be34449518525cee6ffd21cd38ae91b1977d0b95e58f2f774e4d1d",
+      "bytes": 3220,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:finite_frobenius_algebra:v0.1.0",
+        "title": "Exact Finite Frobenius Algebras",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "finite_frobenius_algebra",
+          "symbol": "finite_frobenius_algebra",
+          "ascii_symbol": "finite_frobenius_algebra",
+          "notation": "Exact Finite Frobenius Algebras",
+          "domain": [
+            "Exact multiplication, unit, comultiplication and counit on one finite Gaussian-rational carrier.",
+            "A nondegenerate trace form when constructing the dual-basis coproduct."
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_quantum_physics::frobenius_algebra; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "Associativity, coassociativity, both unit and counit laws, and both Frobenius equations are replayed.",
+          "Copying has special scalar one and is commutative and dagger.",
+          "M2 is noncommutative with special scalar two; the cyclic group algebra on three elements has special scalar three.",
+          "Inverting the actual trace Gram matrix yields the exact dual-basis coproduct."
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_quantum_physics",
+          "module": "frobenius_algebra",
+          "symbols": [
+            "FrobeniusAlgebra",
+            "FrobeniusDefect"
+          ],
+          "required_tests": [
+            "copy_structure_is_special_commutative_dagger_frobenius",
+            "matrix_and_cyclic_group_algebras_have_computed_special_scalars"
+          ]
+        },
+        "negative_tests": [
+          "Dimension mismatch, degenerate trace form, storage excess and a nonzero structural defect are refused."
+        ],
+        "doctrine": {
+          "summary": "Associativity, coassociativity, both unit and counit laws, and both Frobenius equations are replayed.; Copying has special scalar one and is commutative and dagger.; M2 is noncommutative with special scalar two; the cyclic group algebra on three elements has special scalar three.; Inverting the actual trace Gram matrix yields the exact dual-basis coproduct..",
+          "non_role": [
+            "No PROVED, GlobalGreen, customer claim, or operational authority.",
+            "No extension beyond the declared finite carrier and exact computation budgets.",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:finite_frobenius_algebra:v0.1.0\ntitle: Exact Finite Frobenius Algebras\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: finite_frobenius_algebra\n  symbol: finite_frobenius_algebra\n  ascii_symbol: finite_frobenius_algebra\n  notation: Exact Finite Frobenius Algebras\n  domain:\n  - Exact multiplication, unit, comultiplication and counit on one finite Gaussian-rational\n    carrier.\n  - A nondegenerate trace form when constructing the dual-basis coproduct.\n  codomain:\n    description: Declared finite results of omega_quantum_physics::frobenius_algebra;\n      exact and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- Associativity, coassociativity, both unit and counit laws, and both Frobenius equations\n  are replayed.\n- Copying has special scalar one and is commutative and dagger.\n- M2 is noncommutative with special scalar two; the cyclic group algebra on three\n  elements has special scalar three.\n- Inverting the actual trace Gram matrix yields the exact dual-basis coproduct.\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_quantum_physics\n  module: frobenius_algebra\n  symbols:\n  - FrobeniusAlgebra\n  - FrobeniusDefect\n  required_tests:\n  - copy_structure_is_special_commutative_dagger_frobenius\n  - matrix_and_cyclic_group_algebras_have_computed_special_scalars\nnegative_tests:\n- Dimension mismatch, degenerate trace form, storage excess and a nonzero structural\n  defect are refused.\ndoctrine:\n  summary: Associativity, coassociativity, both unit and counit laws, and both Frobenius\n    equations are replayed.; Copying has special scalar one and is commutative and\n    dagger.; M2 is noncommutative with special scalar two; the cyclic group algebra\n    on three elements has special scalar three.; Inverting the actual trace Gram matrix\n    yields the exact dual-basis coproduct..\n  non_role:\n  - No PROVED, GlobalGreen, customer claim, or operational authority.\n  - No extension beyond the declared finite carrier and exact computation budgets.\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/math_finite_frobenius_algebra_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/quantum/math_finite_frobenius_algebra_v0_1_0.contract.yaml": "d837d17928be34449518525cee6ffd21cd38ae91b1977d0b95e58f2f774e4d1d"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

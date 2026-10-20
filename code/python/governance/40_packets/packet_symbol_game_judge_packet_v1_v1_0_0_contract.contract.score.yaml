@@ -1,0 +1,189 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/40_packets/packet_symbol_game_judge_packet_v1_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v2",
+    "contract_id": "urn:omega:packet:symbol_game:judge_packet_v1:v1.0.0",
+    "title": "Judge Packet v1",
+    "kind": "packet_contract",
+    "layer": "40_packets",
+    "role": "PacketSpecification",
+    "status": "active",
+    "council_owner": "L3_logos_techne",
+    "descriptor": {
+      "authority_effect": "None",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": true,
+      "clean_architecture_layer": "infrastructure",
+      "refusals": {
+        "may_emit": [
+          "INVALID_JUDGE_PACKET",
+          "COMMITMENT_MISMATCH",
+          "FREEZE_NOT_FOUND",
+          "CHECKER_DEFECT_PAUSE"
+        ]
+      }
+    },
+    "doctrine": {
+      "summary": "JudgePacketV1 contains the hidden test suite, dual verification oracles, and commitment timestamp. Evaluated against candidate solutions only after solver freeze.",
+      "invariants": [
+        "Hidden test cases remain sealed until after freeze commitment is recorded.",
+        "Scoring requires dual independent checkers agreeing on verdicts.",
+        "Checker exceptions or disagreements trigger CheckerDefectPause and are never scored as Wrong."
+      ],
+      "non_roles": [
+        "authority_source",
+        "truth_oracle"
+      ],
+      "required_negative_capabilities": [
+        "no_self_certification",
+        "no_implicit_authority_upgrade"
+      ]
+    },
+    "structure": {
+      "rust_crate": "omega_symbol_game",
+      "rust_module": "challenge",
+      "rust_type": "JudgePacketV1",
+      "form": "struct",
+      "serde": {
+        "deny_unknown_fields": true
+      },
+      "fields": [
+        {
+          "name": "challenge_id"
+        },
+        {
+          "name": "commitment_hash"
+        },
+        {
+          "name": "committed_at_utc"
+        },
+        {
+          "name": "operator"
+        },
+        {
+          "name": "version"
+        },
+        {
+          "name": "hidden_cases"
+        },
+        {
+          "name": "checker_a_id"
+        },
+        {
+          "name": "checker_b_id"
+        },
+        {
+          "name": "authority_effect"
+        }
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "8e8149a69e65e059dad893e00857785975f5c4065143bd4fb87c597cdef076fa",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "8e8149a69e65e059dad893e00857785975f5c4065143bd4fb87c597cdef076fa",
+      "bytes": 1544,
+      "record": {
+        "schema_version": "omega.contract.v2",
+        "contract_id": "urn:omega:packet:symbol_game:judge_packet_v1:v1.0.0",
+        "title": "Judge Packet v1",
+        "kind": "packet_contract",
+        "layer": "40_packets",
+        "role": "PacketSpecification",
+        "status": "active",
+        "council_owner": "L3_logos_techne",
+        "descriptor": {
+          "authority_effect": "None",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": true,
+          "clean_architecture_layer": "infrastructure",
+          "refusals": {
+            "may_emit": [
+              "INVALID_JUDGE_PACKET",
+              "COMMITMENT_MISMATCH",
+              "FREEZE_NOT_FOUND",
+              "CHECKER_DEFECT_PAUSE"
+            ]
+          }
+        },
+        "doctrine": {
+          "summary": "JudgePacketV1 contains the hidden test suite, dual verification oracles, and commitment timestamp. Evaluated against candidate solutions only after solver freeze.",
+          "invariants": [
+            "Hidden test cases remain sealed until after freeze commitment is recorded.",
+            "Scoring requires dual independent checkers agreeing on verdicts.",
+            "Checker exceptions or disagreements trigger CheckerDefectPause and are never scored as Wrong."
+          ],
+          "non_roles": [
+            "authority_source",
+            "truth_oracle"
+          ],
+          "required_negative_capabilities": [
+            "no_self_certification",
+            "no_implicit_authority_upgrade"
+          ]
+        },
+        "structure": {
+          "rust_crate": "omega_symbol_game",
+          "rust_module": "challenge",
+          "rust_type": "JudgePacketV1",
+          "form": "struct",
+          "serde": {
+            "deny_unknown_fields": true
+          },
+          "fields": [
+            {
+              "name": "challenge_id"
+            },
+            {
+              "name": "commitment_hash"
+            },
+            {
+              "name": "committed_at_utc"
+            },
+            {
+              "name": "operator"
+            },
+            {
+              "name": "version"
+            },
+            {
+              "name": "hidden_cases"
+            },
+            {
+              "name": "checker_a_id"
+            },
+            {
+              "name": "checker_b_id"
+            },
+            {
+              "name": "authority_effect"
+            }
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v2\ncontract_id: urn:omega:packet:symbol_game:judge_packet_v1:v1.0.0\ntitle: Judge Packet v1\nkind: packet_contract\nlayer: 40_packets\nrole: PacketSpecification\nstatus: active\ncouncil_owner: L3_logos_techne\ndescriptor:\n  authority_effect: None\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: true\n  clean_architecture_layer: infrastructure\n  refusals:\n    may_emit:\n    - INVALID_JUDGE_PACKET\n    - COMMITMENT_MISMATCH\n    - FREEZE_NOT_FOUND\n    - CHECKER_DEFECT_PAUSE\ndoctrine:\n  summary: JudgePacketV1 contains the hidden test suite, dual verification oracles,\n    and commitment timestamp. Evaluated against candidate solutions only after solver\n    freeze.\n  invariants:\n  - Hidden test cases remain sealed until after freeze commitment is recorded.\n  - Scoring requires dual independent checkers agreeing on verdicts.\n  - Checker exceptions or disagreements trigger CheckerDefectPause and are never scored\n    as Wrong.\n  non_roles:\n  - authority_source\n  - truth_oracle\n  required_negative_capabilities:\n  - no_self_certification\n  - no_implicit_authority_upgrade\nstructure:\n  rust_crate: omega_symbol_game\n  rust_module: challenge\n  rust_type: JudgePacketV1\n  form: struct\n  serde:\n    deny_unknown_fields: true\n  fields:\n  - name: challenge_id\n  - name: commitment_hash\n  - name: committed_at_utc\n  - name: operator\n  - name: version\n  - name: hidden_cases\n  - name: checker_a_id\n  - name: checker_b_id\n  - name: authority_effect\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/40_packets/packet_symbol_game_judge_packet_v1_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/40_packets/packet_symbol_game_judge_packet_v1_v1_0_0.contract.yaml": "8e8149a69e65e059dad893e00857785975f5c4065143bd4fb87c597cdef076fa"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

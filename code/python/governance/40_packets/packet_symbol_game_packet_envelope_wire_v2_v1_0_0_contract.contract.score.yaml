@@ -1,0 +1,243 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/40_packets/packet_symbol_game_packet_envelope_wire_v2_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v2",
+    "contract_id": "urn:omega:packet:symbol_game:packet_envelope_wire_v2:v1.0.0",
+    "title": "Packet Envelope Wire V2",
+    "kind": "packet_contract",
+    "layer": "40_packets",
+    "role": "PacketSpecification",
+    "status": "active",
+    "council_owner": "L3_logos_techne",
+    "descriptor": {
+      "authority_effect": "None",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": true,
+      "clean_architecture_layer": "domain",
+      "refusals": {
+        "may_emit": [
+          "FW-UNKNOWN-FIELD",
+          "FW-DUPLICATE-KEY"
+        ]
+      }
+    },
+    "doctrine": {
+      "summary": "PacketEnvelopeWireV2, a wire type on the Symbol Game protocol surface.",
+      "invariants": [
+        "The shape declared here is the shape in protocol.rs, enforced at compile time by an exhaustive destructure.",
+        "Unknown fields are refused, not ignored. An ignored field is one a reader believes is load-bearing while it is inert."
+      ],
+      "non_roles": [
+        "authority_source",
+        "promotion_granter"
+      ],
+      "required_negative_capabilities": [
+        "no_self_certification",
+        "no_implicit_authority_upgrade"
+      ]
+    },
+    "structure": {
+      "rust_crate": "omega_symbol_game",
+      "rust_module": "protocol",
+      "rust_type": "PacketEnvelopeWireV2",
+      "form": "struct",
+      "serde": {
+        "deny_unknown_fields": true
+      },
+      "fields": [
+        {
+          "name": "schema_version"
+        },
+        {
+          "name": "packet_id"
+        },
+        {
+          "name": "packet_kind"
+        },
+        {
+          "name": "framing_mode"
+        },
+        {
+          "name": "task_id"
+        },
+        {
+          "name": "packet_family"
+        },
+        {
+          "name": "carrier_id"
+        },
+        {
+          "name": "initial_state_hash"
+        },
+        {
+          "name": "payload"
+        },
+        {
+          "name": "constraints"
+        },
+        {
+          "name": "protected_boundaries"
+        },
+        {
+          "name": "terminal_target"
+        },
+        {
+          "name": "evidence_ceiling"
+        },
+        {
+          "name": "oracle_policy"
+        },
+        {
+          "name": "allowed_transforms"
+        },
+        {
+          "name": "step_budget"
+        },
+        {
+          "name": "parent_event_id"
+        },
+        {
+          "name": "source_digest"
+        },
+        {
+          "name": "authority_effect"
+        }
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "46d0e4496c10fa42f5a6ed0bb44070891d421c1ea45b65974b0d19c88e36de10",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "46d0e4496c10fa42f5a6ed0bb44070891d421c1ea45b65974b0d19c88e36de10",
+      "bytes": 1647,
+      "record": {
+        "schema_version": "omega.contract.v2",
+        "contract_id": "urn:omega:packet:symbol_game:packet_envelope_wire_v2:v1.0.0",
+        "title": "Packet Envelope Wire V2",
+        "kind": "packet_contract",
+        "layer": "40_packets",
+        "role": "PacketSpecification",
+        "status": "active",
+        "council_owner": "L3_logos_techne",
+        "descriptor": {
+          "authority_effect": "None",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": true,
+          "clean_architecture_layer": "domain",
+          "refusals": {
+            "may_emit": [
+              "FW-UNKNOWN-FIELD",
+              "FW-DUPLICATE-KEY"
+            ]
+          }
+        },
+        "doctrine": {
+          "summary": "PacketEnvelopeWireV2, a wire type on the Symbol Game protocol surface.",
+          "invariants": [
+            "The shape declared here is the shape in protocol.rs, enforced at compile time by an exhaustive destructure.",
+            "Unknown fields are refused, not ignored. An ignored field is one a reader believes is load-bearing while it is inert."
+          ],
+          "non_roles": [
+            "authority_source",
+            "promotion_granter"
+          ],
+          "required_negative_capabilities": [
+            "no_self_certification",
+            "no_implicit_authority_upgrade"
+          ]
+        },
+        "structure": {
+          "rust_crate": "omega_symbol_game",
+          "rust_module": "protocol",
+          "rust_type": "PacketEnvelopeWireV2",
+          "form": "struct",
+          "serde": {
+            "deny_unknown_fields": true
+          },
+          "fields": [
+            {
+              "name": "schema_version"
+            },
+            {
+              "name": "packet_id"
+            },
+            {
+              "name": "packet_kind"
+            },
+            {
+              "name": "framing_mode"
+            },
+            {
+              "name": "task_id"
+            },
+            {
+              "name": "packet_family"
+            },
+            {
+              "name": "carrier_id"
+            },
+            {
+              "name": "initial_state_hash"
+            },
+            {
+              "name": "payload"
+            },
+            {
+              "name": "constraints"
+            },
+            {
+              "name": "protected_boundaries"
+            },
+            {
+              "name": "terminal_target"
+            },
+            {
+              "name": "evidence_ceiling"
+            },
+            {
+              "name": "oracle_policy"
+            },
+            {
+              "name": "allowed_transforms"
+            },
+            {
+              "name": "step_budget"
+            },
+            {
+              "name": "parent_event_id"
+            },
+            {
+              "name": "source_digest"
+            },
+            {
+              "name": "authority_effect"
+            }
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v2\ncontract_id: urn:omega:packet:symbol_game:packet_envelope_wire_v2:v1.0.0\ntitle: Packet Envelope Wire V2\nkind: packet_contract\nlayer: 40_packets\nrole: PacketSpecification\nstatus: active\ncouncil_owner: L3_logos_techne\ndescriptor:\n  authority_effect: None\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: true\n  clean_architecture_layer: domain\n  refusals:\n    may_emit:\n    - FW-UNKNOWN-FIELD\n    - FW-DUPLICATE-KEY\ndoctrine:\n  summary: PacketEnvelopeWireV2, a wire type on the Symbol Game protocol surface.\n  invariants:\n  - The shape declared here is the shape in protocol.rs, enforced at compile time\n    by an exhaustive destructure.\n  - Unknown fields are refused, not ignored. An ignored field is one a reader believes\n    is load-bearing while it is inert.\n  non_roles:\n  - authority_source\n  - promotion_granter\n  required_negative_capabilities:\n  - no_self_certification\n  - no_implicit_authority_upgrade\nstructure:\n  rust_crate: omega_symbol_game\n  rust_module: protocol\n  rust_type: PacketEnvelopeWireV2\n  form: struct\n  serde:\n    deny_unknown_fields: true\n  fields:\n  - name: schema_version\n  - name: packet_id\n  - name: packet_kind\n  - name: framing_mode\n  - name: task_id\n  - name: packet_family\n  - name: carrier_id\n  - name: initial_state_hash\n  - name: payload\n  - name: constraints\n  - name: protected_boundaries\n  - name: terminal_target\n  - name: evidence_ceiling\n  - name: oracle_policy\n  - name: allowed_transforms\n  - name: step_budget\n  - name: parent_event_id\n  - name: source_digest\n  - name: authority_effect\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/40_packets/packet_symbol_game_packet_envelope_wire_v2_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/40_packets/packet_symbol_game_packet_envelope_wire_v2_v1_0_0.contract.yaml": "46d0e4496c10fa42f5a6ed0bb44070891d421c1ea45b65974b0d19c88e36de10"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

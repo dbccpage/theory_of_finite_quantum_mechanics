@@ -1,0 +1,343 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/algebra/math_exact_field_matrix_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:exact_field_matrix:v0.1.0",
+    "title": "Exact Field Matrix Algebra Contract",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "matrix_algebra",
+      "symbol": "M_{m×n}(F) with +, ·, ᵀ, tr, ⊗, [·,·], ⊕ over an exact field F",
+      "ascii_symbol": "exact_field_matrix",
+      "notation": "A ∈ M_{m×n}(F), F : Field + ExactRing",
+      "domain": [
+        "matrices: BasicMatrix<F> of shape m×n (zero-sized shapes allowed)",
+        "scalars: F implementing the exact scalar tower",
+        "vectors: slices of F",
+        "exponents: u64",
+        "budgets: OperationLimits { max_elements, max_scalar_ops }"
+      ],
+      "codomain": {
+        "description": "Matrices over F built by construction (identity, zeros, diagonal, from_rows, from_fn), entrywise operations (add, sub, neg, scale, transpose), products (multiply, multiply_vector, kronecker, commutator, anticommutator, power), block forms (block_diagonal, direct_sum, hstack, vstack) and exact predicates. Every operation checks shapes before scalar work and returns a typed ExactFieldError on violation.\n"
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Every operation takes Field + ExactRing scalars and uses only the tower methods, never std::ops on the scalar",
+        "Shapes are checked before any scalar work: add and sub need equal shapes, multiply needs a.cols = b.rows, hstack needs equal row counts, vstack equal column counts, trace, commutator, anticommutator, power and commutes need square operands",
+        "from_rows refuses a row whose length differs from row 0 and names the row; the empty list is the 0×0 matrix",
+        "Operations whose cost is not linear in their input have a _with_limits form that refuses, before any scalar work, when a worst-case bound exceeds the budget; a bound equal to the limit is accepted",
+        "Documented worst-case costs: multiply 2·m·k·n scalar calls; multiply_vector 2·m·k; kronecker one mul per output entry; power 2·2·bits(e)·n³",
+        "No floating point, no tolerance, no panic on caller data; dimension overflow and allocation failure are typed errors"
+      ]
+    },
+    "laws": [
+      "(A B) C = A (B C), A (B + C) = A B + A C, and I A = A = A I",
+      "(A B)ᵀ = Bᵀ Aᵀ and (Aᵀ)ᵀ = A",
+      "tr(A B) = tr(B A) for A of shape m×n and B of shape n×m, and tr(A + B) = tr A + tr B",
+      "entry (i·p + k, j·q + l) of A ⊗ B is A[i][j] · B[k][l] for B of shape p×q",
+      "(A ⊗ B)(C ⊗ D) = (A C) ⊗ (B D) and tr(A ⊗ B) = tr A · tr B",
+      "[A, B] = A B − B A is antisymmetric, traceless and satisfies the Jacobi identity; {A, B} = A B + B A is symmetric; [A, B] + {A, B} = 2 A B",
+      "A⁰ = I for every square A (the zero matrix included) and A^(a+b) = Aᵃ Aᵇ",
+      "block_diagonal has shape (Σ rows) × (Σ cols) with zeros off the blocks; hstack and vstack concatenate",
+      "to_rows and from_rows are inverse; widen_rational64 and narrow_to_rational64 are inverse where the entries fit in i64"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No randomness",
+        "No time-dependent data",
+        "Products accumulate in row-major output order with the inner index increasing; zero entries of the left factor are skipped, which changes no result",
+        "The multiplication agrees with BasicMatrix::mul (std operators) and kronecker with tensor::kronecker_matrices on BigRational"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_linear_algebra",
+      "module": "exact_field::matrix",
+      "symbols": [
+        "identity",
+        "zeros",
+        "diagonal",
+        "from_rows",
+        "to_rows",
+        "from_fn",
+        "row",
+        "column",
+        "add",
+        "sub",
+        "neg",
+        "scale",
+        "transpose",
+        "trace",
+        "dot",
+        "multiply",
+        "multiply_vector",
+        "kronecker",
+        "commutator",
+        "anticommutator",
+        "commutes",
+        "power",
+        "block_diagonal",
+        "direct_sum",
+        "hstack",
+        "vstack",
+        "is_zero_matrix",
+        "is_identity_matrix",
+        "is_symmetric",
+        "widen_rational64",
+        "narrow_to_rational64"
+      ],
+      "required_tests": [
+        "add_and_sub_refuse_unequal_shapes",
+        "multiplication_refuses_inner_dimension_mismatch",
+        "from_rows_refuses_ragged_input_and_names_the_row",
+        "trace_is_cyclic_and_needs_a_square_matrix",
+        "power_refuses_non_square_input_and_unaffordable_work",
+        "multiply_vector_agrees_with_a_column_matrix_product",
+        "dimension_overflow_is_a_typed_error_not_a_panic",
+        "element_budget_boundary_is_inclusive",
+        "multiply_budget_charges_two_ops_per_inner_product_term",
+        "matrix_vector_and_kronecker_budgets_charge_their_documented_costs",
+        "rational64_conversions_round_trip_and_refuse_overflow",
+        "predicates_answer_exactly_and_refuse_non_square_input",
+        "stacking_concatenates_and_checks_shapes"
+      ]
+    },
+    "negative_tests": [
+      "add or sub of matrices with different shapes must be refused with the two shapes",
+      "multiply with a.cols != b.rows must be refused with the two shapes",
+      "from_rows with a row whose length differs from row 0 must be refused and name the row",
+      "trace, commutator, anticommutator and power of a non-square matrix must be refused",
+      "multiply_vector with a vector whose length is not a.cols must be refused with both lengths",
+      "a dimension product that overflows usize must be a typed DimensionOverflow, never a panic or a wrapped size",
+      "an operation whose documented worst-case element or scalar-operation bound exceeds the budget must be refused before any scalar work, and the bound itself must be accepted",
+      "narrow_to_rational64 of an entry that does not fit in i64 must be refused with the entry position",
+      "is_identity_matrix and is_symmetric of a non-square matrix must be refused rather than answer false",
+      "hstack or vstack of incompatible shapes must be refused"
+    ],
+    "doctrine": {
+      "summary": "Exact matrix construction and arithmetic over any field of the scalar tower: identity, zeros, diagonal and row-list construction, add, sub, neg, scale, transpose, trace, matrix and matrix-vector products, the Kronecker product, commutators, integer powers by square-and-multiply, block forms, and exact predicates. It is the one generic home for operations that domain crates previously re-implemented on private matrix types, and it works over Q, GF(p), Q(i), real quadratic fields and any other tower field.",
+      "non_role": [
+        "Floating-point or tolerance-based matrices (see complex_matrix and the nalgebra adapters)",
+        "Sparse or structured storage",
+        "Decompositions and solvers (see field_elimination and ordered_field_ldlt)",
+        "Partial traces and tensor-network contraction (tensor::partial_trace_right is the existing home)",
+        "Matrices over non-fields or noncommutative rings"
+      ]
+    },
+    "wip": [
+      "No Lean statement of the matrix-ring laws exists; the YAML to Lean to Rust chain for this contract is open",
+      "The cost bounds are worst-case formulas checked by boundary tests; they are not measured runtimes",
+      "max_elements bounds each matrix-sized allocation, not the number of simultaneously live scratch matrices (a small constant) and not scalar-internal heap use",
+      "The contract does not yet separate the std-operator route (BasicMatrix::mul, kronecker_matrices), which remains for scalars that have std ops but no tower implementation"
+    ]
+  },
+  "current_contract": "357477ea4751fac278e9f81232592a9f146f5d1b77d6cb559f4c0b54ae17b3bd",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "357477ea4751fac278e9f81232592a9f146f5d1b77d6cb559f4c0b54ae17b3bd",
+      "bytes": 7433,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:exact_field_matrix:v0.1.0",
+        "title": "Exact Field Matrix Algebra Contract",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "matrix_algebra",
+          "symbol": "M_{m×n}(F) with +, ·, ᵀ, tr, ⊗, [·,·], ⊕ over an exact field F",
+          "ascii_symbol": "exact_field_matrix",
+          "notation": "A ∈ M_{m×n}(F), F : Field + ExactRing",
+          "domain": [
+            "matrices: BasicMatrix<F> of shape m×n (zero-sized shapes allowed)",
+            "scalars: F implementing the exact scalar tower",
+            "vectors: slices of F",
+            "exponents: u64",
+            "budgets: OperationLimits { max_elements, max_scalar_ops }"
+          ],
+          "codomain": {
+            "description": "Matrices over F built by construction (identity, zeros, diagonal, from_rows, from_fn), entrywise operations (add, sub, neg, scale, transpose), products (multiply, multiply_vector, kronecker, commutator, anticommutator, power), block forms (block_diagonal, direct_sum, hstack, vstack) and exact predicates. Every operation checks shapes before scalar work and returns a typed ExactFieldError on violation.\n"
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Every operation takes Field + ExactRing scalars and uses only the tower methods, never std::ops on the scalar",
+            "Shapes are checked before any scalar work: add and sub need equal shapes, multiply needs a.cols = b.rows, hstack needs equal row counts, vstack equal column counts, trace, commutator, anticommutator, power and commutes need square operands",
+            "from_rows refuses a row whose length differs from row 0 and names the row; the empty list is the 0×0 matrix",
+            "Operations whose cost is not linear in their input have a _with_limits form that refuses, before any scalar work, when a worst-case bound exceeds the budget; a bound equal to the limit is accepted",
+            "Documented worst-case costs: multiply 2·m·k·n scalar calls; multiply_vector 2·m·k; kronecker one mul per output entry; power 2·2·bits(e)·n³",
+            "No floating point, no tolerance, no panic on caller data; dimension overflow and allocation failure are typed errors"
+          ]
+        },
+        "laws": [
+          "(A B) C = A (B C), A (B + C) = A B + A C, and I A = A = A I",
+          "(A B)ᵀ = Bᵀ Aᵀ and (Aᵀ)ᵀ = A",
+          "tr(A B) = tr(B A) for A of shape m×n and B of shape n×m, and tr(A + B) = tr A + tr B",
+          "entry (i·p + k, j·q + l) of A ⊗ B is A[i][j] · B[k][l] for B of shape p×q",
+          "(A ⊗ B)(C ⊗ D) = (A C) ⊗ (B D) and tr(A ⊗ B) = tr A · tr B",
+          "[A, B] = A B − B A is antisymmetric, traceless and satisfies the Jacobi identity; {A, B} = A B + B A is symmetric; [A, B] + {A, B} = 2 A B",
+          "A⁰ = I for every square A (the zero matrix included) and A^(a+b) = Aᵃ Aᵇ",
+          "block_diagonal has shape (Σ rows) × (Σ cols) with zeros off the blocks; hstack and vstack concatenate",
+          "to_rows and from_rows are inverse; widen_rational64 and narrow_to_rational64 are inverse where the entries fit in i64"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "Products accumulate in row-major output order with the inner index increasing; zero entries of the left factor are skipped, which changes no result",
+            "The multiplication agrees with BasicMatrix::mul (std operators) and kronecker with tensor::kronecker_matrices on BigRational"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_linear_algebra",
+          "module": "exact_field::matrix",
+          "symbols": [
+            "identity",
+            "zeros",
+            "diagonal",
+            "from_rows",
+            "to_rows",
+            "from_fn",
+            "row",
+            "column",
+            "add",
+            "sub",
+            "neg",
+            "scale",
+            "transpose",
+            "trace",
+            "dot",
+            "multiply",
+            "multiply_vector",
+            "kronecker",
+            "commutator",
+            "anticommutator",
+            "commutes",
+            "power",
+            "block_diagonal",
+            "direct_sum",
+            "hstack",
+            "vstack",
+            "is_zero_matrix",
+            "is_identity_matrix",
+            "is_symmetric",
+            "widen_rational64",
+            "narrow_to_rational64"
+          ],
+          "required_tests": [
+            "add_and_sub_refuse_unequal_shapes",
+            "multiplication_refuses_inner_dimension_mismatch",
+            "from_rows_refuses_ragged_input_and_names_the_row",
+            "trace_is_cyclic_and_needs_a_square_matrix",
+            "power_refuses_non_square_input_and_unaffordable_work",
+            "multiply_vector_agrees_with_a_column_matrix_product",
+            "dimension_overflow_is_a_typed_error_not_a_panic",
+            "element_budget_boundary_is_inclusive",
+            "multiply_budget_charges_two_ops_per_inner_product_term",
+            "matrix_vector_and_kronecker_budgets_charge_their_documented_costs",
+            "rational64_conversions_round_trip_and_refuse_overflow",
+            "predicates_answer_exactly_and_refuse_non_square_input",
+            "stacking_concatenates_and_checks_shapes"
+          ]
+        },
+        "negative_tests": [
+          "add or sub of matrices with different shapes must be refused with the two shapes",
+          "multiply with a.cols != b.rows must be refused with the two shapes",
+          "from_rows with a row whose length differs from row 0 must be refused and name the row",
+          "trace, commutator, anticommutator and power of a non-square matrix must be refused",
+          "multiply_vector with a vector whose length is not a.cols must be refused with both lengths",
+          "a dimension product that overflows usize must be a typed DimensionOverflow, never a panic or a wrapped size",
+          "an operation whose documented worst-case element or scalar-operation bound exceeds the budget must be refused before any scalar work, and the bound itself must be accepted",
+          "narrow_to_rational64 of an entry that does not fit in i64 must be refused with the entry position",
+          "is_identity_matrix and is_symmetric of a non-square matrix must be refused rather than answer false",
+          "hstack or vstack of incompatible shapes must be refused"
+        ],
+        "doctrine": {
+          "summary": "Exact matrix construction and arithmetic over any field of the scalar tower: identity, zeros, diagonal and row-list construction, add, sub, neg, scale, transpose, trace, matrix and matrix-vector products, the Kronecker product, commutators, integer powers by square-and-multiply, block forms, and exact predicates. It is the one generic home for operations that domain crates previously re-implemented on private matrix types, and it works over Q, GF(p), Q(i), real quadratic fields and any other tower field.",
+          "non_role": [
+            "Floating-point or tolerance-based matrices (see complex_matrix and the nalgebra adapters)",
+            "Sparse or structured storage",
+            "Decompositions and solvers (see field_elimination and ordered_field_ldlt)",
+            "Partial traces and tensor-network contraction (tensor::partial_trace_right is the existing home)",
+            "Matrices over non-fields or noncommutative rings"
+          ]
+        },
+        "wip": [
+          "No Lean statement of the matrix-ring laws exists; the YAML to Lean to Rust chain for this contract is open",
+          "The cost bounds are worst-case formulas checked by boundary tests; they are not measured runtimes",
+          "max_elements bounds each matrix-sized allocation, not the number of simultaneously live scratch matrices (a small constant) and not scalar-internal heap use",
+          "The contract does not yet separate the std-operator route (BasicMatrix::mul, kronecker_matrices), which remains for scalars that have std ops but no tower implementation"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:exact_field_matrix:v0.1.0\ntitle: Exact Field Matrix Algebra Contract\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: matrix_algebra\n  symbol: M_{m×n}(F) with +, ·, ᵀ, tr, ⊗, [·,·], ⊕ over an exact field F\n  ascii_symbol: exact_field_matrix\n  notation: 'A ∈ M_{m×n}(F), F : Field + ExactRing'\n  domain:\n  - 'matrices: BasicMatrix<F> of shape m×n (zero-sized shapes allowed)'\n  - 'scalars: F implementing the exact scalar tower'\n  - 'vectors: slices of F'\n  - 'exponents: u64'\n  - 'budgets: OperationLimits { max_elements, max_scalar_ops }'\n  codomain:\n    description: 'Matrices over F built by construction (identity, zeros, diagonal,\n      from_rows, from_fn), entrywise operations (add, sub, neg, scale, transpose),\n      products (multiply, multiply_vector, kronecker, commutator, anticommutator,\n      power), block forms (block_diagonal, direct_sum, hstack, vstack) and exact predicates.\n      Every operation checks shapes before scalar work and returns a typed ExactFieldError\n      on violation.\n\n      '\nrequirements:\n  required_structures:\n  - Every operation takes Field + ExactRing scalars and uses only the tower methods,\n    never std::ops on the scalar\n  - 'Shapes are checked before any scalar work: add and sub need equal shapes, multiply\n    needs a.cols = b.rows, hstack needs equal row counts, vstack equal column counts,\n    trace, commutator, anticommutator, power and commutes need square operands'\n  - from_rows refuses a row whose length differs from row 0 and names the row; the\n    empty list is the 0×0 matrix\n  - Operations whose cost is not linear in their input have a _with_limits form that\n    refuses, before any scalar work, when a worst-case bound exceeds the budget; a\n    bound equal to the limit is accepted\n  - 'Documented worst-case costs: multiply 2·m·k·n scalar calls; multiply_vector 2·m·k;\n    kronecker one mul per output entry; power 2·2·bits(e)·n³'\n  - No floating point, no tolerance, no panic on caller data; dimension overflow and\n    allocation failure are typed errors\nlaws:\n- (A B) C = A (B C), A (B + C) = A B + A C, and I A = A = A I\n- (A B)ᵀ = Bᵀ Aᵀ and (Aᵀ)ᵀ = A\n- tr(A B) = tr(B A) for A of shape m×n and B of shape n×m, and tr(A + B) = tr A +\n  tr B\n- entry (i·p + k, j·q + l) of A ⊗ B is A[i][j] · B[k][l] for B of shape p×q\n- (A ⊗ B)(C ⊗ D) = (A C) ⊗ (B D) and tr(A ⊗ B) = tr A · tr B\n- '[A, B] = A B − B A is antisymmetric, traceless and satisfies the Jacobi identity;\n  {A, B} = A B + B A is symmetric; [A, B] + {A, B} = 2 A B'\n- A⁰ = I for every square A (the zero matrix included) and A^(a+b) = Aᵃ Aᵇ\n- block_diagonal has shape (Σ rows) × (Σ cols) with zeros off the blocks; hstack and\n  vstack concatenate\n- to_rows and from_rows are inverse; widen_rational64 and narrow_to_rational64 are\n  inverse where the entries fit in i64\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Products accumulate in row-major output order with the inner index increasing;\n    zero entries of the left factor are skipped, which changes no result\n  - The multiplication agrees with BasicMatrix::mul (std operators) and kronecker\n    with tensor::kronecker_matrices on BigRational\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nrust_binding:\n  crate: omega_linear_algebra\n  module: exact_field::matrix\n  symbols:\n  - identity\n  - zeros\n  - diagonal\n  - from_rows\n  - to_rows\n  - from_fn\n  - row\n  - column\n  - add\n  - sub\n  - neg\n  - scale\n  - transpose\n  - trace\n  - dot\n  - multiply\n  - multiply_vector\n  - kronecker\n  - commutator\n  - anticommutator\n  - commutes\n  - power\n  - block_diagonal\n  - direct_sum\n  - hstack\n  - vstack\n  - is_zero_matrix\n  - is_identity_matrix\n  - is_symmetric\n  - widen_rational64\n  - narrow_to_rational64\n  required_tests:\n  - add_and_sub_refuse_unequal_shapes\n  - multiplication_refuses_inner_dimension_mismatch\n  - from_rows_refuses_ragged_input_and_names_the_row\n  - trace_is_cyclic_and_needs_a_square_matrix\n  - power_refuses_non_square_input_and_unaffordable_work\n  - multiply_vector_agrees_with_a_column_matrix_product\n  - dimension_overflow_is_a_typed_error_not_a_panic\n  - element_budget_boundary_is_inclusive\n  - multiply_budget_charges_two_ops_per_inner_product_term\n  - matrix_vector_and_kronecker_budgets_charge_their_documented_costs\n  - rational64_conversions_round_trip_and_refuse_overflow\n  - predicates_answer_exactly_and_refuse_non_square_input\n  - stacking_concatenates_and_checks_shapes\nnegative_tests:\n- add or sub of matrices with different shapes must be refused with the two shapes\n- multiply with a.cols != b.rows must be refused with the two shapes\n- from_rows with a row whose length differs from row 0 must be refused and name the\n  row\n- trace, commutator, anticommutator and power of a non-square matrix must be refused\n- multiply_vector with a vector whose length is not a.cols must be refused with both\n  lengths\n- a dimension product that overflows usize must be a typed DimensionOverflow, never\n  a panic or a wrapped size\n- an operation whose documented worst-case element or scalar-operation bound exceeds\n  the budget must be refused before any scalar work, and the bound itself must be\n  accepted\n- narrow_to_rational64 of an entry that does not fit in i64 must be refused with the\n  entry position\n- is_identity_matrix and is_symmetric of a non-square matrix must be refused rather\n  than answer false\n- hstack or vstack of incompatible shapes must be refused\ndoctrine:\n  summary: 'Exact matrix construction and arithmetic over any field of the scalar\n    tower: identity, zeros, diagonal and row-list construction, add, sub, neg, scale,\n    transpose, trace, matrix and matrix-vector products, the Kronecker product, commutators,\n    integer powers by square-and-multiply, block forms, and exact predicates. It is\n    the one generic home for operations that domain crates previously re-implemented\n    on private matrix types, and it works over Q, GF(p), Q(i), real quadratic fields\n    and any other tower field.'\n  non_role:\n  - Floating-point or tolerance-based matrices (see complex_matrix and the nalgebra\n    adapters)\n  - Sparse or structured storage\n  - Decompositions and solvers (see field_elimination and ordered_field_ldlt)\n  - Partial traces and tensor-network contraction (tensor::partial_trace_right is\n    the existing home)\n  - Matrices over non-fields or noncommutative rings\nwip:\n- No Lean statement of the matrix-ring laws exists; the YAML to Lean to Rust chain\n  for this contract is open\n- The cost bounds are worst-case formulas checked by boundary tests; they are not\n  measured runtimes\n- max_elements bounds each matrix-sized allocation, not the number of simultaneously\n  live scratch matrices (a small constant) and not scalar-internal heap use\n- The contract does not yet separate the std-operator route (BasicMatrix::mul, kronecker_matrices),\n  which remains for scalars that have std ops but no tower implementation\n",
+      "original_paths": [
+        "code/python/governance/10_math/algebra/math_exact_field_matrix_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/algebra/math_exact_field_matrix_v0_1_0.contract.yaml": "357477ea4751fac278e9f81232592a9f146f5d1b77d6cb559f4c0b54ae17b3bd"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

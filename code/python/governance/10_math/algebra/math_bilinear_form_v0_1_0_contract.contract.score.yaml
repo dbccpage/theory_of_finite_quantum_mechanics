@@ -1,0 +1,227 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/algebra/math_bilinear_form_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:bilinear_form:v0.1.0",
+    "title": "Bilinear Form Contract",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "bilinear_form",
+      "symbol": "B: V x W -> K (as matrix with respect to bases)",
+      "ascii_symbol": "bilinear_form",
+      "notation": "B: V x W -> K (as matrix with respect to bases)",
+      "domain": [
+        "left_vector_space: vector_space_V",
+        "right_vector_space: vector_space_W",
+        "field: field_K",
+        "matrix: m_x_n_scalar_matrix"
+      ],
+      "codomain": {
+        "description": "Bilinear map V x W -> K encoded by matrix representation"
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Left and right vector spaces must be over the same field K",
+        "V x W domain carriers must be compatible",
+        "Matrix dimensions must match basis lengths (m = dim(V), n = dim(W))",
+        "All matrix entries must be valid scalars in field K",
+        "All hashes (carrier, basis, matrix, field) must be valid"
+      ]
+    },
+    "laws": [
+      "V, W, and K all use the same field",
+      "Matrix dimensions match basis lengths (m = dim(V), n = dim(W))",
+      "B(av + bv', w) = aB(v,w) + bB(v',w) for all a,b in K",
+      "B(v, aw + bw') = aB(v,w) + bB(v,w') for all a,b in K"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No randomness",
+        "No time-dependent data",
+        "Evaluation B(v,w) must replay deterministically from canonical vector components and matrix entries",
+        "Field arithmetic operations must be deterministic"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "negative_tests": [
+      "V and W over different fields must be rejected",
+      "Matrix dimensions not matching basis lengths must be rejected",
+      "Matrix with invalid scalar entry must be rejected",
+      "Claiming positive-definiteness without FactEnvelope must be rejected",
+      "BilinearForm claiming authority or admissibility must be rejected",
+      "Same inputs producing different hashes must be rejected"
+    ],
+    "doctrine": {
+      "summary": "BilinearForm is a finite matrix-backed map V x W -> K that is linear in each argument over a declared field K. Bilinear forms encode pairings, Gram matrices, symplectic forms, quadratic precursors, and inner-product substrate facts. The contract forms the structure only; symmetry, nondegeneracy, positivity, and inner-product status are separate FactEnvelopes or contracts.",
+      "non_role": [
+        "Symmetry, nondegeneracy, positivity are separate FactEnvelopes",
+        "Inner-product status is a separate contract",
+        "Classification of admissibility or policy decisions",
+        "Certificate generation or authority claims"
+      ]
+    },
+    "wip": [
+      "Decide row/column convention for V x W universally",
+      "Define sesquilinear forms separately for complex Hilbert spaces",
+      "How to handle symmetry, alternating, and degenerate properties (via FactEnvelope?)",
+      "Should inner-product status be a separate contract or FactEnvelope?",
+      "Symmetry, nondegeneracy, positivity are separate FactEnvelopes",
+      "Row/column convention for V x W needs to be universally decided",
+      "Sesquilinear forms for complex Hilbert spaces may need separate contract",
+      "Matrix representation uses basis hashes for V and W",
+      "Evaluation B(v,w) computed deterministically via canonical field arithmetic",
+      "No authority, admissibility, or customer-facing claims allowed"
+    ]
+  },
+  "current_contract": "0dd35ca7e1e45de76b1ab0691f7b8e88c50cecb585b4d1094e2368dd609625fd",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "0dd35ca7e1e45de76b1ab0691f7b8e88c50cecb585b4d1094e2368dd609625fd",
+      "bytes": 3506,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:bilinear_form:v0.1.0",
+        "title": "Bilinear Form Contract",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "bilinear_form",
+          "symbol": "B: V x W -> K (as matrix with respect to bases)",
+          "ascii_symbol": "bilinear_form",
+          "notation": "B: V x W -> K (as matrix with respect to bases)",
+          "domain": [
+            "left_vector_space: vector_space_V",
+            "right_vector_space: vector_space_W",
+            "field: field_K",
+            "matrix: m_x_n_scalar_matrix"
+          ],
+          "codomain": {
+            "description": "Bilinear map V x W -> K encoded by matrix representation"
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Left and right vector spaces must be over the same field K",
+            "V x W domain carriers must be compatible",
+            "Matrix dimensions must match basis lengths (m = dim(V), n = dim(W))",
+            "All matrix entries must be valid scalars in field K",
+            "All hashes (carrier, basis, matrix, field) must be valid"
+          ]
+        },
+        "laws": [
+          "V, W, and K all use the same field",
+          "Matrix dimensions match basis lengths (m = dim(V), n = dim(W))",
+          "B(av + bv', w) = aB(v,w) + bB(v',w) for all a,b in K",
+          "B(v, aw + bw') = aB(v,w) + bB(v,w') for all a,b in K"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "Evaluation B(v,w) must replay deterministically from canonical vector components and matrix entries",
+            "Field arithmetic operations must be deterministic"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "negative_tests": [
+          "V and W over different fields must be rejected",
+          "Matrix dimensions not matching basis lengths must be rejected",
+          "Matrix with invalid scalar entry must be rejected",
+          "Claiming positive-definiteness without FactEnvelope must be rejected",
+          "BilinearForm claiming authority or admissibility must be rejected",
+          "Same inputs producing different hashes must be rejected"
+        ],
+        "doctrine": {
+          "summary": "BilinearForm is a finite matrix-backed map V x W -> K that is linear in each argument over a declared field K. Bilinear forms encode pairings, Gram matrices, symplectic forms, quadratic precursors, and inner-product substrate facts. The contract forms the structure only; symmetry, nondegeneracy, positivity, and inner-product status are separate FactEnvelopes or contracts.",
+          "non_role": [
+            "Symmetry, nondegeneracy, positivity are separate FactEnvelopes",
+            "Inner-product status is a separate contract",
+            "Classification of admissibility or policy decisions",
+            "Certificate generation or authority claims"
+          ]
+        },
+        "wip": [
+          "Decide row/column convention for V x W universally",
+          "Define sesquilinear forms separately for complex Hilbert spaces",
+          "How to handle symmetry, alternating, and degenerate properties (via FactEnvelope?)",
+          "Should inner-product status be a separate contract or FactEnvelope?",
+          "Symmetry, nondegeneracy, positivity are separate FactEnvelopes",
+          "Row/column convention for V x W needs to be universally decided",
+          "Sesquilinear forms for complex Hilbert spaces may need separate contract",
+          "Matrix representation uses basis hashes for V and W",
+          "Evaluation B(v,w) computed deterministically via canonical field arithmetic",
+          "No authority, admissibility, or customer-facing claims allowed"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:bilinear_form:v0.1.0\ntitle: Bilinear Form Contract\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: bilinear_form\n  symbol: 'B: V x W -> K (as matrix with respect to bases)'\n  ascii_symbol: bilinear_form\n  notation: 'B: V x W -> K (as matrix with respect to bases)'\n  domain:\n  - 'left_vector_space: vector_space_V'\n  - 'right_vector_space: vector_space_W'\n  - 'field: field_K'\n  - 'matrix: m_x_n_scalar_matrix'\n  codomain:\n    description: Bilinear map V x W -> K encoded by matrix representation\nrequirements:\n  required_structures:\n  - Left and right vector spaces must be over the same field K\n  - V x W domain carriers must be compatible\n  - Matrix dimensions must match basis lengths (m = dim(V), n = dim(W))\n  - All matrix entries must be valid scalars in field K\n  - All hashes (carrier, basis, matrix, field) must be valid\nlaws:\n- V, W, and K all use the same field\n- Matrix dimensions match basis lengths (m = dim(V), n = dim(W))\n- B(av + bv', w) = aB(v,w) + bB(v',w) for all a,b in K\n- B(v, aw + bw') = aB(v,w) + bB(v,w') for all a,b in K\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Evaluation B(v,w) must replay deterministically from canonical vector components\n    and matrix entries\n  - Field arithmetic operations must be deterministic\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nnegative_tests:\n- V and W over different fields must be rejected\n- Matrix dimensions not matching basis lengths must be rejected\n- Matrix with invalid scalar entry must be rejected\n- Claiming positive-definiteness without FactEnvelope must be rejected\n- BilinearForm claiming authority or admissibility must be rejected\n- Same inputs producing different hashes must be rejected\ndoctrine:\n  summary: BilinearForm is a finite matrix-backed map V x W -> K that is linear in\n    each argument over a declared field K. Bilinear forms encode pairings, Gram matrices,\n    symplectic forms, quadratic precursors, and inner-product substrate facts. The\n    contract forms the structure only; symmetry, nondegeneracy, positivity, and inner-product\n    status are separate FactEnvelopes or contracts.\n  non_role:\n  - Symmetry, nondegeneracy, positivity are separate FactEnvelopes\n  - Inner-product status is a separate contract\n  - Classification of admissibility or policy decisions\n  - Certificate generation or authority claims\nwip:\n- Decide row/column convention for V x W universally\n- Define sesquilinear forms separately for complex Hilbert spaces\n- How to handle symmetry, alternating, and degenerate properties (via FactEnvelope?)\n- Should inner-product status be a separate contract or FactEnvelope?\n- Symmetry, nondegeneracy, positivity are separate FactEnvelopes\n- Row/column convention for V x W needs to be universally decided\n- Sesquilinear forms for complex Hilbert spaces may need separate contract\n- Matrix representation uses basis hashes for V and W\n- Evaluation B(v,w) computed deterministically via canonical field arithmetic\n- No authority, admissibility, or customer-facing claims allowed\n",
+      "original_paths": [
+        "code/python/governance/10_math/algebra/math_bilinear_form_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/algebra/math_bilinear_form_v0_1_0.contract.yaml": "0dd35ca7e1e45de76b1ab0691f7b8e88c50cecb585b4d1094e2368dd609625fd"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

@@ -6,7 +6,10 @@ No source, native receipt, proof or contract file is mutated by these controls.
 from copy import deepcopy
 from datetime import datetime, timezone
 import json
-from pathlib import Path
+from pathlib import Path as _FilesystemPath
+import sys as _contract_sys
+_contract_sys.path.insert(0, str(_FilesystemPath(__file__).resolve().parents[4] / "scripts"))
+from contract_scores import RecordPath as Path, copy_file as _copy_record_file
 
 import reviewed_assessments as checks
 

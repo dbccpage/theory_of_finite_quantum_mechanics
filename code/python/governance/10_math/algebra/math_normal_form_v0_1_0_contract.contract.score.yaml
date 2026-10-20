@@ -1,0 +1,253 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/algebra/math_normal_form_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:normal_form:v0.1.0",
+    "title": "Normal Form Contract",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "canonical_representative",
+      "symbol": "nf: S -> NF(S), nf(x) = y iff x ->* y and y is irreducible",
+      "ascii_symbol": "normal_form",
+      "notation": "nf: S -> NF(S), nf(x) = y iff x ->* y and y is irreducible",
+      "domain": [
+        "expression_set: Set S of expressions in the algebraic structure",
+        "rewriting_relation: One-step reduction relation -> on S",
+        "normal_form_set: Subset NF(S) of irreducible elements",
+        "normal_form_function: Function nf: S -> NF(S) mapping each expression to its unique normal form",
+        "reduction_trace: Sequence of reduction steps from input to normal form"
+      ],
+      "codomain": {
+        "description": "A normal form computation consists of: the expression set S, the rewriting relation ->, evidence of confluence and termination, and the normal form function nf: S -> NF(S) where NF(S) is the set of irreducible elements.\n"
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "nf(x) is irreducible -- no further reductions apply",
+        "nf(x) is reachable from x via the reduction relation: x ->* nf(x)",
+        "nf(nf(x)) = nf(x)",
+        "Artifact hash correctly computed from expression and normal form data"
+      ]
+    },
+    "laws": [
+      "The rewriting system is confluent: for all x, y, z in S, if x ->* y and x ->* z, then there exists w in S such that y ->* w and z ->* w.  This guarantees uniqueness of normal forms.\n",
+      "The rewriting system is terminating: there are no infinite reduction sequences x_0 -> x_1 -> x_2 -> ... in S.\n",
+      "An element y in S is in normal form (irreducible) if there is no z in S with y -> z.  The normal form function returns only irreducible elements.\n",
+      "For each x in S, nf(x) is unique.  This follows from confluence and termination but must be verified independently when the rewriting system is supplied.\n",
+      "nf(nf(x)) = nf(x) for all x in S.  Applying the normal form function to an already-normal element is the identity.\n"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No randomness",
+        "No time-dependent data",
+        "Reduction strategy must be deterministic (e.g., leftmost-outermost)",
+        "Expression encoding normalized to canonical bytes",
+        "Validators and computation functions are content-addressed"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "negative_tests": [
+      "Rewriting system is not confluent",
+      "Rewriting system has infinite reduction sequences",
+      "Expression hash does not resolve to valid artifact",
+      "Expression is not in the domain of the rewriting system"
+    ],
+    "doctrine": {
+      "summary": "A Normal Form is a canonical representative of an equivalence class under a specified reduction or rewriting system.  Given a set S of expressions, an equivalence relation ~ on S, and a reduction relation ->* that is confluent and terminating, the normal form nf(x) of x in S is the unique element y such that x ->* y and y is irreducible (no further reductions apply).  Two elements x, y in S are equivalent (x ~ y) if and only if nf(x) = nf(y).  This contract defines the structure of normal form computations and the properties they must satisfy.",
+      "non_role": [
+        "Does not define specific rewriting systems (lambda calculus, Groebner, etc.)",
+        "Does not handle non-terminating or non-confluent systems",
+        "Does not implement the reduction strategy (leftmost, rightmost, etc.)",
+        "Does not classify admissibility of expressions",
+        "Does not cover weak normal forms or head normal forms"
+      ]
+    },
+    "wip": [
+      "Should this contract support weak normal forms and head normal forms?",
+      "How to handle rewriting systems where termination is undecidable?",
+      "Integration with specific normal form contracts (Smith, Jordan, Groebner)",
+      "Whether reduction traces should be stored or only their hashes",
+      "Strategy selection (leftmost-outermost vs innermost) as contract parameter",
+      "This contract is generic over the rewriting system -- specific instances are separate contracts",
+      "Confluence and termination are assumed as preconditions, not proved by this contract",
+      "The reduction trace provides a constructive witness of reachability",
+      "Consider adding complexity bounds (max reduction steps) as a contract parameter"
+    ],
+    "rust_binding": {
+      "crate": "omega_pipelines",
+      "module": "coda_gtlanf",
+      "symbols": [
+        "Normalize",
+        "FinClaim",
+        "CodaGtlaNf",
+        "normalize_l",
+        "include_i",
+        "t",
+        "is_fixed"
+      ]
+    }
+  },
+  "current_contract": "18173f5f341c3d97014a2a45092526d717da8b1479c2c16f3ad2111cae516610",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "18173f5f341c3d97014a2a45092526d717da8b1479c2c16f3ad2111cae516610",
+      "bytes": 4768,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:normal_form:v0.1.0",
+        "title": "Normal Form Contract",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "canonical_representative",
+          "symbol": "nf: S -> NF(S), nf(x) = y iff x ->* y and y is irreducible",
+          "ascii_symbol": "normal_form",
+          "notation": "nf: S -> NF(S), nf(x) = y iff x ->* y and y is irreducible",
+          "domain": [
+            "expression_set: Set S of expressions in the algebraic structure",
+            "rewriting_relation: One-step reduction relation -> on S",
+            "normal_form_set: Subset NF(S) of irreducible elements",
+            "normal_form_function: Function nf: S -> NF(S) mapping each expression to its unique normal form",
+            "reduction_trace: Sequence of reduction steps from input to normal form"
+          ],
+          "codomain": {
+            "description": "A normal form computation consists of: the expression set S, the rewriting relation ->, evidence of confluence and termination, and the normal form function nf: S -> NF(S) where NF(S) is the set of irreducible elements.\n"
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "nf(x) is irreducible -- no further reductions apply",
+            "nf(x) is reachable from x via the reduction relation: x ->* nf(x)",
+            "nf(nf(x)) = nf(x)",
+            "Artifact hash correctly computed from expression and normal form data"
+          ]
+        },
+        "laws": [
+          "The rewriting system is confluent: for all x, y, z in S, if x ->* y and x ->* z, then there exists w in S such that y ->* w and z ->* w.  This guarantees uniqueness of normal forms.\n",
+          "The rewriting system is terminating: there are no infinite reduction sequences x_0 -> x_1 -> x_2 -> ... in S.\n",
+          "An element y in S is in normal form (irreducible) if there is no z in S with y -> z.  The normal form function returns only irreducible elements.\n",
+          "For each x in S, nf(x) is unique.  This follows from confluence and termination but must be verified independently when the rewriting system is supplied.\n",
+          "nf(nf(x)) = nf(x) for all x in S.  Applying the normal form function to an already-normal element is the identity.\n"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "Reduction strategy must be deterministic (e.g., leftmost-outermost)",
+            "Expression encoding normalized to canonical bytes",
+            "Validators and computation functions are content-addressed"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "negative_tests": [
+          "Rewriting system is not confluent",
+          "Rewriting system has infinite reduction sequences",
+          "Expression hash does not resolve to valid artifact",
+          "Expression is not in the domain of the rewriting system"
+        ],
+        "doctrine": {
+          "summary": "A Normal Form is a canonical representative of an equivalence class under a specified reduction or rewriting system.  Given a set S of expressions, an equivalence relation ~ on S, and a reduction relation ->* that is confluent and terminating, the normal form nf(x) of x in S is the unique element y such that x ->* y and y is irreducible (no further reductions apply).  Two elements x, y in S are equivalent (x ~ y) if and only if nf(x) = nf(y).  This contract defines the structure of normal form computations and the properties they must satisfy.",
+          "non_role": [
+            "Does not define specific rewriting systems (lambda calculus, Groebner, etc.)",
+            "Does not handle non-terminating or non-confluent systems",
+            "Does not implement the reduction strategy (leftmost, rightmost, etc.)",
+            "Does not classify admissibility of expressions",
+            "Does not cover weak normal forms or head normal forms"
+          ]
+        },
+        "wip": [
+          "Should this contract support weak normal forms and head normal forms?",
+          "How to handle rewriting systems where termination is undecidable?",
+          "Integration with specific normal form contracts (Smith, Jordan, Groebner)",
+          "Whether reduction traces should be stored or only their hashes",
+          "Strategy selection (leftmost-outermost vs innermost) as contract parameter",
+          "This contract is generic over the rewriting system -- specific instances are separate contracts",
+          "Confluence and termination are assumed as preconditions, not proved by this contract",
+          "The reduction trace provides a constructive witness of reachability",
+          "Consider adding complexity bounds (max reduction steps) as a contract parameter"
+        ],
+        "rust_binding": {
+          "crate": "omega_pipelines",
+          "module": "coda_gtlanf",
+          "symbols": [
+            "Normalize",
+            "FinClaim",
+            "CodaGtlaNf",
+            "normalize_l",
+            "include_i",
+            "t",
+            "is_fixed"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:normal_form:v0.1.0\ntitle: Normal Form Contract\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: canonical_representative\n  symbol: 'nf: S -> NF(S), nf(x) = y iff x ->* y and y is irreducible'\n  ascii_symbol: normal_form\n  notation: 'nf: S -> NF(S), nf(x) = y iff x ->* y and y is irreducible'\n  domain:\n  - 'expression_set: Set S of expressions in the algebraic structure'\n  - 'rewriting_relation: One-step reduction relation -> on S'\n  - 'normal_form_set: Subset NF(S) of irreducible elements'\n  - 'normal_form_function: Function nf: S -> NF(S) mapping each expression to its\n    unique normal form'\n  - 'reduction_trace: Sequence of reduction steps from input to normal form'\n  codomain:\n    description: 'A normal form computation consists of: the expression set S, the\n      rewriting relation ->, evidence of confluence and termination, and the normal\n      form function nf: S -> NF(S) where NF(S) is the set of irreducible elements.\n\n      '\nrequirements:\n  required_structures:\n  - nf(x) is irreducible -- no further reductions apply\n  - 'nf(x) is reachable from x via the reduction relation: x ->* nf(x)'\n  - nf(nf(x)) = nf(x)\n  - Artifact hash correctly computed from expression and normal form data\nlaws:\n- 'The rewriting system is confluent: for all x, y, z in S, if x ->* y and x ->* z,\n  then there exists w in S such that y ->* w and z ->* w.  This guarantees uniqueness\n  of normal forms.\n\n  '\n- 'The rewriting system is terminating: there are no infinite reduction sequences\n  x_0 -> x_1 -> x_2 -> ... in S.\n\n  '\n- 'An element y in S is in normal form (irreducible) if there is no z in S with y\n  -> z.  The normal form function returns only irreducible elements.\n\n  '\n- 'For each x in S, nf(x) is unique.  This follows from confluence and termination\n  but must be verified independently when the rewriting system is supplied.\n\n  '\n- 'nf(nf(x)) = nf(x) for all x in S.  Applying the normal form function to an already-normal\n  element is the identity.\n\n  '\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Reduction strategy must be deterministic (e.g., leftmost-outermost)\n  - Expression encoding normalized to canonical bytes\n  - Validators and computation functions are content-addressed\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nnegative_tests:\n- Rewriting system is not confluent\n- Rewriting system has infinite reduction sequences\n- Expression hash does not resolve to valid artifact\n- Expression is not in the domain of the rewriting system\ndoctrine:\n  summary: A Normal Form is a canonical representative of an equivalence class under\n    a specified reduction or rewriting system.  Given a set S of expressions, an equivalence\n    relation ~ on S, and a reduction relation ->* that is confluent and terminating,\n    the normal form nf(x) of x in S is the unique element y such that x ->* y and\n    y is irreducible (no further reductions apply).  Two elements x, y in S are equivalent\n    (x ~ y) if and only if nf(x) = nf(y).  This contract defines the structure of\n    normal form computations and the properties they must satisfy.\n  non_role:\n  - Does not define specific rewriting systems (lambda calculus, Groebner, etc.)\n  - Does not handle non-terminating or non-confluent systems\n  - Does not implement the reduction strategy (leftmost, rightmost, etc.)\n  - Does not classify admissibility of expressions\n  - Does not cover weak normal forms or head normal forms\nwip:\n- Should this contract support weak normal forms and head normal forms?\n- How to handle rewriting systems where termination is undecidable?\n- Integration with specific normal form contracts (Smith, Jordan, Groebner)\n- Whether reduction traces should be stored or only their hashes\n- Strategy selection (leftmost-outermost vs innermost) as contract parameter\n- This contract is generic over the rewriting system -- specific instances are separate\n  contracts\n- Confluence and termination are assumed as preconditions, not proved by this contract\n- The reduction trace provides a constructive witness of reachability\n- Consider adding complexity bounds (max reduction steps) as a contract parameter\nrust_binding:\n  crate: omega_pipelines\n  module: coda_gtlanf\n  symbols:\n  - Normalize\n  - FinClaim\n  - CodaGtlaNf\n  - normalize_l\n  - include_i\n  - t\n  - is_fixed\n",
+      "original_paths": [
+        "code/python/governance/10_math/algebra/math_normal_form_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/algebra/math_normal_form_v0_1_0.contract.yaml": "18173f5f341c3d97014a2a45092526d717da8b1479c2c16f3ad2111cae516610"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

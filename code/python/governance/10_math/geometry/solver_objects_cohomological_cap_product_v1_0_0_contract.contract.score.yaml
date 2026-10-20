@@ -1,0 +1,161 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/geometry/solver_objects_cohomological_cap_product_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:solver_objects:cohomological_cap_product:v1.0.0",
+    "title": "Cap Product Dualization",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "role": "MathObject",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "abstract": false,
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0",
+        "urn:omega:constitution:base_math_contract:v1.0.0"
+      ],
+      "semantic_contracts": [
+        "omega_engine_governance/contracts/contracts_math/evaluation_pairing.contract.yaml"
+      ],
+      "runtime_bindings": [
+        "omega_engine.crates.homology_theory.cup_product",
+        "omega_engine.crates.homology_theory.boundary"
+      ],
+      "used_by": [
+        "OESOS",
+        "Prime000",
+        "Prime001",
+        "Prime002"
+      ]
+    },
+    "math": {
+      "object_kind": "cohomological_cap_product",
+      "symbol": "frown: H^p x H_q -> H_{q-p}",
+      "definition": "System contract for cap product frown: H^p x H_q -> H_{q-p} linking homological chains and cohomological cochains.",
+      "laws": [
+        "partial(a frown c) = (da) frown c + (-1)^p a frown (partial c).",
+        "Cap product with unit cochain is identity on chains."
+      ]
+    },
+    "doctrine": {
+      "summary": "OESOS and Prime binding contract for Cap Product Dualization.",
+      "non_role": [
+        "authority_minting",
+        "policy_decision",
+        "self_certification",
+        "state_transition"
+      ],
+      "canonical_invariant": "This contract is structural and AuthorityEffect None. Inheritance supplies shared shape and negative-capability rules without increasing authority."
+    }
+  },
+  "current_contract": "f4e45d9bb60901d468cae96221b0ffbfc1cb5bb326cc342f0b94f28e0cd03f82",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "f4e45d9bb60901d468cae96221b0ffbfc1cb5bb326cc342f0b94f28e0cd03f82",
+      "bytes": 1691,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:solver_objects:cohomological_cap_product:v1.0.0",
+        "title": "Cap Product Dualization",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "role": "MathObject",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "abstract": false,
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0",
+            "urn:omega:constitution:base_math_contract:v1.0.0"
+          ],
+          "semantic_contracts": [
+            "omega_engine_governance/contracts/contracts_math/evaluation_pairing.contract.yaml"
+          ],
+          "runtime_bindings": [
+            "omega_engine.crates.homology_theory.cup_product",
+            "omega_engine.crates.homology_theory.boundary"
+          ],
+          "used_by": [
+            "OESOS",
+            "Prime000",
+            "Prime001",
+            "Prime002"
+          ]
+        },
+        "math": {
+          "object_kind": "cohomological_cap_product",
+          "symbol": "frown: H^p x H_q -> H_{q-p}",
+          "definition": "System contract for cap product frown: H^p x H_q -> H_{q-p} linking homological chains and cohomological cochains.",
+          "laws": [
+            "partial(a frown c) = (da) frown c + (-1)^p a frown (partial c).",
+            "Cap product with unit cochain is identity on chains."
+          ]
+        },
+        "doctrine": {
+          "summary": "OESOS and Prime binding contract for Cap Product Dualization.",
+          "non_role": [
+            "authority_minting",
+            "policy_decision",
+            "self_certification",
+            "state_transition"
+          ],
+          "canonical_invariant": "This contract is structural and AuthorityEffect None. Inheritance supplies shared shape and negative-capability rules without increasing authority."
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:solver_objects:cohomological_cap_product:v1.0.0\ntitle: Cap Product Dualization\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\nrole: MathObject\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  abstract: false\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n  - urn:omega:constitution:base_math_contract:v1.0.0\n  semantic_contracts:\n  - omega_engine_governance/contracts/contracts_math/evaluation_pairing.contract.yaml\n  runtime_bindings:\n  - omega_engine.crates.homology_theory.cup_product\n  - omega_engine.crates.homology_theory.boundary\n  used_by:\n  - OESOS\n  - Prime000\n  - Prime001\n  - Prime002\nmath:\n  object_kind: cohomological_cap_product\n  symbol: 'frown: H^p x H_q -> H_{q-p}'\n  definition: 'System contract for cap product frown: H^p x H_q -> H_{q-p} linking\n    homological chains and cohomological cochains.'\n  laws:\n  - partial(a frown c) = (da) frown c + (-1)^p a frown (partial c).\n  - Cap product with unit cochain is identity on chains.\ndoctrine:\n  summary: OESOS and Prime binding contract for Cap Product Dualization.\n  non_role:\n  - authority_minting\n  - policy_decision\n  - self_certification\n  - state_transition\n  canonical_invariant: This contract is structural and AuthorityEffect None. Inheritance\n    supplies shared shape and negative-capability rules without increasing authority.\n",
+      "original_paths": [
+        "code/python/governance/10_math/geometry/solver_objects_cohomological_cap_product_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/geometry/solver_objects_cohomological_cap_product_v1_0_0.contract.yaml": "f4e45d9bb60901d468cae96221b0ffbfc1cb5bb326cc342f0b94f28e0cd03f82"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

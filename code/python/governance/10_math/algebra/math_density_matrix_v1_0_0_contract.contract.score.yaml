@@ -1,0 +1,359 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/algebra/math_density_matrix_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:density_matrix:v1.0.0",
+    "title": "Density Matrix Contract",
+    "kind": "math_contract",
+    "status": "active",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "operator",
+      "symbol": "ρ ∈ D(ℋ), where D(ℋ) is the space of density operators on ℋ ≅ ℂ^n",
+      "ascii_symbol": "density_matrix",
+      "notation": "ρ ∈ D(ℋ), where D(ℋ) is the space of density operators on ℋ ≅ ℂ^n",
+      "domain": [
+        "dimension: positive integer n ≥ 1",
+        "matrix: complex n×n matrix (nalgebra::DMatrix<Complex<f64>>)",
+        "validation_report: trace, Hermitian defect, minimum eigenvalue, config"
+      ],
+      "codomain": {
+        "description": "A complex square matrix ρ ∈ ℂ^(n×n) satisfying: (1) trace(ρ) = 1 (2) ρ† = ρ (Hermitian) (3) ρ ≥ 0 (positive semidefinite: all eigenvalues ≥ 0)\n"
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "The trace of the density matrix equals 1 within trace_tol",
+        "Matrix equals its conjugate transpose within hermitian_tol",
+        "All eigenvalues are non-negative (≥ -psd_tol)",
+        "All matrix entries are finite (no NaN, no infinity)",
+        "Matrix dimension n ≥ 1",
+        "All tolerance values are positive and finite",
+        "psd_tol ≥ hermitian_tol (positive semidefinite check must be at least as loose as Hermitian check)",
+        "Purity Tr(ρ²) satisfies 1/n ≤ purity ≤ 1",
+        "Kraus operators satisfy ∑ᵢ Kᵢ† Kᵢ = I (trace preservation)",
+        "Bloch vector satisfies |r| ≤ 1 for qubit states"
+      ]
+    },
+    "laws": [
+      "trace(ρ) = 1",
+      "ρ† = ρ (conjugate transpose equals self)",
+      "⟨ψ|ρ|ψ⟩ ≥ 0 for all |ψ⟩ ∈ ℋ (equivalently: all eigenvalues ≥ 0)"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No randomness",
+        "No time-dependent data",
+        "Eigenvalue computation uses deterministic nalgebra symmetric_eigen",
+        "Floating-point operations follow IEEE 754 determinism"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_linear_algebra",
+      "module": "linear_algebra::density",
+      "symbols": [
+        "DensityMatrixCandidate",
+        "NumericalDensityMatrix",
+        "DensityMatrixConfig",
+        "DensityMatrixValidationReport",
+        "DensityMatrixError"
+      ],
+      "required_tests": [
+        "rejects_zero_dimension",
+        "rejects_trace_not_one",
+        "rejects_non_hermitian_matrix",
+        "rejects_non_psd_matrix",
+        "rejects_nan_in_raw_data",
+        "rejects_shape_mismatch_in_raw",
+        "rejects_negative_probability_in_diagonal",
+        "rejects_bloch_vector_outside_sphere",
+        "rejects_bloch_with_nan",
+        "get_rejects_out_of_bounds",
+        "partial_trace_rejects_dimension_mismatch",
+        "mixture_rejects_negative_weight",
+        "mixture_rejects_weight_sum_not_one",
+        "config_try_new_rejects_negative_tolerance",
+        "config_try_new_rejects_nan_tolerance",
+        "config_try_new_rejects_psd_smaller_than_hermitian",
+        "amplitudes_rejects_unnormalized_state"
+      ]
+    },
+    "negative_tests": [
+      "Construction with dimension=0 must fail",
+      "Matrix with trace != 1 must fail validation",
+      "Matrix with ρ != ρ† must fail validation",
+      "Matrix with negative eigenvalues must fail validation",
+      "NaN entries must be rejected immediately",
+      "Data length != dimension² must fail",
+      "Negative diagonal probabilities must fail",
+      "Bloch vector with |r| > 1 must fail",
+      "NaN in Bloch vector must fail",
+      "Access beyond dimension must fail",
+      "Incorrect subsystem dimensions must fail",
+      "Negative mixture weights must fail",
+      "Mixture weights not summing to 1 must fail",
+      "Negative tolerance values must fail",
+      "NaN tolerance values must fail",
+      "psd_tol < hermitian_tol must fail consistency check",
+      "State vector with ||ψ|| != 1 must fail"
+    ],
+    "doctrine": {
+      "summary": "This contract specifies the mathematical structure and validation requirements for quantum density matrices. A density matrix is a positive semidefinite, Hermitian operator with trace one that represents the quantum state of a system. This contract covers both pure states (rank-1 projectors) and mixed states (convex combinations of pure states).\nThe contract enforces physical consistency through configurable numerical tolerances for trace, Hermiticity, and positive semidefiniteness checks. All operations are deterministic and replay-compatible.\nDensity matrices are fundamental to quantum information theory, quantum computing, and statistical quantum mechanics. They enable representation of both pure and mixed states, partial trace operations for subsystems, quantum channels via Kraus operators, and entropy calculations.",
+      "non_role": [
+        "Symbolic manipulation of density matrices",
+        "Exact rational or algebraic number representation",
+        "Infinite-dimensional Hilbert spaces",
+        "Real-time quantum dynamics simulation",
+        "Quantum circuit compilation or optimization",
+        "Automatic differentiation or gradient computation",
+        "GPU or distributed computation backends"
+      ]
+    },
+    "nomos_debate_NOT_CANONICAL": {
+      "banner": "NON-CANONICAL DEBATE ONLY — not contract law; not enforced as obligations; AuthorityEffect None",
+      "not_part_of_contract_law": true,
+      "authority_effect": "none",
+      "potential_defects": [
+        {
+          "reviewer": "panepistimion-math-prof",
+          "role": "MATH_CANONICAL_REVIEW",
+          "code": "STAGE1_MECHANICAL_PASS",
+          "severity": "info",
+          "claim_class": "[STANDARD]",
+          "detail": "Mechanical GTLA field gates passed (authority/math/non_role/structures/laws-or-requirements/negative_tests). Not PROVED.",
+          "recommendation": "Repair under meth-level math re-review (ADR-007); not GlobalGreen."
+        }
+      ],
+      "realization_delta_vs_implemented_math_file": [
+        {
+          "reviewer": "panepistimion-cs-prof-ml-ai-info",
+          "role": "CS_IMPL_DELTA_REVIEW",
+          "code": "REALIZATION_CORE_MATCH",
+          "severity": "low",
+          "claim_class": "[CODE_DEMO_RUST]",
+          "detail": "Dedicated realization at omega_linear_algebra/src/linear_algebra/density.rs. Symbols DensityMatrixCandidate, NumericalDensityMatrix, DensityMatrixConfig, DensityMatrixValidationReport, DensityMatrixError present. Candidate/validate enforces dim>=1, shape, NaN refuse, trace_tol, hermitian_tol, psd_tol; purity, partial_trace, bloch, kraus ops exist with matching negative tests. Binding module string \"density\" is shorthand vs disk path linear_algebra::density. Core physical laws MATCH under numerical tolerances (ShapeOnly). Not PROVED / not GlobalGreen.\n",
+          "recommendation": "Optional: set rust_binding.module to linear_algebra::density for path honesty.\n",
+          "file": "omega_engine/crates/omega_linear_algebra/src/linear_algebra/density.rs",
+          "yaml_law": "trace(rho)=1; rho dagger=rho; PSD eigenvalues; dim>=1; finite entries; tol consistency; purity/Kraus/Bloch requirements listed.\n",
+          "code_behavior": "Numerical validation path implements listed structural checks with tolerances; purity/bloch/kraus helpers present; ZeroDimension refused.\n",
+          "delta": "MATCH"
+        }
+      ]
+    }
+  },
+  "current_contract": "5a4b699910d83072003f21b1ad52f515ae2931267f22b34ad54003a19ebf8d83",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "5a4b699910d83072003f21b1ad52f515ae2931267f22b34ad54003a19ebf8d83",
+      "bytes": 7031,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:density_matrix:v1.0.0",
+        "title": "Density Matrix Contract",
+        "kind": "math_contract",
+        "status": "active",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "operator",
+          "symbol": "ρ ∈ D(ℋ), where D(ℋ) is the space of density operators on ℋ ≅ ℂ^n",
+          "ascii_symbol": "density_matrix",
+          "notation": "ρ ∈ D(ℋ), where D(ℋ) is the space of density operators on ℋ ≅ ℂ^n",
+          "domain": [
+            "dimension: positive integer n ≥ 1",
+            "matrix: complex n×n matrix (nalgebra::DMatrix<Complex<f64>>)",
+            "validation_report: trace, Hermitian defect, minimum eigenvalue, config"
+          ],
+          "codomain": {
+            "description": "A complex square matrix ρ ∈ ℂ^(n×n) satisfying: (1) trace(ρ) = 1 (2) ρ† = ρ (Hermitian) (3) ρ ≥ 0 (positive semidefinite: all eigenvalues ≥ 0)\n"
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "The trace of the density matrix equals 1 within trace_tol",
+            "Matrix equals its conjugate transpose within hermitian_tol",
+            "All eigenvalues are non-negative (≥ -psd_tol)",
+            "All matrix entries are finite (no NaN, no infinity)",
+            "Matrix dimension n ≥ 1",
+            "All tolerance values are positive and finite",
+            "psd_tol ≥ hermitian_tol (positive semidefinite check must be at least as loose as Hermitian check)",
+            "Purity Tr(ρ²) satisfies 1/n ≤ purity ≤ 1",
+            "Kraus operators satisfy ∑ᵢ Kᵢ† Kᵢ = I (trace preservation)",
+            "Bloch vector satisfies |r| ≤ 1 for qubit states"
+          ]
+        },
+        "laws": [
+          "trace(ρ) = 1",
+          "ρ† = ρ (conjugate transpose equals self)",
+          "⟨ψ|ρ|ψ⟩ ≥ 0 for all |ψ⟩ ∈ ℋ (equivalently: all eigenvalues ≥ 0)"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "Eigenvalue computation uses deterministic nalgebra symmetric_eigen",
+            "Floating-point operations follow IEEE 754 determinism"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_linear_algebra",
+          "module": "linear_algebra::density",
+          "symbols": [
+            "DensityMatrixCandidate",
+            "NumericalDensityMatrix",
+            "DensityMatrixConfig",
+            "DensityMatrixValidationReport",
+            "DensityMatrixError"
+          ],
+          "required_tests": [
+            "rejects_zero_dimension",
+            "rejects_trace_not_one",
+            "rejects_non_hermitian_matrix",
+            "rejects_non_psd_matrix",
+            "rejects_nan_in_raw_data",
+            "rejects_shape_mismatch_in_raw",
+            "rejects_negative_probability_in_diagonal",
+            "rejects_bloch_vector_outside_sphere",
+            "rejects_bloch_with_nan",
+            "get_rejects_out_of_bounds",
+            "partial_trace_rejects_dimension_mismatch",
+            "mixture_rejects_negative_weight",
+            "mixture_rejects_weight_sum_not_one",
+            "config_try_new_rejects_negative_tolerance",
+            "config_try_new_rejects_nan_tolerance",
+            "config_try_new_rejects_psd_smaller_than_hermitian",
+            "amplitudes_rejects_unnormalized_state"
+          ]
+        },
+        "negative_tests": [
+          "Construction with dimension=0 must fail",
+          "Matrix with trace != 1 must fail validation",
+          "Matrix with ρ != ρ† must fail validation",
+          "Matrix with negative eigenvalues must fail validation",
+          "NaN entries must be rejected immediately",
+          "Data length != dimension² must fail",
+          "Negative diagonal probabilities must fail",
+          "Bloch vector with |r| > 1 must fail",
+          "NaN in Bloch vector must fail",
+          "Access beyond dimension must fail",
+          "Incorrect subsystem dimensions must fail",
+          "Negative mixture weights must fail",
+          "Mixture weights not summing to 1 must fail",
+          "Negative tolerance values must fail",
+          "NaN tolerance values must fail",
+          "psd_tol < hermitian_tol must fail consistency check",
+          "State vector with ||ψ|| != 1 must fail"
+        ],
+        "doctrine": {
+          "summary": "This contract specifies the mathematical structure and validation requirements for quantum density matrices. A density matrix is a positive semidefinite, Hermitian operator with trace one that represents the quantum state of a system. This contract covers both pure states (rank-1 projectors) and mixed states (convex combinations of pure states).\nThe contract enforces physical consistency through configurable numerical tolerances for trace, Hermiticity, and positive semidefiniteness checks. All operations are deterministic and replay-compatible.\nDensity matrices are fundamental to quantum information theory, quantum computing, and statistical quantum mechanics. They enable representation of both pure and mixed states, partial trace operations for subsystems, quantum channels via Kraus operators, and entropy calculations.",
+          "non_role": [
+            "Symbolic manipulation of density matrices",
+            "Exact rational or algebraic number representation",
+            "Infinite-dimensional Hilbert spaces",
+            "Real-time quantum dynamics simulation",
+            "Quantum circuit compilation or optimization",
+            "Automatic differentiation or gradient computation",
+            "GPU or distributed computation backends"
+          ]
+        },
+        "nomos_debate_NOT_CANONICAL": {
+          "banner": "NON-CANONICAL DEBATE ONLY — not contract law; not enforced as obligations; AuthorityEffect None",
+          "not_part_of_contract_law": true,
+          "authority_effect": "none",
+          "potential_defects": [
+            {
+              "reviewer": "panepistimion-math-prof",
+              "role": "MATH_CANONICAL_REVIEW",
+              "code": "STAGE1_MECHANICAL_PASS",
+              "severity": "info",
+              "claim_class": "[STANDARD]",
+              "detail": "Mechanical GTLA field gates passed (authority/math/non_role/structures/laws-or-requirements/negative_tests). Not PROVED.",
+              "recommendation": "Repair under meth-level math re-review (ADR-007); not GlobalGreen."
+            }
+          ],
+          "realization_delta_vs_implemented_math_file": [
+            {
+              "reviewer": "panepistimion-cs-prof-ml-ai-info",
+              "role": "CS_IMPL_DELTA_REVIEW",
+              "code": "REALIZATION_CORE_MATCH",
+              "severity": "low",
+              "claim_class": "[CODE_DEMO_RUST]",
+              "detail": "Dedicated realization at omega_linear_algebra/src/linear_algebra/density.rs. Symbols DensityMatrixCandidate, NumericalDensityMatrix, DensityMatrixConfig, DensityMatrixValidationReport, DensityMatrixError present. Candidate/validate enforces dim>=1, shape, NaN refuse, trace_tol, hermitian_tol, psd_tol; purity, partial_trace, bloch, kraus ops exist with matching negative tests. Binding module string \"density\" is shorthand vs disk path linear_algebra::density. Core physical laws MATCH under numerical tolerances (ShapeOnly). Not PROVED / not GlobalGreen.\n",
+              "recommendation": "Optional: set rust_binding.module to linear_algebra::density for path honesty.\n",
+              "file": "omega_engine/crates/omega_linear_algebra/src/linear_algebra/density.rs",
+              "yaml_law": "trace(rho)=1; rho dagger=rho; PSD eigenvalues; dim>=1; finite entries; tol consistency; purity/Kraus/Bloch requirements listed.\n",
+              "code_behavior": "Numerical validation path implements listed structural checks with tolerances; purity/bloch/kraus helpers present; ZeroDimension refused.\n",
+              "delta": "MATCH"
+            }
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:density_matrix:v1.0.0\ntitle: Density Matrix Contract\nkind: math_contract\nstatus: active\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: operator\n  symbol: ρ ∈ D(ℋ), where D(ℋ) is the space of density operators on ℋ ≅ ℂ^n\n  ascii_symbol: density_matrix\n  notation: ρ ∈ D(ℋ), where D(ℋ) is the space of density operators on ℋ ≅ ℂ^n\n  domain:\n  - 'dimension: positive integer n ≥ 1'\n  - 'matrix: complex n×n matrix (nalgebra::DMatrix<Complex<f64>>)'\n  - 'validation_report: trace, Hermitian defect, minimum eigenvalue, config'\n  codomain:\n    description: 'A complex square matrix ρ ∈ ℂ^(n×n) satisfying: (1) trace(ρ) = 1\n      (2) ρ† = ρ (Hermitian) (3) ρ ≥ 0 (positive semidefinite: all eigenvalues ≥ 0)\n\n      '\nrequirements:\n  required_structures:\n  - The trace of the density matrix equals 1 within trace_tol\n  - Matrix equals its conjugate transpose within hermitian_tol\n  - All eigenvalues are non-negative (≥ -psd_tol)\n  - All matrix entries are finite (no NaN, no infinity)\n  - Matrix dimension n ≥ 1\n  - All tolerance values are positive and finite\n  - psd_tol ≥ hermitian_tol (positive semidefinite check must be at least as loose\n    as Hermitian check)\n  - Purity Tr(ρ²) satisfies 1/n ≤ purity ≤ 1\n  - Kraus operators satisfy ∑ᵢ Kᵢ† Kᵢ = I (trace preservation)\n  - Bloch vector satisfies |r| ≤ 1 for qubit states\nlaws:\n- trace(ρ) = 1\n- ρ† = ρ (conjugate transpose equals self)\n- '⟨ψ|ρ|ψ⟩ ≥ 0 for all |ψ⟩ ∈ ℋ (equivalently: all eigenvalues ≥ 0)'\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Eigenvalue computation uses deterministic nalgebra symmetric_eigen\n  - Floating-point operations follow IEEE 754 determinism\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nrust_binding:\n  crate: omega_linear_algebra\n  module: linear_algebra::density\n  symbols:\n  - DensityMatrixCandidate\n  - NumericalDensityMatrix\n  - DensityMatrixConfig\n  - DensityMatrixValidationReport\n  - DensityMatrixError\n  required_tests:\n  - rejects_zero_dimension\n  - rejects_trace_not_one\n  - rejects_non_hermitian_matrix\n  - rejects_non_psd_matrix\n  - rejects_nan_in_raw_data\n  - rejects_shape_mismatch_in_raw\n  - rejects_negative_probability_in_diagonal\n  - rejects_bloch_vector_outside_sphere\n  - rejects_bloch_with_nan\n  - get_rejects_out_of_bounds\n  - partial_trace_rejects_dimension_mismatch\n  - mixture_rejects_negative_weight\n  - mixture_rejects_weight_sum_not_one\n  - config_try_new_rejects_negative_tolerance\n  - config_try_new_rejects_nan_tolerance\n  - config_try_new_rejects_psd_smaller_than_hermitian\n  - amplitudes_rejects_unnormalized_state\nnegative_tests:\n- Construction with dimension=0 must fail\n- Matrix with trace != 1 must fail validation\n- Matrix with ρ != ρ† must fail validation\n- Matrix with negative eigenvalues must fail validation\n- NaN entries must be rejected immediately\n- Data length != dimension² must fail\n- Negative diagonal probabilities must fail\n- Bloch vector with |r| > 1 must fail\n- NaN in Bloch vector must fail\n- Access beyond dimension must fail\n- Incorrect subsystem dimensions must fail\n- Negative mixture weights must fail\n- Mixture weights not summing to 1 must fail\n- Negative tolerance values must fail\n- NaN tolerance values must fail\n- psd_tol < hermitian_tol must fail consistency check\n- State vector with ||ψ|| != 1 must fail\ndoctrine:\n  summary: 'This contract specifies the mathematical structure and validation requirements\n    for quantum density matrices. A density matrix is a positive semidefinite, Hermitian\n    operator with trace one that represents the quantum state of a system. This contract\n    covers both pure states (rank-1 projectors) and mixed states (convex combinations\n    of pure states).\n\n    The contract enforces physical consistency through configurable numerical tolerances\n    for trace, Hermiticity, and positive semidefiniteness checks. All operations are\n    deterministic and replay-compatible.\n\n    Density matrices are fundamental to quantum information theory, quantum computing,\n    and statistical quantum mechanics. They enable representation of both pure and\n    mixed states, partial trace operations for subsystems, quantum channels via Kraus\n    operators, and entropy calculations.'\n  non_role:\n  - Symbolic manipulation of density matrices\n  - Exact rational or algebraic number representation\n  - Infinite-dimensional Hilbert spaces\n  - Real-time quantum dynamics simulation\n  - Quantum circuit compilation or optimization\n  - Automatic differentiation or gradient computation\n  - GPU or distributed computation backends\nnomos_debate_NOT_CANONICAL:\n  banner: NON-CANONICAL DEBATE ONLY — not contract law; not enforced as obligations;\n    AuthorityEffect None\n  not_part_of_contract_law: true\n  authority_effect: none\n  potential_defects:\n  - reviewer: panepistimion-math-prof\n    role: MATH_CANONICAL_REVIEW\n    code: STAGE1_MECHANICAL_PASS\n    severity: info\n    claim_class: '[STANDARD]'\n    detail: Mechanical GTLA field gates passed (authority/math/non_role/structures/laws-or-requirements/negative_tests).\n      Not PROVED.\n    recommendation: Repair under meth-level math re-review (ADR-007); not GlobalGreen.\n  realization_delta_vs_implemented_math_file:\n  - reviewer: panepistimion-cs-prof-ml-ai-info\n    role: CS_IMPL_DELTA_REVIEW\n    code: REALIZATION_CORE_MATCH\n    severity: low\n    claim_class: '[CODE_DEMO_RUST]'\n    detail: 'Dedicated realization at omega_linear_algebra/src/linear_algebra/density.rs.\n      Symbols DensityMatrixCandidate, NumericalDensityMatrix, DensityMatrixConfig,\n      DensityMatrixValidationReport, DensityMatrixError present. Candidate/validate\n      enforces dim>=1, shape, NaN refuse, trace_tol, hermitian_tol, psd_tol; purity,\n      partial_trace, bloch, kraus ops exist with matching negative tests. Binding\n      module string \"density\" is shorthand vs disk path linear_algebra::density. Core\n      physical laws MATCH under numerical tolerances (ShapeOnly). Not PROVED / not\n      GlobalGreen.\n\n      '\n    recommendation: 'Optional: set rust_binding.module to linear_algebra::density\n      for path honesty.\n\n      '\n    file: omega_engine/crates/omega_linear_algebra/src/linear_algebra/density.rs\n    yaml_law: 'trace(rho)=1; rho dagger=rho; PSD eigenvalues; dim>=1; finite entries;\n      tol consistency; purity/Kraus/Bloch requirements listed.\n\n      '\n    code_behavior: 'Numerical validation path implements listed structural checks\n      with tolerances; purity/bloch/kraus helpers present; ZeroDimension refused.\n\n      '\n    delta: MATCH\n",
+      "original_paths": [
+        "code/python/governance/10_math/algebra/math_density_matrix_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/algebra/math_density_matrix_v1_0_0.contract.yaml": "5a4b699910d83072003f21b1ad52f515ae2931267f22b34ad54003a19ebf8d83"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

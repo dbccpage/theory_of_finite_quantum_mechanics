@@ -1,0 +1,555 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/rust/src/category_theory/finite_simulation.rs",
+  "contract": {
+    "schema_version": "1.0.0",
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/rust/src/category_theory/finite_simulation.rs",
+      "sha256": "503da98d73a0680e1615d7e754da00357f6c85be8a28aea8e553d28853138d12",
+      "language": "Rust"
+    },
+    "status": "source_reviewed",
+    "formal_specification": {
+      "profile": "Exact retained: primitive integer/Option equality, checked resource estimate, finite typed macro tables, no float or narrowing.",
+      "domain": "Immutable admitted nonempty finite partial dynamics; arbitrary borrowed map and per-event target words admitted with explicit finite typing/injectivity policy.",
+      "behavior": [
+        "Reject length != source real-state count or any target index >= target real-state count; in ResourceExtension require injective map by value, in Exact permit many-to-one maps. All invalid maps have InvalidMap. Borrow only; no role swapping, reconstruction or implicit surjectivity. Private source/target admission guarantees nonempty carriers and closed transitions.",
+        "Require exactly one target-event word per source input, including empty macro words if provided. Reject every out-of-target-alphabet symbol even after an earlier unavailable step. Both transition tables have a first row by private nonempty admission. InvalidEncoding precedes work admission. Empty alphabets and empty encoding tables are valid together.",
+        "Compute checked width=1+sum over macros(length+1), then checked width*states. Any overflow or strictly cost>max_cells returns WorkLimit, exact boundary passes. states=0 is permitted by this private scalar helper but unreachable through public admitted nonempty source/map. Budget is a cell estimate, not bytes/elapsed-time/allocator admission.",
+        "If expected None, actual Some and mode ResourceExtension, append the original (state,input) coordinate exactly once and continue. Otherwise unequal Options return StepMismatch preserving both exact values and coordinate; equal Options continue. Both unavailable is equal but never an added availability. Exact mode never permits added availability; extension may not drop or alter an old defined mapped target. Mutates only caller-owned provisional output vector.",
+        "Precondition: state < admitted map length = source state count, valid target map, one fully typed word per source input. Check raw report equality before any step in this state. For each macro in input order compare mapped source target (or None) against full target.run at mapped state. compare_step appends extension additions or returns first mismatch. Provider errors map to InvalidEncoding defensively; with these admitted tables/full alphabet checks that branch is not publicly reachable. No state data changes.",
+        "Ordered phase composition map->encoding->checked budget, then states in ascending source index. Stop at first report/step mismatch and return it as an Ok decision, discarding provisional additions from earlier coordinates. Only when every report/step is compatible return Checked with all and only added availability coordinates in source-state/input order. Exact defines partial-step simulation with report preservation, hence every encoded word; extension requires injective map and preserves every old defined step, while additions are explicit.",
+        "Recompute with all expected source/target/map/encoding/mode/budget arguments, propagate typed admission/resource refusals first, then compare entire canonical SimulationDecision structurally. Ok(()) may verify a correct ReportMismatch or StepMismatch diagnostic; it does not mean a successful simulation. Only a Checked decision certifies compatible admitted input. Any coordinate, payload, ordering or added-list difference is CertificateMismatch."
+      ],
+      "provider_correspondence": "PartialDynamics private new rejects empty reports, transition-row count/width mismatch and out-of-range Some targets; getters borrow immutable data and no public mutator/default/deserializer bypass exists. Source/target indices and macro alphabet are validated before scans. run validates start and the WHOLE word alphabet, then Option-folds each transition; None remains None, empty word returns input state. All source target lookups map through a total admitted map. No quotient or distinction search is used here, so no Moore refinement theorem is needed to establish these call paths. Readouts are exact primitive usize equality, MAX valid; a shared semantic interpretation is a caller premise rather than a dictionary admitted here."
+    },
+    "operations": {
+      "admit_map": {
+        "line": 41,
+        "signature": "fn admit_map(\n    source: &PartialDynamics,\n    target: &PartialDynamics,\n    map: &[usize],\n    mode: SimulationMode,\n) -> Result<(), SimulationError>",
+        "obligation": "Reject length != source real-state count or any target index >= target real-state count; in ResourceExtension require injective map by value, in Exact permit many-to-one maps. All invalid maps have InvalidMap. Borrow only; no role swapping, reconstruction or implicit surjectivity. Private source/target admission guarantees nonempty carriers and closed transitions."
+      },
+      "admit_encoding": {
+        "line": 57,
+        "signature": "fn admit_encoding(\n    source: &PartialDynamics,\n    target: &PartialDynamics,\n    words: &[Vec<usize>],\n) -> Result<(), SimulationError>",
+        "obligation": "Require exactly one target-event word per source input, including empty macro words if provided. Reject every out-of-target-alphabet symbol even after an earlier unavailable step. Both transition tables have a first row by private nonempty admission. InvalidEncoding precedes work admission. Empty alphabets and empty encoding tables are valid together."
+      },
+      "admit_budget": {
+        "line": 73,
+        "signature": "fn admit_budget(\n    states: usize,\n    words: &[Vec<usize>],\n    max_cells: usize,\n) -> Result<(), SimulationError>",
+        "obligation": "Compute checked width=1+sum over macros(length+1), then checked width*states. Any overflow or strictly cost>max_cells returns WorkLimit, exact boundary passes. states=0 is permitted by this private scalar helper but unreachable through public admitted nonempty source/map. Budget is a cell estimate, not bytes/elapsed-time/allocator admission."
+      },
+      "compare_step": {
+        "line": 90,
+        "signature": "fn compare_step(\n    expected: Option<usize>,\n    actual: Option<usize>,\n    mode: SimulationMode,\n    coordinate: (usize, usize),\n    added: &mut Vec<(usize, usize)>,\n) -> Option<SimulationDecision>",
+        "obligation": "If expected None, actual Some and mode ResourceExtension, append the original (state,input) coordinate exactly once and continue. Otherwise unequal Options return StepMismatch preserving both exact values and coordinate; equal Options continue. Both unavailable is equal but never an added availability. Exact mode never permits added availability; extension may not drop or alter an old defined mapped target. Mutates only caller-owned provisional output vector."
+      },
+      "check_state": {
+        "line": 113,
+        "signature": "fn check_state(\n    source: &PartialDynamics,\n    target: &PartialDynamics,\n    map: &[usize],\n    words: &[Vec<usize>],\n    mode: SimulationMode,\n    state: usize,\n    added: &mut Vec<(usize, usize)>,\n) -> Result<Option<SimulationDecision>, SimulationError>",
+        "obligation": "Precondition: state < admitted map length = source state count, valid target map, one fully typed word per source input. Check raw report equality before any step in this state. For each macro in input order compare mapped source target (or None) against full target.run at mapped state. compare_step appends extension additions or returns first mismatch. Provider errors map to InvalidEncoding defensively; with these admitted tables/full alphabet checks that branch is not publicly reachable. No state data changes."
+      },
+      "check_simulation": {
+        "line": 144,
+        "signature": "pub fn check_simulation(\n    source: &PartialDynamics,\n    target: &PartialDynamics,\n    map: &[usize],\n    words: &[Vec<usize>],\n    mode: SimulationMode,\n    max_cells: usize,\n) -> Result<SimulationDecision, SimulationError>",
+        "obligation": "Ordered phase composition map->encoding->checked budget, then states in ascending source index. Stop at first report/step mismatch and return it as an Ok decision, discarding provisional additions from earlier coordinates. Only when every report/step is compatible return Checked with all and only added availability coordinates in source-state/input order. Exact defines partial-step simulation with report preservation, hence every encoded word; extension requires injective map and preserves every old defined step, while additions are explicit."
+      },
+      "verify_simulation": {
+        "line": 165,
+        "signature": "pub fn verify_simulation(\n    source: &PartialDynamics,\n    target: &PartialDynamics,\n    map: &[usize],\n    words: &[Vec<usize>],\n    mode: SimulationMode,\n    max_cells: usize,\n    c: &SimulationDecision,\n) -> Result<(), SimulationError>",
+        "obligation": "Recompute with all expected source/target/map/encoding/mode/budget arguments, propagate typed admission/resource refusals first, then compare entire canonical SimulationDecision structurally. Ok(()) may verify a correct ReportMismatch or StepMismatch diagnostic; it does not mean a successful simulation. Only a Checked decision certifies compatible admitted input. Any coordinate, payload, ordering or added-list difference is CertificateMismatch."
+      }
+    },
+    "invariants": [
+      "Reject length != source real-state count or any target index >= target real-state count; in ResourceExtension require injective map by value, in Exact permit many-to-one maps. All invalid maps have InvalidMap. Borrow only; no role swapping, reconstruction or implicit surjectivity. Private source/target admission guarantees nonempty carriers and closed transitions.",
+      "Require exactly one target-event word per source input, including empty macro words if provided. Reject every out-of-target-alphabet symbol even after an earlier unavailable step. Both transition tables have a first row by private nonempty admission. InvalidEncoding precedes work admission. Empty alphabets and empty encoding tables are valid together.",
+      "Compute checked width=1+sum over macros(length+1), then checked width*states. Any overflow or strictly cost>max_cells returns WorkLimit, exact boundary passes. states=0 is permitted by this private scalar helper but unreachable through public admitted nonempty source/map. Budget is a cell estimate, not bytes/elapsed-time/allocator admission.",
+      "If expected None, actual Some and mode ResourceExtension, append the original (state,input) coordinate exactly once and continue. Otherwise unequal Options return StepMismatch preserving both exact values and coordinate; equal Options continue. Both unavailable is equal but never an added availability. Exact mode never permits added availability; extension may not drop or alter an old defined mapped target. Mutates only caller-owned provisional output vector.",
+      "Precondition: state < admitted map length = source state count, valid target map, one fully typed word per source input. Check raw report equality before any step in this state. For each macro in input order compare mapped source target (or None) against full target.run at mapped state. compare_step appends extension additions or returns first mismatch. Provider errors map to InvalidEncoding defensively; with these admitted tables/full alphabet checks that branch is not publicly reachable. No state data changes.",
+      "Ordered phase composition map->encoding->checked budget, then states in ascending source index. Stop at first report/step mismatch and return it as an Ok decision, discarding provisional additions from earlier coordinates. Only when every report/step is compatible return Checked with all and only added availability coordinates in source-state/input order. Exact defines partial-step simulation with report preservation, hence every encoded word; extension requires injective map and preserves every old defined step, while additions are explicit.",
+      "Recompute with all expected source/target/map/encoding/mode/budget arguments, propagate typed admission/resource refusals first, then compare entire canonical SimulationDecision structurally. Ok(()) may verify a correct ReportMismatch or StepMismatch diagnostic; it does not mean a successful simulation. Only a Checked decision certifies compatible admitted input. Any coordinate, payload, ordering or added-list difference is CertificateMismatch.",
+      "PartialDynamics private new rejects empty reports, transition-row count/width mismatch and out-of-range Some targets; getters borrow immutable data and no public mutator/default/deserializer bypass exists. Source/target indices and macro alphabet are validated before scans. run validates start and the WHOLE word alphabet, then Option-folds each transition; None remains None, empty word returns input state. All source target lookups map through a total admitted map. No quotient or distinction search is used here, so no Moore refinement theorem is needed to establish these call paths. Readouts are exact primitive usize equality, MAX valid; a shared semantic interpretation is a caller premise rather than a dictionary admitted here.",
+      "Current continuation context refresh:own Rust source unchanged. New predecessor BFS preserves old observable outputs,first shortest input-order word and first distinct-pair resource refusal by all-machine FIFO/discovery induction;immutable constructor/run/quotient/replay public bodies unchanged. Actual new-context459category baseline plus independent324-machine product-distance/budget checks and10000-chain pass. Original own mutation receipts remain frozen old-provider executions,not newly executed/current-context kills."
+    ],
+    "failure_paths": {
+      "admit_map": "Reject length != source real-state count or any target index >= target real-state count; in ResourceExtension require injective map by value, in Exact permit many-to-one maps. All invalid maps have InvalidMap. Borrow only; no role swapping, reconstruction or implicit surjectivity. Private source/target admission guarantees nonempty carriers and closed transitions.",
+      "admit_encoding": "Require exactly one target-event word per source input, including empty macro words if provided. Reject every out-of-target-alphabet symbol even after an earlier unavailable step. Both transition tables have a first row by private nonempty admission. InvalidEncoding precedes work admission. Empty alphabets and empty encoding tables are valid together.",
+      "admit_budget": "Compute checked width=1+sum over macros(length+1), then checked width*states. Any overflow or strictly cost>max_cells returns WorkLimit, exact boundary passes. states=0 is permitted by this private scalar helper but unreachable through public admitted nonempty source/map. Budget is a cell estimate, not bytes/elapsed-time/allocator admission.",
+      "compare_step": "If expected None, actual Some and mode ResourceExtension, append the original (state,input) coordinate exactly once and continue. Otherwise unequal Options return StepMismatch preserving both exact values and coordinate; equal Options continue. Both unavailable is equal but never an added availability. Exact mode never permits added availability; extension may not drop or alter an old defined mapped target. Mutates only caller-owned provisional output vector.",
+      "check_state": "Precondition: state < admitted map length = source state count, valid target map, one fully typed word per source input. Check raw report equality before any step in this state. For each macro in input order compare mapped source target (or None) against full target.run at mapped state. compare_step appends extension additions or returns first mismatch. Provider errors map to InvalidEncoding defensively; with these admitted tables/full alphabet checks that branch is not publicly reachable. No state data changes.",
+      "check_simulation": "Ordered phase composition map->encoding->checked budget, then states in ascending source index. Stop at first report/step mismatch and return it as an Ok decision, discarding provisional additions from earlier coordinates. Only when every report/step is compatible return Checked with all and only added availability coordinates in source-state/input order. Exact defines partial-step simulation with report preservation, hence every encoded word; extension requires injective map and preserves every old defined step, while additions are explicit.",
+      "verify_simulation": "Recompute with all expected source/target/map/encoding/mode/budget arguments, propagate typed admission/resource refusals first, then compare entire canonical SimulationDecision structurally. Ok(()) may verify a correct ReportMismatch or StepMismatch diagnostic; it does not mean a successful simulation. Only a Checked decision certifies compatible admitted input. Any coordinate, payload, ordering or added-list difference is CertificateMismatch.",
+      "runtime": "Admission refusals are InvalidMap then InvalidEncoding then WorkLimit; report and transition incompatibilities are successful typed diagnostics, never Checked. No partially certified success leaks; provisional additions are dropped on mismatch. usize width/count arithmetic uses checked operations, including scalar helper overflow tests without huge allocations. Nonempty rectangular private dynamics, valid total map and validated alphabet make every indexed transition/report/map lookup safe. Defensive target.run InvalidEncoding conversion is unreachable after healthy admission, not credited as a public branch witness. Helpers check_state require their private call invariant; no unconditional arbitrary-index totality claim. Native replay errors do not mutate any supplied machine/map/word. Rust allocation failure is outside cell-budget guarantees."
+    },
+    "trust_boundary": {
+      "runtime": "Rust/std concrete arithmetic/order/Option/Vec/BTreeSet/compiler/allocator, source-reviewed private PartialDynamics admission/run. No custom callback or mutation. No whole provider grade inferred from shared package tests.",
+      "formal": "Pinned prepared clean Lean/Mathlib and standard foundational axioms only;16 expected clean axiom reports, no unfinished/warnings. Partial-step/word/refusal model separately related to concrete Rust storage via reviewed invariants/native tests."
+    },
+    "assurance_limits": [
+      "L3 bounded-domain algorithm and typed complete decision replay; no upgrade to L5 certificate-carrying architecture merely from verifying an enum. All other category/homology file grades remain independent.",
+      "Only Checked establishes step compatibility. verify_simulation Ok can also authenticate a canonical incompatibility decision; callers must inspect variant. Exact accepts noninjective maps, extension requires injection, neither requires surjectivity. Empty target macros are valid.",
+      "Readout labels must already share a semantic dictionary; numeric equality does not construct one. No physical resource theorem, causality, infinite machine, global step bound or availability inference outside admitted tables. Extension may introduce new availability; it is not exact reflection.",
+      "Pure Lean partial functions prove encoded-word lifting from exact pointwise step compatibility. Rust admission, map/refusal order, finite storage and first diagnostic refinement use source/native evidence; no Rust extraction or independent compiler/MIR/A+ assurance. Cell estimate is not bytes/time/allocator admission. Contracts pending.",
+      "Continuation provider refreshed by source-level all-machine preservation argument and fresh actual category/independent provider replay. Historical own fault outcomes stay bound to their original provider snapshots;no new own-body fault execution inferred."
+    ],
+    "review_evidence": [
+      {
+        "path": "code/rust/src/category_theory/finite_simulation.score.yaml",
+        "sha256": "505b58a539ebb3119626d4d524f3d6a981f8bf6b3654e429a1b7427dc96def6a"
+      }
+    ],
+    "open_obligations": []
+  },
+  "current_contract": "7c9e42f786556d9673abbc3d9da48a4899b0aa8c93f4171967fca6cfa89bf1de",
+  "current_scoring": "efc61b457177d41137717577b3f02e45874b5a9192eed7887bc6d13260a07cdb",
+  "contract_history": [
+    {
+      "sha256": "7c9e42f786556d9673abbc3d9da48a4899b0aa8c93f4171967fca6cfa89bf1de",
+      "bytes": 20336,
+      "record": {
+        "schema_version": "1.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/category_theory/finite_simulation.rs",
+          "sha256": "503da98d73a0680e1615d7e754da00357f6c85be8a28aea8e553d28853138d12",
+          "language": "Rust"
+        },
+        "status": "source_reviewed",
+        "formal_specification": {
+          "profile": "Exact retained: primitive integer/Option equality, checked resource estimate, finite typed macro tables, no float or narrowing.",
+          "domain": "Immutable admitted nonempty finite partial dynamics; arbitrary borrowed map and per-event target words admitted with explicit finite typing/injectivity policy.",
+          "behavior": [
+            "Reject length != source real-state count or any target index >= target real-state count; in ResourceExtension require injective map by value, in Exact permit many-to-one maps. All invalid maps have InvalidMap. Borrow only; no role swapping, reconstruction or implicit surjectivity. Private source/target admission guarantees nonempty carriers and closed transitions.",
+            "Require exactly one target-event word per source input, including empty macro words if provided. Reject every out-of-target-alphabet symbol even after an earlier unavailable step. Both transition tables have a first row by private nonempty admission. InvalidEncoding precedes work admission. Empty alphabets and empty encoding tables are valid together.",
+            "Compute checked width=1+sum over macros(length+1), then checked width*states. Any overflow or strictly cost>max_cells returns WorkLimit, exact boundary passes. states=0 is permitted by this private scalar helper but unreachable through public admitted nonempty source/map. Budget is a cell estimate, not bytes/elapsed-time/allocator admission.",
+            "If expected None, actual Some and mode ResourceExtension, append the original (state,input) coordinate exactly once and continue. Otherwise unequal Options return StepMismatch preserving both exact values and coordinate; equal Options continue. Both unavailable is equal but never an added availability. Exact mode never permits added availability; extension may not drop or alter an old defined mapped target. Mutates only caller-owned provisional output vector.",
+            "Precondition: state < admitted map length = source state count, valid target map, one fully typed word per source input. Check raw report equality before any step in this state. For each macro in input order compare mapped source target (or None) against full target.run at mapped state. compare_step appends extension additions or returns first mismatch. Provider errors map to InvalidEncoding defensively; with these admitted tables/full alphabet checks that branch is not publicly reachable. No state data changes.",
+            "Ordered phase composition map->encoding->checked budget, then states in ascending source index. Stop at first report/step mismatch and return it as an Ok decision, discarding provisional additions from earlier coordinates. Only when every report/step is compatible return Checked with all and only added availability coordinates in source-state/input order. Exact defines partial-step simulation with report preservation, hence every encoded word; extension requires injective map and preserves every old defined step, while additions are explicit.",
+            "Recompute with all expected source/target/map/encoding/mode/budget arguments, propagate typed admission/resource refusals first, then compare entire canonical SimulationDecision structurally. Ok(()) may verify a correct ReportMismatch or StepMismatch diagnostic; it does not mean a successful simulation. Only a Checked decision certifies compatible admitted input. Any coordinate, payload, ordering or added-list difference is CertificateMismatch."
+          ],
+          "provider_correspondence": "PartialDynamics private new rejects empty reports, transition-row count/width mismatch and out-of-range Some targets; getters borrow immutable data and no public mutator/default/deserializer bypass exists. Source/target indices and macro alphabet are validated before scans. run validates start and the WHOLE word alphabet, then Option-folds each transition; None remains None, empty word returns input state. All source target lookups map through a total admitted map. No quotient or distinction search is used here, so no Moore refinement theorem is needed to establish these call paths. Readouts are exact primitive usize equality, MAX valid; a shared semantic interpretation is a caller premise rather than a dictionary admitted here."
+        },
+        "operations": {
+          "admit_map": {
+            "line": 41,
+            "signature": "fn admit_map(\n    source: &PartialDynamics,\n    target: &PartialDynamics,\n    map: &[usize],\n    mode: SimulationMode,\n) -> Result<(), SimulationError>",
+            "obligation": "Reject length != source real-state count or any target index >= target real-state count; in ResourceExtension require injective map by value, in Exact permit many-to-one maps. All invalid maps have InvalidMap. Borrow only; no role swapping, reconstruction or implicit surjectivity. Private source/target admission guarantees nonempty carriers and closed transitions."
+          },
+          "admit_encoding": {
+            "line": 57,
+            "signature": "fn admit_encoding(\n    source: &PartialDynamics,\n    target: &PartialDynamics,\n    words: &[Vec<usize>],\n) -> Result<(), SimulationError>",
+            "obligation": "Require exactly one target-event word per source input, including empty macro words if provided. Reject every out-of-target-alphabet symbol even after an earlier unavailable step. Both transition tables have a first row by private nonempty admission. InvalidEncoding precedes work admission. Empty alphabets and empty encoding tables are valid together."
+          },
+          "admit_budget": {
+            "line": 73,
+            "signature": "fn admit_budget(\n    states: usize,\n    words: &[Vec<usize>],\n    max_cells: usize,\n) -> Result<(), SimulationError>",
+            "obligation": "Compute checked width=1+sum over macros(length+1), then checked width*states. Any overflow or strictly cost>max_cells returns WorkLimit, exact boundary passes. states=0 is permitted by this private scalar helper but unreachable through public admitted nonempty source/map. Budget is a cell estimate, not bytes/elapsed-time/allocator admission."
+          },
+          "compare_step": {
+            "line": 90,
+            "signature": "fn compare_step(\n    expected: Option<usize>,\n    actual: Option<usize>,\n    mode: SimulationMode,\n    coordinate: (usize, usize),\n    added: &mut Vec<(usize, usize)>,\n) -> Option<SimulationDecision>",
+            "obligation": "If expected None, actual Some and mode ResourceExtension, append the original (state,input) coordinate exactly once and continue. Otherwise unequal Options return StepMismatch preserving both exact values and coordinate; equal Options continue. Both unavailable is equal but never an added availability. Exact mode never permits added availability; extension may not drop or alter an old defined mapped target. Mutates only caller-owned provisional output vector."
+          },
+          "check_state": {
+            "line": 113,
+            "signature": "fn check_state(\n    source: &PartialDynamics,\n    target: &PartialDynamics,\n    map: &[usize],\n    words: &[Vec<usize>],\n    mode: SimulationMode,\n    state: usize,\n    added: &mut Vec<(usize, usize)>,\n) -> Result<Option<SimulationDecision>, SimulationError>",
+            "obligation": "Precondition: state < admitted map length = source state count, valid target map, one fully typed word per source input. Check raw report equality before any step in this state. For each macro in input order compare mapped source target (or None) against full target.run at mapped state. compare_step appends extension additions or returns first mismatch. Provider errors map to InvalidEncoding defensively; with these admitted tables/full alphabet checks that branch is not publicly reachable. No state data changes."
+          },
+          "check_simulation": {
+            "line": 144,
+            "signature": "pub fn check_simulation(\n    source: &PartialDynamics,\n    target: &PartialDynamics,\n    map: &[usize],\n    words: &[Vec<usize>],\n    mode: SimulationMode,\n    max_cells: usize,\n) -> Result<SimulationDecision, SimulationError>",
+            "obligation": "Ordered phase composition map->encoding->checked budget, then states in ascending source index. Stop at first report/step mismatch and return it as an Ok decision, discarding provisional additions from earlier coordinates. Only when every report/step is compatible return Checked with all and only added availability coordinates in source-state/input order. Exact defines partial-step simulation with report preservation, hence every encoded word; extension requires injective map and preserves every old defined step, while additions are explicit."
+          },
+          "verify_simulation": {
+            "line": 165,
+            "signature": "pub fn verify_simulation(\n    source: &PartialDynamics,\n    target: &PartialDynamics,\n    map: &[usize],\n    words: &[Vec<usize>],\n    mode: SimulationMode,\n    max_cells: usize,\n    c: &SimulationDecision,\n) -> Result<(), SimulationError>",
+            "obligation": "Recompute with all expected source/target/map/encoding/mode/budget arguments, propagate typed admission/resource refusals first, then compare entire canonical SimulationDecision structurally. Ok(()) may verify a correct ReportMismatch or StepMismatch diagnostic; it does not mean a successful simulation. Only a Checked decision certifies compatible admitted input. Any coordinate, payload, ordering or added-list difference is CertificateMismatch."
+          }
+        },
+        "invariants": [
+          "Reject length != source real-state count or any target index >= target real-state count; in ResourceExtension require injective map by value, in Exact permit many-to-one maps. All invalid maps have InvalidMap. Borrow only; no role swapping, reconstruction or implicit surjectivity. Private source/target admission guarantees nonempty carriers and closed transitions.",
+          "Require exactly one target-event word per source input, including empty macro words if provided. Reject every out-of-target-alphabet symbol even after an earlier unavailable step. Both transition tables have a first row by private nonempty admission. InvalidEncoding precedes work admission. Empty alphabets and empty encoding tables are valid together.",
+          "Compute checked width=1+sum over macros(length+1), then checked width*states. Any overflow or strictly cost>max_cells returns WorkLimit, exact boundary passes. states=0 is permitted by this private scalar helper but unreachable through public admitted nonempty source/map. Budget is a cell estimate, not bytes/elapsed-time/allocator admission.",
+          "If expected None, actual Some and mode ResourceExtension, append the original (state,input) coordinate exactly once and continue. Otherwise unequal Options return StepMismatch preserving both exact values and coordinate; equal Options continue. Both unavailable is equal but never an added availability. Exact mode never permits added availability; extension may not drop or alter an old defined mapped target. Mutates only caller-owned provisional output vector.",
+          "Precondition: state < admitted map length = source state count, valid target map, one fully typed word per source input. Check raw report equality before any step in this state. For each macro in input order compare mapped source target (or None) against full target.run at mapped state. compare_step appends extension additions or returns first mismatch. Provider errors map to InvalidEncoding defensively; with these admitted tables/full alphabet checks that branch is not publicly reachable. No state data changes.",
+          "Ordered phase composition map->encoding->checked budget, then states in ascending source index. Stop at first report/step mismatch and return it as an Ok decision, discarding provisional additions from earlier coordinates. Only when every report/step is compatible return Checked with all and only added availability coordinates in source-state/input order. Exact defines partial-step simulation with report preservation, hence every encoded word; extension requires injective map and preserves every old defined step, while additions are explicit.",
+          "Recompute with all expected source/target/map/encoding/mode/budget arguments, propagate typed admission/resource refusals first, then compare entire canonical SimulationDecision structurally. Ok(()) may verify a correct ReportMismatch or StepMismatch diagnostic; it does not mean a successful simulation. Only a Checked decision certifies compatible admitted input. Any coordinate, payload, ordering or added-list difference is CertificateMismatch.",
+          "PartialDynamics private new rejects empty reports, transition-row count/width mismatch and out-of-range Some targets; getters borrow immutable data and no public mutator/default/deserializer bypass exists. Source/target indices and macro alphabet are validated before scans. run validates start and the WHOLE word alphabet, then Option-folds each transition; None remains None, empty word returns input state. All source target lookups map through a total admitted map. No quotient or distinction search is used here, so no Moore refinement theorem is needed to establish these call paths. Readouts are exact primitive usize equality, MAX valid; a shared semantic interpretation is a caller premise rather than a dictionary admitted here.",
+          "Current continuation context refresh:own Rust source unchanged. New predecessor BFS preserves old observable outputs,first shortest input-order word and first distinct-pair resource refusal by all-machine FIFO/discovery induction;immutable constructor/run/quotient/replay public bodies unchanged. Actual new-context459category baseline plus independent324-machine product-distance/budget checks and10000-chain pass. Original own mutation receipts remain frozen old-provider executions,not newly executed/current-context kills."
+        ],
+        "failure_paths": {
+          "admit_map": "Reject length != source real-state count or any target index >= target real-state count; in ResourceExtension require injective map by value, in Exact permit many-to-one maps. All invalid maps have InvalidMap. Borrow only; no role swapping, reconstruction or implicit surjectivity. Private source/target admission guarantees nonempty carriers and closed transitions.",
+          "admit_encoding": "Require exactly one target-event word per source input, including empty macro words if provided. Reject every out-of-target-alphabet symbol even after an earlier unavailable step. Both transition tables have a first row by private nonempty admission. InvalidEncoding precedes work admission. Empty alphabets and empty encoding tables are valid together.",
+          "admit_budget": "Compute checked width=1+sum over macros(length+1), then checked width*states. Any overflow or strictly cost>max_cells returns WorkLimit, exact boundary passes. states=0 is permitted by this private scalar helper but unreachable through public admitted nonempty source/map. Budget is a cell estimate, not bytes/elapsed-time/allocator admission.",
+          "compare_step": "If expected None, actual Some and mode ResourceExtension, append the original (state,input) coordinate exactly once and continue. Otherwise unequal Options return StepMismatch preserving both exact values and coordinate; equal Options continue. Both unavailable is equal but never an added availability. Exact mode never permits added availability; extension may not drop or alter an old defined mapped target. Mutates only caller-owned provisional output vector.",
+          "check_state": "Precondition: state < admitted map length = source state count, valid target map, one fully typed word per source input. Check raw report equality before any step in this state. For each macro in input order compare mapped source target (or None) against full target.run at mapped state. compare_step appends extension additions or returns first mismatch. Provider errors map to InvalidEncoding defensively; with these admitted tables/full alphabet checks that branch is not publicly reachable. No state data changes.",
+          "check_simulation": "Ordered phase composition map->encoding->checked budget, then states in ascending source index. Stop at first report/step mismatch and return it as an Ok decision, discarding provisional additions from earlier coordinates. Only when every report/step is compatible return Checked with all and only added availability coordinates in source-state/input order. Exact defines partial-step simulation with report preservation, hence every encoded word; extension requires injective map and preserves every old defined step, while additions are explicit.",
+          "verify_simulation": "Recompute with all expected source/target/map/encoding/mode/budget arguments, propagate typed admission/resource refusals first, then compare entire canonical SimulationDecision structurally. Ok(()) may verify a correct ReportMismatch or StepMismatch diagnostic; it does not mean a successful simulation. Only a Checked decision certifies compatible admitted input. Any coordinate, payload, ordering or added-list difference is CertificateMismatch.",
+          "runtime": "Admission refusals are InvalidMap then InvalidEncoding then WorkLimit; report and transition incompatibilities are successful typed diagnostics, never Checked. No partially certified success leaks; provisional additions are dropped on mismatch. usize width/count arithmetic uses checked operations, including scalar helper overflow tests without huge allocations. Nonempty rectangular private dynamics, valid total map and validated alphabet make every indexed transition/report/map lookup safe. Defensive target.run InvalidEncoding conversion is unreachable after healthy admission, not credited as a public branch witness. Helpers check_state require their private call invariant; no unconditional arbitrary-index totality claim. Native replay errors do not mutate any supplied machine/map/word. Rust allocation failure is outside cell-budget guarantees."
+        },
+        "trust_boundary": {
+          "runtime": "Rust/std concrete arithmetic/order/Option/Vec/BTreeSet/compiler/allocator, source-reviewed private PartialDynamics admission/run. No custom callback or mutation. No whole provider grade inferred from shared package tests.",
+          "formal": "Pinned prepared clean Lean/Mathlib and standard foundational axioms only;16 expected clean axiom reports, no unfinished/warnings. Partial-step/word/refusal model separately related to concrete Rust storage via reviewed invariants/native tests."
+        },
+        "assurance_limits": [
+          "L3 bounded-domain algorithm and typed complete decision replay; no upgrade to L5 certificate-carrying architecture merely from verifying an enum. All other category/homology file grades remain independent.",
+          "Only Checked establishes step compatibility. verify_simulation Ok can also authenticate a canonical incompatibility decision; callers must inspect variant. Exact accepts noninjective maps, extension requires injection, neither requires surjectivity. Empty target macros are valid.",
+          "Readout labels must already share a semantic dictionary; numeric equality does not construct one. No physical resource theorem, causality, infinite machine, global step bound or availability inference outside admitted tables. Extension may introduce new availability; it is not exact reflection.",
+          "Pure Lean partial functions prove encoded-word lifting from exact pointwise step compatibility. Rust admission, map/refusal order, finite storage and first diagnostic refinement use source/native evidence; no Rust extraction or independent compiler/MIR/A+ assurance. Cell estimate is not bytes/time/allocator admission. Contracts pending.",
+          "Continuation provider refreshed by source-level all-machine preservation argument and fresh actual category/independent provider replay. Historical own fault outcomes stay bound to their original provider snapshots;no new own-body fault execution inferred."
+        ],
+        "review_evidence": [
+          {
+            "path": "code/rust/src/category_theory/finite_simulation.score.yaml",
+            "sha256": "505b58a539ebb3119626d4d524f3d6a981f8bf6b3654e429a1b7427dc96def6a"
+          }
+        ],
+        "open_obligations": []
+      },
+      "raw_utf8": "{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/finite_simulation.rs\",\n    \"sha256\": \"503da98d73a0680e1615d7e754da00357f6c85be8a28aea8e553d28853138d12\",\n    \"language\": \"Rust\"\n  },\n  \"status\": \"source_reviewed\",\n  \"formal_specification\": {\n    \"profile\": \"Exact retained: primitive integer/Option equality, checked resource estimate, finite typed macro tables, no float or narrowing.\",\n    \"domain\": \"Immutable admitted nonempty finite partial dynamics; arbitrary borrowed map and per-event target words admitted with explicit finite typing/injectivity policy.\",\n    \"behavior\": [\n      \"Reject length != source real-state count or any target index >= target real-state count; in ResourceExtension require injective map by value, in Exact permit many-to-one maps. All invalid maps have InvalidMap. Borrow only; no role swapping, reconstruction or implicit surjectivity. Private source/target admission guarantees nonempty carriers and closed transitions.\",\n      \"Require exactly one target-event word per source input, including empty macro words if provided. Reject every out-of-target-alphabet symbol even after an earlier unavailable step. Both transition tables have a first row by private nonempty admission. InvalidEncoding precedes work admission. Empty alphabets and empty encoding tables are valid together.\",\n      \"Compute checked width=1+sum over macros(length+1), then checked width*states. Any overflow or strictly cost>max_cells returns WorkLimit, exact boundary passes. states=0 is permitted by this private scalar helper but unreachable through public admitted nonempty source/map. Budget is a cell estimate, not bytes/elapsed-time/allocator admission.\",\n      \"If expected None, actual Some and mode ResourceExtension, append the original (state,input) coordinate exactly once and continue. Otherwise unequal Options return StepMismatch preserving both exact values and coordinate; equal Options continue. Both unavailable is equal but never an added availability. Exact mode never permits added availability; extension may not drop or alter an old defined mapped target. Mutates only caller-owned provisional output vector.\",\n      \"Precondition: state < admitted map length = source state count, valid target map, one fully typed word per source input. Check raw report equality before any step in this state. For each macro in input order compare mapped source target (or None) against full target.run at mapped state. compare_step appends extension additions or returns first mismatch. Provider errors map to InvalidEncoding defensively; with these admitted tables/full alphabet checks that branch is not publicly reachable. No state data changes.\",\n      \"Ordered phase composition map->encoding->checked budget, then states in ascending source index. Stop at first report/step mismatch and return it as an Ok decision, discarding provisional additions from earlier coordinates. Only when every report/step is compatible return Checked with all and only added availability coordinates in source-state/input order. Exact defines partial-step simulation with report preservation, hence every encoded word; extension requires injective map and preserves every old defined step, while additions are explicit.\",\n      \"Recompute with all expected source/target/map/encoding/mode/budget arguments, propagate typed admission/resource refusals first, then compare entire canonical SimulationDecision structurally. Ok(()) may verify a correct ReportMismatch or StepMismatch diagnostic; it does not mean a successful simulation. Only a Checked decision certifies compatible admitted input. Any coordinate, payload, ordering or added-list difference is CertificateMismatch.\"\n    ],\n    \"provider_correspondence\": \"PartialDynamics private new rejects empty reports, transition-row count/width mismatch and out-of-range Some targets; getters borrow immutable data and no public mutator/default/deserializer bypass exists. Source/target indices and macro alphabet are validated before scans. run validates start and the WHOLE word alphabet, then Option-folds each transition; None remains None, empty word returns input state. All source target lookups map through a total admitted map. No quotient or distinction search is used here, so no Moore refinement theorem is needed to establish these call paths. Readouts are exact primitive usize equality, MAX valid; a shared semantic interpretation is a caller premise rather than a dictionary admitted here.\"\n  },\n  \"operations\": {\n    \"admit_map\": {\n      \"line\": 41,\n      \"signature\": \"fn admit_map(\\n    source: &PartialDynamics,\\n    target: &PartialDynamics,\\n    map: &[usize],\\n    mode: SimulationMode,\\n) -> Result<(), SimulationError>\",\n      \"obligation\": \"Reject length != source real-state count or any target index >= target real-state count; in ResourceExtension require injective map by value, in Exact permit many-to-one maps. All invalid maps have InvalidMap. Borrow only; no role swapping, reconstruction or implicit surjectivity. Private source/target admission guarantees nonempty carriers and closed transitions.\"\n    },\n    \"admit_encoding\": {\n      \"line\": 57,\n      \"signature\": \"fn admit_encoding(\\n    source: &PartialDynamics,\\n    target: &PartialDynamics,\\n    words: &[Vec<usize>],\\n) -> Result<(), SimulationError>\",\n      \"obligation\": \"Require exactly one target-event word per source input, including empty macro words if provided. Reject every out-of-target-alphabet symbol even after an earlier unavailable step. Both transition tables have a first row by private nonempty admission. InvalidEncoding precedes work admission. Empty alphabets and empty encoding tables are valid together.\"\n    },\n    \"admit_budget\": {\n      \"line\": 73,\n      \"signature\": \"fn admit_budget(\\n    states: usize,\\n    words: &[Vec<usize>],\\n    max_cells: usize,\\n) -> Result<(), SimulationError>\",\n      \"obligation\": \"Compute checked width=1+sum over macros(length+1), then checked width*states. Any overflow or strictly cost>max_cells returns WorkLimit, exact boundary passes. states=0 is permitted by this private scalar helper but unreachable through public admitted nonempty source/map. Budget is a cell estimate, not bytes/elapsed-time/allocator admission.\"\n    },\n    \"compare_step\": {\n      \"line\": 90,\n      \"signature\": \"fn compare_step(\\n    expected: Option<usize>,\\n    actual: Option<usize>,\\n    mode: SimulationMode,\\n    coordinate: (usize, usize),\\n    added: &mut Vec<(usize, usize)>,\\n) -> Option<SimulationDecision>\",\n      \"obligation\": \"If expected None, actual Some and mode ResourceExtension, append the original (state,input) coordinate exactly once and continue. Otherwise unequal Options return StepMismatch preserving both exact values and coordinate; equal Options continue. Both unavailable is equal but never an added availability. Exact mode never permits added availability; extension may not drop or alter an old defined mapped target. Mutates only caller-owned provisional output vector.\"\n    },\n    \"check_state\": {\n      \"line\": 113,\n      \"signature\": \"fn check_state(\\n    source: &PartialDynamics,\\n    target: &PartialDynamics,\\n    map: &[usize],\\n    words: &[Vec<usize>],\\n    mode: SimulationMode,\\n    state: usize,\\n    added: &mut Vec<(usize, usize)>,\\n) -> Result<Option<SimulationDecision>, SimulationError>\",\n      \"obligation\": \"Precondition: state < admitted map length = source state count, valid target map, one fully typed word per source input. Check raw report equality before any step in this state. For each macro in input order compare mapped source target (or None) against full target.run at mapped state. compare_step appends extension additions or returns first mismatch. Provider errors map to InvalidEncoding defensively; with these admitted tables/full alphabet checks that branch is not publicly reachable. No state data changes.\"\n    },\n    \"check_simulation\": {\n      \"line\": 144,\n      \"signature\": \"pub fn check_simulation(\\n    source: &PartialDynamics,\\n    target: &PartialDynamics,\\n    map: &[usize],\\n    words: &[Vec<usize>],\\n    mode: SimulationMode,\\n    max_cells: usize,\\n) -> Result<SimulationDecision, SimulationError>\",\n      \"obligation\": \"Ordered phase composition map->encoding->checked budget, then states in ascending source index. Stop at first report/step mismatch and return it as an Ok decision, discarding provisional additions from earlier coordinates. Only when every report/step is compatible return Checked with all and only added availability coordinates in source-state/input order. Exact defines partial-step simulation with report preservation, hence every encoded word; extension requires injective map and preserves every old defined step, while additions are explicit.\"\n    },\n    \"verify_simulation\": {\n      \"line\": 165,\n      \"signature\": \"pub fn verify_simulation(\\n    source: &PartialDynamics,\\n    target: &PartialDynamics,\\n    map: &[usize],\\n    words: &[Vec<usize>],\\n    mode: SimulationMode,\\n    max_cells: usize,\\n    c: &SimulationDecision,\\n) -> Result<(), SimulationError>\",\n      \"obligation\": \"Recompute with all expected source/target/map/encoding/mode/budget arguments, propagate typed admission/resource refusals first, then compare entire canonical SimulationDecision structurally. Ok(()) may verify a correct ReportMismatch or StepMismatch diagnostic; it does not mean a successful simulation. Only a Checked decision certifies compatible admitted input. Any coordinate, payload, ordering or added-list difference is CertificateMismatch.\"\n    }\n  },\n  \"invariants\": [\n    \"Reject length != source real-state count or any target index >= target real-state count; in ResourceExtension require injective map by value, in Exact permit many-to-one maps. All invalid maps have InvalidMap. Borrow only; no role swapping, reconstruction or implicit surjectivity. Private source/target admission guarantees nonempty carriers and closed transitions.\",\n    \"Require exactly one target-event word per source input, including empty macro words if provided. Reject every out-of-target-alphabet symbol even after an earlier unavailable step. Both transition tables have a first row by private nonempty admission. InvalidEncoding precedes work admission. Empty alphabets and empty encoding tables are valid together.\",\n    \"Compute checked width=1+sum over macros(length+1), then checked width*states. Any overflow or strictly cost>max_cells returns WorkLimit, exact boundary passes. states=0 is permitted by this private scalar helper but unreachable through public admitted nonempty source/map. Budget is a cell estimate, not bytes/elapsed-time/allocator admission.\",\n    \"If expected None, actual Some and mode ResourceExtension, append the original (state,input) coordinate exactly once and continue. Otherwise unequal Options return StepMismatch preserving both exact values and coordinate; equal Options continue. Both unavailable is equal but never an added availability. Exact mode never permits added availability; extension may not drop or alter an old defined mapped target. Mutates only caller-owned provisional output vector.\",\n    \"Precondition: state < admitted map length = source state count, valid target map, one fully typed word per source input. Check raw report equality before any step in this state. For each macro in input order compare mapped source target (or None) against full target.run at mapped state. compare_step appends extension additions or returns first mismatch. Provider errors map to InvalidEncoding defensively; with these admitted tables/full alphabet checks that branch is not publicly reachable. No state data changes.\",\n    \"Ordered phase composition map->encoding->checked budget, then states in ascending source index. Stop at first report/step mismatch and return it as an Ok decision, discarding provisional additions from earlier coordinates. Only when every report/step is compatible return Checked with all and only added availability coordinates in source-state/input order. Exact defines partial-step simulation with report preservation, hence every encoded word; extension requires injective map and preserves every old defined step, while additions are explicit.\",\n    \"Recompute with all expected source/target/map/encoding/mode/budget arguments, propagate typed admission/resource refusals first, then compare entire canonical SimulationDecision structurally. Ok(()) may verify a correct ReportMismatch or StepMismatch diagnostic; it does not mean a successful simulation. Only a Checked decision certifies compatible admitted input. Any coordinate, payload, ordering or added-list difference is CertificateMismatch.\",\n    \"PartialDynamics private new rejects empty reports, transition-row count/width mismatch and out-of-range Some targets; getters borrow immutable data and no public mutator/default/deserializer bypass exists. Source/target indices and macro alphabet are validated before scans. run validates start and the WHOLE word alphabet, then Option-folds each transition; None remains None, empty word returns input state. All source target lookups map through a total admitted map. No quotient or distinction search is used here, so no Moore refinement theorem is needed to establish these call paths. Readouts are exact primitive usize equality, MAX valid; a shared semantic interpretation is a caller premise rather than a dictionary admitted here.\",\n    \"Current continuation context refresh:own Rust source unchanged. New predecessor BFS preserves old observable outputs,first shortest input-order word and first distinct-pair resource refusal by all-machine FIFO/discovery induction;immutable constructor/run/quotient/replay public bodies unchanged. Actual new-context459category baseline plus independent324-machine product-distance/budget checks and10000-chain pass. Original own mutation receipts remain frozen old-provider executions,not newly executed/current-context kills.\"\n  ],\n  \"failure_paths\": {\n    \"admit_map\": \"Reject length != source real-state count or any target index >= target real-state count; in ResourceExtension require injective map by value, in Exact permit many-to-one maps. All invalid maps have InvalidMap. Borrow only; no role swapping, reconstruction or implicit surjectivity. Private source/target admission guarantees nonempty carriers and closed transitions.\",\n    \"admit_encoding\": \"Require exactly one target-event word per source input, including empty macro words if provided. Reject every out-of-target-alphabet symbol even after an earlier unavailable step. Both transition tables have a first row by private nonempty admission. InvalidEncoding precedes work admission. Empty alphabets and empty encoding tables are valid together.\",\n    \"admit_budget\": \"Compute checked width=1+sum over macros(length+1), then checked width*states. Any overflow or strictly cost>max_cells returns WorkLimit, exact boundary passes. states=0 is permitted by this private scalar helper but unreachable through public admitted nonempty source/map. Budget is a cell estimate, not bytes/elapsed-time/allocator admission.\",\n    \"compare_step\": \"If expected None, actual Some and mode ResourceExtension, append the original (state,input) coordinate exactly once and continue. Otherwise unequal Options return StepMismatch preserving both exact values and coordinate; equal Options continue. Both unavailable is equal but never an added availability. Exact mode never permits added availability; extension may not drop or alter an old defined mapped target. Mutates only caller-owned provisional output vector.\",\n    \"check_state\": \"Precondition: state < admitted map length = source state count, valid target map, one fully typed word per source input. Check raw report equality before any step in this state. For each macro in input order compare mapped source target (or None) against full target.run at mapped state. compare_step appends extension additions or returns first mismatch. Provider errors map to InvalidEncoding defensively; with these admitted tables/full alphabet checks that branch is not publicly reachable. No state data changes.\",\n    \"check_simulation\": \"Ordered phase composition map->encoding->checked budget, then states in ascending source index. Stop at first report/step mismatch and return it as an Ok decision, discarding provisional additions from earlier coordinates. Only when every report/step is compatible return Checked with all and only added availability coordinates in source-state/input order. Exact defines partial-step simulation with report preservation, hence every encoded word; extension requires injective map and preserves every old defined step, while additions are explicit.\",\n    \"verify_simulation\": \"Recompute with all expected source/target/map/encoding/mode/budget arguments, propagate typed admission/resource refusals first, then compare entire canonical SimulationDecision structurally. Ok(()) may verify a correct ReportMismatch or StepMismatch diagnostic; it does not mean a successful simulation. Only a Checked decision certifies compatible admitted input. Any coordinate, payload, ordering or added-list difference is CertificateMismatch.\",\n    \"runtime\": \"Admission refusals are InvalidMap then InvalidEncoding then WorkLimit; report and transition incompatibilities are successful typed diagnostics, never Checked. No partially certified success leaks; provisional additions are dropped on mismatch. usize width/count arithmetic uses checked operations, including scalar helper overflow tests without huge allocations. Nonempty rectangular private dynamics, valid total map and validated alphabet make every indexed transition/report/map lookup safe. Defensive target.run InvalidEncoding conversion is unreachable after healthy admission, not credited as a public branch witness. Helpers check_state require their private call invariant; no unconditional arbitrary-index totality claim. Native replay errors do not mutate any supplied machine/map/word. Rust allocation failure is outside cell-budget guarantees.\"\n  },\n  \"trust_boundary\": {\n    \"runtime\": \"Rust/std concrete arithmetic/order/Option/Vec/BTreeSet/compiler/allocator, source-reviewed private PartialDynamics admission/run. No custom callback or mutation. No whole provider grade inferred from shared package tests.\",\n    \"formal\": \"Pinned prepared clean Lean/Mathlib and standard foundational axioms only;16 expected clean axiom reports, no unfinished/warnings. Partial-step/word/refusal model separately related to concrete Rust storage via reviewed invariants/native tests.\"\n  },\n  \"assurance_limits\": [\n    \"L3 bounded-domain algorithm and typed complete decision replay; no upgrade to L5 certificate-carrying architecture merely from verifying an enum. All other category/homology file grades remain independent.\",\n    \"Only Checked establishes step compatibility. verify_simulation Ok can also authenticate a canonical incompatibility decision; callers must inspect variant. Exact accepts noninjective maps, extension requires injection, neither requires surjectivity. Empty target macros are valid.\",\n    \"Readout labels must already share a semantic dictionary; numeric equality does not construct one. No physical resource theorem, causality, infinite machine, global step bound or availability inference outside admitted tables. Extension may introduce new availability; it is not exact reflection.\",\n    \"Pure Lean partial functions prove encoded-word lifting from exact pointwise step compatibility. Rust admission, map/refusal order, finite storage and first diagnostic refinement use source/native evidence; no Rust extraction or independent compiler/MIR/A+ assurance. Cell estimate is not bytes/time/allocator admission. Contracts pending.\",\n    \"Continuation provider refreshed by source-level all-machine preservation argument and fresh actual category/independent provider replay. Historical own fault outcomes stay bound to their original provider snapshots;no new own-body fault execution inferred.\"\n  ],\n  \"review_evidence\": [\n    {\n      \"path\": \"code/rust/src/category_theory/finite_simulation.score.yaml\",\n      \"sha256\": \"505b58a539ebb3119626d4d524f3d6a981f8bf6b3654e429a1b7427dc96def6a\"\n    }\n  ],\n  \"open_obligations\": []\n}\n",
+      "original_paths": [
+        "code/rust/src/category_theory/finite_simulation.rs.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "505b58a539ebb3119626d4d524f3d6a981f8bf6b3654e429a1b7427dc96def6a",
+      "bytes": 5969,
+      "record": {
+        "schema_version": "2.0.0",
+        "artifact": {
+          "path": "code/rust/src/category_theory/finite_simulation.rs",
+          "language": "Rust",
+          "sha256": "503da98d73a0680e1615d7e754da00357f6c85be8a28aea8e553d28853138d12"
+        },
+        "profile": "Exact",
+        "level": "L3",
+        "level_basis": "Conservative bounded-domain classification; no upgrade based solely on terminology or module size.",
+        "architecture_target": "L5",
+        "engineering_target": "A",
+        "gates": {
+          "G1": "A",
+          "G2": "A",
+          "G3": "A",
+          "G4": "A",
+          "G5": "A"
+        },
+        "composite_grade": "A",
+        "score_token": "L3A",
+        "is_complete": true,
+        "grade_ceiling": "A",
+        "evaluation_timestamp": "2026-10-19T21:22:52.190194+00:00",
+        "AuthorityEffect": "None",
+        "claim": {
+          "urn": "urn:tfqm:rust:category_theory:finite_simulation",
+          "description": "Checked simulations and conservative resource extensions of finite dynamics. A successful exact check reflects availability. An extension preserves every old defined step but may add availability, which is listed explicitly. Replay accepts the exact computed decision, including mismatch diagnostics; only `Checked` establishes simulation. Map/encoding refusals precede the checked cell estimate, which is not a byte/time/allocator bound. AuthorityEffect: None.",
+          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified."
+        },
+        "contract": {
+          "status": "pending",
+          "path": null,
+          "note": "Reserved for a later user-requested contract; none created or asserted here."
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/category_homology/20261019T190548Z/baseline.json",
+            "sha256": "c6ad607ad546df01fdec3afa24d816af7e1fee8dc81ba77ebabbe26445211c1c",
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T190548Z/summary.json",
+            "sha256": "8de38d1111036b8ad3e158d2cbcd7b520452647076162fc1a12a235b070646e3",
+            "scope": "Source snapshot binding and complete six-outcome accounting."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T190548Z/mutations.json",
+            "sha256": "63716af05bca7b48648208c66960b16f116947db029a570f86b3bd7793a76d77",
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T190412Z-metrics/receipt.json",
+            "sha256": "5ec367dc99fc0f662caeeebc424b160f7845db3c4cdee82c04b0d785cd329b47",
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261019T190548Z/dependency_receipt.json",
+            "sha256": "f8f264c6c020ea56d10a2ef62b7151467037f5af501543ac250d8c1b27239ec0",
+            "scope": "Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred."
+          },
+          {
+            "path": "code/rust/quality/category_homology/assessments/continuation_consumer_refresh/finite_simulation.json",
+            "sha256": "46d9004f1e16d985d3c11f9965b87d562548d800d3189d7c3e8cf7489243abe9",
+            "scope": "Explicit source-pinned gate assessment with invariant and evidence mapping."
+          }
+        ],
+        "verification": {
+          "baseline_ok": true,
+          "source_snapshot_unchanged": true,
+          "compiled_scope": "Actual category crate and one-fault copies inside their real parent scopes; no visibility widening or provider replacement",
+          "local_mutant_ids": [
+            "RR-1-0",
+            "RR-2-1",
+            "RR-3-2",
+            "RR-4-3",
+            "RR-5-4",
+            "RR-6-5",
+            "RR-7-6",
+            "RR-8-7",
+            "RR-9-8",
+            "RR-10-9",
+            "RR-11-10",
+            "RR-12-11",
+            "RR-13-12",
+            "RR-14-13",
+            "RR-15-14",
+            "RR-16-15",
+            "RR-17-16",
+            "RR-18-17",
+            "RR-19-18",
+            "RR-20-19",
+            "RR-21-20",
+            "RR-22-21",
+            "RR-23-22",
+            "RR-24-23",
+            "RR-25-24",
+            "RR-26-25",
+            "RR-27-26",
+            "RR-28-27",
+            "RR-29-28",
+            "RR-30-29",
+            "RR-31-30",
+            "RR-32-31",
+            "RR-33-32",
+            "RR-34-33"
+          ],
+          "dependency_contents_stable": true
+        },
+        "mutation_accounting": {
+          "killed": 34,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": 1.0
+        },
+        "structure": {
+          "tool": "syn 3.0.9 source AST",
+          "source_ast_parsed": true,
+          "expanded_ast": false,
+          "physical_lines": 179,
+          "parsed_production_functions": 7,
+          "max_production_ccn": 7,
+          "cognitive_complexity_upper_bound": 6,
+          "control_nesting": 2,
+          "opaque_function_macros": [],
+          "functions_exceeding_A": [],
+          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
+        },
+        "open_findings": [],
+        "assurance_limits": [
+          "L3 bounded-domain algorithm and typed complete decision replay; no upgrade to L5 certificate-carrying architecture merely from verifying an enum. All other category/homology file grades remain independent.",
+          "Only Checked establishes step compatibility. verify_simulation Ok can also authenticate a canonical incompatibility decision; callers must inspect variant. Exact accepts noninjective maps, extension requires injection, neither requires surjectivity. Empty target macros are valid.",
+          "Readout labels must already share a semantic dictionary; numeric equality does not construct one. No physical resource theorem, causality, infinite machine, global step bound or availability inference outside admitted tables. Extension may introduce new availability; it is not exact reflection.",
+          "Pure Lean partial functions prove encoded-word lifting from exact pointwise step compatibility. Rust admission, map/refusal order, finite storage and first diagnostic refinement use source/native evidence; no Rust extraction or independent compiler/MIR/A+ assurance. Cell estimate is not bytes/time/allocator admission. Contracts pending.",
+          "Continuation provider refreshed by source-level all-machine preservation argument and fresh actual category/independent provider replay. Historical own fault outcomes stay bound to their original provider snapshots;no new own-body fault execution inferred."
+        ]
+      },
+      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\nschema_version: \"2.0.0\"\nartifact:\n  path: \"code/rust/src/category_theory/finite_simulation.rs\"\n  language: \"Rust\"\n  sha256: \"503da98d73a0680e1615d7e754da00357f6c85be8a28aea8e553d28853138d12\"\nprofile: \"Exact\"\nlevel: \"L3\"\nlevel_basis: \"Conservative bounded-domain classification; no upgrade based solely on terminology or module size.\"\narchitecture_target: \"L5\"\nengineering_target: \"A\"\ngates:\n  G1: \"A\"\n  G2: \"A\"\n  G3: \"A\"\n  G4: \"A\"\n  G5: \"A\"\ncomposite_grade: \"A\"\nscore_token: \"L3A\"\nis_complete: true\ngrade_ceiling: \"A\"\nevaluation_timestamp: \"2026-10-19T21:22:52.190194+00:00\"\nAuthorityEffect: \"None\"\nclaim:\n  urn: \"urn:tfqm:rust:category_theory:finite_simulation\"\n  description: \"Checked simulations and conservative resource extensions of finite dynamics. A successful exact check reflects availability. An extension preserves every old defined step but may add availability, which is listed explicitly. Replay accepts the exact computed decision, including mismatch diagnostics; only `Checked` establishes simulation. Map/encoding refusals precede the checked cell estimate, which is not a byte/time/allocator bound. AuthorityEffect: None.\"\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\ncontract:\n  status: \"pending\"\n  path: null\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\nevidence:\n  - {\"path\": \"evidence/quality/category_homology/20261019T190548Z/baseline.json\", \"sha256\": \"c6ad607ad546df01fdec3afa24d816af7e1fee8dc81ba77ebabbe26445211c1c\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T190548Z/summary.json\", \"sha256\": \"8de38d1111036b8ad3e158d2cbcd7b520452647076162fc1a12a235b070646e3\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T190548Z/mutations.json\", \"sha256\": \"63716af05bca7b48648208c66960b16f116947db029a570f86b3bd7793a76d77\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T190412Z-metrics/receipt.json\", \"sha256\": \"5ec367dc99fc0f662caeeebc424b160f7845db3c4cdee82c04b0d785cd329b47\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\n  - {\"path\": \"evidence/quality/category_homology/20261019T190548Z/dependency_receipt.json\", \"sha256\": \"f8f264c6c020ea56d10a2ef62b7151467037f5af501543ac250d8c1b27239ec0\", \"scope\": \"Cargo metadata, dependency file content stability, harness and tool-binary binding; no cross-repository origin attestation or compiler-read trace is inferred.\"}\n  - {\"path\": \"code/rust/quality/category_homology/assessments/continuation_consumer_refresh/finite_simulation.json\", \"sha256\": \"46d9004f1e16d985d3c11f9965b87d562548d800d3189d7c3e8cf7489243abe9\", \"scope\": \"Explicit source-pinned gate assessment with invariant and evidence mapping.\"}\nverification:\n  baseline_ok: true\n  source_snapshot_unchanged: true\n  compiled_scope: \"Actual category crate and one-fault copies inside their real parent scopes; no visibility widening or provider replacement\"\n  local_mutant_ids:\n    - \"RR-1-0\"\n    - \"RR-2-1\"\n    - \"RR-3-2\"\n    - \"RR-4-3\"\n    - \"RR-5-4\"\n    - \"RR-6-5\"\n    - \"RR-7-6\"\n    - \"RR-8-7\"\n    - \"RR-9-8\"\n    - \"RR-10-9\"\n    - \"RR-11-10\"\n    - \"RR-12-11\"\n    - \"RR-13-12\"\n    - \"RR-14-13\"\n    - \"RR-15-14\"\n    - \"RR-16-15\"\n    - \"RR-17-16\"\n    - \"RR-18-17\"\n    - \"RR-19-18\"\n    - \"RR-20-19\"\n    - \"RR-21-20\"\n    - \"RR-22-21\"\n    - \"RR-23-22\"\n    - \"RR-24-23\"\n    - \"RR-25-24\"\n    - \"RR-26-25\"\n    - \"RR-27-26\"\n    - \"RR-28-27\"\n    - \"RR-29-28\"\n    - \"RR-30-29\"\n    - \"RR-31-30\"\n    - \"RR-32-31\"\n    - \"RR-33-32\"\n    - \"RR-34-33\"\n  dependency_contents_stable: true\nmutation_accounting:\n  killed: 34\n  survived: 0\n  demonstrably_equivalent: 0\n  invalid: 0\n  inconclusive: 0\n  unrun: 0\n  conservative_ratio: 1.0\nstructure:\n  tool: \"syn 3.0.9 source AST\"\n  source_ast_parsed: true\n  expanded_ast: false\n  physical_lines: 179\n  parsed_production_functions: 7\n  max_production_ccn: 7\n  cognitive_complexity_upper_bound: 6\n  control_nesting: 2\n  opaque_function_macros: []\n  functions_exceeding_A: []\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\nopen_findings: []\nassurance_limits:\n  - \"L3 bounded-domain algorithm and typed complete decision replay; no upgrade to L5 certificate-carrying architecture merely from verifying an enum. All other category/homology file grades remain independent.\"\n  - \"Only Checked establishes step compatibility. verify_simulation Ok can also authenticate a canonical incompatibility decision; callers must inspect variant. Exact accepts noninjective maps, extension requires injection, neither requires surjectivity. Empty target macros are valid.\"\n  - \"Readout labels must already share a semantic dictionary; numeric equality does not construct one. No physical resource theorem, causality, infinite machine, global step bound or availability inference outside admitted tables. Extension may introduce new availability; it is not exact reflection.\"\n  - \"Pure Lean partial functions prove encoded-word lifting from exact pointwise step compatibility. Rust admission, map/refusal order, finite storage and first diagnostic refinement use source/native evidence; no Rust extraction or independent compiler/MIR/A+ assurance. Cell estimate is not bytes/time/allocator admission. Contracts pending.\"\n  - \"Continuation provider refreshed by source-level all-machine preservation argument and fresh actual category/independent provider replay. Historical own fault outcomes stay bound to their original provider snapshots;no new own-body fault execution inferred.\"\n",
+      "original_paths": [
+        "code/rust/src/category_theory/finite_simulation.score.yaml"
+      ]
+    },
+    {
+      "sha256": "efc61b457177d41137717577b3f02e45874b5a9192eed7887bc6d13260a07cdb",
+      "bytes": 2331,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/category_theory/finite_simulation.rs",
+          "sha256": "503da98d73a0680e1615d7e754da00357f6c85be8a28aea8e553d28853138d12",
+          "language": "Rust"
+        },
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "architecture_target": "L4",
+        "engineering_target": "A",
+        "level": "L3",
+        "gates": {
+          "G1": "A",
+          "G2": "A",
+          "G3": "A",
+          "G4": "A",
+          "G5": "A"
+        },
+        "composite_grade": "A",
+        "score_token": "L3A",
+        "is_complete": true,
+        "assessment_status": "existing_source_review_referenced",
+        "assessment_source": {
+          "path": "code/rust/src/category_theory/finite_simulation.score.yaml",
+          "sha256": "505b58a539ebb3119626d4d524f3d6a981f8bf6b3654e429a1b7427dc96def6a"
+        },
+        "contract": {
+          "path": "code/rust/src/category_theory/finite_simulation.rs.contract.yaml",
+          "sha256": "7c9e42f786556d9673abbc3d9da48a4899b0aa8c93f4171967fca6cfa89bf1de"
+        },
+        "assessment_note": "Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.",
+        "open_obligations": [],
+        "structural_measurement": {
+          "source_sha256": "503da98d73a0680e1615d7e754da00357f6c85be8a28aea8e553d28853138d12",
+          "function_count": 7,
+          "maxima": {
+            "ccn": 7,
+            "cognitive_upper_bound": 6,
+            "control_nesting": 2
+          },
+          "structural_ceiling": "A",
+          "opaque_macros": [],
+          "evidence": [
+            {
+              "path": "evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json",
+              "sha256": "03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3"
+            },
+            {
+              "path": "evidence/quality/category_homology/20261019T234440Z-metrics/metrics.json",
+              "sha256": "f1cd57a774df89c14758566aa0ea903e2b5cbdd5c47f0e536eedd525b9e891cc"
+            },
+            {
+              "path": "evidence/quality/category_homology/20261019T234440Z-metrics/six_module_scope.json",
+              "sha256": "0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf"
+            }
+          ],
+          "scope": "Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate."
+        }
+      },
+      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/category_theory/finite_simulation.rs\",\n    \"sha256\": \"503da98d73a0680e1615d7e754da00357f6c85be8a28aea8e553d28853138d12\",\n    \"language\": \"Rust\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"architecture_target\": \"L4\",\n  \"engineering_target\": \"A\",\n  \"level\": \"L3\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L3A\",\n  \"is_complete\": true,\n  \"assessment_status\": \"existing_source_review_referenced\",\n  \"assessment_source\": {\n    \"path\": \"code/rust/src/category_theory/finite_simulation.score.yaml\",\n    \"sha256\": \"505b58a539ebb3119626d4d524f3d6a981f8bf6b3654e429a1b7427dc96def6a\"\n  },\n  \"contract\": {\n    \"path\": \"code/rust/src/category_theory/finite_simulation.rs.contract.yaml\",\n    \"sha256\": \"7c9e42f786556d9673abbc3d9da48a4899b0aa8c93f4171967fca6cfa89bf1de\"\n  },\n  \"assessment_note\": \"Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.\",\n  \"open_obligations\": [],\n  \"structural_measurement\": {\n    \"source_sha256\": \"503da98d73a0680e1615d7e754da00357f6c85be8a28aea8e553d28853138d12\",\n    \"function_count\": 7,\n    \"maxima\": {\n      \"ccn\": 7,\n      \"cognitive_upper_bound\": 6,\n      \"control_nesting\": 2\n    },\n    \"structural_ceiling\": \"A\",\n    \"opaque_macros\": [],\n    \"evidence\": [\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/receipt.json\",\n        \"sha256\": \"03df3573e6a77794536643199962307d8ca92f1509bcb1e19e8dfbd960e29df3\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/metrics.json\",\n        \"sha256\": \"f1cd57a774df89c14758566aa0ea903e2b5cbdd5c47f0e536eedd525b9e891cc\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261019T234440Z-metrics/six_module_scope.json\",\n        \"sha256\": \"0b99240b77472cd2cf34918eb6eb25ce5679cb4d8c4886a153e4d9bf5b8b27bf\"\n      }\n    ],\n    \"scope\": \"Calibrated declared Rust source metrics only. A structural ceiling is not an awarded G5 grade; allocation/cost, library and macro review remain separate.\"\n  }\n}\n",
+      "original_paths": [
+        "code/rust/src/category_theory/finite_simulation.rs.scoring.yaml"
+      ]
+    },
+    {
+      "sha256": "964ec5fb3a70130f9a5d81571d35ba136e481b2c0d06d307799dafd953f90894",
+      "bytes": 3700,
+      "record": {
+        "schema_version": "2.0.0",
+        "artifact": {
+          "path": "code/rust/src/category_theory/finite_simulation.rs",
+          "language": "Rust",
+          "sha256": "214451d78b39398794d6a1b8a878b0e8c373f3a0d750a7f6c031fa3c0832c1c2"
+        },
+        "profile": "Exact",
+        "level": "L3",
+        "level_basis": "Conservative bounded-domain classification; no upgrade based solely on terminology or module size.",
+        "architecture_target": "L5",
+        "engineering_target": "A",
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "composite_grade": null,
+        "score_token": null,
+        "is_complete": false,
+        "grade_ceiling": "C",
+        "evaluation_timestamp": "2026-10-18T18:42:03+00:00",
+        "AuthorityEffect": "None",
+        "claim": {
+          "urn": "urn:tfqm:rust:category_theory:finite_simulation",
+          "description": "Checked simulations and conservative resource extensions of finite dynamics. A successful exact check reflects availability. An extension preserves every old defined step but may add availability, which is listed explicitly.",
+          "scope": "Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified."
+        },
+        "contract": {
+          "status": "pending",
+          "path": null,
+          "note": "Reserved for a later user-requested contract; none created or asserted here."
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/category_homology/20261018T184203Z/baseline.json",
+            "sha256": "e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c",
+            "scope": "Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T184203Z/summary.json",
+            "sha256": "ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67",
+            "scope": "Source snapshot binding and complete six-outcome accounting."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T184203Z/mutations.json",
+            "sha256": "c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5",
+            "scope": "Designated critical faults only; outcomes for this file are enumerated below."
+          },
+          {
+            "path": "evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json",
+            "sha256": "86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1",
+            "scope": "Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred."
+          }
+        ],
+        "verification": {
+          "baseline_ok": true,
+          "source_snapshot_unchanged": true,
+          "compiled_scope": "shared scoped crate build",
+          "local_mutant_ids": []
+        },
+        "mutation_accounting": {
+          "killed": 0,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": null
+        },
+        "structure": {
+          "tool": "syn 3.0.9 source AST",
+          "source_ast_parsed": true,
+          "expanded_ast": false,
+          "physical_lines": 113,
+          "parsed_production_functions": 2,
+          "max_production_ccn": 17,
+          "cognitive_complexity_upper_bound": 21,
+          "control_nesting": 3,
+          "opaque_function_macros": [],
+          "functions_exceeding_A": [
+            {
+              "ccn": 17,
+              "cognitive_upper_bound": 21,
+              "control_nesting": 3,
+              "line": 37,
+              "name": "check_simulation",
+              "opaque_macros": []
+            }
+          ],
+          "scope": "Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment."
+        },
+        "open_findings": [
+          "A complete five-gate semantic, failure and consumer audit has not been established for this file.",
+          "Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds.",
+          "External path dependency source contents have not received a separate origin/content attestation.",
+          "Declared source metrics impose a conservative C ceiling; exceeding functions are listed in structure. Cognitive values are upper bounds, not counterexamples to semantic correctness."
+        ]
+      },
+      "raw_utf8": "# SCORING.md v2; incomplete gates deliberately remain null.\r\nschema_version: \"2.0.0\"\r\nartifact:\r\n  path: \"code/rust/src/category_theory/finite_simulation.rs\"\r\n  language: \"Rust\"\r\n  sha256: \"214451d78b39398794d6a1b8a878b0e8c373f3a0d750a7f6c031fa3c0832c1c2\"\r\nprofile: \"Exact\"\r\nlevel: \"L3\"\r\nlevel_basis: \"Conservative bounded-domain classification; no upgrade based solely on terminology or module size.\"\r\narchitecture_target: \"L5\"\r\nengineering_target: \"A\"\r\ngates:\r\n  G1: null\r\n  G2: null\r\n  G3: null\r\n  G4: null\r\n  G5: null\r\ncomposite_grade: null\r\nscore_token: null\r\nis_complete: false\r\ngrade_ceiling: \"C\"\r\nevaluation_timestamp: \"2026-10-18T18:42:03+00:00\"\r\nAuthorityEffect: \"None\"\r\nclaim:\r\n  urn: \"urn:tfqm:rust:category_theory:finite_simulation\"\r\n  description: \"Checked simulations and conservative resource extensions of finite dynamics. A successful exact check reflects availability. An extension preserves every old defined step but may add availability, which is listed explicitly.\"\r\n  scope: \"Only the source-bound runtime behavior; no formal theorem, physical derivation or authority promotion is certified.\"\r\ncontract:\r\n  status: \"pending\"\r\n  path: null\r\n  note: \"Reserved for a later user-requested contract; none created or asserted here.\"\r\nevidence:\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/baseline.json\", \"sha256\": \"e4ecb0ff7d3ceede396ef0950cd09158f1d62f9f017b4e3299a9521e4784af4c\", \"scope\": \"Shared scoped package tests; execution flags, versions, cwd, exits and log hashes are in the receipt.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/summary.json\", \"sha256\": \"ae9fc1c93cd122306ae19cf43d6a2ffe6344e0db69ddac745520c6d17e9a7e67\", \"scope\": \"Source snapshot binding and complete six-outcome accounting.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T184203Z/mutations.json\", \"sha256\": \"c9b3aea4933913121cb0d4f4c010ef9158a0f4b2f6bb5fd7fc232eed614d61d5\", \"scope\": \"Designated critical faults only; outcomes for this file are enumerated below.\"}\r\n  - {\"path\": \"evidence/quality/category_homology/20261018T192425Z-metrics/receipt.json\", \"sha256\": \"86ad086ecb470eb49baea248283eb1af19d1b4e18580f7bbc0399b294df78cb1\", \"scope\": \"Calibrated AST source metrics, tool-source hashes and execution logs; no compiler expansion is inferred.\"}\r\nverification:\r\n  baseline_ok: true\r\n  source_snapshot_unchanged: true\r\n  compiled_scope: \"shared scoped crate build\"\r\n  local_mutant_ids: []\r\nmutation_accounting:\r\n  killed: 0\r\n  survived: 0\r\n  demonstrably_equivalent: 0\r\n  invalid: 0\r\n  inconclusive: 0\r\n  unrun: 0\r\n  conservative_ratio: null\r\nstructure:\r\n  tool: \"syn 3.0.9 source AST\"\r\n  source_ast_parsed: true\r\n  expanded_ast: false\r\n  physical_lines: 113\r\n  parsed_production_functions: 2\r\n  max_production_ccn: 17\r\n  cognitive_complexity_upper_bound: 21\r\n  control_nesting: 3\r\n  opaque_function_macros: []\r\n  functions_exceeding_A:\r\n    - {\"ccn\": 17, \"cognitive_upper_bound\": 21, \"control_nesting\": 3, \"line\": 37, \"name\": \"check_simulation\", \"opaque_macros\": []}\r\n  scope: \"Explicit source functions only; macro-generated functions, compiler expansion and runtime cost require separate assessment.\"\r\nopen_findings:\r\n  - \"A complete five-gate semantic, failure and consumer audit has not been established for this file.\"\r\n  - \"Source AST metrics do not certify macro-generated bodies, compiler expansion, termination or operational bounds.\"\r\n  - \"External path dependency source contents have not received a separate origin/content attestation.\"\r\n  - \"Declared source metrics impose a conservative C ceiling; exceeding functions are listed in structure. Cognitive values are upper bounds, not counterexamples to semantic correctness.\"\r\n",
+      "original_paths": [
+        "evidence/quality/category_homology/resume-20261019/simulation-previous/finite_simulation.score.yaml"
+      ]
+    }
+  ],
+  "legacy_paths": {
+    "code/rust/src/category_theory/finite_simulation.rs.contract.yaml": "7c9e42f786556d9673abbc3d9da48a4899b0aa8c93f4171967fca6cfa89bf1de",
+    "code/rust/src/category_theory/finite_simulation.score.yaml": "505b58a539ebb3119626d4d524f3d6a981f8bf6b3654e429a1b7427dc96def6a",
+    "code/rust/src/category_theory/finite_simulation.rs.scoring.yaml": "efc61b457177d41137717577b3f02e45874b5a9192eed7887bc6d13260a07cdb",
+    "evidence/quality/category_homology/resume-20261019/simulation-previous/finite_simulation.score.yaml": "964ec5fb3a70130f9a5d81571d35ba136e481b2c0d06d307799dafd953f90894"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

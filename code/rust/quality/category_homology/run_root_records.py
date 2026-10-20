@@ -9,7 +9,10 @@ import argparse
 import hashlib
 from datetime import datetime, timezone
 import json
-from pathlib import Path
+from pathlib import Path as _FilesystemPath
+import sys as _contract_sys
+_contract_sys.path.insert(0, str(_FilesystemPath(__file__).resolve().parents[4] / "scripts"))
+from contract_scores import RecordPath as Path, copy_file as _copy_record_file
 import re
 import shutil
 import subprocess
@@ -40,8 +43,8 @@ def main():
     inputs = inventory()
     write_json(output/"source_manifest.json",inputs)
     for name in (Path(__file__).name,"root_records.py","category_diagnostics.py","functor_certificates.py","natural_transformations.py","archival_inventory.py","joint_carrier.py","simulation.py","independence.py","finite_trace_challenges.py","finite_dagger_challenges.py","finite_groupoid_challenges.py","finite_cauchy_challenges.py","finite_coend_challenges.py","finite_condensation_challenges.py","root_catalog_challenges.py","finite_profunctor_challenges.py","continuation_challenges.py","moore_challenges.py","partial_structure_challenges.py","path_challenges.py","family_challenges.py","functional_dependencies_challenges.py","classification_challenges.py","relational_challenges.py","joint_dynamics_challenges.py","history_context_challenges.py","context_reflection_challenges.py"):
-        shutil.copyfile(Path(__file__).with_name(name),output/name)
-    shutil.copyfile(policy,output/policy.name)
+        _copy_record_file(Path(__file__).with_name(name),output/name)
+    _copy_record_file(policy,output/policy.name)
     snapshot(work,"category")
     package = work/"src/category_theory"
     manifest = package/"Cargo.toml"
@@ -132,7 +135,7 @@ def main():
                     except ValueError:
                         continue
                     if item.get("reason") == "compiler-artifact" and item.get("executable"):
-                        shutil.copyfile(item["executable"],binary)
+                        _copy_record_file(item["executable"],binary)
         finally:
             clear_debug_outputs(build,work)
         if run["exit_code"] == 0:

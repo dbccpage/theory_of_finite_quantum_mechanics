@@ -1,0 +1,129 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/40_packets/packet_symbol_game_stop_reason_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v2",
+    "contract_id": "urn:omega:packet:symbol_game:stop_reason:v1.0.0",
+    "title": "Stop Reason",
+    "kind": "packet_contract",
+    "layer": "40_packets",
+    "role": "PacketSpecification",
+    "status": "active",
+    "council_owner": "L3_logos_techne",
+    "descriptor": {
+      "authority_effect": "None",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": true,
+      "clean_architecture_layer": "domain",
+      "refusals": {
+        "may_emit": [
+          "FW-UNKNOWN-FIELD",
+          "FW-DUPLICATE-KEY"
+        ]
+      }
+    },
+    "doctrine": {
+      "summary": "Why a search stopped. The distinction merge spec acceptance criterion 14 turns on: a budget that ran out is `BoundedWithOpenFrontier`, never `Exhausted`. Only a search that actually inspected every branch may claim exhaustion.",
+      "invariants": [
+        "The shape declared here is the shape in packets.rs, enforced at compile time by an exhaustive match.",
+        "This type does NOT declare deny_unknown_fields, so an undeclared field on the wire is silently dropped. Recorded here as a known gap rather than implied to be closed."
+      ],
+      "non_roles": [
+        "authority_source",
+        "promotion_granter"
+      ],
+      "required_negative_capabilities": [
+        "no_self_certification",
+        "no_implicit_authority_upgrade"
+      ]
+    },
+    "structure": {
+      "rust_crate": "omega_symbol_game_runtime",
+      "rust_module": "packets",
+      "rust_type": "StopReason",
+      "form": "enum",
+      "variants": [
+        "Exhausted",
+        "BoundedWithOpenFrontier",
+        "TerminalProposed"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "996e228d204c4ec8a3c0fba1c36aca4d1bf3f130203b1e38dde19da0ae94be91",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "996e228d204c4ec8a3c0fba1c36aca4d1bf3f130203b1e38dde19da0ae94be91",
+      "bytes": 1398,
+      "record": {
+        "schema_version": "omega.contract.v2",
+        "contract_id": "urn:omega:packet:symbol_game:stop_reason:v1.0.0",
+        "title": "Stop Reason",
+        "kind": "packet_contract",
+        "layer": "40_packets",
+        "role": "PacketSpecification",
+        "status": "active",
+        "council_owner": "L3_logos_techne",
+        "descriptor": {
+          "authority_effect": "None",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": true,
+          "clean_architecture_layer": "domain",
+          "refusals": {
+            "may_emit": [
+              "FW-UNKNOWN-FIELD",
+              "FW-DUPLICATE-KEY"
+            ]
+          }
+        },
+        "doctrine": {
+          "summary": "Why a search stopped. The distinction merge spec acceptance criterion 14 turns on: a budget that ran out is `BoundedWithOpenFrontier`, never `Exhausted`. Only a search that actually inspected every branch may claim exhaustion.",
+          "invariants": [
+            "The shape declared here is the shape in packets.rs, enforced at compile time by an exhaustive match.",
+            "This type does NOT declare deny_unknown_fields, so an undeclared field on the wire is silently dropped. Recorded here as a known gap rather than implied to be closed."
+          ],
+          "non_roles": [
+            "authority_source",
+            "promotion_granter"
+          ],
+          "required_negative_capabilities": [
+            "no_self_certification",
+            "no_implicit_authority_upgrade"
+          ]
+        },
+        "structure": {
+          "rust_crate": "omega_symbol_game_runtime",
+          "rust_module": "packets",
+          "rust_type": "StopReason",
+          "form": "enum",
+          "variants": [
+            "Exhausted",
+            "BoundedWithOpenFrontier",
+            "TerminalProposed"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v2\ncontract_id: urn:omega:packet:symbol_game:stop_reason:v1.0.0\ntitle: Stop Reason\nkind: packet_contract\nlayer: 40_packets\nrole: PacketSpecification\nstatus: active\ncouncil_owner: L3_logos_techne\ndescriptor:\n  authority_effect: None\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: true\n  clean_architecture_layer: domain\n  refusals:\n    may_emit:\n    - FW-UNKNOWN-FIELD\n    - FW-DUPLICATE-KEY\ndoctrine:\n  summary: 'Why a search stopped. The distinction merge spec acceptance criterion\n    14 turns on: a budget that ran out is `BoundedWithOpenFrontier`, never `Exhausted`.\n    Only a search that actually inspected every branch may claim exhaustion.'\n  invariants:\n  - The shape declared here is the shape in packets.rs, enforced at compile time by\n    an exhaustive match.\n  - This type does NOT declare deny_unknown_fields, so an undeclared field on the\n    wire is silently dropped. Recorded here as a known gap rather than implied to\n    be closed.\n  non_roles:\n  - authority_source\n  - promotion_granter\n  required_negative_capabilities:\n  - no_self_certification\n  - no_implicit_authority_upgrade\nstructure:\n  rust_crate: omega_symbol_game_runtime\n  rust_module: packets\n  rust_type: StopReason\n  form: enum\n  variants:\n  - Exhausted\n  - BoundedWithOpenFrontier\n  - TerminalProposed\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/40_packets/packet_symbol_game_stop_reason_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/40_packets/packet_symbol_game_stop_reason_v1_0_0.contract.yaml": "996e228d204c4ec8a3c0fba1c36aca4d1bf3f130203b1e38dde19da0ae94be91"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

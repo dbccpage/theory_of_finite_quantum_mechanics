@@ -1,0 +1,207 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/general/math_same_field_four_square_splitting_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:same_field_four_square_splitting:v0.1.0",
+    "title": "Bounded same-field rational square splitting",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "same_field_four_square_splitting",
+      "symbol": "same_field_four_square_splitting",
+      "ascii_symbol": "same_field_four_square_splitting",
+      "notation": "Bounded same-field rational square splitting",
+      "domain": [
+        "Nonnegative BigInt integers and BigRational weights, explicit u64 search budget"
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_number_theory::four_squares; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "Returned squares replay sum s_i^2=n exactly",
+      "Rational split replays sum q_i^2=w without a square-root field",
+      "Negative inputs and exhausted budgets return typed errors"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_number_theory",
+      "module": "four_squares",
+      "symbols": [
+        "four_squares",
+        "rational_square_split"
+      ],
+      "required_tests": [
+        "four_squares::tests::all_small_integers_replay_the_four_square_identity",
+        "four_squares::tests::rational_weights_split_without_an_extension_field"
+      ]
+    },
+    "negative_tests": [
+      "four_squares::tests::rational_weights_split_without_an_extension_field"
+    ],
+    "doctrine": {
+      "summary": "Returned squares replay sum s_i^2=n exactly; Rational split replays sum q_i^2=w without a square-root field; Negative inputs and exhausted budgets return typed errors.",
+      "non_role": [
+        "No unbounded search or claim of a minimal number of nonzero squares",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "b77dd6d6ca8037d63bab3b2efdfb29c0c875c8c366d474a181d5cc8b593a2ac3",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "b77dd6d6ca8037d63bab3b2efdfb29c0c875c8c366d474a181d5cc8b593a2ac3",
+      "bytes": 2681,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:same_field_four_square_splitting:v0.1.0",
+        "title": "Bounded same-field rational square splitting",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "same_field_four_square_splitting",
+          "symbol": "same_field_four_square_splitting",
+          "ascii_symbol": "same_field_four_square_splitting",
+          "notation": "Bounded same-field rational square splitting",
+          "domain": [
+            "Nonnegative BigInt integers and BigRational weights, explicit u64 search budget"
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_number_theory::four_squares; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "Returned squares replay sum s_i^2=n exactly",
+          "Rational split replays sum q_i^2=w without a square-root field",
+          "Negative inputs and exhausted budgets return typed errors"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_number_theory",
+          "module": "four_squares",
+          "symbols": [
+            "four_squares",
+            "rational_square_split"
+          ],
+          "required_tests": [
+            "four_squares::tests::all_small_integers_replay_the_four_square_identity",
+            "four_squares::tests::rational_weights_split_without_an_extension_field"
+          ]
+        },
+        "negative_tests": [
+          "four_squares::tests::rational_weights_split_without_an_extension_field"
+        ],
+        "doctrine": {
+          "summary": "Returned squares replay sum s_i^2=n exactly; Rational split replays sum q_i^2=w without a square-root field; Negative inputs and exhausted budgets return typed errors.",
+          "non_role": [
+            "No unbounded search or claim of a minimal number of nonzero squares",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:same_field_four_square_splitting:v0.1.0\ntitle: Bounded same-field rational square splitting\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: same_field_four_square_splitting\n  symbol: same_field_four_square_splitting\n  ascii_symbol: same_field_four_square_splitting\n  notation: Bounded same-field rational square splitting\n  domain:\n  - Nonnegative BigInt integers and BigRational weights, explicit u64 search budget\n  codomain:\n    description: Declared finite results of omega_number_theory::four_squares; exact\n      and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- Returned squares replay sum s_i^2=n exactly\n- Rational split replays sum q_i^2=w without a square-root field\n- Negative inputs and exhausted budgets return typed errors\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_number_theory\n  module: four_squares\n  symbols:\n  - four_squares\n  - rational_square_split\n  required_tests:\n  - four_squares::tests::all_small_integers_replay_the_four_square_identity\n  - four_squares::tests::rational_weights_split_without_an_extension_field\nnegative_tests:\n- four_squares::tests::rational_weights_split_without_an_extension_field\ndoctrine:\n  summary: Returned squares replay sum s_i^2=n exactly; Rational split replays sum\n    q_i^2=w without a square-root field; Negative inputs and exhausted budgets return\n    typed errors.\n  non_role:\n  - No unbounded search or claim of a minimal number of nonzero squares\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_same_field_four_square_splitting_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_same_field_four_square_splitting_v0_1_0.contract.yaml": "b77dd6d6ca8037d63bab3b2efdfb29c0c875c8c366d474a181d5cc8b593a2ac3"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

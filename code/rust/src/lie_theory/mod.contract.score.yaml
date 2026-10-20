@@ -1,0 +1,2123 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/rust/src/lie_theory/mod.rs",
+  "contract": {
+    "schema_version": "1.0.0",
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/rust/src/lie_theory/mod.rs",
+      "sha256": "1b440d99d229824fc8a1b4195736c8eb8dacf8aed13f86818efe95b3cbaf6243",
+      "language": "Rust"
+    },
+    "contract_urn": "urn:tfqm:contract:lie_theory:mod.rs",
+    "status": "compatibility_entry_requires_separate_compilation",
+    "target": "L4A",
+    "profile": "Exact",
+    "purpose": "Finite exact matrix/group/algebra constructions over the scalar domains admitted by each API.",
+    "subject_role": "Module/export facade; composition evidence does not raise this file's own capability.",
+    "compilation": {
+      "disabled_by_cfg_any": false,
+      "test_or_support_file": false
+    },
+    "declaration_index": [
+      {
+        "kind": "mod",
+        "name": "cayley",
+        "line": 1,
+        "declaration_line": "pub mod cayley;"
+      },
+      {
+        "kind": "mod",
+        "name": "cayley_unitary",
+        "line": 2,
+        "declaration_line": "pub mod cayley_unitary;"
+      },
+      {
+        "kind": "mod",
+        "name": "clifford",
+        "line": 3,
+        "declaration_line": "pub mod clifford;"
+      },
+      {
+        "kind": "mod",
+        "name": "finite_group",
+        "line": 4,
+        "declaration_line": "pub mod finite_group;"
+      },
+      {
+        "kind": "mod",
+        "name": "finite_groupoid_algebra",
+        "line": 5,
+        "declaration_line": "pub mod finite_groupoid_algebra;"
+      },
+      {
+        "kind": "mod",
+        "name": "finite_order",
+        "line": 6,
+        "declaration_line": "pub mod finite_order;"
+      },
+      {
+        "kind": "mod",
+        "name": "finite_path_algebra",
+        "line": 7,
+        "declaration_line": "pub mod finite_path_algebra;"
+      },
+      {
+        "kind": "mod",
+        "name": "heisenberg",
+        "line": 8,
+        "declaration_line": "pub mod heisenberg;"
+      },
+      {
+        "kind": "mod",
+        "name": "lie_algebra",
+        "line": 9,
+        "declaration_line": "pub mod lie_algebra;"
+      },
+      {
+        "kind": "mod",
+        "name": "lorentz",
+        "line": 10,
+        "declaration_line": "pub mod lorentz;"
+      },
+      {
+        "kind": "mod",
+        "name": "pauli_symplectic",
+        "line": 11,
+        "declaration_line": "pub mod pauli_symplectic;"
+      },
+      {
+        "kind": "mod",
+        "name": "rotation",
+        "line": 12,
+        "declaration_line": "pub mod rotation;"
+      },
+      {
+        "kind": "mod",
+        "name": "scalar",
+        "line": 13,
+        "declaration_line": "pub mod scalar;"
+      },
+      {
+        "kind": "mod",
+        "name": "su2",
+        "line": 14,
+        "declaration_line": "pub mod su2;"
+      },
+      {
+        "kind": "mod",
+        "name": "su2_matrix",
+        "line": 15,
+        "declaration_line": "pub mod su2_matrix;"
+      },
+      {
+        "kind": "mod",
+        "name": "su_n",
+        "line": 16,
+        "declaration_line": "pub mod su_n;"
+      },
+      {
+        "kind": "mod",
+        "name": "twisted_abelian_algebra",
+        "line": 17,
+        "declaration_line": "pub mod twisted_abelian_algebra;"
+      },
+      {
+        "kind": "type",
+        "name": "QMatrix",
+        "line": 19,
+        "declaration_line": "pub(crate) type QMatrix ="
+      },
+      {
+        "kind": "mod",
+        "name": "weyl_operators",
+        "line": 22,
+        "declaration_line": "pub mod weyl_operators;"
+      },
+      {
+        "kind": "fn",
+        "name": "is_sl2_traceless",
+        "line": 30,
+        "declaration_line": "pub fn is_sl2_traceless(a11: Ratio<i64>, a22: Ratio<i64>) -> bool {"
+      }
+    ],
+    "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+    "requirements": [
+      {
+        "id": "G1",
+        "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+      },
+      {
+        "id": "G2",
+        "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+      },
+      {
+        "id": "G3",
+        "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+      },
+      {
+        "id": "G4",
+        "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+      },
+      {
+        "id": "G5",
+        "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+      }
+    ],
+    "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+    "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+    "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+    "open_obligations": [
+      "Complete source-to-requirement and downstream consumer review is outstanding.",
+      "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+      "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+      "Compatibility module is outside its package lib.rs build target; its own compilation needs separate evidence."
+    ],
+    "evidence": [
+      {
+        "path": "evidence/quality/l4a_six/20261020T185604Z/receipt.json",
+        "sha256": "8df76a180a12ec201081ecc54c92bb1408689198040aee14cfcf84db5355e08d"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T185604Z/source_manifest.json",
+        "sha256": "0e3549f60c890ce02c8f24bdfadf8dd9bb3e19b376923be07c097feb660edbaa"
+      },
+      {
+        "path": "code/rust/quality/l4a_six/records.py",
+        "sha256": "7f7a696f375ac9cbb84aa604f361eb9aa52d1386025434c57499955ee57575d7"
+      },
+      {
+        "path": "code/rust/quality/l4a_six/specs.json",
+        "sha256": "978a70208e74c65007a7d48fdb0ce8ffa9a27b9b19612ac5ac5107bfe1dd6a10"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T185604Z/metrics.json",
+        "sha256": "3cc030fb2d91b8aab2016bfe25bf17b0e1d431d88353d7fce9fd6ec875543288"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T185729Z-mutations/receipt.json",
+        "sha256": "6c7da30021450dc1ab6029067b83a376969e5774facff43d0293c70ced94ec83"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T185729Z-mutations/mutations.json",
+        "sha256": "01abdbac8d4c6f8ac55b07e888ab73ccd0b089aa89552725d1be4bcb57329010"
+      }
+    ],
+    "reviewed_specification": {
+      "purpose": "Compatibility module entry with the same trace predicate as the package entry; this file is outside the package's default lib target.",
+      "same_symbol_contracts_as": "lie_theory/lib.rs",
+      "status": "compatibility_entry_requires_separate_compilation"
+    }
+  },
+  "current_contract": "9bfc79ebf7b4fa17f955091176bfb5cc64cd6882f64b871b2a194758c9fad828",
+  "current_scoring": "51f6ee2aeb536c19933f3a2fdb9a10d06599fed419cd922d1cd89afc39af20d5",
+  "contract_history": [
+    {
+      "sha256": "9bfc79ebf7b4fa17f955091176bfb5cc64cd6882f64b871b2a194758c9fad828",
+      "bytes": 6847,
+      "record": {
+        "schema_version": "1.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/lie_theory/mod.rs",
+          "sha256": "1b440d99d229824fc8a1b4195736c8eb8dacf8aed13f86818efe95b3cbaf6243",
+          "language": "Rust"
+        },
+        "contract_urn": "urn:tfqm:contract:lie_theory:mod.rs",
+        "status": "compatibility_entry_requires_separate_compilation",
+        "target": "L4A",
+        "profile": "Exact",
+        "purpose": "Finite exact matrix/group/algebra constructions over the scalar domains admitted by each API.",
+        "subject_role": "Module/export facade; composition evidence does not raise this file's own capability.",
+        "compilation": {
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false
+        },
+        "declaration_index": [
+          {
+            "kind": "mod",
+            "name": "cayley",
+            "line": 1,
+            "declaration_line": "pub mod cayley;"
+          },
+          {
+            "kind": "mod",
+            "name": "cayley_unitary",
+            "line": 2,
+            "declaration_line": "pub mod cayley_unitary;"
+          },
+          {
+            "kind": "mod",
+            "name": "clifford",
+            "line": 3,
+            "declaration_line": "pub mod clifford;"
+          },
+          {
+            "kind": "mod",
+            "name": "finite_group",
+            "line": 4,
+            "declaration_line": "pub mod finite_group;"
+          },
+          {
+            "kind": "mod",
+            "name": "finite_groupoid_algebra",
+            "line": 5,
+            "declaration_line": "pub mod finite_groupoid_algebra;"
+          },
+          {
+            "kind": "mod",
+            "name": "finite_order",
+            "line": 6,
+            "declaration_line": "pub mod finite_order;"
+          },
+          {
+            "kind": "mod",
+            "name": "finite_path_algebra",
+            "line": 7,
+            "declaration_line": "pub mod finite_path_algebra;"
+          },
+          {
+            "kind": "mod",
+            "name": "heisenberg",
+            "line": 8,
+            "declaration_line": "pub mod heisenberg;"
+          },
+          {
+            "kind": "mod",
+            "name": "lie_algebra",
+            "line": 9,
+            "declaration_line": "pub mod lie_algebra;"
+          },
+          {
+            "kind": "mod",
+            "name": "lorentz",
+            "line": 10,
+            "declaration_line": "pub mod lorentz;"
+          },
+          {
+            "kind": "mod",
+            "name": "pauli_symplectic",
+            "line": 11,
+            "declaration_line": "pub mod pauli_symplectic;"
+          },
+          {
+            "kind": "mod",
+            "name": "rotation",
+            "line": 12,
+            "declaration_line": "pub mod rotation;"
+          },
+          {
+            "kind": "mod",
+            "name": "scalar",
+            "line": 13,
+            "declaration_line": "pub mod scalar;"
+          },
+          {
+            "kind": "mod",
+            "name": "su2",
+            "line": 14,
+            "declaration_line": "pub mod su2;"
+          },
+          {
+            "kind": "mod",
+            "name": "su2_matrix",
+            "line": 15,
+            "declaration_line": "pub mod su2_matrix;"
+          },
+          {
+            "kind": "mod",
+            "name": "su_n",
+            "line": 16,
+            "declaration_line": "pub mod su_n;"
+          },
+          {
+            "kind": "mod",
+            "name": "twisted_abelian_algebra",
+            "line": 17,
+            "declaration_line": "pub mod twisted_abelian_algebra;"
+          },
+          {
+            "kind": "type",
+            "name": "QMatrix",
+            "line": 19,
+            "declaration_line": "pub(crate) type QMatrix ="
+          },
+          {
+            "kind": "mod",
+            "name": "weyl_operators",
+            "line": 22,
+            "declaration_line": "pub mod weyl_operators;"
+          },
+          {
+            "kind": "fn",
+            "name": "is_sl2_traceless",
+            "line": 30,
+            "declaration_line": "pub fn is_sl2_traceless(a11: Ratio<i64>, a22: Ratio<i64>) -> bool {"
+          }
+        ],
+        "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+        "requirements": [
+          {
+            "id": "G1",
+            "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+          },
+          {
+            "id": "G2",
+            "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+          },
+          {
+            "id": "G3",
+            "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+          },
+          {
+            "id": "G4",
+            "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+          },
+          {
+            "id": "G5",
+            "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+          }
+        ],
+        "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+        "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+        "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+        "open_obligations": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+          "Compatibility module is outside its package lib.rs build target; its own compilation needs separate evidence."
+        ],
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T185604Z/receipt.json",
+            "sha256": "8df76a180a12ec201081ecc54c92bb1408689198040aee14cfcf84db5355e08d"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T185604Z/source_manifest.json",
+            "sha256": "0e3549f60c890ce02c8f24bdfadf8dd9bb3e19b376923be07c097feb660edbaa"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "7f7a696f375ac9cbb84aa604f361eb9aa52d1386025434c57499955ee57575d7"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "978a70208e74c65007a7d48fdb0ce8ffa9a27b9b19612ac5ac5107bfe1dd6a10"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T185604Z/metrics.json",
+            "sha256": "3cc030fb2d91b8aab2016bfe25bf17b0e1d431d88353d7fce9fd6ec875543288"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T185729Z-mutations/receipt.json",
+            "sha256": "6c7da30021450dc1ab6029067b83a376969e5774facff43d0293c70ced94ec83"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T185729Z-mutations/mutations.json",
+            "sha256": "01abdbac8d4c6f8ac55b07e888ab73ccd0b089aa89552725d1be4bcb57329010"
+          }
+        ],
+        "reviewed_specification": {
+          "purpose": "Compatibility module entry with the same trace predicate as the package entry; this file is outside the package's default lib target.",
+          "same_symbol_contracts_as": "lie_theory/lib.rs",
+          "status": "compatibility_entry_requires_separate_compilation"
+        }
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/lie_theory/mod.rs\",\n    \"sha256\": \"1b440d99d229824fc8a1b4195736c8eb8dacf8aed13f86818efe95b3cbaf6243\",\n    \"language\": \"Rust\"\n  },\n  \"contract_urn\": \"urn:tfqm:contract:lie_theory:mod.rs\",\n  \"status\": \"compatibility_entry_requires_separate_compilation\",\n  \"target\": \"L4A\",\n  \"profile\": \"Exact\",\n  \"purpose\": \"Finite exact matrix/group/algebra constructions over the scalar domains admitted by each API.\",\n  \"subject_role\": \"Module/export facade; composition evidence does not raise this file's own capability.\",\n  \"compilation\": {\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false\n  },\n  \"declaration_index\": [\n    {\n      \"kind\": \"mod\",\n      \"name\": \"cayley\",\n      \"line\": 1,\n      \"declaration_line\": \"pub mod cayley;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"cayley_unitary\",\n      \"line\": 2,\n      \"declaration_line\": \"pub mod cayley_unitary;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"clifford\",\n      \"line\": 3,\n      \"declaration_line\": \"pub mod clifford;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"finite_group\",\n      \"line\": 4,\n      \"declaration_line\": \"pub mod finite_group;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"finite_groupoid_algebra\",\n      \"line\": 5,\n      \"declaration_line\": \"pub mod finite_groupoid_algebra;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"finite_order\",\n      \"line\": 6,\n      \"declaration_line\": \"pub mod finite_order;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"finite_path_algebra\",\n      \"line\": 7,\n      \"declaration_line\": \"pub mod finite_path_algebra;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"heisenberg\",\n      \"line\": 8,\n      \"declaration_line\": \"pub mod heisenberg;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"lie_algebra\",\n      \"line\": 9,\n      \"declaration_line\": \"pub mod lie_algebra;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"lorentz\",\n      \"line\": 10,\n      \"declaration_line\": \"pub mod lorentz;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"pauli_symplectic\",\n      \"line\": 11,\n      \"declaration_line\": \"pub mod pauli_symplectic;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"rotation\",\n      \"line\": 12,\n      \"declaration_line\": \"pub mod rotation;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"scalar\",\n      \"line\": 13,\n      \"declaration_line\": \"pub mod scalar;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"su2\",\n      \"line\": 14,\n      \"declaration_line\": \"pub mod su2;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"su2_matrix\",\n      \"line\": 15,\n      \"declaration_line\": \"pub mod su2_matrix;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"su_n\",\n      \"line\": 16,\n      \"declaration_line\": \"pub mod su_n;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"twisted_abelian_algebra\",\n      \"line\": 17,\n      \"declaration_line\": \"pub mod twisted_abelian_algebra;\"\n    },\n    {\n      \"kind\": \"type\",\n      \"name\": \"QMatrix\",\n      \"line\": 19,\n      \"declaration_line\": \"pub(crate) type QMatrix =\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"weyl_operators\",\n      \"line\": 22,\n      \"declaration_line\": \"pub mod weyl_operators;\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"is_sl2_traceless\",\n      \"line\": 30,\n      \"declaration_line\": \"pub fn is_sl2_traceless(a11: Ratio<i64>, a22: Ratio<i64>) -> bool {\"\n    }\n  ],\n  \"declaration_index_scope\": \"Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.\",\n  \"requirements\": [\n    {\n      \"id\": \"G1\",\n      \"requirement\": \"Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries.\"\n    },\n    {\n      \"id\": \"G2\",\n      \"requirement\": \"Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path.\"\n    },\n    {\n      \"id\": \"G3\",\n      \"requirement\": \"Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions.\"\n    },\n    {\n      \"id\": \"G4\",\n      \"requirement\": \"Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A.\"\n    },\n    {\n      \"id\": \"G5\",\n      \"requirement\": \"Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately.\"\n    }\n  ],\n  \"admission_policy\": \"Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.\",\n  \"resource_boundary\": \"No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.\",\n  \"authority_ceiling\": \"Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.\",\n  \"open_obligations\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\",\n    \"Compatibility module is outside its package lib.rs build target; its own compilation needs separate evidence.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185604Z/receipt.json\",\n      \"sha256\": \"8df76a180a12ec201081ecc54c92bb1408689198040aee14cfcf84db5355e08d\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185604Z/source_manifest.json\",\n      \"sha256\": \"0e3549f60c890ce02c8f24bdfadf8dd9bb3e19b376923be07c097feb660edbaa\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"7f7a696f375ac9cbb84aa604f361eb9aa52d1386025434c57499955ee57575d7\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"978a70208e74c65007a7d48fdb0ce8ffa9a27b9b19612ac5ac5107bfe1dd6a10\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185604Z/metrics.json\",\n      \"sha256\": \"3cc030fb2d91b8aab2016bfe25bf17b0e1d431d88353d7fce9fd6ec875543288\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185729Z-mutations/receipt.json\",\n      \"sha256\": \"6c7da30021450dc1ab6029067b83a376969e5774facff43d0293c70ced94ec83\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185729Z-mutations/mutations.json\",\n      \"sha256\": \"01abdbac8d4c6f8ac55b07e888ab73ccd0b089aa89552725d1be4bcb57329010\"\n    }\n  ],\n  \"reviewed_specification\": {\n    \"purpose\": \"Compatibility module entry with the same trace predicate as the package entry; this file is outside the package's default lib target.\",\n    \"same_symbol_contracts_as\": \"lie_theory/lib.rs\",\n    \"status\": \"compatibility_entry_requires_separate_compilation\"\n  }\n}\n",
+      "original_paths": [
+        "code/rust/src/lie_theory/mod.rs.contract.yaml"
+      ]
+    },
+    {
+      "sha256": "6dc675abe7fde3d8d653d51083045f8c105f87ce75bc46f0337b4d622e6b4dcf",
+      "bytes": 7037,
+      "record": {
+        "schema_version": "1.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/lie_theory/mod.rs",
+          "sha256": "1b440d99d229824fc8a1b4195736c8eb8dacf8aed13f86818efe95b3cbaf6243",
+          "language": "Rust"
+        },
+        "contract_urn": "urn:tfqm:contract:lie_theory:mod.rs",
+        "status": "compatibility_entry_requires_separate_compilation",
+        "target": "L4A",
+        "profile": "Exact",
+        "purpose": "Finite exact matrix/group/algebra constructions over the scalar domains admitted by each API.",
+        "subject_role": "Module/export facade; composition evidence does not raise this file's own capability.",
+        "compilation": {
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false
+        },
+        "declaration_index": [
+          {
+            "kind": "mod",
+            "name": "cayley",
+            "line": 1,
+            "declaration_line": "pub mod cayley;"
+          },
+          {
+            "kind": "mod",
+            "name": "cayley_unitary",
+            "line": 2,
+            "declaration_line": "pub mod cayley_unitary;"
+          },
+          {
+            "kind": "mod",
+            "name": "clifford",
+            "line": 3,
+            "declaration_line": "pub mod clifford;"
+          },
+          {
+            "kind": "mod",
+            "name": "finite_group",
+            "line": 4,
+            "declaration_line": "pub mod finite_group;"
+          },
+          {
+            "kind": "mod",
+            "name": "finite_groupoid_algebra",
+            "line": 5,
+            "declaration_line": "pub mod finite_groupoid_algebra;"
+          },
+          {
+            "kind": "mod",
+            "name": "finite_order",
+            "line": 6,
+            "declaration_line": "pub mod finite_order;"
+          },
+          {
+            "kind": "mod",
+            "name": "finite_path_algebra",
+            "line": 7,
+            "declaration_line": "pub mod finite_path_algebra;"
+          },
+          {
+            "kind": "mod",
+            "name": "heisenberg",
+            "line": 8,
+            "declaration_line": "pub mod heisenberg;"
+          },
+          {
+            "kind": "mod",
+            "name": "lie_algebra",
+            "line": 9,
+            "declaration_line": "pub mod lie_algebra;"
+          },
+          {
+            "kind": "mod",
+            "name": "lorentz",
+            "line": 10,
+            "declaration_line": "pub mod lorentz;"
+          },
+          {
+            "kind": "mod",
+            "name": "pauli_symplectic",
+            "line": 11,
+            "declaration_line": "pub mod pauli_symplectic;"
+          },
+          {
+            "kind": "mod",
+            "name": "rotation",
+            "line": 12,
+            "declaration_line": "pub mod rotation;"
+          },
+          {
+            "kind": "mod",
+            "name": "scalar",
+            "line": 13,
+            "declaration_line": "pub mod scalar;"
+          },
+          {
+            "kind": "mod",
+            "name": "su2",
+            "line": 14,
+            "declaration_line": "pub mod su2;"
+          },
+          {
+            "kind": "mod",
+            "name": "su2_matrix",
+            "line": 15,
+            "declaration_line": "pub mod su2_matrix;"
+          },
+          {
+            "kind": "mod",
+            "name": "su_n",
+            "line": 16,
+            "declaration_line": "pub mod su_n;"
+          },
+          {
+            "kind": "mod",
+            "name": "twisted_abelian_algebra",
+            "line": 17,
+            "declaration_line": "pub mod twisted_abelian_algebra;"
+          },
+          {
+            "kind": "type",
+            "name": "QMatrix",
+            "line": 19,
+            "declaration_line": "pub(crate) type QMatrix ="
+          },
+          {
+            "kind": "mod",
+            "name": "weyl_operators",
+            "line": 22,
+            "declaration_line": "pub mod weyl_operators;"
+          },
+          {
+            "kind": "fn",
+            "name": "is_sl2_traceless",
+            "line": 30,
+            "declaration_line": "pub fn is_sl2_traceless(a11: Ratio<i64>, a22: Ratio<i64>) -> bool {"
+          }
+        ],
+        "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+        "requirements": [
+          {
+            "id": "G1",
+            "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+          },
+          {
+            "id": "G2",
+            "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+          },
+          {
+            "id": "G3",
+            "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+          },
+          {
+            "id": "G4",
+            "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+          },
+          {
+            "id": "G5",
+            "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+          }
+        ],
+        "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+        "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+        "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+        "open_obligations": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+          "Compatibility module is outside its package lib.rs build target; its own compilation needs separate evidence."
+        ],
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T060838Z/receipt.json",
+            "sha256": "596bf86ef053be10c83b2139f70e3c71367c41343b09fe5a50798c92cbdd5194"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T060838Z/source_manifest.json",
+            "sha256": "30a432233c4ae6b9af1d8acc1558f27407c78c36684bdf5e7992e41641b77cb3"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "906c2d4cc67bbf47a8854a5b2d770e42aba6355d4817928fad3442eeef56a17b"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T062544Z-native-scalar-control/receipt.json",
+            "sha256": "f9825a920d2496b206efb2822fabee8b165df573f6c91b6ccc6c9fa740a3a28e"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T060838Z/metrics.json",
+            "sha256": "ea429ecf09930cac81b7b5b73611ab9325745ed50ce84808a1973d1b2e06a092"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T061219Z-mutations/receipt.json",
+            "sha256": "dc1742a2cd04d70da49b7c642bc8c421a3e7d52583400a4e6cca2e246c2db238"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T061219Z-mutations/mutations.json",
+            "sha256": "91b289a1be59565c0f1ec82ca9abcc4cd39cbf680db2d1e201ff95d15bc8abc7"
+          }
+        ],
+        "reviewed_specification": {
+          "same_symbol_contracts_as": "lie_theory/lib.rs",
+          "status": "compatibility_entry_requires_separate_compilation",
+          "purpose": "Compatibility module entry with the same trace predicate as the package entry; this file is outside the package's default lib target."
+        }
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/lie_theory/mod.rs\",\n    \"sha256\": \"1b440d99d229824fc8a1b4195736c8eb8dacf8aed13f86818efe95b3cbaf6243\",\n    \"language\": \"Rust\"\n  },\n  \"contract_urn\": \"urn:tfqm:contract:lie_theory:mod.rs\",\n  \"status\": \"compatibility_entry_requires_separate_compilation\",\n  \"target\": \"L4A\",\n  \"profile\": \"Exact\",\n  \"purpose\": \"Finite exact matrix/group/algebra constructions over the scalar domains admitted by each API.\",\n  \"subject_role\": \"Module/export facade; composition evidence does not raise this file's own capability.\",\n  \"compilation\": {\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false\n  },\n  \"declaration_index\": [\n    {\n      \"kind\": \"mod\",\n      \"name\": \"cayley\",\n      \"line\": 1,\n      \"declaration_line\": \"pub mod cayley;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"cayley_unitary\",\n      \"line\": 2,\n      \"declaration_line\": \"pub mod cayley_unitary;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"clifford\",\n      \"line\": 3,\n      \"declaration_line\": \"pub mod clifford;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"finite_group\",\n      \"line\": 4,\n      \"declaration_line\": \"pub mod finite_group;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"finite_groupoid_algebra\",\n      \"line\": 5,\n      \"declaration_line\": \"pub mod finite_groupoid_algebra;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"finite_order\",\n      \"line\": 6,\n      \"declaration_line\": \"pub mod finite_order;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"finite_path_algebra\",\n      \"line\": 7,\n      \"declaration_line\": \"pub mod finite_path_algebra;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"heisenberg\",\n      \"line\": 8,\n      \"declaration_line\": \"pub mod heisenberg;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"lie_algebra\",\n      \"line\": 9,\n      \"declaration_line\": \"pub mod lie_algebra;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"lorentz\",\n      \"line\": 10,\n      \"declaration_line\": \"pub mod lorentz;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"pauli_symplectic\",\n      \"line\": 11,\n      \"declaration_line\": \"pub mod pauli_symplectic;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"rotation\",\n      \"line\": 12,\n      \"declaration_line\": \"pub mod rotation;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"scalar\",\n      \"line\": 13,\n      \"declaration_line\": \"pub mod scalar;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"su2\",\n      \"line\": 14,\n      \"declaration_line\": \"pub mod su2;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"su2_matrix\",\n      \"line\": 15,\n      \"declaration_line\": \"pub mod su2_matrix;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"su_n\",\n      \"line\": 16,\n      \"declaration_line\": \"pub mod su_n;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"twisted_abelian_algebra\",\n      \"line\": 17,\n      \"declaration_line\": \"pub mod twisted_abelian_algebra;\"\n    },\n    {\n      \"kind\": \"type\",\n      \"name\": \"QMatrix\",\n      \"line\": 19,\n      \"declaration_line\": \"pub(crate) type QMatrix =\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"weyl_operators\",\n      \"line\": 22,\n      \"declaration_line\": \"pub mod weyl_operators;\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"is_sl2_traceless\",\n      \"line\": 30,\n      \"declaration_line\": \"pub fn is_sl2_traceless(a11: Ratio<i64>, a22: Ratio<i64>) -> bool {\"\n    }\n  ],\n  \"declaration_index_scope\": \"Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.\",\n  \"requirements\": [\n    {\n      \"id\": \"G1\",\n      \"requirement\": \"Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries.\"\n    },\n    {\n      \"id\": \"G2\",\n      \"requirement\": \"Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path.\"\n    },\n    {\n      \"id\": \"G3\",\n      \"requirement\": \"Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions.\"\n    },\n    {\n      \"id\": \"G4\",\n      \"requirement\": \"Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A.\"\n    },\n    {\n      \"id\": \"G5\",\n      \"requirement\": \"Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately.\"\n    }\n  ],\n  \"admission_policy\": \"Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.\",\n  \"resource_boundary\": \"No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.\",\n  \"authority_ceiling\": \"Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.\",\n  \"open_obligations\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\",\n    \"Compatibility module is outside its package lib.rs build target; its own compilation needs separate evidence.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T060838Z/receipt.json\",\n      \"sha256\": \"596bf86ef053be10c83b2139f70e3c71367c41343b09fe5a50798c92cbdd5194\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T060838Z/source_manifest.json\",\n      \"sha256\": \"30a432233c4ae6b9af1d8acc1558f27407c78c36684bdf5e7992e41641b77cb3\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"906c2d4cc67bbf47a8854a5b2d770e42aba6355d4817928fad3442eeef56a17b\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T062544Z-native-scalar-control/receipt.json\",\n      \"sha256\": \"f9825a920d2496b206efb2822fabee8b165df573f6c91b6ccc6c9fa740a3a28e\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T060838Z/metrics.json\",\n      \"sha256\": \"ea429ecf09930cac81b7b5b73611ab9325745ed50ce84808a1973d1b2e06a092\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T061219Z-mutations/receipt.json\",\n      \"sha256\": \"dc1742a2cd04d70da49b7c642bc8c421a3e7d52583400a4e6cca2e246c2db238\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T061219Z-mutations/mutations.json\",\n      \"sha256\": \"91b289a1be59565c0f1ec82ca9abcc4cd39cbf680db2d1e201ff95d15bc8abc7\"\n    }\n  ],\n  \"reviewed_specification\": {\n    \"same_symbol_contracts_as\": \"lie_theory/lib.rs\",\n    \"status\": \"compatibility_entry_requires_separate_compilation\",\n    \"purpose\": \"Compatibility module entry with the same trace predicate as the package entry; this file is outside the package's default lib target.\"\n  }\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_six/20261020T064227Z-rank-activation/previous_assessment/code/rust/src/lie_theory/mod.rs.contract.yaml"
+      ]
+    },
+    {
+      "sha256": "ff4e8d67280e715ffe4452ee360122f0a304117e41aab756d385ff315e6607f8",
+      "bytes": 7037,
+      "record": {
+        "schema_version": "1.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/lie_theory/mod.rs",
+          "sha256": "1b440d99d229824fc8a1b4195736c8eb8dacf8aed13f86818efe95b3cbaf6243",
+          "language": "Rust"
+        },
+        "contract_urn": "urn:tfqm:contract:lie_theory:mod.rs",
+        "status": "compatibility_entry_requires_separate_compilation",
+        "target": "L4A",
+        "profile": "Exact",
+        "purpose": "Finite exact matrix/group/algebra constructions over the scalar domains admitted by each API.",
+        "subject_role": "Module/export facade; composition evidence does not raise this file's own capability.",
+        "compilation": {
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false
+        },
+        "declaration_index": [
+          {
+            "kind": "mod",
+            "name": "cayley",
+            "line": 1,
+            "declaration_line": "pub mod cayley;"
+          },
+          {
+            "kind": "mod",
+            "name": "cayley_unitary",
+            "line": 2,
+            "declaration_line": "pub mod cayley_unitary;"
+          },
+          {
+            "kind": "mod",
+            "name": "clifford",
+            "line": 3,
+            "declaration_line": "pub mod clifford;"
+          },
+          {
+            "kind": "mod",
+            "name": "finite_group",
+            "line": 4,
+            "declaration_line": "pub mod finite_group;"
+          },
+          {
+            "kind": "mod",
+            "name": "finite_groupoid_algebra",
+            "line": 5,
+            "declaration_line": "pub mod finite_groupoid_algebra;"
+          },
+          {
+            "kind": "mod",
+            "name": "finite_order",
+            "line": 6,
+            "declaration_line": "pub mod finite_order;"
+          },
+          {
+            "kind": "mod",
+            "name": "finite_path_algebra",
+            "line": 7,
+            "declaration_line": "pub mod finite_path_algebra;"
+          },
+          {
+            "kind": "mod",
+            "name": "heisenberg",
+            "line": 8,
+            "declaration_line": "pub mod heisenberg;"
+          },
+          {
+            "kind": "mod",
+            "name": "lie_algebra",
+            "line": 9,
+            "declaration_line": "pub mod lie_algebra;"
+          },
+          {
+            "kind": "mod",
+            "name": "lorentz",
+            "line": 10,
+            "declaration_line": "pub mod lorentz;"
+          },
+          {
+            "kind": "mod",
+            "name": "pauli_symplectic",
+            "line": 11,
+            "declaration_line": "pub mod pauli_symplectic;"
+          },
+          {
+            "kind": "mod",
+            "name": "rotation",
+            "line": 12,
+            "declaration_line": "pub mod rotation;"
+          },
+          {
+            "kind": "mod",
+            "name": "scalar",
+            "line": 13,
+            "declaration_line": "pub mod scalar;"
+          },
+          {
+            "kind": "mod",
+            "name": "su2",
+            "line": 14,
+            "declaration_line": "pub mod su2;"
+          },
+          {
+            "kind": "mod",
+            "name": "su2_matrix",
+            "line": 15,
+            "declaration_line": "pub mod su2_matrix;"
+          },
+          {
+            "kind": "mod",
+            "name": "su_n",
+            "line": 16,
+            "declaration_line": "pub mod su_n;"
+          },
+          {
+            "kind": "mod",
+            "name": "twisted_abelian_algebra",
+            "line": 17,
+            "declaration_line": "pub mod twisted_abelian_algebra;"
+          },
+          {
+            "kind": "type",
+            "name": "QMatrix",
+            "line": 19,
+            "declaration_line": "pub(crate) type QMatrix ="
+          },
+          {
+            "kind": "mod",
+            "name": "weyl_operators",
+            "line": 22,
+            "declaration_line": "pub mod weyl_operators;"
+          },
+          {
+            "kind": "fn",
+            "name": "is_sl2_traceless",
+            "line": 30,
+            "declaration_line": "pub fn is_sl2_traceless(a11: Ratio<i64>, a22: Ratio<i64>) -> bool {"
+          }
+        ],
+        "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+        "requirements": [
+          {
+            "id": "G1",
+            "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+          },
+          {
+            "id": "G2",
+            "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+          },
+          {
+            "id": "G3",
+            "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+          },
+          {
+            "id": "G4",
+            "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+          },
+          {
+            "id": "G5",
+            "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+          }
+        ],
+        "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+        "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+        "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+        "open_obligations": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+          "Compatibility module is outside its package lib.rs build target; its own compilation needs separate evidence."
+        ],
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T064257Z/receipt.json",
+            "sha256": "51613b0c9b9841f5bd58f732f04af13ab7e0b423d6fcfd00b5bba0d8104c6579"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064257Z/source_manifest.json",
+            "sha256": "684a70128a9b855d38641d5caf8ff06dbbed219ecf7ddaf745207a42584425ae"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "06dc10da559e38474966c2d318615204284210a7fd2b412c91b1f2bdf91a98e3"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064416Z-native-scalar-control/receipt.json",
+            "sha256": "0766aa9b99debe1358f6d8875fd7f375f0f81919491614eec1a640b2839bfa51"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064257Z/metrics.json",
+            "sha256": "4a56a75becd2862da73b9876563e490bf570e9dee24a4816667cec6684dffcb1"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064307Z-mutations/receipt.json",
+            "sha256": "f33e08380b111005a6d5a9897fae4c86ba2b18b7c39bdc3e4d8ee49232cc0e11"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064307Z-mutations/mutations.json",
+            "sha256": "0a6dac1623a7edf2f6a369b765e755221a0f9bdc232349ac2d202d4c9b7676dc"
+          }
+        ],
+        "reviewed_specification": {
+          "same_symbol_contracts_as": "lie_theory/lib.rs",
+          "status": "compatibility_entry_requires_separate_compilation",
+          "purpose": "Compatibility module entry with the same trace predicate as the package entry; this file is outside the package's default lib target."
+        }
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/lie_theory/mod.rs\",\n    \"sha256\": \"1b440d99d229824fc8a1b4195736c8eb8dacf8aed13f86818efe95b3cbaf6243\",\n    \"language\": \"Rust\"\n  },\n  \"contract_urn\": \"urn:tfqm:contract:lie_theory:mod.rs\",\n  \"status\": \"compatibility_entry_requires_separate_compilation\",\n  \"target\": \"L4A\",\n  \"profile\": \"Exact\",\n  \"purpose\": \"Finite exact matrix/group/algebra constructions over the scalar domains admitted by each API.\",\n  \"subject_role\": \"Module/export facade; composition evidence does not raise this file's own capability.\",\n  \"compilation\": {\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false\n  },\n  \"declaration_index\": [\n    {\n      \"kind\": \"mod\",\n      \"name\": \"cayley\",\n      \"line\": 1,\n      \"declaration_line\": \"pub mod cayley;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"cayley_unitary\",\n      \"line\": 2,\n      \"declaration_line\": \"pub mod cayley_unitary;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"clifford\",\n      \"line\": 3,\n      \"declaration_line\": \"pub mod clifford;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"finite_group\",\n      \"line\": 4,\n      \"declaration_line\": \"pub mod finite_group;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"finite_groupoid_algebra\",\n      \"line\": 5,\n      \"declaration_line\": \"pub mod finite_groupoid_algebra;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"finite_order\",\n      \"line\": 6,\n      \"declaration_line\": \"pub mod finite_order;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"finite_path_algebra\",\n      \"line\": 7,\n      \"declaration_line\": \"pub mod finite_path_algebra;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"heisenberg\",\n      \"line\": 8,\n      \"declaration_line\": \"pub mod heisenberg;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"lie_algebra\",\n      \"line\": 9,\n      \"declaration_line\": \"pub mod lie_algebra;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"lorentz\",\n      \"line\": 10,\n      \"declaration_line\": \"pub mod lorentz;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"pauli_symplectic\",\n      \"line\": 11,\n      \"declaration_line\": \"pub mod pauli_symplectic;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"rotation\",\n      \"line\": 12,\n      \"declaration_line\": \"pub mod rotation;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"scalar\",\n      \"line\": 13,\n      \"declaration_line\": \"pub mod scalar;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"su2\",\n      \"line\": 14,\n      \"declaration_line\": \"pub mod su2;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"su2_matrix\",\n      \"line\": 15,\n      \"declaration_line\": \"pub mod su2_matrix;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"su_n\",\n      \"line\": 16,\n      \"declaration_line\": \"pub mod su_n;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"twisted_abelian_algebra\",\n      \"line\": 17,\n      \"declaration_line\": \"pub mod twisted_abelian_algebra;\"\n    },\n    {\n      \"kind\": \"type\",\n      \"name\": \"QMatrix\",\n      \"line\": 19,\n      \"declaration_line\": \"pub(crate) type QMatrix =\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"weyl_operators\",\n      \"line\": 22,\n      \"declaration_line\": \"pub mod weyl_operators;\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"is_sl2_traceless\",\n      \"line\": 30,\n      \"declaration_line\": \"pub fn is_sl2_traceless(a11: Ratio<i64>, a22: Ratio<i64>) -> bool {\"\n    }\n  ],\n  \"declaration_index_scope\": \"Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.\",\n  \"requirements\": [\n    {\n      \"id\": \"G1\",\n      \"requirement\": \"Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries.\"\n    },\n    {\n      \"id\": \"G2\",\n      \"requirement\": \"Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path.\"\n    },\n    {\n      \"id\": \"G3\",\n      \"requirement\": \"Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions.\"\n    },\n    {\n      \"id\": \"G4\",\n      \"requirement\": \"Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A.\"\n    },\n    {\n      \"id\": \"G5\",\n      \"requirement\": \"Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately.\"\n    }\n  ],\n  \"admission_policy\": \"Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.\",\n  \"resource_boundary\": \"No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.\",\n  \"authority_ceiling\": \"Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.\",\n  \"open_obligations\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\",\n    \"Compatibility module is outside its package lib.rs build target; its own compilation needs separate evidence.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064257Z/receipt.json\",\n      \"sha256\": \"51613b0c9b9841f5bd58f732f04af13ab7e0b423d6fcfd00b5bba0d8104c6579\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064257Z/source_manifest.json\",\n      \"sha256\": \"684a70128a9b855d38641d5caf8ff06dbbed219ecf7ddaf745207a42584425ae\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"06dc10da559e38474966c2d318615204284210a7fd2b412c91b1f2bdf91a98e3\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064416Z-native-scalar-control/receipt.json\",\n      \"sha256\": \"0766aa9b99debe1358f6d8875fd7f375f0f81919491614eec1a640b2839bfa51\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064257Z/metrics.json\",\n      \"sha256\": \"4a56a75becd2862da73b9876563e490bf570e9dee24a4816667cec6684dffcb1\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064307Z-mutations/receipt.json\",\n      \"sha256\": \"f33e08380b111005a6d5a9897fae4c86ba2b18b7c39bdc3e4d8ee49232cc0e11\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064307Z-mutations/mutations.json\",\n      \"sha256\": \"0a6dac1623a7edf2f6a369b765e755221a0f9bdc232349ac2d202d4c9b7676dc\"\n    }\n  ],\n  \"reviewed_specification\": {\n    \"same_symbol_contracts_as\": \"lie_theory/lib.rs\",\n    \"status\": \"compatibility_entry_requires_separate_compilation\",\n    \"purpose\": \"Compatibility module entry with the same trace predicate as the package entry; this file is outside the package's default lib target.\"\n  }\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_six/20261020T074553Z-smith-activation/previous_assessment/code/rust/src/lie_theory/mod.rs.contract.yaml"
+      ]
+    },
+    {
+      "sha256": "333b99c52b515b3b050e91a09f2654ccaeef9804b1d8e0ebb59856a26e97b4fe",
+      "bytes": 7227,
+      "record": {
+        "schema_version": "1.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/lie_theory/mod.rs",
+          "sha256": "1b440d99d229824fc8a1b4195736c8eb8dacf8aed13f86818efe95b3cbaf6243",
+          "language": "Rust"
+        },
+        "contract_urn": "urn:tfqm:contract:lie_theory:mod.rs",
+        "status": "compatibility_entry_requires_separate_compilation",
+        "target": "L4A",
+        "profile": "Exact",
+        "purpose": "Finite exact matrix/group/algebra constructions over the scalar domains admitted by each API.",
+        "subject_role": "Module/export facade; composition evidence does not raise this file's own capability.",
+        "compilation": {
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false
+        },
+        "declaration_index": [
+          {
+            "kind": "mod",
+            "name": "cayley",
+            "line": 1,
+            "declaration_line": "pub mod cayley;"
+          },
+          {
+            "kind": "mod",
+            "name": "cayley_unitary",
+            "line": 2,
+            "declaration_line": "pub mod cayley_unitary;"
+          },
+          {
+            "kind": "mod",
+            "name": "clifford",
+            "line": 3,
+            "declaration_line": "pub mod clifford;"
+          },
+          {
+            "kind": "mod",
+            "name": "finite_group",
+            "line": 4,
+            "declaration_line": "pub mod finite_group;"
+          },
+          {
+            "kind": "mod",
+            "name": "finite_groupoid_algebra",
+            "line": 5,
+            "declaration_line": "pub mod finite_groupoid_algebra;"
+          },
+          {
+            "kind": "mod",
+            "name": "finite_order",
+            "line": 6,
+            "declaration_line": "pub mod finite_order;"
+          },
+          {
+            "kind": "mod",
+            "name": "finite_path_algebra",
+            "line": 7,
+            "declaration_line": "pub mod finite_path_algebra;"
+          },
+          {
+            "kind": "mod",
+            "name": "heisenberg",
+            "line": 8,
+            "declaration_line": "pub mod heisenberg;"
+          },
+          {
+            "kind": "mod",
+            "name": "lie_algebra",
+            "line": 9,
+            "declaration_line": "pub mod lie_algebra;"
+          },
+          {
+            "kind": "mod",
+            "name": "lorentz",
+            "line": 10,
+            "declaration_line": "pub mod lorentz;"
+          },
+          {
+            "kind": "mod",
+            "name": "pauli_symplectic",
+            "line": 11,
+            "declaration_line": "pub mod pauli_symplectic;"
+          },
+          {
+            "kind": "mod",
+            "name": "rotation",
+            "line": 12,
+            "declaration_line": "pub mod rotation;"
+          },
+          {
+            "kind": "mod",
+            "name": "scalar",
+            "line": 13,
+            "declaration_line": "pub mod scalar;"
+          },
+          {
+            "kind": "mod",
+            "name": "su2",
+            "line": 14,
+            "declaration_line": "pub mod su2;"
+          },
+          {
+            "kind": "mod",
+            "name": "su2_matrix",
+            "line": 15,
+            "declaration_line": "pub mod su2_matrix;"
+          },
+          {
+            "kind": "mod",
+            "name": "su_n",
+            "line": 16,
+            "declaration_line": "pub mod su_n;"
+          },
+          {
+            "kind": "mod",
+            "name": "twisted_abelian_algebra",
+            "line": 17,
+            "declaration_line": "pub mod twisted_abelian_algebra;"
+          },
+          {
+            "kind": "type",
+            "name": "QMatrix",
+            "line": 19,
+            "declaration_line": "pub(crate) type QMatrix ="
+          },
+          {
+            "kind": "mod",
+            "name": "weyl_operators",
+            "line": 22,
+            "declaration_line": "pub mod weyl_operators;"
+          },
+          {
+            "kind": "fn",
+            "name": "is_sl2_traceless",
+            "line": 30,
+            "declaration_line": "pub fn is_sl2_traceless(a11: Ratio<i64>, a22: Ratio<i64>) -> bool {"
+          }
+        ],
+        "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+        "requirements": [
+          {
+            "id": "G1",
+            "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+          },
+          {
+            "id": "G2",
+            "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+          },
+          {
+            "id": "G3",
+            "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+          },
+          {
+            "id": "G4",
+            "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+          },
+          {
+            "id": "G5",
+            "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+          }
+        ],
+        "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+        "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+        "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+        "open_obligations": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+          "Compatibility module is outside its package lib.rs build target; its own compilation needs separate evidence."
+        ],
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/receipt.json",
+            "sha256": "2a8a7c24316de85ce0c26f04e751fb6ff1ec0ee635defde5c01d76eab3f3fdfd"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/source_manifest.json",
+            "sha256": "4d8a488592e2c9166b812ac1188b34baeb4d97de07590f31bf5f006bad071626"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "8d5f25afe4e999b3a92c835b2910d2b81e6bd991b47abbe3ee2a204f1f363a09"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json",
+            "sha256": "f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json",
+            "sha256": "50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/metrics.json",
+            "sha256": "a297bf450b9c7f0504e2fc3f3dc6589663d94a5e73dc2d5d6c03079645b97030"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json",
+            "sha256": "b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/mutations.json",
+            "sha256": "00fa693c6f05422ed8b6be92780f5970691494e31b82ecaa20985a6a1e370860"
+          }
+        ],
+        "reviewed_specification": {
+          "same_symbol_contracts_as": "lie_theory/lib.rs",
+          "status": "compatibility_entry_requires_separate_compilation",
+          "purpose": "Compatibility module entry with the same trace predicate as the package entry; this file is outside the package's default lib target."
+        }
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/lie_theory/mod.rs\",\n    \"sha256\": \"1b440d99d229824fc8a1b4195736c8eb8dacf8aed13f86818efe95b3cbaf6243\",\n    \"language\": \"Rust\"\n  },\n  \"contract_urn\": \"urn:tfqm:contract:lie_theory:mod.rs\",\n  \"status\": \"compatibility_entry_requires_separate_compilation\",\n  \"target\": \"L4A\",\n  \"profile\": \"Exact\",\n  \"purpose\": \"Finite exact matrix/group/algebra constructions over the scalar domains admitted by each API.\",\n  \"subject_role\": \"Module/export facade; composition evidence does not raise this file's own capability.\",\n  \"compilation\": {\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false\n  },\n  \"declaration_index\": [\n    {\n      \"kind\": \"mod\",\n      \"name\": \"cayley\",\n      \"line\": 1,\n      \"declaration_line\": \"pub mod cayley;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"cayley_unitary\",\n      \"line\": 2,\n      \"declaration_line\": \"pub mod cayley_unitary;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"clifford\",\n      \"line\": 3,\n      \"declaration_line\": \"pub mod clifford;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"finite_group\",\n      \"line\": 4,\n      \"declaration_line\": \"pub mod finite_group;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"finite_groupoid_algebra\",\n      \"line\": 5,\n      \"declaration_line\": \"pub mod finite_groupoid_algebra;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"finite_order\",\n      \"line\": 6,\n      \"declaration_line\": \"pub mod finite_order;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"finite_path_algebra\",\n      \"line\": 7,\n      \"declaration_line\": \"pub mod finite_path_algebra;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"heisenberg\",\n      \"line\": 8,\n      \"declaration_line\": \"pub mod heisenberg;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"lie_algebra\",\n      \"line\": 9,\n      \"declaration_line\": \"pub mod lie_algebra;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"lorentz\",\n      \"line\": 10,\n      \"declaration_line\": \"pub mod lorentz;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"pauli_symplectic\",\n      \"line\": 11,\n      \"declaration_line\": \"pub mod pauli_symplectic;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"rotation\",\n      \"line\": 12,\n      \"declaration_line\": \"pub mod rotation;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"scalar\",\n      \"line\": 13,\n      \"declaration_line\": \"pub mod scalar;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"su2\",\n      \"line\": 14,\n      \"declaration_line\": \"pub mod su2;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"su2_matrix\",\n      \"line\": 15,\n      \"declaration_line\": \"pub mod su2_matrix;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"su_n\",\n      \"line\": 16,\n      \"declaration_line\": \"pub mod su_n;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"twisted_abelian_algebra\",\n      \"line\": 17,\n      \"declaration_line\": \"pub mod twisted_abelian_algebra;\"\n    },\n    {\n      \"kind\": \"type\",\n      \"name\": \"QMatrix\",\n      \"line\": 19,\n      \"declaration_line\": \"pub(crate) type QMatrix =\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"weyl_operators\",\n      \"line\": 22,\n      \"declaration_line\": \"pub mod weyl_operators;\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"is_sl2_traceless\",\n      \"line\": 30,\n      \"declaration_line\": \"pub fn is_sl2_traceless(a11: Ratio<i64>, a22: Ratio<i64>) -> bool {\"\n    }\n  ],\n  \"declaration_index_scope\": \"Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.\",\n  \"requirements\": [\n    {\n      \"id\": \"G1\",\n      \"requirement\": \"Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries.\"\n    },\n    {\n      \"id\": \"G2\",\n      \"requirement\": \"Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path.\"\n    },\n    {\n      \"id\": \"G3\",\n      \"requirement\": \"Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions.\"\n    },\n    {\n      \"id\": \"G4\",\n      \"requirement\": \"Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A.\"\n    },\n    {\n      \"id\": \"G5\",\n      \"requirement\": \"Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately.\"\n    }\n  ],\n  \"admission_policy\": \"Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.\",\n  \"resource_boundary\": \"No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.\",\n  \"authority_ceiling\": \"Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.\",\n  \"open_obligations\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\",\n    \"Compatibility module is outside its package lib.rs build target; its own compilation needs separate evidence.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/receipt.json\",\n      \"sha256\": \"2a8a7c24316de85ce0c26f04e751fb6ff1ec0ee635defde5c01d76eab3f3fdfd\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/source_manifest.json\",\n      \"sha256\": \"4d8a488592e2c9166b812ac1188b34baeb4d97de07590f31bf5f006bad071626\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"8d5f25afe4e999b3a92c835b2910d2b81e6bd991b47abbe3ee2a204f1f363a09\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json\",\n      \"sha256\": \"f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json\",\n      \"sha256\": \"50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/metrics.json\",\n      \"sha256\": \"a297bf450b9c7f0504e2fc3f3dc6589663d94a5e73dc2d5d6c03079645b97030\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json\",\n      \"sha256\": \"b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/mutations.json\",\n      \"sha256\": \"00fa693c6f05422ed8b6be92780f5970691494e31b82ecaa20985a6a1e370860\"\n    }\n  ],\n  \"reviewed_specification\": {\n    \"same_symbol_contracts_as\": \"lie_theory/lib.rs\",\n    \"status\": \"compatibility_entry_requires_separate_compilation\",\n    \"purpose\": \"Compatibility module entry with the same trace predicate as the package entry; this file is outside the package's default lib target.\"\n  }\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_six/20261020T104119Z-scalar-activation/previous_assessment/code/rust/src/lie_theory/mod.rs.contract.yaml",
+        "evidence/quality/l4a_six/20261020T145101Z-ordered-activation/previous_assessment/code/rust/src/lie_theory/mod.rs.contract.yaml"
+      ]
+    },
+    {
+      "sha256": "6be6c3d0519d01b08c67ac2026000f106082b3e81eb00f6df7241f8523bea0a9",
+      "bytes": 6669,
+      "record": {
+        "schema_version": "1.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/lie_theory/mod.rs",
+          "sha256": "1b440d99d229824fc8a1b4195736c8eb8dacf8aed13f86818efe95b3cbaf6243",
+          "language": "Rust"
+        },
+        "contract_urn": "urn:tfqm:contract:lie_theory:mod.rs",
+        "status": "compatibility_entry_requires_separate_compilation",
+        "target": "L4A",
+        "profile": "Exact",
+        "purpose": "Finite exact matrix/group/algebra constructions over the scalar domains admitted by each API.",
+        "subject_role": "Module/export facade; composition evidence does not raise this file's own capability.",
+        "compilation": {
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false
+        },
+        "declaration_index": [
+          {
+            "kind": "mod",
+            "name": "cayley",
+            "line": 1,
+            "declaration_line": "pub mod cayley;"
+          },
+          {
+            "kind": "mod",
+            "name": "cayley_unitary",
+            "line": 2,
+            "declaration_line": "pub mod cayley_unitary;"
+          },
+          {
+            "kind": "mod",
+            "name": "clifford",
+            "line": 3,
+            "declaration_line": "pub mod clifford;"
+          },
+          {
+            "kind": "mod",
+            "name": "finite_group",
+            "line": 4,
+            "declaration_line": "pub mod finite_group;"
+          },
+          {
+            "kind": "mod",
+            "name": "finite_groupoid_algebra",
+            "line": 5,
+            "declaration_line": "pub mod finite_groupoid_algebra;"
+          },
+          {
+            "kind": "mod",
+            "name": "finite_order",
+            "line": 6,
+            "declaration_line": "pub mod finite_order;"
+          },
+          {
+            "kind": "mod",
+            "name": "finite_path_algebra",
+            "line": 7,
+            "declaration_line": "pub mod finite_path_algebra;"
+          },
+          {
+            "kind": "mod",
+            "name": "heisenberg",
+            "line": 8,
+            "declaration_line": "pub mod heisenberg;"
+          },
+          {
+            "kind": "mod",
+            "name": "lie_algebra",
+            "line": 9,
+            "declaration_line": "pub mod lie_algebra;"
+          },
+          {
+            "kind": "mod",
+            "name": "lorentz",
+            "line": 10,
+            "declaration_line": "pub mod lorentz;"
+          },
+          {
+            "kind": "mod",
+            "name": "pauli_symplectic",
+            "line": 11,
+            "declaration_line": "pub mod pauli_symplectic;"
+          },
+          {
+            "kind": "mod",
+            "name": "rotation",
+            "line": 12,
+            "declaration_line": "pub mod rotation;"
+          },
+          {
+            "kind": "mod",
+            "name": "scalar",
+            "line": 13,
+            "declaration_line": "pub mod scalar;"
+          },
+          {
+            "kind": "mod",
+            "name": "su2",
+            "line": 14,
+            "declaration_line": "pub mod su2;"
+          },
+          {
+            "kind": "mod",
+            "name": "su2_matrix",
+            "line": 15,
+            "declaration_line": "pub mod su2_matrix;"
+          },
+          {
+            "kind": "mod",
+            "name": "su_n",
+            "line": 16,
+            "declaration_line": "pub mod su_n;"
+          },
+          {
+            "kind": "mod",
+            "name": "twisted_abelian_algebra",
+            "line": 17,
+            "declaration_line": "pub mod twisted_abelian_algebra;"
+          },
+          {
+            "kind": "type",
+            "name": "QMatrix",
+            "line": 19,
+            "declaration_line": "pub(crate) type QMatrix ="
+          },
+          {
+            "kind": "mod",
+            "name": "weyl_operators",
+            "line": 22,
+            "declaration_line": "pub mod weyl_operators;"
+          },
+          {
+            "kind": "fn",
+            "name": "is_sl2_traceless",
+            "line": 30,
+            "declaration_line": "pub fn is_sl2_traceless(a11: Ratio<i64>, a22: Ratio<i64>) -> bool {"
+          }
+        ],
+        "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+        "requirements": [
+          {
+            "id": "G1",
+            "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+          },
+          {
+            "id": "G2",
+            "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+          },
+          {
+            "id": "G3",
+            "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+          },
+          {
+            "id": "G4",
+            "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+          },
+          {
+            "id": "G5",
+            "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+          }
+        ],
+        "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+        "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+        "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+        "open_obligations": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+          "Compatibility module is outside its package lib.rs build target; its own compilation needs separate evidence."
+        ],
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T145316Z/receipt.json",
+            "sha256": "02ef86c6eaaa341749b93cd0cff2463b8c7a462b0c14080b483b5c13cb518935"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T145316Z/source_manifest.json",
+            "sha256": "b426c649d3ed095a576113062ea18b876fbd794e6eca1921ae2a296512eb5f63"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "67b30ce4848112715d67386e9af9e83322a3643e50585f754ceb4e5c439b7819"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "6e319e84dc25e76ffda0c3f8009c75cd36f36aacb18a24fad7a44c3899e67c84"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json",
+            "sha256": "cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T145316Z/metrics.json",
+            "sha256": "c0f6c92c146ff0cf7d91b3a78bf74c7d26b455cd9b0547dd1d36ccc6260b19ec"
+          }
+        ],
+        "reviewed_specification": {
+          "purpose": "Compatibility module entry with the same trace predicate as the package entry; this file is outside the package's default lib target.",
+          "same_symbol_contracts_as": "lie_theory/lib.rs",
+          "status": "compatibility_entry_requires_separate_compilation"
+        }
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/lie_theory/mod.rs\",\n    \"sha256\": \"1b440d99d229824fc8a1b4195736c8eb8dacf8aed13f86818efe95b3cbaf6243\",\n    \"language\": \"Rust\"\n  },\n  \"contract_urn\": \"urn:tfqm:contract:lie_theory:mod.rs\",\n  \"status\": \"compatibility_entry_requires_separate_compilation\",\n  \"target\": \"L4A\",\n  \"profile\": \"Exact\",\n  \"purpose\": \"Finite exact matrix/group/algebra constructions over the scalar domains admitted by each API.\",\n  \"subject_role\": \"Module/export facade; composition evidence does not raise this file's own capability.\",\n  \"compilation\": {\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false\n  },\n  \"declaration_index\": [\n    {\n      \"kind\": \"mod\",\n      \"name\": \"cayley\",\n      \"line\": 1,\n      \"declaration_line\": \"pub mod cayley;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"cayley_unitary\",\n      \"line\": 2,\n      \"declaration_line\": \"pub mod cayley_unitary;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"clifford\",\n      \"line\": 3,\n      \"declaration_line\": \"pub mod clifford;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"finite_group\",\n      \"line\": 4,\n      \"declaration_line\": \"pub mod finite_group;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"finite_groupoid_algebra\",\n      \"line\": 5,\n      \"declaration_line\": \"pub mod finite_groupoid_algebra;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"finite_order\",\n      \"line\": 6,\n      \"declaration_line\": \"pub mod finite_order;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"finite_path_algebra\",\n      \"line\": 7,\n      \"declaration_line\": \"pub mod finite_path_algebra;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"heisenberg\",\n      \"line\": 8,\n      \"declaration_line\": \"pub mod heisenberg;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"lie_algebra\",\n      \"line\": 9,\n      \"declaration_line\": \"pub mod lie_algebra;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"lorentz\",\n      \"line\": 10,\n      \"declaration_line\": \"pub mod lorentz;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"pauli_symplectic\",\n      \"line\": 11,\n      \"declaration_line\": \"pub mod pauli_symplectic;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"rotation\",\n      \"line\": 12,\n      \"declaration_line\": \"pub mod rotation;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"scalar\",\n      \"line\": 13,\n      \"declaration_line\": \"pub mod scalar;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"su2\",\n      \"line\": 14,\n      \"declaration_line\": \"pub mod su2;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"su2_matrix\",\n      \"line\": 15,\n      \"declaration_line\": \"pub mod su2_matrix;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"su_n\",\n      \"line\": 16,\n      \"declaration_line\": \"pub mod su_n;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"twisted_abelian_algebra\",\n      \"line\": 17,\n      \"declaration_line\": \"pub mod twisted_abelian_algebra;\"\n    },\n    {\n      \"kind\": \"type\",\n      \"name\": \"QMatrix\",\n      \"line\": 19,\n      \"declaration_line\": \"pub(crate) type QMatrix =\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"weyl_operators\",\n      \"line\": 22,\n      \"declaration_line\": \"pub mod weyl_operators;\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"is_sl2_traceless\",\n      \"line\": 30,\n      \"declaration_line\": \"pub fn is_sl2_traceless(a11: Ratio<i64>, a22: Ratio<i64>) -> bool {\"\n    }\n  ],\n  \"declaration_index_scope\": \"Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.\",\n  \"requirements\": [\n    {\n      \"id\": \"G1\",\n      \"requirement\": \"Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries.\"\n    },\n    {\n      \"id\": \"G2\",\n      \"requirement\": \"Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path.\"\n    },\n    {\n      \"id\": \"G3\",\n      \"requirement\": \"Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions.\"\n    },\n    {\n      \"id\": \"G4\",\n      \"requirement\": \"Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A.\"\n    },\n    {\n      \"id\": \"G5\",\n      \"requirement\": \"Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately.\"\n    }\n  ],\n  \"admission_policy\": \"Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.\",\n  \"resource_boundary\": \"No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.\",\n  \"authority_ceiling\": \"Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.\",\n  \"open_obligations\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\",\n    \"Compatibility module is outside its package lib.rs build target; its own compilation needs separate evidence.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/receipt.json\",\n      \"sha256\": \"02ef86c6eaaa341749b93cd0cff2463b8c7a462b0c14080b483b5c13cb518935\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/source_manifest.json\",\n      \"sha256\": \"b426c649d3ed095a576113062ea18b876fbd794e6eca1921ae2a296512eb5f63\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"67b30ce4848112715d67386e9af9e83322a3643e50585f754ceb4e5c439b7819\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"6e319e84dc25e76ffda0c3f8009c75cd36f36aacb18a24fad7a44c3899e67c84\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json\",\n      \"sha256\": \"cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/metrics.json\",\n      \"sha256\": \"c0f6c92c146ff0cf7d91b3a78bf74c7d26b455cd9b0547dd1d36ccc6260b19ec\"\n    }\n  ],\n  \"reviewed_specification\": {\n    \"purpose\": \"Compatibility module entry with the same trace predicate as the package entry; this file is outside the package's default lib target.\",\n    \"same_symbol_contracts_as\": \"lie_theory/lib.rs\",\n    \"status\": \"compatibility_entry_requires_separate_compilation\"\n  }\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_six/recovery/original-sidecars/code/rust/src/lie_theory/mod.rs.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "51f6ee2aeb536c19933f3a2fdb9a10d06599fed419cd922d1cd89afc39af20d5",
+      "bytes": 6652,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/lie_theory/mod.rs",
+          "sha256": "1b440d99d229824fc8a1b4195736c8eb8dacf8aed13f86818efe95b3cbaf6243",
+          "language": "Rust"
+        },
+        "profile": "Exact",
+        "level": "L1",
+        "level_basis": "Module/export facade; composition evidence does not raise this file's own capability.",
+        "engineering_target": "A",
+        "requested_target": "L4A",
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "composite_grade": null,
+        "score_token": null,
+        "is_complete": false,
+        "grade_ceiling": "A",
+        "evaluation_timestamp": "2026-10-20T18:56:04+00:00",
+        "grade_ceiling_basis": "Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.",
+        "contract": {
+          "path": "code/rust/src/lie_theory/mod.rs.contract.yaml",
+          "status": "compatibility_entry_requires_separate_compilation",
+          "sha256": "9bfc79ebf7b4fa17f955091176bfb5cc64cd6882f64b871b2a194758c9fad828"
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T185604Z/receipt.json",
+            "sha256": "8df76a180a12ec201081ecc54c92bb1408689198040aee14cfcf84db5355e08d"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T185604Z/source_manifest.json",
+            "sha256": "0e3549f60c890ce02c8f24bdfadf8dd9bb3e19b376923be07c097feb660edbaa"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "7f7a696f375ac9cbb84aa604f361eb9aa52d1386025434c57499955ee57575d7"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "978a70208e74c65007a7d48fdb0ce8ffa9a27b9b19612ac5ac5107bfe1dd6a10"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T185604Z/metrics.json",
+            "sha256": "3cc030fb2d91b8aab2016bfe25bf17b0e1d431d88353d7fce9fd6ec875543288"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T185729Z-mutations/receipt.json",
+            "sha256": "6c7da30021450dc1ab6029067b83a376969e5774facff43d0293c70ced94ec83"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T185729Z-mutations/mutations.json",
+            "sha256": "01abdbac8d4c6f8ac55b07e888ab73ccd0b089aa89552725d1be4bcb57329010"
+          }
+        ],
+        "verification": {
+          "baseline": {
+            "command": [
+              "cargo",
+              "test",
+              "--offline",
+              "--locked",
+              "--target-dir",
+              "C:\\Users\\a343o\\.codex\\worktrees\\finite-qm-foundation-recovery\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T185729Z-mutations\\build",
+              "--quiet",
+              "-p",
+              "tfqm_lie_theory",
+              "--tests"
+            ],
+            "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\finite-qm-foundation-recovery\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T185729Z-mutations",
+            "disk_observation": {
+              "completed_cache_file_bytes": 589736852,
+              "free_after": 12916645888,
+              "free_before": 12931198976,
+              "required_free_bytes": 3221225472.0,
+              "scope": "Endpoint observations only; not a peak-space or external-activity guarantee.",
+              "warm_cache_admission": true
+            },
+            "elapsed_seconds": 5.256,
+            "environment": {
+              "CARGO_BUILD_JOBS": "2",
+              "CARGO_INCREMENTAL": "0"
+            },
+            "exit_code": 0,
+            "log": "evidence/quality/l4a_six/20261020T185729Z-mutations/tfqm_lie_theory-baseline.log",
+            "log_sha256": "45840acee593fa258a172c9ce39ca74c6a16a1b774e331f21f1a9d208dd2aafd",
+            "package": "tfqm_lie_theory",
+            "timed_out": false
+          },
+          "sources_unchanged": true,
+          "doctests": [
+            {
+              "command": [
+                "cargo",
+                "test",
+                "--offline",
+                "--target-dir",
+                "C:\\Users\\a343o\\.codex\\worktrees\\finite-qm-foundation-recovery\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T185604Z\\build",
+                "--quiet",
+                "-p",
+                "tfqm_lie_theory",
+                "--doc"
+              ],
+              "cwd": "C:\\Users\\a343o\\.codex\\worktrees\\finite-qm-foundation-recovery\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T185604Z",
+              "elapsed_seconds": 2.357,
+              "environment": {
+                "CARGO_BUILD_JOBS": "2",
+                "CARGO_INCREMENTAL": "0"
+              },
+              "exit_code": 0,
+              "log": "evidence/quality/l4a_six/20261020T185604Z/tfqm_lie_theory-doctests.log",
+              "log_sha256": "df166913f47ff1f04202cae9b31df67ed272d692d99a0023a8117dc3029100dd",
+              "timed_out": false
+            }
+          ],
+          "composition_runs": [],
+          "differential_controls": [],
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false,
+          "dependency_sources_unchanged": true,
+          "compiled_scope": "Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.",
+          "designated_mutations": [],
+          "designated_challenges_present": true,
+          "linked_challenges": {},
+          "mutation_campaign": {
+            "path": "evidence/quality/l4a_six/20261020T185729Z-mutations/receipt.json",
+            "sha256": "6c7da30021450dc1ab6029067b83a376969e5774facff43d0293c70ced94ec83"
+          },
+          "mutation_restoration_baselines_ok": null,
+          "designated_critical_faults_decisive": false,
+          "reproduced_defects": []
+        },
+        "mutation_accounting": {
+          "killed": 0,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": null
+        },
+        "structure": {
+          "tool": "syn source AST (see pinned metric_tool_sources in receipt)",
+          "functions": [
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 30,
+              "name": "is_sl2_traceless",
+              "opaque_macros": []
+            }
+          ],
+          "exceeding_A": [],
+          "metric_ceiling": "A",
+          "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
+        },
+        "open_findings": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+          "Compatibility module is outside its package lib.rs build target; its own compilation needs separate evidence."
+        ],
+        "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts."
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/lie_theory/mod.rs\",\n    \"sha256\": \"1b440d99d229824fc8a1b4195736c8eb8dacf8aed13f86818efe95b3cbaf6243\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"level\": \"L1\",\n  \"level_basis\": \"Module/export facade; composition evidence does not raise this file's own capability.\",\n  \"engineering_target\": \"A\",\n  \"requested_target\": \"L4A\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"is_complete\": false,\n  \"grade_ceiling\": \"A\",\n  \"evaluation_timestamp\": \"2026-10-20T18:56:04+00:00\",\n  \"grade_ceiling_basis\": \"Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.\",\n  \"contract\": {\n    \"path\": \"code/rust/src/lie_theory/mod.rs.contract.yaml\",\n    \"status\": \"compatibility_entry_requires_separate_compilation\",\n    \"sha256\": \"9bfc79ebf7b4fa17f955091176bfb5cc64cd6882f64b871b2a194758c9fad828\"\n  },\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185604Z/receipt.json\",\n      \"sha256\": \"8df76a180a12ec201081ecc54c92bb1408689198040aee14cfcf84db5355e08d\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185604Z/source_manifest.json\",\n      \"sha256\": \"0e3549f60c890ce02c8f24bdfadf8dd9bb3e19b376923be07c097feb660edbaa\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"7f7a696f375ac9cbb84aa604f361eb9aa52d1386025434c57499955ee57575d7\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"978a70208e74c65007a7d48fdb0ce8ffa9a27b9b19612ac5ac5107bfe1dd6a10\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185604Z/metrics.json\",\n      \"sha256\": \"3cc030fb2d91b8aab2016bfe25bf17b0e1d431d88353d7fce9fd6ec875543288\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185729Z-mutations/receipt.json\",\n      \"sha256\": \"6c7da30021450dc1ab6029067b83a376969e5774facff43d0293c70ced94ec83\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T185729Z-mutations/mutations.json\",\n      \"sha256\": \"01abdbac8d4c6f8ac55b07e888ab73ccd0b089aa89552725d1be4bcb57329010\"\n    }\n  ],\n  \"verification\": {\n    \"baseline\": {\n      \"command\": [\n        \"cargo\",\n        \"test\",\n        \"--offline\",\n        \"--locked\",\n        \"--target-dir\",\n        \"C:\\\\Users\\\\a343o\\\\.codex\\\\worktrees\\\\finite-qm-foundation-recovery\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-six\\\\20261020T185729Z-mutations\\\\build\",\n        \"--quiet\",\n        \"-p\",\n        \"tfqm_lie_theory\",\n        \"--tests\"\n      ],\n      \"cwd\": \"C:\\\\Users\\\\a343o\\\\.codex\\\\worktrees\\\\finite-qm-foundation-recovery\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-six\\\\20261020T185729Z-mutations\",\n      \"disk_observation\": {\n        \"completed_cache_file_bytes\": 589736852,\n        \"free_after\": 12916645888,\n        \"free_before\": 12931198976,\n        \"required_free_bytes\": 3221225472.0,\n        \"scope\": \"Endpoint observations only; not a peak-space or external-activity guarantee.\",\n        \"warm_cache_admission\": true\n      },\n      \"elapsed_seconds\": 5.256,\n      \"environment\": {\n        \"CARGO_BUILD_JOBS\": \"2\",\n        \"CARGO_INCREMENTAL\": \"0\"\n      },\n      \"exit_code\": 0,\n      \"log\": \"evidence/quality/l4a_six/20261020T185729Z-mutations/tfqm_lie_theory-baseline.log\",\n      \"log_sha256\": \"45840acee593fa258a172c9ce39ca74c6a16a1b774e331f21f1a9d208dd2aafd\",\n      \"package\": \"tfqm_lie_theory\",\n      \"timed_out\": false\n    },\n    \"sources_unchanged\": true,\n    \"doctests\": [\n      {\n        \"command\": [\n          \"cargo\",\n          \"test\",\n          \"--offline\",\n          \"--target-dir\",\n          \"C:\\\\Users\\\\a343o\\\\.codex\\\\worktrees\\\\finite-qm-foundation-recovery\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-six\\\\20261020T185604Z\\\\build\",\n          \"--quiet\",\n          \"-p\",\n          \"tfqm_lie_theory\",\n          \"--doc\"\n        ],\n        \"cwd\": \"C:\\\\Users\\\\a343o\\\\.codex\\\\worktrees\\\\finite-qm-foundation-recovery\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-six\\\\20261020T185604Z\",\n        \"elapsed_seconds\": 2.357,\n        \"environment\": {\n          \"CARGO_BUILD_JOBS\": \"2\",\n          \"CARGO_INCREMENTAL\": \"0\"\n        },\n        \"exit_code\": 0,\n        \"log\": \"evidence/quality/l4a_six/20261020T185604Z/tfqm_lie_theory-doctests.log\",\n        \"log_sha256\": \"df166913f47ff1f04202cae9b31df67ed272d692d99a0023a8117dc3029100dd\",\n        \"timed_out\": false\n      }\n    ],\n    \"composition_runs\": [],\n    \"differential_controls\": [],\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false,\n    \"dependency_sources_unchanged\": true,\n    \"compiled_scope\": \"Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.\",\n    \"designated_mutations\": [],\n    \"designated_challenges_present\": true,\n    \"linked_challenges\": {},\n    \"mutation_campaign\": {\n      \"path\": \"evidence/quality/l4a_six/20261020T185729Z-mutations/receipt.json\",\n      \"sha256\": \"6c7da30021450dc1ab6029067b83a376969e5774facff43d0293c70ced94ec83\"\n    },\n    \"mutation_restoration_baselines_ok\": null,\n    \"designated_critical_faults_decisive\": false,\n    \"reproduced_defects\": []\n  },\n  \"mutation_accounting\": {\n    \"killed\": 0,\n    \"survived\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"unrun\": 0,\n    \"conservative_ratio\": null\n  },\n  \"structure\": {\n    \"tool\": \"syn source AST (see pinned metric_tool_sources in receipt)\",\n    \"functions\": [\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 30,\n        \"name\": \"is_sl2_traceless\",\n        \"opaque_macros\": []\n      }\n    ],\n    \"exceeding_A\": [],\n    \"metric_ceiling\": \"A\",\n    \"scope\": \"Explicit source bodies only; opaque macros and compiler expansion remain unassessed.\"\n  },\n  \"open_findings\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\",\n    \"Compatibility module is outside its package lib.rs build target; its own compilation needs separate evidence.\"\n  ],\n  \"evaluation_timestamp_basis\": \"Start of the latest bound assessment execution; execution durations are recorded in receipts.\"\n}\n",
+      "original_paths": [
+        "code/rust/src/lie_theory/mod.rs.scoring.yaml"
+      ]
+    },
+    {
+      "sha256": "c3ead0f0fb2394523296680640fddbc752b0e1fd3d7f6163214aba44fb7987ec",
+      "bytes": 5693,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/lie_theory/mod.rs",
+          "sha256": "1b440d99d229824fc8a1b4195736c8eb8dacf8aed13f86818efe95b3cbaf6243",
+          "language": "Rust"
+        },
+        "profile": "Exact",
+        "level": "L1",
+        "level_basis": "Module/export facade; composition evidence does not raise this file's own capability.",
+        "engineering_target": "A",
+        "requested_target": "L4A",
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "composite_grade": null,
+        "score_token": null,
+        "is_complete": false,
+        "grade_ceiling": "A",
+        "evaluation_timestamp": "2026-10-20T06:25:45.028108+00:00",
+        "grade_ceiling_basis": "Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.",
+        "contract": {
+          "path": "code/rust/src/lie_theory/mod.rs.contract.yaml",
+          "status": "compatibility_entry_requires_separate_compilation",
+          "sha256": "6dc675abe7fde3d8d653d51083045f8c105f87ce75bc46f0337b4d622e6b4dcf"
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T060838Z/receipt.json",
+            "sha256": "596bf86ef053be10c83b2139f70e3c71367c41343b09fe5a50798c92cbdd5194"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T060838Z/source_manifest.json",
+            "sha256": "30a432233c4ae6b9af1d8acc1558f27407c78c36684bdf5e7992e41641b77cb3"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "906c2d4cc67bbf47a8854a5b2d770e42aba6355d4817928fad3442eeef56a17b"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T062544Z-native-scalar-control/receipt.json",
+            "sha256": "f9825a920d2496b206efb2822fabee8b165df573f6c91b6ccc6c9fa740a3a28e"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T060838Z/metrics.json",
+            "sha256": "ea429ecf09930cac81b7b5b73611ab9325745ed50ce84808a1973d1b2e06a092"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T061219Z-mutations/receipt.json",
+            "sha256": "dc1742a2cd04d70da49b7c642bc8c421a3e7d52583400a4e6cca2e246c2db238"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T061219Z-mutations/mutations.json",
+            "sha256": "91b289a1be59565c0f1ec82ca9abcc4cd39cbf680db2d1e201ff95d15bc8abc7"
+          }
+        ],
+        "verification": {
+          "baseline": {
+            "command": [
+              "cargo",
+              "test",
+              "--offline",
+              "--target-dir",
+              "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T061219Z-mutations\\build",
+              "--quiet",
+              "-p",
+              "tfqm_lie_theory",
+              "--tests"
+            ],
+            "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T061219Z-mutations",
+            "disk_observation": {
+              "completed_cache_file_bytes": 548850557,
+              "free_after": 4095799296,
+              "free_before": 4101386240,
+              "scope": "Endpoint observations only; not a peak-space or external-activity guarantee."
+            },
+            "elapsed_seconds": 1.687,
+            "environment": {
+              "CARGO_BUILD_JOBS": "2",
+              "CARGO_INCREMENTAL": "0"
+            },
+            "exit_code": 0,
+            "log": "evidence/quality/l4a_six/20261020T061219Z-mutations/tfqm_lie_theory-baseline.log",
+            "log_sha256": "5b884224b8b7414b90d487ac18cd18b373c6d6d3a31d4826ae5760c53bc559f2",
+            "package": "tfqm_lie_theory",
+            "timed_out": false
+          },
+          "sources_unchanged": true,
+          "doctests": [],
+          "composition_runs": [],
+          "differential_controls": [],
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false,
+          "dependency_sources_unchanged": true,
+          "compiled_scope": "Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.",
+          "designated_mutations": [],
+          "designated_challenges_present": true,
+          "linked_challenges": {},
+          "mutation_campaign": {
+            "path": "evidence/quality/l4a_six/20261020T061219Z-mutations/receipt.json",
+            "sha256": "dc1742a2cd04d70da49b7c642bc8c421a3e7d52583400a4e6cca2e246c2db238"
+          },
+          "mutation_restoration_baselines_ok": null,
+          "reproduced_defects": []
+        },
+        "mutation_accounting": {
+          "killed": 0,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": null
+        },
+        "structure": {
+          "tool": "syn source AST (see pinned metric_tool_sources in receipt)",
+          "functions": [
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 30,
+              "name": "is_sl2_traceless",
+              "opaque_macros": []
+            }
+          ],
+          "exceeding_A": [],
+          "metric_ceiling": "A",
+          "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
+        },
+        "open_findings": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+          "Compatibility module is outside its package lib.rs build target; its own compilation needs separate evidence."
+        ],
+        "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts."
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/lie_theory/mod.rs\",\n    \"sha256\": \"1b440d99d229824fc8a1b4195736c8eb8dacf8aed13f86818efe95b3cbaf6243\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"level\": \"L1\",\n  \"level_basis\": \"Module/export facade; composition evidence does not raise this file's own capability.\",\n  \"engineering_target\": \"A\",\n  \"requested_target\": \"L4A\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"is_complete\": false,\n  \"grade_ceiling\": \"A\",\n  \"evaluation_timestamp\": \"2026-10-20T06:25:45.028108+00:00\",\n  \"grade_ceiling_basis\": \"Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.\",\n  \"contract\": {\n    \"path\": \"code/rust/src/lie_theory/mod.rs.contract.yaml\",\n    \"status\": \"compatibility_entry_requires_separate_compilation\",\n    \"sha256\": \"6dc675abe7fde3d8d653d51083045f8c105f87ce75bc46f0337b4d622e6b4dcf\"\n  },\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T060838Z/receipt.json\",\n      \"sha256\": \"596bf86ef053be10c83b2139f70e3c71367c41343b09fe5a50798c92cbdd5194\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T060838Z/source_manifest.json\",\n      \"sha256\": \"30a432233c4ae6b9af1d8acc1558f27407c78c36684bdf5e7992e41641b77cb3\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"906c2d4cc67bbf47a8854a5b2d770e42aba6355d4817928fad3442eeef56a17b\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T062544Z-native-scalar-control/receipt.json\",\n      \"sha256\": \"f9825a920d2496b206efb2822fabee8b165df573f6c91b6ccc6c9fa740a3a28e\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T060838Z/metrics.json\",\n      \"sha256\": \"ea429ecf09930cac81b7b5b73611ab9325745ed50ce84808a1973d1b2e06a092\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T061219Z-mutations/receipt.json\",\n      \"sha256\": \"dc1742a2cd04d70da49b7c642bc8c421a3e7d52583400a4e6cca2e246c2db238\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T061219Z-mutations/mutations.json\",\n      \"sha256\": \"91b289a1be59565c0f1ec82ca9abcc4cd39cbf680db2d1e201ff95d15bc8abc7\"\n    }\n  ],\n  \"verification\": {\n    \"baseline\": {\n      \"command\": [\n        \"cargo\",\n        \"test\",\n        \"--offline\",\n        \"--target-dir\",\n        \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-six\\\\20261020T061219Z-mutations\\\\build\",\n        \"--quiet\",\n        \"-p\",\n        \"tfqm_lie_theory\",\n        \"--tests\"\n      ],\n      \"cwd\": \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-six\\\\20261020T061219Z-mutations\",\n      \"disk_observation\": {\n        \"completed_cache_file_bytes\": 548850557,\n        \"free_after\": 4095799296,\n        \"free_before\": 4101386240,\n        \"scope\": \"Endpoint observations only; not a peak-space or external-activity guarantee.\"\n      },\n      \"elapsed_seconds\": 1.687,\n      \"environment\": {\n        \"CARGO_BUILD_JOBS\": \"2\",\n        \"CARGO_INCREMENTAL\": \"0\"\n      },\n      \"exit_code\": 0,\n      \"log\": \"evidence/quality/l4a_six/20261020T061219Z-mutations/tfqm_lie_theory-baseline.log\",\n      \"log_sha256\": \"5b884224b8b7414b90d487ac18cd18b373c6d6d3a31d4826ae5760c53bc559f2\",\n      \"package\": \"tfqm_lie_theory\",\n      \"timed_out\": false\n    },\n    \"sources_unchanged\": true,\n    \"doctests\": [],\n    \"composition_runs\": [],\n    \"differential_controls\": [],\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false,\n    \"dependency_sources_unchanged\": true,\n    \"compiled_scope\": \"Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.\",\n    \"designated_mutations\": [],\n    \"designated_challenges_present\": true,\n    \"linked_challenges\": {},\n    \"mutation_campaign\": {\n      \"path\": \"evidence/quality/l4a_six/20261020T061219Z-mutations/receipt.json\",\n      \"sha256\": \"dc1742a2cd04d70da49b7c642bc8c421a3e7d52583400a4e6cca2e246c2db238\"\n    },\n    \"mutation_restoration_baselines_ok\": null,\n    \"reproduced_defects\": []\n  },\n  \"mutation_accounting\": {\n    \"killed\": 0,\n    \"survived\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"unrun\": 0,\n    \"conservative_ratio\": null\n  },\n  \"structure\": {\n    \"tool\": \"syn source AST (see pinned metric_tool_sources in receipt)\",\n    \"functions\": [\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 30,\n        \"name\": \"is_sl2_traceless\",\n        \"opaque_macros\": []\n      }\n    ],\n    \"exceeding_A\": [],\n    \"metric_ceiling\": \"A\",\n    \"scope\": \"Explicit source bodies only; opaque macros and compiler expansion remain unassessed.\"\n  },\n  \"open_findings\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\",\n    \"Compatibility module is outside its package lib.rs build target; its own compilation needs separate evidence.\"\n  ],\n  \"evaluation_timestamp_basis\": \"Start of the latest bound assessment execution; execution durations are recorded in receipts.\"\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_six/20261020T064227Z-rank-activation/previous_assessment/code/rust/src/lie_theory/mod.rs.scoring.yaml"
+      ]
+    },
+    {
+      "sha256": "bb9f63cec604911a90e7e6fa0e94c7cd88cc3cf8214a12ed105e7d5fbb2f4ad1",
+      "bytes": 5693,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/lie_theory/mod.rs",
+          "sha256": "1b440d99d229824fc8a1b4195736c8eb8dacf8aed13f86818efe95b3cbaf6243",
+          "language": "Rust"
+        },
+        "profile": "Exact",
+        "level": "L1",
+        "level_basis": "Module/export facade; composition evidence does not raise this file's own capability.",
+        "engineering_target": "A",
+        "requested_target": "L4A",
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "composite_grade": null,
+        "score_token": null,
+        "is_complete": false,
+        "grade_ceiling": "A",
+        "evaluation_timestamp": "2026-10-20T06:44:16.623074+00:00",
+        "grade_ceiling_basis": "Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.",
+        "contract": {
+          "path": "code/rust/src/lie_theory/mod.rs.contract.yaml",
+          "status": "compatibility_entry_requires_separate_compilation",
+          "sha256": "ff4e8d67280e715ffe4452ee360122f0a304117e41aab756d385ff315e6607f8"
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T064257Z/receipt.json",
+            "sha256": "51613b0c9b9841f5bd58f732f04af13ab7e0b423d6fcfd00b5bba0d8104c6579"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064257Z/source_manifest.json",
+            "sha256": "684a70128a9b855d38641d5caf8ff06dbbed219ecf7ddaf745207a42584425ae"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "06dc10da559e38474966c2d318615204284210a7fd2b412c91b1f2bdf91a98e3"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064416Z-native-scalar-control/receipt.json",
+            "sha256": "0766aa9b99debe1358f6d8875fd7f375f0f81919491614eec1a640b2839bfa51"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064257Z/metrics.json",
+            "sha256": "4a56a75becd2862da73b9876563e490bf570e9dee24a4816667cec6684dffcb1"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064307Z-mutations/receipt.json",
+            "sha256": "f33e08380b111005a6d5a9897fae4c86ba2b18b7c39bdc3e4d8ee49232cc0e11"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T064307Z-mutations/mutations.json",
+            "sha256": "0a6dac1623a7edf2f6a369b765e755221a0f9bdc232349ac2d202d4c9b7676dc"
+          }
+        ],
+        "verification": {
+          "baseline": {
+            "command": [
+              "cargo",
+              "test",
+              "--offline",
+              "--target-dir",
+              "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T064307Z-mutations\\build",
+              "--quiet",
+              "-p",
+              "tfqm_lie_theory",
+              "--tests"
+            ],
+            "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T064307Z-mutations",
+            "disk_observation": {
+              "completed_cache_file_bytes": 548953858,
+              "free_after": 4025528320,
+              "free_before": 4031115264,
+              "scope": "Endpoint observations only; not a peak-space or external-activity guarantee."
+            },
+            "elapsed_seconds": 1.813,
+            "environment": {
+              "CARGO_BUILD_JOBS": "2",
+              "CARGO_INCREMENTAL": "0"
+            },
+            "exit_code": 0,
+            "log": "evidence/quality/l4a_six/20261020T064307Z-mutations/tfqm_lie_theory-baseline.log",
+            "log_sha256": "be0932f625527610bc7f281542075a79c8245883a6e909dc9db38edaa88d8127",
+            "package": "tfqm_lie_theory",
+            "timed_out": false
+          },
+          "sources_unchanged": true,
+          "doctests": [],
+          "composition_runs": [],
+          "differential_controls": [],
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false,
+          "dependency_sources_unchanged": true,
+          "compiled_scope": "Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.",
+          "designated_mutations": [],
+          "designated_challenges_present": true,
+          "linked_challenges": {},
+          "mutation_campaign": {
+            "path": "evidence/quality/l4a_six/20261020T064307Z-mutations/receipt.json",
+            "sha256": "f33e08380b111005a6d5a9897fae4c86ba2b18b7c39bdc3e4d8ee49232cc0e11"
+          },
+          "mutation_restoration_baselines_ok": null,
+          "reproduced_defects": []
+        },
+        "mutation_accounting": {
+          "killed": 0,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": null
+        },
+        "structure": {
+          "tool": "syn source AST (see pinned metric_tool_sources in receipt)",
+          "functions": [
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 30,
+              "name": "is_sl2_traceless",
+              "opaque_macros": []
+            }
+          ],
+          "exceeding_A": [],
+          "metric_ceiling": "A",
+          "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
+        },
+        "open_findings": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+          "Compatibility module is outside its package lib.rs build target; its own compilation needs separate evidence."
+        ],
+        "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts."
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/lie_theory/mod.rs\",\n    \"sha256\": \"1b440d99d229824fc8a1b4195736c8eb8dacf8aed13f86818efe95b3cbaf6243\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"level\": \"L1\",\n  \"level_basis\": \"Module/export facade; composition evidence does not raise this file's own capability.\",\n  \"engineering_target\": \"A\",\n  \"requested_target\": \"L4A\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"is_complete\": false,\n  \"grade_ceiling\": \"A\",\n  \"evaluation_timestamp\": \"2026-10-20T06:44:16.623074+00:00\",\n  \"grade_ceiling_basis\": \"Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.\",\n  \"contract\": {\n    \"path\": \"code/rust/src/lie_theory/mod.rs.contract.yaml\",\n    \"status\": \"compatibility_entry_requires_separate_compilation\",\n    \"sha256\": \"ff4e8d67280e715ffe4452ee360122f0a304117e41aab756d385ff315e6607f8\"\n  },\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064257Z/receipt.json\",\n      \"sha256\": \"51613b0c9b9841f5bd58f732f04af13ab7e0b423d6fcfd00b5bba0d8104c6579\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064257Z/source_manifest.json\",\n      \"sha256\": \"684a70128a9b855d38641d5caf8ff06dbbed219ecf7ddaf745207a42584425ae\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"06dc10da559e38474966c2d318615204284210a7fd2b412c91b1f2bdf91a98e3\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064416Z-native-scalar-control/receipt.json\",\n      \"sha256\": \"0766aa9b99debe1358f6d8875fd7f375f0f81919491614eec1a640b2839bfa51\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064257Z/metrics.json\",\n      \"sha256\": \"4a56a75becd2862da73b9876563e490bf570e9dee24a4816667cec6684dffcb1\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064307Z-mutations/receipt.json\",\n      \"sha256\": \"f33e08380b111005a6d5a9897fae4c86ba2b18b7c39bdc3e4d8ee49232cc0e11\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T064307Z-mutations/mutations.json\",\n      \"sha256\": \"0a6dac1623a7edf2f6a369b765e755221a0f9bdc232349ac2d202d4c9b7676dc\"\n    }\n  ],\n  \"verification\": {\n    \"baseline\": {\n      \"command\": [\n        \"cargo\",\n        \"test\",\n        \"--offline\",\n        \"--target-dir\",\n        \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-six\\\\20261020T064307Z-mutations\\\\build\",\n        \"--quiet\",\n        \"-p\",\n        \"tfqm_lie_theory\",\n        \"--tests\"\n      ],\n      \"cwd\": \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-six\\\\20261020T064307Z-mutations\",\n      \"disk_observation\": {\n        \"completed_cache_file_bytes\": 548953858,\n        \"free_after\": 4025528320,\n        \"free_before\": 4031115264,\n        \"scope\": \"Endpoint observations only; not a peak-space or external-activity guarantee.\"\n      },\n      \"elapsed_seconds\": 1.813,\n      \"environment\": {\n        \"CARGO_BUILD_JOBS\": \"2\",\n        \"CARGO_INCREMENTAL\": \"0\"\n      },\n      \"exit_code\": 0,\n      \"log\": \"evidence/quality/l4a_six/20261020T064307Z-mutations/tfqm_lie_theory-baseline.log\",\n      \"log_sha256\": \"be0932f625527610bc7f281542075a79c8245883a6e909dc9db38edaa88d8127\",\n      \"package\": \"tfqm_lie_theory\",\n      \"timed_out\": false\n    },\n    \"sources_unchanged\": true,\n    \"doctests\": [],\n    \"composition_runs\": [],\n    \"differential_controls\": [],\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false,\n    \"dependency_sources_unchanged\": true,\n    \"compiled_scope\": \"Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.\",\n    \"designated_mutations\": [],\n    \"designated_challenges_present\": true,\n    \"linked_challenges\": {},\n    \"mutation_campaign\": {\n      \"path\": \"evidence/quality/l4a_six/20261020T064307Z-mutations/receipt.json\",\n      \"sha256\": \"f33e08380b111005a6d5a9897fae4c86ba2b18b7c39bdc3e4d8ee49232cc0e11\"\n    },\n    \"mutation_restoration_baselines_ok\": null,\n    \"reproduced_defects\": []\n  },\n  \"mutation_accounting\": {\n    \"killed\": 0,\n    \"survived\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"unrun\": 0,\n    \"conservative_ratio\": null\n  },\n  \"structure\": {\n    \"tool\": \"syn source AST (see pinned metric_tool_sources in receipt)\",\n    \"functions\": [\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 30,\n        \"name\": \"is_sl2_traceless\",\n        \"opaque_macros\": []\n      }\n    ],\n    \"exceeding_A\": [],\n    \"metric_ceiling\": \"A\",\n    \"scope\": \"Explicit source bodies only; opaque macros and compiler expansion remain unassessed.\"\n  },\n  \"open_findings\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\",\n    \"Compatibility module is outside its package lib.rs build target; its own compilation needs separate evidence.\"\n  ],\n  \"evaluation_timestamp_basis\": \"Start of the latest bound assessment execution; execution durations are recorded in receipts.\"\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_six/20261020T074553Z-smith-activation/previous_assessment/code/rust/src/lie_theory/mod.rs.scoring.yaml"
+      ]
+    },
+    {
+      "sha256": "671015cf641126afc5968a8697b7d20d818f08b4da72194fd244bc4cfcd20161",
+      "bytes": 5883,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/lie_theory/mod.rs",
+          "sha256": "1b440d99d229824fc8a1b4195736c8eb8dacf8aed13f86818efe95b3cbaf6243",
+          "language": "Rust"
+        },
+        "profile": "Exact",
+        "level": "L1",
+        "level_basis": "Module/export facade; composition evidence does not raise this file's own capability.",
+        "engineering_target": "A",
+        "requested_target": "L4A",
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "composite_grade": null,
+        "score_token": null,
+        "is_complete": false,
+        "grade_ceiling": "A",
+        "evaluation_timestamp": "2026-10-20T08:25:06.744531+00:00",
+        "grade_ceiling_basis": "Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.",
+        "contract": {
+          "path": "code/rust/src/lie_theory/mod.rs.contract.yaml",
+          "status": "compatibility_entry_requires_separate_compilation",
+          "sha256": "333b99c52b515b3b050e91a09f2654ccaeef9804b1d8e0ebb59856a26e97b4fe"
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/receipt.json",
+            "sha256": "2a8a7c24316de85ce0c26f04e751fb6ff1ec0ee635defde5c01d76eab3f3fdfd"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/source_manifest.json",
+            "sha256": "4d8a488592e2c9166b812ac1188b34baeb4d97de07590f31bf5f006bad071626"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "8d5f25afe4e999b3a92c835b2910d2b81e6bd991b47abbe3ee2a204f1f363a09"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json",
+            "sha256": "f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json",
+            "sha256": "50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/metrics.json",
+            "sha256": "a297bf450b9c7f0504e2fc3f3dc6589663d94a5e73dc2d5d6c03079645b97030"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json",
+            "sha256": "b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/mutations.json",
+            "sha256": "00fa693c6f05422ed8b6be92780f5970691494e31b82ecaa20985a6a1e370860"
+          }
+        ],
+        "verification": {
+          "baseline": {
+            "command": [
+              "cargo",
+              "test",
+              "--offline",
+              "--target-dir",
+              "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T074603Z-mutations\\build",
+              "--quiet",
+              "-p",
+              "tfqm_lie_theory",
+              "--tests"
+            ],
+            "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T074603Z-mutations",
+            "disk_observation": {
+              "completed_cache_file_bytes": 549103319,
+              "free_after": 3125612544,
+              "free_before": 3131727872,
+              "scope": "Endpoint observations only; not a peak-space or external-activity guarantee."
+            },
+            "elapsed_seconds": 1.859,
+            "environment": {
+              "CARGO_BUILD_JOBS": "2",
+              "CARGO_INCREMENTAL": "0"
+            },
+            "exit_code": 0,
+            "log": "evidence/quality/l4a_six/20261020T074603Z-mutations/tfqm_lie_theory-baseline.log",
+            "log_sha256": "5b884224b8b7414b90d487ac18cd18b373c6d6d3a31d4826ae5760c53bc559f2",
+            "package": "tfqm_lie_theory",
+            "timed_out": false
+          },
+          "sources_unchanged": true,
+          "doctests": [],
+          "composition_runs": [],
+          "differential_controls": [],
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false,
+          "dependency_sources_unchanged": true,
+          "compiled_scope": "Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.",
+          "designated_mutations": [],
+          "designated_challenges_present": true,
+          "linked_challenges": {},
+          "mutation_campaign": {
+            "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json",
+            "sha256": "b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08"
+          },
+          "mutation_restoration_baselines_ok": null,
+          "reproduced_defects": []
+        },
+        "mutation_accounting": {
+          "killed": 0,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": null
+        },
+        "structure": {
+          "tool": "syn source AST (see pinned metric_tool_sources in receipt)",
+          "functions": [
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 30,
+              "name": "is_sl2_traceless",
+              "opaque_macros": []
+            }
+          ],
+          "exceeding_A": [],
+          "metric_ceiling": "A",
+          "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
+        },
+        "open_findings": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+          "Compatibility module is outside its package lib.rs build target; its own compilation needs separate evidence."
+        ],
+        "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts."
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/lie_theory/mod.rs\",\n    \"sha256\": \"1b440d99d229824fc8a1b4195736c8eb8dacf8aed13f86818efe95b3cbaf6243\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"level\": \"L1\",\n  \"level_basis\": \"Module/export facade; composition evidence does not raise this file's own capability.\",\n  \"engineering_target\": \"A\",\n  \"requested_target\": \"L4A\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"is_complete\": false,\n  \"grade_ceiling\": \"A\",\n  \"evaluation_timestamp\": \"2026-10-20T08:25:06.744531+00:00\",\n  \"grade_ceiling_basis\": \"Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.\",\n  \"contract\": {\n    \"path\": \"code/rust/src/lie_theory/mod.rs.contract.yaml\",\n    \"status\": \"compatibility_entry_requires_separate_compilation\",\n    \"sha256\": \"333b99c52b515b3b050e91a09f2654ccaeef9804b1d8e0ebb59856a26e97b4fe\"\n  },\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/receipt.json\",\n      \"sha256\": \"2a8a7c24316de85ce0c26f04e751fb6ff1ec0ee635defde5c01d76eab3f3fdfd\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/source_manifest.json\",\n      \"sha256\": \"4d8a488592e2c9166b812ac1188b34baeb4d97de07590f31bf5f006bad071626\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"8d5f25afe4e999b3a92c835b2910d2b81e6bd991b47abbe3ee2a204f1f363a09\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json\",\n      \"sha256\": \"f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json\",\n      \"sha256\": \"50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/metrics.json\",\n      \"sha256\": \"a297bf450b9c7f0504e2fc3f3dc6589663d94a5e73dc2d5d6c03079645b97030\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json\",\n      \"sha256\": \"b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/mutations.json\",\n      \"sha256\": \"00fa693c6f05422ed8b6be92780f5970691494e31b82ecaa20985a6a1e370860\"\n    }\n  ],\n  \"verification\": {\n    \"baseline\": {\n      \"command\": [\n        \"cargo\",\n        \"test\",\n        \"--offline\",\n        \"--target-dir\",\n        \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-six\\\\20261020T074603Z-mutations\\\\build\",\n        \"--quiet\",\n        \"-p\",\n        \"tfqm_lie_theory\",\n        \"--tests\"\n      ],\n      \"cwd\": \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-six\\\\20261020T074603Z-mutations\",\n      \"disk_observation\": {\n        \"completed_cache_file_bytes\": 549103319,\n        \"free_after\": 3125612544,\n        \"free_before\": 3131727872,\n        \"scope\": \"Endpoint observations only; not a peak-space or external-activity guarantee.\"\n      },\n      \"elapsed_seconds\": 1.859,\n      \"environment\": {\n        \"CARGO_BUILD_JOBS\": \"2\",\n        \"CARGO_INCREMENTAL\": \"0\"\n      },\n      \"exit_code\": 0,\n      \"log\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/tfqm_lie_theory-baseline.log\",\n      \"log_sha256\": \"5b884224b8b7414b90d487ac18cd18b373c6d6d3a31d4826ae5760c53bc559f2\",\n      \"package\": \"tfqm_lie_theory\",\n      \"timed_out\": false\n    },\n    \"sources_unchanged\": true,\n    \"doctests\": [],\n    \"composition_runs\": [],\n    \"differential_controls\": [],\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false,\n    \"dependency_sources_unchanged\": true,\n    \"compiled_scope\": \"Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.\",\n    \"designated_mutations\": [],\n    \"designated_challenges_present\": true,\n    \"linked_challenges\": {},\n    \"mutation_campaign\": {\n      \"path\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json\",\n      \"sha256\": \"b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08\"\n    },\n    \"mutation_restoration_baselines_ok\": null,\n    \"reproduced_defects\": []\n  },\n  \"mutation_accounting\": {\n    \"killed\": 0,\n    \"survived\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"unrun\": 0,\n    \"conservative_ratio\": null\n  },\n  \"structure\": {\n    \"tool\": \"syn source AST (see pinned metric_tool_sources in receipt)\",\n    \"functions\": [\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 30,\n        \"name\": \"is_sl2_traceless\",\n        \"opaque_macros\": []\n      }\n    ],\n    \"exceeding_A\": [],\n    \"metric_ceiling\": \"A\",\n    \"scope\": \"Explicit source bodies only; opaque macros and compiler expansion remain unassessed.\"\n  },\n  \"open_findings\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\",\n    \"Compatibility module is outside its package lib.rs build target; its own compilation needs separate evidence.\"\n  ],\n  \"evaluation_timestamp_basis\": \"Start of the latest bound assessment execution; execution durations are recorded in receipts.\"\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_six/20261020T104119Z-scalar-activation/previous_assessment/code/rust/src/lie_theory/mod.rs.scoring.yaml",
+        "evidence/quality/l4a_six/20261020T145101Z-ordered-activation/previous_assessment/code/rust/src/lie_theory/mod.rs.scoring.yaml"
+      ]
+    },
+    {
+      "sha256": "537ac17214e778cba4332a33f5e549f833b97ce6a37fe9e13ee292fc8046d61e",
+      "bytes": 5256,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/lie_theory/mod.rs",
+          "sha256": "1b440d99d229824fc8a1b4195736c8eb8dacf8aed13f86818efe95b3cbaf6243",
+          "language": "Rust"
+        },
+        "profile": "Exact",
+        "level": "L1",
+        "level_basis": "Module/export facade; composition evidence does not raise this file's own capability.",
+        "engineering_target": "A",
+        "requested_target": "L4A",
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "composite_grade": null,
+        "score_token": null,
+        "is_complete": false,
+        "grade_ceiling": "A",
+        "evaluation_timestamp": "2026-10-20T14:53:16+00:00",
+        "grade_ceiling_basis": "Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.",
+        "contract": {
+          "path": "code/rust/src/lie_theory/mod.rs.contract.yaml",
+          "status": "compatibility_entry_requires_separate_compilation",
+          "sha256": "6be6c3d0519d01b08c67ac2026000f106082b3e81eb00f6df7241f8523bea0a9"
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T145316Z/receipt.json",
+            "sha256": "02ef86c6eaaa341749b93cd0cff2463b8c7a462b0c14080b483b5c13cb518935"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T145316Z/source_manifest.json",
+            "sha256": "b426c649d3ed095a576113062ea18b876fbd794e6eca1921ae2a296512eb5f63"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "67b30ce4848112715d67386e9af9e83322a3643e50585f754ceb4e5c439b7819"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "6e319e84dc25e76ffda0c3f8009c75cd36f36aacb18a24fad7a44c3899e67c84"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json",
+            "sha256": "cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T145316Z/metrics.json",
+            "sha256": "c0f6c92c146ff0cf7d91b3a78bf74c7d26b455cd9b0547dd1d36ccc6260b19ec"
+          }
+        ],
+        "verification": {
+          "baseline": null,
+          "sources_unchanged": true,
+          "doctests": [],
+          "composition_runs": [
+            {
+              "receipt": {
+                "path": "evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json",
+                "sha256": "cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f"
+              },
+              "claim": "Actual root library compilation plus the explicitly selected consumer tests; not a full root or workspace test run.",
+              "run": {
+                "command": [
+                  "cargo",
+                  "--config",
+                  "profile.dev.debug=0",
+                  "--config",
+                  "profile.test.debug=0",
+                  "test",
+                  "--frozen",
+                  "--target-dir",
+                  "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T145120Z-qm-consumer\\build",
+                  "--quiet",
+                  "-p",
+                  "theory_of_finite_qm",
+                  "--lib",
+                  "qm::campaigns::gleason"
+                ],
+                "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust",
+                "elapsed_seconds": 1.688,
+                "environment": {
+                  "CARGO_BUILD_JOBS": "2",
+                  "CARGO_INCREMENTAL": "0"
+                },
+                "exit_code": 0,
+                "log": "evidence/quality/l4a_six/20261020T145120Z-qm-consumer/consumer-5.log",
+                "log_sha256": "1551c12a4e4233806a928e1203bcd1bb4fefaa01442640a1ea9e6d8fe596b23b",
+                "timed_out": false
+              }
+            }
+          ],
+          "differential_controls": [],
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false,
+          "dependency_sources_unchanged": true,
+          "compiled_scope": "Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.",
+          "reproduced_defects": []
+        },
+        "mutation_accounting": {
+          "killed": 0,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": null
+        },
+        "structure": {
+          "tool": "syn source AST (see pinned metric_tool_sources in receipt)",
+          "functions": [
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 30,
+              "name": "is_sl2_traceless",
+              "opaque_macros": []
+            }
+          ],
+          "exceeding_A": [],
+          "metric_ceiling": "A",
+          "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
+        },
+        "open_findings": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+          "Compatibility module is outside its package lib.rs build target; its own compilation needs separate evidence."
+        ],
+        "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts."
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/lie_theory/mod.rs\",\n    \"sha256\": \"1b440d99d229824fc8a1b4195736c8eb8dacf8aed13f86818efe95b3cbaf6243\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"level\": \"L1\",\n  \"level_basis\": \"Module/export facade; composition evidence does not raise this file's own capability.\",\n  \"engineering_target\": \"A\",\n  \"requested_target\": \"L4A\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"is_complete\": false,\n  \"grade_ceiling\": \"A\",\n  \"evaluation_timestamp\": \"2026-10-20T14:53:16+00:00\",\n  \"grade_ceiling_basis\": \"Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.\",\n  \"contract\": {\n    \"path\": \"code/rust/src/lie_theory/mod.rs.contract.yaml\",\n    \"status\": \"compatibility_entry_requires_separate_compilation\",\n    \"sha256\": \"6be6c3d0519d01b08c67ac2026000f106082b3e81eb00f6df7241f8523bea0a9\"\n  },\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/receipt.json\",\n      \"sha256\": \"02ef86c6eaaa341749b93cd0cff2463b8c7a462b0c14080b483b5c13cb518935\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/source_manifest.json\",\n      \"sha256\": \"b426c649d3ed095a576113062ea18b876fbd794e6eca1921ae2a296512eb5f63\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"67b30ce4848112715d67386e9af9e83322a3643e50585f754ceb4e5c439b7819\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"6e319e84dc25e76ffda0c3f8009c75cd36f36aacb18a24fad7a44c3899e67c84\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json\",\n      \"sha256\": \"cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T145316Z/metrics.json\",\n      \"sha256\": \"c0f6c92c146ff0cf7d91b3a78bf74c7d26b455cd9b0547dd1d36ccc6260b19ec\"\n    }\n  ],\n  \"verification\": {\n    \"baseline\": null,\n    \"sources_unchanged\": true,\n    \"doctests\": [],\n    \"composition_runs\": [\n      {\n        \"receipt\": {\n          \"path\": \"evidence/quality/l4a_six/20261020T145120Z-qm-consumer/receipt.json\",\n          \"sha256\": \"cd9e3c64f660364f3396d6aaacf778fcaa99605673c89dbf21bb1a96b02ac71f\"\n        },\n        \"claim\": \"Actual root library compilation plus the explicitly selected consumer tests; not a full root or workspace test run.\",\n        \"run\": {\n          \"command\": [\n            \"cargo\",\n            \"--config\",\n            \"profile.dev.debug=0\",\n            \"--config\",\n            \"profile.test.debug=0\",\n            \"test\",\n            \"--frozen\",\n            \"--target-dir\",\n            \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-six\\\\20261020T145120Z-qm-consumer\\\\build\",\n            \"--quiet\",\n            \"-p\",\n            \"theory_of_finite_qm\",\n            \"--lib\",\n            \"qm::campaigns::gleason\"\n          ],\n          \"cwd\": \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\",\n          \"elapsed_seconds\": 1.688,\n          \"environment\": {\n            \"CARGO_BUILD_JOBS\": \"2\",\n            \"CARGO_INCREMENTAL\": \"0\"\n          },\n          \"exit_code\": 0,\n          \"log\": \"evidence/quality/l4a_six/20261020T145120Z-qm-consumer/consumer-5.log\",\n          \"log_sha256\": \"1551c12a4e4233806a928e1203bcd1bb4fefaa01442640a1ea9e6d8fe596b23b\",\n          \"timed_out\": false\n        }\n      }\n    ],\n    \"differential_controls\": [],\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false,\n    \"dependency_sources_unchanged\": true,\n    \"compiled_scope\": \"Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.\",\n    \"reproduced_defects\": []\n  },\n  \"mutation_accounting\": {\n    \"killed\": 0,\n    \"survived\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"unrun\": 0,\n    \"conservative_ratio\": null\n  },\n  \"structure\": {\n    \"tool\": \"syn source AST (see pinned metric_tool_sources in receipt)\",\n    \"functions\": [\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 30,\n        \"name\": \"is_sl2_traceless\",\n        \"opaque_macros\": []\n      }\n    ],\n    \"exceeding_A\": [],\n    \"metric_ceiling\": \"A\",\n    \"scope\": \"Explicit source bodies only; opaque macros and compiler expansion remain unassessed.\"\n  },\n  \"open_findings\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\",\n    \"Compatibility module is outside its package lib.rs build target; its own compilation needs separate evidence.\"\n  ],\n  \"evaluation_timestamp_basis\": \"Start of the latest bound assessment execution; execution durations are recorded in receipts.\"\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_six/recovery/original-sidecars/code/rust/src/lie_theory/mod.rs.scoring.yaml"
+      ]
+    }
+  ],
+  "legacy_paths": {
+    "code/rust/src/lie_theory/mod.rs.contract.yaml": "9bfc79ebf7b4fa17f955091176bfb5cc64cd6882f64b871b2a194758c9fad828",
+    "code/rust/src/lie_theory/mod.rs.scoring.yaml": "51f6ee2aeb536c19933f3a2fdb9a10d06599fed419cd922d1cd89afc39af20d5",
+    "evidence/quality/l4a_six/20261020T064227Z-rank-activation/previous_assessment/code/rust/src/lie_theory/mod.rs.contract.yaml": "6dc675abe7fde3d8d653d51083045f8c105f87ce75bc46f0337b4d622e6b4dcf",
+    "evidence/quality/l4a_six/20261020T064227Z-rank-activation/previous_assessment/code/rust/src/lie_theory/mod.rs.scoring.yaml": "c3ead0f0fb2394523296680640fddbc752b0e1fd3d7f6163214aba44fb7987ec",
+    "evidence/quality/l4a_six/20261020T074553Z-smith-activation/previous_assessment/code/rust/src/lie_theory/mod.rs.contract.yaml": "ff4e8d67280e715ffe4452ee360122f0a304117e41aab756d385ff315e6607f8",
+    "evidence/quality/l4a_six/20261020T074553Z-smith-activation/previous_assessment/code/rust/src/lie_theory/mod.rs.scoring.yaml": "bb9f63cec604911a90e7e6fa0e94c7cd88cc3cf8214a12ed105e7d5fbb2f4ad1",
+    "evidence/quality/l4a_six/20261020T104119Z-scalar-activation/previous_assessment/code/rust/src/lie_theory/mod.rs.contract.yaml": "333b99c52b515b3b050e91a09f2654ccaeef9804b1d8e0ebb59856a26e97b4fe",
+    "evidence/quality/l4a_six/20261020T104119Z-scalar-activation/previous_assessment/code/rust/src/lie_theory/mod.rs.scoring.yaml": "671015cf641126afc5968a8697b7d20d818f08b4da72194fd244bc4cfcd20161",
+    "evidence/quality/l4a_six/20261020T145101Z-ordered-activation/previous_assessment/code/rust/src/lie_theory/mod.rs.contract.yaml": "333b99c52b515b3b050e91a09f2654ccaeef9804b1d8e0ebb59856a26e97b4fe",
+    "evidence/quality/l4a_six/20261020T145101Z-ordered-activation/previous_assessment/code/rust/src/lie_theory/mod.rs.scoring.yaml": "671015cf641126afc5968a8697b7d20d818f08b4da72194fd244bc4cfcd20161",
+    "evidence/quality/l4a_six/recovery/original-sidecars/code/rust/src/lie_theory/mod.rs.contract.yaml": "6be6c3d0519d01b08c67ac2026000f106082b3e81eb00f6df7241f8523bea0a9",
+    "evidence/quality/l4a_six/recovery/original-sidecars/code/rust/src/lie_theory/mod.rs.scoring.yaml": "537ac17214e778cba4332a33f5e549f833b97ce6a37fe9e13ee292fc8046d61e"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

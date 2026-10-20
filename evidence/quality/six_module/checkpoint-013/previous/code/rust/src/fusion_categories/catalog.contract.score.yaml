@@ -1,0 +1,479 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": null,
+  "contract": {
+    "schema_version": "1.0.0",
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/rust/src/fusion_categories/catalog.rs",
+      "sha256": "0aa0caac8a1af06d892120b3f1b1b49a81620d76239768d205f2e79358ed687b",
+      "language": "Rust"
+    },
+    "status": "partial_source_review",
+    "formal_specification": "Exact finite bicharacter recipe construction with reduced signed phases and composed typed category admissions.",
+    "operations": {
+      "module::ribbon": {
+        "line": 7,
+        "signature": "fn ribbon<K: FusionScalar>(\n    ring: FusionRing,\n    f: FSymbols<K>,\n    r: RSymbols<K>,\n    dimensions: Vec<K>,\n) -> Result<RibbonFusionCategory<K>, FusionError>",
+        "obligation": "Compose FusionCategory, BraidedFusionCategory and RibbonFusionCategory admissions in that order; propagate the first typed error and return only the admitted owned value.",
+        "status": "partial_review_no_gate_award"
+      },
+      "module::ising": {
+        "line": 17,
+        "signature": "pub fn ising<K: FusionScalar>() -> Result<RibbonFusionCategory<K>, FusionError>",
+        "obligation": "Build the rank-three Ising recipe using an admitted sqrt(2) and sixteenth roots; propagate field, symbol and ribbon validation failures.",
+        "status": "partial_review_no_gate_award"
+      },
+      "module::ising_f": {
+        "line": 25,
+        "signature": "fn ising_f<K: FusionScalar>(ring: &FusionRing, sqrt2: &K) -> Result<FSymbols<K>, FusionError>",
+        "obligation": "For the admitted Ising ring and nonzero sqrt(2), construct its fixed gauge F blocks; invert sqrt(2) once and propagate inversion or symbol-shape refusal.",
+        "status": "partial_review_no_gate_award"
+      },
+      "module::ising_r": {
+        "line": 37,
+        "signature": "fn ising_r<K: FusionScalar>(ring: &FusionRing) -> Result<RSymbols<K>, FusionError>",
+        "obligation": "Construct the fixed Ising R values from roots with exponents -1,3,4 of order16 and -1; propagate missing-field and symbol errors.",
+        "status": "partial_review_no_gate_award"
+      },
+      "module::fibonacci": {
+        "line": 51,
+        "signature": "pub fn fibonacci<K: FusionScalar>() -> Result<RibbonFusionCategory<K>, FusionError>",
+        "obligation": "Build the rank-two Fibonacci recipe using the admitted golden ratio and tenth roots; propagate all provider admissions.",
+        "status": "partial_review_no_gate_award"
+      },
+      "module::fibonacci_f": {
+        "line": 59,
+        "signature": "fn fibonacci_f<K: FusionScalar>(ring: &FusionRing, phi: &K) -> Result<FSymbols<K>, FusionError>",
+        "obligation": "For the admitted Fibonacci ring and golden ratio phi, use phi-1 and its negative in the fixed gauge block; no claim of a unitary gauge conversion.",
+        "status": "partial_review_no_gate_award"
+      },
+      "module::fibonacci_r": {
+        "line": 69,
+        "signature": "fn fibonacci_r<K: FusionScalar>(ring: &FusionRing) -> Result<RSymbols<K>, FusionError>",
+        "obligation": "Set the two nontrivial Fibonacci R channels to tenth roots with exponents -4 and3; propagate missing-field and symbol errors.",
+        "status": "partial_review_no_gate_award"
+      },
+      "module::semion": {
+        "line": 79,
+        "signature": "pub fn semion<K: FusionScalar>() -> Result<RibbonFusionCategory<K>, FusionError>",
+        "obligation": "Build rank-two semion with the nontrivial -1 associator and i braiding; require the field and ordinary category/ribbon checks.",
+        "status": "partial_review_no_gate_award"
+      },
+      "module::pointed_braided": {
+        "line": 100,
+        "signature": "pub fn pointed_braided<K: FusionScalar>(\n    moduli: &[usize],\n    exponents: &[Vec<i64>],\n    names: Option<Vec<String>>,\n) -> Result<RibbonFusionCategory<K>, FusionError>",
+        "obligation": "Admit group factors/product, square exponent shape and names; reduce signed coefficients before requesting only the required root subgroup, then build the bilinear R values and unit dimensions through ordinary category/ribbon checks.",
+        "status": "partial_review_no_gate_award"
+      },
+      "module::check_exponent_shape": {
+        "line": 122,
+        "signature": "fn check_exponent_shape(exponents: &[Vec<i64>], factors: usize) -> Result<(), FusionError>",
+        "obligation": "Require exactly factors rows and factors columns per row; rows refuse first, then the first ragged row reports its actual column count.",
+        "status": "partial_review_no_gate_award"
+      },
+      "module::gcd": {
+        "line": 140,
+        "signature": "fn gcd(mut a: usize, mut b: usize) -> usize",
+        "obligation": "Euclidean gcd for unsigned inputs; gcd(0,b)=b and gcd(a,0)=a; callers of reduced_coefficient provide a positive denominator.",
+        "status": "partial_review_no_gate_award"
+      },
+      "module::reduced_coefficient": {
+        "line": 147,
+        "signature": "fn reduced_coefficient(coefficient: i64, left: usize, right: usize) -> (usize, usize)",
+        "obligation": "Private domain: left/right admitted factors 2..32. Reduce any i64 coefficient modulo gcd(left,right) before dividing numerator/denominator by their gcd; denominator stays positive, including zero residue.",
+        "status": "partial_review_no_gate_award"
+      },
+      "PhasePlan::new": {
+        "line": 161,
+        "signature": "fn new(moduli: &[usize], exponents: &[Vec<i64>]) -> Self",
+        "obligation": "Private PhasePlan constructor requires admitted factors with product<=32 and a square exponent matrix. Use the lcm of reduced denominators and rescale each reduced numerator to that common order.",
+        "status": "partial_review_no_gate_award"
+      },
+      "PhasePlan::exponent": {
+        "line": 187,
+        "signature": "fn exponent(&self, left: &[usize], right: &[usize]) -> usize",
+        "obligation": "Private matching digit vectors and admitted PhasePlan: sum weight_ij*x_i*y_j modulo positive plan.order. Rank<=5, digits<=31 and weights<=31 keep the unsigned sum below2^20.",
+        "status": "partial_review_no_gate_award"
+      },
+      "module::phase_roots": {
+        "line": 198,
+        "signature": "fn phase_roots<K: FusionScalar>(order: usize) -> Result<Vec<K>, FusionError>",
+        "obligation": "Private order1..32: admit an exact generator once and generate precisely order powers from one; missing field refuses before symbol construction.",
+        "status": "partial_review_no_gate_award"
+      },
+      "module::toric_code": {
+        "line": 209,
+        "signature": "pub fn toric_code<K: FusionScalar>() -> Result<RibbonFusionCategory<K>, FusionError>",
+        "obligation": "Instantiate the fixed [2,2] upper off-diagonal bicharacter and labels 1,e,m,eps through pointed_braided.",
+        "status": "partial_review_no_gate_award"
+      },
+      "module::three_fermion": {
+        "line": 217,
+        "signature": "pub fn three_fermion<K: FusionScalar>() -> Result<RibbonFusionCategory<K>, FusionError>",
+        "obligation": "Instantiate the fixed [2,2] diagonal/upper bicharacter and labels 1,f1,f2,f3 through pointed_braided.",
+        "status": "partial_review_no_gate_award"
+      },
+      "module::quantum_double_cyclic": {
+        "line": 225,
+        "signature": "pub fn quantum_double_cyclic<K: FusionScalar>(\n    n: usize,\n) -> Result<RibbonFusionCategory<K>, FusionError>",
+        "obligation": "Check usize-to-i64 conversion, require n>=2, then admit [n,n] through the group/rank bounds and the fixed bicharacter. The recipe name does not establish an independent categorical center theorem.",
+        "status": "partial_review_no_gate_award"
+      },
+      "module::cyclic_pointed": {
+        "line": 240,
+        "signature": "pub fn cyclic_pointed<K: FusionScalar>(\n    n: usize,\n    k: i64,\n) -> Result<RibbonFusionCategory<K>, FusionError>",
+        "obligation": "Instantiate a one-factor bicharacter for arbitrary signed k through pointed_braided; n=0/1 and rank>32 refuse; k divisible by n requires only the trivial root subgroup.",
+        "status": "partial_review_no_gate_award"
+      }
+    },
+    "invariants": [
+      "Admitted group rank<=32 and at most5 factors; reduced denominator/order1..32; phase sum<2^20 on admitted private digit vectors.",
+      "Public construction still composes the existing category, braiding and ribbon validation boundaries; names are metadata."
+    ],
+    "failure_paths": {
+      "scope": "See individually named operation obligations; provider and scalar errors propagate.",
+      "priority": "group admission, exponent rows/columns, names, actual field root, symbols and ribbon admission"
+    },
+    "trust_boundary": "Lawful exact scalar implementation, existing bounded ring/category/ribbon/matrix providers, Rust/compiler and standard allocation behavior. Root indices need canonical embeddings for physical angles.",
+    "assurance_limits": [
+      "Partial source review and model evidence only: a complete five-gate assessment has not been awarded.",
+      "Lawful FusionScalar field operations, conjugation, compatible roots and provider admissions are explicit assumptions; the open trait cannot enforce algebraic laws.",
+      "Finite exact checks and model proofs do not establish Rust refinement, categorical realizability, physical entropy, allocator success, bounded scalar bit length or whole-workspace correctness."
+    ],
+    "review_evidence": [
+      {
+        "path": "evidence/quality/six_module/20261020T035434Z-fusion-audit/receipt.json",
+        "sha256": "f1e2e982794b4722e978ac5f0a063263e5f703a5afdb88d5fec9e869a965e4ad"
+      },
+      {
+        "path": "evidence/quality/category_homology/20261020T142450Z-modular-catalog-proof/receipt.json",
+        "sha256": "e09b32e00a527368860795c72ac1cfab3f2025f94314f9b91b8c3cbe650b281a"
+      },
+      {
+        "path": "evidence/quality/category_homology/20261020T035433Z-metrics/receipt.json",
+        "sha256": "e1c84042c8a588cc96351d3ff16302d50d1cf786da90d5a059f05a81242a7461"
+      },
+      {
+        "path": "code/rust/quality/six_module/modular_catalog_partial_review.json",
+        "sha256": "b8465fd1b10bb87f0c11346519b0821f4f43b0fed78542ce425aa223b60b6b0f"
+      },
+      {
+        "path": "code/rust/quality/six_module/modular_catalog_partial_review.json",
+        "sha256": "b8465fd1b10bb87f0c11346519b0821f4f43b0fed78542ce425aa223b60b6b0f"
+      },
+      {
+        "path": "evidence/quality/six_module/20261020T145242Z-fusion-catalog/summary.json",
+        "sha256": "ef6fa70d779690d16d9abbe3eb784518cf70d6ab9009a6a8f9b9190d5f1badfe"
+      },
+      {
+        "path": "evidence/quality/six_module/20261020T145242Z-fusion-catalog/mutations.json",
+        "sha256": "273de5a5d1c58d7607148f583379a45f473b826eb805f25e6adf4d257b5e5718"
+      }
+    ],
+    "open_obligations": [
+      "Finish independent whole-source/provider/consumer review and a complete explicit five-gate assessment; no completed score token is emitted."
+    ]
+  },
+  "current_contract": "5c1f849c432c16be956c12125380317152c0a1a323b080be611b6522458b57c1",
+  "current_scoring": "4bb756519160c2bbe8acade98d505758121b9ea73bd7d4c934d5d68cdcd6d6fa",
+  "contract_history": [
+    {
+      "sha256": "5c1f849c432c16be956c12125380317152c0a1a323b080be611b6522458b57c1",
+      "bytes": 10654,
+      "record": {
+        "schema_version": "1.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/fusion_categories/catalog.rs",
+          "sha256": "0aa0caac8a1af06d892120b3f1b1b49a81620d76239768d205f2e79358ed687b",
+          "language": "Rust"
+        },
+        "status": "partial_source_review",
+        "formal_specification": "Exact finite bicharacter recipe construction with reduced signed phases and composed typed category admissions.",
+        "operations": {
+          "module::ribbon": {
+            "line": 7,
+            "signature": "fn ribbon<K: FusionScalar>(\n    ring: FusionRing,\n    f: FSymbols<K>,\n    r: RSymbols<K>,\n    dimensions: Vec<K>,\n) -> Result<RibbonFusionCategory<K>, FusionError>",
+            "obligation": "Compose FusionCategory, BraidedFusionCategory and RibbonFusionCategory admissions in that order; propagate the first typed error and return only the admitted owned value.",
+            "status": "partial_review_no_gate_award"
+          },
+          "module::ising": {
+            "line": 17,
+            "signature": "pub fn ising<K: FusionScalar>() -> Result<RibbonFusionCategory<K>, FusionError>",
+            "obligation": "Build the rank-three Ising recipe using an admitted sqrt(2) and sixteenth roots; propagate field, symbol and ribbon validation failures.",
+            "status": "partial_review_no_gate_award"
+          },
+          "module::ising_f": {
+            "line": 25,
+            "signature": "fn ising_f<K: FusionScalar>(ring: &FusionRing, sqrt2: &K) -> Result<FSymbols<K>, FusionError>",
+            "obligation": "For the admitted Ising ring and nonzero sqrt(2), construct its fixed gauge F blocks; invert sqrt(2) once and propagate inversion or symbol-shape refusal.",
+            "status": "partial_review_no_gate_award"
+          },
+          "module::ising_r": {
+            "line": 37,
+            "signature": "fn ising_r<K: FusionScalar>(ring: &FusionRing) -> Result<RSymbols<K>, FusionError>",
+            "obligation": "Construct the fixed Ising R values from roots with exponents -1,3,4 of order16 and -1; propagate missing-field and symbol errors.",
+            "status": "partial_review_no_gate_award"
+          },
+          "module::fibonacci": {
+            "line": 51,
+            "signature": "pub fn fibonacci<K: FusionScalar>() -> Result<RibbonFusionCategory<K>, FusionError>",
+            "obligation": "Build the rank-two Fibonacci recipe using the admitted golden ratio and tenth roots; propagate all provider admissions.",
+            "status": "partial_review_no_gate_award"
+          },
+          "module::fibonacci_f": {
+            "line": 59,
+            "signature": "fn fibonacci_f<K: FusionScalar>(ring: &FusionRing, phi: &K) -> Result<FSymbols<K>, FusionError>",
+            "obligation": "For the admitted Fibonacci ring and golden ratio phi, use phi-1 and its negative in the fixed gauge block; no claim of a unitary gauge conversion.",
+            "status": "partial_review_no_gate_award"
+          },
+          "module::fibonacci_r": {
+            "line": 69,
+            "signature": "fn fibonacci_r<K: FusionScalar>(ring: &FusionRing) -> Result<RSymbols<K>, FusionError>",
+            "obligation": "Set the two nontrivial Fibonacci R channels to tenth roots with exponents -4 and3; propagate missing-field and symbol errors.",
+            "status": "partial_review_no_gate_award"
+          },
+          "module::semion": {
+            "line": 79,
+            "signature": "pub fn semion<K: FusionScalar>() -> Result<RibbonFusionCategory<K>, FusionError>",
+            "obligation": "Build rank-two semion with the nontrivial -1 associator and i braiding; require the field and ordinary category/ribbon checks.",
+            "status": "partial_review_no_gate_award"
+          },
+          "module::pointed_braided": {
+            "line": 100,
+            "signature": "pub fn pointed_braided<K: FusionScalar>(\n    moduli: &[usize],\n    exponents: &[Vec<i64>],\n    names: Option<Vec<String>>,\n) -> Result<RibbonFusionCategory<K>, FusionError>",
+            "obligation": "Admit group factors/product, square exponent shape and names; reduce signed coefficients before requesting only the required root subgroup, then build the bilinear R values and unit dimensions through ordinary category/ribbon checks.",
+            "status": "partial_review_no_gate_award"
+          },
+          "module::check_exponent_shape": {
+            "line": 122,
+            "signature": "fn check_exponent_shape(exponents: &[Vec<i64>], factors: usize) -> Result<(), FusionError>",
+            "obligation": "Require exactly factors rows and factors columns per row; rows refuse first, then the first ragged row reports its actual column count.",
+            "status": "partial_review_no_gate_award"
+          },
+          "module::gcd": {
+            "line": 140,
+            "signature": "fn gcd(mut a: usize, mut b: usize) -> usize",
+            "obligation": "Euclidean gcd for unsigned inputs; gcd(0,b)=b and gcd(a,0)=a; callers of reduced_coefficient provide a positive denominator.",
+            "status": "partial_review_no_gate_award"
+          },
+          "module::reduced_coefficient": {
+            "line": 147,
+            "signature": "fn reduced_coefficient(coefficient: i64, left: usize, right: usize) -> (usize, usize)",
+            "obligation": "Private domain: left/right admitted factors 2..32. Reduce any i64 coefficient modulo gcd(left,right) before dividing numerator/denominator by their gcd; denominator stays positive, including zero residue.",
+            "status": "partial_review_no_gate_award"
+          },
+          "PhasePlan::new": {
+            "line": 161,
+            "signature": "fn new(moduli: &[usize], exponents: &[Vec<i64>]) -> Self",
+            "obligation": "Private PhasePlan constructor requires admitted factors with product<=32 and a square exponent matrix. Use the lcm of reduced denominators and rescale each reduced numerator to that common order.",
+            "status": "partial_review_no_gate_award"
+          },
+          "PhasePlan::exponent": {
+            "line": 187,
+            "signature": "fn exponent(&self, left: &[usize], right: &[usize]) -> usize",
+            "obligation": "Private matching digit vectors and admitted PhasePlan: sum weight_ij*x_i*y_j modulo positive plan.order. Rank<=5, digits<=31 and weights<=31 keep the unsigned sum below2^20.",
+            "status": "partial_review_no_gate_award"
+          },
+          "module::phase_roots": {
+            "line": 198,
+            "signature": "fn phase_roots<K: FusionScalar>(order: usize) -> Result<Vec<K>, FusionError>",
+            "obligation": "Private order1..32: admit an exact generator once and generate precisely order powers from one; missing field refuses before symbol construction.",
+            "status": "partial_review_no_gate_award"
+          },
+          "module::toric_code": {
+            "line": 209,
+            "signature": "pub fn toric_code<K: FusionScalar>() -> Result<RibbonFusionCategory<K>, FusionError>",
+            "obligation": "Instantiate the fixed [2,2] upper off-diagonal bicharacter and labels 1,e,m,eps through pointed_braided.",
+            "status": "partial_review_no_gate_award"
+          },
+          "module::three_fermion": {
+            "line": 217,
+            "signature": "pub fn three_fermion<K: FusionScalar>() -> Result<RibbonFusionCategory<K>, FusionError>",
+            "obligation": "Instantiate the fixed [2,2] diagonal/upper bicharacter and labels 1,f1,f2,f3 through pointed_braided.",
+            "status": "partial_review_no_gate_award"
+          },
+          "module::quantum_double_cyclic": {
+            "line": 225,
+            "signature": "pub fn quantum_double_cyclic<K: FusionScalar>(\n    n: usize,\n) -> Result<RibbonFusionCategory<K>, FusionError>",
+            "obligation": "Check usize-to-i64 conversion, require n>=2, then admit [n,n] through the group/rank bounds and the fixed bicharacter. The recipe name does not establish an independent categorical center theorem.",
+            "status": "partial_review_no_gate_award"
+          },
+          "module::cyclic_pointed": {
+            "line": 240,
+            "signature": "pub fn cyclic_pointed<K: FusionScalar>(\n    n: usize,\n    k: i64,\n) -> Result<RibbonFusionCategory<K>, FusionError>",
+            "obligation": "Instantiate a one-factor bicharacter for arbitrary signed k through pointed_braided; n=0/1 and rank>32 refuse; k divisible by n requires only the trivial root subgroup.",
+            "status": "partial_review_no_gate_award"
+          }
+        },
+        "invariants": [
+          "Admitted group rank<=32 and at most5 factors; reduced denominator/order1..32; phase sum<2^20 on admitted private digit vectors.",
+          "Public construction still composes the existing category, braiding and ribbon validation boundaries; names are metadata."
+        ],
+        "failure_paths": {
+          "scope": "See individually named operation obligations; provider and scalar errors propagate.",
+          "priority": "group admission, exponent rows/columns, names, actual field root, symbols and ribbon admission"
+        },
+        "trust_boundary": "Lawful exact scalar implementation, existing bounded ring/category/ribbon/matrix providers, Rust/compiler and standard allocation behavior. Root indices need canonical embeddings for physical angles.",
+        "assurance_limits": [
+          "Partial source review and model evidence only: a complete five-gate assessment has not been awarded.",
+          "Lawful FusionScalar field operations, conjugation, compatible roots and provider admissions are explicit assumptions; the open trait cannot enforce algebraic laws.",
+          "Finite exact checks and model proofs do not establish Rust refinement, categorical realizability, physical entropy, allocator success, bounded scalar bit length or whole-workspace correctness."
+        ],
+        "review_evidence": [
+          {
+            "path": "evidence/quality/six_module/20261020T035434Z-fusion-audit/receipt.json",
+            "sha256": "f1e2e982794b4722e978ac5f0a063263e5f703a5afdb88d5fec9e869a965e4ad"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261020T142450Z-modular-catalog-proof/receipt.json",
+            "sha256": "e09b32e00a527368860795c72ac1cfab3f2025f94314f9b91b8c3cbe650b281a"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261020T035433Z-metrics/receipt.json",
+            "sha256": "e1c84042c8a588cc96351d3ff16302d50d1cf786da90d5a059f05a81242a7461"
+          },
+          {
+            "path": "code/rust/quality/six_module/modular_catalog_partial_review.json",
+            "sha256": "b8465fd1b10bb87f0c11346519b0821f4f43b0fed78542ce425aa223b60b6b0f"
+          },
+          {
+            "path": "code/rust/quality/six_module/modular_catalog_partial_review.json",
+            "sha256": "b8465fd1b10bb87f0c11346519b0821f4f43b0fed78542ce425aa223b60b6b0f"
+          },
+          {
+            "path": "evidence/quality/six_module/20261020T145242Z-fusion-catalog/summary.json",
+            "sha256": "ef6fa70d779690d16d9abbe3eb784518cf70d6ab9009a6a8f9b9190d5f1badfe"
+          },
+          {
+            "path": "evidence/quality/six_module/20261020T145242Z-fusion-catalog/mutations.json",
+            "sha256": "273de5a5d1c58d7607148f583379a45f473b826eb805f25e6adf4d257b5e5718"
+          }
+        ],
+        "open_obligations": [
+          "Finish independent whole-source/provider/consumer review and a complete explicit five-gate assessment; no completed score token is emitted."
+        ]
+      },
+      "raw_utf8": "{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/fusion_categories/catalog.rs\",\n    \"sha256\": \"0aa0caac8a1af06d892120b3f1b1b49a81620d76239768d205f2e79358ed687b\",\n    \"language\": \"Rust\"\n  },\n  \"status\": \"partial_source_review\",\n  \"formal_specification\": \"Exact finite bicharacter recipe construction with reduced signed phases and composed typed category admissions.\",\n  \"operations\": {\n    \"module::ribbon\": {\n      \"line\": 7,\n      \"signature\": \"fn ribbon<K: FusionScalar>(\\n    ring: FusionRing,\\n    f: FSymbols<K>,\\n    r: RSymbols<K>,\\n    dimensions: Vec<K>,\\n) -> Result<RibbonFusionCategory<K>, FusionError>\",\n      \"obligation\": \"Compose FusionCategory, BraidedFusionCategory and RibbonFusionCategory admissions in that order; propagate the first typed error and return only the admitted owned value.\",\n      \"status\": \"partial_review_no_gate_award\"\n    },\n    \"module::ising\": {\n      \"line\": 17,\n      \"signature\": \"pub fn ising<K: FusionScalar>() -> Result<RibbonFusionCategory<K>, FusionError>\",\n      \"obligation\": \"Build the rank-three Ising recipe using an admitted sqrt(2) and sixteenth roots; propagate field, symbol and ribbon validation failures.\",\n      \"status\": \"partial_review_no_gate_award\"\n    },\n    \"module::ising_f\": {\n      \"line\": 25,\n      \"signature\": \"fn ising_f<K: FusionScalar>(ring: &FusionRing, sqrt2: &K) -> Result<FSymbols<K>, FusionError>\",\n      \"obligation\": \"For the admitted Ising ring and nonzero sqrt(2), construct its fixed gauge F blocks; invert sqrt(2) once and propagate inversion or symbol-shape refusal.\",\n      \"status\": \"partial_review_no_gate_award\"\n    },\n    \"module::ising_r\": {\n      \"line\": 37,\n      \"signature\": \"fn ising_r<K: FusionScalar>(ring: &FusionRing) -> Result<RSymbols<K>, FusionError>\",\n      \"obligation\": \"Construct the fixed Ising R values from roots with exponents -1,3,4 of order16 and -1; propagate missing-field and symbol errors.\",\n      \"status\": \"partial_review_no_gate_award\"\n    },\n    \"module::fibonacci\": {\n      \"line\": 51,\n      \"signature\": \"pub fn fibonacci<K: FusionScalar>() -> Result<RibbonFusionCategory<K>, FusionError>\",\n      \"obligation\": \"Build the rank-two Fibonacci recipe using the admitted golden ratio and tenth roots; propagate all provider admissions.\",\n      \"status\": \"partial_review_no_gate_award\"\n    },\n    \"module::fibonacci_f\": {\n      \"line\": 59,\n      \"signature\": \"fn fibonacci_f<K: FusionScalar>(ring: &FusionRing, phi: &K) -> Result<FSymbols<K>, FusionError>\",\n      \"obligation\": \"For the admitted Fibonacci ring and golden ratio phi, use phi-1 and its negative in the fixed gauge block; no claim of a unitary gauge conversion.\",\n      \"status\": \"partial_review_no_gate_award\"\n    },\n    \"module::fibonacci_r\": {\n      \"line\": 69,\n      \"signature\": \"fn fibonacci_r<K: FusionScalar>(ring: &FusionRing) -> Result<RSymbols<K>, FusionError>\",\n      \"obligation\": \"Set the two nontrivial Fibonacci R channels to tenth roots with exponents -4 and3; propagate missing-field and symbol errors.\",\n      \"status\": \"partial_review_no_gate_award\"\n    },\n    \"module::semion\": {\n      \"line\": 79,\n      \"signature\": \"pub fn semion<K: FusionScalar>() -> Result<RibbonFusionCategory<K>, FusionError>\",\n      \"obligation\": \"Build rank-two semion with the nontrivial -1 associator and i braiding; require the field and ordinary category/ribbon checks.\",\n      \"status\": \"partial_review_no_gate_award\"\n    },\n    \"module::pointed_braided\": {\n      \"line\": 100,\n      \"signature\": \"pub fn pointed_braided<K: FusionScalar>(\\n    moduli: &[usize],\\n    exponents: &[Vec<i64>],\\n    names: Option<Vec<String>>,\\n) -> Result<RibbonFusionCategory<K>, FusionError>\",\n      \"obligation\": \"Admit group factors/product, square exponent shape and names; reduce signed coefficients before requesting only the required root subgroup, then build the bilinear R values and unit dimensions through ordinary category/ribbon checks.\",\n      \"status\": \"partial_review_no_gate_award\"\n    },\n    \"module::check_exponent_shape\": {\n      \"line\": 122,\n      \"signature\": \"fn check_exponent_shape(exponents: &[Vec<i64>], factors: usize) -> Result<(), FusionError>\",\n      \"obligation\": \"Require exactly factors rows and factors columns per row; rows refuse first, then the first ragged row reports its actual column count.\",\n      \"status\": \"partial_review_no_gate_award\"\n    },\n    \"module::gcd\": {\n      \"line\": 140,\n      \"signature\": \"fn gcd(mut a: usize, mut b: usize) -> usize\",\n      \"obligation\": \"Euclidean gcd for unsigned inputs; gcd(0,b)=b and gcd(a,0)=a; callers of reduced_coefficient provide a positive denominator.\",\n      \"status\": \"partial_review_no_gate_award\"\n    },\n    \"module::reduced_coefficient\": {\n      \"line\": 147,\n      \"signature\": \"fn reduced_coefficient(coefficient: i64, left: usize, right: usize) -> (usize, usize)\",\n      \"obligation\": \"Private domain: left/right admitted factors 2..32. Reduce any i64 coefficient modulo gcd(left,right) before dividing numerator/denominator by their gcd; denominator stays positive, including zero residue.\",\n      \"status\": \"partial_review_no_gate_award\"\n    },\n    \"PhasePlan::new\": {\n      \"line\": 161,\n      \"signature\": \"fn new(moduli: &[usize], exponents: &[Vec<i64>]) -> Self\",\n      \"obligation\": \"Private PhasePlan constructor requires admitted factors with product<=32 and a square exponent matrix. Use the lcm of reduced denominators and rescale each reduced numerator to that common order.\",\n      \"status\": \"partial_review_no_gate_award\"\n    },\n    \"PhasePlan::exponent\": {\n      \"line\": 187,\n      \"signature\": \"fn exponent(&self, left: &[usize], right: &[usize]) -> usize\",\n      \"obligation\": \"Private matching digit vectors and admitted PhasePlan: sum weight_ij*x_i*y_j modulo positive plan.order. Rank<=5, digits<=31 and weights<=31 keep the unsigned sum below2^20.\",\n      \"status\": \"partial_review_no_gate_award\"\n    },\n    \"module::phase_roots\": {\n      \"line\": 198,\n      \"signature\": \"fn phase_roots<K: FusionScalar>(order: usize) -> Result<Vec<K>, FusionError>\",\n      \"obligation\": \"Private order1..32: admit an exact generator once and generate precisely order powers from one; missing field refuses before symbol construction.\",\n      \"status\": \"partial_review_no_gate_award\"\n    },\n    \"module::toric_code\": {\n      \"line\": 209,\n      \"signature\": \"pub fn toric_code<K: FusionScalar>() -> Result<RibbonFusionCategory<K>, FusionError>\",\n      \"obligation\": \"Instantiate the fixed [2,2] upper off-diagonal bicharacter and labels 1,e,m,eps through pointed_braided.\",\n      \"status\": \"partial_review_no_gate_award\"\n    },\n    \"module::three_fermion\": {\n      \"line\": 217,\n      \"signature\": \"pub fn three_fermion<K: FusionScalar>() -> Result<RibbonFusionCategory<K>, FusionError>\",\n      \"obligation\": \"Instantiate the fixed [2,2] diagonal/upper bicharacter and labels 1,f1,f2,f3 through pointed_braided.\",\n      \"status\": \"partial_review_no_gate_award\"\n    },\n    \"module::quantum_double_cyclic\": {\n      \"line\": 225,\n      \"signature\": \"pub fn quantum_double_cyclic<K: FusionScalar>(\\n    n: usize,\\n) -> Result<RibbonFusionCategory<K>, FusionError>\",\n      \"obligation\": \"Check usize-to-i64 conversion, require n>=2, then admit [n,n] through the group/rank bounds and the fixed bicharacter. The recipe name does not establish an independent categorical center theorem.\",\n      \"status\": \"partial_review_no_gate_award\"\n    },\n    \"module::cyclic_pointed\": {\n      \"line\": 240,\n      \"signature\": \"pub fn cyclic_pointed<K: FusionScalar>(\\n    n: usize,\\n    k: i64,\\n) -> Result<RibbonFusionCategory<K>, FusionError>\",\n      \"obligation\": \"Instantiate a one-factor bicharacter for arbitrary signed k through pointed_braided; n=0/1 and rank>32 refuse; k divisible by n requires only the trivial root subgroup.\",\n      \"status\": \"partial_review_no_gate_award\"\n    }\n  },\n  \"invariants\": [\n    \"Admitted group rank<=32 and at most5 factors; reduced denominator/order1..32; phase sum<2^20 on admitted private digit vectors.\",\n    \"Public construction still composes the existing category, braiding and ribbon validation boundaries; names are metadata.\"\n  ],\n  \"failure_paths\": {\n    \"scope\": \"See individually named operation obligations; provider and scalar errors propagate.\",\n    \"priority\": \"group admission, exponent rows/columns, names, actual field root, symbols and ribbon admission\"\n  },\n  \"trust_boundary\": \"Lawful exact scalar implementation, existing bounded ring/category/ribbon/matrix providers, Rust/compiler and standard allocation behavior. Root indices need canonical embeddings for physical angles.\",\n  \"assurance_limits\": [\n    \"Partial source review and model evidence only: a complete five-gate assessment has not been awarded.\",\n    \"Lawful FusionScalar field operations, conjugation, compatible roots and provider admissions are explicit assumptions; the open trait cannot enforce algebraic laws.\",\n    \"Finite exact checks and model proofs do not establish Rust refinement, categorical realizability, physical entropy, allocator success, bounded scalar bit length or whole-workspace correctness.\"\n  ],\n  \"review_evidence\": [\n    {\n      \"path\": \"evidence/quality/six_module/20261020T035434Z-fusion-audit/receipt.json\",\n      \"sha256\": \"f1e2e982794b4722e978ac5f0a063263e5f703a5afdb88d5fec9e869a965e4ad\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261020T142450Z-modular-catalog-proof/receipt.json\",\n      \"sha256\": \"e09b32e00a527368860795c72ac1cfab3f2025f94314f9b91b8c3cbe650b281a\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261020T035433Z-metrics/receipt.json\",\n      \"sha256\": \"e1c84042c8a588cc96351d3ff16302d50d1cf786da90d5a059f05a81242a7461\"\n    },\n    {\n      \"path\": \"code/rust/quality/six_module/modular_catalog_partial_review.json\",\n      \"sha256\": \"b8465fd1b10bb87f0c11346519b0821f4f43b0fed78542ce425aa223b60b6b0f\"\n    },\n    {\n      \"path\": \"code/rust/quality/six_module/modular_catalog_partial_review.json\",\n      \"sha256\": \"b8465fd1b10bb87f0c11346519b0821f4f43b0fed78542ce425aa223b60b6b0f\"\n    },\n    {\n      \"path\": \"evidence/quality/six_module/20261020T145242Z-fusion-catalog/summary.json\",\n      \"sha256\": \"ef6fa70d779690d16d9abbe3eb784518cf70d6ab9009a6a8f9b9190d5f1badfe\"\n    },\n    {\n      \"path\": \"evidence/quality/six_module/20261020T145242Z-fusion-catalog/mutations.json\",\n      \"sha256\": \"273de5a5d1c58d7607148f583379a45f473b826eb805f25e6adf4d257b5e5718\"\n    }\n  ],\n  \"open_obligations\": [\n    \"Finish independent whole-source/provider/consumer review and a complete explicit five-gate assessment; no completed score token is emitted.\"\n  ]\n}\n",
+      "original_paths": [
+        "evidence/quality/six_module/checkpoint-013/previous/code/rust/src/fusion_categories/catalog.rs.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "4bb756519160c2bbe8acade98d505758121b9ea73bd7d4c934d5d68cdcd6d6fa",
+      "bytes": 3798,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/fusion_categories/catalog.rs",
+          "sha256": "0aa0caac8a1af06d892120b3f1b1b49a81620d76239768d205f2e79358ed687b",
+          "language": "Rust"
+        },
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de"
+        },
+        "architecture_target": "L4",
+        "engineering_target": "A",
+        "level": "L4",
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "composite_grade": null,
+        "score_token": null,
+        "is_complete": false,
+        "assessment_status": "incomplete",
+        "assessment_source": null,
+        "contract": {
+          "path": "code/rust/src/fusion_categories/catalog.rs.contract.yaml",
+          "sha256": "5c1f849c432c16be956c12125380317152c0a1a323b080be611b6522458b57c1"
+        },
+        "assessment_note": "Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.",
+        "open_obligations": [
+          "Complete each missing sovereign gate; no completed token until all five have adequate evidence."
+        ],
+        "known_findings": [
+          {
+            "status": "repaired_in_current_source",
+            "finding": "Unnecessary root admission previously rejected cyclic_pointed::<Rational>(3,3); the archived full-file witness retains that failure."
+          }
+        ],
+        "partial_evidence": [
+          {
+            "path": "evidence/quality/six_module/20261020T035434Z-fusion-audit/receipt.json",
+            "sha256": "f1e2e982794b4722e978ac5f0a063263e5f703a5afdb88d5fec9e869a965e4ad"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261020T142450Z-modular-catalog-proof/receipt.json",
+            "sha256": "e09b32e00a527368860795c72ac1cfab3f2025f94314f9b91b8c3cbe650b281a"
+          },
+          {
+            "path": "evidence/quality/category_homology/20261020T035433Z-metrics/receipt.json",
+            "sha256": "e1c84042c8a588cc96351d3ff16302d50d1cf786da90d5a059f05a81242a7461"
+          },
+          {
+            "path": "code/rust/quality/six_module/modular_catalog_partial_review.json",
+            "sha256": "b8465fd1b10bb87f0c11346519b0821f4f43b0fed78542ce425aa223b60b6b0f"
+          },
+          {
+            "path": "code/rust/quality/six_module/modular_catalog_partial_review.json",
+            "sha256": "b8465fd1b10bb87f0c11346519b0821f4f43b0fed78542ce425aa223b60b6b0f"
+          },
+          {
+            "path": "evidence/quality/six_module/20261020T145242Z-fusion-catalog/summary.json",
+            "sha256": "ef6fa70d779690d16d9abbe3eb784518cf70d6ab9009a6a8f9b9190d5f1badfe"
+          },
+          {
+            "path": "evidence/quality/six_module/20261020T145242Z-fusion-catalog/mutations.json",
+            "sha256": "273de5a5d1c58d7607148f583379a45f473b826eb805f25e6adf4d257b5e5718"
+          }
+        ],
+        "structural_measurement": {
+          "source_sha256": "0aa0caac8a1af06d892120b3f1b1b49a81620d76239768d205f2e79358ed687b",
+          "function_count": 19,
+          "maxima": {
+            "ccn": 9,
+            "cognitive_upper_bound": 7,
+            "control_nesting": 2
+          },
+          "structural_ceiling": "A",
+          "opaque_macros": [],
+          "evidence": [
+            {
+              "path": "evidence/quality/category_homology/20261020T035433Z-metrics/receipt.json",
+              "sha256": "e1c84042c8a588cc96351d3ff16302d50d1cf786da90d5a059f05a81242a7461"
+            },
+            {
+              "path": "evidence/quality/category_homology/20261020T035433Z-metrics/metrics.json",
+              "sha256": "348c1e27246759bfc1218d2cadcaa414bbd87f5dbd7de1c21f41d4981d81f43e"
+            },
+            {
+              "path": "evidence/quality/category_homology/20261020T035433Z-metrics/six_module_scope.json",
+              "sha256": "f3204609ac12e446e57f4bb42c355d61aba80d1b2507794b330a98a6ec169702"
+            }
+          ],
+          "scope": "Calibrated source measurements only. Structural ceiling A is not an awarded G5 or composite grade; complete five-gate reviews remain open."
+        }
+      },
+      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/fusion_categories/catalog.rs\",\n    \"sha256\": \"0aa0caac8a1af06d892120b3f1b1b49a81620d76239768d205f2e79358ed687b\",\n    \"language\": \"Rust\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"6ee94fcc05012701184da584f062ec235917c15f8e068718a4968a1ed00bb6de\"\n  },\n  \"architecture_target\": \"L4\",\n  \"engineering_target\": \"A\",\n  \"level\": \"L4\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"is_complete\": false,\n  \"assessment_status\": \"incomplete\",\n  \"assessment_source\": null,\n  \"contract\": {\n    \"path\": \"code/rust/src/fusion_categories/catalog.rs.contract.yaml\",\n    \"sha256\": \"5c1f849c432c16be956c12125380317152c0a1a323b080be611b6522458b57c1\"\n  },\n  \"assessment_note\": \"Capability describes delivered code. Existing L1/L2/L3/L5 levels are preserved; neither a sidecar nor the L4 architecture target upgrades them.\",\n  \"open_obligations\": [\n    \"Complete each missing sovereign gate; no completed token until all five have adequate evidence.\"\n  ],\n  \"known_findings\": [\n    {\n      \"status\": \"repaired_in_current_source\",\n      \"finding\": \"Unnecessary root admission previously rejected cyclic_pointed::<Rational>(3,3); the archived full-file witness retains that failure.\"\n    }\n  ],\n  \"partial_evidence\": [\n    {\n      \"path\": \"evidence/quality/six_module/20261020T035434Z-fusion-audit/receipt.json\",\n      \"sha256\": \"f1e2e982794b4722e978ac5f0a063263e5f703a5afdb88d5fec9e869a965e4ad\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261020T142450Z-modular-catalog-proof/receipt.json\",\n      \"sha256\": \"e09b32e00a527368860795c72ac1cfab3f2025f94314f9b91b8c3cbe650b281a\"\n    },\n    {\n      \"path\": \"evidence/quality/category_homology/20261020T035433Z-metrics/receipt.json\",\n      \"sha256\": \"e1c84042c8a588cc96351d3ff16302d50d1cf786da90d5a059f05a81242a7461\"\n    },\n    {\n      \"path\": \"code/rust/quality/six_module/modular_catalog_partial_review.json\",\n      \"sha256\": \"b8465fd1b10bb87f0c11346519b0821f4f43b0fed78542ce425aa223b60b6b0f\"\n    },\n    {\n      \"path\": \"code/rust/quality/six_module/modular_catalog_partial_review.json\",\n      \"sha256\": \"b8465fd1b10bb87f0c11346519b0821f4f43b0fed78542ce425aa223b60b6b0f\"\n    },\n    {\n      \"path\": \"evidence/quality/six_module/20261020T145242Z-fusion-catalog/summary.json\",\n      \"sha256\": \"ef6fa70d779690d16d9abbe3eb784518cf70d6ab9009a6a8f9b9190d5f1badfe\"\n    },\n    {\n      \"path\": \"evidence/quality/six_module/20261020T145242Z-fusion-catalog/mutations.json\",\n      \"sha256\": \"273de5a5d1c58d7607148f583379a45f473b826eb805f25e6adf4d257b5e5718\"\n    }\n  ],\n  \"structural_measurement\": {\n    \"source_sha256\": \"0aa0caac8a1af06d892120b3f1b1b49a81620d76239768d205f2e79358ed687b\",\n    \"function_count\": 19,\n    \"maxima\": {\n      \"ccn\": 9,\n      \"cognitive_upper_bound\": 7,\n      \"control_nesting\": 2\n    },\n    \"structural_ceiling\": \"A\",\n    \"opaque_macros\": [],\n    \"evidence\": [\n      {\n        \"path\": \"evidence/quality/category_homology/20261020T035433Z-metrics/receipt.json\",\n        \"sha256\": \"e1c84042c8a588cc96351d3ff16302d50d1cf786da90d5a059f05a81242a7461\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261020T035433Z-metrics/metrics.json\",\n        \"sha256\": \"348c1e27246759bfc1218d2cadcaa414bbd87f5dbd7de1c21f41d4981d81f43e\"\n      },\n      {\n        \"path\": \"evidence/quality/category_homology/20261020T035433Z-metrics/six_module_scope.json\",\n        \"sha256\": \"f3204609ac12e446e57f4bb42c355d61aba80d1b2507794b330a98a6ec169702\"\n      }\n    ],\n    \"scope\": \"Calibrated source measurements only. Structural ceiling A is not an awarded G5 or composite grade; complete five-gate reviews remain open.\"\n  }\n}\n",
+      "original_paths": [
+        "evidence/quality/six_module/checkpoint-013/previous/code/rust/src/fusion_categories/catalog.rs.scoring.yaml"
+      ]
+    }
+  ],
+  "legacy_paths": {
+    "evidence/quality/six_module/checkpoint-013/previous/code/rust/src/fusion_categories/catalog.rs.contract.yaml": "5c1f849c432c16be956c12125380317152c0a1a323b080be611b6522458b57c1",
+    "evidence/quality/six_module/checkpoint-013/previous/code/rust/src/fusion_categories/catalog.rs.scoring.yaml": "4bb756519160c2bbe8acade98d505758121b9ea73bd7d4c934d5d68cdcd6d6fa"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

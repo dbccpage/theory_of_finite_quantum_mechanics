@@ -1,0 +1,159 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/50_os/crate_dbcontext_v2_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v2",
+    "contract_id": "urn:omega:crate:dbcontext:v2.0.0",
+    "title": "Persistence Unit of Work Context",
+    "kind": "host_contract",
+    "layer": "10_math_crates",
+    "role": "Kernel",
+    "status": "active",
+    "council_owner": "L3_logos_techne",
+    "descriptor": {
+      "authority_effect": "None",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "clean_architecture_layer": "domain",
+      "dependencies": {
+        "contracts": [],
+        "lean4_theorems": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": [
+          "REFUSAL_INVALID_ARGUMENTS",
+          "REFUSAL_GATE_FAILED",
+          "REFUSAL_INVARIANT_BREACH"
+        ]
+      }
+    },
+    "doctrine": {
+      "summary": "Unit of Work context managing atomic database transactions and event outbox.",
+      "invariants": [
+        "Mutations commit atomically with outbox events.",
+        "Rollback restores clean pre-transaction state."
+      ],
+      "non_roles": [
+        "authority_source",
+        "promotion_granter",
+        "implicit_coercion"
+      ],
+      "required_negative_capabilities": [
+        "no_self_certification",
+        "no_implicit_authority_upgrade",
+        "no_undeclared_state_transition"
+      ]
+    },
+    "specification": {
+      "algebraic_structure": {
+        "carrier_type": "DbcontextCarrier",
+        "operations": []
+      },
+      "ports": {
+        "input_packet": "urn:omega:packet:work_packet:v1.0.0",
+        "output_packet": "urn:omega:packet:swarm_run_receipt:v1.0.0",
+        "error_type": "Refusal"
+      },
+      "verification": {
+        "fitness_test": null,
+        "lean4_file": null
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "d2f8511d9843055ac145166a713dde3746d0322b8c324bc13dfc100f58145082",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "d2f8511d9843055ac145166a713dde3746d0322b8c324bc13dfc100f58145082",
+      "bytes": 1368,
+      "record": {
+        "schema_version": "omega.contract.v2",
+        "contract_id": "urn:omega:crate:dbcontext:v2.0.0",
+        "title": "Persistence Unit of Work Context",
+        "kind": "host_contract",
+        "layer": "10_math_crates",
+        "role": "Kernel",
+        "status": "active",
+        "council_owner": "L3_logos_techne",
+        "descriptor": {
+          "authority_effect": "None",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "clean_architecture_layer": "domain",
+          "dependencies": {
+            "contracts": [],
+            "lean4_theorems": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": [
+              "REFUSAL_INVALID_ARGUMENTS",
+              "REFUSAL_GATE_FAILED",
+              "REFUSAL_INVARIANT_BREACH"
+            ]
+          }
+        },
+        "doctrine": {
+          "summary": "Unit of Work context managing atomic database transactions and event outbox.",
+          "invariants": [
+            "Mutations commit atomically with outbox events.",
+            "Rollback restores clean pre-transaction state."
+          ],
+          "non_roles": [
+            "authority_source",
+            "promotion_granter",
+            "implicit_coercion"
+          ],
+          "required_negative_capabilities": [
+            "no_self_certification",
+            "no_implicit_authority_upgrade",
+            "no_undeclared_state_transition"
+          ]
+        },
+        "specification": {
+          "algebraic_structure": {
+            "carrier_type": "DbcontextCarrier",
+            "operations": []
+          },
+          "ports": {
+            "input_packet": "urn:omega:packet:work_packet:v1.0.0",
+            "output_packet": "urn:omega:packet:swarm_run_receipt:v1.0.0",
+            "error_type": "Refusal"
+          },
+          "verification": {
+            "fitness_test": null,
+            "lean4_file": null
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v2\ncontract_id: urn:omega:crate:dbcontext:v2.0.0\ntitle: Persistence Unit of Work Context\nkind: host_contract\nlayer: 10_math_crates\nrole: Kernel\nstatus: active\ncouncil_owner: L3_logos_techne\ndescriptor:\n  authority_effect: None\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  clean_architecture_layer: domain\n  dependencies:\n    contracts: []\n    lean4_theorems: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit:\n    - REFUSAL_INVALID_ARGUMENTS\n    - REFUSAL_GATE_FAILED\n    - REFUSAL_INVARIANT_BREACH\ndoctrine:\n  summary: Unit of Work context managing atomic database transactions and event outbox.\n  invariants:\n  - Mutations commit atomically with outbox events.\n  - Rollback restores clean pre-transaction state.\n  non_roles:\n  - authority_source\n  - promotion_granter\n  - implicit_coercion\n  required_negative_capabilities:\n  - no_self_certification\n  - no_implicit_authority_upgrade\n  - no_undeclared_state_transition\nspecification:\n  algebraic_structure:\n    carrier_type: DbcontextCarrier\n    operations: []\n  ports:\n    input_packet: urn:omega:packet:work_packet:v1.0.0\n    output_packet: urn:omega:packet:swarm_run_receipt:v1.0.0\n    error_type: Refusal\n  verification:\n    fitness_test: null\n    lean4_file: null\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/50_os/crate_dbcontext_v2_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/50_os/crate_dbcontext_v2_0_0.contract.yaml": "d2f8511d9843055ac145166a713dde3746d0322b8c324bc13dfc100f58145082"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

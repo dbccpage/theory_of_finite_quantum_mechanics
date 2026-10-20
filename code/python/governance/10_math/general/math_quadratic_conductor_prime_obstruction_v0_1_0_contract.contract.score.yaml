@@ -1,0 +1,207 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/general/math_quadratic_conductor_prime_obstruction_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:quadratic_conductor_prime_obstruction:v0.1.0",
+    "title": "Bounded least absent quadratic subfield prime",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "quadratic_conductor_prime_obstruction",
+      "symbol": "quadratic_conductor_prime_obstruction",
+      "ascii_symbol": "quadratic_conductor_prime_obstruction",
+      "notation": "Bounded least absent quadratic subfield prime",
+      "domain": [
+        "Positive usize nominal conductor; declared candidate budget and canonical deterministic primality"
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_number_theory::cyclotomic_field; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "Q(sqrt p) embeds exactly when its quadratic conductor divides n",
+      "Every predecessor candidate is checked, so the returned prime is the least absent one",
+      "Search beyond the former fixed prime list is supported with typed budget refusal"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_number_theory",
+      "module": "cyclotomic_field",
+      "symbols": [
+        "quadratic_field_conductor",
+        "first_missing_quadratic_prime",
+        "QuadraticPrimeSearchError"
+      ],
+      "required_tests": [
+        "cyclotomic_field::quadratic_prime_search_laws::least_missing_prime_uses_complete_predecessors_and_typed_bounds"
+      ]
+    },
+    "negative_tests": [
+      "cyclotomic_field::quadratic_prime_search_laws::least_missing_prime_uses_complete_predecessors_and_typed_bounds"
+    ],
+    "doctrine": {
+      "summary": "Q(sqrt p) embeds exactly when its quadratic conductor divides n; Every predecessor candidate is checked, so the returned prime is the least absent one; Search beyond the former fixed prime list is supported with typed budget refusal.",
+      "non_role": [
+        "No topology, Gleason continuity or ambient field construction is inferred",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "3e2a4b53600eb28c5d4bf6914ea8733c2503170163c5f2e9e6577ba971b72765",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "3e2a4b53600eb28c5d4bf6914ea8733c2503170163c5f2e9e6577ba971b72765",
+      "bytes": 2928,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:quadratic_conductor_prime_obstruction:v0.1.0",
+        "title": "Bounded least absent quadratic subfield prime",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "quadratic_conductor_prime_obstruction",
+          "symbol": "quadratic_conductor_prime_obstruction",
+          "ascii_symbol": "quadratic_conductor_prime_obstruction",
+          "notation": "Bounded least absent quadratic subfield prime",
+          "domain": [
+            "Positive usize nominal conductor; declared candidate budget and canonical deterministic primality"
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_number_theory::cyclotomic_field; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "Q(sqrt p) embeds exactly when its quadratic conductor divides n",
+          "Every predecessor candidate is checked, so the returned prime is the least absent one",
+          "Search beyond the former fixed prime list is supported with typed budget refusal"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_number_theory",
+          "module": "cyclotomic_field",
+          "symbols": [
+            "quadratic_field_conductor",
+            "first_missing_quadratic_prime",
+            "QuadraticPrimeSearchError"
+          ],
+          "required_tests": [
+            "cyclotomic_field::quadratic_prime_search_laws::least_missing_prime_uses_complete_predecessors_and_typed_bounds"
+          ]
+        },
+        "negative_tests": [
+          "cyclotomic_field::quadratic_prime_search_laws::least_missing_prime_uses_complete_predecessors_and_typed_bounds"
+        ],
+        "doctrine": {
+          "summary": "Q(sqrt p) embeds exactly when its quadratic conductor divides n; Every predecessor candidate is checked, so the returned prime is the least absent one; Search beyond the former fixed prime list is supported with typed budget refusal.",
+          "non_role": [
+            "No topology, Gleason continuity or ambient field construction is inferred",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:quadratic_conductor_prime_obstruction:v0.1.0\ntitle: Bounded least absent quadratic subfield prime\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: quadratic_conductor_prime_obstruction\n  symbol: quadratic_conductor_prime_obstruction\n  ascii_symbol: quadratic_conductor_prime_obstruction\n  notation: Bounded least absent quadratic subfield prime\n  domain:\n  - Positive usize nominal conductor; declared candidate budget and canonical deterministic\n    primality\n  codomain:\n    description: Declared finite results of omega_number_theory::cyclotomic_field;\n      exact and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- Q(sqrt p) embeds exactly when its quadratic conductor divides n\n- Every predecessor candidate is checked, so the returned prime is the least absent\n  one\n- Search beyond the former fixed prime list is supported with typed budget refusal\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_number_theory\n  module: cyclotomic_field\n  symbols:\n  - quadratic_field_conductor\n  - first_missing_quadratic_prime\n  - QuadraticPrimeSearchError\n  required_tests:\n  - cyclotomic_field::quadratic_prime_search_laws::least_missing_prime_uses_complete_predecessors_and_typed_bounds\nnegative_tests:\n- cyclotomic_field::quadratic_prime_search_laws::least_missing_prime_uses_complete_predecessors_and_typed_bounds\ndoctrine:\n  summary: Q(sqrt p) embeds exactly when its quadratic conductor divides n; Every\n    predecessor candidate is checked, so the returned prime is the least absent one;\n    Search beyond the former fixed prime list is supported with typed budget refusal.\n  non_role:\n  - No topology, Gleason continuity or ambient field construction is inferred\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_quadratic_conductor_prime_obstruction_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_quadratic_conductor_prime_obstruction_v0_1_0.contract.yaml": "3e2a4b53600eb28c5d4bf6914ea8733c2503170163c5f2e9e6577ba971b72765"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

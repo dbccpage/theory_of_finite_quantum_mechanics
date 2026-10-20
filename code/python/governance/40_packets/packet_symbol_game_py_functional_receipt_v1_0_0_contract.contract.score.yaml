@@ -1,0 +1,173 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/40_packets/packet_symbol_game_py_functional_receipt_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v2",
+    "contract_id": "urn:omega:packet:symbol_game:py_functional_receipt:v1.0.0",
+    "title": "Functional Receipt (Python)",
+    "kind": "packet_contract",
+    "layer": "40_packets",
+    "role": "PacketSpecification",
+    "status": "active",
+    "council_owner": "L3_logos_techne",
+    "descriptor": {
+      "authority_effect": "None",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": true,
+      "clean_architecture_layer": "domain",
+      "refusals": {
+        "may_emit": [
+          "FW-UNKNOWN-FIELD",
+          "FW-DUPLICATE-KEY"
+        ]
+      }
+    },
+    "doctrine": {
+      "summary": "The domain's hold on a Rust-issued FunctionalReceiptV1: Phi1, Gamma2 and the diagnostic class from omega_functional, with the digest binding them to the request that asked.",
+      "invariants": [
+        "The domain computes none of these values; the native adapter parses them from a receipt the OEOS seam already bound to its request.",
+        "Every value is an exact Fraction; a float is refused at construction.",
+        "second_stage_repairs is carried, not assumed: only receipts whose Gamma2 is the FOC quotient with a2 = 0 are admitted."
+      ],
+      "non_roles": [
+        "authority_source",
+        "promotion_granter"
+      ],
+      "required_negative_capabilities": [
+        "no_self_certification",
+        "no_implicit_authority_upgrade"
+      ]
+    },
+    "structure": {
+      "language": "python",
+      "python_module": "omega_engine_pfp.domain.value_objects.functional_receipt",
+      "python_type": "FunctionalReceipt",
+      "form": "dataclass",
+      "fields": [
+        {
+          "name": "input_digest"
+        },
+        {
+          "name": "phi1"
+        },
+        {
+          "name": "gamma2"
+        },
+        {
+          "name": "diagnostic_class"
+        },
+        {
+          "name": "dual_witness"
+        },
+        {
+          "name": "primal_residual"
+        },
+        {
+          "name": "second_stage_repairs"
+        },
+        {
+          "name": "authority_effect"
+        }
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "58b9eb195b46027e20a8ff6b00e58c81c257494937c51c3d03c61c83907a50b2",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "58b9eb195b46027e20a8ff6b00e58c81c257494937c51c3d03c61c83907a50b2",
+      "bytes": 1594,
+      "record": {
+        "schema_version": "omega.contract.v2",
+        "contract_id": "urn:omega:packet:symbol_game:py_functional_receipt:v1.0.0",
+        "title": "Functional Receipt (Python)",
+        "kind": "packet_contract",
+        "layer": "40_packets",
+        "role": "PacketSpecification",
+        "status": "active",
+        "council_owner": "L3_logos_techne",
+        "descriptor": {
+          "authority_effect": "None",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": true,
+          "clean_architecture_layer": "domain",
+          "refusals": {
+            "may_emit": [
+              "FW-UNKNOWN-FIELD",
+              "FW-DUPLICATE-KEY"
+            ]
+          }
+        },
+        "doctrine": {
+          "summary": "The domain's hold on a Rust-issued FunctionalReceiptV1: Phi1, Gamma2 and the diagnostic class from omega_functional, with the digest binding them to the request that asked.",
+          "invariants": [
+            "The domain computes none of these values; the native adapter parses them from a receipt the OEOS seam already bound to its request.",
+            "Every value is an exact Fraction; a float is refused at construction.",
+            "second_stage_repairs is carried, not assumed: only receipts whose Gamma2 is the FOC quotient with a2 = 0 are admitted."
+          ],
+          "non_roles": [
+            "authority_source",
+            "promotion_granter"
+          ],
+          "required_negative_capabilities": [
+            "no_self_certification",
+            "no_implicit_authority_upgrade"
+          ]
+        },
+        "structure": {
+          "language": "python",
+          "python_module": "omega_engine_pfp.domain.value_objects.functional_receipt",
+          "python_type": "FunctionalReceipt",
+          "form": "dataclass",
+          "fields": [
+            {
+              "name": "input_digest"
+            },
+            {
+              "name": "phi1"
+            },
+            {
+              "name": "gamma2"
+            },
+            {
+              "name": "diagnostic_class"
+            },
+            {
+              "name": "dual_witness"
+            },
+            {
+              "name": "primal_residual"
+            },
+            {
+              "name": "second_stage_repairs"
+            },
+            {
+              "name": "authority_effect"
+            }
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v2\ncontract_id: urn:omega:packet:symbol_game:py_functional_receipt:v1.0.0\ntitle: Functional Receipt (Python)\nkind: packet_contract\nlayer: 40_packets\nrole: PacketSpecification\nstatus: active\ncouncil_owner: L3_logos_techne\ndescriptor:\n  authority_effect: None\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: true\n  clean_architecture_layer: domain\n  refusals:\n    may_emit:\n    - FW-UNKNOWN-FIELD\n    - FW-DUPLICATE-KEY\ndoctrine:\n  summary: 'The domain''s hold on a Rust-issued FunctionalReceiptV1: Phi1, Gamma2\n    and the diagnostic class from omega_functional, with the digest binding them to\n    the request that asked.'\n  invariants:\n  - The domain computes none of these values; the native adapter parses them from\n    a receipt the OEOS seam already bound to its request.\n  - Every value is an exact Fraction; a float is refused at construction.\n  - 'second_stage_repairs is carried, not assumed: only receipts whose Gamma2 is the\n    FOC quotient with a2 = 0 are admitted.'\n  non_roles:\n  - authority_source\n  - promotion_granter\n  required_negative_capabilities:\n  - no_self_certification\n  - no_implicit_authority_upgrade\nstructure:\n  language: python\n  python_module: omega_engine_pfp.domain.value_objects.functional_receipt\n  python_type: FunctionalReceipt\n  form: dataclass\n  fields:\n  - name: input_digest\n  - name: phi1\n  - name: gamma2\n  - name: diagnostic_class\n  - name: dual_witness\n  - name: primal_residual\n  - name: second_stage_repairs\n  - name: authority_effect\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/40_packets/packet_symbol_game_py_functional_receipt_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/40_packets/packet_symbol_game_py_functional_receipt_v1_0_0.contract.yaml": "58b9eb195b46027e20a8ff6b00e58c81c257494937c51c3d03c61c83907a50b2"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

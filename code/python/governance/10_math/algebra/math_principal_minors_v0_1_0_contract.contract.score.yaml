@@ -1,0 +1,203 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/algebra/math_principal_minors_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:principal_minors:v0.1.0",
+    "title": "Canonical principal-minor enumeration",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "principal_minors",
+      "symbol": "principal_minors",
+      "ascii_symbol": "principal_minors",
+      "notation": "Canonical principal-minor enumeration",
+      "domain": [
+        "Square exact-field matrix of dimension<=12; at most4095 nonempty principal submatrices."
+      ],
+      "codomain": {
+        "description": "Declared finite results of linear_algebra::exact_field::elimination; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "Each output determinant corresponds to its indexed principal subset."
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_linear_algebra",
+      "module": "exact_field::elimination",
+      "symbols": [
+        "principal_minors"
+      ],
+      "required_tests": [
+        "principal_minors_replay_subsets_and_permutations_over_exact_fields",
+        "principal_minors_admit_empty_carriers_and_refuse_rectangles_or_size_exhaustion",
+        "principal_minors_preserve_complex_off_diagonal_products_exactly"
+      ]
+    },
+    "negative_tests": [
+      "principal_minors_admit_empty_carriers_and_refuse_rectangles_or_size_exhaustion"
+    ],
+    "doctrine": {
+      "summary": "Each output determinant corresponds to its indexed principal subset..",
+      "non_role": [
+        "Principal minors are pure algebra; physical positivity premises belong to the caller.",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "6f7c1f165850ea0de1d0d052b80046e856598298dcc06e78b0f3205aed3fee7d",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "6f7c1f165850ea0de1d0d052b80046e856598298dcc06e78b0f3205aed3fee7d",
+      "bytes": 2504,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:principal_minors:v0.1.0",
+        "title": "Canonical principal-minor enumeration",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "principal_minors",
+          "symbol": "principal_minors",
+          "ascii_symbol": "principal_minors",
+          "notation": "Canonical principal-minor enumeration",
+          "domain": [
+            "Square exact-field matrix of dimension<=12; at most4095 nonempty principal submatrices."
+          ],
+          "codomain": {
+            "description": "Declared finite results of linear_algebra::exact_field::elimination; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "Each output determinant corresponds to its indexed principal subset."
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_linear_algebra",
+          "module": "exact_field::elimination",
+          "symbols": [
+            "principal_minors"
+          ],
+          "required_tests": [
+            "principal_minors_replay_subsets_and_permutations_over_exact_fields",
+            "principal_minors_admit_empty_carriers_and_refuse_rectangles_or_size_exhaustion",
+            "principal_minors_preserve_complex_off_diagonal_products_exactly"
+          ]
+        },
+        "negative_tests": [
+          "principal_minors_admit_empty_carriers_and_refuse_rectangles_or_size_exhaustion"
+        ],
+        "doctrine": {
+          "summary": "Each output determinant corresponds to its indexed principal subset..",
+          "non_role": [
+            "Principal minors are pure algebra; physical positivity premises belong to the caller.",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:principal_minors:v0.1.0\ntitle: Canonical principal-minor enumeration\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: principal_minors\n  symbol: principal_minors\n  ascii_symbol: principal_minors\n  notation: Canonical principal-minor enumeration\n  domain:\n  - Square exact-field matrix of dimension<=12; at most4095 nonempty principal submatrices.\n  codomain:\n    description: Declared finite results of linear_algebra::exact_field::elimination;\n      exact and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- Each output determinant corresponds to its indexed principal subset.\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_linear_algebra\n  module: exact_field::elimination\n  symbols:\n  - principal_minors\n  required_tests:\n  - principal_minors_replay_subsets_and_permutations_over_exact_fields\n  - principal_minors_admit_empty_carriers_and_refuse_rectangles_or_size_exhaustion\n  - principal_minors_preserve_complex_off_diagonal_products_exactly\nnegative_tests:\n- principal_minors_admit_empty_carriers_and_refuse_rectangles_or_size_exhaustion\ndoctrine:\n  summary: Each output determinant corresponds to its indexed principal subset..\n  non_role:\n  - Principal minors are pure algebra; physical positivity premises belong to the\n    caller.\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/algebra/math_principal_minors_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/algebra/math_principal_minors_v0_1_0.contract.yaml": "6f7c1f165850ea0de1d0d052b80046e856598298dcc06e78b0f3205aed3fee7d"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

@@ -1,0 +1,199 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/quantum/math_finite_ccr_obstruction_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:finite_ccr_obstruction:v0.1.0",
+    "title": "Finite trace obstruction to CCR",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "finite_ccr_obstruction",
+      "symbol": "finite_ccr_obstruction",
+      "ascii_symbol": "finite_ccr_obstruction",
+      "notation": "Finite trace obstruction to CCR",
+      "domain": [
+        "Nonempty equal-dimensional exact square matrices over Q(i), within1M entries and2^24 scalar operations; resource exhaustion is a typed matrix error."
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_quantum_physics::continuum; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "tr[A,B]=0 while tr(cI)=d c.",
+      "For c!=0 and d>0 a characteristic-zero finite matrix CCR is obstructed."
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_quantum_physics",
+      "module": "continuum",
+      "symbols": [
+        "canonical_commutator_obstruction",
+        "CanonicalCommutatorObstruction"
+      ],
+      "required_tests": [
+        "finite_trace_obstruction_replays_the_supplied_operators"
+      ]
+    },
+    "negative_tests": [],
+    "doctrine": {
+      "summary": "tr[A,B]=0 while tr(cI)=d c.; For c!=0 and d>0 a characteristic-zero finite matrix CCR is obstructed..",
+      "non_role": [
+        "This finite trace argument is not the bounded-operator Wintner theorem. In characteristic p dividing d the trace obstruction does not apply.",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "efcb2af3d123a3ee1e03448629bd9c0de7f7bc958f7f94d2ae02f5d0e7c44911",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "efcb2af3d123a3ee1e03448629bd9c0de7f7bc958f7f94d2ae02f5d0e7c44911",
+      "bytes": 2494,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:finite_ccr_obstruction:v0.1.0",
+        "title": "Finite trace obstruction to CCR",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "finite_ccr_obstruction",
+          "symbol": "finite_ccr_obstruction",
+          "ascii_symbol": "finite_ccr_obstruction",
+          "notation": "Finite trace obstruction to CCR",
+          "domain": [
+            "Nonempty equal-dimensional exact square matrices over Q(i), within1M entries and2^24 scalar operations; resource exhaustion is a typed matrix error."
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_quantum_physics::continuum; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "tr[A,B]=0 while tr(cI)=d c.",
+          "For c!=0 and d>0 a characteristic-zero finite matrix CCR is obstructed."
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_quantum_physics",
+          "module": "continuum",
+          "symbols": [
+            "canonical_commutator_obstruction",
+            "CanonicalCommutatorObstruction"
+          ],
+          "required_tests": [
+            "finite_trace_obstruction_replays_the_supplied_operators"
+          ]
+        },
+        "negative_tests": [],
+        "doctrine": {
+          "summary": "tr[A,B]=0 while tr(cI)=d c.; For c!=0 and d>0 a characteristic-zero finite matrix CCR is obstructed..",
+          "non_role": [
+            "This finite trace argument is not the bounded-operator Wintner theorem. In characteristic p dividing d the trace obstruction does not apply.",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:finite_ccr_obstruction:v0.1.0\ntitle: Finite trace obstruction to CCR\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: finite_ccr_obstruction\n  symbol: finite_ccr_obstruction\n  ascii_symbol: finite_ccr_obstruction\n  notation: Finite trace obstruction to CCR\n  domain:\n  - Nonempty equal-dimensional exact square matrices over Q(i), within1M entries and2^24\n    scalar operations; resource exhaustion is a typed matrix error.\n  codomain:\n    description: Declared finite results of omega_quantum_physics::continuum; exact\n      and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- tr[A,B]=0 while tr(cI)=d c.\n- For c!=0 and d>0 a characteristic-zero finite matrix CCR is obstructed.\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_quantum_physics\n  module: continuum\n  symbols:\n  - canonical_commutator_obstruction\n  - CanonicalCommutatorObstruction\n  required_tests:\n  - finite_trace_obstruction_replays_the_supplied_operators\nnegative_tests: []\ndoctrine:\n  summary: tr[A,B]=0 while tr(cI)=d c.; For c!=0 and d>0 a characteristic-zero finite\n    matrix CCR is obstructed..\n  non_role:\n  - This finite trace argument is not the bounded-operator Wintner theorem. In characteristic\n    p dividing d the trace obstruction does not apply.\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/math_finite_ccr_obstruction_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/quantum/math_finite_ccr_obstruction_v0_1_0.contract.yaml": "efcb2af3d123a3ee1e03448629bd9c0de7f7bc958f7f94d2ae02f5d0e7c44911"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

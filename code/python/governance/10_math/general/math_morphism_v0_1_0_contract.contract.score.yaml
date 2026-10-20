@@ -1,0 +1,231 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/general/math_morphism_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:morphism:v0.1.0",
+    "title": "Morphism Contract",
+    "kind": "math_contract",
+    "status": "exact_rational_classifier_implemented",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "morphism",
+      "symbol": "f: A → B",
+      "ascii_symbol": "morphism",
+      "notation": "f: A → B",
+      "domain": [
+        "morphism_id: unique identifier",
+        "domain: domain object reference",
+        "codomain: codomain object reference",
+        "category: category membership reference"
+      ],
+      "codomain": {
+        "description": "Structure-preserving map between objects in a category"
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "The category must exist and be resolvable",
+        "Domain must be a valid object in the category",
+        "Codomain must be a valid object in the category",
+        "Morphism must be in the category's morphism list with correct domain and codomain"
+      ]
+    },
+    "laws": [
+      "A morphism must belong to exactly one category",
+      "Domain must be an object in the category",
+      "Codomain must be an object in the category"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No randomness",
+        "No time-dependent data",
+        "Given same morphism_id, domain, codomain, and category, must produce identical artifact hash",
+        "Validators and computation functions are content-addressed"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "negative_tests": [
+      "category_id does not resolve",
+      "domain_id is not in the category",
+      "codomain_id is not in the category",
+      "morphism_id not in morphism list",
+      "morphism's domain in category differs from domain_id"
+    ],
+    "doctrine": {
+      "summary": "A Morphism (or arrow) is a structure-preserving map between objects in a category. The contract defines a morphism by its identifier, domain, codomain, and category membership. Morphisms compose associatively with identity morphisms as units.",
+      "non_role": [
+        "Composition and axioms are validated at the Category level",
+        "Higher morphisms (2-morphisms, etc.) are in higher category contracts"
+      ]
+    },
+    "wip": [
+      "The contract defines a single morphism; composition and axioms are validated at the Category level",
+      "The relationship with IdentityMorphism: identity morphisms are special morphisms",
+      "Higher morphisms (2-morphisms, etc.) are in higher category contracts",
+      "Contract is fully deterministic with SHA-256 hash algorithm",
+      "All validators and computation functions are content-addressed",
+      "StructureArtifact only created if all validators succeed"
+    ],
+    "rust_binding": {
+      "crate": "omega_category_theory",
+      "module": "finite_category",
+      "symbols": [
+        "DeclaredMorphism",
+        "ValidatedFiniteCategory"
+      ],
+      "required_tests": [
+        "validated_category_implements_category_trait"
+      ]
+    }
+  },
+  "current_contract": "80bc1ade61b495994a543a980b8f91f6d321213ebc7c182896976d13840dbd21",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "80bc1ade61b495994a543a980b8f91f6d321213ebc7c182896976d13840dbd21",
+      "bytes": 2903,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:morphism:v0.1.0",
+        "title": "Morphism Contract",
+        "kind": "math_contract",
+        "status": "exact_rational_classifier_implemented",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "morphism",
+          "symbol": "f: A → B",
+          "ascii_symbol": "morphism",
+          "notation": "f: A → B",
+          "domain": [
+            "morphism_id: unique identifier",
+            "domain: domain object reference",
+            "codomain: codomain object reference",
+            "category: category membership reference"
+          ],
+          "codomain": {
+            "description": "Structure-preserving map between objects in a category"
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "The category must exist and be resolvable",
+            "Domain must be a valid object in the category",
+            "Codomain must be a valid object in the category",
+            "Morphism must be in the category's morphism list with correct domain and codomain"
+          ]
+        },
+        "laws": [
+          "A morphism must belong to exactly one category",
+          "Domain must be an object in the category",
+          "Codomain must be an object in the category"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "Given same morphism_id, domain, codomain, and category, must produce identical artifact hash",
+            "Validators and computation functions are content-addressed"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "negative_tests": [
+          "category_id does not resolve",
+          "domain_id is not in the category",
+          "codomain_id is not in the category",
+          "morphism_id not in morphism list",
+          "morphism's domain in category differs from domain_id"
+        ],
+        "doctrine": {
+          "summary": "A Morphism (or arrow) is a structure-preserving map between objects in a category. The contract defines a morphism by its identifier, domain, codomain, and category membership. Morphisms compose associatively with identity morphisms as units.",
+          "non_role": [
+            "Composition and axioms are validated at the Category level",
+            "Higher morphisms (2-morphisms, etc.) are in higher category contracts"
+          ]
+        },
+        "wip": [
+          "The contract defines a single morphism; composition and axioms are validated at the Category level",
+          "The relationship with IdentityMorphism: identity morphisms are special morphisms",
+          "Higher morphisms (2-morphisms, etc.) are in higher category contracts",
+          "Contract is fully deterministic with SHA-256 hash algorithm",
+          "All validators and computation functions are content-addressed",
+          "StructureArtifact only created if all validators succeed"
+        ],
+        "rust_binding": {
+          "crate": "omega_category_theory",
+          "module": "finite_category",
+          "symbols": [
+            "DeclaredMorphism",
+            "ValidatedFiniteCategory"
+          ],
+          "required_tests": [
+            "validated_category_implements_category_trait"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:morphism:v0.1.0\ntitle: Morphism Contract\nkind: math_contract\nstatus: exact_rational_classifier_implemented\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: morphism\n  symbol: 'f: A → B'\n  ascii_symbol: morphism\n  notation: 'f: A → B'\n  domain:\n  - 'morphism_id: unique identifier'\n  - 'domain: domain object reference'\n  - 'codomain: codomain object reference'\n  - 'category: category membership reference'\n  codomain:\n    description: Structure-preserving map between objects in a category\nrequirements:\n  required_structures:\n  - The category must exist and be resolvable\n  - Domain must be a valid object in the category\n  - Codomain must be a valid object in the category\n  - Morphism must be in the category's morphism list with correct domain and codomain\nlaws:\n- A morphism must belong to exactly one category\n- Domain must be an object in the category\n- Codomain must be an object in the category\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Given same morphism_id, domain, codomain, and category, must produce identical\n    artifact hash\n  - Validators and computation functions are content-addressed\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nnegative_tests:\n- category_id does not resolve\n- domain_id is not in the category\n- codomain_id is not in the category\n- morphism_id not in morphism list\n- morphism's domain in category differs from domain_id\ndoctrine:\n  summary: A Morphism (or arrow) is a structure-preserving map between objects in\n    a category. The contract defines a morphism by its identifier, domain, codomain,\n    and category membership. Morphisms compose associatively with identity morphisms\n    as units.\n  non_role:\n  - Composition and axioms are validated at the Category level\n  - Higher morphisms (2-morphisms, etc.) are in higher category contracts\nwip:\n- The contract defines a single morphism; composition and axioms are validated at\n  the Category level\n- 'The relationship with IdentityMorphism: identity morphisms are special morphisms'\n- Higher morphisms (2-morphisms, etc.) are in higher category contracts\n- Contract is fully deterministic with SHA-256 hash algorithm\n- All validators and computation functions are content-addressed\n- StructureArtifact only created if all validators succeed\nrust_binding:\n  crate: omega_category_theory\n  module: finite_category\n  symbols:\n  - DeclaredMorphism\n  - ValidatedFiniteCategory\n  required_tests:\n  - validated_category_implements_category_trait\n",
+      "original_paths": [
+        "code/python/governance/10_math/general/math_morphism_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/general/math_morphism_v0_1_0.contract.yaml": "80bc1ade61b495994a543a980b8f91f6d321213ebc7c182896976d13840dbd21"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

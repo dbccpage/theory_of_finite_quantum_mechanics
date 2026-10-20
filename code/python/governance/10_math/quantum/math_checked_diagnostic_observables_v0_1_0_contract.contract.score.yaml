@@ -1,0 +1,213 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/quantum/math_checked_diagnostic_observables_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:checked_diagnostic_observables:v0.1.0",
+    "title": "Checked numerical observable diagnostics",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "checked_diagnostic_observables",
+      "symbol": "checked_diagnostic_observables",
+      "ascii_symbol": "checked_diagnostic_observables",
+      "notation": "Checked numerical observable diagnostics",
+      "domain": [
+        "Bounded finite f64 matrices; finite nonnegative construction tolerance; expectation operations use fixed default Hermiticity replay and a scaled default realness threshold"
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_quantum_physics::observable; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "Public storage is rechecked before dependent matrix products",
+      "NaN/Inf, invalid tolerances and preallocation dimension overflow refuse",
+      "A loose construction tolerance never relaxes operation Hermiticity replay or permits imaginary expectation values to be truncated"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_quantum_physics",
+      "module": "observable",
+      "symbols": [
+        "Observable::try_new",
+        "Observable::expectation_value_state",
+        "Observable::expectation_value_density"
+      ],
+      "required_tests": [
+        "states_channels_exact_tests::diagnostic_faces_refuse_nan_tolerances_and_invalid_public_storage",
+        "quantum_channel::tests::depolarizing_channel_applies_to_a_diagonal_state_with_trace_one",
+        "observable::tests::an_expectation_with_an_imaginary_part_is_refused_not_truncated"
+      ]
+    },
+    "negative_tests": [
+      "states_channels_exact_tests::diagnostic_faces_refuse_nan_tolerances_and_invalid_public_storage",
+      "observable::tests::an_expectation_with_an_imaginary_part_is_refused_not_truncated"
+    ],
+    "doctrine": {
+      "summary": "Public storage is rechecked before dependent matrix products; NaN/Inf, invalid tolerances and preallocation dimension overflow refuse; A loose construction tolerance never relaxes operation Hermiticity replay or permits imaginary expectation values to be truncated.",
+      "non_role": [
+        "Diagnostic tolerance-based observations never create exact or theorem authority",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "dcbc7a282139fb33a5882d7a5be2b0ff8468dee55c23dc69949dd234b5dd157b",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "dcbc7a282139fb33a5882d7a5be2b0ff8468dee55c23dc69949dd234b5dd157b",
+      "bytes": 3276,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:checked_diagnostic_observables:v0.1.0",
+        "title": "Checked numerical observable diagnostics",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "checked_diagnostic_observables",
+          "symbol": "checked_diagnostic_observables",
+          "ascii_symbol": "checked_diagnostic_observables",
+          "notation": "Checked numerical observable diagnostics",
+          "domain": [
+            "Bounded finite f64 matrices; finite nonnegative construction tolerance; expectation operations use fixed default Hermiticity replay and a scaled default realness threshold"
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_quantum_physics::observable; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "Public storage is rechecked before dependent matrix products",
+          "NaN/Inf, invalid tolerances and preallocation dimension overflow refuse",
+          "A loose construction tolerance never relaxes operation Hermiticity replay or permits imaginary expectation values to be truncated"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_quantum_physics",
+          "module": "observable",
+          "symbols": [
+            "Observable::try_new",
+            "Observable::expectation_value_state",
+            "Observable::expectation_value_density"
+          ],
+          "required_tests": [
+            "states_channels_exact_tests::diagnostic_faces_refuse_nan_tolerances_and_invalid_public_storage",
+            "quantum_channel::tests::depolarizing_channel_applies_to_a_diagonal_state_with_trace_one",
+            "observable::tests::an_expectation_with_an_imaginary_part_is_refused_not_truncated"
+          ]
+        },
+        "negative_tests": [
+          "states_channels_exact_tests::diagnostic_faces_refuse_nan_tolerances_and_invalid_public_storage",
+          "observable::tests::an_expectation_with_an_imaginary_part_is_refused_not_truncated"
+        ],
+        "doctrine": {
+          "summary": "Public storage is rechecked before dependent matrix products; NaN/Inf, invalid tolerances and preallocation dimension overflow refuse; A loose construction tolerance never relaxes operation Hermiticity replay or permits imaginary expectation values to be truncated.",
+          "non_role": [
+            "Diagnostic tolerance-based observations never create exact or theorem authority",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:checked_diagnostic_observables:v0.1.0\ntitle: Checked numerical observable diagnostics\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: checked_diagnostic_observables\n  symbol: checked_diagnostic_observables\n  ascii_symbol: checked_diagnostic_observables\n  notation: Checked numerical observable diagnostics\n  domain:\n  - Bounded finite f64 matrices; finite nonnegative construction tolerance; expectation\n    operations use fixed default Hermiticity replay and a scaled default realness\n    threshold\n  codomain:\n    description: Declared finite results of omega_quantum_physics::observable; exact\n      and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- Public storage is rechecked before dependent matrix products\n- NaN/Inf, invalid tolerances and preallocation dimension overflow refuse\n- A loose construction tolerance never relaxes operation Hermiticity replay or permits\n  imaginary expectation values to be truncated\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_quantum_physics\n  module: observable\n  symbols:\n  - Observable::try_new\n  - Observable::expectation_value_state\n  - Observable::expectation_value_density\n  required_tests:\n  - states_channels_exact_tests::diagnostic_faces_refuse_nan_tolerances_and_invalid_public_storage\n  - quantum_channel::tests::depolarizing_channel_applies_to_a_diagonal_state_with_trace_one\n  - observable::tests::an_expectation_with_an_imaginary_part_is_refused_not_truncated\nnegative_tests:\n- states_channels_exact_tests::diagnostic_faces_refuse_nan_tolerances_and_invalid_public_storage\n- observable::tests::an_expectation_with_an_imaginary_part_is_refused_not_truncated\ndoctrine:\n  summary: Public storage is rechecked before dependent matrix products; NaN/Inf,\n    invalid tolerances and preallocation dimension overflow refuse; A loose construction\n    tolerance never relaxes operation Hermiticity replay or permits imaginary expectation\n    values to be truncated.\n  non_role:\n  - Diagnostic tolerance-based observations never create exact or theorem authority\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/math_checked_diagnostic_observables_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/quantum/math_checked_diagnostic_observables_v0_1_0.contract.yaml": "dcbc7a282139fb33a5882d7a5be2b0ff8468dee55c23dc69949dd234b5dd157b"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

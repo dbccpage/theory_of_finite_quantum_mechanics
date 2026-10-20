@@ -1,0 +1,147 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/40_packets/packet_symbol_game_py_decider_context_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v2",
+    "contract_id": "urn:omega:packet:symbol_game:py_decider_context:v1.0.0",
+    "title": "Decider Context (Python)",
+    "kind": "packet_contract",
+    "layer": "40_packets",
+    "role": "PacketSpecification",
+    "status": "active",
+    "council_owner": "L3_logos_techne",
+    "descriptor": {
+      "authority_effect": "None",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": true,
+      "clean_architecture_layer": "domain",
+      "refusals": {
+        "may_emit": [
+          "FW-UNKNOWN-FIELD"
+        ]
+      }
+    },
+    "doctrine": {
+      "summary": "Everything a row decider may consult, and every part of it host-side. Never on a wire; contracted because its shape is the boundary between what the host knows and what the packet said.",
+      "invariants": [
+        "presentation is already RESOLVED when this object is built. The packet contributed a name and the lookup happened against the host pins beforehand, so no decider can be handed rules a producer wrote.",
+        "presentation_ref records the name the packet asked for even when it resolved to nothing, so a blind spot can say WHICH name went unfound.",
+        "Empty is the honest default. A decider needing something absent reports UNCHECKABLE and names what was missing; it never falls back to whatever single presentation happens to be pinned, which would report REDERIVED having guessed the subject of the sentence."
+      ],
+      "non_roles": [
+        "authority_source",
+        "promotion_granter"
+      ],
+      "required_negative_capabilities": [
+        "no_self_certification",
+        "no_implicit_authority_upgrade"
+      ]
+    },
+    "structure": {
+      "language": "python",
+      "python_module": "omega_engine_pfp.domain.row_rederivation",
+      "python_type": "DeciderContext",
+      "form": "dataclass",
+      "fields": [
+        {
+          "name": "carrier"
+        },
+        {
+          "name": "presentation"
+        },
+        {
+          "name": "presentation_ref"
+        },
+        {
+          "name": "pins"
+        }
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "3e18d36f2fa7bde4625ebc0ecbe8d41dfd6c56279b1b7083e280603efc1f02ce",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "3e18d36f2fa7bde4625ebc0ecbe8d41dfd6c56279b1b7083e280603efc1f02ce",
+      "bytes": 1740,
+      "record": {
+        "schema_version": "omega.contract.v2",
+        "contract_id": "urn:omega:packet:symbol_game:py_decider_context:v1.0.0",
+        "title": "Decider Context (Python)",
+        "kind": "packet_contract",
+        "layer": "40_packets",
+        "role": "PacketSpecification",
+        "status": "active",
+        "council_owner": "L3_logos_techne",
+        "descriptor": {
+          "authority_effect": "None",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": true,
+          "clean_architecture_layer": "domain",
+          "refusals": {
+            "may_emit": [
+              "FW-UNKNOWN-FIELD"
+            ]
+          }
+        },
+        "doctrine": {
+          "summary": "Everything a row decider may consult, and every part of it host-side. Never on a wire; contracted because its shape is the boundary between what the host knows and what the packet said.",
+          "invariants": [
+            "presentation is already RESOLVED when this object is built. The packet contributed a name and the lookup happened against the host pins beforehand, so no decider can be handed rules a producer wrote.",
+            "presentation_ref records the name the packet asked for even when it resolved to nothing, so a blind spot can say WHICH name went unfound.",
+            "Empty is the honest default. A decider needing something absent reports UNCHECKABLE and names what was missing; it never falls back to whatever single presentation happens to be pinned, which would report REDERIVED having guessed the subject of the sentence."
+          ],
+          "non_roles": [
+            "authority_source",
+            "promotion_granter"
+          ],
+          "required_negative_capabilities": [
+            "no_self_certification",
+            "no_implicit_authority_upgrade"
+          ]
+        },
+        "structure": {
+          "language": "python",
+          "python_module": "omega_engine_pfp.domain.row_rederivation",
+          "python_type": "DeciderContext",
+          "form": "dataclass",
+          "fields": [
+            {
+              "name": "carrier"
+            },
+            {
+              "name": "presentation"
+            },
+            {
+              "name": "presentation_ref"
+            },
+            {
+              "name": "pins"
+            }
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v2\ncontract_id: urn:omega:packet:symbol_game:py_decider_context:v1.0.0\ntitle: Decider Context (Python)\nkind: packet_contract\nlayer: 40_packets\nrole: PacketSpecification\nstatus: active\ncouncil_owner: L3_logos_techne\ndescriptor:\n  authority_effect: None\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: true\n  clean_architecture_layer: domain\n  refusals:\n    may_emit:\n    - FW-UNKNOWN-FIELD\ndoctrine:\n  summary: Everything a row decider may consult, and every part of it host-side. Never\n    on a wire; contracted because its shape is the boundary between what the host\n    knows and what the packet said.\n  invariants:\n  - presentation is already RESOLVED when this object is built. The packet contributed\n    a name and the lookup happened against the host pins beforehand, so no decider\n    can be handed rules a producer wrote.\n  - presentation_ref records the name the packet asked for even when it resolved to\n    nothing, so a blind spot can say WHICH name went unfound.\n  - Empty is the honest default. A decider needing something absent reports UNCHECKABLE\n    and names what was missing; it never falls back to whatever single presentation\n    happens to be pinned, which would report REDERIVED having guessed the subject\n    of the sentence.\n  non_roles:\n  - authority_source\n  - promotion_granter\n  required_negative_capabilities:\n  - no_self_certification\n  - no_implicit_authority_upgrade\nstructure:\n  language: python\n  python_module: omega_engine_pfp.domain.row_rederivation\n  python_type: DeciderContext\n  form: dataclass\n  fields:\n  - name: carrier\n  - name: presentation\n  - name: presentation_ref\n  - name: pins\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/40_packets/packet_symbol_game_py_decider_context_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/40_packets/packet_symbol_game_py_decider_context_v1_0_0.contract.yaml": "3e18d36f2fa7bde4625ebc0ecbe8d41dfd6c56279b1b7083e280603efc1f02ce"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

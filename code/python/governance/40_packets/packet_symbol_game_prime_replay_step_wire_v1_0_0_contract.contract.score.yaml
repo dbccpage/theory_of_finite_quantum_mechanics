@@ -1,0 +1,147 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/40_packets/packet_symbol_game_prime_replay_step_wire_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v2",
+    "contract_id": "urn:omega:packet:symbol_game:prime_replay_step_wire:v1.0.0",
+    "title": "Prime Replay Step Wire",
+    "kind": "packet_contract",
+    "layer": "40_packets",
+    "role": "PacketSpecification",
+    "status": "active",
+    "council_owner": "L3_logos_techne",
+    "descriptor": {
+      "authority_effect": "None",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": true,
+      "clean_architecture_layer": "infrastructure",
+      "refusals": {
+        "may_emit": [
+          "FW-UNKNOWN-FIELD"
+        ]
+      }
+    },
+    "doctrine": {
+      "summary": "PrimeReplayStepWire, operational step record evaluated in prime replay.",
+      "invariants": [
+        "AuthorityEffect is strictly None."
+      ],
+      "non_roles": [
+        "authority_source"
+      ],
+      "required_negative_capabilities": [
+        "no_self_certification"
+      ]
+    },
+    "structure": {
+      "language": "rust",
+      "rust_crate": "omega_symbol_game",
+      "rust_module": "prime",
+      "rust_type": "PrimeReplayStepWire",
+      "form": "struct",
+      "serde": {
+        "deny_unknown_fields": true
+      },
+      "fields": [
+        {
+          "name": "prime_step"
+        },
+        {
+          "name": "op"
+        },
+        {
+          "name": "executed"
+        },
+        {
+          "name": "message"
+        }
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "5d7ba53671a58f4b6f9b3f44c0eb7565d8b2f988084a9d3c96ec38d36ff065c9",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "5d7ba53671a58f4b6f9b3f44c0eb7565d8b2f988084a9d3c96ec38d36ff065c9",
+      "bytes": 997,
+      "record": {
+        "schema_version": "omega.contract.v2",
+        "contract_id": "urn:omega:packet:symbol_game:prime_replay_step_wire:v1.0.0",
+        "title": "Prime Replay Step Wire",
+        "kind": "packet_contract",
+        "layer": "40_packets",
+        "role": "PacketSpecification",
+        "status": "active",
+        "council_owner": "L3_logos_techne",
+        "descriptor": {
+          "authority_effect": "None",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": true,
+          "clean_architecture_layer": "infrastructure",
+          "refusals": {
+            "may_emit": [
+              "FW-UNKNOWN-FIELD"
+            ]
+          }
+        },
+        "doctrine": {
+          "summary": "PrimeReplayStepWire, operational step record evaluated in prime replay.",
+          "invariants": [
+            "AuthorityEffect is strictly None."
+          ],
+          "non_roles": [
+            "authority_source"
+          ],
+          "required_negative_capabilities": [
+            "no_self_certification"
+          ]
+        },
+        "structure": {
+          "language": "rust",
+          "rust_crate": "omega_symbol_game",
+          "rust_module": "prime",
+          "rust_type": "PrimeReplayStepWire",
+          "form": "struct",
+          "serde": {
+            "deny_unknown_fields": true
+          },
+          "fields": [
+            {
+              "name": "prime_step"
+            },
+            {
+              "name": "op"
+            },
+            {
+              "name": "executed"
+            },
+            {
+              "name": "message"
+            }
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v2\ncontract_id: urn:omega:packet:symbol_game:prime_replay_step_wire:v1.0.0\ntitle: Prime Replay Step Wire\nkind: packet_contract\nlayer: 40_packets\nrole: PacketSpecification\nstatus: active\ncouncil_owner: L3_logos_techne\ndescriptor:\n  authority_effect: None\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: true\n  clean_architecture_layer: infrastructure\n  refusals:\n    may_emit:\n    - FW-UNKNOWN-FIELD\ndoctrine:\n  summary: PrimeReplayStepWire, operational step record evaluated in prime replay.\n  invariants:\n  - AuthorityEffect is strictly None.\n  non_roles:\n  - authority_source\n  required_negative_capabilities:\n  - no_self_certification\nstructure:\n  language: rust\n  rust_crate: omega_symbol_game\n  rust_module: prime\n  rust_type: PrimeReplayStepWire\n  form: struct\n  serde:\n    deny_unknown_fields: true\n  fields:\n  - name: prime_step\n  - name: op\n  - name: executed\n  - name: message\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/40_packets/packet_symbol_game_prime_replay_step_wire_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/40_packets/packet_symbol_game_prime_replay_step_wire_v1_0_0.contract.yaml": "5d7ba53671a58f4b6f9b3f44c0eb7565d8b2f988084a9d3c96ec38d36ff065c9"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

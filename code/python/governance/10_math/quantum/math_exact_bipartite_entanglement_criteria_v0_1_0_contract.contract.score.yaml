@@ -1,0 +1,217 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/quantum/math_exact_bipartite_entanglement_criteria_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:exact_bipartite_entanglement_criteria:v0.1.0",
+    "title": "PPT, realignment and unextendible-product-basis witnesses",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "exact_bipartite_entanglement_criteria",
+      "symbol": "exact_bipartite_entanglement_criteria",
+      "ascii_symbol": "exact_bipartite_entanglement_criteria",
+      "notation": "PPT, realignment and unextendible-product-basis witnesses",
+      "domain": [
+        "Bounded finite bipartite exact density operators; declared orthogonal product families; explicit subset replay bound"
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_quantum_physics::bipartite_operator; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "UPB unextendibility replays every factor-span subset obstruction",
+      "Reduction, separable purity ball and realignment act on full operators",
+      "Negativity and CCNR use exact algebraic singular-value bounds"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_quantum_physics",
+      "module": "bipartite_operator",
+      "symbols": [
+        "UnextendibleProductBasis::try_new",
+        "UnextendibleProductBasis::complement_state",
+        "in_separable_ball",
+        "operator_schmidt_rank",
+        "reduction_criterion",
+        "realignment_norm_enclosure",
+        "negativity_enclosure"
+      ],
+      "required_tests": [
+        "states_channels_exact_tests::tiles_bound_entanglement_and_local_separability_criteria_are_replayed",
+        "states_channels_exact_tests::uhlmann_fidelity_and_trace_norm_intervals_agree_on_pure_and_mixed_routes"
+      ]
+    },
+    "negative_tests": [
+      "states_channels_exact_tests::tiles_bound_entanglement_and_local_separability_criteria_are_replayed"
+    ],
+    "doctrine": {
+      "summary": "UPB unextendibility replays every factor-span subset obstruction; Reduction, separable purity ball and realignment act on full operators; Negativity and CCNR use exact algebraic singular-value bounds.",
+      "non_role": [
+        "PPT alone is not sufficient for separability beyond 2x2 and 2x3",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "e66ab630047cdac6648073401a1965a6cf29cd29b1fd98d0ca55901b065c6faa",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "e66ab630047cdac6648073401a1965a6cf29cd29b1fd98d0ca55901b065c6faa",
+      "bytes": 3102,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:exact_bipartite_entanglement_criteria:v0.1.0",
+        "title": "PPT, realignment and unextendible-product-basis witnesses",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "exact_bipartite_entanglement_criteria",
+          "symbol": "exact_bipartite_entanglement_criteria",
+          "ascii_symbol": "exact_bipartite_entanglement_criteria",
+          "notation": "PPT, realignment and unextendible-product-basis witnesses",
+          "domain": [
+            "Bounded finite bipartite exact density operators; declared orthogonal product families; explicit subset replay bound"
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_quantum_physics::bipartite_operator; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "UPB unextendibility replays every factor-span subset obstruction",
+          "Reduction, separable purity ball and realignment act on full operators",
+          "Negativity and CCNR use exact algebraic singular-value bounds"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_quantum_physics",
+          "module": "bipartite_operator",
+          "symbols": [
+            "UnextendibleProductBasis::try_new",
+            "UnextendibleProductBasis::complement_state",
+            "in_separable_ball",
+            "operator_schmidt_rank",
+            "reduction_criterion",
+            "realignment_norm_enclosure",
+            "negativity_enclosure"
+          ],
+          "required_tests": [
+            "states_channels_exact_tests::tiles_bound_entanglement_and_local_separability_criteria_are_replayed",
+            "states_channels_exact_tests::uhlmann_fidelity_and_trace_norm_intervals_agree_on_pure_and_mixed_routes"
+          ]
+        },
+        "negative_tests": [
+          "states_channels_exact_tests::tiles_bound_entanglement_and_local_separability_criteria_are_replayed"
+        ],
+        "doctrine": {
+          "summary": "UPB unextendibility replays every factor-span subset obstruction; Reduction, separable purity ball and realignment act on full operators; Negativity and CCNR use exact algebraic singular-value bounds.",
+          "non_role": [
+            "PPT alone is not sufficient for separability beyond 2x2 and 2x3",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:exact_bipartite_entanglement_criteria:v0.1.0\ntitle: PPT, realignment and unextendible-product-basis witnesses\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: exact_bipartite_entanglement_criteria\n  symbol: exact_bipartite_entanglement_criteria\n  ascii_symbol: exact_bipartite_entanglement_criteria\n  notation: PPT, realignment and unextendible-product-basis witnesses\n  domain:\n  - Bounded finite bipartite exact density operators; declared orthogonal product\n    families; explicit subset replay bound\n  codomain:\n    description: Declared finite results of omega_quantum_physics::bipartite_operator;\n      exact and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- UPB unextendibility replays every factor-span subset obstruction\n- Reduction, separable purity ball and realignment act on full operators\n- Negativity and CCNR use exact algebraic singular-value bounds\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_quantum_physics\n  module: bipartite_operator\n  symbols:\n  - UnextendibleProductBasis::try_new\n  - UnextendibleProductBasis::complement_state\n  - in_separable_ball\n  - operator_schmidt_rank\n  - reduction_criterion\n  - realignment_norm_enclosure\n  - negativity_enclosure\n  required_tests:\n  - states_channels_exact_tests::tiles_bound_entanglement_and_local_separability_criteria_are_replayed\n  - states_channels_exact_tests::uhlmann_fidelity_and_trace_norm_intervals_agree_on_pure_and_mixed_routes\nnegative_tests:\n- states_channels_exact_tests::tiles_bound_entanglement_and_local_separability_criteria_are_replayed\ndoctrine:\n  summary: UPB unextendibility replays every factor-span subset obstruction; Reduction,\n    separable purity ball and realignment act on full operators; Negativity and CCNR\n    use exact algebraic singular-value bounds.\n  non_role:\n  - PPT alone is not sufficient for separability beyond 2x2 and 2x3\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/math_exact_bipartite_entanglement_criteria_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/quantum/math_exact_bipartite_entanglement_criteria_v0_1_0.contract.yaml": "e66ab630047cdac6648073401a1965a6cf29cd29b1fd98d0ca55901b065c6faa"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

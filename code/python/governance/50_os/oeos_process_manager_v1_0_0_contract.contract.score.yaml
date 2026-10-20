@@ -1,0 +1,301 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/50_os/oeos_process_manager_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:oeos:process_manager:v1.0.0",
+    "title": "Bounded Process Manager",
+    "kind": "host_contract",
+    "status": "proposed",
+    "layer": "09_host",
+    "role": "ProcessManager",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "RequirementsOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [
+          "urn:omega:oeos:capability_guard:v1.0.0",
+          "urn:omega:oeos:resource_quota:v1.0.0",
+          "urn:omega:oeos:sandbox:v1.0.0"
+        ],
+        "proof_obligations": [
+          {
+            "id": "PROC-INV-001",
+            "statement": "Process launch binds an exact executable identity, argument vector, environment allowlist, workspace, quota, and sandbox profile.",
+            "verification_status": "open"
+          },
+          {
+            "id": "PROC-INV-002",
+            "statement": "Cancellation has a declared graceful deadline and a declared platform-specific hard-kill deadline.",
+            "verification_status": "open"
+          },
+          {
+            "id": "PROC-INV-003",
+            "statement": "Exit, stdout, stderr, timeout, and termination mode are captured without claiming deterministic process internals.",
+            "verification_status": "open"
+          },
+          {
+            "id": "PROC-INV-004",
+            "statement": "Cleanup failures and orphaned process handles produce typed refusals.",
+            "verification_status": "open"
+          }
+        ]
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": [
+          "PROCESS_CANCELLATION_REFUSED",
+          "PROCESS_LAUNCH_REFUSED",
+          "PROCESS_OUTPUT_LIMIT_REFUSED",
+          "PROCESS_TIMEOUT_REFUSED"
+        ]
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "abstract": false,
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0",
+        "urn:omega:constitution:base_host_contract:v1.0.0"
+      ]
+    },
+    "requirements": {
+      "inputs": [
+        {
+          "name": "bounded_process_request",
+          "type": "urn:omega:oeos:type:bounded_process_request:v1.0.0",
+          "required": true
+        }
+      ],
+      "outputs": [
+        {
+          "name": "process_exit_record",
+          "type": "urn:omega:oeos:type:process_exit_record:v1.0.0",
+          "required": true
+        }
+      ],
+      "typed_refusals": [
+        "PROCESS_CANCELLATION_REFUSED",
+        "PROCESS_LAUNCH_REFUSED",
+        "PROCESS_OUTPUT_LIMIT_REFUSED",
+        "PROCESS_TIMEOUT_REFUSED"
+      ],
+      "platform_requirements": [
+        {
+          "profile": "windows_process",
+          "requirements": [
+            "job_object_tree_termination",
+            "bounded_graceful_and_hard_kill_deadlines",
+            "checked_pipe_io"
+          ],
+          "verification_status": "requirements_only"
+        },
+        {
+          "profile": "posix_process",
+          "requirements": [
+            "signal_sequence_declared",
+            "bounded_graceful_and_sigkill_deadlines",
+            "checked_pipe_io"
+          ],
+          "verification_status": "requirements_only"
+        }
+      ],
+      "evidence_ceiling": "RequirementsOnly"
+    },
+    "doctrine": {
+      "summary": "Declares bounded subprocess supervision with platform-specific cancellation behavior.",
+      "non_role": [
+        "task_semantics",
+        "solver_evaluation",
+        "policy_judgment"
+      ],
+      "nonclaims": [
+        "does_not_create_mathematical_facts_or_witnesses",
+        "does_not_issue_action_licenses",
+        "does_not_authorize_engine_state_transitions",
+        "cancellation_is_bounded_not_instantaneous",
+        "sigkill_is_not_a_cross_platform_operation"
+      ],
+      "invariants": [
+        "hard_kill_deadline_is_finite_and_declared",
+        "output_capture_is_bounded"
+      ],
+      "allowed_operations": [
+        "spawn_declared_subprocess",
+        "await_bounded_exit",
+        "request_then_force_platform_termination"
+      ],
+      "forbidden_operations": [
+        "dynamic_executable_injection",
+        "unbounded_output_capture",
+        "report_timeout_as_success"
+      ]
+    }
+  },
+  "current_contract": "df70c09e56efd100b91653744a7cc28b1ca6c52eecb484c4ed8e1973e8961c0f",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "df70c09e56efd100b91653744a7cc28b1ca6c52eecb484c4ed8e1973e8961c0f",
+      "bytes": 3231,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:oeos:process_manager:v1.0.0",
+        "title": "Bounded Process Manager",
+        "kind": "host_contract",
+        "status": "proposed",
+        "layer": "09_host",
+        "role": "ProcessManager",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "RequirementsOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [
+              "urn:omega:oeos:capability_guard:v1.0.0",
+              "urn:omega:oeos:resource_quota:v1.0.0",
+              "urn:omega:oeos:sandbox:v1.0.0"
+            ],
+            "proof_obligations": [
+              {
+                "id": "PROC-INV-001",
+                "statement": "Process launch binds an exact executable identity, argument vector, environment allowlist, workspace, quota, and sandbox profile.",
+                "verification_status": "open"
+              },
+              {
+                "id": "PROC-INV-002",
+                "statement": "Cancellation has a declared graceful deadline and a declared platform-specific hard-kill deadline.",
+                "verification_status": "open"
+              },
+              {
+                "id": "PROC-INV-003",
+                "statement": "Exit, stdout, stderr, timeout, and termination mode are captured without claiming deterministic process internals.",
+                "verification_status": "open"
+              },
+              {
+                "id": "PROC-INV-004",
+                "statement": "Cleanup failures and orphaned process handles produce typed refusals.",
+                "verification_status": "open"
+              }
+            ]
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": [
+              "PROCESS_CANCELLATION_REFUSED",
+              "PROCESS_LAUNCH_REFUSED",
+              "PROCESS_OUTPUT_LIMIT_REFUSED",
+              "PROCESS_TIMEOUT_REFUSED"
+            ]
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "abstract": false,
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0",
+            "urn:omega:constitution:base_host_contract:v1.0.0"
+          ]
+        },
+        "requirements": {
+          "inputs": [
+            {
+              "name": "bounded_process_request",
+              "type": "urn:omega:oeos:type:bounded_process_request:v1.0.0",
+              "required": true
+            }
+          ],
+          "outputs": [
+            {
+              "name": "process_exit_record",
+              "type": "urn:omega:oeos:type:process_exit_record:v1.0.0",
+              "required": true
+            }
+          ],
+          "typed_refusals": [
+            "PROCESS_CANCELLATION_REFUSED",
+            "PROCESS_LAUNCH_REFUSED",
+            "PROCESS_OUTPUT_LIMIT_REFUSED",
+            "PROCESS_TIMEOUT_REFUSED"
+          ],
+          "platform_requirements": [
+            {
+              "profile": "windows_process",
+              "requirements": [
+                "job_object_tree_termination",
+                "bounded_graceful_and_hard_kill_deadlines",
+                "checked_pipe_io"
+              ],
+              "verification_status": "requirements_only"
+            },
+            {
+              "profile": "posix_process",
+              "requirements": [
+                "signal_sequence_declared",
+                "bounded_graceful_and_sigkill_deadlines",
+                "checked_pipe_io"
+              ],
+              "verification_status": "requirements_only"
+            }
+          ],
+          "evidence_ceiling": "RequirementsOnly"
+        },
+        "doctrine": {
+          "summary": "Declares bounded subprocess supervision with platform-specific cancellation behavior.",
+          "non_role": [
+            "task_semantics",
+            "solver_evaluation",
+            "policy_judgment"
+          ],
+          "nonclaims": [
+            "does_not_create_mathematical_facts_or_witnesses",
+            "does_not_issue_action_licenses",
+            "does_not_authorize_engine_state_transitions",
+            "cancellation_is_bounded_not_instantaneous",
+            "sigkill_is_not_a_cross_platform_operation"
+          ],
+          "invariants": [
+            "hard_kill_deadline_is_finite_and_declared",
+            "output_capture_is_bounded"
+          ],
+          "allowed_operations": [
+            "spawn_declared_subprocess",
+            "await_bounded_exit",
+            "request_then_force_platform_termination"
+          ],
+          "forbidden_operations": [
+            "dynamic_executable_injection",
+            "unbounded_output_capture",
+            "report_timeout_as_success"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:oeos:process_manager:v1.0.0\ntitle: Bounded Process Manager\nkind: host_contract\nstatus: proposed\nlayer: 09_host\nrole: ProcessManager\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: RequirementsOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts:\n    - urn:omega:oeos:capability_guard:v1.0.0\n    - urn:omega:oeos:resource_quota:v1.0.0\n    - urn:omega:oeos:sandbox:v1.0.0\n    proof_obligations:\n    - id: PROC-INV-001\n      statement: Process launch binds an exact executable identity, argument vector,\n        environment allowlist, workspace, quota, and sandbox profile.\n      verification_status: open\n    - id: PROC-INV-002\n      statement: Cancellation has a declared graceful deadline and a declared platform-specific\n        hard-kill deadline.\n      verification_status: open\n    - id: PROC-INV-003\n      statement: Exit, stdout, stderr, timeout, and termination mode are captured\n        without claiming deterministic process internals.\n      verification_status: open\n    - id: PROC-INV-004\n      statement: Cleanup failures and orphaned process handles produce typed refusals.\n      verification_status: open\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit:\n    - PROCESS_CANCELLATION_REFUSED\n    - PROCESS_LAUNCH_REFUSED\n    - PROCESS_OUTPUT_LIMIT_REFUSED\n    - PROCESS_TIMEOUT_REFUSED\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  abstract: false\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n  - urn:omega:constitution:base_host_contract:v1.0.0\nrequirements:\n  inputs:\n  - name: bounded_process_request\n    type: urn:omega:oeos:type:bounded_process_request:v1.0.0\n    required: true\n  outputs:\n  - name: process_exit_record\n    type: urn:omega:oeos:type:process_exit_record:v1.0.0\n    required: true\n  typed_refusals:\n  - PROCESS_CANCELLATION_REFUSED\n  - PROCESS_LAUNCH_REFUSED\n  - PROCESS_OUTPUT_LIMIT_REFUSED\n  - PROCESS_TIMEOUT_REFUSED\n  platform_requirements:\n  - profile: windows_process\n    requirements:\n    - job_object_tree_termination\n    - bounded_graceful_and_hard_kill_deadlines\n    - checked_pipe_io\n    verification_status: requirements_only\n  - profile: posix_process\n    requirements:\n    - signal_sequence_declared\n    - bounded_graceful_and_sigkill_deadlines\n    - checked_pipe_io\n    verification_status: requirements_only\n  evidence_ceiling: RequirementsOnly\ndoctrine:\n  summary: Declares bounded subprocess supervision with platform-specific cancellation\n    behavior.\n  non_role:\n  - task_semantics\n  - solver_evaluation\n  - policy_judgment\n  nonclaims:\n  - does_not_create_mathematical_facts_or_witnesses\n  - does_not_issue_action_licenses\n  - does_not_authorize_engine_state_transitions\n  - cancellation_is_bounded_not_instantaneous\n  - sigkill_is_not_a_cross_platform_operation\n  invariants:\n  - hard_kill_deadline_is_finite_and_declared\n  - output_capture_is_bounded\n  allowed_operations:\n  - spawn_declared_subprocess\n  - await_bounded_exit\n  - request_then_force_platform_termination\n  forbidden_operations:\n  - dynamic_executable_injection\n  - unbounded_output_capture\n  - report_timeout_as_success\n",
+      "original_paths": [
+        "code/python/governance/50_os/oeos_process_manager_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/50_os/oeos_process_manager_v1_0_0.contract.yaml": "df70c09e56efd100b91653744a7cc28b1ca6c52eecb484c4ed8e1973e8961c0f"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

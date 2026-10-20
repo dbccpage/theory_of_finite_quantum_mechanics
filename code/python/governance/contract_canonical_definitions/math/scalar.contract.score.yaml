@@ -1,0 +1,293 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": null,
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:scalar:v0.1.0",
+    "title": "Scalar Contract (field element as K^1)",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "field_element_as_1d_vector",
+      "symbol": "s ∈ K ≅ K^1",
+      "ascii_symbol": "scalar",
+      "notation": "s as the unique coordinate of an element of the 1-dimensional space K",
+      "domain": [
+        "field K",
+        "dimension 1",
+        "canonical basis [1_K]"
+      ],
+      "codomain": {
+        "description": "An element of field K, optionally viewed as a 1×1 matrix / 1-dimensional vector over K."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared dimension is 1 when using the K^1 view",
+        "Value is a valid element of K",
+        "Field identity is consistent across operations",
+        "0 has no multiplicative inverse"
+      ]
+    },
+    "laws": [
+      "Element law: s ∈ K.",
+      "One-dim law: as a vector, dim=1 and basis is canonical [1_K].",
+      "Field ops: + and · are the field operations of K.",
+      "Inverse law: s^{-1} defined only for s ≠ 0.",
+      "Authority law: no PROVED/GlobalGreen/HoTT from this contract alone."
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No randomness",
+        "No wall-clock dependence",
+        "Canonical field element encoding when serialized"
+      ]
+    },
+    "relationships": [
+      "urn:omega:math:field:v0.1.0 — ambient field K",
+      "urn:omega:math:vector:v0.1.0 — optional 1-d vector view",
+      "urn:omega:math:basic_matrix:v1.0.0 — entry type language for storage",
+      "urn:omega:math:semiring:v0.1.0 — tower root via Field: Ring: Semiring",
+      "urn:omega:math:ring:v0.1.0 — tower step below Field"
+    ],
+    "rust_binding": {
+      "crate": "omega_linear_algebra",
+      "module": "scalars",
+      "symbols": [
+        "Semiring",
+        "Ring",
+        "Field"
+      ],
+      "required_tests": [
+        "z5_is_exact_field"
+      ]
+    },
+    "negative_tests": [
+      "Dimension ≠ 1 under K^1 view must be rejected",
+      "Value not in K must be rejected",
+      "invert(0) must error",
+      "Operations across different field identities must be rejected",
+      "Artifact claiming PROVED/GlobalGreen/HoTT from this contract alone must be rejected"
+    ],
+    "doctrine": {
+      "binding_review_20261014": "zero, one, add and mul are Semiring requirements; try_inv is a Field requirement. Bind the actual traits, not nonexistent top-level functions. Trait declarations alone do not establish the field laws of every implementation.",
+      "summary": "Scalar is an element of a field K, optionally as the unique coordinate of K^1. Atomic value type for products and scaling. Nonclaim: does not claim PROVED; does not claim GlobalGreen; does not claim HoTT discharge.",
+      "non_role": [
+        "Ordered-field positivity facts (separate)",
+        "Floating-point rounding policy",
+        "Authority / PROVED / GlobalGreen / HoTT discharge"
+      ]
+    },
+    "wip": [
+      "Whether a scalar is a special case of Vector(n=1) or a distinct primitive remains open.",
+      "No Scalar newtype is defined in omega_linear_algebra::scalars; dim=1 is not a type-level witness here."
+    ],
+    "nomos_debate_NOT_CANONICAL": {
+      "banner": "NON-CANONICAL DEBATE ONLY — not contract law; not enforced; AuthorityEffect None",
+      "not_part_of_contract_law": true,
+      "authority_effect": "none",
+      "potential_defects": [
+        {
+          "reviewer": "panepistimion-math-prof",
+          "role": "MATH_CANONICAL_REVIEW",
+          "code": "METH_B1_LINEAR_ALGEBRA",
+          "severity": "info",
+          "claim_class": "[STANDARD]",
+          "detail": "B1 meth: clarified K^1 view and inverse law; relationship URNs omega-normalized; Agent-1 added thin Scalar<K: Field> newtype with DIM=1 and try_inv None at zero.",
+          "recommendation": "Continue object-specific meth; align code under ADR-007a after YAML settles. Not PROVED; not GlobalGreen; not LEAN4.",
+          "pass": "b1_linear_algebra_meth"
+        }
+      ],
+      "realization_delta_vs_implemented_math_file": [
+        {
+          "reviewer": "panepistimion-cs-prof-ml-ai-info",
+          "role": "CS_IMPL_DELTA_REVIEW",
+          "code": "SHAPE_METHOD_SURFACE_MATCH",
+          "severity": "info",
+          "claim_class": "[CODE_DEMO_RUST]",
+          "file": "omega_engine/crates/omega_linear_algebra/src/scalars.rs",
+          "detail": "rust_binding → omega_linear_algebra::scalars::Scalar<K: Field> with DIM=1, field ops, try_inv None at zero. Inverse law MATCH. Ordered-field / float policy ε. AuthorityEffect None; not PROVED / GlobalGreen.\n",
+          "delta": "MATCH_SHAPE",
+          "residual_epsilon": "K^1 vs Vector(n=1) object fence open; no runtime field-identity tags"
+        }
+      ]
+    }
+  },
+  "current_contract": "5e903b3e24c433a6b3941150347bb9b8b543d752c937512cfc6f8e06069c0217",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "5e903b3e24c433a6b3941150347bb9b8b543d752c937512cfc6f8e06069c0217",
+      "bytes": 4469,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:scalar:v0.1.0",
+        "title": "Scalar Contract (field element as K^1)",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "field_element_as_1d_vector",
+          "symbol": "s ∈ K ≅ K^1",
+          "ascii_symbol": "scalar",
+          "notation": "s as the unique coordinate of an element of the 1-dimensional space K",
+          "domain": [
+            "field K",
+            "dimension 1",
+            "canonical basis [1_K]"
+          ],
+          "codomain": {
+            "description": "An element of field K, optionally viewed as a 1×1 matrix / 1-dimensional vector over K."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared dimension is 1 when using the K^1 view",
+            "Value is a valid element of K",
+            "Field identity is consistent across operations",
+            "0 has no multiplicative inverse"
+          ]
+        },
+        "laws": [
+          "Element law: s ∈ K.",
+          "One-dim law: as a vector, dim=1 and basis is canonical [1_K].",
+          "Field ops: + and · are the field operations of K.",
+          "Inverse law: s^{-1} defined only for s ≠ 0.",
+          "Authority law: no PROVED/GlobalGreen/HoTT from this contract alone."
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No wall-clock dependence",
+            "Canonical field element encoding when serialized"
+          ]
+        },
+        "relationships": [
+          "urn:omega:math:field:v0.1.0 — ambient field K",
+          "urn:omega:math:vector:v0.1.0 — optional 1-d vector view",
+          "urn:omega:math:basic_matrix:v1.0.0 — entry type language for storage",
+          "urn:omega:math:semiring:v0.1.0 — tower root via Field: Ring: Semiring",
+          "urn:omega:math:ring:v0.1.0 — tower step below Field"
+        ],
+        "rust_binding": {
+          "crate": "omega_linear_algebra",
+          "module": "scalars",
+          "symbols": [
+            "Semiring",
+            "Ring",
+            "Field"
+          ],
+          "required_tests": [
+            "z5_is_exact_field"
+          ]
+        },
+        "negative_tests": [
+          "Dimension ≠ 1 under K^1 view must be rejected",
+          "Value not in K must be rejected",
+          "invert(0) must error",
+          "Operations across different field identities must be rejected",
+          "Artifact claiming PROVED/GlobalGreen/HoTT from this contract alone must be rejected"
+        ],
+        "doctrine": {
+          "binding_review_20261014": "zero, one, add and mul are Semiring requirements; try_inv is a Field requirement. Bind the actual traits, not nonexistent top-level functions. Trait declarations alone do not establish the field laws of every implementation.",
+          "summary": "Scalar is an element of a field K, optionally as the unique coordinate of K^1. Atomic value type for products and scaling. Nonclaim: does not claim PROVED; does not claim GlobalGreen; does not claim HoTT discharge.",
+          "non_role": [
+            "Ordered-field positivity facts (separate)",
+            "Floating-point rounding policy",
+            "Authority / PROVED / GlobalGreen / HoTT discharge"
+          ]
+        },
+        "wip": [
+          "Whether a scalar is a special case of Vector(n=1) or a distinct primitive remains open.",
+          "No Scalar newtype is defined in omega_linear_algebra::scalars; dim=1 is not a type-level witness here."
+        ],
+        "nomos_debate_NOT_CANONICAL": {
+          "banner": "NON-CANONICAL DEBATE ONLY — not contract law; not enforced; AuthorityEffect None",
+          "not_part_of_contract_law": true,
+          "authority_effect": "none",
+          "potential_defects": [
+            {
+              "reviewer": "panepistimion-math-prof",
+              "role": "MATH_CANONICAL_REVIEW",
+              "code": "METH_B1_LINEAR_ALGEBRA",
+              "severity": "info",
+              "claim_class": "[STANDARD]",
+              "detail": "B1 meth: clarified K^1 view and inverse law; relationship URNs omega-normalized; Agent-1 added thin Scalar<K: Field> newtype with DIM=1 and try_inv None at zero.",
+              "recommendation": "Continue object-specific meth; align code under ADR-007a after YAML settles. Not PROVED; not GlobalGreen; not LEAN4.",
+              "pass": "b1_linear_algebra_meth"
+            }
+          ],
+          "realization_delta_vs_implemented_math_file": [
+            {
+              "reviewer": "panepistimion-cs-prof-ml-ai-info",
+              "role": "CS_IMPL_DELTA_REVIEW",
+              "code": "SHAPE_METHOD_SURFACE_MATCH",
+              "severity": "info",
+              "claim_class": "[CODE_DEMO_RUST]",
+              "file": "omega_engine/crates/omega_linear_algebra/src/scalars.rs",
+              "detail": "rust_binding → omega_linear_algebra::scalars::Scalar<K: Field> with DIM=1, field ops, try_inv None at zero. Inverse law MATCH. Ordered-field / float policy ε. AuthorityEffect None; not PROVED / GlobalGreen.\n",
+              "delta": "MATCH_SHAPE",
+              "residual_epsilon": "K^1 vs Vector(n=1) object fence open; no runtime field-identity tags"
+            }
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:scalar:v0.1.0\ntitle: Scalar Contract (field element as K^1)\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: field_element_as_1d_vector\n  symbol: s ∈ K ≅ K^1\n  ascii_symbol: scalar\n  notation: s as the unique coordinate of an element of the 1-dimensional space K\n  domain:\n  - field K\n  - dimension 1\n  - canonical basis [1_K]\n  codomain:\n    description: An element of field K, optionally viewed as a 1×1 matrix / 1-dimensional vector over\n      K.\nrequirements:\n  required_structures:\n  - Declared dimension is 1 when using the K^1 view\n  - Value is a valid element of K\n  - Field identity is consistent across operations\n  - 0 has no multiplicative inverse\nlaws:\n- 'Element law: s ∈ K.'\n- 'One-dim law: as a vector, dim=1 and basis is canonical [1_K].'\n- 'Field ops: + and · are the field operations of K.'\n- 'Inverse law: s^{-1} defined only for s ≠ 0.'\n- 'Authority law: no PROVED/GlobalGreen/HoTT from this contract alone.'\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No wall-clock dependence\n  - Canonical field element encoding when serialized\nrelationships:\n- 'urn:omega:math:field:v0.1.0 — ambient field K'\n- 'urn:omega:math:vector:v0.1.0 — optional 1-d vector view'\n- 'urn:omega:math:basic_matrix:v1.0.0 — entry type language for storage'\n- 'urn:omega:math:semiring:v0.1.0 — tower root via Field: Ring: Semiring'\n- 'urn:omega:math:ring:v0.1.0 — tower step below Field'\nrust_binding:\n  crate: omega_linear_algebra\n  module: scalars\n  symbols:\n  - Semiring\n  - Ring\n  - Field\n  required_tests:\n  - z5_is_exact_field\n\nnegative_tests:\n- Dimension ≠ 1 under K^1 view must be rejected\n- Value not in K must be rejected\n- invert(0) must error\n- Operations across different field identities must be rejected\n- Artifact claiming PROVED/GlobalGreen/HoTT from this contract alone must be rejected\ndoctrine:\n  binding_review_20261014: \"zero, one, add and mul are Semiring requirements; try_inv is a Field requirement. Bind the actual traits, not nonexistent top-level functions. Trait declarations alone do not establish the field laws of every implementation.\"\n  summary: 'Scalar is an element of a field K, optionally as the unique coordinate of K^1. Atomic value\n    type for products and scaling. Nonclaim: does not claim PROVED; does not claim GlobalGreen; does not\n    claim HoTT discharge.'\n  non_role:\n  - Ordered-field positivity facts (separate)\n  - Floating-point rounding policy\n  - Authority / PROVED / GlobalGreen / HoTT discharge\nwip:\n- Whether a scalar is a special case of Vector(n=1) or a distinct primitive remains open.\n- No Scalar newtype is defined in omega_linear_algebra::scalars; dim=1 is not a type-level witness here.\nnomos_debate_NOT_CANONICAL:\n  banner: NON-CANONICAL DEBATE ONLY — not contract law; not enforced; AuthorityEffect None\n  not_part_of_contract_law: true\n  authority_effect: none\n  potential_defects:\n  - reviewer: panepistimion-math-prof\n    role: MATH_CANONICAL_REVIEW\n    code: METH_B1_LINEAR_ALGEBRA\n    severity: info\n    claim_class: '[STANDARD]'\n    detail: 'B1 meth: clarified K^1 view and inverse law; relationship URNs omega-normalized; Agent-1\n      added thin Scalar<K: Field> newtype with DIM=1 and try_inv None at zero.'\n    recommendation: Continue object-specific meth; align code under ADR-007a after YAML settles. Not PROVED;\n      not GlobalGreen; not LEAN4.\n    pass: b1_linear_algebra_meth\n  realization_delta_vs_implemented_math_file:\n  - reviewer: panepistimion-cs-prof-ml-ai-info\n    role: CS_IMPL_DELTA_REVIEW\n    code: SHAPE_METHOD_SURFACE_MATCH\n    severity: info\n    claim_class: '[CODE_DEMO_RUST]'\n    file: omega_engine/crates/omega_linear_algebra/src/scalars.rs\n    detail: >\n      rust_binding → omega_linear_algebra::scalars::Scalar<K: Field> with DIM=1,\n      field ops, try_inv None at zero. Inverse law MATCH. Ordered-field / float policy ε.\n      AuthorityEffect None; not PROVED / GlobalGreen.\n    delta: MATCH_SHAPE\n    residual_epsilon: \"K^1 vs Vector(n=1) object fence open; no runtime field-identity tags\"\n",
+      "original_paths": [
+        "code/python/governance/contract_canonical_definitions/math/scalar.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/contract_canonical_definitions/math/scalar.contract.yaml": "5e903b3e24c433a6b3941150347bb9b8b543d752c937512cfc6f8e06069c0217"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

@@ -1,0 +1,141 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/40_packets/packet_symbol_game_ddc_tape_step_wire_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v2",
+    "contract_id": "urn:omega:packet:symbol_game:ddc_tape_step_wire:v1.0.0",
+    "title": "DDC Tape Step Wire",
+    "kind": "packet_contract",
+    "layer": "40_packets",
+    "role": "PacketSpecification",
+    "status": "active",
+    "council_owner": "L3_logos_techne",
+    "descriptor": {
+      "authority_effect": "None",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": true,
+      "clean_architecture_layer": "infrastructure",
+      "refusals": {
+        "may_emit": [
+          "FW-UNKNOWN-FIELD"
+        ]
+      }
+    },
+    "doctrine": {
+      "summary": "DdcTapeStepWire, discrete step record on a DDC tape containing an operational letter and resulting state.",
+      "invariants": [
+        "AuthorityEffect is strictly None."
+      ],
+      "non_roles": [
+        "authority_source"
+      ],
+      "required_negative_capabilities": [
+        "no_self_certification"
+      ]
+    },
+    "structure": {
+      "language": "rust",
+      "rust_crate": "omega_symbol_game",
+      "rust_module": "ddc",
+      "rust_type": "DdcTapeStepWire",
+      "form": "struct",
+      "serde": {
+        "deny_unknown_fields": true
+      },
+      "fields": [
+        {
+          "name": "letter"
+        },
+        {
+          "name": "after"
+        },
+        {
+          "name": "witness"
+        }
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "f9652f86967ef62c0347e8270def245294ca1b8e101585c9a6d590b320ec5f65",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "f9652f86967ef62c0347e8270def245294ca1b8e101585c9a6d590b320ec5f65",
+      "bytes": 1001,
+      "record": {
+        "schema_version": "omega.contract.v2",
+        "contract_id": "urn:omega:packet:symbol_game:ddc_tape_step_wire:v1.0.0",
+        "title": "DDC Tape Step Wire",
+        "kind": "packet_contract",
+        "layer": "40_packets",
+        "role": "PacketSpecification",
+        "status": "active",
+        "council_owner": "L3_logos_techne",
+        "descriptor": {
+          "authority_effect": "None",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": true,
+          "clean_architecture_layer": "infrastructure",
+          "refusals": {
+            "may_emit": [
+              "FW-UNKNOWN-FIELD"
+            ]
+          }
+        },
+        "doctrine": {
+          "summary": "DdcTapeStepWire, discrete step record on a DDC tape containing an operational letter and resulting state.",
+          "invariants": [
+            "AuthorityEffect is strictly None."
+          ],
+          "non_roles": [
+            "authority_source"
+          ],
+          "required_negative_capabilities": [
+            "no_self_certification"
+          ]
+        },
+        "structure": {
+          "language": "rust",
+          "rust_crate": "omega_symbol_game",
+          "rust_module": "ddc",
+          "rust_type": "DdcTapeStepWire",
+          "form": "struct",
+          "serde": {
+            "deny_unknown_fields": true
+          },
+          "fields": [
+            {
+              "name": "letter"
+            },
+            {
+              "name": "after"
+            },
+            {
+              "name": "witness"
+            }
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v2\ncontract_id: urn:omega:packet:symbol_game:ddc_tape_step_wire:v1.0.0\ntitle: DDC Tape Step Wire\nkind: packet_contract\nlayer: 40_packets\nrole: PacketSpecification\nstatus: active\ncouncil_owner: L3_logos_techne\ndescriptor:\n  authority_effect: None\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: true\n  clean_architecture_layer: infrastructure\n  refusals:\n    may_emit:\n    - FW-UNKNOWN-FIELD\ndoctrine:\n  summary: DdcTapeStepWire, discrete step record on a DDC tape containing an operational\n    letter and resulting state.\n  invariants:\n  - AuthorityEffect is strictly None.\n  non_roles:\n  - authority_source\n  required_negative_capabilities:\n  - no_self_certification\nstructure:\n  language: rust\n  rust_crate: omega_symbol_game\n  rust_module: ddc\n  rust_type: DdcTapeStepWire\n  form: struct\n  serde:\n    deny_unknown_fields: true\n  fields:\n  - name: letter\n  - name: after\n  - name: witness\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/40_packets/packet_symbol_game_ddc_tape_step_wire_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/40_packets/packet_symbol_game_ddc_tape_step_wire_v1_0_0.contract.yaml": "f9652f86967ef62c0347e8270def245294ca1b8e101585c9a6d590b320ec5f65"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

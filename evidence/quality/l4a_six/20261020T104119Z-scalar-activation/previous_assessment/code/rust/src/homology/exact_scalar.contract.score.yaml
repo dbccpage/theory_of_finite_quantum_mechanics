@@ -1,0 +1,785 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": null,
+  "contract": {
+    "schema_version": "1.0.0",
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/rust/src/homology/exact_scalar.rs",
+      "sha256": "bf744580ce249ab32faa25589fd8ef53302ddda56dc826060cfb84de1c11fd85",
+      "language": "Rust"
+    },
+    "contract_urn": "urn:tfqm:contract:homology:exact_scalar.rs",
+    "status": "canonical_rational_admission_individual_gate_review",
+    "target": "L4A",
+    "profile": "Exact",
+    "purpose": "Finite rational chain/cochain data, admitted carriers and rank certificates.",
+    "subject_role": "A concrete internal admission boundary serves rank, chain and cochain consumers: lifetime-bound canonical matrix views, exact framed digests, typed shape/domain/resource failures, configurable cell/work admission before scalar work, zero-area/zero-inner shortcuts and independent finite product/custody challenges. This is an executable bounded service, not a re-export or nominal marker.",
+    "compilation": {
+      "disabled_by_cfg_any": false,
+      "test_or_support_file": false
+    },
+    "declaration_index": [
+      {
+        "kind": "struct",
+        "name": "ZeroProductLimits",
+        "line": 15,
+        "declaration_line": "pub(super) struct ZeroProductLimits {"
+      },
+      {
+        "kind": "struct",
+        "name": "AdmittedMatrix",
+        "line": 33,
+        "declaration_line": "pub(super) struct AdmittedMatrix<'a> {"
+      },
+      {
+        "kind": "fn",
+        "name": "try_new",
+        "line": 37,
+        "declaration_line": "pub(super) fn try_new(matrix: &'a BasicMatrix<Q>) -> Result<Self, HomologicalError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "matrix",
+        "line": 41,
+        "declaration_line": "pub(super) fn matrix(self) -> &'a BasicMatrix<Q> {"
+      },
+      {
+        "kind": "fn",
+        "name": "digest",
+        "line": 47,
+        "declaration_line": "pub(super) fn digest(self) -> Hash256 {"
+      },
+      {
+        "kind": "fn",
+        "name": "admit_coefficients",
+        "line": 81,
+        "declaration_line": "pub(super) fn admit_coefficients(values: &[Q]) -> Result<(), HomologicalError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "admit_matrix",
+        "line": 91,
+        "declaration_line": "pub(super) fn admit_matrix(matrix: &BasicMatrix<Q>) -> Result<(), HomologicalError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "admit_shaped_matrix",
+        "line": 94,
+        "declaration_line": "pub(super) fn admit_shaped_matrix("
+      },
+      {
+        "kind": "fn",
+        "name": "admit_zero_product",
+        "line": 162,
+        "declaration_line": "pub(super) fn admit_zero_product("
+      },
+      {
+        "kind": "fn",
+        "name": "admit_zero_product_with_limits",
+        "line": 169,
+        "declaration_line": "pub(super) fn admit_zero_product_with_limits("
+      }
+    ],
+    "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+    "requirements": [
+      {
+        "id": "G1",
+        "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+      },
+      {
+        "id": "G2",
+        "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+      },
+      {
+        "id": "G3",
+        "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+      },
+      {
+        "id": "G4",
+        "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+      },
+      {
+        "id": "G5",
+        "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+      }
+    ],
+    "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+    "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+    "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+    "open_obligations": [],
+    "evidence": [
+      {
+        "path": "evidence/quality/l4a_six/20261020T074554Z/receipt.json",
+        "sha256": "2a8a7c24316de85ce0c26f04e751fb6ff1ec0ee635defde5c01d76eab3f3fdfd"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T074554Z/source_manifest.json",
+        "sha256": "4d8a488592e2c9166b812ac1188b34baeb4d97de07590f31bf5f006bad071626"
+      },
+      {
+        "path": "code/rust/quality/l4a_six/records.py",
+        "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+      },
+      {
+        "path": "code/rust/quality/l4a_six/specs.json",
+        "sha256": "8d5f25afe4e999b3a92c835b2910d2b81e6bd991b47abbe3ee2a204f1f363a09"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json",
+        "sha256": "f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json",
+        "sha256": "50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T074554Z/metrics.json",
+        "sha256": "a297bf450b9c7f0504e2fc3f3dc6589663d94a5e73dc2d5d6c03079645b97030"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json",
+        "sha256": "b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/mutations.json",
+        "sha256": "00fa693c6f05422ed8b6be92780f5970691494e31b82ecaa20985a6a1e370860"
+      }
+    ],
+    "reviewed_specification": {
+      "status": "canonical_rational_admission_individual_gate_review",
+      "profile": "Exact",
+      "purpose": "Carry immutable canonical-rational matrix admission into digest generation and verify bounded zero products through borrowed exact dot products without materializing an output matrix.",
+      "capability_assessment": {
+        "source_sha256": "bf744580ce249ab32faa25589fd8ef53302ddda56dc826060cfb84de1c11fd85",
+        "level": "L4",
+        "basis": "A concrete internal admission boundary serves rank, chain and cochain consumers: lifetime-bound canonical matrix views, exact framed digests, typed shape/domain/resource failures, configurable cell/work admission before scalar work, zero-area/zero-inner shortcuts and independent finite product/custody challenges. This is an executable bounded service, not a re-export or nominal marker."
+      },
+      "symbol_contracts": {
+        "AdmittedMatrix::try_new/matrix": "Validate all coefficients as positive-denominator reduced BigRational, rejecting the first invalid flat index. Retain a shared immutable BasicMatrix<Q> borrow. BasicMatrix private shape/storage and constructors are explicit source-pinned dependencies. Private token fields prevent sibling code from bypassing admission in safe Rust. matrix() returns only the original shared borrow.",
+        "AdmittedMatrix::digest": "BLAKE3 frame is MATRIX_Q_DOMAIN, little-endian u64 rows/cols, then signed little-endian numerator and denominator bytes with u64 length prefixes. Hash only canonical components directly, with no rational clone/reduction. This matches hash_matrix on admitted input; the shared domain tag prevents tag drift. Supported-pointer compile assertion in scalars.rs guarantees each usize metadata/byte length fits u64. Cryptographic commitment is not an injectivity theorem.",
+        "admit_coefficients/admit_matrix/admit_shaped_matrix": "Short-circuit denominator<=0 before GCD; require gcd(numerator,denominator)=1, including 0/1. Admission has no mutation. A shape mismatch is diagnosed before coefficient scanning in admit_shaped_matrix. admit_matrix preserves the legacy Result<()> adapter by discarding the admitted borrow.",
+        "ZeroProductLimits/cells/product_work/product_admission": "Inclusive defaults: 4096 cells per input, 4096 logical product cells, 1000000 scalar operations. Check left/right cell counts, compatible dimensions, logical output cells and checked 2*rows*cols*inner work before canonicality scans and arithmetic. All count overflow/refusal is typed MatrixError translated by HomologicalError. Logical output cells are charged despite no output matrix. Zero outputs are multiplied before potentially huge inner metadata, preserving 0*k=0.",
+        "admit_zero_product/admit_zero_product_with_limits/AdmittedMatrix::zero_product/dot_product": "After resource/shape admission, require canonical tokens for both inputs, even when a side is zero. For nonempty dimensions compute each exact dot product borrowing operands and retain only its accumulator; return the caller-supplied typed violation on the first nonzero entry. Zero row/column/inner dimensions succeed without dense loops after the declared profile is admitted. No provider matrix multiplication, full output buffer or unverified scalar callback is used."
+      },
+      "requirement_symbol_map": {
+        "canonical immutable carrier": [
+          "AdmittedMatrix",
+          "AdmittedMatrix::try_new",
+          "AdmittedMatrix::matrix",
+          "admit_coefficients",
+          "admit_matrix",
+          "admit_shaped_matrix"
+        ],
+        "exact byte commitment": [
+          "AdmittedMatrix::digest",
+          "hashing::MATRIX_Q_DOMAIN",
+          "scalars::hash_bigint"
+        ],
+        "bounded independent composition check": [
+          "ZeroProductLimits",
+          "cells",
+          "product_work",
+          "product_admission",
+          "admit_zero_product",
+          "admit_zero_product_with_limits",
+          "AdmittedMatrix::zero_product",
+          "dot_product"
+        ]
+      },
+      "consumer_review": [
+        "The homology module keeps this adapter private. Existing chain/cochain/carrier admission uses the Result<()> wrappers; bounded zero-product verification replaces provider multiplication without publishing a product. Default input/output/work limits are now explicit and can refuse formerly larger workloads.",
+        "Rank producer/checker carry the admitted token to exact matrix binding, eliminating duplicate canonical normalization. Its public APIs remain separately challenged.",
+        "Dependencies are pinned BasicMatrix storage/access, canonical BigRational and BigInt/GCD arithmetic, BLAKE3 and signed integer byte serialization, under the pinned Rust/std/allocator runtime. No generic field extension or arbitrary callback is admitted."
+      ],
+      "proof_arguments": [
+        "Positive reduced denominators are precisely the canonical Q representation, including zero as 0/1. Safe immutable borrowing prevents mutation for the token lifetime. Private fields supply no unchecked construction/decoding route.",
+        "BasicMatrix storage admission ensures rows*cols equals its slice length. Compatible product dimensions and typed get_ref calls justify all borrowed dot accesses. Canonical rational multiplication and addition preserve the nonzero-denominator field; a dot product is zero iff its mathematical Q entry is zero. Exhausting entries establishes the zero-product identity; a nonzero entry establishes the supplied violation.",
+        "Every resource calculation is checked. Each dot product costs at most two scalar operations per inner entry; the entire declared bound is admitted before arithmetic with no early-exit refunds. Zero row/column/inner cases perform no dense traversal. No new matrix/vector is allocated. Scalar accumulators, GCD and signed byte buffers have ordinary pinned dependency allocation/bit-complexity costs.",
+        "Digest serialization uses the same dimension/domain/component order as public hash_matrix, but canonical admission makes normalization unnecessary. Literal signed frames independently bind this correspondence. Hash equality is diagnostic commitment, not equality by injectivity."
+      ],
+      "independent_challenge": "891 small rectangular {-1,0,1} matrix pairs against direct i64 dot sums; rational cancellation; every undefined/noncanonical coefficient class and first failing index; both raw-input roles even with a zero other side; literal signed digest frames plus public hash compatibility; exact inclusive cell/work limits; dimension/count/work overflow; maximal zero-area/zero-inner metadata and shape-specific refusal. Seventeen distinct domain, shape, budget, index, zero-law, token and digest faults are designated.",
+      "engineering_assessment": {
+        "source_sha256": "bf744580ce249ab32faa25589fd8ef53302ddda56dc826060cfb84de1c11fd85",
+        "gates": {
+          "G1": {
+            "grade": "A",
+            "basis": "Source SHA, concrete private consumer and requirement/symbol maps, invariant arguments and pinned execution/dependency receipts mirror this complete finite Exact contract. Original helper bytes are sealed on activation. No whole-workspace or hash-injectivity claim is made."
+          },
+          "G2": {
+            "grade": "A",
+            "basis": "The runtime canonical gate and lifetime-bound token enforce the Q domain, direct canonical digest frame and exact borrowed dot-product identity. Shape/count/work arithmetic is checked; zero dimensions and raw coefficients are admitted/refused according to the explicit contract. No overflowing native coefficient domain is admitted."
+          },
+          "G3": {
+            "grade": "A",
+            "basis": "Private immutable token storage excludes unchecked mutation/decoding; typed access and checked admission preserve invariants on every error. No output matrix or provider generic multiplication is allocated/invoked. Scalar/GCD/byte serialization use the explicitly pinned Rust/num/BLAKE3/provider-storage trust boundary; no process-OOM, allocator-wide guarantee or machine-checked crash freedom is inferred."
+          },
+          "G4": {
+            "grade": "A",
+            "basis": "Conditional on current R>=0.95 for all 17 designated helper faults and successful untouched/restored package baselines. Independent integer and rational product expectations, literal signed frames, both invalid-input roles, specific typed failures and machine/inclusive budget cases challenge the declared failure classes. The staged trial is separate and does not replace current integration evidence."
+          },
+          "G5": {
+            "grade": "A",
+            "basis": "Functions must meet measured A ceilings without opaque source macros. Canonical admission costs coefficient GCD scans; digest costs the required signed byte encodings and hashing without rational renormalization. A nonvacuous zero product takes O(rows*cols*inner) rational arithmetic and at most one scalar accumulator/output product at a time, with no full matrix buffer or redundant operand copies. Zero-area/zero-inner shortcuts are constant apart from prior admission. Per-input/declared-output cells and scalar-operation limits do not bound rational bit growth, GCD/byte work, parsing or process resources."
+          }
+        }
+      },
+      "scope_limits": [
+        "Internal canonical-Q service only. Default zero-product limits may refuse larger pre-existing workloads; callers that need a larger finite bound must choose an explicit admitted profile. No arbitrary scalar provider or general process resource guarantee is claimed."
+      ],
+      "open_obligations": [],
+      "origin_review": "Integrated byte-for-byte from the staged candidate after successful staged checks. Original source, prior specifications and all 266 previous assessment sidecars are sealed in evidence/quality/l4a_six/20261020T064227Z-rank-activation. Fresh source/dependency/metric/mutation receipts bind this current epoch."
+    }
+  },
+  "current_contract": "4cffd39026e3eec60e3c3fbcee94a06906f9dd0bdb184b721d7bbb745ae987d2",
+  "current_scoring": "9d443401f2441d9add52ec0845403c8c4818bebeaf72a33c6b89462c24406aa7",
+  "contract_history": [
+    {
+      "sha256": "4cffd39026e3eec60e3c3fbcee94a06906f9dd0bdb184b721d7bbb745ae987d2",
+      "bytes": 15737,
+      "record": {
+        "schema_version": "1.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/homology/exact_scalar.rs",
+          "sha256": "bf744580ce249ab32faa25589fd8ef53302ddda56dc826060cfb84de1c11fd85",
+          "language": "Rust"
+        },
+        "contract_urn": "urn:tfqm:contract:homology:exact_scalar.rs",
+        "status": "canonical_rational_admission_individual_gate_review",
+        "target": "L4A",
+        "profile": "Exact",
+        "purpose": "Finite rational chain/cochain data, admitted carriers and rank certificates.",
+        "subject_role": "A concrete internal admission boundary serves rank, chain and cochain consumers: lifetime-bound canonical matrix views, exact framed digests, typed shape/domain/resource failures, configurable cell/work admission before scalar work, zero-area/zero-inner shortcuts and independent finite product/custody challenges. This is an executable bounded service, not a re-export or nominal marker.",
+        "compilation": {
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false
+        },
+        "declaration_index": [
+          {
+            "kind": "struct",
+            "name": "ZeroProductLimits",
+            "line": 15,
+            "declaration_line": "pub(super) struct ZeroProductLimits {"
+          },
+          {
+            "kind": "struct",
+            "name": "AdmittedMatrix",
+            "line": 33,
+            "declaration_line": "pub(super) struct AdmittedMatrix<'a> {"
+          },
+          {
+            "kind": "fn",
+            "name": "try_new",
+            "line": 37,
+            "declaration_line": "pub(super) fn try_new(matrix: &'a BasicMatrix<Q>) -> Result<Self, HomologicalError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "matrix",
+            "line": 41,
+            "declaration_line": "pub(super) fn matrix(self) -> &'a BasicMatrix<Q> {"
+          },
+          {
+            "kind": "fn",
+            "name": "digest",
+            "line": 47,
+            "declaration_line": "pub(super) fn digest(self) -> Hash256 {"
+          },
+          {
+            "kind": "fn",
+            "name": "admit_coefficients",
+            "line": 81,
+            "declaration_line": "pub(super) fn admit_coefficients(values: &[Q]) -> Result<(), HomologicalError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "admit_matrix",
+            "line": 91,
+            "declaration_line": "pub(super) fn admit_matrix(matrix: &BasicMatrix<Q>) -> Result<(), HomologicalError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "admit_shaped_matrix",
+            "line": 94,
+            "declaration_line": "pub(super) fn admit_shaped_matrix("
+          },
+          {
+            "kind": "fn",
+            "name": "admit_zero_product",
+            "line": 162,
+            "declaration_line": "pub(super) fn admit_zero_product("
+          },
+          {
+            "kind": "fn",
+            "name": "admit_zero_product_with_limits",
+            "line": 169,
+            "declaration_line": "pub(super) fn admit_zero_product_with_limits("
+          }
+        ],
+        "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+        "requirements": [
+          {
+            "id": "G1",
+            "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+          },
+          {
+            "id": "G2",
+            "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+          },
+          {
+            "id": "G3",
+            "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+          },
+          {
+            "id": "G4",
+            "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+          },
+          {
+            "id": "G5",
+            "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+          }
+        ],
+        "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+        "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+        "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+        "open_obligations": [],
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/receipt.json",
+            "sha256": "2a8a7c24316de85ce0c26f04e751fb6ff1ec0ee635defde5c01d76eab3f3fdfd"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/source_manifest.json",
+            "sha256": "4d8a488592e2c9166b812ac1188b34baeb4d97de07590f31bf5f006bad071626"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "8d5f25afe4e999b3a92c835b2910d2b81e6bd991b47abbe3ee2a204f1f363a09"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json",
+            "sha256": "f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json",
+            "sha256": "50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/metrics.json",
+            "sha256": "a297bf450b9c7f0504e2fc3f3dc6589663d94a5e73dc2d5d6c03079645b97030"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json",
+            "sha256": "b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/mutations.json",
+            "sha256": "00fa693c6f05422ed8b6be92780f5970691494e31b82ecaa20985a6a1e370860"
+          }
+        ],
+        "reviewed_specification": {
+          "status": "canonical_rational_admission_individual_gate_review",
+          "profile": "Exact",
+          "purpose": "Carry immutable canonical-rational matrix admission into digest generation and verify bounded zero products through borrowed exact dot products without materializing an output matrix.",
+          "capability_assessment": {
+            "source_sha256": "bf744580ce249ab32faa25589fd8ef53302ddda56dc826060cfb84de1c11fd85",
+            "level": "L4",
+            "basis": "A concrete internal admission boundary serves rank, chain and cochain consumers: lifetime-bound canonical matrix views, exact framed digests, typed shape/domain/resource failures, configurable cell/work admission before scalar work, zero-area/zero-inner shortcuts and independent finite product/custody challenges. This is an executable bounded service, not a re-export or nominal marker."
+          },
+          "symbol_contracts": {
+            "AdmittedMatrix::try_new/matrix": "Validate all coefficients as positive-denominator reduced BigRational, rejecting the first invalid flat index. Retain a shared immutable BasicMatrix<Q> borrow. BasicMatrix private shape/storage and constructors are explicit source-pinned dependencies. Private token fields prevent sibling code from bypassing admission in safe Rust. matrix() returns only the original shared borrow.",
+            "AdmittedMatrix::digest": "BLAKE3 frame is MATRIX_Q_DOMAIN, little-endian u64 rows/cols, then signed little-endian numerator and denominator bytes with u64 length prefixes. Hash only canonical components directly, with no rational clone/reduction. This matches hash_matrix on admitted input; the shared domain tag prevents tag drift. Supported-pointer compile assertion in scalars.rs guarantees each usize metadata/byte length fits u64. Cryptographic commitment is not an injectivity theorem.",
+            "admit_coefficients/admit_matrix/admit_shaped_matrix": "Short-circuit denominator<=0 before GCD; require gcd(numerator,denominator)=1, including 0/1. Admission has no mutation. A shape mismatch is diagnosed before coefficient scanning in admit_shaped_matrix. admit_matrix preserves the legacy Result<()> adapter by discarding the admitted borrow.",
+            "ZeroProductLimits/cells/product_work/product_admission": "Inclusive defaults: 4096 cells per input, 4096 logical product cells, 1000000 scalar operations. Check left/right cell counts, compatible dimensions, logical output cells and checked 2*rows*cols*inner work before canonicality scans and arithmetic. All count overflow/refusal is typed MatrixError translated by HomologicalError. Logical output cells are charged despite no output matrix. Zero outputs are multiplied before potentially huge inner metadata, preserving 0*k=0.",
+            "admit_zero_product/admit_zero_product_with_limits/AdmittedMatrix::zero_product/dot_product": "After resource/shape admission, require canonical tokens for both inputs, even when a side is zero. For nonempty dimensions compute each exact dot product borrowing operands and retain only its accumulator; return the caller-supplied typed violation on the first nonzero entry. Zero row/column/inner dimensions succeed without dense loops after the declared profile is admitted. No provider matrix multiplication, full output buffer or unverified scalar callback is used."
+          },
+          "requirement_symbol_map": {
+            "canonical immutable carrier": [
+              "AdmittedMatrix",
+              "AdmittedMatrix::try_new",
+              "AdmittedMatrix::matrix",
+              "admit_coefficients",
+              "admit_matrix",
+              "admit_shaped_matrix"
+            ],
+            "exact byte commitment": [
+              "AdmittedMatrix::digest",
+              "hashing::MATRIX_Q_DOMAIN",
+              "scalars::hash_bigint"
+            ],
+            "bounded independent composition check": [
+              "ZeroProductLimits",
+              "cells",
+              "product_work",
+              "product_admission",
+              "admit_zero_product",
+              "admit_zero_product_with_limits",
+              "AdmittedMatrix::zero_product",
+              "dot_product"
+            ]
+          },
+          "consumer_review": [
+            "The homology module keeps this adapter private. Existing chain/cochain/carrier admission uses the Result<()> wrappers; bounded zero-product verification replaces provider multiplication without publishing a product. Default input/output/work limits are now explicit and can refuse formerly larger workloads.",
+            "Rank producer/checker carry the admitted token to exact matrix binding, eliminating duplicate canonical normalization. Its public APIs remain separately challenged.",
+            "Dependencies are pinned BasicMatrix storage/access, canonical BigRational and BigInt/GCD arithmetic, BLAKE3 and signed integer byte serialization, under the pinned Rust/std/allocator runtime. No generic field extension or arbitrary callback is admitted."
+          ],
+          "proof_arguments": [
+            "Positive reduced denominators are precisely the canonical Q representation, including zero as 0/1. Safe immutable borrowing prevents mutation for the token lifetime. Private fields supply no unchecked construction/decoding route.",
+            "BasicMatrix storage admission ensures rows*cols equals its slice length. Compatible product dimensions and typed get_ref calls justify all borrowed dot accesses. Canonical rational multiplication and addition preserve the nonzero-denominator field; a dot product is zero iff its mathematical Q entry is zero. Exhausting entries establishes the zero-product identity; a nonzero entry establishes the supplied violation.",
+            "Every resource calculation is checked. Each dot product costs at most two scalar operations per inner entry; the entire declared bound is admitted before arithmetic with no early-exit refunds. Zero row/column/inner cases perform no dense traversal. No new matrix/vector is allocated. Scalar accumulators, GCD and signed byte buffers have ordinary pinned dependency allocation/bit-complexity costs.",
+            "Digest serialization uses the same dimension/domain/component order as public hash_matrix, but canonical admission makes normalization unnecessary. Literal signed frames independently bind this correspondence. Hash equality is diagnostic commitment, not equality by injectivity."
+          ],
+          "independent_challenge": "891 small rectangular {-1,0,1} matrix pairs against direct i64 dot sums; rational cancellation; every undefined/noncanonical coefficient class and first failing index; both raw-input roles even with a zero other side; literal signed digest frames plus public hash compatibility; exact inclusive cell/work limits; dimension/count/work overflow; maximal zero-area/zero-inner metadata and shape-specific refusal. Seventeen distinct domain, shape, budget, index, zero-law, token and digest faults are designated.",
+          "engineering_assessment": {
+            "source_sha256": "bf744580ce249ab32faa25589fd8ef53302ddda56dc826060cfb84de1c11fd85",
+            "gates": {
+              "G1": {
+                "grade": "A",
+                "basis": "Source SHA, concrete private consumer and requirement/symbol maps, invariant arguments and pinned execution/dependency receipts mirror this complete finite Exact contract. Original helper bytes are sealed on activation. No whole-workspace or hash-injectivity claim is made."
+              },
+              "G2": {
+                "grade": "A",
+                "basis": "The runtime canonical gate and lifetime-bound token enforce the Q domain, direct canonical digest frame and exact borrowed dot-product identity. Shape/count/work arithmetic is checked; zero dimensions and raw coefficients are admitted/refused according to the explicit contract. No overflowing native coefficient domain is admitted."
+              },
+              "G3": {
+                "grade": "A",
+                "basis": "Private immutable token storage excludes unchecked mutation/decoding; typed access and checked admission preserve invariants on every error. No output matrix or provider generic multiplication is allocated/invoked. Scalar/GCD/byte serialization use the explicitly pinned Rust/num/BLAKE3/provider-storage trust boundary; no process-OOM, allocator-wide guarantee or machine-checked crash freedom is inferred."
+              },
+              "G4": {
+                "grade": "A",
+                "basis": "Conditional on current R>=0.95 for all 17 designated helper faults and successful untouched/restored package baselines. Independent integer and rational product expectations, literal signed frames, both invalid-input roles, specific typed failures and machine/inclusive budget cases challenge the declared failure classes. The staged trial is separate and does not replace current integration evidence."
+              },
+              "G5": {
+                "grade": "A",
+                "basis": "Functions must meet measured A ceilings without opaque source macros. Canonical admission costs coefficient GCD scans; digest costs the required signed byte encodings and hashing without rational renormalization. A nonvacuous zero product takes O(rows*cols*inner) rational arithmetic and at most one scalar accumulator/output product at a time, with no full matrix buffer or redundant operand copies. Zero-area/zero-inner shortcuts are constant apart from prior admission. Per-input/declared-output cells and scalar-operation limits do not bound rational bit growth, GCD/byte work, parsing or process resources."
+              }
+            }
+          },
+          "scope_limits": [
+            "Internal canonical-Q service only. Default zero-product limits may refuse larger pre-existing workloads; callers that need a larger finite bound must choose an explicit admitted profile. No arbitrary scalar provider or general process resource guarantee is claimed."
+          ],
+          "open_obligations": [],
+          "origin_review": "Integrated byte-for-byte from the staged candidate after successful staged checks. Original source, prior specifications and all 266 previous assessment sidecars are sealed in evidence/quality/l4a_six/20261020T064227Z-rank-activation. Fresh source/dependency/metric/mutation receipts bind this current epoch."
+        }
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/homology/exact_scalar.rs\",\n    \"sha256\": \"bf744580ce249ab32faa25589fd8ef53302ddda56dc826060cfb84de1c11fd85\",\n    \"language\": \"Rust\"\n  },\n  \"contract_urn\": \"urn:tfqm:contract:homology:exact_scalar.rs\",\n  \"status\": \"canonical_rational_admission_individual_gate_review\",\n  \"target\": \"L4A\",\n  \"profile\": \"Exact\",\n  \"purpose\": \"Finite rational chain/cochain data, admitted carriers and rank certificates.\",\n  \"subject_role\": \"A concrete internal admission boundary serves rank, chain and cochain consumers: lifetime-bound canonical matrix views, exact framed digests, typed shape/domain/resource failures, configurable cell/work admission before scalar work, zero-area/zero-inner shortcuts and independent finite product/custody challenges. This is an executable bounded service, not a re-export or nominal marker.\",\n  \"compilation\": {\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false\n  },\n  \"declaration_index\": [\n    {\n      \"kind\": \"struct\",\n      \"name\": \"ZeroProductLimits\",\n      \"line\": 15,\n      \"declaration_line\": \"pub(super) struct ZeroProductLimits {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"AdmittedMatrix\",\n      \"line\": 33,\n      \"declaration_line\": \"pub(super) struct AdmittedMatrix<'a> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"try_new\",\n      \"line\": 37,\n      \"declaration_line\": \"pub(super) fn try_new(matrix: &'a BasicMatrix<Q>) -> Result<Self, HomologicalError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"matrix\",\n      \"line\": 41,\n      \"declaration_line\": \"pub(super) fn matrix(self) -> &'a BasicMatrix<Q> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"digest\",\n      \"line\": 47,\n      \"declaration_line\": \"pub(super) fn digest(self) -> Hash256 {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"admit_coefficients\",\n      \"line\": 81,\n      \"declaration_line\": \"pub(super) fn admit_coefficients(values: &[Q]) -> Result<(), HomologicalError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"admit_matrix\",\n      \"line\": 91,\n      \"declaration_line\": \"pub(super) fn admit_matrix(matrix: &BasicMatrix<Q>) -> Result<(), HomologicalError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"admit_shaped_matrix\",\n      \"line\": 94,\n      \"declaration_line\": \"pub(super) fn admit_shaped_matrix(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"admit_zero_product\",\n      \"line\": 162,\n      \"declaration_line\": \"pub(super) fn admit_zero_product(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"admit_zero_product_with_limits\",\n      \"line\": 169,\n      \"declaration_line\": \"pub(super) fn admit_zero_product_with_limits(\"\n    }\n  ],\n  \"declaration_index_scope\": \"Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.\",\n  \"requirements\": [\n    {\n      \"id\": \"G1\",\n      \"requirement\": \"Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries.\"\n    },\n    {\n      \"id\": \"G2\",\n      \"requirement\": \"Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path.\"\n    },\n    {\n      \"id\": \"G3\",\n      \"requirement\": \"Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions.\"\n    },\n    {\n      \"id\": \"G4\",\n      \"requirement\": \"Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A.\"\n    },\n    {\n      \"id\": \"G5\",\n      \"requirement\": \"Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately.\"\n    }\n  ],\n  \"admission_policy\": \"Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.\",\n  \"resource_boundary\": \"No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.\",\n  \"authority_ceiling\": \"Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.\",\n  \"open_obligations\": [],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/receipt.json\",\n      \"sha256\": \"2a8a7c24316de85ce0c26f04e751fb6ff1ec0ee635defde5c01d76eab3f3fdfd\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/source_manifest.json\",\n      \"sha256\": \"4d8a488592e2c9166b812ac1188b34baeb4d97de07590f31bf5f006bad071626\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"8d5f25afe4e999b3a92c835b2910d2b81e6bd991b47abbe3ee2a204f1f363a09\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json\",\n      \"sha256\": \"f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json\",\n      \"sha256\": \"50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/metrics.json\",\n      \"sha256\": \"a297bf450b9c7f0504e2fc3f3dc6589663d94a5e73dc2d5d6c03079645b97030\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json\",\n      \"sha256\": \"b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/mutations.json\",\n      \"sha256\": \"00fa693c6f05422ed8b6be92780f5970691494e31b82ecaa20985a6a1e370860\"\n    }\n  ],\n  \"reviewed_specification\": {\n    \"status\": \"canonical_rational_admission_individual_gate_review\",\n    \"profile\": \"Exact\",\n    \"purpose\": \"Carry immutable canonical-rational matrix admission into digest generation and verify bounded zero products through borrowed exact dot products without materializing an output matrix.\",\n    \"capability_assessment\": {\n      \"source_sha256\": \"bf744580ce249ab32faa25589fd8ef53302ddda56dc826060cfb84de1c11fd85\",\n      \"level\": \"L4\",\n      \"basis\": \"A concrete internal admission boundary serves rank, chain and cochain consumers: lifetime-bound canonical matrix views, exact framed digests, typed shape/domain/resource failures, configurable cell/work admission before scalar work, zero-area/zero-inner shortcuts and independent finite product/custody challenges. This is an executable bounded service, not a re-export or nominal marker.\"\n    },\n    \"symbol_contracts\": {\n      \"AdmittedMatrix::try_new/matrix\": \"Validate all coefficients as positive-denominator reduced BigRational, rejecting the first invalid flat index. Retain a shared immutable BasicMatrix<Q> borrow. BasicMatrix private shape/storage and constructors are explicit source-pinned dependencies. Private token fields prevent sibling code from bypassing admission in safe Rust. matrix() returns only the original shared borrow.\",\n      \"AdmittedMatrix::digest\": \"BLAKE3 frame is MATRIX_Q_DOMAIN, little-endian u64 rows/cols, then signed little-endian numerator and denominator bytes with u64 length prefixes. Hash only canonical components directly, with no rational clone/reduction. This matches hash_matrix on admitted input; the shared domain tag prevents tag drift. Supported-pointer compile assertion in scalars.rs guarantees each usize metadata/byte length fits u64. Cryptographic commitment is not an injectivity theorem.\",\n      \"admit_coefficients/admit_matrix/admit_shaped_matrix\": \"Short-circuit denominator<=0 before GCD; require gcd(numerator,denominator)=1, including 0/1. Admission has no mutation. A shape mismatch is diagnosed before coefficient scanning in admit_shaped_matrix. admit_matrix preserves the legacy Result<()> adapter by discarding the admitted borrow.\",\n      \"ZeroProductLimits/cells/product_work/product_admission\": \"Inclusive defaults: 4096 cells per input, 4096 logical product cells, 1000000 scalar operations. Check left/right cell counts, compatible dimensions, logical output cells and checked 2*rows*cols*inner work before canonicality scans and arithmetic. All count overflow/refusal is typed MatrixError translated by HomologicalError. Logical output cells are charged despite no output matrix. Zero outputs are multiplied before potentially huge inner metadata, preserving 0*k=0.\",\n      \"admit_zero_product/admit_zero_product_with_limits/AdmittedMatrix::zero_product/dot_product\": \"After resource/shape admission, require canonical tokens for both inputs, even when a side is zero. For nonempty dimensions compute each exact dot product borrowing operands and retain only its accumulator; return the caller-supplied typed violation on the first nonzero entry. Zero row/column/inner dimensions succeed without dense loops after the declared profile is admitted. No provider matrix multiplication, full output buffer or unverified scalar callback is used.\"\n    },\n    \"requirement_symbol_map\": {\n      \"canonical immutable carrier\": [\n        \"AdmittedMatrix\",\n        \"AdmittedMatrix::try_new\",\n        \"AdmittedMatrix::matrix\",\n        \"admit_coefficients\",\n        \"admit_matrix\",\n        \"admit_shaped_matrix\"\n      ],\n      \"exact byte commitment\": [\n        \"AdmittedMatrix::digest\",\n        \"hashing::MATRIX_Q_DOMAIN\",\n        \"scalars::hash_bigint\"\n      ],\n      \"bounded independent composition check\": [\n        \"ZeroProductLimits\",\n        \"cells\",\n        \"product_work\",\n        \"product_admission\",\n        \"admit_zero_product\",\n        \"admit_zero_product_with_limits\",\n        \"AdmittedMatrix::zero_product\",\n        \"dot_product\"\n      ]\n    },\n    \"consumer_review\": [\n      \"The homology module keeps this adapter private. Existing chain/cochain/carrier admission uses the Result<()> wrappers; bounded zero-product verification replaces provider multiplication without publishing a product. Default input/output/work limits are now explicit and can refuse formerly larger workloads.\",\n      \"Rank producer/checker carry the admitted token to exact matrix binding, eliminating duplicate canonical normalization. Its public APIs remain separately challenged.\",\n      \"Dependencies are pinned BasicMatrix storage/access, canonical BigRational and BigInt/GCD arithmetic, BLAKE3 and signed integer byte serialization, under the pinned Rust/std/allocator runtime. No generic field extension or arbitrary callback is admitted.\"\n    ],\n    \"proof_arguments\": [\n      \"Positive reduced denominators are precisely the canonical Q representation, including zero as 0/1. Safe immutable borrowing prevents mutation for the token lifetime. Private fields supply no unchecked construction/decoding route.\",\n      \"BasicMatrix storage admission ensures rows*cols equals its slice length. Compatible product dimensions and typed get_ref calls justify all borrowed dot accesses. Canonical rational multiplication and addition preserve the nonzero-denominator field; a dot product is zero iff its mathematical Q entry is zero. Exhausting entries establishes the zero-product identity; a nonzero entry establishes the supplied violation.\",\n      \"Every resource calculation is checked. Each dot product costs at most two scalar operations per inner entry; the entire declared bound is admitted before arithmetic with no early-exit refunds. Zero row/column/inner cases perform no dense traversal. No new matrix/vector is allocated. Scalar accumulators, GCD and signed byte buffers have ordinary pinned dependency allocation/bit-complexity costs.\",\n      \"Digest serialization uses the same dimension/domain/component order as public hash_matrix, but canonical admission makes normalization unnecessary. Literal signed frames independently bind this correspondence. Hash equality is diagnostic commitment, not equality by injectivity.\"\n    ],\n    \"independent_challenge\": \"891 small rectangular {-1,0,1} matrix pairs against direct i64 dot sums; rational cancellation; every undefined/noncanonical coefficient class and first failing index; both raw-input roles even with a zero other side; literal signed digest frames plus public hash compatibility; exact inclusive cell/work limits; dimension/count/work overflow; maximal zero-area/zero-inner metadata and shape-specific refusal. Seventeen distinct domain, shape, budget, index, zero-law, token and digest faults are designated.\",\n    \"engineering_assessment\": {\n      \"source_sha256\": \"bf744580ce249ab32faa25589fd8ef53302ddda56dc826060cfb84de1c11fd85\",\n      \"gates\": {\n        \"G1\": {\n          \"grade\": \"A\",\n          \"basis\": \"Source SHA, concrete private consumer and requirement/symbol maps, invariant arguments and pinned execution/dependency receipts mirror this complete finite Exact contract. Original helper bytes are sealed on activation. No whole-workspace or hash-injectivity claim is made.\"\n        },\n        \"G2\": {\n          \"grade\": \"A\",\n          \"basis\": \"The runtime canonical gate and lifetime-bound token enforce the Q domain, direct canonical digest frame and exact borrowed dot-product identity. Shape/count/work arithmetic is checked; zero dimensions and raw coefficients are admitted/refused according to the explicit contract. No overflowing native coefficient domain is admitted.\"\n        },\n        \"G3\": {\n          \"grade\": \"A\",\n          \"basis\": \"Private immutable token storage excludes unchecked mutation/decoding; typed access and checked admission preserve invariants on every error. No output matrix or provider generic multiplication is allocated/invoked. Scalar/GCD/byte serialization use the explicitly pinned Rust/num/BLAKE3/provider-storage trust boundary; no process-OOM, allocator-wide guarantee or machine-checked crash freedom is inferred.\"\n        },\n        \"G4\": {\n          \"grade\": \"A\",\n          \"basis\": \"Conditional on current R>=0.95 for all 17 designated helper faults and successful untouched/restored package baselines. Independent integer and rational product expectations, literal signed frames, both invalid-input roles, specific typed failures and machine/inclusive budget cases challenge the declared failure classes. The staged trial is separate and does not replace current integration evidence.\"\n        },\n        \"G5\": {\n          \"grade\": \"A\",\n          \"basis\": \"Functions must meet measured A ceilings without opaque source macros. Canonical admission costs coefficient GCD scans; digest costs the required signed byte encodings and hashing without rational renormalization. A nonvacuous zero product takes O(rows*cols*inner) rational arithmetic and at most one scalar accumulator/output product at a time, with no full matrix buffer or redundant operand copies. Zero-area/zero-inner shortcuts are constant apart from prior admission. Per-input/declared-output cells and scalar-operation limits do not bound rational bit growth, GCD/byte work, parsing or process resources.\"\n        }\n      }\n    },\n    \"scope_limits\": [\n      \"Internal canonical-Q service only. Default zero-product limits may refuse larger pre-existing workloads; callers that need a larger finite bound must choose an explicit admitted profile. No arbitrary scalar provider or general process resource guarantee is claimed.\"\n    ],\n    \"open_obligations\": [],\n    \"origin_review\": \"Integrated byte-for-byte from the staged candidate after successful staged checks. Original source, prior specifications and all 266 previous assessment sidecars are sealed in evidence/quality/l4a_six/20261020T064227Z-rank-activation. Fresh source/dependency/metric/mutation receipts bind this current epoch.\"\n  }\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_six/20261020T104119Z-scalar-activation/previous_assessment/code/rust/src/homology/exact_scalar.rs.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "9d443401f2441d9add52ec0845403c8c4818bebeaf72a33c6b89462c24406aa7",
+      "bytes": 11086,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/homology/exact_scalar.rs",
+          "sha256": "bf744580ce249ab32faa25589fd8ef53302ddda56dc826060cfb84de1c11fd85",
+          "language": "Rust"
+        },
+        "profile": "Exact",
+        "level": "L4",
+        "level_basis": "A concrete internal admission boundary serves rank, chain and cochain consumers: lifetime-bound canonical matrix views, exact framed digests, typed shape/domain/resource failures, configurable cell/work admission before scalar work, zero-area/zero-inner shortcuts and independent finite product/custody challenges. This is an executable bounded service, not a re-export or nominal marker.",
+        "engineering_target": "A",
+        "requested_target": "L4A",
+        "gates": {
+          "G1": "A",
+          "G2": "A",
+          "G3": "A",
+          "G4": "A",
+          "G5": "A"
+        },
+        "composite_grade": "A",
+        "score_token": "L4A",
+        "is_complete": true,
+        "grade_ceiling": "A",
+        "evaluation_timestamp": "2026-10-20T08:25:06.744531+00:00",
+        "grade_ceiling_basis": "Minimum of explicit individual gate decisions and measured structural eligibility.",
+        "contract": {
+          "path": "code/rust/src/homology/exact_scalar.rs.contract.yaml",
+          "status": "canonical_rational_admission_individual_gate_review",
+          "sha256": "4cffd39026e3eec60e3c3fbcee94a06906f9dd0bdb184b721d7bbb745ae987d2"
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/receipt.json",
+            "sha256": "2a8a7c24316de85ce0c26f04e751fb6ff1ec0ee635defde5c01d76eab3f3fdfd"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/source_manifest.json",
+            "sha256": "4d8a488592e2c9166b812ac1188b34baeb4d97de07590f31bf5f006bad071626"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "8d5f25afe4e999b3a92c835b2910d2b81e6bd991b47abbe3ee2a204f1f363a09"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json",
+            "sha256": "f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json",
+            "sha256": "50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/metrics.json",
+            "sha256": "a297bf450b9c7f0504e2fc3f3dc6589663d94a5e73dc2d5d6c03079645b97030"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json",
+            "sha256": "b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/mutations.json",
+            "sha256": "00fa693c6f05422ed8b6be92780f5970691494e31b82ecaa20985a6a1e370860"
+          }
+        ],
+        "verification": {
+          "baseline": {
+            "command": [
+              "cargo",
+              "test",
+              "--offline",
+              "--target-dir",
+              "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T074603Z-mutations\\build",
+              "--quiet",
+              "-p",
+              "tfqm_homology_linear_audit"
+            ],
+            "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T074603Z-mutations",
+            "disk_observation": {
+              "completed_cache_file_bytes": 525664573,
+              "free_after": 3149668352,
+              "free_before": 3291734016,
+              "scope": "Endpoint observations only; not a peak-space or external-activity guarantee."
+            },
+            "elapsed_seconds": 68.359,
+            "environment": {
+              "CARGO_BUILD_JOBS": "2",
+              "CARGO_INCREMENTAL": "0"
+            },
+            "exit_code": 0,
+            "log": "evidence/quality/l4a_six/20261020T074603Z-mutations/tfqm_homology_linear_audit-baseline.log",
+            "log_sha256": "0b515dcdb44dd59f635362bb29e0fed1affba3f1e0841291e15b6f7e66ed7a2a",
+            "package": "tfqm_homology_linear_audit",
+            "timed_out": false
+          },
+          "sources_unchanged": true,
+          "doctests": [],
+          "composition_runs": [],
+          "differential_controls": [],
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false,
+          "dependency_sources_unchanged": true,
+          "compiled_scope": "Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.",
+          "designated_mutations": [
+            "ES01-denominator-domain",
+            "ES02-reduced-domain",
+            "ES03-error-index",
+            "ES04-shape-admission",
+            "ES05-cell-refusal",
+            "ES06-inclusive-cells",
+            "ES07-product-dimensions",
+            "ES08-work-accounting",
+            "ES09-work-refusal",
+            "ES10-dot-index",
+            "ES11-zero-law",
+            "ES12-digest-denominator",
+            "ES13-digest-shape",
+            "ES14-token-admission",
+            "ES15-left-domain",
+            "ES16-right-domain",
+            "ES17-zero-area"
+          ],
+          "designated_challenges_present": true,
+          "linked_challenges": {},
+          "mutation_campaign": {
+            "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json",
+            "sha256": "b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08"
+          },
+          "mutation_restoration_baselines_ok": true,
+          "reproduced_defects": []
+        },
+        "mutation_accounting": {
+          "killed": 17,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": 1.0
+        },
+        "structure": {
+          "tool": "syn source AST (see pinned metric_tool_sources in receipt)",
+          "functions": [
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 21,
+              "name": "default",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 37,
+              "name": "try_new",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 41,
+              "name": "matrix",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 47,
+              "name": "digest",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 8,
+              "cognitive_upper_bound": 9,
+              "control_nesting": 3,
+              "line": 59,
+              "name": "zero_product",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 4,
+              "control_nesting": 2,
+              "line": 81,
+              "name": "admit_coefficients",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 91,
+              "name": "admit_matrix",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 94,
+              "name": "admit_shaped_matrix",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 107,
+              "name": "cells",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 7,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 119,
+              "name": "product_admission",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 144,
+              "name": "product_work",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 150,
+              "name": "dot_product",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 162,
+              "name": "admit_zero_product",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 169,
+              "name": "admit_zero_product_with_limits",
+              "opaque_macros": []
+            }
+          ],
+          "exceeding_A": [],
+          "metric_ceiling": "A",
+          "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
+        },
+        "open_findings": [],
+        "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts.",
+        "engineering_review": {
+          "source_sha256": "bf744580ce249ab32faa25589fd8ef53302ddda56dc826060cfb84de1c11fd85",
+          "gates": {
+            "G1": {
+              "grade": "A",
+              "basis": "Source SHA, concrete private consumer and requirement/symbol maps, invariant arguments and pinned execution/dependency receipts mirror this complete finite Exact contract. Original helper bytes are sealed on activation. No whole-workspace or hash-injectivity claim is made."
+            },
+            "G2": {
+              "grade": "A",
+              "basis": "The runtime canonical gate and lifetime-bound token enforce the Q domain, direct canonical digest frame and exact borrowed dot-product identity. Shape/count/work arithmetic is checked; zero dimensions and raw coefficients are admitted/refused according to the explicit contract. No overflowing native coefficient domain is admitted."
+            },
+            "G3": {
+              "grade": "A",
+              "basis": "Private immutable token storage excludes unchecked mutation/decoding; typed access and checked admission preserve invariants on every error. No output matrix or provider generic multiplication is allocated/invoked. Scalar/GCD/byte serialization use the explicitly pinned Rust/num/BLAKE3/provider-storage trust boundary; no process-OOM, allocator-wide guarantee or machine-checked crash freedom is inferred."
+            },
+            "G4": {
+              "grade": "A",
+              "basis": "Conditional on current R>=0.95 for all 17 designated helper faults and successful untouched/restored package baselines. Independent integer and rational product expectations, literal signed frames, both invalid-input roles, specific typed failures and machine/inclusive budget cases challenge the declared failure classes. The staged trial is separate and does not replace current integration evidence."
+            },
+            "G5": {
+              "grade": "A",
+              "basis": "Functions must meet measured A ceilings without opaque source macros. Canonical admission costs coefficient GCD scans; digest costs the required signed byte encodings and hashing without rational renormalization. A nonvacuous zero product takes O(rows*cols*inner) rational arithmetic and at most one scalar accumulator/output product at a time, with no full matrix buffer or redundant operand copies. Zero-area/zero-inner shortcuts are constant apart from prior admission. Per-input/declared-output cells and scalar-operation limits do not bound rational bit growth, GCD/byte work, parsing or process resources."
+            }
+          }
+        }
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/homology/exact_scalar.rs\",\n    \"sha256\": \"bf744580ce249ab32faa25589fd8ef53302ddda56dc826060cfb84de1c11fd85\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"level\": \"L4\",\n  \"level_basis\": \"A concrete internal admission boundary serves rank, chain and cochain consumers: lifetime-bound canonical matrix views, exact framed digests, typed shape/domain/resource failures, configurable cell/work admission before scalar work, zero-area/zero-inner shortcuts and independent finite product/custody challenges. This is an executable bounded service, not a re-export or nominal marker.\",\n  \"engineering_target\": \"A\",\n  \"requested_target\": \"L4A\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L4A\",\n  \"is_complete\": true,\n  \"grade_ceiling\": \"A\",\n  \"evaluation_timestamp\": \"2026-10-20T08:25:06.744531+00:00\",\n  \"grade_ceiling_basis\": \"Minimum of explicit individual gate decisions and measured structural eligibility.\",\n  \"contract\": {\n    \"path\": \"code/rust/src/homology/exact_scalar.rs.contract.yaml\",\n    \"status\": \"canonical_rational_admission_individual_gate_review\",\n    \"sha256\": \"4cffd39026e3eec60e3c3fbcee94a06906f9dd0bdb184b721d7bbb745ae987d2\"\n  },\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/receipt.json\",\n      \"sha256\": \"2a8a7c24316de85ce0c26f04e751fb6ff1ec0ee635defde5c01d76eab3f3fdfd\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/source_manifest.json\",\n      \"sha256\": \"4d8a488592e2c9166b812ac1188b34baeb4d97de07590f31bf5f006bad071626\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"8d5f25afe4e999b3a92c835b2910d2b81e6bd991b47abbe3ee2a204f1f363a09\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json\",\n      \"sha256\": \"f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json\",\n      \"sha256\": \"50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/metrics.json\",\n      \"sha256\": \"a297bf450b9c7f0504e2fc3f3dc6589663d94a5e73dc2d5d6c03079645b97030\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json\",\n      \"sha256\": \"b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/mutations.json\",\n      \"sha256\": \"00fa693c6f05422ed8b6be92780f5970691494e31b82ecaa20985a6a1e370860\"\n    }\n  ],\n  \"verification\": {\n    \"baseline\": {\n      \"command\": [\n        \"cargo\",\n        \"test\",\n        \"--offline\",\n        \"--target-dir\",\n        \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-six\\\\20261020T074603Z-mutations\\\\build\",\n        \"--quiet\",\n        \"-p\",\n        \"tfqm_homology_linear_audit\"\n      ],\n      \"cwd\": \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-six\\\\20261020T074603Z-mutations\",\n      \"disk_observation\": {\n        \"completed_cache_file_bytes\": 525664573,\n        \"free_after\": 3149668352,\n        \"free_before\": 3291734016,\n        \"scope\": \"Endpoint observations only; not a peak-space or external-activity guarantee.\"\n      },\n      \"elapsed_seconds\": 68.359,\n      \"environment\": {\n        \"CARGO_BUILD_JOBS\": \"2\",\n        \"CARGO_INCREMENTAL\": \"0\"\n      },\n      \"exit_code\": 0,\n      \"log\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/tfqm_homology_linear_audit-baseline.log\",\n      \"log_sha256\": \"0b515dcdb44dd59f635362bb29e0fed1affba3f1e0841291e15b6f7e66ed7a2a\",\n      \"package\": \"tfqm_homology_linear_audit\",\n      \"timed_out\": false\n    },\n    \"sources_unchanged\": true,\n    \"doctests\": [],\n    \"composition_runs\": [],\n    \"differential_controls\": [],\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false,\n    \"dependency_sources_unchanged\": true,\n    \"compiled_scope\": \"Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.\",\n    \"designated_mutations\": [\n      \"ES01-denominator-domain\",\n      \"ES02-reduced-domain\",\n      \"ES03-error-index\",\n      \"ES04-shape-admission\",\n      \"ES05-cell-refusal\",\n      \"ES06-inclusive-cells\",\n      \"ES07-product-dimensions\",\n      \"ES08-work-accounting\",\n      \"ES09-work-refusal\",\n      \"ES10-dot-index\",\n      \"ES11-zero-law\",\n      \"ES12-digest-denominator\",\n      \"ES13-digest-shape\",\n      \"ES14-token-admission\",\n      \"ES15-left-domain\",\n      \"ES16-right-domain\",\n      \"ES17-zero-area\"\n    ],\n    \"designated_challenges_present\": true,\n    \"linked_challenges\": {},\n    \"mutation_campaign\": {\n      \"path\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json\",\n      \"sha256\": \"b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08\"\n    },\n    \"mutation_restoration_baselines_ok\": true,\n    \"reproduced_defects\": []\n  },\n  \"mutation_accounting\": {\n    \"killed\": 17,\n    \"survived\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"unrun\": 0,\n    \"conservative_ratio\": 1.0\n  },\n  \"structure\": {\n    \"tool\": \"syn source AST (see pinned metric_tool_sources in receipt)\",\n    \"functions\": [\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 21,\n        \"name\": \"default\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 37,\n        \"name\": \"try_new\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 41,\n        \"name\": \"matrix\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 47,\n        \"name\": \"digest\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 8,\n        \"cognitive_upper_bound\": 9,\n        \"control_nesting\": 3,\n        \"line\": 59,\n        \"name\": \"zero_product\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 2,\n        \"line\": 81,\n        \"name\": \"admit_coefficients\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 91,\n        \"name\": \"admit_matrix\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 94,\n        \"name\": \"admit_shaped_matrix\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 107,\n        \"name\": \"cells\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 7,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 119,\n        \"name\": \"product_admission\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 144,\n        \"name\": \"product_work\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 150,\n        \"name\": \"dot_product\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 162,\n        \"name\": \"admit_zero_product\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 169,\n        \"name\": \"admit_zero_product_with_limits\",\n        \"opaque_macros\": []\n      }\n    ],\n    \"exceeding_A\": [],\n    \"metric_ceiling\": \"A\",\n    \"scope\": \"Explicit source bodies only; opaque macros and compiler expansion remain unassessed.\"\n  },\n  \"open_findings\": [],\n  \"evaluation_timestamp_basis\": \"Start of the latest bound assessment execution; execution durations are recorded in receipts.\",\n  \"engineering_review\": {\n    \"source_sha256\": \"bf744580ce249ab32faa25589fd8ef53302ddda56dc826060cfb84de1c11fd85\",\n    \"gates\": {\n      \"G1\": {\n        \"grade\": \"A\",\n        \"basis\": \"Source SHA, concrete private consumer and requirement/symbol maps, invariant arguments and pinned execution/dependency receipts mirror this complete finite Exact contract. Original helper bytes are sealed on activation. No whole-workspace or hash-injectivity claim is made.\"\n      },\n      \"G2\": {\n        \"grade\": \"A\",\n        \"basis\": \"The runtime canonical gate and lifetime-bound token enforce the Q domain, direct canonical digest frame and exact borrowed dot-product identity. Shape/count/work arithmetic is checked; zero dimensions and raw coefficients are admitted/refused according to the explicit contract. No overflowing native coefficient domain is admitted.\"\n      },\n      \"G3\": {\n        \"grade\": \"A\",\n        \"basis\": \"Private immutable token storage excludes unchecked mutation/decoding; typed access and checked admission preserve invariants on every error. No output matrix or provider generic multiplication is allocated/invoked. Scalar/GCD/byte serialization use the explicitly pinned Rust/num/BLAKE3/provider-storage trust boundary; no process-OOM, allocator-wide guarantee or machine-checked crash freedom is inferred.\"\n      },\n      \"G4\": {\n        \"grade\": \"A\",\n        \"basis\": \"Conditional on current R>=0.95 for all 17 designated helper faults and successful untouched/restored package baselines. Independent integer and rational product expectations, literal signed frames, both invalid-input roles, specific typed failures and machine/inclusive budget cases challenge the declared failure classes. The staged trial is separate and does not replace current integration evidence.\"\n      },\n      \"G5\": {\n        \"grade\": \"A\",\n        \"basis\": \"Functions must meet measured A ceilings without opaque source macros. Canonical admission costs coefficient GCD scans; digest costs the required signed byte encodings and hashing without rational renormalization. A nonvacuous zero product takes O(rows*cols*inner) rational arithmetic and at most one scalar accumulator/output product at a time, with no full matrix buffer or redundant operand copies. Zero-area/zero-inner shortcuts are constant apart from prior admission. Per-input/declared-output cells and scalar-operation limits do not bound rational bit growth, GCD/byte work, parsing or process resources.\"\n      }\n    }\n  }\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_six/20261020T104119Z-scalar-activation/previous_assessment/code/rust/src/homology/exact_scalar.rs.scoring.yaml"
+      ]
+    }
+  ],
+  "legacy_paths": {
+    "evidence/quality/l4a_six/20261020T104119Z-scalar-activation/previous_assessment/code/rust/src/homology/exact_scalar.rs.contract.yaml": "4cffd39026e3eec60e3c3fbcee94a06906f9dd0bdb184b721d7bbb745ae987d2",
+    "evidence/quality/l4a_six/20261020T104119Z-scalar-activation/previous_assessment/code/rust/src/homology/exact_scalar.rs.scoring.yaml": "9d443401f2441d9add52ec0845403c8c4818bebeaf72a33c6b89462c24406aa7"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

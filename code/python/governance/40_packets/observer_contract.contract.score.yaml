@@ -1,0 +1,329 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/40_packets/observer_contract.py",
+  "contract": {
+    "schema_version": "v1.0.0",
+    "packet_id": "urn:omega:packet:omega:observer:v1.0.0",
+    "title": "Observer Evaluation Structure, Generated Observer Q_I & Observer Packet",
+    "kind": "execution_contract",
+    "status": "Active",
+    "layer": "Governance / Execution & Observer Theory",
+    "authority_effect": "None",
+    "formal_anchors": {
+      "primary_paper": {
+        "paper_id": "Paper 000",
+        "title": "Primitive Axiomatics of Finite Cohomological Obstruction Theory",
+        "source_document": "omega_research/programs/999_published_in_general_media/linkedin_article_01_what_the_hell_is_an_observer.md"
+      },
+      "formal_mechanization": {
+        "lean_module": "WGOC",
+        "source_document": "lean4/wgoc_observer.lean",
+        "proof_packet": "WGOC-20260730",
+        "frozen_statements": "research/proof_packets/wgoc_witness_observer_convergence/001_frozen_formal_statements.md"
+      },
+      "estate_anchors": {
+        "primitive_difference": "lean4/primitive_difference.lean (OmegaCore.PrimitiveDifference)",
+        "congruence_layer": "PCC-20260730 Settings A/B",
+        "contextual_congruence": "ENC-0209 (Primitive Axiomatics v2.6 §1.8)"
+      }
+    },
+    "definition": {
+      "summary": "An observer is the declared evaluation structure (K, F, R, delta, d0, d1, J, M, tau) that turns local disagreement into authorized evaluation. Mechanized as Q_I = X / B_I.",
+      "aphorism": "O is the packet that turns local disagreement into authorized evaluation.",
+      "tuple_specification": {
+        "K": "Finite carrier: sites, records, states, nodes, or boundary objects being compared.",
+        "F": "Local state space assignment mapping sites to local value domains.",
+        "R": "Comparability relation declaring which local sites or structures are comparable.",
+        "delta": "Primitive difference map turning comparison failures into edge defects.",
+        "d0": "Admissible local repair / gauge shift map describing allowed reference adjustments.",
+        "d1": "Higher-order closure operator verifying 2-cochain consistency.",
+        "J": "Observer-selected gauge or seminorm measuring quotient residual defect mass.",
+        "M": "Compatible transformation class of admissible transport or symmetry maps.",
+        "tau": "Terminalizer function assigning authorized terminal evaluation statuses."
+      }
+    },
+    "generated_observer_q_i": {
+      "formula": "Q_I := X / B_I",
+      "construction": "Behavioral quotient of state space X under greatest contextual difference-preserving equivalence relation B_I for action M and probe family d.",
+      "canonical_relative_scope": "Q_I is canonical ONLY relative to the declared action M and declared probe family d; no absolute canonical observer is claimed."
+    },
+    "formal_theorems": [
+      {
+        "id": "W1a_qI_eq_iff",
+        "statement": "qI(x) = qI(y) iff B_I(x, y) (kernel of the class map is B_I)."
+      },
+      {
+        "id": "W1b_sigbar_iso",
+        "statement": "Q_I is isomorphic to im(Sigma_I) via unique commuting, injective, surjective signature map."
+      },
+      {
+        "id": "W1c_greatest_preserving",
+        "statement": "B_I is the unique greatest difference-preserving equivalence relation."
+      },
+      {
+        "id": "W1d_observer_minimal",
+        "statement": "Every difference-preserving observer surjects onto Q_I (Q_I is the minimal coarsest observer)."
+      },
+      {
+        "id": "W1e_observer_unique_iso",
+        "statement": "Difference-preserving observers are unique up to unique commuting bijection."
+      },
+      {
+        "id": "W2a_W2b_contextual_amplification",
+        "statement": "Immediate difference separation amplifies to contextual difference separation across all action paths."
+      }
+    ],
+    "pipeline_stages": [
+      {
+        "stage": 1,
+        "name": "carrier_scope",
+        "description": "Admitted finite cells, sites, and boundary objects K."
+      },
+      {
+        "stage": 2,
+        "name": "local_states",
+        "description": "Target state spaces F assigned to carrier sites."
+      },
+      {
+        "stage": 3,
+        "name": "comparisons",
+        "description": "Evaluation relation R establishing comparable sites."
+      },
+      {
+        "stage": 4,
+        "name": "defects",
+        "description": "Primitive difference delta extracting edge defect cochains."
+      },
+      {
+        "stage": 5,
+        "name": "admissible_repairs",
+        "description": "Exact coboundary gauge repairs d0(alpha)."
+      },
+      {
+        "stage": 6,
+        "name": "quotient_residual",
+        "description": "Gauge-equivalent quotient class representative h = omega - d0(alpha)."
+      },
+      {
+        "stage": 7,
+        "name": "observer_selected_gauge",
+        "description": "Quotient seminorm measurement J(h) = Phi_1(h)."
+      },
+      {
+        "stage": 8,
+        "name": "closure_diagnostics",
+        "description": "Higher closure defect check d1(h) = Gamma_2(h)."
+      },
+      {
+        "stage": 9,
+        "name": "terminal_status",
+        "description": "Terminal decision tau(h) mapping residual to authorized status."
+      }
+    ],
+    "negative_axioms": [
+      "An observer is NOT a person, camera, or subjective consciousness.",
+      "An observer is NOT a sensor; a sensor records signals without defining evaluation regimes.",
+      "An observer is NOT an agent; proposal systems must not own terminal evaluation.",
+      "An observer is NOT a view from nowhere; every observer selects an explicit comparison geometry."
+    ],
+    "laws": [
+      {
+        "id": "OBS_LAW_01_EXPLICIT_REGIME",
+        "statement": "Nothing is publicly evaluable until an observer has declared its comparison regime."
+      },
+      {
+        "id": "OBS_LAW_02_SEPARATION_OF_ROLES",
+        "statement": "Proposal systems (agents) shall not own or mutate the terminalizer tau."
+      },
+      {
+        "id": "OBS_LAW_03_REPLAYABLE_PROVENANCE",
+        "statement": "Evaluation results must preserve replay hashes for carrier K, defect delta, and repair d0."
+      },
+      {
+        "id": "OBS_LAW_04_RELATIVE_CANONICALITY",
+        "statement": "Observer canonicality is strictly relative to declared action M and probe family d."
+      }
+    ],
+    "runtime_bindings": [
+      "omega_engine.crates.observer",
+      "omega_engine.crates.homology_theory.observer_gauge"
+    ],
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "4f72954472294f27764bb2d144edb71069a31404ea359f108397e3a236ad916e",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "4f72954472294f27764bb2d144edb71069a31404ea359f108397e3a236ad916e",
+      "bytes": 5230,
+      "record": {
+        "schema_version": "v1.0.0",
+        "packet_id": "urn:omega:packet:omega:observer:v1.0.0",
+        "title": "Observer Evaluation Structure, Generated Observer Q_I & Observer Packet",
+        "kind": "execution_contract",
+        "status": "Active",
+        "layer": "Governance / Execution & Observer Theory",
+        "authority_effect": "None",
+        "formal_anchors": {
+          "primary_paper": {
+            "paper_id": "Paper 000",
+            "title": "Primitive Axiomatics of Finite Cohomological Obstruction Theory",
+            "source_document": "omega_research/programs/999_published_in_general_media/linkedin_article_01_what_the_hell_is_an_observer.md"
+          },
+          "formal_mechanization": {
+            "lean_module": "WGOC",
+            "source_document": "lean4/wgoc_observer.lean",
+            "proof_packet": "WGOC-20260730",
+            "frozen_statements": "research/proof_packets/wgoc_witness_observer_convergence/001_frozen_formal_statements.md"
+          },
+          "estate_anchors": {
+            "primitive_difference": "lean4/primitive_difference.lean (OmegaCore.PrimitiveDifference)",
+            "congruence_layer": "PCC-20260730 Settings A/B",
+            "contextual_congruence": "ENC-0209 (Primitive Axiomatics v2.6 §1.8)"
+          }
+        },
+        "definition": {
+          "summary": "An observer is the declared evaluation structure (K, F, R, delta, d0, d1, J, M, tau) that turns local disagreement into authorized evaluation. Mechanized as Q_I = X / B_I.",
+          "aphorism": "O is the packet that turns local disagreement into authorized evaluation.",
+          "tuple_specification": {
+            "K": "Finite carrier: sites, records, states, nodes, or boundary objects being compared.",
+            "F": "Local state space assignment mapping sites to local value domains.",
+            "R": "Comparability relation declaring which local sites or structures are comparable.",
+            "delta": "Primitive difference map turning comparison failures into edge defects.",
+            "d0": "Admissible local repair / gauge shift map describing allowed reference adjustments.",
+            "d1": "Higher-order closure operator verifying 2-cochain consistency.",
+            "J": "Observer-selected gauge or seminorm measuring quotient residual defect mass.",
+            "M": "Compatible transformation class of admissible transport or symmetry maps.",
+            "tau": "Terminalizer function assigning authorized terminal evaluation statuses."
+          }
+        },
+        "generated_observer_q_i": {
+          "formula": "Q_I := X / B_I",
+          "construction": "Behavioral quotient of state space X under greatest contextual difference-preserving equivalence relation B_I for action M and probe family d.",
+          "canonical_relative_scope": "Q_I is canonical ONLY relative to the declared action M and declared probe family d; no absolute canonical observer is claimed."
+        },
+        "formal_theorems": [
+          {
+            "id": "W1a_qI_eq_iff",
+            "statement": "qI(x) = qI(y) iff B_I(x, y) (kernel of the class map is B_I)."
+          },
+          {
+            "id": "W1b_sigbar_iso",
+            "statement": "Q_I is isomorphic to im(Sigma_I) via unique commuting, injective, surjective signature map."
+          },
+          {
+            "id": "W1c_greatest_preserving",
+            "statement": "B_I is the unique greatest difference-preserving equivalence relation."
+          },
+          {
+            "id": "W1d_observer_minimal",
+            "statement": "Every difference-preserving observer surjects onto Q_I (Q_I is the minimal coarsest observer)."
+          },
+          {
+            "id": "W1e_observer_unique_iso",
+            "statement": "Difference-preserving observers are unique up to unique commuting bijection."
+          },
+          {
+            "id": "W2a_W2b_contextual_amplification",
+            "statement": "Immediate difference separation amplifies to contextual difference separation across all action paths."
+          }
+        ],
+        "pipeline_stages": [
+          {
+            "stage": 1,
+            "name": "carrier_scope",
+            "description": "Admitted finite cells, sites, and boundary objects K."
+          },
+          {
+            "stage": 2,
+            "name": "local_states",
+            "description": "Target state spaces F assigned to carrier sites."
+          },
+          {
+            "stage": 3,
+            "name": "comparisons",
+            "description": "Evaluation relation R establishing comparable sites."
+          },
+          {
+            "stage": 4,
+            "name": "defects",
+            "description": "Primitive difference delta extracting edge defect cochains."
+          },
+          {
+            "stage": 5,
+            "name": "admissible_repairs",
+            "description": "Exact coboundary gauge repairs d0(alpha)."
+          },
+          {
+            "stage": 6,
+            "name": "quotient_residual",
+            "description": "Gauge-equivalent quotient class representative h = omega - d0(alpha)."
+          },
+          {
+            "stage": 7,
+            "name": "observer_selected_gauge",
+            "description": "Quotient seminorm measurement J(h) = Phi_1(h)."
+          },
+          {
+            "stage": 8,
+            "name": "closure_diagnostics",
+            "description": "Higher closure defect check d1(h) = Gamma_2(h)."
+          },
+          {
+            "stage": 9,
+            "name": "terminal_status",
+            "description": "Terminal decision tau(h) mapping residual to authorized status."
+          }
+        ],
+        "negative_axioms": [
+          "An observer is NOT a person, camera, or subjective consciousness.",
+          "An observer is NOT a sensor; a sensor records signals without defining evaluation regimes.",
+          "An observer is NOT an agent; proposal systems must not own terminal evaluation.",
+          "An observer is NOT a view from nowhere; every observer selects an explicit comparison geometry."
+        ],
+        "laws": [
+          {
+            "id": "OBS_LAW_01_EXPLICIT_REGIME",
+            "statement": "Nothing is publicly evaluable until an observer has declared its comparison regime."
+          },
+          {
+            "id": "OBS_LAW_02_SEPARATION_OF_ROLES",
+            "statement": "Proposal systems (agents) shall not own or mutate the terminalizer tau."
+          },
+          {
+            "id": "OBS_LAW_03_REPLAYABLE_PROVENANCE",
+            "statement": "Evaluation results must preserve replay hashes for carrier K, defect delta, and repair d0."
+          },
+          {
+            "id": "OBS_LAW_04_RELATIVE_CANONICALITY",
+            "statement": "Observer canonicality is strictly relative to declared action M and probe family d."
+          }
+        ],
+        "runtime_bindings": [
+          "omega_engine.crates.observer",
+          "omega_engine.crates.homology_theory.observer_gauge"
+        ],
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: v1.0.0\npacket_id: urn:omega:packet:omega:observer:v1.0.0\ntitle: Observer Evaluation Structure, Generated Observer Q_I & Observer Packet\nkind: execution_contract\nstatus: Active\nlayer: Governance / Execution & Observer Theory\nauthority_effect: None\nformal_anchors:\n  primary_paper:\n    paper_id: Paper 000\n    title: Primitive Axiomatics of Finite Cohomological Obstruction Theory\n    source_document: omega_research/programs/999_published_in_general_media/linkedin_article_01_what_the_hell_is_an_observer.md\n  formal_mechanization:\n    lean_module: WGOC\n    source_document: lean4/wgoc_observer.lean\n    proof_packet: WGOC-20260730\n    frozen_statements: research/proof_packets/wgoc_witness_observer_convergence/001_frozen_formal_statements.md\n  estate_anchors:\n    primitive_difference: lean4/primitive_difference.lean (OmegaCore.PrimitiveDifference)\n    congruence_layer: PCC-20260730 Settings A/B\n    contextual_congruence: ENC-0209 (Primitive Axiomatics v2.6 §1.8)\ndefinition:\n  summary: An observer is the declared evaluation structure (K, F, R, delta, d0, d1,\n    J, M, tau) that turns local disagreement into authorized evaluation. Mechanized\n    as Q_I = X / B_I.\n  aphorism: O is the packet that turns local disagreement into authorized evaluation.\n  tuple_specification:\n    K: 'Finite carrier: sites, records, states, nodes, or boundary objects being compared.'\n    F: Local state space assignment mapping sites to local value domains.\n    R: Comparability relation declaring which local sites or structures are comparable.\n    delta: Primitive difference map turning comparison failures into edge defects.\n    d0: Admissible local repair / gauge shift map describing allowed reference adjustments.\n    d1: Higher-order closure operator verifying 2-cochain consistency.\n    J: Observer-selected gauge or seminorm measuring quotient residual defect mass.\n    M: Compatible transformation class of admissible transport or symmetry maps.\n    tau: Terminalizer function assigning authorized terminal evaluation statuses.\ngenerated_observer_q_i:\n  formula: Q_I := X / B_I\n  construction: Behavioral quotient of state space X under greatest contextual difference-preserving\n    equivalence relation B_I for action M and probe family d.\n  canonical_relative_scope: Q_I is canonical ONLY relative to the declared action\n    M and declared probe family d; no absolute canonical observer is claimed.\nformal_theorems:\n- id: W1a_qI_eq_iff\n  statement: qI(x) = qI(y) iff B_I(x, y) (kernel of the class map is B_I).\n- id: W1b_sigbar_iso\n  statement: Q_I is isomorphic to im(Sigma_I) via unique commuting, injective, surjective\n    signature map.\n- id: W1c_greatest_preserving\n  statement: B_I is the unique greatest difference-preserving equivalence relation.\n- id: W1d_observer_minimal\n  statement: Every difference-preserving observer surjects onto Q_I (Q_I is the minimal\n    coarsest observer).\n- id: W1e_observer_unique_iso\n  statement: Difference-preserving observers are unique up to unique commuting bijection.\n- id: W2a_W2b_contextual_amplification\n  statement: Immediate difference separation amplifies to contextual difference separation\n    across all action paths.\npipeline_stages:\n- stage: 1\n  name: carrier_scope\n  description: Admitted finite cells, sites, and boundary objects K.\n- stage: 2\n  name: local_states\n  description: Target state spaces F assigned to carrier sites.\n- stage: 3\n  name: comparisons\n  description: Evaluation relation R establishing comparable sites.\n- stage: 4\n  name: defects\n  description: Primitive difference delta extracting edge defect cochains.\n- stage: 5\n  name: admissible_repairs\n  description: Exact coboundary gauge repairs d0(alpha).\n- stage: 6\n  name: quotient_residual\n  description: Gauge-equivalent quotient class representative h = omega - d0(alpha).\n- stage: 7\n  name: observer_selected_gauge\n  description: Quotient seminorm measurement J(h) = Phi_1(h).\n- stage: 8\n  name: closure_diagnostics\n  description: Higher closure defect check d1(h) = Gamma_2(h).\n- stage: 9\n  name: terminal_status\n  description: Terminal decision tau(h) mapping residual to authorized status.\nnegative_axioms:\n- An observer is NOT a person, camera, or subjective consciousness.\n- An observer is NOT a sensor; a sensor records signals without defining evaluation\n  regimes.\n- An observer is NOT an agent; proposal systems must not own terminal evaluation.\n- An observer is NOT a view from nowhere; every observer selects an explicit comparison\n  geometry.\nlaws:\n- id: OBS_LAW_01_EXPLICIT_REGIME\n  statement: Nothing is publicly evaluable until an observer has declared its comparison\n    regime.\n- id: OBS_LAW_02_SEPARATION_OF_ROLES\n  statement: Proposal systems (agents) shall not own or mutate the terminalizer tau.\n- id: OBS_LAW_03_REPLAYABLE_PROVENANCE\n  statement: Evaluation results must preserve replay hashes for carrier K, defect\n    delta, and repair d0.\n- id: OBS_LAW_04_RELATIVE_CANONICALITY\n  statement: Observer canonicality is strictly relative to declared action M and probe\n    family d.\nruntime_bindings:\n- omega_engine.crates.observer\n- omega_engine.crates.homology_theory.observer_gauge\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/40_packets/observer.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/40_packets/observer.contract.yaml": "4f72954472294f27764bb2d144edb71069a31404ea359f108397e3a236ad916e"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

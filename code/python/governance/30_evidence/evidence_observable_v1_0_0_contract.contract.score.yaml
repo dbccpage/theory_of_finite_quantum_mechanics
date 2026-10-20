@@ -1,0 +1,403 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/30_evidence/evidence_observable_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:evidence:observable:v1.0.0",
+    "title": "Observable",
+    "kind": "evidence_contract",
+    "status": "mathematical_wip",
+    "layer": "02_evidence",
+    "role": "Observable",
+    "descriptor": {
+      "authority_effect": "evidence_only",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [
+          "MeasurementKernel",
+          "FunctionalMeasurementAuthority",
+          "GlobalContractTaxonomy"
+        ],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      },
+      "constitution": {
+        "contract_dependencies": [
+          "MeasurementKernel",
+          "FunctionalMeasurementAuthority",
+          "GlobalContractTaxonomy"
+        ],
+        "emits": "EvidenceEnvelope",
+        "authority_layer": "Evidence",
+        "replay_certificates": [
+          "schema_hash"
+        ]
+      },
+      "constraints": {
+        "mutation_forbidden": true,
+        "runtime_orchestration_forbidden": true,
+        "typed_output_required": true
+      }
+    },
+    "doctrine": {
+      "summary": "Observable extracts primitive quantities from state through declared boundaries.\nIt does not perform governance judgment, policy interpretation, candidate ranking,\ncanonical cohomological measurement emission unless admitted by Functional authority,\nlicensing, mutation, or execution.\n",
+      "non_role": [
+        "evaluator_judgment",
+        "policy_interpretation",
+        "terminal_mapping",
+        "transition_authorization",
+        "action_licensing",
+        "state_mutation",
+        "execution",
+        "search_scheduling",
+        "candidate_ranking",
+        "evidence_authority_upgrade",
+        "canonical_cohomological_measurement_emission_without_functional_admission"
+      ],
+      "authority_defaults": {
+        "observable_output": "EvidenceOnly",
+        "checked_observable_fact": "FactOnly only after extraction schema, source hash, output hash, and replayability are checked."
+      },
+      "structural_representation": {
+        "raw": {
+          "struct_name": "ObservableOutput",
+          "fields": [
+            {
+              "name": "observable_id",
+              "type": "ObservableId"
+            },
+            {
+              "name": "source_ref",
+              "type": "ArtifactRef"
+            },
+            {
+              "name": "output_kind",
+              "type": "ObservableKind"
+            },
+            {
+              "name": "output_ref",
+              "type": "EvidenceRef"
+            },
+            {
+              "name": "output_hash",
+              "type": "Hash256"
+            },
+            {
+              "name": "authority_effect",
+              "type": "AuthorityEffect",
+              "default": "EvidenceOnly"
+            }
+          ]
+        },
+        "checked": {
+          "struct_name": "CheckedObservableOutput",
+          "fields": [
+            {
+              "name": "observable_output_ref",
+              "type": "ObservableOutputRef"
+            },
+            {
+              "name": "schema_ref",
+              "type": "SchemaRef"
+            },
+            {
+              "name": "replay_ref",
+              "type": "ReplayRef"
+            },
+            {
+              "name": "authority_effect",
+              "type": "AuthorityEffect",
+              "default": "FactOnly"
+            }
+          ]
+        }
+      },
+      "flow": "State / ArtifactRef\n-> ObservableOutput\n-> MeasurementEnvelope / EvidenceEnvelope\n-> MeasurementKernel / ReplayKernel\n-> Evaluator\n-> TerminalMapper\n-> LicensingBoundary\n-> Engine\n",
+      "forbidden_implementation_tokens": {
+        "scope": "behavior, not substring",
+        "tokens": [
+          "execute(",
+          "terminalize(",
+          "mutate_state",
+          "authorize_transition",
+          "license_transition",
+          "self_certify",
+          "compute_phi",
+          "rank_candidates",
+          "score_candidate"
+        ]
+      },
+      "required_tests": [
+        "observable_output_defaults_to_evidence_only",
+        "observable_does_not_rank_candidates",
+        "observable_does_not_schedule_search",
+        "observable_does_not_emit_action_license",
+        "observable_does_not_authorize_transition",
+        "observable_does_not_execute",
+        "observable_requires_declared_extraction_schema"
+      ],
+      "canonical_invariant": "Observable extracts evidence. It does not decide, rank, schedule, license, authorize,\nmutate, execute, or upgrade evidence authority.\n",
+      "legacy_metadata": {
+        "name": "Observable",
+        "source_file": "non-math/02_evidence/observable_contract.md",
+        "active": true,
+        "machine_authority": true,
+        "role": "State extraction and measurable quantity boundary",
+        "version": "2.0",
+        "classification": "evidence",
+        "effect_class": "none",
+        "depends_on": [
+          "MeasurementKernel",
+          "FunctionalMeasurementAuthority",
+          "GlobalContractTaxonomy"
+        ],
+        "forbidden_authority": [
+          "evaluator_judgment",
+          "policy_interpretation",
+          "terminal_mapping",
+          "transition_authorization",
+          "action_licensing",
+          "state_mutation",
+          "execution",
+          "search_scheduling",
+          "candidate_ranking",
+          "evidence_authority_upgrade",
+          "canonical_cohomological_measurement_emission_without_functional_admission"
+        ],
+        "primary_output_family": "EvidenceEnvelope",
+        "domain_output_kind": "ObservableOutput",
+        "referenced_output_families": [
+          "EvidenceEnvelope",
+          "FactEnvelope"
+        ]
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0",
+        "urn:omega:constitution:base_evidence_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "5b6423ae3fcacac37d55e3c42a6f074880322a8a2d4faad2b0b9386fc455f159",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "5b6423ae3fcacac37d55e3c42a6f074880322a8a2d4faad2b0b9386fc455f159",
+      "bytes": 4115,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:evidence:observable:v1.0.0",
+        "title": "Observable",
+        "kind": "evidence_contract",
+        "status": "mathematical_wip",
+        "layer": "02_evidence",
+        "role": "Observable",
+        "descriptor": {
+          "authority_effect": "evidence_only",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [
+              "MeasurementKernel",
+              "FunctionalMeasurementAuthority",
+              "GlobalContractTaxonomy"
+            ],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          },
+          "constitution": {
+            "contract_dependencies": [
+              "MeasurementKernel",
+              "FunctionalMeasurementAuthority",
+              "GlobalContractTaxonomy"
+            ],
+            "emits": "EvidenceEnvelope",
+            "authority_layer": "Evidence",
+            "replay_certificates": [
+              "schema_hash"
+            ]
+          },
+          "constraints": {
+            "mutation_forbidden": true,
+            "runtime_orchestration_forbidden": true,
+            "typed_output_required": true
+          }
+        },
+        "doctrine": {
+          "summary": "Observable extracts primitive quantities from state through declared boundaries.\nIt does not perform governance judgment, policy interpretation, candidate ranking,\ncanonical cohomological measurement emission unless admitted by Functional authority,\nlicensing, mutation, or execution.\n",
+          "non_role": [
+            "evaluator_judgment",
+            "policy_interpretation",
+            "terminal_mapping",
+            "transition_authorization",
+            "action_licensing",
+            "state_mutation",
+            "execution",
+            "search_scheduling",
+            "candidate_ranking",
+            "evidence_authority_upgrade",
+            "canonical_cohomological_measurement_emission_without_functional_admission"
+          ],
+          "authority_defaults": {
+            "observable_output": "EvidenceOnly",
+            "checked_observable_fact": "FactOnly only after extraction schema, source hash, output hash, and replayability are checked."
+          },
+          "structural_representation": {
+            "raw": {
+              "struct_name": "ObservableOutput",
+              "fields": [
+                {
+                  "name": "observable_id",
+                  "type": "ObservableId"
+                },
+                {
+                  "name": "source_ref",
+                  "type": "ArtifactRef"
+                },
+                {
+                  "name": "output_kind",
+                  "type": "ObservableKind"
+                },
+                {
+                  "name": "output_ref",
+                  "type": "EvidenceRef"
+                },
+                {
+                  "name": "output_hash",
+                  "type": "Hash256"
+                },
+                {
+                  "name": "authority_effect",
+                  "type": "AuthorityEffect",
+                  "default": "EvidenceOnly"
+                }
+              ]
+            },
+            "checked": {
+              "struct_name": "CheckedObservableOutput",
+              "fields": [
+                {
+                  "name": "observable_output_ref",
+                  "type": "ObservableOutputRef"
+                },
+                {
+                  "name": "schema_ref",
+                  "type": "SchemaRef"
+                },
+                {
+                  "name": "replay_ref",
+                  "type": "ReplayRef"
+                },
+                {
+                  "name": "authority_effect",
+                  "type": "AuthorityEffect",
+                  "default": "FactOnly"
+                }
+              ]
+            }
+          },
+          "flow": "State / ArtifactRef\n-> ObservableOutput\n-> MeasurementEnvelope / EvidenceEnvelope\n-> MeasurementKernel / ReplayKernel\n-> Evaluator\n-> TerminalMapper\n-> LicensingBoundary\n-> Engine\n",
+          "forbidden_implementation_tokens": {
+            "scope": "behavior, not substring",
+            "tokens": [
+              "execute(",
+              "terminalize(",
+              "mutate_state",
+              "authorize_transition",
+              "license_transition",
+              "self_certify",
+              "compute_phi",
+              "rank_candidates",
+              "score_candidate"
+            ]
+          },
+          "required_tests": [
+            "observable_output_defaults_to_evidence_only",
+            "observable_does_not_rank_candidates",
+            "observable_does_not_schedule_search",
+            "observable_does_not_emit_action_license",
+            "observable_does_not_authorize_transition",
+            "observable_does_not_execute",
+            "observable_requires_declared_extraction_schema"
+          ],
+          "canonical_invariant": "Observable extracts evidence. It does not decide, rank, schedule, license, authorize,\nmutate, execute, or upgrade evidence authority.\n",
+          "legacy_metadata": {
+            "name": "Observable",
+            "source_file": "non-math/02_evidence/observable_contract.md",
+            "active": true,
+            "machine_authority": true,
+            "role": "State extraction and measurable quantity boundary",
+            "version": "2.0",
+            "classification": "evidence",
+            "effect_class": "none",
+            "depends_on": [
+              "MeasurementKernel",
+              "FunctionalMeasurementAuthority",
+              "GlobalContractTaxonomy"
+            ],
+            "forbidden_authority": [
+              "evaluator_judgment",
+              "policy_interpretation",
+              "terminal_mapping",
+              "transition_authorization",
+              "action_licensing",
+              "state_mutation",
+              "execution",
+              "search_scheduling",
+              "candidate_ranking",
+              "evidence_authority_upgrade",
+              "canonical_cohomological_measurement_emission_without_functional_admission"
+            ],
+            "primary_output_family": "EvidenceEnvelope",
+            "domain_output_kind": "ObservableOutput",
+            "referenced_output_families": [
+              "EvidenceEnvelope",
+              "FactEnvelope"
+            ]
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0",
+            "urn:omega:constitution:base_evidence_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:evidence:observable:v1.0.0\ntitle: Observable\nkind: evidence_contract\nstatus: mathematical_wip\nlayer: 02_evidence\nrole: Observable\ndescriptor:\n  authority_effect: evidence_only\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: &id001\n    - MeasurementKernel\n    - FunctionalMeasurementAuthority\n    - GlobalContractTaxonomy\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\n  constitution:\n    contract_dependencies: *id001\n    emits: EvidenceEnvelope\n    authority_layer: Evidence\n    replay_certificates:\n    - schema_hash\n  constraints:\n    mutation_forbidden: true\n    runtime_orchestration_forbidden: true\n    typed_output_required: true\ndoctrine:\n  summary: 'Observable extracts primitive quantities from state through declared boundaries.\n\n    It does not perform governance judgment, policy interpretation, candidate ranking,\n\n    canonical cohomological measurement emission unless admitted by Functional authority,\n\n    licensing, mutation, or execution.\n\n    '\n  non_role: &id002\n  - evaluator_judgment\n  - policy_interpretation\n  - terminal_mapping\n  - transition_authorization\n  - action_licensing\n  - state_mutation\n  - execution\n  - search_scheduling\n  - candidate_ranking\n  - evidence_authority_upgrade\n  - canonical_cohomological_measurement_emission_without_functional_admission\n  authority_defaults:\n    observable_output: EvidenceOnly\n    checked_observable_fact: FactOnly only after extraction schema, source hash, output\n      hash, and replayability are checked.\n  structural_representation:\n    raw:\n      struct_name: ObservableOutput\n      fields:\n      - name: observable_id\n        type: ObservableId\n      - name: source_ref\n        type: ArtifactRef\n      - name: output_kind\n        type: ObservableKind\n      - name: output_ref\n        type: EvidenceRef\n      - name: output_hash\n        type: Hash256\n      - name: authority_effect\n        type: AuthorityEffect\n        default: EvidenceOnly\n    checked:\n      struct_name: CheckedObservableOutput\n      fields:\n      - name: observable_output_ref\n        type: ObservableOutputRef\n      - name: schema_ref\n        type: SchemaRef\n      - name: replay_ref\n        type: ReplayRef\n      - name: authority_effect\n        type: AuthorityEffect\n        default: FactOnly\n  flow: 'State / ArtifactRef\n\n    -> ObservableOutput\n\n    -> MeasurementEnvelope / EvidenceEnvelope\n\n    -> MeasurementKernel / ReplayKernel\n\n    -> Evaluator\n\n    -> TerminalMapper\n\n    -> LicensingBoundary\n\n    -> Engine\n\n    '\n  forbidden_implementation_tokens:\n    scope: behavior, not substring\n    tokens:\n    - execute(\n    - terminalize(\n    - mutate_state\n    - authorize_transition\n    - license_transition\n    - self_certify\n    - compute_phi\n    - rank_candidates\n    - score_candidate\n  required_tests:\n  - observable_output_defaults_to_evidence_only\n  - observable_does_not_rank_candidates\n  - observable_does_not_schedule_search\n  - observable_does_not_emit_action_license\n  - observable_does_not_authorize_transition\n  - observable_does_not_execute\n  - observable_requires_declared_extraction_schema\n  canonical_invariant: 'Observable extracts evidence. It does not decide, rank, schedule,\n    license, authorize,\n\n    mutate, execute, or upgrade evidence authority.\n\n    '\n  legacy_metadata:\n    name: Observable\n    source_file: non-math/02_evidence/observable_contract.md\n    active: true\n    machine_authority: true\n    role: State extraction and measurable quantity boundary\n    version: '2.0'\n    classification: evidence\n    effect_class: none\n    depends_on: *id001\n    forbidden_authority: *id002\n    primary_output_family: EvidenceEnvelope\n    domain_output_kind: ObservableOutput\n    referenced_output_families:\n    - EvidenceEnvelope\n    - FactEnvelope\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n  - urn:omega:constitution:base_evidence_contract:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/30_evidence/evidence_observable_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/30_evidence/evidence_observable_v1_0_0.contract.yaml": "5b6423ae3fcacac37d55e3c42a6f074880322a8a2d4faad2b0b9386fc455f159"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

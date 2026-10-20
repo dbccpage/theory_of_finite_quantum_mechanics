@@ -1,0 +1,207 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/quantum/math_exact_qubit_qudit_teleportation_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:exact_qubit_qudit_teleportation:v0.1.0",
+    "title": "Exact computed Bell-measurement teleportation branches",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "exact_qubit_qudit_teleportation",
+      "symbol": "exact_qubit_qudit_teleportation",
+      "ascii_symbol": "exact_qubit_qudit_teleportation",
+      "notation": "Exact computed Bell-measurement teleportation branches",
+      "domain": [
+        "Nonzero finite qubit rays over Q(i), or qudit rays d=2..32 in an exact field with a supplied primitive unit root"
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_quantum_physics::teleportation; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "Every Bell branch probability is computed from projection",
+      "Every corrected branch has the input ray projector",
+      "All qubit probabilities are 1/4; qudit probabilities are 1/d^2",
+      "Wrong root order and invalid dimensions are refused"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_quantum_physics",
+      "module": "teleportation",
+      "symbols": [
+        "Teleportation::exact",
+        "teleport_qudit"
+      ],
+      "required_tests": [
+        "states_channels_exact_tests::exact_teleportation_computes_all_complex_qubit_and_qudit_branches"
+      ]
+    },
+    "negative_tests": [
+      "states_channels_exact_tests::exact_teleportation_computes_all_complex_qubit_and_qudit_branches"
+    ],
+    "doctrine": {
+      "summary": "Every Bell branch probability is computed from projection; Every corrected branch has the input ray projector; All qubit probabilities are 1/4; qudit probabilities are 1/d^2; Wrong root order and invalid dimensions are refused.",
+      "non_role": [
+        "No classical outcome flag or fidelity constant substitutes for the branch computation",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "403e69a0bf8999cdaeeb5ff611d6a0d16bee0597366b73b20bc508d92a49f80e",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "403e69a0bf8999cdaeeb5ff611d6a0d16bee0597366b73b20bc508d92a49f80e",
+      "bytes": 2852,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:exact_qubit_qudit_teleportation:v0.1.0",
+        "title": "Exact computed Bell-measurement teleportation branches",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "exact_qubit_qudit_teleportation",
+          "symbol": "exact_qubit_qudit_teleportation",
+          "ascii_symbol": "exact_qubit_qudit_teleportation",
+          "notation": "Exact computed Bell-measurement teleportation branches",
+          "domain": [
+            "Nonzero finite qubit rays over Q(i), or qudit rays d=2..32 in an exact field with a supplied primitive unit root"
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_quantum_physics::teleportation; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "Every Bell branch probability is computed from projection",
+          "Every corrected branch has the input ray projector",
+          "All qubit probabilities are 1/4; qudit probabilities are 1/d^2",
+          "Wrong root order and invalid dimensions are refused"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_quantum_physics",
+          "module": "teleportation",
+          "symbols": [
+            "Teleportation::exact",
+            "teleport_qudit"
+          ],
+          "required_tests": [
+            "states_channels_exact_tests::exact_teleportation_computes_all_complex_qubit_and_qudit_branches"
+          ]
+        },
+        "negative_tests": [
+          "states_channels_exact_tests::exact_teleportation_computes_all_complex_qubit_and_qudit_branches"
+        ],
+        "doctrine": {
+          "summary": "Every Bell branch probability is computed from projection; Every corrected branch has the input ray projector; All qubit probabilities are 1/4; qudit probabilities are 1/d^2; Wrong root order and invalid dimensions are refused.",
+          "non_role": [
+            "No classical outcome flag or fidelity constant substitutes for the branch computation",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:exact_qubit_qudit_teleportation:v0.1.0\ntitle: Exact computed Bell-measurement teleportation branches\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: exact_qubit_qudit_teleportation\n  symbol: exact_qubit_qudit_teleportation\n  ascii_symbol: exact_qubit_qudit_teleportation\n  notation: Exact computed Bell-measurement teleportation branches\n  domain:\n  - Nonzero finite qubit rays over Q(i), or qudit rays d=2..32 in an exact field with\n    a supplied primitive unit root\n  codomain:\n    description: Declared finite results of omega_quantum_physics::teleportation;\n      exact and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- Every Bell branch probability is computed from projection\n- Every corrected branch has the input ray projector\n- All qubit probabilities are 1/4; qudit probabilities are 1/d^2\n- Wrong root order and invalid dimensions are refused\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_quantum_physics\n  module: teleportation\n  symbols:\n  - Teleportation::exact\n  - teleport_qudit\n  required_tests:\n  - states_channels_exact_tests::exact_teleportation_computes_all_complex_qubit_and_qudit_branches\nnegative_tests:\n- states_channels_exact_tests::exact_teleportation_computes_all_complex_qubit_and_qudit_branches\ndoctrine:\n  summary: Every Bell branch probability is computed from projection; Every corrected\n    branch has the input ray projector; All qubit probabilities are 1/4; qudit probabilities\n    are 1/d^2; Wrong root order and invalid dimensions are refused.\n  non_role:\n  - No classical outcome flag or fidelity constant substitutes for the branch computation\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/math_exact_qubit_qudit_teleportation_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/quantum/math_exact_qubit_qudit_teleportation_v0_1_0.contract.yaml": "403e69a0bf8999cdaeeb5ff611d6a0d16bee0597366b73b20bc508d92a49f80e"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

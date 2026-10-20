@@ -1,0 +1,207 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/algebra/math_bounded_exact_centralizer_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:bounded_exact_centralizer:v0.1.0",
+    "title": "Bounded exact commutant basis",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "bounded_exact_centralizer",
+      "symbol": "bounded_exact_centralizer",
+      "ascii_symbol": "bounded_exact_centralizer",
+      "notation": "Bounded exact commutant basis",
+      "domain": [
+        "Finite same-size square exact-field generators with explicit n^4 storage and elimination work bounds"
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_linear_algebra::exact_field::commutant; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "Kernel of the stacked commutator map is the full centralizer",
+      "Every returned basis matrix independently commutes with every generator",
+      "Repeated eigenvalues enlarge the exact dimension",
+      "All construction and elimination allocations are preflighted"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_linear_algebra",
+      "module": "exact_field::commutant",
+      "symbols": [
+        "commutant_dimension_with_limits",
+        "commutant_basis_with_limits"
+      ],
+      "required_tests": [
+        "commutant::tests::centralizer_detects_multiplicity_and_replays_a_complete_basis"
+      ]
+    },
+    "negative_tests": [
+      "commutant::tests::centralizer_detects_multiplicity_and_replays_a_complete_basis"
+    ],
+    "doctrine": {
+      "summary": "Kernel of the stacked commutator map is the full centralizer; Every returned basis matrix independently commutes with every generator; Repeated eigenvalues enlarge the exact dimension; All construction and elimination allocations are preflighted.",
+      "non_role": [
+        "No field-independent absolute irreducibility or unbounded enumeration claim",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "649dab089242a3dca00b727ceff7b464e00022191f24ce6bb58384738c322a52",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "649dab089242a3dca00b727ceff7b464e00022191f24ce6bb58384738c322a52",
+      "bytes": 2808,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:bounded_exact_centralizer:v0.1.0",
+        "title": "Bounded exact commutant basis",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "bounded_exact_centralizer",
+          "symbol": "bounded_exact_centralizer",
+          "ascii_symbol": "bounded_exact_centralizer",
+          "notation": "Bounded exact commutant basis",
+          "domain": [
+            "Finite same-size square exact-field generators with explicit n^4 storage and elimination work bounds"
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_linear_algebra::exact_field::commutant; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "Kernel of the stacked commutator map is the full centralizer",
+          "Every returned basis matrix independently commutes with every generator",
+          "Repeated eigenvalues enlarge the exact dimension",
+          "All construction and elimination allocations are preflighted"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_linear_algebra",
+          "module": "exact_field::commutant",
+          "symbols": [
+            "commutant_dimension_with_limits",
+            "commutant_basis_with_limits"
+          ],
+          "required_tests": [
+            "commutant::tests::centralizer_detects_multiplicity_and_replays_a_complete_basis"
+          ]
+        },
+        "negative_tests": [
+          "commutant::tests::centralizer_detects_multiplicity_and_replays_a_complete_basis"
+        ],
+        "doctrine": {
+          "summary": "Kernel of the stacked commutator map is the full centralizer; Every returned basis matrix independently commutes with every generator; Repeated eigenvalues enlarge the exact dimension; All construction and elimination allocations are preflighted.",
+          "non_role": [
+            "No field-independent absolute irreducibility or unbounded enumeration claim",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:bounded_exact_centralizer:v0.1.0\ntitle: Bounded exact commutant basis\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: bounded_exact_centralizer\n  symbol: bounded_exact_centralizer\n  ascii_symbol: bounded_exact_centralizer\n  notation: Bounded exact commutant basis\n  domain:\n  - Finite same-size square exact-field generators with explicit n^4 storage and elimination\n    work bounds\n  codomain:\n    description: Declared finite results of omega_linear_algebra::exact_field::commutant;\n      exact and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- Kernel of the stacked commutator map is the full centralizer\n- Every returned basis matrix independently commutes with every generator\n- Repeated eigenvalues enlarge the exact dimension\n- All construction and elimination allocations are preflighted\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_linear_algebra\n  module: exact_field::commutant\n  symbols:\n  - commutant_dimension_with_limits\n  - commutant_basis_with_limits\n  required_tests:\n  - commutant::tests::centralizer_detects_multiplicity_and_replays_a_complete_basis\nnegative_tests:\n- commutant::tests::centralizer_detects_multiplicity_and_replays_a_complete_basis\ndoctrine:\n  summary: Kernel of the stacked commutator map is the full centralizer; Every returned\n    basis matrix independently commutes with every generator; Repeated eigenvalues\n    enlarge the exact dimension; All construction and elimination allocations are\n    preflighted.\n  non_role:\n  - No field-independent absolute irreducibility or unbounded enumeration claim\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/algebra/math_bounded_exact_centralizer_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/algebra/math_bounded_exact_centralizer_v0_1_0.contract.yaml": "649dab089242a3dca00b727ceff7b464e00022191f24ce6bb58384738c322a52"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

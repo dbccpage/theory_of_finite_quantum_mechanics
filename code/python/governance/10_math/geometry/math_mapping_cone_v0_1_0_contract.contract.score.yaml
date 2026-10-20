@@ -1,0 +1,239 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/geometry/math_mapping_cone_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:mapping_cone:v0.1.0",
+    "title": "MappingCone Contract",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "mapping_cone",
+      "symbol": "Cone(f)_n = D_n + C_{n-1}, d(d,c) = (d_D(d) + f(c), -d_C(c))",
+      "ascii_symbol": "mapping_cone",
+      "notation": "Cone(f)_n = D_n + C_{n-1}, d(d,c) = (d_D(d) + f(c), -d_C(c))",
+      "domain": [
+        "source_complex: chain_complex (C_*)",
+        "target_complex: chain_complex (D_*)",
+        "chain_map: chain_map (f: C_* -> D_*)",
+        "cone_groups: graded_direct_sum (D_n + C_{n-1})",
+        "cone_differential: graded_linear_maps",
+        "degree_indices: integer_index_set",
+        "coefficient_domain: ring_or_field"
+      ],
+      "codomain": {
+        "description": "Given chain complexes C_* and D_* with chain map f: C_* -> D_*, the mapping cone Cone(f) is the chain complex with Cone(f)_n = D_n + C_{n-1} and differential d_Cone(d, c) = (d_D(d) + f(c), -d_C(c))\n"
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "d_Cone ∘ d_Cone = 0 for all adjacent degrees in the cone complex",
+        "f is a chain map: f_n ∘ d_C = d_D ∘ f_{n+1} for all n",
+        "dim(Cone(f)_n) = dim(D_n) + dim(C_{n-1}) for all n",
+        "The cone differential matrix at degree n has block form [[d_D_n, f_{n-1}], [0, -d_C_{n-1}]]\n",
+        "Source, target, and cone complexes all use the same coefficient domain",
+        "StructureArtifact hash is deterministic from inputs"
+      ]
+    },
+    "laws": [
+      "d_Cone^2 = 0: the mapping cone differential squares to zero",
+      "f must be a chain map: f_n d_C = d_D f_{n+1} for all n",
+      "dim(Cone(f)_n) = dim(D_n) + dim(C_{n-1}) for all n",
+      "The cone differential has block matrix form [[d_D, f], [0, -d_C]] acting on (D_n, C_{n-1})\n",
+      "The inclusion i: D -> Cone(f) and projection p: Cone(f) -> C[-1] give a short exact sequence 0 -> D -> Cone(f) -> C[-1] -> 0\n"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No randomness",
+        "No time-dependent data",
+        "All cone differential computations from canonical matrices",
+        "Block matrix assembly must be deterministic",
+        "Rechecking must reproduce artifact_hash"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "negative_tests": [
+      "f that does not commute with differentials (f d_C != d_D f) must be rejected",
+      "Cone differential with d^2 != 0 must be rejected",
+      "Cone group with dim != dim(D_n) + dim(C_{n-1}) must be rejected",
+      "Cone differential not matching block form [[d_D, f], [0, -d_C]] must be rejected",
+      "Mismatched coefficient domains between source, target, or chain map must be rejected",
+      "Artifact claiming authority or admissibility must be rejected"
+    ],
+    "doctrine": {
+      "summary": "The mapping cone (cofiber) of a chain map f: C_* -> D_* is the chain complex Cone(f)_n = D_n + C_{n-1} with differential d(d,c) = (d_D(d) + f(c), -d_C(c)). In topology, the mapping cone of a continuous map f: X -> Y is C_f = (X x [0,1]) U_f Y / (X x {0}), obtained by attaching X to Y via f and collapsing. The mapping cone fits into the cofiber sequence X -> Y -> C_f -> SX -> SY -> ... which is dual to the fiber sequence. In homological algebra, the mapping cone gives the long exact sequence in homology. The cone differential satisfies d^2 = 0 precisely because f is a chain map. The mapping cone is acyclic if and only if f is a quasi-isomorphism.",
+      "non_role": [
+        "Mapping cylinder or mapping telescope constructions (separate contracts)",
+        "Triangulated category axioms (separate contract)",
+        "Derived category localization at quasi-isomorphisms (separate contract)",
+        "Homotopy colimits or totalizations (deferred)",
+        "Infinite-dimensional chain groups (currently finite only)"
+      ]
+    },
+    "wip": [
+      "How to handle mapping cones of morphisms in derived categories?",
+      "Should we support the octahedral axiom as a separate contract or within this one?",
+      "What is the interface for connecting homomorphism construction from the cone?",
+      "How to formalize the mapping cone in the context of stable infinity-categories?",
+      "Currently targets finite chain complexes only",
+      "ChainHomotopy contract dependency not yet available (referenced for future chain map verification)",
+      "Mapping cylinder and mapping telescope are separate constructions (deferred)",
+      "Triangulated category distinguished triangle axioms deferred to separate contract",
+      "Topological mapping cone (CW-complex version) not covered; this is the algebraic construction"
+    ]
+  },
+  "current_contract": "bbc42cb30533040952fd4aabe2b176819f455200c37927940ffdac8ecd60d828",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "bbc42cb30533040952fd4aabe2b176819f455200c37927940ffdac8ecd60d828",
+      "bytes": 4687,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:mapping_cone:v0.1.0",
+        "title": "MappingCone Contract",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "mapping_cone",
+          "symbol": "Cone(f)_n = D_n + C_{n-1}, d(d,c) = (d_D(d) + f(c), -d_C(c))",
+          "ascii_symbol": "mapping_cone",
+          "notation": "Cone(f)_n = D_n + C_{n-1}, d(d,c) = (d_D(d) + f(c), -d_C(c))",
+          "domain": [
+            "source_complex: chain_complex (C_*)",
+            "target_complex: chain_complex (D_*)",
+            "chain_map: chain_map (f: C_* -> D_*)",
+            "cone_groups: graded_direct_sum (D_n + C_{n-1})",
+            "cone_differential: graded_linear_maps",
+            "degree_indices: integer_index_set",
+            "coefficient_domain: ring_or_field"
+          ],
+          "codomain": {
+            "description": "Given chain complexes C_* and D_* with chain map f: C_* -> D_*, the mapping cone Cone(f) is the chain complex with Cone(f)_n = D_n + C_{n-1} and differential d_Cone(d, c) = (d_D(d) + f(c), -d_C(c))\n"
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "d_Cone ∘ d_Cone = 0 for all adjacent degrees in the cone complex",
+            "f is a chain map: f_n ∘ d_C = d_D ∘ f_{n+1} for all n",
+            "dim(Cone(f)_n) = dim(D_n) + dim(C_{n-1}) for all n",
+            "The cone differential matrix at degree n has block form [[d_D_n, f_{n-1}], [0, -d_C_{n-1}]]\n",
+            "Source, target, and cone complexes all use the same coefficient domain",
+            "StructureArtifact hash is deterministic from inputs"
+          ]
+        },
+        "laws": [
+          "d_Cone^2 = 0: the mapping cone differential squares to zero",
+          "f must be a chain map: f_n d_C = d_D f_{n+1} for all n",
+          "dim(Cone(f)_n) = dim(D_n) + dim(C_{n-1}) for all n",
+          "The cone differential has block matrix form [[d_D, f], [0, -d_C]] acting on (D_n, C_{n-1})\n",
+          "The inclusion i: D -> Cone(f) and projection p: Cone(f) -> C[-1] give a short exact sequence 0 -> D -> Cone(f) -> C[-1] -> 0\n"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "All cone differential computations from canonical matrices",
+            "Block matrix assembly must be deterministic",
+            "Rechecking must reproduce artifact_hash"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "negative_tests": [
+          "f that does not commute with differentials (f d_C != d_D f) must be rejected",
+          "Cone differential with d^2 != 0 must be rejected",
+          "Cone group with dim != dim(D_n) + dim(C_{n-1}) must be rejected",
+          "Cone differential not matching block form [[d_D, f], [0, -d_C]] must be rejected",
+          "Mismatched coefficient domains between source, target, or chain map must be rejected",
+          "Artifact claiming authority or admissibility must be rejected"
+        ],
+        "doctrine": {
+          "summary": "The mapping cone (cofiber) of a chain map f: C_* -> D_* is the chain complex Cone(f)_n = D_n + C_{n-1} with differential d(d,c) = (d_D(d) + f(c), -d_C(c)). In topology, the mapping cone of a continuous map f: X -> Y is C_f = (X x [0,1]) U_f Y / (X x {0}), obtained by attaching X to Y via f and collapsing. The mapping cone fits into the cofiber sequence X -> Y -> C_f -> SX -> SY -> ... which is dual to the fiber sequence. In homological algebra, the mapping cone gives the long exact sequence in homology. The cone differential satisfies d^2 = 0 precisely because f is a chain map. The mapping cone is acyclic if and only if f is a quasi-isomorphism.",
+          "non_role": [
+            "Mapping cylinder or mapping telescope constructions (separate contracts)",
+            "Triangulated category axioms (separate contract)",
+            "Derived category localization at quasi-isomorphisms (separate contract)",
+            "Homotopy colimits or totalizations (deferred)",
+            "Infinite-dimensional chain groups (currently finite only)"
+          ]
+        },
+        "wip": [
+          "How to handle mapping cones of morphisms in derived categories?",
+          "Should we support the octahedral axiom as a separate contract or within this one?",
+          "What is the interface for connecting homomorphism construction from the cone?",
+          "How to formalize the mapping cone in the context of stable infinity-categories?",
+          "Currently targets finite chain complexes only",
+          "ChainHomotopy contract dependency not yet available (referenced for future chain map verification)",
+          "Mapping cylinder and mapping telescope are separate constructions (deferred)",
+          "Triangulated category distinguished triangle axioms deferred to separate contract",
+          "Topological mapping cone (CW-complex version) not covered; this is the algebraic construction"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:mapping_cone:v0.1.0\ntitle: MappingCone Contract\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: mapping_cone\n  symbol: Cone(f)_n = D_n + C_{n-1}, d(d,c) = (d_D(d) + f(c), -d_C(c))\n  ascii_symbol: mapping_cone\n  notation: Cone(f)_n = D_n + C_{n-1}, d(d,c) = (d_D(d) + f(c), -d_C(c))\n  domain:\n  - 'source_complex: chain_complex (C_*)'\n  - 'target_complex: chain_complex (D_*)'\n  - 'chain_map: chain_map (f: C_* -> D_*)'\n  - 'cone_groups: graded_direct_sum (D_n + C_{n-1})'\n  - 'cone_differential: graded_linear_maps'\n  - 'degree_indices: integer_index_set'\n  - 'coefficient_domain: ring_or_field'\n  codomain:\n    description: 'Given chain complexes C_* and D_* with chain map f: C_* -> D_*,\n      the mapping cone Cone(f) is the chain complex with Cone(f)_n = D_n + C_{n-1}\n      and differential d_Cone(d, c) = (d_D(d) + f(c), -d_C(c))\n\n      '\nrequirements:\n  required_structures:\n  - d_Cone ∘ d_Cone = 0 for all adjacent degrees in the cone complex\n  - 'f is a chain map: f_n ∘ d_C = d_D ∘ f_{n+1} for all n'\n  - dim(Cone(f)_n) = dim(D_n) + dim(C_{n-1}) for all n\n  - 'The cone differential matrix at degree n has block form [[d_D_n, f_{n-1}], [0,\n    -d_C_{n-1}]]\n\n    '\n  - Source, target, and cone complexes all use the same coefficient domain\n  - StructureArtifact hash is deterministic from inputs\nlaws:\n- 'd_Cone^2 = 0: the mapping cone differential squares to zero'\n- 'f must be a chain map: f_n d_C = d_D f_{n+1} for all n'\n- dim(Cone(f)_n) = dim(D_n) + dim(C_{n-1}) for all n\n- 'The cone differential has block matrix form [[d_D, f], [0, -d_C]] acting on (D_n,\n  C_{n-1})\n\n  '\n- 'The inclusion i: D -> Cone(f) and projection p: Cone(f) -> C[-1] give a short exact\n  sequence 0 -> D -> Cone(f) -> C[-1] -> 0\n\n  '\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - All cone differential computations from canonical matrices\n  - Block matrix assembly must be deterministic\n  - Rechecking must reproduce artifact_hash\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nnegative_tests:\n- f that does not commute with differentials (f d_C != d_D f) must be rejected\n- Cone differential with d^2 != 0 must be rejected\n- Cone group with dim != dim(D_n) + dim(C_{n-1}) must be rejected\n- Cone differential not matching block form [[d_D, f], [0, -d_C]] must be rejected\n- Mismatched coefficient domains between source, target, or chain map must be rejected\n- Artifact claiming authority or admissibility must be rejected\ndoctrine:\n  summary: 'The mapping cone (cofiber) of a chain map f: C_* -> D_* is the chain complex\n    Cone(f)_n = D_n + C_{n-1} with differential d(d,c) = (d_D(d) + f(c), -d_C(c)).\n    In topology, the mapping cone of a continuous map f: X -> Y is C_f = (X x [0,1])\n    U_f Y / (X x {0}), obtained by attaching X to Y via f and collapsing. The mapping\n    cone fits into the cofiber sequence X -> Y -> C_f -> SX -> SY -> ... which is\n    dual to the fiber sequence. In homological algebra, the mapping cone gives the\n    long exact sequence in homology. The cone differential satisfies d^2 = 0 precisely\n    because f is a chain map. The mapping cone is acyclic if and only if f is a quasi-isomorphism.'\n  non_role:\n  - Mapping cylinder or mapping telescope constructions (separate contracts)\n  - Triangulated category axioms (separate contract)\n  - Derived category localization at quasi-isomorphisms (separate contract)\n  - Homotopy colimits or totalizations (deferred)\n  - Infinite-dimensional chain groups (currently finite only)\nwip:\n- How to handle mapping cones of morphisms in derived categories?\n- Should we support the octahedral axiom as a separate contract or within this one?\n- What is the interface for connecting homomorphism construction from the cone?\n- How to formalize the mapping cone in the context of stable infinity-categories?\n- Currently targets finite chain complexes only\n- ChainHomotopy contract dependency not yet available (referenced for future chain\n  map verification)\n- Mapping cylinder and mapping telescope are separate constructions (deferred)\n- Triangulated category distinguished triangle axioms deferred to separate contract\n- Topological mapping cone (CW-complex version) not covered; this is the algebraic\n  construction\n",
+      "original_paths": [
+        "code/python/governance/10_math/geometry/math_mapping_cone_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/geometry/math_mapping_cone_v0_1_0.contract.yaml": "bbc42cb30533040952fd4aabe2b176819f455200c37927940ffdac8ecd60d828"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

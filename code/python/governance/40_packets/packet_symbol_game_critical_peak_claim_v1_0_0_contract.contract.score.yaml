@@ -1,0 +1,177 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/40_packets/packet_symbol_game_critical_peak_claim_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v2",
+    "contract_id": "urn:omega:packet:symbol_game:critical_peak_claim:v1.0.0",
+    "title": "Claimed Critical Peak",
+    "kind": "packet_contract",
+    "layer": "40_packets",
+    "role": "PacketSpecification",
+    "status": "active",
+    "council_owner": "L3_logos_techne",
+    "descriptor": {
+      "authority_effect": "None",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": true,
+      "clean_architecture_layer": "domain",
+      "refusals": {
+        "may_emit": [
+          "FW-UNKNOWN-FIELD",
+          "FW-DUPLICATE-KEY"
+        ]
+      }
+    },
+    "doctrine": {
+      "summary": "A producer's claim of one source term with two divergent reductions.",
+      "invariants": [
+        "Every field is producer testimony. The host re-derives both endpoints and never reads them as facts.",
+        "steps_inspected is producer-declared and MUST NOT be copied into a host verdict unreconciled."
+      ],
+      "non_roles": [
+        "authority_source",
+        "promotion_granter"
+      ],
+      "required_negative_capabilities": [
+        "no_self_certification",
+        "no_implicit_authority_upgrade"
+      ]
+    },
+    "structure": {
+      "rust_crate": "omega_symbol_game_runtime",
+      "rust_module": "rewriting",
+      "rust_type": "CriticalPeakClaim",
+      "form": "struct",
+      "serde": {
+        "deny_unknown_fields": true
+      },
+      "fields": [
+        {
+          "name": "source",
+          "rust_type": "String"
+        },
+        {
+          "name": "left",
+          "rust_type": "ReductionPath"
+        },
+        {
+          "name": "right",
+          "rust_type": "ReductionPath"
+        },
+        {
+          "name": "join",
+          "rust_type": "Option<String>"
+        },
+        {
+          "name": "steps_inspected",
+          "rust_type": "u64"
+        },
+        {
+          "name": "step_budget",
+          "rust_type": "u64"
+        }
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "4ea854fe2e3492c272960048d033ed081431b037df45244e6054c2e113b622c6",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "4ea854fe2e3492c272960048d033ed081431b037df45244e6054c2e113b622c6",
+      "bytes": 1415,
+      "record": {
+        "schema_version": "omega.contract.v2",
+        "contract_id": "urn:omega:packet:symbol_game:critical_peak_claim:v1.0.0",
+        "title": "Claimed Critical Peak",
+        "kind": "packet_contract",
+        "layer": "40_packets",
+        "role": "PacketSpecification",
+        "status": "active",
+        "council_owner": "L3_logos_techne",
+        "descriptor": {
+          "authority_effect": "None",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": true,
+          "clean_architecture_layer": "domain",
+          "refusals": {
+            "may_emit": [
+              "FW-UNKNOWN-FIELD",
+              "FW-DUPLICATE-KEY"
+            ]
+          }
+        },
+        "doctrine": {
+          "summary": "A producer's claim of one source term with two divergent reductions.",
+          "invariants": [
+            "Every field is producer testimony. The host re-derives both endpoints and never reads them as facts.",
+            "steps_inspected is producer-declared and MUST NOT be copied into a host verdict unreconciled."
+          ],
+          "non_roles": [
+            "authority_source",
+            "promotion_granter"
+          ],
+          "required_negative_capabilities": [
+            "no_self_certification",
+            "no_implicit_authority_upgrade"
+          ]
+        },
+        "structure": {
+          "rust_crate": "omega_symbol_game_runtime",
+          "rust_module": "rewriting",
+          "rust_type": "CriticalPeakClaim",
+          "form": "struct",
+          "serde": {
+            "deny_unknown_fields": true
+          },
+          "fields": [
+            {
+              "name": "source",
+              "rust_type": "String"
+            },
+            {
+              "name": "left",
+              "rust_type": "ReductionPath"
+            },
+            {
+              "name": "right",
+              "rust_type": "ReductionPath"
+            },
+            {
+              "name": "join",
+              "rust_type": "Option<String>"
+            },
+            {
+              "name": "steps_inspected",
+              "rust_type": "u64"
+            },
+            {
+              "name": "step_budget",
+              "rust_type": "u64"
+            }
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v2\ncontract_id: urn:omega:packet:symbol_game:critical_peak_claim:v1.0.0\ntitle: Claimed Critical Peak\nkind: packet_contract\nlayer: 40_packets\nrole: PacketSpecification\nstatus: active\ncouncil_owner: L3_logos_techne\ndescriptor:\n  authority_effect: None\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: true\n  clean_architecture_layer: domain\n  refusals:\n    may_emit:\n    - FW-UNKNOWN-FIELD\n    - FW-DUPLICATE-KEY\ndoctrine:\n  summary: A producer's claim of one source term with two divergent reductions.\n  invariants:\n  - Every field is producer testimony. The host re-derives both endpoints and never\n    reads them as facts.\n  - steps_inspected is producer-declared and MUST NOT be copied into a host verdict\n    unreconciled.\n  non_roles:\n  - authority_source\n  - promotion_granter\n  required_negative_capabilities:\n  - no_self_certification\n  - no_implicit_authority_upgrade\nstructure:\n  rust_crate: omega_symbol_game_runtime\n  rust_module: rewriting\n  rust_type: CriticalPeakClaim\n  form: struct\n  serde:\n    deny_unknown_fields: true\n  fields:\n  - name: source\n    rust_type: String\n  - name: left\n    rust_type: ReductionPath\n  - name: right\n    rust_type: ReductionPath\n  - name: join\n    rust_type: Option<String>\n  - name: steps_inspected\n    rust_type: u64\n  - name: step_budget\n    rust_type: u64\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/40_packets/packet_symbol_game_critical_peak_claim_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/40_packets/packet_symbol_game_critical_peak_claim_v1_0_0.contract.yaml": "4ea854fe2e3492c272960048d033ed081431b037df45244e6054c2e113b622c6"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

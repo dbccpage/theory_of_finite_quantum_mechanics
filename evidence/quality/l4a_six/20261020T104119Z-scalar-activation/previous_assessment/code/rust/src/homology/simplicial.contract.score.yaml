@@ -1,0 +1,1206 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": null,
+  "contract": {
+    "schema_version": "1.0.0",
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/rust/src/homology/simplicial.rs",
+      "sha256": "e7b2151b6105be85ebbf4e60e6b3f235023aeda985b38bed6e70a5ca189e12af",
+      "language": "Rust"
+    },
+    "contract_urn": "urn:tfqm:contract:homology:simplicial.rs",
+    "status": "draft_requires_semantic_review",
+    "target": "L4A",
+    "profile": "Exact",
+    "purpose": "Finite rational chain/cochain data, admitted carriers and rank certificates.",
+    "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+    "compilation": {
+      "disabled_by_cfg_any": false,
+      "test_or_support_file": false
+    },
+    "declaration_index": [
+      {
+        "kind": "struct",
+        "name": "Simplex",
+        "line": 20,
+        "declaration_line": "pub struct Simplex {"
+      },
+      {
+        "kind": "fn",
+        "name": "new",
+        "line": 38,
+        "declaration_line": "pub fn new(vertices: Vec<usize>) -> Result<Self, HomologicalError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "from_unordered",
+        "line": 44,
+        "declaration_line": "pub fn from_unordered(vertices: Vec<usize>) -> Result<Self, HomologicalError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "dimension",
+        "line": 52,
+        "declaration_line": "pub fn dimension(&self) -> usize {"
+      },
+      {
+        "kind": "fn",
+        "name": "vertices",
+        "line": 57,
+        "declaration_line": "pub fn vertices(&self) -> &[usize] {"
+      },
+      {
+        "kind": "fn",
+        "name": "num_vertices",
+        "line": 62,
+        "declaration_line": "pub fn num_vertices(&self) -> usize {"
+      },
+      {
+        "kind": "fn",
+        "name": "face",
+        "line": 67,
+        "declaration_line": "pub fn face(&self, removed_index: usize) -> Result<(Self, i8), HomologicalError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "faces",
+        "line": 86,
+        "declaration_line": "pub fn faces(&self) -> Vec<(Self, i8)> {"
+      },
+      {
+        "kind": "struct",
+        "name": "OrientedSimplex",
+        "line": 108,
+        "declaration_line": "pub struct OrientedSimplex {"
+      },
+      {
+        "kind": "fn",
+        "name": "new",
+        "line": 136,
+        "declaration_line": "pub fn new(vertices: Vec<usize>) -> Result<Self, HomologicalError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "from_ordered",
+        "line": 144,
+        "declaration_line": "pub fn from_ordered(vertices: Vec<usize>) -> Result<Self, HomologicalError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "from_unordered",
+        "line": 153,
+        "declaration_line": "pub fn from_unordered(vertices: Vec<usize>) -> Result<Self, HomologicalError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "simplex",
+        "line": 161,
+        "declaration_line": "pub fn simplex(&self) -> &Simplex {"
+      },
+      {
+        "kind": "fn",
+        "name": "orientation",
+        "line": 166,
+        "declaration_line": "pub fn orientation(&self) -> i8 {"
+      },
+      {
+        "kind": "fn",
+        "name": "dimension",
+        "line": 171,
+        "declaration_line": "pub fn dimension(&self) -> usize {"
+      },
+      {
+        "kind": "fn",
+        "name": "vertices",
+        "line": 176,
+        "declaration_line": "pub fn vertices(&self) -> &[usize] {"
+      },
+      {
+        "kind": "fn",
+        "name": "num_vertices",
+        "line": 181,
+        "declaration_line": "pub fn num_vertices(&self) -> usize {"
+      },
+      {
+        "kind": "fn",
+        "name": "faces",
+        "line": 186,
+        "declaration_line": "pub fn faces(&self) -> Vec<(OrientedSimplex, i8)> {"
+      },
+      {
+        "kind": "struct",
+        "name": "SimplicialComplex",
+        "line": 206,
+        "declaration_line": "pub struct SimplicialComplex {"
+      },
+      {
+        "kind": "const",
+        "name": "MAX_SIMPLEX_VERTICES",
+        "line": 214,
+        "declaration_line": "pub const MAX_SIMPLEX_VERTICES: usize = 16;"
+      },
+      {
+        "kind": "const",
+        "name": "MAX_SIMPLICES",
+        "line": 215,
+        "declaration_line": "pub const MAX_SIMPLICES: usize = 65_535;"
+      },
+      {
+        "kind": "fn",
+        "name": "from_maximal_simplices",
+        "line": 238,
+        "declaration_line": "pub fn from_maximal_simplices(maximal: Vec<OrientedSimplex>) -> Result<Self, HomologicalError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "from_simplices",
+        "line": 243,
+        "declaration_line": "pub fn from_simplices(simplices: Vec<Simplex>) -> Result<Self, HomologicalError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "standard_n_simplex",
+        "line": 250,
+        "declaration_line": "pub fn standard_n_simplex(n: usize) -> Result<Self, HomologicalError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "max_dimension",
+        "line": 299,
+        "declaration_line": "pub fn max_dimension(&self) -> usize {"
+      },
+      {
+        "kind": "fn",
+        "name": "simplices",
+        "line": 304,
+        "declaration_line": "pub fn simplices(&self, dim: usize) -> &[Simplex] {"
+      },
+      {
+        "kind": "fn",
+        "name": "simplices_by_dim",
+        "line": 312,
+        "declaration_line": "pub fn simplices_by_dim(&self) -> &[Vec<Simplex>] {"
+      },
+      {
+        "kind": "fn",
+        "name": "count",
+        "line": 317,
+        "declaration_line": "pub fn count(&self, dim: usize) -> usize {"
+      },
+      {
+        "kind": "fn",
+        "name": "num_vertices",
+        "line": 322,
+        "declaration_line": "pub fn num_vertices(&self) -> usize {"
+      },
+      {
+        "kind": "fn",
+        "name": "total_simplices",
+        "line": 327,
+        "declaration_line": "pub fn total_simplices(&self) -> usize {"
+      },
+      {
+        "kind": "fn",
+        "name": "contains",
+        "line": 332,
+        "declaration_line": "pub fn contains(&self, simplex: &Simplex) -> bool {"
+      },
+      {
+        "kind": "fn",
+        "name": "euler_characteristic",
+        "line": 340,
+        "declaration_line": "pub fn euler_characteristic(&self) -> i64 {"
+      },
+      {
+        "kind": "fn",
+        "name": "boundary_matrix",
+        "line": 358,
+        "declaration_line": "pub fn boundary_matrix(&self, k: usize) -> Result<BasicMatrix<Q>, HomologicalError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "coboundary_matrix",
+        "line": 391,
+        "declaration_line": "pub fn coboundary_matrix(&self, k: usize) -> Result<BasicMatrix<Q>, HomologicalError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "boundary_composition",
+        "line": 409,
+        "declaration_line": "pub fn boundary_composition(&self, k: usize) -> Result<BasicMatrix<Q>, HomologicalError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "verify_boundary_law_at",
+        "line": 422,
+        "declaration_line": "pub fn verify_boundary_law_at(&self, k: usize) -> Result<bool, HomologicalError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "verify_boundary_law",
+        "line": 437,
+        "declaration_line": "pub fn verify_boundary_law(&self) -> Result<bool, HomologicalError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "coboundary_composition",
+        "line": 449,
+        "declaration_line": "pub fn coboundary_composition(&self, k: usize) -> Result<BasicMatrix<Q>, HomologicalError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "verify_coboundary_law_at",
+        "line": 459,
+        "declaration_line": "pub fn verify_coboundary_law_at(&self, k: usize) -> Result<bool, HomologicalError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "verify_coboundary_law",
+        "line": 470,
+        "declaration_line": "pub fn verify_coboundary_law(&self) -> Result<bool, HomologicalError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "rational_betti_numbers",
+        "line": 486,
+        "declaration_line": "pub fn rational_betti_numbers(&self) -> Result<Vec<usize>, HomologicalError> {"
+      }
+    ],
+    "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+    "requirements": [
+      {
+        "id": "G1",
+        "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+      },
+      {
+        "id": "G2",
+        "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+      },
+      {
+        "id": "G3",
+        "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+      },
+      {
+        "id": "G4",
+        "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+      },
+      {
+        "id": "G5",
+        "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+      }
+    ],
+    "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+    "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+    "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+    "open_obligations": [
+      "Complete source-to-requirement and downstream consumer review is outstanding.",
+      "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+      "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+    ],
+    "evidence": [
+      {
+        "path": "evidence/quality/l4a_six/20261020T074554Z/receipt.json",
+        "sha256": "2a8a7c24316de85ce0c26f04e751fb6ff1ec0ee635defde5c01d76eab3f3fdfd"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T074554Z/source_manifest.json",
+        "sha256": "4d8a488592e2c9166b812ac1188b34baeb4d97de07590f31bf5f006bad071626"
+      },
+      {
+        "path": "code/rust/quality/l4a_six/records.py",
+        "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+      },
+      {
+        "path": "code/rust/quality/l4a_six/specs.json",
+        "sha256": "8d5f25afe4e999b3a92c835b2910d2b81e6bd991b47abbe3ee2a204f1f363a09"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json",
+        "sha256": "f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json",
+        "sha256": "50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T074554Z/metrics.json",
+        "sha256": "a297bf450b9c7f0504e2fc3f3dc6589663d94a5e73dc2d5d6c03079645b97030"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json",
+        "sha256": "b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/mutations.json",
+        "sha256": "00fa693c6f05422ed8b6be92780f5970691494e31b82ecaa20985a6a1e370860"
+      }
+    ]
+  },
+  "current_contract": "ad7e7b7566ff572f1e0c7b48643e0f6595aa1eac71c5a9b5c60b3b81b4b6e2e9",
+  "current_scoring": "517b049d91543801559de107e5d201e6075440851277973c77d23ed850f0eb1a",
+  "contract_history": [
+    {
+      "sha256": "ad7e7b7566ff572f1e0c7b48643e0f6595aa1eac71c5a9b5c60b3b81b4b6e2e9",
+      "bytes": 11069,
+      "record": {
+        "schema_version": "1.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/homology/simplicial.rs",
+          "sha256": "e7b2151b6105be85ebbf4e60e6b3f235023aeda985b38bed6e70a5ca189e12af",
+          "language": "Rust"
+        },
+        "contract_urn": "urn:tfqm:contract:homology:simplicial.rs",
+        "status": "draft_requires_semantic_review",
+        "target": "L4A",
+        "profile": "Exact",
+        "purpose": "Finite rational chain/cochain data, admitted carriers and rank certificates.",
+        "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+        "compilation": {
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false
+        },
+        "declaration_index": [
+          {
+            "kind": "struct",
+            "name": "Simplex",
+            "line": 20,
+            "declaration_line": "pub struct Simplex {"
+          },
+          {
+            "kind": "fn",
+            "name": "new",
+            "line": 38,
+            "declaration_line": "pub fn new(vertices: Vec<usize>) -> Result<Self, HomologicalError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "from_unordered",
+            "line": 44,
+            "declaration_line": "pub fn from_unordered(vertices: Vec<usize>) -> Result<Self, HomologicalError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "dimension",
+            "line": 52,
+            "declaration_line": "pub fn dimension(&self) -> usize {"
+          },
+          {
+            "kind": "fn",
+            "name": "vertices",
+            "line": 57,
+            "declaration_line": "pub fn vertices(&self) -> &[usize] {"
+          },
+          {
+            "kind": "fn",
+            "name": "num_vertices",
+            "line": 62,
+            "declaration_line": "pub fn num_vertices(&self) -> usize {"
+          },
+          {
+            "kind": "fn",
+            "name": "face",
+            "line": 67,
+            "declaration_line": "pub fn face(&self, removed_index: usize) -> Result<(Self, i8), HomologicalError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "faces",
+            "line": 86,
+            "declaration_line": "pub fn faces(&self) -> Vec<(Self, i8)> {"
+          },
+          {
+            "kind": "struct",
+            "name": "OrientedSimplex",
+            "line": 108,
+            "declaration_line": "pub struct OrientedSimplex {"
+          },
+          {
+            "kind": "fn",
+            "name": "new",
+            "line": 136,
+            "declaration_line": "pub fn new(vertices: Vec<usize>) -> Result<Self, HomologicalError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "from_ordered",
+            "line": 144,
+            "declaration_line": "pub fn from_ordered(vertices: Vec<usize>) -> Result<Self, HomologicalError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "from_unordered",
+            "line": 153,
+            "declaration_line": "pub fn from_unordered(vertices: Vec<usize>) -> Result<Self, HomologicalError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "simplex",
+            "line": 161,
+            "declaration_line": "pub fn simplex(&self) -> &Simplex {"
+          },
+          {
+            "kind": "fn",
+            "name": "orientation",
+            "line": 166,
+            "declaration_line": "pub fn orientation(&self) -> i8 {"
+          },
+          {
+            "kind": "fn",
+            "name": "dimension",
+            "line": 171,
+            "declaration_line": "pub fn dimension(&self) -> usize {"
+          },
+          {
+            "kind": "fn",
+            "name": "vertices",
+            "line": 176,
+            "declaration_line": "pub fn vertices(&self) -> &[usize] {"
+          },
+          {
+            "kind": "fn",
+            "name": "num_vertices",
+            "line": 181,
+            "declaration_line": "pub fn num_vertices(&self) -> usize {"
+          },
+          {
+            "kind": "fn",
+            "name": "faces",
+            "line": 186,
+            "declaration_line": "pub fn faces(&self) -> Vec<(OrientedSimplex, i8)> {"
+          },
+          {
+            "kind": "struct",
+            "name": "SimplicialComplex",
+            "line": 206,
+            "declaration_line": "pub struct SimplicialComplex {"
+          },
+          {
+            "kind": "const",
+            "name": "MAX_SIMPLEX_VERTICES",
+            "line": 214,
+            "declaration_line": "pub const MAX_SIMPLEX_VERTICES: usize = 16;"
+          },
+          {
+            "kind": "const",
+            "name": "MAX_SIMPLICES",
+            "line": 215,
+            "declaration_line": "pub const MAX_SIMPLICES: usize = 65_535;"
+          },
+          {
+            "kind": "fn",
+            "name": "from_maximal_simplices",
+            "line": 238,
+            "declaration_line": "pub fn from_maximal_simplices(maximal: Vec<OrientedSimplex>) -> Result<Self, HomologicalError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "from_simplices",
+            "line": 243,
+            "declaration_line": "pub fn from_simplices(simplices: Vec<Simplex>) -> Result<Self, HomologicalError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "standard_n_simplex",
+            "line": 250,
+            "declaration_line": "pub fn standard_n_simplex(n: usize) -> Result<Self, HomologicalError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "max_dimension",
+            "line": 299,
+            "declaration_line": "pub fn max_dimension(&self) -> usize {"
+          },
+          {
+            "kind": "fn",
+            "name": "simplices",
+            "line": 304,
+            "declaration_line": "pub fn simplices(&self, dim: usize) -> &[Simplex] {"
+          },
+          {
+            "kind": "fn",
+            "name": "simplices_by_dim",
+            "line": 312,
+            "declaration_line": "pub fn simplices_by_dim(&self) -> &[Vec<Simplex>] {"
+          },
+          {
+            "kind": "fn",
+            "name": "count",
+            "line": 317,
+            "declaration_line": "pub fn count(&self, dim: usize) -> usize {"
+          },
+          {
+            "kind": "fn",
+            "name": "num_vertices",
+            "line": 322,
+            "declaration_line": "pub fn num_vertices(&self) -> usize {"
+          },
+          {
+            "kind": "fn",
+            "name": "total_simplices",
+            "line": 327,
+            "declaration_line": "pub fn total_simplices(&self) -> usize {"
+          },
+          {
+            "kind": "fn",
+            "name": "contains",
+            "line": 332,
+            "declaration_line": "pub fn contains(&self, simplex: &Simplex) -> bool {"
+          },
+          {
+            "kind": "fn",
+            "name": "euler_characteristic",
+            "line": 340,
+            "declaration_line": "pub fn euler_characteristic(&self) -> i64 {"
+          },
+          {
+            "kind": "fn",
+            "name": "boundary_matrix",
+            "line": 358,
+            "declaration_line": "pub fn boundary_matrix(&self, k: usize) -> Result<BasicMatrix<Q>, HomologicalError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "coboundary_matrix",
+            "line": 391,
+            "declaration_line": "pub fn coboundary_matrix(&self, k: usize) -> Result<BasicMatrix<Q>, HomologicalError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "boundary_composition",
+            "line": 409,
+            "declaration_line": "pub fn boundary_composition(&self, k: usize) -> Result<BasicMatrix<Q>, HomologicalError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "verify_boundary_law_at",
+            "line": 422,
+            "declaration_line": "pub fn verify_boundary_law_at(&self, k: usize) -> Result<bool, HomologicalError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "verify_boundary_law",
+            "line": 437,
+            "declaration_line": "pub fn verify_boundary_law(&self) -> Result<bool, HomologicalError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "coboundary_composition",
+            "line": 449,
+            "declaration_line": "pub fn coboundary_composition(&self, k: usize) -> Result<BasicMatrix<Q>, HomologicalError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "verify_coboundary_law_at",
+            "line": 459,
+            "declaration_line": "pub fn verify_coboundary_law_at(&self, k: usize) -> Result<bool, HomologicalError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "verify_coboundary_law",
+            "line": 470,
+            "declaration_line": "pub fn verify_coboundary_law(&self) -> Result<bool, HomologicalError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "rational_betti_numbers",
+            "line": 486,
+            "declaration_line": "pub fn rational_betti_numbers(&self) -> Result<Vec<usize>, HomologicalError> {"
+          }
+        ],
+        "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+        "requirements": [
+          {
+            "id": "G1",
+            "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+          },
+          {
+            "id": "G2",
+            "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+          },
+          {
+            "id": "G3",
+            "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+          },
+          {
+            "id": "G4",
+            "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+          },
+          {
+            "id": "G5",
+            "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+          }
+        ],
+        "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+        "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+        "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+        "open_obligations": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+        ],
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/receipt.json",
+            "sha256": "2a8a7c24316de85ce0c26f04e751fb6ff1ec0ee635defde5c01d76eab3f3fdfd"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/source_manifest.json",
+            "sha256": "4d8a488592e2c9166b812ac1188b34baeb4d97de07590f31bf5f006bad071626"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "8d5f25afe4e999b3a92c835b2910d2b81e6bd991b47abbe3ee2a204f1f363a09"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json",
+            "sha256": "f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json",
+            "sha256": "50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/metrics.json",
+            "sha256": "a297bf450b9c7f0504e2fc3f3dc6589663d94a5e73dc2d5d6c03079645b97030"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json",
+            "sha256": "b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/mutations.json",
+            "sha256": "00fa693c6f05422ed8b6be92780f5970691494e31b82ecaa20985a6a1e370860"
+          }
+        ]
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/homology/simplicial.rs\",\n    \"sha256\": \"e7b2151b6105be85ebbf4e60e6b3f235023aeda985b38bed6e70a5ca189e12af\",\n    \"language\": \"Rust\"\n  },\n  \"contract_urn\": \"urn:tfqm:contract:homology:simplicial.rs\",\n  \"status\": \"draft_requires_semantic_review\",\n  \"target\": \"L4A\",\n  \"profile\": \"Exact\",\n  \"purpose\": \"Finite rational chain/cochain data, admitted carriers and rank certificates.\",\n  \"subject_role\": \"Provisional bounded-domain classification; requires individual capability review before promotion.\",\n  \"compilation\": {\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false\n  },\n  \"declaration_index\": [\n    {\n      \"kind\": \"struct\",\n      \"name\": \"Simplex\",\n      \"line\": 20,\n      \"declaration_line\": \"pub struct Simplex {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"new\",\n      \"line\": 38,\n      \"declaration_line\": \"pub fn new(vertices: Vec<usize>) -> Result<Self, HomologicalError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"from_unordered\",\n      \"line\": 44,\n      \"declaration_line\": \"pub fn from_unordered(vertices: Vec<usize>) -> Result<Self, HomologicalError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"dimension\",\n      \"line\": 52,\n      \"declaration_line\": \"pub fn dimension(&self) -> usize {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"vertices\",\n      \"line\": 57,\n      \"declaration_line\": \"pub fn vertices(&self) -> &[usize] {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"num_vertices\",\n      \"line\": 62,\n      \"declaration_line\": \"pub fn num_vertices(&self) -> usize {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"face\",\n      \"line\": 67,\n      \"declaration_line\": \"pub fn face(&self, removed_index: usize) -> Result<(Self, i8), HomologicalError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"faces\",\n      \"line\": 86,\n      \"declaration_line\": \"pub fn faces(&self) -> Vec<(Self, i8)> {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"OrientedSimplex\",\n      \"line\": 108,\n      \"declaration_line\": \"pub struct OrientedSimplex {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"new\",\n      \"line\": 136,\n      \"declaration_line\": \"pub fn new(vertices: Vec<usize>) -> Result<Self, HomologicalError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"from_ordered\",\n      \"line\": 144,\n      \"declaration_line\": \"pub fn from_ordered(vertices: Vec<usize>) -> Result<Self, HomologicalError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"from_unordered\",\n      \"line\": 153,\n      \"declaration_line\": \"pub fn from_unordered(vertices: Vec<usize>) -> Result<Self, HomologicalError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"simplex\",\n      \"line\": 161,\n      \"declaration_line\": \"pub fn simplex(&self) -> &Simplex {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"orientation\",\n      \"line\": 166,\n      \"declaration_line\": \"pub fn orientation(&self) -> i8 {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"dimension\",\n      \"line\": 171,\n      \"declaration_line\": \"pub fn dimension(&self) -> usize {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"vertices\",\n      \"line\": 176,\n      \"declaration_line\": \"pub fn vertices(&self) -> &[usize] {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"num_vertices\",\n      \"line\": 181,\n      \"declaration_line\": \"pub fn num_vertices(&self) -> usize {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"faces\",\n      \"line\": 186,\n      \"declaration_line\": \"pub fn faces(&self) -> Vec<(OrientedSimplex, i8)> {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"SimplicialComplex\",\n      \"line\": 206,\n      \"declaration_line\": \"pub struct SimplicialComplex {\"\n    },\n    {\n      \"kind\": \"const\",\n      \"name\": \"MAX_SIMPLEX_VERTICES\",\n      \"line\": 214,\n      \"declaration_line\": \"pub const MAX_SIMPLEX_VERTICES: usize = 16;\"\n    },\n    {\n      \"kind\": \"const\",\n      \"name\": \"MAX_SIMPLICES\",\n      \"line\": 215,\n      \"declaration_line\": \"pub const MAX_SIMPLICES: usize = 65_535;\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"from_maximal_simplices\",\n      \"line\": 238,\n      \"declaration_line\": \"pub fn from_maximal_simplices(maximal: Vec<OrientedSimplex>) -> Result<Self, HomologicalError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"from_simplices\",\n      \"line\": 243,\n      \"declaration_line\": \"pub fn from_simplices(simplices: Vec<Simplex>) -> Result<Self, HomologicalError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"standard_n_simplex\",\n      \"line\": 250,\n      \"declaration_line\": \"pub fn standard_n_simplex(n: usize) -> Result<Self, HomologicalError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"max_dimension\",\n      \"line\": 299,\n      \"declaration_line\": \"pub fn max_dimension(&self) -> usize {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"simplices\",\n      \"line\": 304,\n      \"declaration_line\": \"pub fn simplices(&self, dim: usize) -> &[Simplex] {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"simplices_by_dim\",\n      \"line\": 312,\n      \"declaration_line\": \"pub fn simplices_by_dim(&self) -> &[Vec<Simplex>] {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"count\",\n      \"line\": 317,\n      \"declaration_line\": \"pub fn count(&self, dim: usize) -> usize {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"num_vertices\",\n      \"line\": 322,\n      \"declaration_line\": \"pub fn num_vertices(&self) -> usize {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"total_simplices\",\n      \"line\": 327,\n      \"declaration_line\": \"pub fn total_simplices(&self) -> usize {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"contains\",\n      \"line\": 332,\n      \"declaration_line\": \"pub fn contains(&self, simplex: &Simplex) -> bool {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"euler_characteristic\",\n      \"line\": 340,\n      \"declaration_line\": \"pub fn euler_characteristic(&self) -> i64 {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"boundary_matrix\",\n      \"line\": 358,\n      \"declaration_line\": \"pub fn boundary_matrix(&self, k: usize) -> Result<BasicMatrix<Q>, HomologicalError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"coboundary_matrix\",\n      \"line\": 391,\n      \"declaration_line\": \"pub fn coboundary_matrix(&self, k: usize) -> Result<BasicMatrix<Q>, HomologicalError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"boundary_composition\",\n      \"line\": 409,\n      \"declaration_line\": \"pub fn boundary_composition(&self, k: usize) -> Result<BasicMatrix<Q>, HomologicalError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"verify_boundary_law_at\",\n      \"line\": 422,\n      \"declaration_line\": \"pub fn verify_boundary_law_at(&self, k: usize) -> Result<bool, HomologicalError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"verify_boundary_law\",\n      \"line\": 437,\n      \"declaration_line\": \"pub fn verify_boundary_law(&self) -> Result<bool, HomologicalError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"coboundary_composition\",\n      \"line\": 449,\n      \"declaration_line\": \"pub fn coboundary_composition(&self, k: usize) -> Result<BasicMatrix<Q>, HomologicalError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"verify_coboundary_law_at\",\n      \"line\": 459,\n      \"declaration_line\": \"pub fn verify_coboundary_law_at(&self, k: usize) -> Result<bool, HomologicalError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"verify_coboundary_law\",\n      \"line\": 470,\n      \"declaration_line\": \"pub fn verify_coboundary_law(&self) -> Result<bool, HomologicalError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"rational_betti_numbers\",\n      \"line\": 486,\n      \"declaration_line\": \"pub fn rational_betti_numbers(&self) -> Result<Vec<usize>, HomologicalError> {\"\n    }\n  ],\n  \"declaration_index_scope\": \"Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.\",\n  \"requirements\": [\n    {\n      \"id\": \"G1\",\n      \"requirement\": \"Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries.\"\n    },\n    {\n      \"id\": \"G2\",\n      \"requirement\": \"Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path.\"\n    },\n    {\n      \"id\": \"G3\",\n      \"requirement\": \"Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions.\"\n    },\n    {\n      \"id\": \"G4\",\n      \"requirement\": \"Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A.\"\n    },\n    {\n      \"id\": \"G5\",\n      \"requirement\": \"Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately.\"\n    }\n  ],\n  \"admission_policy\": \"Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.\",\n  \"resource_boundary\": \"No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.\",\n  \"authority_ceiling\": \"Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.\",\n  \"open_obligations\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/receipt.json\",\n      \"sha256\": \"2a8a7c24316de85ce0c26f04e751fb6ff1ec0ee635defde5c01d76eab3f3fdfd\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/source_manifest.json\",\n      \"sha256\": \"4d8a488592e2c9166b812ac1188b34baeb4d97de07590f31bf5f006bad071626\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"8d5f25afe4e999b3a92c835b2910d2b81e6bd991b47abbe3ee2a204f1f363a09\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json\",\n      \"sha256\": \"f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json\",\n      \"sha256\": \"50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/metrics.json\",\n      \"sha256\": \"a297bf450b9c7f0504e2fc3f3dc6589663d94a5e73dc2d5d6c03079645b97030\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json\",\n      \"sha256\": \"b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/mutations.json\",\n      \"sha256\": \"00fa693c6f05422ed8b6be92780f5970691494e31b82ecaa20985a6a1e370860\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_six/20261020T104119Z-scalar-activation/previous_assessment/code/rust/src/homology/simplicial.rs.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "517b049d91543801559de107e5d201e6075440851277973c77d23ed850f0eb1a",
+      "bytes": 13845,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/homology/simplicial.rs",
+          "sha256": "e7b2151b6105be85ebbf4e60e6b3f235023aeda985b38bed6e70a5ca189e12af",
+          "language": "Rust"
+        },
+        "profile": "Exact",
+        "level": "L3",
+        "level_basis": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+        "engineering_target": "A",
+        "requested_target": "L4A",
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "composite_grade": null,
+        "score_token": null,
+        "is_complete": false,
+        "grade_ceiling": "A",
+        "evaluation_timestamp": "2026-10-20T08:25:06.744531+00:00",
+        "grade_ceiling_basis": "Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.",
+        "contract": {
+          "path": "code/rust/src/homology/simplicial.rs.contract.yaml",
+          "status": "draft_requires_semantic_review",
+          "sha256": "ad7e7b7566ff572f1e0c7b48643e0f6595aa1eac71c5a9b5c60b3b81b4b6e2e9"
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/receipt.json",
+            "sha256": "2a8a7c24316de85ce0c26f04e751fb6ff1ec0ee635defde5c01d76eab3f3fdfd"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/source_manifest.json",
+            "sha256": "4d8a488592e2c9166b812ac1188b34baeb4d97de07590f31bf5f006bad071626"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "8d5f25afe4e999b3a92c835b2910d2b81e6bd991b47abbe3ee2a204f1f363a09"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json",
+            "sha256": "f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json",
+            "sha256": "50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/metrics.json",
+            "sha256": "a297bf450b9c7f0504e2fc3f3dc6589663d94a5e73dc2d5d6c03079645b97030"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json",
+            "sha256": "b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/mutations.json",
+            "sha256": "00fa693c6f05422ed8b6be92780f5970691494e31b82ecaa20985a6a1e370860"
+          }
+        ],
+        "verification": {
+          "baseline": {
+            "command": [
+              "cargo",
+              "test",
+              "--offline",
+              "--target-dir",
+              "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T074603Z-mutations\\build",
+              "--quiet",
+              "-p",
+              "tfqm_homology_linear_audit"
+            ],
+            "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T074603Z-mutations",
+            "disk_observation": {
+              "completed_cache_file_bytes": 525664573,
+              "free_after": 3149668352,
+              "free_before": 3291734016,
+              "scope": "Endpoint observations only; not a peak-space or external-activity guarantee."
+            },
+            "elapsed_seconds": 68.359,
+            "environment": {
+              "CARGO_BUILD_JOBS": "2",
+              "CARGO_INCREMENTAL": "0"
+            },
+            "exit_code": 0,
+            "log": "evidence/quality/l4a_six/20261020T074603Z-mutations/tfqm_homology_linear_audit-baseline.log",
+            "log_sha256": "0b515dcdb44dd59f635362bb29e0fed1affba3f1e0841291e15b6f7e66ed7a2a",
+            "package": "tfqm_homology_linear_audit",
+            "timed_out": false
+          },
+          "sources_unchanged": true,
+          "doctests": [],
+          "composition_runs": [],
+          "differential_controls": [],
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false,
+          "dependency_sources_unchanged": true,
+          "compiled_scope": "Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.",
+          "designated_mutations": [],
+          "designated_challenges_present": true,
+          "linked_challenges": {},
+          "mutation_campaign": {
+            "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json",
+            "sha256": "b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08"
+          },
+          "mutation_restoration_baselines_ok": null,
+          "reproduced_defects": []
+        },
+        "mutation_accounting": {
+          "killed": 0,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": null
+        },
+        "structure": {
+          "tool": "syn source AST (see pinned metric_tool_sources in receipt)",
+          "functions": [
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 31,
+              "name": "try_from",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 38,
+              "name": "new",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 44,
+              "name": "from_unordered",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 52,
+              "name": "dimension",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 57,
+              "name": "vertices",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 62,
+              "name": "num_vertices",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 4,
+              "control_nesting": 1,
+              "line": 67,
+              "name": "face",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 4,
+              "control_nesting": 2,
+              "line": 86,
+              "name": "faces",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 121,
+              "name": "try_from",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 136,
+              "name": "new",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 144,
+              "name": "from_ordered",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 153,
+              "name": "from_unordered",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 161,
+              "name": "simplex",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 166,
+              "name": "orientation",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 171,
+              "name": "dimension",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 176,
+              "name": "vertices",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 181,
+              "name": "num_vertices",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 186,
+              "name": "faces",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 223,
+              "name": "from",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 231,
+              "name": "try_from",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 238,
+              "name": "from_maximal_simplices",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 243,
+              "name": "from_simplices",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 250,
+              "name": "standard_n_simplex",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 8,
+              "cognitive_upper_bound": 4,
+              "control_nesting": 3,
+              "line": 257,
+              "name": "from_canonical_simplices",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 299,
+              "name": "max_dimension",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 304,
+              "name": "simplices",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 312,
+              "name": "simplices_by_dim",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 317,
+              "name": "count",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 322,
+              "name": "num_vertices",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 327,
+              "name": "total_simplices",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 332,
+              "name": "contains",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 340,
+              "name": "euler_characteristic",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 9,
+              "cognitive_upper_bound": 5,
+              "control_nesting": 3,
+              "line": 358,
+              "name": "boundary_matrix",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 8,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 391,
+              "name": "coboundary_matrix",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 409,
+              "name": "boundary_composition",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 422,
+              "name": "verify_boundary_law_at",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 437,
+              "name": "verify_boundary_law",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 449,
+              "name": "coboundary_composition",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 459,
+              "name": "verify_coboundary_law_at",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 470,
+              "name": "verify_coboundary_law",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 10,
+              "cognitive_upper_bound": 9,
+              "control_nesting": 2,
+              "line": 486,
+              "name": "rational_betti_numbers",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 7,
+              "cognitive_upper_bound": 11,
+              "control_nesting": 3,
+              "line": 528,
+              "name": "close_faces",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 4,
+              "control_nesting": 2,
+              "line": 553,
+              "name": "validate_strict_vertices",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 4,
+              "control_nesting": 2,
+              "line": 569,
+              "name": "canonicalize_vertices",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 6,
+              "control_nesting": 2,
+              "line": 586,
+              "name": "permutation_orientation",
+              "opaque_macros": []
+            }
+          ],
+          "exceeding_A": [],
+          "metric_ceiling": "A",
+          "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
+        },
+        "open_findings": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+        ],
+        "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts."
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/homology/simplicial.rs\",\n    \"sha256\": \"e7b2151b6105be85ebbf4e60e6b3f235023aeda985b38bed6e70a5ca189e12af\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"level\": \"L3\",\n  \"level_basis\": \"Provisional bounded-domain classification; requires individual capability review before promotion.\",\n  \"engineering_target\": \"A\",\n  \"requested_target\": \"L4A\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"is_complete\": false,\n  \"grade_ceiling\": \"A\",\n  \"evaluation_timestamp\": \"2026-10-20T08:25:06.744531+00:00\",\n  \"grade_ceiling_basis\": \"Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.\",\n  \"contract\": {\n    \"path\": \"code/rust/src/homology/simplicial.rs.contract.yaml\",\n    \"status\": \"draft_requires_semantic_review\",\n    \"sha256\": \"ad7e7b7566ff572f1e0c7b48643e0f6595aa1eac71c5a9b5c60b3b81b4b6e2e9\"\n  },\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/receipt.json\",\n      \"sha256\": \"2a8a7c24316de85ce0c26f04e751fb6ff1ec0ee635defde5c01d76eab3f3fdfd\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/source_manifest.json\",\n      \"sha256\": \"4d8a488592e2c9166b812ac1188b34baeb4d97de07590f31bf5f006bad071626\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"8d5f25afe4e999b3a92c835b2910d2b81e6bd991b47abbe3ee2a204f1f363a09\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json\",\n      \"sha256\": \"f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json\",\n      \"sha256\": \"50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/metrics.json\",\n      \"sha256\": \"a297bf450b9c7f0504e2fc3f3dc6589663d94a5e73dc2d5d6c03079645b97030\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json\",\n      \"sha256\": \"b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/mutations.json\",\n      \"sha256\": \"00fa693c6f05422ed8b6be92780f5970691494e31b82ecaa20985a6a1e370860\"\n    }\n  ],\n  \"verification\": {\n    \"baseline\": {\n      \"command\": [\n        \"cargo\",\n        \"test\",\n        \"--offline\",\n        \"--target-dir\",\n        \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-six\\\\20261020T074603Z-mutations\\\\build\",\n        \"--quiet\",\n        \"-p\",\n        \"tfqm_homology_linear_audit\"\n      ],\n      \"cwd\": \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-six\\\\20261020T074603Z-mutations\",\n      \"disk_observation\": {\n        \"completed_cache_file_bytes\": 525664573,\n        \"free_after\": 3149668352,\n        \"free_before\": 3291734016,\n        \"scope\": \"Endpoint observations only; not a peak-space or external-activity guarantee.\"\n      },\n      \"elapsed_seconds\": 68.359,\n      \"environment\": {\n        \"CARGO_BUILD_JOBS\": \"2\",\n        \"CARGO_INCREMENTAL\": \"0\"\n      },\n      \"exit_code\": 0,\n      \"log\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/tfqm_homology_linear_audit-baseline.log\",\n      \"log_sha256\": \"0b515dcdb44dd59f635362bb29e0fed1affba3f1e0841291e15b6f7e66ed7a2a\",\n      \"package\": \"tfqm_homology_linear_audit\",\n      \"timed_out\": false\n    },\n    \"sources_unchanged\": true,\n    \"doctests\": [],\n    \"composition_runs\": [],\n    \"differential_controls\": [],\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false,\n    \"dependency_sources_unchanged\": true,\n    \"compiled_scope\": \"Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.\",\n    \"designated_mutations\": [],\n    \"designated_challenges_present\": true,\n    \"linked_challenges\": {},\n    \"mutation_campaign\": {\n      \"path\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json\",\n      \"sha256\": \"b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08\"\n    },\n    \"mutation_restoration_baselines_ok\": null,\n    \"reproduced_defects\": []\n  },\n  \"mutation_accounting\": {\n    \"killed\": 0,\n    \"survived\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"unrun\": 0,\n    \"conservative_ratio\": null\n  },\n  \"structure\": {\n    \"tool\": \"syn source AST (see pinned metric_tool_sources in receipt)\",\n    \"functions\": [\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 31,\n        \"name\": \"try_from\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 38,\n        \"name\": \"new\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 44,\n        \"name\": \"from_unordered\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 52,\n        \"name\": \"dimension\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 57,\n        \"name\": \"vertices\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 62,\n        \"name\": \"num_vertices\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 1,\n        \"line\": 67,\n        \"name\": \"face\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 2,\n        \"line\": 86,\n        \"name\": \"faces\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 121,\n        \"name\": \"try_from\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 136,\n        \"name\": \"new\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 144,\n        \"name\": \"from_ordered\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 153,\n        \"name\": \"from_unordered\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 161,\n        \"name\": \"simplex\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 166,\n        \"name\": \"orientation\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 171,\n        \"name\": \"dimension\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 176,\n        \"name\": \"vertices\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 181,\n        \"name\": \"num_vertices\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 186,\n        \"name\": \"faces\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 223,\n        \"name\": \"from\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 231,\n        \"name\": \"try_from\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 238,\n        \"name\": \"from_maximal_simplices\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 243,\n        \"name\": \"from_simplices\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 250,\n        \"name\": \"standard_n_simplex\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 8,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 3,\n        \"line\": 257,\n        \"name\": \"from_canonical_simplices\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 299,\n        \"name\": \"max_dimension\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 304,\n        \"name\": \"simplices\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 312,\n        \"name\": \"simplices_by_dim\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 317,\n        \"name\": \"count\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 322,\n        \"name\": \"num_vertices\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 327,\n        \"name\": \"total_simplices\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 332,\n        \"name\": \"contains\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 340,\n        \"name\": \"euler_characteristic\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 9,\n        \"cognitive_upper_bound\": 5,\n        \"control_nesting\": 3,\n        \"line\": 358,\n        \"name\": \"boundary_matrix\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 8,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 391,\n        \"name\": \"coboundary_matrix\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 409,\n        \"name\": \"boundary_composition\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 422,\n        \"name\": \"verify_boundary_law_at\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 437,\n        \"name\": \"verify_boundary_law\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 449,\n        \"name\": \"coboundary_composition\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 459,\n        \"name\": \"verify_coboundary_law_at\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 470,\n        \"name\": \"verify_coboundary_law\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 10,\n        \"cognitive_upper_bound\": 9,\n        \"control_nesting\": 2,\n        \"line\": 486,\n        \"name\": \"rational_betti_numbers\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 7,\n        \"cognitive_upper_bound\": 11,\n        \"control_nesting\": 3,\n        \"line\": 528,\n        \"name\": \"close_faces\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 2,\n        \"line\": 553,\n        \"name\": \"validate_strict_vertices\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 2,\n        \"line\": 569,\n        \"name\": \"canonicalize_vertices\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 6,\n        \"control_nesting\": 2,\n        \"line\": 586,\n        \"name\": \"permutation_orientation\",\n        \"opaque_macros\": []\n      }\n    ],\n    \"exceeding_A\": [],\n    \"metric_ceiling\": \"A\",\n    \"scope\": \"Explicit source bodies only; opaque macros and compiler expansion remain unassessed.\"\n  },\n  \"open_findings\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\"\n  ],\n  \"evaluation_timestamp_basis\": \"Start of the latest bound assessment execution; execution durations are recorded in receipts.\"\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_six/20261020T104119Z-scalar-activation/previous_assessment/code/rust/src/homology/simplicial.rs.scoring.yaml"
+      ]
+    }
+  ],
+  "legacy_paths": {
+    "evidence/quality/l4a_six/20261020T104119Z-scalar-activation/previous_assessment/code/rust/src/homology/simplicial.rs.contract.yaml": "ad7e7b7566ff572f1e0c7b48643e0f6595aa1eac71c5a9b5c60b3b81b4b6e2e9",
+    "evidence/quality/l4a_six/20261020T104119Z-scalar-activation/previous_assessment/code/rust/src/homology/simplicial.rs.scoring.yaml": "517b049d91543801559de107e5d201e6075440851277973c77d23ed850f0eb1a"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

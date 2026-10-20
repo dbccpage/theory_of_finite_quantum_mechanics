@@ -1,0 +1,111 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/00_constitution/omega_contracts_registry_v1_loader_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:rust:omega_contracts:registry_v1_loader:v1.0.0",
+    "title": "omega.contract.v1 loader (spec §4, §7).  Walks `*.contract.yaml`, selects files whose `schema_version` is `omega.cont...",
+    "kind": "rust_file_contract",
+    "status": "active",
+    "crate": "omega_contracts",
+    "file": "crates_rs/omega_contracts/src/registry/v1_loader.rs",
+    "module": "registry::v1_loader",
+    "authority_effect": "none",
+    "evidence_ceiling": "LocalReplay",
+    "rust_binding": {
+      "crate": "omega_contracts",
+      "module": "registry::v1_loader",
+      "file": "crates_rs/omega_contracts/src/registry/v1_loader.rs"
+    },
+    "symbols": [
+      "V1LoadReport",
+      "NonV1Document",
+      "DocumentSchema",
+      "classify_contract_document",
+      "V1LoadError",
+      "verify_contract_projection",
+      "load_v1_dir"
+    ],
+    "owns": [
+      "v1_load_report",
+      "non_v1_document",
+      "document_schema",
+      "classify_contract_document",
+      "v1_load_error",
+      "verify_contract_projection",
+      "load_v1_dir"
+    ],
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "does_not_own": [
+      "authority_promotion",
+      "unscoped_claims"
+    ]
+  },
+  "current_contract": "1f7beffef922741e7a47f6239ce96f3c3604b836e43c60f21675a1c849857f15",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "1f7beffef922741e7a47f6239ce96f3c3604b836e43c60f21675a1c849857f15",
+      "bytes": 983,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:rust:omega_contracts:registry_v1_loader:v1.0.0",
+        "title": "omega.contract.v1 loader (spec §4, §7).  Walks `*.contract.yaml`, selects files whose `schema_version` is `omega.cont...",
+        "kind": "rust_file_contract",
+        "status": "active",
+        "crate": "omega_contracts",
+        "file": "crates_rs/omega_contracts/src/registry/v1_loader.rs",
+        "module": "registry::v1_loader",
+        "authority_effect": "none",
+        "evidence_ceiling": "LocalReplay",
+        "rust_binding": {
+          "crate": "omega_contracts",
+          "module": "registry::v1_loader",
+          "file": "crates_rs/omega_contracts/src/registry/v1_loader.rs"
+        },
+        "symbols": [
+          "V1LoadReport",
+          "NonV1Document",
+          "DocumentSchema",
+          "classify_contract_document",
+          "V1LoadError",
+          "verify_contract_projection",
+          "load_v1_dir"
+        ],
+        "owns": [
+          "v1_load_report",
+          "non_v1_document",
+          "document_schema",
+          "classify_contract_document",
+          "v1_load_error",
+          "verify_contract_projection",
+          "load_v1_dir"
+        ],
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "does_not_own": [
+          "authority_promotion",
+          "unscoped_claims"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:rust:omega_contracts:registry_v1_loader:v1.0.0\ntitle: omega.contract.v1 loader (spec §4, §7).  Walks `*.contract.yaml`, selects files\n  whose `schema_version` is `omega.cont...\nkind: rust_file_contract\nstatus: active\ncrate: omega_contracts\nfile: crates_rs/omega_contracts/src/registry/v1_loader.rs\nmodule: registry::v1_loader\nauthority_effect: none\nevidence_ceiling: LocalReplay\nrust_binding:\n  crate: omega_contracts\n  module: registry::v1_loader\n  file: crates_rs/omega_contracts/src/registry/v1_loader.rs\nsymbols:\n- V1LoadReport\n- NonV1Document\n- DocumentSchema\n- classify_contract_document\n- V1LoadError\n- verify_contract_projection\n- load_v1_dir\nowns:\n- v1_load_report\n- non_v1_document\n- document_schema\n- classify_contract_document\n- v1_load_error\n- verify_contract_projection\n- load_v1_dir\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\ndoes_not_own:\n- authority_promotion\n- unscoped_claims\n",
+      "original_paths": [
+        "code/python/governance/00_constitution/omega_contracts_registry_v1_loader.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/00_constitution/omega_contracts_registry_v1_loader.contract.yaml": "1f7beffef922741e7a47f6239ce96f3c3604b836e43c60f21675a1c849857f15"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

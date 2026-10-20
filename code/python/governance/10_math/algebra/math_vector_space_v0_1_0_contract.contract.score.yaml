@@ -1,0 +1,221 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/algebra/math_vector_space_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:vector_space:v0.1.0",
+    "title": "VectorSpace Contract",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "vector_space",
+      "symbol": "V ∈ Vect_K^n",
+      "ascii_symbol": "vector_space",
+      "notation": "V ∈ Vect_K^n",
+      "domain": [
+        "field: Field artifact K",
+        "dimension: Positive integer n",
+        "basis: Ordered list of n basis vectors"
+      ],
+      "codomain": {
+        "description": "Finite-dimensional vector space V over field K with ordered basis"
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "The dimension must be a positive integer",
+        "The length of ordered_basis must equal dimension n",
+        "The basis_hash must match SHA-256 of the canonical ordered basis list",
+        "The field_id must resolve to a valid Field artifact",
+        "If verifier provided, basis must be linearly independent"
+      ]
+    },
+    "laws": [
+      "dim(V) = n where n ≥ 1",
+      "The ordered basis spans V",
+      "The ordered basis vectors are linearly independent",
+      "The field K is a valid Field artifact"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No randomness",
+        "No time-dependent data",
+        "Ordered basis serialized as NFKC-normalized UTF-8 strings",
+        "Basis list joined with U+000A delimiter",
+        "Validator and computation functions are content-addressed"
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "negative_tests": [
+      "Dimension = 0 must be rejected",
+      "Basis length != dimension must be rejected",
+      "Mismatched basis_hash must be rejected",
+      "Dependent basis must be rejected when verifier is used",
+      "Invalid field_id must be rejected",
+      "Different basis order must produce different hash",
+      "Vector with mismatched codomain_basis_hash must be rejected"
+    ],
+    "doctrine": {
+      "summary": "A VectorSpace is a finite-dimensional vector space V over a field K, equipped with an ordered basis. It defines the carrier for vectors and the domain/codomain for linear maps. The contract guarantees that the space has a positive dimension, a valid field, and a basis that is consistent (spanning and linearly independent) according to a deterministic verifier. No topological or additional structures (inner product, norm) are included; those are separate structure contracts.",
+      "non_role": [
+        "Topological structures (norm, metric, topology)",
+        "Inner product structures (use separate InnerProduct contract)",
+        "Infinite-dimensional spaces",
+        "Abstract spaces without explicit basis"
+      ]
+    },
+    "wip": [
+      "Linear independence verification is computationally heavy for large spaces and may be deferred to a deterministic external validator. The contract allows the basis to be accepted solely by hash consistency, leaving the verification to higher-level contexts.",
+      "The contract does not distinguish between abstract vector spaces and coordinate spaces (K^n). The basis is an explicit part of the specification; two spaces with different bases are distinct even if they are isomorphic.",
+      "The relationship with the Fiber contract (which also describes a vector space at a point) is that a Fiber adds a base point; a VectorSpace without a base point serves as a typical fiber. Future work may unify them.",
+      "Infinite-dimensional spaces are not supported; the contract is limited to finite dimension.",
+      "The dual space, tensor product, and direct sum operations will be defined in separate ComputationWitness specifications, referencing this contract.",
+      "This descriptor is embedded in every StructureArtifact and serves as the primary key for all related vectors, matrices, and inner products that use this space."
+    ]
+  },
+  "current_contract": "c4a9cc1da73eb91c91ceb19ed1be8f4f9d51e9d24e2acc5081c2e0a94bb212d5",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "c4a9cc1da73eb91c91ceb19ed1be8f4f9d51e9d24e2acc5081c2e0a94bb212d5",
+      "bytes": 3846,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:vector_space:v0.1.0",
+        "title": "VectorSpace Contract",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "vector_space",
+          "symbol": "V ∈ Vect_K^n",
+          "ascii_symbol": "vector_space",
+          "notation": "V ∈ Vect_K^n",
+          "domain": [
+            "field: Field artifact K",
+            "dimension: Positive integer n",
+            "basis: Ordered list of n basis vectors"
+          ],
+          "codomain": {
+            "description": "Finite-dimensional vector space V over field K with ordered basis"
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "The dimension must be a positive integer",
+            "The length of ordered_basis must equal dimension n",
+            "The basis_hash must match SHA-256 of the canonical ordered basis list",
+            "The field_id must resolve to a valid Field artifact",
+            "If verifier provided, basis must be linearly independent"
+          ]
+        },
+        "laws": [
+          "dim(V) = n where n ≥ 1",
+          "The ordered basis spans V",
+          "The ordered basis vectors are linearly independent",
+          "The field K is a valid Field artifact"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "Ordered basis serialized as NFKC-normalized UTF-8 strings",
+            "Basis list joined with U+000A delimiter",
+            "Validator and computation functions are content-addressed"
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "negative_tests": [
+          "Dimension = 0 must be rejected",
+          "Basis length != dimension must be rejected",
+          "Mismatched basis_hash must be rejected",
+          "Dependent basis must be rejected when verifier is used",
+          "Invalid field_id must be rejected",
+          "Different basis order must produce different hash",
+          "Vector with mismatched codomain_basis_hash must be rejected"
+        ],
+        "doctrine": {
+          "summary": "A VectorSpace is a finite-dimensional vector space V over a field K, equipped with an ordered basis. It defines the carrier for vectors and the domain/codomain for linear maps. The contract guarantees that the space has a positive dimension, a valid field, and a basis that is consistent (spanning and linearly independent) according to a deterministic verifier. No topological or additional structures (inner product, norm) are included; those are separate structure contracts.",
+          "non_role": [
+            "Topological structures (norm, metric, topology)",
+            "Inner product structures (use separate InnerProduct contract)",
+            "Infinite-dimensional spaces",
+            "Abstract spaces without explicit basis"
+          ]
+        },
+        "wip": [
+          "Linear independence verification is computationally heavy for large spaces and may be deferred to a deterministic external validator. The contract allows the basis to be accepted solely by hash consistency, leaving the verification to higher-level contexts.",
+          "The contract does not distinguish between abstract vector spaces and coordinate spaces (K^n). The basis is an explicit part of the specification; two spaces with different bases are distinct even if they are isomorphic.",
+          "The relationship with the Fiber contract (which also describes a vector space at a point) is that a Fiber adds a base point; a VectorSpace without a base point serves as a typical fiber. Future work may unify them.",
+          "Infinite-dimensional spaces are not supported; the contract is limited to finite dimension.",
+          "The dual space, tensor product, and direct sum operations will be defined in separate ComputationWitness specifications, referencing this contract.",
+          "This descriptor is embedded in every StructureArtifact and serves as the primary key for all related vectors, matrices, and inner products that use this space."
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:vector_space:v0.1.0\ntitle: VectorSpace Contract\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: vector_space\n  symbol: V ∈ Vect_K^n\n  ascii_symbol: vector_space\n  notation: V ∈ Vect_K^n\n  domain:\n  - 'field: Field artifact K'\n  - 'dimension: Positive integer n'\n  - 'basis: Ordered list of n basis vectors'\n  codomain:\n    description: Finite-dimensional vector space V over field K with ordered basis\nrequirements:\n  required_structures:\n  - The dimension must be a positive integer\n  - The length of ordered_basis must equal dimension n\n  - The basis_hash must match SHA-256 of the canonical ordered basis list\n  - The field_id must resolve to a valid Field artifact\n  - If verifier provided, basis must be linearly independent\nlaws:\n- dim(V) = n where n ≥ 1\n- The ordered basis spans V\n- The ordered basis vectors are linearly independent\n- The field K is a valid Field artifact\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - Ordered basis serialized as NFKC-normalized UTF-8 strings\n  - Basis list joined with U+000A delimiter\n  - Validator and computation functions are content-addressed\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nnegative_tests:\n- Dimension = 0 must be rejected\n- Basis length != dimension must be rejected\n- Mismatched basis_hash must be rejected\n- Dependent basis must be rejected when verifier is used\n- Invalid field_id must be rejected\n- Different basis order must produce different hash\n- Vector with mismatched codomain_basis_hash must be rejected\ndoctrine:\n  summary: A VectorSpace is a finite-dimensional vector space V over a field K, equipped\n    with an ordered basis. It defines the carrier for vectors and the domain/codomain\n    for linear maps. The contract guarantees that the space has a positive dimension,\n    a valid field, and a basis that is consistent (spanning and linearly independent)\n    according to a deterministic verifier. No topological or additional structures\n    (inner product, norm) are included; those are separate structure contracts.\n  non_role:\n  - Topological structures (norm, metric, topology)\n  - Inner product structures (use separate InnerProduct contract)\n  - Infinite-dimensional spaces\n  - Abstract spaces without explicit basis\nwip:\n- Linear independence verification is computationally heavy for large spaces and may\n  be deferred to a deterministic external validator. The contract allows the basis\n  to be accepted solely by hash consistency, leaving the verification to higher-level\n  contexts.\n- The contract does not distinguish between abstract vector spaces and coordinate\n  spaces (K^n). The basis is an explicit part of the specification; two spaces with\n  different bases are distinct even if they are isomorphic.\n- The relationship with the Fiber contract (which also describes a vector space at\n  a point) is that a Fiber adds a base point; a VectorSpace without a base point serves\n  as a typical fiber. Future work may unify them.\n- Infinite-dimensional spaces are not supported; the contract is limited to finite\n  dimension.\n- The dual space, tensor product, and direct sum operations will be defined in separate\n  ComputationWitness specifications, referencing this contract.\n- This descriptor is embedded in every StructureArtifact and serves as the primary\n  key for all related vectors, matrices, and inner products that use this space.\n",
+      "original_paths": [
+        "code/python/governance/10_math/algebra/math_vector_space_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/algebra/math_vector_space_v0_1_0.contract.yaml": "c4a9cc1da73eb91c91ceb19ed1be8f4f9d51e9d24e2acc5081c2e0a94bb212d5"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

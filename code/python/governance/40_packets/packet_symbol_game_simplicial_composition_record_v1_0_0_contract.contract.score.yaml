@@ -1,0 +1,147 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/40_packets/packet_symbol_game_simplicial_composition_record_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v2",
+    "contract_id": "urn:omega:packet:symbol_game:simplicial_composition_record:v1.0.0",
+    "title": "Simplicial Composition Record",
+    "kind": "packet_contract",
+    "layer": "40_packets",
+    "role": "PacketSpecification",
+    "status": "active",
+    "council_owner": "L3_logos_techne",
+    "descriptor": {
+      "authority_effect": "None",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": true,
+      "clean_architecture_layer": "domain",
+      "refusals": {
+        "may_emit": [
+          "FW-UNKNOWN-FIELD"
+        ]
+      }
+    },
+    "doctrine": {
+      "summary": "SimplicialCompositionRecord, a receipt record for simplicial boundary composition d_{k-1} * d_k.",
+      "invariants": [
+        "Exhaustive shape destructure compiles in all builds.",
+        "Records degree, matrix row and column dimensions, and exact vanishing status."
+      ],
+      "non_roles": [
+        "authority_source",
+        "promotion_granter"
+      ],
+      "required_negative_capabilities": [
+        "no_self_certification",
+        "no_implicit_authority_upgrade"
+      ]
+    },
+    "structure": {
+      "language": "rust",
+      "rust_crate": "omega_symbol_game_runtime",
+      "rust_module": "homology_holonomy",
+      "rust_type": "SimplicialCompositionRecord",
+      "form": "struct",
+      "fields": [
+        {
+          "name": "degree"
+        },
+        {
+          "name": "rows"
+        },
+        {
+          "name": "cols"
+        },
+        {
+          "name": "is_zero"
+        }
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "c7c1d30adbe770d0910db4952ebd1c6f3d91a58918d67d7af1ede8da01fcb5f8",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "c7c1d30adbe770d0910db4952ebd1c6f3d91a58918d67d7af1ede8da01fcb5f8",
+      "bytes": 1172,
+      "record": {
+        "schema_version": "omega.contract.v2",
+        "contract_id": "urn:omega:packet:symbol_game:simplicial_composition_record:v1.0.0",
+        "title": "Simplicial Composition Record",
+        "kind": "packet_contract",
+        "layer": "40_packets",
+        "role": "PacketSpecification",
+        "status": "active",
+        "council_owner": "L3_logos_techne",
+        "descriptor": {
+          "authority_effect": "None",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": true,
+          "clean_architecture_layer": "domain",
+          "refusals": {
+            "may_emit": [
+              "FW-UNKNOWN-FIELD"
+            ]
+          }
+        },
+        "doctrine": {
+          "summary": "SimplicialCompositionRecord, a receipt record for simplicial boundary composition d_{k-1} * d_k.",
+          "invariants": [
+            "Exhaustive shape destructure compiles in all builds.",
+            "Records degree, matrix row and column dimensions, and exact vanishing status."
+          ],
+          "non_roles": [
+            "authority_source",
+            "promotion_granter"
+          ],
+          "required_negative_capabilities": [
+            "no_self_certification",
+            "no_implicit_authority_upgrade"
+          ]
+        },
+        "structure": {
+          "language": "rust",
+          "rust_crate": "omega_symbol_game_runtime",
+          "rust_module": "homology_holonomy",
+          "rust_type": "SimplicialCompositionRecord",
+          "form": "struct",
+          "fields": [
+            {
+              "name": "degree"
+            },
+            {
+              "name": "rows"
+            },
+            {
+              "name": "cols"
+            },
+            {
+              "name": "is_zero"
+            }
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v2\ncontract_id: urn:omega:packet:symbol_game:simplicial_composition_record:v1.0.0\ntitle: Simplicial Composition Record\nkind: packet_contract\nlayer: 40_packets\nrole: PacketSpecification\nstatus: active\ncouncil_owner: L3_logos_techne\ndescriptor:\n  authority_effect: None\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: true\n  clean_architecture_layer: domain\n  refusals:\n    may_emit:\n    - FW-UNKNOWN-FIELD\ndoctrine:\n  summary: SimplicialCompositionRecord, a receipt record for simplicial boundary composition\n    d_{k-1} * d_k.\n  invariants:\n  - Exhaustive shape destructure compiles in all builds.\n  - Records degree, matrix row and column dimensions, and exact vanishing status.\n  non_roles:\n  - authority_source\n  - promotion_granter\n  required_negative_capabilities:\n  - no_self_certification\n  - no_implicit_authority_upgrade\nstructure:\n  language: rust\n  rust_crate: omega_symbol_game_runtime\n  rust_module: homology_holonomy\n  rust_type: SimplicialCompositionRecord\n  form: struct\n  fields:\n  - name: degree\n  - name: rows\n  - name: cols\n  - name: is_zero\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/40_packets/packet_symbol_game_simplicial_composition_record_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/40_packets/packet_symbol_game_simplicial_composition_record_v1_0_0.contract.yaml": "c7c1d30adbe770d0910db4952ebd1c6f3d91a58918d67d7af1ede8da01fcb5f8"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

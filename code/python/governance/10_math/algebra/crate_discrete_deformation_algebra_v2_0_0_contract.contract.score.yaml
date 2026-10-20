@@ -1,0 +1,185 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/algebra/crate_discrete_deformation_algebra_v2_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v2",
+    "contract_id": "urn:omega:crate:discrete_deformation_algebra:v2.0.0",
+    "title": "Discrete Deformation Calculus",
+    "kind": "math_contract",
+    "layer": "10_math_crates",
+    "role": "MathematicalKernel",
+    "status": "active",
+    "council_owner": "L3_logos_techne",
+    "descriptor": {
+      "authority_effect": "None",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "clean_architecture_layer": "domain",
+      "dependencies": {
+        "contracts": [],
+        "lean4_theorems": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": [
+          "REFUSED_INVALID_WITNESS",
+          "REFUSED_BUDGET_EXHAUSTED",
+          "REFUSED_NON_ZERO_CURL",
+          "REFUSED_UNLICENSED_LIFT",
+          "REFUSED_REQUIRES_LIFT",
+          "REFUSED_MISSING_LOSS_LEDGER",
+          "REFUSED_DETECTOR_INADEQUATE"
+        ]
+      }
+    },
+    "doctrine": {
+      "summary": "Discrete Deformation Calculus (DDC) 8-letter operational trace alphabet A_DDC = {E, R, C, I, Lambda, D, M, T}, 8 candidate runtime laws, and Merkle-chained step validation.",
+      "invariants": [
+        "DDC transitions execute under operational alphabet A_DDC = {E, R, C, I, Lambda, D, M, T}.",
+        "Every step records deterministic input/output digests and witness flags chained by SHA-256.",
+        "Law 2 (Terminal Absorption): No steps admitted after T.",
+        "Law 3 (Refusal Absorption): After M, only C, Lambda, or T may follow.",
+        "Law 4 (Lift Trigger): Structural lift Lambda requires license and trigger (ClosedResidual or DetectorInadequate).",
+        "Law 5 (Integration Requires Receipt): Step integration I requires verified step receipt.",
+        "Law 6 (Descent Requires Loss Ledger): Scale descent D requires explicit LossLedger recording dropped dimensions and lost mass.",
+        "Law 7 (Exact Repair Discharges): Exact repair E requires before-class ExactRepair and discharges to zero without crossing classes.",
+        "Law 8 (Context Exposure Is Not Repair): Context exposure C changes carrier and never lowers Phi_1 or Gamma_2.",
+        "Four-Axis Separation: DiagnosticClass != RoutingTerminal != ExtensionStatus != AuthorityStatus."
+      ],
+      "non_roles": [
+        "authority_source",
+        "promotion_granter",
+        "implicit_coercion"
+      ],
+      "required_negative_capabilities": [
+        "no_self_certification",
+        "no_implicit_authority_upgrade",
+        "no_undeclared_state_transition",
+        "no_unpriced_obstruction_decrease"
+      ]
+    },
+    "specification": {
+      "algebraic_structure": {
+        "carrier_type": "DiscreteDeformationAlgebraCarrier",
+        "operations": []
+      },
+      "ports": {
+        "input_packet": "urn:omega:packet:work_packet:v1.0.0",
+        "output_packet": "urn:omega:packet:swarm_run_receipt:v1.0.0",
+        "error_type": "Refusal"
+      },
+      "verification": {
+        "fitness_test": null,
+        "lean4_file": null
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "713fa1d82d2950df4a8590f3558a6b324b8d132a2204dd8dab6654cbba93efc6",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "713fa1d82d2950df4a8590f3558a6b324b8d132a2204dd8dab6654cbba93efc6",
+      "bytes": 2640,
+      "record": {
+        "schema_version": "omega.contract.v2",
+        "contract_id": "urn:omega:crate:discrete_deformation_algebra:v2.0.0",
+        "title": "Discrete Deformation Calculus",
+        "kind": "math_contract",
+        "layer": "10_math_crates",
+        "role": "MathematicalKernel",
+        "status": "active",
+        "council_owner": "L3_logos_techne",
+        "descriptor": {
+          "authority_effect": "None",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "clean_architecture_layer": "domain",
+          "dependencies": {
+            "contracts": [],
+            "lean4_theorems": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": [
+              "REFUSED_INVALID_WITNESS",
+              "REFUSED_BUDGET_EXHAUSTED",
+              "REFUSED_NON_ZERO_CURL",
+              "REFUSED_UNLICENSED_LIFT",
+              "REFUSED_REQUIRES_LIFT",
+              "REFUSED_MISSING_LOSS_LEDGER",
+              "REFUSED_DETECTOR_INADEQUATE"
+            ]
+          }
+        },
+        "doctrine": {
+          "summary": "Discrete Deformation Calculus (DDC) 8-letter operational trace alphabet A_DDC = {E, R, C, I, Lambda, D, M, T}, 8 candidate runtime laws, and Merkle-chained step validation.",
+          "invariants": [
+            "DDC transitions execute under operational alphabet A_DDC = {E, R, C, I, Lambda, D, M, T}.",
+            "Every step records deterministic input/output digests and witness flags chained by SHA-256.",
+            "Law 2 (Terminal Absorption): No steps admitted after T.",
+            "Law 3 (Refusal Absorption): After M, only C, Lambda, or T may follow.",
+            "Law 4 (Lift Trigger): Structural lift Lambda requires license and trigger (ClosedResidual or DetectorInadequate).",
+            "Law 5 (Integration Requires Receipt): Step integration I requires verified step receipt.",
+            "Law 6 (Descent Requires Loss Ledger): Scale descent D requires explicit LossLedger recording dropped dimensions and lost mass.",
+            "Law 7 (Exact Repair Discharges): Exact repair E requires before-class ExactRepair and discharges to zero without crossing classes.",
+            "Law 8 (Context Exposure Is Not Repair): Context exposure C changes carrier and never lowers Phi_1 or Gamma_2.",
+            "Four-Axis Separation: DiagnosticClass != RoutingTerminal != ExtensionStatus != AuthorityStatus."
+          ],
+          "non_roles": [
+            "authority_source",
+            "promotion_granter",
+            "implicit_coercion"
+          ],
+          "required_negative_capabilities": [
+            "no_self_certification",
+            "no_implicit_authority_upgrade",
+            "no_undeclared_state_transition",
+            "no_unpriced_obstruction_decrease"
+          ]
+        },
+        "specification": {
+          "algebraic_structure": {
+            "carrier_type": "DiscreteDeformationAlgebraCarrier",
+            "operations": []
+          },
+          "ports": {
+            "input_packet": "urn:omega:packet:work_packet:v1.0.0",
+            "output_packet": "urn:omega:packet:swarm_run_receipt:v1.0.0",
+            "error_type": "Refusal"
+          },
+          "verification": {
+            "fitness_test": null,
+            "lean4_file": null
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v2\ncontract_id: urn:omega:crate:discrete_deformation_algebra:v2.0.0\ntitle: Discrete Deformation Calculus\nkind: math_contract\nlayer: 10_math_crates\nrole: MathematicalKernel\nstatus: active\ncouncil_owner: L3_logos_techne\ndescriptor:\n  authority_effect: None\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  clean_architecture_layer: domain\n  dependencies:\n    contracts: []\n    lean4_theorems: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit:\n    - REFUSED_INVALID_WITNESS\n    - REFUSED_BUDGET_EXHAUSTED\n    - REFUSED_NON_ZERO_CURL\n    - REFUSED_UNLICENSED_LIFT\n    - REFUSED_REQUIRES_LIFT\n    - REFUSED_MISSING_LOSS_LEDGER\n    - REFUSED_DETECTOR_INADEQUATE\ndoctrine:\n  summary: Discrete Deformation Calculus (DDC) 8-letter operational trace alphabet\n    A_DDC = {E, R, C, I, Lambda, D, M, T}, 8 candidate runtime laws, and Merkle-chained\n    step validation.\n  invariants:\n  - DDC transitions execute under operational alphabet A_DDC = {E, R, C, I, Lambda,\n    D, M, T}.\n  - Every step records deterministic input/output digests and witness flags chained\n    by SHA-256.\n  - 'Law 2 (Terminal Absorption): No steps admitted after T.'\n  - 'Law 3 (Refusal Absorption): After M, only C, Lambda, or T may follow.'\n  - 'Law 4 (Lift Trigger): Structural lift Lambda requires license and trigger (ClosedResidual\n    or DetectorInadequate).'\n  - 'Law 5 (Integration Requires Receipt): Step integration I requires verified step\n    receipt.'\n  - 'Law 6 (Descent Requires Loss Ledger): Scale descent D requires explicit LossLedger\n    recording dropped dimensions and lost mass.'\n  - 'Law 7 (Exact Repair Discharges): Exact repair E requires before-class ExactRepair\n    and discharges to zero without crossing classes.'\n  - 'Law 8 (Context Exposure Is Not Repair): Context exposure C changes carrier and\n    never lowers Phi_1 or Gamma_2.'\n  - 'Four-Axis Separation: DiagnosticClass != RoutingTerminal != ExtensionStatus !=\n    AuthorityStatus.'\n  non_roles:\n  - authority_source\n  - promotion_granter\n  - implicit_coercion\n  required_negative_capabilities:\n  - no_self_certification\n  - no_implicit_authority_upgrade\n  - no_undeclared_state_transition\n  - no_unpriced_obstruction_decrease\nspecification:\n  algebraic_structure:\n    carrier_type: DiscreteDeformationAlgebraCarrier\n    operations: []\n  ports:\n    input_packet: urn:omega:packet:work_packet:v1.0.0\n    output_packet: urn:omega:packet:swarm_run_receipt:v1.0.0\n    error_type: Refusal\n  verification:\n    fitness_test: null\n    lean4_file: null\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/10_math/algebra/crate_discrete_deformation_algebra_v2_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/algebra/crate_discrete_deformation_algebra_v2_0_0.contract.yaml": "713fa1d82d2950df4a8590f3558a6b324b8d132a2204dd8dab6654cbba93efc6"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

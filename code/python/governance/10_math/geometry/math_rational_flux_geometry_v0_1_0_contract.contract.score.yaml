@@ -1,0 +1,207 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/geometry/math_rational_flux_geometry_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:rational_flux_geometry:v0.1.0",
+    "title": "Exact tetrahedral flux and simplex volume",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "rational_flux_geometry",
+      "symbol": "rational_flux_geometry",
+      "ascii_symbol": "rational_flux_geometry",
+      "notation": "Exact tetrahedral flux and simplex volume",
+      "domain": [
+        "Nondegenerate rational3D tetrahedron or4D simplex; fixed finite vertex carrier."
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_general_relativity::loop_quantum_gravity; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "Oriented tetrahedral face fluxes close.",
+      "Face area squared is the rational squared norm of the flux.",
+      "Volume squared is det(edge matrix)^2/36 or /576."
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_general_relativity",
+      "module": "loop_quantum_gravity",
+      "symbols": [
+        "FluxTetrahedron",
+        "ExactFourSimplex"
+      ],
+      "required_tests": [
+        "geometric_flux_closure_area_and_volume_are_exact",
+        "simplex_boundary_bianchi_is_oriented_boundary_nilpotency"
+      ]
+    },
+    "negative_tests": [
+      "geometric_flux_closure_area_and_volume_are_exact"
+    ],
+    "doctrine": {
+      "summary": "Oriented tetrahedral face fluxes close.; Face area squared is the rational squared norm of the flux.; Volume squared is det(edge matrix)^2/36 or /576..",
+      "non_role": [
+        "These classical finite flux geometries do not quantize the gravitational constraint algebra.",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "0e1cf810721328bffee7e9de2d574f0d3f3cc10229b614cda8cb39cbdd7e731c",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "0e1cf810721328bffee7e9de2d574f0d3f3cc10229b614cda8cb39cbdd7e731c",
+      "bytes": 2593,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:rational_flux_geometry:v0.1.0",
+        "title": "Exact tetrahedral flux and simplex volume",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "rational_flux_geometry",
+          "symbol": "rational_flux_geometry",
+          "ascii_symbol": "rational_flux_geometry",
+          "notation": "Exact tetrahedral flux and simplex volume",
+          "domain": [
+            "Nondegenerate rational3D tetrahedron or4D simplex; fixed finite vertex carrier."
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_general_relativity::loop_quantum_gravity; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "Oriented tetrahedral face fluxes close.",
+          "Face area squared is the rational squared norm of the flux.",
+          "Volume squared is det(edge matrix)^2/36 or /576."
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_general_relativity",
+          "module": "loop_quantum_gravity",
+          "symbols": [
+            "FluxTetrahedron",
+            "ExactFourSimplex"
+          ],
+          "required_tests": [
+            "geometric_flux_closure_area_and_volume_are_exact",
+            "simplex_boundary_bianchi_is_oriented_boundary_nilpotency"
+          ]
+        },
+        "negative_tests": [
+          "geometric_flux_closure_area_and_volume_are_exact"
+        ],
+        "doctrine": {
+          "summary": "Oriented tetrahedral face fluxes close.; Face area squared is the rational squared norm of the flux.; Volume squared is det(edge matrix)^2/36 or /576..",
+          "non_role": [
+            "These classical finite flux geometries do not quantize the gravitational constraint algebra.",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:rational_flux_geometry:v0.1.0\ntitle: Exact tetrahedral flux and simplex volume\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: rational_flux_geometry\n  symbol: rational_flux_geometry\n  ascii_symbol: rational_flux_geometry\n  notation: Exact tetrahedral flux and simplex volume\n  domain:\n  - Nondegenerate rational3D tetrahedron or4D simplex; fixed finite vertex carrier.\n  codomain:\n    description: Declared finite results of omega_general_relativity::loop_quantum_gravity;\n      exact and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- Oriented tetrahedral face fluxes close.\n- Face area squared is the rational squared norm of the flux.\n- Volume squared is det(edge matrix)^2/36 or /576.\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_general_relativity\n  module: loop_quantum_gravity\n  symbols:\n  - FluxTetrahedron\n  - ExactFourSimplex\n  required_tests:\n  - geometric_flux_closure_area_and_volume_are_exact\n  - simplex_boundary_bianchi_is_oriented_boundary_nilpotency\nnegative_tests:\n- geometric_flux_closure_area_and_volume_are_exact\ndoctrine:\n  summary: Oriented tetrahedral face fluxes close.; Face area squared is the rational\n    squared norm of the flux.; Volume squared is det(edge matrix)^2/36 or /576..\n  non_role:\n  - These classical finite flux geometries do not quantize the gravitational constraint\n    algebra.\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/geometry/math_rational_flux_geometry_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/geometry/math_rational_flux_geometry_v0_1_0.contract.yaml": "0e1cf810721328bffee7e9de2d574f0d3f3cc10229b614cda8cb39cbdd7e731c"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

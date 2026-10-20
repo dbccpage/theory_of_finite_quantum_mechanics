@@ -1,0 +1,245 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": null,
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:graph_phi1_quotient_distance:v1.0.0",
+    "title": "Φ₁ on a finite declared graph by exhaustive spanning-forest gauge enumeration",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [
+          "urn:omega:math:phi1:v1.0.0"
+        ],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "graph_phi1_forest_enumeration",
+      "symbol": "Φ₁",
+      "ascii_symbol": "GraphPhi1",
+      "notation": "Φ₁([c]) = min_{g ∈ ℚ^V} Σ_{(u,v) ∈ E} w_uv |c_uv − (g_v − g_u)|",
+      "domain": [
+        "finite declared vertex list V with unique names",
+        "finite edge list E; each edge names two distinct declared vertices",
+        "per-edge rational claim c_uv and strictly positive rational weight w_uv, as strings"
+      ],
+      "codomain": {
+        "description": "GraphPhi1Result: the minimum weighted residual over the enumerated gauges (rational string), a minimizing vertex gauge, and the number of spanning forests enumerated. Or a typed GraphPhi1Error. No dual witness is produced."
+      },
+      "definition": {
+        "formula": "Φ₁([c]) = min_g Σ w_uv |c_uv − (g_v − g_u)|",
+        "search": "For every spanning forest of the declared graph, fix the gauge that makes each forest edge residual-free (zero on each component root), evaluate the weighted residual, and keep the first strict minimum. The zero gauge is the initial candidate.",
+        "bound": "At most 100000 spanning forests are enumerated; reaching the bound refuses"
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Finite vertex names, unique",
+        "Finite edges between distinct declared vertices",
+        "Exact rational claims and strictly positive exact rational weights"
+      ]
+    },
+    "laws": [
+      "Enumeration law: the returned value is the minimum weighted residual over every spanning-forest-tight gauge and the zero gauge. The search is exhaustive over spanning forests, or it refuses (EnumerationLimit); it never returns a partial minimum.",
+      "Optimality basis: equality of that minimum with the quotient infimum rests on the linear-programming fact that this ℓ¹ gauge problem has an optimal basic solution in which a spanning forest of edges is residual-free. This module does not replay that argument or emit a dual witness, so the value is not a replayed primal-dual certificate.",
+      "Carrier law: duplicate vertex names, endpoints outside the declared vertices, self edges, unparseable rationals and non-positive weights are refused with typed errors.",
+      "Determinism law: for a fixed request the enumeration order, the minimum and the returned gauge are deterministic.",
+      "Exactness law: all arithmetic is BigRational; there is no floating-point path.",
+      "Separation fence: this is degree-1 Φ₁ on a graph. It computes no Γ₂, because the request declares no 2-cells.",
+      "Authority law: the result mints no AuthorityEffect, PROVED, GlobalGreen or ActionLicense."
+    ],
+    "replay": {
+      "requirements": [
+        "No external state, randomness or wall-clock",
+        "Exact rational arithmetic only",
+        "Deterministic spanning-forest enumeration order"
+      ]
+    },
+    "relationships": [
+      "urn:omega:math:phi1:v1.0.0 — the Φ₁ quotient obstruction this specializes to a graph d₀",
+      "urn:omega:math:phi1:v1.0.0 — weighted-mass and dual-replay arithmetic for Φ₁ witnesses"
+    ],
+    "rust_binding": {
+      "crate": "omega_solvers",
+      "module": "solver_graph_phi1_distance",
+      "symbols": [
+        "GraphPhi1Edge",
+        "GraphPhi1Request",
+        "GraphPhi1Result",
+        "GraphPhi1Error",
+        "solve_graph_phi1"
+      ],
+      "required_tests": [
+        "rejects_nonpositive_weight",
+        "exact_and_inconsistent_triangles",
+        "rational_triangle_uses_exact_weighted_minimum",
+        "planar_triangular_multi_cycle_b1_2",
+        "kagome_trimer_multi_cycle_b1_4"
+      ]
+    },
+    "negative_tests": [
+      "A zero edge weight must be rejected"
+    ],
+    "doctrine": {
+      "summary": "solve_graph_phi1 computes the degree-1 weighted ℓ¹ quotient distance of an edge claim on a small declared graph by enumerating spanning-forest gauges, and refuses beyond 100000 forests. It is an exact enumeration, not a primal-dual certificate: no dual witness is returned. Nonclaim: not Γ₂; not authority; not PROVED; not GlobalGreen.",
+      "non_role": [
+        "Primal-dual certificate replay (see urn:omega:math:phi1:v1.0.0)",
+        "Γ₂ or any 2-cell closure defect",
+        "Scalable LP solving beyond the enumeration bound",
+        "Authority minting, ActionLicense, PROVED or GlobalGreen"
+      ]
+    },
+    "wip": [
+      "OPEN_OBLIGATION untested_refusals: DuplicateVertex, UnknownEndpoint, SelfEdge, InvalidRational, a negative weight and EnumerationLimit are implemented refusals with no dedicated unit test; AuthorityEffect: None.",
+      "OPEN_OBLIGATION dual_witness: the result carries no dual witness, so a consumer cannot replay optimality; AuthorityEffect: None."
+    ]
+  },
+  "current_contract": "eeb6b30ef7ef252103c244d42ba089ded248ebb98017f62bfc8f1e992dd86837",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "eeb6b30ef7ef252103c244d42ba089ded248ebb98017f62bfc8f1e992dd86837",
+      "bytes": 5131,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:graph_phi1_quotient_distance:v1.0.0",
+        "title": "Φ₁ on a finite declared graph by exhaustive spanning-forest gauge enumeration",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [
+              "urn:omega:math:phi1:v1.0.0"
+            ],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "graph_phi1_forest_enumeration",
+          "symbol": "Φ₁",
+          "ascii_symbol": "GraphPhi1",
+          "notation": "Φ₁([c]) = min_{g ∈ ℚ^V} Σ_{(u,v) ∈ E} w_uv |c_uv − (g_v − g_u)|",
+          "domain": [
+            "finite declared vertex list V with unique names",
+            "finite edge list E; each edge names two distinct declared vertices",
+            "per-edge rational claim c_uv and strictly positive rational weight w_uv, as strings"
+          ],
+          "codomain": {
+            "description": "GraphPhi1Result: the minimum weighted residual over the enumerated gauges (rational string), a minimizing vertex gauge, and the number of spanning forests enumerated. Or a typed GraphPhi1Error. No dual witness is produced."
+          },
+          "definition": {
+            "formula": "Φ₁([c]) = min_g Σ w_uv |c_uv − (g_v − g_u)|",
+            "search": "For every spanning forest of the declared graph, fix the gauge that makes each forest edge residual-free (zero on each component root), evaluate the weighted residual, and keep the first strict minimum. The zero gauge is the initial candidate.",
+            "bound": "At most 100000 spanning forests are enumerated; reaching the bound refuses"
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Finite vertex names, unique",
+            "Finite edges between distinct declared vertices",
+            "Exact rational claims and strictly positive exact rational weights"
+          ]
+        },
+        "laws": [
+          "Enumeration law: the returned value is the minimum weighted residual over every spanning-forest-tight gauge and the zero gauge. The search is exhaustive over spanning forests, or it refuses (EnumerationLimit); it never returns a partial minimum.",
+          "Optimality basis: equality of that minimum with the quotient infimum rests on the linear-programming fact that this ℓ¹ gauge problem has an optimal basic solution in which a spanning forest of edges is residual-free. This module does not replay that argument or emit a dual witness, so the value is not a replayed primal-dual certificate.",
+          "Carrier law: duplicate vertex names, endpoints outside the declared vertices, self edges, unparseable rationals and non-positive weights are refused with typed errors.",
+          "Determinism law: for a fixed request the enumeration order, the minimum and the returned gauge are deterministic.",
+          "Exactness law: all arithmetic is BigRational; there is no floating-point path.",
+          "Separation fence: this is degree-1 Φ₁ on a graph. It computes no Γ₂, because the request declares no 2-cells.",
+          "Authority law: the result mints no AuthorityEffect, PROVED, GlobalGreen or ActionLicense."
+        ],
+        "replay": {
+          "requirements": [
+            "No external state, randomness or wall-clock",
+            "Exact rational arithmetic only",
+            "Deterministic spanning-forest enumeration order"
+          ]
+        },
+        "relationships": [
+          "urn:omega:math:phi1:v1.0.0 — the Φ₁ quotient obstruction this specializes to a graph d₀",
+          "urn:omega:math:phi1:v1.0.0 — weighted-mass and dual-replay arithmetic for Φ₁ witnesses"
+        ],
+        "rust_binding": {
+          "crate": "omega_solvers",
+          "module": "solver_graph_phi1_distance",
+          "symbols": [
+            "GraphPhi1Edge",
+            "GraphPhi1Request",
+            "GraphPhi1Result",
+            "GraphPhi1Error",
+            "solve_graph_phi1"
+          ],
+          "required_tests": [
+            "rejects_nonpositive_weight",
+            "exact_and_inconsistent_triangles",
+            "rational_triangle_uses_exact_weighted_minimum",
+            "planar_triangular_multi_cycle_b1_2",
+            "kagome_trimer_multi_cycle_b1_4"
+          ]
+        },
+        "negative_tests": [
+          "A zero edge weight must be rejected"
+        ],
+        "doctrine": {
+          "summary": "solve_graph_phi1 computes the degree-1 weighted ℓ¹ quotient distance of an edge claim on a small declared graph by enumerating spanning-forest gauges, and refuses beyond 100000 forests. It is an exact enumeration, not a primal-dual certificate: no dual witness is returned. Nonclaim: not Γ₂; not authority; not PROVED; not GlobalGreen.",
+          "non_role": [
+            "Primal-dual certificate replay (see urn:omega:math:phi1:v1.0.0)",
+            "Γ₂ or any 2-cell closure defect",
+            "Scalable LP solving beyond the enumeration bound",
+            "Authority minting, ActionLicense, PROVED or GlobalGreen"
+          ]
+        },
+        "wip": [
+          "OPEN_OBLIGATION untested_refusals: DuplicateVertex, UnknownEndpoint, SelfEdge, InvalidRational, a negative weight and EnumerationLimit are implemented refusals with no dedicated unit test; AuthorityEffect: None.",
+          "OPEN_OBLIGATION dual_witness: the result carries no dual witness, so a consumer cannot replay optimality; AuthorityEffect: None."
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:graph_phi1_quotient_distance:v1.0.0\ntitle: Φ₁ on a finite declared graph by exhaustive spanning-forest gauge enumeration\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts:\n    - urn:omega:math:phi1:v1.0.0\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: graph_phi1_forest_enumeration\n  symbol: Φ₁\n  ascii_symbol: GraphPhi1\n  notation: \"Φ₁([c]) = min_{g ∈ ℚ^V} Σ_{(u,v) ∈ E} w_uv |c_uv − (g_v − g_u)|\"\n  domain:\n  - \"finite declared vertex list V with unique names\"\n  - \"finite edge list E; each edge names two distinct declared vertices\"\n  - \"per-edge rational claim c_uv and strictly positive rational weight w_uv, as strings\"\n  codomain:\n    description: >-\n      GraphPhi1Result: the minimum weighted residual over the enumerated gauges (rational\n      string), a minimizing vertex gauge, and the number of spanning forests enumerated.\n      Or a typed GraphPhi1Error. No dual witness is produced.\n  definition:\n    formula: \"Φ₁([c]) = min_g Σ w_uv |c_uv − (g_v − g_u)|\"\n    search: >-\n      For every spanning forest of the declared graph, fix the gauge that makes each forest\n      edge residual-free (zero on each component root), evaluate the weighted residual, and\n      keep the first strict minimum. The zero gauge is the initial candidate.\n    bound: \"At most 100000 spanning forests are enumerated; reaching the bound refuses\"\nrequirements:\n  required_structures:\n  - Finite vertex names, unique\n  - Finite edges between distinct declared vertices\n  - Exact rational claims and strictly positive exact rational weights\nlaws:\n- \"Enumeration law: the returned value is the minimum weighted residual over every spanning-forest-tight gauge and the zero gauge. The search is exhaustive over spanning forests, or it refuses (EnumerationLimit); it never returns a partial minimum.\"\n- \"Optimality basis: equality of that minimum with the quotient infimum rests on the linear-programming fact that this ℓ¹ gauge problem has an optimal basic solution in which a spanning forest of edges is residual-free. This module does not replay that argument or emit a dual witness, so the value is not a replayed primal-dual certificate.\"\n- \"Carrier law: duplicate vertex names, endpoints outside the declared vertices, self edges, unparseable rationals and non-positive weights are refused with typed errors.\"\n- \"Determinism law: for a fixed request the enumeration order, the minimum and the returned gauge are deterministic.\"\n- \"Exactness law: all arithmetic is BigRational; there is no floating-point path.\"\n- \"Separation fence: this is degree-1 Φ₁ on a graph. It computes no Γ₂, because the request declares no 2-cells.\"\n- \"Authority law: the result mints no AuthorityEffect, PROVED, GlobalGreen or ActionLicense.\"\nreplay:\n  requirements:\n  - No external state, randomness or wall-clock\n  - Exact rational arithmetic only\n  - Deterministic spanning-forest enumeration order\nrelationships:\n- \"urn:omega:math:phi1:v1.0.0 — the Φ₁ quotient obstruction this specializes to a graph d₀\"\n- \"urn:omega:math:phi1:v1.0.0 — weighted-mass and dual-replay arithmetic for Φ₁ witnesses\"\nrust_binding:\n  crate: omega_solvers\n  module: solver_graph_phi1_distance\n  symbols:\n  - GraphPhi1Edge\n  - GraphPhi1Request\n  - GraphPhi1Result\n  - GraphPhi1Error\n  - solve_graph_phi1\n  # The first test discharges the negative_test. The rest are value checks:\n  # exact and inconsistent triangles, a weighted rational triangle, and the\n  # b₁ = 2 and b₁ = 4 multi-cycle graphs with their forest counts.\n  required_tests:\n  - rejects_nonpositive_weight\n  - exact_and_inconsistent_triangles\n  - rational_triangle_uses_exact_weighted_minimum\n  - planar_triangular_multi_cycle_b1_2\n  - kagome_trimer_multi_cycle_b1_4\nnegative_tests:\n- A zero edge weight must be rejected\ndoctrine:\n  summary: >-\n    solve_graph_phi1 computes the degree-1 weighted ℓ¹ quotient distance of an edge claim on\n    a small declared graph by enumerating spanning-forest gauges, and refuses beyond 100000\n    forests. It is an exact enumeration, not a primal-dual certificate: no dual witness is\n    returned. Nonclaim: not Γ₂; not authority; not PROVED; not GlobalGreen.\n  non_role:\n  - Primal-dual certificate replay (see urn:omega:math:phi1:v1.0.0)\n  - Γ₂ or any 2-cell closure defect\n  - Scalable LP solving beyond the enumeration bound\n  - Authority minting, ActionLicense, PROVED or GlobalGreen\nwip:\n- \"OPEN_OBLIGATION untested_refusals: DuplicateVertex, UnknownEndpoint, SelfEdge, InvalidRational, a negative weight and EnumerationLimit are implemented refusals with no dedicated unit test; AuthorityEffect: None.\"\n- \"OPEN_OBLIGATION dual_witness: the result carries no dual witness, so a consumer cannot replay optimality; AuthorityEffect: None.\"\n",
+      "original_paths": [
+        "code/python/governance/contract_canonical_definitions/math/graph_phi1_quotient_distance.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/contract_canonical_definitions/math/graph_phi1_quotient_distance.contract.yaml": "eeb6b30ef7ef252103c244d42ba089ded248ebb98017f62bfc8f1e992dd86837"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

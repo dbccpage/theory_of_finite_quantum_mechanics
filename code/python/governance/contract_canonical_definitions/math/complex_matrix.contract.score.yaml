@@ -1,0 +1,367 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": null,
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:complex_matrix:v1.0.0",
+    "title": "Complex Matrix Contract",
+    "kind": "math_contract",
+    "status": "active",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "math": {
+      "object_kind": "finite_rectangular_complex_matrix",
+      "symbol": "A ∈ C^{m×n}",
+      "ascii_symbol": "complex_matrix",
+      "notation": "A ∈ C^{m×n}",
+      "domain": [
+        "rows: finite_index_set",
+        "cols: finite_index_set",
+        "entries: complex_field_C"
+      ],
+      "codomain": {
+        "description": "A finite rectangular array with fixed shape (rows, cols) and entries from the complex field C. Each entry z = a + bi where a, b are finite real numbers.\n"
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "rows and cols are finite natural numbers (rows, cols > 0)",
+        "all entries z = a + bi have finite a and b (no NaN, no Inf)",
+        "every access must satisfy 0 <= i < rows and 0 <= j < cols",
+        "stored data length must equal rows * cols",
+        "same matrix, row, and col always resolve to the same entry",
+        "A** = A (adjoint applied twice returns original matrix)",
+        "operations may not silently change shape"
+      ]
+    },
+    "laws": [
+      "rows and cols are finite natural numbers (rows, cols > 0)",
+      "all entries z = a + bi have finite a and b (no NaN, no Inf)",
+      "every access must satisfy 0 <= i < rows and 0 <= j < cols",
+      "stored data length must equal rows * cols",
+      "same matrix, row, and col always resolve to the same entry",
+      "A** = A (adjoint applied twice returns original matrix)",
+      "(αA + βB)* = ᾱA* + β̄B* (adjoint is conjugate-linear)"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No randomness",
+        "No time-dependent data",
+        "All serializations are fixed byte arrays",
+        "Operation functions are content-addressed",
+        "Complex number operations are IEEE 754 deterministic"
+      ]
+    },
+    "relationships": [
+      "urn:math:contract:BasicMatrix:v1.0.0 serves as backend_storage",
+      "urn:math:contract:Field:v0.1.0 serves as complex_field_C",
+      "urn:math:contract:Scalar:v1.0.0 serves as complex_scalar_type"
+    ],
+    "rust_binding": {
+      "crate": "omega_linear_algebra",
+      "module": "linear_algebra::complex_matrix",
+      "symbols": [
+        "ComplexMatrix",
+        "ComplexMatrixError",
+        "C64",
+        "CMatrix",
+        "CVector"
+      ],
+      "required_tests": [
+        "from_row_major_rejects_length_mismatch",
+        "from_row_major_rejects_nan_real_part",
+        "from_row_major_rejects_nan_imag_part",
+        "from_row_major_rejects_infinite_entry",
+        "from_row_major_rejects_infinite_imag_part",
+        "scale_real_rejects_nan_scalar",
+        "get_rejects_out_of_bounds",
+        "set_rejects_out_of_bounds",
+        "set_rejects_non_finite_value",
+        "mul_rejects_dimension_mismatch",
+        "add_rejects_shape_mismatch",
+        "sub_rejects_shape_mismatch"
+      ]
+    },
+    "negative_tests": [
+      "Matrix with rows=0 must be rejected",
+      "Matrix with cols=0 must be rejected",
+      "Data length not equal to rows*cols must be rejected",
+      "Entry with NaN real part must be rejected",
+      "Entry with NaN imaginary part must be rejected",
+      "Entry with Inf real part must be rejected",
+      "Entry with Inf imaginary part must be rejected",
+      "scale_real with NaN or Inf scalar must be rejected",
+      "Accessing index >= rows or >= cols must fail",
+      "Setting index >= rows or >= cols must fail",
+      "Setting nonfinite value must be rejected",
+      "Matmul with lhs_cols != rhs_rows must be rejected",
+      "Add with different shapes must be rejected",
+      "Sub with different shapes must be rejected"
+    ],
+    "doctrine": {
+      "summary": "Defines rectangular matrices over the complex field C with complex number operations, Hermitian adjoints (conjugate transpose), and complex-specific matrix operations. ComplexMatrix extends BasicMatrix semantics to the complex domain, adding conjugation, adjoint operations, and Hermitian properties. All entries are validated for finiteness (no NaN or Inf in real or imaginary parts). This contract is purely structural and does not confer authority.",
+      "non_role": [
+        "Infinite-dimensional operators (out of scope)",
+        "Sparse matrix optimization (separate sparse_complex_matrix contract)",
+        "Symbolic complex algebra (deferred to symbolic computation contract)",
+        "Implicit shape coercion (always rejected)",
+        "Unchecked complex infinity (NaN, Inf always rejected)"
+      ]
+    },
+    "nomos_debate_NOT_CANONICAL": {
+      "banner": "NON-CANONICAL DEBATE ONLY — not contract law; AuthorityEffect none; do not read as certification.",
+      "not_part_of_contract_law": true,
+      "authority_effect": "none",
+      "potential_defects": [
+        {
+          "reviewer": "panepistimion-math-prof",
+          "role": "MATH_CANONICAL_REVIEW",
+          "code": "STAGE1_MECHANICAL_PASS",
+          "severity": "info",
+          "claim_class": "[STANDARD]",
+          "detail": "Mechanical GTLA field gates passed (authority/math/non_role/structures/laws-or-requirements/negative_tests). Not PROVED.",
+          "recommendation": "Repair under meth-level math re-review (ADR-007); not GlobalGreen."
+        }
+      ],
+      "realization_delta_vs_implemented_math_file": [
+        {
+          "reviewer": "panepistimion-cs-prof-ml-ai-info",
+          "role": "CS_IMPL_DELTA_REVIEW",
+          "code": "SHAPE_FINITE_ADJOINT_MATCH",
+          "severity": "info",
+          "claim_class": "[CODE_DEMO_RUST]",
+          "detail": "rust_binding module complex_matrix resolves under linear_algebra::complex_matrix. Structural core MATCH. Not theorem proof of conjugate-linearity law suite.\n",
+          "file": "omega_engine/crates/omega_linear_algebra/src/linear_algebra/complex_matrix.rs",
+          "yaml_law": "rows/cols via BasicMatrix; finite a+bi; OOB fail; shape-preserving ops; adjoint.",
+          "code_behavior": "ComplexMatrix wraps BasicMatrix<C64>; rejects nonfinite on construct/set; adjoint/conjugate/add/sub/mul/scale_real present.",
+          "delta": "MATCH"
+        },
+        {
+          "reviewer": "panepistimion-cs-prof-ml-ai-info",
+          "role": "CS_IMPL_DELTA_REVIEW",
+          "code": "ZERO_DIM_INHERITS_BACKEND",
+          "severity": "low",
+          "claim_class": "[CODE_DEMO_RUST]",
+          "detail": "If backend admits 0-dim, complex_matrix inherits that permissiveness.\n",
+          "recommendation": "Track with basic_matrix zero-dim math repair; do not silent-weaken YAML.\n",
+          "file": "omega_engine/crates/omega_linear_algebra/src/linear_algebra/complex_matrix.rs",
+          "yaml_law": "rows and cols are finite natural numbers (rows, cols > 0)",
+          "code_behavior": "Delegates shape policy to BasicMatrix (see basic_matrix residual on 0-dim).",
+          "delta": "CODE_MORE_PERMISSIVE_THAN_YAML"
+        }
+      ]
+    }
+  },
+  "current_contract": "66bc66d3231d4940977ed9a55744a6650eef685ecdc0a50f52c1eba8a16bd985",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "66bc66d3231d4940977ed9a55744a6650eef685ecdc0a50f52c1eba8a16bd985",
+      "bytes": 6598,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:complex_matrix:v1.0.0",
+        "title": "Complex Matrix Contract",
+        "kind": "math_contract",
+        "status": "active",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "math": {
+          "object_kind": "finite_rectangular_complex_matrix",
+          "symbol": "A ∈ C^{m×n}",
+          "ascii_symbol": "complex_matrix",
+          "notation": "A ∈ C^{m×n}",
+          "domain": [
+            "rows: finite_index_set",
+            "cols: finite_index_set",
+            "entries: complex_field_C"
+          ],
+          "codomain": {
+            "description": "A finite rectangular array with fixed shape (rows, cols) and entries from the complex field C. Each entry z = a + bi where a, b are finite real numbers.\n"
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "rows and cols are finite natural numbers (rows, cols > 0)",
+            "all entries z = a + bi have finite a and b (no NaN, no Inf)",
+            "every access must satisfy 0 <= i < rows and 0 <= j < cols",
+            "stored data length must equal rows * cols",
+            "same matrix, row, and col always resolve to the same entry",
+            "A** = A (adjoint applied twice returns original matrix)",
+            "operations may not silently change shape"
+          ]
+        },
+        "laws": [
+          "rows and cols are finite natural numbers (rows, cols > 0)",
+          "all entries z = a + bi have finite a and b (no NaN, no Inf)",
+          "every access must satisfy 0 <= i < rows and 0 <= j < cols",
+          "stored data length must equal rows * cols",
+          "same matrix, row, and col always resolve to the same entry",
+          "A** = A (adjoint applied twice returns original matrix)",
+          "(αA + βB)* = ᾱA* + β̄B* (adjoint is conjugate-linear)"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No randomness",
+            "No time-dependent data",
+            "All serializations are fixed byte arrays",
+            "Operation functions are content-addressed",
+            "Complex number operations are IEEE 754 deterministic"
+          ]
+        },
+        "relationships": [
+          "urn:math:contract:BasicMatrix:v1.0.0 serves as backend_storage",
+          "urn:math:contract:Field:v0.1.0 serves as complex_field_C",
+          "urn:math:contract:Scalar:v1.0.0 serves as complex_scalar_type"
+        ],
+        "rust_binding": {
+          "crate": "omega_linear_algebra",
+          "module": "linear_algebra::complex_matrix",
+          "symbols": [
+            "ComplexMatrix",
+            "ComplexMatrixError",
+            "C64",
+            "CMatrix",
+            "CVector"
+          ],
+          "required_tests": [
+            "from_row_major_rejects_length_mismatch",
+            "from_row_major_rejects_nan_real_part",
+            "from_row_major_rejects_nan_imag_part",
+            "from_row_major_rejects_infinite_entry",
+            "from_row_major_rejects_infinite_imag_part",
+            "scale_real_rejects_nan_scalar",
+            "get_rejects_out_of_bounds",
+            "set_rejects_out_of_bounds",
+            "set_rejects_non_finite_value",
+            "mul_rejects_dimension_mismatch",
+            "add_rejects_shape_mismatch",
+            "sub_rejects_shape_mismatch"
+          ]
+        },
+        "negative_tests": [
+          "Matrix with rows=0 must be rejected",
+          "Matrix with cols=0 must be rejected",
+          "Data length not equal to rows*cols must be rejected",
+          "Entry with NaN real part must be rejected",
+          "Entry with NaN imaginary part must be rejected",
+          "Entry with Inf real part must be rejected",
+          "Entry with Inf imaginary part must be rejected",
+          "scale_real with NaN or Inf scalar must be rejected",
+          "Accessing index >= rows or >= cols must fail",
+          "Setting index >= rows or >= cols must fail",
+          "Setting nonfinite value must be rejected",
+          "Matmul with lhs_cols != rhs_rows must be rejected",
+          "Add with different shapes must be rejected",
+          "Sub with different shapes must be rejected"
+        ],
+        "doctrine": {
+          "summary": "Defines rectangular matrices over the complex field C with complex number operations, Hermitian adjoints (conjugate transpose), and complex-specific matrix operations. ComplexMatrix extends BasicMatrix semantics to the complex domain, adding conjugation, adjoint operations, and Hermitian properties. All entries are validated for finiteness (no NaN or Inf in real or imaginary parts). This contract is purely structural and does not confer authority.",
+          "non_role": [
+            "Infinite-dimensional operators (out of scope)",
+            "Sparse matrix optimization (separate sparse_complex_matrix contract)",
+            "Symbolic complex algebra (deferred to symbolic computation contract)",
+            "Implicit shape coercion (always rejected)",
+            "Unchecked complex infinity (NaN, Inf always rejected)"
+          ]
+        },
+        "nomos_debate_NOT_CANONICAL": {
+          "banner": "NON-CANONICAL DEBATE ONLY — not contract law; AuthorityEffect none; do not read as certification.",
+          "not_part_of_contract_law": true,
+          "authority_effect": "none",
+          "potential_defects": [
+            {
+              "reviewer": "panepistimion-math-prof",
+              "role": "MATH_CANONICAL_REVIEW",
+              "code": "STAGE1_MECHANICAL_PASS",
+              "severity": "info",
+              "claim_class": "[STANDARD]",
+              "detail": "Mechanical GTLA field gates passed (authority/math/non_role/structures/laws-or-requirements/negative_tests). Not PROVED.",
+              "recommendation": "Repair under meth-level math re-review (ADR-007); not GlobalGreen."
+            }
+          ],
+          "realization_delta_vs_implemented_math_file": [
+            {
+              "reviewer": "panepistimion-cs-prof-ml-ai-info",
+              "role": "CS_IMPL_DELTA_REVIEW",
+              "code": "SHAPE_FINITE_ADJOINT_MATCH",
+              "severity": "info",
+              "claim_class": "[CODE_DEMO_RUST]",
+              "detail": "rust_binding module complex_matrix resolves under linear_algebra::complex_matrix. Structural core MATCH. Not theorem proof of conjugate-linearity law suite.\n",
+              "file": "omega_engine/crates/omega_linear_algebra/src/linear_algebra/complex_matrix.rs",
+              "yaml_law": "rows/cols via BasicMatrix; finite a+bi; OOB fail; shape-preserving ops; adjoint.",
+              "code_behavior": "ComplexMatrix wraps BasicMatrix<C64>; rejects nonfinite on construct/set; adjoint/conjugate/add/sub/mul/scale_real present.",
+              "delta": "MATCH"
+            },
+            {
+              "reviewer": "panepistimion-cs-prof-ml-ai-info",
+              "role": "CS_IMPL_DELTA_REVIEW",
+              "code": "ZERO_DIM_INHERITS_BACKEND",
+              "severity": "low",
+              "claim_class": "[CODE_DEMO_RUST]",
+              "detail": "If backend admits 0-dim, complex_matrix inherits that permissiveness.\n",
+              "recommendation": "Track with basic_matrix zero-dim math repair; do not silent-weaken YAML.\n",
+              "file": "omega_engine/crates/omega_linear_algebra/src/linear_algebra/complex_matrix.rs",
+              "yaml_law": "rows and cols are finite natural numbers (rows, cols > 0)",
+              "code_behavior": "Delegates shape policy to BasicMatrix (see basic_matrix residual on 0-dim).",
+              "delta": "CODE_MORE_PERMISSIVE_THAN_YAML"
+            }
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:complex_matrix:v1.0.0\ntitle: Complex Matrix Contract\nkind: math_contract\nstatus: active\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nmath:\n  object_kind: finite_rectangular_complex_matrix\n  symbol: A ∈ C^{m×n}\n  ascii_symbol: complex_matrix\n  notation: A ∈ C^{m×n}\n  domain:\n  - 'rows: finite_index_set'\n  - 'cols: finite_index_set'\n  - 'entries: complex_field_C'\n  codomain:\n    description: 'A finite rectangular array with fixed shape (rows, cols) and entries from the complex field C. Each entry z = a + bi where a, b are finite real numbers.\n\n      '\nrequirements:\n  required_structures:\n  - rows and cols are finite natural numbers (rows, cols > 0)\n  - all entries z = a + bi have finite a and b (no NaN, no Inf)\n  - every access must satisfy 0 <= i < rows and 0 <= j < cols\n  - stored data length must equal rows * cols\n  - same matrix, row, and col always resolve to the same entry\n  - A** = A (adjoint applied twice returns original matrix)\n  - operations may not silently change shape\nlaws:\n- rows and cols are finite natural numbers (rows, cols > 0)\n- all entries z = a + bi have finite a and b (no NaN, no Inf)\n- every access must satisfy 0 <= i < rows and 0 <= j < cols\n- stored data length must equal rows * cols\n- same matrix, row, and col always resolve to the same entry\n- A** = A (adjoint applied twice returns original matrix)\n- (αA + βB)* = ᾱA* + β̄B* (adjoint is conjugate-linear)\nreplay:\n  requirements:\n  - No external state\n  - No randomness\n  - No time-dependent data\n  - All serializations are fixed byte arrays\n  - Operation functions are content-addressed\n  - Complex number operations are IEEE 754 deterministic\nrelationships:\n- urn:math:contract:BasicMatrix:v1.0.0 serves as backend_storage\n- urn:math:contract:Field:v0.1.0 serves as complex_field_C\n- urn:math:contract:Scalar:v1.0.0 serves as complex_scalar_type\nrust_binding:\n  crate: omega_linear_algebra\n  module: linear_algebra::complex_matrix\n  symbols:\n  - ComplexMatrix\n  - ComplexMatrixError\n  - C64\n  - CMatrix\n  - CVector\n  # Zero rows/cols are accepted by the source (same as BasicMatrix). Those two\n  # negatives stay unnamed rather than faked. Remaining mechanical negatives\n  # are named in declaration order.\n  required_tests:\n  - from_row_major_rejects_length_mismatch\n  - from_row_major_rejects_nan_real_part\n  - from_row_major_rejects_nan_imag_part\n  - from_row_major_rejects_infinite_entry\n  - from_row_major_rejects_infinite_imag_part\n  - scale_real_rejects_nan_scalar\n  - get_rejects_out_of_bounds\n  - set_rejects_out_of_bounds\n  - set_rejects_non_finite_value\n  - mul_rejects_dimension_mismatch\n  - add_rejects_shape_mismatch\n  - sub_rejects_shape_mismatch\nnegative_tests:\n- Matrix with rows=0 must be rejected\n- Matrix with cols=0 must be rejected\n- Data length not equal to rows*cols must be rejected\n- Entry with NaN real part must be rejected\n- Entry with NaN imaginary part must be rejected\n- Entry with Inf real part must be rejected\n- Entry with Inf imaginary part must be rejected\n- scale_real with NaN or Inf scalar must be rejected\n- Accessing index >= rows or >= cols must fail\n- Setting index >= rows or >= cols must fail\n- Setting nonfinite value must be rejected\n- Matmul with lhs_cols != rhs_rows must be rejected\n- Add with different shapes must be rejected\n- Sub with different shapes must be rejected\ndoctrine:\n  summary: Defines rectangular matrices over the complex field C with complex number operations, Hermitian adjoints (conjugate transpose), and complex-specific matrix operations. ComplexMatrix extends BasicMatrix semantics to the complex domain, adding conjugation, adjoint operations, and Hermitian properties. All entries are validated for finiteness (no NaN or Inf in real or imaginary parts). This contract is purely structural and does not confer authority.\n  non_role:\n  - Infinite-dimensional operators (out of scope)\n  - Sparse matrix optimization (separate sparse_complex_matrix contract)\n  - Symbolic complex algebra (deferred to symbolic computation contract)\n  - Implicit shape coercion (always rejected)\n  - Unchecked complex infinity (NaN, Inf always rejected)\n\n# === CANONICAL CONTRACT ABOVE ===\n# Debate below is NON-CANONICAL. AuthorityEffect: none. Not contract law.\nnomos_debate_NOT_CANONICAL:\n  banner: \"NON-CANONICAL DEBATE ONLY — not contract law; AuthorityEffect none; do not read as certification.\"\n  not_part_of_contract_law: true\n  authority_effect: none\n  potential_defects:\n  - reviewer: panepistimion-math-prof\n    role: MATH_CANONICAL_REVIEW\n    code: STAGE1_MECHANICAL_PASS\n    severity: info\n    claim_class: \"[STANDARD]\"\n    detail: \"Mechanical GTLA field gates passed (authority/math/non_role/structures/laws-or-requirements/negative_tests). Not PROVED.\"\n    recommendation: \"Repair under meth-level math re-review (ADR-007); not GlobalGreen.\"\n\n  realization_delta_vs_implemented_math_file:\n  - reviewer: panepistimion-cs-prof-ml-ai-info\n    role: CS_IMPL_DELTA_REVIEW\n    code: SHAPE_FINITE_ADJOINT_MATCH\n    severity: info\n    claim_class: \"[CODE_DEMO_RUST]\"\n    detail: >\n      rust_binding module complex_matrix resolves under linear_algebra::complex_matrix.\n      Structural core MATCH. Not theorem proof of conjugate-linearity law suite.\n    file: omega_engine/crates/omega_linear_algebra/src/linear_algebra/complex_matrix.rs\n    yaml_law: \"rows/cols via BasicMatrix; finite a+bi; OOB fail; shape-preserving ops; adjoint.\"\n    code_behavior: \"ComplexMatrix wraps BasicMatrix<C64>; rejects nonfinite on construct/set; adjoint/conjugate/add/sub/mul/scale_real present.\"\n    delta: MATCH\n  - reviewer: panepistimion-cs-prof-ml-ai-info\n    role: CS_IMPL_DELTA_REVIEW\n    code: ZERO_DIM_INHERITS_BACKEND\n    severity: low\n    claim_class: \"[CODE_DEMO_RUST]\"\n    detail: >\n      If backend admits 0-dim, complex_matrix inherits that permissiveness.\n    recommendation: >\n      Track with basic_matrix zero-dim math repair; do not silent-weaken YAML.\n    file: omega_engine/crates/omega_linear_algebra/src/linear_algebra/complex_matrix.rs\n    yaml_law: \"rows and cols are finite natural numbers (rows, cols > 0)\"\n    code_behavior: \"Delegates shape policy to BasicMatrix (see basic_matrix residual on 0-dim).\"\n    delta: CODE_MORE_PERMISSIVE_THAN_YAML\n",
+      "original_paths": [
+        "code/python/governance/contract_canonical_definitions/math/complex_matrix.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/contract_canonical_definitions/math/complex_matrix.contract.yaml": "66bc66d3231d4940977ed9a55744a6650eef685ecdc0a50f52c1eba8a16bd985"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

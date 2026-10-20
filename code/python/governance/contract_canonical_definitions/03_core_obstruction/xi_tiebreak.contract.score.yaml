@@ -1,0 +1,225 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": null,
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:obstruction:xi_tiebreak:v1.0.0",
+    "title": "XiTieBreak",
+    "kind": "obstruction_contract",
+    "status": "mathematical_wip",
+    "layer": "03_obstruction",
+    "role": "Diagnostic",
+    "descriptor": {
+      "authority_effect": "evidence_only",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [
+          "Obstruction",
+          "Witness",
+          "CertificateKernel"
+        ],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      },
+      "constitution": {
+        "contract_dependencies": [
+          "Obstruction",
+          "Witness",
+          "CertificateKernel"
+        ],
+        "emits": "EvidenceEnvelope",
+        "authority_layer": "Evidence",
+        "replay_certificates": [
+          "schema_hash"
+        ]
+      }
+    },
+    "doctrine": {
+      "summary": "This contract defines the Xi tertiary tie-break boundary.\n\nXi = ||rho(h1*) - rho(phi*)||_tr is the scale-invariant density-lift trace distance (papers 009/013). It is the THIRD tier of the guarded descent law Phi_1 > Gamma_2 > Xi.\nXi does not repair, lift, terminalize, or authorize. It may break a tie ONLY when Phi_1 AND Gamma_2 are already tied.\n",
+      "non_role": [
+        "repair",
+        "lift",
+        "terminalize",
+        "authorize",
+        "primary ranking"
+      ],
+      "classification": {
+        "subsystem": "Obstruction Resolution",
+        "role": "Tertiary diagnostic tie-break (density-lift trace distance).",
+        "classification": "Obstruction layer -- diagnostic only."
+      },
+      "core_definition": "Xi lifts the minimal residual h1* and the dual witness phi* to rank-one densities and reports their trace distance. It is scale-invariant, so it cannot stand in for the Phi_1 magnitude; it is admissible only as a deterministic tertiary tie-break.\n",
+      "what_xi_is_not": [
+        "a primary or secondary ranking key",
+        "an authority terminal",
+        "a repair or a lift"
+      ],
+      "what_xi_is": "A scale-invariant tertiary diagnostic that may break a guarded-law tie only after Phi_1 and Gamma_2 are both non-worsening and tied.\n",
+      "core_invariant": "No Xi decision unless Phi_1 and Gamma_2 are tied.",
+      "firewall": "Xi carries authority_effect = evidence_only. It is consumed under the no-authority guard like every diagnostic; it never mints authority and never overrides Phi_1 or Gamma_2.\n",
+      "required_tests": [
+        "xi_decides_only_when_phi1_and_gamma2_tied",
+        "xi_is_scale_invariant",
+        "xi_carries_no_authority"
+      ],
+      "legacy_metadata": {
+        "name": "XiTieBreak",
+        "role": "Tertiary diagnostic tie-break",
+        "version": "1.0",
+        "classification": "obstruction",
+        "effect_class": "none",
+        "depends_on": [
+          "Obstruction",
+          "Witness",
+          "CertificateKernel"
+        ],
+        "forbidden_authority": [
+          "repair",
+          "lift",
+          "terminalize",
+          "authorize",
+          "primary ranking"
+        ],
+        "primary_output_family": "EvidenceEnvelope",
+        "llm_boundary": "LLM is candidate generator only. LLM output carries no authority."
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:constitution:base_obstruction_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "b9f60b10c4a95ad71d5447609f9a5fb282d55020b13426ac8fd94c22ecc869d1",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "b9f60b10c4a95ad71d5447609f9a5fb282d55020b13426ac8fd94c22ecc869d1",
+      "bytes": 2787,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:obstruction:xi_tiebreak:v1.0.0",
+        "title": "XiTieBreak",
+        "kind": "obstruction_contract",
+        "status": "mathematical_wip",
+        "layer": "03_obstruction",
+        "role": "Diagnostic",
+        "descriptor": {
+          "authority_effect": "evidence_only",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [
+              "Obstruction",
+              "Witness",
+              "CertificateKernel"
+            ],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          },
+          "constitution": {
+            "contract_dependencies": [
+              "Obstruction",
+              "Witness",
+              "CertificateKernel"
+            ],
+            "emits": "EvidenceEnvelope",
+            "authority_layer": "Evidence",
+            "replay_certificates": [
+              "schema_hash"
+            ]
+          }
+        },
+        "doctrine": {
+          "summary": "This contract defines the Xi tertiary tie-break boundary.\n\nXi = ||rho(h1*) - rho(phi*)||_tr is the scale-invariant density-lift trace distance (papers 009/013). It is the THIRD tier of the guarded descent law Phi_1 > Gamma_2 > Xi.\nXi does not repair, lift, terminalize, or authorize. It may break a tie ONLY when Phi_1 AND Gamma_2 are already tied.\n",
+          "non_role": [
+            "repair",
+            "lift",
+            "terminalize",
+            "authorize",
+            "primary ranking"
+          ],
+          "classification": {
+            "subsystem": "Obstruction Resolution",
+            "role": "Tertiary diagnostic tie-break (density-lift trace distance).",
+            "classification": "Obstruction layer -- diagnostic only."
+          },
+          "core_definition": "Xi lifts the minimal residual h1* and the dual witness phi* to rank-one densities and reports their trace distance. It is scale-invariant, so it cannot stand in for the Phi_1 magnitude; it is admissible only as a deterministic tertiary tie-break.\n",
+          "what_xi_is_not": [
+            "a primary or secondary ranking key",
+            "an authority terminal",
+            "a repair or a lift"
+          ],
+          "what_xi_is": "A scale-invariant tertiary diagnostic that may break a guarded-law tie only after Phi_1 and Gamma_2 are both non-worsening and tied.\n",
+          "core_invariant": "No Xi decision unless Phi_1 and Gamma_2 are tied.",
+          "firewall": "Xi carries authority_effect = evidence_only. It is consumed under the no-authority guard like every diagnostic; it never mints authority and never overrides Phi_1 or Gamma_2.\n",
+          "required_tests": [
+            "xi_decides_only_when_phi1_and_gamma2_tied",
+            "xi_is_scale_invariant",
+            "xi_carries_no_authority"
+          ],
+          "legacy_metadata": {
+            "name": "XiTieBreak",
+            "role": "Tertiary diagnostic tie-break",
+            "version": "1.0",
+            "classification": "obstruction",
+            "effect_class": "none",
+            "depends_on": [
+              "Obstruction",
+              "Witness",
+              "CertificateKernel"
+            ],
+            "forbidden_authority": [
+              "repair",
+              "lift",
+              "terminalize",
+              "authorize",
+              "primary ranking"
+            ],
+            "primary_output_family": "EvidenceEnvelope",
+            "llm_boundary": "LLM is candidate generator only. LLM output carries no authority."
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:constitution:base_obstruction_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:obstruction:xi_tiebreak:v1.0.0\ntitle: XiTieBreak\nkind: obstruction_contract\nstatus: mathematical_wip\nlayer: 03_obstruction\nrole: Diagnostic\ndescriptor:\n  authority_effect: evidence_only\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: &id001\n    - Obstruction\n    - Witness\n    - CertificateKernel\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\n  constitution:\n    contract_dependencies: *id001\n    emits: EvidenceEnvelope\n    authority_layer: Evidence\n    replay_certificates:\n    - schema_hash\ndoctrine:\n  summary: 'This contract defines the Xi tertiary tie-break boundary.\n\n\n    Xi = ||rho(h1*) - rho(phi*)||_tr is the scale-invariant density-lift trace distance\n    (papers 009/013). It is the THIRD tier of the guarded descent law Phi_1 > Gamma_2 > Xi.\n\n    Xi does not repair, lift, terminalize, or authorize. It may break a tie ONLY when\n    Phi_1 AND Gamma_2 are already tied.\n\n    '\n  non_role: &id002\n  - repair\n  - lift\n  - terminalize\n  - authorize\n  - primary ranking\n  classification:\n    subsystem: Obstruction Resolution\n    role: Tertiary diagnostic tie-break (density-lift trace distance).\n    classification: Obstruction layer -- diagnostic only.\n  core_definition: 'Xi lifts the minimal residual h1* and the dual witness phi* to rank-one\n    densities and reports their trace distance. It is scale-invariant, so it cannot stand in\n    for the Phi_1 magnitude; it is admissible only as a deterministic tertiary tie-break.\n\n    '\n  what_xi_is_not:\n  - a primary or secondary ranking key\n  - an authority terminal\n  - a repair or a lift\n  what_xi_is: 'A scale-invariant tertiary diagnostic that may break a guarded-law tie only\n    after Phi_1 and Gamma_2 are both non-worsening and tied.\n\n    '\n  core_invariant: No Xi decision unless Phi_1 and Gamma_2 are tied.\n  firewall: 'Xi carries authority_effect = evidence_only. It is consumed under the no-authority\n    guard like every diagnostic; it never mints authority and never overrides Phi_1 or Gamma_2.\n\n    '\n  required_tests:\n  - xi_decides_only_when_phi1_and_gamma2_tied\n  - xi_is_scale_invariant\n  - xi_carries_no_authority\n  legacy_metadata:\n    name: XiTieBreak\n    role: Tertiary diagnostic tie-break\n    version: '1.0'\n    classification: obstruction\n    effect_class: none\n    depends_on: *id001\n    forbidden_authority: *id002\n    primary_output_family: EvidenceEnvelope\n    llm_boundary: LLM is candidate generator only. LLM output carries no authority.\n\nrelationships:\n  extends:\n    - \"urn:omega:constitution:base_obstruction_contract:v1.0.0\"\n",
+      "original_paths": [
+        "code/python/governance/contract_canonical_definitions/03_core_obstruction/xi_tiebreak.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/contract_canonical_definitions/03_core_obstruction/xi_tiebreak.contract.yaml": "b9f60b10c4a95ad71d5447609f9a5fb282d55020b13426ac8fd94c22ecc869d1"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

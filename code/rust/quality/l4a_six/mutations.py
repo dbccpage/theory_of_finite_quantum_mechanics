@@ -7,7 +7,10 @@ import argparse
 from collections import Counter
 from datetime import datetime, timezone
 import json
-from pathlib import Path
+from pathlib import Path as _FilesystemPath
+import sys as _contract_sys
+_contract_sys.path.insert(0, str(_FilesystemPath(__file__).resolve().parents[4] / "scripts"))
+from contract_scores import RecordPath as Path, copy_file as _copy_record_file
 import shutil
 
 from replay import (ROOT, RUST, digest, write, inventory, snapshot, execute,
@@ -259,6 +262,33 @@ def matching_literals(source, before, after):
     return None
 
 
+def require_source_epoch(expected, actual):
+    if actual != expected:
+        raise RuntimeError("Continuation refused: source epoch differs")
+
+
+def require_unique_ids(entries, label):
+    if len({entry["id"] for entry in entries}) != len(entries):
+        raise RuntimeError("Continuation refused: duplicate " + label + " IDs")
+
+
+def require_same_recipe(entry, earlier):
+    if any(entry.get(key) != earlier.get(key) for key in
+           ("source", "snapshot_source", "before", "after", "package", "target", "filter")):
+        raise RuntimeError("Continuation refused: recipe differs: " + entry["id"])
+
+
+def require_candidate_bytes(source, entry, earlier):
+    literals = matching_literals(source, entry["before"], entry["after"])
+    if literals is None:
+        raise RuntimeError("Continuation refused: fault site differs: " + entry["id"])
+    before, after = literals
+    import hashlib
+    candidate = hashlib.sha256(source.replace(before, after, 1).encode("utf8")).hexdigest()
+    if candidate != earlier["candidate_sha256"]:
+        raise RuntimeError("Continuation refused: candidate bytes differ: " + entry["id"])
+
+
 def resume_kills(entries, prior_path, sources, versions):
     """Reuse only verified kills from exactly the same source/recipe epoch.
 
@@ -283,7 +313,7 @@ def resume_kills(entries, prior_path, sources, versions):
         if key in prior:
             require(digest(folder / filename) == prior[key], "prior execution/recipe artifact changed: " + filename)
     require(digest(folder / "source_manifest.json") == prior["source_manifest_sha256"], "source manifest changed")
-    require(json.loads((folder / "source_manifest.json").read_text(encoding="utf8")) == sources, "source epoch differs")
+    require_source_epoch(json.loads((folder / "source_manifest.json").read_text(encoding="utf8")), sources)
     require(digest(folder / "dependency_sources.json") == prior["dependency_sources_sha256"], "dependency manifest changed")
     dependencies = json.loads((folder / "dependency_sources.json").read_text(encoding="utf8"))
     require(all(Path(name).is_file() and digest(Path(name)) == pin for name, pin in dependencies.items()), "dependency bytes changed")
@@ -292,8 +322,8 @@ def resume_kills(entries, prior_path, sources, versions):
     require(lock_source.is_file() and dependencies.get(original_lock) == digest(lock_source), "retained resolution lock differs")
     require(digest(folder / "mutations.json") == prior["mutations_sha256"], "prior outcomes changed")
     old = json.loads((folder / "mutations.json").read_text(encoding="utf8"))
-    require(len({entry["id"] for entry in old}) == len(old), "duplicate prior IDs")
-    require(len({entry["id"] for entry in entries}) == len(entries), "duplicate current IDs")
+    require_unique_ids(old, "prior")
+    require_unique_ids(entries, "current")
     previous = {entry["id"]: entry for entry in old}
     require(set(previous) == {entry["id"] for entry in entries}, "designated campaign differs")
     expected_packages = {entry["package"] for entry in entries}
@@ -310,8 +340,7 @@ def resume_kills(entries, prior_path, sources, versions):
     reused = 0
     for entry in entries:
         earlier = previous[entry["id"]]
-        require(all(entry.get(key) == earlier.get(key) for key in
-            ("source", "snapshot_source", "before", "after", "package", "target", "filter")), "recipe differs: " + entry["id"])
+        require_same_recipe(entry, earlier)
         if earlier["outcome"] != "killed":
             continue
         run = earlier.get("run", {})
@@ -320,12 +349,7 @@ def resume_kills(entries, prior_path, sources, versions):
         require(digest(ROOT / run["log"]) == run["log_sha256"], "kill log changed: " + entry["id"])
         require(classify(run, folder)[0] == "killed", "kill attribution differs: " + entry["id"])
         source = (ROOT / entry["source"]).read_bytes().decode("utf8")
-        literals = matching_literals(source, entry["before"], entry["after"])
-        require(literals is not None, "fault site differs: " + entry["id"])
-        before, after = literals
-        import hashlib
-        require(hashlib.sha256(source.replace(before, after, 1).encode("utf8")).hexdigest()
-            == earlier["candidate_sha256"], "candidate bytes differ: " + entry["id"])
+        require_candidate_bytes(source, entry, earlier)
         entry.update(earlier)
         entry["reused_from"] = reference
         reused += 1
@@ -377,15 +401,15 @@ def main():
     work = RUST / "target/l4a-six" / (stamp + "-mutations")
     sources = inventory()
     write(output / "source_manifest.json", sources)
-    shutil.copyfile(__file__, output / "mutations.py")
-    shutil.copyfile(Path(__file__).with_name("replay.py"), output / "replay.py")
-    shutil.copyfile(Path(__file__).with_name("a_infinity_trial.py"), output / "a_infinity_trial.py")
-    shutil.copyfile(Path(__file__).with_name("rank_trial.py"), output / "rank_trial.py")
-    shutil.copyfile(Path(__file__).with_name("smith_trial_recipes.py"), output / "smith_trial_recipes.py")
-    shutil.copyfile(Path(__file__).with_name("scalar_port_faults.py"), output / "scalar_port_faults.py")
-    shutil.copyfile(Path(__file__).with_name("ordered_fault_recipes.py"), output / "ordered_fault_recipes.py")
-    shutil.copyfile(Path(__file__).with_name("hott_model_faults.py"), output / "hott_model_faults.py")
-    shutil.copyfile(Path(__file__).with_name("curvature_faults.py"), output / "curvature_faults.py")
+    _copy_record_file(__file__, output / "mutations.py")
+    _copy_record_file(Path(__file__).with_name("replay.py"), output / "replay.py")
+    _copy_record_file(Path(__file__).with_name("a_infinity_trial.py"), output / "a_infinity_trial.py")
+    _copy_record_file(Path(__file__).with_name("rank_trial.py"), output / "rank_trial.py")
+    _copy_record_file(Path(__file__).with_name("smith_trial_recipes.py"), output / "smith_trial_recipes.py")
+    _copy_record_file(Path(__file__).with_name("scalar_port_faults.py"), output / "scalar_port_faults.py")
+    _copy_record_file(Path(__file__).with_name("ordered_fault_recipes.py"), output / "ordered_fault_recipes.py")
+    _copy_record_file(Path(__file__).with_name("hott_model_faults.py"), output / "hott_model_faults.py")
+    _copy_record_file(Path(__file__).with_name("curvature_faults.py"), output / "curvature_faults.py")
     entries = [c for c in candidates() if not args.prefix or c["id"].startswith(tuple(args.prefix))]
     if args.min_free_gib == 1 and any(e["package"] != "tfqm_homotopy_type_theory" for e in entries):
         parser.error("One-GiB headroom is restricted to HoTT-only campaigns")
@@ -417,7 +441,7 @@ def main():
     try:
         snapshot(work)
         if args.resume:
-            shutil.copyfile(args.resume.resolve().parent / "Cargo.lock", work / "Cargo.lock")
+            _copy_record_file(args.resume.resolve().parent / "Cargo.lock", work / "Cargo.lock")
         command = ["cargo", "metadata", "--offline", "--quiet", "--format-version", "1"]
         if args.resume:
             command.append("--locked")
@@ -574,8 +598,8 @@ def main():
                 **run_package(package, output / (package + "-restored.log"))})
         receipt["dependency_sources_unchanged"] = all(Path(p).is_file() and digest(Path(p)) == h
                                                       for p, h in dependencies.items())
-        shutil.copyfile(work / "Cargo.lock", output / "Cargo.lock")
-        shutil.copyfile(work / "Cargo.toml", output / "snapshot.Cargo.toml")
+        _copy_record_file(work / "Cargo.lock", output / "Cargo.lock")
+        _copy_record_file(work / "Cargo.toml", output / "snapshot.Cargo.toml")
     finally:
         counts = Counter(e["outcome"] for e in entries)
         for outcome in ("killed", "survived", "demonstrably_equivalent", "invalid", "inconclusive", "unrun"):

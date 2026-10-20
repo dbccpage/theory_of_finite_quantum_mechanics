@@ -1,0 +1,161 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/20_execution/solver_objects_cohomological_obstruction_elimination_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:solver_objects:cohomological_obstruction_elimination:v1.0.0",
+    "title": "Obstruction Elimination Operator",
+    "kind": "obstruction_contract",
+    "status": "mathematical_wip",
+    "layer": "03_obstruction",
+    "role": "AnalysisUnit",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "abstract": false,
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0",
+        "urn:omega:constitution:base_obstruction_contract:v1.0.0"
+      ],
+      "semantic_contracts": [
+        "omega_engine_governance/contracts/contracts_math/exact_repair_operator.contract.yaml"
+      ],
+      "runtime_bindings": [
+        "omega_engine.crates.obstruction_theory.projection_obstruction_engine",
+        "omega_engine.crates.solver.solv_q_obstruction_solver"
+      ],
+      "used_by": [
+        "OESOS",
+        "Prime000",
+        "Prime001",
+        "Prime002"
+      ]
+    },
+    "math": {
+      "object_kind": "cohomological_obstruction_elimination",
+      "symbol": "E: C^k -> C^{k-1}",
+      "definition": "System contract for exact obstruction elimination operators E satisfying d_{k-1}(E(omega)) = omega when [omega] = 0.",
+      "laws": [
+        "E(omega) is produced only when closure defect Gamma2 is zero.",
+        "Elimination output replays with zero residual."
+      ]
+    },
+    "doctrine": {
+      "summary": "OESOS and Prime binding contract for Obstruction Elimination Operator.",
+      "non_role": [
+        "authority_minting",
+        "policy_decision",
+        "self_certification",
+        "state_transition"
+      ],
+      "canonical_invariant": "This contract is structural and AuthorityEffect None. Inheritance supplies shared shape and negative-capability rules without increasing authority."
+    }
+  },
+  "current_contract": "4c853eabade97684435a0539b9b7cf8f7bb35bed6520f7c15e280b09d56d0b4d",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "4c853eabade97684435a0539b9b7cf8f7bb35bed6520f7c15e280b09d56d0b4d",
+      "bytes": 1773,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:solver_objects:cohomological_obstruction_elimination:v1.0.0",
+        "title": "Obstruction Elimination Operator",
+        "kind": "obstruction_contract",
+        "status": "mathematical_wip",
+        "layer": "03_obstruction",
+        "role": "AnalysisUnit",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "abstract": false,
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0",
+            "urn:omega:constitution:base_obstruction_contract:v1.0.0"
+          ],
+          "semantic_contracts": [
+            "omega_engine_governance/contracts/contracts_math/exact_repair_operator.contract.yaml"
+          ],
+          "runtime_bindings": [
+            "omega_engine.crates.obstruction_theory.projection_obstruction_engine",
+            "omega_engine.crates.solver.solv_q_obstruction_solver"
+          ],
+          "used_by": [
+            "OESOS",
+            "Prime000",
+            "Prime001",
+            "Prime002"
+          ]
+        },
+        "math": {
+          "object_kind": "cohomological_obstruction_elimination",
+          "symbol": "E: C^k -> C^{k-1}",
+          "definition": "System contract for exact obstruction elimination operators E satisfying d_{k-1}(E(omega)) = omega when [omega] = 0.",
+          "laws": [
+            "E(omega) is produced only when closure defect Gamma2 is zero.",
+            "Elimination output replays with zero residual."
+          ]
+        },
+        "doctrine": {
+          "summary": "OESOS and Prime binding contract for Obstruction Elimination Operator.",
+          "non_role": [
+            "authority_minting",
+            "policy_decision",
+            "self_certification",
+            "state_transition"
+          ],
+          "canonical_invariant": "This contract is structural and AuthorityEffect None. Inheritance supplies shared shape and negative-capability rules without increasing authority."
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:solver_objects:cohomological_obstruction_elimination:v1.0.0\ntitle: Obstruction Elimination Operator\nkind: obstruction_contract\nstatus: mathematical_wip\nlayer: 03_obstruction\nrole: AnalysisUnit\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  abstract: false\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n  - urn:omega:constitution:base_obstruction_contract:v1.0.0\n  semantic_contracts:\n  - omega_engine_governance/contracts/contracts_math/exact_repair_operator.contract.yaml\n  runtime_bindings:\n  - omega_engine.crates.obstruction_theory.projection_obstruction_engine\n  - omega_engine.crates.solver.solv_q_obstruction_solver\n  used_by:\n  - OESOS\n  - Prime000\n  - Prime001\n  - Prime002\nmath:\n  object_kind: cohomological_obstruction_elimination\n  symbol: 'E: C^k -> C^{k-1}'\n  definition: System contract for exact obstruction elimination operators E satisfying\n    d_{k-1}(E(omega)) = omega when [omega] = 0.\n  laws:\n  - E(omega) is produced only when closure defect Gamma2 is zero.\n  - Elimination output replays with zero residual.\ndoctrine:\n  summary: OESOS and Prime binding contract for Obstruction Elimination Operator.\n  non_role:\n  - authority_minting\n  - policy_decision\n  - self_certification\n  - state_transition\n  canonical_invariant: This contract is structural and AuthorityEffect None. Inheritance\n    supplies shared shape and negative-capability rules without increasing authority.\n",
+      "original_paths": [
+        "code/python/governance/20_execution/solver_objects_cohomological_obstruction_elimination_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/20_execution/solver_objects_cohomological_obstruction_elimination_v1_0_0.contract.yaml": "4c853eabade97684435a0539b9b7cf8f7bb35bed6520f7c15e280b09d56d0b4d"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

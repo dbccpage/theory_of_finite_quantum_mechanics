@@ -1,0 +1,117 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/50_os/os_projector_contract.py",
+  "contract": {
+    "schema_version": "1.0.0",
+    "contract_id": "os:projector",
+    "name": "Projector Contract",
+    "version": "1.0.0",
+    "kind": "os_doctrine_contract",
+    "status": "active_doctrine",
+    "enforcement_status": "enforced",
+    "description": "A Projector is a deterministic, stateless, single-step typed Operator that maps a Carrier space onto a well-defined residual subspace or quotient space. It satisfies idempotency (P(P(x)) = P(x)) under a specific TiePolicy and is Phi-nonincreasing.\n",
+    "layer": "OS",
+    "module_path": "operators::projector",
+    "governs": [
+      "operators/projectors/**"
+    ],
+    "does_not_govern": [
+      "omega_functional/**",
+      "omega_certifiers/**"
+    ],
+    "claims": [
+      {
+        "id": "PROJ-L1",
+        "description": "Projectors map from a carrier space onto a valid subspace with deterministic loss of information.",
+        "status": "active",
+        "provenance": "Projector OS Doctrine PROJ-L1"
+      },
+      {
+        "id": "PROJ-L2",
+        "description": "Projectors are idempotent: repeated application yields the identical residual representative.",
+        "status": "active",
+        "provenance": "Projector OS Doctrine PROJ-L2"
+      }
+    ],
+    "rules": {
+      "authority_effect": "none",
+      "mutation": "forbidden",
+      "phi_nonincrease_required": true,
+      "deterministic": true,
+      "stateless": true,
+      "idempotent": true
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0",
+        "urn:omega:constitution:base_file_contract:file:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "2f1d9a238062a250f6ef4a75a9d2f1b3b32e2b83a2715fe2327d15ee7bf06022",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "2f1d9a238062a250f6ef4a75a9d2f1b3b32e2b83a2715fe2327d15ee7bf06022",
+      "bytes": 1245,
+      "record": {
+        "schema_version": "1.0.0",
+        "contract_id": "os:projector",
+        "name": "Projector Contract",
+        "version": "1.0.0",
+        "kind": "os_doctrine_contract",
+        "status": "active_doctrine",
+        "enforcement_status": "enforced",
+        "description": "A Projector is a deterministic, stateless, single-step typed Operator that maps a Carrier space onto a well-defined residual subspace or quotient space. It satisfies idempotency (P(P(x)) = P(x)) under a specific TiePolicy and is Phi-nonincreasing.\n",
+        "layer": "OS",
+        "module_path": "operators::projector",
+        "governs": [
+          "operators/projectors/**"
+        ],
+        "does_not_govern": [
+          "omega_functional/**",
+          "omega_certifiers/**"
+        ],
+        "claims": [
+          {
+            "id": "PROJ-L1",
+            "description": "Projectors map from a carrier space onto a valid subspace with deterministic loss of information.",
+            "status": "active",
+            "provenance": "Projector OS Doctrine PROJ-L1"
+          },
+          {
+            "id": "PROJ-L2",
+            "description": "Projectors are idempotent: repeated application yields the identical residual representative.",
+            "status": "active",
+            "provenance": "Projector OS Doctrine PROJ-L2"
+          }
+        ],
+        "rules": {
+          "authority_effect": "none",
+          "mutation": "forbidden",
+          "phi_nonincrease_required": true,
+          "deterministic": true,
+          "stateless": true,
+          "idempotent": true
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0",
+            "urn:omega:constitution:base_file_contract:file:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: 1.0.0\ncontract_id: os:projector\nname: Projector Contract\nversion: 1.0.0\nkind: os_doctrine_contract\nstatus: active_doctrine\nenforcement_status: enforced\ndescription: 'A Projector is a deterministic, stateless, single-step typed Operator\n  that maps a Carrier space onto a well-defined residual subspace or quotient space.\n  It satisfies idempotency (P(P(x)) = P(x)) under a specific TiePolicy and is Phi-nonincreasing.\n\n  '\nlayer: OS\nmodule_path: operators::projector\ngoverns:\n- operators/projectors/**\ndoes_not_govern:\n- omega_functional/**\n- omega_certifiers/**\nclaims:\n- id: PROJ-L1\n  description: Projectors map from a carrier space onto a valid subspace with deterministic\n    loss of information.\n  status: active\n  provenance: Projector OS Doctrine PROJ-L1\n- id: PROJ-L2\n  description: 'Projectors are idempotent: repeated application yields the identical\n    residual representative.'\n  status: active\n  provenance: Projector OS Doctrine PROJ-L2\nrules:\n  authority_effect: none\n  mutation: forbidden\n  phi_nonincrease_required: true\n  deterministic: true\n  stateless: true\n  idempotent: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n  - urn:omega:constitution:base_file_contract:file:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/50_os/os_projector.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/50_os/os_projector.contract.yaml": "2f1d9a238062a250f6ef4a75a9d2f1b3b32e2b83a2715fe2327d15ee7bf06022"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

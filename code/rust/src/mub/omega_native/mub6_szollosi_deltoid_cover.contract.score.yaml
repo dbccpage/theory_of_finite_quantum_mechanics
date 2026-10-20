@@ -1,0 +1,1398 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/rust/src/mub/omega_native/mub6_szollosi_deltoid_cover.rs",
+  "contract": {
+    "schema_version": "1.0.0",
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/rust/src/mub/omega_native/mub6_szollosi_deltoid_cover.rs",
+      "sha256": "035aba0fc6f5aa4ffbfb6e75e48b95fa4a08f16b3e266ac262009dfcc73b05e3",
+      "language": "Rust"
+    },
+    "contract_urn": "urn:tfqm:contract:mub:omega_native:mub6_szollosi_deltoid_cover.rs",
+    "status": "draft_requires_semantic_review",
+    "target": "L4A",
+    "profile": "Exact",
+    "purpose": "Finite mutually unbiased bases (MUB) in dimension 6, cyclotomic/rational Gramian diagnostics, dual witnesses, Fourier landing verifiers, and cover-tree exclusions.",
+    "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+    "compilation": {
+      "disabled_by_cfg_any": false,
+      "test_or_support_file": false,
+      "compatibility_mirror_tree": false
+    },
+    "declaration_index": [
+      {
+        "kind": "fn",
+        "name": "rational_interval_sqrt",
+        "line": 62,
+        "declaration_line": "pub fn rational_interval_sqrt(val_lo: &BigRational, val_hi: &BigRational, iters: u32) -> Interval {"
+      },
+      {
+        "kind": "struct",
+        "name": "SzollosiDeltoidParameterBox",
+        "line": 70,
+        "declaration_line": "pub struct SzollosiDeltoidParameterBox {"
+      },
+      {
+        "kind": "fn",
+        "name": "new",
+        "line": 76,
+        "declaration_line": "pub fn new(u: Interval, v: Interval) -> Self {"
+      },
+      {
+        "kind": "fn",
+        "name": "full_unit_square",
+        "line": 82,
+        "declaration_line": "pub fn full_unit_square() -> Self {"
+      },
+      {
+        "kind": "fn",
+        "name": "widest_width",
+        "line": 92,
+        "declaration_line": "pub fn widest_width(&self) -> BigRational {"
+      },
+      {
+        "kind": "fn",
+        "name": "bisect_widest",
+        "line": 102,
+        "declaration_line": "pub fn bisect_widest(&self) -> (Self, Self) {"
+      },
+      {
+        "kind": "fn",
+        "name": "split_at_coord_and_point",
+        "line": 121,
+        "declaration_line": "pub fn split_at_coord_and_point(&self, coord: usize, cut: BigRational) -> (Self, Self) {"
+      },
+      {
+        "kind": "fn",
+        "name": "contains_point",
+        "line": 140,
+        "declaration_line": "pub fn contains_point(&self, u_pt: &BigRational, v_pt: &BigRational) -> bool {"
+      },
+      {
+        "kind": "fn",
+        "name": "box_touches_parameter_circle",
+        "line": 145,
+        "declaration_line": "pub fn box_touches_parameter_circle(pbox: &SzollosiDeltoidParameterBox) -> bool {"
+      },
+      {
+        "kind": "fn",
+        "name": "overlap_abs_sq",
+        "line": 151,
+        "declaration_line": "pub fn overlap_abs_sq(e: &BoxedVec, u: &BoxedVec) -> Interval {"
+      },
+      {
+        "kind": "struct",
+        "name": "SzollosiCuspData",
+        "line": 165,
+        "declaration_line": "pub struct SzollosiCuspData {"
+      },
+      {
+        "kind": "struct",
+        "name": "SzollosiDeltoidContext",
+        "line": 171,
+        "declaration_line": "pub struct SzollosiDeltoidContext {"
+      },
+      {
+        "kind": "fn",
+        "name": "new",
+        "line": 181,
+        "declaration_line": "pub fn new() -> Self {"
+      },
+      {
+        "kind": "fn",
+        "name": "b6_columns",
+        "line": 260,
+        "declaration_line": "pub fn b6_columns(&self, pbox: &SzollosiDeltoidParameterBox) -> [BoxedVec; D] {"
+      },
+      {
+        "kind": "fn",
+        "name": "boxed_triple",
+        "line": 372,
+        "declaration_line": "pub fn boxed_triple(&self, pbox: &SzollosiDeltoidParameterBox) -> Vec<BoxedVec> {"
+      },
+      {
+        "kind": "fn",
+        "name": "triad_defect_lower",
+        "line": 397,
+        "declaration_line": "pub fn triad_defect_lower(&self, pbox: &SzollosiDeltoidParameterBox) -> BigRational {"
+      },
+      {
+        "kind": "fn",
+        "name": "extension_psi_lower",
+        "line": 412,
+        "declaration_line": "pub fn extension_psi_lower(&self, pbox: &SzollosiDeltoidParameterBox) -> BigRational {"
+      },
+      {
+        "kind": "fn",
+        "name": "basis_residual_sq_lower",
+        "line": 417,
+        "declaration_line": "pub fn basis_residual_sq_lower(&self, pbox: &SzollosiDeltoidParameterBox) -> BigRational {"
+      },
+      {
+        "kind": "fn",
+        "name": "is_inside_cusps",
+        "line": 422,
+        "declaration_line": "pub fn is_inside_cusps(&self, pbox: &SzollosiDeltoidParameterBox, delta: &BigRational) -> bool {"
+      },
+      {
+        "kind": "fn",
+        "name": "is_strictly_outside_cusps",
+        "line": 457,
+        "declaration_line": "pub fn is_strictly_outside_cusps("
+      },
+      {
+        "kind": "fn",
+        "name": "find_cusp_boundary_cut",
+        "line": 472,
+        "declaration_line": "pub fn find_cusp_boundary_cut("
+      },
+      {
+        "kind": "fn",
+        "name": "build_triad_boundary_and_cochain",
+        "line": 495,
+        "declaration_line": "pub fn build_triad_boundary_and_cochain("
+      },
+      {
+        "kind": "fn",
+        "name": "solve_network_simplex_obstruction",
+        "line": 538,
+        "declaration_line": "pub fn solve_network_simplex_obstruction("
+      },
+      {
+        "kind": "struct",
+        "name": "CertifiedDeltoidBox",
+        "line": 552,
+        "declaration_line": "pub struct CertifiedDeltoidBox {"
+      },
+      {
+        "kind": "struct",
+        "name": "SzollosiDeltoidCoverReport",
+        "line": 572,
+        "declaration_line": "pub struct SzollosiDeltoidCoverReport {"
+      },
+      {
+        "kind": "fn",
+        "name": "canonical_candidate_basis_box",
+        "line": 603,
+        "declaration_line": "pub fn canonical_candidate_basis_box() -> BasisBox {"
+      },
+      {
+        "kind": "fn",
+        "name": "solve_szollosi_deltoid_cover",
+        "line": 615,
+        "declaration_line": "pub fn solve_szollosi_deltoid_cover("
+      },
+      {
+        "kind": "fn",
+        "name": "solve_szollosi_deltoid_cover_accelerated",
+        "line": 784,
+        "declaration_line": "pub fn solve_szollosi_deltoid_cover_accelerated("
+      }
+    ],
+    "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+    "requirements": [
+      {
+        "id": "G1",
+        "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+      },
+      {
+        "id": "G2",
+        "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+      },
+      {
+        "id": "G3",
+        "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+      },
+      {
+        "id": "G4",
+        "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+      },
+      {
+        "id": "G5",
+        "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+      }
+    ],
+    "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+    "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+    "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+    "open_obligations": [
+      "Complete source-to-requirement and downstream consumer review is outstanding.",
+      "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+      "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+    ],
+    "evidence": [
+      {
+        "path": "evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json",
+        "sha256": "3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98"
+      },
+      {
+        "path": "evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json",
+        "sha256": "e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd"
+      },
+      {
+        "path": "code/rust/quality/l4a_qm_six/records.py",
+        "sha256": "0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706"
+      },
+      {
+        "path": "code/rust/quality/l4a_qm_six/specs.json",
+        "sha256": "bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12"
+      },
+      {
+        "path": "evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json",
+        "sha256": "929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758"
+      },
+      {
+        "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json",
+        "sha256": "9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78"
+      },
+      {
+        "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json",
+        "sha256": "90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a"
+      }
+    ]
+  },
+  "current_contract": "1f162d292814eeec719b8f1a98c064415c3a5035d23882863d709b6d1d5c4a01",
+  "current_scoring": "df116684bc58b70f4c2437d9963a18f8381c877990b9d79c866f6df19ee36ad2",
+  "contract_history": [
+    {
+      "sha256": "1f162d292814eeec719b8f1a98c064415c3a5035d23882863d709b6d1d5c4a01",
+      "bytes": 8882,
+      "record": {
+        "schema_version": "1.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/mub/omega_native/mub6_szollosi_deltoid_cover.rs",
+          "sha256": "035aba0fc6f5aa4ffbfb6e75e48b95fa4a08f16b3e266ac262009dfcc73b05e3",
+          "language": "Rust"
+        },
+        "contract_urn": "urn:tfqm:contract:mub:omega_native:mub6_szollosi_deltoid_cover.rs",
+        "status": "draft_requires_semantic_review",
+        "target": "L4A",
+        "profile": "Exact",
+        "purpose": "Finite mutually unbiased bases (MUB) in dimension 6, cyclotomic/rational Gramian diagnostics, dual witnesses, Fourier landing verifiers, and cover-tree exclusions.",
+        "subject_role": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+        "compilation": {
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false,
+          "compatibility_mirror_tree": false
+        },
+        "declaration_index": [
+          {
+            "kind": "fn",
+            "name": "rational_interval_sqrt",
+            "line": 62,
+            "declaration_line": "pub fn rational_interval_sqrt(val_lo: &BigRational, val_hi: &BigRational, iters: u32) -> Interval {"
+          },
+          {
+            "kind": "struct",
+            "name": "SzollosiDeltoidParameterBox",
+            "line": 70,
+            "declaration_line": "pub struct SzollosiDeltoidParameterBox {"
+          },
+          {
+            "kind": "fn",
+            "name": "new",
+            "line": 76,
+            "declaration_line": "pub fn new(u: Interval, v: Interval) -> Self {"
+          },
+          {
+            "kind": "fn",
+            "name": "full_unit_square",
+            "line": 82,
+            "declaration_line": "pub fn full_unit_square() -> Self {"
+          },
+          {
+            "kind": "fn",
+            "name": "widest_width",
+            "line": 92,
+            "declaration_line": "pub fn widest_width(&self) -> BigRational {"
+          },
+          {
+            "kind": "fn",
+            "name": "bisect_widest",
+            "line": 102,
+            "declaration_line": "pub fn bisect_widest(&self) -> (Self, Self) {"
+          },
+          {
+            "kind": "fn",
+            "name": "split_at_coord_and_point",
+            "line": 121,
+            "declaration_line": "pub fn split_at_coord_and_point(&self, coord: usize, cut: BigRational) -> (Self, Self) {"
+          },
+          {
+            "kind": "fn",
+            "name": "contains_point",
+            "line": 140,
+            "declaration_line": "pub fn contains_point(&self, u_pt: &BigRational, v_pt: &BigRational) -> bool {"
+          },
+          {
+            "kind": "fn",
+            "name": "box_touches_parameter_circle",
+            "line": 145,
+            "declaration_line": "pub fn box_touches_parameter_circle(pbox: &SzollosiDeltoidParameterBox) -> bool {"
+          },
+          {
+            "kind": "fn",
+            "name": "overlap_abs_sq",
+            "line": 151,
+            "declaration_line": "pub fn overlap_abs_sq(e: &BoxedVec, u: &BoxedVec) -> Interval {"
+          },
+          {
+            "kind": "struct",
+            "name": "SzollosiCuspData",
+            "line": 165,
+            "declaration_line": "pub struct SzollosiCuspData {"
+          },
+          {
+            "kind": "struct",
+            "name": "SzollosiDeltoidContext",
+            "line": 171,
+            "declaration_line": "pub struct SzollosiDeltoidContext {"
+          },
+          {
+            "kind": "fn",
+            "name": "new",
+            "line": 181,
+            "declaration_line": "pub fn new() -> Self {"
+          },
+          {
+            "kind": "fn",
+            "name": "b6_columns",
+            "line": 260,
+            "declaration_line": "pub fn b6_columns(&self, pbox: &SzollosiDeltoidParameterBox) -> [BoxedVec; D] {"
+          },
+          {
+            "kind": "fn",
+            "name": "boxed_triple",
+            "line": 372,
+            "declaration_line": "pub fn boxed_triple(&self, pbox: &SzollosiDeltoidParameterBox) -> Vec<BoxedVec> {"
+          },
+          {
+            "kind": "fn",
+            "name": "triad_defect_lower",
+            "line": 397,
+            "declaration_line": "pub fn triad_defect_lower(&self, pbox: &SzollosiDeltoidParameterBox) -> BigRational {"
+          },
+          {
+            "kind": "fn",
+            "name": "extension_psi_lower",
+            "line": 412,
+            "declaration_line": "pub fn extension_psi_lower(&self, pbox: &SzollosiDeltoidParameterBox) -> BigRational {"
+          },
+          {
+            "kind": "fn",
+            "name": "basis_residual_sq_lower",
+            "line": 417,
+            "declaration_line": "pub fn basis_residual_sq_lower(&self, pbox: &SzollosiDeltoidParameterBox) -> BigRational {"
+          },
+          {
+            "kind": "fn",
+            "name": "is_inside_cusps",
+            "line": 422,
+            "declaration_line": "pub fn is_inside_cusps(&self, pbox: &SzollosiDeltoidParameterBox, delta: &BigRational) -> bool {"
+          },
+          {
+            "kind": "fn",
+            "name": "is_strictly_outside_cusps",
+            "line": 457,
+            "declaration_line": "pub fn is_strictly_outside_cusps("
+          },
+          {
+            "kind": "fn",
+            "name": "find_cusp_boundary_cut",
+            "line": 472,
+            "declaration_line": "pub fn find_cusp_boundary_cut("
+          },
+          {
+            "kind": "fn",
+            "name": "build_triad_boundary_and_cochain",
+            "line": 495,
+            "declaration_line": "pub fn build_triad_boundary_and_cochain("
+          },
+          {
+            "kind": "fn",
+            "name": "solve_network_simplex_obstruction",
+            "line": 538,
+            "declaration_line": "pub fn solve_network_simplex_obstruction("
+          },
+          {
+            "kind": "struct",
+            "name": "CertifiedDeltoidBox",
+            "line": 552,
+            "declaration_line": "pub struct CertifiedDeltoidBox {"
+          },
+          {
+            "kind": "struct",
+            "name": "SzollosiDeltoidCoverReport",
+            "line": 572,
+            "declaration_line": "pub struct SzollosiDeltoidCoverReport {"
+          },
+          {
+            "kind": "fn",
+            "name": "canonical_candidate_basis_box",
+            "line": 603,
+            "declaration_line": "pub fn canonical_candidate_basis_box() -> BasisBox {"
+          },
+          {
+            "kind": "fn",
+            "name": "solve_szollosi_deltoid_cover",
+            "line": 615,
+            "declaration_line": "pub fn solve_szollosi_deltoid_cover("
+          },
+          {
+            "kind": "fn",
+            "name": "solve_szollosi_deltoid_cover_accelerated",
+            "line": 784,
+            "declaration_line": "pub fn solve_szollosi_deltoid_cover_accelerated("
+          }
+        ],
+        "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+        "requirements": [
+          {
+            "id": "G1",
+            "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+          },
+          {
+            "id": "G2",
+            "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+          },
+          {
+            "id": "G3",
+            "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+          },
+          {
+            "id": "G4",
+            "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+          },
+          {
+            "id": "G5",
+            "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+          }
+        ],
+        "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+        "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+        "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+        "open_obligations": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+        ],
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json",
+            "sha256": "3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json",
+            "sha256": "e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd"
+          },
+          {
+            "path": "code/rust/quality/l4a_qm_six/records.py",
+            "sha256": "0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706"
+          },
+          {
+            "path": "code/rust/quality/l4a_qm_six/specs.json",
+            "sha256": "bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json",
+            "sha256": "929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json",
+            "sha256": "9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json",
+            "sha256": "90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a"
+          }
+        ]
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/mub/omega_native/mub6_szollosi_deltoid_cover.rs\",\n    \"sha256\": \"035aba0fc6f5aa4ffbfb6e75e48b95fa4a08f16b3e266ac262009dfcc73b05e3\",\n    \"language\": \"Rust\"\n  },\n  \"contract_urn\": \"urn:tfqm:contract:mub:omega_native:mub6_szollosi_deltoid_cover.rs\",\n  \"status\": \"draft_requires_semantic_review\",\n  \"target\": \"L4A\",\n  \"profile\": \"Exact\",\n  \"purpose\": \"Finite mutually unbiased bases (MUB) in dimension 6, cyclotomic/rational Gramian diagnostics, dual witnesses, Fourier landing verifiers, and cover-tree exclusions.\",\n  \"subject_role\": \"Provisional bounded-domain classification; requires individual capability review before promotion.\",\n  \"compilation\": {\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false,\n    \"compatibility_mirror_tree\": false\n  },\n  \"declaration_index\": [\n    {\n      \"kind\": \"fn\",\n      \"name\": \"rational_interval_sqrt\",\n      \"line\": 62,\n      \"declaration_line\": \"pub fn rational_interval_sqrt(val_lo: &BigRational, val_hi: &BigRational, iters: u32) -> Interval {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"SzollosiDeltoidParameterBox\",\n      \"line\": 70,\n      \"declaration_line\": \"pub struct SzollosiDeltoidParameterBox {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"new\",\n      \"line\": 76,\n      \"declaration_line\": \"pub fn new(u: Interval, v: Interval) -> Self {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"full_unit_square\",\n      \"line\": 82,\n      \"declaration_line\": \"pub fn full_unit_square() -> Self {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"widest_width\",\n      \"line\": 92,\n      \"declaration_line\": \"pub fn widest_width(&self) -> BigRational {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"bisect_widest\",\n      \"line\": 102,\n      \"declaration_line\": \"pub fn bisect_widest(&self) -> (Self, Self) {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"split_at_coord_and_point\",\n      \"line\": 121,\n      \"declaration_line\": \"pub fn split_at_coord_and_point(&self, coord: usize, cut: BigRational) -> (Self, Self) {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"contains_point\",\n      \"line\": 140,\n      \"declaration_line\": \"pub fn contains_point(&self, u_pt: &BigRational, v_pt: &BigRational) -> bool {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"box_touches_parameter_circle\",\n      \"line\": 145,\n      \"declaration_line\": \"pub fn box_touches_parameter_circle(pbox: &SzollosiDeltoidParameterBox) -> bool {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"overlap_abs_sq\",\n      \"line\": 151,\n      \"declaration_line\": \"pub fn overlap_abs_sq(e: &BoxedVec, u: &BoxedVec) -> Interval {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"SzollosiCuspData\",\n      \"line\": 165,\n      \"declaration_line\": \"pub struct SzollosiCuspData {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"SzollosiDeltoidContext\",\n      \"line\": 171,\n      \"declaration_line\": \"pub struct SzollosiDeltoidContext {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"new\",\n      \"line\": 181,\n      \"declaration_line\": \"pub fn new() -> Self {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"b6_columns\",\n      \"line\": 260,\n      \"declaration_line\": \"pub fn b6_columns(&self, pbox: &SzollosiDeltoidParameterBox) -> [BoxedVec; D] {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"boxed_triple\",\n      \"line\": 372,\n      \"declaration_line\": \"pub fn boxed_triple(&self, pbox: &SzollosiDeltoidParameterBox) -> Vec<BoxedVec> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"triad_defect_lower\",\n      \"line\": 397,\n      \"declaration_line\": \"pub fn triad_defect_lower(&self, pbox: &SzollosiDeltoidParameterBox) -> BigRational {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"extension_psi_lower\",\n      \"line\": 412,\n      \"declaration_line\": \"pub fn extension_psi_lower(&self, pbox: &SzollosiDeltoidParameterBox) -> BigRational {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"basis_residual_sq_lower\",\n      \"line\": 417,\n      \"declaration_line\": \"pub fn basis_residual_sq_lower(&self, pbox: &SzollosiDeltoidParameterBox) -> BigRational {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"is_inside_cusps\",\n      \"line\": 422,\n      \"declaration_line\": \"pub fn is_inside_cusps(&self, pbox: &SzollosiDeltoidParameterBox, delta: &BigRational) -> bool {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"is_strictly_outside_cusps\",\n      \"line\": 457,\n      \"declaration_line\": \"pub fn is_strictly_outside_cusps(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"find_cusp_boundary_cut\",\n      \"line\": 472,\n      \"declaration_line\": \"pub fn find_cusp_boundary_cut(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"build_triad_boundary_and_cochain\",\n      \"line\": 495,\n      \"declaration_line\": \"pub fn build_triad_boundary_and_cochain(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"solve_network_simplex_obstruction\",\n      \"line\": 538,\n      \"declaration_line\": \"pub fn solve_network_simplex_obstruction(\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"CertifiedDeltoidBox\",\n      \"line\": 552,\n      \"declaration_line\": \"pub struct CertifiedDeltoidBox {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"SzollosiDeltoidCoverReport\",\n      \"line\": 572,\n      \"declaration_line\": \"pub struct SzollosiDeltoidCoverReport {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"canonical_candidate_basis_box\",\n      \"line\": 603,\n      \"declaration_line\": \"pub fn canonical_candidate_basis_box() -> BasisBox {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"solve_szollosi_deltoid_cover\",\n      \"line\": 615,\n      \"declaration_line\": \"pub fn solve_szollosi_deltoid_cover(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"solve_szollosi_deltoid_cover_accelerated\",\n      \"line\": 784,\n      \"declaration_line\": \"pub fn solve_szollosi_deltoid_cover_accelerated(\"\n    }\n  ],\n  \"declaration_index_scope\": \"Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.\",\n  \"requirements\": [\n    {\n      \"id\": \"G1\",\n      \"requirement\": \"Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries.\"\n    },\n    {\n      \"id\": \"G2\",\n      \"requirement\": \"Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path.\"\n    },\n    {\n      \"id\": \"G3\",\n      \"requirement\": \"Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions.\"\n    },\n    {\n      \"id\": \"G4\",\n      \"requirement\": \"Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A.\"\n    },\n    {\n      \"id\": \"G5\",\n      \"requirement\": \"Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately.\"\n    }\n  ],\n  \"admission_policy\": \"Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.\",\n  \"resource_boundary\": \"No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.\",\n  \"authority_ceiling\": \"Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.\",\n  \"open_obligations\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json\",\n      \"sha256\": \"3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json\",\n      \"sha256\": \"e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/records.py\",\n      \"sha256\": \"0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/specs.json\",\n      \"sha256\": \"bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json\",\n      \"sha256\": \"929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json\",\n      \"sha256\": \"9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json\",\n      \"sha256\": \"90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "code/rust/src/mub/omega_native/mub6_szollosi_deltoid_cover.rs.contract.yaml",
+        "evidence/quality/l4a_qm_six/recovery/original-inputs/code/rust/src/mub/omega_native/mub6_szollosi_deltoid_cover.rs.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "df116684bc58b70f4c2437d9963a18f8381c877990b9d79c866f6df19ee36ad2",
+      "bytes": 12797,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/mub/omega_native/mub6_szollosi_deltoid_cover.rs",
+          "sha256": "035aba0fc6f5aa4ffbfb6e75e48b95fa4a08f16b3e266ac262009dfcc73b05e3",
+          "language": "Rust"
+        },
+        "profile": "Exact",
+        "level": "L3",
+        "level_basis": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+        "engineering_target": "A",
+        "requested_target": "L4A",
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "composite_grade": null,
+        "score_token": null,
+        "is_complete": false,
+        "grade_ceiling": "A",
+        "evaluation_timestamp": "2026-10-20T15:14:24+00:00",
+        "grade_ceiling_basis": "Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.",
+        "contract": {
+          "path": "code/rust/src/mub/omega_native/mub6_szollosi_deltoid_cover.rs.contract.yaml",
+          "status": "draft_requires_semantic_review",
+          "sha256": "1f162d292814eeec719b8f1a98c064415c3a5035d23882863d709b6d1d5c4a01"
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json",
+            "sha256": "3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json",
+            "sha256": "e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd"
+          },
+          {
+            "path": "code/rust/quality/l4a_qm_six/records.py",
+            "sha256": "0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706"
+          },
+          {
+            "path": "code/rust/quality/l4a_qm_six/specs.json",
+            "sha256": "bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json",
+            "sha256": "929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json",
+            "sha256": "9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json",
+            "sha256": "90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a"
+          }
+        ],
+        "verification": {
+          "baseline": {
+            "command": [
+              "cargo",
+              "test",
+              "--offline",
+              "--target-dir",
+              "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-qm-six\\20261020T151424Z\\build",
+              "--quiet",
+              "-p",
+              "tfqm_mub",
+              "--tests",
+              "--",
+              "--skip",
+              "deep_run::tests",
+              "--skip",
+              "base_mu_phase_stabilizer_on_step2_root_of_unity_grid",
+              "--skip",
+              "char_two_parametric_gate::tests",
+              "--skip",
+              "full_second_basepoint_campaign_usable_and_open",
+              "--skip",
+              "test_solve_continuous_manifold_residue_smoke"
+            ],
+            "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-qm-six\\20261020T151424Z\\code\\rust",
+            "elapsed_seconds": 235.323,
+            "environment": {
+              "CARGO_BUILD_JOBS": "2",
+              "CARGO_INCREMENTAL": "0",
+              "CARGO_PROFILE_DEV_DEBUG": "0",
+              "CARGO_PROFILE_TEST_DEBUG": "0"
+            },
+            "exit_code": 0,
+            "log": "evidence/quality/l4a_qm_six/20261020T151424Z/tfqm_mub.log",
+            "log_sha256": "55f19fcc732c76c68d598e4a5aee02a62c660e4748ca2c649b1e2731c3953078",
+            "timed_out": false
+          },
+          "sources_unchanged": true,
+          "doctests": [],
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false,
+          "compatibility_mirror_tree": false,
+          "dependency_sources_unchanged": true,
+          "compiled_scope": "Package unit/integration tests in the scoped six-directory snapshot. Compatibility mirror files under mub/src/ require separate compilation review.",
+          "designated_mutations": [],
+          "mutation_restoration_baselines_ok": null,
+          "reproduced_defects": [],
+          "current_manifest_assessment_complete": false
+        },
+        "mutation_accounting": {
+          "killed": 0,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": null
+        },
+        "structure": {
+          "tool": "syn source AST (see pinned metric_tool_sources in receipt)",
+          "functions": [
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 5,
+              "control_nesting": 2,
+              "line": 22,
+              "name": "bisect_sqrt_lower",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 5,
+              "control_nesting": 2,
+              "line": 42,
+              "name": "bisect_sqrt_upper",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 62,
+              "name": "rational_interval_sqrt",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 76,
+              "name": "new",
+              "opaque_macros": [
+                "debug_assert:77",
+                "debug_assert:78"
+              ]
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 82,
+              "name": "full_unit_square",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 92,
+              "name": "widest_width",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 102,
+              "name": "bisect_widest",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 121,
+              "name": "split_at_coord_and_point",
+              "opaque_macros": [
+                "debug_assert:126",
+                "debug_assert:131",
+                "unreachable:135"
+              ]
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 140,
+              "name": "contains_point",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 145,
+              "name": "box_touches_parameter_circle",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 151,
+              "name": "overlap_abs_sq",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 5,
+              "control_nesting": 1,
+              "line": 181,
+              "name": "new",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 2,
+              "line": 260,
+              "name": "b6_columns",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 2,
+              "line": 372,
+              "name": "boxed_triple",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 397,
+              "name": "triad_defect_lower",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 412,
+              "name": "extension_psi_lower",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 417,
+              "name": "basis_residual_sq_lower",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 6,
+              "cognitive_upper_bound": 12,
+              "control_nesting": 2,
+              "line": 422,
+              "name": "is_inside_cusps",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 6,
+              "control_nesting": 2,
+              "line": 447,
+              "name": "interval_min_abs_dist",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 4,
+              "control_nesting": 2,
+              "line": 457,
+              "name": "is_strictly_outside_cusps",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 8,
+              "cognitive_upper_bound": 13,
+              "control_nesting": 3,
+              "line": 472,
+              "name": "find_cusp_boundary_cut",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 495,
+              "name": "build_triad_boundary_and_cochain",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 538,
+              "name": "solve_network_simplex_obstruction",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 547,
+              "name": "default_solver_method",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 603,
+              "name": "canonical_candidate_basis_box",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 615,
+              "name": "solve_szollosi_deltoid_cover",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 7,
+              "control_nesting": 3,
+              "line": 623,
+              "name": "build_initial_deltoid_stack",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 646,
+              "name": "update_deltoid_min_gap",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 653,
+              "name": "format_deltoid_atan2",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 660,
+              "name": "build_certified_deltoid_box",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 687,
+              "name": "try_network_simplex_certification",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 715,
+              "name": "split_deltoid_box",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 727,
+              "name": "try_scalar_interval_certification",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 756,
+              "name": "handle_max_depth_deltoid_box",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 7,
+              "cognitive_upper_bound": 11,
+              "control_nesting": 2,
+              "line": 784,
+              "name": "solve_szollosi_deltoid_cover_accelerated",
+              "opaque_macros": [
+                "assert:790",
+                "assert:794"
+              ]
+            }
+          ],
+          "exceeding_A": [],
+          "metric_ceiling": "A",
+          "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
+        },
+        "open_findings": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy.",
+          "User requested immediate merge and deferred further fixes. Five original native package baselines passed; QM release failed in omega_engines; strict_invariants dependency fix is committed but retry was interrupted. No fresh full source-bound assessment, full mutation campaign, or completed engineering grade is claimed.",
+          "Immediate merge requested; further validation deferred. Five original package baselines passed; QM release failed in omega_engines. strict_invariants fix is committed but its retry was interrupted. No current complete assessment or mutation certification is claimed."
+        ],
+        "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts.",
+        "assessment_status": "WITHDRAWN_PENDING_SOURCE_BOUND_REVIEW",
+        "capability_status": "provisional_unverified",
+        "profile_status": "declared_target_unverified"
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/mub/omega_native/mub6_szollosi_deltoid_cover.rs\",\n    \"sha256\": \"035aba0fc6f5aa4ffbfb6e75e48b95fa4a08f16b3e266ac262009dfcc73b05e3\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"level\": \"L3\",\n  \"level_basis\": \"Provisional bounded-domain classification; requires individual capability review before promotion.\",\n  \"engineering_target\": \"A\",\n  \"requested_target\": \"L4A\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"is_complete\": false,\n  \"grade_ceiling\": \"A\",\n  \"evaluation_timestamp\": \"2026-10-20T15:14:24+00:00\",\n  \"grade_ceiling_basis\": \"Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.\",\n  \"contract\": {\n    \"path\": \"code/rust/src/mub/omega_native/mub6_szollosi_deltoid_cover.rs.contract.yaml\",\n    \"status\": \"draft_requires_semantic_review\",\n    \"sha256\": \"1f162d292814eeec719b8f1a98c064415c3a5035d23882863d709b6d1d5c4a01\"\n  },\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json\",\n      \"sha256\": \"3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json\",\n      \"sha256\": \"e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/records.py\",\n      \"sha256\": \"0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/specs.json\",\n      \"sha256\": \"bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json\",\n      \"sha256\": \"929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json\",\n      \"sha256\": \"9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json\",\n      \"sha256\": \"90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a\"\n    }\n  ],\n  \"verification\": {\n    \"baseline\": {\n      \"command\": [\n        \"cargo\",\n        \"test\",\n        \"--offline\",\n        \"--target-dir\",\n        \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-qm-six\\\\20261020T151424Z\\\\build\",\n        \"--quiet\",\n        \"-p\",\n        \"tfqm_mub\",\n        \"--tests\",\n        \"--\",\n        \"--skip\",\n        \"deep_run::tests\",\n        \"--skip\",\n        \"base_mu_phase_stabilizer_on_step2_root_of_unity_grid\",\n        \"--skip\",\n        \"char_two_parametric_gate::tests\",\n        \"--skip\",\n        \"full_second_basepoint_campaign_usable_and_open\",\n        \"--skip\",\n        \"test_solve_continuous_manifold_residue_smoke\"\n      ],\n      \"cwd\": \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-qm-six\\\\20261020T151424Z\\\\code\\\\rust\",\n      \"elapsed_seconds\": 235.323,\n      \"environment\": {\n        \"CARGO_BUILD_JOBS\": \"2\",\n        \"CARGO_INCREMENTAL\": \"0\",\n        \"CARGO_PROFILE_DEV_DEBUG\": \"0\",\n        \"CARGO_PROFILE_TEST_DEBUG\": \"0\"\n      },\n      \"exit_code\": 0,\n      \"log\": \"evidence/quality/l4a_qm_six/20261020T151424Z/tfqm_mub.log\",\n      \"log_sha256\": \"55f19fcc732c76c68d598e4a5aee02a62c660e4748ca2c649b1e2731c3953078\",\n      \"timed_out\": false\n    },\n    \"sources_unchanged\": true,\n    \"doctests\": [],\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false,\n    \"compatibility_mirror_tree\": false,\n    \"dependency_sources_unchanged\": true,\n    \"compiled_scope\": \"Package unit/integration tests in the scoped six-directory snapshot. Compatibility mirror files under mub/src/ require separate compilation review.\",\n    \"designated_mutations\": [],\n    \"mutation_restoration_baselines_ok\": null,\n    \"reproduced_defects\": [],\n    \"current_manifest_assessment_complete\": false\n  },\n  \"mutation_accounting\": {\n    \"killed\": 0,\n    \"survived\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"unrun\": 0,\n    \"conservative_ratio\": null\n  },\n  \"structure\": {\n    \"tool\": \"syn source AST (see pinned metric_tool_sources in receipt)\",\n    \"functions\": [\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 5,\n        \"control_nesting\": 2,\n        \"line\": 22,\n        \"name\": \"bisect_sqrt_lower\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 5,\n        \"control_nesting\": 2,\n        \"line\": 42,\n        \"name\": \"bisect_sqrt_upper\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 62,\n        \"name\": \"rational_interval_sqrt\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 76,\n        \"name\": \"new\",\n        \"opaque_macros\": [\n          \"debug_assert:77\",\n          \"debug_assert:78\"\n        ]\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 82,\n        \"name\": \"full_unit_square\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 92,\n        \"name\": \"widest_width\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 102,\n        \"name\": \"bisect_widest\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 121,\n        \"name\": \"split_at_coord_and_point\",\n        \"opaque_macros\": [\n          \"debug_assert:126\",\n          \"debug_assert:131\",\n          \"unreachable:135\"\n        ]\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 140,\n        \"name\": \"contains_point\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 145,\n        \"name\": \"box_touches_parameter_circle\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 151,\n        \"name\": \"overlap_abs_sq\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 5,\n        \"control_nesting\": 1,\n        \"line\": 181,\n        \"name\": \"new\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 2,\n        \"line\": 260,\n        \"name\": \"b6_columns\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 2,\n        \"line\": 372,\n        \"name\": \"boxed_triple\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 397,\n        \"name\": \"triad_defect_lower\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 412,\n        \"name\": \"extension_psi_lower\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 417,\n        \"name\": \"basis_residual_sq_lower\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 12,\n        \"control_nesting\": 2,\n        \"line\": 422,\n        \"name\": \"is_inside_cusps\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 6,\n        \"control_nesting\": 2,\n        \"line\": 447,\n        \"name\": \"interval_min_abs_dist\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 2,\n        \"line\": 457,\n        \"name\": \"is_strictly_outside_cusps\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 8,\n        \"cognitive_upper_bound\": 13,\n        \"control_nesting\": 3,\n        \"line\": 472,\n        \"name\": \"find_cusp_boundary_cut\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 495,\n        \"name\": \"build_triad_boundary_and_cochain\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 538,\n        \"name\": \"solve_network_simplex_obstruction\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 547,\n        \"name\": \"default_solver_method\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 603,\n        \"name\": \"canonical_candidate_basis_box\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 615,\n        \"name\": \"solve_szollosi_deltoid_cover\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 7,\n        \"control_nesting\": 3,\n        \"line\": 623,\n        \"name\": \"build_initial_deltoid_stack\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 646,\n        \"name\": \"update_deltoid_min_gap\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 653,\n        \"name\": \"format_deltoid_atan2\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 660,\n        \"name\": \"build_certified_deltoid_box\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 687,\n        \"name\": \"try_network_simplex_certification\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 715,\n        \"name\": \"split_deltoid_box\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 727,\n        \"name\": \"try_scalar_interval_certification\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 756,\n        \"name\": \"handle_max_depth_deltoid_box\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 7,\n        \"cognitive_upper_bound\": 11,\n        \"control_nesting\": 2,\n        \"line\": 784,\n        \"name\": \"solve_szollosi_deltoid_cover_accelerated\",\n        \"opaque_macros\": [\n          \"assert:790\",\n          \"assert:794\"\n        ]\n      }\n    ],\n    \"exceeding_A\": [],\n    \"metric_ceiling\": \"A\",\n    \"scope\": \"Explicit source bodies only; opaque macros and compiler expansion remain unassessed.\"\n  },\n  \"open_findings\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\",\n    \"User requested immediate merge and deferred further fixes. Five original native package baselines passed; QM release failed in omega_engines; strict_invariants dependency fix is committed but retry was interrupted. No fresh full source-bound assessment, full mutation campaign, or completed engineering grade is claimed.\",\n    \"Immediate merge requested; further validation deferred. Five original package baselines passed; QM release failed in omega_engines. strict_invariants fix is committed but its retry was interrupted. No current complete assessment or mutation certification is claimed.\"\n  ],\n  \"evaluation_timestamp_basis\": \"Start of the latest bound assessment execution; execution durations are recorded in receipts.\",\n  \"assessment_status\": \"WITHDRAWN_PENDING_SOURCE_BOUND_REVIEW\",\n  \"capability_status\": \"provisional_unverified\",\n  \"profile_status\": \"declared_target_unverified\"\n}\n",
+      "original_paths": [
+        "code/rust/src/mub/omega_native/mub6_szollosi_deltoid_cover.rs.scoring.yaml"
+      ]
+    },
+    {
+      "sha256": "569272e31f6564cfe2ff2b7d9225a733591783b86954171419b5d273564e0987",
+      "bytes": 11981,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/mub/omega_native/mub6_szollosi_deltoid_cover.rs",
+          "sha256": "035aba0fc6f5aa4ffbfb6e75e48b95fa4a08f16b3e266ac262009dfcc73b05e3",
+          "language": "Rust"
+        },
+        "profile": "Exact",
+        "level": "L3",
+        "level_basis": "Provisional bounded-domain classification; requires individual capability review before promotion.",
+        "engineering_target": "A",
+        "requested_target": "L4A",
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "composite_grade": null,
+        "score_token": null,
+        "is_complete": false,
+        "grade_ceiling": "A",
+        "evaluation_timestamp": "2026-10-20T15:14:24+00:00",
+        "grade_ceiling_basis": "Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.",
+        "contract": {
+          "path": "code/rust/src/mub/omega_native/mub6_szollosi_deltoid_cover.rs.contract.yaml",
+          "status": "draft_requires_semantic_review",
+          "sha256": "1f162d292814eeec719b8f1a98c064415c3a5035d23882863d709b6d1d5c4a01"
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json",
+            "sha256": "3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json",
+            "sha256": "e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd"
+          },
+          {
+            "path": "code/rust/quality/l4a_qm_six/records.py",
+            "sha256": "0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706"
+          },
+          {
+            "path": "code/rust/quality/l4a_qm_six/specs.json",
+            "sha256": "bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json",
+            "sha256": "929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json",
+            "sha256": "9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json",
+            "sha256": "90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a"
+          }
+        ],
+        "verification": {
+          "baseline": {
+            "command": [
+              "cargo",
+              "test",
+              "--offline",
+              "--target-dir",
+              "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-qm-six\\20261020T151424Z\\build",
+              "--quiet",
+              "-p",
+              "tfqm_mub",
+              "--tests",
+              "--",
+              "--skip",
+              "deep_run::tests",
+              "--skip",
+              "base_mu_phase_stabilizer_on_step2_root_of_unity_grid",
+              "--skip",
+              "char_two_parametric_gate::tests",
+              "--skip",
+              "full_second_basepoint_campaign_usable_and_open",
+              "--skip",
+              "test_solve_continuous_manifold_residue_smoke"
+            ],
+            "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-qm-six\\20261020T151424Z\\code\\rust",
+            "elapsed_seconds": 235.323,
+            "environment": {
+              "CARGO_BUILD_JOBS": "2",
+              "CARGO_INCREMENTAL": "0",
+              "CARGO_PROFILE_DEV_DEBUG": "0",
+              "CARGO_PROFILE_TEST_DEBUG": "0"
+            },
+            "exit_code": 0,
+            "log": "evidence/quality/l4a_qm_six/20261020T151424Z/tfqm_mub.log",
+            "log_sha256": "55f19fcc732c76c68d598e4a5aee02a62c660e4748ca2c649b1e2731c3953078",
+            "timed_out": false
+          },
+          "sources_unchanged": true,
+          "doctests": [],
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false,
+          "compatibility_mirror_tree": false,
+          "dependency_sources_unchanged": true,
+          "compiled_scope": "Package unit/integration tests in the scoped six-directory snapshot. Compatibility mirror files under mub/src/ require separate compilation review.",
+          "designated_mutations": [],
+          "mutation_restoration_baselines_ok": null,
+          "reproduced_defects": []
+        },
+        "mutation_accounting": {
+          "killed": 0,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": null
+        },
+        "structure": {
+          "tool": "syn source AST (see pinned metric_tool_sources in receipt)",
+          "functions": [
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 5,
+              "control_nesting": 2,
+              "line": 22,
+              "name": "bisect_sqrt_lower",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 5,
+              "control_nesting": 2,
+              "line": 42,
+              "name": "bisect_sqrt_upper",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 62,
+              "name": "rational_interval_sqrt",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 76,
+              "name": "new",
+              "opaque_macros": [
+                "debug_assert:77",
+                "debug_assert:78"
+              ]
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 82,
+              "name": "full_unit_square",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 92,
+              "name": "widest_width",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 102,
+              "name": "bisect_widest",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 121,
+              "name": "split_at_coord_and_point",
+              "opaque_macros": [
+                "debug_assert:126",
+                "debug_assert:131",
+                "unreachable:135"
+              ]
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 140,
+              "name": "contains_point",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 145,
+              "name": "box_touches_parameter_circle",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 151,
+              "name": "overlap_abs_sq",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 5,
+              "control_nesting": 1,
+              "line": 181,
+              "name": "new",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 2,
+              "line": 260,
+              "name": "b6_columns",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 2,
+              "line": 372,
+              "name": "boxed_triple",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 397,
+              "name": "triad_defect_lower",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 412,
+              "name": "extension_psi_lower",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 417,
+              "name": "basis_residual_sq_lower",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 6,
+              "cognitive_upper_bound": 12,
+              "control_nesting": 2,
+              "line": 422,
+              "name": "is_inside_cusps",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 6,
+              "control_nesting": 2,
+              "line": 447,
+              "name": "interval_min_abs_dist",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 4,
+              "control_nesting": 2,
+              "line": 457,
+              "name": "is_strictly_outside_cusps",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 8,
+              "cognitive_upper_bound": 13,
+              "control_nesting": 3,
+              "line": 472,
+              "name": "find_cusp_boundary_cut",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 495,
+              "name": "build_triad_boundary_and_cochain",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 538,
+              "name": "solve_network_simplex_obstruction",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 547,
+              "name": "default_solver_method",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 603,
+              "name": "canonical_candidate_basis_box",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 615,
+              "name": "solve_szollosi_deltoid_cover",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 7,
+              "control_nesting": 3,
+              "line": 623,
+              "name": "build_initial_deltoid_stack",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 646,
+              "name": "update_deltoid_min_gap",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 653,
+              "name": "format_deltoid_atan2",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 660,
+              "name": "build_certified_deltoid_box",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 687,
+              "name": "try_network_simplex_certification",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 715,
+              "name": "split_deltoid_box",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 727,
+              "name": "try_scalar_interval_certification",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 2,
+              "line": 756,
+              "name": "handle_max_depth_deltoid_box",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 7,
+              "cognitive_upper_bound": 11,
+              "control_nesting": 2,
+              "line": 784,
+              "name": "solve_szollosi_deltoid_cover_accelerated",
+              "opaque_macros": [
+                "assert:790",
+                "assert:794"
+              ]
+            }
+          ],
+          "exceeding_A": [],
+          "metric_ceiling": "A",
+          "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
+        },
+        "open_findings": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+        ],
+        "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts."
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/mub/omega_native/mub6_szollosi_deltoid_cover.rs\",\n    \"sha256\": \"035aba0fc6f5aa4ffbfb6e75e48b95fa4a08f16b3e266ac262009dfcc73b05e3\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"level\": \"L3\",\n  \"level_basis\": \"Provisional bounded-domain classification; requires individual capability review before promotion.\",\n  \"engineering_target\": \"A\",\n  \"requested_target\": \"L4A\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"is_complete\": false,\n  \"grade_ceiling\": \"A\",\n  \"evaluation_timestamp\": \"2026-10-20T15:14:24+00:00\",\n  \"grade_ceiling_basis\": \"Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.\",\n  \"contract\": {\n    \"path\": \"code/rust/src/mub/omega_native/mub6_szollosi_deltoid_cover.rs.contract.yaml\",\n    \"status\": \"draft_requires_semantic_review\",\n    \"sha256\": \"1f162d292814eeec719b8f1a98c064415c3a5035d23882863d709b6d1d5c4a01\"\n  },\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json\",\n      \"sha256\": \"3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json\",\n      \"sha256\": \"e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/records.py\",\n      \"sha256\": \"0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/specs.json\",\n      \"sha256\": \"bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json\",\n      \"sha256\": \"929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json\",\n      \"sha256\": \"9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json\",\n      \"sha256\": \"90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a\"\n    }\n  ],\n  \"verification\": {\n    \"baseline\": {\n      \"command\": [\n        \"cargo\",\n        \"test\",\n        \"--offline\",\n        \"--target-dir\",\n        \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-qm-six\\\\20261020T151424Z\\\\build\",\n        \"--quiet\",\n        \"-p\",\n        \"tfqm_mub\",\n        \"--tests\",\n        \"--\",\n        \"--skip\",\n        \"deep_run::tests\",\n        \"--skip\",\n        \"base_mu_phase_stabilizer_on_step2_root_of_unity_grid\",\n        \"--skip\",\n        \"char_two_parametric_gate::tests\",\n        \"--skip\",\n        \"full_second_basepoint_campaign_usable_and_open\",\n        \"--skip\",\n        \"test_solve_continuous_manifold_residue_smoke\"\n      ],\n      \"cwd\": \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-qm-six\\\\20261020T151424Z\\\\code\\\\rust\",\n      \"elapsed_seconds\": 235.323,\n      \"environment\": {\n        \"CARGO_BUILD_JOBS\": \"2\",\n        \"CARGO_INCREMENTAL\": \"0\",\n        \"CARGO_PROFILE_DEV_DEBUG\": \"0\",\n        \"CARGO_PROFILE_TEST_DEBUG\": \"0\"\n      },\n      \"exit_code\": 0,\n      \"log\": \"evidence/quality/l4a_qm_six/20261020T151424Z/tfqm_mub.log\",\n      \"log_sha256\": \"55f19fcc732c76c68d598e4a5aee02a62c660e4748ca2c649b1e2731c3953078\",\n      \"timed_out\": false\n    },\n    \"sources_unchanged\": true,\n    \"doctests\": [],\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false,\n    \"compatibility_mirror_tree\": false,\n    \"dependency_sources_unchanged\": true,\n    \"compiled_scope\": \"Package unit/integration tests in the scoped six-directory snapshot. Compatibility mirror files under mub/src/ require separate compilation review.\",\n    \"designated_mutations\": [],\n    \"mutation_restoration_baselines_ok\": null,\n    \"reproduced_defects\": []\n  },\n  \"mutation_accounting\": {\n    \"killed\": 0,\n    \"survived\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"unrun\": 0,\n    \"conservative_ratio\": null\n  },\n  \"structure\": {\n    \"tool\": \"syn source AST (see pinned metric_tool_sources in receipt)\",\n    \"functions\": [\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 5,\n        \"control_nesting\": 2,\n        \"line\": 22,\n        \"name\": \"bisect_sqrt_lower\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 5,\n        \"control_nesting\": 2,\n        \"line\": 42,\n        \"name\": \"bisect_sqrt_upper\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 62,\n        \"name\": \"rational_interval_sqrt\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 76,\n        \"name\": \"new\",\n        \"opaque_macros\": [\n          \"debug_assert:77\",\n          \"debug_assert:78\"\n        ]\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 82,\n        \"name\": \"full_unit_square\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 92,\n        \"name\": \"widest_width\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 102,\n        \"name\": \"bisect_widest\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 121,\n        \"name\": \"split_at_coord_and_point\",\n        \"opaque_macros\": [\n          \"debug_assert:126\",\n          \"debug_assert:131\",\n          \"unreachable:135\"\n        ]\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 140,\n        \"name\": \"contains_point\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 145,\n        \"name\": \"box_touches_parameter_circle\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 151,\n        \"name\": \"overlap_abs_sq\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 5,\n        \"control_nesting\": 1,\n        \"line\": 181,\n        \"name\": \"new\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 2,\n        \"line\": 260,\n        \"name\": \"b6_columns\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 2,\n        \"line\": 372,\n        \"name\": \"boxed_triple\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 397,\n        \"name\": \"triad_defect_lower\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 412,\n        \"name\": \"extension_psi_lower\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 417,\n        \"name\": \"basis_residual_sq_lower\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 12,\n        \"control_nesting\": 2,\n        \"line\": 422,\n        \"name\": \"is_inside_cusps\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 6,\n        \"control_nesting\": 2,\n        \"line\": 447,\n        \"name\": \"interval_min_abs_dist\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 2,\n        \"line\": 457,\n        \"name\": \"is_strictly_outside_cusps\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 8,\n        \"cognitive_upper_bound\": 13,\n        \"control_nesting\": 3,\n        \"line\": 472,\n        \"name\": \"find_cusp_boundary_cut\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 495,\n        \"name\": \"build_triad_boundary_and_cochain\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 538,\n        \"name\": \"solve_network_simplex_obstruction\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 547,\n        \"name\": \"default_solver_method\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 603,\n        \"name\": \"canonical_candidate_basis_box\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 615,\n        \"name\": \"solve_szollosi_deltoid_cover\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 7,\n        \"control_nesting\": 3,\n        \"line\": 623,\n        \"name\": \"build_initial_deltoid_stack\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 646,\n        \"name\": \"update_deltoid_min_gap\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 653,\n        \"name\": \"format_deltoid_atan2\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 660,\n        \"name\": \"build_certified_deltoid_box\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 687,\n        \"name\": \"try_network_simplex_certification\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 715,\n        \"name\": \"split_deltoid_box\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 727,\n        \"name\": \"try_scalar_interval_certification\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 2,\n        \"line\": 756,\n        \"name\": \"handle_max_depth_deltoid_box\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 7,\n        \"cognitive_upper_bound\": 11,\n        \"control_nesting\": 2,\n        \"line\": 784,\n        \"name\": \"solve_szollosi_deltoid_cover_accelerated\",\n        \"opaque_macros\": [\n          \"assert:790\",\n          \"assert:794\"\n        ]\n      }\n    ],\n    \"exceeding_A\": [],\n    \"metric_ceiling\": \"A\",\n    \"scope\": \"Explicit source bodies only; opaque macros and compiler expansion remain unassessed.\"\n  },\n  \"open_findings\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\"\n  ],\n  \"evaluation_timestamp_basis\": \"Start of the latest bound assessment execution; execution durations are recorded in receipts.\"\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_qm_six/recovery/original-inputs/code/rust/src/mub/omega_native/mub6_szollosi_deltoid_cover.rs.scoring.yaml"
+      ]
+    }
+  ],
+  "legacy_paths": {
+    "code/rust/src/mub/omega_native/mub6_szollosi_deltoid_cover.rs.contract.yaml": "1f162d292814eeec719b8f1a98c064415c3a5035d23882863d709b6d1d5c4a01",
+    "code/rust/src/mub/omega_native/mub6_szollosi_deltoid_cover.rs.scoring.yaml": "df116684bc58b70f4c2437d9963a18f8381c877990b9d79c866f6df19ee36ad2",
+    "evidence/quality/l4a_qm_six/recovery/original-inputs/code/rust/src/mub/omega_native/mub6_szollosi_deltoid_cover.rs.contract.yaml": "1f162d292814eeec719b8f1a98c064415c3a5035d23882863d709b6d1d5c4a01",
+    "evidence/quality/l4a_qm_six/recovery/original-inputs/code/rust/src/mub/omega_native/mub6_szollosi_deltoid_cover.rs.scoring.yaml": "569272e31f6564cfe2ff2b7d9225a733591783b86954171419b5d273564e0987"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

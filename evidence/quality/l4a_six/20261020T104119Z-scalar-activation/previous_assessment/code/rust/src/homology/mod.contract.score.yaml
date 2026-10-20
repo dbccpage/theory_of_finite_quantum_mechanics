@@ -1,0 +1,838 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": null,
+  "contract": {
+    "schema_version": "1.0.0",
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/rust/src/homology/mod.rs",
+      "sha256": "c0ba175d8ba651d229753766fe82dbf4c3fa9ae0441856f97e0945765ca6e2c8",
+      "language": "Rust"
+    },
+    "contract_urn": "urn:tfqm:contract:homology:mod.rs",
+    "status": "draft_requires_semantic_review",
+    "target": "L4A",
+    "profile": "Exact",
+    "purpose": "Finite rational chain/cochain data, admitted carriers and rank certificates.",
+    "subject_role": "Module/export facade; composition evidence does not raise this file's own capability.",
+    "compilation": {
+      "disabled_by_cfg_any": false,
+      "test_or_support_file": false
+    },
+    "declaration_index": [
+      {
+        "kind": "mod",
+        "name": "boundary",
+        "line": 10,
+        "declaration_line": "pub mod boundary;"
+      },
+      {
+        "kind": "mod",
+        "name": "carrier",
+        "line": 11,
+        "declaration_line": "pub mod carrier;"
+      },
+      {
+        "kind": "mod",
+        "name": "carrier_manifest",
+        "line": 12,
+        "declaration_line": "pub mod carrier_manifest;"
+      },
+      {
+        "kind": "mod",
+        "name": "chain",
+        "line": 13,
+        "declaration_line": "pub mod chain;"
+      },
+      {
+        "kind": "mod",
+        "name": "chain_complex",
+        "line": 14,
+        "declaration_line": "pub mod chain_complex;"
+      },
+      {
+        "kind": "mod",
+        "name": "coboundary",
+        "line": 15,
+        "declaration_line": "pub mod coboundary;"
+      },
+      {
+        "kind": "mod",
+        "name": "cochain",
+        "line": 16,
+        "declaration_line": "pub mod cochain;"
+      },
+      {
+        "kind": "mod",
+        "name": "cochain_complex",
+        "line": 17,
+        "declaration_line": "pub mod cochain_complex;"
+      },
+      {
+        "kind": "mod",
+        "name": "errors",
+        "line": 18,
+        "declaration_line": "pub mod errors;"
+      },
+      {
+        "kind": "mod",
+        "name": "exact_carrier",
+        "line": 19,
+        "declaration_line": "pub mod exact_carrier;"
+      },
+      {
+        "kind": "mod",
+        "name": "graded_vector",
+        "line": 21,
+        "declaration_line": "pub mod graded_vector;"
+      },
+      {
+        "kind": "mod",
+        "name": "hashing",
+        "line": 22,
+        "declaration_line": "pub mod hashing;"
+      },
+      {
+        "kind": "mod",
+        "name": "ids",
+        "line": 23,
+        "declaration_line": "pub mod ids;"
+      },
+      {
+        "kind": "mod",
+        "name": "rank_certificate",
+        "line": 24,
+        "declaration_line": "pub mod rank_certificate;"
+      },
+      {
+        "kind": "mod",
+        "name": "simplicial",
+        "line": 25,
+        "declaration_line": "pub mod simplicial;"
+      },
+      {
+        "kind": "mod",
+        "name": "witness",
+        "line": 26,
+        "declaration_line": "pub mod witness;"
+      },
+      {
+        "kind": "fn",
+        "name": "hash_exact_matrix",
+        "line": 35,
+        "declaration_line": "pub fn hash_exact_matrix(m: &ExactMatrix<Q>) -> Result<Hash256, HomologicalError> {"
+      },
+      {
+        "kind": "struct",
+        "name": "Carrier",
+        "line": 50,
+        "declaration_line": "pub struct Carrier {"
+      },
+      {
+        "kind": "fn",
+        "name": "new",
+        "line": 68,
+        "declaration_line": "pub fn new("
+      },
+      {
+        "kind": "fn",
+        "name": "c0_dim",
+        "line": 82,
+        "declaration_line": "pub fn c0_dim(&self) -> usize {"
+      },
+      {
+        "kind": "fn",
+        "name": "c1_dim",
+        "line": 85,
+        "declaration_line": "pub fn c1_dim(&self) -> usize {"
+      },
+      {
+        "kind": "fn",
+        "name": "c2_dim",
+        "line": 88,
+        "declaration_line": "pub fn c2_dim(&self) -> usize {"
+      },
+      {
+        "kind": "fn",
+        "name": "d0",
+        "line": 91,
+        "declaration_line": "pub fn d0(&self) -> &crate::linear_algebra::BasicMatrix<Q> {"
+      },
+      {
+        "kind": "fn",
+        "name": "d1",
+        "line": 94,
+        "declaration_line": "pub fn d1(&self) -> &crate::linear_algebra::BasicMatrix<Q> {"
+      },
+      {
+        "kind": "fn",
+        "name": "weights",
+        "line": 97,
+        "declaration_line": "pub fn weights(&self) -> &[Q] {"
+      },
+      {
+        "kind": "fn",
+        "name": "rank_d0",
+        "line": 100,
+        "declaration_line": "pub fn rank_d0(&self) -> usize {"
+      },
+      {
+        "kind": "fn",
+        "name": "rank_d1",
+        "line": 103,
+        "declaration_line": "pub fn rank_d1(&self) -> usize {"
+      },
+      {
+        "kind": "fn",
+        "name": "dim_q1",
+        "line": 106,
+        "declaration_line": "pub fn dim_q1(&self) -> usize {"
+      },
+      {
+        "kind": "fn",
+        "name": "dim_h1",
+        "line": 109,
+        "declaration_line": "pub fn dim_h1(&self) -> Result<usize, HomologicalError> {"
+      }
+    ],
+    "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+    "requirements": [
+      {
+        "id": "G1",
+        "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+      },
+      {
+        "id": "G2",
+        "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+      },
+      {
+        "id": "G3",
+        "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+      },
+      {
+        "id": "G4",
+        "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+      },
+      {
+        "id": "G5",
+        "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+      }
+    ],
+    "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+    "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+    "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+    "open_obligations": [
+      "Complete source-to-requirement and downstream consumer review is outstanding.",
+      "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+      "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+    ],
+    "evidence": [
+      {
+        "path": "evidence/quality/l4a_six/20261020T074554Z/receipt.json",
+        "sha256": "2a8a7c24316de85ce0c26f04e751fb6ff1ec0ee635defde5c01d76eab3f3fdfd"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T074554Z/source_manifest.json",
+        "sha256": "4d8a488592e2c9166b812ac1188b34baeb4d97de07590f31bf5f006bad071626"
+      },
+      {
+        "path": "code/rust/quality/l4a_six/records.py",
+        "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+      },
+      {
+        "path": "code/rust/quality/l4a_six/specs.json",
+        "sha256": "8d5f25afe4e999b3a92c835b2910d2b81e6bd991b47abbe3ee2a204f1f363a09"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json",
+        "sha256": "f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json",
+        "sha256": "50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T074554Z/metrics.json",
+        "sha256": "a297bf450b9c7f0504e2fc3f3dc6589663d94a5e73dc2d5d6c03079645b97030"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json",
+        "sha256": "b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08"
+      },
+      {
+        "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/mutations.json",
+        "sha256": "00fa693c6f05422ed8b6be92780f5970691494e31b82ecaa20985a6a1e370860"
+      }
+    ]
+  },
+  "current_contract": "9c97b34bb8931bfa0b5987f16e41fec8dbbcd46b834fb089e78a8c7e7cec8d43",
+  "current_scoring": "5d6888dc5256fb986a90256e79ee4531517b8fc7e82a5e96484fc1576ff6253c",
+  "contract_history": [
+    {
+      "sha256": "9c97b34bb8931bfa0b5987f16e41fec8dbbcd46b834fb089e78a8c7e7cec8d43",
+      "bytes": 8018,
+      "record": {
+        "schema_version": "1.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/homology/mod.rs",
+          "sha256": "c0ba175d8ba651d229753766fe82dbf4c3fa9ae0441856f97e0945765ca6e2c8",
+          "language": "Rust"
+        },
+        "contract_urn": "urn:tfqm:contract:homology:mod.rs",
+        "status": "draft_requires_semantic_review",
+        "target": "L4A",
+        "profile": "Exact",
+        "purpose": "Finite rational chain/cochain data, admitted carriers and rank certificates.",
+        "subject_role": "Module/export facade; composition evidence does not raise this file's own capability.",
+        "compilation": {
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false
+        },
+        "declaration_index": [
+          {
+            "kind": "mod",
+            "name": "boundary",
+            "line": 10,
+            "declaration_line": "pub mod boundary;"
+          },
+          {
+            "kind": "mod",
+            "name": "carrier",
+            "line": 11,
+            "declaration_line": "pub mod carrier;"
+          },
+          {
+            "kind": "mod",
+            "name": "carrier_manifest",
+            "line": 12,
+            "declaration_line": "pub mod carrier_manifest;"
+          },
+          {
+            "kind": "mod",
+            "name": "chain",
+            "line": 13,
+            "declaration_line": "pub mod chain;"
+          },
+          {
+            "kind": "mod",
+            "name": "chain_complex",
+            "line": 14,
+            "declaration_line": "pub mod chain_complex;"
+          },
+          {
+            "kind": "mod",
+            "name": "coboundary",
+            "line": 15,
+            "declaration_line": "pub mod coboundary;"
+          },
+          {
+            "kind": "mod",
+            "name": "cochain",
+            "line": 16,
+            "declaration_line": "pub mod cochain;"
+          },
+          {
+            "kind": "mod",
+            "name": "cochain_complex",
+            "line": 17,
+            "declaration_line": "pub mod cochain_complex;"
+          },
+          {
+            "kind": "mod",
+            "name": "errors",
+            "line": 18,
+            "declaration_line": "pub mod errors;"
+          },
+          {
+            "kind": "mod",
+            "name": "exact_carrier",
+            "line": 19,
+            "declaration_line": "pub mod exact_carrier;"
+          },
+          {
+            "kind": "mod",
+            "name": "graded_vector",
+            "line": 21,
+            "declaration_line": "pub mod graded_vector;"
+          },
+          {
+            "kind": "mod",
+            "name": "hashing",
+            "line": 22,
+            "declaration_line": "pub mod hashing;"
+          },
+          {
+            "kind": "mod",
+            "name": "ids",
+            "line": 23,
+            "declaration_line": "pub mod ids;"
+          },
+          {
+            "kind": "mod",
+            "name": "rank_certificate",
+            "line": 24,
+            "declaration_line": "pub mod rank_certificate;"
+          },
+          {
+            "kind": "mod",
+            "name": "simplicial",
+            "line": 25,
+            "declaration_line": "pub mod simplicial;"
+          },
+          {
+            "kind": "mod",
+            "name": "witness",
+            "line": 26,
+            "declaration_line": "pub mod witness;"
+          },
+          {
+            "kind": "fn",
+            "name": "hash_exact_matrix",
+            "line": 35,
+            "declaration_line": "pub fn hash_exact_matrix(m: &ExactMatrix<Q>) -> Result<Hash256, HomologicalError> {"
+          },
+          {
+            "kind": "struct",
+            "name": "Carrier",
+            "line": 50,
+            "declaration_line": "pub struct Carrier {"
+          },
+          {
+            "kind": "fn",
+            "name": "new",
+            "line": 68,
+            "declaration_line": "pub fn new("
+          },
+          {
+            "kind": "fn",
+            "name": "c0_dim",
+            "line": 82,
+            "declaration_line": "pub fn c0_dim(&self) -> usize {"
+          },
+          {
+            "kind": "fn",
+            "name": "c1_dim",
+            "line": 85,
+            "declaration_line": "pub fn c1_dim(&self) -> usize {"
+          },
+          {
+            "kind": "fn",
+            "name": "c2_dim",
+            "line": 88,
+            "declaration_line": "pub fn c2_dim(&self) -> usize {"
+          },
+          {
+            "kind": "fn",
+            "name": "d0",
+            "line": 91,
+            "declaration_line": "pub fn d0(&self) -> &crate::linear_algebra::BasicMatrix<Q> {"
+          },
+          {
+            "kind": "fn",
+            "name": "d1",
+            "line": 94,
+            "declaration_line": "pub fn d1(&self) -> &crate::linear_algebra::BasicMatrix<Q> {"
+          },
+          {
+            "kind": "fn",
+            "name": "weights",
+            "line": 97,
+            "declaration_line": "pub fn weights(&self) -> &[Q] {"
+          },
+          {
+            "kind": "fn",
+            "name": "rank_d0",
+            "line": 100,
+            "declaration_line": "pub fn rank_d0(&self) -> usize {"
+          },
+          {
+            "kind": "fn",
+            "name": "rank_d1",
+            "line": 103,
+            "declaration_line": "pub fn rank_d1(&self) -> usize {"
+          },
+          {
+            "kind": "fn",
+            "name": "dim_q1",
+            "line": 106,
+            "declaration_line": "pub fn dim_q1(&self) -> usize {"
+          },
+          {
+            "kind": "fn",
+            "name": "dim_h1",
+            "line": 109,
+            "declaration_line": "pub fn dim_h1(&self) -> Result<usize, HomologicalError> {"
+          }
+        ],
+        "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+        "requirements": [
+          {
+            "id": "G1",
+            "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+          },
+          {
+            "id": "G2",
+            "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+          },
+          {
+            "id": "G3",
+            "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+          },
+          {
+            "id": "G4",
+            "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+          },
+          {
+            "id": "G5",
+            "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+          }
+        ],
+        "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+        "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+        "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+        "open_obligations": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+        ],
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/receipt.json",
+            "sha256": "2a8a7c24316de85ce0c26f04e751fb6ff1ec0ee635defde5c01d76eab3f3fdfd"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/source_manifest.json",
+            "sha256": "4d8a488592e2c9166b812ac1188b34baeb4d97de07590f31bf5f006bad071626"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "8d5f25afe4e999b3a92c835b2910d2b81e6bd991b47abbe3ee2a204f1f363a09"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json",
+            "sha256": "f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json",
+            "sha256": "50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/metrics.json",
+            "sha256": "a297bf450b9c7f0504e2fc3f3dc6589663d94a5e73dc2d5d6c03079645b97030"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json",
+            "sha256": "b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/mutations.json",
+            "sha256": "00fa693c6f05422ed8b6be92780f5970691494e31b82ecaa20985a6a1e370860"
+          }
+        ]
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/homology/mod.rs\",\n    \"sha256\": \"c0ba175d8ba651d229753766fe82dbf4c3fa9ae0441856f97e0945765ca6e2c8\",\n    \"language\": \"Rust\"\n  },\n  \"contract_urn\": \"urn:tfqm:contract:homology:mod.rs\",\n  \"status\": \"draft_requires_semantic_review\",\n  \"target\": \"L4A\",\n  \"profile\": \"Exact\",\n  \"purpose\": \"Finite rational chain/cochain data, admitted carriers and rank certificates.\",\n  \"subject_role\": \"Module/export facade; composition evidence does not raise this file's own capability.\",\n  \"compilation\": {\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false\n  },\n  \"declaration_index\": [\n    {\n      \"kind\": \"mod\",\n      \"name\": \"boundary\",\n      \"line\": 10,\n      \"declaration_line\": \"pub mod boundary;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"carrier\",\n      \"line\": 11,\n      \"declaration_line\": \"pub mod carrier;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"carrier_manifest\",\n      \"line\": 12,\n      \"declaration_line\": \"pub mod carrier_manifest;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"chain\",\n      \"line\": 13,\n      \"declaration_line\": \"pub mod chain;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"chain_complex\",\n      \"line\": 14,\n      \"declaration_line\": \"pub mod chain_complex;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"coboundary\",\n      \"line\": 15,\n      \"declaration_line\": \"pub mod coboundary;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"cochain\",\n      \"line\": 16,\n      \"declaration_line\": \"pub mod cochain;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"cochain_complex\",\n      \"line\": 17,\n      \"declaration_line\": \"pub mod cochain_complex;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"errors\",\n      \"line\": 18,\n      \"declaration_line\": \"pub mod errors;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"exact_carrier\",\n      \"line\": 19,\n      \"declaration_line\": \"pub mod exact_carrier;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"graded_vector\",\n      \"line\": 21,\n      \"declaration_line\": \"pub mod graded_vector;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"hashing\",\n      \"line\": 22,\n      \"declaration_line\": \"pub mod hashing;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"ids\",\n      \"line\": 23,\n      \"declaration_line\": \"pub mod ids;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"rank_certificate\",\n      \"line\": 24,\n      \"declaration_line\": \"pub mod rank_certificate;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"simplicial\",\n      \"line\": 25,\n      \"declaration_line\": \"pub mod simplicial;\"\n    },\n    {\n      \"kind\": \"mod\",\n      \"name\": \"witness\",\n      \"line\": 26,\n      \"declaration_line\": \"pub mod witness;\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"hash_exact_matrix\",\n      \"line\": 35,\n      \"declaration_line\": \"pub fn hash_exact_matrix(m: &ExactMatrix<Q>) -> Result<Hash256, HomologicalError> {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"Carrier\",\n      \"line\": 50,\n      \"declaration_line\": \"pub struct Carrier {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"new\",\n      \"line\": 68,\n      \"declaration_line\": \"pub fn new(\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"c0_dim\",\n      \"line\": 82,\n      \"declaration_line\": \"pub fn c0_dim(&self) -> usize {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"c1_dim\",\n      \"line\": 85,\n      \"declaration_line\": \"pub fn c1_dim(&self) -> usize {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"c2_dim\",\n      \"line\": 88,\n      \"declaration_line\": \"pub fn c2_dim(&self) -> usize {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"d0\",\n      \"line\": 91,\n      \"declaration_line\": \"pub fn d0(&self) -> &crate::linear_algebra::BasicMatrix<Q> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"d1\",\n      \"line\": 94,\n      \"declaration_line\": \"pub fn d1(&self) -> &crate::linear_algebra::BasicMatrix<Q> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"weights\",\n      \"line\": 97,\n      \"declaration_line\": \"pub fn weights(&self) -> &[Q] {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"rank_d0\",\n      \"line\": 100,\n      \"declaration_line\": \"pub fn rank_d0(&self) -> usize {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"rank_d1\",\n      \"line\": 103,\n      \"declaration_line\": \"pub fn rank_d1(&self) -> usize {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"dim_q1\",\n      \"line\": 106,\n      \"declaration_line\": \"pub fn dim_q1(&self) -> usize {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"dim_h1\",\n      \"line\": 109,\n      \"declaration_line\": \"pub fn dim_h1(&self) -> Result<usize, HomologicalError> {\"\n    }\n  ],\n  \"declaration_index_scope\": \"Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.\",\n  \"requirements\": [\n    {\n      \"id\": \"G1\",\n      \"requirement\": \"Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries.\"\n    },\n    {\n      \"id\": \"G2\",\n      \"requirement\": \"Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path.\"\n    },\n    {\n      \"id\": \"G3\",\n      \"requirement\": \"Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions.\"\n    },\n    {\n      \"id\": \"G4\",\n      \"requirement\": \"Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A.\"\n    },\n    {\n      \"id\": \"G5\",\n      \"requirement\": \"Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately.\"\n    }\n  ],\n  \"admission_policy\": \"Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.\",\n  \"resource_boundary\": \"No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.\",\n  \"authority_ceiling\": \"Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.\",\n  \"open_obligations\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/receipt.json\",\n      \"sha256\": \"2a8a7c24316de85ce0c26f04e751fb6ff1ec0ee635defde5c01d76eab3f3fdfd\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/source_manifest.json\",\n      \"sha256\": \"4d8a488592e2c9166b812ac1188b34baeb4d97de07590f31bf5f006bad071626\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"8d5f25afe4e999b3a92c835b2910d2b81e6bd991b47abbe3ee2a204f1f363a09\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json\",\n      \"sha256\": \"f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json\",\n      \"sha256\": \"50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/metrics.json\",\n      \"sha256\": \"a297bf450b9c7f0504e2fc3f3dc6589663d94a5e73dc2d5d6c03079645b97030\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json\",\n      \"sha256\": \"b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/mutations.json\",\n      \"sha256\": \"00fa693c6f05422ed8b6be92780f5970691494e31b82ecaa20985a6a1e370860\"\n    }\n  ]\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_six/20261020T104119Z-scalar-activation/previous_assessment/code/rust/src/homology/mod.rs.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "5d6888dc5256fb986a90256e79ee4531517b8fc7e82a5e96484fc1576ff6253c",
+      "bytes": 8572,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/homology/mod.rs",
+          "sha256": "c0ba175d8ba651d229753766fe82dbf4c3fa9ae0441856f97e0945765ca6e2c8",
+          "language": "Rust"
+        },
+        "profile": "Exact",
+        "level": "L1",
+        "level_basis": "Module/export facade; composition evidence does not raise this file's own capability.",
+        "engineering_target": "A",
+        "requested_target": "L4A",
+        "gates": {
+          "G1": null,
+          "G2": null,
+          "G3": null,
+          "G4": null,
+          "G5": null
+        },
+        "composite_grade": null,
+        "score_token": null,
+        "is_complete": false,
+        "grade_ceiling": "A",
+        "evaluation_timestamp": "2026-10-20T08:25:06.744531+00:00",
+        "grade_ceiling_basis": "Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.",
+        "contract": {
+          "path": "code/rust/src/homology/mod.rs.contract.yaml",
+          "status": "draft_requires_semantic_review",
+          "sha256": "9c97b34bb8931bfa0b5987f16e41fec8dbbcd46b834fb089e78a8c7e7cec8d43"
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/receipt.json",
+            "sha256": "2a8a7c24316de85ce0c26f04e751fb6ff1ec0ee635defde5c01d76eab3f3fdfd"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/source_manifest.json",
+            "sha256": "4d8a488592e2c9166b812ac1188b34baeb4d97de07590f31bf5f006bad071626"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/records.py",
+            "sha256": "5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68"
+          },
+          {
+            "path": "code/rust/quality/l4a_six/specs.json",
+            "sha256": "8d5f25afe4e999b3a92c835b2910d2b81e6bd991b47abbe3ee2a204f1f363a09"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json",
+            "sha256": "f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json",
+            "sha256": "50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074554Z/metrics.json",
+            "sha256": "a297bf450b9c7f0504e2fc3f3dc6589663d94a5e73dc2d5d6c03079645b97030"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json",
+            "sha256": "b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08"
+          },
+          {
+            "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/mutations.json",
+            "sha256": "00fa693c6f05422ed8b6be92780f5970691494e31b82ecaa20985a6a1e370860"
+          }
+        ],
+        "verification": {
+          "baseline": {
+            "command": [
+              "cargo",
+              "test",
+              "--offline",
+              "--target-dir",
+              "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T074603Z-mutations\\build",
+              "--quiet",
+              "-p",
+              "tfqm_homology_linear_audit"
+            ],
+            "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-six\\20261020T074603Z-mutations",
+            "disk_observation": {
+              "completed_cache_file_bytes": 525664573,
+              "free_after": 3149668352,
+              "free_before": 3291734016,
+              "scope": "Endpoint observations only; not a peak-space or external-activity guarantee."
+            },
+            "elapsed_seconds": 68.359,
+            "environment": {
+              "CARGO_BUILD_JOBS": "2",
+              "CARGO_INCREMENTAL": "0"
+            },
+            "exit_code": 0,
+            "log": "evidence/quality/l4a_six/20261020T074603Z-mutations/tfqm_homology_linear_audit-baseline.log",
+            "log_sha256": "0b515dcdb44dd59f635362bb29e0fed1affba3f1e0841291e15b6f7e66ed7a2a",
+            "package": "tfqm_homology_linear_audit",
+            "timed_out": false
+          },
+          "sources_unchanged": true,
+          "doctests": [],
+          "composition_runs": [],
+          "differential_controls": [],
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false,
+          "dependency_sources_unchanged": true,
+          "compiled_scope": "Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.",
+          "designated_mutations": [],
+          "designated_challenges_present": true,
+          "linked_challenges": {},
+          "mutation_campaign": {
+            "path": "evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json",
+            "sha256": "b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08"
+          },
+          "mutation_restoration_baselines_ok": null,
+          "reproduced_defects": []
+        },
+        "mutation_accounting": {
+          "killed": 0,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": null
+        },
+        "structure": {
+          "tool": "syn source AST (see pinned metric_tool_sources in receipt)",
+          "functions": [
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 35,
+              "name": "hash_exact_matrix",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 0,
+              "line": 68,
+              "name": "new",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 82,
+              "name": "c0_dim",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 85,
+              "name": "c1_dim",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 88,
+              "name": "c2_dim",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 91,
+              "name": "d0",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 94,
+              "name": "d1",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 97,
+              "name": "weights",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 100,
+              "name": "rank_d0",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 103,
+              "name": "rank_d1",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 106,
+              "name": "dim_q1",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 109,
+              "name": "dim_h1",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 115,
+              "name": "as_ref",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 3,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 122,
+              "name": "try_from",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 139,
+              "name": "serialize",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 5,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 148,
+              "name": "try_from",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 162,
+              "name": "verify_hash",
+              "opaque_macros": []
+            }
+          ],
+          "exceeding_A": [],
+          "metric_ceiling": "A",
+          "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
+        },
+        "open_findings": [
+          "Complete source-to-requirement and downstream consumer review is outstanding.",
+          "Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.",
+          "Fresh baseline execution alone does not establish independent challenge or mutation adequacy."
+        ],
+        "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts."
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/homology/mod.rs\",\n    \"sha256\": \"c0ba175d8ba651d229753766fe82dbf4c3fa9ae0441856f97e0945765ca6e2c8\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"level\": \"L1\",\n  \"level_basis\": \"Module/export facade; composition evidence does not raise this file's own capability.\",\n  \"engineering_target\": \"A\",\n  \"requested_target\": \"L4A\",\n  \"gates\": {\n    \"G1\": null,\n    \"G2\": null,\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"composite_grade\": null,\n  \"score_token\": null,\n  \"is_complete\": false,\n  \"grade_ceiling\": \"A\",\n  \"evaluation_timestamp\": \"2026-10-20T08:25:06.744531+00:00\",\n  \"grade_ceiling_basis\": \"Conservative source-metric eligibility ceiling; cognitive values are upper bounds, not demonstrated semantic failures.\",\n  \"contract\": {\n    \"path\": \"code/rust/src/homology/mod.rs.contract.yaml\",\n    \"status\": \"draft_requires_semantic_review\",\n    \"sha256\": \"9c97b34bb8931bfa0b5987f16e41fec8dbbcd46b834fb089e78a8c7e7cec8d43\"\n  },\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/receipt.json\",\n      \"sha256\": \"2a8a7c24316de85ce0c26f04e751fb6ff1ec0ee635defde5c01d76eab3f3fdfd\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/source_manifest.json\",\n      \"sha256\": \"4d8a488592e2c9166b812ac1188b34baeb4d97de07590f31bf5f006bad071626\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/records.py\",\n      \"sha256\": \"5e91b9742dd0c6bdd78fe5a0d957ebd0ec982accaa10634c35349413a6077a68\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_six/specs.json\",\n      \"sha256\": \"8d5f25afe4e999b3a92c835b2910d2b81e6bd991b47abbe3ee2a204f1f363a09\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074614Z-native-scalar-control/receipt.json\",\n      \"sha256\": \"f4b0d811fa8b495e9d8dbaee917da40fafa40de1996e86507b41a0328c3893e6\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T082506Z-native-matrix-control/receipt.json\",\n      \"sha256\": \"50929dba2aa4dc19355007d832fada1a05aa29bcbd6add0efacf88cad84c95c4\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074554Z/metrics.json\",\n      \"sha256\": \"a297bf450b9c7f0504e2fc3f3dc6589663d94a5e73dc2d5d6c03079645b97030\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json\",\n      \"sha256\": \"b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/mutations.json\",\n      \"sha256\": \"00fa693c6f05422ed8b6be92780f5970691494e31b82ecaa20985a6a1e370860\"\n    }\n  ],\n  \"verification\": {\n    \"baseline\": {\n      \"command\": [\n        \"cargo\",\n        \"test\",\n        \"--offline\",\n        \"--target-dir\",\n        \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-six\\\\20261020T074603Z-mutations\\\\build\",\n        \"--quiet\",\n        \"-p\",\n        \"tfqm_homology_linear_audit\"\n      ],\n      \"cwd\": \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-six\\\\20261020T074603Z-mutations\",\n      \"disk_observation\": {\n        \"completed_cache_file_bytes\": 525664573,\n        \"free_after\": 3149668352,\n        \"free_before\": 3291734016,\n        \"scope\": \"Endpoint observations only; not a peak-space or external-activity guarantee.\"\n      },\n      \"elapsed_seconds\": 68.359,\n      \"environment\": {\n        \"CARGO_BUILD_JOBS\": \"2\",\n        \"CARGO_INCREMENTAL\": \"0\"\n      },\n      \"exit_code\": 0,\n      \"log\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/tfqm_homology_linear_audit-baseline.log\",\n      \"log_sha256\": \"0b515dcdb44dd59f635362bb29e0fed1affba3f1e0841291e15b6f7e66ed7a2a\",\n      \"package\": \"tfqm_homology_linear_audit\",\n      \"timed_out\": false\n    },\n    \"sources_unchanged\": true,\n    \"doctests\": [],\n    \"composition_runs\": [],\n    \"differential_controls\": [],\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false,\n    \"dependency_sources_unchanged\": true,\n    \"compiled_scope\": \"Package unit/integration tests, plus separately listed doctests or doctests in a default Cargo-test campaign baseline. Compatibility mod.rs targets require separate review.\",\n    \"designated_mutations\": [],\n    \"designated_challenges_present\": true,\n    \"linked_challenges\": {},\n    \"mutation_campaign\": {\n      \"path\": \"evidence/quality/l4a_six/20261020T074603Z-mutations/receipt.json\",\n      \"sha256\": \"b8e3ee1012907d0af4afb185e289b04285bb317fc18886bbe9abf44da861fd08\"\n    },\n    \"mutation_restoration_baselines_ok\": null,\n    \"reproduced_defects\": []\n  },\n  \"mutation_accounting\": {\n    \"killed\": 0,\n    \"survived\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"unrun\": 0,\n    \"conservative_ratio\": null\n  },\n  \"structure\": {\n    \"tool\": \"syn source AST (see pinned metric_tool_sources in receipt)\",\n    \"functions\": [\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 35,\n        \"name\": \"hash_exact_matrix\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 0,\n        \"line\": 68,\n        \"name\": \"new\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 82,\n        \"name\": \"c0_dim\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 85,\n        \"name\": \"c1_dim\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 88,\n        \"name\": \"c2_dim\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 91,\n        \"name\": \"d0\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 94,\n        \"name\": \"d1\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 97,\n        \"name\": \"weights\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 100,\n        \"name\": \"rank_d0\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 103,\n        \"name\": \"rank_d1\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 106,\n        \"name\": \"dim_q1\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 109,\n        \"name\": \"dim_h1\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 115,\n        \"name\": \"as_ref\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 3,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 122,\n        \"name\": \"try_from\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 139,\n        \"name\": \"serialize\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 5,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 148,\n        \"name\": \"try_from\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 162,\n        \"name\": \"verify_hash\",\n        \"opaque_macros\": []\n      }\n    ],\n    \"exceeding_A\": [],\n    \"metric_ceiling\": \"A\",\n    \"scope\": \"Explicit source bodies only; opaque macros and compiler expansion remain unassessed.\"\n  },\n  \"open_findings\": [\n    \"Complete source-to-requirement and downstream consumer review is outstanding.\",\n    \"Domain admission, construction/deserialization paths, panic freedom and dependency trust require individual review.\",\n    \"Fresh baseline execution alone does not establish independent challenge or mutation adequacy.\"\n  ],\n  \"evaluation_timestamp_basis\": \"Start of the latest bound assessment execution; execution durations are recorded in receipts.\"\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_six/20261020T104119Z-scalar-activation/previous_assessment/code/rust/src/homology/mod.rs.scoring.yaml"
+      ]
+    }
+  ],
+  "legacy_paths": {
+    "evidence/quality/l4a_six/20261020T104119Z-scalar-activation/previous_assessment/code/rust/src/homology/mod.rs.contract.yaml": "9c97b34bb8931bfa0b5987f16e41fec8dbbcd46b834fb089e78a8c7e7cec8d43",
+    "evidence/quality/l4a_six/20261020T104119Z-scalar-activation/previous_assessment/code/rust/src/homology/mod.rs.scoring.yaml": "5d6888dc5256fb986a90256e79ee4531517b8fc7e82a5e96484fc1576ff6253c"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

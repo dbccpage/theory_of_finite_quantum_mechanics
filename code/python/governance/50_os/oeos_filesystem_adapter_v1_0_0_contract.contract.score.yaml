@@ -1,0 +1,297 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/50_os/oeos_filesystem_adapter_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:oeos:filesystem_adapter:v1.0.0",
+    "title": "Filesystem Host Adapter",
+    "kind": "host_contract",
+    "status": "proposed",
+    "layer": "09_host",
+    "role": "FileSystemAdapter",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "RequirementsOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [
+          "urn:omega:oeos:capability_guard:v1.0.0"
+        ],
+        "proof_obligations": [
+          {
+            "id": "FS-INV-001",
+            "statement": "Every operation is scoped to an exact configured root and a matching host capability.",
+            "verification_status": "open"
+          },
+          {
+            "id": "FS-INV-002",
+            "statement": "Static symlink, junction, dangling redirect, and lexical path-escape checks fail closed.",
+            "verification_status": "open"
+          },
+          {
+            "id": "FS-INV-003",
+            "statement": "Atomic write claims are limited to the declared filesystem and platform profile.",
+            "verification_status": "open"
+          },
+          {
+            "id": "FS-INV-004",
+            "statement": "Short reads and writes are handled by checked bounded loops rather than one-call assumptions.",
+            "verification_status": "open"
+          }
+        ]
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": [
+          "FILESYSTEM_ATOMICITY_REFUSED",
+          "FILESYSTEM_BOUNDS_REFUSED",
+          "FILESYSTEM_REDIRECT_REFUSED",
+          "FILESYSTEM_SHORT_IO_REFUSED"
+        ]
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "abstract": false,
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0",
+        "urn:omega:constitution:base_host_contract:v1.0.0"
+      ]
+    },
+    "requirements": {
+      "inputs": [
+        {
+          "name": "scoped_path_request",
+          "type": "urn:omega:oeos:type:scoped_path_request:v1.0.0",
+          "required": true
+        }
+      ],
+      "outputs": [
+        {
+          "name": "filesystem_operation_result",
+          "type": "urn:omega:oeos:type:filesystem_result:v1.0.0",
+          "required": true
+        }
+      ],
+      "typed_refusals": [
+        "FILESYSTEM_ATOMICITY_REFUSED",
+        "FILESYSTEM_BOUNDS_REFUSED",
+        "FILESYSTEM_REDIRECT_REFUSED",
+        "FILESYSTEM_SHORT_IO_REFUSED"
+      ],
+      "platform_requirements": [
+        {
+          "profile": "windows_filesystem",
+          "requirements": [
+            "junction_and_reparse_point_static_checks",
+            "replace_semantics_declared",
+            "windows_acl_profile_declared"
+          ],
+          "verification_status": "requirements_only"
+        },
+        {
+          "profile": "posix_filesystem",
+          "requirements": [
+            "symlink_static_checks",
+            "rename_and_fsync_semantics_declared",
+            "posix_mode_profile_declared"
+          ],
+          "verification_status": "requirements_only"
+        }
+      ],
+      "evidence_ceiling": "RequirementsOnly"
+    },
+    "doctrine": {
+      "summary": "Declares bounded filesystem effects beneath inward-facing ports without claiming universal atomicity.",
+      "non_role": [
+        "path_policy_authorship",
+        "domain_file_interpretation",
+        "trace_authority"
+      ],
+      "nonclaims": [
+        "does_not_create_mathematical_facts_or_witnesses",
+        "does_not_issue_action_licenses",
+        "does_not_authorize_engine_state_transitions",
+        "static_redirect_checks_do_not_establish_general_toctou_safety",
+        "atomicity_is_not_claimed_across_filesystems_or_platforms"
+      ],
+      "invariants": [
+        "path_scope_is_checked_before_each_operation",
+        "partial_io_never_returns_as_complete"
+      ],
+      "allowed_operations": [
+        "read_bounded_bytes",
+        "write_bytes_under_declared_atomic_profile",
+        "create_scoped_directory"
+      ],
+      "forbidden_operations": [
+        "escape_configured_root",
+        "follow_undeclared_redirect",
+        "report_partial_write_as_complete"
+      ]
+    }
+  },
+  "current_contract": "7b1d7bfa0b72f5bcf7cafa966cdf40cf1296851f8fb23f5241d7fb24aec6333f",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "7b1d7bfa0b72f5bcf7cafa966cdf40cf1296851f8fb23f5241d7fb24aec6333f",
+      "bytes": 3212,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:oeos:filesystem_adapter:v1.0.0",
+        "title": "Filesystem Host Adapter",
+        "kind": "host_contract",
+        "status": "proposed",
+        "layer": "09_host",
+        "role": "FileSystemAdapter",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "RequirementsOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [
+              "urn:omega:oeos:capability_guard:v1.0.0"
+            ],
+            "proof_obligations": [
+              {
+                "id": "FS-INV-001",
+                "statement": "Every operation is scoped to an exact configured root and a matching host capability.",
+                "verification_status": "open"
+              },
+              {
+                "id": "FS-INV-002",
+                "statement": "Static symlink, junction, dangling redirect, and lexical path-escape checks fail closed.",
+                "verification_status": "open"
+              },
+              {
+                "id": "FS-INV-003",
+                "statement": "Atomic write claims are limited to the declared filesystem and platform profile.",
+                "verification_status": "open"
+              },
+              {
+                "id": "FS-INV-004",
+                "statement": "Short reads and writes are handled by checked bounded loops rather than one-call assumptions.",
+                "verification_status": "open"
+              }
+            ]
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": [
+              "FILESYSTEM_ATOMICITY_REFUSED",
+              "FILESYSTEM_BOUNDS_REFUSED",
+              "FILESYSTEM_REDIRECT_REFUSED",
+              "FILESYSTEM_SHORT_IO_REFUSED"
+            ]
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "abstract": false,
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0",
+            "urn:omega:constitution:base_host_contract:v1.0.0"
+          ]
+        },
+        "requirements": {
+          "inputs": [
+            {
+              "name": "scoped_path_request",
+              "type": "urn:omega:oeos:type:scoped_path_request:v1.0.0",
+              "required": true
+            }
+          ],
+          "outputs": [
+            {
+              "name": "filesystem_operation_result",
+              "type": "urn:omega:oeos:type:filesystem_result:v1.0.0",
+              "required": true
+            }
+          ],
+          "typed_refusals": [
+            "FILESYSTEM_ATOMICITY_REFUSED",
+            "FILESYSTEM_BOUNDS_REFUSED",
+            "FILESYSTEM_REDIRECT_REFUSED",
+            "FILESYSTEM_SHORT_IO_REFUSED"
+          ],
+          "platform_requirements": [
+            {
+              "profile": "windows_filesystem",
+              "requirements": [
+                "junction_and_reparse_point_static_checks",
+                "replace_semantics_declared",
+                "windows_acl_profile_declared"
+              ],
+              "verification_status": "requirements_only"
+            },
+            {
+              "profile": "posix_filesystem",
+              "requirements": [
+                "symlink_static_checks",
+                "rename_and_fsync_semantics_declared",
+                "posix_mode_profile_declared"
+              ],
+              "verification_status": "requirements_only"
+            }
+          ],
+          "evidence_ceiling": "RequirementsOnly"
+        },
+        "doctrine": {
+          "summary": "Declares bounded filesystem effects beneath inward-facing ports without claiming universal atomicity.",
+          "non_role": [
+            "path_policy_authorship",
+            "domain_file_interpretation",
+            "trace_authority"
+          ],
+          "nonclaims": [
+            "does_not_create_mathematical_facts_or_witnesses",
+            "does_not_issue_action_licenses",
+            "does_not_authorize_engine_state_transitions",
+            "static_redirect_checks_do_not_establish_general_toctou_safety",
+            "atomicity_is_not_claimed_across_filesystems_or_platforms"
+          ],
+          "invariants": [
+            "path_scope_is_checked_before_each_operation",
+            "partial_io_never_returns_as_complete"
+          ],
+          "allowed_operations": [
+            "read_bounded_bytes",
+            "write_bytes_under_declared_atomic_profile",
+            "create_scoped_directory"
+          ],
+          "forbidden_operations": [
+            "escape_configured_root",
+            "follow_undeclared_redirect",
+            "report_partial_write_as_complete"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:oeos:filesystem_adapter:v1.0.0\ntitle: Filesystem Host Adapter\nkind: host_contract\nstatus: proposed\nlayer: 09_host\nrole: FileSystemAdapter\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: RequirementsOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts:\n    - urn:omega:oeos:capability_guard:v1.0.0\n    proof_obligations:\n    - id: FS-INV-001\n      statement: Every operation is scoped to an exact configured root and a matching\n        host capability.\n      verification_status: open\n    - id: FS-INV-002\n      statement: Static symlink, junction, dangling redirect, and lexical path-escape\n        checks fail closed.\n      verification_status: open\n    - id: FS-INV-003\n      statement: Atomic write claims are limited to the declared filesystem and platform\n        profile.\n      verification_status: open\n    - id: FS-INV-004\n      statement: Short reads and writes are handled by checked bounded loops rather\n        than one-call assumptions.\n      verification_status: open\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit:\n    - FILESYSTEM_ATOMICITY_REFUSED\n    - FILESYSTEM_BOUNDS_REFUSED\n    - FILESYSTEM_REDIRECT_REFUSED\n    - FILESYSTEM_SHORT_IO_REFUSED\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  abstract: false\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n  - urn:omega:constitution:base_host_contract:v1.0.0\nrequirements:\n  inputs:\n  - name: scoped_path_request\n    type: urn:omega:oeos:type:scoped_path_request:v1.0.0\n    required: true\n  outputs:\n  - name: filesystem_operation_result\n    type: urn:omega:oeos:type:filesystem_result:v1.0.0\n    required: true\n  typed_refusals:\n  - FILESYSTEM_ATOMICITY_REFUSED\n  - FILESYSTEM_BOUNDS_REFUSED\n  - FILESYSTEM_REDIRECT_REFUSED\n  - FILESYSTEM_SHORT_IO_REFUSED\n  platform_requirements:\n  - profile: windows_filesystem\n    requirements:\n    - junction_and_reparse_point_static_checks\n    - replace_semantics_declared\n    - windows_acl_profile_declared\n    verification_status: requirements_only\n  - profile: posix_filesystem\n    requirements:\n    - symlink_static_checks\n    - rename_and_fsync_semantics_declared\n    - posix_mode_profile_declared\n    verification_status: requirements_only\n  evidence_ceiling: RequirementsOnly\ndoctrine:\n  summary: Declares bounded filesystem effects beneath inward-facing ports without\n    claiming universal atomicity.\n  non_role:\n  - path_policy_authorship\n  - domain_file_interpretation\n  - trace_authority\n  nonclaims:\n  - does_not_create_mathematical_facts_or_witnesses\n  - does_not_issue_action_licenses\n  - does_not_authorize_engine_state_transitions\n  - static_redirect_checks_do_not_establish_general_toctou_safety\n  - atomicity_is_not_claimed_across_filesystems_or_platforms\n  invariants:\n  - path_scope_is_checked_before_each_operation\n  - partial_io_never_returns_as_complete\n  allowed_operations:\n  - read_bounded_bytes\n  - write_bytes_under_declared_atomic_profile\n  - create_scoped_directory\n  forbidden_operations:\n  - escape_configured_root\n  - follow_undeclared_redirect\n  - report_partial_write_as_complete\n",
+      "original_paths": [
+        "code/python/governance/50_os/oeos_filesystem_adapter_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/50_os/oeos_filesystem_adapter_v1_0_0.contract.yaml": "7b1d7bfa0b72f5bcf7cafa966cdf40cf1296851f8fb23f5241d7fb24aec6333f"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

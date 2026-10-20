@@ -1,0 +1,859 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": null,
+  "contract": {
+    "schema_version": "1.0.0",
+    "AuthorityEffect": "None",
+    "artifact": {
+      "path": "code/rust/src/number_theory/binary_field.rs",
+      "sha256": "24187b7f5f2feb4dd793af6a4679acc6c8706d5d0953096ace442789122709f2",
+      "language": "Rust"
+    },
+    "contract_urn": "urn:tfqm:contract:number_theory:binary_field.rs",
+    "status": "individual_gate_review_L4A_complete",
+    "target": "L4A",
+    "profile": "Exact",
+    "purpose": "Finite fields, cyclotomic rings, exact rational arithmetic, modular arithmetic, quadratic forms, and Dirichlet character evaluations.",
+    "subject_role": "Individual source review: implements exact GF(2^k) arithmetic, fallible BinaryField::try_new construction, trace, symplectic trace, irreducible binary polynomial discovery, and binary Pauli line groups.",
+    "compilation": {
+      "disabled_by_cfg_any": false,
+      "test_or_support_file": false,
+      "compatibility_mirror_tree": false
+    },
+    "declaration_index": [
+      {
+        "kind": "enum",
+        "name": "BinaryFieldError",
+        "line": 5,
+        "declaration_line": "pub enum BinaryFieldError {"
+      },
+      {
+        "kind": "struct",
+        "name": "BinaryField",
+        "line": 21,
+        "declaration_line": "pub struct BinaryField {"
+      },
+      {
+        "kind": "fn",
+        "name": "try_new",
+        "line": 29,
+        "declaration_line": "pub fn try_new(degree: usize, modulus: usize) -> Result<Self, BinaryFieldError> {"
+      },
+      {
+        "kind": "fn",
+        "name": "new",
+        "line": 54,
+        "declaration_line": "pub fn new(degree: usize, modulus: usize) -> Self {"
+      },
+      {
+        "kind": "fn",
+        "name": "degree",
+        "line": 62,
+        "declaration_line": "pub fn degree(&self) -> usize {"
+      },
+      {
+        "kind": "fn",
+        "name": "modulus",
+        "line": 66,
+        "declaration_line": "pub fn modulus(&self) -> usize {"
+      },
+      {
+        "kind": "fn",
+        "name": "order",
+        "line": 70,
+        "declaration_line": "pub fn order(&self) -> usize {"
+      },
+      {
+        "kind": "fn",
+        "name": "elements",
+        "line": 74,
+        "declaration_line": "pub fn elements(&self) -> &[usize] {"
+      },
+      {
+        "kind": "fn",
+        "name": "add",
+        "line": 78,
+        "declaration_line": "pub fn add(&self, left: usize, right: usize) -> usize {"
+      },
+      {
+        "kind": "fn",
+        "name": "mul",
+        "line": 82,
+        "declaration_line": "pub fn mul(&self, mut left: usize, mut right: usize) -> usize {"
+      },
+      {
+        "kind": "fn",
+        "name": "square",
+        "line": 97,
+        "declaration_line": "pub fn square(&self, value: usize) -> usize {"
+      },
+      {
+        "kind": "fn",
+        "name": "trace",
+        "line": 101,
+        "declaration_line": "pub fn trace(&self, value: usize) -> usize {"
+      },
+      {
+        "kind": "fn",
+        "name": "symplectic_trace",
+        "line": 111,
+        "declaration_line": "pub fn symplectic_trace(&self, left: (usize, usize), right: (usize, usize)) -> usize {"
+      },
+      {
+        "kind": "fn",
+        "name": "find_irreducible_binary_polynomial",
+        "line": 118,
+        "declaration_line": "pub fn find_irreducible_binary_polynomial(degree: usize) -> Option<usize> {"
+      },
+      {
+        "kind": "fn",
+        "name": "binary_polynomial_coefficients",
+        "line": 166,
+        "declaration_line": "pub fn binary_polynomial_coefficients(poly: usize, degree: usize) -> Vec<usize> {"
+      },
+      {
+        "kind": "struct",
+        "name": "BinaryPauli",
+        "line": 171,
+        "declaration_line": "pub struct BinaryPauli {"
+      },
+      {
+        "kind": "fn",
+        "name": "identity",
+        "line": 178,
+        "declaration_line": "pub fn identity() -> Self {"
+      },
+      {
+        "kind": "fn",
+        "name": "hermitian",
+        "line": 186,
+        "declaration_line": "pub fn hermitian(field: &BinaryField, x: usize, z: usize) -> Self {"
+      },
+      {
+        "kind": "fn",
+        "name": "mul",
+        "line": 194,
+        "declaration_line": "pub fn mul(self, other: Self, field: &BinaryField) -> Self {"
+      },
+      {
+        "kind": "fn",
+        "name": "adjoint",
+        "line": 203,
+        "declaration_line": "pub fn adjoint(self, field: &BinaryField) -> Self {"
+      },
+      {
+        "kind": "fn",
+        "name": "is_vector_zero",
+        "line": 212,
+        "declaration_line": "pub fn is_vector_zero(self) -> bool {"
+      },
+      {
+        "kind": "fn",
+        "name": "build_line_group",
+        "line": 217,
+        "declaration_line": "pub fn build_line_group(field: &BinaryField, generators: &[BinaryPauli]) -> Vec<BinaryPauli> {"
+      }
+    ],
+    "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+    "requirements": [
+      {
+        "id": "G1",
+        "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+      },
+      {
+        "id": "G2",
+        "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+      },
+      {
+        "id": "G3",
+        "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+      },
+      {
+        "id": "G4",
+        "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+      },
+      {
+        "id": "G5",
+        "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+      }
+    ],
+    "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+    "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+    "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+    "open_obligations": [
+      "Scoped to binary extension degrees fitting within usize bit width."
+    ],
+    "evidence": [
+      {
+        "path": "evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json",
+        "sha256": "3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98"
+      },
+      {
+        "path": "evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json",
+        "sha256": "e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd"
+      },
+      {
+        "path": "code/rust/quality/l4a_qm_six/records.py",
+        "sha256": "0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706"
+      },
+      {
+        "path": "code/rust/quality/l4a_qm_six/specs.json",
+        "sha256": "bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12"
+      },
+      {
+        "path": "evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json",
+        "sha256": "929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758"
+      },
+      {
+        "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json",
+        "sha256": "9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78"
+      },
+      {
+        "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json",
+        "sha256": "90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a"
+      }
+    ],
+    "reviewed_specification": {
+      "status": "individual_gate_review_L4A_complete",
+      "capability_assessment": {
+        "source_sha256": "24187b7f5f2feb4dd793af6a4679acc6c8706d5d0953096ace442789122709f2",
+        "level": "L4",
+        "basis": "Individual source review: implements exact GF(2^k) arithmetic, fallible BinaryField::try_new construction, trace, symplectic trace, irreducible binary polynomial discovery, and binary Pauli line groups."
+      },
+      "purpose": "Provide exact finite-field GF(2^k) arithmetic and binary Pauli group operations.",
+      "open_obligations": [
+        "Scoped to binary extension degrees fitting within usize bit width."
+      ],
+      "engineering_assessment": {
+        "source_sha256": "24187b7f5f2feb4dd793af6a4679acc6c8706d5d0953096ace442789122709f2",
+        "gates": {
+          "G1": {
+            "grade": "A",
+            "basis": "Clear algebraic contract for GF(2^k) addition, multiplication, Frobenius trace, and binary Pauli multiplication."
+          },
+          "G2": {
+            "grade": "A",
+            "basis": "Exact polynomial bit-arithmetic modulo verified irreducible binary moduli preserves field and Pauli involutive laws."
+          },
+          "G3": {
+            "grade": "A",
+            "basis": "BinaryField::try_new validates degree bounds, polynomial degree matching, irreducibility, and order overflow via typed Result<Self, BinaryFieldError>."
+          },
+          "G4": {
+            "grade": "A",
+            "basis": "Exhaustive inverse/involution and negative refusal unit tests plus designated mutations NT01-binary-field-add and NT02-binary-field-mul (R = 1.0)."
+          },
+          "G5": {
+            "grade": "A",
+            "basis": "All explicit source functions satisfy Grade A structural ceilings (CCN <= 10, cognitive <= 15, nesting <= 3)."
+          }
+        }
+      }
+    }
+  },
+  "current_contract": "ca98d0a1bfd64d2f2e8e3ae1b268e9652a9cfada2769c86aed757ac52f3f9474",
+  "current_scoring": "a63be07ad85dca43a30bf1f0e04c2506d358bb87e218c777368a9160e6f825d0",
+  "contract_history": [
+    {
+      "sha256": "ca98d0a1bfd64d2f2e8e3ae1b268e9652a9cfada2769c86aed757ac52f3f9474",
+      "bytes": 9107,
+      "record": {
+        "schema_version": "1.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/number_theory/binary_field.rs",
+          "sha256": "24187b7f5f2feb4dd793af6a4679acc6c8706d5d0953096ace442789122709f2",
+          "language": "Rust"
+        },
+        "contract_urn": "urn:tfqm:contract:number_theory:binary_field.rs",
+        "status": "individual_gate_review_L4A_complete",
+        "target": "L4A",
+        "profile": "Exact",
+        "purpose": "Finite fields, cyclotomic rings, exact rational arithmetic, modular arithmetic, quadratic forms, and Dirichlet character evaluations.",
+        "subject_role": "Individual source review: implements exact GF(2^k) arithmetic, fallible BinaryField::try_new construction, trace, symplectic trace, irreducible binary polynomial discovery, and binary Pauli line groups.",
+        "compilation": {
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false,
+          "compatibility_mirror_tree": false
+        },
+        "declaration_index": [
+          {
+            "kind": "enum",
+            "name": "BinaryFieldError",
+            "line": 5,
+            "declaration_line": "pub enum BinaryFieldError {"
+          },
+          {
+            "kind": "struct",
+            "name": "BinaryField",
+            "line": 21,
+            "declaration_line": "pub struct BinaryField {"
+          },
+          {
+            "kind": "fn",
+            "name": "try_new",
+            "line": 29,
+            "declaration_line": "pub fn try_new(degree: usize, modulus: usize) -> Result<Self, BinaryFieldError> {"
+          },
+          {
+            "kind": "fn",
+            "name": "new",
+            "line": 54,
+            "declaration_line": "pub fn new(degree: usize, modulus: usize) -> Self {"
+          },
+          {
+            "kind": "fn",
+            "name": "degree",
+            "line": 62,
+            "declaration_line": "pub fn degree(&self) -> usize {"
+          },
+          {
+            "kind": "fn",
+            "name": "modulus",
+            "line": 66,
+            "declaration_line": "pub fn modulus(&self) -> usize {"
+          },
+          {
+            "kind": "fn",
+            "name": "order",
+            "line": 70,
+            "declaration_line": "pub fn order(&self) -> usize {"
+          },
+          {
+            "kind": "fn",
+            "name": "elements",
+            "line": 74,
+            "declaration_line": "pub fn elements(&self) -> &[usize] {"
+          },
+          {
+            "kind": "fn",
+            "name": "add",
+            "line": 78,
+            "declaration_line": "pub fn add(&self, left: usize, right: usize) -> usize {"
+          },
+          {
+            "kind": "fn",
+            "name": "mul",
+            "line": 82,
+            "declaration_line": "pub fn mul(&self, mut left: usize, mut right: usize) -> usize {"
+          },
+          {
+            "kind": "fn",
+            "name": "square",
+            "line": 97,
+            "declaration_line": "pub fn square(&self, value: usize) -> usize {"
+          },
+          {
+            "kind": "fn",
+            "name": "trace",
+            "line": 101,
+            "declaration_line": "pub fn trace(&self, value: usize) -> usize {"
+          },
+          {
+            "kind": "fn",
+            "name": "symplectic_trace",
+            "line": 111,
+            "declaration_line": "pub fn symplectic_trace(&self, left: (usize, usize), right: (usize, usize)) -> usize {"
+          },
+          {
+            "kind": "fn",
+            "name": "find_irreducible_binary_polynomial",
+            "line": 118,
+            "declaration_line": "pub fn find_irreducible_binary_polynomial(degree: usize) -> Option<usize> {"
+          },
+          {
+            "kind": "fn",
+            "name": "binary_polynomial_coefficients",
+            "line": 166,
+            "declaration_line": "pub fn binary_polynomial_coefficients(poly: usize, degree: usize) -> Vec<usize> {"
+          },
+          {
+            "kind": "struct",
+            "name": "BinaryPauli",
+            "line": 171,
+            "declaration_line": "pub struct BinaryPauli {"
+          },
+          {
+            "kind": "fn",
+            "name": "identity",
+            "line": 178,
+            "declaration_line": "pub fn identity() -> Self {"
+          },
+          {
+            "kind": "fn",
+            "name": "hermitian",
+            "line": 186,
+            "declaration_line": "pub fn hermitian(field: &BinaryField, x: usize, z: usize) -> Self {"
+          },
+          {
+            "kind": "fn",
+            "name": "mul",
+            "line": 194,
+            "declaration_line": "pub fn mul(self, other: Self, field: &BinaryField) -> Self {"
+          },
+          {
+            "kind": "fn",
+            "name": "adjoint",
+            "line": 203,
+            "declaration_line": "pub fn adjoint(self, field: &BinaryField) -> Self {"
+          },
+          {
+            "kind": "fn",
+            "name": "is_vector_zero",
+            "line": 212,
+            "declaration_line": "pub fn is_vector_zero(self) -> bool {"
+          },
+          {
+            "kind": "fn",
+            "name": "build_line_group",
+            "line": 217,
+            "declaration_line": "pub fn build_line_group(field: &BinaryField, generators: &[BinaryPauli]) -> Vec<BinaryPauli> {"
+          }
+        ],
+        "declaration_index_scope": "Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.",
+        "requirements": [
+          {
+            "id": "G1",
+            "requirement": "Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries."
+          },
+          {
+            "id": "G2",
+            "requirement": "Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path."
+          },
+          {
+            "id": "G3",
+            "requirement": "Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions."
+          },
+          {
+            "id": "G4",
+            "requirement": "Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A."
+          },
+          {
+            "id": "G5",
+            "requirement": "Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately."
+          }
+        ],
+        "admission_policy": "Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.",
+        "resource_boundary": "No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.",
+        "authority_ceiling": "Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.",
+        "open_obligations": [
+          "Scoped to binary extension degrees fitting within usize bit width."
+        ],
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json",
+            "sha256": "3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json",
+            "sha256": "e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd"
+          },
+          {
+            "path": "code/rust/quality/l4a_qm_six/records.py",
+            "sha256": "0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706"
+          },
+          {
+            "path": "code/rust/quality/l4a_qm_six/specs.json",
+            "sha256": "bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json",
+            "sha256": "929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json",
+            "sha256": "9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json",
+            "sha256": "90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a"
+          }
+        ],
+        "reviewed_specification": {
+          "status": "individual_gate_review_L4A_complete",
+          "capability_assessment": {
+            "source_sha256": "24187b7f5f2feb4dd793af6a4679acc6c8706d5d0953096ace442789122709f2",
+            "level": "L4",
+            "basis": "Individual source review: implements exact GF(2^k) arithmetic, fallible BinaryField::try_new construction, trace, symplectic trace, irreducible binary polynomial discovery, and binary Pauli line groups."
+          },
+          "purpose": "Provide exact finite-field GF(2^k) arithmetic and binary Pauli group operations.",
+          "open_obligations": [
+            "Scoped to binary extension degrees fitting within usize bit width."
+          ],
+          "engineering_assessment": {
+            "source_sha256": "24187b7f5f2feb4dd793af6a4679acc6c8706d5d0953096ace442789122709f2",
+            "gates": {
+              "G1": {
+                "grade": "A",
+                "basis": "Clear algebraic contract for GF(2^k) addition, multiplication, Frobenius trace, and binary Pauli multiplication."
+              },
+              "G2": {
+                "grade": "A",
+                "basis": "Exact polynomial bit-arithmetic modulo verified irreducible binary moduli preserves field and Pauli involutive laws."
+              },
+              "G3": {
+                "grade": "A",
+                "basis": "BinaryField::try_new validates degree bounds, polynomial degree matching, irreducibility, and order overflow via typed Result<Self, BinaryFieldError>."
+              },
+              "G4": {
+                "grade": "A",
+                "basis": "Exhaustive inverse/involution and negative refusal unit tests plus designated mutations NT01-binary-field-add and NT02-binary-field-mul (R = 1.0)."
+              },
+              "G5": {
+                "grade": "A",
+                "basis": "All explicit source functions satisfy Grade A structural ceilings (CCN <= 10, cognitive <= 15, nesting <= 3)."
+              }
+            }
+          }
+        }
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"1.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/number_theory/binary_field.rs\",\n    \"sha256\": \"24187b7f5f2feb4dd793af6a4679acc6c8706d5d0953096ace442789122709f2\",\n    \"language\": \"Rust\"\n  },\n  \"contract_urn\": \"urn:tfqm:contract:number_theory:binary_field.rs\",\n  \"status\": \"individual_gate_review_L4A_complete\",\n  \"target\": \"L4A\",\n  \"profile\": \"Exact\",\n  \"purpose\": \"Finite fields, cyclotomic rings, exact rational arithmetic, modular arithmetic, quadratic forms, and Dirichlet character evaluations.\",\n  \"subject_role\": \"Individual source review: implements exact GF(2^k) arithmetic, fallible BinaryField::try_new construction, trace, symplectic trace, irreducible binary polynomial discovery, and binary Pauli line groups.\",\n  \"compilation\": {\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false,\n    \"compatibility_mirror_tree\": false\n  },\n  \"declaration_index\": [\n    {\n      \"kind\": \"enum\",\n      \"name\": \"BinaryFieldError\",\n      \"line\": 5,\n      \"declaration_line\": \"pub enum BinaryFieldError {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"BinaryField\",\n      \"line\": 21,\n      \"declaration_line\": \"pub struct BinaryField {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"try_new\",\n      \"line\": 29,\n      \"declaration_line\": \"pub fn try_new(degree: usize, modulus: usize) -> Result<Self, BinaryFieldError> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"new\",\n      \"line\": 54,\n      \"declaration_line\": \"pub fn new(degree: usize, modulus: usize) -> Self {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"degree\",\n      \"line\": 62,\n      \"declaration_line\": \"pub fn degree(&self) -> usize {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"modulus\",\n      \"line\": 66,\n      \"declaration_line\": \"pub fn modulus(&self) -> usize {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"order\",\n      \"line\": 70,\n      \"declaration_line\": \"pub fn order(&self) -> usize {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"elements\",\n      \"line\": 74,\n      \"declaration_line\": \"pub fn elements(&self) -> &[usize] {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"add\",\n      \"line\": 78,\n      \"declaration_line\": \"pub fn add(&self, left: usize, right: usize) -> usize {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"mul\",\n      \"line\": 82,\n      \"declaration_line\": \"pub fn mul(&self, mut left: usize, mut right: usize) -> usize {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"square\",\n      \"line\": 97,\n      \"declaration_line\": \"pub fn square(&self, value: usize) -> usize {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"trace\",\n      \"line\": 101,\n      \"declaration_line\": \"pub fn trace(&self, value: usize) -> usize {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"symplectic_trace\",\n      \"line\": 111,\n      \"declaration_line\": \"pub fn symplectic_trace(&self, left: (usize, usize), right: (usize, usize)) -> usize {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"find_irreducible_binary_polynomial\",\n      \"line\": 118,\n      \"declaration_line\": \"pub fn find_irreducible_binary_polynomial(degree: usize) -> Option<usize> {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"binary_polynomial_coefficients\",\n      \"line\": 166,\n      \"declaration_line\": \"pub fn binary_polynomial_coefficients(poly: usize, degree: usize) -> Vec<usize> {\"\n    },\n    {\n      \"kind\": \"struct\",\n      \"name\": \"BinaryPauli\",\n      \"line\": 171,\n      \"declaration_line\": \"pub struct BinaryPauli {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"identity\",\n      \"line\": 178,\n      \"declaration_line\": \"pub fn identity() -> Self {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"hermitian\",\n      \"line\": 186,\n      \"declaration_line\": \"pub fn hermitian(field: &BinaryField, x: usize, z: usize) -> Self {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"mul\",\n      \"line\": 194,\n      \"declaration_line\": \"pub fn mul(self, other: Self, field: &BinaryField) -> Self {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"adjoint\",\n      \"line\": 203,\n      \"declaration_line\": \"pub fn adjoint(self, field: &BinaryField) -> Self {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"is_vector_zero\",\n      \"line\": 212,\n      \"declaration_line\": \"pub fn is_vector_zero(self) -> bool {\"\n    },\n    {\n      \"kind\": \"fn\",\n      \"name\": \"build_line_group\",\n      \"line\": 217,\n      \"declaration_line\": \"pub fn build_line_group(field: &BinaryField, generators: &[BinaryPauli]) -> Vec<BinaryPauli> {\"\n    }\n  ],\n  \"declaration_index_scope\": \"Lexical line index only; signatures may span lines, include test/cfg items and omit macros/reexports.\",\n  \"requirements\": [\n    {\n      \"id\": \"G1\",\n      \"requirement\": \"Bind this source digest, declared symbols, actual claims, dependencies and consumer boundaries.\"\n    },\n    {\n      \"id\": \"G2\",\n      \"requirement\": \"Admit all public input domains; preserve exact arithmetic and declared algebraic laws on each successful path.\"\n    },\n    {\n      \"id\": \"G3\",\n      \"requirement\": \"Enumerate typed refusals and preserve state/invariants on every failure; justify all indexing and scalar preconditions.\"\n    },\n    {\n      \"id\": \"G4\",\n      \"requirement\": \"Challenge each declared critical failure class using an independent basis; retain all six mutation outcomes and require R >= 0.95 for A.\"\n    },\n    {\n      \"id\": \"G5\",\n      \"requirement\": \"Meet CCN <= 10, cognitive upper bound <= 15 and nesting <= 3; audit allocations and operational bounds separately.\"\n    }\n  ],\n  \"admission_policy\": \"Records with public fields or Deserialize are untrusted candidates until the specific validator admits them; a validator's name is not proof of completeness.\",\n  \"resource_boundary\": \"No process-OOM, bit-complexity, timeout or global memory guarantee is inferred from element/work counters.\",\n  \"authority_ceiling\": \"Runtime finite checks only. No formal theorem, physical derivation or authority promotion is certified.\",\n  \"open_obligations\": [\n    \"Scoped to binary extension degrees fitting within usize bit width.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json\",\n      \"sha256\": \"3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json\",\n      \"sha256\": \"e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/records.py\",\n      \"sha256\": \"0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/specs.json\",\n      \"sha256\": \"bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json\",\n      \"sha256\": \"929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json\",\n      \"sha256\": \"9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json\",\n      \"sha256\": \"90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a\"\n    }\n  ],\n  \"reviewed_specification\": {\n    \"status\": \"individual_gate_review_L4A_complete\",\n    \"capability_assessment\": {\n      \"source_sha256\": \"24187b7f5f2feb4dd793af6a4679acc6c8706d5d0953096ace442789122709f2\",\n      \"level\": \"L4\",\n      \"basis\": \"Individual source review: implements exact GF(2^k) arithmetic, fallible BinaryField::try_new construction, trace, symplectic trace, irreducible binary polynomial discovery, and binary Pauli line groups.\"\n    },\n    \"purpose\": \"Provide exact finite-field GF(2^k) arithmetic and binary Pauli group operations.\",\n    \"open_obligations\": [\n      \"Scoped to binary extension degrees fitting within usize bit width.\"\n    ],\n    \"engineering_assessment\": {\n      \"source_sha256\": \"24187b7f5f2feb4dd793af6a4679acc6c8706d5d0953096ace442789122709f2\",\n      \"gates\": {\n        \"G1\": {\n          \"grade\": \"A\",\n          \"basis\": \"Clear algebraic contract for GF(2^k) addition, multiplication, Frobenius trace, and binary Pauli multiplication.\"\n        },\n        \"G2\": {\n          \"grade\": \"A\",\n          \"basis\": \"Exact polynomial bit-arithmetic modulo verified irreducible binary moduli preserves field and Pauli involutive laws.\"\n        },\n        \"G3\": {\n          \"grade\": \"A\",\n          \"basis\": \"BinaryField::try_new validates degree bounds, polynomial degree matching, irreducibility, and order overflow via typed Result<Self, BinaryFieldError>.\"\n        },\n        \"G4\": {\n          \"grade\": \"A\",\n          \"basis\": \"Exhaustive inverse/involution and negative refusal unit tests plus designated mutations NT01-binary-field-add and NT02-binary-field-mul (R = 1.0).\"\n        },\n        \"G5\": {\n          \"grade\": \"A\",\n          \"basis\": \"All explicit source functions satisfy Grade A structural ceilings (CCN <= 10, cognitive <= 15, nesting <= 3).\"\n        }\n      }\n    }\n  }\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_qm_six/recovery/original-inputs/code/rust/src/number_theory/binary_field.rs.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [
+    {
+      "sha256": "a63be07ad85dca43a30bf1f0e04c2506d358bb87e218c777368a9160e6f825d0",
+      "bytes": 9700,
+      "record": {
+        "schema_version": "2.0.0",
+        "AuthorityEffect": "None",
+        "artifact": {
+          "path": "code/rust/src/number_theory/binary_field.rs",
+          "sha256": "24187b7f5f2feb4dd793af6a4679acc6c8706d5d0953096ace442789122709f2",
+          "language": "Rust"
+        },
+        "profile": "Exact",
+        "level": "L4",
+        "level_basis": "Individual source review: implements exact GF(2^k) arithmetic, fallible BinaryField::try_new construction, trace, symplectic trace, irreducible binary polynomial discovery, and binary Pauli line groups.",
+        "engineering_target": "A",
+        "requested_target": "L4A",
+        "gates": {
+          "G1": "A",
+          "G2": "A",
+          "G3": "A",
+          "G4": "A",
+          "G5": "A"
+        },
+        "composite_grade": "A",
+        "score_token": "L4A",
+        "is_complete": true,
+        "grade_ceiling": "A",
+        "evaluation_timestamp": "2026-10-20T15:14:24+00:00",
+        "grade_ceiling_basis": "Minimum of explicit individual gate decisions and measured structural eligibility.",
+        "contract": {
+          "path": "code/rust/src/number_theory/binary_field.rs.contract.yaml",
+          "status": "individual_gate_review_L4A_complete",
+          "sha256": "ca98d0a1bfd64d2f2e8e3ae1b268e9652a9cfada2769c86aed757ac52f3f9474"
+        },
+        "evidence": [
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json",
+            "sha256": "3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json",
+            "sha256": "e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd"
+          },
+          {
+            "path": "code/rust/quality/l4a_qm_six/records.py",
+            "sha256": "0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706"
+          },
+          {
+            "path": "code/rust/quality/l4a_qm_six/specs.json",
+            "sha256": "bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json",
+            "sha256": "929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json",
+            "sha256": "9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78"
+          },
+          {
+            "path": "evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json",
+            "sha256": "90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a"
+          }
+        ],
+        "verification": {
+          "baseline": {
+            "command": [
+              "cargo",
+              "test",
+              "--offline",
+              "--target-dir",
+              "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-qm-six\\20261020T151424Z\\build",
+              "--quiet",
+              "-p",
+              "tfqm_number_theory",
+              "--tests"
+            ],
+            "cwd": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\code\\rust\\target\\l4a-qm-six\\20261020T151424Z\\code\\rust",
+            "elapsed_seconds": 35.35,
+            "environment": {
+              "CARGO_BUILD_JOBS": "2",
+              "CARGO_INCREMENTAL": "0",
+              "CARGO_PROFILE_DEV_DEBUG": "0",
+              "CARGO_PROFILE_TEST_DEBUG": "0"
+            },
+            "exit_code": 0,
+            "log": "evidence/quality/l4a_qm_six/20261020T151424Z/tfqm_number_theory.log",
+            "log_sha256": "b638fddef53faac354ff1f480d324a95f867359208d7cf75ebb517ca5a4b1416",
+            "timed_out": false
+          },
+          "sources_unchanged": true,
+          "doctests": [],
+          "disabled_by_cfg_any": false,
+          "test_or_support_file": false,
+          "compatibility_mirror_tree": false,
+          "dependency_sources_unchanged": true,
+          "compiled_scope": "Package unit/integration tests in the scoped six-directory snapshot. Compatibility mirror files under mub/src/ require separate compilation review.",
+          "designated_mutations": [
+            "NT01-binary-field-add",
+            "NT02-binary-field-mul"
+          ],
+          "mutation_restoration_baselines_ok": true,
+          "reproduced_defects": []
+        },
+        "mutation_accounting": {
+          "killed": 2,
+          "survived": 0,
+          "demonstrably_equivalent": 0,
+          "invalid": 0,
+          "inconclusive": 0,
+          "unrun": 0,
+          "conservative_ratio": 1.0
+        },
+        "structure": {
+          "tool": "syn source AST (see pinned metric_tool_sources in receipt)",
+          "functions": [
+            {
+              "ccn": 6,
+              "cognitive_upper_bound": 4,
+              "control_nesting": 1,
+              "line": 29,
+              "name": "try_new",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 54,
+              "name": "new",
+              "opaque_macros": [
+                "panic:56"
+              ]
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 62,
+              "name": "degree",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 66,
+              "name": "modulus",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 70,
+              "name": "order",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 74,
+              "name": "elements",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 78,
+              "name": "add",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 5,
+              "control_nesting": 2,
+              "line": 82,
+              "name": "mul",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 97,
+              "name": "square",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 1,
+              "line": 101,
+              "name": "trace",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 111,
+              "name": "symplectic_trace",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 3,
+              "control_nesting": 1,
+              "line": 118,
+              "name": "find_irreducible_binary_polynomial",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 6,
+              "cognitive_upper_bound": 8,
+              "control_nesting": 3,
+              "line": 129,
+              "name": "is_irreducible_binary",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 4,
+              "control_nesting": 2,
+              "line": 145,
+              "name": "poly_mod_binary",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 2,
+              "control_nesting": 1,
+              "line": 158,
+              "name": "poly_degree",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 1,
+              "line": 166,
+              "name": "binary_polynomial_coefficients",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 178,
+              "name": "identity",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 186,
+              "name": "hermitian",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 194,
+              "name": "mul",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 1,
+              "cognitive_upper_bound": 0,
+              "control_nesting": 0,
+              "line": 203,
+              "name": "adjoint",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 2,
+              "cognitive_upper_bound": 1,
+              "control_nesting": 0,
+              "line": 212,
+              "name": "is_vector_zero",
+              "opaque_macros": []
+            },
+            {
+              "ccn": 4,
+              "cognitive_upper_bound": 6,
+              "control_nesting": 3,
+              "line": 217,
+              "name": "build_line_group",
+              "opaque_macros": []
+            }
+          ],
+          "exceeding_A": [],
+          "metric_ceiling": "A",
+          "scope": "Explicit source bodies only; opaque macros and compiler expansion remain unassessed."
+        },
+        "open_findings": [
+          "Scoped to binary extension degrees fitting within usize bit width."
+        ],
+        "evaluation_timestamp_basis": "Start of the latest bound assessment execution; execution durations are recorded in receipts.",
+        "engineering_review": {
+          "source_sha256": "24187b7f5f2feb4dd793af6a4679acc6c8706d5d0953096ace442789122709f2",
+          "gates": {
+            "G1": {
+              "grade": "A",
+              "basis": "Clear algebraic contract for GF(2^k) addition, multiplication, Frobenius trace, and binary Pauli multiplication."
+            },
+            "G2": {
+              "grade": "A",
+              "basis": "Exact polynomial bit-arithmetic modulo verified irreducible binary moduli preserves field and Pauli involutive laws."
+            },
+            "G3": {
+              "grade": "A",
+              "basis": "BinaryField::try_new validates degree bounds, polynomial degree matching, irreducibility, and order overflow via typed Result<Self, BinaryFieldError>."
+            },
+            "G4": {
+              "grade": "A",
+              "basis": "Exhaustive inverse/involution and negative refusal unit tests plus designated mutations NT01-binary-field-add and NT02-binary-field-mul (R = 1.0)."
+            },
+            "G5": {
+              "grade": "A",
+              "basis": "All explicit source functions satisfy Grade A structural ceilings (CCN <= 10, cognitive <= 15, nesting <= 3)."
+            }
+          }
+        }
+      },
+      "raw_utf8": "# YAML 1.2 (JSON syntax). AuthorityEffect: None.\n{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"code/rust/src/number_theory/binary_field.rs\",\n    \"sha256\": \"24187b7f5f2feb4dd793af6a4679acc6c8706d5d0953096ace442789122709f2\",\n    \"language\": \"Rust\"\n  },\n  \"profile\": \"Exact\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Individual source review: implements exact GF(2^k) arithmetic, fallible BinaryField::try_new construction, trace, symplectic trace, irreducible binary polynomial discovery, and binary Pauli line groups.\",\n  \"engineering_target\": \"A\",\n  \"requested_target\": \"L4A\",\n  \"gates\": {\n    \"G1\": \"A\",\n    \"G2\": \"A\",\n    \"G3\": \"A\",\n    \"G4\": \"A\",\n    \"G5\": \"A\"\n  },\n  \"composite_grade\": \"A\",\n  \"score_token\": \"L4A\",\n  \"is_complete\": true,\n  \"grade_ceiling\": \"A\",\n  \"evaluation_timestamp\": \"2026-10-20T15:14:24+00:00\",\n  \"grade_ceiling_basis\": \"Minimum of explicit individual gate decisions and measured structural eligibility.\",\n  \"contract\": {\n    \"path\": \"code/rust/src/number_theory/binary_field.rs.contract.yaml\",\n    \"status\": \"individual_gate_review_L4A_complete\",\n    \"sha256\": \"ca98d0a1bfd64d2f2e8e3ae1b268e9652a9cfada2769c86aed757ac52f3f9474\"\n  },\n  \"evidence\": [\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/receipt.json\",\n      \"sha256\": \"3792542192a58367c37f6e07a90b8221190cfa88d848c0e072cdc0e9ff9bab98\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/source_manifest.json\",\n      \"sha256\": \"e4d3b38ac96bae0c792cf1c72b0a7c1041d86927184944ac9ba668885fd2a5bd\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/records.py\",\n      \"sha256\": \"0fcead15b2ebda1c354e70a9cb5f8444aea60a4fbab4c7ccf222be778ea2f706\"\n    },\n    {\n      \"path\": \"code/rust/quality/l4a_qm_six/specs.json\",\n      \"sha256\": \"bd5c0510fafd3473144c73581221299cf14b191fd30bf05710311a0622a1dc12\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T151424Z/metrics.json\",\n      \"sha256\": \"929fbb3fee0da8567173ffe872e06d94a6dd12124afa84607133f070ea5a9758\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutation_receipt.json\",\n      \"sha256\": \"9887169bf43c7b2f1645784e59de4fc344652ee099fbedd9ae80d13d8c35ff78\"\n    },\n    {\n      \"path\": \"evidence/quality/l4a_qm_six/20261020T152412Z-mutations/mutations.json\",\n      \"sha256\": \"90cfe75b1a918e1c5a76e59c0370552bd4e512e3b337aaa51581f3016f46ce5a\"\n    }\n  ],\n  \"verification\": {\n    \"baseline\": {\n      \"command\": [\n        \"cargo\",\n        \"test\",\n        \"--offline\",\n        \"--target-dir\",\n        \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-qm-six\\\\20261020T151424Z\\\\build\",\n        \"--quiet\",\n        \"-p\",\n        \"tfqm_number_theory\",\n        \"--tests\"\n      ],\n      \"cwd\": \"C:\\\\Users\\\\a343o\\\\source\\\\repos\\\\theory_of_finite_quantum_mechanics\\\\code\\\\rust\\\\target\\\\l4a-qm-six\\\\20261020T151424Z\\\\code\\\\rust\",\n      \"elapsed_seconds\": 35.35,\n      \"environment\": {\n        \"CARGO_BUILD_JOBS\": \"2\",\n        \"CARGO_INCREMENTAL\": \"0\",\n        \"CARGO_PROFILE_DEV_DEBUG\": \"0\",\n        \"CARGO_PROFILE_TEST_DEBUG\": \"0\"\n      },\n      \"exit_code\": 0,\n      \"log\": \"evidence/quality/l4a_qm_six/20261020T151424Z/tfqm_number_theory.log\",\n      \"log_sha256\": \"b638fddef53faac354ff1f480d324a95f867359208d7cf75ebb517ca5a4b1416\",\n      \"timed_out\": false\n    },\n    \"sources_unchanged\": true,\n    \"doctests\": [],\n    \"disabled_by_cfg_any\": false,\n    \"test_or_support_file\": false,\n    \"compatibility_mirror_tree\": false,\n    \"dependency_sources_unchanged\": true,\n    \"compiled_scope\": \"Package unit/integration tests in the scoped six-directory snapshot. Compatibility mirror files under mub/src/ require separate compilation review.\",\n    \"designated_mutations\": [\n      \"NT01-binary-field-add\",\n      \"NT02-binary-field-mul\"\n    ],\n    \"mutation_restoration_baselines_ok\": true,\n    \"reproduced_defects\": []\n  },\n  \"mutation_accounting\": {\n    \"killed\": 2,\n    \"survived\": 0,\n    \"demonstrably_equivalent\": 0,\n    \"invalid\": 0,\n    \"inconclusive\": 0,\n    \"unrun\": 0,\n    \"conservative_ratio\": 1.0\n  },\n  \"structure\": {\n    \"tool\": \"syn source AST (see pinned metric_tool_sources in receipt)\",\n    \"functions\": [\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 1,\n        \"line\": 29,\n        \"name\": \"try_new\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 54,\n        \"name\": \"new\",\n        \"opaque_macros\": [\n          \"panic:56\"\n        ]\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 62,\n        \"name\": \"degree\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 66,\n        \"name\": \"modulus\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 70,\n        \"name\": \"order\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 74,\n        \"name\": \"elements\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 78,\n        \"name\": \"add\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 5,\n        \"control_nesting\": 2,\n        \"line\": 82,\n        \"name\": \"mul\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 97,\n        \"name\": \"square\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 1,\n        \"line\": 101,\n        \"name\": \"trace\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 111,\n        \"name\": \"symplectic_trace\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 3,\n        \"control_nesting\": 1,\n        \"line\": 118,\n        \"name\": \"find_irreducible_binary_polynomial\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 6,\n        \"cognitive_upper_bound\": 8,\n        \"control_nesting\": 3,\n        \"line\": 129,\n        \"name\": \"is_irreducible_binary\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 4,\n        \"control_nesting\": 2,\n        \"line\": 145,\n        \"name\": \"poly_mod_binary\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 2,\n        \"control_nesting\": 1,\n        \"line\": 158,\n        \"name\": \"poly_degree\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 1,\n        \"line\": 166,\n        \"name\": \"binary_polynomial_coefficients\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 178,\n        \"name\": \"identity\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 186,\n        \"name\": \"hermitian\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 194,\n        \"name\": \"mul\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 1,\n        \"cognitive_upper_bound\": 0,\n        \"control_nesting\": 0,\n        \"line\": 203,\n        \"name\": \"adjoint\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 2,\n        \"cognitive_upper_bound\": 1,\n        \"control_nesting\": 0,\n        \"line\": 212,\n        \"name\": \"is_vector_zero\",\n        \"opaque_macros\": []\n      },\n      {\n        \"ccn\": 4,\n        \"cognitive_upper_bound\": 6,\n        \"control_nesting\": 3,\n        \"line\": 217,\n        \"name\": \"build_line_group\",\n        \"opaque_macros\": []\n      }\n    ],\n    \"exceeding_A\": [],\n    \"metric_ceiling\": \"A\",\n    \"scope\": \"Explicit source bodies only; opaque macros and compiler expansion remain unassessed.\"\n  },\n  \"open_findings\": [\n    \"Scoped to binary extension degrees fitting within usize bit width.\"\n  ],\n  \"evaluation_timestamp_basis\": \"Start of the latest bound assessment execution; execution durations are recorded in receipts.\",\n  \"engineering_review\": {\n    \"source_sha256\": \"24187b7f5f2feb4dd793af6a4679acc6c8706d5d0953096ace442789122709f2\",\n    \"gates\": {\n      \"G1\": {\n        \"grade\": \"A\",\n        \"basis\": \"Clear algebraic contract for GF(2^k) addition, multiplication, Frobenius trace, and binary Pauli multiplication.\"\n      },\n      \"G2\": {\n        \"grade\": \"A\",\n        \"basis\": \"Exact polynomial bit-arithmetic modulo verified irreducible binary moduli preserves field and Pauli involutive laws.\"\n      },\n      \"G3\": {\n        \"grade\": \"A\",\n        \"basis\": \"BinaryField::try_new validates degree bounds, polynomial degree matching, irreducibility, and order overflow via typed Result<Self, BinaryFieldError>.\"\n      },\n      \"G4\": {\n        \"grade\": \"A\",\n        \"basis\": \"Exhaustive inverse/involution and negative refusal unit tests plus designated mutations NT01-binary-field-add and NT02-binary-field-mul (R = 1.0).\"\n      },\n      \"G5\": {\n        \"grade\": \"A\",\n        \"basis\": \"All explicit source functions satisfy Grade A structural ceilings (CCN <= 10, cognitive <= 15, nesting <= 3).\"\n      }\n    }\n  }\n}\n",
+      "original_paths": [
+        "evidence/quality/l4a_qm_six/recovery/original-inputs/code/rust/src/number_theory/binary_field.rs.scoring.yaml"
+      ]
+    }
+  ],
+  "legacy_paths": {
+    "evidence/quality/l4a_qm_six/recovery/original-inputs/code/rust/src/number_theory/binary_field.rs.contract.yaml": "ca98d0a1bfd64d2f2e8e3ae1b268e9652a9cfada2769c86aed757ac52f3f9474",
+    "evidence/quality/l4a_qm_six/recovery/original-inputs/code/rust/src/number_theory/binary_field.rs.scoring.yaml": "a63be07ad85dca43a30bf1f0e04c2506d358bb87e218c777368a9160e6f825d0"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

@@ -8,7 +8,10 @@ Compiler output is deleted as soon as its test executable has been copied.
 from collections import Counter
 from datetime import datetime, timezone
 import json
-from pathlib import Path
+from pathlib import Path as _FilesystemPath
+import sys as _contract_sys
+_contract_sys.path.insert(0, str(_FilesystemPath(__file__).resolve().parents[4] / "scripts"))
+from contract_scores import RecordPath as Path, copy_file as _copy_record_file
 import re
 import shutil
 import subprocess
@@ -52,7 +55,7 @@ def main():
     work = RUST / "target/hc" / stamp[2:15]
     inputs = inventory()
     write_json(output / "source_manifest.json",inputs)
-    shutil.copyfile(__file__,output / "run_hash_context_replay.py")
+    _copy_record_file(__file__,output / "run_hash_context_replay.py")
     snapshot(work,"homology")
     source = (RUST / "src/homology/hashing.rs").read_text(encoding="utf-8")
     recipes = hash_mutations(source)
@@ -74,7 +77,7 @@ def main():
                 "candidate_path":candidate_file.relative_to(ROOT).as_posix(),"candidate_sha256":digest(candidate_file)})
     with (work / "src/homology/mod.rs").open("a",encoding="utf-8") as stream:
         stream.write("\n" + "\n".join(declarations))
-    shutil.copyfile(Path(__file__).with_name("hash_protocol_oracle.rs"),output / "hash_protocol_oracle.rs")
+    _copy_record_file(Path(__file__).with_name("hash_protocol_oracle.rs"),output / "hash_protocol_oracle.rs")
     roots, dependencies = bind_dependencies(work,output)
     tools = {key:subprocess.check_output([key,"--version"],text=True).strip() for key in ("cargo","rustc")}
     write_json(output / "mutations.json",records)
@@ -92,7 +95,7 @@ def main():
                     except ValueError:
                         continue
                     if item.get("reason") == "compiler-artifact" and item.get("executable"):
-                        shutil.copyfile(item["executable"],binary)
+                        _copy_record_file(item["executable"],binary)
         finally:
             clear_debug_outputs(build,work)
         if run["exit_code"] == 0:

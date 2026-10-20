@@ -1,0 +1,189 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/40_packets/packet_symbol_game_host_prime_admit_outcome_v1_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v2",
+    "contract_id": "urn:omega:packet:symbol_game:host_prime_admit_outcome_v1:v1.0.0",
+    "title": "Host Prime Admit Outcome v1",
+    "kind": "packet_contract",
+    "layer": "40_packets",
+    "role": "PacketSpecification",
+    "status": "active",
+    "council_owner": "L3_logos_techne",
+    "descriptor": {
+      "authority_effect": "None",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": true,
+      "clean_architecture_layer": "infrastructure",
+      "refusals": {
+        "may_emit": [
+          "FW-UNKNOWN-FIELD"
+        ]
+      }
+    },
+    "doctrine": {
+      "summary": "HostPrimeAdmitOutcomeV1, result payload emitted from prime admission verification.",
+      "invariants": [
+        "AuthorityEffect is strictly None."
+      ],
+      "non_roles": [
+        "authority_source"
+      ],
+      "required_negative_capabilities": [
+        "no_self_certification"
+      ]
+    },
+    "structure": {
+      "language": "rust",
+      "rust_crate": "omega_symbol_game",
+      "rust_module": "prime",
+      "rust_type": "HostPrimeAdmitOutcomeV1",
+      "form": "struct",
+      "serde": {
+        "deny_unknown_fields": true
+      },
+      "fields": [
+        {
+          "name": "admitted"
+        },
+        {
+          "name": "carrier"
+        },
+        {
+          "name": "primitive_difference"
+        },
+        {
+          "name": "zero_rel"
+        },
+        {
+          "name": "observer"
+        },
+        {
+          "name": "witnesses"
+        },
+        {
+          "name": "cochain_constructed"
+        },
+        {
+          "name": "prime_step"
+        },
+        {
+          "name": "reason"
+        },
+        {
+          "name": "detail"
+        },
+        {
+          "name": "authority_effect"
+        }
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "ff434734b2329144bb636a1d9a2788c9d370bf00484511f86978017c2e5e6a8a",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "ff434734b2329144bb636a1d9a2788c9d370bf00484511f86978017c2e5e6a8a",
+      "bytes": 1189,
+      "record": {
+        "schema_version": "omega.contract.v2",
+        "contract_id": "urn:omega:packet:symbol_game:host_prime_admit_outcome_v1:v1.0.0",
+        "title": "Host Prime Admit Outcome v1",
+        "kind": "packet_contract",
+        "layer": "40_packets",
+        "role": "PacketSpecification",
+        "status": "active",
+        "council_owner": "L3_logos_techne",
+        "descriptor": {
+          "authority_effect": "None",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": true,
+          "clean_architecture_layer": "infrastructure",
+          "refusals": {
+            "may_emit": [
+              "FW-UNKNOWN-FIELD"
+            ]
+          }
+        },
+        "doctrine": {
+          "summary": "HostPrimeAdmitOutcomeV1, result payload emitted from prime admission verification.",
+          "invariants": [
+            "AuthorityEffect is strictly None."
+          ],
+          "non_roles": [
+            "authority_source"
+          ],
+          "required_negative_capabilities": [
+            "no_self_certification"
+          ]
+        },
+        "structure": {
+          "language": "rust",
+          "rust_crate": "omega_symbol_game",
+          "rust_module": "prime",
+          "rust_type": "HostPrimeAdmitOutcomeV1",
+          "form": "struct",
+          "serde": {
+            "deny_unknown_fields": true
+          },
+          "fields": [
+            {
+              "name": "admitted"
+            },
+            {
+              "name": "carrier"
+            },
+            {
+              "name": "primitive_difference"
+            },
+            {
+              "name": "zero_rel"
+            },
+            {
+              "name": "observer"
+            },
+            {
+              "name": "witnesses"
+            },
+            {
+              "name": "cochain_constructed"
+            },
+            {
+              "name": "prime_step"
+            },
+            {
+              "name": "reason"
+            },
+            {
+              "name": "detail"
+            },
+            {
+              "name": "authority_effect"
+            }
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v2\ncontract_id: urn:omega:packet:symbol_game:host_prime_admit_outcome_v1:v1.0.0\ntitle: Host Prime Admit Outcome v1\nkind: packet_contract\nlayer: 40_packets\nrole: PacketSpecification\nstatus: active\ncouncil_owner: L3_logos_techne\ndescriptor:\n  authority_effect: None\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: true\n  clean_architecture_layer: infrastructure\n  refusals:\n    may_emit:\n    - FW-UNKNOWN-FIELD\ndoctrine:\n  summary: HostPrimeAdmitOutcomeV1, result payload emitted from prime admission verification.\n  invariants:\n  - AuthorityEffect is strictly None.\n  non_roles:\n  - authority_source\n  required_negative_capabilities:\n  - no_self_certification\nstructure:\n  language: rust\n  rust_crate: omega_symbol_game\n  rust_module: prime\n  rust_type: HostPrimeAdmitOutcomeV1\n  form: struct\n  serde:\n    deny_unknown_fields: true\n  fields:\n  - name: admitted\n  - name: carrier\n  - name: primitive_difference\n  - name: zero_rel\n  - name: observer\n  - name: witnesses\n  - name: cochain_constructed\n  - name: prime_step\n  - name: reason\n  - name: detail\n  - name: authority_effect\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/40_packets/packet_symbol_game_host_prime_admit_outcome_v1_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/40_packets/packet_symbol_game_host_prime_admit_outcome_v1_v1_0_0.contract.yaml": "ff434734b2329144bb636a1d9a2788c9d370bf00484511f86978017c2e5e6a8a"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

@@ -1,0 +1,217 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/quantum/math_chsh_square_sos_moment_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:chsh_square_sos_moment:v0.1.0",
+    "title": "Exact CHSH operator identity and Tsirelson SOS",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "chsh_square_sos_moment",
+      "symbol": "chsh_square_sos_moment",
+      "ascii_symbol": "chsh_square_sos_moment",
+      "notation": "Exact CHSH operator identity and Tsirelson SOS",
+      "domain": [
+        "Hermitian involutions on tensor factors dimension<=16 and joint dimension<=64 over HermitianOrdered"
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_quantum_physics::finite_chsh_correlations; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "B²=4I-[A0,A1] tensor[B0,B1]",
+      "The two replayed sums of squares bound both signs by2sqrt2",
+      "State-derived Born boxes normalize and are nonnegative",
+      "The 1+AB moment matrix is an exact PSD Gram matrix"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_quantum_physics",
+      "module": "finite_chsh_correlations",
+      "symbols": [
+        "chsh_operator",
+        "verify_chsh_square_identity",
+        "TsirelsonCertificate",
+        "tsirelson_certificate",
+        "verify_tsirelson_certificate",
+        "algebraic_box_from_state",
+        "npa_level_one_ab_moment"
+      ],
+      "required_tests": [
+        "measurement_exact_laws::chsh_square_sos_attainment_and_moment_replay_reject_corruption"
+      ]
+    },
+    "negative_tests": [
+      "measurement_exact_laws::chsh_square_sos_attainment_and_moment_replay_reject_corruption"
+    ],
+    "doctrine": {
+      "summary": "B²=4I-[A0,A1] tensor[B0,B1]; The two replayed sums of squares bound both signs by2sqrt2; State-derived Born boxes normalize and are nonnegative; The 1+AB moment matrix is an exact PSD Gram matrix.",
+      "non_role": [
+        "A finite PSD NPA relaxation does not automatically construct a quantum model",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "89169e29685c7195061b2c83bcf1ebc0f9ee7323a7b4a9e6a04ac530823147ab",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "89169e29685c7195061b2c83bcf1ebc0f9ee7323a7b4a9e6a04ac530823147ab",
+      "bytes": 2871,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:chsh_square_sos_moment:v0.1.0",
+        "title": "Exact CHSH operator identity and Tsirelson SOS",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "chsh_square_sos_moment",
+          "symbol": "chsh_square_sos_moment",
+          "ascii_symbol": "chsh_square_sos_moment",
+          "notation": "Exact CHSH operator identity and Tsirelson SOS",
+          "domain": [
+            "Hermitian involutions on tensor factors dimension<=16 and joint dimension<=64 over HermitianOrdered"
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_quantum_physics::finite_chsh_correlations; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "B²=4I-[A0,A1] tensor[B0,B1]",
+          "The two replayed sums of squares bound both signs by2sqrt2",
+          "State-derived Born boxes normalize and are nonnegative",
+          "The 1+AB moment matrix is an exact PSD Gram matrix"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_quantum_physics",
+          "module": "finite_chsh_correlations",
+          "symbols": [
+            "chsh_operator",
+            "verify_chsh_square_identity",
+            "TsirelsonCertificate",
+            "tsirelson_certificate",
+            "verify_tsirelson_certificate",
+            "algebraic_box_from_state",
+            "npa_level_one_ab_moment"
+          ],
+          "required_tests": [
+            "measurement_exact_laws::chsh_square_sos_attainment_and_moment_replay_reject_corruption"
+          ]
+        },
+        "negative_tests": [
+          "measurement_exact_laws::chsh_square_sos_attainment_and_moment_replay_reject_corruption"
+        ],
+        "doctrine": {
+          "summary": "B²=4I-[A0,A1] tensor[B0,B1]; The two replayed sums of squares bound both signs by2sqrt2; State-derived Born boxes normalize and are nonnegative; The 1+AB moment matrix is an exact PSD Gram matrix.",
+          "non_role": [
+            "A finite PSD NPA relaxation does not automatically construct a quantum model",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:chsh_square_sos_moment:v0.1.0\ntitle: Exact CHSH operator identity and Tsirelson SOS\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: chsh_square_sos_moment\n  symbol: chsh_square_sos_moment\n  ascii_symbol: chsh_square_sos_moment\n  notation: Exact CHSH operator identity and Tsirelson SOS\n  domain:\n  - Hermitian involutions on tensor factors dimension<=16 and joint dimension<=64\n    over HermitianOrdered\n  codomain:\n    description: Declared finite results of omega_quantum_physics::finite_chsh_correlations;\n      exact and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- B²=4I-[A0,A1] tensor[B0,B1]\n- The two replayed sums of squares bound both signs by2sqrt2\n- State-derived Born boxes normalize and are nonnegative\n- The 1+AB moment matrix is an exact PSD Gram matrix\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_quantum_physics\n  module: finite_chsh_correlations\n  symbols:\n  - chsh_operator\n  - verify_chsh_square_identity\n  - TsirelsonCertificate\n  - tsirelson_certificate\n  - verify_tsirelson_certificate\n  - algebraic_box_from_state\n  - npa_level_one_ab_moment\n  required_tests:\n  - measurement_exact_laws::chsh_square_sos_attainment_and_moment_replay_reject_corruption\nnegative_tests:\n- measurement_exact_laws::chsh_square_sos_attainment_and_moment_replay_reject_corruption\ndoctrine:\n  summary: B²=4I-[A0,A1] tensor[B0,B1]; The two replayed sums of squares bound both\n    signs by2sqrt2; State-derived Born boxes normalize and are nonnegative; The 1+AB\n    moment matrix is an exact PSD Gram matrix.\n  non_role:\n  - A finite PSD NPA relaxation does not automatically construct a quantum model\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/math_chsh_square_sos_moment_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/quantum/math_chsh_square_sos_moment_v0_1_0.contract.yaml": "89169e29685c7195061b2c83bcf1ebc0f9ee7323a7b4a9e6a04ac530823147ab"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

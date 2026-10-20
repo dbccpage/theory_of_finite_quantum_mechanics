@@ -1,0 +1,115 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": null,
+  "contract": {
+    "schema_version": "omega.file_contract.v1",
+    "kind": "rust_file_contract",
+    "contract_id": "urn:omega:rust:omega_solvers:sheaf_cohomology_solver:v1.0.0",
+    "title": "Sheaf Cohomology and Mayer-Vietoris Gluing Solver Contract",
+    "status": "active",
+    "crate": "omega_solvers",
+    "file": "crates_rs/omega_solvers/src/solver_resolution_free_sheaf_cohomology.rs",
+    "role": "sheaf_cohomology_and_topological_gluing_solver",
+    "authority_effect": "none",
+    "evidence_ceiling": "LocalReplay",
+    "customer_claim_allowed": false,
+    "runtime_enforcement": "required",
+    "owns": [
+      "resolution_free_sheaf_cohomology",
+      "mayer_vietoris_gluing",
+      "hodge_primal_dual_decomposition",
+      "sheaf_contextuality_detection"
+    ],
+    "does_not_own": [
+      "global_topos_axiomatization",
+      "authority_promotion"
+    ],
+    "may_call": [
+      "omega_homology",
+      "omega_linear_algebra"
+    ],
+    "must_not": [
+      "report_trivial_cohomology_on_obstructed_sheaf",
+      "bypass_mayer_vietoris_coboundary_check"
+    ],
+    "exactness": {
+      "numeric_mode": "exact_integer_and_f64_cochain",
+      "exact_certificate_allowed": true
+    },
+    "forbidden_substrings": [
+      "AuthorityEffect::Authorize"
+    ],
+    "required_substrings": [
+      "Sheaf"
+    ],
+    "required_tests": [
+      "test_sheaf_cohomology_gluing"
+    ],
+    "lean_obligations": []
+  },
+  "current_contract": "3cd5d72cb27e4f4193c206ccc6a86796e0226a0eb304c286e6dddc23ab323302",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "3cd5d72cb27e4f4193c206ccc6a86796e0226a0eb304c286e6dddc23ab323302",
+      "bytes": 1097,
+      "record": {
+        "schema_version": "omega.file_contract.v1",
+        "kind": "rust_file_contract",
+        "contract_id": "urn:omega:rust:omega_solvers:sheaf_cohomology_solver:v1.0.0",
+        "title": "Sheaf Cohomology and Mayer-Vietoris Gluing Solver Contract",
+        "status": "active",
+        "crate": "omega_solvers",
+        "file": "crates_rs/omega_solvers/src/solver_resolution_free_sheaf_cohomology.rs",
+        "role": "sheaf_cohomology_and_topological_gluing_solver",
+        "authority_effect": "none",
+        "evidence_ceiling": "LocalReplay",
+        "customer_claim_allowed": false,
+        "runtime_enforcement": "required",
+        "owns": [
+          "resolution_free_sheaf_cohomology",
+          "mayer_vietoris_gluing",
+          "hodge_primal_dual_decomposition",
+          "sheaf_contextuality_detection"
+        ],
+        "does_not_own": [
+          "global_topos_axiomatization",
+          "authority_promotion"
+        ],
+        "may_call": [
+          "omega_homology",
+          "omega_linear_algebra"
+        ],
+        "must_not": [
+          "report_trivial_cohomology_on_obstructed_sheaf",
+          "bypass_mayer_vietoris_coboundary_check"
+        ],
+        "exactness": {
+          "numeric_mode": "exact_integer_and_f64_cochain",
+          "exact_certificate_allowed": true
+        },
+        "forbidden_substrings": [
+          "AuthorityEffect::Authorize"
+        ],
+        "required_substrings": [
+          "Sheaf"
+        ],
+        "required_tests": [
+          "test_sheaf_cohomology_gluing"
+        ],
+        "lean_obligations": []
+      },
+      "raw_utf8": "schema_version: omega.file_contract.v1\nkind: rust_file_contract\ncontract_id: urn:omega:rust:omega_solvers:sheaf_cohomology_solver:v1.0.0\ntitle: Sheaf Cohomology and Mayer-Vietoris Gluing Solver Contract\nstatus: active\ncrate: omega_solvers\nfile: crates_rs/omega_solvers/src/solver_resolution_free_sheaf_cohomology.rs\nrole: sheaf_cohomology_and_topological_gluing_solver\nauthority_effect: none\nevidence_ceiling: LocalReplay\ncustomer_claim_allowed: false\nruntime_enforcement: required\nowns:\n  - resolution_free_sheaf_cohomology\n  - mayer_vietoris_gluing\n  - hodge_primal_dual_decomposition\n  - sheaf_contextuality_detection\ndoes_not_own:\n  - global_topos_axiomatization\n  - authority_promotion\nmay_call:\n  - omega_homology\n  - omega_linear_algebra\nmust_not:\n  - report_trivial_cohomology_on_obstructed_sheaf\n  - bypass_mayer_vietoris_coboundary_check\nexactness:\n  numeric_mode: exact_integer_and_f64_cochain\n  exact_certificate_allowed: true\nforbidden_substrings:\n  - \"AuthorityEffect::Authorize\"\nrequired_substrings:\n  - \"Sheaf\"\nrequired_tests:\n  - test_sheaf_cohomology_gluing\nlean_obligations: []\n",
+      "original_paths": [
+        "code/python/governance/contract_canonical_definitions/rust/omega_solvers/sheaf_cohomology_solver.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/contract_canonical_definitions/rust/omega_solvers/sheaf_cohomology_solver.contract.yaml": "3cd5d72cb27e4f4193c206ccc6a86796e0226a0eb304c286e6dddc23ab323302"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

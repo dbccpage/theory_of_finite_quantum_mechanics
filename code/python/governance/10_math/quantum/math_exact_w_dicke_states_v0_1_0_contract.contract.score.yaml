@@ -1,0 +1,207 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/quantum/math_exact_w_dicke_states_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:exact_w_dicke_states:v0.1.0",
+    "title": "Exact W and Dicke state reductions",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "exact_w_dicke_states",
+      "symbol": "exact_w_dicke_states",
+      "ascii_symbol": "exact_w_dicke_states",
+      "notation": "Exact W and Dicke state reductions",
+      "domain": [
+        "Bounded finite rays over Q(i), rational mixing parameters and exact tensor index order"
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_quantum_physics::w_state; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "W has exactly n equal unnormalized amplitudes",
+      "Dicke squared norm is the exact binomial count",
+      "W two-qubit marginals retain off-diagonal coherence and concurrence2/n",
+      "Invalid excitation counts and oversized dimensions refuse"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_quantum_physics",
+      "module": "w_state",
+      "symbols": [
+        "WState::exact",
+        "WState::dicke"
+      ],
+      "required_tests": [
+        "states_channels_exact_tests::ghz_w_dicke_cuts_retain_coherences_and_distinguish_three_tangle"
+      ]
+    },
+    "negative_tests": [
+      "states_channels_exact_tests::ghz_w_dicke_cuts_retain_coherences_and_distinguish_three_tangle"
+    ],
+    "doctrine": {
+      "summary": "W has exactly n equal unnormalized amplitudes; Dicke squared norm is the exact binomial count; W two-qubit marginals retain off-diagonal coherence and concurrence2/n; Invalid excitation counts and oversized dimensions refuse.",
+      "non_role": [
+        "Does not assert a continuum state or a complete multipartite SLOCC classification",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "d80aacb7c5e91064609a755838990f7ba7a484bb32059619b3c61434f354f748",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "d80aacb7c5e91064609a755838990f7ba7a484bb32059619b3c61434f354f748",
+      "bytes": 2710,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:exact_w_dicke_states:v0.1.0",
+        "title": "Exact W and Dicke state reductions",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "exact_w_dicke_states",
+          "symbol": "exact_w_dicke_states",
+          "ascii_symbol": "exact_w_dicke_states",
+          "notation": "Exact W and Dicke state reductions",
+          "domain": [
+            "Bounded finite rays over Q(i), rational mixing parameters and exact tensor index order"
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_quantum_physics::w_state; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "W has exactly n equal unnormalized amplitudes",
+          "Dicke squared norm is the exact binomial count",
+          "W two-qubit marginals retain off-diagonal coherence and concurrence2/n",
+          "Invalid excitation counts and oversized dimensions refuse"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_quantum_physics",
+          "module": "w_state",
+          "symbols": [
+            "WState::exact",
+            "WState::dicke"
+          ],
+          "required_tests": [
+            "states_channels_exact_tests::ghz_w_dicke_cuts_retain_coherences_and_distinguish_three_tangle"
+          ]
+        },
+        "negative_tests": [
+          "states_channels_exact_tests::ghz_w_dicke_cuts_retain_coherences_and_distinguish_three_tangle"
+        ],
+        "doctrine": {
+          "summary": "W has exactly n equal unnormalized amplitudes; Dicke squared norm is the exact binomial count; W two-qubit marginals retain off-diagonal coherence and concurrence2/n; Invalid excitation counts and oversized dimensions refuse.",
+          "non_role": [
+            "Does not assert a continuum state or a complete multipartite SLOCC classification",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:exact_w_dicke_states:v0.1.0\ntitle: Exact W and Dicke state reductions\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: exact_w_dicke_states\n  symbol: exact_w_dicke_states\n  ascii_symbol: exact_w_dicke_states\n  notation: Exact W and Dicke state reductions\n  domain:\n  - Bounded finite rays over Q(i), rational mixing parameters and exact tensor index\n    order\n  codomain:\n    description: Declared finite results of omega_quantum_physics::w_state; exact\n      and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- W has exactly n equal unnormalized amplitudes\n- Dicke squared norm is the exact binomial count\n- W two-qubit marginals retain off-diagonal coherence and concurrence2/n\n- Invalid excitation counts and oversized dimensions refuse\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_quantum_physics\n  module: w_state\n  symbols:\n  - WState::exact\n  - WState::dicke\n  required_tests:\n  - states_channels_exact_tests::ghz_w_dicke_cuts_retain_coherences_and_distinguish_three_tangle\nnegative_tests:\n- states_channels_exact_tests::ghz_w_dicke_cuts_retain_coherences_and_distinguish_three_tangle\ndoctrine:\n  summary: W has exactly n equal unnormalized amplitudes; Dicke squared norm is the\n    exact binomial count; W two-qubit marginals retain off-diagonal coherence and\n    concurrence2/n; Invalid excitation counts and oversized dimensions refuse.\n  non_role:\n  - Does not assert a continuum state or a complete multipartite SLOCC classification\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/math_exact_w_dicke_states_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/quantum/math_exact_w_dicke_states_v0_1_0.contract.yaml": "d80aacb7c5e91064609a755838990f7ba7a484bb32059619b3c61434f354f748"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

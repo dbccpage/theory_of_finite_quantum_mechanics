@@ -1,0 +1,161 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/geometry/solver_objects_forgetful_functor_descent_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:solver_objects:forgetful_functor_descent:v1.0.0",
+    "title": "Forgetful Functor Descent",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "role": "MathObject",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "abstract": false,
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0",
+        "urn:omega:constitution:base_math_contract:v1.0.0"
+      ],
+      "semantic_contracts": [
+        "omega_engine_governance/contracts/contracts_math/functor.contract.yaml",
+        "omega_engine_governance/contracts/contracts_math/descent_data.contract.yaml"
+      ],
+      "runtime_bindings": [
+        "omega_engine.crates.category_theory.eilenberg_moore"
+      ],
+      "used_by": [
+        "OESOS",
+        "Prime000",
+        "Prime001",
+        "Prime002"
+      ]
+    },
+    "math": {
+      "object_kind": "forgetful_functor_descent",
+      "symbol": "U: K_{n+1} -> K_n",
+      "definition": "The descent functor that forgets newly attached structure while retaining the admitted old carrier.",
+      "laws": [
+        "U preserves identities and composition.",
+        "U composed with the admitted upfunctor is identity on the old carrier up to the declared witness."
+      ]
+    },
+    "doctrine": {
+      "summary": "OESOS and Prime binding contract for Forgetful Functor Descent.",
+      "non_role": [
+        "authority_minting",
+        "policy_decision",
+        "self_certification",
+        "state_transition"
+      ],
+      "canonical_invariant": "This contract is structural and AuthorityEffect None. Inheritance supplies shared shape and negative-capability rules without increasing authority."
+    }
+  },
+  "current_contract": "b6f432734f73c2a7e2f08e8e596f7dd5777b55f2d6e148252c10859ca5a5e30f",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "b6f432734f73c2a7e2f08e8e596f7dd5777b55f2d6e148252c10859ca5a5e30f",
+      "bytes": 1717,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:solver_objects:forgetful_functor_descent:v1.0.0",
+        "title": "Forgetful Functor Descent",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "role": "MathObject",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "abstract": false,
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0",
+            "urn:omega:constitution:base_math_contract:v1.0.0"
+          ],
+          "semantic_contracts": [
+            "omega_engine_governance/contracts/contracts_math/functor.contract.yaml",
+            "omega_engine_governance/contracts/contracts_math/descent_data.contract.yaml"
+          ],
+          "runtime_bindings": [
+            "omega_engine.crates.category_theory.eilenberg_moore"
+          ],
+          "used_by": [
+            "OESOS",
+            "Prime000",
+            "Prime001",
+            "Prime002"
+          ]
+        },
+        "math": {
+          "object_kind": "forgetful_functor_descent",
+          "symbol": "U: K_{n+1} -> K_n",
+          "definition": "The descent functor that forgets newly attached structure while retaining the admitted old carrier.",
+          "laws": [
+            "U preserves identities and composition.",
+            "U composed with the admitted upfunctor is identity on the old carrier up to the declared witness."
+          ]
+        },
+        "doctrine": {
+          "summary": "OESOS and Prime binding contract for Forgetful Functor Descent.",
+          "non_role": [
+            "authority_minting",
+            "policy_decision",
+            "self_certification",
+            "state_transition"
+          ],
+          "canonical_invariant": "This contract is structural and AuthorityEffect None. Inheritance supplies shared shape and negative-capability rules without increasing authority."
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:solver_objects:forgetful_functor_descent:v1.0.0\ntitle: Forgetful Functor Descent\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\nrole: MathObject\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  abstract: false\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n  - urn:omega:constitution:base_math_contract:v1.0.0\n  semantic_contracts:\n  - omega_engine_governance/contracts/contracts_math/functor.contract.yaml\n  - omega_engine_governance/contracts/contracts_math/descent_data.contract.yaml\n  runtime_bindings:\n  - omega_engine.crates.category_theory.eilenberg_moore\n  used_by:\n  - OESOS\n  - Prime000\n  - Prime001\n  - Prime002\nmath:\n  object_kind: forgetful_functor_descent\n  symbol: 'U: K_{n+1} -> K_n'\n  definition: The descent functor that forgets newly attached structure while retaining\n    the admitted old carrier.\n  laws:\n  - U preserves identities and composition.\n  - U composed with the admitted upfunctor is identity on the old carrier up to the\n    declared witness.\ndoctrine:\n  summary: OESOS and Prime binding contract for Forgetful Functor Descent.\n  non_role:\n  - authority_minting\n  - policy_decision\n  - self_certification\n  - state_transition\n  canonical_invariant: This contract is structural and AuthorityEffect None. Inheritance\n    supplies shared shape and negative-capability rules without increasing authority.\n",
+      "original_paths": [
+        "code/python/governance/10_math/geometry/solver_objects_forgetful_functor_descent_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/geometry/solver_objects_forgetful_functor_descent_v1_0_0.contract.yaml": "b6f432734f73c2a7e2f08e8e596f7dd5777b55f2d6e148252c10859ca5a5e30f"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

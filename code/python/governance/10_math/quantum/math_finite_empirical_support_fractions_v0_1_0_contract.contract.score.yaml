@@ -1,0 +1,215 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/quantum/math_finite_empirical_support_fractions_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:finite_empirical_support_fractions:v0.1.0",
+    "title": "Finite empirical support and contextual fractions",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "finite_empirical_support_fractions",
+      "symbol": "finite_empirical_support_fractions",
+      "ascii_symbol": "finite_empirical_support_fractions",
+      "notation": "Finite empirical support and contextual fractions",
+      "domain": [
+        "Declared binary variables1..20 with explicit local vertex assignment/coordinate/entry limits; packing dimensions<=64 and explicit candidate budget"
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_quantum_physics::contextuality_obstruction; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "Distributions normalize and all overlap marginals agree",
+      "Strong contextuality is empty supported global assignment set",
+      "Logical contextuality tests extension of every supported local outcome",
+      "Packing primal and dual replay maximal noncontextual mass and contextual fraction=1-mass"
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_quantum_physics",
+      "module": "contextuality_obstruction",
+      "symbols": [
+        "BinaryEmpiricalModel",
+        "BinaryEmpiricalModel::supported_global_assignments",
+        "BinaryEmpiricalModel::is_logically_contextual",
+        "BinaryEmpiricalModel::contextual_fraction",
+        "BinaryEmpiricalModel::verify_contextual_fraction",
+        "ContextualFractionCertificate"
+      ],
+      "required_tests": [
+        "measurement_exact_laws::contextual_fraction_support_and_ks_are_independent_finite_decisions"
+      ]
+    },
+    "negative_tests": [
+      "measurement_exact_laws::contextual_fraction_support_and_ks_are_independent_finite_decisions"
+    ],
+    "doctrine": {
+      "summary": "Distributions normalize and all overlap marginals agree; Strong contextuality is empty supported global assignment set; Logical contextuality tests extension of every supported local outcome; Packing primal and dual replay maximal noncontextual mass and contextual fraction=1-mass.",
+      "non_role": [
+        "Finite empirical, Bell-local and KS-ray decisions remain distinct; no quantum realization follows from nondisturbance",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "0e0ba40682ac3cb3c8d991426e13adf2fd8afc5d48e05f70e8e965fa4be848fe",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "0e0ba40682ac3cb3c8d991426e13adf2fd8afc5d48e05f70e8e965fa4be848fe",
+      "bytes": 3273,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:finite_empirical_support_fractions:v0.1.0",
+        "title": "Finite empirical support and contextual fractions",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "finite_empirical_support_fractions",
+          "symbol": "finite_empirical_support_fractions",
+          "ascii_symbol": "finite_empirical_support_fractions",
+          "notation": "Finite empirical support and contextual fractions",
+          "domain": [
+            "Declared binary variables1..20 with explicit local vertex assignment/coordinate/entry limits; packing dimensions<=64 and explicit candidate budget"
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_quantum_physics::contextuality_obstruction; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "Distributions normalize and all overlap marginals agree",
+          "Strong contextuality is empty supported global assignment set",
+          "Logical contextuality tests extension of every supported local outcome",
+          "Packing primal and dual replay maximal noncontextual mass and contextual fraction=1-mass"
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_quantum_physics",
+          "module": "contextuality_obstruction",
+          "symbols": [
+            "BinaryEmpiricalModel",
+            "BinaryEmpiricalModel::supported_global_assignments",
+            "BinaryEmpiricalModel::is_logically_contextual",
+            "BinaryEmpiricalModel::contextual_fraction",
+            "BinaryEmpiricalModel::verify_contextual_fraction",
+            "ContextualFractionCertificate"
+          ],
+          "required_tests": [
+            "measurement_exact_laws::contextual_fraction_support_and_ks_are_independent_finite_decisions"
+          ]
+        },
+        "negative_tests": [
+          "measurement_exact_laws::contextual_fraction_support_and_ks_are_independent_finite_decisions"
+        ],
+        "doctrine": {
+          "summary": "Distributions normalize and all overlap marginals agree; Strong contextuality is empty supported global assignment set; Logical contextuality tests extension of every supported local outcome; Packing primal and dual replay maximal noncontextual mass and contextual fraction=1-mass.",
+          "non_role": [
+            "Finite empirical, Bell-local and KS-ray decisions remain distinct; no quantum realization follows from nondisturbance",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:finite_empirical_support_fractions:v0.1.0\ntitle: Finite empirical support and contextual fractions\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: finite_empirical_support_fractions\n  symbol: finite_empirical_support_fractions\n  ascii_symbol: finite_empirical_support_fractions\n  notation: Finite empirical support and contextual fractions\n  domain:\n  - Declared binary variables1..20 with explicit local vertex assignment/coordinate/entry\n    limits; packing dimensions<=64 and explicit candidate budget\n  codomain:\n    description: Declared finite results of omega_quantum_physics::contextuality_obstruction;\n      exact and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- Distributions normalize and all overlap marginals agree\n- Strong contextuality is empty supported global assignment set\n- Logical contextuality tests extension of every supported local outcome\n- Packing primal and dual replay maximal noncontextual mass and contextual fraction=1-mass\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_quantum_physics\n  module: contextuality_obstruction\n  symbols:\n  - BinaryEmpiricalModel\n  - BinaryEmpiricalModel::supported_global_assignments\n  - BinaryEmpiricalModel::is_logically_contextual\n  - BinaryEmpiricalModel::contextual_fraction\n  - BinaryEmpiricalModel::verify_contextual_fraction\n  - ContextualFractionCertificate\n  required_tests:\n  - measurement_exact_laws::contextual_fraction_support_and_ks_are_independent_finite_decisions\nnegative_tests:\n- measurement_exact_laws::contextual_fraction_support_and_ks_are_independent_finite_decisions\ndoctrine:\n  summary: Distributions normalize and all overlap marginals agree; Strong contextuality\n    is empty supported global assignment set; Logical contextuality tests extension\n    of every supported local outcome; Packing primal and dual replay maximal noncontextual\n    mass and contextual fraction=1-mass.\n  non_role:\n  - Finite empirical, Bell-local and KS-ray decisions remain distinct; no quantum\n    realization follows from nondisturbance\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/quantum/math_finite_empirical_support_fractions_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/quantum/math_finite_empirical_support_fractions_v0_1_0.contract.yaml": "0e0ba40682ac3cb3c8d991426e13adf2fd8afc5d48e05f70e8e965fa4be848fe"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

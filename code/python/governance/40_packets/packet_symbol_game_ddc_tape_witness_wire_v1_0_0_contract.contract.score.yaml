@@ -1,0 +1,147 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/40_packets/packet_symbol_game_ddc_tape_witness_wire_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v2",
+    "contract_id": "urn:omega:packet:symbol_game:ddc_tape_witness_wire:v1.0.0",
+    "title": "DDC Tape Witness Wire",
+    "kind": "packet_contract",
+    "layer": "40_packets",
+    "role": "PacketSpecification",
+    "status": "active",
+    "council_owner": "L3_logos_techne",
+    "descriptor": {
+      "authority_effect": "None",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": true,
+      "clean_architecture_layer": "infrastructure",
+      "refusals": {
+        "may_emit": [
+          "FW-UNKNOWN-FIELD"
+        ]
+      }
+    },
+    "doctrine": {
+      "summary": "DdcTapeWitnessWire, carrier of receipts, loss ledgers, and license witnesses for step operations.",
+      "invariants": [
+        "AuthorityEffect is strictly None."
+      ],
+      "non_roles": [
+        "authority_source"
+      ],
+      "required_negative_capabilities": [
+        "no_self_certification"
+      ]
+    },
+    "structure": {
+      "language": "rust",
+      "rust_crate": "omega_symbol_game",
+      "rust_module": "ddc",
+      "rust_type": "DdcTapeWitnessWire",
+      "form": "struct",
+      "serde": {
+        "deny_unknown_fields": true
+      },
+      "fields": [
+        {
+          "name": "receipt"
+        },
+        {
+          "name": "loss_ledger"
+        },
+        {
+          "name": "lift_licence"
+        },
+        {
+          "name": "reason"
+        }
+      ]
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "8cd0da36d0d3688d879792d74c980f2ece750a0341a73c916981fe118b3a5e5a",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "8cd0da36d0d3688d879792d74c980f2ece750a0341a73c916981fe118b3a5e5a",
+      "bytes": 1031,
+      "record": {
+        "schema_version": "omega.contract.v2",
+        "contract_id": "urn:omega:packet:symbol_game:ddc_tape_witness_wire:v1.0.0",
+        "title": "DDC Tape Witness Wire",
+        "kind": "packet_contract",
+        "layer": "40_packets",
+        "role": "PacketSpecification",
+        "status": "active",
+        "council_owner": "L3_logos_techne",
+        "descriptor": {
+          "authority_effect": "None",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": true,
+          "clean_architecture_layer": "infrastructure",
+          "refusals": {
+            "may_emit": [
+              "FW-UNKNOWN-FIELD"
+            ]
+          }
+        },
+        "doctrine": {
+          "summary": "DdcTapeWitnessWire, carrier of receipts, loss ledgers, and license witnesses for step operations.",
+          "invariants": [
+            "AuthorityEffect is strictly None."
+          ],
+          "non_roles": [
+            "authority_source"
+          ],
+          "required_negative_capabilities": [
+            "no_self_certification"
+          ]
+        },
+        "structure": {
+          "language": "rust",
+          "rust_crate": "omega_symbol_game",
+          "rust_module": "ddc",
+          "rust_type": "DdcTapeWitnessWire",
+          "form": "struct",
+          "serde": {
+            "deny_unknown_fields": true
+          },
+          "fields": [
+            {
+              "name": "receipt"
+            },
+            {
+              "name": "loss_ledger"
+            },
+            {
+              "name": "lift_licence"
+            },
+            {
+              "name": "reason"
+            }
+          ]
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v2\ncontract_id: urn:omega:packet:symbol_game:ddc_tape_witness_wire:v1.0.0\ntitle: DDC Tape Witness Wire\nkind: packet_contract\nlayer: 40_packets\nrole: PacketSpecification\nstatus: active\ncouncil_owner: L3_logos_techne\ndescriptor:\n  authority_effect: None\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: true\n  clean_architecture_layer: infrastructure\n  refusals:\n    may_emit:\n    - FW-UNKNOWN-FIELD\ndoctrine:\n  summary: DdcTapeWitnessWire, carrier of receipts, loss ledgers, and license witnesses\n    for step operations.\n  invariants:\n  - AuthorityEffect is strictly None.\n  non_roles:\n  - authority_source\n  required_negative_capabilities:\n  - no_self_certification\nstructure:\n  language: rust\n  rust_crate: omega_symbol_game\n  rust_module: ddc\n  rust_type: DdcTapeWitnessWire\n  form: struct\n  serde:\n    deny_unknown_fields: true\n  fields:\n  - name: receipt\n  - name: loss_ledger\n  - name: lift_licence\n  - name: reason\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/40_packets/packet_symbol_game_ddc_tape_witness_wire_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/40_packets/packet_symbol_game_ddc_tape_witness_wire_v1_0_0.contract.yaml": "8cd0da36d0d3688d879792d74c980f2ece750a0341a73c916981fe118b3a5e5a"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

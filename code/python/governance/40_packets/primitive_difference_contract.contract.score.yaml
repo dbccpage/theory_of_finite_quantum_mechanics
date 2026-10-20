@@ -1,0 +1,157 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/40_packets/primitive_difference_contract.py",
+  "contract": {
+    "schema_version": "v1.0.0",
+    "packet_id": "urn:omega:packet:omega:primitive_difference:v1.0.0",
+    "title": "Primitive Difference & Residual Quotient Complex",
+    "kind": "math_contract",
+    "status": "Active",
+    "layer": "Governance / Core Axiomatics",
+    "authority_effect": "None",
+    "formal_anchor": {
+      "lean_module": "OmegaCore.PrimitiveDifference",
+      "source_document": "lean4/primitive_difference.lean"
+    },
+    "definition": {
+      "summary": "Minimum data and algebraic machinery for zero-difference relations, residual quotients, and delta descent.",
+      "tuple_specification": {
+        "alpha": "Base state space or object domain.",
+        "beta": "Difference codomain space.",
+        "delta": "Primitive difference operator delta: alpha -> alpha -> beta.",
+        "Zero": "Typed zero predicate Zero: beta -> Prop on difference codomain."
+      },
+      "axioms": {
+        "zero_refl": "forall x in alpha, Zero(delta(x, x))",
+        "zero_symm": "forall x, y in alpha, Zero(delta(x, y)) -> Zero(delta(y, x))",
+        "zero_trans": "forall x, y, z in alpha, Zero(delta(x, y)) -> Zero(delta(y, z)) -> Zero(delta(x, z))"
+      }
+    },
+    "core_structures": {
+      "ZeroRel": "Equivalence relation x ~ y iff Zero(delta(x, y)).",
+      "ResidualQuotient": "Canonical quotient space alpha / ZeroRel.",
+      "classOf": "Canonical class projection map alpha -> ResidualQuotient.",
+      "DeltaCongruent": "Congruence condition under which delta(x, y) = delta(x', y') for all x ~ x' and y ~ y'.",
+      "deltaFactor": "Descended difference operator delta_bar: ResidualQuotient x ResidualQuotient -> beta."
+    },
+    "theorems": [
+      {
+        "id": "classOf_eq_iff_zeroRel",
+        "statement": "classOf(x) = classOf(y) iff ZeroRel(x, y)."
+      },
+      {
+        "id": "deltaFactor_requires_congruence",
+        "statement": "delta factors through ResidualQuotient iff DeltaCongruent holds."
+      },
+      {
+        "id": "invariantFactor_exists_iff_invariantCongruent",
+        "statement": "Single-relation factorization machinery for action-invariant primitive differences."
+      }
+    ],
+    "laws": [
+      {
+        "id": "PD_LAW_01_NO_EQUIVALENCE_WITHOUT_ZERO",
+        "statement": "Equivalence classes in ResidualQuotient require explicit Zero predicate certification."
+      },
+      {
+        "id": "PD_LAW_02_DELTA_DESCENT",
+        "statement": "Difference operators shall not descend to quotient spaces unless DeltaCongruent is proven."
+      }
+    ],
+    "runtime_bindings": [
+      "omega_engine.crates.type.primitive_difference",
+      "omega_engine.crates.homotopy_type_theory.primitive_difference"
+    ],
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "b0bcf875d036f9c7fcbfa8579f6da662236cb1359944e2660da7bb0f544de46c",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "b0bcf875d036f9c7fcbfa8579f6da662236cb1359944e2660da7bb0f544de46c",
+      "bytes": 2265,
+      "record": {
+        "schema_version": "v1.0.0",
+        "packet_id": "urn:omega:packet:omega:primitive_difference:v1.0.0",
+        "title": "Primitive Difference & Residual Quotient Complex",
+        "kind": "math_contract",
+        "status": "Active",
+        "layer": "Governance / Core Axiomatics",
+        "authority_effect": "None",
+        "formal_anchor": {
+          "lean_module": "OmegaCore.PrimitiveDifference",
+          "source_document": "lean4/primitive_difference.lean"
+        },
+        "definition": {
+          "summary": "Minimum data and algebraic machinery for zero-difference relations, residual quotients, and delta descent.",
+          "tuple_specification": {
+            "alpha": "Base state space or object domain.",
+            "beta": "Difference codomain space.",
+            "delta": "Primitive difference operator delta: alpha -> alpha -> beta.",
+            "Zero": "Typed zero predicate Zero: beta -> Prop on difference codomain."
+          },
+          "axioms": {
+            "zero_refl": "forall x in alpha, Zero(delta(x, x))",
+            "zero_symm": "forall x, y in alpha, Zero(delta(x, y)) -> Zero(delta(y, x))",
+            "zero_trans": "forall x, y, z in alpha, Zero(delta(x, y)) -> Zero(delta(y, z)) -> Zero(delta(x, z))"
+          }
+        },
+        "core_structures": {
+          "ZeroRel": "Equivalence relation x ~ y iff Zero(delta(x, y)).",
+          "ResidualQuotient": "Canonical quotient space alpha / ZeroRel.",
+          "classOf": "Canonical class projection map alpha -> ResidualQuotient.",
+          "DeltaCongruent": "Congruence condition under which delta(x, y) = delta(x', y') for all x ~ x' and y ~ y'.",
+          "deltaFactor": "Descended difference operator delta_bar: ResidualQuotient x ResidualQuotient -> beta."
+        },
+        "theorems": [
+          {
+            "id": "classOf_eq_iff_zeroRel",
+            "statement": "classOf(x) = classOf(y) iff ZeroRel(x, y)."
+          },
+          {
+            "id": "deltaFactor_requires_congruence",
+            "statement": "delta factors through ResidualQuotient iff DeltaCongruent holds."
+          },
+          {
+            "id": "invariantFactor_exists_iff_invariantCongruent",
+            "statement": "Single-relation factorization machinery for action-invariant primitive differences."
+          }
+        ],
+        "laws": [
+          {
+            "id": "PD_LAW_01_NO_EQUIVALENCE_WITHOUT_ZERO",
+            "statement": "Equivalence classes in ResidualQuotient require explicit Zero predicate certification."
+          },
+          {
+            "id": "PD_LAW_02_DELTA_DESCENT",
+            "statement": "Difference operators shall not descend to quotient spaces unless DeltaCongruent is proven."
+          }
+        ],
+        "runtime_bindings": [
+          "omega_engine.crates.type.primitive_difference",
+          "omega_engine.crates.homotopy_type_theory.primitive_difference"
+        ],
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: v1.0.0\npacket_id: urn:omega:packet:omega:primitive_difference:v1.0.0\ntitle: Primitive Difference & Residual Quotient Complex\nkind: math_contract\nstatus: Active\nlayer: Governance / Core Axiomatics\nauthority_effect: None\nformal_anchor:\n  lean_module: OmegaCore.PrimitiveDifference\n  source_document: lean4/primitive_difference.lean\ndefinition:\n  summary: Minimum data and algebraic machinery for zero-difference relations, residual\n    quotients, and delta descent.\n  tuple_specification:\n    alpha: Base state space or object domain.\n    beta: Difference codomain space.\n    delta: 'Primitive difference operator delta: alpha -> alpha -> beta.'\n    Zero: 'Typed zero predicate Zero: beta -> Prop on difference codomain.'\n  axioms:\n    zero_refl: forall x in alpha, Zero(delta(x, x))\n    zero_symm: forall x, y in alpha, Zero(delta(x, y)) -> Zero(delta(y, x))\n    zero_trans: forall x, y, z in alpha, Zero(delta(x, y)) -> Zero(delta(y, z)) ->\n      Zero(delta(x, z))\ncore_structures:\n  ZeroRel: Equivalence relation x ~ y iff Zero(delta(x, y)).\n  ResidualQuotient: Canonical quotient space alpha / ZeroRel.\n  classOf: Canonical class projection map alpha -> ResidualQuotient.\n  DeltaCongruent: Congruence condition under which delta(x, y) = delta(x', y') for\n    all x ~ x' and y ~ y'.\n  deltaFactor: 'Descended difference operator delta_bar: ResidualQuotient x ResidualQuotient\n    -> beta.'\ntheorems:\n- id: classOf_eq_iff_zeroRel\n  statement: classOf(x) = classOf(y) iff ZeroRel(x, y).\n- id: deltaFactor_requires_congruence\n  statement: delta factors through ResidualQuotient iff DeltaCongruent holds.\n- id: invariantFactor_exists_iff_invariantCongruent\n  statement: Single-relation factorization machinery for action-invariant primitive\n    differences.\nlaws:\n- id: PD_LAW_01_NO_EQUIVALENCE_WITHOUT_ZERO\n  statement: Equivalence classes in ResidualQuotient require explicit Zero predicate\n    certification.\n- id: PD_LAW_02_DELTA_DESCENT\n  statement: Difference operators shall not descend to quotient spaces unless DeltaCongruent\n    is proven.\nruntime_bindings:\n- omega_engine.crates.type.primitive_difference\n- omega_engine.crates.homotopy_type_theory.primitive_difference\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/40_packets/primitive_difference.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/40_packets/primitive_difference.contract.yaml": "b0bcf875d036f9c7fcbfa8579f6da662236cb1359944e2660da7bb0f544de46c"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

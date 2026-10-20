@@ -1,0 +1,269 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/50_os/oeos_solver_arena_policy_bridge_v1_0_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:oeos:solver_arena_policy_bridge:v1.0.0",
+    "title": "Solver Arena Policy Bridge",
+    "kind": "host_contract",
+    "status": "proposed",
+    "layer": "09_host",
+    "role": "SolverArenaPolicyBridge",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "RequirementsOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [
+          "urn:omega:oeos:experience_memory_bridge:v1.0.0",
+          "urn:omega:oeos:worker_host:v1.0.0"
+        ],
+        "proof_obligations": [
+          {
+            "id": "SAP-INV-001",
+            "statement": "Every competitor and corpus case binds exact implementation, lineage, route, budget, memory, and anti-skill digests.",
+            "verification_status": "open"
+          },
+          {
+            "id": "SAP-INV-002",
+            "statement": "Holdout scoring uses independent deterministic tests and mutation-sensitive gates rather than an LLM judge.",
+            "verification_status": "open"
+          },
+          {
+            "id": "SAP-INV-003",
+            "statement": "Arena output remains a proposal until a human admits one exact scoped and expiring policy digest.",
+            "verification_status": "open"
+          }
+        ]
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": [
+          "ARENA_CORPUS_REFUSED",
+          "ARENA_EVIDENCE_REFUSED",
+          "ARENA_POLICY_REFUSED",
+          "ARENA_TRIAL_REFUSED"
+        ]
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "abstract": false,
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0",
+        "urn:omega:constitution:base_host_contract:v1.0.0"
+      ]
+    },
+    "requirements": {
+      "inputs": [
+        {
+          "name": "frozen_arena_trial",
+          "type": "urn:omega:oeos:type:frozen_arena_trial:v1.0.0",
+          "required": true
+        }
+      ],
+      "outputs": [
+        {
+          "name": "routing_policy_proposal",
+          "type": "urn:omega:oeos:type:routing_policy_proposal:v1.0.0",
+          "required": true
+        }
+      ],
+      "typed_refusals": [
+        "ARENA_CORPUS_REFUSED",
+        "ARENA_EVIDENCE_REFUSED",
+        "ARENA_POLICY_REFUSED",
+        "ARENA_TRIAL_REFUSED"
+      ],
+      "platform_requirements": [
+        {
+          "profile": "local_frozen_solver_arena",
+          "requirements": [
+            "lineage_disjoint_holdout_manifest",
+            "independent_replayable_scorer",
+            "exact_human_policy_admission"
+          ],
+          "verification_status": "requirements_only"
+        }
+      ],
+      "evidence_ceiling": "RequirementsOnly"
+    },
+    "doctrine": {
+      "summary": "Declares the OEOS host bridge into AG Arena trials and exact routing-policy proposals without owning evaluation or admission semantics.",
+      "non_role": [
+        "arena_evaluation_authority",
+        "autonomous_policy_promoter",
+        "online_learning_controller"
+      ],
+      "nonclaims": [
+        "does_not_create_mathematical_facts_or_witnesses",
+        "does_not_issue_action_licenses",
+        "does_not_authorize_engine_state_transitions",
+        "a_pareto_scorecard_does_not_admit_a_runtime_policy"
+      ],
+      "invariants": [
+        "holdout_cases_never_enter_memory_or_training_projection",
+        "proposed_routes_cannot_widen_eligibility"
+      ],
+      "allowed_operations": [
+        "dispatch_isolated_arena_trial",
+        "record_independent_trial_receipt",
+        "emit_exact_policy_proposal"
+      ],
+      "forbidden_operations": [
+        "self_admit_policy_or_candidate",
+        "use_llm_judgment_as_success_oracle",
+        "update_runtime_policy_online"
+      ]
+    }
+  },
+  "current_contract": "94a6bceca1a628a3efa17db094cf0dc7f57a191316469669e59f0285243a23ca",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "94a6bceca1a628a3efa17db094cf0dc7f57a191316469669e59f0285243a23ca",
+      "bytes": 2941,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:oeos:solver_arena_policy_bridge:v1.0.0",
+        "title": "Solver Arena Policy Bridge",
+        "kind": "host_contract",
+        "status": "proposed",
+        "layer": "09_host",
+        "role": "SolverArenaPolicyBridge",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "RequirementsOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [
+              "urn:omega:oeos:experience_memory_bridge:v1.0.0",
+              "urn:omega:oeos:worker_host:v1.0.0"
+            ],
+            "proof_obligations": [
+              {
+                "id": "SAP-INV-001",
+                "statement": "Every competitor and corpus case binds exact implementation, lineage, route, budget, memory, and anti-skill digests.",
+                "verification_status": "open"
+              },
+              {
+                "id": "SAP-INV-002",
+                "statement": "Holdout scoring uses independent deterministic tests and mutation-sensitive gates rather than an LLM judge.",
+                "verification_status": "open"
+              },
+              {
+                "id": "SAP-INV-003",
+                "statement": "Arena output remains a proposal until a human admits one exact scoped and expiring policy digest.",
+                "verification_status": "open"
+              }
+            ]
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": [
+              "ARENA_CORPUS_REFUSED",
+              "ARENA_EVIDENCE_REFUSED",
+              "ARENA_POLICY_REFUSED",
+              "ARENA_TRIAL_REFUSED"
+            ]
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "abstract": false,
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0",
+            "urn:omega:constitution:base_host_contract:v1.0.0"
+          ]
+        },
+        "requirements": {
+          "inputs": [
+            {
+              "name": "frozen_arena_trial",
+              "type": "urn:omega:oeos:type:frozen_arena_trial:v1.0.0",
+              "required": true
+            }
+          ],
+          "outputs": [
+            {
+              "name": "routing_policy_proposal",
+              "type": "urn:omega:oeos:type:routing_policy_proposal:v1.0.0",
+              "required": true
+            }
+          ],
+          "typed_refusals": [
+            "ARENA_CORPUS_REFUSED",
+            "ARENA_EVIDENCE_REFUSED",
+            "ARENA_POLICY_REFUSED",
+            "ARENA_TRIAL_REFUSED"
+          ],
+          "platform_requirements": [
+            {
+              "profile": "local_frozen_solver_arena",
+              "requirements": [
+                "lineage_disjoint_holdout_manifest",
+                "independent_replayable_scorer",
+                "exact_human_policy_admission"
+              ],
+              "verification_status": "requirements_only"
+            }
+          ],
+          "evidence_ceiling": "RequirementsOnly"
+        },
+        "doctrine": {
+          "summary": "Declares the OEOS host bridge into AG Arena trials and exact routing-policy proposals without owning evaluation or admission semantics.",
+          "non_role": [
+            "arena_evaluation_authority",
+            "autonomous_policy_promoter",
+            "online_learning_controller"
+          ],
+          "nonclaims": [
+            "does_not_create_mathematical_facts_or_witnesses",
+            "does_not_issue_action_licenses",
+            "does_not_authorize_engine_state_transitions",
+            "a_pareto_scorecard_does_not_admit_a_runtime_policy"
+          ],
+          "invariants": [
+            "holdout_cases_never_enter_memory_or_training_projection",
+            "proposed_routes_cannot_widen_eligibility"
+          ],
+          "allowed_operations": [
+            "dispatch_isolated_arena_trial",
+            "record_independent_trial_receipt",
+            "emit_exact_policy_proposal"
+          ],
+          "forbidden_operations": [
+            "self_admit_policy_or_candidate",
+            "use_llm_judgment_as_success_oracle",
+            "update_runtime_policy_online"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:oeos:solver_arena_policy_bridge:v1.0.0\ntitle: Solver Arena Policy Bridge\nkind: host_contract\nstatus: proposed\nlayer: 09_host\nrole: SolverArenaPolicyBridge\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: RequirementsOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts:\n    - urn:omega:oeos:experience_memory_bridge:v1.0.0\n    - urn:omega:oeos:worker_host:v1.0.0\n    proof_obligations:\n    - id: SAP-INV-001\n      statement: Every competitor and corpus case binds exact implementation, lineage,\n        route, budget, memory, and anti-skill digests.\n      verification_status: open\n    - id: SAP-INV-002\n      statement: Holdout scoring uses independent deterministic tests and mutation-sensitive\n        gates rather than an LLM judge.\n      verification_status: open\n    - id: SAP-INV-003\n      statement: Arena output remains a proposal until a human admits one exact scoped\n        and expiring policy digest.\n      verification_status: open\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit:\n    - ARENA_CORPUS_REFUSED\n    - ARENA_EVIDENCE_REFUSED\n    - ARENA_POLICY_REFUSED\n    - ARENA_TRIAL_REFUSED\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  abstract: false\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n  - urn:omega:constitution:base_host_contract:v1.0.0\nrequirements:\n  inputs:\n  - name: frozen_arena_trial\n    type: urn:omega:oeos:type:frozen_arena_trial:v1.0.0\n    required: true\n  outputs:\n  - name: routing_policy_proposal\n    type: urn:omega:oeos:type:routing_policy_proposal:v1.0.0\n    required: true\n  typed_refusals:\n  - ARENA_CORPUS_REFUSED\n  - ARENA_EVIDENCE_REFUSED\n  - ARENA_POLICY_REFUSED\n  - ARENA_TRIAL_REFUSED\n  platform_requirements:\n  - profile: local_frozen_solver_arena\n    requirements:\n    - lineage_disjoint_holdout_manifest\n    - independent_replayable_scorer\n    - exact_human_policy_admission\n    verification_status: requirements_only\n  evidence_ceiling: RequirementsOnly\ndoctrine:\n  summary: Declares the OEOS host bridge into AG Arena trials and exact routing-policy\n    proposals without owning evaluation or admission semantics.\n  non_role:\n  - arena_evaluation_authority\n  - autonomous_policy_promoter\n  - online_learning_controller\n  nonclaims:\n  - does_not_create_mathematical_facts_or_witnesses\n  - does_not_issue_action_licenses\n  - does_not_authorize_engine_state_transitions\n  - a_pareto_scorecard_does_not_admit_a_runtime_policy\n  invariants:\n  - holdout_cases_never_enter_memory_or_training_projection\n  - proposed_routes_cannot_widen_eligibility\n  allowed_operations:\n  - dispatch_isolated_arena_trial\n  - record_independent_trial_receipt\n  - emit_exact_policy_proposal\n  forbidden_operations:\n  - self_admit_policy_or_candidate\n  - use_llm_judgment_as_success_oracle\n  - update_runtime_policy_online\n",
+      "original_paths": [
+        "code/python/governance/50_os/oeos_solver_arena_policy_bridge_v1_0_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/50_os/oeos_solver_arena_policy_bridge_v1_0_0.contract.yaml": "94a6bceca1a628a3efa17db094cf0dc7f57a191316469669e59f0285243a23ca"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

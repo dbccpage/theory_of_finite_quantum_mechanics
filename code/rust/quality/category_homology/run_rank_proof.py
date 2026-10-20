@@ -7,7 +7,10 @@ Uses the repository's already prepared Lean/Mathlib project; never fetches it.
 import argparse
 from datetime import datetime, timezone
 import json
-from pathlib import Path
+from pathlib import Path as _FilesystemPath
+import sys as _contract_sys
+_contract_sys.path.insert(0, str(_FilesystemPath(__file__).resolve().parents[4] / "scripts"))
+from contract_scores import RecordPath as Path, copy_file as _copy_record_file
 import re
 import shutil
 import subprocess
@@ -315,10 +318,10 @@ def main():
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")+"-"+model+"-proof"
     output = ROOT/"evidence/quality/category_homology"/stamp
     output.mkdir(parents=True)
-    shutil.copyfile(proof,output/proof.name)
+    _copy_record_file(proof,output/proof.name)
     runtime = {}
     for source in (Path(__file__),Path(__file__).parent/"run_audit.py"):
-        shutil.copyfile(source,output/source.name)
+        _copy_record_file(source,output/source.name)
         runtime[source.name] = digest(output/source.name)
     inputs = {str(proof):digest(proof)}
     mathlib = project/".lake/packages/mathlib"

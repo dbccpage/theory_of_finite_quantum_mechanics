@@ -1,0 +1,147 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/geometry/math_fiber_bundle_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:fiber_bundle:v0.1.0",
+    "title": "FiberBundle",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "ShapeOnly",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "doctrine": {
+      "summary": "A FiberBundle is a collection of finite-dimensional vector spaces (fibers) over a common field K, each attached to a distinct base point.  It is the discrete analogue of a vector bundle: the total space is the disjoint union of the fibers, the base space is a set of abstract points, and the projection maps each fiber to its base point.  The contract ensures that all fibers share the same field and dimension, that base points are unique, and that each fiber is a valid Fiber artifact.  No topological, smooth, or continuity conditions are imposed; those belong to separate contracts."
+    },
+    "wip": [
+      {
+        "wip_status": true,
+        "questions": [
+          {
+            "question": "The contract assumes a discrete base set; for continuous base spaces (manifolds) a separate `TopologicalFiberBundle` contract would be needed, incorporating atlas and transition functions.\n"
+          },
+          {
+            "question": "Global frames (choices of basis for every fiber that vary smoothly) are not covered; a `FrameField` contract may be added later.\n"
+          },
+          {
+            "question": "The bundle currently requires explicit Fiber artifacts for every base point, which is impractical for infinite bases.  A future version might allow a generator function (content-addressed) that produces Fibers on demand.\n"
+          },
+          {
+            "question": "The concept of a \"typical fiber\" (a Fiber without a base point) is not yet standardised; the `typical_fiber_basis_hash` field is optional and informative.\n"
+          },
+          {
+            "question": "Sub-bundle and quotient bundle constructions are deferred to ComputationWitness specifications.\n"
+          },
+          {
+            "question": "The exact sorting rule for base point IDs with mixed encodings (text vs. binary) needs a precise canonicalisation; currently it is bytewise comparison of the raw UTF-8/byte strings.\n"
+          }
+        ]
+      }
+    ],
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    }
+  },
+  "current_contract": "fda4253f42646ef36cddb5d7567423f5ee4c2fced807c0ca716e8522d866301f",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "fda4253f42646ef36cddb5d7567423f5ee4c2fced807c0ca716e8522d866301f",
+      "bytes": 2413,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:fiber_bundle:v0.1.0",
+        "title": "FiberBundle",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "ShapeOnly",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "doctrine": {
+          "summary": "A FiberBundle is a collection of finite-dimensional vector spaces (fibers) over a common field K, each attached to a distinct base point.  It is the discrete analogue of a vector bundle: the total space is the disjoint union of the fibers, the base space is a set of abstract points, and the projection maps each fiber to its base point.  The contract ensures that all fibers share the same field and dimension, that base points are unique, and that each fiber is a valid Fiber artifact.  No topological, smooth, or continuity conditions are imposed; those belong to separate contracts."
+        },
+        "wip": [
+          {
+            "wip_status": true,
+            "questions": [
+              {
+                "question": "The contract assumes a discrete base set; for continuous base spaces (manifolds) a separate `TopologicalFiberBundle` contract would be needed, incorporating atlas and transition functions.\n"
+              },
+              {
+                "question": "Global frames (choices of basis for every fiber that vary smoothly) are not covered; a `FrameField` contract may be added later.\n"
+              },
+              {
+                "question": "The bundle currently requires explicit Fiber artifacts for every base point, which is impractical for infinite bases.  A future version might allow a generator function (content-addressed) that produces Fibers on demand.\n"
+              },
+              {
+                "question": "The concept of a \"typical fiber\" (a Fiber without a base point) is not yet standardised; the `typical_fiber_basis_hash` field is optional and informative.\n"
+              },
+              {
+                "question": "Sub-bundle and quotient bundle constructions are deferred to ComputationWitness specifications.\n"
+              },
+              {
+                "question": "The exact sorting rule for base point IDs with mixed encodings (text vs. binary) needs a precise canonicalisation; currently it is bytewise comparison of the raw UTF-8/byte strings.\n"
+              }
+            ]
+          }
+        ],
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        }
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:fiber_bundle:v0.1.0\ntitle: FiberBundle\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: ShapeOnly\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\ndoctrine:\n  summary: 'A FiberBundle is a collection of finite-dimensional vector spaces (fibers)\n    over a common field K, each attached to a distinct base point.  It is the discrete\n    analogue of a vector bundle: the total space is the disjoint union of the fibers,\n    the base space is a set of abstract points, and the projection maps each fiber\n    to its base point.  The contract ensures that all fibers share the same field\n    and dimension, that base points are unique, and that each fiber is a valid Fiber\n    artifact.  No topological, smooth, or continuity conditions are imposed; those\n    belong to separate contracts.'\nwip:\n- wip_status: true\n  questions:\n  - question: 'The contract assumes a discrete base set; for continuous base spaces\n      (manifolds) a separate `TopologicalFiberBundle` contract would be needed, incorporating\n      atlas and transition functions.\n\n      '\n  - question: 'Global frames (choices of basis for every fiber that vary smoothly)\n      are not covered; a `FrameField` contract may be added later.\n\n      '\n  - question: 'The bundle currently requires explicit Fiber artifacts for every base\n      point, which is impractical for infinite bases.  A future version might allow\n      a generator function (content-addressed) that produces Fibers on demand.\n\n      '\n  - question: 'The concept of a \"typical fiber\" (a Fiber without a base point) is\n      not yet standardised; the `typical_fiber_basis_hash` field is optional and informative.\n\n      '\n  - question: 'Sub-bundle and quotient bundle constructions are deferred to ComputationWitness\n      specifications.\n\n      '\n  - question: 'The exact sorting rule for base point IDs with mixed encodings (text\n      vs. binary) needs a precise canonicalisation; currently it is bytewise comparison\n      of the raw UTF-8/byte strings.\n\n      '\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\n",
+      "original_paths": [
+        "code/python/governance/10_math/geometry/math_fiber_bundle_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/geometry/math_fiber_bundle_v0_1_0.contract.yaml": "fda4253f42646ef36cddb5d7567423f5ee4c2fced807c0ca716e8522d866301f"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}

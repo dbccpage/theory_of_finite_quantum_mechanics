@@ -9,9 +9,9 @@ path is counted once. The initial inventory had 318 Rust sources;
 `progress.json` records the current set as main adds modules and examples.
 The six-directory scope stays intact.
 
-Every source has `<name>.rs.scoring.yaml` and `<name>.rs.contract.yaml`.
+Every covered source has one `<name>.contract.score.yaml` containing its contract and scoring history.
 These JSON documents are valid YAML 1.2. Independently authored existing PFP
-contracts are preserved. Earlier category `.score.yaml` records remain intact.
+contracts are preserved. Earlier category score records are preserved inside the combined history, with their original bytes and hashes.
 
 The architecture target is L4 and engineering target is A. Delivered capability
 levels remain honest: a small alias does not become L4 by receiving a sidecar,
@@ -229,3 +229,5 @@ lemmas and528 integer envelopes support their declared bounded scopes. Exact
 provider-context checks refresh four unchanged consumers and preserve their levels.
 Structural maxima are10/9/3. The ledger has175 completed assessments and147
 incomplete sources; braided.rs is the remaining incomplete fusion source.
+
+Companion storage now uses one `<source-stem>.contract.score.yaml`. Original receipt-addressed records and all scoring versions are retained inside that file; old physical companions are removed. See [the migration guide](../../../../docs/CONTRACT_SCORING_HISTORY.md). Legacy quality-tool path addresses resolve through the scoped reader/writer adapter.

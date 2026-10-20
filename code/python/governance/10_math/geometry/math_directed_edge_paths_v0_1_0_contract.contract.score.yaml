@@ -1,0 +1,207 @@
+{
+  "schema_version": "tfqm.contract-score.v1",
+  "AuthorityEffect": "None",
+  "artifact": "code/python/governance/10_math/geometry/math_directed_edge_paths_v0_1_0_contract.py",
+  "contract": {
+    "schema_version": "omega.contract.v1",
+    "contract_id": "urn:omega:math:directed_edge_paths:v0.1.0",
+    "title": "Bounded directed multigraph paths",
+    "kind": "math_contract",
+    "status": "mathematical_wip",
+    "layer": "math",
+    "descriptor": {
+      "authority_effect": "none",
+      "evidence_ceiling": "LocalReplay",
+      "runtime_enforcement": false,
+      "customer_claim_allowed": false,
+      "dependencies": {
+        "contracts": [],
+        "proof_obligations": []
+      },
+      "terminals": {
+        "may_emit": [],
+        "may_support": []
+      },
+      "refusals": {
+        "may_emit": []
+      },
+      "operator_classes": {
+        "may_support": [],
+        "must_not_self_assign": true
+      }
+    },
+    "relationships": {
+      "extends": [
+        "urn:omega:governance:base_contract:v1.0.0"
+      ]
+    },
+    "math": {
+      "object_kind": "directed_edge_paths",
+      "symbol": "directed_edge_paths",
+      "ascii_symbol": "directed_edge_paths",
+      "notation": "Bounded directed multigraph paths",
+      "domain": [
+        "Vertices<=4096, edges<=16384, paths<=65536; directed acyclic enumeration."
+      ],
+      "codomain": {
+        "description": "Declared finite results of omega_homology::directed_multigraph; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+      }
+    },
+    "requirements": {
+      "required_structures": [
+        "Declared finite carriers, basis order, dimensions and coefficient domain",
+        "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+        "Unsupported inputs and exhausted computations return their declared refusal"
+      ]
+    },
+    "laws": [
+      "Parallel edges are distinct paths.",
+      "Identity path is included at equal endpoints.",
+      "Cycles, invalid vertices and exceeded budgets refuse without a partial hom-set."
+    ],
+    "replay": {
+      "requirements": [
+        "No external state",
+        "No time-dependent data",
+        "Deterministic mathematical replay on identical inputs",
+        "Independent operator or witness replay where a certificate is returned"
+      ]
+    },
+    "rust_binding": {
+      "crate": "omega_homology",
+      "module": "directed_multigraph",
+      "symbols": [
+        "DirectedMultigraph",
+        "DirectedMultigraph::shortest_distances"
+      ],
+      "required_tests": [
+        "parallel_paths_have_distinct_edges_and_composition_is_complete",
+        "directed_cycles_and_invalid_vertices_are_refusals"
+      ]
+    },
+    "negative_tests": [
+      "directed_cycles_and_invalid_vertices_are_refusals"
+    ],
+    "doctrine": {
+      "summary": "Parallel edges are distinct paths.; Identity path is included at equal endpoints.; Cycles, invalid vertices and exceeded budgets refuse without a partial hom-set..",
+      "non_role": [
+        "No stochastic, quantum or spacetime interpretation is built into the graph.",
+        "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+      ]
+    },
+    "wip": [
+      "Executable finite laws remain local implementation evidence pending human mathematics review",
+      "No mechanized theorem discharge or lifecycle acceptance is asserted"
+    ]
+  },
+  "current_contract": "bbbb0ff5691dd99509b74552d8ed5b5c576168ba98d71380f00a5f9d91105ac0",
+  "current_scoring": null,
+  "contract_history": [
+    {
+      "sha256": "bbbb0ff5691dd99509b74552d8ed5b5c576168ba98d71380f00a5f9d91105ac0",
+      "bytes": 2577,
+      "record": {
+        "schema_version": "omega.contract.v1",
+        "contract_id": "urn:omega:math:directed_edge_paths:v0.1.0",
+        "title": "Bounded directed multigraph paths",
+        "kind": "math_contract",
+        "status": "mathematical_wip",
+        "layer": "math",
+        "descriptor": {
+          "authority_effect": "none",
+          "evidence_ceiling": "LocalReplay",
+          "runtime_enforcement": false,
+          "customer_claim_allowed": false,
+          "dependencies": {
+            "contracts": [],
+            "proof_obligations": []
+          },
+          "terminals": {
+            "may_emit": [],
+            "may_support": []
+          },
+          "refusals": {
+            "may_emit": []
+          },
+          "operator_classes": {
+            "may_support": [],
+            "must_not_self_assign": true
+          }
+        },
+        "relationships": {
+          "extends": [
+            "urn:omega:governance:base_contract:v1.0.0"
+          ]
+        },
+        "math": {
+          "object_kind": "directed_edge_paths",
+          "symbol": "directed_edge_paths",
+          "ascii_symbol": "directed_edge_paths",
+          "notation": "Bounded directed multigraph paths",
+          "domain": [
+            "Vertices<=4096, edges<=16384, paths<=65536; directed acyclic enumeration."
+          ],
+          "codomain": {
+            "description": "Declared finite results of omega_homology::directed_multigraph; exact and diagnostic routes retain their stated arithmetic, limits and refusals."
+          }
+        },
+        "requirements": {
+          "required_structures": [
+            "Declared finite carriers, basis order, dimensions and coefficient domain",
+            "Exact arithmetic on the exact face; an explicitly diagnostic numerical face if declared",
+            "Unsupported inputs and exhausted computations return their declared refusal"
+          ]
+        },
+        "laws": [
+          "Parallel edges are distinct paths.",
+          "Identity path is included at equal endpoints.",
+          "Cycles, invalid vertices and exceeded budgets refuse without a partial hom-set."
+        ],
+        "replay": {
+          "requirements": [
+            "No external state",
+            "No time-dependent data",
+            "Deterministic mathematical replay on identical inputs",
+            "Independent operator or witness replay where a certificate is returned"
+          ]
+        },
+        "rust_binding": {
+          "crate": "omega_homology",
+          "module": "directed_multigraph",
+          "symbols": [
+            "DirectedMultigraph",
+            "DirectedMultigraph::shortest_distances"
+          ],
+          "required_tests": [
+            "parallel_paths_have_distinct_edges_and_composition_is_complete",
+            "directed_cycles_and_invalid_vertices_are_refusals"
+          ]
+        },
+        "negative_tests": [
+          "directed_cycles_and_invalid_vertices_are_refusals"
+        ],
+        "doctrine": {
+          "summary": "Parallel edges are distinct paths.; Identity path is included at equal endpoints.; Cycles, invalid vertices and exceeded budgets refuse without a partial hom-set..",
+          "non_role": [
+            "No stochastic, quantum or spacetime interpretation is built into the graph.",
+            "PROVED, GlobalGreen, operational authority or human mathematics acceptance"
+          ]
+        },
+        "wip": [
+          "Executable finite laws remain local implementation evidence pending human mathematics review",
+          "No mechanized theorem discharge or lifecycle acceptance is asserted"
+        ]
+      },
+      "raw_utf8": "schema_version: omega.contract.v1\ncontract_id: urn:omega:math:directed_edge_paths:v0.1.0\ntitle: Bounded directed multigraph paths\nkind: math_contract\nstatus: mathematical_wip\nlayer: math\ndescriptor:\n  authority_effect: none\n  evidence_ceiling: LocalReplay\n  runtime_enforcement: false\n  customer_claim_allowed: false\n  dependencies:\n    contracts: []\n    proof_obligations: []\n  terminals:\n    may_emit: []\n    may_support: []\n  refusals:\n    may_emit: []\n  operator_classes:\n    may_support: []\n    must_not_self_assign: true\nrelationships:\n  extends:\n  - urn:omega:governance:base_contract:v1.0.0\nmath:\n  object_kind: directed_edge_paths\n  symbol: directed_edge_paths\n  ascii_symbol: directed_edge_paths\n  notation: Bounded directed multigraph paths\n  domain:\n  - Vertices<=4096, edges<=16384, paths<=65536; directed acyclic enumeration.\n  codomain:\n    description: Declared finite results of omega_homology::directed_multigraph; exact\n      and diagnostic routes retain their stated arithmetic, limits and refusals.\nrequirements:\n  required_structures:\n  - Declared finite carriers, basis order, dimensions and coefficient domain\n  - Exact arithmetic on the exact face; an explicitly diagnostic numerical face if\n    declared\n  - Unsupported inputs and exhausted computations return their declared refusal\nlaws:\n- Parallel edges are distinct paths.\n- Identity path is included at equal endpoints.\n- Cycles, invalid vertices and exceeded budgets refuse without a partial hom-set.\nreplay:\n  requirements:\n  - No external state\n  - No time-dependent data\n  - Deterministic mathematical replay on identical inputs\n  - Independent operator or witness replay where a certificate is returned\nrust_binding:\n  crate: omega_homology\n  module: directed_multigraph\n  symbols:\n  - DirectedMultigraph\n  - DirectedMultigraph::shortest_distances\n  required_tests:\n  - parallel_paths_have_distinct_edges_and_composition_is_complete\n  - directed_cycles_and_invalid_vertices_are_refusals\nnegative_tests:\n- directed_cycles_and_invalid_vertices_are_refusals\ndoctrine:\n  summary: Parallel edges are distinct paths.; Identity path is included at equal\n    endpoints.; Cycles, invalid vertices and exceeded budgets refuse without a partial\n    hom-set..\n  non_role:\n  - No stochastic, quantum or spacetime interpretation is built into the graph.\n  - PROVED, GlobalGreen, operational authority or human mathematics acceptance\nwip:\n- Executable finite laws remain local implementation evidence pending human mathematics\n  review\n- No mechanized theorem discharge or lifecycle acceptance is asserted\n",
+      "original_paths": [
+        "code/python/governance/10_math/geometry/math_directed_edge_paths_v0_1_0.contract.yaml"
+      ]
+    }
+  ],
+  "scoring_history": [],
+  "legacy_paths": {
+    "code/python/governance/10_math/geometry/math_directed_edge_paths_v0_1_0.contract.yaml": "bbbb0ff5691dd99509b74552d8ed5b5c576168ba98d71380f00a5f9d91105ac0"
+  },
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "assurance": "Storage migration only; imported grades and claims are not independently verified or promoted."
+}
