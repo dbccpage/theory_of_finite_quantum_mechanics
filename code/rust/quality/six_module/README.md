@@ -108,18 +108,29 @@ missing/false support records are challenged. Both complete canonical roots pass
 all 52 tests each. Helpers certify only aggregate equality to a positive total,
 not individual physical dimensions or all exported provider implementations.
 
-The ring's six above-A functions have been factored by mathematical operation,
-preserving lexicographic diagnostics and scalar order. All 68 ring bodies now
-meet A ceilings (9/7/3). Complete ring invariant/provider/cost and mutation
-review is still pending; no ring grade is awarded. Original boundary failures
-and previous contracts are retained, including the pre-repair 47/5 results.
+The bounded ring now receives L4A with all 74 production bodies individually
+contracted, 29/29 detected final critical source faults, explicit whole-file
+invariant/cost/consumer review, and fourteen clean matrix/counting/work-admission
+model declarations plus the earlier rank/ratio model. The first matrix-model
+draft was rejected for an unintended pointwise-product interpretation and remains
+preserved. The checked model uses actual matrix products and polynomial mapping.
+
+Group operations stream mixed-radix coordinates without digit-vector allocation.
+Path counting admits conservative scalar-bit work before BigUint arithmetic,
+reuses two buffers, skips zero terms and moves target counts. Direct flat matrix
+construction and exact-capacity table flattening remove avoidable intermediates.
+Unexpected fractional spectral coefficients refuse before conversion. The
+spectral FP interpretation is a separate cited finite-matrix source argument;
+its provider budgets can refuse. Lawful generic scalar implementations remain
+an explicit domain/TCB assumption. Ring admission certifies a based ring, not a
+fusion category, braiding, statistics or categorical realizability.
 
 `gate_reviews.json` registers individually authored completed assessments.
 `reviewed_assessments.py` checks their actual native/dependency/proof/metric
 receipts with the existing weakest-link and proof verifiers. It checks each
 compiled mutant against its exact source substitution and frozen fixture, and
 each mapped production signature/body against source. The writer cannot create
-a gate review from test counts. Eleven decoded-value probes challenge accounting,
+a gate review from test counts. Thirteen decoded-value probes challenge accounting,
 kill attribution, structural ceilings and complete/accurate body mapping without
 editing any source or immutable receipt. Legacy grades keep their immutable
 score-manifest custody. Failed proof and interrupted receipt attempts remain

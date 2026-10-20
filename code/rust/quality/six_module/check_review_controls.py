@@ -56,7 +56,7 @@ def main():
             ("missing_nested_crate_source", lib_review["native_support_sources"], missing_support, lib_source),
             ("wrong_nested_crate_source", lib_review["native_support_sources"], false_support, lib_source),
         ])
-    for stem in ("lib", "mod"):
+    for stem in ("lib", "mod", "fusion_ring"):
         fusion_source = checks.ROOT / f"code/rust/src/fusion_categories/{stem}.rs"
         key = fusion_source.relative_to(checks.ROOT).as_posix()
         if key in registry:
@@ -85,12 +85,13 @@ def main():
     record, _ = checks.reviewed(source)
     assert record[1]["score_token"] == "L4A"
     cases.append({"control": "unaltered_current_review", "expected": "pass", "observed": record[1]["score_token"]})
-    for stem in ("lib", "mod"):
+    for stem in ("lib", "mod", "fusion_ring"):
         fusion_source = checks.ROOT / f"code/rust/src/fusion_categories/{stem}.rs"
         if fusion_source.relative_to(checks.ROOT).as_posix() in registry:
             record, _ = checks.reviewed(fusion_source)
-            assert record[1]["score_token"] == "L1A"
-            cases.append({"control": f"unaltered_fusion_{stem}", "expected": "pass", "observed": "L1A"})
+            expected = "L4A" if stem == "fusion_ring" else "L1A"
+            assert record[1]["score_token"] == expected
+            cases.append({"control": f"unaltered_fusion_{stem}", "expected": "pass", "observed": expected})
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
     output = checks.ROOT / "evidence/quality/six_module" / (stamp + "-review-controls.json")
     output.parent.mkdir(parents=True, exist_ok=True)

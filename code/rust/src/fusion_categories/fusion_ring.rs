@@ -12,6 +12,9 @@ pub const MAX_RANK: usize = 32;
 
 pub const MAX_FUSION_WORD: usize = 1 << 14;
 
+/// Conservative scalar-bit work, not elapsed CPU cycles or heap bytes.
+pub const MAX_FUSION_PATH_WORK: u128 = 1 << 32;
+
 fn admit_rank(rank: usize) -> Result<(), FusionError> {
     if rank == 0 || rank > MAX_RANK {
         return Err(FusionError::RankOutOfRange {
@@ -20,6 +23,16 @@ fn admit_rank(rank: usize) -> Result<(), FusionError> {
         });
     }
     Ok(())
+}
+
+// Callers admit R first or pass a fixed catalog array of rank at most three.
+fn flatten_multiplicities<const R: usize>(n: &[[[u64; R]; R]; R]) -> Vec<u64> {
+    let mut flat = Vec::with_capacity(R * R * R);
+    flat.extend(
+        n.iter()
+            .flat_map(|plane| plane.iter().flat_map(|row| row.iter().copied())),
+    );
+    flat
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, Error)]
@@ -86,13 +99,18 @@ impl AbelianGroup {
         self.order
     }
 
-    pub fn digits(&self, label: usize) -> Result<Vec<usize>, FusionError> {
+    fn check_label(&self, label: usize) -> Result<(), FusionError> {
         if label >= self.order {
             return Err(FusionError::Label {
                 label,
                 rank: self.order,
             });
         }
+        Ok(())
+    }
+
+    pub fn digits(&self, label: usize) -> Result<Vec<usize>, FusionError> {
+        self.check_label(label)?;
         let mut rest = label;
         Ok(self
             .moduli
@@ -129,24 +147,27 @@ impl AbelianGroup {
     }
 
     pub fn add(&self, a: usize, b: usize) -> Result<usize, FusionError> {
-        let (da, db) = (self.digits(a)?, self.digits(b)?);
-        let sum: Vec<usize> = da
-            .iter()
-            .zip(&db)
-            .zip(&self.moduli)
-            .map(|((x, y), m)| (x + y) % m)
-            .collect();
-        self.label(&sum)
+        self.check_label(a)?;
+        self.check_label(b)?;
+        let (mut left, mut right, mut label, mut stride) = (a, b, 0usize, 1usize);
+        for &m in &self.moduli {
+            label += ((left % m + right % m) % m) * stride;
+            left /= m;
+            right /= m;
+            stride *= m;
+        }
+        Ok(label)
     }
 
     pub fn negate(&self, a: usize) -> Result<usize, FusionError> {
-        let da = self.digits(a)?;
-        let negated: Vec<usize> = da
-            .iter()
-            .zip(&self.moduli)
-            .map(|(x, m)| (m - x) % m)
-            .collect();
-        self.label(&negated)
+        self.check_label(a)?;
+        let (mut rest, mut label, mut stride) = (a, 0usize, 1usize);
+        for &m in &self.moduli {
+            label += ((m - rest % m) % m) * stride;
+            rest /= m;
+            stride *= m;
+        }
+        Ok(label)
     }
 }
 
@@ -194,10 +215,7 @@ impl FusionTable {
 
     pub fn from_array<const R: usize>(n: [[[u64; R]; R]; R]) -> Result<Self, FusionError> {
         admit_rank(R)?;
-        let flat = n
-            .iter()
-            .flat_map(|plane| plane.iter().flat_map(|row| row.iter().copied()))
-            .collect();
+        let flat = flatten_multiplicities(&n);
         Self::new(R, flat)
     }
 
@@ -388,11 +406,8 @@ impl FusionTable {
                 limit: MAX_FUSION_WORD as u128,
             });
         }
-        let mut counts = self.unit_counts();
-        for _ in 0..copies {
-            counts = self.step(&counts, label);
-        }
-        Ok(counts)
+        self.admit_path_work(std::iter::repeat(label).take(copies))?;
+        Ok(self.path_counts(std::iter::repeat(label).take(copies)))
     }
 
     pub fn charge_counts_u64(&self, label: usize, copies: usize) -> Result<Vec<u64>, FusionError> {
@@ -418,18 +433,69 @@ impl FusionTable {
             .collect()
     }
 
-    fn step(&self, counts: &[BigUint], w: usize) -> Vec<BigUint> {
-        (0..self.rank)
-            .map(|c| {
+    fn path_growth(&self, w: usize) -> u32 {
+        let max_sum = (0..self.rank)
+            .map(|a| {
                 (0..self.rank)
-                    .map(|a| {
-                        counts.get(a).map_or_else(BigUint::zero, |count| {
-                            count * BigUint::from(self.at(a, w, c))
-                        })
-                    })
-                    .fold(BigUint::zero(), |acc, term| acc + term)
+                    .map(|c| u128::from(self.at(a, w, c)))
+                    .sum::<u128>()
             })
-            .collect()
+            .max()
+            .unwrap_or(0);
+        if max_sum <= 1 {
+            0
+        } else {
+            128 - (max_sum - 1).leading_zeros()
+        }
+    }
+
+    fn admit_path_work(&self, labels: impl Iterator<Item = usize>) -> Result<(), FusionError> {
+        let mut growths = [None; MAX_RANK];
+        let (mut bits, mut work) = (1u128, 0u128);
+        let cells = (self.rank * self.rank) as u128;
+        for w in labels {
+            work += cells * (bits + 64);
+            if work > MAX_FUSION_PATH_WORK {
+                return Err(FusionError::Budget {
+                    what: "fusion path scalar-bit work",
+                    requested: work,
+                    limit: MAX_FUSION_PATH_WORK,
+                });
+            }
+            let growth = *growths[w].get_or_insert_with(|| self.path_growth(w));
+            bits += u128::from(growth);
+        }
+        Ok(())
+    }
+
+    fn step_into(&self, counts: &[BigUint], w: usize, next: &mut [BigUint]) {
+        for value in next.iter_mut() {
+            value.set_zero();
+        }
+        for (a, count) in counts.iter().take(self.rank).enumerate() {
+            if count.is_zero() {
+                continue;
+            }
+            for (c, value) in next.iter_mut().enumerate() {
+                let multiplicity = self.at(a, w, c);
+                if multiplicity != 0 {
+                    *value += count * multiplicity;
+                }
+            }
+        }
+    }
+
+    fn path_counts(&self, labels: impl Iterator<Item = usize>) -> Vec<BigUint> {
+        let mut counts = self.unit_counts();
+        let mut next = Vec::new();
+        for w in labels {
+            if next.is_empty() {
+                next = vec![BigUint::zero(); self.rank];
+            }
+            self.step_into(&counts, w, &mut next);
+            std::mem::swap(&mut counts, &mut next);
+        }
+        counts
     }
 
     pub fn ising() -> Self {
@@ -438,10 +504,7 @@ impl FusionTable {
             [[0, 1, 0], [1, 0, 1], [0, 1, 0]],
             [[0, 0, 1], [0, 1, 0], [1, 0, 0]],
         ];
-        let flat = n
-            .iter()
-            .flat_map(|plane| plane.iter().flat_map(|row| row.iter().copied()))
-            .collect();
+        let flat = flatten_multiplicities(&n);
         Self {
             rank: 3,
             names: ["1", "sigma", "psi"].map(String::from).to_vec(),
@@ -527,7 +590,7 @@ impl FusionRing {
     pub fn fusion_paths(&self, word: &[usize], target: usize) -> Result<BigUint, FusionError> {
         let counts = self.fusion_path_counts(word)?;
         self.table.check(target)?;
-        Ok(counts.get(target).cloned().unwrap_or_else(BigUint::zero))
+        Ok(counts.into_iter().nth(target).unwrap_or_else(BigUint::zero))
     }
 
     pub fn fusion_path_counts(&self, word: &[usize]) -> Result<Vec<BigUint>, FusionError> {
@@ -538,12 +601,11 @@ impl FusionRing {
                 limit: MAX_FUSION_WORD as u128,
             });
         }
-        let mut counts = self.table.unit_counts();
         for &w in word {
             self.table.check(w)?;
-            counts = self.table.step(&counts, w);
         }
-        Ok(counts)
+        self.table.admit_path_work(word.iter().copied())?;
+        Ok(self.table.path_counts(word.iter().copied()))
     }
 
     pub fn fusion_matrix(&self, a: usize) -> Result<Vec<Vec<BigInt>>, FusionError> {
@@ -561,26 +623,41 @@ impl FusionRing {
         &self,
         a: usize,
     ) -> Result<BasicMatrix<omega_number_theory::rational::Rational>, FusionError> {
-        matrix::from_rows(
-            self.fusion_matrix(a)?
-                .into_iter()
-                .map(|row| {
-                    row.into_iter()
-                        .map(omega_number_theory::rational::Rational::from_integer)
-                        .collect()
-                })
-                .collect(),
+        self.table.check(a)?;
+        BasicMatrix::try_from_fn_with_limit(
+            self.rank(),
+            self.rank(),
+            MAX_RANK * MAX_RANK,
+            |b, c| {
+                omega_number_theory::rational::Rational::from_integer(BigInt::from(
+                    self.table.at(a, b, c),
+                ))
+            },
         )
         .map_err(FusionError::from)
     }
 
+    fn integral_coefficients(
+        values: Vec<omega_number_theory::rational::Rational>,
+    ) -> Result<Vec<BigInt>, FusionError> {
+        values
+            .into_iter()
+            .map(|q| {
+                if q.is_integer() {
+                    Ok(q.to_integer())
+                } else {
+                    Err(FusionError::Polynomial(
+                        "characteristic polynomial coefficient is not integral",
+                    ))
+                }
+            })
+            .collect()
+    }
+
     pub fn characteristic_polynomial(&self, a: usize) -> Result<Vec<BigInt>, FusionError> {
-        Ok(
-            characteristic_polynomial::characteristic_polynomial(&self.rational_fusion_matrix(a)?)?
-                .into_iter()
-                .map(|q| q.to_integer())
-                .collect(),
-        )
+        Self::integral_coefficients(characteristic_polynomial::characteristic_polynomial(
+            &self.rational_fusion_matrix(a)?,
+        )?)
     }
 
     pub fn frobenius_perron_dimension(&self, a: usize) -> Result<RealAlgebraic, FusionError> {
@@ -596,12 +673,9 @@ impl FusionRing {
             let right = self.rational_fusion_matrix(a_star)?;
             total = matrix::add(&total, &matrix::multiply(&left, &right)?)?;
         }
-        largest_real_root(
-            &characteristic_polynomial::characteristic_polynomial(&total)?
-                .into_iter()
-                .map(|q| q.to_integer())
-                .collect::<Vec<_>>(),
-        )
+        largest_real_root(&Self::integral_coefficients(
+            characteristic_polynomial::characteristic_polynomial(&total)?,
+        )?)
         .map_err(FusionError::from)
     }
 
@@ -714,10 +788,7 @@ impl FusionRing {
     pub fn fibonacci() -> Result<Self, FusionError> {
         let n = [[[1, 0], [0, 1]], [[0, 1], [1, 1]]];
         let names = ["1", "tau"].map(String::from).to_vec();
-        let flat = n
-            .iter()
-            .flat_map(|plane| plane.iter().flat_map(|row| row.iter().copied()))
-            .collect();
+        let flat = flatten_multiplicities(&n);
         Self::try_new(FusionTable::with_names(2, names, flat)?)
     }
 
@@ -777,10 +848,7 @@ impl FusionRing {
             [[0, 1, 0], [1, 0, 0], [0, 0, 1]],
             [[0, 0, 1], [0, 0, 1], [1, 1, 1]],
         ];
-        let flat = n
-            .iter()
-            .flat_map(|plane| plane.iter().flat_map(|row| row.iter().copied()))
-            .collect();
+        let flat = flatten_multiplicities(&n);
         Self::try_new(FusionTable::with_names(
             3,
             ["1", "sgn", "std"].map(String::from).to_vec(),
